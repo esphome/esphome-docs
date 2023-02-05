@@ -48,6 +48,15 @@ to an ESP module.
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
 
+    font:
+      - file: "gfonts://Roboto"
+        id: font
+        size: 20
+
+.. note::
+
+    For more information about the font options see: :ref:`display-fonts`.
+
 .. warning::
 
     When using the TTGO T-Display module, the GPIO pin numbers above *cannot be changed* as they are
@@ -208,35 +217,38 @@ appropriate lines of C code in the lambda to hide or show the image or text as y
         name: "T-Display Button Input 1"
         id: tdisplay_button_input_1
 
-    # We can still control the backlight independently
-    switch:
-      - platform: gpio
-        pin: GPIO4
-        name: "Backlight"
-        id: backlight
+    # Allow dimmable control of the backlight (pin GPIO4)
+   output:
+     - platform: ledc
+       pin: GPIO4
+       id: gpio4
 
-    image:
-      - file: "image.png"
-        id: my_image
-        resize: 200x200
-        type: RGB24
+   light:
+     - platform: monochromatic
+       output: gpio4
+       name: "Backlight"
 
-    time:
-      - platform: homeassistant
-        id: esptime
+   image:
+     - file: "image.png"
+       id: my_image
+       resize: 200x200
+       type: RGB24
 
-    spi:
-      clk_pin: GPIO18
-      mosi_pin: GPIO19
+   time:
+     - platform: homeassistant
+       id: esptime
 
-    display:
-      - platform: st7789v
-        backlight_pin: GPIO4
-        cs_pin: GPIO5
-        dc_pin: GPIO16
-        reset_pin: GPIO23
-        rotation: 270
-        lambda: |-
+   spi:
+     clk_pin: GPIO18
+     mosi_pin: GPIO19
+
+   display:
+     - platform: st7789v
+       cs_pin: GPIO5
+       dc_pin: GPIO16
+       reset_pin: GPIO23
+       rotation: 270
+       lambda: |-
           it.rectangle(0,  0, it.get_width(), it.get_height(), id(my_blue));
           it.rectangle(0, 20, it.get_width(), it.get_height(), id(my_blue));   // header bar
 
@@ -253,6 +265,7 @@ appropriate lines of C code in the lambda to hide or show the image or text as y
           else {
             it.print(235, 5, id(helvetica_12), id(my_red), TextAlign::TOP_RIGHT, "Offline");
           }
+
 
 See Also
 --------

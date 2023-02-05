@@ -38,7 +38,7 @@ Disabling the compilation timestamp:
         name: "ESPHome Version"
         hide_timestamp: true
 
-This will, for example, change the output of the senser from:
+This will, for example, change the output of the sensor from:
 
 ``1.15.0-dev (Jun 8 2020, 18:53:16)`` to ``1.15.0-dev``
 

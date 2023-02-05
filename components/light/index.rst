@@ -203,6 +203,13 @@ them to zero.
         // perform action:
         call.perform();
 
+    Shorter example using auto call , call.set_brightness and call.perform.
+
+    .. code-block:: cpp
+
+        id(light_1).turn_on().set_brightness(1.0).perform();
+
+
 .. note::
 
     The ``red``, ``green`` and ``blue`` values only control the color of the light, not its
