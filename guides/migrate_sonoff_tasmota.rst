@@ -58,7 +58,7 @@ Happy Hacking!
 
 .. note::
 
-    If you are using Tasmota 8+ and get an error after uploading the firmware, first upload the tasmota-minimal.bin.gz from Tasmota repository, next upload firmware generated from ESPHome.
+    If you are using Tasmota 8+ on ESP8266 and get an error after uploading the firmware, first upload the tasmota-minimal.bin.gz from Tasmota repository, next upload firmware generated from ESPHome. Another way to try is to simply ``gzip`` the ESPHome binary and upload the ``.gz`` file instead.
 
 See Also
 --------
