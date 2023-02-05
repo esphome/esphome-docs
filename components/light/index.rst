@@ -206,7 +206,7 @@ them to zero.
     Shorter example using auto call , call.set_brightness and call.perform.
 
     .. code-block:: cpp
-    
+
         id(light_1).turn_on().set_brightness(1.0).perform();
 
 
