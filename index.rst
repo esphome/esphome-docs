@@ -275,6 +275,7 @@ Electricity
     Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg, Modbus energy monitor
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg, Electrical counter
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
+    IEC62056-21, iec62056, components/sensor/iec62056, iec62056-21.svg, Electrical meter
 
 
 Environmental
