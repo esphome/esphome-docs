@@ -141,7 +141,7 @@ Additionally, you have access to two helper methods which will fetch the width a
 
 You can view the full API documentation for the rendering engine in the "API Reference" in the See Also section.
 
-.. _display-static_text:
+.. _display-fonts:
 
 Fonts
 *****
@@ -169,6 +169,13 @@ Next, create a ``font:`` section in your configuration:
       - file: "gfonts://Roboto"
         id: roboto
         size: 20
+
+      - file:
+          type: gfonts
+          family: Roboto
+          weight: 900
+        id: font2
+        size: 16
 
       - file: "fonts/tom-thumb.bdf"
         id: tomthumb
@@ -225,6 +232,8 @@ Configuration variables:
     add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
     to install it using
     ``pip install pillow``.
+
+.. _display-static_text:
 
 Drawing Static Text
 *******************
@@ -415,7 +424,7 @@ RGB displays use red, green, and blue, while grayscale displays may use white.
 Graph Component
 ***************
 
-You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in 
+You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in
 memory at the time the sensor updates and will be lost when the device reboots.
 
 Examples:
@@ -477,6 +486,7 @@ Configuration variables:
 - **traces** (*Optional*): Use this to specify more than a single trace.
 
 Trace specific fields:
+
 - **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
 - **line_thickness** (*Optional*): Defaults to 3
 - **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
