@@ -141,7 +141,7 @@ Additionally, you have access to two helper methods which will fetch the width a
 
 You can view the full API documentation for the rendering engine in the "API Reference" in the See Also section.
 
-.. _display-static_text:
+.. _display-fonts:
 
 Fonts
 *****
@@ -225,6 +225,8 @@ Configuration variables:
     add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
     to install it using
     ``pip install pillow``.
+
+.. _display-static_text:
 
 Drawing Static Text
 *******************
@@ -415,7 +417,7 @@ RGB displays use red, green, and blue, while grayscale displays may use white.
 Graph Component
 ***************
 
-You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in 
+You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in
 memory at the time the sensor updates and will be lost when the device reboots.
 
 Examples:

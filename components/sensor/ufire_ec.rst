@@ -20,7 +20,7 @@ linked to the uFire EC configuration.
 
     # Example configuration entry
     sensor:
-      - platform: ufire_ec  
+      - platform: ufire_ec
         id: ufire_ec_board
         temperature:
           id: temperature_liquit
@@ -32,7 +32,7 @@ linked to the uFire EC configuration.
 Configuration variables:
 ------------------------
 
-- **address** (**Optional**, int): Specify the I²C address of the sensor. Defaults to ``0x3C``.
+- **address** (*Optional*, int): Specify the I²C address of the sensor. Defaults to ``0x3C``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
@@ -47,8 +47,8 @@ Configuration variables:
 
 .. _sensor-ufire_ec-calibrate_probe_action:
 
-``sensor.ufire_ec.calibrate_probe`` Action
-------------------------------------------
+``ufire_ec.calibrate_probe`` Action
+-----------------------------------
 
 The EC probe have to be calibrated. For this you need know the EC reference value and temperature
 of the calibration solution.
@@ -76,8 +76,8 @@ Configuration options:
 
 .. _sensor-ufire_ec-reset_action:
 
-``sensor.ufire_ec.reset`` Action
---------------------------------
+``ufire_ec.reset`` Action
+-------------------------
 
 Reset the current calibration on the sensor.
 
