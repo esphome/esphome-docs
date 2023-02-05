@@ -34,7 +34,7 @@ This component contains platform-specific options for the RP2040 platform.
 Configuration variables:
 ------------------------
 
-- **board** (*Optional*, string): The board type. Valid options are ``rpipico`` and ``rpipicow``.
+- **board** (*Optional*, string): The board type. Valid option is ``rpipicow``.
 
 See Also
 --------
