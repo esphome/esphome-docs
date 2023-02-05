@@ -13,12 +13,7 @@ Usage
 The ``st7789v`` display platform allows you to use
 ST7789V (`datasheet <https://github.com/Xinyuan-LilyGO/TTGO-T-Display>`__,
 `Tindie <https://www.tindie.com/products/ttgo/lilygor-ttgo-t-display/>`__)
-displays with ESPHome. Note that this component utilizes the 4-Wire :ref:`SPI bus <spi>`; the physical
-connection is already in place on the TTGO T-Display module as shown below.
-
-.. note::
-
-    Currently this only supports 135x240 pixel ST7789V displays. Other sizes (e.g. 240x320, 240x240) are not supported.
+displays with ESPHome. Note that this component utilizes the 4-Wire :ref:`SPI bus <spi>`.
 
 .. figure:: images/st7789v-full.jpg
     :align: center
@@ -26,12 +21,15 @@ connection is already in place on the TTGO T-Display module as shown below.
 
     ST7789V TFT LCD on TTGO T-Display module
 
-This module has a USB-C connector with an on-board serial adapter for programming. Simply connect to a
-USB-C port to get started! (Depending on your operating system of choice, you might need to install an
-appropriate driver.) It is also possible to power the module via the 5V and G (ground) pins along
-the edges of the module, or via a battery attached to the connector on the bottom of the board. The
-ESP32's UART pins are not brought out to the headers, so the on-board serial adapter must be used for
-hardwired programming. (OTA updates are of course possible after ESPHome is initially installed.)
+The TTGO T-Display module shown has the display attached to the module's board and its connections to the ESP32
+cannot be changed. Other display modules have pin headers or other connectors which must be connected appropriately
+to an ESP module.
+
+.. note::
+
+    Displays larger than the 135x240 pixel display on the TTGO T-Display shown require a significant amount of RAM
+    to operate correctly. Some ESP devices, such as the ESP8266, do not have sufficient memory to support this display.
+    If you attempt to use this component and experience repeated crashes, this is likely the cause of the issue.
 
 .. code-block:: yaml
 
@@ -42,12 +40,22 @@ hardwired programming. (OTA updates are of course possible after ESPHome is init
 
     display:
       - platform: st7789v
+        model: TTGO TDisplay 135x240
         backlight_pin: GPIO4
         cs_pin: GPIO5
         dc_pin: GPIO16
         reset_pin: GPIO23
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
+
+    font:
+      - file: "gfonts://Roboto"
+        id: font
+        size: 20
+
+.. note::
+
+    For more information about the font options see: :ref:`display-fonts`.
 
 .. warning::
 
@@ -57,9 +65,26 @@ hardwired programming. (OTA updates are of course possible after ESPHome is init
 Configuration variables:
 ************************
 
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **model** (**Required**, string): The display model to use. One of the following options:
+
+  - ``TTGO TDisplay 135x240``
+  - ``Adafruit Funhouse 240x240``
+  - ``Adafruit RR 280x240`` (round-rectangular display -- some pixels are "deleted" from corners to form rounded shape)
+  - ``Custom`` (see details below)
+
+- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **height** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the ``height`` of the display
+  in pixels. This option may not be specified when the ``model`` is not set to "Custom".
+- **width** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the ``width`` of the display
+  in pixels. This option may not be specified when the ``model`` is not set to "Custom".
+- **offset_height** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the display's vertical
+  offset in pixels. This option may not be specified when the ``model`` is not set to "Custom".
+- **offset_width** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the display's horizontal
+  offset in pixels. This option may not be specified when the ``model`` is not set to "Custom".
+- **eightbitcolor** (*Optional*, boolean): Limits the supported color depth to eight bits. May be useful on
+  memory-constrained devices.
 - **backlight_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The display's backlight pin.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
@@ -67,12 +92,14 @@ Configuration variables:
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+.. note::
+
+    On memory-constrained devices, it may be possible to use *part* of the display area by setting the model to "custom"
+    and specifying a smaller ``height`` and/or ``width`` than that of the actual display.
+
+
 Configuration examples
 **********************
-
-As of version 1.15, ESPHome supports color displays. To utilize the color capabilities of this display
-module, you'll likely want to add a ``color:`` section to your YAML configuration; please see
-:ref:`color <config-color>` for more detail on this configuration section.
 
 To use colors in your lambda:
 

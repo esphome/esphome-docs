@@ -392,7 +392,7 @@ Configuration variables:
 ******************************
 
 A simple `exponential moving average
-<https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average>`__ over the last few
+<https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/quantile.htm>`__ over the last few
 values. It can be used to have a short update interval on the sensor but only push
 out an average on a specific interval (thus increasing resolution).
 
@@ -558,10 +558,16 @@ So for example ``above: 5`` with no below would mean the range from 5 to positiv
       - platform: dallas
         # ...
         on_value_range:
-          above: 5
-          below: 10
-          then:
-            - switch.turn_on: relay_1
+          - below: 5.0
+            then:
+              - switch.turn_on: relay_1
+          - above: 5.0
+            below: 10.0
+            then:
+              - switch.turn_on: relay_2
+          - above: 10.0
+            then:
+              - switch.turn_on: relay_3
 
 Configuration variables:
 
@@ -627,7 +633,7 @@ From :ref:`lambdas <config-lambda>`, you can call several methods on all sensors
 advanced stuff (see the full API Reference for more info).
 
 - ``publish_state()``: Manually cause the sensor to push out a value. It will then
-  be processed by the sensor filters, and once done be published to MQTT.
+  be processed by the sensor filters, and once filtered will propagate though ESPHome and though the API to Home Assistant or out via MQTT if configured. 
 
   .. code-block:: cpp
 

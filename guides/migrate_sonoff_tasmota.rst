@@ -11,8 +11,7 @@ ESPHome create a binary for you and then upload that in the Tasmota web interfac
 Getting the Binary
 ------------------
 
-First follow the guides for the :ref:`different supported devices <devices>` and create a configuration
-file. Then, generate and download the binary:
+First create a configuration for your device. Then, generate and download the legacy binary:
 
 - **Using the Home Assistant add-on/dashboard**: Just click the ``COMPILE``
   button, wait for the compilation to end and press the ``DOWNLOAD BINARY``
@@ -60,17 +59,12 @@ Happy Hacking!
 .. note::
 
     If you are using Tasmota 8+ and get an error after uploading the firmware, go to the console and type ```SetOption78 1```, then restart the device and try the firmware again.
-    
+
 See Also
 --------
 
-- :doc:`/devices/sonoff_s20`
-- :doc:`/devices/sonoff_4ch`
-- :doc:`/devices/sonoff`
-- :doc:`/devices/nodemcu_esp8266`
-- :doc:`/devices/nodemcu_esp32`
-- :doc:`/devices/esp8266`
-- :doc:`/devices/esp32`
+- :doc:`/components/esp8266`
+- :doc:`/components/esp32`
 - :doc:`migrate_espurna`
 - :doc:`migrate_espeasy`
 - :ghedit:`Edit`

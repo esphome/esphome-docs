@@ -13,7 +13,7 @@ from docutils import nodes
 
 # This file is not processed by default as extension unless added.
 # To add this extension from command line use:
-#   -Dextensions=github,seo,sitemap,schema_doc"
+#   -Dextensions=github,seo,sitemap,components,schema_doc"
 
 # also for improve performance running old version
 #   -d_build/.doctrees-schema
@@ -183,6 +183,17 @@ CUSTOM_DOCS = {
     "components/display/ssd1327": {"_LoadSchema": False},
     "components/display/ssd1351": {"_LoadSchema": False},
     "components/copy": {"_LoadSchema": False},
+    "components/display_menu/index": {
+        "Display Menu": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA",
+        "Select": "display_menu_base.schemas.MENU_TYPES.schema.config_vars.items.types.select",
+        "Menu": "display_menu_base.schemas.MENU_TYPES.schema.config_vars.items.types.menu",
+        "Number": "display_menu_base.schemas.MENU_TYPES.schema.config_vars.items.types.number",
+        "Switch": "display_menu_base.schemas.MENU_TYPES.schema.config_vars.items.types.switch",
+        "Custom": "display_menu_base.schemas.MENU_TYPES.schema.config_vars.items.types.custom",
+    },
+    "components/display_menu/lcd_menu": {
+        "LCD Menu": "lcd_menu.schemas.CONFIG_SCHEMA",
+    },
 }
 
 
@@ -226,6 +237,18 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     self.json_component = self.file_schema[self.component]["schemas"][
                         "CONFIG_SCHEMA"
                     ]
+            elif self.path[1] == "display_menu":  # weird folder naming
+                if self.path[2] == "index":
+                    # weird component name mismatch
+                    self.component = "display_menu_base"
+                else:
+                    self.component = self.path[2]
+
+                    self.file_schema = get_component_file(app, self.component)
+                    self.json_component = self.file_schema[self.component]["schemas"][
+                        "CONFIG_SCHEMA"
+                    ]
+
             else:  # sub component, e.g. output/esp8266_pwm
 
                 # components here might have a core / hub, eg. dallas, ads1115
@@ -288,9 +311,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             elif componentName in core["platforms"]:
                 core["platforms"][componentName]["docs"] = description
             else:
-                raise ValueError(
-                    "Cannot set description for component " + componentName
-                )
+                if componentName != "display_menu_base":
+                    raise ValueError(
+                        "Cannot set description for component " + componentName
+                    )
 
     def visit_document(self, node):
         # ESPHome page docs follows strict formatting guidelines which allows
@@ -620,9 +644,15 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
             component_parts = split_text[0].split(".")
             if len(component_parts) == 3:
-                cv = get_component_file(self.app, component_parts[1])[
-                    component_parts[1] + "." + component_parts[0]
-                ][split_text[1].lower()][component_parts[2]]
+                try:
+                    cv = get_component_file(self.app, component_parts[1])[
+                        component_parts[1] + "." + component_parts[0]
+                    ][split_text[1].lower()][component_parts[2]]
+                except KeyError:
+                    logger.warn(
+                        f"In {self.docname} cannot found schema of {title_text}"
+                    )
+                    cv = None
                 if cv is not None:
                     cv["docs"] = description
                     self.props = self.find_props(cv.get("schema", {}))
@@ -834,7 +864,14 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 self.app.config.html_baseurl,
                 self.docname + ".html#" + title.parent["ids"][0],
             )
-            markdown += f"\n\n*See also: [{self.props_section_title}]({url})*"
+            if (
+                self.props_section_title is not None
+                and self.props_section_title.endswith(title.astext())
+            ):
+                markdown += f"\n\n*See also: [{self.props_section_title}]({url})*"
+            else:
+                markdown += f"\n\n*See also: [{self.getMarkdown(title)}]({url})*"
+
         return markdown
 
     def update_prop(self, node, props):
@@ -927,7 +964,12 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 # this is e.g. when a property has a list inside, and the list inside are the options.
                 # just validate **prop_name**
                 s3 = re.search(r"\* \*\*(\w*)\*\*:\s", name_type)
-                prop_name = s3.group(1)
+                if s3 is not None:
+                    prop_name = s3.group(1)
+                else:
+                    logger.info(
+                        f"In '{self.docname} {self.previous_title_text} Invalid list format: {node.rawsource}"
+                    )
                 param_type = None
             else:
                 logger.info(
@@ -1138,14 +1180,15 @@ def handle_component(app, doctree, docname):
     elif docname not in CUSTOM_DOCS:
         return
 
-    v = SchemaGeneratorVisitor(app, doctree, docname)
     try:
+        v = SchemaGeneratorVisitor(app, doctree, docname)
         doctree.walkabout(v)
     except Exception as e:
         err_str = f"In {docname}.rst: {str(e)}"
-        logger.warning(err_str)
-        # print stack
+        # if you put a breakpoint here get call-stack in the console by entering
+        # import traceback
         # traceback.print_exc()
+        logger.warning(err_str)
 
 
 def build_finished(app, exception):

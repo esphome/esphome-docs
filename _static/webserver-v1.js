@@ -23,7 +23,7 @@ source.addEventListener('log', function (e) {
     log.innerHTML += '<span class="' + klass + '">' + e.data.substr(7, e.data.length - 11) + "</span>\n";
 });
 
-actions = [
+const actions = [
     ["switch", ["toggle"]],
     ["light", ["toggle"]],
     ["fan", ["toggle"]],
@@ -31,7 +31,7 @@ actions = [
     ["button", ["press"]],
     ["lock", ["lock", "unlock", "open"]],
     ];
-multi_actions = [
+const multi_actions = [
     ["select", "option"],
     ["number", "value"],
     ["input_text", "value"],

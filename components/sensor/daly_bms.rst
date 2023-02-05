@@ -88,6 +88,7 @@ Configuration variables:
 ************************
 
 - **update_interval** (*Optional*, :ref:`config-time`): Delay between data requests.
+- **address** (*Optional*, int): Address to use, defaults to ``0x80``.
 
 Sensor
 ------
@@ -237,6 +238,19 @@ Connect RX from BMS to TX in ESP board and TX from BMS to RX in ESP board
     :width: 100.0%
 
     Uart Pinout.
+    
+**3.3v Warning:** some BMS 3.3v cant source large currents and may not work to properly power the ESP. If you are having WIFI connection issues or similar, try a different power source. There is 12-15v available on the Daly connector which via a proper step-down converter can properly power the ESP.
+
+On the ESP32 (untested on ESP8266) if you are having missing data (such as Temperature 1/2), it may be due to UART buffer size.
+Add the following to your configuration to increase the buffer from the default 256 to 512.
+
+.. code-block:: 
+
+    uart: 
+      ...
+      rx_buffer_size: 512
+
+
 
 See Also
 --------

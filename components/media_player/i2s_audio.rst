@@ -23,7 +23,7 @@ via the I2S bus. This platform only works on ESP32 based chips.
 Configuration variables:
 ------------------------
 
-- **dac_type** (**Required**, enum)
+- **dac_type** (**Required**, enum):
 
   - ``external``: Use an external DAC, for example the NS4168, or UDA1334A.
   - ``internal``: Use the internal DAC
