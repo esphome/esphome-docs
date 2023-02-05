@@ -102,7 +102,7 @@ Configuration variables:
 Feit Electric A19 Smart WiFi Bulb
 ---------------------------------
 
-This component can be used with a Feit Electric A19 smart light bulb. You can use
+This component can be used with a version of a Feit Electric A19 smart light bulb. You can use
 tuya-convert to flash the bulb. The cold white LEDs are connected to PWM1 and the
 warm white LEDs are connected to PWM2. The RGB LEDs are connected to a SM16716
 chip that is connected to GPIO4 for clock, GPIO14 for data, and GPIO13 for power.
@@ -174,7 +174,58 @@ A complete configuration for a Feit Electric A19 looks like:
     The white LEDs are much brighter than the color LEDs and will fully overpower
     the set color when the white level is set even a little bit high. You will need
     to set the white level to 0 in order to get usable colors from this bulb.
+    
+Alternative Costco Feit A19 RGBCT bulb configuration:
 
+.. code-block:: yaml
+
+    sm16716:
+      data_pin: GPIO12
+      clock_pin: GPIO14
+      num_channels: 3
+      num_chips: 1
+
+    output:
+      - platform: sm16716
+        id: output_red
+        channel: 2
+        power_supply: rgb_power
+      - platform: sm16716
+        id: output_green
+        channel: 1
+        power_supply: rgb_power
+      - platform: sm16716
+        id: output_blue
+        channel: 0
+        power_supply: rgb_power
+      - platform: esp8266_pwm
+        id: output_color_temperature
+        inverted: true
+        pin: GPIO5
+      - platform: esp8266_pwm
+        id: output_brightness
+        min_power: 0.05
+        zero_means_zero: true
+        pin: GPIO4
+
+    light:
+      - platform: rgbct
+        name: ${friendly_name}
+        id: outside
+        red: output_red
+        green: output_green
+        blue: output_blue
+        color_temperature: output_color_temperature
+        white_brightness: output_brightness
+        cold_white_color_temperature: 153 mireds
+        warm_white_color_temperature: 370 mireds
+        color_interlock: true
+
+    power_supply:
+      - id: rgb_power
+        pin: GPIO13
+    
+    
 See Also
 --------
 
