@@ -1,5 +1,5 @@
 CCS811 eCO_2 and Volatile Organic Compound Sensor
-================================================
+=================================================
 
 .. seo::
     :description: Instructions for setting up CCS811 sensors.
