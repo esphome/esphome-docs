@@ -242,7 +242,6 @@ Electricity
 
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
-    Gelidus PM1 ATM90E32, components/sensor/atm90e32-pm1, atm90e32-pm1.jpg, Voltage & Current & Power
     BL0939, components/sensor/bl0939, bl0939.png, Voltage & Current & Power & Energy
     BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
     BL0942, components/sensor/bl0942, bl0942.png, Voltage & Current & Power
@@ -252,6 +251,7 @@ Electricity
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg, AC current
     Daly BMS, components/sensor/daly_bms, daly_bms.jpg, Voltage & Current & Power
     DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
+    Gelidus PM1 ATM90E32, components/sensor/atm90e32-pm1, atm90e32-pm1.jpg, Voltage & Current & Power
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
     INA219, components/sensor/ina219, ina219.jpg, DC Current
     INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
