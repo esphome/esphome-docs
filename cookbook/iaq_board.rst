@@ -50,6 +50,7 @@ See Also
 - :doc:`/devices/nodemcu_esp8266`
 - :doc:`/components/display/ssd1306`
 - :doc:`/components/sensor/bme280`
+- :doc:`/components/sensor/ee895`
 - :doc:`/components/sensor/pmsx003`
 - :doc:`/components/sensor/mhz19`
 - :doc:`/components/sensor/sgp30`
