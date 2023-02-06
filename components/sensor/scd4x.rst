@@ -152,7 +152,7 @@ Note: remember your pressure sensor needs to output in mBar
         ambient_pressure_compensation_source: bme_pressure
         temperature_offset: 0
         co2:
-          name: "CO2 level"altitude_compensation
+          name: "CO2 level"
 
 Example with a remote sensor
 ****************************
