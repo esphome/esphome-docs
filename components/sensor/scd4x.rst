@@ -132,12 +132,7 @@ This :ref:`action <config-action>` triggers a factory reset of the sensor. Calib
 Pressure compensation
 ---------------------
 
-Ambient pressure compensation compensation can be changed from :ref:`lambdas <config-lambda>`
-
-
-``set_ambient_pressure_compensation( <pressure in mBar> )``
-
-
+A static ambient pressure value can be set with `ambient_pressure_compensation` or `altitude_compensation`. It can also be changed dynamically with :ref:`lambdas <config-lambda>` using `set_ambient_pressure_compensation(<mBar>)`, or by pointing `ambient_pressure_compensation_source` to a local pressure sensor.
 
 Example with a local sensor
 ***************************
@@ -157,7 +152,7 @@ Note: remember your pressure sensor needs to output in mBar
         ambient_pressure_compensation_source: bme_pressure
         temperature_offset: 0
         co2:
-          name: "CO2 level"
+          name: "CO2 level"altitude_compensation
 
 Example with a remote sensor
 ****************************
