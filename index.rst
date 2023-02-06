@@ -416,6 +416,7 @@ Binary Sensor Components
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
     CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
     Touchscreen, components/touchscreen/index, touch.svg
+    LD2410, components/sensor/ld2410, ld2410.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
