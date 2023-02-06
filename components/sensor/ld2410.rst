@@ -1,0 +1,186 @@
+LD2410 Sensor
+=============
+
+.. seo::
+    :description: Instructions for setting up LD2410 sensors.
+    :image: ld2410.jpg
+
+Component/Hub
+-------------
+.. _ld2410-component:
+
+The ``ld2410`` sensor platform allows you to use HI-LINK LD2410 motion and presence sensor.
+(`datasheet and user manual <https://drive.google.com/drive/folders/1p4dhbEJA3YubyIjIIC7wwVsSo8x29Fq-?spm=a2g0o.detail.1000023.17.93465697yFwVxH>`__) with ESPHome.
+The :ref:`UART <uart>` is required to be set up in your configuration for this sensor to work.
+
+Use of hardware UART pins is highly recommended, in order to support the out-of-the-box 256000 baud rate of the LD2410 sensor.
+
+.. figure:: images/ld2410.jpg
+    :align: center
+    :width: 50.0%
+
+    LD2410 motion and presence sensor
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    uart:
+      id: uart1
+      tx_pin: REPLACEME
+      rx_pin: REPLACEME
+      baud_rate: 256000
+      parity: NONE
+      stop_bits: 1
+
+    ld2410:
+      timeout: 150s
+      max_move_distance : 6m
+      max_still_distance: 0.75m
+      g0_move_threshold: 10
+      g0_still_threshold: 20
+      g1_move_threshold: 10
+      g1_still_threshold: 20
+      g2_move_threshold: 20
+      g2_still_threshold: 21
+      g3_move_threshold: 30
+      g3_still_threshold: 31
+      g4_move_threshold: 40
+      g4_still_threshold: 41
+      g5_move_threshold: 50
+      g5_still_threshold: 51
+      g6_move_threshold: 60
+      g6_still_threshold: 61
+      g7_move_threshold: 70
+      g7_still_threshold: 71
+      g8_move_threshold: 80
+      g8_still_threshold: 81
+
+
+.. note::
+
+    For UART configuration, ``baud_rate``, ``parity`` and ``stop_bits`` **must be** respectively ``256000``, ``NONE`` and ``1``.
+
+    Use of hardware UART pins is highly recommended, in order to support the out-of-the-box 256000 baud rate of the LD2410 sensor.
+
+Configuration variables:
+************************
+
+The configuration is made up of three parts: The central component, individual sensors,
+and binary sensors.
+
+- **timeout** (*Optional*, int): Time in seconds during which presence state will stay present
+  after leaving. Defaults to ``5s``.
+- **max_move_distance** (*Optional*, int): Maximum distance for movement detection.
+  Value between ``0.75m`` and ``6m`` inclusive. Defaults to ``4.5m``.
+- **max_still_distance** (*Optional*, int): Maximum distance for still detection.
+  Value between ``0.75m`` and ``6m`` inclusive. Defaults to ``4.5m``.
+- **gX_move_threshold** (*Optional*, int): Threshold for the Xth gate for motion detection (X => 0 to 8).
+  Above this level for the considered gate (distance), movement detection will be triggered. Defaults to ``see table below``.
+- **gX _still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8).
+  Above this level for the considered gate (distance), still detection will be triggered. Defaults to ``see table below``.
+
+.. list-table:: Default values for gate threshold
+    :widths: 25 25 25
+    :header-rows: 1
+
+    * - Gate
+      - Default Move threshold
+      - Default Still threshold
+    * - 0
+      - 50
+      - 0
+    * - 1
+      - 50
+      - 0
+    * - 2
+      - 40
+      - 40
+    * - 3
+      - 40
+      - 40
+    * - 4
+      - 40
+      - 40
+    * - 5
+      - 40
+      - 40
+    * - 6
+      - 30
+      - 15
+    * - 7
+      - 30
+      - 15
+    * - 8
+      - 30
+      - 15
+
+Sensor
+------
+
+The ``ld2410`` sensor allows you to use your :doc:`ld2410` to perform different
+measurements.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: ld2410
+        moving_distance:
+          name : Moving Distance
+        still_distance:
+          name: Still Distance
+        moving_energy:
+          name: Move Energy
+        still_energy:
+          name: Still Energy
+        detection_distance:
+          name: Detection Distance
+
+Configuration variables:
+************************
+
+- **moving_distance** (*Optional*): Distance of detected moving target.
+  All options from :ref:`Sensor <config-sensor>`.
+- **still_distance** (*Optional*): Distance of detected still target.
+  All options from :ref:`Sensor <config-sensor>`.
+- **moving_energy** (*Optional*): Energy for moving target.
+  All options from :ref:`Sensor <config-sensor>`.
+- **still_energy** (*Optional*): Energy for still target.
+  All options from :ref:`Sensor <config-sensor>`.
+- **detection_distance** (*Optional*): Distance in cm of target.
+  All options from :ref:`Sensor <config-sensor>`.
+
+Binary Sensor
+-------------
+
+The ``ld2410`` binary sensor allows you to use your :doc:`ld2410` to perform different
+measurements.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ld2410
+        has_target:
+          name: Presence
+        has_moving_target:
+          name: Moving Target
+        has_still_target:
+          name: Still Target
+
+Configuration variables:
+************************
+
+- **has_target** (*Optional*): If true target detect either still or in movement.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
+- **has_moving_target** (*Optional*): If true a moving target is detected.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
+- **has_still_target** (*Optional*): If true a still target is detected.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
+
+
+See Also
+--------
+
+- `Official Datasheet and user manuals <https://drive.google.com/drive/folders/1p4dhbEJA3YubyIjIIC7wwVsSo8x29Fq->`_
+- `Source of inspiration for implementation <https://github.com/rain931215/ESPHome-LD2410>`_
+- :apiref:`ld2410/ld2410.h`
+- :ghedit:`Edit`

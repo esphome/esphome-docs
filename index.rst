@@ -174,6 +174,7 @@ Air Quality
     EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
+    MiCS-4514, components/sensor/mics_4514, mics_4514.jpg, Gas concentration
     PM1006 Sensor, components/sensor/pm1006, pm1006.jpg, Particulate
     PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg, Particulate
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
@@ -368,6 +369,7 @@ Motion
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
     MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
+    LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
 
 
 Thermocouple
@@ -420,6 +422,7 @@ Binary Sensor Components
     CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
     Touchscreen, components/touchscreen/index, touch.svg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    LD2410, components/sensor/ld2410, ld2410.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
