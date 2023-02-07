@@ -8,6 +8,11 @@ MiCS 4514 Gas Sensor
 
 This component exposes the different gas concentration sensors from the `MiCS-4514 <https://www.dfrobot.com/product-2417.html>`__.
 
+.. note::
+
+  The sensor has a 3-minute warmup period where data is unreliable and ESPHome will only start publishing sensor values after this time.
+  If the sensor was already powered only, such as if you restarted or updated your ESPHome device, then it will start publishing immediately.
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -16,7 +21,7 @@ This component exposes the different gas concentration sensors from the `MiCS-45
         nitrogen_dioxide:
           name: Nitrogen Dioxide
         carbon_monoxide:
-          name: Carbon Monxide
+          name: Carbon Monoxide
         hydrogen:
           name: Hydrogen
         ethanol:
