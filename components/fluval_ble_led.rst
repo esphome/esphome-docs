@@ -9,20 +9,20 @@ The ``fluval_ble_led`` component allows you to connect to your Smart Fluval LED.
 Up to 3 devices can be connected with a single ESP32. 
 
 .. warning::
+
   Due to limitations of Bluetooth Low Energy, only one device can connect to a 
   Fluval LED at a time. If you connect this component to the Fluval LED, 
   you are no longer able to connect with the Fluval app. 
   In order to control your Fluval LED with the Fluval app, disconnect the component 
   first, for example by powering down the ESP32.
 
-
 .. note::
+
     Fluval LED devices support 3 different modes: manual, auto and pro.
     This component supports reading the current mode and changing the mode.
 
     Manually switching the LED on and off as well as reading and setting the channel
     values only works in manual mode. 
-
 
 Supported devices
 -----------------
@@ -57,6 +57,7 @@ to discover client devices.
 This example shows a configuration with the maximum of 3 Fluval LEDs configured.
 
 .. note::
+
     To find the required mac_address, use a tool like nRF Connect on your smartphone or
     check the documentation. :ref:`Setting up devices <esp32_ble_tracker-setting_up_devices>` 
     on how to scan for devices using the ``esp32_ble_tracker``.
@@ -143,7 +144,7 @@ Switch
 The switch can be used to turn the Fluval LED on or off. This turns of the light, not the device itself.
 
 .. code-block:: yaml
-  
+
     switch:
       - platform: fluval_ble_led
         fluval_ble_led_id: fluval_1
@@ -184,7 +185,7 @@ Sensor
 Regular sensors can be added to display the current level of each channel. These levels range from 0 to 1000.
 
 .. code-block:: yaml
-  
+
     sensor:    
       - platform: fluval_ble_led
         fluval_ble_led_id: fluval_1
