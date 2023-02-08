@@ -10,11 +10,11 @@ Up to 3 devices can be connected with a single ESP32.
 
 .. warning::
 
-  Due to limitations of Bluetooth Low Energy, only one device can connect to a 
-  Fluval LED at a time. If you connect this component to the Fluval LED, 
-  you are no longer able to connect with the Fluval app. 
-  In order to control your Fluval LED with the Fluval app, disconnect the component 
-  first, for example by powering down the ESP32.
+    Due to limitations of Bluetooth Low Energy, only one device can connect to a 
+    Fluval LED at a time. If you connect this component to the Fluval LED, 
+    you are no longer able to connect with the Fluval app. 
+    In order to control your Fluval LED with the Fluval app, disconnect the component 
+    first, for example by powering down the ESP32.
 
 .. note::
 
