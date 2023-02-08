@@ -105,15 +105,19 @@ As of April 2022 the average fresh air Co² concentration is 419 ppm.
             value: 419   # outside average April 2022
             id: my_scd41
 
-value can be a template
+value can also be a template, for example to define a Home Assistant calibration service:
 
 .. code-block:: yaml
 
-    on_...:
-      then:
-        - scd4x._perform_forced_calibration_action:
-            value: !lambda "{ return 419 };"
-            id: my_scd41
+    api:
+      services:
+        - service: calibrate_co2_value
+          variables:
+            co2_ppm: int
+          then:
+          - scd4x.perform_forced_calibration:
+              value: !lambda 'return co2_ppm;'
+              id: my_scd41
 
 
 .. _factory_reset_action:
