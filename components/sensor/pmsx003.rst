@@ -17,7 +17,7 @@ This platform supports three sensor types, which you need to specify using the `
 value:
 
 - ``PMSX003`` for generic PMS5003, PMS7003, ...; these sensors support ``pm_1_0``, ``pm_2_5`` and ``pm_10_0`` output.
-- ``PMS5003S`` for PMS5003ST. These support ``pm_1_0``, ``pm_2_5`` and ``pm_10_0`` and ``formaldehyde``.
+- ``PMS5003S`` for PMS5003S. These support ``pm_1_0``, ``pm_2_5`` and ``pm_10_0`` and ``formaldehyde``.
 - ``PMS5003T`` for PMS5003T. These support ``pm_2_5``, ``temperature`` and ``humidity``.
 - ``PMS5003ST`` for PMS5003ST. These support ``pm_2_5``, ``temperature``, ``humidity`` and ``formaldehyde``.
 
@@ -67,11 +67,11 @@ Configuration variables:
   All options from :ref:`Sensor <config-sensor>`.
 - **pm_10_0um** (*Optional*): Use the number of particles with diameter beyond 10.0um in 0.1L of air
   All options from :ref:`Sensor <config-sensor>`.
-- **temperature** (*Optional*): Use the temperature value in °C for the ``PMS5003T`` and ``PMS5003ST``.
+- **temperature** (*Optional*): Use the temperature value in °C for the ``PMS5003T`` and ``PMS5003ST`` type sensors.
   All options from :ref:`Sensor <config-sensor>`.
-- **humidity** (*Optional*): Use the humidity value in % for the ``PMS5003T`` and ``PMS5003ST``.
+- **humidity** (*Optional*): Use the humidity value in % for the ``PMS5003T`` and ``PMS5003ST`` type sensors.
   All options from :ref:`Sensor <config-sensor>`.
-- **formaldehyde** (*Optional*): Use the formaldehyde (HCHO) concentration in µg per cubic meter for the ``PMS5003S`` and ``PMS5003ST``.
+- **formaldehyde** (*Optional*): Use the formaldehyde (HCHO) concentration in µg per cubic meter for the ``PMS5003S`` and ``PMS5003ST`` type sensors.
   All options from :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*): Amount of time to wait between generating measurements. If this is longer than 30
   seconds, and if ``tx_pin`` is set in the UART configuration, the fan will be spun down between measurements. Default to ``0s`` (forward data as it's coming in from the sensor).
