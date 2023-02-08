@@ -15,12 +15,14 @@ Up to 3 devices can be connected with a single ESP32.
   In order to control your Fluval LED with the Fluval app, disconnect the component 
   first, for example by powering down the ESP32.
 
+
 .. note::
     Fluval LED devices support 3 different modes: manual, auto and pro.
     This component supports reading the current mode and changing the mode.
 
     Manually switching the LED on and off as well as reading and setting the channel
     values only works in manual mode. 
+
 
 Supported devices
 -----------------
@@ -63,11 +65,12 @@ In addition to the communication, Fluval LED devices require a time synchronizat
 For this purpose, a ``time`` source needs to be set up. 
 In this case, using the homeassistant timesource:
 
+
 .. code-block:: yaml
 
-  time:
-    - platform: homeassistant
-      id: ha_time 
+    time:
+      - platform: homeassistant
+        id: ha_time 
 
 Component
 ---------
@@ -141,10 +144,10 @@ The switch can be used to turn the Fluval LED on or off. This turns of the light
 
 .. code-block:: yaml
   
-  switch:
-    - platform: fluval_ble_led
-      fluval_ble_led_id: fluval_1
-      name: "Tank 1 light"
+    switch:
+      - platform: fluval_ble_led
+        fluval_ble_led_id: fluval_1
+        name: "Tank 1 light"
 
 Configuration variables:
 
