@@ -43,5 +43,5 @@ Integrating the mjpeg web service into an NVR:
 See Also
 --------
 
-- :apiref:`esp32_camera_web_server/esp32_camera_web_server.h`
+- :apiref:`esp32_camera_web_server/camera_web_server.h`
 - :ghedit:`Edit`

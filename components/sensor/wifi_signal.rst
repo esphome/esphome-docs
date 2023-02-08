@@ -62,5 +62,6 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`/components/wifi`
+- :doc:`/components/text_sensor/wifi_info`
 - :apiref:`wifi_signal/wifi_signal_sensor.h`
 - :ghedit:`Edit`

@@ -123,7 +123,7 @@ Home Assistant, as well as starting services in Home Assistant.
       }
     };
 
-See also :apiclass:`CustomAPIDevice`.
+See also :apiclass:`api::CustomAPIDevice`.
 
 MQTT Custom Component
 ---------------------

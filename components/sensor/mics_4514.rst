@@ -1,0 +1,48 @@
+MiCS 4514 Gas Sensor
+====================
+
+.. seo::
+    :description: Instructions for setting up MiCS 4514 Gas sensors.
+    :image: mics_4514.jpg
+    :keywords: MiCS, 4514, MICS-4514
+
+This component exposes the different gas concentration sensors from the `MiCS-4514 <https://www.dfrobot.com/product-2417.html>`__.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: mics_4514
+        nitrogen_dioxide:
+          name: Nitrogen Dioxide
+        carbon_monoxide:
+          name: Carbon Monxide
+        hydrogen:
+          name: Hydrogen
+        ethanol:
+          name: Ethanol
+        methane:
+          name: Methane
+        ammonia:
+          name: Ammonia
+        update_interval: 60s
+
+Configuration variables:
+------------------------
+
+- **pin** (**Required**, :ref:`config-pin`): The pin where the DHT bus is connected.
+- **nitrogen_dioxide** (*Optional*): All options from :ref:`Sensor <config-sensor>`
+- **carbon_monoxide** (*Optional*): All options from :ref:`Sensor <config-sensor>`
+- **hydrogen** (*Optional*): All options from :ref:`Sensor <config-sensor>`
+- **ethanol** (*Optional*): All options from :ref:`Sensor <config-sensor>`
+- **methane** (*Optional*): All options from :ref:`Sensor <config-sensor>`
+- **ammonia** (*Optional*): All options from :ref:`Sensor <config-sensor>`
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``60s``.
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :apiref:`mics_4514/mics_4514.h`
+- :ghedit:`Edit`

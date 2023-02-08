@@ -152,6 +152,7 @@ configuration. See :ref:`Number <config-number>` for more information.
         min_value: -100
         max_value: 100
         step: 1
+        optimistic: true
         set_action:
           then:
             - servo.write:

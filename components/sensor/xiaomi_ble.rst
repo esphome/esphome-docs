@@ -544,6 +544,11 @@ Optional with **name**, **id** (:ref:`config-id`) and all other options from :re
 - **formaldehyde**
 - **battery_level**
 
+
+.. _obtaining_the_mac_address:
+
+Obtaining the MAC address
+-------------------------
 To find the MAC Address so that ESPHome can identify the device, you can create a simple configuration without any sensor entries:
 
 .. code-block:: yaml
@@ -564,7 +569,7 @@ It can sometimes take some time for the first BLE broadcast to be received. Once
 
 .. _obtaining_the_bindkey:
 
-Obtaining The Bindkey
+Obtaining the Bindkey
 ---------------------
 
 To set up an encrypted device such as the LYWSD03MMC (with Xiaomi stock firmware) and CGD1, you first need to obtain the bind key. The ``xiaomi_ble`` sensor component is not able to automatically generate a bindkey so other workarounds are necessary.
