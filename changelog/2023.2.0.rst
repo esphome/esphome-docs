@@ -72,6 +72,11 @@ Breaking Changes
 - Use NAN values for TSL2591 saturation :esphomepr:`3931` by :ghuser:`mdonoughe` (breaking-change)
 - set_retry: add retries remaining parameter to the provided function :esphomepr:`4251` by :ghuser:`e28eta` (breaking-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- Bump curl version in docker :esphomepr:`4403` by :ghuser:`jesserockz`
+
 All changes
 ^^^^^^^^^^^
 
