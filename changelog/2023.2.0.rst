@@ -76,6 +76,7 @@ Beta Changes
 ^^^^^^^^^^^^
 
 - Bump curl version in docker :esphomepr:`4403` by :ghuser:`jesserockz`
+- Fix release workflow :esphomepr:`4405` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
