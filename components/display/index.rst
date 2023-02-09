@@ -170,6 +170,13 @@ Next, create a ``font:`` section in your configuration:
         id: roboto
         size: 20
 
+      - file:
+          type: gfonts
+          family: Roboto
+          weight: 900
+        id: font2
+        size: 16
+
       - file: "fonts/tom-thumb.bdf"
         id: tomthumb
 
@@ -479,6 +486,7 @@ Configuration variables:
 - **traces** (*Optional*): Use this to specify more than a single trace.
 
 Trace specific fields:
+
 - **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
 - **line_thickness** (*Optional*): Defaults to 3
 - **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
