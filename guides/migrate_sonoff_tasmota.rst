@@ -8,6 +8,10 @@ Migrating from Sonoff Tasmota
 Migrating from previous Sonoff Tasmota setups is very easy. You just need to have
 ESPHome create a binary for you and then upload that in the Tasmota web interface.
 
+.. note::
+
+    If you are using Tasmota 7.2+ it is necessary to run the command “SetOption78 1” in the Tasmota console and restart your device to be able to upgrade to esphome.
+
 Getting the Binary
 ------------------
 
