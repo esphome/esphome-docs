@@ -396,6 +396,31 @@ With ``start_clipping(left, top, right, bottom);`` start you the clipping proces
 you can stop the clipping process with ``end_clipping();`` . You can nest as many ``start_clipping();`` as you want as long
 you end them as many times as well.
 
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ...
+        # ...
+        id: my_binary_sensor
+    
+    color:
+      - name: my_red
+        red: 100%
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          if (id(my_binary_sensor).state) {
+            it.print(0, 0, id(my_font), "state: ON");
+          } else {
+            it.print(0, 0, id(my_font), "state: OFF");
+          }
+          // Shorthand:
+          it.start_clipping(40,0,140,20);
+          it.printf(0, 0, id(my_font), id(my_red), "State: %s", id(my_binary_sensor).state ? "ON" : "OFF");
+          it.end_clipping();
+
 After you started clipping you can manipulate the region with ``extend_clipping(left, top, right, bottom);`` 
 and ``shrink_clipping(left, top, right, bottom);`` within previous set clipping region.
 
@@ -408,12 +433,13 @@ With ``get_clipping();`` you get a ``Rect`` object back with the latest set clip
         int16_t y;  ///< Y/Top coordinate
         int16_t w;  ///< Width
         int16_t h;  ///< Height
-
         int16_t x2();  ///< Right coordinate
         int16_t y2();  ///< bottom coordinate
       };
 
 With ``is_clipping();`` tells you if clipping is activated.
+
+
 
 .. _config-color:
 
