@@ -384,6 +384,36 @@ Displaying Time
 
 You can display current time using a time component. Please see the example :ref:`here <strftime>`.
 
+.. _clipping:
+
+Screen Clipping
+***************
+
+Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show 
+a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
+
+With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region 
+you can stop the clipping process with ``end_clipping();`` . You can nest as many ``start_clipping();`` as you want as long
+you end them as many times as well.
+
+After you started clipping you can manipulate the region with ``extend_clipping(left, top, right, bottom);`` 
+and ``shrink_clipping(left, top, right, bottom);`` within previous set clipping region.
+
+With ``get_clipping();`` you get a ``Rect`` object back with the latest set clipping region.
+
+.. code-block:: cpp 
+
+    class Rect {
+        int16_t x;  ///< X/Left coordinate
+        int16_t y;  ///< Y/Top coordinate
+        int16_t w;  ///< Width
+        int16_t h;  ///< Height
+
+        int16_t x2();  ///< Right coordinate
+        int16_t y2();  ///< bottom coordinate
+      };
+
+With ``is_clipping();`` tells you if clipping is activated.
 
 .. _config-color:
 
