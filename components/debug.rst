@@ -25,6 +25,8 @@ ESP heap memory (free space, maximum free block size and fragmentation level) an
       - platform: debug
         device:
           name: "Device Info"
+        reset_reason:
+          name: "Reset Reason"
 
     sensor:
       - platform: debug
@@ -64,6 +66,13 @@ Configuration variables:
     - Flash id
     - SDK, Core & Boot versions
     - Reset reason & information
+
+  Accepts these options:
+
+  - **name** (**Required**, string): The name of the sensor.
+  - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **reset_reason** (*Optional*): Reports the last reboot reason in a human-readable form.
 
   Accepts these options:
 

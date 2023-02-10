@@ -99,6 +99,60 @@ Configuration variables:
 
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
 
+.. _remote_transmitter-transmit_canalsat:
+
+``remote_transmitter.transmit_canalsat`` Action
+***********************************************
+
+This :ref:`action <config-action>` sends a CanalSat infrared remote code to a remote transmitter.
+
+.. note::
+
+    The CanalSat and CanalSatLD protocols use a higher carrier frequency (56khz) and are very similar.
+    Depending on the hardware used they may interfere with each other when enabled simultaneously.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_canalsat:
+          device: 0x25
+          address: 0x00
+          command: 0x02
+
+Configuration variables:
+
+- **device** (**Required**, int): The device to send to, see dumper output for more details.
+- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **command** (**Required**, int): The command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+.. _remote_transmitter-transmit_canalsatld:
+
+``remote_transmitter.transmit_canalsatld`` Action
+*************************************************
+
+This :ref:`action <config-action>` sends a CanalSatLD infrared remote code to a remote transmitter.
+
+.. note::
+
+    The CanalSat and CanalSatLD protocols use a higher carrier frequency (56khz) and are very similar.
+    Depending on the hardware used they may interfere with each other when enabled simultaneously.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_canalsatld:
+          device: 0x25
+          address: 0x00
+          command: 0x02
+
+Configuration variables:
+
+- **device** (**Required**, int): The device to send to, see dumper output for more details.
+- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **command** (**Required**, int): The command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 .. _remote_transmitter-transmit_coolix:
 
 ``remote_transmitter.transmit_coolix`` Action
@@ -207,10 +261,16 @@ This :ref:`action <config-action>` sends a 40-bit Midea code to a remote transmi
     on_...:
       - remote_transmitter.transmit_midea:
           code: [0xA2, 0x08, 0xFF, 0xFF, 0xFF]
+    
+    on_...:
+      - remote_transmitter.transmit_midea:
+          code: !lambda |-
+            // Send a FollowMe code with the current temperature.
+            return {0xA4, 0x82, 0x48, 0x7F, (uint8_t)(id(temp_sensor).state + 1)};
 
 Configuration variables:
 
-- **code** (**Required**, list): The 40-bit Midea code to send as a list of hex or integers.
+- **code** (**Required**, list, :ref:`templatable <config-templatable>`): The 40-bit Midea code to send as a list of hex or integers.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_nec`` Action

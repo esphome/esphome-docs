@@ -10,7 +10,7 @@ SM2135 LED driver
 Component/Hub
 -------------
 
-The SM2135 component represents a SM2135 LED diver chain
+The SM2135 component represents a SM2135 LED driver chain
 (`SM2135 description <https://github.com/arendst/Sonoff-Tasmota/files/3656603/SM2135E_zh-CN_en-US_translated.pdf>`__,
 `SM2135 description <https://github.com/arendst/Sonoff-Tasmota/files/3656603/SM2135E_zh-CN_en-US_translated.pdf>`__) in
 ESPHome. Communication is done with two GPIO pins (MOSI and SCLK).

@@ -121,6 +121,11 @@ Release 2022.11.4 - December 1
 - Dashboard fix relative url after login :esphomepr:`4103` by :ghuser:`ngraziano`
 - Fix queuing scripts not compiling :esphomepr:`4077` by :ghuser:`jesserockz`
 
+Release 2022.11.5 - December 6
+------------------------------
+
+- Fix board pin alias lookup :esphomepr:`4147` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
