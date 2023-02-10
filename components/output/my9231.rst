@@ -11,7 +11,7 @@ MY9231/MY9291 LED driver
 Component/Hub
 -------------
 
-The MY9231/MY9291 component represents a MY9231/MY9291 LED diver chain
+The MY9231/MY9291 component represents a MY9231/MY9291 LED driver chain
 (`MY9231 description <http://www.my-semi.com.tw/file/MY9231_BF_0.91.pdf>`__,
 `MY9291 description <http://www.my-semi.com.tw/file/MY9291_BF_0.91.pdf>`__) in
 ESPHome. Communication is done with two GPIO pins (DI and DCKI) and multiple
