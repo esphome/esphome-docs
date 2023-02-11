@@ -18,8 +18,8 @@ and shipping from China takes a long time, I've only set up dedicated guides for
       board: esp8285
 
 After that use the following list of pin to function mappings to set up your Sonoff device.
-This list has been compiled from the Sonoff Tasmota pin source file which can be found here:
-https://github.com/arendst/Tasmota/blob/development/tasmota/tasmota_template.h ❤️
+This list has been compiled from the Sonoff Tasmota pin source file which can be found `here <https://github.com/arendst/Tasmota/blob/development/tasmota/tasmota_template.h>`__.
+
 
 .. note::
 
@@ -117,7 +117,7 @@ Sonoff Dual R3 v1.x, v2.x
     GPIO25, UART TX pin (for power sensor)
     GPIO26, UART RX pin (for power sensor)
 
-See :doc:`/components/sensor/cse7761` for power measuring in v1.x or :doc:`/components/sensor/bl0939` in v2.x
+For power measuring see :doc:`/components/sensor/cse7761` (v1.x) or :doc:`/components/sensor/bl0939` (v2.x)
 
 Sonoff Pow R1
 -------------
