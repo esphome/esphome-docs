@@ -104,7 +104,7 @@ Sonoff Dual R2 v1.4
     GPIO13, Blue LED (inverted)
 
 Sonoff Dual R3 v1.x, v2.x
--------------------
+-------------------------
 
 .. pintable::
 
