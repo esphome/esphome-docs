@@ -135,7 +135,7 @@ settings vary by method:
 - **esp32_rmt**: An alternative method for ESP32 that uses the RMT peripheral to send data.
   Available on all output pins. Additional options:
 
-  - **channel** (*Optional*): The RMT channel to use. The ESP32 has channels 0-7, ESP32-S2 0-3 and ESP32-C3 0-1.
+  - **channel** (*Optional*): The RMT channel to use. The ESP32 has channels 0-7, ESP32-S2 0-3, ESP32-S3 0-3, and ESP32-C3 0-1.
     Defaults to 6 on ESP32, and 1 on other ESP32 variants.
 
 The following method is available only for two-wire chips (specify ``data_pin`` and ``clock_pin``):
