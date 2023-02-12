@@ -3,9 +3,10 @@ Dallas Temperature Sensor
 
 .. seo::
     :description: Instructions for setting up Dallas temperature sensor hubs that can
-      expose many temperature sensors on a single pin using the 1-Wire protocol.
+      expose many temperature sensors on a single pin using the 1-Wire protocol.  Also
+      supports the max31850 onewire thermocouple amplifier.
     :image: dallas.jpg
-    :keywords: Dallas, ds18b20, onewire
+    :keywords: Dallas, ds18b20, onewire, max31850
 
 .. _dallas-component:
 
@@ -39,7 +40,8 @@ if you don't have massively long wires.
 Configuration variables:
 ************************
 
-- **pin** (**Required**, number): The pin the sensor bus is connected to. Please note that 1-wire is a bi-directional bus so it requires both input and output from the pin.
+- **pin** (**Required**, number): The pin the sensor bus is connected to. Please note that 1-wire 
+  is a bi-directional bus so it requires both input and output from the pin.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
   Defaults to 60 seconds.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -53,7 +55,7 @@ The ``dallas`` sensor allows you to use DS18B20 and similar sensors.
 First, you need to define a :ref:`dallas sensor component <dallas-component>`.
 The dallas sensor component (or "hub") is an internal model that defines which pins the DS18B20
 sensors are connected to. This is because with these sensors you can actually connect multiple
-sensors to a single pin and use them all at once.
+sensors to a single pin (the onewire bus) and use them all at once.
 
 To initialize a sensor, first supply either ``address`` **or** ``index`` to identify the sensor.
 
@@ -81,6 +83,12 @@ To initialize a sensor, first supply either ``address`` **or** ``index`` to iden
         address: 0x1C0000031EDD2A28
         name: "Living Room Temperature"
 
+      # MAX31850 thermocouple
+      - platform: dallas
+        address: 0x082d4c0f49858c3b
+        name: "Thermocouple Temperature"
+        max31850: true
+
 Configuration variables:
 ************************
 
@@ -94,6 +102,8 @@ Configuration variables:
 - **dallas_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`dallas hub <dallas-component>`.
   Use this if you have multiple dallas hubs.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **max31850** (*Optional*, boolean): Override the sensor type from the DS1825 to the MAX31850.
+  Defaults to false.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 .. _dallas-getting-ids:
@@ -145,6 +155,7 @@ You will see the outputted sensor values changing when they're being warmed.
 When you're finished mapping each address to a name, just change the ``Temperature #1``
 to your assigned names and you should be ready.
 
+<<<<<<< HEAD
 Multiple dallas hubs
 ********************
 
@@ -167,6 +178,20 @@ Use this if you have multiple dallas hubs:
         dallas_id: hub_2
         # ...
 
+=======
+About the MAX31850
+******************
+
+The `MAX31850 <https://www.analog.com/media/en/technical-documentation/data-sheets/max31850-max31851.pdf>`
+is a cold-junction compensated, onewire thermocouple-to-digital converter that performs
+cold-junction compensation and digitizes the signal from a K-, J-, N-, T-, S-, R-, or
+E-type thermocouple.  The reported onewire model ID of this chip overloads the value used
+by the DS1825 chip, allowing the majority of the runtime firmware code to be reused.
+The MAX31850 chip can also detect and report faults for the thermocouple junction,
+including opens and shorts, that would typically indicate the juntion has failed
+(such as it melted).  These faults show up to Home Assistant as an "unknown" sensor
+value and are reported to the ESPHome log as ESP_LOGE errors. 
+>>>>>>> dd5ed8cb (Added documentation for adding the MAX31850 to the Dallas)
 
 See Also
 --------
