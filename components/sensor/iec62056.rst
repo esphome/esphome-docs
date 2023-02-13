@@ -1,15 +1,17 @@
 IEC 62056-21
 =============
 
-*IEC 62056-21* is an international standard for a protocol to exchange data with utility meters. Mostly for electricity but also water, thermal and other meters.
+*IEC 62056-21* is an international standard for a protocol to exchange data with utility meters. Mostly for electricity but also water, thermal and other meters. It was previously known as *IEC 61107*.
 
 .. seo::
     :description: Instructions for setting up IEC 62056-21 meter component in ESPHome.
     :image: iec62056-21.svg
 
-The ``iec62056`` component allows you to read data from any compatible meter. The component requires a *serial port* and *an external optical interface*. Data exchange uses an infrared optical channel. Compatible meters are equipped with a characteristic round metal plate with two opto-elements inside. 
+The ``iec62056`` component allows you to read data from any compatible meter. It requires a *serial port* and *an external optical interface*. Data exchange uses an infrared optical channel. Compatible meters are equipped with a characteristic round metal plate with two opto-elements inside. The protocol could be used with other transport layers, e.g. current loop but the component was tested only with the optical interface.
 
-The component only reads data from a meter, it does not support programming. Setting parameters requires a secret password which makes it impossible to use by ordinary users.
+It supports 4 modes of IEC 62056-21: A, B, C, and D.
+
+The component does not support programming. Setting meter configuration parameters requires a secret password which makes it impossible to use by ordinary users.
 
 .. figure:: images/iec62056-21-opto.jpg
     :align: center
@@ -17,24 +19,38 @@ The component only reads data from a meter, it does not support programming. Set
 
     The interface on a meter. Metal ring for a magnet and two optical elements inside.
 
+There are other smart meter standards that use the same optical interface. Although they share some common concepts they are not compatible.
+
 Theory of operation
 -------------------
 
+The component operates in 2 main modes:
+
+* **Bidirectional** communication with a meter. In this mode, a meter sends data only when requested. It requires an IR receiver and transmitter. This is mode A, B and C according to IEC 62056-21.
+* **Unidirectional** communication, where a meter sends data to a probe from time to time. It requires only an IR receiver. In `IEC 62056-21` terminology it is mode D.
+
+Modes A, B, C
+*************
+
 The component reads data for the first time 15 seconds after boot-up. First, it sends an identification request at 300 bps.
-The meter returns the maximum baud rate it can handle. Following that, the serial port baud rate if changed to the value provided by
-the meter. It is also possible to limit the speed by the configuration option ``baud_rate``. The meter transmits data
-registers with associated OBIS codes.
+The meter returns the maximum baud rate it can handle. Following that, the serial port baud rate is changed to the value provided by
+the meter or configured by option :ref:`baud_rate_max <iec62056_platform_config>`. The meter transmits data registers with associated OBIS codes.
 
 If the transmission has failed (bad checksum or invalid format), the component will try to read data again but this time using a slower transmission speed. For every retry, the speed is decreased. The number of retires and delays can be configured.
 
-If the meter is battery-powered, a special wake-up sequence can be applied. This happens only when ``battery_meter`` is set to ``True``.
+If the meter is battery-powered, a special wake-up sequence can be applied. This happens only when :ref:`battery_meter <iec62056_platform_config>` is set to ``True``.
 
-To see meter data in Home Assistant you must define a sensor or text sensor with the appropriate OBIS code. Note that meters support different sets of OBIS codes. By default, the component does not define any sensors.
+
+Mode D
+******
+
+For meters operating in mode D, you only need an IR receiver as transmission to a meter is not supported. In this mode, the meter sends data every few seconds without any request. You should configure the serial port to match the meter transmission format. Unlike modes A, B, and C which is detected automatically, Mode D must be enabled manually by setting ``mode_d=True`` in the platform configuration.
+
 
 OBIS codes
 **********
 
-The OBIS code identifies the different readings from a meter. The code consists of up to 6 group sub-identifiers.
+The :abbr:`OBIS (Object Identification System )` code identifies the different readings from a meter. The code consists of up to 6 group sub-identifiers.
 The code is formatted like this: ``A-B:C.D.E*F``, where:
 
 * ``A`` - medium: 0=abstract objects, 1=electricity, 6=heat, 7=gas, 8=water
@@ -44,7 +60,7 @@ The code is formatted like this: ``A-B:C.D.E*F``, where:
 * ``E`` - tariff, 0=total, 1=tariff #1, 2=tariff #2 and so on
 * ``F`` - billing period
 
-``A``, ``B`` and ``F`` may be omitted. Codes may use hexadecimal digits, for example, code ``15.8.0`` could be represented
+``A``, ``B``, and ``F`` may be omitted. Codes may use hexadecimal digits, for example, code ``15.8.0`` could be represented
 as ``F.8.0``.
 
 The codes are standardized but devices send a different number of codes. To get a list of codes supported by your meter enable ``DEBUG`` 
@@ -52,10 +68,10 @@ log for ``iec62056`` component and observe the log output. Sample output:
 
 .. code-block::
 
-    [10:50:12][D][iec62056.component:416]: Data: 1-0:15.8.1(00000009999.567*kWh)
-    [10:50:12][D][iec62056.component:416]: Data: 1-0:15.8.2(00000000000.000*kWh)
-    [10:50:12][D][iec62056.component:416]: Data: 1-0:15.8.3(00000000000.000*kWh)
-    [10:50:12][D][iec62056.component:416]: Data: 1-0:15.8.4(00000000000.000*kWh)
+    [10:50:12][D][iec62056.component:416]: Data: '1-0:15.8.1(00000009999.567*kWh)'
+    [10:50:12][D][iec62056.component:416]: Data: '1-0:15.8.2(00000000000.000*kWh)'
+    [10:50:12][D][iec62056.component:416]: Data: '1-0:15.8.3(00000000000.000*kWh)'
+    [10:50:12][D][iec62056.component:416]: Data: '1-0:15.8.4(00000000000.000*kWh)'
 
 .. note::
 
@@ -69,12 +85,14 @@ For a list of OBIS codes for electric meters, you can visit:
 Hardware 
 --------
 
-To communicate with a meter you must attach an optical interface to the serial port. The interface consists of an infrared LED and phototransistor. In addition, the device must be equipped with a ring magnet to keep it aligned with the meter.
+To communicate with a meter you must attach an optical interface to the serial port. The interface consists of an infrared LED and phototransistor. In addition, the device must be equipped with a ring magnet to keep it aligned with the meter. 
+
+If the meter operates in unidirectional mode D, only an IR phototransistor is required.
 
 Probe
 *****
 
-The standard defines the dimensions of the probe that can be attached to a meter. It must be equipped with a magnet as it is the only way to keep the probe in a stable position.
+The standard defines the maximum dimensions of the probe that can be attached to a meter. It must be equipped with a magnet as it is the only way to keep the probe in a stable position.
 
 .. figure:: images/iec62056-21-head.png
     :align: center
@@ -84,11 +102,14 @@ The standard defines the dimensions of the probe that can be attached to a meter
 Configuration
 -------------
 
+To see meter data in Home Assistant you must define a :ref:`sensor <iec62056_sensor>` or :ref:`text sensor <iec62056_text_sensor>` with the appropriate OBIS code. Note that meters support different sets of OBIS codes. By default, the component does not define any sensors.
+
+
 Serial port
 ***********
 
-The component requires  :ref:`UART bus <uart>`. The serial must be configured *7E1* *300* baud.
-The transmission speed is negotiated with a meter and typically it will be greater than 300 baud.
+The component requires  :ref:`UART bus <uart>`. The serial must be configured as *7E1* in most cases.
+When ``mode_d=True`` baud rate must be set to a value supported by the meter. Usually 2400 or 9600 bps. For other modes (``mode_d=False``) the transmission speed is negotiated with a meter. ``baud_rate`` is ignored and can be any value.
 
 .. code-block:: yaml
 
@@ -96,17 +117,17 @@ The transmission speed is negotiated with a meter and typically it will be great
     uart:
         rx_pin: GPIO21
         tx_pin: GPIO22
-        baud_rate: 300
+        baud_rate: 9600
         data_bits: 7
         parity: EVEN
         stop_bits: 1
-
-You may need to disable logging if the optical probe is connected to the serial port used by the logger component.
 
 .. warning::
 
     For ESP8266 it is highly recommended to use hardware UART. Software UART
     cannot handle transmissions faster than 4800 bps.
+
+You may need to disable logging if the optical probe is connected to the serial port used by the logger component. 
 
 .. code-block:: yaml
 
@@ -121,12 +142,20 @@ To use the component you must define ``iec62056`` platform section in the config
 
 .. code-block:: yaml
 
-    # Example platform configuration entry
+    # Example platform configuration entry for bidirectional communication
     iec62056:
       update_interval: 60s
       baud_rate: 9600
-      receive_timeout: 3s
       battery_meter: False
+
+.. code-block:: yaml
+
+    # Example platform configuration entry for unidirectional communication
+    iec62056:
+      mode_d: True
+
+
+.. _iec62056_platform_config:
 
 Configuration variables
 +++++++++++++++++++++++
@@ -135,9 +164,7 @@ Configuration variables
   Defaults to ``15min``. ``never`` disables updates. In that case, a switch should be used to
   trigger readout. To get continuous readings use a small value like 1s.
 
-- **baud_rate** (*Optional*, int): If set forces transmission speed to the specified value. If not used, the transmission
-  speed is set to the baud rate reported by the meter. Typical usage is to lower transmission speed in case of transmission errors.
-  For ESP8266 use software UART set ``4800`` or lower.
+- **baud_rate_max** (*Optional*, int): LLimits the maximum transmission speed to the specified value. By default, it is set to ``9600`` as it provides a stable connection. To disable it, set it to ``0``. That way you can use the maximum possible baud rate of ``19200`` if the meter supports it. For ESP8266 use the software UART set to ``4800`` or lower.
 
 - **receive_timeout** (*Optional*, :ref:`config-time`): Maximum time component waits for data from a meter before reporting transmission error. Defaults to ``3s``.
 
@@ -150,9 +177,13 @@ Configuration variables
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
+- **mode_d** (*Optional*, boolean): Set to ``True`` if a meter sends data every few seconds. This forces the component to operate in mode D. In this mode data is never transmitted to a meter. If set, any other settings except ``receive_timeout`` are ignored. Don't forget to set UART baud rate the meter is using. If you are not sure try ``2400 7E1`` or ``9600 7E1``.
+
 .. warning::
 
     Battery-powered meters typically limit the number of readings to preserve energy, e.g. to 4 readings a day. If a meter does not impose the limit, frequent readings may significantly decrease battery life.
+
+.. _`iec62056_sensor`:
 
 Sensor
 ******
@@ -163,7 +194,10 @@ The sensor reports the first value between brackets from the record. For the fol
 
     1-0:15.6.0(00000006000.385*kW)(2000-01-01 20:10:30)
 
-the sensor value is ``6000.385``. To get the second value (date/time in this example) using a text sensor.
+the sensor value is ``6000.385``. To get the second value (date/time in this example) use a `Text Sensor`_.
+
+The sensor supports only decimal values. If the record contains data in any other format you have to use `Text Sensor`_
+and optionally lambda to convert it to a number.
 
 .. code-block:: yaml
 
@@ -208,6 +242,8 @@ Configuration variables
 - **obis** (*Required*): OBIS code.
 - All other options from  :ref:`Sensor <config-sensor>`.
 
+.. _`iec62056_text_sensor`:
+
 Text Sensor
 ***********
 
@@ -241,7 +277,51 @@ Configuration variables
 - **obis** (*Required*): OBIS code. You may define multiple text sensors with the same OBIS but a different group.
 - **group** (*Optional*, int): Value group, ``0``, ``1``, or ``2``. Defaults to ``1``. If set to ``0``, the entire data record is reported
   including OBIS code. ``1`` reports the first value, ``2`` the second one.
-- All other options are from  :ref:`Text Sensor <config-text_sensor>`.
+- All other options are from :ref:`Text Sensor <config-text_sensor>`.
+
+Data conversion
++++++++++++++++
+
+If a meter reports data as a non-decimal value you can convert it automatically using a template sensor and lambda. Let's assume the meter sends a record like the following one with hex-encoded data:
+
+.. code-block:: text
+
+    0-0:96.8.0*255(ABCDEF00)
+
+First, create a template sensor that will publish data as a decimal value.
+
+.. code-block:: yaml
+
+  sensor:
+    - platform: template
+      id: hex_to_dec_sensor
+      name: "Converted hexadecimal number"
+
+Now create a text sensor that will receive data as a string, convert it to decimal and publish.
+
+.. code-block:: yaml
+
+  text_sensor:
+    - platform: iec62056
+      id: hex_sensor
+      obis: 0-0:96.8.0*255
+      name: Hex content
+      internal: True
+      on_value:
+        lambda: |-
+          std::string hex_str = id(hex_sensor).state;
+          uint32_t dec=std::stoul(hex_str, nullptr, 16);
+          ESP_LOGI("iec62056.component", "Converted HEX '%s' to %u decimal", hex_str.c_str(), dec);
+          id(hex_to_dec_sensor).publish_state((float)dec);
+
+Every time the text sensor receives a new value, it converts it to a decimal and publishes it using the sensor with id ``hex_to_dec_sensor``. The ``internal`` flag prevents the sensor to be visible in Home Assistant. In the log you should see:
+
+.. code-block:: text
+
+  [I][iec62056.component:127]: Converted HEX 'ABCDEF00' to 2882400000 decimal
+
+The same results can be obtained using Home Assistant lambdas. In this scenario, text sensor publishes hexadecimal value and
+Home Assistant template sensor makes conversion.
 
 Switch
 ******
@@ -249,7 +329,7 @@ Switch
 The switch provides the ability to trigger readout on request. When the state is changed from ``OFF`` to ``ON``
 the component initiates data transmission from a meter. You can use the switch in automation.
 
-Configuration variables from  :ref:`Switch <config-switch>` could be used.
+Configuration variables from  :ref:`Switch <config-switch>` can be used.
 
 .. code-block:: yaml
 
@@ -258,6 +338,7 @@ Configuration variables from  :ref:`Switch <config-switch>` could be used.
       - platform: iec62056
         name: 'Readout Trigger'
 
+You cannot trigger readout in mode D.
 
 Binary Sensor
 *************
@@ -292,12 +373,14 @@ Troubleshooting
 
 * Make sure the probe is properly aligned with the optical elements on the meter.
 * Meters are usually installed in not very clean areas. You may need to remove dust from the optical interface from time to time.
-* If you encounter transmission and BCC checksum errors decrease the baud rate using ``baud_rate`` setting.
+* If you encounter transmission and BCC checksum errors decrease the baud rate using ``baud_rate_max`` setting.
 * If your device handles multiple sensors that spend a lot of time in the update loop you may need to increase the serial port buffer size. Especially if you note transmission problems when additional sensors are enabled but not when they are disabled.
 
 See Also
 --------
 
 - `International Standard IEC 62056-21:2002 <https://webstore.iec.ch/publication/6398>`_
+- `International Standard IEC 62056-6-1:2017 <https://webstore.iec.ch/publication/32782>`_
 - :doc:`dsmr`
+- :doc:`/components/sml`
 - :ghedit:`Edit`
