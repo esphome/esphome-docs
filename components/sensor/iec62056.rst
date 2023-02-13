@@ -252,24 +252,24 @@ which part of the readout is reported and even send the entire data record back 
 
 .. code-block:: yaml
 
-      # Sample text sensor configuration
-      # Data record:
-      # 1-0:15.6.0(00000006000.385*kW)(2000-01-01 20:10:30)
+    # Sample text sensor configuration
+    # Data record:
+    # 1-0:15.6.0(00000006000.385*kW)(2000-01-01 20:10:30)
 
-      - platform: iec62056
-        obis: 1-0:15.6.0
-        group: 2 # "2000-01-01 20:10:30"
-        name: Date time
+    - platform: iec62056
+      obis: 1-0:15.6.0
+      group: 2 # "2000-01-01 20:10:30"
+      name: Date time
 
-      - platform: iec62056
-        obis: 1-0:15.6.0
-        group: 1 # "00000006000.385"
-        name: Value
+    - platform: iec62056
+      obis: 1-0:15.6.0
+      group: 1 # "00000006000.385"
+      name: Value
 
-      - platform: iec62056
-        obis: 1-0:15.6.0
-        group: 0 # "1-0:15.6.0(00000006000.385*kW)(2000-01-01 20:10:30)"
-        name: The entire record
+    - platform: iec62056
+      obis: 1-0:15.6.0
+      group: 0 # "1-0:15.6.0(00000006000.385*kW)(2000-01-01 20:10:30)"
+      name: The entire record
 
 Configuration variables
 +++++++++++++++++++++++
@@ -292,10 +292,10 @@ First, create a template sensor that will publish data as a decimal value.
 
 .. code-block:: yaml
 
-  sensor:
-    - platform: template
-      id: hex_to_dec_sensor
-      name: "Converted hexadecimal number"
+    sensor:
+      - platform: template
+        id: hex_to_dec_sensor
+        name: "Converted hexadecimal number"
 
 Now create a text sensor that will receive data as a string, convert it to decimal and publish.
 
