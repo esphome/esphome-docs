@@ -252,24 +252,24 @@ which part of the readout is reported and even send the entire data record back 
 
 .. code-block:: yaml
 
-    # Sample text sensor configuration
-    # Data record:
-    # 1-0:15.6.0(00000006000.385*kW)(2000-01-01 20:10:30)
+      # Sample text sensor configuration
+      # Data record:
+      # 1-0:15.6.0(00000006000.385*kW)(2000-01-01 20:10:30)
 
-    - platform: iec62056
-      obis: 1-0:15.6.0
-      group: 2 # "2000-01-01 20:10:30"
-      name: Date time
+      - platform: iec62056
+        obis: 1-0:15.6.0
+        group: 2 # "2000-01-01 20:10:30"
+        name: Date time
 
-    - platform: iec62056
-      obis: 1-0:15.6.0
-      group: 1 # "00000006000.385"
-      name: Value
+      - platform: iec62056
+        obis: 1-0:15.6.0
+        group: 1 # "00000006000.385"
+        name: Value
 
-    - platform: iec62056
-      obis: 1-0:15.6.0
-      group: 0 # "1-0:15.6.0(00000006000.385*kW)(2000-01-01 20:10:30)"
-      name: The entire record
+      - platform: iec62056
+        obis: 1-0:15.6.0
+        group: 0 # "1-0:15.6.0(00000006000.385*kW)(2000-01-01 20:10:30)"
+        name: The entire record
 
 Configuration variables
 +++++++++++++++++++++++
@@ -301,24 +301,24 @@ Now create a text sensor that will receive data as a string, convert it to decim
 
 .. code-block:: yaml
 
-  text_sensor:
-    - platform: iec62056
-      id: hex_sensor
-      obis: 0-0:96.8.0*255
-      name: Hex content
-      internal: True
-      on_value:
-        lambda: |-
-          std::string hex_str = id(hex_sensor).state;
-          uint32_t dec=std::stoul(hex_str, nullptr, 16);
-          ESP_LOGI("iec62056.component", "Converted HEX '%s' to %u decimal", hex_str.c_str(), dec);
-          id(hex_to_dec_sensor).publish_state((float)dec);
+    text_sensor:
+      - platform: iec62056
+        id: hex_sensor
+        obis: 0-0:96.8.0*255
+        name: Hex content
+        internal: True
+        on_value:
+          lambda: |-
+            std::string hex_str = id(hex_sensor).state;
+            uint32_t dec=std::stoul(hex_str, nullptr, 16);
+            ESP_LOGI("iec62056.component", "Converted HEX '%s' to %u decimal", hex_str.c_str(), dec);
+            id(hex_to_dec_sensor).publish_state((float)dec);
 
 Every time the text sensor receives a new value, it converts it to a decimal and publishes it using the sensor with id ``hex_to_dec_sensor``. The ``internal`` flag prevents the sensor to be visible in Home Assistant. In the log you should see:
 
 .. code-block:: text
 
-  [I][iec62056.component:127]: Converted HEX 'ABCDEF00' to 2882400000 decimal
+    [I][iec62056.component:127]: Converted HEX 'ABCDEF00' to 2882400000 decimal
 
 The same results can be obtained using Home Assistant lambdas. In this scenario, text sensor publishes hexadecimal value and
 Home Assistant template sensor makes conversion.
