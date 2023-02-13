@@ -50,7 +50,7 @@ The ``midea`` component creates a Midea air conditioner climate device.
           max_temperature: 30 °C    # max: 30
           temperature_step: 0.5 °C  # min: 0.5
         supported_modes:            # All capabilities in this section detected by autoconf.
-          - FAN_ONLY                # This capability is always used.
+          - FAN_ONLY
           - HEAT_COOL
           - COOL
           - HEAT
@@ -61,11 +61,11 @@ The ``midea`` component creates a Midea air conditioner climate device.
         supported_presets:          # All capabilities in this section detected by autoconf.
           - ECO
           - BOOST
-          - SLEEP                   # This capability is always used.
+          - SLEEP
         custom_presets:             # All capabilities in this section detected by autoconf.
           - FREEZE_PROTECTION
         supported_swing_modes:
-          - VERTICAL                # This capability is always used.
+          - VERTICAL
           - HORIZONTAL
           - BOTH
         outdoor_temperature:        # Optional. Outdoor temperature sensor (may display incorrect values after long inactivity).
