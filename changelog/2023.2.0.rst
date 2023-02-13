@@ -77,6 +77,9 @@ Beta Changes
 
 - Bump curl version in docker :esphomepr:`4403` by :ghuser:`jesserockz`
 - Fix release workflow :esphomepr:`4405` by :ghuser:`jesserockz`
+- Climate PID Autotune Logging fixes :esphomepr:`4136` by :ghuser:`patrickcollins12`
+- Add Clipping to displaybuffer :esphomepr:`4271` by :ghuser:`nielsnl68`
+- Fix check for empty clipping array :esphomepr:`4421` by :ghuser:`nielsnl68`
 
 All changes
 ^^^^^^^^^^^
