@@ -80,6 +80,11 @@ Beta Changes
 - Climate PID Autotune Logging fixes :esphomepr:`4136` by :ghuser:`patrickcollins12`
 - Add Clipping to displaybuffer :esphomepr:`4271` by :ghuser:`nielsnl68`
 - Fix check for empty clipping array :esphomepr:`4421` by :ghuser:`nielsnl68`
+- Ledc fix :esphomepr:`4338` by :ghuser:`xvil`
+- Add version api endpoint :esphomepr:`4429` by :ghuser:`jesserockz`
+- Handle uart.write in json-config endpoint :esphomepr:`4430` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20230214.0 :esphomepr:`4431` by :ghuser:`jesserockz`
+- Fix setting wrong traits on midea climate component :esphomepr:`4425` by :ghuser:`dudanov`
 
 All changes
 ^^^^^^^^^^^
