@@ -37,7 +37,7 @@ Documentation:
 - `AirGradient Shop for the PCB or PCB plus components <https://www.airgradient.com/diyshop/>`__
 - `AirGradient Setup Guide (3D printeable case, setup guide, etc.) <https://www.airgradient.com/diy/>`__
 
-`YAML configuration <https://github.com/ajfriesen/ESPHome-AirGradient/blob/main/air-gradient.yaml>`__
+`YAML configuration <https://github.com/ajfriesen/ESPHome-AirGradient/blob/main/air-gradient-diy.yaml>`__
 
 Soldering and setup video:
 
