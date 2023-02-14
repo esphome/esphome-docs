@@ -11,7 +11,7 @@ SM16716 LED driver
 Component/Hub
 -------------
 
-The SM16716 component represents a SM16716 LED diver chain
+The SM16716 component represents a SM16716 LED driver chain
 (`SM16716 description <https://github.com/sowbug/sm16716/blob/master/SM16716%20Datasheet%20%5BChinese%5D.pdf>`__,
 `SM16716 description <https://github.com/sowbug/sm16716/blob/master/SM16716%20Datasheet%20%5BChinese%5D.pdf>`__) in
 ESPHome. Communication is done with two GPIO pins (MOSI and SCLK) and multiple
