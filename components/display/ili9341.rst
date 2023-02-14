@@ -35,7 +35,7 @@ beyond the typical SPI connections, it is better suited for use with the ESP32.
         reset_pin: 33
 
         lambda: |-
-          it.fill(COLOR_BLACK);
+          it.fill(Color::BLACK);
           it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_LEFT, "Hello World!");
 
 Configuration variables:
