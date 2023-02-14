@@ -860,7 +860,7 @@ or as lambda
 
 .. code-block:: yaml
 
-    lambda: -|
+    lambda: |-
         if (id(my_script).is_running()) {
             ESP_LOGI("main", "Script is running!");
         }
