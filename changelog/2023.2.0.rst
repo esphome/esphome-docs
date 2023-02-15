@@ -33,14 +33,29 @@ Friendly Name
 
 ESPHome now supports setting a ``friendly_name`` which is sent to Home Assistant. This name will be used for the config entry,
 the device name, and will be automatically prefixed to all of the entities where needed by Home Assistant.
-If you opt to use this new friendly name, take note that you should remove any friendly name (substitition) that
-you currently prepend onto entity ``name`` in YAML.
+
+.. note::
+
+    If you opt to use this new friendly name, take note that you should remove any friendly name (substitition) that
+    you currently prepend onto entity ``name`` in YAML.
 
 .. code-block:: yaml
 
     esphome:
       name: living-room
       friendly_name: Living Room
+
+    sensor:
+      - platform: dht
+        pin: GPIO5
+        name: Temperature
+
+
+ESPHome Update Entities in Home Assistant
+-----------------------------------------
+
+Home Assistant has offered "read-only" update entities since 2023.2.0 for ESPHome devices. This release of ESPHome added a new API required
+so that those update entities can now trigger a build and install of the new firmware "over the air" to your devices.
 
 
 Full list of changes
@@ -191,6 +206,16 @@ All changes
 - Use the github-script action to call the workflow :esphomepr:`4400` by :ghuser:`jesserockz`
 - Convert secrets constant to a tuple :esphomepr:`4245` by :ghuser:`balloob`
 - Verify rel_path output is relative :esphomepr:`4247` by :ghuser:`balloob`
+- Bump curl version in docker :esphomepr:`4403` by :ghuser:`jesserockz`
+- Fix release workflow :esphomepr:`4405` by :ghuser:`jesserockz`
+- Climate PID Autotune Logging fixes :esphomepr:`4136` by :ghuser:`patrickcollins12`
+- Add Clipping to displaybuffer :esphomepr:`4271` by :ghuser:`nielsnl68`
+- Fix check for empty clipping array :esphomepr:`4421` by :ghuser:`nielsnl68`
+- Ledc fix :esphomepr:`4338` by :ghuser:`xvil`
+- Add version api endpoint :esphomepr:`4429` by :ghuser:`jesserockz`
+- Handle uart.write in json-config endpoint :esphomepr:`4430` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20230214.0 :esphomepr:`4431` by :ghuser:`jesserockz`
+- Fix setting wrong traits on midea climate component :esphomepr:`4425` by :ghuser:`dudanov`
 
 Past Changelogs
 ---------------
