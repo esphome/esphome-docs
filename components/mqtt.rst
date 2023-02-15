@@ -98,6 +98,9 @@ Configuration variables:
 - **on_json_message** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when a JSON message on a specific MQTT topic is received. See :ref:`mqtt-on_json_message`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **device_name** (*Optional*, string): Device name in discovery message. Defaults to ``name`` of :ref:`esphome <esphome-configuration_variables>`.
+- **device_model** (*Optional*, string): Device name in discovery message. Defaults to ``board`` of the platform used.
+- **device_manufacturer** (*Optional*, string): Device name in discovery message. Defaults to ``espressif``.
 
 .. _mqtt-message:
 
