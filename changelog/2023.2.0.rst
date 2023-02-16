@@ -57,6 +57,10 @@ ESPHome Update Entities in Home Assistant
 Home Assistant has offered "read-only" update entities since 2023.2.0 for ESPHome devices. This release of ESPHome added a new API required
 so that those update entities can now trigger a build and install of the new firmware "over the air" to your devices.
 
+Release 2023.2.1 - February 16
+------------------------------
+
+- Add ESPHome version to generated platformio.ini :esphomepr:`4443` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------
