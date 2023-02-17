@@ -122,6 +122,13 @@ You will find something like this:
 
 .. figure:: images/dallas-log.png
 
+You can also use text sensor to get addresses:
+
+.. code-block:: yaml
+    - platform: dallas
+      address:
+        name: dallas address
+
 Now we can add the individual sensors to our configuration:
 
 .. code-block:: yaml
