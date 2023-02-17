@@ -62,6 +62,11 @@ Release 2023.2.1 - February 16
 
 - Add ESPHome version to generated platformio.ini :esphomepr:`4443` by :ghuser:`jesserockz`
 
+Release 2023.2.2 - February 17
+------------------------------
+
+- Fix adoption of variants and pico-w :esphomepr:`4455` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
