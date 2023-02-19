@@ -311,6 +311,30 @@ Configuration variables:
 - **accept** (**Required**, boolean): Should be ``true`` if the passkeys
   displayed on both BLE devices are matching.
 
+.. _ble_client-remove_bond_action:
+
+``ble_client.remove_bond`` Action
+----------------------------------------------
+
+This action removes a device from the security database and manages
+unpairing.
+
+Example usage:
+
+.. code-block:: yaml
+
+    ble_client:
+      - mac_address: 11:22:33:44:55:66
+        id: my_ble_client
+        on_connect:
+          then:
+            - ble_client.remove_bond:
+                id: my_ble_client
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): ID of the associated BLE client.
+
 BLE Overview
 ------------
 This section gives a brief overview of the Bluetooth LE architecture
