@@ -901,10 +901,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                             found = True
                             if enum_docs:
                                 enum_docs = enum_docs.strip()
-                                if "values_docs" not in inner:
-                                    inner["values_docs"] = {name: enum_docs}
+                                if inner["values"][name] is None:
+                                    inner["values"][name] = {"docs": enum_docs}
                                 else:
-                                    inner["values_docs"][name] = enum_docs
+                                    inner["values"][name]["docs"] = enum_docs
                                 statistics.props_documented += 1
                                 statistics.enums_good += 1
                     if not found:
