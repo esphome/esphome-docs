@@ -62,7 +62,7 @@ Advanced options:
   Set to ``""`` to remove the default entity category.
 
 
-:: code-block:: yaml
+.. code-block:: yaml
 
     climate:
       - platform: ...
