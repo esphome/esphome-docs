@@ -19,7 +19,7 @@ This sensor returns information over I2C interface. The I2C address is ``0x62``
 .. code-block:: yaml
 
     # Example configuration entry
-    output:
+    sensor:
       - platform: sen21231
         id: person_sensor
         # sda and scl connected approriately
