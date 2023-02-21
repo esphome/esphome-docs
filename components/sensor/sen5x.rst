@@ -114,7 +114,7 @@ Configuration variables:
 
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **nox** (*Optional*): NOx Index. Note: Only available with Sen54 or Sen55. The sensor will be ignored on unsupported models.
+- **nox** (*Optional*): NOx Index. Note: Only available with Sen55. The sensor will be ignored on unsupported models.
 
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
