@@ -295,6 +295,7 @@ Environmental
     HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
     Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
+    Internal Temperature, components/sensor/internal_temperature, thermometer.svg, Temperature
     MCP9808, components/sensor/mcp9808, mcp9808.jpg, Temperature
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
@@ -359,6 +360,7 @@ Miscellaneous
     TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
     uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png, EC & Temperature
     uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png, pH & Temperature
+    Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
 
 
 Motion
@@ -369,6 +371,7 @@ Motion
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
     MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
+    LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
 
 
 Thermocouple
@@ -420,6 +423,8 @@ Binary Sensor Components
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
     CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
     Touchscreen, components/touchscreen/index, touch.svg
+    Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    LD2410, components/sensor/ld2410, ld2410.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -724,6 +729,7 @@ Misc Components
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
     SML, components/sml, sml.svg
     Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
+    Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Demo, components/demo, description.svg
     Copy, components/copy, content-copy.svg
 
