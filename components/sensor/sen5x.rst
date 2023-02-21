@@ -162,7 +162,7 @@ Configuration variables:
 Wiring:
 -------
 
-The sensor has a JST GHR-06V-S 6 pin type connector, with a 1.5mm pitch. The cable needs this connector:
+The sensor has a JST GHR-06V-S 6 pin type connector, with a 1.25mm pitch. The cable needs this connector:
 
 .. figure:: images/jst6pin.png
     :align: center
