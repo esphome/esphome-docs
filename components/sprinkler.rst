@@ -156,9 +156,6 @@ Configuration variables:
 - **next_prev_ignore_disabled** (*Optional*, boolean): Set to ``true`` to cause
   :ref:`sprinkler-controller-action_next_valve` and :ref:`sprinkler-controller-action_previous_valve` to skip
   over valves that are not enabled. Defaults to ``false``.
-- **numbers_use_minutes** (*Optional*, boolean): Set to ``true`` to cause the :doc:`number </components/number/index>`
-  components configured for valve run durations to use time in minutes (as opposed to seconds). Defaults to ``false``
-  (seconds). See :ref:`sprinkler-controller-sprinkler_controller_numbers` below for more detail.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. While optional,
   this is necessary to identify the controller instance (particularly in cases where more than one is
   defined) when calling controller actions (see below) such as ``start_full_cycle`` or ``shutdown``.
@@ -194,7 +191,8 @@ Configuration variables:
   - **run_duration_number** (*Optional*, *string*): The name of the :doc:`number </components/number/index>` component
     that should be presented to the front end (Home Assistant) to enable control of the valve's ``run_duration`` value.
     May not be used with ``run_duration``. See :ref:`sprinkler-controller-sprinkler_controller_numbers` below for more
-    detail.
+    detail. **Pro tip:** Want times in minutes? Add ``unit_of_measurement: min`` to the number configuration. See
+    :ref:`sprinkler-controller-sprinkler_controller_numbers` for more detail.
   - **run_duration** (*Optional*, :ref:`config-time`): Required when ``run_duration_number`` is not provided. The
     duration in seconds this valve should remain on/open after it is activated. When a given valve is activated, the
     controller's multiplier value is multiplied by this value to determine the actual run duration for the valve, thus
@@ -905,12 +903,20 @@ valves, each of which are shared between the two controllers:
           - valve_switch: "Front Garden"
             enable_switch: "Enable Front Garden"
             pump_switch_id: sprinkler_pump_sw0
-            run_duration: 900s
+            run_duration_number:
+              id: garden_sprinkler_ctrlr_front_run_duration
+              name: "Front Garden Run Duration"
+              initial_value: 10
+              unit_of_measurement: min
             valve_switch_id: garden_sprinkler_valve_sw0
           - valve_switch: "Back Garden"
             enable_switch: "Enable Back Garden"
             pump_switch_id: sprinkler_pump_sw1
-            run_duration: 900s
+            run_duration_number:
+              id: garden_sprinkler_ctrlr_back_run_duration
+              name: "Back Garden Run Duration"
+              initial_value: 10
+              unit_of_measurement: min
             valve_switch_id: garden_sprinkler_valve_sw1
 
     switch:
@@ -974,10 +980,7 @@ including:
 - ``step`` (Defaults to 1 for valves and repeat, 0.1 for multiplier)
 - ``restore_value`` (Defaults to ``true``; set to ``false`` to always restore ``initial_value`` at boot)
 - ``set_action``
-
-In addition, you can set the ``numbers_use_minutes`` flag to ``true`` to configure the controller so that the
-:doc:`number </components/number/index>` component values represent minutes instead of seconds (the default) for
-valve run durations.
+- ``unit_of_measurement`` (For run durations only; defaults to ``s`` for seconds or specify ``min`` for minutes)
 
 Here's a brief example:
 
