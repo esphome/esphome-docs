@@ -40,9 +40,10 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this device for use in lambdas.
 - **rows** (**Required**, list): A list of :ref:`pins <config-pin_schema>` where the horrizontal
-  matrix lines are connected, in order from top to bottom.
+  matrix lines are connected, in order from top to bottom.  These pins need to be output capable.
 - **columns** (**Required**, list): A list of :ref:`pins <config-pin_schema>` where the vertical
-  matrix lines are connected, in order from left to right.
+  matrix lines are connected, in order from left to right.  These pins need to be input capable
+  with pullups enabled.  If there is no internal pullup, then an external one is required.
 - **keys** (*Optional*, string): The keys present on the matrix, from top left to bottom right, 
   row by row. Required for ``key_collector`` and ``binary_sensor`` (if using key selection).
 - **has_diodes** (*Optional*, boolean): For pads where row pins are outputs, and the keys are 
