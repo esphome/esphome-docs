@@ -37,7 +37,7 @@ to RXD are the default ones but any other pins can be used as well. 3.3V to VCC 
 
 .. warning::
 
-    If you are using the :doc:`logger` make sure you are not using the same pins for it or otherwise disable the UART 
+    If you are using the :ref:`logger` make sure you are not using the same pins for it or otherwise disable the UART 
     logging with the ``baud_rate: 0`` option.
 
 Component
@@ -81,7 +81,7 @@ See Also
 --------
 
 - :ref:`uart`
-- :doc:`logger`
+- :ref:`logger`
 - :ref:`Sensor <config-sensor>`
 - `Kuntze manuals <https://www.kuntze.com/en/downloads-2/>`__
 - `Communication protocol <https://www.kuntze.com/wp-content/uploads/2021/05/2019_Manual_Modbus-RTU_ENG.pdf>`__
