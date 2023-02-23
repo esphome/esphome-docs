@@ -361,6 +361,7 @@ Miscellaneous
     uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png, EC & Temperature
     uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png, pH & Temperature
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
 
 
 Motion
