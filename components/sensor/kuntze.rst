@@ -30,7 +30,7 @@ The device communicates at ``19200`` baud ``8E1``. To connect to ESPHome, an RS4
 transceiver is needed. Choose a type which does not need a trigger to send and 
 receive data,  for example:
 
-.. figure:: ../images/rs485.jpg
+.. figure:: ../../images/rs485.jpg
 
 The controller connects to the UART of the MCU. For ESP32 GPIO `16` to `TXD` and `17` 
 to RXD are the default ones but any other pins can be used as well. 3.3V to VCC and GND to GND.
