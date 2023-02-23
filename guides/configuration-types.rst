@@ -31,6 +31,12 @@ names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf
 -  … can not have special characters except the underscore (“_“).
 -  … must not be a keyword.
 
+
+.. note::
+
+    These IDs are used only within ESPHome and are not translated to Home Assistant's Entity ID. 
+
+
 .. _config-pin:
 
 Pin
@@ -104,6 +110,7 @@ Configuration variables:
    - ``ANALOG``
    - ``INPUT_PULLUP``
    - ``INPUT_PULLDOWN``
+   - ``INPUT_OUTPUT_OPEN_DRAIN``
 
 Advanced options:
 

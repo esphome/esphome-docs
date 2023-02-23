@@ -95,8 +95,6 @@ Configuration variables:
   lower target temperature of a climate device with a two-point target temperature.
 - **target_temperature_high** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
   higher target temperature of a climate device with a two-point target temperature.
-- **away** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the away mode
-  of the climate device.
 - **preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the preset
   of the climate device. One of ``ECO``, ``AWAY``, ``BOOST``, ``COMFORT``, ``HOME``, ``SLEEP``,
   ``ACTIVITY``.
@@ -104,7 +102,7 @@ Configuration variables:
   supported custom_presets of the climate device.
 - **fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the fan mode
   of the climate device. One of ``ON``, ``OFF``, ``AUTO``, ``LOW``, ``MEDIUM``, ``HIGH``, ``MIDDLE``,
-  ``FOCUS``, ``DIFFUSE``.
+  ``FOCUS``, ``DIFFUSE``, ``QUIET``.
 - **custom_fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the
   supported custom_fan_modes of the climate device.
 - **swing_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the swing mode
@@ -132,14 +130,19 @@ advanced stuff.
       id(my_climate).target_temperature_low
       // High Target temperature, type: float (degrees)
       id(my_climate).target_temperature_high
-      // Away mode, type: bool
-      id(my_climate).away
       // Fan mode, type: FanMode (enum)
       id(my_climate).fan_mode
+      // Custom Fan mode, type: string
+      id(my_climate).custom_fan_mode
       // Swing mode, type: SwingMode (enum)
       id(my_climate).swing_mode
       // Current action (currentl on idle, cooling, heating, etc.), ClimateAction (enum)
       id(my_climate).action
+      // Preset, type: Preset (enum)
+      id(my_climate).preset
+      // Custom Preset, type: string
+      id(my_climate).custom_preset
+      
 
 - ``.make_call``: Control the climate device
 
@@ -170,10 +173,6 @@ MQTT options:
 
 - **action_state_topic** (*Optional*, string): The topic to publish
   climate device action changes to.
-- **away_state_topic** (*Optional*, string): The topic to publish
-  away mode changes on.
-- **away_command_topic** (*Optional*, string): The topic to receive
-  away mode commands on.
 - **current_temperature_state_topic** (*Optional*, string): The topic to publish
   current temperature changes to.
 - **fan_mode_state_topic** (*Optional*, string): The topic to publish
@@ -184,6 +183,10 @@ MQTT options:
   climate device mode changes to.
 - **mode_command_topic** (*Optional*, string): The topic to receive
   climate device mode commands on.
+- **preset_state_topic** (*Optional*, string): The topic to publish
+  preset changes to.
+- **preset_command_topic** (*Optional*, string): The topic to receive
+  preset commands on.
 - **swing_mode_state_topic** (*Optional*, string): The topic to publish
   swing mode changes to.
 - **swing_mode_command_topic** (*Optional*, string): The topic to receive
