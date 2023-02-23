@@ -18,7 +18,6 @@ Contributors
 
 - `0hax (@0hax) <https://github.com/0hax>`__
 - `0x0a11c0de (@0x0a11c0de) <https://github.com/0x0a11c0de>`__
-- `Tercio Filho (@0x3333) <https://github.com/0x3333>`__
 - `Denis Bodor (aka Lefinnois) (@0xDRRB) <https://github.com/0xDRRB>`__
 - `2016for (@2016for) <https://github.com/2016for>`__
 - `2mikrobi (@2mikrobi) <https://github.com/2mikrobi>`__
@@ -42,6 +41,7 @@ Contributors
 - `Anders (@ahd71) <https://github.com/ahd71>`__
 - `Alexander Pohl (@ahpohl) <https://github.com/ahpohl>`__
 - `Airy André (@airy10) <https://github.com/airy10>`__
+- `Adam Jacques (@ajacques) <https://github.com/ajacques>`__
 - `Andrej Friesen (@ajfriesen) <https://github.com/ajfriesen>`__
 - `akoivist (@akoivist) <https://github.com/akoivist>`__
 - `Andrej Komelj (@akomelj) <https://github.com/akomelj>`__
@@ -158,6 +158,7 @@ Contributors
 - `Kostas Chatzikokolakis (@chatziko) <https://github.com/chatziko>`__
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__
 - `Chris (@chrismaki) <https://github.com/chrismaki>`__
+- `Christoph Wagner (@Christoph-Wagner) <https://github.com/Christoph-Wagner>`__
 - `Christian Taedcke (@chrta) <https://github.com/chrta>`__
 - `Pavel Skuratovich (@Chupaka) <https://github.com/Chupaka>`__
 - `Chris Johnson (@ciband) <https://github.com/ciband>`__
@@ -455,6 +456,7 @@ Contributors
 - `Jean-Luc Béchennec (@jlbirccyn) <https://github.com/jlbirccyn>`__
 - `Jonas De Kegel (@jlsjonas) <https://github.com/jlsjonas>`__
 - `Jonathan Martens (@jmartens) <https://github.com/jmartens>`__
+- `jmichiel (@jmichiel) <https://github.com/jmichiel>`__
 - `Joe Gross (@joegross) <https://github.com/joegross>`__
 - `Johan van der Kuijl (@johanvanderkuijl) <https://github.com/johanvanderkuijl>`__
 - `Johboh (@Johboh) <https://github.com/Johboh>`__
@@ -724,6 +726,7 @@ Contributors
 - `Robert Cambridge (@rcambrj) <https://github.com/rcambrj>`__
 - `Rebbe Pod (@RebbePod) <https://github.com/RebbePod>`__
 - `Alex (@redwngsrul) <https://github.com/redwngsrul>`__
+- `Regev Brody (@regevbr) <https://github.com/regevbr>`__
 - `Alex Reid (@reidprojects) <https://github.com/reidprojects>`__
 - `Reuben (@reubn) <https://github.com/reubn>`__
 - `Robin Pronk (@rfpronk) <https://github.com/rfpronk>`__
@@ -815,12 +818,10 @@ Contributors
 - `Marcel Feix (@Syndlex) <https://github.com/Syndlex>`__
 - `Suryandaru Triandana (@syndtr) <https://github.com/syndtr>`__
 - `SyXavier (@SyXavier) <https://github.com/SyXavier>`__
-- `Teemu Mikkonen (@T3m3z) <https://github.com/T3m3z>`__
 - `Taigar2015 (@Taigar2015) <https://github.com/Taigar2015>`__
 - `Levente Tamas (@tamisoft) <https://github.com/tamisoft>`__
 - `Aleksandr Oleinikov (@tannisroot) <https://github.com/tannisroot>`__
 - `tantive (@tantive) <https://github.com/tantive>`__
-- `Team Super Panda (@teamsuperpanda) <https://github.com/teamsuperpanda>`__
 - `Ryan Hoffman (@tekmaven) <https://github.com/tekmaven>`__
 - `testbughub (@testbughub) <https://github.com/testbughub>`__
 - `Greg Lincoln (@tetious) <https://github.com/tetious>`__
@@ -907,4 +908,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated February 17, 2023.*
+*This page was last updated February 20, 2023.*

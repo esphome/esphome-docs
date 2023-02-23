@@ -67,6 +67,12 @@ Release 2023.2.2 - February 17
 
 - Fix adoption of variants and pico-w :esphomepr:`4455` by :ghuser:`jesserockz`
 
+Release 2023.2.3 - February 20
+------------------------------
+
+- Fix MQTT discovery for climate after preset implementation :esphomepr:`4451` by :ghuser:`jmichiel`
+- Update distribution manifest :esphomepr:`4459` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
