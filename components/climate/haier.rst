@@ -8,6 +8,8 @@ Haier Climate
 The `haier` climate platform creates a Haier climate device.  
 The component can be used as a replacement of a Haier proprietary WiFi modules such as KZW-W001 and KZW-W002.
 
+This component requires a :ref:`uart` to be setup.
+
 .. code-block:: yaml
 
     logger:
@@ -25,7 +27,6 @@ The component can be used as a replacement of a Haier proprietary WiFi modules s
           - VERTICAL
           - HORIZONTAL
           - BOTH
-        update_interval: 10s
 
 Configuration variables:
 ------------------------
@@ -76,14 +77,10 @@ Other units will not have USB ports, but will still probably have UART exposed s
 
     USB Pinout
 
-Acknowledgments:
-----------------
-
-This component is mainly based on the work done in `esphaier <https://github.com/MiguelAngelLV/esphaier>`__.
-
 See Also
 --------
 
+- `esphaier <https://github.com/MiguelAngelLV/esphaier>`__
 - :doc:`/components/climate/index`
 - :apiref:`haier/climate/haier.h`
 - :ghedit:`Edit`
