@@ -11,7 +11,7 @@ instrument in ESPHome. It uses :ref:`UART <uart>` (ModBUS) for communication.
 Once configured you can use sensors as described below for your projects.
 
 
-.. figure:: ../images/kuntze.jpg
+.. figure:: ../../images/kuntze.jpg
     :align: center
 
     Kuntze Neon® Multi instrument
@@ -52,7 +52,7 @@ A configured modbus component is optional. It will be automatically created.
       - id: uart_bus
         tx_pin: GPIO16
         rx_pin: GPIO17
-        baud_rate: 19600
+        baud_rate: 19200
         parity: EVEN
 
     sensor:
