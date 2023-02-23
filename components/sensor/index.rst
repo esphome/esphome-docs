@@ -349,7 +349,7 @@ Configuration variables:
   when pushing out a value.
   Defaults to ``5``.
 - **send_every** (*Optional*, int): How often a sensor value should be pushed out. For
-  example, in above configuration the min is calculated after every 4th
+  example, in above configuration the max is calculated after every 4th
   received sensor value, over the last 7 received values.
   Defaults to ``5``.
 - **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
