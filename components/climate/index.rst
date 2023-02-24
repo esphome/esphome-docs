@@ -43,7 +43,10 @@ Configuration variables:
   - **max_temperature** (*Optional*, float): The maximum temperature the climate device can reach.
     Used to set the range of the frontend gauge.
   - **temperature_step** (*Optional*, float): The granularity with which the target temperature
-    can be controlled.
+    can be controlled. Can be a single number, or split as below:
+
+    - **target_temperature** (**Required**, float)
+    - **current_temperature** (**Required**, float)
 
 Advanced options:
 
@@ -57,6 +60,18 @@ Advanced options:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Requires Home Assistant 2021.11 or newer.
   Set to ``""`` to remove the default entity category.
+
+
+.. code-block:: yaml
+
+    climate:
+      - platform: ...
+        visual:
+          min_temperature: 18
+          max_temperature: 25
+          temperature_step:
+            target_temperature: 0.5
+            current_temperature: 0.1
 
 Climate Automation
 ------------------
@@ -142,7 +157,7 @@ advanced stuff.
       id(my_climate).preset
       // Custom Preset, type: string
       id(my_climate).custom_preset
-      
+
 
 - ``.make_call``: Control the climate device
 
@@ -158,7 +173,7 @@ advanced stuff.
 ``climate.on_state`` Trigger
 ****************************
 
-This trigger is activated each time the state of the climate device is updated 
+This trigger is activated each time the state of the climate device is updated
 (for example, if the current temperature measurement or the mode set by the users changes).
 
 .. code-block:: yaml
