@@ -64,7 +64,7 @@ Configuration variables:
 
 - **speed** (*Optional*): Include the measured speed as a sensor
 
-  - **name** (**Required**, string): The name to give the latitude sensor
+  - **name** (**Required**, string): The name to give the speed sensor
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
