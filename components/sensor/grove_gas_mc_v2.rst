@@ -32,10 +32,6 @@ an ``i2c:`` section in your config for this integration to work.
 
 .. code-block:: yaml
 
-    i2c:
-      sda: D2
-      scl: D1
-
     sensor:
       - platform: grove_gas_mc_v2
         no2:
@@ -53,28 +49,13 @@ Configuration variables:
 ------------------------
 
 - **no2** (**Required**): The Nitrogen Dioxide sensor data.
-
-  - **name** (**Required**, string): The name for the Nitrogen Dioxide sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
+  All options from :ref:`Sensor <config-sensor>`.
 - **ethanol** (**Required**): The Ethanol (C2H5OH) sensor data.
-
-  - **name** (**Required**, string): The name for the Ethanol sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
+  All options from :ref:`Sensor <config-sensor>`.
 - **carbon_monoxide** (**Required**): The Carbon Monoxide sensor data.
-
-  - **name** (**Required**, string): The name for the Carbon Monoxide sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
+  All options from :ref:`Sensor <config-sensor>`.
 - **tvoc** (**Required**): The Total Volatile Organic Compounds (TVOC) sensor data.
-
-  - **name** (**Required**, string): The name for the VOC sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Sensor <config-sensor>`.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
