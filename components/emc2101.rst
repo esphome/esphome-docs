@@ -3,7 +3,7 @@ EMC2101 Fan Controller and Temperature sensor
 
 .. seo::
     :description: Instructions for setting up EMC2101 fan controller and temperature sensor in ESPHome.
-    :image: emc2101.png
+    :image: emc2101.jpg
     :keywords: EMC2101
 
 The ``emc2101`` component allows you to control a cooling fan from ESPHome (`datasheet <https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/EMC2101-Data-Sheet-DS20006703.pdf>`__). It also provides temperature
@@ -19,6 +19,7 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
     EMC2101 Fan Controller and Temperature sensor
 
 .. note::
+
     Original image at https://learn.adafruit.com/assets/97827 created by 
     by user `Bryan Siepert <https://learn.adafruit.com/u/siddacious>`__ under
     `Creative Commons BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0/>`__ and modified
@@ -113,6 +114,7 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
 
 .. note::
+
     When using the ``emc2101`` output with a :doc:`/components/fan/speed` it is advised to configure the **speed_count**
     as twice the **resolution** so the number of speeds in the fan matches the number of steps in the fan controller.
 
