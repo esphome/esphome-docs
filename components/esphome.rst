@@ -29,6 +29,9 @@ Configuration variables:
   characters, digits and hyphens, and can be at most 24 characters long by default, or 31
   characters long if ``name_add_mac_suffix`` is ``false``.
   See :ref:`esphome-changing_node_name`.
+- **friendly_name** (*Optional*, string): This name is sent to the frontends. It is used
+  by Home Assistant as the integration name, device name, and is automatically prefixed to entities
+  where necessary.
 
 Advanced options:
 
