@@ -91,7 +91,7 @@ And the PWM resolution, the steps in the duty cycle, is calculated by the follow
 
 .. math::
 
-    \text{PWM resolution} = \frac{100%}{2 \times resolution}
+    \text{PWM resolution} = \frac{100\%}{2 \times resolution}
 
 So, with the default values the PWM signal will have a frequency of 7.83KHz and a resolution of 2.17%. The maximum
 resolution value is ``31`` which will configure a frequency of 5.81KHz with a resolution of 1.61%.
