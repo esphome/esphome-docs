@@ -35,7 +35,6 @@ This component exposes the different gas concentration sensors from the `MiCS-45
 Configuration variables:
 ------------------------
 
-- **pin** (**Required**, :ref:`config-pin`): The pin where the DHT bus is connected.
 - **nitrogen_dioxide** (*Optional*): All options from :ref:`Sensor <config-sensor>`
 - **carbon_monoxide** (*Optional*): All options from :ref:`Sensor <config-sensor>`
 - **hydrogen** (*Optional*): All options from :ref:`Sensor <config-sensor>`
