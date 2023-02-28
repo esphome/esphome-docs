@@ -45,7 +45,9 @@ engine such as :doc:`E-Paper displays <../display/waveshare_epaper>` or :doc:`OL
     graphical_display_menu:
       id: my_graphical_display_menu
       display: my_display_component
-      display_updater: my_display_component
+      on_redraw:
+        then:
+          component.update: my_dispay_component
       active: false
       mode: rotary
       items:
@@ -82,13 +84,16 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **display** (:ref:`config-id`): ID of the display to render to
-- **display_updater** (*Optional*, :ref:`config-id`): If specified this component will have be
-  used to update the display when the menu changes. This is useful for displays such as E-Ink
-  that have slow refresh rates when used with `display_interval: never`.
 - **foreground_color** (*Optional*, :ref:`config-color`): Specifies the foreground color to use.
   Defaults to COLOR_ON
 - **background_color** (*Optional*, :ref:`config-color`): Specifies the background color to use.
   Defaults to COLOR_OFF
+
+Automations:
+
+- **on_redraw** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the menu needs to be redrawn. This can be useful if your display has slow refresh rates.
+  For example E-Ink displays that are used with `display_interval: never`
 
 Controlling Menu Rendering
 --------------------------
