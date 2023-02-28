@@ -10,7 +10,7 @@ BP5758D LED driver
 Component/Hub
 -------------
 
-The BP5758D component represents a BP5758D LED diver chain in
+The BP5758D component represents a BP5758D LED driver chain in
 ESPHome. Communication is done with two GPIO pins (DATA and CLK).
 
 To use the channels of this components, you first need to setup the

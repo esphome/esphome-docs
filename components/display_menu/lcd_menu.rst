@@ -8,8 +8,8 @@ LCD Menu
     :image: lcd_menu.png
 
 The component provides an infrastructure for setting up a hierarchical menu
-on character based LCD displays. This offers the user an interactive method to display 
-labels, control entities like ``switch``, ``select``, ``number``  available locally on the 
+on character based LCD displays. This offers the user an interactive method to display
+labels, control entities like ``switch``, ``select``, ``number``  available locally on the
 ESPHome node, without the requirement of a network connection.
 
 .. figure:: images/lcd_menu.png
@@ -24,9 +24,9 @@ a hierarchical menu primarily intended to be controlled either by a rotary encod
 with a button or a five-button joystick controller.
 
 The component needs to be connected to an instance of a character based LCD display, which
-like :ref:`lcd-pcf8574` or :ref:`lcd-gpio`. For the best results the GPIO connection is 
-recommended; the I²C one running at the speed according to the datasheet (usually ``100`` 
-kHz) or even ESPHome default (``50`` kHz) will create perceptible delays especially when 
+like :ref:`lcd-pcf8574` or :ref:`lcd-gpio`. For the best results the GPIO connection is
+recommended; the I²C one running at the speed according to the datasheet (usually ``100``
+kHz) or even ESPHome default (``50`` kHz) will create perceptible delays especially when
 changing a numeric value using the rotary encoder. Most ``PCF8574`` adapters used with
 these displays will happily run at ``200`` or even ``400`` kHz though so if you are comfortable
 accepting risks from running your hardware out of spec, you might want to try that
@@ -94,12 +94,16 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **display_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the LCD display.
-- **mark_back**, **mark_selected**, **mark_editing**, **mark_submenu** (*Optional*, 0-255):
-  Code of the character used to mark menu items going back one level, a selected one,
-  the editing mode and item leading to a submenu. Defaults to ``0x5e`` (``^``), ``0x3e`` (``>``),
-  ``0x2a`` (``*``) and ``0x7e`` (a right arrow). As the character set lacks a good looking
-  back arrow, using a user defined character is advisable for ``mark_back`` (use ``8`` to 
-  reference one at position ``0`` to avoid problems with zeros in a string).
+- **mark_back** (*Optional*, 0-255): Code of the character used to mark menu items going back
+  one level. As the character set lacks a good looking back arrow, using a user defined character
+  is advisable (use ``8`` to reference one at  position ``0`` to avoid problems with zeros
+  in a string). Defaults to ``0x5e`` (``^``).
+- **mark_selected** (*Optional*, 0-255): Code of the character used to mark menu item selected.
+  Defaults to ``0x3e`` (``>``).
+- **mark_editing** (*Optional*, 0-255): Code of the character used to mark menu item editing mode.
+  Defaults to ``0x2a`` (``*``).
+- **mark_submenu** (*Optional*, 0-255): Code of the character used to mark menu item leading to a
+  submenu. Defaults to ``0x7e`` (a right arrow).
 
 The rest of the configuration is described in the :ref:`Display Menu <display_menu>` component.
 The menu inherits the dimensions of the connected LCD display and uses the entire area.
