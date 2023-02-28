@@ -195,7 +195,7 @@ You can find a list of commands in the `LIRC project <https://sourceforge.net/p/
 .. _remote_transmitter-transmit_drayton:
 
 ``remote_transmitter.transmit_drayton`` Action
-*********************************************
+**********************************************
 
 This :ref:`action <config-action>` sends a Draton Digistat RF remote code to a remote transmitter.
 
