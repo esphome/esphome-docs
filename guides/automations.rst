@@ -379,7 +379,8 @@ All Actions
   :ref:`sprinkler.pause <sprinkler-controller-action_pause>` /   :ref:`sprinkler.resume <sprinkler-controller-action_resume>` /
   :ref:`sprinkler.resume_or_start_full_cycle <sprinkler-controller-action_resume_or_start_full_cycle>` /   :ref:`sprinkler.queue_valve <sprinkler-controller-action_queue_valve>` /
   :ref:`sprinkler.clear_queued_valves <sprinkler-controller-action_clear_queued_valves>` /   :ref:`sprinkler.set_multiplier <sprinkler-controller-action_set_multiplier>` /
-  :ref:`sprinkler.set_repeat <sprinkler-controller-action_set_repeat>` /   :ref:`sprinkler.set_valve_run_duration <sprinkler-controller-action_set_valve_run_duration>`
+  :ref:`sprinkler.set_repeat <sprinkler-controller-action_set_repeat>` /   :ref:`sprinkler.set_divider <sprinkler-controller-action_set_divider>` /
+  :ref:`sprinkler.set_valve_run_duration <sprinkler-controller-action_set_valve_run_duration>`
 - :ref:`globals.set <globals-set_action>`
 - :ref:`remote_transmitter.transmit_* <remote_transmitter-transmit_action>`
 - :ref:`climate.control <climate-control_action>`
@@ -861,7 +862,7 @@ or as lambda
 
 .. code-block:: yaml
 
-    lambda: -|
+    lambda: |-
         if (id(my_script).is_running()) {
             ESP_LOGI("main", "Script is running!");
         }
