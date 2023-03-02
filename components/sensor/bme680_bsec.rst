@@ -305,7 +305,7 @@ software library defines the levels as follows:
 +-----------+---------------------+
 | 251 - 350 | Severely polluted   |
 +-----------+---------------------+
-|   > 351   | Extremely polluted |
+|   > 351   | Extremely polluted  |
 +-----------+---------------------+
  
 The selected b-VOC gasses are as follows:
