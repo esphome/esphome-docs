@@ -75,6 +75,9 @@ Advanced options:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Requires Home Assistant 2021.11 or newer.
   Set to ``""`` to remove the default entity category.
+- **unique_object_id** (*Optional*, string): Used instead of ``name`` for internal ``unique_id`` and ``object_id`` generation.
+  If ``name`` has changed and ``unique_object_id`` has not, a new Entity will not be created.
+  If ``name`` is localized and consists of non ASCII symbols, set ``unique_object_id`` as transliterated ``name``.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _light-toggle_action:

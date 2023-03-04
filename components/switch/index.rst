@@ -61,6 +61,9 @@ Configuration variables:
 - **device_class** (*Optional*, string): The device class for the switch.
   See https://developers.home-assistant.io/docs/core/entity/switch/#available-device-classes
   for a list of available options. Requires Home Assistant 2022.3 or newer.
+- **unique_object_id** (*Optional*, string): Used instead of ``name`` for internal ``unique_id`` and ``object_id`` generation.
+  If ``name`` has changed and ``unique_object_id`` has not, a new Entity will not be created.
+  If ``name`` is localized and consists of non ASCII symbols, set ``unique_object_id`` as transliterated ``name``.
 - If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _switch-toggle_action:
