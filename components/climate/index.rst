@@ -61,6 +61,41 @@ Advanced options:
   for a list of available options. Requires Home Assistant 2021.11 or newer.
   Set to ``""`` to remove the default entity category.
 
+MQTT options:
+
+- **action_state_topic** (*Optional*, string): The topic to publish
+  climate device action changes to.
+- **current_temperature_state_topic** (*Optional*, string): The topic to publish
+  current temperature changes to.
+- **fan_mode_state_topic** (*Optional*, string): The topic to publish
+  fan mode changes to.
+- **fan_mode_command_topic** (*Optional*, string): The topic to receive
+  fan mode commands on.
+- **mode_state_topic** (*Optional*, string): The topic to publish
+  climate device mode changes to.
+- **mode_command_topic** (*Optional*, string): The topic to receive
+  climate device mode commands on.
+- **preset_state_topic** (*Optional*, string): The topic to publish
+  preset changes to.
+- **preset_command_topic** (*Optional*, string): The topic to receive
+  preset commands on.
+- **swing_mode_state_topic** (*Optional*, string): The topic to publish
+  swing mode changes to.
+- **swing_mode_command_topic** (*Optional*, string): The topic to receive
+  swing mode commands on.
+- **target_temperature_state_topic** (*Optional*, string): The topic to publish
+  target temperature changes to.
+- **target_temperature_command_topic** (*Optional*, string): The topic to receive
+  target temperature commands on.
+- **target_temperature_high_state_topic** (*Optional*, string): The topic to publish
+  higher target temperature changes to.
+- **target_temperature_high_command_topic** (*Optional*, string): The topic to receive
+  higher target temperature commands on.
+- **target_temperature_low_state_topic** (*Optional*, string): The topic to publish
+  lower target temperature changes to.
+- **target_temperature_low_command_topic** (*Optional*, string): The topic to receive
+  lower target temperature commands on.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. code-block:: yaml
 
@@ -184,41 +219,6 @@ This trigger is activated each time the state of the climate device is updated
         on_state:
         - logger.log: "State updated!"
 
-MQTT options:
-
-- **action_state_topic** (*Optional*, string): The topic to publish
-  climate device action changes to.
-- **current_temperature_state_topic** (*Optional*, string): The topic to publish
-  current temperature changes to.
-- **fan_mode_state_topic** (*Optional*, string): The topic to publish
-  fan mode changes to.
-- **fan_mode_command_topic** (*Optional*, string): The topic to receive
-  fan mode commands on.
-- **mode_state_topic** (*Optional*, string): The topic to publish
-  climate device mode changes to.
-- **mode_command_topic** (*Optional*, string): The topic to receive
-  climate device mode commands on.
-- **preset_state_topic** (*Optional*, string): The topic to publish
-  preset changes to.
-- **preset_command_topic** (*Optional*, string): The topic to receive
-  preset commands on.
-- **swing_mode_state_topic** (*Optional*, string): The topic to publish
-  swing mode changes to.
-- **swing_mode_command_topic** (*Optional*, string): The topic to receive
-  swing mode commands on.
-- **target_temperature_state_topic** (*Optional*, string): The topic to publish
-  target temperature changes to.
-- **target_temperature_command_topic** (*Optional*, string): The topic to receive
-  target temperature commands on.
-- **target_temperature_high_state_topic** (*Optional*, string): The topic to publish
-  higher target temperature changes to.
-- **target_temperature_high_command_topic** (*Optional*, string): The topic to receive
-  higher target temperature commands on.
-- **target_temperature_low_state_topic** (*Optional*, string): The topic to publish
-  lower target temperature changes to.
-- **target_temperature_low_command_topic** (*Optional*, string): The topic to receive
-  lower target temperature commands on.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 
 See Also
