@@ -219,7 +219,24 @@ This trigger is activated each time the state of the climate device is updated
         on_state:
         - logger.log: "State updated!"
 
+.. _climate-on_control_trigger:
 
+``climate.on_control`` Trigger
+******************************
+
+This trigger is activated each time a *control* input of the climate device
+is updated via a ``ClimateCall`` (which includes changes coming in from Home
+Assistant).  That is, this trigger is activated for, for example, changes to
+the mode, *but not* on temperature measurements.  It will be invoked prior to
+the ``on_state`` trigger, if both are defined.
+
+.. code-block:: yaml
+
+    climate:
+      - platform: midea  # or any other platform
+        # ...
+        on_control:
+        - logger.log: "Control input received; configuration updated!"
 
 See Also
 --------
