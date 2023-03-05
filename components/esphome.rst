@@ -327,10 +327,10 @@ have unique identification for customer installs.
 
 .. note::
 
-  End users will need to create an individual YAML config file if they want to OTA update the 
-  devices in the future.  Creators can facilitate this process by providing ``dashboard_import`` URL
-  for end users.  This allows them to easily update their devices as new features are made available 
-  upstream.
+    End users will need to create an individual YAML config file if they want to OTA update the 
+    devices in the future.  Creators can facilitate this process by providing ``dashboard_import`` URL
+    for end users.  This allows them to easily update their devices as new features are made available 
+    upstream.
 
 
 .. _esphome-creators_project:
