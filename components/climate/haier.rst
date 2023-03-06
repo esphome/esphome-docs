@@ -21,29 +21,30 @@ This component requires a :ref:`uart` to be setup.
     climate:
       - platform: haier
         id: haier_ac_climate
-        protocol: hOn               # Required, should be hOn or smartAir2 (not all features supported by smartAir2)
-        name: ${device_name} 
+        protocol: hOn
+        name: Haier AC 
         uart_id: haier_ac_uart
-        wifi_signal: true           # Optional, not supported by smartAir2, enables WiFI signal transmission from ESP to AC
-        beeper: true                # Optional, not supported by smartAir2, disables beep on commands from ESP
-        outdoor_temperature:        # Optional, not supported by smartAir2, outdoor temperature sensor
-          name: ${device_name} outdoor temperature
-        visual:                     # Optional, can be used to limit min and max temperatures in UI (not working for remote!)
+        wifi_signal: true
+        beeper: true
+        outdoor_temperature:
+          name: Haier AC outdoor temperature
+        visual:
           min_temperature: 16 °C
           max_temperature: 30 °C
           temperature_step: 1 °C
-        supported_modes:            # Optional, can be used to disable some modes
-        - 'OFF'                     # always available
-        - AUTO                      # always available
+        supported_modes:
+        - 'OFF'
+        - AUTO 
         - COOL
         - HEAT
         - DRY
         - FAN_ONLY
-        supported_swing_modes:      # Optional, can be used to disable some swing modes if your AC does not support it
-        - 'OFF'                     # always available
-        - VERTICAL                  # always available
+        supported_swing_modes:
+        - 'OFF'
+        - VERTICAL
         - HORIZONTAL
         - BOTH
+
 
 Configuration variables:
 ------------------------
