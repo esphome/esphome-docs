@@ -185,6 +185,7 @@ Hardware setup for hOn ACs
 To flash the firmware you will need to use a USB to TTL converter and solder wires to access UART0 on board (or use some Pogo Pin Probe Clip)
 
 **UART0 pinout:**
+
 .. figure:: images/haier_pinout.png
     :align: center
     :width: 70.0%
