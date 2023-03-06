@@ -186,7 +186,7 @@ To flash the firmware you will need to use a USB to TTL converter and solder wir
 
 **UART0 pinout:**
 
-.. figure:: images/haier_pinout.png
+.. figure:: images/haier_pinout.jpg
     :align: center
     :width: 70.0%
 
