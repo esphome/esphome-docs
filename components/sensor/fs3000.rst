@@ -36,8 +36,7 @@ To use the sensor, first set up an :ref:`I²C Bus <i2c>` and connect the sensor 
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name for the air velocity sensor.
 - **model** (**Required**, string): Specify FS3000 model, can be ``1005`` or ``1015``.
-- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for lambdas/multiple sensors.
 - **address** (*Optional*, int): Manually specifiy the I²C address of the sensor. Defaults to ``0x28``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+- All other options from :ref:`Sensor <config-sensor>`.
