@@ -52,9 +52,6 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`tee501`
-- :doc:`ee895`
-- :doc:`dht`
-- :doc:`dht12`
+- :doc:`absolute_humidity`
 - :apiref:`hte501/hte501.h`
 - :ghedit:`Edit`

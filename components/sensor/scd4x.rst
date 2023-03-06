@@ -151,23 +151,21 @@ Note: that the pressure from bme280 is in hPa and must be converted to bar.
         id: scd41
         i2c_id: bus_a
         co2:
-            name: co2
-            id: co2
+          name: co2
+          id: co2
 
-        - platform: bme280
-          pressure:
-            name: "BME280-Pressure"
-            id: bme280_pressure
-            oversampling: 1x
-          on_value:
-            then:
-                - lambda: "id(scd41)->set_ambient_pressure_compensation(x / 1000.0);"
+      - platform: bme280
+        pressure:
+          name: "BME280-Pressure"
+        on_value:
+          then:
+            - lambda: "id(scd41)->set_ambient_pressure_compensation(x / 1000.0);"
 
 
 See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`scd30`
+- :doc:`absolute_humidity`
 - :apiref:`scd4x/scd4x.h`
 - :ghedit:`Edit`

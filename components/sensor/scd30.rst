@@ -108,9 +108,6 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`dht`
-- :doc:`dht12`
-- :doc:`hdc1080`
-- :doc:`htu21d`
+- :doc:`absolute_humidity`
 - :apiref:`scd30/scd30.h`
 - :ghedit:`Edit`

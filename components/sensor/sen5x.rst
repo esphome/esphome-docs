@@ -208,11 +208,6 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`sds011`
-- :doc:`pmsx003`
-- :doc:`ccs811`
-- :doc:`scd4x`
-- :doc:`sps30`
-- :doc:`sgp4x`
+- :doc:`absolute_humidity`
 - :apiref:`sen5x/sen5x.h`
 - :ghedit:`Edit`

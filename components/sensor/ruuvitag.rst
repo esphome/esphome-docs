@@ -183,7 +183,7 @@ See Also
 --------
 
 - :doc:`/components/esp32_ble_tracker`
-- :doc:`/components/sensor/index`
+- :doc:`absolute_humidity`
 - :apiref:`ruuvitag/ruuvitag.h`
 - `Ruuvi <https://ruuvi.com>`__
 - :ghedit:`Edit`

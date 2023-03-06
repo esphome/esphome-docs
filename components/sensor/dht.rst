@@ -81,10 +81,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`dht12`
-- :doc:`hdc1080`
-- :doc:`htu21d`
-- :doc:`sht3xd`
+- :doc:`absolute_humidity`
 - :apiref:`dht/dht.h`
 - `Arduino DHTLib <https://playground.arduino.cc/Main/DHTLib>`__
 - :ghedit:`Edit`
