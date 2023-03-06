@@ -29,9 +29,9 @@ This component requires a :ref:`uart` to be setup.
       outdoor_temperature:        # Optional, not supported by smartAir2, outdoor temperature sensor
         name: ${device_name} outdoor temperature
       visual:                     # Optional, can be used to limit min and max temperatures in UI (not working for remote!)
-        min_temperature: 16 °C
-        max_temperature: 30 °C
-        temperature_step: 1 °C
+        min_temperature: 16 Â°C
+        max_temperature: 30 Â°C
+        temperature_step: 1 Â°C
       supported_modes:            # Optional, can be used to disable some modes
       - 'OFF'                     # always available
       - AUTO                      # always available
