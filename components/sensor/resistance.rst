@@ -44,6 +44,19 @@ is close to GND (DOWNSTREAM) or it is closer to VCC (UPSTREAM).
         id: source_sensor
         pin: A0
 
+Note:
+------------------------
+Some boards like NodeMCUv2 needs to multiply adc reading by 3.3 to provide accurate result because they have built-in voltage divider on ADC pin (https://arduino.stackexchange.com/a/71952)
+
+.. code-block:: yaml
+
+    # Example source sensor:
+      - platform: adc
+        id: source_sensor
+        pin: A0
+        filters:
+          - multiply: 3.3
+
 Configuration variables:
 ------------------------
 
