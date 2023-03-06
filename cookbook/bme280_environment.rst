@@ -42,18 +42,10 @@ After validating the sensor is working, we can proceed and add some formulas.
         update_interval: 15s
         icon: 'mdi:signal'
         unit_of_measurement: 'm'
-      - platform: template
+      - platform: absolute_humidity
         name: "Absolute Humidity"
-        lambda: |-
-          const float mw = 18.01534;    // molar mass of water g/mol
-          const float r = 8.31447215;   // Universal gas constant J/mol/K
-          return (6.112 * powf(2.718281828, (17.67 * id(bme280_temperature).state) /
-            (id(bme280_temperature).state + 243.5)) * id(bme280_humidity).state * mw) /
-            ((273.15 + id(bme280_temperature).state) * r); // in grams/m^3
-        accuracy_decimals: 2
-        update_interval: 15s
-        icon: 'mdi:water'
-        unit_of_measurement: 'g/m³'
+        temperature: bme280_temperature
+        humidity: bme280_humidity
       - platform: template
         name: "Dew Point"
         lambda: |-
@@ -73,7 +65,7 @@ The variable ``STANDARD_SEA_LEVEL_PRESSURE`` (in hPa), should be filled in for y
 The formula derived from `here <https://github.com/finitespace/BME280/blob/master/src/EnvironmentCalculations.cpp>`__,
 converts the currently measured pressure to the altitudes in meters including temperature compensation.
 
-The lambda in the second :doc:`/components/sensor/template` defines two physical constants and
+The second block uses the :doc:`/components/sensor/absolute_humidity` component which
 converts the currently measured temperature and relative humidity to absolute humidity (grams/m^3).
 
 .. note::
@@ -120,13 +112,13 @@ Calculating the sea level pressure with a statically mounted sensor can be used 
 Formula explanation
 -------------------
 
-- `Relative humidity calculations <https://carnotcycle.wordpress.com/2012/08/04/how-to-convert-relative-humidity-to-absolute-humidity/>`__
 - `Altitude calculation <https://en.wikipedia.org/wiki/Atmospheric_pressure#Altitude_variation>`__
 - `Dew Point calculation <https://carnotcycle.wordpress.com/2017/08/01/compute-dewpoint-temperature-from-rh-t/>`__
 
 See Also
 --------
 
+- :doc:`/components/sensor/absolute_humidity`
 - :doc:`/components/sensor/template`
 - :doc:`/components/sensor/bme280`
 - :ghedit:`Edit`
