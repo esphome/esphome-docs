@@ -46,7 +46,7 @@ is close to GND (DOWNSTREAM) or it is closer to VCC (UPSTREAM).
 
 Note:
 ------------------------
-Some boards like NodeMCUv2 needs to multiply adc reading by 3.3 to provide accurate result because they have built-in voltage divider on ADC pin (https://arduino.stackexchange.com/a/71952)
+Some boards like NodeMCUv2 needs to multiply ADC reading by 3.3 to provide accurate result because they have built-in voltage divider on ADC pin (https://arduino.stackexchange.com/a/71952)
 
 .. code-block:: yaml
 
