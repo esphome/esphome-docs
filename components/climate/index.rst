@@ -20,7 +20,7 @@ and can be put in different modes like ``HEAT``, ``COOL``, ``HEAT_COOL`` or ``OF
 Base Climate Configuration
 --------------------------
 
-All climate platforms in ESPHome inherit from the climate configuration schema.
+All climate platforms in ESPHome inherit from the climate configuration schema. In ESPHome, ``°C`` is assumed for all temperature values. Some platforms allow conversion or setting in ``°F``, this is specified separately.
 
 .. code-block:: yaml
 
