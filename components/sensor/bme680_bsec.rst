@@ -92,7 +92,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
 
 Configuration variables:
 
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
 
 - **temperature_offset** (*Optional*, float): Temperature offset if device is in enclosure and reads too high. This value is subtracted
   from the reading (e.g. if the sensor reads 5°C higher than expected, set this to ``5``) and also corrects the relative humidity readings. Defaults to ``0``.
@@ -108,10 +108,14 @@ Configuration variables:
 - **state_save_interval** (*Optional*, :ref:`config-time`): The minimum interval at which to save calibrated BSEC algorithm state to
   flash so that calibration doesn't have to start from zero on device restart. Defaults to ``6h``.
 
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this ID in the sensor section to refer to the correct BME680 if you have more than one device. This will also be used to refer to the calibrated BSEC algorithm state saved to flash.
+
 Sensor
 ------
 
 Configuration variables:
+
+- **bme680_bsec_id** (*Optional*, :ref:`config-id`): Sets the ID of the bme680_bsec component to refer to. Useful when working with multiple devices.
 
 - **temperature** (*Optional*): The information for the temperature sensor.
 
@@ -171,6 +175,8 @@ Accuracy can be reported in text format.
 
 Configuration variables:
 
+- **bme680_bsec_id** (*Optional*, :ref:`config-id`): Sets the ID of the bme680_bsec component to refer to. Useful when working with multiple devices.
+
 - **iaq_accuracy** (*Optional*): The information for the IAQ accuracy sensor. Shows: Stabilizing,
   Uncertain, Calibrating, Calibrated.
 
@@ -193,6 +199,13 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
 .. code-block:: yaml
 
     bme680_bsec:
+        # id
+        # -----------
+        # Identifier for this component, useful when working with multiple devices.
+        # Must be unique, and can be used in the sensor sections to refer to the correct device.
+        # Default: auto-computed
+        id: bme680_internal
+
         # i2c address
         # -----------
         # Common values are:
@@ -232,6 +245,10 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
 
     sensor:
       - platform: bme680_bsec
+        # ID of the bme680_bsec component to use for the next sensors.
+        # Useful when working with multiple devices
+        bme680_bsec_id: bme680_internal
+
         temperature:
           # Temperature in °C
           name: "BME680 Temperature"
@@ -279,6 +296,77 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
         iaq_accuracy:
           # IAQ accuracy as a text value of Stabilizing, Uncertain, Calibrating, Calibrated
           name: "BME680 IAQ Accuracy"
+
+
+Multiple sensors
+----------------------
+
+The following configuration shows how to set up multiple BME680 devices. They can be configured to use the same I²C bus or to use different busses, but remember that the BME680 can only be set to operate on I²C address ``0x76`` or ``0x77``. There is no limit on the number of BME680 devices that can be connected.
+
+
+.. code-block:: yaml
+
+    # I2C bus for the BME680 devices
+    i2c:
+      - id: "i2cbus_bme"
+        sda: GPIO18
+        scl: GPIO19
+        scan: true
+
+    # BME680 devices using BSEC library
+    bme680_bsec:
+      - id: bme680_internal
+        i2c_id: "i2cbus_bme"
+        address: 0x76
+      - id: bme680_external
+        i2c_id: "i2cbus_bme"
+        address: 0x77
+
+    sensor:
+      # Sensors for the internal BME680 device
+      - platform: bme680_bsec
+        bme680_bsec_id: bme680_internal
+        temperature:
+          name: "IN_Temp"
+        pressure:
+          name: "IN_Press"
+        humidity:
+          name: "IN_RH"
+        iaq:
+          name: "IN_IAQ"
+        co2_equivalent:
+          name: "IN_CO2eq"
+        breath_voc_equivalent:
+          name: "IN_VOCeq"
+
+      # Sensors for the external BME680 device
+      - platform: bme680_bsec
+        bme680_bsec_id: bme680_external
+        temperature:
+          name: "OUT_Temperatura"
+        pressure:
+          name: "OUT_Pressione"
+        humidity:
+          name: "OUT_RH"
+        iaq:
+          name: "OUT_IAQ"
+        co2_equivalent:
+          name: "OUT_CO2eq"
+        breath_voc_equivalent:
+          name: "OUT_VOCeq"
+
+    text_sensor:
+      # Text sensor for the internal BME680 device
+      - platform: bme680_bsec
+        bme680_bsec_id: bme680_internal
+        iaq_accuracy:
+          name: "IN_IAQaccuracy"
+
+      # Text sensor for the external BME680 device
+      - platform: bme680_bsec
+        bme680_bsec_id: bme680_external
+        iaq_accuracy:
+          name: "OUT_IAQaccuracy"
 
 
 Indoor Air Quality (IAQ) Measurement
