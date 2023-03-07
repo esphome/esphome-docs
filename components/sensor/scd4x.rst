@@ -168,6 +168,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :doc:`scd30`
 - :apiref:`scd4x/scd4x.h`
 - :ghedit:`Edit`

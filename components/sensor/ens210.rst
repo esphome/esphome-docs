@@ -52,6 +52,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :apiref:`ENS210/ENS210.h`
 - `ENS210 Library <https://github.com/maarten-pennings/ENS210>`__  by `Maarten Pennings  <https://github.com/maarten-pennings>`__
 - :ghedit:`Edit`
