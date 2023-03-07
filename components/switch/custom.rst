@@ -50,6 +50,7 @@ And in YAML:
 
       switches:
         name: "My Custom Switches"
+        id: my_custom_switch
 
 Configuration variables:
 
