@@ -19,12 +19,10 @@ See the links at the bottom of the page for details on absolute humidity and the
         humidity: relative_humidity
 
       # Use any temperature and relative humidity source, e.g. a BME280:
-      - platform: bme280
+      - platform: ...
         temperature:
           name: Temperature
           id: air_temperature
-        pressure:
-          name: Air Pressure
         humidity:
           name: Relative Humidity
           id: relative_humidity
