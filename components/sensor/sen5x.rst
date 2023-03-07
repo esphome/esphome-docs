@@ -114,7 +114,7 @@ Configuration variables:
 
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **nox** (*Optional*): NOx Index. Note: Only available with Sen54 or Sen55. The sensor will be ignored on unsupported models.
+- **nox** (*Optional*): NOx Index. Note: Only available with Sen55. The sensor will be ignored on unsupported models.
 
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -162,7 +162,7 @@ Configuration variables:
 Wiring:
 -------
 
-The sensor has a JST GHR-06V-S 6 pin type connector, with a 1.5mm pitch. The cable needs this connector:
+The sensor has a JST GHR-06V-S 6 pin type connector, with a 1.25mm pitch. The cable needs this connector:
 
 .. figure:: images/jst6pin.png
     :align: center
