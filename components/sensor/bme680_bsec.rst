@@ -2,7 +2,7 @@ BME680 Temperature+Pressure+Humidity+Gas Sensor via BSEC
 ========================================================
 
 .. seo::
-    :description: Instructions for setting up BME680 temperature, humidity, pressure and gas sensors via BSEC.
+    :description: Instructions for setting up BME680 temperature, humidity, pressure, and gas sensors via BSEC.
     :image: bme680.jpg
     :keywords: BME680
 
@@ -12,12 +12,13 @@ Component/Hub
 The ``bme680_bsec`` sensor platform allows you to use your BME680
 (`datasheet <https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf>`__,
 `Adafruit`_) temperature, pressure and humidity and gas sensors with ESPHome via the Bosch Sensortec Environmental Cluster (BSEC)
-software library. The use of Bosch's proprietary algorithms provides additional Indoor Air Quality (IAQ), CO2 equivalent and Breath
-Volatile Organic Compounds (VOC) equivalent measurements.
+software library. The use of Bosch's proprietary algorithms provide an Index for Air Quality (IAQ) measurement derived from the
+gas resistance sensor's response to specific Volatile Organic Compounds (VOC). The BSEC software also provides estimated values 
+for CO₂ and Breath Volatile Organic Compounds (b-VOC) using a correlation between VOC and CO₂ in a human's exhaled breath.  
 
 .. note::
 
-    The Bosch BSEC library is only available for use after accepting its software license agreement. By enabling this component,
+    The BSEC library is only available for use after accepting its software license agreement. By enabling this component,
     you are explicitly agreeing to the terms of the `BSEC license agreement`_. You must not distribute any compiled firmware
     binaries that include this component.
 
@@ -101,9 +102,9 @@ Configuration variables:
   Can be ``mobile`` for mobile applications (e.g. carry-on devices).
 
 - **sample_rate** (*Optional*, string): Sample rate. Default is ``lp`` for low power consumption, sampling every 3 seconds.
-  Can be ``ulp`` for ultra low power, sampling every 5 minutes.
-  This controls the sampling rate for gas-dependant sensors and will govern the interval at which the sensor heater is operated.
-  By default this rate will also be used for temperature, pressure and humidity sensors but these can be overridden on a per-sensor level if required.
+  Can be ``ulp`` for ultra-low power, sampling every 5 minutes.
+  This controls the sampling rate for gas-dependent sensors and will govern the interval at which the sensor heater is operated.
+  By default, this rate will also be used for temperature, pressure, and humidity sensors but these can be overridden on a per-sensor level if required.
 
 - **state_save_interval** (*Optional*, :ref:`config-time`): The minimum interval at which to save calibrated BSEC algorithm state to
   flash so that calibration doesn't have to start from zero on device restart. Defaults to ``6h``.
@@ -117,21 +118,21 @@ Configuration variables:
 
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - **sample_rate** (*Optional*, string): Optional sample rate override for this sensor. Can be ``lp`` for low power consumption, sampling every 3 seconds or ``ulp`` for ultra low power, sampling every 5 minutes.
+  - **sample_rate** (*Optional*, string): Optional sample rate override for this sensor. Can be ``lp`` for low power consumption, sampling every 3 seconds or ``ulp`` for ultra-low power, sampling every 5 minutes.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pressure** (*Optional*): The information for the pressure sensor.
 
   - **name** (**Required**, string): The name for the pressure sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - **sample_rate** (*Optional*, string): Optional sample rate override for this sensor. Can be ``lp`` for low power consumption, sampling every 3 seconds or ``ulp`` for ultra low power, sampling every 5 minutes.
+  - **sample_rate** (*Optional*, string): Optional sample rate override for this sensor. Can be ``lp`` for low power consumption, sampling every 3 seconds or ``ulp`` for ultra-low power, sampling every 5 minutes.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **humidity** (*Optional*): The information for the humidity sensor.
 
   - **name** (**Required**, string): The name for the humidity sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - **sample_rate** (*Optional*, string): Optional sample rate override for this sensor. Can be ``lp`` for low power consumption, sampling every 3 seconds or ``ulp`` for ultra low power, sampling every 5 minutes.
+  - **sample_rate** (*Optional*, string): Optional sample rate override for this sensor. Can be ``lp`` for low power consumption, sampling every 3 seconds or ``ulp`` for ultra-low power, sampling every 5 minutes.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **gas_resistance** (*Optional*): The information for the gas sensor.
@@ -152,9 +153,9 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **co2_equivalent** (*Optional*): The information for the CO2 equivalent sensor.
+- **co2_equivalent** (*Optional*): The information for the CO₂ equivalent sensor.
 
-  - **name** (**Required**, string): The name for the CO2 equivalent sensor.
+  - **name** (**Required**, string): The name for the CO₂ equivalent sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -188,7 +189,7 @@ Advanced configuration
 The following configuration shows all the available sensors and optional settings for the component. It also includes an example of filtering to guard against
 outliers, limit the number of updates sent to home assistant and reduce storage requirements in other systems such as influxdb used to store historical data.
 
-For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`TextSensor <config-text_sensor>` are also available for filtering, automation and so on.
+For each sensor, all other options from :ref:`Sensor <config-sensor>` and :ref:`TextSensor <config-text_sensor>` are also available for filtering, automation and so on.
 
 .. code-block:: yaml
 
@@ -204,7 +205,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
         # Temperature offset
         # ------------------
         # Useful if device is in enclosure and reads too high
-        # For example if it reads 5C too high, set this to 5
+        # For example, if it reads 5C too high, set this to 5
         # This also corrects the relative humidity readings
         # Default: 0
         temperature_offset: 0
@@ -213,7 +214,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
         # --------------------
         # Available options:
         # - static (for fixed position devices)
-        # - mobile (for on person or other moveable devices)
+        # - mobile (for on a person or other moveable devices)
         # Default: static
         iaq_mode: static
 
@@ -221,7 +222,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
         # -----------
         # Available options:
         # - lp (low power - samples every 3 seconds)
-        # - ulp (ultra low power - samples every 5 minutes)
+        # - ulp (ultra-low power - samples every 5 minutes)
         # Default: lp
         sample_rate: ulp
 
@@ -281,19 +282,63 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
           name: "BME680 IAQ Accuracy"
 
 
-Indoor Air Quality (IAQ) Measurement
-------------------------------------
+Index for Air Quality (IAQ) Measurement
+---------------------------------------
 
-Indoor Air Quality measurements are expressed in the IAQ index scale with 25IAQ corresponding to typical good air and 250IAQ
-indicating typical polluted air after calibration.
+The measurements are expressed with an index scale ranging from 0 to 500. The index itself is deduced 
+from tests using ethanol gas, as well as important VOC in the exhaled breath of healthy humans. 
+The VOC values themselves are derived from several publications on breath analysis studies.  The BSEC
+software library defines the levels as follows:
+
++-----------+---------------------+
+| IAQ Index |    Air Quality      |
++===========+=====================+
+|  0 - 50   | Excellent           |
++-----------+---------------------+
+| 51 - 100  | Good                |
++-----------+---------------------+
+| 101 - 150 | Lightly polluted    |
++-----------+---------------------+
+| 151 - 200 | Moderately polluted |
++-----------+---------------------+
+| 201 - 250 | Heavily polluted    |
++-----------+---------------------+
+| 251 - 350 | Severely polluted   |
++-----------+---------------------+
+|   > 351   | Extremely polluted  |
++-----------+---------------------+
+ 
+The selected b-VOC gasses are as follows:
+
++--------------------+----------------+
+|       Compound     | Molar fraction |
++====================+================+
+| `Ethane`_          | 5 ppm          |
++--------------------+----------------+
+| `Isoprene`_        | 10 ppm         |
++--------------------+----------------+
+| `Ethanol`_         | 10 ppm         |
++--------------------+----------------+
+| `Acetone`_         | 50 ppm         |
++--------------------+----------------+
+| `Carbon Monoxide`_ | 15 ppm         |
++--------------------+----------------+
+
+.. _Ethane: https://en.wikipedia.org/wiki/Ethane
+.. _Isoprene: https://en.wikipedia.org/wiki/Isoprene
+.. _Ethanol: https://en.wikipedia.org/wiki/Ethanol
+.. _Acetone: https://en.wikipedia.org/wiki/Acetone
+.. _Carbon Monoxide: https://en.wikipedia.org/wiki/Carbon_monoxide
+
 
 .. _bsec-calibration:
 
 IAQ Accuracy and Calibration
 ----------------------------
 
-The BSEC algorithm automatically gathers data in order to calibrate the IAQ measurements. The IAQ Accuracy sensor will give one
-of the following values:
+The BSEC software automatically calibrates automatically in the background to provide consistent IAQ performance. The 
+calibration process considers the recent measurement history so that a value of 50 corresponds to a “typical good” 
+level and a value of 200 to a “typical polluted” level. The IAQ Accuracy sensor will give one of the following values:
 
 - ``Stabilizing``: The device has just started, and the sensor is stabilizing (this typically lasts 5 minutes)
 - ``Uncertain``: The background history of BSEC is uncertain. This typically means the gas sensor data was too
@@ -310,6 +355,7 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`bme680`
 - :apiref:`bme680_bsec/bme680_bsec.h`
+- `BME680 Datasheet <https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme680-ds001.pdf>`__
 - `BME680 VOC classification <https://community.bosch-sensortec.com/t5/MEMS-sensors-forum/BME680-VOC-classification/td-p/26154>`__
 - `BSEC Arduino Library <https://github.com/BoschSensortec/BSEC-Arduino-library>`__ by `Bosch Sensortec <https://www.bosch-sensortec.com/>`__
 - `Bosch Sensortec Community <https://community.bosch-sensortec.com/>`__
