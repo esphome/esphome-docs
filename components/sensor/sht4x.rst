@@ -64,6 +64,8 @@ for more information about heater operation.
 See Also
 --------
 
+- :doc:`/components/sensor/sht3xd`
+- :doc:`/components/sensor/shtcx`
 - :ref:`sensor-filters`
 - :doc:`absolute_humidity`
 - :apiref:`sht4x/sht4x.h`

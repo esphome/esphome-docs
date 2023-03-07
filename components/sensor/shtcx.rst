@@ -57,5 +57,10 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`absolute_humidity`
+- :doc:`dht`
+- :doc:`dht12`
+- :doc:`hdc1080`
+- :doc:`htu21d`
+- :doc:`sht3xd`
 - :apiref:`shtcx/shtcx.h`
 - :ghedit:`Edit`

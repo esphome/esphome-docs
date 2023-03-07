@@ -37,7 +37,8 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **temperature** (*Optional*): The information for the temperature sensor.
+- **temperature** (*Optional*): The information for the temperature.
+  sensor
 
   - **name** (**Required**, string): The name for the temperature
     sensor.
@@ -89,6 +90,8 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`absolute_humidity`
+- :doc:`bme680`
+- :doc:`bmp085`
 - :apiref:`bme280/bme280.h`
 - `Adafruit BME280 Library <https://github.com/adafruit/Adafruit_BME280_Library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - `SparkFun BME280 Library <https://github.com/sparkfun/SparkFun_BME280_Arduino_Library>`__ by `SparkFun <https://www.sparkfun.com/>`__

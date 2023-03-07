@@ -58,6 +58,11 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`absolute_humidity`
+- :doc:`dht`
+- :doc:`dht12`
+- :doc:`hdc1080`
+- :doc:`htu21d`
+- :doc:`sht3xd`
 - :apiref:`am2320/am2320.h`
 - `AM2320 Library <https://github.com/EngDial/AM2320>`__ by `Aleksey <https://github.com/EngDial>`__
 - :ghedit:`Edit`

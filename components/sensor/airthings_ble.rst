@@ -111,10 +111,3 @@ Configuration example:
 .. note::
 
     The sensor uses active polling of devices every 5 minutes as per the device reported internal refresh timeout.
-
-See Also
---------
-
-- :doc:`absolute_humidity`
-- :apiref:`airthings_ble/airthings_listener.h`
-- :ghedit:`Edit`
