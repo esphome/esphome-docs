@@ -9,7 +9,7 @@ Component/Hub
 -------------
 .. _ld2410-component:
 
-The ``ld2410`` sensor platform allows you to use HI-LINK LD2410 motion and presence sensor
+The ``ld2410`` sensor platform allows you to use HI-LINK LD2410 motion and presence sensor.
 (`datasheet and user manual <https://drive.google.com/drive/folders/1p4dhbEJA3YubyIjIIC7wwVsSo8x29Fq-?spm=a2g0o.detail.1000023.17.93465697yFwVxH>`__) with ESPHome.
 The :ref:`UART <uart>` is required to be set up in your configuration for this sensor to work.
 
@@ -25,6 +25,7 @@ Use of hardware UART pins is highly recommended, in order to support the out-of-
 
     # Example configuration entry
     uart:
+      id: uart1
       tx_pin: REPLACEME
       rx_pin: REPLACEME
       baud_rate: 256000
@@ -32,28 +33,8 @@ Use of hardware UART pins is highly recommended, in order to support the out-of-
       stop_bits: 1
 
     ld2410:
-      timeout: 150s
-      max_move_distance : 6m
-      max_still_distance: 0.75m
-      g0_move_threshold: 10
-      g0_still_threshold: 20
-      g1_move_threshold: 10
-      g1_still_threshold: 20
-      g2_move_threshold: 20
-      g2_still_threshold: 21
-      g3_move_threshold: 30
-      g3_still_threshold: 31
-      g4_move_threshold: 40
-      g4_still_threshold: 41
-      g5_move_threshold: 50
-      g5_still_threshold: 51
-      g6_move_threshold: 60
-      g6_still_threshold: 61
-      g7_move_threshold: 70
-      g7_still_threshold: 71
-      g8_move_threshold: 80
-      g8_still_threshold: 81
-
+      uart_id: uart1
+      throttle: 1500ms
 
 .. note::
 
@@ -64,19 +45,213 @@ Use of hardware UART pins is highly recommended, in order to support the out-of-
 Configuration variables:
 ************************
 
-The configuration is made up of three parts: The central component, individual sensors,
-and binary sensors.
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
+  to use multiple UART buses.
+- **throttle** (*Optional*, int): Time in milliseconds to control the rate of data updates. Defaults to ``1000ms``.
+
+Binary Sensor
+-------------
+
+The ``ld2410`` binary sensor allows you to use your :doc:`ld2410` to perform different
+measurements.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ld2410
+        has_target:
+          name: Presence
+        has_moving_target:
+          name: Moving Target
+        has_still_target:
+          name: Still Target
+
+Configuration variables:
+************************
+
+- **has_target** (*Optional*): If true target detect either still or in movement.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
+- **has_moving_target** (*Optional*): If true a moving target is detected.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
+- **has_still_target** (*Optional*): If true a still target is detected.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
+
+Sensor
+------
+
+The ``ld2410`` sensor allows you to use your :doc:`ld2410` to perform different
+measurements.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: ld2410
+        moving_distance:
+          name : Moving Distance
+        still_distance:
+          name: Still Distance
+        moving_energy:
+          name: Move Energy
+        still_energy:
+          name: Still Energy
+        detection_distance:
+          name: Detection Distance
+        g0_move_energy:
+          name: g0 move energy
+        g0_still_energy:
+          name: g0 still energy
+        g1_move_energy:
+          name: g1 move energy
+        g1_still_energy:
+          name: g1 still energy
+        g2_move_energy:
+          name: g2 move energy
+        g2_still_energy:
+          name: g2 still energy
+        g3_move_energy:
+          name: g3 move energy
+        g3_still_energy:
+          name: g3 still energy
+        g4_move_energy:
+          name: g4 move energy
+        g4_still_energy:
+          name: g4 still energy
+        g5_move_energy:
+          name: g5 move energy
+        g5_still_energy:
+          name: g5 still energy
+        g6_move_energy:
+          name: g6 move energy
+        g6_still_energy:
+          name: g6 still energy
+        g7_move_energy:
+          name: g7 move energy
+        g7_still_energy:
+          name: g7 still energy
+        g8_move_energy:
+          name: g8 move energy
+        g8_still_energy:
+          name: g8 still energy
+
+.. _ld2410-sensors:
+
+Configuration variables:
+************************
+
+- **moving_distance** (*Optional*): Distance of detected moving target.
+  All options from :ref:`Sensor <config-sensor>`.
+- **still_distance** (*Optional*): Distance of detected still target.
+  All options from :ref:`Sensor <config-sensor>`.
+- **moving_energy** (*Optional*): Energy for moving target.
+  All options from :ref:`Sensor <config-sensor>`.
+- **still_energy** (*Optional*): Energy for still target.
+  All options from :ref:`Sensor <config-sensor>`.
+- **detection_distance** (*Optional*): Distance in cm of target.
+  All options from :ref:`Sensor <config-sensor>`.
+- **gX_move_energy** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, the move energy of the Xth gate(X => 0 to 8), otherwise ``unknown``.
+  Value between ``0`` and ``100`` inclusive.
+  All options from :ref:`Sensor <config-sensor>`.
+- **gX_still_energy** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, the still energy of the Xth gate(X => 0 to 8), otherwise ``unknown``.
+  Value between ``0`` and ``100`` inclusive.
+  All options from :ref:`Sensor <config-sensor>`.
+
+Switch
+------
+
+The ``ld2410`` switch allows you to control modes of your :doc:`ld2410`.
+
+.. code-block:: yaml
+
+    switch:
+      - platform: ld2410
+        engineering_mode:
+          name: "engineering mode"
+        bluetooth:
+          name: "control bluetooth"
+
+.. _ld2410-engineering-mode:
+
+Configuration variables:
+************************
+
+- **engineering_mode** (*Optional*): enable/disable engineering mode.
+  All options from :ref:`Switch <config-switch>`.
+- **bluetooth** (*Optional*): turn on/off the bluetooth adapter.
+  All options from :ref:`Switch <config-switch>`.
+
+
+.. _ld2410-number:
+
+Number
+------
+
+The ``ld2410`` number allows you to control the configuration of your :doc:`ld2410`.
+
+.. code-block:: yaml
+
+    number:
+      - platform: ld2410
+        timeout:
+          name: timeout
+        max_move_distance:
+          name: max move distance
+        max_still_distance:
+          name: max still distance
+        g0_move_threshold:
+          name: g0 move threshold
+        g0_still_threshold:
+          name: g0 still threshold
+        g1_move_threshold:
+          name: g1 move threshold
+        g1_still_threshold:
+          name: g1 still threshold
+        g2_move_threshold:
+          name: g2 move threshold
+        g2_still_threshold:
+          name: g2 still threshold
+        g3_move_threshold:
+          name: g3 move threshold
+        g3_still_threshold:
+          name: g3 still threshold
+        g4_move_threshold:
+          name: g4 move threshold
+        g4_still_threshold:
+          name: g4 still threshold
+        g5_move_threshold:
+          name: g5 move threshold
+        g5_still_threshold:
+          name: g5 still threshold
+        g6_move_threshold:
+          name: g6 move threshold
+        g6_still_threshold:
+          name: g6 still threshold
+        g7_move_threshold:
+          name: g7 move threshold
+        g7_still_threshold:
+          name: g7 still threshold
+        g8_move_threshold:
+          name: g8 move threshold
+        g8_still_threshold:
+          name: g8 still threshold
+
+Configuration variables:
+************************
 
 - **timeout** (*Optional*, int): Time in seconds during which presence state will stay present
-  after leaving. Defaults to ``5s``.
+  after leaving.
+  All options from :ref:`Number <config-number>`.
 - **max_move_distance** (*Optional*, int): Maximum distance for movement detection.
-  Value between ``0.75m`` and ``6m`` inclusive. Defaults to ``4.5m``.
+  Value between ``0.75m`` and ``6m`` inclusive.
+  All options from :ref:`Number <config-number>`.
 - **max_still_distance** (*Optional*, int): Maximum distance for still detection.
-  Value between ``0.75m`` and ``6m`` inclusive. Defaults to ``4.5m``.
+  Value between ``0.75m`` and ``6m`` inclusive.
+  All options from :ref:`Number <config-number>`.
 - **gX_move_threshold** (*Optional*, int): Threshold for the Xth gate for motion detection (X => 0 to 8).
-  Above this level for the considered gate (distance), movement detection will be triggered. Defaults to ``see table below``.
-- **gX_still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8).
-  Above this level for the considered gate (distance), still detection will be triggered. Defaults to ``see table below``.
+  Above this level for the considered gate (distance), movement detection will be triggered.
+  All options from :ref:`Number <config-number>`.
+- **gX _still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8).
+  Above this level for the considered gate (distance), still detection will be triggered.
+  All options from :ref:`Number <config-number>`.
 
 .. list-table:: Default values for gate threshold
     :widths: 25 25 25
@@ -113,68 +288,316 @@ and binary sensors.
       - 30
       - 15
 
-Sensor
+Button
 ------
 
-The ``ld2410`` sensor allows you to use your :doc:`ld2410` to perform different
-measurements.
+The ``ld2410`` button allows you to perfrom actions on your :doc:`ld2410`.
 
 .. code-block:: yaml
 
-    sensor:
+    button:
       - platform: ld2410
-        moving_distance:
-          name : Moving Distance
-        still_distance:
-          name: Still Distance
-        moving_energy:
-          name: Move Energy
-        still_energy:
-          name: Still Energy
-        detection_distance:
-          name: Detection Distance
+        factory_reset:
+          name: "factory reset"
+        restart:
+          name: "restart"
+        query_params:
+          name: query params
 
 Configuration variables:
 ************************
 
-- **moving_distance** (*Optional*): Distance of detected moving target.
-  All options from :ref:`Sensor <config-sensor>`.
-- **still_distance** (*Optional*): Distance of detected still target.
-  All options from :ref:`Sensor <config-sensor>`.
-- **moving_energy** (*Optional*): Energy for moving target.
-  All options from :ref:`Sensor <config-sensor>`.
-- **still_energy** (*Optional*): Energy for still target.
-  All options from :ref:`Sensor <config-sensor>`.
-- **detection_distance** (*Optional*): Distance in cm of target.
-  All options from :ref:`Sensor <config-sensor>`.
+- **factory_reset** (*Optional*): This command is used to restore all configuration values to their original values.
+  All options from :ref:`Button <config-button>`.
+- **restart** (*Optional*): Restart the device.
+  All options from :ref:`Button <config-button>`.
+- **query_params** (*Optional*): Refresh the :ref:`ld2410-number` values of the device.
+  All options from :ref:`Button <config-button>`.
 
-Binary Sensor
--------------
+Text Sensor
+-----------
 
-The ``ld2410`` binary sensor allows you to use your :doc:`ld2410` to perform different
-measurements.
+The ``ld2410`` text sensor allows you get information about your :doc:`ld2410`.
 
 .. code-block:: yaml
 
-    binary_sensor:
+    text_sensor:
       - platform: ld2410
-        has_target:
-          name: Presence
-        has_moving_target:
-          name: Moving Target
-        has_still_target:
-          name: Still Target
+        version:
+          name: "firmware version"
+        mac_address:
+          name: "mac address"
 
 Configuration variables:
 ************************
 
-- **has_target** (*Optional*): If true target detect either still or in movement.
-  All options from :ref:`Binary Sensor <config-binary_sensor>`.
-- **has_moving_target** (*Optional*): If true a moving target is detected.
-  All options from :ref:`Binary Sensor <config-binary_sensor>`.
-- **has_still_target** (*Optional*): If true a still target is detected.
-  All options from :ref:`Binary Sensor <config-binary_sensor>`.
+- **version** (*Optional*): the firmware version.
+  All options from :ref:`Text Sensor <config-text_sensor>`.
+- **mac_address** (*Optional*): the bluetooth mac address. Will be set to `unknown` when bluetooth is off.
+  All options from :ref:`Text Sensor <config-text_sensor>`.
 
+Calibration Process
+-------------------
+
+In order to calibrate your ``ld2410`` sensor perform the following:
+
+1. Enable :ref:`engineering mode<ld2410-engineering-mode>`.
+2. Monitor the ``gX_move_energy`` and ``gX_still_energy`` :ref:`sensors<ld2410-sensors>`.
+3. Change the :ref:`thresholds<ld2410-number>` and repeat step 2 until satisfaction.
+4. Disable :ref:`engineering mode<ld2410-engineering-mode>`.
+
+Home Assistant Card
+*******************
+
+For easy calibration process you can use the following card.
+
+It requires the following HACS custom cards:
+
+- `Decluttering Card <https://github.com/custom-cards/decluttering-card>`__
+- `Vertical Stack In Card <https://github.com/ofekashery/vertical-stack-in-card>`__
+
+First add the templates using the ``raw configuration editor``:
+
+.. code-block:: yaml
+
+    decluttering_templates:
+      ld2410_gate_row_header:
+        card:
+          type: custom:vertical-stack-in-card
+          horizontal: true
+          cards:
+            - type: entity
+              entity: '[[move_energy_sensor]]'
+              name: '[[gate]]'
+            - type: entity
+              entity: '[[move_threshold_number]]'
+              name: ' '
+            - type: entity
+              entity: '[[still_energy_sensor]]'
+              name: ' '
+            - type: entity
+              entity: '[[still_threshold_number]]'
+              name: ' '
+      ld2410_gate_row:
+        card:
+          type: custom:vertical-stack-in-card
+          horizontal: true
+          cards:
+            - type: entity
+              entity: '[[move_energy_sensor]]'
+              name: '[[gate]]'
+              icon: ' '
+            - type: entity
+              entity: '[[move_threshold_number]]'
+              name: ' '
+              icon: ' '
+            - type: entity
+              entity: '[[still_energy_sensor]]'
+              name: ' '
+              icon: ' '
+            - type: entity
+              entity: '[[still_threshold_number]]'
+              name: ' '
+              icon: ' '
+      ld2410:
+        card:
+          type: custom:vertical-stack-in-card
+          title: '[[title]]'
+          cards:
+            - type: custom:vertical-stack-in-card
+              horizontal: true
+              cards:
+                - type: entities
+                  entities:
+                    - entity: '[[engineering_mode_switch]]'
+                      name: engineering mode
+            - type: custom:vertical-stack-in-card
+              cards:
+                - type: entities
+                  entities:
+                    - entity: '[[presence_timeout_number]]'
+                      name: timeout
+                    - entity: '[[presence_max_move_distance_number]]'
+                      name: max move distance
+                    - entity: '[[presence_max_still_distance_number]]'
+                      name: max still distance
+                - type: custom:vertical-stack-in-card
+                  horizontal: true
+                  cards:
+                    - type: entity
+                      entity: '[[distance_detection_sensor]]'
+                      name: distance
+                    - type: entity
+                      entity: '[[moving_distance_sensor]]'
+                      name: move
+                    - type: entity
+                      entity: '[[still_distance_sensor]]'
+                      name: still
+            - type: custom:vertical-stack-in-card
+              horizontal: true
+              cards:
+                - type: entity
+                  entity: '[[move_energy_sensor]]'
+                  name: move energy
+                - type: entity
+                  entity: '[[still_energy_sensor]]'
+                  name: still energy
+            - type: custom:vertical-stack-in-card
+              horizontal: true
+              cards:
+                - type: entity
+                  entity: '[[presence_binary_sensor]]'
+                  name: presence
+                  state_color: true
+                - type: entity
+                  entity: '[[movement_binary_sensor]]'
+                  name: movement
+                  state_color: true
+                - type: entity
+                  entity: '[[still_binary_sensor]]'
+                  name: still
+                  state_color: true
+            - type: conditional
+              conditions:
+                - entity: '[[engineering_mode_switch]]'
+                  state: 'on'
+              card:
+                type: custom:vertical-stack-in-card
+                cards:
+                  - type: custom:decluttering-card
+                    template: ld2410_gate_row_header
+                    variables:
+                      - gate: g0
+                      - move_energy_sensor: '[[g0_move_energy_sensor]]'
+                      - move_threshold_number: '[[g0_move_threshold_number]]'
+                      - still_energy_sensor: '[[g0_still_energy_sensor]]'
+                      - still_threshold_number: '[[g0_still_threshold_number]]'
+                  - type: custom:decluttering-card
+                    template: ld2410_gate_row
+                    variables:
+                      - gate: g1
+                      - move_energy_sensor: '[[g1_move_energy_sensor]]'
+                      - move_threshold_number: '[[g1_move_threshold_number]]'
+                      - still_energy_sensor: '[[g1_still_energy_sensor]]'
+                      - still_threshold_number: '[[g1_still_threshold_number]]'
+                  - type: custom:decluttering-card
+                    template: ld2410_gate_row
+                    variables:
+                      - gate: g2
+                      - move_energy_sensor: '[[g2_move_energy_sensor]]'
+                      - move_threshold_number: '[[g2_move_threshold_number]]'
+                      - still_energy_sensor: '[[g2_still_energy_sensor]]'
+                      - still_threshold_number: '[[g2_still_threshold_number]]'
+                  - type: custom:decluttering-card
+                    template: ld2410_gate_row
+                    variables:
+                      - gate: g3
+                      - move_energy_sensor: '[[g3_move_energy_sensor]]'
+                      - move_threshold_number: '[[g3_move_threshold_number]]'
+                      - still_energy_sensor: '[[g3_still_energy_sensor]]'
+                      - still_threshold_number: '[[g3_still_threshold_number]]'
+                  - type: custom:decluttering-card
+                    template: ld2410_gate_row
+                    variables:
+                      - gate: g4
+                      - move_energy_sensor: '[[g4_move_energy_sensor]]'
+                      - move_threshold_number: '[[g4_move_threshold_number]]'
+                      - still_energy_sensor: '[[g4_still_energy_sensor]]'
+                      - still_threshold_number: '[[g4_still_threshold_number]]'
+                  - type: custom:decluttering-card
+                    template: ld2410_gate_row
+                    variables:
+                      - gate: g5
+                      - move_energy_sensor: '[[g5_move_energy_sensor]]'
+                      - move_threshold_number: '[[g5_move_threshold_number]]'
+                      - still_energy_sensor: '[[g5_still_energy_sensor]]'
+                      - still_threshold_number: '[[g5_still_threshold_number]]'
+                  - type: custom:decluttering-card
+                    template: ld2410_gate_row
+                    variables:
+                      - gate: g6
+                      - move_energy_sensor: '[[g6_move_energy_sensor]]'
+                      - move_threshold_number: '[[g6_move_threshold_number]]'
+                      - still_energy_sensor: '[[g6_still_energy_sensor]]'
+                      - still_threshold_number: '[[g6_still_threshold_number]]'
+                  - type: custom:decluttering-card
+                    template: ld2410_gate_row
+                    variables:
+                      - gate: g7
+                      - move_energy_sensor: '[[g7_move_energy_sensor]]'
+                      - move_threshold_number: '[[g7_move_threshold_number]]'
+                      - still_energy_sensor: '[[g7_still_energy_sensor]]'
+                      - still_threshold_number: '[[g7_still_threshold_number]]'
+                  - type: custom:decluttering-card
+                    template: ld2410_gate_row
+                    variables:
+                      - gate: g8
+                      - move_energy_sensor: '[[g8_move_energy_sensor]]'
+                      - move_threshold_number: '[[g8_move_threshold_number]]'
+                      - still_energy_sensor: '[[g8_still_energy_sensor]]'
+                      - still_threshold_number: '[[g8_still_threshold_number]]'
+
+Then create a custom card and fill all of the entities:
+
+.. code-block:: yaml
+
+    type: custom:decluttering-card
+    template: ld2410
+    variables:
+      - title: bathroom presence
+      - engineering_mode_switch: switch.bathroom_presence_engineering_mode
+      - presence_timeout_number: number.bathroom_presence_timeout
+      - presence_max_move_distance_number: number.bathroom_presence_max_move_distance
+      - presence_max_still_distance_number: number.bathroom_presence_max_still_distance
+      - distance_detection_sensor: sensor.bathroom_presence_distance_detection_cm
+      - moving_distance_sensor: sensor.bathroom_presence_moving_distance_cm
+      - still_distance_sensor: sensor.bathroom_presence_still_distance_cm
+      - move_energy_sensor: sensor.bathroom_presence_move_energy
+      - still_energy_sensor: sensor.bathroom_presence_still_energy
+      - presence_binary_sensor: binary_sensor.bathroom_presence_presence
+      - movement_binary_sensor: binary_sensor.bathroom_presence_movement
+      - still_binary_sensor: binary_sensor.bathroom_presence_still
+      - g0_move_energy_sensor: sensor.bathroom_presence_g0_move_energy
+      - g0_move_threshold_number: number.bathroom_presence_g0_move_threshold
+      - g0_still_energy_sensor: sensor.bathroom_presence_g0_still_energy
+      - g0_still_threshold_number: number.bathroom_presence_g0_still_threshold
+      - g1_move_energy_sensor: sensor.bathroom_presence_g1_move_energy
+      - g1_move_threshold_number: number.bathroom_presence_g1_move_threshold
+      - g1_still_energy_sensor: sensor.bathroom_presence_g1_still_energy
+      - g1_still_threshold_number: number.bathroom_presence_g1_still_threshold
+      - g2_move_energy_sensor: sensor.bathroom_presence_g2_move_energy
+      - g2_move_threshold_number: number.bathroom_presence_g2_move_threshold
+      - g2_still_energy_sensor: sensor.bathroom_presence_g2_still_energy
+      - g2_still_threshold_number: number.bathroom_presence_g2_still_threshold
+      - g3_move_energy_sensor: sensor.bathroom_presence_g3_move_energy
+      - g3_move_threshold_number: number.bathroom_presence_g3_move_threshold
+      - g3_still_energy_sensor: sensor.bathroom_presence_g3_still_energy
+      - g3_still_threshold_number: number.bathroom_presence_g3_still_threshold
+      - g4_move_energy_sensor: sensor.bathroom_presence_g4_move_energy
+      - g4_move_threshold_number: number.bathroom_presence_g4_move_threshold
+      - g4_still_energy_sensor: sensor.bathroom_presence_g4_still_energy
+      - g4_still_threshold_number: number.bathroom_presence_g4_still_threshold
+      - g5_move_energy_sensor: sensor.bathroom_presence_g5_move_energy
+      - g5_move_threshold_number: number.bathroom_presence_g5_move_threshold
+      - g5_still_energy_sensor: sensor.bathroom_presence_g5_still_energy
+      - g5_still_threshold_number: number.bathroom_presence_g5_still_threshold
+      - g6_move_energy_sensor: sensor.bathroom_presence_g6_move_energy
+      - g6_move_threshold_number: number.bathroom_presence_g6_move_threshold
+      - g6_still_energy_sensor: sensor.bathroom_presence_g6_still_energy
+      - g6_still_threshold_number: number.bathroom_presence_g6_still_threshold
+      - g7_move_energy_sensor: sensor.bathroom_presence_g7_move_energy
+      - g7_move_threshold_number: number.bathroom_presence_g7_move_threshold
+      - g7_still_energy_sensor: sensor.bathroom_presence_g7_still_energy
+      - g7_still_threshold_number: number.bathroom_presence_g7_still_threshold
+      - g8_move_energy_sensor: sensor.bathroom_presence_g8_move_energy
+      - g8_move_threshold_number: number.bathroom_presence_g8_move_threshold
+      - g8_still_energy_sensor: sensor.bathroom_presence_g8_still_energy
+      - g8_still_threshold_number: number.bathroom_presence_g8_still_threshold
+
+The result:
+
+.. figure:: images/ld2410-card.png
+    :align: center
 
 See Also
 --------
