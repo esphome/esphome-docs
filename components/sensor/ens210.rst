@@ -23,7 +23,7 @@ The ``ENS210`` Temperature+Humidity sensor allows you to use your ENS210
 
     # Example configuration entry
     sensor:
-      - platform: ENS210
+      - platform: ens210
         temperature:
           name: "Living Room Temperature"
         humidity:

@@ -75,7 +75,12 @@ See Also
 --------
 
 - :doc:`/components/output/index`
-- `Sigma-Delta <https://en.wikipedia.org/wiki/Delta-sigma_modulation>`__
+- :doc:`/components/output/esp8266_pwm`
+- :doc:`/components/output/ledc`
 - :doc:`/components/output/slow_pwm`
+- :doc:`/components/light/monochromatic`
+- :doc:`/components/fan/speed`
+- :doc:`/components/power_supply`
+- `Sigma-Delta <https://en.wikipedia.org/wiki/Delta-sigma_modulation>`__
 - :apiref:`sigma_delta_output/sigma_delta_output.h`
 - :ghedit:`Edit`

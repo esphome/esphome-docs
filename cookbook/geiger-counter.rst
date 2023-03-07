@@ -10,7 +10,7 @@ With the help of :doc:`/components/sensor/pulse_counter` and the RadiationD v1.1
 a more or less precise messurement of the current radation level. But it should be good enough to warn you about critical events.  
 
 
-Assambly:
+Assembly:
 ---------
 
 .. figure:: images/radiationD-v1-1-cajoe_small.jpg
@@ -30,7 +30,7 @@ I just 3D printed an small housing the avoid touching the high voltage Geiger Mu
 (The tube should not be in direct sunlight. So maybe you will need another case.)
 
 
-Configuartion:
+Configuration:
 ---------------
 
 The block :doc:`/components/sensor/pulse_counter` will count the radation events per minute. 
