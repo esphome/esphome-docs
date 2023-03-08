@@ -13,8 +13,8 @@ The ``bme680_bsec`` sensor platform allows you to use your BME680
 (`datasheet <https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf>`__,
 `Adafruit`_) temperature, pressure and humidity and gas sensors with ESPHome via the Bosch Sensortec Environmental Cluster (BSEC)
 software library. The use of Bosch's proprietary algorithms provide an Index for Air Quality (IAQ) measurement derived from the
-gas resistance sensor's response to specific Volatile Organic Compounds (VOC). The BSEC software also provides estimated values 
-for CO₂ and Breath Volatile Organic Compounds (b-VOC) using a correlation between VOC and CO₂ in a human's exhaled breath.  
+gas resistance sensor's response to specific Volatile Organic Compounds (VOC). The BSEC software also provides estimated values
+for CO₂ and Breath Volatile Organic Compounds (b-VOC) using a correlation between VOC and CO₂ in a human's exhaled breath.
 
 .. note::
 
@@ -61,7 +61,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
       - platform: bme680_bsec
         iaq_accuracy:
           name: "BME680 IAQ Accuracy"
- 
+
       - platform: template
         name: "BME680 IAQ Classification"
         icon: "mdi:checkbox-marked-circle-outline"
@@ -299,7 +299,6 @@ For each sensor, all other options from :ref:`Sensor <config-sensor>` and :ref:`
           name: "BME680 IAQ Accuracy"
 
 
-<<<<<<< HEAD
 Multiple sensors
 ----------------------
 
@@ -370,15 +369,11 @@ The following configuration shows how to set up multiple BME680 devices. They ca
         iaq_accuracy:
           name: "OUT_IAQaccuracy"
 
-
-Indoor Air Quality (IAQ) Measurement
-------------------------------------
-=======
 Index for Air Quality (IAQ) Measurement
 ---------------------------------------
 
-The measurements are expressed with an index scale ranging from 0 to 500. The index itself is deduced 
-from tests using ethanol gas, as well as important VOC in the exhaled breath of healthy humans. 
+The measurements are expressed with an index scale ranging from 0 to 500. The index itself is deduced
+from tests using ethanol gas, as well as important VOC in the exhaled breath of healthy humans.
 The VOC values themselves are derived from several publications on breath analysis studies.  The BSEC
 software library defines the levels as follows:
 
@@ -399,7 +394,7 @@ software library defines the levels as follows:
 +-----------+---------------------+
 |   > 351   | Extremely polluted  |
 +-----------+---------------------+
- 
+
 The selected b-VOC gasses are as follows:
 
 +--------------------+----------------+
@@ -421,7 +416,6 @@ The selected b-VOC gasses are as follows:
 .. _Ethanol: https://en.wikipedia.org/wiki/Ethanol
 .. _Acetone: https://en.wikipedia.org/wiki/Acetone
 .. _Carbon Monoxide: https://en.wikipedia.org/wiki/Carbon_monoxide
->>>>>>> current
 
 
 .. _bsec-calibration:
@@ -429,8 +423,8 @@ The selected b-VOC gasses are as follows:
 IAQ Accuracy and Calibration
 ----------------------------
 
-The BSEC software automatically calibrates automatically in the background to provide consistent IAQ performance. The 
-calibration process considers the recent measurement history so that a value of 50 corresponds to a “typical good” 
+The BSEC software automatically calibrates automatically in the background to provide consistent IAQ performance. The
+calibration process considers the recent measurement history so that a value of 50 corresponds to a “typical good”
 level and a value of 200 to a “typical polluted” level. The IAQ Accuracy sensor will give one of the following values:
 
 - ``Stabilizing``: The device has just started, and the sensor is stabilizing (this typically lasts 5 minutes)
