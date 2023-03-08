@@ -36,7 +36,6 @@ beyond the typical SPI connections, it is better suited for use with the ESP32.
         cs_pin: 14
         dc_pin: 27
         reset_pin: 33
-        backlight_pin: 32
         lambda: |-
           it.fill(COLOR_BLACK);
           it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_LEFT, "Hello World!");
