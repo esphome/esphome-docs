@@ -76,6 +76,10 @@ The configuration files for ESPHome can be found and edited under ``<HOME_ASSIST
 For example the configuration for the ``garage-door`` node in the picture above can be found
 in ``/config/esphome/garage-door.yaml``.
 
+.. note::
+
+    Since Home Assistant add-ons run as individual containers, accessing these through command line is not very straightforward, but it's possible. To do that, install Home Assistant's SSH addon, configure a username and a password, and disable `Protection Mode` (please assess the risks you take with that). Then, for example to access the logs form a device through an SSH client, log in, and you can use a command like `docker exec -it addon_15ef4d2f_esphome esphome logs /config/esphome/garage-door.yaml`. See :doc:`getting_started_command_line` for more.
+
 Now go ahead and use one of the :ref:`devices guides <devices>` to extend your configuration.
 
 Adding some (basic) features

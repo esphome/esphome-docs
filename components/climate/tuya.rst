@@ -60,6 +60,7 @@ Configuration variables:
 - **temperature_multiplier** (*Optional*, float): A multiplier to modify the incoming and outgoing temperature values - :ref:`see below <temperature-multiplier>`.
 - **eco_datapoint** (*Optional*, int): The datapoint id number of the eco mode state.
 - **eco_temperature** (*Optional*, float): The target temperature the controller uses while the eco mode is active.
+- **reports_fahrenheit** (*Optional*, boolean): Set to ``true`` if the device reports temperatures in Fahrenheit. ESPHome expects all climate temperatures to be in Celcius, otherwise unexpected conversions will take place when it is published to Home Assistant. Defaults to ``false``.
 
 If the device has different multipliers for current and target temperatures, **temperature_multiplier** can be replaced with both of:
 

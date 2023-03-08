@@ -45,24 +45,27 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>`.
 
-.. _evo_callbacks:
+Automation triggers:
 
-Callbacks
----------
+- **on_led** (*Optional*, :ref:`Action <config-action>`): Triggered when the result of ``get_led_state()`` is ready. The LED
+  state is provided as a boolean variable named ``x``.
+- **on_device_information** (*Optional*, :ref:`Action <config-action>`): Triggered when the result of ``get_device_information()``
+  is ready.  The result is provided as a ``std::string`` variable named ``x``.
+- **on_slope** (*Optional*, :ref:`Action <config-action>`): Triggered when the result of ``get_slope()`` is ready.  The result
+  is provided as a ``std::string`` variable named ``x``.
+- **on_calibration** (*Optional*, :ref:`Action <config-action>`): Triggered when the result of ``get_calibration()`` is ready.
+  The result is provided as a ``std::string`` variable named ``x``.
+- **on_t** (*Optional*, :ref:`Action <config-action>`): Triggered when the result of ``get_t()`` is ready.  The result is provided
+  as a ``std::string`` variable named ``x``.
+- **on_custom** (*Optional*, :ref:`Action <config-action>`): Triggered when the result of ``get_custom()`` is ready.  The result is provided as a ``std::string`` variable named ``x``.
 
-- **on_led:** : Triggered when the result of ``get_led_state()`` is ready.  The LED state is provided as a boolean variable named ``x``.
-- **on_device_information:** : Triggered when the result of ``get_device_information()`` is ready.  The result is provided as a ``std::string`` variable named ``x``.
-- **on_slope:** : Triggered when the result of ``get_slope()`` is ready.  The result is provided as a ``std::string`` variable named ``x``.
-- **on_calibration:** : Triggered when the result of ``get_calibration()`` is ready.  The result is provided as a ``std::string`` variable named ``x``.
-- **on_t:** : Triggered when the result of ``get_t()`` is ready.  The result is provided as a ``std::string`` variable named ``x``.
-- **on_custom:** : Triggered when the result of ``get_custom()`` is ready.  The result is provided as a ``std::string`` variable named ``x``.
+.. _ezo_lambda_calls:
 
-.. _evo_lambda_calls:
-
-lambda calls
+Lambda calls
 ------------
 
-From :ref:`lambdas <config-lambda>`, you can interact with the sensor in various ways. For any ``get`` command a trigger will be called with the information retrieved from the sensor. See :ref:`evo_callbacks`. For more information on the command specifics, refer to the datasheet.
+From :ref:`lambdas <config-lambda>`, you can interact with the sensor in various ways. For any ``get`` command a trigger will be called
+with the information retrieved from the sensor. For more information on the command specifics, refer to the datasheet.
 
 - ``set_i2c(uint8_t address)``: Set I2C address of the device, must be an integer between 1 and 127
 
@@ -152,7 +155,7 @@ From :ref:`lambdas <config-lambda>`, you can interact with the sensor in various
 
   .. code-block:: cpp
 
-      id(ph_ezo).set_calibration_point_low(10.00);
+      id(ph_ezo).set_calibration_point_high(10.00);
 
 
 - ``clear_calibration()``: Clears all calibration points.
