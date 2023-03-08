@@ -13,8 +13,8 @@ The ``bme680_bsec`` sensor platform allows you to use your BME680
 (`datasheet <https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf>`__,
 `Adafruit`_) temperature, pressure and humidity and gas sensors with ESPHome via the Bosch Sensortec Environmental Cluster (BSEC)
 software library. The use of Bosch's proprietary algorithms provide an Index for Air Quality (IAQ) measurement derived from the
-gas resistance sensor's response to specific Volatile Organic Compounds (VOC). The BSEC software also provides estimated values 
-for CO₂ and Breath Volatile Organic Compounds (b-VOC) using a correlation between VOC and CO₂ in a human's exhaled breath.  
+gas resistance sensor's response to specific Volatile Organic Compounds (VOC). The BSEC software also provides estimated values
+for CO₂ and Breath Volatile Organic Compounds (b-VOC) using a correlation between VOC and CO₂ in a human's exhaled breath.
 
 .. note::
 
@@ -61,7 +61,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
       - platform: bme680_bsec
         iaq_accuracy:
           name: "BME680 IAQ Accuracy"
- 
+
       - platform: template
         name: "BME680 IAQ Classification"
         icon: "mdi:checkbox-marked-circle-outline"
@@ -93,7 +93,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
 
 Configuration variables:
 
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
 
 - **temperature_offset** (*Optional*, float): Temperature offset if device is in enclosure and reads too high. This value is subtracted
   from the reading (e.g. if the sensor reads 5°C higher than expected, set this to ``5``) and also corrects the relative humidity readings. Defaults to ``0``.
@@ -109,10 +109,14 @@ Configuration variables:
 - **state_save_interval** (*Optional*, :ref:`config-time`): The minimum interval at which to save calibrated BSEC algorithm state to
   flash so that calibration doesn't have to start from zero on device restart. Defaults to ``6h``.
 
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this ID in the sensor section to refer to the correct BME680 if you have more than one device. This will also be used to refer to the calibrated BSEC algorithm state saved to flash.
+
 Sensor
 ------
 
 Configuration variables:
+
+- **bme680_bsec_id** (*Optional*, :ref:`config-id`): Sets the ID of the bme680_bsec component to refer to. Useful when working with multiple devices.
 
 - **temperature** (*Optional*): The information for the temperature sensor.
 
@@ -172,6 +176,8 @@ Accuracy can be reported in text format.
 
 Configuration variables:
 
+- **bme680_bsec_id** (*Optional*, :ref:`config-id`): Sets the ID of the bme680_bsec component to refer to. Useful when working with multiple devices.
+
 - **iaq_accuracy** (*Optional*): The information for the IAQ accuracy sensor. Shows: Stabilizing,
   Uncertain, Calibrating, Calibrated.
 
@@ -194,6 +200,13 @@ For each sensor, all other options from :ref:`Sensor <config-sensor>` and :ref:`
 .. code-block:: yaml
 
     bme680_bsec:
+        # id
+        # -----------
+        # Identifier for this component, useful when working with multiple devices.
+        # Must be unique, and can be used in the sensor sections to refer to the correct device.
+        # Default: auto-computed
+        id: bme680_internal
+
         # i2c address
         # -----------
         # Common values are:
@@ -233,6 +246,10 @@ For each sensor, all other options from :ref:`Sensor <config-sensor>` and :ref:`
 
     sensor:
       - platform: bme680_bsec
+        # ID of the bme680_bsec component to use for the next sensors.
+        # Useful when working with multiple devices
+        bme680_bsec_id: bme680_internal
+
         temperature:
           # Temperature in °C
           name: "BME680 Temperature"
@@ -282,11 +299,81 @@ For each sensor, all other options from :ref:`Sensor <config-sensor>` and :ref:`
           name: "BME680 IAQ Accuracy"
 
 
+Multiple sensors
+----------------------
+
+The following configuration shows how to set up multiple BME680 devices. They can be configured to use the same I²C bus or to use different busses, but remember that the BME680 can only be set to operate on I²C address ``0x76`` or ``0x77``. There is no limit on the number of BME680 devices that can be connected.
+
+
+.. code-block:: yaml
+
+    # I2C bus for the BME680 devices
+    i2c:
+      - id: "i2cbus_bme"
+        sda: GPIO18
+        scl: GPIO19
+        scan: true
+
+    # BME680 devices using BSEC library
+    bme680_bsec:
+      - id: bme680_internal
+        i2c_id: "i2cbus_bme"
+        address: 0x76
+      - id: bme680_external
+        i2c_id: "i2cbus_bme"
+        address: 0x77
+
+    sensor:
+      # Sensors for the internal BME680 device
+      - platform: bme680_bsec
+        bme680_bsec_id: bme680_internal
+        temperature:
+          name: "IN_Temp"
+        pressure:
+          name: "IN_Press"
+        humidity:
+          name: "IN_RH"
+        iaq:
+          name: "IN_IAQ"
+        co2_equivalent:
+          name: "IN_CO2eq"
+        breath_voc_equivalent:
+          name: "IN_VOCeq"
+
+      # Sensors for the external BME680 device
+      - platform: bme680_bsec
+        bme680_bsec_id: bme680_external
+        temperature:
+          name: "OUT_Temperatura"
+        pressure:
+          name: "OUT_Pressione"
+        humidity:
+          name: "OUT_RH"
+        iaq:
+          name: "OUT_IAQ"
+        co2_equivalent:
+          name: "OUT_CO2eq"
+        breath_voc_equivalent:
+          name: "OUT_VOCeq"
+
+    text_sensor:
+      # Text sensor for the internal BME680 device
+      - platform: bme680_bsec
+        bme680_bsec_id: bme680_internal
+        iaq_accuracy:
+          name: "IN_IAQaccuracy"
+
+      # Text sensor for the external BME680 device
+      - platform: bme680_bsec
+        bme680_bsec_id: bme680_external
+        iaq_accuracy:
+          name: "OUT_IAQaccuracy"
+
 Index for Air Quality (IAQ) Measurement
 ---------------------------------------
 
-The measurements are expressed with an index scale ranging from 0 to 500. The index itself is deduced 
-from tests using ethanol gas, as well as important VOC in the exhaled breath of healthy humans. 
+The measurements are expressed with an index scale ranging from 0 to 500. The index itself is deduced
+from tests using ethanol gas, as well as important VOC in the exhaled breath of healthy humans.
 The VOC values themselves are derived from several publications on breath analysis studies.  The BSEC
 software library defines the levels as follows:
 
@@ -307,7 +394,7 @@ software library defines the levels as follows:
 +-----------+---------------------+
 |   > 351   | Extremely polluted  |
 +-----------+---------------------+
- 
+
 The selected b-VOC gasses are as follows:
 
 +--------------------+----------------+
@@ -336,8 +423,8 @@ The selected b-VOC gasses are as follows:
 IAQ Accuracy and Calibration
 ----------------------------
 
-The BSEC software automatically calibrates automatically in the background to provide consistent IAQ performance. The 
-calibration process considers the recent measurement history so that a value of 50 corresponds to a “typical good” 
+The BSEC software automatically calibrates automatically in the background to provide consistent IAQ performance. The
+calibration process considers the recent measurement history so that a value of 50 corresponds to a “typical good”
 level and a value of 200 to a “typical polluted” level. The IAQ Accuracy sensor will give one of the following values:
 
 - ``Stabilizing``: The device has just started, and the sensor is stabilizing (this typically lasts 5 minutes)
@@ -353,6 +440,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :doc:`bme680`
 - :apiref:`bme680_bsec/bme680_bsec.h`
 - `BME680 Datasheet <https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme680-ds001.pdf>`__

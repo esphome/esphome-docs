@@ -214,6 +214,7 @@ Bluetooth Low Energy (BLE)
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
     Mopeka Pro Check LP, components/sensor/mopeka_pro_check, mopeka_pro_check.jpg, tank level
+    Mopeka Standard Check LP, components/sensor/mopeka_std_check, mopeka_std_check.jpg, tank level
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
 
@@ -273,6 +274,7 @@ Environmental
 
 .. imgtable::
 
+    Absolute Humidity, components/sensor/absolute_humidity, water-drop.svg
     AHT10 / AHT20 / AHT21 / DHT20, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Temperature & Humidity & Pressure
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
@@ -294,6 +296,7 @@ Environmental
     HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
     Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
+    Internal Temperature, components/sensor/internal_temperature, thermometer.svg, Temperature
     MCP9808, components/sensor/mcp9808, mcp9808.jpg, Temperature
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
@@ -321,6 +324,7 @@ Light
 
     AM43, components/sensor/am43, am43.jpg, Lux
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
+    AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
     LTR390, components/sensor/ltr390, ltr390.jpg, Lux & UV
     MAX44009, components/sensor/max44009, max44009.svg, Lux
@@ -347,6 +351,7 @@ Miscellaneous
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
+    FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
     Kalman Combinator, components/sensor/kalman_combinator, function.svg
@@ -359,6 +364,7 @@ Miscellaneous
     uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png, EC & Temperature
     uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png, pH & Temperature
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
 
 
 Motion
@@ -621,6 +627,7 @@ Climate Components
     Midea, components/climate/midea, midea.svg
     Anova Cooker, components/climate/anova, anova.png
     BedJet Climate System, components/climate/bedjet, bedjet.png
+    Haier Climate, components/climate/haier, haier.svg
 
 Number Components
 -----------------

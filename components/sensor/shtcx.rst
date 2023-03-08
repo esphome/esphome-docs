@@ -56,6 +56,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :doc:`dht`
 - :doc:`dht12`
 - :doc:`hdc1080`
