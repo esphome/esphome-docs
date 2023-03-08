@@ -66,7 +66,6 @@ Configuration variables:
   - ``GRAYSCALE``
   - ``IMAGE_ADAPTIVE``
 - **color_palette_images** (*Optional*): A list of image files that will be used to generate the color pallet for the display.  This should only be used in conjunction with ``-color_palette: IMAGE_ADAPTIVE`` above.  The images will be analysed at compile time and a custom color pallet will be created based on the most commonly occuring colors.  A typical setting would be a sample image that represented the fully populated display.  This can significantly improve the quality of displayed images.  Note that these images are not stored on the ESP device, just the 256byte color pallet created from them.
-- **backlight_pin** (*Optional*,  :ref:`Pin Schema <config-pin_schema>`): The display’s backlight pin. Note: Connect to a PWM-capable pin to switch/dim the display’s backlight or save a pin by connecting it through a 3.3K resistor to the +3V supply.
 
 Configuration examples
 **********************
