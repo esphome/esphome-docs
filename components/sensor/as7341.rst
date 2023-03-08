@@ -49,56 +49,16 @@ your configuration for this sensor to work.
 Configuration variables
 -----------------------
 
-- **f1** (*Optional*): The reading for the 415nm channel.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **f2** (*Optional*): The reading for the 445nm channel.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **f3** (*Optional*): The reading for the 480nm channel.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **f4** (*Optional*): The reading for the 515nm channel.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **f5** (*Optional*): The reading for the 555nm channel.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **f6** (*Optional*): The reading for the 590nm channel.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **f7** (*Optional*): The reading for the 630nm channel.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **f8** (*Optional*): The reading for the 680nm channel.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **clear** (*Optional*): The reading for the clear channel.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **nir** (*Optional*): The reading for the NIR (near-infrared) channel.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
+- **f1** (*Optional*): The reading for the 415nm channel. All options from :ref:`Sensor <config-sensor>`.
+- **f2** (*Optional*): The reading for the 445nm channel. All options from :ref:`Sensor <config-sensor>`.
+- **f3** (*Optional*): The reading for the 480nm channel. All options from :ref:`Sensor <config-sensor>`.
+- **f4** (*Optional*): The reading for the 515nm channel. All options from :ref:`Sensor <config-sensor>`.
+- **f5** (*Optional*): The reading for the 555nm channel. All options from :ref:`Sensor <config-sensor>`.
+- **f6** (*Optional*): The reading for the 590nm channel. All options from :ref:`Sensor <config-sensor>`.
+- **f7** (*Optional*): The reading for the 630nm channel. All options from :ref:`Sensor <config-sensor>`.
+- **f8** (*Optional*): The reading for the 680nm channel. All options from :ref:`Sensor <config-sensor>`.
+- **clear** (*Optional*): The reading for the clear channel. All options from :ref:`Sensor <config-sensor>`.
+- **nir** (*Optional*): The reading for the NIR (near-infrared) channel. All options from :ref:`Sensor <config-sensor>`.
 - **gain** (*Optional*): The gain used by the device. A higher gain may be more suitable for lower-light environments. Must be one of:
 
   - ``X0.5``
