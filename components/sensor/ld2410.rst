@@ -158,7 +158,7 @@ Configuration variables:
 Switch
 ------
 
-The ``ld2410`` switch allows you to control modes of your :doc:`ld2410`.
+The ``ld2410`` switch allows you to control your :doc:`ld2410`.
 
 .. code-block:: yaml
 
@@ -335,6 +335,61 @@ Configuration variables:
   All options from :ref:`Text Sensor <config-text_sensor>`.
 - **mac_address** (*Optional*): the bluetooth mac address. Will be set to `unknown` when bluetooth is off.
   All options from :ref:`Text Sensor <config-text_sensor>`.
+
+Select
+-----------
+
+The ``ld2410`` select allows you control your :doc:`ld2410`.
+
+.. code-block:: yaml
+
+    select:
+      - platform: ld2410
+        distance_resolution:
+          name: "distance resolution"
+
+Configuration variables:
+************************
+
+- **distance_resolution** (*Optional*): control the distance resolution.
+  All options from :ref:`Select <config-select>`.
+
+Automations
+-----------
+
+``bluetooth_password.set`` Action
+*********************************
+
+This is an :ref:`Action <config-action>` for setting the bluetooth password.
+
+.. code-block:: yaml
+
+    - bluetooth_password.set:
+        id: my_ld2410
+        password: "HiLink"
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the ld2410 to set.
+- **password** (**Required**, string, :ref:`templatable <config-templatable>`):
+  The password to set. Case sensitive. Must be exactly 6 characters long. Default password is `HiLink`.
+
+To change the password from HA you can use the following example config:
+
+.. code-block:: yaml
+
+    ld2410:
+      id: my_ld2410
+
+    api:
+      services:
+        - service: set_ld2410_bluetooth_password
+          variables:
+            password: string
+          then:
+            - bluetooth_password.set:
+                id: my_ld2410
+                password: !lambda 'return password;'
 
 Calibration Process
 -------------------
