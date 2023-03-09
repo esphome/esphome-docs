@@ -360,7 +360,6 @@ Contributors
 - `Antoine GRÉA (@grea09) <https://github.com/grea09>`__
 - `Gil Peeters (@grillp) <https://github.com/grillp>`__
 - `George (@grob6000) <https://github.com/grob6000>`__
-- `Stefan Grufman (@GruffyPuffy) <https://github.com/GruffyPuffy>`__
 - `gsexton (@gsexton) <https://github.com/gsexton>`__
 - `Gabriel Sieben (@gsieben) <https://github.com/gsieben>`__
 - `Jadson Santos (@gtjadsonsantos) <https://github.com/gtjadsonsantos>`__
@@ -474,6 +473,7 @@ Contributors
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__
 - `Jonathan V (@jonofmac) <https://github.com/jonofmac>`__
 - `Joppy (@JoppyFurr) <https://github.com/JoppyFurr>`__
+- `Jared Sanson (@jorticus) <https://github.com/jorticus>`__
 - `Joshua Spence (@joshuaspence) <https://github.com/joshuaspence>`__
 - `Joscha Wagner (@jowgn) <https://github.com/jowgn>`__
 - `Javier Peletier (@jpeletier) <https://github.com/jpeletier>`__
@@ -729,6 +729,7 @@ Contributors
 - `randomllama (@randomllama) <https://github.com/randomllama>`__
 - `rbaron (@rbaron) <https://github.com/rbaron>`__
 - `Robert Cambridge (@rcambrj) <https://github.com/rcambrj>`__
+- `Russell Cloran (@rcloran) <https://github.com/rcloran>`__
 - `Rebbe Pod (@RebbePod) <https://github.com/RebbePod>`__
 - `Alex (@redwngsrul) <https://github.com/redwngsrul>`__
 - `Regev Brody (@regevbr) <https://github.com/regevbr>`__

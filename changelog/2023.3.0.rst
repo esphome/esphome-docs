@@ -61,6 +61,16 @@ Breaking Changes
 - Sprinkler "v2" updates :esphomepr:`4159` by :ghuser:`kbx81` (breaking-change)
 - sn74hc165 fixes :esphomepr:`4457` by :ghuser:`jesserockz` (breaking-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- Fix ethernet clk_mode for GPIO0_OUT :esphomepr:`4307` by :ghuser:`jorticus`
+- Add ESP32-S3 support in NeoPixelBus component :esphomepr:`4114` by :ghuser:`rcloran`
+- Renaming and extending the ili9341 to the ili9xxx component :esphomepr:`4275` by :ghuser:`nielsnl68` (new-integration) (breaking-change)
+- Drop unused, broken logging macros :esphomepr:`4534` by :ghuser:`oxan`
+- Revert storing Font glyphs in manually-allocated memory :esphomepr:`4516` by :ghuser:`oxan`
+- Correct BME680 gas calculation and heater_off :esphomepr:`4498` by :ghuser:`CarlosGS`
+
 All changes
 ^^^^^^^^^^^
 
