@@ -64,7 +64,7 @@ Individual keys can be added independently to ESPHome as ``binary_sensor``:
         id: key4
         row: 1
         col: 0
-      - platform: keypad
+      - platform: matrix_keypad
         id: keyA
         key: A
 
