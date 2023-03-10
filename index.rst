@@ -274,6 +274,7 @@ Environmental
 
 .. imgtable::
 
+    Absolute Humidity, components/sensor/absolute_humidity, water-drop.svg
     AHT10 / AHT20 / AHT21 / DHT20, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Temperature & Humidity & Pressure
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
@@ -323,6 +324,7 @@ Light
 
     AM43, components/sensor/am43, am43.jpg, Lux
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
+    AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
     LTR390, components/sensor/ltr390, ltr390.jpg, Lux & UV
     MAX44009, components/sensor/max44009, max44009.svg, Lux
@@ -363,6 +365,7 @@ Miscellaneous
     uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png, pH & Temperature
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
+    Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
 
 
 Motion
@@ -562,7 +565,7 @@ Display Components
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     ST7920, components/display/st7920, st7920.jpg
-    ILI9341, components/display/ili9341, ili9341.jpg
+    ILI9xxx, components/display/ili9xxx, ili9341.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     Inkplate, components/display/inkplate6, inkplate6.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
