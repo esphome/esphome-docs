@@ -354,6 +354,7 @@ Miscellaneous
     FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
+    Jablotron, components/jablotron, jablotron.svg, Home Security
     Kalman Combinator, components/sensor/kalman_combinator, function.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
@@ -431,6 +432,8 @@ Binary Sensor Components
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     LD2410, components/sensor/ld2410, ld2410.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
+    Jablotron Peripheral, components/binary_sensor/jablotron_peripheral, jablotron.svg
+    Jablotron Section Flag, components/binary_sensor/jablotron_section_flag, jablotron.svg
 
 Output Components
 -----------------
@@ -515,6 +518,7 @@ Switch Components
     Modbus Switch, components/switch/modbus_controller, modbus.png
     BLE Client Switch, components/switch/ble_client, bluetooth.svg
     Nextion Switch, components/switch/nextion, nextion.jpg
+    Jablotron PG Switch, components/switch/jablotron_pg, jablotron.svg
 
 Button Components
 -----------------
@@ -612,6 +616,8 @@ Text Sensor Components
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
     Tuya Text Sensor, components/text_sensor/tuya, tuya.png
     WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg
+    Jablotron Info, components/text_sensor/jablotron_info, jablotron.svg
+    Jablotron Section, components/text_sensor/jablotron_section, jablotron.svg
 
 Climate Components
 ------------------
@@ -649,6 +655,7 @@ Select Components
     Template Select, components/select/template, description.svg
     Modbus Select, components/select/modbus_controller, modbus.png
     Tuya Select, components/select/tuya, tuya.png
+    Jablotron Section Select, components/select/jablotron_section, jablotron.svg
 
 Lock Components
 -----------------
