@@ -66,7 +66,9 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this if you have
   multiple remote receivers.
 
+
 Automations:
+------------
 
 - **on_aeha** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   AEHA remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::AEHAData`
@@ -142,6 +144,21 @@ Automations:
 - **on_toshiba_ac** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Toshiba AC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ToshibaAcData`
   is passed to the automation for use in lambdas.
+
+.. code-block:: yaml
+
+    # Example automation for decoded signals
+    remote_receiver:
+      ...
+      on_samsung:
+        then:
+        - if:
+            condition:
+              or:
+                - lambda: 'return (x.data == 0xE0E0E01F);'  # VOL+ newer type
+                - lambda: 'return (x.data == 0xE0E0E01F0);' # VOL+ older type
+            then:
+              - ...
 
 .. _remote-receiver-binary-sensor:
 
