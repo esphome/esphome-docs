@@ -10,7 +10,7 @@ ILI9xxx TFT LCD Series
 
 Usage
 -----
-This component is the successor of the ILI9341 component allowing to control more display drivers and use 16bit colors when enough free ram.
+This component is the successor of the ILI9341 component allowing to control more display drivers and use 16bit colors when enough free ram is available.
 
 The ``ILI9xxx`` display platform allows you to use
 ILI9341 (`datasheet <https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf>`__,
@@ -18,7 +18,7 @@ ILI9341 (`datasheet <https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf>`__,
 displays from the same chip family with ESPHome. As this is a somewhat higher resolution display and may require pins
 beyond the typical SPI connections, it is better suited for use with the ESP32.
 
-**Note:** To use 16bit instead of 8bit colors use a esp32 with enough PSRAM the display.
+**Note:** 16 bit color requires more memory for the framebuffer than is typically available on devices.  Ensure that you are using a device with enough PSRAM to handle the framebuffer size (Display Width * Display Height * 16)
 
 .. figure:: images/ili9341-full.jpg
     :align: center
