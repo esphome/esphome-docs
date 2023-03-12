@@ -465,13 +465,36 @@ A ``color`` component exists for just this purpose:
         blue: 25%
         white: 0%
 
+Alternatively, you can use ``<color>_int`` to specify the color as an int value:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        red_int: 255
+        green_int: 51
+        blue_int: 64
+        white_int: 0
+
+Or, if you are more comforatble with hex values, you can use ``hex``:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        hex: FF3340
 
 Configuration variables:
 
 - **red** (*Optional*, percentage): The percentage of the red component. Defaults to ``100%``.
+- **red_int** (*Optional*, integer): The brightness of the red component on a scale of ``0`` to ``255``. Defaults to ``255``.
 - **green** (*Optional*, percentage): The percentage of the green component. Defaults to ``100%``.
+- **green_int** (*Optional*, integer): The brightness of the green component on a scale of ``0`` to ``255``. Defaults to ``255``.
 - **blue** (*Optional*, percentage): The percentage of the blue component. Defaults to ``100%``.
+- **blue_int** (*Optional*, integer): The brightness of the blue component on a scale of ``0`` to ``255``. Defaults to ``255``.
 - **white** (*Optional*, percentage): The percentage of the white component. Defaults to ``100%``.
+- **white_int** (*Optional*, integer): The brightness of the white component on a scale of ``0`` to ``255``. Defaults to ``255``.
+- **hex** (*Optional*, string): The color in hexadecimal representation. Defaults to ``FFFFFF``.
 
 RGB displays use red, green, and blue, while grayscale displays may use white.
 
