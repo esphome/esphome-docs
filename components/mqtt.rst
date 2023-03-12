@@ -149,7 +149,6 @@ discovery in your Home Assistant configuration with the following:
     # Example Home Assistant configuration.yaml entry
     mqtt:
       broker: ...
-      discovery: true
 
 And that should already be it 🎉 All devices defined through ESPHome should show up automatically
 in the entities section of Home Assistant.
@@ -275,8 +274,6 @@ then run the ``mqtt-fingerprint`` script of ESPHome to get the certificate:
       ssl_fingerprints:
         - a502ff13999f8b398ef1834f1123650b3236fc07
 
-.. _config-mqtt-component:
-
 
 .. _mqtt-tls-idf:
 
@@ -300,7 +297,7 @@ Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 
     - mqtt.example.com -> Success
 
     If a secure connection is necessary for your device, you really want to set:
-    
+
     .. code-block:: yaml
 
         skip_cert_cn_check: false
@@ -310,7 +307,6 @@ Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 
     mqtt:
       broker: test.mymqtt.local
       port: 8883
-      discovery: true
       discovery_prefix: ${mqtt_prefix}/homeassistant
       log_topic: ${mqtt_prefix}/logs
       # Evaluate carefully skip_cert_cn_check
@@ -342,6 +338,7 @@ Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 
         m/XriWr/Cq4h/JfB7NTsezVslgkBaoU=
         -----END CERTIFICATE-----
 
+.. _config-mqtt-component:
 
 MQTT Component Base Configuration
 ---------------------------------
@@ -354,7 +351,6 @@ MQTT can have some overrides for specific options.
     name: "Component Name"
     # Optional variables:
     retain: true
-    discovery: true
     availability:
       topic: livingroom/status
       payload_available: online
