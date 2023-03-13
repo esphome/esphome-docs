@@ -70,6 +70,12 @@ Beta Changes
 - Drop unused, broken logging macros :esphomepr:`4534` by :ghuser:`oxan`
 - Revert storing Font glyphs in manually-allocated memory :esphomepr:`4516` by :ghuser:`oxan`
 - Correct BME680 gas calculation and heater_off :esphomepr:`4498` by :ghuser:`CarlosGS`
+- Add support for new mpu6050 clones responding with 0x70 address :esphomepr:`4546` by :ghuser:`jakehdk`
+- Add carbon dioxide device class to scd30 sensor schema. :esphomepr:`4547` by :ghuser:`murrayma`
+- Feat: add support for hex color in color component :esphomepr:`4493` by :ghuser:`dorianim`
+- Allow AUTO_LOAD to be a function :esphomepr:`4550` by :ghuser:`jesserockz`
+- On the ILI9xxx display's enable the psram on esp32 and allow big screen :esphomepr:`4551` by :ghuser:`nielsnl68`
+- Map gpio pins for touch on esp32-s2/s3 :esphomepr:`4552` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
