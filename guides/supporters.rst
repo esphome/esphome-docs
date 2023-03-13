@@ -246,6 +246,7 @@ Contributors
 - `DrZoid (@docteurzoidberg) <https://github.com/docteurzoidberg>`__
 - `Dominik (@DomiStyle) <https://github.com/DomiStyle>`__
 - `Derek M. (@doolbneerg) <https://github.com/doolbneerg>`__
+- `Dorian Zedler (@dorianim) <https://github.com/dorianim>`__
 - `Mark Dietzer (@Doridian) <https://github.com/Doridian>`__
 - `Jiang Sheng (@doskoi) <https://github.com/doskoi>`__
 - `Robert Schütz (@dotlambda) <https://github.com/dotlambda>`__
@@ -625,6 +626,7 @@ Contributors
 - `Michael Davidson (@MrMDavidson) <https://github.com/MrMDavidson>`__
 - `mtl010957 (@mtl010957) <https://github.com/mtl010957>`__
 - `mulcmu (@mulcmu) <https://github.com/mulcmu>`__
+- `Martin Murray (@murrayma) <https://github.com/murrayma>`__
 - `Michel van de Wetering (@mvdwetering) <https://github.com/mvdwetering>`__
 - `Michiel van Turnhout (@mvturnho) <https://github.com/mvturnho>`__
 - `Martin Weinelt (@mweinelt) <https://github.com/mweinelt>`__
@@ -807,7 +809,6 @@ Contributors
 - `Stefan Staub (@sstaub) <https://github.com/sstaub>`__
 - `St4n (@St4n) <https://github.com/St4n>`__
 - `Stanislav Habich (@standahabich) <https://github.com/standahabich>`__
-- `Stas (@stas-sl) <https://github.com/stas-sl>`__
 - `stegm (@stegm) <https://github.com/stegm>`__
 - `Stewart (@stewiem2000) <https://github.com/stewiem2000>`__
 - `sticilface (@sticilface) <https://github.com/sticilface>`__
@@ -910,4 +911,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated March 9, 2023.*
+*This page was last updated March 13, 2023.*
