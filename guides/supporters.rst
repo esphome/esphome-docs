@@ -153,6 +153,7 @@ Contributors
 - `Carlos Ruiz (@CarlosRDomin) <https://github.com/CarlosRDomin>`__
 - `carstenschroeder (@carstenschroeder) <https://github.com/carstenschroeder>`__
 - `Valentin Ochs (@Cat-Ion) <https://github.com/Cat-Ion>`__
+- `Stroe Andrei Catalin (@catalin2402) <https://github.com/catalin2402>`__
 - `cbialobos (@cbialobos) <https://github.com/cbialobos>`__
 - `Ciprian Constantinescu (@cciprian5) <https://github.com/cciprian5>`__
 - `Cellie (@CelliesProjects) <https://github.com/CelliesProjects>`__
@@ -292,6 +293,7 @@ Contributors
 - `Eric Hiller (@erichiller) <https://github.com/erichiller>`__
 - `Matt Hamilton (@Eriner) <https://github.com/Eriner>`__
 - `Ernst Klamer (@Ernst79) <https://github.com/Ernst79>`__
+- `Eduardo Roldan (@eroldan) <https://github.com/eroldan>`__
 - `escoand (@escoand) <https://github.com/escoand>`__
 - `Eric Severance (@esev) <https://github.com/esev>`__
 - `esphomebot (@esphomebot) <https://github.com/esphomebot>`__
@@ -807,7 +809,6 @@ Contributors
 - `Eric Lind (@sperly) <https://github.com/sperly>`__
 - `Samuel Sieb (@ssieb) <https://github.com/ssieb>`__
 - `Stefan Staub (@sstaub) <https://github.com/sstaub>`__
-- `St4n (@St4n) <https://github.com/St4n>`__
 - `Stanislav Habich (@standahabich) <https://github.com/standahabich>`__
 - `stegm (@stegm) <https://github.com/stegm>`__
 - `Stewart (@stewiem2000) <https://github.com/stewiem2000>`__
@@ -844,7 +845,6 @@ Contributors
 - `Tijs-B (@Tijs-B) <https://github.com/Tijs-B>`__
 - `Aidan Timson (@timmo001) <https://github.com/timmo001>`__
 - `Tim Savage (@timsavage) <https://github.com/timsavage>`__
-- `Snōwball (@tobias-) <https://github.com/tobias->`__
 - `Philipp Tölke (@toelke) <https://github.com/toelke>`__
 - `tomaszduda23 (@tomaszduda23) <https://github.com/tomaszduda23>`__
 - `Tom Brien (@TomBrien) <https://github.com/TomBrien>`__
@@ -911,4 +911,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated March 13, 2023.*
+*This page was last updated March 14, 2023.*

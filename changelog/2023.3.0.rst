@@ -76,6 +76,9 @@ Beta Changes
 - Allow AUTO_LOAD to be a function :esphomepr:`4550` by :ghuser:`jesserockz`
 - On the ILI9xxx display's enable the psram on esp32 and allow big screen :esphomepr:`4551` by :ghuser:`nielsnl68`
 - Map gpio pins for touch on esp32-s2/s3 :esphomepr:`4552` by :ghuser:`jesserockz`
+- pipsolar component. Correct the sscanf format for QPIG command parsin… :esphomepr:`4165` by :ghuser:`eroldan`
+- Add state class back to uptime sensor :esphomepr:`4557` by :ghuser:`DAVe3283`
+- Added response for Tuya RSSI command :esphomepr:`4549` by :ghuser:`catalin2402`
 
 All changes
 ^^^^^^^^^^^
