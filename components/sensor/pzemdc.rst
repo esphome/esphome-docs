@@ -62,6 +62,20 @@ Configuration variables:
 - **address** (*Optional*, int): The address of the sensor if multiple sensors are attached to
   the same UART bus. You will need to set the address of each device manually. Defaults to ``1``.
 
+.. _pzemdc-reset_energy_action:
+
+``pzemdc.reset_energy`` Action
+******************************
+
+This action resets the total energy value of the pzemdc device with the given ID when executed.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - pzemdc.reset_energy: pzemdc_1
+
+
 See Also
 --------
 

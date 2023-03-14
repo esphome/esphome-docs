@@ -11,7 +11,7 @@ instrument in ESPHome. It uses :ref:`UART <uart>` (ModBUS) for communication.
 Once configured you can use sensors as described below for your projects.
 
 
-.. figure:: ../images/kuntze.jpg
+.. figure:: ../../images/kuntze.jpg
     :align: center
 
     Kuntze Neon® Multi instrument
@@ -30,14 +30,14 @@ The device communicates at ``19200`` baud ``8E1``. To connect to ESPHome, an RS4
 transceiver is needed. Choose a type which does not need a trigger to send and 
 receive data,  for example:
 
-.. figure:: ../images/rs485.jpg
+.. figure:: ../../images/rs485.jpg
 
 The controller connects to the UART of the MCU. For ESP32 GPIO `16` to `TXD` and `17` 
 to RXD are the default ones but any other pins can be used as well. 3.3V to VCC and GND to GND.
 
 .. warning::
 
-    If you are using the :doc:`logger` make sure you are not using the same pins for it or otherwise disable the UART 
+    If you are using the :ref:`logger` make sure you are not using the same pins for it or otherwise disable the UART 
     logging with the ``baud_rate: 0`` option.
 
 Component
@@ -52,7 +52,7 @@ A configured modbus component is optional. It will be automatically created.
       - id: uart_bus
         tx_pin: GPIO16
         rx_pin: GPIO17
-        baud_rate: 19600
+        baud_rate: 19200
         parity: EVEN
 
     sensor:
@@ -81,7 +81,7 @@ See Also
 --------
 
 - :ref:`uart`
-- :doc:`logger`
+- :ref:`logger`
 - :ref:`Sensor <config-sensor>`
 - `Kuntze manuals <https://www.kuntze.com/en/downloads-2/>`__
 - `Communication protocol <https://www.kuntze.com/wp-content/uploads/2021/05/2019_Manual_Modbus-RTU_ENG.pdf>`__
