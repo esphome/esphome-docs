@@ -79,6 +79,8 @@ Beta Changes
 - pipsolar component. Correct the sscanf format for QPIG command parsin… :esphomepr:`4165` by :ghuser:`eroldan`
 - Add state class back to uptime sensor :esphomepr:`4557` by :ghuser:`DAVe3283`
 - Added response for Tuya RSSI command :esphomepr:`4549` by :ghuser:`catalin2402`
+- Remove switch actions during config; bump setup priority :esphomepr:`4563` by :ghuser:`kbx81`
+- Mark esp32_touch supported only on standard esp32 variant :esphomepr:`4562` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
