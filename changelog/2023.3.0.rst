@@ -81,6 +81,7 @@ Beta Changes
 - Added response for Tuya RSSI command :esphomepr:`4549` by :ghuser:`catalin2402`
 - Remove switch actions during config; bump setup priority :esphomepr:`4563` by :ghuser:`kbx81`
 - Mark esp32_touch supported only on standard esp32 variant :esphomepr:`4562` by :ghuser:`jesserockz`
+- fixing  ``shrink`` and ``extend`` functions of the displaybuffer's Rect class  :esphomepr:`4565` by :ghuser:`nielsnl68`
 
 All changes
 ^^^^^^^^^^^
