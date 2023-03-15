@@ -43,7 +43,10 @@ Configuration variables:
   - **max_temperature** (*Optional*, float): The maximum temperature the climate device can reach.
     Used to set the range of the frontend gauge.
   - **temperature_step** (*Optional*, float): The granularity with which the target temperature
-    can be controlled.
+    can be controlled. Can be a single number, or split as below:
+
+    - **target_temperature** (**Required**, float)
+    - **current_temperature** (**Required**, float)
 
 Advanced options:
 
@@ -57,6 +60,53 @@ Advanced options:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Requires Home Assistant 2021.11 or newer.
   Set to ``""`` to remove the default entity category.
+
+MQTT options:
+
+- **action_state_topic** (*Optional*, string): The topic to publish
+  climate device action changes to.
+- **current_temperature_state_topic** (*Optional*, string): The topic to publish
+  current temperature changes to.
+- **fan_mode_state_topic** (*Optional*, string): The topic to publish
+  fan mode changes to.
+- **fan_mode_command_topic** (*Optional*, string): The topic to receive
+  fan mode commands on.
+- **mode_state_topic** (*Optional*, string): The topic to publish
+  climate device mode changes to.
+- **mode_command_topic** (*Optional*, string): The topic to receive
+  climate device mode commands on.
+- **preset_state_topic** (*Optional*, string): The topic to publish
+  preset changes to.
+- **preset_command_topic** (*Optional*, string): The topic to receive
+  preset commands on.
+- **swing_mode_state_topic** (*Optional*, string): The topic to publish
+  swing mode changes to.
+- **swing_mode_command_topic** (*Optional*, string): The topic to receive
+  swing mode commands on.
+- **target_temperature_state_topic** (*Optional*, string): The topic to publish
+  target temperature changes to.
+- **target_temperature_command_topic** (*Optional*, string): The topic to receive
+  target temperature commands on.
+- **target_temperature_high_state_topic** (*Optional*, string): The topic to publish
+  higher target temperature changes to.
+- **target_temperature_high_command_topic** (*Optional*, string): The topic to receive
+  higher target temperature commands on.
+- **target_temperature_low_state_topic** (*Optional*, string): The topic to publish
+  lower target temperature changes to.
+- **target_temperature_low_command_topic** (*Optional*, string): The topic to receive
+  lower target temperature commands on.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
+.. code-block:: yaml
+
+    climate:
+      - platform: ...
+        visual:
+          min_temperature: 18
+          max_temperature: 25
+          temperature_step:
+            target_temperature: 0.5
+            current_temperature: 0.1
 
 Climate Automation
 ------------------
@@ -142,7 +192,7 @@ advanced stuff.
       id(my_climate).preset
       // Custom Preset, type: string
       id(my_climate).custom_preset
-      
+
 
 - ``.make_call``: Control the climate device
 
@@ -158,7 +208,7 @@ advanced stuff.
 ``climate.on_state`` Trigger
 ****************************
 
-This trigger is activated each time the state of the climate device is updated 
+This trigger is activated each time the state of the climate device is updated
 (for example, if the current temperature measurement or the mode set by the users changes).
 
 .. code-block:: yaml
@@ -169,42 +219,24 @@ This trigger is activated each time the state of the climate device is updated
         on_state:
         - logger.log: "State updated!"
 
-MQTT options:
+.. _climate-on_control_trigger:
 
-- **action_state_topic** (*Optional*, string): The topic to publish
-  climate device action changes to.
-- **current_temperature_state_topic** (*Optional*, string): The topic to publish
-  current temperature changes to.
-- **fan_mode_state_topic** (*Optional*, string): The topic to publish
-  fan mode changes to.
-- **fan_mode_command_topic** (*Optional*, string): The topic to receive
-  fan mode commands on.
-- **mode_state_topic** (*Optional*, string): The topic to publish
-  climate device mode changes to.
-- **mode_command_topic** (*Optional*, string): The topic to receive
-  climate device mode commands on.
-- **preset_state_topic** (*Optional*, string): The topic to publish
-  preset changes to.
-- **preset_command_topic** (*Optional*, string): The topic to receive
-  preset commands on.
-- **swing_mode_state_topic** (*Optional*, string): The topic to publish
-  swing mode changes to.
-- **swing_mode_command_topic** (*Optional*, string): The topic to receive
-  swing mode commands on.
-- **target_temperature_state_topic** (*Optional*, string): The topic to publish
-  target temperature changes to.
-- **target_temperature_command_topic** (*Optional*, string): The topic to receive
-  target temperature commands on.
-- **target_temperature_high_state_topic** (*Optional*, string): The topic to publish
-  higher target temperature changes to.
-- **target_temperature_high_command_topic** (*Optional*, string): The topic to receive
-  higher target temperature commands on.
-- **target_temperature_low_state_topic** (*Optional*, string): The topic to publish
-  lower target temperature changes to.
-- **target_temperature_low_command_topic** (*Optional*, string): The topic to receive
-  lower target temperature commands on.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
+``climate.on_control`` Trigger
+******************************
 
+This trigger is activated each time a *control* input of the climate device
+is updated via a ``ClimateCall`` (which includes changes coming in from Home
+Assistant).  That is, this trigger is activated for, for example, changes to
+the mode, *but not* on temperature measurements.  It will be invoked prior to
+the ``on_state`` trigger, if both are defined.
+
+.. code-block:: yaml
+
+    climate:
+      - platform: midea  # or any other platform
+        # ...
+        on_control:
+        - logger.log: "Control input received; configuration updated!"
 
 See Also
 --------

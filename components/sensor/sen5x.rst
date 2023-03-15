@@ -208,6 +208,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :doc:`sds011`
 - :doc:`pmsx003`
 - :doc:`ccs811`
