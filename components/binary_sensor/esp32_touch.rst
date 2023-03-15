@@ -104,10 +104,7 @@ Configuration variables:
 Touch Pad Pins
 --------------
 
-Below are the raw GPIO pin numbers that can be used as touch pads for each variant.
-
-ESP32
-*****
+8 pins on the ESP32 can be used to detect touches. These are (in the default "raw" pin names):
 
 -  ``GPIO0``
 -  ``GPIO2``
@@ -119,25 +116,6 @@ ESP32
 -  ``GPIO27``
 -  ``GPIO32``
 -  ``GPIO33``
-
-ESP32-S2 & ESP32-S3
-*******************
-
--  ``GPIO1``
--  ``GPIO2``
--  ``GPIO3``
--  ``GPIO4``
--  ``GPIO5``
--  ``GPIO6``
--  ``GPIO7``
--  ``GPIO8``
--  ``GPIO9``
--  ``GPIO10``
--  ``GPIO11``
--  ``GPIO12``
--  ``GPIO13``
--  ``GPIO14``
-
 
 Finding thresholds
 ------------------
