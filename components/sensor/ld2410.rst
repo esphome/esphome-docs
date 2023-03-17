@@ -26,8 +26,8 @@ Use of hardware UART pins is highly recommended, in order to support the out-of-
     # Example configuration entry
     uart:
       id: uart1
-      tx_pin: REPLACEME
-      rx_pin: REPLACEME
+      tx_pin: REPLACE ME
+      rx_pin: REPLACE ME
       baud_rate: 256000
       parity: NONE
       stop_bits: 1
@@ -65,6 +65,8 @@ measurements.
           name: Moving Target
         has_still_target:
           name: Still Target
+        out_pin_presence:
+          name: out pin presence
 
 Configuration variables:
 ************************
@@ -74,6 +76,9 @@ Configuration variables:
 - **has_moving_target** (*Optional*): If true a moving target is detected.
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
 - **has_still_target** (*Optional*): If true a still target is detected.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
+- **out_pin_presence** (*Optional*): When in :ref:`engineering mode<ld2410-engineering-mode>`, indicates whether the OUT pin indicates presence or not, otherwise ``false``.
+  OUT pin indication depends on the :ref:`light function<ld2410-light-function>` configuration.
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Sensor
@@ -86,6 +91,8 @@ measurements.
 
     sensor:
       - platform: ld2410
+        light:
+          name: light
         moving_distance:
           name : Moving Distance
         still_distance:
@@ -138,15 +145,20 @@ measurements.
 Configuration variables:
 ************************
 
-- **moving_distance** (*Optional*): Distance of detected moving target.
+- **light** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, indicates the light sensitivity, otherwise ``unknown``.
+  Value between ``0`` and ``255`` inclusive.
   All options from :ref:`Sensor <config-sensor>`.
-- **still_distance** (*Optional*): Distance of detected still target.
+- **moving_distance** (*Optional*, int): Distance in cm of detected moving target.
   All options from :ref:`Sensor <config-sensor>`.
-- **moving_energy** (*Optional*): Energy for moving target.
+- **still_distance** (*Optional*, int): Distance in cm of detected still target.
   All options from :ref:`Sensor <config-sensor>`.
-- **still_energy** (*Optional*): Energy for still target.
+- **moving_energy** (*Optional*, int): Energy for moving target.
+  Value between ``0`` and ``100`` inclusive.
   All options from :ref:`Sensor <config-sensor>`.
-- **detection_distance** (*Optional*): Distance in cm of target.
+- **still_energy** (*Optional*, int): Energy for still target.
+  Value between ``0`` and ``100`` inclusive.
+  All options from :ref:`Sensor <config-sensor>`.
+- **detection_distance** (*Optional*, int): Distance in cm of target.
   All options from :ref:`Sensor <config-sensor>`.
 - **gX_move_energy** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, the move energy of the Xth gate(X => 0 to 8), otherwise ``unknown``.
   Value between ``0`` and ``100`` inclusive.
@@ -193,10 +205,12 @@ The ``ld2410`` number allows you to control the configuration of your :doc:`ld24
       - platform: ld2410
         timeout:
           name: timeout
-        max_move_distance:
-          name: max move distance
-        max_still_distance:
-          name: max still distance
+        light_threshold:
+          name: light threshold
+        max_move_distance_gate:
+          name: max move distance gate
+        max_still_distance_gate:
+          name: max still distance gate
         g0_move_threshold:
           name: g0 move threshold
         g0_still_threshold:
@@ -234,23 +248,30 @@ The ``ld2410`` number allows you to control the configuration of your :doc:`ld24
         g8_still_threshold:
           name: g8 still threshold
 
+.. _ld2410-light-threshold:
+
 Configuration variables:
 ************************
 
 - **timeout** (*Optional*, int): Time in seconds during which presence state will stay present
   after leaving. Defaults to ``5s``
   All options from :ref:`Number <config-number>`.
-- **max_move_distance** (*Optional*, int): Maximum distance for movement detection.
-  Value between ``0.75m`` and ``6m`` inclusive. Defaults to ``6m``.
+- **light_threshold** (*Optional*, int): Sets the light threshold for the :ref:`light function<ld2410-light-function>`.
+  Value between ``0`` and ``255`` inclusive. Defaults to ``128``.
   All options from :ref:`Number <config-number>`.
-- **max_still_distance** (*Optional*, int): Maximum distance for still detection.
-  Value between ``0.75m`` and ``6m`` inclusive.  Defaults to ``6m``.
+- **max_move_distance_gate** (*Optional*, int): Maximum distance gate for movement detection.
+  Value between ``2`` and ``8`` inclusive. Defaults to ``8``.
+  All options from :ref:`Number <config-number>`.
+- **max_still_distance_gate** (*Optional*, int): Maximum distance gate for still detection.
+  Value between ``2`` and ``8`` inclusive. Defaults to ``8``.
   All options from :ref:`Number <config-number>`.
 - **gX_move_threshold** (*Optional*, int): Threshold for the Xth gate for motion detection (X => 0 to 8).
   Above this level for the considered gate (distance), movement detection will be triggered.
+  Value between ``0`` and ``100`` inclusive. See default values below.
   All options from :ref:`Number <config-number>`.
-- **gX _still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8).
+- **gX_still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8).
   Above this level for the considered gate (distance), still detection will be triggered.
+  Value between ``0`` and ``100`` inclusive. See default values below.
   All options from :ref:`Number <config-number>`.
 
 .. list-table:: Default values for gate threshold
@@ -311,7 +332,7 @@ Configuration variables:
   All options from :ref:`Button <config-button>`.
 - **restart** (*Optional*): Restart the device.
   All options from :ref:`Button <config-button>`.
-- **query_params** (*Optional*): Refresh the :ref:`ld2410-number` values of the device.
+- **query_params** (*Optional*): Refresh all sensors values of the device.
   All options from :ref:`Button <config-button>`.
 
 Text Sensor
@@ -349,14 +370,24 @@ The ``ld2410`` select allows you control your :doc:`ld2410`.
           name: "distance resolution"
         baud_rate:
           name: "baud rate"
+        light_function:
+          name: light function
+        out_pin_level:
+          name: out ping level
+
+.. _ld2410-light-function:
 
 Configuration variables:
 ************************
 
-- **distance_resolution** (*Optional*): control the distance resolution. Can be ``0.75m`` or ``0.2m``. Defaults to ``0.75m``.
+- **distance_resolution** (*Optional*): control the gates distance resolution. Can be ``0.75m`` or ``0.2m``. Defaults to ``0.75m``.
   All options from :ref:`Select <config-select>`.
-- **baud_rate** (*Optional*): control the baud rate. Defaults to ``256000``.
-  Once changed, need to reinstall with an updated :ref:`UART Component <uart>` configuration.
+- **baud_rate** (*Optional*): control the serial port baud rate. Defaults to ``256000``.
+  Once changed, all sensors will stop working until a fresh install with an updated :ref:`UART Component <uart>` configuration.
+  All options from :ref:`Select <config-select>`.
+- **light_function** (*Optional*): if set, will affect the OUT pin value, bases on :ref:`light threshold<ld2410-light-threshold>`. Can be ``off``, ``low`` or ``above``. Defaults to ``off``.
+  All options from :ref:`Select <config-select>`.
+- **out_pin_level** (*Optional*): control OUT pin ``away`` value. Can be ``low`` or ``high``. Defaults to ``low``.
   All options from :ref:`Select <config-select>`.
 
 Automations
@@ -395,6 +426,21 @@ To change the password from HA you can use the following example config:
             - bluetooth_password.set:
                 id: my_ld2410
                 password: !lambda 'return password;'
+
+OUT pin
+-------
+
+In order to monitor the presence indicated by the component, with the :ref:`light function<ld2410-light-function>` taken
+under account, you can set up a :ref:`GPIO Binary Sensor <gpio-binary-sensor>`:
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        pin: REPLACE ME
+        name: gpio out pin presence
+        device_class: presence
+
 
 Calibration Process
 -------------------
@@ -477,10 +523,10 @@ First add the templates using the ``raw configuration editor``:
                   entities:
                     - entity: '[[presence_timeout_number]]'
                       name: timeout
-                    - entity: '[[presence_max_move_distance_number]]'
-                      name: max move distance
-                    - entity: '[[presence_max_still_distance_number]]'
-                      name: max still distance
+                    - entity: '[[presence_max_move_distance_gate_number]]'
+                      name: max move distance gate
+                    - entity: '[[presence_max_still_distance_gate_number]]'
+                      name: max still distance gate
                 - type: custom:vertical-stack-in-card
                   horizontal: true
                   cards:
@@ -607,8 +653,8 @@ Then create a custom card and fill all of the entities:
       - title: bathroom presence
       - engineering_mode_switch: switch.bathroom_presence_engineering_mode
       - presence_timeout_number: number.bathroom_presence_timeout
-      - presence_max_move_distance_number: number.bathroom_presence_max_move_distance
-      - presence_max_still_distance_number: number.bathroom_presence_max_still_distance
+      - presence_max_move_distance_gate_number: number.bathroom_presence_max_move_distance_gate
+      - presence_max_still_distance_gate_number: number.bathroom_presence_max_still_distance_gate
       - distance_detection_sensor: sensor.bathroom_presence_distance_detection_cm
       - moving_distance_sensor: sensor.bathroom_presence_moving_distance_cm
       - still_distance_sensor: sensor.bathroom_presence_still_distance_cm
