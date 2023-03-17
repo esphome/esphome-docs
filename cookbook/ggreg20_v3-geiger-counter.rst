@@ -13,7 +13,7 @@ Geiger counter, which will give you measurement of the current ionizing radiatio
 Connection:
 ---------
 
-.. figure:: cookbook/images/ggreg20_v3-geiger-counter.jpg
+.. figure:: images/ggreg20_v3-geiger-counter.jpg
     :align: center
     :width: 40.0%
 
