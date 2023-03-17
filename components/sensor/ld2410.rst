@@ -527,6 +527,10 @@ First add the templates using the ``raw configuration editor``:
                       name: max move distance gate
                     - entity: '[[presence_max_still_distance_gate_number]]'
                       name: max still distance gate
+                    - entity: '[[light_function_select]]'
+                      name: light function
+                    - entity: '[[light_threshold_number]]'
+                      name: light threshold
                 - type: custom:vertical-stack-in-card
                   horizontal: true
                   cards:
@@ -552,6 +556,10 @@ First add the templates using the ``raw configuration editor``:
               horizontal: true
               cards:
                 - type: entity
+                  entity: '[[gpio_out_pin_presence_binary_sensor]]'
+                  name: gpio presence
+                  state_color: true
+                - type: entity
                   entity: '[[presence_binary_sensor]]'
                   name: presence
                   state_color: true
@@ -570,6 +578,16 @@ First add the templates using the ``raw configuration editor``:
               card:
                 type: custom:vertical-stack-in-card
                 cards:
+                  - type: custom:vertical-stack-in-card
+                    horizontal: true
+                    cards:
+                      - type: entity
+                        entity: '[[light_sensor]]'
+                        name: light
+                      - type: entity
+                        entity: '[[out_pin_presence_binary_sensor]]'
+                        name: out pin presence
+                        state_color: true
                   - type: custom:decluttering-card
                     template: ld2410_gate_row_header
                     variables:
@@ -663,6 +681,11 @@ Then create a custom card and fill all of the entities:
       - presence_binary_sensor: binary_sensor.bathroom_presence_presence
       - movement_binary_sensor: binary_sensor.bathroom_presence_movement
       - still_binary_sensor: binary_sensor.bathroom_presence_still
+      - light_function_select: select.bathroom_presence_light_function
+      - light_threshold_number: number.bathroom_presence_light_threshold
+      - gpio_out_pin_presence_binary_sensor: binary_sensor.bathroom_presence_gpio_out_pin_presence
+      - out_pin_presence_binary_sensor: binary_sensor.bathroom_presence_out_pin_presence
+      - light_sensor: sensor.bathroom_presence_light
       - g0_move_energy_sensor: sensor.bathroom_presence_g0_move_energy
       - g0_move_threshold_number: number.bathroom_presence_g0_move_threshold
       - g0_still_energy_sensor: sensor.bathroom_presence_g0_still_energy
