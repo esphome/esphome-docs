@@ -3,7 +3,7 @@ Geiger counter GGreg20_V3 with pulse output
 
 .. seo::
     :description: Instructions for setting up IoT-devices GGreg20_V3 sensor in ESPHome and calculate the current radiation level.
-    :image: ggreg20_v3-geiger-counter.jpg
+    :image: ggreg20_v3-geiger-counter_.jpg
     :keywords: Radiation Geiger counter pulse output
 
 With the help of :doc:`/components/sensor/pulse_counter` and the GGreg20_V3 module with SBM20 or J305 GM tube and pulse output you can make your own 
