@@ -188,7 +188,7 @@ Configuration variables:
 
 - **engineering_mode** (*Optional*): enable/disable engineering mode. Defaults to ``false``.
   All options from :ref:`Switch <config-switch>`.
-- **bluetooth** (*Optional*): turn on/off the bluetooth adapter. Defaults to ``true``.
+- **bluetooth** (*Optional*): Turn on/off the bluetooth adapter. Defaults to ``true``.
   All options from :ref:`Switch <config-switch>`.
 
 
@@ -352,9 +352,9 @@ The ``ld2410`` text sensor allows you get information about your :doc:`ld2410`.
 Configuration variables:
 ************************
 
-- **version** (*Optional*): the firmware version.
+- **version** (*Optional*): The firmware version.
   All options from :ref:`Text Sensor <config-text_sensor>`.
-- **mac_address** (*Optional*): the bluetooth mac address. Will be set to ``unknown`` when bluetooth is off.
+- **mac_address** (*Optional*): The bluetooth mac address. Will be set to ``unknown`` when bluetooth is off.
   All options from :ref:`Text Sensor <config-text_sensor>`.
 
 Select
@@ -380,14 +380,14 @@ The ``ld2410`` select allows you control your :doc:`ld2410`.
 Configuration variables:
 ************************
 
-- **distance_resolution** (*Optional*): control the gates distance resolution. Can be ``0.75m`` or ``0.2m``. Defaults to ``0.75m``.
+- **distance_resolution** (*Optional*): Control the gates distance resolution. Can be ``0.75m`` or ``0.2m``. Defaults to ``0.75m``.
   All options from :ref:`Select <config-select>`.
-- **baud_rate** (*Optional*): control the serial port baud rate. Defaults to ``256000``.
+- **baud_rate** (*Optional*): Control the serial port baud rate. Defaults to ``256000``.
   Once changed, all sensors will stop working until a fresh install with an updated :ref:`UART Component <uart>` configuration.
   All options from :ref:`Select <config-select>`.
-- **light_function** (*Optional*): if set, will affect the OUT pin value, bases on :ref:`light threshold<ld2410-light-threshold>`. Can be ``off``, ``low`` or ``above``. Defaults to ``off``.
+- **light_function** (*Optional*): If set, will affect the OUT pin value, based on :ref:`light threshold<ld2410-light-threshold>`. Can be ``off``, ``low`` or ``above``. Defaults to ``off``.
   All options from :ref:`Select <config-select>`.
-- **out_pin_level** (*Optional*): control OUT pin ``away`` value. Can be ``low`` or ``high``. Defaults to ``low``.
+- **out_pin_level** (*Optional*): Control OUT pin ``away`` value. Can be ``low`` or ``high``. Defaults to ``low``.
   All options from :ref:`Select <config-select>`.
 
 Automations
