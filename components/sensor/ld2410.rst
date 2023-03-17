@@ -174,9 +174,9 @@ The ``ld2410`` switch allows you to control your :doc:`ld2410`.
 Configuration variables:
 ************************
 
-- **engineering_mode** (*Optional*): enable/disable engineering mode.
+- **engineering_mode** (*Optional*): enable/disable engineering mode. Defaults to ``false``.
   All options from :ref:`Switch <config-switch>`.
-- **bluetooth** (*Optional*): turn on/off the bluetooth adapter.
+- **bluetooth** (*Optional*): turn on/off the bluetooth adapter. Defaults to ``true``.
   All options from :ref:`Switch <config-switch>`.
 
 
@@ -238,13 +238,13 @@ Configuration variables:
 ************************
 
 - **timeout** (*Optional*, int): Time in seconds during which presence state will stay present
-  after leaving.
+  after leaving. Defaults to ``5s``
   All options from :ref:`Number <config-number>`.
 - **max_move_distance** (*Optional*, int): Maximum distance for movement detection.
-  Value between ``0.75m`` and ``6m`` inclusive.
+  Value between ``0.75m`` and ``6m`` inclusive. Defaults to ``6m``.
   All options from :ref:`Number <config-number>`.
 - **max_still_distance** (*Optional*, int): Maximum distance for still detection.
-  Value between ``0.75m`` and ``6m`` inclusive.
+  Value between ``0.75m`` and ``6m`` inclusive.  Defaults to ``6m``.
   All options from :ref:`Number <config-number>`.
 - **gX_move_threshold** (*Optional*, int): Threshold for the Xth gate for motion detection (X => 0 to 8).
   Above this level for the considered gate (distance), movement detection will be triggered.
@@ -270,23 +270,23 @@ Configuration variables:
       - 40
       - 40
     * - 3
-      - 40
+      - 30
       - 40
     * - 4
-      - 40
-      - 40
+      - 20
+      - 30
     * - 5
-      - 40
-      - 40
+      - 15
+      - 30
     * - 6
-      - 30
       - 15
+      - 20
     * - 7
-      - 30
       - 15
+      - 20
     * - 8
-      - 30
       - 15
+      - 20
 
 Button
 ------
@@ -333,7 +333,7 @@ Configuration variables:
 
 - **version** (*Optional*): the firmware version.
   All options from :ref:`Text Sensor <config-text_sensor>`.
-- **mac_address** (*Optional*): the bluetooth mac address. Will be set to `unknown` when bluetooth is off.
+- **mac_address** (*Optional*): the bluetooth mac address. Will be set to ``unknown`` when bluetooth is off.
   All options from :ref:`Text Sensor <config-text_sensor>`.
 
 Select
@@ -353,7 +353,7 @@ The ``ld2410`` select allows you control your :doc:`ld2410`.
 Configuration variables:
 ************************
 
-- **distance_resolution** (*Optional*): control the distance resolution.
+- **distance_resolution** (*Optional*): control the distance resolution. Defaults to ``0.75m``.
   All options from :ref:`Select <config-select>`.
 - **baud_rate** (*Optional*): control the baud rate. Defaults to ``256000``.
   Once changed, need to reinstall with an updated :ref:`UART Component <uart>` configuration.
