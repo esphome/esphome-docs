@@ -1,3 +1,5 @@
+.. _gpio-binary-sensor:
+
 GPIO Binary Sensor
 ==================
 
@@ -20,8 +22,6 @@ device as a binary sensor.
         pin: D2
         name: "Living Room Window"
         device_class: window
-
-.. _gpio-binary-sensor:
 
 Configuration variables:
 ------------------------

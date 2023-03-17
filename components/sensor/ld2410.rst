@@ -147,6 +147,7 @@ Configuration variables:
 
 - **light** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, indicates the light sensitivity, otherwise ``unknown``.
   Value between ``0`` and ``255`` inclusive.
+  Notice that this sensor is not very reliable. A more suitable alternative will be :ref:`BH1750<BH1750>`.
   All options from :ref:`Sensor <config-sensor>`.
 - **moving_distance** (*Optional*, int): Distance in cm of detected moving target.
   All options from :ref:`Sensor <config-sensor>`.
@@ -187,6 +188,7 @@ Configuration variables:
 ************************
 
 - **engineering_mode** (*Optional*): enable/disable engineering mode. Defaults to ``false``.
+  Notice this requires more resources and is not recommended to be enabled when not necessary.
   All options from :ref:`Switch <config-switch>`.
 - **bluetooth** (*Optional*): Turn on/off the bluetooth adapter. Defaults to ``true``.
   All options from :ref:`Switch <config-switch>`.
