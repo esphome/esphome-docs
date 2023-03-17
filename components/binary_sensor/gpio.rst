@@ -21,6 +21,8 @@ device as a binary sensor.
         name: "Living Room Window"
         device_class: window
 
+.. _gpio-binary-sensor:
+
 Configuration variables:
 ------------------------
 
