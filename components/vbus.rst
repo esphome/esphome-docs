@@ -176,8 +176,8 @@ All binary sensors are *Optional* and support all other options from :ref:`Binar
 ``Custom`` VBus sensors
 -----------------------
 
-Devices on a VBus are identified with a source address. There can be multiple devices on the same bus, 
-each device type has a different address. 
+Devices on a VBus are identified with a source address. There can be multiple devices on the same bus,
+each device type has a different address.
 
 
 .. code-block:: yaml
@@ -203,7 +203,7 @@ Configuration variables:
 - **sensors** (**Required**): A list of :ref:`Sensor <config-sensor>` definitions that include a ``lambda`` to do the decoding and return a ``float`` value.
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): Code to parse a value from the incoming data packets and return it.
-  The data packet is in a `std::vector<uint8_t>` called `x`.
+  The data packet is in a ``std::vector<uint8_t>`` called ``x``.
 
 
 ``custom`` VBus binary sensors
@@ -218,7 +218,7 @@ Configuration variables:
 - **binary_sensors** (**Required**): A list of :ref:`Binary Sensor <config-binary_sensor>` definitions that include a ``lambda`` to do the decoding and return a ``bool`` value.
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): Code to parse a value from the incoming data packets and return it.
-  The data packet is in a `std::vector<uint8_t>` called `x`.
+  The data packet is in a ``std::vector<uint8_t>`` called ``x``.
 
 To determine the correct values for the parameters above, visit `packet definitions list <http://danielwippermann.github.io/resol-vbus/#/vsf>`__. In the search field of the **Packets** table, enter the name of your device.
 
