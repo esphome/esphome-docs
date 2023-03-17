@@ -11,7 +11,7 @@ Geiger counter, which will give you measurement of the current ionizing radiatio
 
 
 Connection:
----------
+-----------
 
 .. figure:: images/ggreg20_v3-geiger-counter.jpg
     :align: center
@@ -25,14 +25,14 @@ In our example we use the ESP32 GPIO23 pin as a pulse input signal.
 This basic setup makes the output pulses count by the MCU possible. For more information see our detailed config example at `GitHub repo <https://github.com/iotdevicesdev/GGreg20_V3-ESP32-HomeAssistant-ESPHome>`__.
 
 Housing:
-*********
+********
 We recommend using a protective 3d-printed plastic case with the module to avoid accidental electric shocks when working with the GGreg20_V3.
 `Sefety Case <https://sketchfab.com/iot-devices/collections/ggreg20_v3-case-d7fb99552f054ad5a7960c43e66bae18>`__
 (The J305 tube also should not be in direct sunlight.)
 
 
 Configuration:
----------------
+--------------
 
 The block :doc:`/components/sensor/pulse_counter` will count the radation events per minute. 
 With the found specs of the tube you will be able to calculate the radiation in μSv/h.
