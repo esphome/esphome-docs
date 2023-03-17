@@ -375,7 +375,7 @@ The ``ld2410`` select allows you control your :doc:`ld2410`.
         light_function:
           name: light function
         out_pin_level:
-          name: out ping level
+          name: out pin level
 
 .. _ld2410-light-function:
 
