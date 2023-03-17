@@ -353,7 +353,7 @@ The ``ld2410`` select allows you control your :doc:`ld2410`.
 Configuration variables:
 ************************
 
-- **distance_resolution** (*Optional*): control the distance resolution. Defaults to ``0.75m``.
+- **distance_resolution** (*Optional*): control the distance resolution. Can be ``0.75m`` or ``0.2m``. Defaults to ``0.75m``.
   All options from :ref:`Select <config-select>`.
 - **baud_rate** (*Optional*): control the baud rate. Defaults to ``256000``.
   Once changed, need to reinstall with an updated :ref:`UART Component <uart>` configuration.
