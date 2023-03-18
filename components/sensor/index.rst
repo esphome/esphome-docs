@@ -498,7 +498,9 @@ To prevent values from being published, return ``{}``:
 .. code-block:: yaml
 
     filters:
-      - lambda: "return (x > 10) ? x-10 : {};"
+      - lambda: !lambda |-
+          if (x < 10) return {};
+          return x-10;
 
 
 Example: Converting Celsius to Fahrenheit
