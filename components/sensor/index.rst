@@ -307,29 +307,6 @@ Configuration variables:
   Must be smaller than or equal to ``send_every``
   Defaults to ``1``.
 
-``skip``
-**********
-
-A simple skip filter, which skips the first **send_first_at** sensor readings and passes on the
-rest. This can be used when the sensor needs a few readings to 'warm up'. After the initial
-readings have been skipped, this filter does nothing.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    - platform: wifi_signal
-      # ...
-      filters:
-        - skip:
-            send_first_at: 3
-
-Configuration variables:
-
-- **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
-  published. With this parameter you can specify when the very first value is to be sent.
-  Must be smaller than or equal to ``send_every``
-  Defaults to ``1``.
-
 ``min``
 *******
 
@@ -428,6 +405,21 @@ Configuration variables:
 - **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
   published. With this parameter you can specify when the very first value is to be sent.
   Defaults to ``1``.
+
+``skip_initial``
+****************
+
+A simple skip filter; `skip_initial: N` skips the first **N** sensor readings and passes on the
+rest. This can be used when the sensor needs a few readings to 'warm up'. After the initial
+readings have been skipped, this filter does nothing.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: wifi_signal
+      # ...
+      filters:
+        - skip_initial: 3
 
 ``throttle``
 ************
