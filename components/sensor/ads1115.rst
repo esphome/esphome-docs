@@ -1,4 +1,4 @@
-ADS1115 Sensor
+ADS1115 Sensor 4-Channel 16-Bit A/D Converter
 ==============
 
 .. seo::
