@@ -307,6 +307,29 @@ Configuration variables:
   Must be smaller than or equal to ``send_every``
   Defaults to ``1``.
 
+``skip``
+**********
+
+A simple skip filter, which skips the first **send_first_at** sensor readings and passes on the
+rest. This can be used when the sensor needs a few readings to 'warm up'. After the initial
+readings have been skipped, this filter does nothing.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: wifi_signal
+      # ...
+      filters:
+        - skip:
+            send_first_at: 3
+
+Configuration variables:
+
+- **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
+  published. With this parameter you can specify when the very first value is to be sent.
+  Must be smaller than or equal to ``send_every``
+  Defaults to ``1``.
+
 ``min``
 *******
 
@@ -650,7 +673,7 @@ From :ref:`lambdas <config-lambda>`, you can call several methods on all sensors
 advanced stuff (see the full API Reference for more info).
 
 - ``publish_state()``: Manually cause the sensor to push out a value. It will then
-  be processed by the sensor filters, and once filtered will propagate though ESPHome and though the API to Home Assistant or out via MQTT if configured. 
+  be processed by the sensor filters, and once filtered will propagate though ESPHome and though the API to Home Assistant or out via MQTT if configured.
 
   .. code-block:: cpp
 
