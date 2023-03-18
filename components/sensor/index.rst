@@ -493,6 +493,14 @@ the result of the lambda is used as the output (use ``return``).
 Make sure to add ``.0`` to all values in the lambda, otherwise divisions of integers will
 result in integers (not floating point values).
 
+To prevent values from being published, return ``{}``:
+
+.. code-block:: yaml
+
+    filters:
+      - lambda: "return (x > 10) ? x-10 : {};"
+
+
 Example: Converting Celsius to Fahrenheit
 -----------------------------------------
 
