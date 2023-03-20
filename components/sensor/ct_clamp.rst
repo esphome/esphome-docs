@@ -9,7 +9,7 @@ The Current Transformer Clamp (``ct_clamp``) sensor allows you to hook up a CT C
 voltage sensor (like the :doc:`ADC sensor <adc>`) and convert the readings to measured single phase AC current.
 
 First, you need to set up a voltage sensor source (:doc:`ADC sensor <adc>`, but for example also
-:doc:`ADS1115 <ads1115>`) and pass it to the CT clamp sensor with the ``sensor`` option.
+:doc:`ADS1115 <ads1115>`) and pass it to the CT clamp sensor with the ``sensor`` option. (Also works with ZMPT101B)
 
 Please also see `this guide <https://learn.openenergymonitor.org/electricity-monitoring/ct-sensors/introduction>`__
 as an introduction to the working principle of CT clamp sensors and how to hook them up to your device.
