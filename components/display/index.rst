@@ -672,6 +672,7 @@ Configuration variables:
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
   - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``RGBA``: Full RGB color stored. Uses 4 bytes per pixel. Any pixel that is fully transparent will not be drawn.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
   - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
   - ``TRANSPARENT_BINARY``: One color, any pixel that is fully transparent will not be drawn, and any other pixel
