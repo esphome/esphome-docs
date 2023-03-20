@@ -1,5 +1,5 @@
-ADS1115 Sensor 4-Channel 16-Bit A/D Converter
-=============================================
+ADS1115 4-Channel 16-Bit A/D Converter
+======================================
 
 .. seo::
     :description: Instructions for setting up ADS1115/ADS1015 multiplexed analog voltage sensors.
