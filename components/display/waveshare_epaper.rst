@@ -97,6 +97,7 @@ Configuration variables:
   - ``7.50inV2`` - Can't use with an ESP8266 as it runs out of RAM
   - ``7.50inV2alt`` (alternative version to the above ``7.50inV2``)
   - ``7.50in-hd-b`` - Can't use with an ESP8266 as it runs out of RAM
+  - ``gdey029t94`` - GooDisplay GDEY029T94, as used on the AdaFruit MagTag
 
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
