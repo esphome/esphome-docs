@@ -48,6 +48,7 @@ Configuration variables:
   - **rc5**: Decode and dump RC5 IR codes.
   - **rc6**: Decode and dump RC6 IR codes.
   - **rc_switch**: Decode and dump RCSwitch RF codes.
+  - **roomba**: Decode and dump Roomba infrared codes.
   - **samsung**: Decode and dump Samsung infrared codes.
   - **samsung36**: Decode and dump Samsung36 infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
@@ -131,6 +132,9 @@ Automations:
   is passed to the automation for use in lambdas.
 - **on_rc_switch** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   RCSwitch RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RCSwitchData`
+  is passed to the automation for use in lambdas.
+- **on_roomba** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Roomba remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RoombaData`
   is passed to the automation for use in lambdas.
 - **on_samsung** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Samsung remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::SamsungData`
@@ -332,6 +336,10 @@ Remote code selection (exactly one of these has to be included):
   - **device** (**Required**, int): The device. Range is 1 to 3.
   - **state** (**Required**, boolean): The on/off state to trigger on.
   - **protocol** (*Optional*): The RC Switch protocol to use, see :ref:`remote_transmitter-rc_switch-protocol` for more info.
+
+- **roomba**: Trigger on a decoded Roomba remote code with the given data.
+
+  - **data** (**Required**, int): The Roomba code to trigger on, see dumper output for more info.
 
 - **samsung**: Trigger on a decoded Samsung remote code with the given data.
 
