@@ -31,6 +31,8 @@ Configuration variables:
   Set to ``all`` to dump all available codecs:
 
   - **aeha**: Decode and dump AEHA infrared codes.
+  - **canalsat**: Decode and dump CanalSat infrared codes.
+  - **canalsatld**: Decode and dump CanalSatLD infrared codes.
   - **coolix**: Decode and dump Coolix infrared codes.
   - **dish**: Decode and dump Dish infrared codes.
   - **jvc**: Decode and dump JVC infrared codes.
@@ -64,10 +66,18 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this if you have
   multiple remote receivers.
 
+
 Automations:
+------------
 
 - **on_aeha** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   AEHA remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::AEHAData`
+  is passed to the automation for use in lambdas.
+- **on_canalsat** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  CanalSat remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::CanalSatData`
+  is passed to the automation for use in lambdas.
+- **on_canalsatld** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  CanalSatLD remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::CanalSatLDData`
   is passed to the automation for use in lambdas.
 - **on_coolix** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Coolix remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::CoolixData`
@@ -135,6 +145,21 @@ Automations:
   Toshiba AC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ToshibaAcData`
   is passed to the automation for use in lambdas.
 
+.. code-block:: yaml
+
+    # Example automation for decoded signals
+    remote_receiver:
+      ...
+      on_samsung:
+        then:
+        - if:
+            condition:
+              or:
+                - lambda: 'return (x.data == 0xE0E0E01F);'  # VOL+ newer type
+                - lambda: 'return (x.data == 0xE0E0E01F0);' # VOL+ older type
+            then:
+              - ...
+
 .. _remote-receiver-binary-sensor:
 
 Binary Sensor
@@ -173,6 +198,28 @@ Remote code selection (exactly one of these has to be included):
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
   - **data** (**Required**, 3-35 bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_aeha`
     for more info. Usually you only need to copy this directly from the dumper output.
+
+- **canalsat**: Trigger on a decoded CanalSat remote code with the given data.
+
+  .. note::
+
+      The CanalSat and CanalSatLD protocols use a higher carrier frequency (56khz) and are very similar.
+      Depending on the hardware used they may interfere with each other when enabled simultaneously.
+
+  - **device** (**Required**, int): The device to trigger on, see dumper output for more info.
+  - **address** (**Optional**, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
+  - **command** (**Required**, int): The command to listen for.
+
+- **canalsatld**: Trigger on a decoded CanalSatLD remote code with the given data.
+
+  .. note::
+
+      The CanalSat and CanalSatLD protocols use a higher carrier frequency (56khz) and are very similar.
+      Depending on the hardware used they may interfere with each other when enabled simultaneously.
+
+  - **device** (**Required**, int): The device to trigger on, see dumper output for more info.
+  - **address** (**Optional**, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
+  - **command** (**Required**, int): The command to listen for.
 
 - **coolix**: Trigger on a decoded Coolix remote code with the given data.
 

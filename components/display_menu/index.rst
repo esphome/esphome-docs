@@ -79,15 +79,17 @@ Configuration variables:
 - **root_item_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the root menu item.
 - **active** (*Optional*, boolean): Whether the menu should start as active, meaning accepting
   user interactions and displaying output. Defaults to ``true``.
-- **mode** (*Optional*, string): Defines the navigation logic. The ``rotary`` mode expects
-  the clockwise movement wired to :ref:`display_menu.down <display_menu-down_action>`,
-  the anticlockwise one to :ref:`display_menu.up <display_menu-up_action>` and the switch
-  to :ref:`display_menu.enter <display_menu-enter_action>` action. The ``joystick`` mode
-  expects the up, down, left and right buttons wired to the :ref:`display_menu.up <display_menu-up_action>`,
-  :ref:`display_menu.down <display_menu-down_action>`, :ref:`display_menu.left <display_menu-left_action>`
-  and :ref:`display_menu.right <display_menu-right_action>` actions and the middle button
-  to the :ref:`display_menu.enter <display_menu-enter_action>` action. Defaults to ``rotary``.
-- **menu** (**Required**): The first level of the menu.
+- **mode** (*Optional*, enum): Defines the navigation logic. Defaults to ``rotary``.
+
+    - ``rotary``: Rotary mode expects the clockwise movement wired to :ref:`display_menu.down <display_menu-down_action>`,
+      the anticlockwise one to :ref:`display_menu.up <display_menu-up_action>` and the switch
+      to :ref:`display_menu.enter <display_menu-enter_action>` action.
+    - ``joystick``: Joystick mode expects the up, down, left and right buttons wired to the :ref:`display_menu.up <display_menu-up_action>`,
+      :ref:`display_menu.down <display_menu-down_action>`, :ref:`display_menu.left <display_menu-left_action>`
+      and :ref:`display_menu.right <display_menu-right_action>` actions and the middle button
+      to the :ref:`display_menu.enter <display_menu-enter_action>` action.
+
+- **items** (**Required**): The first level of the menu.
 
 Automations:
 
@@ -100,7 +102,7 @@ Automations:
 Menu Items
 ----------
 
-The component manages a hierarchy of menu items. The common configuration variables are: 
+The component manages a hierarchy of menu items. The common configuration variables are:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **type** (**Required**, string): The type of the menu item (see below).
@@ -172,7 +174,7 @@ is clicked the display shows the new menu level.
 
 Configuration variables:
 
-- **menu** (**Required**): Defines the child menu items.
+- **items** (**Required**): Defines the child menu items.
 
 Automations:
 
@@ -383,7 +385,7 @@ Command
         text: 'Hide'
         on_value:
           then:
-            - display_menu.hide:  
+            - display_menu.hide:
 
 The menu item of the type ``command`` allows triggering commands. There is no
 additional configuration.
@@ -452,7 +454,7 @@ This automation will be triggered when the menu level is entered, i.e. the compo
 draws its items on the display. The ``it`` parameter points to a ``MenuItem`` class
 with the information of the menu item describing the displayed child items.
 If present at the top level it is an internally generated root menu item,
-otherwise an user defined one. 
+otherwise an user defined one.
 
 
 .. code-block:: yaml

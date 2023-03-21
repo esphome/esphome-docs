@@ -8,13 +8,13 @@ Atlas Scientific Peristaltic Pump
 
 The ``ezo_pmp`` component allows you to use an Atlas Scientific Peristaltic Pump with ESPHome.
 Both the EZO-PMP (`datasheet <https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf>`__)
-and EZO-PMP-L (`datasheet <https://files.atlas-scientific.com/EZO_PMP_L_Datasheet.pdf>`__) are supported. 
+and EZO-PMP-L (`datasheet <https://files.atlas-scientific.com/EZO_PMP_L_Datasheet.pdf>`__) are supported.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. note::
 
     This component will not be directly controllable in the Home Assistant front-end automatically because
-    Home Assistant doesn't have support for pumps. In order to control the pump from the frontend you will need to use 
+    Home Assistant doesn't have support for pumps. In order to control the pump from the frontend you will need to use
     templates to offer access to the actions you need. Please see :ref:`ezo-pmp-ha-config`.
 
 .. figure:: images/ezo-pmp.jpg
@@ -35,7 +35,7 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
-Sensors 
+Sensors
 -----------------------------
 
 Since the EZO-PMP offers a large number of sensors and each sensor needs to be polled individually, the code has been
@@ -88,7 +88,7 @@ Configuration variables:
 ``absolute_total_volume_dosed``
 -------------------------------
 
-This sensor indicates the absolute total volume (in milliliters) that has been dosed since the last time the pump was turned on. 
+This sensor indicates the absolute total volume (in milliliters) that has been dosed since the last time the pump was turned on.
 
 .. code-block:: yaml
 
@@ -130,7 +130,7 @@ Configuration variables:
 -----------------------------
 
 The pump provides its own calculation of the maximum flow rate it can provide (in ml/minute). Dosing requests that exceed this rate
-will fail. When using the :ref:`Dose Continuously <ezo_pmp-dose_continuously_action>` Action, this is the volume the pump will 
+will fail. When using the :ref:`Dose Continuously <ezo_pmp-dose_continuously_action>` Action, this is the volume the pump will
 dose every minute. This value will get updated after the pump is calibrated (see :ref:`ezo_pmp-set_calibration_volume_action`).
 
 .. code-block:: yaml
@@ -166,7 +166,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>`.
 
-Binary Sensors 
+Binary Sensors
 -----------------------------
 
 .. _ezo_pmp-pump_state_binary_sensor:
@@ -174,7 +174,7 @@ Binary Sensors
 ``pump_state``
 -----------------------------
 
-Indicates if the pump is currently running or not. 
+Indicates if the pump is currently running or not.
 
 .. code-block:: yaml
 
@@ -253,7 +253,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
-Actions 
+Actions
 -----------------------------
 
 .. _ezo_pmp-dose_continuously_action:
@@ -309,8 +309,8 @@ Configuration options:
 ``ezo_pmp.dose_volume_over_time`` Action
 ----------------------------------------
 
-Use this action in an :ref:`automations <automation>` to have the peristaltic pump dose an specific `volume` (in milliliters)
-over the provided `duration` (in minutes). At the end of the time period the pump will have dosed the specified `volume`.
+Use this action in an :ref:`automations <automation>` to have the peristaltic pump dose an specific ``volume`` (in milliliters)
+over the provided ``duration`` (in minutes). At the end of the time period the pump will have dosed the specified ``volume``.
 If the volume is negative the pump will run backwards.
 
 .. code-block:: yaml
@@ -319,7 +319,7 @@ If the volume is negative the pump will run backwards.
       then:
       - ezo_pmp.dose_volume_over_time:
           id: ezo_pmp
-          volume: 23.4  
+          volume: 23.4
           duration: 2
 
       # Templated
@@ -342,8 +342,8 @@ Configuration options:
 ``ezo_pmp.dose_with_constant_flow_rate`` Action
 -----------------------------------------------
 
-Use this action in an :ref:`automations <automation>` to have the peristaltic pump dose an specific `volume` (in milliliters) every minute
-for the provided `duration` (in minutes). At the end of the time period the pump will have dosed the specified `volume` times the `duration`.
+Use this action in an :ref:`automations <automation>` to have the peristaltic pump dose an specific ``volume`` (in milliliters) every minute
+for the provided ``duration`` (in minutes). At the end of the time period the pump will have dosed the specified ``volume`` times the ``duration``.
 If the volume is negative the pump will run backwards.
 
 .. code-block:: yaml
@@ -496,7 +496,7 @@ Configuration options:
 ``ezo_pmp.change_i2c_address`` Action
 -------------------------------------------
 
-Changes the i2c address of the pump to the provided value. After the address is changed you must upload a new version of the ESPHome firmware with the updated I2C 
+Changes the i2c address of the pump to the provided value. After the address is changed you must upload a new version of the ESPHome firmware with the updated I2C
 address for the pump to work.
 
 .. code-block:: yaml
@@ -517,8 +517,8 @@ Configuration options:
 Home Assistant Configuration
 ----------------------------
 
-In order to provide control of the pump from the home assistant frontend it is important to expose the actions 
-as components that have UI rendering. This could be done using templates in ESPHome. Here is an example using a 
+In order to provide control of the pump from the home assistant frontend it is important to expose the actions
+as components that have UI rendering. This could be done using templates in ESPHome. Here is an example using a
 `Template Button` and `Template Number` to dose a certain volume over time.
 
 .. code-block:: yaml
@@ -561,7 +561,7 @@ lambda calls
 ------------
 
 From :ref:`lambdas <config-lambda>`, you can also access the actions on the peristaltic pump to do some
-advanced stuff (see the full API Reference for more info). The name of the functions is the same as the name 
+advanced stuff (see the full API Reference for more info). The name of the functions is the same as the name
 of the actions in YAML config.
 
 See Also

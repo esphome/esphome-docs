@@ -10,7 +10,7 @@ BP1658CJ LED driver
 Component/Hub
 -------------
 
-The BP1658CJ component represents a BP1658CJ LED diver chain in
+The BP1658CJ component represents a BP1658CJ LED driver chain in
 ESPHome. Communication is done with two GPIO pins (DATA and CLK).
 
 To use the channels of this components, you first need to setup the
