@@ -39,6 +39,14 @@ SN74HC165
 
 The pin/bit order has been reversed per shift register so that ``pin 0`` is now ``input A``.
 
+
+Release 2023.3.1 - March 22
+---------------------------
+
+- climate: brown paper bag fix for on_configure :esphomepr:`4573` by :ghuser:`nwf`
+- rp2040: Use fake Mutex lock :esphomepr:`4602` by :ghuser:`jesserockz`
+
+
 Full list of changes
 --------------------
 
