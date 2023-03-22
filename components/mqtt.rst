@@ -149,7 +149,6 @@ discovery in your Home Assistant configuration with the following:
     # Example Home Assistant configuration.yaml entry
     mqtt:
       broker: ...
-      discovery: true
 
 And that should already be it 🎉 All devices defined through ESPHome should show up automatically
 in the entities section of Home Assistant.
@@ -172,7 +171,7 @@ With Docker:
 
 .. code-block:: bash
 
-    docker run --rm -v "${PWD}":/config -it esphome/esphome clean-mqtt configuration.yaml
+    docker run --rm -v "${PWD}":/config -it ghcr.io/esphome/esphome clean-mqtt configuration.yaml
 
 This will remove all retained messages with the topic
 ``<DISCOVERY_PREFIX>/+/NODE_NAME/#``. If you want to purge on another
@@ -308,7 +307,6 @@ Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 
     mqtt:
       broker: test.mymqtt.local
       port: 8883
-      discovery: true
       discovery_prefix: ${mqtt_prefix}/homeassistant
       log_topic: ${mqtt_prefix}/logs
       # Evaluate carefully skip_cert_cn_check
@@ -353,7 +351,6 @@ MQTT can have some overrides for specific options.
     name: "Component Name"
     # Optional variables:
     retain: true
-    discovery: true
     availability:
       topic: livingroom/status
       payload_available: online
