@@ -403,4 +403,6 @@ See Also
 
 - :apiref:`rf_bridge/rf_bridge.h`
 - :doc:`/components/uart`
+- :doc:`/components/remote_receiver`
+- :doc:`/components/remote_transmitter`
 - :ghedit:`Edit`
