@@ -53,10 +53,12 @@ Configuration variables:
   time is completed and if the cover is commanded to open or close the corresponding actions
   will be performed without checking current state. Defaults to ``false``.
 - **manual_control** (*Optional*, boolean): If your cover has a manual control switch, it's not 
-  possible for the system to be sure of its current position. Thus, the cover state is unsure. 
-  So whenever the cover is commanded to open or close, the command will be performed completely 
-  (including any defined ``stop_action``) and the current state will be relearned from this. 
-  Defaults to ``false``. 
+  possible for the system to be sure of its current position. If the cover is commanded to open 
+  or close, the command will be performed completely (including any defined ``stop_action``) 
+  without checking the current state.
+  The current state will then be relearned upon completion.
+  It's recommended to  set ``assumed_state`` to true so the cover control button aren't disabled 
+  in the interface. Defaults to ``false``. 
 - **assumed_state** (*Optional*, boolean): Whether the true state of the cover is not known.
   This will make the Home Assistant frontend show buttons for both OPEN and CLOSE actions, instead
   of hiding or disabling one of them. Defaults to ``true``.
