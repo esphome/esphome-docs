@@ -44,7 +44,7 @@ Configuration variables:
   - **panasonic**: Decode and dump Panasonic infrared codes.
   - **pioneer**: Decode and dump Pioneer infrared codes.
   - **pronto**: Print remote code in Pronto form. Useful for using arbitrary protocols.
-  - **raw**: Print all remote codes in their raw form. Also useful for using arbitrary protocols.
+  - **raw**: Print all remote codes in their raw form (A sequence of pulse durations in microseconds, positive for on-pulses and negative for off-pulses). Also useful for using arbitrary protocols.
   - **rc5**: Decode and dump RC5 IR codes.
   - **rc6**: Decode and dump RC6 IR codes.
   - **rc_switch**: Decode and dump RCSwitch RF codes.
