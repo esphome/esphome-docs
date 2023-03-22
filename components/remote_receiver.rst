@@ -68,8 +68,8 @@ Configuration variables:
 
 .. note::
 
-       The dumped **raw** code is sequence of pulse widths (durations in microseconds), positive for on-pulses (mark)
-       and negative for off-pulses (space). Usually you can to copy this directly to the configuration or automation to be used later.
+    The dumped **raw** code is sequence of pulse widths (durations in microseconds), positive for on-pulses (mark)
+    and negative for off-pulses (space). Usually you can to copy this directly to the configuration or automation to be used later.
 
 
 Automations:
@@ -366,7 +366,7 @@ Remote code selection (exactly one of these has to be included):
 
 .. note::
 
-    For the :doc:`/components/rf_bridge`, you can bypass the EFM8BB1 microcontroller handling RF signals with
+    For the Sonoff RF Bridge, you can bypass the EFM8BB1 microcontroller handling RF signals with
     `this hack <https://github.com/xoseperez/espurna/wiki/Hardware-Itead-Sonoff-RF-Bridge---Direct-Hack>`__
     created by the GitHub user wildwiz. Then use this configuration for the remote receiver/transmitter hubs:
 
