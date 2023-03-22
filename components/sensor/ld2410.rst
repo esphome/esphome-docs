@@ -25,7 +25,7 @@ Use of hardware UART pins is highly recommended, in order to support the out-of-
 
     # Example configuration entry
     uart:
-      id: uart1
+      id: ld2410_uart
       tx_pin: REPLACE ME
       rx_pin: REPLACE ME
       baud_rate: 256000
@@ -33,7 +33,7 @@ Use of hardware UART pins is highly recommended, in order to support the out-of-
       stop_bits: 1
 
     ld2410:
-      uart_id: uart1
+      uart_id: ld2410_uart
       throttle: 1500ms
 
 .. note::
