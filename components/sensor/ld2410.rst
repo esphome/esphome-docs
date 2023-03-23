@@ -65,8 +65,8 @@ measurements.
           name: Moving Target
         has_still_target:
           name: Still Target
-        out_pin_presence:
-          name: out pin presence
+        out_pin_presence_status:
+          name: out pin presence status
 
 Configuration variables:
 ************************
@@ -77,8 +77,8 @@ Configuration variables:
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
 - **has_still_target** (*Optional*): If true a still target is detected.
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
-- **out_pin_presence** (*Optional*): When in :ref:`engineering mode<ld2410-engineering-mode>`, indicates whether the OUT pin indicates presence or not, otherwise ``false``.
-  OUT pin indication depends on the :ref:`light function<ld2410-light-function>` configuration.
+- **out_pin_presence_status** (*Optional*): When in :ref:`engineering mode<ld2410-engineering-mode>`, indicates whether the OUT pin indicates presence or not, otherwise ``false``.
+  OUT pin indication depends on the :ref:`light function<ld2410-light-function>` configuration. Might need latest firmware to work.
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Sensor
@@ -146,7 +146,7 @@ Configuration variables:
 ************************
 
 - **light** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, indicates the light sensitivity, otherwise ``unknown``.
-  Value between ``0`` and ``255`` inclusive.
+  Value between ``0`` and ``255`` inclusive. Thought it seems that the value ``85`` is the lowest value at complete darkness.
   Notice that this sensor is not very reliable. A more suitable alternative will be :ref:`BH1750<BH1750>`.
   All options from :ref:`Sensor <config-sensor>`.
 - **moving_distance** (*Optional*, int): Distance in cm of detected moving target.
@@ -587,7 +587,7 @@ First add the templates using the ``raw configuration editor``:
                         entity: '[[light_sensor]]'
                         name: light
                       - type: entity
-                        entity: '[[out_pin_presence_binary_sensor]]'
+                        entity: '[[out_pin_presence_status_binary_sensor]]'
                         name: out pin presence
                         state_color: true
                   - type: custom:decluttering-card
@@ -686,7 +686,7 @@ Then create a custom card and fill all of the entities:
       - light_function_select: select.bathroom_presence_light_function
       - light_threshold_number: number.bathroom_presence_light_threshold
       - gpio_out_pin_presence_binary_sensor: binary_sensor.bathroom_presence_gpio_out_pin_presence
-      - out_pin_presence_binary_sensor: binary_sensor.bathroom_presence_out_pin_presence
+      - out_pin_presence_status_binary_sensor: binary_sensor.bathroom_presence_out_pin_presence_status
       - light_sensor: sensor.bathroom_presence_light
       - g0_move_energy_sensor: sensor.bathroom_presence_g0_move_energy
       - g0_move_threshold_number: number.bathroom_presence_g0_move_threshold
