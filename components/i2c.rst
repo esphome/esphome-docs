@@ -37,6 +37,8 @@ Configuration variables:
   Defaults to ``true``.
 - **frequency** (*Optional*, float): Set the frequency the I²C bus should operate on.
   Defaults to ``50kHz``. Values are ``10kHz``, ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
+- **timeout** (*Optional*, int): Set the I²C bus timeout.
+  Defaults to ``100us``
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this I²C bus if you need multiple I²C buses.
 
 .. note::
