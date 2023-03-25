@@ -3,13 +3,10 @@ PCA9554 I/O Expander
 
 .. seo::
     :description: Instructions for setting up PCA9554, PCA9554A, PCA9536 digital port expanders in ESPHome.
-    :image: pca9554a.jpg
+    :image: ../images/pca9554a.jpg
 
 
-The PCA9554 component allows you to use **PCA9554**, **PCA9554A** or **PCA9536** I/O expanders
-(`PCA9554 datasheet <https://www.ti.com/lit/ds/symlink/pca9554.pdf>`__, 
-`PCA9554A datasheet <https://www.ti.com/lit/ds/symlink/pca9554a.pdf>`__, 
-`PCA9536 datasheet <https://www.ti.com/lit/ds/symlink/pca9536.pdf>`__) in ESPHome. 
+The PCA9554 component allows you to use **PCA9554**, **PCA9554A** or **PCA9536** I/O expanders in ESPHome. 
 It uses :ref:`I²C Bus <i2c>` for communication.
 
 .. figure:: ../images/pca9554a.jpg
@@ -31,7 +28,7 @@ binary sensor or GPIO switch.
     - PCA9536: ``0x41``
 
     For the PCA9554 and PCA9554A, the actual choice of the I²C device address depends on state of the 3 address pins.
-    Please refer to the individual datasheets for further details to choose the address.
+    Please refer to the individual datasheets linked at the bottom of the page for further details to set the address.
 
     Up to eight PCA9554 and an additional eight PCA9554A devices can reside on the same I²C bus. 
     Please note that only one PCA9536 device is allowed per I²C bus due to its fixed address.
@@ -89,5 +86,8 @@ See Also
 - :ref:`i2c`
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
+- `PCA9554 datasheet <https://www.ti.com/lit/ds/symlink/pca9554.pdf>`__ 
+- `PCA9554A datasheet <https://www.ti.com/lit/ds/symlink/pca9554a.pdf>`__ 
+- `PCA9536 datasheet <https://www.ti.com/lit/ds/symlink/pca9536.pdf>`__
 - :apiref:`pca9554/pca9554.h`
 - :ghedit:`Edit`
