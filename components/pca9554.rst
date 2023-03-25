@@ -1,37 +1,47 @@
 PCA9554 I/O Expander
 ====================
 
-The PCA9554 component allows you to use PCA9554, PCA9554A or PCA9536 I/O expanders
+.. seo::
+    :description: Instructions for setting up PCA9554, PCA9554A, PCA9536 digital port expanders in ESPHome.
+    :image: pca9554a.jpg
+
+
+The PCA9554 component allows you to use **PCA9554**, **PCA9554A** or **PCA9536** I/O expanders
 (`PCA9554 datasheet <https://www.ti.com/lit/ds/symlink/pca9554.pdf>`__, 
 `PCA9554A datasheet <https://www.ti.com/lit/ds/symlink/pca9554a.pdf>`__, 
 `PCA9536 datasheet <https://www.ti.com/lit/ds/symlink/pca9536.pdf>`__) in ESPHome. 
 It uses :ref:`I²C Bus <i2c>` for communication.
 
-Once configured, you can use any of the 8 pins (PCA9554, PCA9554A) or 4 pins (PCA9536) as
+.. figure:: images/pca9554a.jpg
+    :align: center
+
+    PCA9554A I/O Expander chip
+
+Once configured, you can use any of the **8** pins (PCA9554, PCA9554A) or **4** pins (PCA9536) as
 pins for your projects. Within ESPHome they emulate a real internal GPIO pin
 and can therefore be used with many of ESPHome's components such as the GPIO
 binary sensor or GPIO switch.
 
-The 7 bit I2C device address ranges are:
+.. note::
 
-PCA9554   : 0x20 to 0x27
+    The 7 bit I²C device address ranges are:
 
-PCA9554A  : 0x38 to 0x3F
+    - PCA9554: ``0x20`` to ``0x27``
+    - PCA9554A: ``0x38`` to ``0x3F``
+    - PCA9536: ``0x41``
 
-PCA9536   : 0x41
+    For the PCA9554 and PCA9554A, the actual choice of the I²C device address depends on state of the 3 address pins.
+    Please refer to the individual datasheets for further details to choose the address.
 
-For the PCA9554 and PCA9554A, the actual choice of the I2C device address depends on state of the 3 address pins.
-Please refer to the individual datasheets for further details.
+    Up to eight PCA9554 and an additional eight PCA9554A devices can reside on the same I²C bus. 
+    Please note that only one PCA9536 device is allowed per I²C bus due to its fixed address.
 
-Up to eight PCA9554 and an additional eight PCA9554A devices can reside on the same I2C bus. 
-Please note that only one PCA9536 device is allowed per I2C bus due to its fixed address.
+    The PCA9554 and PCA9554A provide 8 bits of GPIO's (pin numbers 0-7).
+    
+    The PCA9536 provides 4 bits of GPIO's (pin numbers 0-3).
 
-The PCA9554 and PCA9554A provide 8 bits of GPIO's (pin numbers 0-7)
-The PCA9536 provides 4 bits of GPIO's (pin numbers 0-3).
-
-Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically be used, but some more
-complicated components that do communication through this I/O expander will
-not work.
+    Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically be used, but some more
+    complicated components that do communication through this I/O expander will not work.
 
 .. code-block:: yaml
 
@@ -40,7 +50,6 @@ not work.
       - id: 'pca9554a_device'
         address: 0x38
       
-
     # Individual outputs
     switch:
       - platform: gpio
@@ -54,10 +63,11 @@ not work.
             output: true
           inverted: false
 
+
 Configuration variables:
 ************************
 
-- **id** (**Required**, :ref:`config-id`): The id to use for this PCF9554 component.
+- **id** (**Required**, :ref:`config-id`): The id to use for this ``pca9554`` component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x20``.
 
@@ -66,7 +76,7 @@ Configuration variables:
 Pin configuration variables:
 ****************************
 
-- **pca9554** (**Required**, :ref:`config-id`): The id of the PCA9554 component of the pin.
+- **pca9554** (**Required**, :ref:`config-id`): The id of the ``pca9554`` component of the pin.
 - **number** (**Required**, int): The pin number.
 - **inverted** (*Optional*, boolean): If all read and written values
   should be treated as inverted. Defaults to ``false``.
