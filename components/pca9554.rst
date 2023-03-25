@@ -12,7 +12,7 @@ The PCA9554 component allows you to use **PCA9554**, **PCA9554A** or **PCA9536**
 `PCA9536 datasheet <https://www.ti.com/lit/ds/symlink/pca9536.pdf>`__) in ESPHome. 
 It uses :ref:`I²C Bus <i2c>` for communication.
 
-.. figure:: images/pca9554a.jpg
+.. figure:: ../images/pca9554a.jpg
     :align: center
 
     PCA9554A I/O Expander chip
