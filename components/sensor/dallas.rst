@@ -168,7 +168,7 @@ Use this if you have multiple dallas hubs:
         
       - platform: dallas
         dallas_id: dallas_hub_2
-        address: 0xDD0000031EFB0428
+        address: 0xDD0000031EFB0438
         name: "Temperature #3"
       - platform: dallas
         # ...
