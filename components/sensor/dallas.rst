@@ -145,6 +145,35 @@ You will see the outputted sensor values changing when they're being warmed.
 When you're finished mapping each address to a name, just change the ``Temperature #1``
 to your assigned names and you should be ready.
 
+Multiple dallas hubs
+--------
+Use this if you have multiple dallas hubs:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    dallas:
+      - pin: GPIO23
+      - pin: GPIO24
+
+    sensor:
+      - platform: dallas
+        dallas_id: dallas_hub_1
+        address: 0xA40000031F055028
+        name: "Temperature #1"
+      - platform: dallas
+        dallas_id: dallas_hub_1
+        address: 0xDD0000031EFB0428
+        name: "Temperature #2"
+        
+      - platform: dallas
+        dallas_id: dallas_hub_2
+        address: 0xDD0000031EFB0428
+        name: "Temperature #3"
+      - platform: dallas
+        # ...
+
+
 See Also
 --------
 
