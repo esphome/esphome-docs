@@ -146,7 +146,7 @@ When you're finished mapping each address to a name, just change the ``Temperatu
 to your assigned names and you should be ready.
 
 Multiple dallas hubs
-******************
+********************
 
 Use this if you have multiple dallas hubs:
 
