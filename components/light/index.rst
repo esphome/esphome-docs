@@ -203,6 +203,13 @@ them to zero.
         // perform action:
         call.perform();
 
+    Shorter example using auto call , call.set_brightness and call.perform.
+
+    .. code-block:: cpp
+
+        id(light_1).turn_on().set_brightness(1.0).perform();
+
+
 .. note::
 
     The ``red``, ``green`` and ``blue`` values only control the color of the light, not its
@@ -551,7 +558,7 @@ Configuration variables:
   - **green** (*Optional*, percentage): The green channel of the light, if applicable. Defaults to ``100%``.
   - **blue** (*Optional*, percentage): The blue channel of the light, if applicable. Defaults to ``100%``.
   - **white** (*Optional*, percentage): The white channel of the light, if applicable. Defaults to ``100%``.
-  - **color_temperature** (*Optional*, percentage): The color temperature of the light, if applicable. Defaults to ``100%``.
+  - **color_temperature** (*Optional*, float): The color temperature (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the light, if applicable.
   - **cold_white** (*Optional*, percentage): The cold white channel of the light, if applicable. Defaults to ``100%``.
   - **warm_white** (*Optional*, percentage): The warm white channel of the light, if applicable. Defaults to ``100%``.
   - **duration** (**Required**, :ref:`config-time`): The duration this color should be active.

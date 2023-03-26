@@ -57,7 +57,7 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **active_power_a** (*Optional*): Use the power value of the A channel in watts. All options from
   :ref:`Sensor <config-sensor>`.
-- **active_power_b** (*Optional*): Use the power value of the A channel in watts. All options from
+- **active_power_b** (*Optional*): Use the power value of the B channel in watts. All options from
   :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 

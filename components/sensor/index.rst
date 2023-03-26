@@ -349,7 +349,7 @@ Configuration variables:
   when pushing out a value.
   Defaults to ``5``.
 - **send_every** (*Optional*, int): How often a sensor value should be pushed out. For
-  example, in above configuration the min is calculated after every 4th
+  example, in above configuration the max is calculated after every 4th
   received sensor value, over the last 7 received values.
   Defaults to ``5``.
 - **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
@@ -392,7 +392,7 @@ Configuration variables:
 ******************************
 
 A simple `exponential moving average
-<https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average>`__ over the last few
+<https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/quantile.htm>`__ over the last few
 values. It can be used to have a short update interval on the sensor but only push
 out an average on a specific interval (thus increasing resolution).
 
@@ -405,6 +405,21 @@ Configuration variables:
 - **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
   published. With this parameter you can specify when the very first value is to be sent.
   Defaults to ``1``.
+
+``skip_initial``
+****************
+
+A simple skip filter; `skip_initial: N` skips the first `N` sensor readings and passes on the
+rest. This can be used when the sensor needs a few readings to 'warm up'. After the initial
+readings have been skipped, this filter does nothing.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: wifi_signal
+      # ...
+      filters:
+        - skip_initial: 3
 
 ``throttle``
 ************
@@ -433,7 +448,7 @@ An average over the ``specified time period``, potentially throttling incoming v
 
 For example a ``throttle_average: 60s`` will push out a value every 60 seconds, in case at least one sensor value is received within these 60 seconds.
 
-In comparison to the ``throttle`` filter it won't discard any values. In comparison to the ``sliding_window_moving_average`` filter it supports variable sensor reporting rates without influencing the filter reporting interval (except for the first edge case).
+In comparison to the ``throttle`` filter, it won't discard any values. In comparison to the ``sliding_window_moving_average`` filter, it supports variable sensor reporting rates without influencing the filter reporting interval (except for the first edge case).
 
 ``heartbeat``
 *************
@@ -456,11 +471,28 @@ values.
 ``delta``
 *********
 
-This filter stores the last value passed through this filter and only
-passes incoming values through if the absolute difference is greater than the configured
-value. For example if a value of 1.0 first comes in, it's passed on. If the delta filter
-is configured with a value of 5, it will now not pass on an incoming value of 2.0, only values
-that are at least 6.0 big or -4.0.
+This filter stores the last value passed through this filter and only passes incoming values through
+if incoming value is sufficiently different from the previously passed one.
+This difference can be calculated in two ways an absolute difference or a percentage difference.
+
+If a number is specified, it will be used as the absolute difference required.
+For example if the filter were configured with a value of 2 and the last value passed through was 10,
+only values greater than 12 or less than 8 would be passed through.
+
+.. code-block:: yaml
+
+    filters:
+      - delta: 2.0
+
+If a percentage is specified a percentage of the last value will be used as the required difference.
+For example if the filter were configured with a value of 20% and the last value passed through was 10,
+only values greater than 12 or less than 8 would be passed through.
+However, if the last value passed through was 100 only values greater than 120 or less than 80 would be passed through.
+
+.. code-block:: yaml
+
+    filters:
+      - delta: 20%
 
 ``or``
 ******
@@ -633,7 +665,7 @@ From :ref:`lambdas <config-lambda>`, you can call several methods on all sensors
 advanced stuff (see the full API Reference for more info).
 
 - ``publish_state()``: Manually cause the sensor to push out a value. It will then
-  be processed by the sensor filters, and once done be published to MQTT.
+  be processed by the sensor filters, and once filtered will propagate though ESPHome and though the API to Home Assistant or out via MQTT if configured.
 
   .. code-block:: cpp
 
@@ -648,7 +680,7 @@ advanced stuff (see the full API Reference for more info).
       // For example, create a custom log message when a value is received:
       ESP_LOGI("main", "Value of my sensor: %f", id(my_sensor).state);
 
-- ``raw_state``: Retrieve the current value of the sensor that has not passed through any filters
+- ``raw_state``: Retrieve the current value of the sensor that has not passed through any filters.
   Is ``NAN`` if no value has been pushed by the sensor itself yet.
 
   .. code-block:: cpp
