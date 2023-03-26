@@ -1,23 +1,27 @@
-Kamstrup MULTICAL 40x
-=====================
+Kamstrup Meter Protocol [KMP]
+=============================
 
-.. figure:: images/kamstrup_mc40x.jpg
+.. figure:: images/kamstrup_kmp.jpg
     :scale: 75%
 
-    Kamstrup MULTICAL 403 heat meter
+    Kamstrup MULTICAL 403
 
-The Kamstrup MULTICAL 40x is a meter used by some energy companies in 
-The Netherlands to measure delivered heat by a district heating 
-network (in Dutch: stadsverwarming). 
+The Kamstrup Meter Protocol (KMP) is used by certain Kamstrup utility 
+meters and can be used to read measurements from the meter.
+
+For example, the Kamstrup MULTICAL 403 is a meter used by some energy 
+companies in The Netherlands to measure delivered heat by a district heating 
+network (in Dutch: stadsverwarming).
 
 Heat is transported using warm water to the consumer. The meter measures
 the temperature of the water delivered and returned as well as the water
 flow. This is used to calculate the consumed energy, typically in giga 
 joule (GJ).
 
-The Kamstrup Multical has an optical interface just above the display.
+The Kamstrup Multical has an optical interface just above the display
+that uses the Kamstrup Meter Protocol for communication.
 This component can be used to request measurements from the meter using
-this optical interface.
+the optical interface.
 
 Configuration
 -------------
@@ -32,7 +36,7 @@ Configuration
       rx_pin: GPIO13
 
     sensor:
-      - platform: kamstrup_mc40x
+      - platform: kamstrup_kmp
         heat_energy:
           name: 'Heat Energy'
         power:
@@ -80,6 +84,36 @@ Configuration variables:
   - **name** (**Required**, string): The name for the volume sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
+- **custom1** (*Optional*): Custom Sensor 1.
+
+  - **name** (**Required**, string): The name for the custom sensor 1.
+  - **command** (**Required**, 2-byte hex): The KMP command code (e.g. 0x003C).
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **custom2** (*Optional*): Custom Sensor 2.
+
+  - **name** (**Required**, string): The name for the custom sensor 2.
+  - **command** (**Required**, 2-byte hex): The KMP command code (e.g. 0x003C).
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **custom3** (*Optional*): Custom Sensor 3.
+
+  - **name** (**Required**, string): The name for the custom sensor 3.
+  - **command** (**Required**, 2-byte hex): The KMP command code (e.g. 0x003C).
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **custom4** (*Optional*): Custom Sensor 4.
+
+  - **name** (**Required**, string): The name for the custom sensor 4.
+  - **command** (**Required**, 2-byte hex): The KMP command code (e.g. 0x003C).
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **custom5** (*Optional*): Custom Sensor 5.
+
+  - **name** (**Required**, string): The name for the custom sensor 5.
+  - **command** (**Required**, 2-byte hex): The KMP command code (e.g. 0x003C).
+  - All other options from :ref:`Sensor <config-sensor>`.
+
 - **update_interval** (*Optional*): The polling interval.
   When not provided a default value of 60 seconds is used.
 
@@ -88,8 +122,13 @@ Configuration variables:
     - The uart baudrate has to be set to 1200 baud and the stop bits to 2. 
       It is recommended to use pins associated with a hardware UART.
       For more information regarding uart configuration, refer to :ref:`UART <uart>`.
-    - Only the provided sensors will appear as sensor, and only those are  read from 
+    - Only the provided sensors will appear as sensor, and only those are read from 
       the meter.
+    - The custom sensors can be used to receive measurements from the Kampstrup meter, 
+      other than the ones provided natively with this component. To request extra
+      measurements, use any of the ``custom1`` through ``custom5`` sensors and provide the 
+      KMP command. This command is a 2 byte integer value. For example ``0x003C`` is
+      the command code for heat energy.
     - Keep in mind that the meter is battery operated. The more sensors read and the 
       lower the update interval, the faster the battery will drain.
 
@@ -99,9 +138,9 @@ Hardware
 The Kamstrup meter uses an optical interface, just above the display. The required 
 optical transceiver can be made using the schematic below. Connect the RX and TX 
 lines to the pins configured under the uart section in the config file. In the 
-configuration example above, this would be GPIO pin pin 13 and 15 respectively.
+configuration example above, this would be GPIO pin 13 and 15 respectively.
 
-.. figure:: images/kamstrup_mc40x_sch.svg
+.. figure:: images/kamstrup_kmp_sch.svg
     :scale: 200%
 
     Optical reader schematic
@@ -109,12 +148,12 @@ configuration example above, this would be GPIO pin pin 13 and 15 respectively.
 To safe energy, the optical interface of the Kamstrup meter is not active by default.
 To activate the interface, press a button on the device. The interface will now be
 available for a few minutes. To keep the interface alive, magnets must be placed 
-around the LED / photo cell. The image below shows the arrangement. The green 
+around the LED / photo diode. The image below shows the arrangement. The green 
 circles are the LED and photo diode, which must be places exactly on top of the 
 optical interface window of the meter. The red circles indicate 6mm neodymium 
 magnets.
 
-.. figure:: images/kamstrup_mc40x_holder.svg
+.. figure:: images/kamstrup_kmp_holder.svg
 
     Magnet arrangement
 
