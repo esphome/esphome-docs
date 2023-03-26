@@ -12,7 +12,7 @@ on graphical displays. This offers the user an interactive method to display
 labels, control entities like ``switch``, ``select``, ``number``  available locally on the 
 ESPHome node, without the requirement of a network connection.
 
-.. figure:: images/lcd_menu.png
+.. figure:: images/graphical_display_menu.jpg
     :align: center
     :width: 60.0%
 
