@@ -55,6 +55,6 @@ See Also
 
 - :ref:`sensor-filters`
 - :apiref:`pmwcs3/pmwcs3.h`
-- `Temperature Compensation for Conductivity <https://www.aqion.de/site/112>` by `Aqion`__
+- `Temperature Compensation for Conductivity <https://www.aqion.de/site/112>`__
 - `PMWCS3 Library <https://github.com/tinovi/i2cArduino>`__ by `@tinovi <https://github.com/tinovi>`__
 - :ghedit:`Edit`
