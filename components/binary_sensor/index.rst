@@ -27,6 +27,13 @@ you can always override it.
 
 Configuration variables:
 
+- **name** (**Required**, string): The name for the binary sensor.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the binary sensor to use that name, you can set ``name: None``.
+
 - **device_class** (*Optional*, string): The device class for the
   sensor. See https://developers.home-assistant.io/docs/core/entity/binary-sensor/#available-device-classes
   for a list of available options.

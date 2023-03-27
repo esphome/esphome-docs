@@ -39,12 +39,19 @@ This :ref:`Condition <config-condition>` checks if time has been set and is vali
 
 .. code-block:: yaml
 
+    # Example configuration
     on_...:
       if:
         condition:
           time.has_time:
         then:
           - logger.log: Time has been set and is valid!
+    
+    # Example lambda
+    lambda: |-
+        if (id(my_time).now().is_valid()) {
+          //do something here
+        }
 
 .. _time-on_time:
 

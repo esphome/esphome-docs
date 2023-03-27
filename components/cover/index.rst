@@ -28,6 +28,13 @@ All cover config schemas inherit from this schema - you can set these keys for c
 
 Configuration variables:
 
+- **name** (**Required**, string): The name for the cover.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the cover to use that name, you can set ``name: None``.
+
 - **device_class** (*Optional*, string): The device class for the
   sensor. See https://www.home-assistant.io/components/cover/ for a list of available options.
 - **icon** (*Optional*, icon): Manually set the icon to use for the cover in the frontend.
