@@ -43,7 +43,7 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **temperature** (*Optional*): Soil temperature in °C.
   All options from :ref:`Sensor <config-sensor>`.
-- **vwc** (*Optional*): Volumetric water content in cm3cm−3.
+- **vwc** (*Optional*): Volumetric Water Content in cm3cm−3.
   All options from :ref:`Sensor <config-sensor>`.
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x63``.
