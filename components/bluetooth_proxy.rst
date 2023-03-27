@@ -61,8 +61,9 @@ To maximize the chances of catching advertisements of the sensors, you can set `
       scan_parameters:
         interval: 1100ms
         window: 1100ms
-        
-For WiFi-based proxies, 1100ms can result in an unstable WiFi connection. Setting the default values for interval and window will usually resolve any instability.
+.. note::
+
+    For WiFi-based proxies, changing the interval or window from their default values may result in an unstable WiFi connection. Keep the default values for interval and window will usually resolve any instability.
 
 Avoid placing the ESP node in racks, close to routers/switches or other network equipment as EMI interference will degrade Bluetooth signal reception. For best results put as far away as possible, at least 3 meters distance from any other such equipment. Place your ESPHome devices close to the Bluetooth devices that you want to interact with for the best experience.
 
