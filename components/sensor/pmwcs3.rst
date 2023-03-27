@@ -1,5 +1,5 @@
 PMWCS3 Capacitive Soil Moisture and Temperature Sensor
-===========================
+======================================================
 
 .. seo::
     :description: Instructions for setting up PMWCS3 capacitive soil moisture sensor in ESPHome.
