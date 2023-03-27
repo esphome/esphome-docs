@@ -21,7 +21,7 @@ your configuration for this sensor to work.
 .. code-block:: yaml
 
     # Example configuration entry
-	sensor:
+    sensor:
       - platform: pmwcs3
         e25:
           name: "pmwcs3 e25"    
