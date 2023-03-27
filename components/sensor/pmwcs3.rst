@@ -31,14 +31,9 @@ your configuration for this sensor to work.
           name: "pmwcs3 temperature" 
         vwc:
           name: "pmwcs3 vwc"
-		address: 0x63
-		update_interval: 60s
-    sensor:
-      - platform: bh1750
-        name: "BH1750 Illuminance"
-        address: 0x23
+        address: 0x63
         update_interval: 60s
-
+ 
 Configuration variables:
 ------------------------
 
@@ -50,8 +45,8 @@ Configuration variables:
   All options from :ref:`Sensor <config-sensor>`.
 - **vwc** (*Optional*): Volumetric water content in cm3cm−3.
   All options from :ref:`Sensor <config-sensor>`.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. Defaults to ``60s``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor.
+  Defaults to ``0x63``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
   
