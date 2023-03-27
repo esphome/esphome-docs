@@ -38,7 +38,7 @@ Configuration variables:
 
 This automation will be triggered when the touchscreen detects a touch.
 
-This trigger provides one arguments of type :apistruct:`touchscreen::TouchPoint` which has two integer members: ``x`` and ``y`` which
+This trigger provides one argument named ``touch`` of type :apistruct:`touchscreen::TouchPoint` which has two integer members: ``x`` and ``y`` which
 represent the position of the touch in relation to the display width and height. It also has optional members that will be set
 depending on the touchscreen platform.
 
