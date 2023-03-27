@@ -41,7 +41,7 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **ec** (*Optional*): Electrical Conductivity in mS/m. All options from
   :ref:`Sensor <config-sensor>`.
-- **temperature** (*Optional*): The temperature in °C.
+- **temperature** (*Optional*): Soil temperature in °C.
   All options from :ref:`Sensor <config-sensor>`.
 - **vwc** (*Optional*): Volumetric water content in cm3cm−3.
   All options from :ref:`Sensor <config-sensor>`.
@@ -55,6 +55,6 @@ See Also
 
 - :ref:`sensor-filters`
 - :apiref:`pmwcs3/pmwcs3.h`
-- `Temperature Compensation for Conductivity <https://www.aqion.de/site/112>`__ by `Aqion`__
+- `Temperature Compensation for Conductivity <https://www.aqion.de/site/112>` by `Aqion`__
 - `PMWCS3 Library <https://github.com/tinovi/i2cArduino>`__ by `@tinovi <https://github.com/tinovi>`__
 - :ghedit:`Edit`
