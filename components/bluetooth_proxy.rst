@@ -61,6 +61,8 @@ To maximize the chances of catching advertisements of the sensors, you can set `
       scan_parameters:
         interval: 1100ms
         window: 1100ms
+        
+For WiFi-based proxies, 1100ms can result in an unstable WiFi connection. Setting the default values for interval and window will usually resolve any instability.
 
 Avoid placing the ESP node in racks, close to routers/switches or other network equipment as EMI interference will degrade Bluetooth signal reception. For best results put as far away as possible, at least 3 meters distance from any other such equipment. Place your ESPHome devices close to the Bluetooth devices that you want to interact with for the best experience.
 
@@ -70,6 +72,8 @@ Complete sample recommended configuration
 Below is a complete sample recommended configuration for a Bluetooth proxy. If you experience issues with your proxy, try reducing your configuration to be as similar to this as possible.
 
 This configuration is for an Olimex ESP32-PoE-ISO board with an Ethernet connection to the network. If you use a different board, you must change the ``board`` substitution to match your board.
+
+For WiFi-based proxies, 1100ms can result in an unstable WiFi connection. Setting the default values for interval and window will usually resolve any instability.
 
 .. code-block:: yaml
 
