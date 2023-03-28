@@ -126,6 +126,35 @@ sensor input.
         name: "GPIO3-TX Motion"
         device_class: motion
 
+Pinout
+------
+
+.. list-table::
+    :header-rows: 1
+
+    * - Function
+      - ESP Pin
+    * - R (PWM1)
+      - GPIO15
+    * - G (PWM2)
+      - GPIO13
+    * - B (PWM3)
+      - GPIO12
+    * - W1 (PWM4)
+      - GPIO14
+    * - W2 (PWM5)
+      - GPIO4
+    * - Jumper J3
+      - GPIO0
+    * - RX
+      - GPIO2
+    * - TX
+      - GPIO3
+    * - LED D1 (red)
+      - GPIO5
+    * - LED D2 (green)
+      - GPIO1
+
 See Also
 --------
 
