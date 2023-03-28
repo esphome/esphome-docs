@@ -23,6 +23,12 @@ Base Switch Configuration
 Configuration variables:
 
 - **name** (**Required**, string): The name of the switch.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the switch to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the
   sensor in the frontend.
 - **inverted** (*Optional*, boolean): Whether to invert the binary
@@ -43,7 +49,7 @@ Configuration variables:
     - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
     - ``ALWAYS_OFF`` - Always initialize the switch as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the switch as ON on bootup.
-    - ``DISABLED`` - Does nothing and leaves it up to the downstream platform component to decide. For example, the component could read hardware and determine the state, or have a specific configuration option to regulate initial state. 
+    - ``DISABLED`` - Does nothing and leaves it up to the downstream platform component to decide. For example, the component could read hardware and determine the state, or have a specific configuration option to regulate initial state.
 
   Unless a specific platform defines another default value, the default is ``RESTORE_DEFAULT_OFF``.
 
