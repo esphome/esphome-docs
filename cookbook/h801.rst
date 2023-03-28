@@ -10,7 +10,7 @@ It can be used as a RGB, RGBW, RGB dual white or even control 5 individual monoc
     :align: center
     :width: 80.0%
 
-For ESPHome, you can then use the :doc:`RGBW </components/light/rgbw>`
+For ESPHome, you can then use the :doc:`RGBWW </components/light/rgbww>`
 and the :doc:`ESP8266 Software PWM output </components/output/esp8266_pwm>` components using below configuration:
 
 .. code-block:: yaml
@@ -45,15 +45,31 @@ and the :doc:`ESP8266 Software PWM output </components/output/esp8266_pwm>` comp
       - platform: esp8266_pwm
         pin: 14
         frequency: 1000 Hz
-        id: pwm_w
+        id: pwm_w1
+      - platform: esp8266_pwm
+        pin: 4
+        frequency: 1000 Hz
+        id: pwm_w2
+    light:
+      - platform: rgbww
+        name: "H801 Light"
+        red: pwm_r
+        green: pwm_g
+        blue: pwm_b
+        cold_white: pwm_w1
+        warm_white: pwm_w2
+
+For :doc:`RGBW </components/light/rgbw>` lights:
+
+.. code-block:: yaml
+
     light:
       - platform: rgbw
         name: "H801 Light"
         red: pwm_r
         green: pwm_g
         blue: pwm_b
-        white: pwm_w
-
+        white: pwm_w1
 
 Make your node in the ESPHome dashboard and compile/upload it.
 (if it fails OTA it must be uploaded manually with your favorite ESP flasher,
