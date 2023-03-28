@@ -10,7 +10,7 @@ The ``pmwcs3`` sensor platform allows you to use your PMWCS3
 (`informations <https://tinovi.com/wp-content/uploads/2020/01/PM-WCS-3-I2C.pdf>`__)
 capacitive soil moisture and temperature sensor with ESPHome. The :ref:`I²C bus <i2c>` is required to be set up in
 your configuration for this sensor to work. Wiring scheme: red is 3.3V, black & shield is GND, green is SDA and white is SCL.
-2.2Kohm resistors are advised to pullup both SDA & SDA lines.
+2.2kOhm resistors are advised to pullup both SDA & SDA lines.
 
 .. figure:: images/pmwcs3.jpg
     :align: center
