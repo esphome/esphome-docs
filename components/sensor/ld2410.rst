@@ -48,6 +48,7 @@ Configuration variables:
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 - **throttle** (*Optional*, int): Time in milliseconds to control the rate of data updates. Defaults to ``1000ms``.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this :doc:`ld2410` component if you need multiple components.
 
 Binary Sensor
 -------------
@@ -80,6 +81,7 @@ Configuration variables:
 - **out_pin_presence_status** (*Optional*): When in :ref:`engineering mode<ld2410-engineering-mode>`, indicates whether the OUT pin indicates presence or not, otherwise ``false``.
   OUT pin indication depends on the :ref:`light function<ld2410-light-function>` configuration. Might need latest firmware to work.
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
+- **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 Sensor
 ------
@@ -167,6 +169,7 @@ Configuration variables:
 - **gX_still_energy** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, the still energy of the Xth gate(X => 0 to 8), otherwise ``unknown``.
   Value between ``0`` and ``100`` inclusive.
   All options from :ref:`Sensor <config-sensor>`.
+- **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 Switch
 ------
@@ -192,6 +195,7 @@ Configuration variables:
   All options from :ref:`Switch <config-switch>`.
 - **bluetooth** (*Optional*): Turn on/off the bluetooth adapter. Defaults to ``true``.
   All options from :ref:`Switch <config-switch>`.
+- **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 
 .. _ld2410-number:
@@ -275,6 +279,7 @@ Configuration variables:
   Above this level for the considered gate (distance), still detection will be triggered.
   Value between ``0`` and ``100`` inclusive. See default values below.
   All options from :ref:`Number <config-number>`.
+- **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 .. list-table:: Default values for gate threshold
     :widths: 25 25 25
@@ -336,6 +341,7 @@ Configuration variables:
   All options from :ref:`Button <config-button>`.
 - **query_params** (*Optional*): Refresh all sensors values of the device.
   All options from :ref:`Button <config-button>`.
+- **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 Text Sensor
 -----------
@@ -358,6 +364,7 @@ Configuration variables:
   All options from :ref:`Text Sensor <config-text_sensor>`.
 - **mac_address** (*Optional*): The bluetooth mac address. Will be set to ``unknown`` when bluetooth is off.
   All options from :ref:`Text Sensor <config-text_sensor>`.
+- **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 Select
 -----------
@@ -391,6 +398,7 @@ Configuration variables:
   All options from :ref:`Select <config-select>`.
 - **out_pin_level** (*Optional*): Control OUT pin ``away`` value. Can be ``low`` or ``high``. Defaults to ``low``.
   All options from :ref:`Select <config-select>`.
+- **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 Automations
 -----------
@@ -408,7 +416,7 @@ This is an :ref:`Action <config-action>` for setting the bluetooth password.
 
 Configuration variables:
 
-- **id** (**Required**, :ref:`config-id`): The ID of the ld2410 to set.
+- **id** (**Required**, :ref:`config-id`): The ID of the :doc:`ld2410` component to set.
 - **password** (**Required**, string, :ref:`templatable <config-templatable>`):
   The password to set. Case sensitive. Must be exactly 6 characters long. Default password is `HiLink`.
 
