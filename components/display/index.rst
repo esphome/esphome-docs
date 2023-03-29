@@ -391,6 +391,62 @@ Displaying Time
 
 You can display current time using a time component. Please see the example :ref:`here <strftime>`.
 
+.. _clipping:
+
+Screen Clipping
+***************
+
+Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show 
+a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
+
+With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region 
+you can stop the clipping process with ``end_clipping();`` . You can nest as many ``start_clipping();`` as you want as long
+you end them as many times as well.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ...
+        # ...
+        id: my_binary_sensor
+    
+    color:
+      - name: my_red
+        red: 100%
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          if (id(my_binary_sensor).state) {
+            it.print(0, 0, id(my_font), "state: ON");
+          } else {
+            it.print(0, 0, id(my_font), "state: OFF");
+          }
+          // Shorthand:
+          it.start_clipping(40,0,140,20);
+          it.printf(0, 0, id(my_font), id(my_red), "State: %s", id(my_binary_sensor).state ? "ON" : "OFF");
+          it.end_clipping();
+
+After you started clipping you can manipulate the region with ``extend_clipping(left, top, right, bottom);`` 
+and ``shrink_clipping(left, top, right, bottom);`` within previous set clipping region.
+
+With ``get_clipping();`` you get a ``Rect`` object back with the latest set clipping region.
+
+.. code-block:: cpp 
+
+    class Rect {
+        int16_t x;  ///< X/Left coordinate
+        int16_t y;  ///< Y/Top coordinate
+        int16_t w;  ///< Width
+        int16_t h;  ///< Height
+        int16_t x2();  ///< Right coordinate
+        int16_t y2();  ///< bottom coordinate
+      };
+
+With ``is_clipping();`` tells you if clipping is activated.
+
+
 
 .. _config-color:
 
@@ -409,13 +465,36 @@ A ``color`` component exists for just this purpose:
         blue: 25%
         white: 0%
 
+Alternatively, you can use ``<color>_int`` to specify the color as an int value:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        red_int: 255
+        green_int: 51
+        blue_int: 64
+        white_int: 0
+
+Or, if you are more comforatble with hex values, you can use ``hex``:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        hex: FF3340
 
 Configuration variables:
 
 - **red** (*Optional*, percentage): The percentage of the red component. Defaults to ``100%``.
+- **red_int** (*Optional*, integer): The brightness of the red component on a scale of ``0`` to ``255``. Defaults to ``255``.
 - **green** (*Optional*, percentage): The percentage of the green component. Defaults to ``100%``.
+- **green_int** (*Optional*, integer): The brightness of the green component on a scale of ``0`` to ``255``. Defaults to ``255``.
 - **blue** (*Optional*, percentage): The percentage of the blue component. Defaults to ``100%``.
+- **blue_int** (*Optional*, integer): The brightness of the blue component on a scale of ``0`` to ``255``. Defaults to ``255``.
 - **white** (*Optional*, percentage): The percentage of the white component. Defaults to ``100%``.
+- **white_int** (*Optional*, integer): The brightness of the white component on a scale of ``0`` to ``255``. Defaults to ``255``.
+- **hex** (*Optional*, string): The color in hexadecimal representation. Defaults to ``FFFFFF``.
 
 RGB displays use red, green, and blue, while grayscale displays may use white.
 

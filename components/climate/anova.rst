@@ -26,7 +26,7 @@ You cannot use the Anova app over BLE whilst this component is connected, you
 should disconnect it first. To setup a (dis-)connect switch, see :doc:`/components/switch/ble_client`.
 
 You need to specify unit_of_measurement as 'c' or 'f'. This ensures the stick's display
-uses the unit you intend. All values within ESPHome are converted to Celcius so you may
+uses the unit you intend. All values within ESPHome are converted to Celsius so you may
 need to do conversion again within the frontend if you use Fahrenheit.
 
 .. warning::
