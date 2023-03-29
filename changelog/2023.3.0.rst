@@ -46,6 +46,13 @@ Release 2023.3.1 - March 22
 - climate: brown paper bag fix for on_configure :esphomepr:`4573` by :ghuser:`nwf`
 - rp2040: Use fake Mutex lock :esphomepr:`4602` by :ghuser:`jesserockz`
 
+Release 2023.3.2 - March 27
+---------------------------
+
+- Fix compile error on pzemdc.h :esphomepr:`4583` by :ghuser:`KG3RK3N`
+- Swap curly brackets for round on LockGuard :esphomepr:`4610` by :ghuser:`jesserockz`
+- Fix animation resizing :esphomepr:`4608` by :ghuser:`guillempages`
+- SX1509 minimum loop period (fixes esphome/issues#4325) :esphomepr:`4613` by :ghuser:`tracestep`
 
 Full list of changes
 --------------------
