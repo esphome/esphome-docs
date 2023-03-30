@@ -52,10 +52,10 @@ Configuration variables:
   detectors. In this configuration the ``stop_action`` is not performed when the open or close
   time is completed and if the cover is commanded to open or close the corresponding actions
   will be performed without checking current state. Defaults to ``false``.
-- **manual_control** (*Optional*, boolean): If your cover has a manual control switch, it's not 
-  possible for the system to be sure of its current position. If the cover is commanded to open 
-  or close, the command will be performed completely (including any defined ``stop_action``) 
-  without checking the current state.
+- **manual_control** (*Optional*, boolean): For covers with manual external controls. With this 
+  configuration if the cover is commanded to open or close the corresponding actions will be 
+  performed even if the current state fully open or fully closed matches desired state, then 
+  ``stop_action`` will be called after the full duration of the action elapses. 
   The current state will then be relearned upon completion.
   It's recommended to  set ``assumed_state`` to true so the cover control button aren't disabled 
   in the interface. Defaults to ``false``. 
