@@ -5,22 +5,21 @@ Binary Sensor Map
     :description: Instructions for setting up a Binary Sensor Map
     :image: binary_sensor_map.jpg
 
-The ``binary_sensor_map`` sensor platform allows you to map :doc:`binary sensor </components/binary_sensor/index>`
-to values. Depending on the state of each binary sensor, its associated value in this platform's configuration will 
-be published according to this sensor's type.
+The ``binary_sensor_map`` sensor platform allows you to map multiple :doc:`binary sensor </components/binary_sensor/index>`
+to individual values. Depending on the state of each binary sensor, its associated configured parameters, and this sensor's type, 
+the ``binary_sensor_map`` publishes a single numerical value.
 
 This sensor is used for combining binary sensors' ``ON`` or ``OFF`` states into a numerical value. Some use cases include 
-touch devices and Bayesian probabilities for an event.
+touch devices and determining Bayesian probabilities for an event.
 
 This platform currently supports three measurement types: ``BAYESIAN``, ``GROUP``, and ``SUM``.
-You need to specify which type of mapping you want with the ``type:`` configuration value:
+You need to specify which type of mapping you want with the ``type:`` configuration value.
 
 When using the ``BAYESIAN`` type, add your binary sensors as ``observations`` to the binary sensor map. 
 When using the ``GROUP`` or ``SUM`` type, add your binary sensors as ``channels`` to the binary sensor map. 
-The binary sensor map then publishes a value calculated from state of each sensor and its specified parameters. 
 The maximum amount of observations or channels supported is 64.
 
-- ``BAYESIAN`` This type replicates Home Assistant's `Bayesian sensor <https://www.home-assistant.io/integrations/bayesian/>`__. The sensor returns the probability of a particular Bayesian event occuring based on the observations' states. The sensor requires configuring a ``prior`` probability, which represents the likelihood that the Bayesian event is true ignoring all external influences. Every observation requires configuring the ``prob_given_true`` and ``prob_given_false`` parameters. The ``prob_given_true`` parameter is the probability that the observation's ``binary_sensor`` is ``ON`` when the Bayesian event is ``true``. The ``prob_given_false`` parameter is the probability that the observation's ``binary_sensor`` is ``ON`` when the Bayesian event is ``false``. Use an :doc:`/components/binary_sensor/analog_threshold` to convert this sensor's probability to a binary ``true`` or ``false`` by setting an appropriate threshold.
+- ``BAYESIAN`` This type replicates Home Assistant's `Bayesian sensor <https://www.home-assistant.io/integrations/bayesian/>`__. The sensor returns the probability of a particular Bayesian event occuring based on the observations' states. The configured ``prior:`` probability is the likelihood that the Bayesian event is true ignoring all external influences. Every observation has its own ``prob_given_true`` and ``prob_given_false`` parameters. The ``prob_given_true:`` value is the probability that the observation's binary sensor is ``ON`` when the Bayesian event is ``true``. The ``prob_given_false:`` value is the probability that the observation's binary sensor is ``ON`` when the Bayesian event is ``false``. Use an :doc:`/components/binary_sensor/analog_threshold` to convert this sensor's probability to a binary ``ON`` or ``OFF`` by setting an appropriate threshold.
 
 .. code-block:: yaml
 
