@@ -17,10 +17,10 @@ You need to specify which type of mapping you want with the ``type:`` configurat
 
 When using the ``BAYESIAN`` type, add your binary sensors as ``observations`` to the binary sensor map. 
 When using the ``GROUP`` or ``SUM`` type, add your binary sensors as ``channels`` to the binary sensor map. 
-The binary sensor map then publishes a value depending on the type of the binary sensor map and the parameters 
-specified with each observation or channel. The maximum amount of observations or channels supported is 64.
+The binary sensor map then publishes a value calculated from state of each sensor and its specified parameters. 
+The maximum amount of observations or channels supported is 64.
 
-- ``BAYESIAN`` This type mimics the Home Assistant's `Bayesian sensor <https://www.home-assistant.io/integrations/bayesian/>`__. The sensor itself requires setting its own ``prior`` probability, which represents the likelihood that the sensor's event is true, ignoring all external influences. Each channel has its own ``prob_given_true`` and ``prob_given_false``. The ``prob_given_true`` parameter represents the probability (between 0 and 1) that the channel's ``binary_sensor`` is ``true`` when the overall Bayesian sensor should be ``true``. The ``prob_given_false`` parameter represents the probability that the channel's ``binary_sensor`` is ``true`` when the  overall Bayesian sensor should be ``false``. An :doc:`/components/binary_sensor/analog_threshold` can be used to convert this sensor's published output to a binary output by using setting an appropriate threshold.
+- ``BAYESIAN`` This type replicates Home Assistant's `Bayesian sensor <https://www.home-assistant.io/integrations/bayesian/>`__. The sensor returns the probability of a particular Bayesian event occuring based on the observations' states. The sensor requires configuring a ``prior`` probability, which represents the likelihood that the Bayesian event is true ignoring all external influences. Every observation requires configuring the ``prob_given_true`` and ``prob_given_false`` parameters. The ``prob_given_true`` parameter is the probability that the observation's ``binary_sensor`` is ``ON`` when the Bayesian event is ``true``. The ``prob_given_false`` parameter is the probability that the observation's ``binary_sensor`` is ``ON`` when the Bayesian event is ``false``. Use an :doc:`/components/binary_sensor/analog_threshold` to convert this sensor's probability to a binary ``true`` or ``false`` by setting an appropriate threshold.
 
 .. code-block:: yaml
 
@@ -31,29 +31,24 @@ specified with each observation or channel. The maximum amount of observations o
         name: 'Bayesian Event Probability'
         type: bayesian
         prior: 0.4
-        channels:
-          - binary_sensor: bit0
+        observations:
+          - binary_sensor: binary_sensor_0
             prob_given_true: 0.9
             prob_given_false: 0.2
-          - binary_sensor: bit1
+          - binary_sensor: binary_sensor_1
             prob_given_true: 0.6
             prob_given_false: 0.1
 
     binary_sensor:
-      - platform: gpio
-        pin: 4
-        id: bit0
-      - platform: gpio
-        pin: 5
-        id: bit1
-
+      # If the Bayesian probability is greater than 0.6, 
+      # then predict the event is occuring
       - platform: analog_threshold
         name: "Bayesian Event Predicted State"
         sensor_id: bayesian_prob
-        threshold: 0.6
+        threshold: 0.6   
 
 
-- ``GROUP`` Each channel has its own value. The sensor publishes the average value of all active
+- ``GROUP`` Each channel has its own ``value``. The sensor publishes the average value of all active
   binary sensors or ``NAN`` if no sensors are active.
 
 .. code-block:: yaml
@@ -85,7 +80,7 @@ specified with each observation or channel. The maximum amount of observations o
         id: touchkey0
       # ...
       
-- ``SUM`` Each channel has its own value. The sensor publishes the sum of all active
+- ``SUM`` Each channel has its own ``value``. The sensor publishes the sum of all active
   binary sensors values or ``0`` if no sensors are active.
 
 .. code-block:: yaml
@@ -129,18 +124,18 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the sensor.
 - **type** (**Required**, string): The sensor type. Should be one of: ``BAYESIAN``, ``GROUP``, or ``SUM``.
-- **prior** (**Required for BAYESIAN type**, float between 0 and 1): The prior probability of the Bayesian event.
-- **channels** (**Required**): A list of channels that are mapped to certain values.
+- **channels** (**Required for GROUP or SUM types**): A list of channels that are mapped to certain values.
 
   - **binary_sensor** (**Required**): The id of the :doc:`binary sensor </components/binary_sensor/index>`
     to add as a channel for this sensor.
   - **value** (**Required**): The value this channel should report when its binary sensor is active.
+- **prior** (**Required for BAYESIAN type**, float between 0 and 1): The prior probability of the Bayesian event.  
 - **observations** (**Required for BAYESIAN type**): A list of observations that influence the probability of the Bayesian event.
 
   - **binary_sensor** (**Required**): The id of the :doc:`binary sensor </components/binary_sensor/index>`
-    to add as a channel for this sensor.
-  - **prob_given_true** (**Required**, float between 0 and 1): Assuming the Bayesian event is true, the probability this sensor is true.
-  - **prob_given_false** (**Required**, float between 0 and 1): Assuming the Bayesian event is false, the probability this sensor is true.
+    to add as an observation.
+  - **prob_given_true** (**Required**, float between 0 and 1): Assuming the Bayesian event is true, the probability this observation is on.
+  - **prob_given_false** (**Required**, float between 0 and 1): Assuming the Bayesian event is false, the probability this observation is on.
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
