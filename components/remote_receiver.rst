@@ -54,19 +54,21 @@ Configuration variables:
   - **toshiba_ac**: Decode and dump Toshiba AC infrared codes.
 
 - **tolerance** (*Optional*, int or :ref:`config-time`): The percentage or time that the remote signal lengths can
-  deviate in the decoding process. Defaults to ``25%``.
+  deviate in the decoding process. Allowed values are in range ``0..4294967295%`` or ``0..4294967295us``. Defaults to
+  ``25%``.
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kB``
   on the ESP32 and ``1kB`` on the ESP8266.
-- **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. Defaults to
-  ``3``.
+- **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. The maximum
+  number of blocks shared by all receivers and transmitters is ``8``. Defaults to ``3``.
 - **filter** (*Optional*, :ref:`config-time`): Filter any pulses that are shorter than this. Useful for removing
-  glitches from noisy signals. Defaults to ``50us``.
+  glitches from noisy signals. Allowed values are in range ``0..4294967295us``. Defaults to ``50us``.
 - **idle** (*Optional*, :ref:`config-time`): The amount of time that a signal should remain stable (i.e. not
-  change) for it to be considered complete. Defaults to ``10ms``.
+  change) for it to be considered complete. Allowed values are in range ``0..4294967295us``. Defaults to ``10ms``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this if you have
   multiple remote receivers.
 - **clock_divider** (*Optional*, int): The clock divider used by the RMT peripheral. A clock divider of ``80`` leads to
-  a resolution of 1 µs per tick, ``160`` leads to 2 µs. Only used on ESP32 platform. Defaults to ``80``.
+  a resolution of 1 µs per tick, ``160`` leads to 2 µs. Allowed values are in range ``1..255``. Only used on ESP32
+  platform. Defaults to ``80``.
 
 .. note::
 
