@@ -349,7 +349,7 @@ Configuration variables:
   when pushing out a value.
   Defaults to ``5``.
 - **send_every** (*Optional*, int): How often a sensor value should be pushed out. For
-  example, in above configuration the min is calculated after every 4th
+  example, in above configuration the max is calculated after every 4th
   received sensor value, over the last 7 received values.
   Defaults to ``5``.
 - **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
@@ -433,7 +433,7 @@ An average over the ``specified time period``, potentially throttling incoming v
 
 For example a ``throttle_average: 60s`` will push out a value every 60 seconds, in case at least one sensor value is received within these 60 seconds.
 
-In comparison to the ``throttle`` filter it won't discard any values. In comparison to the ``sliding_window_moving_average`` filter it supports variable sensor reporting rates without influencing the filter reporting interval (except for the first edge case).
+In comparison to the ``throttle`` filter, it won't discard any values. In comparison to the ``sliding_window_moving_average`` filter, it supports variable sensor reporting rates without influencing the filter reporting interval (except for the first edge case).
 
 ``heartbeat``
 *************
@@ -492,6 +492,16 @@ the result of the lambda is used as the output (use ``return``).
 
 Make sure to add ``.0`` to all values in the lambda, otherwise divisions of integers will
 result in integers (not floating point values).
+
+To prevent values from being published, return ``{}``:
+
+.. code-block:: yaml
+
+    filters:
+      - lambda: !lambda |-
+          if (x < 10) return {};
+          return x-10;
+
 
 Example: Converting Celsius to Fahrenheit
 -----------------------------------------
@@ -648,7 +658,7 @@ advanced stuff (see the full API Reference for more info).
       // For example, create a custom log message when a value is received:
       ESP_LOGI("main", "Value of my sensor: %f", id(my_sensor).state);
 
-- ``raw_state``: Retrieve the current value of the sensor that has not passed through any filters
+- ``raw_state``: Retrieve the current value of the sensor that has not passed through any filters.
   Is ``NAN`` if no value has been pushed by the sensor itself yet.
 
   .. code-block:: cpp

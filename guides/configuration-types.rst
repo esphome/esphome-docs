@@ -110,6 +110,7 @@ Configuration variables:
    - ``ANALOG``
    - ``INPUT_PULLUP``
    - ``INPUT_PULLDOWN``
+   - ``INPUT_OUTPUT_OPEN_DRAIN``
 
 Advanced options:
 

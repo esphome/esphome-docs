@@ -74,10 +74,41 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
+
+Manual calibration:
+------------------------
+
+.. code-block:: yaml
+
+    # Example on how to implement a UI section in HA for manual calibration.
+    # Note: Please enter first a CO2 value before pressing the button.
+    button:
+      - platform: template
+        name: "SCD30 Force manual calibration"
+        entity_category: "config"
+        on_press:
+          then:
+            - scd30.force_recalibration_with_reference:
+                value: !lambda 'return id(co2_cal).state;'
+    
+    number:
+      - platform: template
+        name: "CO2 calibration value"
+        optimistic: true
+        min_value: 350
+        max_value: 4500
+        step: 1
+        id: co2_cal
+        icon: "mdi:molecule-co2"
+        entity_category: "config"
+
+
+
 See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :doc:`dht`
 - :doc:`dht12`
 - :doc:`hdc1080`

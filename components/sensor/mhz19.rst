@@ -8,7 +8,7 @@ MH-Z19 CO_2 and Temperature Sensor
 
 The ``mhz19`` sensor platform allows you to use MH-Z19 CO_2 and temperature sensors
 (`refspace`_) with ESPHome.
-The CO_2 measurement also works with the MH-Z16 sensor.
+The CO_2 measurement also works with the MH-Z16 and MH-Z14 sensors.
 
 .. figure:: images/mhz19-full.jpg
     :align: center

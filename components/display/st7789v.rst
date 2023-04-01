@@ -48,6 +48,15 @@ to an ESP module.
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
 
+    font:
+      - file: "gfonts://Roboto"
+        id: font
+        size: 20
+
+.. note::
+
+    For more information about the font options see: :ref:`display-fonts`.
+
 .. warning::
 
     When using the TTGO T-Display module, the GPIO pin numbers above *cannot be changed* as they are
@@ -208,12 +217,16 @@ appropriate lines of C code in the lambda to hide or show the image or text as y
         name: "T-Display Button Input 1"
         id: tdisplay_button_input_1
 
-    # We can still control the backlight independently
-    switch:
-      - platform: gpio
+    # Allow dimmable control of the backlight (pin GPIO4)
+    output:
+      - platform: ledc
         pin: GPIO4
+        id: gpio4
+
+    light:
+      - platform: monochromatic
+        output: gpio4
         name: "Backlight"
-        id: backlight
 
     image:
       - file: "image.png"
@@ -231,7 +244,6 @@ appropriate lines of C code in the lambda to hide or show the image or text as y
 
     display:
       - platform: st7789v
-        backlight_pin: GPIO4
         cs_pin: GPIO5
         dc_pin: GPIO16
         reset_pin: GPIO23
@@ -253,6 +265,7 @@ appropriate lines of C code in the lambda to hide or show the image or text as y
           else {
             it.print(235, 5, id(helvetica_12), id(my_red), TextAlign::TOP_RIGHT, "Offline");
           }
+
 
 See Also
 --------

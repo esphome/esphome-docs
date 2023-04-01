@@ -11,7 +11,7 @@ to values. When a given binary sensor is on, the value associated with it in thi
 This sensor is **mostly used for touch** devices but could be used for any ``binary_sensor`` that publishes its ``ON`` or ``OFF`` state.
 
 Add your binary sensors as ``channels`` to the binary sensor map. The binary sensor map then publishes a value depending
-on the type of the binary sensor map and the values specified with each channel.
+on the type of the binary sensor map and the values specified with each channel. The maximum amount of possible channels is 64.
 
 This platform currently supports two measurement types: ``GROUP`` and ``SUM``, and others might get added later.
 You need to specify which type of mapping you want with the ``type:`` configuration value:
