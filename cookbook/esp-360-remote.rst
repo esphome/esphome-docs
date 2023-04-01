@@ -4,8 +4,8 @@ ESP-360-Remote
 =============================================
 
 .. seo::
-    :description: Water leak detector with ESPHome on an M5StickC ESP32
-    :keywords: Leak Detector M5StickC M5Stack M5Atom
+    :description: IR/RF Remote based on ESP32
+    :keywords: Iot Gateway ESP32 IR RF Home Assistant
 
 An all-in-one remote based on the ESP32-WROOM-32E
 
