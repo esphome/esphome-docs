@@ -379,7 +379,8 @@ All Actions
   :ref:`sprinkler.pause <sprinkler-controller-action_pause>` /   :ref:`sprinkler.resume <sprinkler-controller-action_resume>` /
   :ref:`sprinkler.resume_or_start_full_cycle <sprinkler-controller-action_resume_or_start_full_cycle>` /   :ref:`sprinkler.queue_valve <sprinkler-controller-action_queue_valve>` /
   :ref:`sprinkler.clear_queued_valves <sprinkler-controller-action_clear_queued_valves>` /   :ref:`sprinkler.set_multiplier <sprinkler-controller-action_set_multiplier>` /
-  :ref:`sprinkler.set_repeat <sprinkler-controller-action_set_repeat>` /   :ref:`sprinkler.set_valve_run_duration <sprinkler-controller-action_set_valve_run_duration>`
+  :ref:`sprinkler.set_repeat <sprinkler-controller-action_set_repeat>` /   :ref:`sprinkler.set_divider <sprinkler-controller-action_set_divider>` /
+  :ref:`sprinkler.set_valve_run_duration <sprinkler-controller-action_set_valve_run_duration>`
 - :ref:`globals.set <globals-set_action>`
 - :ref:`remote_transmitter.transmit_* <remote_transmitter-transmit_action>`
 - :ref:`climate.control <climate-control_action>`
@@ -394,6 +395,7 @@ All Actions
 - :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
+- :ref:`pcf85063.read_time <pcf85063-read_time_action>` / :ref:`pcf85063.write_time <pcf85063-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
 - :ref:`pzemac.reset_energy <pzemac-reset_energy_action>`
 - :ref:`number.set <number-set_action>` / :ref:`number.to_min <number-to-min_action>` / :ref:`number.to_max <number-to-max_action>` / :ref:`number.decrement <number-decrement_action>` / :ref:`number.increment <number-increment_action>` / :ref:`number.operation <number-operation_action>`
@@ -712,8 +714,8 @@ Configuration variables:
 
 - **max_runs** (*Optional*, int): Allows limiting the maxiumun number of runs when using script
   modes ``queued`` and ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
-- **parameters** (*Optional*, :ref:`Script Parameters <script-parameters>`): A script can define one 
-  or more parameters that must be provided in order to execute. All parameters defined here are 
+- **parameters** (*Optional*, :ref:`Script Parameters <script-parameters>`): A script can define one
+  or more parameters that must be provided in order to execute. All parameters defined here are
   mandatory and must be given when calling the script.
 - **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
@@ -723,7 +725,7 @@ Configuration variables:
 ``Script Parameters``
 ---------------------
 
-Scripts can be defined with parameters. The arguments given when calling the script can be used within 
+Scripts can be defined with parameters. The arguments given when calling the script can be used within
 the script's lambda actions. To define the parameters, add the parameter names under `parameters:` key
 and specify the data type for that parameter.
 
@@ -765,7 +767,7 @@ script was already running.
     on_...:
       then:
         - script.execute: my_script
-        
+
         # Calling a non-parameterised script in a lambda
         - lambda: id(my_script).execute();
 
@@ -806,7 +808,7 @@ will not be executed.
 
 or as lambda
 
-.. code-block:: yaml   
+.. code-block:: yaml
 
     lambda: 'id(my_script).stop();'
 
