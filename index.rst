@@ -809,6 +809,7 @@ Miscellaneous Components
     SML, components/sml, sml.svg
     Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    Viessmann Optolink, components/optolink, optolink.jpg
     Demo, components/demo, description.svg
     Copy, components/copy, content-copy.svg
 
