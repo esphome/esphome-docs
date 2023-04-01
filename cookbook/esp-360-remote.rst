@@ -12,11 +12,11 @@ An all-in-one remote based on the ESP32-WROOM-32E
 It features 433MHz transmitter and receiver. IR leds are placed in circle to cover all the directions and includes a temperature & humidity and an ambient light sensor. The brain is the ESP32-WROOM-32E, so it's super easy to set everything up with ESPHOME and controlling it from Home Assistant. 
 
 
-.. figure:: images/esp-360-alone.jpeg
+.. figure:: images/esp-360-remote-alone.jpeg
 
     :align: center
     
-.. figure:: images/esp-360-without-top.jpeg
+.. figure:: images/esp-360-remote-without-top.jpeg
 
     :align: center
 
