@@ -42,11 +42,21 @@ Platform configuration
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 - **protocol** (**Required**, string): The protocol for communication (``KW`` or ``P300``, ``GWG`` is not supported). See `this page <https://github.com/openv/openv/wiki/Geräte>`__ 
-- **rx_pin** (*Optional*, :ref:`Pin <config-pin>`, only ESP32): Receive pin
-- **tx_pin** (*Optional*, :ref:`Pin <config-pin>`, only ESP32): Transmit pin
+- **rx_pin** (*Optional*, :ref:`Pin <config-pin>`, only ESP32): Receive pin (RX)
+- **tx_pin** (*Optional*, :ref:`Pin <config-pin>`, only ESP32): Transmit pin (TX)
 - **logger** (*Optional*, boolean): Enable this for more detailled log output. See *Troubleshooting*. Defaults to 'false'.
 - **device_info** (*Optional*, string): If set to a non-empty value, a :doc:`/components/text_sensor/index` with the variables name is created displaying information of your Vitotronic controlling unit. Defaults to an empty value.
 - **state** (*Optional*, string): If set to a non-empty value, a :doc:`/components/text_sensor/index` with the internal state of the component is created. Defaults to an empty value. See *Troubleshooting*.
+
+.. warning::
+
+    The ``optolink`` platform uses UART0 for communication with the heating component. Don't mix it with other components that use UART0.
+    Especially the :doc:`/components/logger` uses by default UART0 to write log messages to the serial port. If you plan to use the :doc:`/components/logger`, configure it to use another serial port. 
+
+    .. code-block:: yaml
+
+        logger:
+          hardware_uart: UART1
 
 Sensors
 *******
