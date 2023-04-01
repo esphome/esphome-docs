@@ -787,6 +787,7 @@ Cookbook
     AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg                                               
     Geiger Counter, cookbook/geiger-counter, radiationD-v1-1-cajoe_small.jpg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
+    ESP 360 REMOTE, cookbook/esp-360-remote, esp-360-alone.jpeg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
