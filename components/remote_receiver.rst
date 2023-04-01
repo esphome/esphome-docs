@@ -53,8 +53,8 @@ Configuration variables:
   - **sony**: Decode and dump Sony infrared codes.
   - **toshiba_ac**: Decode and dump Toshiba AC infrared codes.
 
-- **tolerance** (*Optional*, int): The percentage that the remote signal lengths can deviate in the
-  decoding process. Defaults to ``25%``.
+- **tolerance** (*Optional*, int or :ref:`config-time`): The percentage or time that the remote signal lengths can
+  deviate in the decoding process. Defaults to ``25%``.
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kB``
   on the ESP32 and ``1kB`` on the ESP8266.
 - **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. Defaults to
@@ -65,6 +65,8 @@ Configuration variables:
   change) for it to be considered complete. Defaults to ``10ms``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this if you have
   multiple remote receivers.
+- **clock_divider** (*Optional*, int): The clock divider used by the RMT peripheral. A clock divider of ``80`` leads to
+  a resolution of 1 µs per tick, ``160`` leads to 2 µs. Only used on ESP32 platform. Defaults to ``80``.
 
 .. note::
 
