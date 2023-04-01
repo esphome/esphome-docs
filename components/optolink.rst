@@ -18,7 +18,8 @@ Using an adapter cable you can read parameters of the heating component and also
 Once configured, you can add further :doc:`Sensors</components/sensor/index>`, :doc:`Binary Sensors</components/binary_sensor/index>` and :doc:`Text Sensors</components/text_sensor/index>` to monitor parameters of the heating component. Moreover, you can add :doc:`Switches</components/switch/index>`, :doc:`Numbers</components/number/index>` and :doc:`Selects</components/select/index>` to control the heating component.
 
 .. note::
-  The ``optolink`` platform is based on the great work of many people in the `OpenV project <https://github.com/openv/openv/wiki>`__ and the fantastic Arduino Library `VitoWiFi <https://github.com/bertmelis/VitoWiFi>`__ of Bert Melis.   
+
+    The ``optolink`` platform is based on the great work of many people in the `OpenV project <https://github.com/openv/openv/wiki>`__ and the fantastic Arduino Library `VitoWiFi <https://github.com/bertmelis/VitoWiFi>`__ of Bert Melis.   
 
 Overview
 --------
@@ -32,11 +33,11 @@ Platform configuration
 ***********************
 .. code-block:: yaml
 
-  # Example configuration entry
-  optolink:
-    protocol: P300
-    device_info: Device Info
-    state: Component state
+    # Example configuration entry
+    optolink:
+      protocol: P300
+      device_info: Device Info
+      state: Component state
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -51,15 +52,15 @@ Sensors
 *******
 .. code-block:: yaml
 
-  # Example configuration entry
-  sensor:
-    - platform: optolink
-      name: Boiler Temperature
-      address: 0xA309
-      bytes: 2
-      div_ratio: 100
-      unit_of_measurement: °C
-      device_class: temperature
+    # Example configuration entry
+    sensor:
+      - platform: optolink
+        name: Boiler Temperature
+        address: 0xA309
+        bytes: 2
+        div_ratio: 100
+        unit_of_measurement: °C
+        device_class: temperature
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -72,11 +73,11 @@ Binary Sensors
 **************
 .. code-block:: yaml
 
-  # Example configuration entry
-  binary_sensor:
-    - platform: optolink
-      name: Disturbance
-      address: 0x0A82
+    # Example configuration entry
+    binary_sensor:
+      - platform: optolink
+        name: Disturbance
+        address: 0x0A82
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -87,13 +88,13 @@ Text Sensors
 ************
 .. code-block:: yaml
 
-  # Example configuration entry
-  text_sensor:
-    - platform: optolink
-      name: Error history 1
-      address: 0x7590
-      bytes: 9
-      raw: true
+    # Example configuration entry
+    text_sensor:
+      - platform: optolink
+        name: Error history 1
+        address: 0x7590
+        bytes: 9
+        raw: true
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -105,20 +106,20 @@ Configuration variables:
 Numbers
 *******
 .. code-block:: yaml
-  
-  # Example configuration entry
-  number:
-    - platform: optolink
-      name: Room Temperature Setpoint
-      unit_of_measurement: °C
-      address: 0x2306
-      bytes: 1
-      min_value: 3
-      max_value: 37
-      step: 1
-      mode: box
-      icon: "mdi:home-thermometer"
-      device_class: temperature
+
+    # Example configuration entry
+    number:
+      - platform: optolink
+        name: Room Temperature Setpoint
+        unit_of_measurement: °C
+        address: 0x2306
+        bytes: 1
+        min_value: 3
+        max_value: 37
+        step: 1
+        mode: box
+        icon: "mdi:home-thermometer"
+        device_class: temperature
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -133,13 +134,13 @@ Configuration variables:
 Switches
 ********
 .. code-block:: yaml
-  
-  # Example configuration entry
-  switch:
-    - platform: optolink
-      name: Economy mode
-      address: 0x2302
-      icon: mdi:sprout-outline
+
+    # Example configuration entry
+    switch:
+      - platform: optolink
+        name: Economy mode
+        address: 0x2302
+        icon: mdi:sprout-outline
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -149,17 +150,17 @@ Configuration variables:
 Selects
 *******
 .. code-block:: yaml
-  
-  # Example configuration entry
-  select:
-    - platform: optolink
-      name: Operation mode
-      address: 0x2323
-      bytes: 1
-      map:
-        - "0 -> Off"
-        - "1 -> Only hot water"
-        - "2 -> Heating and hot water"
+
+    # Example configuration entry
+    select:
+      - platform: optolink
+        name: Operation mode
+        address: 0x2323
+        bytes: 1
+        map:
+          - "0 -> Off"
+          - "1 -> Only hot water"
+          - "2 -> Heating and hot water"
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
