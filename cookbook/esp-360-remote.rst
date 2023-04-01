@@ -13,11 +13,10 @@ It features 433MHz transmitter and receiver. IR leds are placed in circle to cov
 
 
 .. figure:: images/esp-360-remote-alone.jpg
-
     :align: center
     
+    
 .. figure:: images/esp-360-remote-without_top.jpg
-
     :align: center
 
 ------------
