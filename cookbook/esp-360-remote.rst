@@ -11,7 +11,11 @@ An all-in-one remote based on the ESP32-WROOM-32E
 
 It features 433MHz transmitter and receiver. IR leds are placed in circle to cover all the directions and includes a temperature & humidity and an ambient light sensor. The brain is the ESP32-WROOM-32E, so it's super easy to set everything up with ESPHOME and controlling it from Home Assistant. 
 
-.. figure:: images/leak-detector-m5stickC_overview1.jpg
+
+.. figure:: images/esp-360-alone.jpeg
+    :align: center
+    
+.. figure:: images/esp-360-without-top.jpeg
     :align: center
 
 ------------
@@ -22,7 +26,7 @@ ESPHome configuration
 .. code-block:: yaml
 
  esphome:
-  name: esp360remote
+   name: esp360remote
  
  esp32:
    board: esp32doit-devkit-v1
@@ -171,6 +175,7 @@ ESPHome configuration
      pin: 12
      name: "Status Led"
      restore_mode: ALWAYS_ON
+ 
 
 See Also
 ========
