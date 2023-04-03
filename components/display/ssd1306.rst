@@ -30,15 +30,15 @@ improve reliability.
 
 .. code-block:: yaml
 
-        # Example configuration entry for ESP8266
-        i2c:
-          sda: GPIO4 # GPIO21 for ESP32
-          scl: GPIO5 # GPIO22 For ESP32
-       font:
-        # gfonts://family[@weight]
-       - file: "gfonts://Roboto"
-           id: my_font
-         size: 20
+    # Example configuration entry for ESP8266
+    i2c:
+      sda: GPIO4 # GPIO21 for ESP32
+      scl: GPIO5 # GPIO22 For ESP32
+   font:
+    # gfonts://family[@weight]
+   - file: "gfonts://Roboto"
+       id: my_font
+     size: 20
 
 
     display:
