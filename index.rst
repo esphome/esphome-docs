@@ -149,7 +149,7 @@ Core Components
 Sensor Components
 -----------------
 
-Sensors have been split into categories. If a sensor fits into more than one category, it will be listed multiple times.
+Sensors are split into categories. If a sensor fits into more than one category, it will be listed multiple times.
 
 Core
 ****
@@ -406,31 +406,58 @@ example </cookbook/temt6000>`.
 Binary Sensor Components
 ------------------------
 
+Binary Sensors are split into categories. If a sensor fits into more than one category, it will be listed multiple times.
+
+Core
+****
 .. imgtable::
 
     Binary Sensor Core, components/binary_sensor/index, folder-open.svg
+    Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
     GPIO, components/binary_sensor/gpio, pin.svg
     Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg
     Status, components/binary_sensor/status, server-network.svg
-    Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg
-    ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
-    ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
-    Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
-    MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
-    Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
+
+Capacitive Touch
+****************
+.. imgtable::
+
+    CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
+    ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
+    MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
+    TTP229, components/binary_sensor/ttp229, ttp229.jpg
+
+NFC/RFID Components
+*******************
+
+Often known as "tag" or "card" readers within the community.
+
+.. imgtable::
+
     PN532, components/binary_sensor/pn532, pn532.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
-    TTP229, components/binary_sensor/ttp229, ttp229.jpg
-    Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
-    Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
-    XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
-    CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
+
+Touchscreen
+***********
+.. imgtable::
+
+    Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Touchscreen, components/touchscreen/index, touch.svg
-    Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
+
+Miscellaneous
+*************
+.. imgtable::
+
+    Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg
+    ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
+    Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     LD2410, components/sensor/ld2410, ld2410.jpg
-    Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
+    Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
+    Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
 
 Output Components
 -----------------
@@ -651,7 +678,7 @@ Select Components
     Tuya Select, components/select/tuya, tuya.png
 
 Lock Components
------------------
+---------------
 
 .. imgtable::
 
@@ -679,8 +706,8 @@ Time Components
     DS1307 RTC, components/time/ds1307, clock-outline.svg
     PCF85063 RTC, components/time/pcf85063, clock-outline.svg
 
-Misc Components
----------------
+Miscellaneous Components
+------------------------
 
 .. imgtable::
 
