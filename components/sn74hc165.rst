@@ -28,7 +28,7 @@ shift register to the pin QH of the next shift register.
       - platform: gpio
         name: "SN74HC165 Pin #0"
         pin:
-          sn74hc595: sn74hc165_hub
+          sn74hc165: sn74hc165_hub
           # Use pin number 0
           number: 0
           inverted: false

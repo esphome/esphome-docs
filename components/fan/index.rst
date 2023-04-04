@@ -27,6 +27,12 @@ Base Fan Configuration
 Configuration variables:
 
 - **name** (**Required**, string): The name of the fan.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the fan to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the fan in the frontend.
 - **restore_mode** (*Optional*): Control how the fan attempts to restore state on boot.
 

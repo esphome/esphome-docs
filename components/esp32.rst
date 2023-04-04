@@ -31,8 +31,6 @@ Configuration variables:
 
     Support for the ESP32-S2 and ESP32-C3 is still in development and there could be issues.
 
-.. _esp32-arduino_framework:
-
 GPIO Pin Numbering
 ------------------
 
@@ -58,6 +56,8 @@ Some notes about the pins on the ESP32:
       - platform: gpio
         name: "Pin GPIO23"
         pin: GPIO23
+
+.. _esp32-arduino_framework:
 
 Arduino framework
 -----------------
