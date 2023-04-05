@@ -26,6 +26,13 @@ All light configuration schemas inherit these options.
 
 Configuration variables:
 
+- **name** (**Required**, string): The name of the light.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the light to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the light in the frontend.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **gamma_correct** (*Optional*, float): Apply a `gamma correction
@@ -202,6 +209,13 @@ them to zero.
         call.set_effect("The Effect");
         // perform action:
         call.perform();
+
+    Shorter example using auto call , call.set_brightness and call.perform.
+
+    .. code-block:: cpp
+
+        id(light_1).turn_on().set_brightness(1.0).perform();
+
 
 .. note::
 

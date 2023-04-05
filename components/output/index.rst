@@ -43,7 +43,7 @@ Configuration variables:
 Float outputs only:
 
 - **min_power** (*Optional*, float): Sets the minimum output value of this output platform.
-  Must be in range from 0 to max_power. Defaults to ``0``.
+  Must be in range from 0 to max_power. Defaults to ``0``.  If zero_means_zero is ``false`` this will be output value when the entity is turned off.
 - **max_power** (*Optional*, float): Sets the maximum output value of this output platform.
   Must be in range from min_power to 1. Defaults to ``1``.
 - **zero_means_zero** (*Optional*, boolean): Sets the output to use actual 0 instead of ``min_power``.
@@ -98,7 +98,7 @@ This action turns the output with the given ID off when executed.
 ***************************
 
 This action sets the float output to the given level when executed. Note: This only
-works with floating point outputs like ESP8266 PWM, LEDC or ``slow_pwm``.
+works with floating point outputs like :doc:`/components/output/esp8266_pwm`, :doc:`/components/output/ledc`, :doc:`/components/output/sigma_delta`, :doc:`/components/output/slow_pwm`.
 
 .. code-block:: yaml
 
