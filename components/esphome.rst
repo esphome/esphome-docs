@@ -7,8 +7,7 @@ ESPHome Core Configuration
 
 Here you specify some core information that ESPHome needs to create
 firmwares. Most importantly, this is the section of the configuration
-where you specify the **name** of the node, the **platform** and
-**board** you’re using.
+where you specify the **name** of the node.
 
 .. code-block:: yaml
 
@@ -16,7 +15,8 @@ where you specify the **name** of the node, the **platform** and
     esphome:
         name: livingroom
         comment: Living room ESP32 controller
-        platform: ESP32
+
+    esp32:
         board: nodemcu-32s
 
 .. _esphome-configuration_variables:
@@ -26,8 +26,12 @@ Configuration variables:
 
 - **name** (**Required**, string): This is the name of the node. It
   should always be unique in your ESPHome network. May only contain lowercase
-  characters, digits and hyphens, and can be at most 31 characters long.
+  characters, digits and hyphens, and can be at most 24 characters long by default, or 31
+  characters long if ``name_add_mac_suffix`` is ``false``.
   See :ref:`esphome-changing_node_name`.
+- **friendly_name** (*Optional*, string): This is the name sent to the frontend. It is used
+  by Home Assistant as the integration name, device name, and is automatically prefixed to entities
+  where necessary.
 
 Advanced options:
 
@@ -39,33 +43,32 @@ Advanced options:
   platformio.ini file. See :ref:`esphome-platformio_options`.
 - **includes** (*Optional*, list of files): A list of C/C++ files to include in the main (auto-generated) sketch file
   for custom components. The paths in this list are relative to the directory where the YAML configuration file
-  is in. See :ref:`esphome-includes` for more info.
+  is in. See :ref:`esphome-includes`.
 - **libraries** (*Optional*, list of libraries): A list of libraries to include in the project. See
-  :ref:`esphome-libraries` for more information.
+  :ref:`esphome-libraries`.
 - **comment** (*Optional*, string): Additional text information about this node. Only for display in UI.
 - **name_add_mac_suffix** (*Optional*, boolean): Appends the last 3 bytes of the mac address of the device to
   the name in the form ``<name>-aabbcc``. Defaults to ``false``.
   See :ref:`esphome-mac_suffix`.
-
 - **project** (*Optional*): ESPHome Creator's Project information. See :ref:`esphome-creators_project`.
 
   - **name** (**Required**, string): Name of the project
   - **version** (**Required**, string): Version of the project
+- **min_version** (*Optional*, string): The minimum ESPHome version required to compile this configuration.
+  See :ref:`esphome-min_version`.
+- **compile_process_limit** (*Optional*, int): The maximum number of simultaneous compile processes to run.
+  Defaults to the number of cores of the CPU which is also the maximum you can set.
 
-Platform options that have been moved (now in platform-specific sections :doc:`esp32 </components/esp32>` and :doc:`esp8266 </components/esp8266>`):
+Old-style platform options, which have been moved to the platform-specific :doc:`esp32 </components/esp32>` and
+:doc:`esp8266 </components/esp8266>` sections but are still accepted here for compatibility reasons (usage not
+recommended for new projects):
 
-- **platform** (**Required**, string): The type of platform. One of ``esp8266`` or ``esp32``.
-- **board** (**Required**, string): The board that should be used. See 
+- **platform** (**Required**, string): The platform used, either ``esp8266`` or ``esp32``.
+- **board** (**Required**, string): The board used, see
   :doc:`esp32 </components/esp32>` and :doc:`esp8266 </components/esp8266>` for more information.
-- **arduino_version** (*Optional*): The version of the Arduino framework to compile the project against.
+- **arduino_version** (*Optional*, string): The version of the Arduino framework to compile the project against.
 - **esp8266_restore_from_flash** (*Optional*, boolean): For ESP8266s, whether to store some persistent preferences in flash
   memory.
-
-Choose the appropriate board from
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>`__ for the ESP8266, and
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__ for the ESP32 (the icon
-  next to the name can be used to copy the board ID). *This only affects pin aliases and some internal settings*,
-  if unsure choose a generic board from Espressif.
 
 Automations:
 
@@ -120,17 +123,26 @@ too many WiFi/MQTT connection attempts, Over-The-Air updates being applied or th
 .. note::
 
     It's not guaranteed that all components are in a connected state when this automation is triggered. For
-    example, the MQTT client may have already disconnected.
+    example, the MQTT client may have already disconnected. For use-cases that require specific shutdown ordering, look at the ``priority`` parameter.
 
 .. code-block:: yaml
 
     esphome:
       # ...
       on_shutdown:
+        priority: 700
         then:
           - switch.turn_off: switch_1
 
-Configuration variables: See :ref:`Automation <automation>`.
+Configuration variables:
+
+- **priority** (*Optional*, float): The priority to execute your custom shutdown code. A higher value
+  means a high priority and in case of shutdown triggers that the code is executed **later**.
+  Priority is used primarily for the initialization order of components. Shutdowns for these components are handled in *reverse* order, such that e.g. sensors (600) are shutdown before the hardware components (800) they depend on.
+  Please note this is an ESPHome-internal value and any change will not be marked as a breaking change.
+  Defaults to ``600``. For priority values refer to the list in the :ref:`esphome-on_boot` section.
+
+- See :ref:`Automation <automation>`.
 
 .. _esphome-on_loop:
 
@@ -154,7 +166,7 @@ This automation will be triggered on every ``loop()`` iteration (usually around 
 
 PlatformIO supports a number of options in its ``platformio.ini`` file. With the ``platformio_options``
 parameter you can tell ESPHome what options to pass into the ``env`` section of the PlatformIO file
-(Note you can also do this by editing the ``platformio.ini`` file manually).
+(note you can also do this by editing the ``platformio.ini`` file manually).
 
 You can view a full list of PlatformIO options here: https://docs.platformio.org/en/latest/projectconf/section_env.html
 
@@ -309,10 +321,16 @@ The same procedure can be done for changing the static IP of a device.
 Adding the MAC address as a suffix to the device name
 -----------------------------------------------------
 
-Using ``name_add_mac_suffix`` allows the user to compile a single binary file to flash
-many of the same device and they will all have unique names/hostnames.
-Note that you will still need to create an individual YAML config file if you want to
-OTA update the devices in the future.
+Using ``name_add_mac_suffix`` allows :doc:`creators </guides/creators>` to 
+provision multiple devices at the factory with a single firmware and still 
+have unique identification for customer installs.
+
+.. note::
+
+    End users will need to create an individual YAML config file if they want to OTA update the 
+    devices in the future.  Creators can facilitate this process by providing ``dashboard_import`` URL
+    for end users.  This allows them to easily update their devices as new features are made available 
+    upstream.
 
 
 .. _esphome-creators_project:
@@ -333,6 +351,14 @@ should be ``author_name.project_name``.
         name: "jesse.leds_party"
         version: "1.0.0"
 
+.. _esphome-min_version:
+
+Minimum ESPHome version
+-----------------------
+
+This allows YAML files to specify the minimum version of ESPHome required to compile.
+This is useful in the case of packages where a published package might use features only
+available in a newer version of ESPHome. This allows for a more friendly error message.
 
 See Also
 --------

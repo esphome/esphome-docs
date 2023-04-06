@@ -137,15 +137,15 @@ class ImageTableDirective(Table):
                 }
             )
 
-        col_widths = self.get_column_widths(cols)
         title, messages = self.make_title()
         table = nodes.table()
         table["classes"].append("table-center")
+        table["classes"].append("colwidths-given")
 
         # Set up column specifications based on widths
         tgroup = nodes.tgroup(cols=cols)
         table += tgroup
-        tgroup.extend(nodes.colspec(colwidth=col_width) for col_width in col_widths)
+        tgroup.extend(nodes.colspec(colwidth=1) for _ in range(cols))
 
         tbody = nodes.tbody()
         tgroup += tbody

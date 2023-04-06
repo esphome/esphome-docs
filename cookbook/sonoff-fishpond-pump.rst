@@ -55,23 +55,20 @@ Here is the configuration with the basic operations outlined above.
     # Cron'd to run every hour, on the hour for 10 minutes
     esphome:
       name: fishpond
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      ## use fast_connect of you are connecting to a hidden WiFi network, else comment it out
-      fast_connect: true
 
     # Enable logging
     logger:
-      level: DEBUG
 
     ota:
 
     api:
-      password: !secret esplibapi_password
 
     status_led:
       pin: GPIO13

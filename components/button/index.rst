@@ -5,9 +5,14 @@ Button Component
     :description: Instructions for setting up button components in ESPHome.
     :image: folder-open.svg
 
-ESPHome has support for components to create a button entity. A button entity is
-basically a momentary switch with no state and can be triggered by either YAML or
-the user/frontend.
+.. note::
+
+    To attach a physical button to ESPHome, see
+    :doc:`GPIO Binary Sensor </components/binary_sensor/gpio>`.
+
+ESPHome has support for components to create button entities in Home Assistant. A button entity is
+represented in ESPHome as a momentary switch with no state and can be triggered in Home Assistant
+via the UI or automations.
 
 .. note::
 
@@ -36,6 +41,12 @@ All buttons in ESPHome have a name and an optional icon.
 Configuration variables:
 
 - **name** (**Required**, string): The name for the button.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the button to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the button in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
@@ -93,6 +104,13 @@ This is an :ref:`Action <config-action>` for pressing a button in an Automation.
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the button to set.
+
+.. note::
+
+    Buttons are designed to trigger an action on a device from Home Assistant, and have an unidirectional flow from
+    Home Assistant to ESPHome. If you press a button using this action, no button press event will be triggered in Home
+    Assistant. If you want to trigger an automation in Home Assistant, you should use a
+    :ref:`Home Assistant event <api-homeassistant_event_action>` instead.
 
 .. _button-lambda_calls:
 

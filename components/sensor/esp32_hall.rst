@@ -50,6 +50,6 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`adc`
-- :doc:`/devices/esp32`
+- :doc:`/components/esp32`
 - :apiref:`esp32_hall/esp32_hall.h`
 - :ghedit:`Edit`

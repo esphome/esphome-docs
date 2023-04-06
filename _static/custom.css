@@ -20,13 +20,12 @@ div.sphinxsidebar {
 
 img.component-image {
   border: none;
-  vertical-align: middle;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
   height: 85px;
   object-fit: contain;
+  border-radius: 10px;
 }
 
 table.docutils {
@@ -186,4 +185,8 @@ div.index-shields {
   .guide-card ul {
     margin-left: 32px;
   }
+}
+
+.breadcrumbs li {
+  display: inline;
 }

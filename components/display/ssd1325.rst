@@ -49,7 +49,7 @@ Configuration variables:
 
 - **model** (**Required**): The model of the display. Options are:
 
-  - ``SSD1325 128x32`` (SSD1325 with 128 columns and 32 rows)
+  - ``SSD1325 128x32`` - SSD1325 with 128 columns and 32 rows
   - ``SSD1325 128x64``
   - ``SSD1325 96x16``
   - ``SSD1325 64x48``

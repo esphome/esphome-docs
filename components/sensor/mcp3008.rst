@@ -1,5 +1,5 @@
-MCP3008 I/O Expander
-====================
+MCP3008 8-Channel 10-Bit A/D Converter
+======================================
 
 .. seo::
     :description: Instructions for setting up MCP3008 10 Bit Analog to Digital Converter in ESPHome.
@@ -40,6 +40,7 @@ If you want just the scaled value you can use the read_data function
     # Example configuration entry
     mcp3008:
       cs_pin: D8
+      id: my_mcp
 
     # Example config of sensors.
     # This is a NTCB3950 10K thermocoupler attached to pin 0
@@ -49,6 +50,7 @@ If you want just the scaled value you can use the read_data function
       - platform: mcp3008             # Attached to pin 0 of the MCP3008.
         reference_voltage: 3.19
         update_interval: 1s
+        mcp3008_id: my_mcp
         id: freezer_temp_source
         number: 0                     # MCP3008 pin number
       - platform: resistance
@@ -79,7 +81,7 @@ sensor platform to create individual sensors that will report the voltage to Hom
 
 Configuration variables:
 
-- **id** (**Required**, :ref:`config-id`): The id of the parent MCP3008 component.
+- **mcp3008_id** (**Required**, :ref:`config-id`): The id of the parent MCP3008 component.
 - **number** (**Required**, int): The pin number of the MCP3008
 - **reference_voltage** (*Optional*, float): The reference voltage. Defaults to ``3.3V``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``1s``.

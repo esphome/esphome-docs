@@ -125,12 +125,13 @@ Depending on the type of your light you either need a config using my9231 driver
 
     esphome:
       name: downlight01
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: "YOUR SSID"
-      password: "YOUR WIFI PASSWORD"
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     # Enable logging
     logger:

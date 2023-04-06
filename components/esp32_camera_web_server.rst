@@ -31,8 +31,17 @@ Configuration variables:
   - ``snapshot``
   - ``stream``
 
+Integrating the mjpeg web service into an NVR:
+----------------------------------------------
+
+**Zoneminder**
+
+- *General -> Source Type*: `cURL (HTTP(S) only)`
+- *Source -> URL*: `http://ESP_IP_ADDRESS:8080/`
+
+
 See Also
 --------
 
-- :apiref:`esp32_camera_web_server/esp32_camera_web_server.h`
+- :apiref:`esp32_camera_web_server/camera_web_server.h`
 - :ghedit:`Edit`

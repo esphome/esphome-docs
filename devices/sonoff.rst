@@ -5,7 +5,7 @@ Generic Sonoff
     :description: Instructions for using generic Sonoff devices with ESPHome.
     :image: sonoff.svg
 
-In principle ESPHome supports all Sonoff devices, but as these devices are quite cheap
+ESPHome supports Sonoff devices with ESP based chips inside, but as these devices are quite cheap
 and shipping from China takes a long time, I've only set up dedicated guides for the
 :doc:`Sonoff S20 <sonoff_s20>` and :doc:`Sonoff 4CH <sonoff_4ch>`.
 
@@ -13,12 +13,13 @@ and shipping from China takes a long time, I've only set up dedicated guides for
 
     esphome:
       name: <NAME_OF_NODE>
-      platform: ESP8266
+
+    esp8266:
       board: esp8285
 
 After that use the following list of pin to function mappings to set up your Sonoff device.
-This list has been compiled from the Sonoff Tasmota pin source file which can be found here:
-https://github.com/arendst/Tasmota/blob/development/tasmota/tasmota_template.h ❤️
+This list has been compiled from the Sonoff Tasmota pin source file which can be found `here <https://github.com/arendst/Tasmota/blob/development/tasmota/tasmota_template.h>`__.
+
 
 .. note::
 
@@ -102,8 +103,8 @@ Sonoff Dual R2 v1.4
     GPIO10, Button on the case,
     GPIO13, Blue LED (inverted)
 
-Sonoff Dual R3 v1.x
--------------------
+Sonoff Dual R3 v1.x, v2.x
+-------------------------
 
 .. pintable::
 
@@ -116,7 +117,7 @@ Sonoff Dual R3 v1.x
     GPIO25, UART TX pin (for power sensor)
     GPIO26, UART RX pin (for power sensor)
 
-See :doc:`/components/sensor/cse7761` for measuring power.
+For power measuring see :doc:`/components/sensor/cse7761` (v1.x) or :doc:`/components/sensor/bl0939` (v2.x)
 
 Sonoff Pow R1
 -------------
@@ -349,6 +350,28 @@ Sonoff Mini
     GPIO16, Optional sensor
 
 
+Sonoff THR316D
+--------------
+
+.. pintable::
+
+    GPIO0, Button,
+    GPIO21, Relay 1,
+    GPIO4, Relay 2,
+    GPIO27, Optionnal sensor power ON/OFF,
+    GPIO25, sensor,
+    GPIO16, Power LED,
+    GPIO15, Wifi LED (inverted),
+    GPIO13, Cycle LED (inverted),
+    GPIO23, Display Read,
+    GPIO18, Display Write,
+    GPIO5, Display Data,
+    GPIO17, Display CS,
+    
+    GPIO1, UART TX pin (for log)
+    GPIO3, UART RX pin (for log)
+
+
 Shelly 1
 --------
 
@@ -420,5 +443,5 @@ See Also
 - :doc:`sonoff_s20`
 - :doc:`sonoff_4ch`
 - :doc:`sonoff_basic`
-- :doc:`esp8266`
+- :doc:`/components/esp8266`
 - :ghedit:`Edit`

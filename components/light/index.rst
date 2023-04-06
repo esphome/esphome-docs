@@ -26,6 +26,13 @@ All light configuration schemas inherit these options.
 
 Configuration variables:
 
+- **name** (**Required**, string): The name of the light.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the light to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the light in the frontend.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **gamma_correct** (*Optional*, float): Apply a `gamma correction
@@ -41,8 +48,10 @@ Configuration variables:
 
     - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
-    - ``RESTORE_INVERTED_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
-    - ``RESTORE_INVERTED_ON`` - Attempt to restore state inverted from the previous state and default to ON.
+    - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
+    - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
+    - ``RESTORE_AND_OFF`` - Attempt to restore state but initialize the light as OFF.
+    - ``RESTORE_AND_ON`` - Attempt to restore state but initialize the light as ON.
     - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
@@ -200,6 +209,13 @@ them to zero.
         call.set_effect("The Effect");
         // perform action:
         call.perform();
+
+    Shorter example using auto call , call.set_brightness and call.perform.
+
+    .. code-block:: cpp
+
+        id(light_1).turn_on().set_brightness(1.0).perform();
+
 
 .. note::
 
@@ -405,10 +421,10 @@ with the behavior of the ``light.is_on`` and ``light.is_off`` condition above.
 ``light.on_state`` Trigger
 **************************
 
-This trigger is activated each time the set light state is changed. It is not triggered 
+This trigger is activated each time the set light state is changed. It is not triggered
 based on current state, but rather, it triggers on the set state which can differ from
 the current state due to transitions. For example, the ``light.on_state`` trigger can
-be used for immediate action when the light is set to off; while ``light.on_turn_off`` 
+be used for immediate action when the light is set to off; while ``light.on_turn_off``
 does not trigger until the light actually achieves the off state.
 
 .. code-block:: yaml
@@ -549,7 +565,7 @@ Configuration variables:
   - **green** (*Optional*, percentage): The green channel of the light, if applicable. Defaults to ``100%``.
   - **blue** (*Optional*, percentage): The blue channel of the light, if applicable. Defaults to ``100%``.
   - **white** (*Optional*, percentage): The white channel of the light, if applicable. Defaults to ``100%``.
-  - **color_temperature** (*Optional*, percentage): The color temperature of the light, if applicable. Defaults to ``100%``.
+  - **color_temperature** (*Optional*, float): The color temperature (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the light, if applicable.
   - **cold_white** (*Optional*, percentage): The cold white channel of the light, if applicable. Defaults to ``100%``.
   - **warm_white** (*Optional*, percentage): The warm white channel of the light, if applicable. Defaults to ``100%``.
   - **duration** (**Required**, :ref:`config-time`): The duration this color should be active.
@@ -586,6 +602,10 @@ Lambda Effect
 
 This effect allows you to write completely custom light effects yourself using :ref:`lambdas <config-lambda>`.
 
+Available variable in the lambda:
+
+- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting an effect.
+
 .. code-block:: yaml
 
     light:
@@ -621,6 +641,7 @@ Configuration variables:
   A value of ``0ms`` means that the lambda is always executed, without a cool-down. Defaults to ``0ms``.
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The code to execute. ``static`` variables are
   especially useful.
+
 
 Addressable Rainbow Effect
 **************************
@@ -1043,6 +1064,7 @@ This effect enables controlling addressable lights using UDP-based
 lighting effects.
 
 Prismatik_ can be used to control addressable lights over network on ESPHome.
+It is also possible to use LedFx_ to control the lights. Please use the connection type ``udp`` on the default port and add the Data Prefix ``0201``.
 
 .. code-block:: yaml
 
@@ -1070,6 +1092,7 @@ WARLS, DRGB, DRGBW, DNRGB and WLED Notifier.
 .. _UDP Realtime Control: https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control
 .. _WLED: https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control
 .. _Prismatik: https://github.com/psieg/Lightpack
+.. _LedFx: https://github.com/LedFx/LedFx
 
 See Also
 --------

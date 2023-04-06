@@ -5,6 +5,21 @@ FastLED Light
     :description: Instructions for setting up FastLED addressable lights like NEOPIXEL.
     :image: color_lens.svg
 
+.. warning::
+
+    FastLED does **not** work as expected with Arduino 3 or newer for ESP8266. For now, you can either downgrade the arduino version or use :doc:`neopixelbus`.
+
+    .. code-block:: yaml
+
+        esp8266:
+          framework:
+            version: 2.7.4
+
+    See these related issues:
+
+    - https://github.com/FastLED/FastLED/issues/1322
+    - https://github.com/FastLED/FastLED/issues/1264
+
 .. _fastled-clockless:
 
 Clockless
@@ -124,7 +139,7 @@ Configuration variables:
 - **max_refresh_rate** (*Optional*, :ref:`config-time`):
   A time interval used to limit the number of commands a light can handle per second. For example
   16ms will limit the light to a refresh rate of about 60Hz. Defaults to the default value for the used chipset.
-- **data_rate** (*Optional*, frequency): The data rate to use for shifting data to the light. Can help if you 
+- **data_rate** (*Optional*, frequency): The data rate to use for shifting data to the light. Can help if you
   have long cables or slow level-shifters.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.

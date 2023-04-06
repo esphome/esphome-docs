@@ -3,7 +3,7 @@ MAX7219 Digit Display
 
 .. seo::
     :description: Instructions for setting up MAX7219 Digit displays.
-    :image: max7219digit.png
+    :image: max7219digit.jpg
 
 The ``max7219`` display platform allows you to use MAX7219 digit with ESPHome. Please note that this integration
 is *only* for the digit "matrix" display, for the 7 segment display see :doc:`max7219`.
@@ -21,7 +21,7 @@ CS to your set ``cs_pin`` and finally GND to GND.
 
 You can even daisy-chain multiple MAX7219s by connecting the DOUT of the previous chip in the chain to the
 next DIN. With more than ~3 chips the 3.3V will probably not be enough, so then you will have to potentially
-use a logic level converted.
+use a logic level converter.
 
 .. code-block:: yaml
 
@@ -68,6 +68,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **num_chip_lines** (*Optional*, int): Number of lines if you want to use the displays in Multiline Mode. Defaults to ``1`` Example: https://github.com/esphome/esphome/pull/1622#issue-836179156
 - **chip_lines_style** (*Optional*): How are the lines in Multiline Mode connected? Possible values are ``zigzag`` and ``snake``. Defaults to ``snake``
+- **flip_x** (*Optional*, boolean): Flip the horizontal axis on the screen. Defaults to ``false``.
 
 .. _display-max7219digit_lambda:
 
@@ -150,7 +151,7 @@ Screen inversion
           it.print(0,0, id(digit_font), "Hello!");
 
 The function ``it.invert_on_off(true);`` will invert the display. So background pixels are on and texts pixels are
-off. ``it.invert_on_off(false);`` sets the display back to normal. In case no argument is used: ``it.inverst_on_off();``
+off. ``it.invert_on_off(false);`` sets the display back to normal. In case no argument is used: ``it.invert_on_off();``
 the inversion will toggle from on to off or visa versa. This will happen every time the display is updated.
 So a blinking effect is created. The background pixels are only set at the next update, the pixels drawn in
 the various function like print, line, etc. are directly influenced by the invert command.

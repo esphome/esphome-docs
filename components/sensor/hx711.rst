@@ -19,8 +19,8 @@ load cell amplifier
 
 .. _SparkFun: https://www.sparkfun.com/products/13879
 
-Connect ``GND`` to ``GND``, ``VCC`` to ``3.3V`` and the other three ``MISO`` (or ``SO`` for short),
-``CS`` and ``CLOCK`` (or ``SCK``) to free GPIO pins.
+Connect ``GND`` to ``GND``, ``VCC`` to ``3.3V`` and the other two ``DOUT`` (or ``DT`` for short)
+and ``CLK`` (or ``SCK``) to free GPIO pins.
 
 .. code-block:: yaml
 
@@ -39,6 +39,12 @@ Configuration variables:
 - **name** (**Required**, string): The name for the load cell sensor.
 - **dout_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DOUT (or DAT) pin.
 - **clk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The CLK pin.
+- **gain** (*Optional*, enum): The gain. Implicitly selects the channel. Defaults to ``128``.
+
+    - ``32`` (Channel B, gain 32)
+    - ``64`` (Channel A, gain 64)
+    - ``128`` (Channel A, gain 128)
+
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.

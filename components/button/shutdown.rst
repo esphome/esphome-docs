@@ -32,6 +32,9 @@ See Also
 --------
 
 - :doc:`restart`
+- :doc:`safe_mode`
+- :doc:`factory_reset`
+- :doc:`/components/switch/shutdown`
 - :doc:`template`
 - :apiref:`shutdown/shutdown_button.h`
 - :ghedit:`Edit`

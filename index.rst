@@ -23,24 +23,24 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
             <ul>
                 <li>
                     <a class="reference" href="/guides/getting_started_hassio.html">
-                        ESPHome Dashboard
+                        from Home Assistant
                     </a>
                 </li>
                 <li>
                     <a class="reference" href="/guides/getting_started_command_line.html">
-                        Command Line Interface
+                        using the command line
                     </a>
                 </li>
                 <li>
                     <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
-                        Migrating from Tasmota
+                        by migrating from Tasmota
                     </a>
                 </li>
             </ul>
             <pre class="guide-code">
                 esphome:
                 &nbsp;&nbsp;name: awesome
-                &nbsp;&nbsp;platform: ESP32
+                esp32:
                 &nbsp;&nbsp;board: nodemcu-32s
             </pre>
         </div>
@@ -83,6 +83,16 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
             <h3 class="guide-card-title">Keeping up</h3>
             <ul>
                 <li>
+                    <a class="reference" href="https://discord.gg/KhAMKrd" target="_blank">
+                        Discord
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="https://community.home-assistant.io/c/esphome/" target="_blank">
+                        Forums
+                    </a>
+                </li>
+                <li>
                     <a class="reference" href="/changelog/index.html">
                         Changelog
                     </a>
@@ -103,26 +113,14 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
 
 .. _devices:
 
-Devices
--------
-
-This list contains a bunch of getting started and more advanced guides for using ESPHome.
-Technically, all ESP8266/ESP32 devices are supported by ESPHome.
+Platforms
+---------
 
 .. imgtable::
 
-    Generic ESP8266, devices/esp8266, esp8266.svg
-    Generic ESP32, devices/esp32, esp32.svg
-    NodeMCU ESP8266, devices/nodemcu_esp8266, nodemcu_esp8266.jpg
-
-    NodeMCU ESP32, devices/nodemcu_esp32, nodemcu_esp32.jpg
-    Sonoff S20, devices/sonoff_s20, sonoff_s20.jpg
-    Sonoff 4CH, devices/sonoff_4ch, sonoff_4ch.jpg
-
-    Generic Sonoff, devices/sonoff, sonoff.svg
-    Sonoff Basic, devices/sonoff_basic, sonoff_basic.jpg
-    Sonoff T1 UK 3 Gang V1.1, devices/sonoff_t1_uk_3gang_v1.1, sonoff_t1_uk_3g_v1.1.jpg
-    Sonoff T3 EU 3 Gang V1.0, devices/sonoff_t3_eu_3gang_v1.0, sonoff_t3_eu_3g_v1.0.jpg
+    ESP8266, components/esp8266, esp8266.svg
+    ESP32, components/esp32, esp32.svg
+    RP2040, components/rp2040, rp2040.svg
 
 Core Components
 ---------------
@@ -132,6 +130,7 @@ Core Components
     Core, components/esphome, cloud-circle.svg
     WiFi, components/wifi, network-wifi.svg
     MQTT, components/mqtt, mqtt.png
+    Network, components/network, network-wifi.svg
 
     I²C Bus, components/i2c, i2c.svg
     SPI Bus, components/spi, spi.svg
@@ -172,20 +171,24 @@ Air Quality
 
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Radon, CO2, Volatile organics
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
+    EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
+    MiCS-4514, components/sensor/mics_4514, mics_4514.jpg, Gas concentration
     PM1006 Sensor, components/sensor/pm1006, pm1006.jpg, Particulate
     PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg, Particulate
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
+    RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png, Radon
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
+    SEN5x, components/sensor/sen5x, sen54.jpg, Temperature & Humidity, Volatile organics and NOx
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
-    SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
+    SGP4x, components/sensor/sgp4x, sgp40.jpg, Volatile organics and NOx
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
     SPS30, components/sensor/sps30, sps30.jpg, Particulate
-    T6613/15, components/sensor/t6615, t6615.png, CO2
+    T6613/15, components/sensor/t6615, t6615.jpg, CO2
     ZyAura, components/sensor/zyaura, zgm053.jpg, CO2 & Temperature & Humidity
 
 
@@ -194,9 +197,11 @@ Analogue
 .. imgtable::
 
     ADC, components/sensor/adc, flash.svg, ESP internal
+    ADC128S102, components/sensor/adc128s102, adc128s102.png , 8-channel ADC
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
+    CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
-    MCP3204, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
+    MCP3204/MCP3208, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
     Resistance, components/sensor/resistance, omega.svg
 
 
@@ -208,6 +213,8 @@ Bluetooth Low Energy (BLE)
     BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
+    Mopeka Pro Check LP, components/sensor/mopeka_pro_check, mopeka_pro_check.jpg, tank level
+    Mopeka Standard Check LP, components/sensor/mopeka_std_check, mopeka_std_check.jpg, tank level
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
 
@@ -229,7 +236,7 @@ Distance
     HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg, Acoustic distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
-    VL53L0x, components/sensor/vl53l0x, vl53l0x.png, IR optical distance
+    VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg, IR optical distance
 
 
 Electricity
@@ -238,22 +245,25 @@ Electricity
 
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
+    BL0939, components/sensor/bl0939, bl0939.png, Voltage & Current & Power & Energy
     BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
+    BL0942, components/sensor/bl0942, bl0942.png, Voltage & Current & Power
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
     CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power
     CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg, AC current
-    Daly BMS, components/sensor/daly_bms, daly_bms.png, Voltage & Current & Power
+    Daly BMS, components/sensor/daly_bms, daly_bms.jpg, Voltage & Current & Power
     DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
     INA219, components/sensor/ina219, ina219.jpg, DC Current
     INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
     INA260, components/sensor/ina260, ina260.jpg, DC Current & Power
     INA3221, components/sensor/ina3221, ina3221.jpg, 3-Ch DC current
-    PZEM AC, components/sensor/pzemac, pzem-ac.png, Voltage & Current & Power
-    PZEM DC, components/sensor/pzemdc, pzem-dc.png, Voltage & Current & Power
+    MAX9611, components/sensor/max9611, max9611.jpg, +60VDC Voltage & Current & Power & Temperature
+    PZEM AC, components/sensor/pzemac, pzem-ac.jpg, Voltage & Current & Power
+    PZEM DC, components/sensor/pzemdc, pzem-dc.jpg, Voltage & Current & Power
     PZEM004T, components/sensor/pzem004t, pzem004t.svg, Voltage & Current & Power
-    SDM Meter, components/sensor/sdm_meter, sdm220m.png, Modbus energy monitor
+    SDM Meter, components/sensor/sdm_meter, sdm220m.jpg, Modbus energy monitor
     Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg, Modbus energy monitor
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg, Electrical counter
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
@@ -264,7 +274,8 @@ Environmental
 
 .. imgtable::
 
-    AHT10, components/sensor/aht10, aht10.jpg, Temperature & Humidity
+    Absolute Humidity, components/sensor/absolute_humidity, water-drop.svg
+    AHT10 / AHT20 / AHT21 / DHT20, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Temperature & Humidity & Pressure
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
     BME280, components/sensor/bme280, bme280.jpg, Temperature & Humidity & Pressure
@@ -277,13 +288,22 @@ Environmental
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
+    DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
+    ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
-    HTU21D, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
+    HTE501, components/sensor/hte501, HTE501.png, Temperature & Humidity
+    Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
+    HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
+    Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
+    Internal Temperature, components/sensor/internal_temperature, thermometer.svg, Temperature
     MCP9808, components/sensor/mcp9808, mcp9808.jpg, Temperature
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
+    MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
+    QMP6988, components/sensor/qmp6988, qmp6988_env3.png, Temperature & Pressure
+    RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png, Radon
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
@@ -291,7 +311,9 @@ Environmental
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
+    SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     STS3X, components/sensor/sts3x, sts3x.jpg, Temperature
+    TEE501, components/sensor/tee501, TEE501.png, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
 
@@ -302,8 +324,10 @@ Light
 
     AM43, components/sensor/am43, am43.jpg, Lux
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
+    AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
     LTR390, components/sensor/ltr390, ltr390.jpg, Lux & UV
+    MAX44009, components/sensor/max44009, max44009.svg, Lux
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
     TSL2591, components/sensor/tsl2591, tsl2591.jpg, Lux
@@ -315,6 +339,8 @@ Magnetic
 
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg, ESP internal
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg, 3-Axis magnetometer
+    MMC5603, components/sensor/mmc5603, mmc5603.jpg, 3-Axis magnetometer
+    MLX90393, components/sensor/mlx90393, mlx90393.jpg, 3-Axis magnetometer
     QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg, 3-Axis magnetometer
 
 
@@ -326,15 +352,25 @@ Miscellaneous
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
+    FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
     Kalman Combinator, components/sensor/kalman_combinator, function.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     Tuya Sensor, components/sensor/tuya, tuya.png
     TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
+
     HDMI CEC, components/hdmi_cec, hdmi-cec.png
+
+    uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png, EC & Temperature
+    uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png, pH & Temperature
+    Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
+    Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
+
 
 
 Motion
@@ -343,7 +379,9 @@ Motion
 
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
+    MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
+    LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
 
 
 Thermocouple
@@ -353,7 +391,8 @@ Thermocouple
     MAX31855, components/sensor/max31855, max31855.jpg, K-Type
     MAX31856, components/sensor/max31856, max31856.jpg, All types
     MAX31865, components/sensor/max31865, max31865.jpg, Platinum RTD
-    MAX6675, components/sensor/max6675, max6675.jpg, K-Type
+    MAX6675, components/sensor/max6675, max6675.jpg, K-Type,
+    MCP9600, components/sensor/mcp9600, mcp9600.jpg, All types
 
 
 Weight
@@ -378,8 +417,10 @@ Binary Sensor Components
     GPIO, components/binary_sensor/gpio, pin.svg
     Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg
     Status, components/binary_sensor/status, server-network.svg
+    Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
+    Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
@@ -391,6 +432,9 @@ Binary Sensor Components
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
     CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
+    Touchscreen, components/touchscreen/index, touch.svg
+    Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    LD2410, components/sensor/ld2410, ld2410.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -411,12 +455,20 @@ Output Components
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
+    SM2235, components/output/sm2235, sm2235.svg
+    SM2335, components/output/sm2335, sm2335.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
+    MCP4728, components/output/mcp4728, mcp4728.jpg
     MCP47A1, components/output/mcp47a1, mcp47a1.svg
+    DAC7678, components/output/dac7678, dac7678.svg
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
+    Sigma-Delta Output, components/output/sigma_delta, sigma-delta.svg
     Template Output, components/output/template, description.svg
+    BP1658CJ, components/output/bp1658cj, bp1658cj.svg
+    BP5758D, components/output/bp5758d, bp5758d.svg
+    X9C Potentiometer, components/output/x9c, x9c.jpg
 
 Light Components
 ----------------
@@ -440,9 +492,11 @@ Light Components
     Light Partition, components/light/partition, color_lens.svg
 
     Tuya Dimmer, components/light/tuya, tuya.png
+    Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg
     Custom Light, components/light/custom, language-cpp.svg
 
     H-bridge Light, components/light/hbridge, brightness-medium.svg
+    Sonoff D1 Dimmer, components/light/sonoff_d1, sonoff_d1.jpg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.
@@ -457,6 +511,7 @@ Switch Components
     Restart Switch, components/switch/restart, restart.svg
     Safe Mode Switch, components/switch/safe_mode, restart-alert.svg
     Shutdown Switch, components/switch/shutdown, power_settings.svg
+    Factory Reset Switch, components/switch/factory_reset, restart-alert.svg
     Generic Output Switch, components/switch/output, upload.svg
     Template Switch, components/switch/template, description.svg
     UART Switch, components/switch/uart, uart.svg
@@ -473,7 +528,12 @@ Button Components
 
     Button Core, components/button/index, folder-open.svg
     Template Button, components/button/template, description.svg
+    Generic Output Button, components/button/output, upload.svg
     Restart Button, components/button/restart, restart.svg
+    Safe Mode Button, components/button/safe_mode, restart-alert.svg
+    Shutdown Button, components/button/shutdown, power_settings.svg
+    Factory Reset Button, components/button/factory_reset, restart-alert.svg
+    Wake-on-LAN, components/button/wake_on_lan, power_settings.svg
 
 Fan Components
 --------------
@@ -495,9 +555,12 @@ Display Components
     Addressable Light, components/display/addressable_light, addressable_light.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
-    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.png
+    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
+    TM1621, components/display/tm1621, tm1621.jpg
     TM1637, components/display/tm1637, tm1637.jpg
+    TM1638, components/display/tm1638, tm1638.jpg
     Nextion, components/display/nextion, nextion.jpg
+    PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1322, components/display/ssd1322, ssd1322.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
@@ -507,10 +570,19 @@ Display Components
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     ST7920, components/display/st7920, st7920.jpg
-    ILI9341, components/display/ili9341, ili9341.jpg
+    ILI9xxx, components/display/ili9xxx, ili9341.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     Inkplate, components/display/inkplate6, inkplate6.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
+
+Touchscreen Components
+----------------------
+
+.. imgtable::
+
+    Touchscreen Core, components/touchscreen/index, folder-open.svg
+    EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
+    Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
 
 Cover Components
 ----------------
@@ -519,6 +591,7 @@ Cover Components
 
     Cover Core, components/cover/index, folder-open.svg
     Template Cover, components/cover/template, description.svg
+    Feedback Cover, components/cover/feedback, feedback_cover.svg
     Endstop Cover, components/cover/endstop, electric-switch.svg
     Current-Based Cover, components/cover/current_based, flash.svg
     Time-Based Cover, components/cover/time_based, timer.svg
@@ -536,12 +609,14 @@ Text Sensor Components
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
     Version, components/text_sensor/version, new-box.svg
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
+    Ethernet Info, components/text_sensor/ethernet_info, ethernet.svg
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Modbus Text Sensor, components/text_sensor/modbus_controller, modbus.png
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
     Tuya Text Sensor, components/text_sensor/tuya, tuya.png
+    WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg
 
 Climate Components
 ------------------
@@ -553,10 +628,12 @@ Climate Components
     Thermostat Controller, components/climate/thermostat, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
     PID Controller, components/climate/pid, function.svg
-    IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
+    IR Remote Climate, components/climate/climate_ir, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
     Midea, components/climate/midea, midea.svg
     Anova Cooker, components/climate/anova, anova.png
+    BedJet Climate System, components/climate/bedjet, bedjet.png
+    Haier Climate, components/climate/haier, haier.svg
 
 Number Components
 -----------------
@@ -575,40 +652,76 @@ Select Components
 
     Select Core, components/select/index, folder-open.svg
     Template Select, components/select/template, description.svg
+    Modbus Select, components/select/modbus_controller, modbus.png
+    Tuya Select, components/select/tuya, tuya.png
+
+Lock Components
+-----------------
+
+.. imgtable::
+
+    Lock Core, components/lock/index, folder-open.svg
+    Generic Output Lock, components/lock/output, upload.svg
+    Template Lock, components/lock/template, description.svg
+
+Media Player Components
+-----------------------
+
+.. imgtable::
+
+    Media Player Core, components/media_player/index, folder-open.svg
+    I2S Audio, components/media_player/i2s_audio, i2s_audio.svg
+
+Time Components
+---------------
+
+.. imgtable::
+
+    Time Core, components/time/index, clock-outline.svg
+    Home Assistant Time, components/time/homeassistant, home-assistant.svg
+    SNTP, components/time/sntp, clock-outline.svg
+    GPS Time, components/time/gps, crosshairs-gps.svg
+    DS1307 RTC, components/time/ds1307, clock-outline.svg
+    PCF85063 RTC, components/time/pcf85063, clock-outline.svg
 
 Misc Components
 ---------------
 
 .. imgtable::
 
-    ESP8266, components/esp8266, esp8266.svg
-    ESP32, components/esp32, esp32.svg
-
     Remote Receiver, components/remote_receiver, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
+    Display Menu Core, components/display_menu/index, folder-open.svg
+    LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
+    Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
+    Wiegand Reader, components/wiegand, wiegand.jpg
     HTTP Request, components/http_request, connection.svg
     mDNS, components/mdns, radio-tower.svg
 
-    Time, components/time, clock-outline.svg
     Sun, components/sun, weather-sunny.svg
     GPS, components/gps, crosshairs-gps.svg
 
+    Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg
     ESP32 BLE Client, components/ble_client, bluetooth.svg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
-    ESP32 Ethernet, components/ethernet, ethernet.svg
 
+    ESP32 Ethernet, components/ethernet, ethernet.svg
     ESP32 Camera, components/esp32_camera, camera.svg
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg
+
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
+    Sprinkler, components/sprinkler, sprinkler-variant.svg
 
+    PCA9554 I/O Expander, components/pca9554, pca9554a.jpg
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
+    SN74HC165 I/O Expander, components/sn74hc165, sn74hc595.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
@@ -625,7 +738,11 @@ Misc Components
     Prometheus, components/prometheus, prometheus.svg
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
+    SML, components/sml, sml.svg
+    Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
+    Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Demo, components/demo, description.svg
+    Copy, components/copy, content-copy.svg
 
 Additional Custom Components
 ----------------------------
@@ -667,10 +784,14 @@ Cookbook
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
     ESP32 BLE iTag Button, cookbook/ble_itag, esp32_ble_itag.jpg
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
+    TUYA Smart Life RGBW Controller, cookbook/tuya_rgbw, tuya_rgbw.jpg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
     IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
     EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
     Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
+    AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg                                               
+    Geiger Counter, cookbook/geiger-counter, radiationD-v1-1-cajoe_small.jpg
+    EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
@@ -679,7 +800,6 @@ documentation for others to copy. See :doc:`Contributing </guides/contributing>`
     :hidden:
 
     web-api/index
-    misc/index
     components/index
     cookbook/index
     devices/index

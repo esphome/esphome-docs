@@ -46,6 +46,9 @@ Configuration variables:
   - **name** (**Required**, string): The name for the impedance sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
+- **clear_impedance** (*Optional*): Clear the impedance information if a weight reading without impedance is received. Defaults to ``false``. **Only available on MiScale2**
+
+  Useful in the example below if a person steps onto the scale without waiting for the complete measurement. Without setting the flag the impedance reading of the measurement before will be used for the currently measured person.
 
 Configuration example with multiple users:
 ******************************************
@@ -70,7 +73,7 @@ You have to replace the numbers in the lambdas to determine your weight which is
 
         impedance:
           name: "Xiaomi Mi Scale Impedance"
-          id: impedance_xiaomi
+          id: impedance_miscale
           on_value:
             then:
               - lambda: |-
@@ -88,7 +91,7 @@ You have to replace the numbers in the lambdas to determine your weight which is
       - platform: template
         name: Impedance Aurélien
         id: impedance_user1
-        unit_of_measurement: 'ohm'
+        unit_of_measurement: 'Ω'
         icon: mdi:omega
         accuracy_decimals: 0
       - platform: template
@@ -100,7 +103,7 @@ You have to replace the numbers in the lambdas to determine your weight which is
       - platform: template
         name: Impedance Siham
         id: impedance_user2
-        unit_of_measurement: 'ohm'
+        unit_of_measurement: 'Ω'
         icon: mdi:omega
         accuracy_decimals: 0
 

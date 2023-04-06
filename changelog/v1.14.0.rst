@@ -18,8 +18,8 @@ Changelog - Version 1.14.0 - November 1
 
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg
     PZEM004T, components/sensor/pzem004t, pzem004t.svg
-    PZEM AC, components/sensor/pzemac, pzem-ac.png
-    PZEM DC, components/sensor/pzemdc, pzem-dc.png
+    PZEM AC, components/sensor/pzemac, pzem-ac.jpg
+    PZEM DC, components/sensor/pzemdc, pzem-dc.jpg
     ADE7953, components/sensor/ade7953, ade7953.svg
 
     SenseAir, components/sensor/senseair, senseair_s8.jpg
@@ -29,7 +29,7 @@ Changelog - Version 1.14.0 - November 1
     SGP30, components/sensor/sgp30, sgp30.jpg
 
     Tx20, components/sensor/tx20, tx20.jpg
-    VL53L0x, components/sensor/vl53l0x, vl53l0x.png
+    VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg
     Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
     Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
@@ -306,7 +306,7 @@ Notable Changes & New Features
 - Add configurable ignore bits to rc_switch_raw codes (:esphomepr:`650` by :ghuser:`mtl010957`,
   :doc:`docs </components/remote_receiver>`).
 - New ``restore`` option has been added to :doc:`servos </components/servo>` (:esphomepr:`829`).
-- Add IR receiver support for coolix climate devices (:esphomepr:`645` by :ghuser:`glmnet`, :doc:`docs </components/climate/ir_climate>`).
+- Add IR receiver support for coolix climate devices (:esphomepr:`645` by :ghuser:`glmnet`, :doc:`docs </components/climate/climate_ir>`).
 - Add :ref:`calibrate_polynomial <sensor-calibrate_polynomial>` sensor filter (:esphomepr:`642`).
 - Allow setting the initial mode of HLW8012 sensors (:esphomepr:`611` by :ghuser:`brandond`, :doc:`docs </components/sensor/hlw8012>`).
 - Add tilt actions to :doc:`template cover </components/cover/template>` (:esphomepr:`577` by :ghuser:`mtl010957`).
@@ -567,13 +567,10 @@ All changes
 Past Changelogs
 ---------------
 
-.. toctree::
-    :maxdepth: 1
-
-    v1.13.0
-    v1.12.0
-    v1.11.0
-    v1.10.0
-    v1.9.0
-    v1.8.0
-    v1.7.0
+- :doc:`v1.13.0`
+- :doc:`v1.12.0`
+- :doc:`v1.11.0`
+- :doc:`v1.10.0`
+- :doc:`v1.9.0`
+- :doc:`v1.8.0`
+- :doc:`v1.7.0`

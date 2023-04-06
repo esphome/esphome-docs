@@ -34,6 +34,7 @@ to some pins on your board and the baud rate set to 9600.
     sensor:
       - platform: growatt_solar
         update_interval: 10s
+        protocol_version: RTU
         
         inverter_status:
           name: "Growatt Status Code"
@@ -101,6 +102,9 @@ Configuration variables:
 ------------------------
 
 - **inverter_status** (*Optional*): Status code of the inverter (0: waiting, 1: normal, 3:fault)
+
+- **protocol_version** (*Optional*): Version of the protocol used by your inverter. 
+  Old inverters use RTU (default). Newer ones use RTU2 (e.g. MIC, MIN, MAX series)
 
 - **phase_a** (*Optional*): The group of exposed sensors for Phase A/1.
 

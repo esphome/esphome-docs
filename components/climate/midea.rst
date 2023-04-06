@@ -20,7 +20,7 @@ The ``midea`` component creates a Midea air conditioner climate device.
         - `Senville <https://senville.com/>`_
         - and maybe others
 
-    Control is possible with a custom dongle. Example of hardware implementation is `IoT Uni Dongle <https://github.com/dudanov/iot-uni-dongle>`_.
+    Control is possible with a custom dongle. Example of hardware implementation is `IoT Uni Dongle <https://github.com/dudanov/iot-uni-dongle>`_ or `Midea SLWF-01pro <https://www.ebay.com/itm/164956459539>`_ (`store <https://smartlight.me/smart-home-devices/wifi-devices/wifi-dongle-air-conditioners-midea-idea-electrolux-for-home-assistant>`_, `Tindie <https://www.tindie.com/products/smartlightme/wifi-dongle-for-air-conditioners-midea-electrolux>`_).
 
 .. code-block:: yaml
 
@@ -40,7 +40,6 @@ The ``midea`` component creates a Midea air conditioner climate device.
     climate:
       - platform: midea
         name: Midea Climate         # Use a unique name.
-        transmitter_id:             # Optional. Add this option to use IR transmitter.
         period: 1s                  # Optional
         timeout: 2s                 # Optional
         num_attempts: 3             # Optional
@@ -50,23 +49,23 @@ The ``midea`` component creates a Midea air conditioner climate device.
           min_temperature: 17 °C    # min: 17
           max_temperature: 30 °C    # max: 30
           temperature_step: 0.5 °C  # min: 0.5
-        supported_modes:            # All capabilities in this section detected by autoconf.
-          - FAN_ONLY                # This capability is always used.
+        supported_modes:            # Optional. All capabilities in this section may be detected by autoconf.
+          - FAN_ONLY
           - HEAT_COOL
           - COOL
           - HEAT
           - DRY
-        custom_fan_modes:
+        custom_fan_modes:           # Optional
           - SILENT
           - TURBO
-        supported_presets:          # All capabilities in this section detected by autoconf.
+        supported_presets:          # Optional. All capabilities in this section may be detected by autoconf.
           - ECO
           - BOOST
-          - SLEEP                   # This capability is always used.
-        custom_presets:             # All capabilities in this section detected by autoconf.
+          - SLEEP
+        custom_presets:             # Optional. All capabilities in this section may be detected by autoconf.
           - FREEZE_PROTECTION
-        supported_swing_modes:
-          - VERTICAL                # This capability is always used.
+        supported_swing_modes:      # Optional
+          - VERTICAL
           - HORIZONTAL
           - BOTH
         outdoor_temperature:        # Optional. Outdoor temperature sensor (may display incorrect values after long inactivity).
@@ -83,7 +82,7 @@ Configuration variables:
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`../uart` if you want
   to use multiple UART buses.
 - **name** (**Required**, string): The name of the climate device.
-- **transmitter_id** (*Optional*, :ref:`config-id`): Set if you use :doc:`../remote_transmitter` component for IR commands transmit.
+- **transmitter_id** (*Optional*, :ref:`config-id`): Defined and used automatically when using :doc:`../remote_transmitter` component for IR commands transmit.
 - **period** (*Optional*, :ref:`config-time`): Minimal period between requests to the appliance. Defaults to ``1s``.
 - **timeout** (*Optional*, :ref:`config-time`): Request response timeout until next request attempt. Defaults to ``2s``.
 - **num_attempts** (*Optional*, int): Number of request attempts between 1 and 5 inclusive. Defaults to ``3``.
@@ -121,7 +120,7 @@ Automations
 .. _midea_ac-power_on_action:
 
 ``midea_ac.power_on`` Action
-******************************
+****************************
 
 This action turn on power. The mode and preset will be restored to the last state before turned off.
 
@@ -134,7 +133,7 @@ This action turn on power. The mode and preset will be restored to the last stat
 .. _midea_ac-power_off_action:
 
 ``midea_ac.power_off`` Action
-******************************
+*****************************
 
 This action turn off power.
 
@@ -143,6 +142,19 @@ This action turn off power.
     on_...:
       then:
         - midea_ac.power_off:
+
+.. _midea_ac-power_toggle_action:
+
+``midea_ac.power_toggle`` Action
+********************************
+
+This action toggle the power state. Identical to pressing the power button on the remote control.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - midea_ac.power_toggle:
 
 
 .. _midea_ac-follow_me_action:
@@ -200,7 +212,7 @@ This action adjust the louver by one step. :doc:`../remote_transmitter` required
 .. _midea_ac-beeper_on_action:
 
 ``midea_ac.beeper_on`` Action
-******************************
+*****************************
 
 This action turn on beeper feedback.
 
@@ -252,17 +264,17 @@ component, as well as control the light of the LED display.
             temperature: !lambda "return x;"
             beeper: false               # Optional. Beep on update.
 
-    # template momentary switches for sending display control command and swing step actions
-    switch:
+    # template buttons for sending display control command and swing step actions
+    button:
       - platform: template
         name: Display Toggle
         icon: mdi:theme-light-dark
-        turn_on_action:
+        on_press:
           midea_ac.display_toggle:
       - platform: template
         name: Swing Step
         icon: mdi:tailwind
-        turn_on_action:
+        on_press:
           midea_ac.swing_step:
 
 

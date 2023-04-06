@@ -3,7 +3,7 @@ PMSA003I Particulate Matter Sensor
 
 .. seo::
     :description: Instructions for setting up PMSX003 Particulate matter sensors
-    :image: pmsa003i-full.jpg
+    :image: pmsa003i.jpg
 
 The ``pmsa003i`` sensor platform  allows you to use your Plantower PMSA003I
 particulate matter sensor

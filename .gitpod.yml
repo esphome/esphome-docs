@@ -4,4 +4,4 @@ ports:
 
 tasks:
 - before: pip3 install -r requirements.txt
-  command: make webserver
+  command: make live-html

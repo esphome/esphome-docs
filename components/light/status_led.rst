@@ -8,6 +8,7 @@ Status LED Light
 The ``status_led`` light platform allows to share a single LED for indicating the status of
 the device (when on error/warning state) or as binary light (when on OK state).
 This is useful for devices with only one LED available.
+You can also use a binary :ref:`output`.
 
 It provides the combined functionality of :doc:`status_led component </components/status_led>` and a
 :doc:`binary light component </components/light/binary>` over a single shared GPIO led.
@@ -33,9 +34,10 @@ When the device is in OK state, the LED will be restored to the state of the ``b
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the light.
-- **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to operate the LED on.
+- **name** (*Optional*, string): The name of the light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to operate the LED on.
+- **output** (*Optional*, :ref:`config-id`): The id of the binary :ref:`output` to use for this light.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light, though binary lights
   only support very few of them.
 - All other options from :ref:`Light <config-light>`.
@@ -47,10 +49,9 @@ Configuration variables:
 
     .. code-block:: yaml
 
-        status_led:
-          pin:
-            number: GPIO2
-            inverted: true
+        pin:
+          number: GPIO2
+          inverted: true
 
 
 

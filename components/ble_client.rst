@@ -91,6 +91,48 @@ This automation is triggered when the client disconnects from a BLE device.
             - lambda: |-
                 ESP_LOGD("ble_client_lambda", "Disconnected from BLE device");
 
+.. _ble_client-ble_write_action:
+
+``ble_client.ble_write`` Action
+-------------------------------
+
+This action triggers a write to a specified BLE characteristic. The write is attempted in
+a best-effort fashion and will only succeed if the ``ble_client``'s  connection has been
+established and the peripheral exposes the expected BLE service and characteristic.
+
+Example usage:
+
+.. code-block:: yaml
+
+    ble_client:
+      - mac_address: 11:22:33:44:55:66
+        id: my_ble_client
+
+    switch:
+      - platform: template
+        name: "My Switch"
+        turn_on_action:
+          - ble_client.ble_write:
+              id: my_ble_client
+              service_uuid: F61E3BE9-2826-A81B-970A-4D4DECFABBAE
+              characteristic_uuid: 6490FAFE-0734-732C-8705-91B653A081FC
+              # List of bytes to write.
+              value: [0x01, 0xab, 0xff]
+          - ble_client.ble_write:
+              id: my_ble_client
+              service_uuid: F61E3BE9-2826-A81B-970A-4D4DECFABBAE
+              characteristic_uuid: 6490FAFE-0734-732C-8705-91B653A081FC
+              # A lambda returning an std::vector<uint8_t>.
+              value: !lambda |-
+                  return {0x13, 0x37};
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): ID of the associated BLE client.
+- **service_uuid** (**Required**, UUID): UUID of the service to write to.
+- **characteristic_uuid** (**Required**, UUID): UUID of the service's characteristic to write to.
+- **value** (**Required**, Array of bytes or :ref:`lambda <config-lambda>`): The value to be written.
+
 BLE Overview
 ------------
 This section gives a brief overview of the Bluetooth LE architecture

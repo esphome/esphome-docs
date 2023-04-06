@@ -30,7 +30,7 @@ Configuration variables:
   power supply so that it can be used by the outputs.
 - **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The
   GPIO pin to control the power supply on.
-- **enable_time** (*Optional*, :ref:`config-time`): The time to
+- **enable_time** (*Optional*, :ref:`config-time`): The time
   that the power supply needs for startup. The output component will
   wait for this period of time after turning on the PSU and before
   switching the output on. Defaults to ``20ms``.

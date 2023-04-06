@@ -38,7 +38,6 @@ Configuration variables:
 ------------------------
 
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x40``.
-  Defaults to ``0.002ohm``.
 - **current** (*Optional*): Use the current value of the sensor in amperes. All options from
   :ref:`Sensor <config-sensor>`.
 - **power** (*Optional*): Use the power value of the sensor in watts. All options from

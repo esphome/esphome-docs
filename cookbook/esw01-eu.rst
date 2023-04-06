@@ -43,7 +43,8 @@ and calculating the current with `Ohm's law <https://en.wikipedia.org/wiki/Ohm%2
 
     esphome:
       name: voltson
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     ### you wifi and other settings here ###

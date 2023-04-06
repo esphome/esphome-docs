@@ -18,13 +18,44 @@ Configuration variables:
 
 - **board** (**Required**, string): The PlatformIO board ID that should
   be used. Choose the appropriate board from
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__.
-  *This only affects pin aliases, flash size and some internal settings*, if unsure choose a generic board.
+  `this list <https://registry.platformio.org/packages/platforms/platformio/espressif32/boards>`__ (the icon next to the name
+  can be used to copy the board ID). *This only affects pin aliases, flash size and some internal settings*, if unsure
+  choose a generic board from Espressif such as ``esp32dev``.
 - **framework** (*Optional*): Options for the underlying framework used by ESPHome.
   See :ref:`esp32-arduino_framework` and :ref:`esp32-espidf_framework`.
+- **variant** (*Optional*, boolean): The variant of the ESP32 that is used on this board. One of ``esp32``,
+  ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``. Defaults to the variant that is detected from the board, if
+  a board that's unknown to ESPHome is used, this option is mandatory.
 
-- **variant** (*Optional*, boolean): Defaults to the variant detected from the board. If the board is not known this option becomes mandatory.
-  One of ``esp32``, ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``.
+.. note::
+
+    Support for the ESP32-S2 and ESP32-C3 is still in development and there could be issues.
+
+GPIO Pin Numbering
+------------------
+
+The ESP32 boards often use the internal GPIO pin numbering on the board, this means that
+you don't have to worry about other kinds of pin numberings, yay!
+
+Some notes about the pins on the ESP32:
+
+- ``GPIO0`` is used to determine the boot mode on startup. It should therefore not be pulled LOW
+  on startup to avoid booting into flash mode. You can, however, still use this as an output pin.
+- ``GPIO34``-``GPIO39`` can not be used as outputs (even though GPIO stands for "general purpose input
+  **output**"...).
+- ``GPIO32``-``GPIO39``: These pins can be used with the :doc:`/components/sensor/adc` to measure
+  voltages.
+- ``GPIO2``: This pin is connected to the blue LED on the board. It also supports
+  the :doc:`touch pad binary sensor </components/binary_sensor/esp32_touch>` like some other
+  pins.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    binary_sensor:
+      - platform: gpio
+        name: "Pin GPIO23"
+        pin: GPIO23
 
 .. _esp32-arduino_framework:
 
@@ -41,6 +72,9 @@ This is the default framework for ESP32 chips at the moment.
       framework:
         type: arduino
         version: 2.0.0
+
+Configuration variables:
+------------------------
 
 - **version** (*Optional*, string): The base framework version number to use, from
   `ESP32 arduino releases <https://github.com/espressif/arduino-esp32/releases>`__. Defaults to ``recommended``. Additional values are:
@@ -74,6 +108,9 @@ of the ESP32 like ESP32S2, ESP32S3, ESP32C3 and single-core ESP32 chips.
         # Advanced tweaking options
         advanced:
           ignore_efuse_mac_crc: false
+
+Configuration variables:
+------------------------
 
 - **version** (*Optional*, string): The base framework version number to use, from
   `ESP32 ESP-IDF releases <https://github.com/espressif/esp-idf/releases>`__. Defaults to ``recommended``. Additional values are:

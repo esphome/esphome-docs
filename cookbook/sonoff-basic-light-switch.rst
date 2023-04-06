@@ -99,7 +99,8 @@ Now you have a pair of wires from the GPIO and 0V to your retractive switch lets
 
     esphome:
       name: my_ls
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
