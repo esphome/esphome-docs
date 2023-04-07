@@ -33,6 +33,13 @@ All climate platforms in ESPHome inherit from the climate configuration schema. 
 
 Configuration variables:
 
+- **name** (**Required**, string): The name of the climate device.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the climate to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the climate device in the frontend.
 - **visual** (*Optional*): Visual settings for the climate device - these do not
   affect operation and are solely for controlling how the climate device shows up in the
