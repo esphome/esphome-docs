@@ -53,8 +53,8 @@ Connection Options:
 - **external_clock** (**Required**): The configuration of the external clock to drive the camera.
 
   - **pin** (**Required**, pin): The pin the external clock line is connected to.
-  - **frequency** (*Optional*, float): The frequency of the external clock, must be either 20MHz
-    or 10MHz. Defaults to ``20MHz``.
+  - **frequency** (*Optional*, float): The frequency of the external clock, must be between 10
+    and 20MHz. Defaults to ``20MHz``.
 
 - **i2c_pins** (**Required**): The I²C control pins of the camera.
 
@@ -90,6 +90,15 @@ Image Settings:
     - ``1024x768`` (XGA)
     - ``1280x1024`` (SXGA)
     - ``1600x1200`` (UXGA)
+    - ``1920x1080`` (FHD)
+    - ``720x1280`` (Portrait HD)
+    - ``864x1536`` (Portrait 3MP)
+    - ``2048x1536`` (QXGA)
+    - ``2560x1440`` (QHD)
+    - ``2560x1600`` (WQXGA)
+    - ``1080x1920`` (Portrait FHD)
+    - ``2560x1920`` (QSXGA)
+
 
 - **jpeg_quality** (*Optional*, int): The JPEG quality that the camera should encode images with.
   From 10 (best) to 63 (worst). Defaults to ``10``.

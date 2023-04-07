@@ -274,6 +274,7 @@ Environmental
 
 .. imgtable::
 
+    Absolute Humidity, components/sensor/absolute_humidity, water-drop.svg
     AHT10 / AHT20 / AHT21 / DHT20, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Temperature & Humidity & Pressure
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
@@ -323,6 +324,7 @@ Light
 
     AM43, components/sensor/am43, am43.jpg, Lux
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
+    AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
     LTR390, components/sensor/ltr390, ltr390.jpg, Lux & UV
     MAX44009, components/sensor/max44009, max44009.svg, Lux
@@ -337,6 +339,7 @@ Magnetic
 
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg, ESP internal
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg, 3-Axis magnetometer
+    MMC5603, components/sensor/mmc5603, mmc5603.jpg, 3-Axis magnetometer
     MLX90393, components/sensor/mlx90393, mlx90393.jpg, 3-Axis magnetometer
     QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg, 3-Axis magnetometer
 
@@ -349,6 +352,7 @@ Miscellaneous
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
+    FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
     Kalman Combinator, components/sensor/kalman_combinator, function.svg
@@ -362,6 +366,7 @@ Miscellaneous
     uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png, pH & Temperature
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
+    Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
 
 
 Motion
@@ -561,7 +566,7 @@ Display Components
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     ST7920, components/display/st7920, st7920.jpg
-    ILI9341, components/display/ili9341, ili9341.jpg
+    ILI9xxx, components/display/ili9xxx, ili9341.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     Inkplate, components/display/inkplate6, inkplate6.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
@@ -780,8 +785,9 @@ Cookbook
     IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
     EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
     Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
-    AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg
+    AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg                                               
     Geiger Counter, cookbook/geiger-counter, radiationD-v1-1-cajoe_small.jpg
+    EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
