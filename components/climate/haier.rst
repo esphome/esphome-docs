@@ -57,40 +57,40 @@ This component requires a :ref:`uart` to be setup.
 
 .. code-block:: yaml
 
-  # Example configuration entry
+    # Example configuration entry
 
-   uart:
-     baud_rate: 9600
-     tx_pin: 17
-     rx_pin: 16
-     id: ac_port  
-
-   climate:
-     - platform: haier
-       id: haier_ac
-       protocol: hOn
-       name: Haier AC 
-       uart_id: ac_port
-       wifi_signal: true
-       beeper: true
-       outdoor_temperature:
-         name: Haier AC outdoor temperature
-       visual:
-         min_temperature: 16 °C
-         max_temperature: 30 °C
-         temperature_step: 1 °C
-       supported_modes:
-       - 'OFF'
-       - AUTO
-       - COOL
-       - HEAT
-       - DRY
-       - FAN_ONLY
-       supported_swing_modes:
-       - 'OFF'
-       - VERTICAL
-       - HORIZONTAL
-       - BOTH
+    uart:
+      baud_rate: 9600
+      tx_pin: 17
+      rx_pin: 16
+      id: ac_port  
+    
+    climate:
+      - platform: haier
+        id: haier_ac
+        protocol: hOn
+        name: Haier AC 
+        uart_id: ac_port
+        wifi_signal: true
+        beeper: true
+        outdoor_temperature:
+          name: Haier AC outdoor temperature
+        visual:
+          min_temperature: 16 °C
+          max_temperature: 30 °C
+          temperature_step: 1 °C
+        supported_modes:
+        - 'OFF'
+        - AUTO
+        - COOL
+        - HEAT
+        - DRY
+        - FAN_ONLY
+        supported_swing_modes:
+        - 'OFF'
+        - VERTICAL
+        - HORIZONTAL
+        - BOTH
 
 
 Configuration variables:
@@ -120,9 +120,9 @@ This action turns AC power on.
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       climate.haier.power_on: device_id
+    on_...:
+      then:
+        climate.haier.power_on: device_id
 
 climate.haier.power_off Action
 ******************************
@@ -131,9 +131,9 @@ This action turns AC power off
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       climate.haier.power_off: device_id
+    on_...:
+      then:
+        climate.haier.power_off: device_id
 
 climate.haier.power_toggle Action
 *********************************
@@ -142,9 +142,9 @@ This action toggles AC power
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       climate.haier.power_toggle: device_id
+    on_...:
+      then:
+        climate.haier.power_toggle: device_id
 
 climate.haier.display_on Action
 *******************************
@@ -153,9 +153,9 @@ This action turns the AC display on
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       climate.haier.display_on: device_id
+    on_...:
+      then:
+        climate.haier.display_on: device_id
 
 climate.haier.display_off Action
 ********************************
@@ -164,9 +164,9 @@ This action turns the AC display off
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       climate.haier.display_off: device_id
+    on_...:
+      then:
+        climate.haier.display_off: device_id
 
 climate.haier.health_on Action
 ******************************
@@ -175,9 +175,9 @@ Turn on health mode (`UV light sterilization <https://www.haierhvac.eu/en/node/1
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       climate.haier.health_on: device_id
+    on_...:
+      then:
+        climate.haier.health_on: device_id
 
 climate.haier.health_off Action
 *******************************
@@ -186,9 +186,9 @@ Turn off health mode
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       climate.haier.health_off: device_id
+    on_...:
+      then:
+        climate.haier.health_off: device_id
 
 climate.haier.beeper_on Action
 ******************************
@@ -197,9 +197,9 @@ climate.haier.beeper_on Action
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       climate.haier.beeper_on: device_id
+    on_...:
+      then:
+        climate.haier.beeper_on: device_id
 
 climate.haier.beeper_off Action
 *******************************
@@ -208,9 +208,9 @@ climate.haier.beeper_off Action
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       climate.haier.beeper_off: device_id
+    on_...:
+      then:
+        climate.haier.beeper_off: device_id
 
 climate.haier.set_vertical_airflow Action
 *****************************************
@@ -219,11 +219,11 @@ climate.haier.set_vertical_airflow Action
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       - climate.haier.set_vertical_airflow:
-         id: device_id
-         vertical_airflow: Up
+    on_...:
+      then:
+        - climate.haier.set_vertical_airflow:
+          id: device_id
+          vertical_airflow: Up
 
 climate.haier.set_horizontal_airflow Action
 *******************************************
@@ -232,11 +232,11 @@ climate.haier.set_horizontal_airflow Action
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       - climate.haier.set_horizontal_airflow:
-         id: device_id
-         vertical_airflow: Right
+    on_...:
+      then:
+        - climate.haier.set_horizontal_airflow:
+          id: device_id
+          vertical_airflow: Right
 
 climate.haier.start_self_cleaning Action
 ****************************************
@@ -245,9 +245,9 @@ climate.haier.start_self_cleaning Action
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       - climate.haier.start_self_cleaning: device_id
+    on_...:
+      then:
+        - climate.haier.start_self_cleaning: device_id
 
 climate.haier.start_steri_cleaning Action
 *****************************************
