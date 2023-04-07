@@ -362,15 +362,12 @@ Miscellaneous
     SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     Tuya Sensor, components/sensor/tuya, tuya.png
     TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
-
     HDMI CEC, components/hdmi_cec, hdmi-cec.png
-
     uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png, EC & Temperature
     uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png, pH & Temperature
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
-
 
 
 Motion
