@@ -471,6 +471,7 @@ Often known as "tag" or "card" readers within the community.
 .. imgtable::
 
     PN532, components/binary_sensor/pn532, pn532.jpg
+    PN716X, components/binary_sensor/pn7160, pn716x.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
 
