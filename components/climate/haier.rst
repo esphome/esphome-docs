@@ -256,9 +256,9 @@ climate.haier.start_steri_cleaning Action
 
 .. code-block:: yaml
 
-   on_...:
-     then:
-       - climate.haier.start_steri_cleaning: device_id
+    on_...:
+      then:
+        - climate.haier.start_steri_cleaning: device_id
 
 See Also
 --------
