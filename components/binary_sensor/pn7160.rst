@@ -53,12 +53,12 @@ Configuration variables:
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's ``NSS`` (chip
   select) line.
-- **dwl_req_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's
-  ``DWL_REQ`` line.
+- **dwl_req_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's
+  ``DWL_REQ`` line. Used to invoke the PN7160's firmware update mode; may be used in a future release.
 - **irq_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's ``IRQ`` line.
 - **ven_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's ``VEN`` line.
-- **wkup_req_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's
-  ``WKUP_REQ`` line.
+- **wkup_req_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's
+  ``WKUP_REQ`` line. May be used to improve power management in a future release.
 - **emulation_message** (*Optional*, string): When scanned by another NFC card/tag reader (such as a smartphone), this
   string is used as the content for an NDEF-formatted response. This allows the PN7160 to act as a tag in addition to a
   tag reader/writer.
@@ -98,12 +98,12 @@ if/when an NFC tag is detected by the PN7160.
 Configuration variables:
 ************************
 
-- **dwl_req_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's
-  ``DWL_REQ`` line.
+- **dwl_req_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's
+  ``DWL_REQ`` line. Used to invoke the PN7160's firmware update mode; may be used in a future release.
 - **irq_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's ``IRQ`` line.
 - **ven_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's ``VEN`` line.
-- **wkup_req_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's
-  ``WKUP_REQ`` line.
+- **wkup_req_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the PN7160's
+  ``WKUP_REQ`` line. May be used to improve power management in a future release.
 - **emulation_message** (*Optional*, string): When scanned by another NFC card/tag reader (such as a smartphone), this
   string is used as the content for an NDEF-formatted response. This allows the PN7160 to act as a tag in addition to a
   tag reader/writer.
@@ -418,7 +418,8 @@ To obtain a tag's UID:
 
 As an alternative, a substring contained within the tag's NDEF message can also be used. Since *you* are able to
 define the NDEF message, this approach is more flexible and even allows multiple cards/tags to share the same message.
-On the PN7160, there is no performance penalty for using the NDEF message instead of the tag UID.
+The PN7160 is faster and more responsive than its predecessors so there is no noticeable performance degradation when
+using the NDEF message instead of the tag UID.
 
 .. _pn7160-ndef:
 
