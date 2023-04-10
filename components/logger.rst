@@ -1,3 +1,5 @@
+.. _logger:
+
 Logger Component
 ================
 

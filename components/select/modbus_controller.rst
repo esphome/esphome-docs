@@ -40,7 +40,7 @@ Configuration variables:
     - ``U_DWORD_R`` (unsigned 32 bit integer from 2 registers low word first)
     - ``S_DWORD_R`` (signed 32 bit integer from 2 registers low word first)
     - ``U_QWORD`` (unsigned 64 bit integer from 4 registers = 64bit)
-    - ``S_QWORD`` (unsigned 64 bit integer from 4 registers = 64bit)
+    - ``S_QWORD`` (signed 64 bit integer from 4 registers = 64bit)
     - ``U_QWORD_R`` (unsigned 64 bit integer from 4 registers low word first)
     - ``U_QWORD_R`` (signed 64 bit integer from 4 registers low word first)
 

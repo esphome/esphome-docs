@@ -12,7 +12,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
 - **address** (**Required**, int): start address of the first register in a range
-- **value_type** (**Required**): datatype of the modbus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first)
+- **value_type** (**Required**): data type of the modbus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first)
 
     - ``U_WORD`` (unsigned 16 bit integer from 1 register = 16bit)
     - ``S_WORD`` (signed 16 bit integer from 1 register = 16bit)
@@ -21,9 +21,9 @@ Configuration variables:
     - ``U_DWORD_R`` (unsigned 32 bit integer from 2 registers low word first)
     - ``S_DWORD_R`` (signed 32 bit integer from 2 registers low word first)
     - ``U_QWORD`` (unsigned 64 bit integer from 4 registers = 64bit)
-    - ``S_QWORD`` (unsigned 64 bit integer from 4 registers = 64bit)
+    - ``S_QWORD`` (signed 64 bit integer from 4 registers = 64bit)
     - ``U_QWORD_R`` (unsigned 64 bit integer from 4 registers low word first)
-    - ``U_QWORD_R`` signed 64 bit integer from 4 registers low word first)
+    - ``S_QWORD_R`` signed 64 bit integer from 4 registers low word first)
     - ``FP32`` (32 bit IEEE 754 floating point from 2 registers)
     - ``FP32_R`` (32 bit IEEE 754 floating point - same as FP32 but low word first)
 

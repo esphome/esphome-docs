@@ -10,7 +10,7 @@ SM2335 LED driver
 Component/Hub
 -------------
 
-The SM2335 component represents a SM2335 LED diver chain in
+The SM2335 component represents a SM2335 LED driver chain in
 ESPHome. Communication is done with two GPIO pins (DATA and CLK).
 It is used in some smart light bulbs:
 
