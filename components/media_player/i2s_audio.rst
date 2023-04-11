@@ -6,7 +6,7 @@ I2S Audio Media Player
     :image: i2s_audio.svg
 
 The ``i2s_audio`` media player platform allows you to play media from webservers and web streams
-via the I2S bus. This platform only works on ESP32 based chips.
+via the :ref:`/components/i2s_audio`. This platform only works on ESP32 based chips.
 
 .. code-block:: yaml
 
@@ -15,9 +15,7 @@ via the I2S bus. This platform only works on ESP32 based chips.
       - platform: i2s_audio
         name: ESPHome I2S Media Player
         dac_type: external
-        i2s_lrclk_pin: GPIO33
         i2s_dout_pin: GPIO22
-        i2s_bclk_pin: GPIO19
         mode: mono
 
 Configuration variables:
@@ -33,9 +31,7 @@ Configuration variables:
 External DAC
 ************
 
-- **i2s_lrclk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S LRCLK (Word Select or Left/Right Clock) signal.
 - **i2s_dout_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S DOUT (Data Out) signal.
-- **i2s_bclk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S BCLK (Bit Clock) signal.
 - **mode** (*Optional*, string): The mode of the I2S bus. Can be ``mono`` or ``stereo``. Defaults to ``mono``.
 
 For best results, keep the wires as short as possible.
