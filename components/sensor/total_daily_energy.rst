@@ -41,7 +41,6 @@ Configuration variables:
 - **restore** (*Optional*, boolean): Whether to store the intermediate result on the device so
   that the value can be restored upon power cycle or reboot.
   Defaults to ``true``.
-- **min_save_interval** (*Optional*, :ref:`config-time`): The minimum time span between saving updated values to storage. This is to keep wearout of memory low. Defaults to ``0s``.
 - **method** (*Optional*, string): The method to use for calculating the total daily energy. One of
   ``trapezoid``, ``left`` or ``right``. Defaults to ``right``.
 - All other options from :ref:`Sensor <config-sensor>`.

@@ -8,8 +8,8 @@ TLC59208F
 
 .. _tlc59208f-component:
 
-Component
----------
+Component/Hub
+-------------
 
 The TLC59208F component represents a Texas Instruments TLC59208F 8-bit PWM driver
 (`datasheet <http://www.ti.com/lit/gpn/tlc59208f>`__,
@@ -43,8 +43,8 @@ Configuration variables:
 
 .. _tlc59208f-output:
 
-PWM Output
-----------
+TLC59208F Output
+----------------
 
 The TLC59208F output component exposes a TLC59208F PWM channel of a global
 :ref:`TLC59208F chip <tlc59208f-component>` as a float
@@ -86,7 +86,7 @@ output.
         id: 'tlc59208f_3_ch7'
         channel: 7
         tlc59208f_id: 'tlc59208f_3'
-    
+
     # Sample use as a RGB light
     light:
       - platform: rgb

@@ -41,5 +41,7 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`/components/wifi`
+- :doc:`/components/sensor/wifi_signal`
 - :apiref:`wifi_info/wifi_info_text_sensor.h`
 - :ghedit:`Edit`

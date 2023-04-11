@@ -46,7 +46,7 @@ Usage with voltages higher than 3.3v
 In order to drive analog modules with voltages higher than 3.3v, use a `TTL bi-directionnal level
 converter <https://learn.sparkfun.com/tutorials/bi-directional-logic-level-converter-hookup-guide/all>`__
 
-Be careful about what converter you use, some of of them have channels labeled with `RX` and `TX`,
+Be careful about what converter you use, some of them have channels labeled with `RX` and `TX`,
 in this case only `TX` channels are bi-directional (so you must use 2 `TX` channels for I2C to work).
 
 See Also

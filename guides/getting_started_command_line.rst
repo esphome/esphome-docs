@@ -14,12 +14,47 @@ Installation
 
 See :doc:`installing_esphome`.
 
-If you're familiar with Docker, you can use that instead! Our image supports
-AMD64, ARM and ARM64 (AARCH64), and can be downloaded with:
+If you're familiar with Docker, you can use that instead!
+Note that on macOS Docker `can not pass USB devices through <https://github.com/moby/hyperkit/issues/149>`__.
+You will not be able to flash ESP devices through USB on Mac, all other features will work. Flashing with web dashboard is still possible.
+
+Our image supports AMD64, ARM and ARM64 (AARCH64), and can be downloaded with:
 
 .. code-block:: bash
 
-    docker pull esphome/esphome
+    docker pull ghcr.io/esphome/esphome
+
+If you want to use `docker-compose` instead, here's a sample file:
+
+.. code-block:: yaml
+
+    version: '3'
+    services:
+      esphome:
+        container_name: esphome
+        image: ghcr.io/esphome/esphome
+        volumes:
+          - /path/to/esphome/config:/config
+          - /etc/localtime:/etc/localtime:ro
+        restart: always
+        privileged: true
+        network_mode: host
+
+The project provides multiple docker tags; please pick the one that suits you
+better:
+
+- ``latest`` and ``stable`` point to the latest stable release available. It's
+  not recommended to automatically update the container based on those tags
+  because of the possible breaking changes between releases.
+- Release-tracking tag ``YEAR.MONTH`` (e.g. ``2022.8``) points to the latest
+  stable patch release available within the required version. There should
+  never be a breaking change when upgrading the containers based on tags like
+  that.
+- ``beta`` points to the latest released beta version, and to the latest stable
+  release when there is no fresh beta release.
+- ``dev`` is the bleeding edge release; built daily based on the latest changes
+  in the ``dev`` branch.
+
 
 Connecting the ESP Device
 -------------------------
@@ -45,7 +80,7 @@ file called ``livingroom.yaml``:
 
     esphome wizard livingroom.yaml
     # On Docker:
-    docker run --rm -v "${PWD}":/config -it esphome/esphome wizard livingroom.yaml
+    docker run --rm -v "${PWD}":/config -it ghcr.io/esphome/esphome wizard livingroom.yaml
 
 At the end of this step, you will have your first YAML configuration
 file ready. It doesn't do much yet and only makes your device connect to
@@ -94,11 +129,11 @@ new folder with the name of your node. This is a new PlatformIO project
 that you can modify afterwards and play around with.
 
 If you are running docker on Linux you can add ``--device=/dev/ttyUSB0``
-to your docker command to map a local USB device.
+to your docker command to map a local USB device. Docker on Mac will not be able to access host USB devices.
 
 .. code-block:: bash
 
-    docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome run livingroom.yaml
+    docker run --rm --privileged -v "${PWD}":/config --device=/dev/ttyUSB0 -it ghcr.io/esphome/esphome run livingroom.yaml
 
 Now when you go to the Home Assistant "Integrations" screen (under "Configuration" panel), you
 should see the ESPHome device show up in the discovered section (although this can take up to 5 minutes).
@@ -144,7 +179,7 @@ for docker you need to supply an additional parameter:
 
     esphome livingroom.yaml run
     # On docker
-    docker run --rm -v "${PWD}":/config -it esphome/esphome run livingroom.yaml
+    docker run --rm -v "${PWD}":/config -it ghcr.io/esphome/esphome run livingroom.yaml
 
 .. figure:: /components/binary_sensor/images/gpio-ui.png
 
@@ -180,11 +215,11 @@ To start the ESPHome dashboard, simply start ESPHome with the following command
     esphome dashboard config/
 
     # On Docker, host networking mode is required for online status indicators
-    docker run --rm --net=host -v "${PWD}":/config -it esphome/esphome
+    docker run --rm --net=host -v "${PWD}":/config -it ghcr.io/esphome/esphome
 
     # On Docker with MacOS, the host networking option doesn't work as expected. An
     # alternative is to use the following command if you are a MacOS user.
-    docker run --rm -p 6052:6052 -e ESPHOME_DASHBOARD_USE_PING=true -v "${PWD}":/config -it esphome/esphome
+    docker run --rm -p 6052:6052 -e ESPHOME_DASHBOARD_USE_PING=true -v "${PWD}":/config -it ghcr.io/esphome/esphome
 
 
 After that, you will be able to access the dashboard through ``localhost:6052``.

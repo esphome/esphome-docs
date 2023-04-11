@@ -200,7 +200,7 @@ Lambdas
 From :ref:`lambdas <config-lambda>`, you can access the current state of the cover (note that these
 fields are read-only, if you want to act on the cover, use the ``make_call()`` method as shown above).
 
-- ``position``: Retrieve the current position of the cover, as a value between ``0.0`` (open) and ``1.0`` (closed).
+- ``position``: Retrieve the current position of the cover, as a value between ``0.0`` (closed) and ``1.0`` (open).
 
     .. code-block:: cpp
 

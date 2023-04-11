@@ -138,7 +138,7 @@ Here are common current calibrations for the **Expandable 6 Channel Energy Meter
    - 20A/25mA SCT-006: 11131
    - 30A/1V SCT-013-030: 8650
    - 50A/1V SCT-013-050: 15420
-   - 80A/26.6mA SCT-010: 41996
+   - 80A/26.6mA SCT-010: 41996 (note this will saturate at 2^16/10^3 amps)
    - 100A/50ma SCT-013-000: 27961
    - 120A/40mA: SCT-016: 41880
 
@@ -171,6 +171,28 @@ a time-series-database, e.g. InfluxDB.
             name: ${disp_name} ct1 RAWattHours
             id: ct1RAWattHours
             state_topic: ${disp_name}/ct1/reverse_active_energy
+
+If the power, power_factor, reactive_power, forward_active_energy, or reverse_active_energy configuraion variables
+are used, care must be taken to ensure that the line ATM90E32's voltage is from is the same phase as the current
+transformer is installed on.  This is significant in split-phase or multi phase installations.  On a house with 240
+split-phase wiring (very common in the US), one simple test is to reverse the orentation of the current transformer
+on a line. If the power factor doesn't change sign, it is likely that the voltage fed to the ATM90E32 is from the other
+phase.
+
+The CircuitSetup Expandable 6 channel board can easilly handle this situation by cutting the jumpers JP12/13 to
+allow a seperate VA2 to be input on the J3 pads. Make sure that current taps connected to CT 1-3 are on the phase
+from which VA is fed (the barrel jack) and the taps connected to CT3-6 are on the phase from which VA2 is fed. See
+the CicuitSetup repo for more details on this.
+
+If a mulit board stack is being used, remember to cut JP12/13 on all boards and to feed VA2 to each board. VA is
+fed to all boards through the stacking headers. Another detail is that each voltage transformer needs to have the
+same polarity; getting this backwards will be just like having it on the wrong phase.
+
+Note that the current measurement is the RMS value so is always positive. They only way to determine directon is to
+look at the power factor. If there are only largly resistive loads and no power sources, (PF almost 1), it is simpler
+to just create a template sensor that computes power from Irms*Vrms and ignore all these details. On the other
+hand, one might be surprised how reactive some loads are and the CirciuitSetup designs are able to 
+handle these situations well.
 
 
 Additional Examples

@@ -78,6 +78,81 @@ Configuration variables:
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
+.. _remote_transmitter-transmit_aeha:
+
+``remote_transmitter.transmit_aeha`` Action
+*********************************************
+
+This :ref:`action <config-action>` sends a AEHA code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_aeha:
+          address: 0x1FEF
+          data: [0x1F, 0x3E, 0x06, 0x5F]
+
+Configuration variables:
+
+- **address** (**Required**, int): The address to send the command to, see dumper output for more details.
+- **data** (**Required**, list): The command to send, A length of 2-35 bytes can be specified for one packet.
+
+AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
+
+.. _remote_transmitter-transmit_canalsat:
+
+``remote_transmitter.transmit_canalsat`` Action
+***********************************************
+
+This :ref:`action <config-action>` sends a CanalSat infrared remote code to a remote transmitter.
+
+.. note::
+
+    The CanalSat and CanalSatLD protocols use a higher carrier frequency (56khz) and are very similar.
+    Depending on the hardware used they may interfere with each other when enabled simultaneously.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_canalsat:
+          device: 0x25
+          address: 0x00
+          command: 0x02
+
+Configuration variables:
+
+- **device** (**Required**, int): The device to send to, see dumper output for more details.
+- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **command** (**Required**, int): The command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+.. _remote_transmitter-transmit_canalsatld:
+
+``remote_transmitter.transmit_canalsatld`` Action
+*************************************************
+
+This :ref:`action <config-action>` sends a CanalSatLD infrared remote code to a remote transmitter.
+
+.. note::
+
+    The CanalSat and CanalSatLD protocols use a higher carrier frequency (56khz) and are very similar.
+    Depending on the hardware used they may interfere with each other when enabled simultaneously.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_canalsatld:
+          device: 0x25
+          address: 0x00
+          command: 0x02
+
+Configuration variables:
+
+- **device** (**Required**, int): The device to send to, see dumper output for more details.
+- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **command** (**Required**, int): The command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 .. _remote_transmitter-transmit_coolix:
 
 ``remote_transmitter.transmit_coolix`` Action
@@ -154,6 +229,26 @@ Configuration variables:
 - **nbits** (*Optional*, int): The number of bits to send. Defaults to ``28``.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+.. _remote_transmitter-transmit_magiquest:
+
+``remote_transmitter.transmit_magiquest`` Action
+************************************************
+
+This :ref:`action <config-action>` sends a MagiQuest wand code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_magiquest:
+          wand_id: 0x01234567
+          magnitude: 0x080C
+
+Configuration variables:
+
+- **wand_id** (**Required**, int): The wand ID to send, as a hex integer.  See the dumper output for your wand ID.
+- **magnitude** (*Optional*, int): The magnitude of swishes and swirls of the want to transmit.  See the dumper output for examples.  If omitted, sends 0xFFFF (which the real wand never uses).
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 .. _remote_transmitter-transmit_midea:
 
 ``remote_transmitter.transmit_midea`` Action
@@ -166,10 +261,16 @@ This :ref:`action <config-action>` sends a 40-bit Midea code to a remote transmi
     on_...:
       - remote_transmitter.transmit_midea:
           code: [0xA2, 0x08, 0xFF, 0xFF, 0xFF]
+    
+    on_...:
+      - remote_transmitter.transmit_midea:
+          code: !lambda |-
+            // Send a FollowMe code with the current temperature.
+            return {0xA4, 0x82, 0x48, 0x7F, (uint8_t)(id(temp_sensor).state + 1)};
 
 Configuration variables:
 
-- **code** (**Required**, list): The 40-bit Midea code to send as a list of hex or integers.
+- **code** (**Required**, list, :ref:`templatable <config-templatable>`): The 40-bit Midea code to send as a list of hex or integers.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_nec`` Action
@@ -180,7 +281,7 @@ This :ref:`action <config-action>` sends an NEC infrared remote code to a remote
 .. note::
 
     In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
-    Therefore, if the the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
+    Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
     For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
 
 .. code-block:: yaml
@@ -204,7 +305,7 @@ This :ref:`action <config-action>` a Nexa RF remote code to a remote transmitter
 .. code-block:: yaml
 
     on_...:
-      - remote_transmitter.nexa:
+      - remote_transmitter.transmit_nexa:
           device: 0x38DDB4A
           state: 1
           group: 0
@@ -336,6 +437,26 @@ Configuration variables:
 
 - **address** (**Required**, int): The address to send, see dumper output for more details.
 - **command** (**Required**, int): The RC5 command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+.. _remote_transmitter-transmit_rc6:
+
+``remote_transmitter.transmit_rc6`` Action
+******************************************
+
+This :ref:`action <config-action>` sends an RC6 infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_rc6:
+          address: 0x1F
+          command: 0x3F
+
+Configuration variables:
+
+- **address** (**Required**, int): The address to send, see dumper output for more details.
+- **command** (**Required**, int): The RC6 command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_rc_switch_raw:
@@ -556,6 +677,10 @@ Configuration variables:
 
 This :ref:`action <config-action>` sends a Toshiba AC infrared remote code to a remote transmitter.
 
+.. note::
+
+    This action transmits codes using the new(er) Toshiba AC protocol and likely will not work with older units.
+
 .. code-block:: yaml
 
     on_...:
@@ -568,7 +693,7 @@ Configuration variables:
 - **rc_code_1** (**Required**, int): The remote control code to send, see dumper output for more details.
 - **rc_code_2** (*Optional*, int): The secondary remote control code to send; some codes are sent in
   two parts.
-- **Note:** this action transmits codes using the new(er) Toshiba AC protocol and likely will not work with older units.
+
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 

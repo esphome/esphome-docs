@@ -38,7 +38,8 @@ override them if you want to.
 
 Configuration variables:
 
-- **name** (**Required**, string): The name for the sensor.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name for the sensor. At least one of **id** and **name** must be specified.
 - **unit_of_measurement** (*Optional*, string): Manually set the unit
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
@@ -49,7 +50,7 @@ Configuration variables:
   sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
   for a list of available options. Set to ``""`` to remove the default state class of a sensor.
 - **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
-- **accuracy_decimals** (*Optional*, int): Manually set the accuracy of decimals to use when reporting values.
+- **accuracy_decimals** (*Optional*, int): Manually set the number of decimals to use when reporting values. This does not impact the actual value reported to Home Assistant, it just sets the number of decimals to use when displaying it.
 - **filters** (*Optional*): Specify filters to use for some basic
   transforming of values. See :ref:`Sensor Filters <sensor-filters>` for more information.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
@@ -348,7 +349,7 @@ Configuration variables:
   when pushing out a value.
   Defaults to ``5``.
 - **send_every** (*Optional*, int): How often a sensor value should be pushed out. For
-  example, in above configuration the min is calculated after every 4th
+  example, in above configuration the max is calculated after every 4th
   received sensor value, over the last 7 received values.
   Defaults to ``5``.
 - **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
@@ -391,14 +392,19 @@ Configuration variables:
 ******************************
 
 A simple `exponential moving average
-<https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average>`__ over the last few
+<https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/quantile.htm>`__ over the last few
 values. It can be used to have a short update interval on the sensor but only push
 out an average on a specific interval (thus increasing resolution).
 
 Configuration variables:
 
-- **alpha** (*Optional*, float): The forget factor/alpha value of the filter. Defaults to ``0.1``.
+- **alpha** (*Optional*, float): The forget factor/alpha value of the filter.
+  A higher value includes more details in the output while a lower value removes more noise.
+  Defaults to ``0.1``.
 - **send_every** (*Optional*, int): How often a sensor value should be pushed out. Defaults to ``15``.
+- **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
+  published. With this parameter you can specify when the very first value is to be sent.
+  Defaults to ``1``.
 
 ``throttle``
 ************
@@ -427,7 +433,7 @@ An average over the ``specified time period``, potentially throttling incoming v
 
 For example a ``throttle_average: 60s`` will push out a value every 60 seconds, in case at least one sensor value is received within these 60 seconds.
 
-In comparison to the ``throttle`` filter it won't discard any values. In comparison to the ``sliding_window_moving_average`` filter it supports variable sensor reporting rates without influencing the filter reporting interval (except for the first edge case).
+In comparison to the ``throttle`` filter, it won't discard any values. In comparison to the ``sliding_window_moving_average`` filter, it supports variable sensor reporting rates without influencing the filter reporting interval (except for the first edge case).
 
 ``heartbeat``
 *************
@@ -486,6 +492,16 @@ the result of the lambda is used as the output (use ``return``).
 
 Make sure to add ``.0`` to all values in the lambda, otherwise divisions of integers will
 result in integers (not floating point values).
+
+To prevent values from being published, return ``{}``:
+
+.. code-block:: yaml
+
+    filters:
+      - lambda: !lambda |-
+          if (x < 10) return {};
+          return x-10;
+
 
 Example: Converting Celsius to Fahrenheit
 -----------------------------------------
@@ -552,10 +568,16 @@ So for example ``above: 5`` with no below would mean the range from 5 to positiv
       - platform: dallas
         # ...
         on_value_range:
-          above: 5
-          below: 10
-          then:
-            - switch.turn_on: relay_1
+          - below: 5.0
+            then:
+              - switch.turn_on: relay_1
+          - above: 5.0
+            below: 10.0
+            then:
+              - switch.turn_on: relay_2
+          - above: 10.0
+            then:
+              - switch.turn_on: relay_3
 
 Configuration variables:
 
@@ -621,7 +643,7 @@ From :ref:`lambdas <config-lambda>`, you can call several methods on all sensors
 advanced stuff (see the full API Reference for more info).
 
 - ``publish_state()``: Manually cause the sensor to push out a value. It will then
-  be processed by the sensor filters, and once done be published to MQTT.
+  be processed by the sensor filters, and once filtered will propagate though ESPHome and though the API to Home Assistant or out via MQTT if configured. 
 
   .. code-block:: cpp
 
@@ -636,7 +658,7 @@ advanced stuff (see the full API Reference for more info).
       // For example, create a custom log message when a value is received:
       ESP_LOGI("main", "Value of my sensor: %f", id(my_sensor).state);
 
-- ``raw_state``: Retrieve the current value of the sensor that has not passed through any filters
+- ``raw_state``: Retrieve the current value of the sensor that has not passed through any filters.
   Is ``NAN`` if no value has been pushed by the sensor itself yet.
 
   .. code-block:: cpp

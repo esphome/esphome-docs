@@ -68,23 +68,6 @@ Display Font
 
 You'll need to place the `OpenSans-Regular <https://fonts.google.com/specimen/Open+Sans>`__ font (or another of your choosing) alongside your ESPHome yaml file.  See - :doc:`/components/display/index`.
 
-Flashing
-========
-
-I initially had trouble flashing the M5StickC; this is the procedure that I've found to work well with these devices.
-
-You must provide the ESP32 bootloader during the initial flash over USB.  Compile your ESPHome binary, and flash it along with the required bootloader (bootloader_dio_80m.bin), `available here <https://github.com/espressif/arduino-esp32/tree/master/tools/sdk/esp32/bin>`__, from the commandline (example under macos):
-
-``cd /Applications/ESPHome-Flasher-1.2.0-macOS.app/Contents/MacOS``
-
-``./ESPHome-Flasher ~/Desktop/basement_leak_detector.bin --bootloader ~/Desktop/bootloader_dio_80m.bin  --upload-baud-rate=115200``
-
-I also needed this procedure to flash M5Stack ATOM Lite and ATOM Matrix modules, which you also might consider using for this project.  Both are smaller and more cost-effective than the M5stickC, and a generation newer -- though they lack the TFT display.
-
-.. figure:: images/leak-detector-m5stickC_atom_matrix.jpg
-
-.. figure:: images/leak-detector-m5stickC_atom_lite.jpg
-
 Calibration & Testing
 =====================
 
@@ -127,25 +110,17 @@ ESPHome configuration
     esphome:
       name: $devicename
       comment: ${device_description}
-      platform: ESP32
+
+    esp32:
       board: m5stick-c
-      platformio_options:
-        upload_speed: 115200
 
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      domain: .lan
 
       # Enable fallback hotspot (captive portal) in case wifi connection fails
       ap:
-        ssid: "Basement Leak Det. Fallback AP"
         password: !secret fallback_ap_password
-
-      manual_ip:
-        static_ip: x.x.x.x
-        gateway: x.x.x.x
-        subnet: x.x.x.x
 
     captive_portal:
 
@@ -153,9 +128,7 @@ ESPHome configuration
 
     # Enable Home Assistant API & OTA Updates
     api:
-      password: !secret api_password
     ota:
-      password: !secret ota_password
 
     status_led:
       pin:

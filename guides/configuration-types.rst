@@ -31,6 +31,12 @@ names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf
 -  … can not have special characters except the underscore (“_“).
 -  … must not be a keyword.
 
+
+.. note::
+
+    These IDs are used only within ESPHome and are not translated to Home Assistant's Entity ID. 
+
+
 .. _config-pin:
 
 Pin
@@ -86,7 +92,7 @@ Configuration variables:
    should be treated as inverted. Defaults to ``false``.
 -  **mode** (*Optional*, string or mapping): Configures the pin to behave in different
    modes like input or output. The default value depends on the context.
-   Accepts either a shorthand string or a mapping where each feature can be individually 
+   Accepts either a shorthand string or a mapping where each feature can be individually
    enabled/disabled:
 
    - **input** (*Optional*, boolean): If true, configure the pin as an input.
@@ -104,6 +110,7 @@ Configuration variables:
    - ``ANALOG``
    - ``INPUT_PULLUP``
    - ``INPUT_PULLDOWN``
+   - ``INPUT_OUTPUT_OPEN_DRAIN``
 
 Advanced options:
 
@@ -176,7 +183,24 @@ validating your configuration, ESPHome will automatically replace all occurrence
 by their value. The syntax for a substitution is based on bash and is case-sensitive: ``$substitution_key`` or
 ``${substitution_key}`` (same).
 
-Additionally, you can use the YAML ``<<`` syntax to create a single YAML file from which a number
+Two substitution passes are performed allowing compound replacements.
+
+.. code-block:: yaml
+
+    substitutions:
+      foo: yellow
+      bar_yellow_value: !secret yellow_secret
+      bar_green_value: !secret green_secret
+    
+    something:
+      test: ${bar_${foo}_value}
+
+.. _YAML-insertion-operator:
+
+YAML insertion operator
+***********************
+
+Additionally, you can use the YAML insertion operator ``<<`` syntax to create a single YAML file from which a number
 of nodes inherit:
 
 .. code-block:: yaml
@@ -209,6 +233,44 @@ of nodes inherit:
 
     - Place them in a subdirectory (dashboard only shows files in top-level directory)
     - Prepend a dot to the filename, like ``.base.yaml``
+
+.. _substitute-include-variables:
+
+Substitute !include variables
+*****************************
+
+ESPHome's ``!include`` accepts a list of variables that can be substituted within the included file.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        id: button1
+        pin: GPIO16
+        on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
+      - platform: gpio
+        id: button2
+        pin: GPIO4
+        on_multi_click: !include
+          # multi-line syntax
+          file: on-multi-click.yaml
+          vars:
+            id: 2
+            
+``on-multi-click.yaml``:
+
+.. code-block:: yaml
+
+    - timing: !include click-single.yaml 
+      then:
+        - mqtt.publish:
+            topic: ${device_name}/button${id}/status
+            payload: single
+    - timing: !include click-double.yaml
+      then:
+        - mqtt.publish:
+            topic: ${device_name}/button${id}/status
+            payload: double
 
 .. _command-line-substitutions:
 
@@ -272,6 +334,10 @@ config in the main yaml file. All definitions from packages will be merged with 
 config in non-destructive way so you could always override some bits and pieces of package
 configuration.
 
+Dictionaries are merged key-by-key. Lists of components are merged by component
+ID if specified. Other lists are merged by concatenation. All other config
+values are replaced with the later value.
+
 Local packages
 **************
 
@@ -313,7 +379,7 @@ merged with the services definitions from main config file.
 
     # In wifi.yaml
     wifi:
-      ssid: "your_ssid"
+      ssid: !secret wifi_ssid
       password: !secret wifi_password
       domain: .yourdomain.lan
       fast_connect: true
@@ -339,7 +405,8 @@ merged with the services definitions from main config file.
       level: ${log_level}
 
     api:
-      password: !secret hass_api_key
+      encryption:
+        key: !secret api_encryption_key
       reboot_timeout: 1h
 
     sensor:
@@ -359,6 +426,11 @@ Remote/git Packages
 Packages can also be loaded from a git repository by utilizing the correct config syntax.
 :ref:`config-substitutions` can be used inside the remote packages which allows users to override
 them locally with their own subsitution value.
+
+.. note::
+
+    Remote packages cannot have ``secret`` lookups in them. They should instead make use of substitutions with an
+    optional default in the packaged YAML, which the local device YAML can set using values from the local secrets.
 
 .. code-block:: yaml
 

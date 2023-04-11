@@ -24,13 +24,10 @@ Below is the ESPHome configuration file that will get you up and running. This a
 
     substitutions:
       updates: 30s
-      unique_id: solarstation-x
+      name: solarstation-x
 
     esphome:
-      name: ${unique_id}
-      platform: ESP32
-      board: pico32
-      arduino_version: latest
+      name: ${name}
       platformio_options:
         ## larger stack size required with all registers enable_load_test
         ## reduce registers or wait for integration of 2.0.0 arduinoespressif32
@@ -110,7 +107,11 @@ Below is the ESPHome configuration file that will get you up and running. This a
               controller->queue_command(set_battery3_command);
               ESP_LOGI("ModbusLambda", "EPSOLAR Battery set");
 
-
+    esp32:
+      board: pico32
+      framework:
+        type: arduino
+        version: latest
 
     wifi:
       ssid: !secret wifi_sid
@@ -128,11 +129,9 @@ Below is the ESPHome configuration file that will get you up and running. This a
 
     # Enable Home Assistant API
     api:
-      password: !secret api_password
       reboot_timeout: 0s
 
     ota:
-      password: !secret ota_password
 
     uart:
       id: mod_bus
@@ -528,7 +527,7 @@ tracer-real-time.yaml
         address: 0x3110
         unit_of_measurement: °C
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -540,7 +539,7 @@ tracer-real-time.yaml
         address: 0x3111
         unit_of_measurement: °C
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -552,7 +551,7 @@ tracer-real-time.yaml
         address: 0x3112
         unit_of_measurement: °C
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -574,7 +573,7 @@ tracer-real-time.yaml
         address: 0x311B
         unit_of_measurement: °C
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -585,7 +584,7 @@ tracer-real-time.yaml
         address: 0x311D
         unit_of_measurement: "°C"
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -984,7 +983,7 @@ tracer-settings.yaml
         name: "Battery temperature warning upper limit"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         # new range add 'skip_updates' again
         skip_updates: 50
         filters:
@@ -997,7 +996,7 @@ tracer-settings.yaml
         name: "Battery temperature warning lower limit"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 
@@ -1008,7 +1007,7 @@ tracer-settings.yaml
         name: "Controller inner temperature upper limit"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 
@@ -1019,7 +1018,7 @@ tracer-settings.yaml
         name: "Controller inner temperature upper limit recover"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 
@@ -1030,7 +1029,7 @@ tracer-settings.yaml
         name: "Power component temperature upper limit"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 
@@ -1041,7 +1040,7 @@ tracer-settings.yaml
         name: "Power component temperature upper limit recover"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 

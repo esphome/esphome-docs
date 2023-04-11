@@ -15,7 +15,7 @@ It is available from various retailers online or directly from `iwoole.com <http
 ==================
 .. note::
 
-    The following information relates to the desk model depicted above. A free-standing version and a desk version with a longer arm are available. They are likely to share the same internals and configuration, but I can not be certain. 
+    The following information relates to the desk model depicted above. A free-standing version and a desk version with a longer arm are available. They are likely to share the same internals and configuration, but I can not be certain.
 
 My device had no external markings at all.
 
@@ -48,7 +48,7 @@ The MOSFETs for the different color channels are connected as follows:
 ========================
 Since there is only one RGBW light to configure the .yaml file is fairly straightforward.
 Alternatively, you could configure each channel as a separate light if desired.
-I prefer to use the :ref:`color-interlock <rgbw_color_interlock>` option along with the configuration below. 
+I prefer to use the :ref:`color-interlock <rgbw_color_interlock>` option along with the configuration below.
 
 2.1 Example configuration
 -------------------------
@@ -57,7 +57,8 @@ I prefer to use the :ref:`color-interlock <rgbw_color_interlock>` option along w
     esphome:
       name: "IWOOLE Table Lamp"
       #ESP type is ESP8266EX with 1MB flash
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     # Insert wifi and api configuration here
@@ -87,29 +88,10 @@ I prefer to use the :ref:`color-interlock <rgbw_color_interlock>` option along w
 
 3. Flashing
 ===========
-There are two ways to get ESPHome onto this device.
-For both ways you will need to get the binary file with ESPHome's software by compiling your configuration and then downloading the binary.
 
-3.1 Tuya-convert
-----------------
-.. note::
-
-    According to `blakadder.com <https://templates.blakadder.com/iwoole_table_lamp.html>`__ recent versions of this device can't be flashed via this method anymore.
-
-The first device I bought could be flashed using Tuya-convert. However, I still wanted to try and flash it via serial to see if it was possible. I messed this up and had to buy a new unit. This new unit could not be flashed using Tuya-convert.
-Unfortunately it looks like new devices are being shipped with new firmware preloaded. 
-If the device has older firmware but is connected to the Tuya Smart app, it might upgrade and lose it's ability to be flashed.
-
-For instructions on how to actually flash using `Tuya-convert <https://github.com/ct-Open-Source/tuya-convert>`__ please see the linked GitHub page.
-
-To get this device into flashing mode, from off, switch it on-off-on-off-on.
-Load the Tasmota binary when prompted, and you can upload the ESPHome firmware from there.
-
-3.2 Serial connection
----------------------
 .. warning::
 
-    The circuit inside will be exposed to mains voltage. Do not connect your device to the mains when flashing. Flashing this device via a serial connection will involve precarious soldering and cutting through insulating heat-shrink tubing which will have to be replaced. 
+    The circuit inside will be exposed to mains voltage. Do not connect your device to the mains when flashing. Flashing this device via a serial connection will involve precarious soldering and cutting through insulating heat-shrink tubing which will have to be replaced.
     If you are uncomfortable with this, or are not confident around mains voltage, do not attempt to do this! Using the Tuya-convert method is preferred.
 
 1. Disconnect the device from mains voltage!
@@ -157,4 +139,3 @@ See Also
 - :doc:`/components/output/index`
 - :doc:`/components/output/esp8266_pwm`
 - :ghedit:`Edit`
- 

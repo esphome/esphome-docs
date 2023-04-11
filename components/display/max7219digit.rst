@@ -21,7 +21,7 @@ CS to your set ``cs_pin`` and finally GND to GND.
 
 You can even daisy-chain multiple MAX7219s by connecting the DOUT of the previous chip in the chain to the
 next DIN. With more than ~3 chips the 3.3V will probably not be enough, so then you will have to potentially
-use a logic level converted.
+use a logic level converter.
 
 .. code-block:: yaml
 

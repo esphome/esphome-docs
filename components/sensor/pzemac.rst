@@ -21,6 +21,11 @@ with ESPHome.
 The sensor can be connected in various configurations - please see the `manufacturer's website <https://innovatorsguru.com/pzem-004t-v3/>`__
 for more information.
 
+.. warning::
+
+    Please note that metering chip inside of PZEM module is powered from AC side and it has to be on during startup of ESPHome device, othervise measure results won't be visible. 
+
+
 .. figure:: images/pzem-ac.png
     :align: center
     :width: 80.0%
@@ -138,8 +143,12 @@ You must set the ``address`` of the ``modbus_controller`` to the current address
 
     modbus_controller:
       - id: pzem
-        ## the current device addr
+        # The current device address.
         address: 0x1
+        # The special address 0xF8 is a broadcast address accepted by any pzem device,
+        # so if you use this address, make sure there is only one pzem device connected
+        # to the uart bus. 
+        # address: 0xF8
         modbus_id: mod_bus_pzem
         command_throttle: 0ms
         setup_priority: -10

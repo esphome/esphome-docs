@@ -30,6 +30,9 @@ The TSL2591 device is available on breakout boards from a few vendors
 
 The sensor claims a dynamic range of 600 million to 1 with an effective maximum of 88000 lux.
 It achieves that large range by having a configurable ``gain`` value.
+For many applications, you can use AUTO gain to have the ESP select a suitable gain setting based on
+the previous measurement. If light levels change dramatically this may cause the next reading to saturate,
+after which the gain will adjust down and subsequent readings will be in range.
 Use a higher gain value when measuring less intense light sources.
 On the other hand, if you get ADC readings of 65,535 for either physical sensor,
 you may be saturating that sensor and need to reduce the gain.
@@ -56,6 +59,10 @@ Since those are two different physical infrared sensor readings, there is the po
   If you are not happy with that built-in calculation, you have the raw data you need to do your own.
   The manufacturer, AMS, has a few application notes that discuss this topic.
   See the references.
+- **actual_gain**: The actual gain value being used for values reported. Updates whenever ``gain`` is changed,
+  which is especially useful when the sensor is set to ``gain: auto`` to help denote relative brightness when
+  extreme changes in brightness are encountered.
+
 
 Values reported are said to be in units of ``lux``, but there are some things to understand about that.
 
@@ -82,6 +89,7 @@ Values reported are said to be in units of ``lux``, but there are some things to
         id: "my_tls2591"
         address: 0x29
         update_interval: 60s
+        gain: auto
         device_factor: 53
         glass_attenuation_factor: 14.4
         visible:
@@ -93,6 +101,9 @@ Values reported are said to be in units of ``lux``, but there are some things to
         calculated_lux:
           id: i_lux
           name: "TSL2591 Lux"
+        actual_gain:
+          id: "actual_gain"
+          name: "TSL2591 actual gain"
 
 Configuration variables:
 ------------------------
@@ -121,19 +132,20 @@ For the TSL2591 device:
   You cannot specify an arbitrary gain multiplier. It must be one of:
 
   - ``low``, ``1x``
-  - ``medium``, ``med``, ``25x``   *(default)*
+  - ``medium``, ``med``, ``25x``
   - ``high``, ``400x``
   - ``maximum``, ``max``, ``9500x``
+  - ``auto`` *(default)*
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval for checking the sensors.
   Defaults to ``60s``.
-- **power_save_mode** (*Optional*, boolean) Should the device be powered down between update intervals?
+- **power_save_mode** (*Optional*, boolean): Should the device be powered down between update intervals?
   Defaults to ``True``.
-- **device_factor** (*Optional*, float) The default is ``53.0``.
+- **device_factor** (*Optional*, float): The default is ``53.0``.
   The device factor to be used as part of the lux equation for ``calculated_lux``.
-- **glass_attenuation_factor** (*Optional*, float) The default is ``7.7``.
+- **glass_attenuation_factor** (*Optional*, float): The default is ``7.7``.
   The glass attenuation factor to be used as part of the lux equation for ``calculated_lux``.
-  
+
 
 - All other options for I²C devices described at :ref:`I²C Bus <i2c>`.
 
@@ -156,6 +168,11 @@ Each configured sensor is reported separately on each ``update_interval``.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **calculated_lux** (*Optional*): The value of the calculated lux.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **actual_gain** (*Optional*): The value of gain used for reported values. Particularly useful when gain is set to "auto".
 
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.

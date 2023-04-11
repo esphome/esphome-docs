@@ -72,7 +72,10 @@ Configuration variables:
     impact on the device but can be used to debug the BLE stack. Defaults to ``5min``.
   - **active** (*Optional*, boolean): Whether to actively send scan requests to request more data
     after having received an advertising packet. With some devices this is necessary to receive all data,
-    but also drains those devices' power a (tiny) bit more. Defaults to ``true``.
+    but also drains those devices' power a bit more. Some devices don't need this, in that case
+    you can save power and RF pollution by setting it to ``false``. Defaults to ``true``.
+  - **continuous** (*Optional*, boolean): Whether to scan continuously (forever) or to only scan when
+    asked to start a scan (with start_scan action). Defaults to ``true``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ESP32 BLE Hub.
 
@@ -86,14 +89,17 @@ Automations:
 - **on_ble_service_data_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when a Bluetooth advertising with service data is received. See
   :ref:`esp32_ble_tracker-on_ble_service_data_advertise`.
+- **on_scan_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when
+  a BLE scan has completed (the duration of the scan). This works with continuous set to true or false.
+
 
 ESP32 Bluetooth Low Energy Tracker Automation
 ---------------------------------------------
 
 .. _esp32_ble_tracker-on_ble_advertise:
 
-``on_ble_advertise``
-********************
+``on_ble_advertise`` Trigger
+************************************************
 
 This automation will be triggered when a Bluetooth advertising is received. A variable ``x`` of type
 :apiclass:`esp32_ble_tracker::ESPBTDevice` is passed to the automation for use in lambdas.
@@ -128,8 +134,8 @@ Configuration variables:
 
 .. _esp32_ble_tracker-on_ble_manufacturer_data_advertise:
 
-``on_ble_manufacturer_data_advertise``
-**************************************
+``on_ble_manufacturer_data_advertise`` Trigger
+************************************************
 
 This automation will be triggered when a Bluetooth advertising with manufcaturer data is received. A
 variable ``x`` of type ``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
@@ -159,8 +165,8 @@ Configuration variables:
 
 .. _esp32_ble_tracker-on_ble_service_data_advertise:
 
-``on_ble_service_data_advertise``
-*********************************
+``on_ble_service_data_advertise`` Trigger
+************************************************
 
 This automation will be triggered when a Bluetooth advertising with service data is received. A
 variable ``x`` of type ``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
@@ -185,10 +191,82 @@ Configuration variables:
 - **service_uuid** (**Required**, string): 16 bit, 32 bit, or 128 bit BLE Service UUID.
 - See :ref:`Automation <automation>`.
 
+``on_scan_end`` Trigger
+************************************************
+
+This automation will be triggered when a Bluetooth scanning sequence has completed. If running
+with continuous set to true, this will trigger every time the scan completes (the duration of
+a scan).
+
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+      on_scan_end:
+        - then:
+            - lambda: |-
+                 ESP_LOGD("ble_auto", "The scan has ended!");
+
+Configuration variables:
+
+- None
+
+- See :ref:`Automation <automation>`.
+
+``esp32_ble_tracker.start_scan`` Action
+************************************************
+
+Start a Bluetooth scan. If there is a scan already in progress, then the action is ignored.
+
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+      scan_parameters:
+        continuous: false
+
+    on_...:
+      - esp32_ble_tracker.start_scan:
+
+Configuration variables:
+
+- **continuous** (*Optional*, boolean): Whether to start the scan in continuous mode. Defaults to ``false``
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+      id: ble_tracker_id
+
+.. code-block:: cpp
+
+    id(ble_tracker_id).start_scan()
+
+``esp32_ble_tracker.stop_scan`` Action
+************************************************
+
+Stops the bluetooth scanning. It can be started again with the above start scan action.
+
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+
+    on_...:
+      - esp32_ble_tracker.stop_scan:
+
 See Also
 --------
 
-- :doc:`binary_sensor/ble_presence`
+- :doc:`text_sensor/ble_scanner`
+- :doc:`sensor/ble_rssi`
+- :doc:`sensor/b_parasite`
+- :doc:`sensor/xiaomi_ble`
+- :doc:`sensor/xiaomi_miscale`
+- :doc:`sensor/inkbird_ibsth1_mini`
+- :doc:`sensor/mopeka_pro_check`
+- :doc:`sensor/ruuvitag`
+- :doc:`ble_client`
+- :doc:`bluetooth_proxy`
 - :apiref:`esp32_ble_tracker/esp32_ble_tracker.h`
 - `ESP32 BLE for Arduino <https://github.com/nkolban/ESP32_BLE_Arduino>`__ by `Neil Kolban <https://github.com/nkolban>`__.
 - :ghedit:`Edit`

@@ -20,12 +20,13 @@ configuration file 😀
 
     esphome:
       name: <NODE_NAME>
-      platform: ESP8266
+
+    esp8266:
       board: nodemcuv2
 
     wifi:
-      ssid: <SSID>
-      password: <PASSWORD>
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     api:
 

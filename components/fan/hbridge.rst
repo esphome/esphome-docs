@@ -5,7 +5,7 @@ H-bridge Fan
     :description: Instructions for setting up hbridge controlled fans (or motors).
     :image: fan.svg
 
-The `'hbridge`' fan platform allows you to use a compatible `h-bridge` (L298N, DRV8871, MX1508, BTS7960, L9110S, DRV8833, TB6612, etc.) to control a fan (or motor/solenoid).
+The ``hbridge`` fan platform allows you to use a compatible *h-bridge* (L298N, DRV8871, MX1508, BTS7960, L9110S, DRV8833, TB6612, etc.) to control a fan (or motor/solenoid).
 
 .. figure:: images/L298N_module.jpg
     :align: center
@@ -30,7 +30,7 @@ The `'hbridge`' fan platform allows you to use a compatible `h-bridge` (L298N, D
       - platform: ...
         id: motor_reverse_pin
         pin: GPIO4
-    
+
     fan:
       - platform: hbridge
         id: my_fan
@@ -50,7 +50,7 @@ Configuration variables:
 - **enable_pin** (*Optional*, :ref:`config-id`): The id of the
   :ref:`float output <output>` connected to the Enable pin of the h-bridge (if h-bridge uses enable).
 - **decay_mode** (*Optional*, string): The decay mode you want to use with
-  the h-bridge. Either ``slow`` (braking) or ``fast`` (coasting). Defaults to ``slow``.
+  the h-bridge. Either ``slow`` (coasting) or ``fast`` (braking). Defaults to ``slow``.
 - **speed_count** (*Optional*, int): Set the number of supported discrete speed levels. The value is used
   to calculate the percentages for each speed. E.g. ``2`` means that you have 50% and 100% while ``100``
   will allow 1% increments in the output. Defaults to ``100``.

@@ -30,6 +30,10 @@ even Over The Air updates.
       run_duration: 10s
       sleep_duration: 10min
 
+.. note::
+
+    ESP8266 that have an onboard USB chip (e.g. D1 mini) one the chips' control lines is connected to the RST pin. This enables the flasher can reboot the ESP when required. This may interfere with deep sleep on some devices and prevent the ESP from waking when it's powered through its USB connector. Powering the ESP from a separate 3.3V source connected to the 3.3V pin and GND will solve this issue. In these cases using a USB to TTL adapter will allow you to log ESP activity. 
+    
 Configuration variables:
 ------------------------
 
@@ -57,7 +61,7 @@ Advanced features:
   wake up on multiple pins. This cannot be used together with wakeup pin.
 
   - **pins** (**Required**, list of pin numbers): The pins to wake up on.
-  - **mode** (*Optional*): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
+  - **mode** (**Required**): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
     all pins go LOW) or ``ANY_HIGH`` (wake up when any pin goes HIGH).
 
 .. note::
@@ -97,9 +101,20 @@ This action makes the given deep sleep component enter deep sleep immediately.
             id: deep_sleep_1
             sleep_duration: 20min
 
+
+    # ESP32 can sleep until a specific time of day.
+    on_...:
+      then:
+        - deep_sleep.enter:
+            id: deep_sleep_1
+            until: "16:00:00"
+            time_id: sntp_id
+
 Configuration options:
 
 - **sleep_duration** (*Optional*, :ref:`templatable <config-templatable>`, :ref:`config-time`): The time duration to stay in deep sleep mode.
+- **until** (*Optional*, string): The time of day to wake up. Only on ESP32.
+- **time_id** (*Optional*, :ref:`config-id`): The ID of the time component to use for the ``until`` option. Only on ESP32.
 
 
 .. _deep_sleep-prevent_action:
@@ -127,7 +142,7 @@ Useful for keeping the ESP active during data transfer or OTA updating (See note
     it will no longer enter deep sleep mode and you can upload your OTA update.
 
     Remember to turn "OTA mode" off again after the OTA update by sending a MQTT message with the payload
-    ``OFF``. To enter the the deep sleep again after the OTA update send a message on the topic ``livingroom/sleep_mode``
+    ``OFF``. To enter the deep sleep again after the OTA update send a message on the topic ``livingroom/sleep_mode``
     with payload ``ON``. Deep sleep will start immediately. Don't forget to delete the payload before the node
     wakes up again.
 
@@ -147,6 +162,19 @@ Useful for keeping the ESP active during data transfer or OTA updating (See note
               payload: 'ON'
               then:
                 - deep_sleep.enter: deep_sleep_1
+
+.. _deep_sleep-allow_action:
+
+``deep_sleep.allow`` Action
+-----------------------------
+
+This action allows the given deep sleep component to enter deep sleep, after previously being prevented.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - deep_sleep.allow: deep_sleep_1
 
 See Also
 --------

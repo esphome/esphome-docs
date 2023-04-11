@@ -16,14 +16,17 @@ ESPHome also has an "OTA safe mode". If for some reason your
 node gets into a boot loop, ESPHome will automatically try to detect
 this and will go over into a safe mode after the configured unsuccessful boot
 attempts (Defaults to ``10``). In that mode, all components are disabled and only Serial
-Logging+WiFi+OTA are initialized, so that you can upload a new binary.
+Logging + Network(WiFi or Ethernet) + OTA are initialized, so that you can upload a new
+binary. You can trigger entering safe mode by either configuring a dedicated button or
+switch to do that or by pressing the reset button on the board for ``num_attempts`` times.
+
 
 .. code-block:: yaml
 
     # Example configuration entry
     ota:
       safe_mode: true
-      password: VERYSECURE
+      password: !secret ota_password
 
 Configuration variables:
 ------------------------
@@ -31,8 +34,12 @@ Configuration variables:
 -  **safe_mode** (*Optional*, boolean): Whether to enable safe mode.
    Defaults to ``true``.
 -  **password** (*Optional*, string): The password to use for updates.
--  **port** (*Optional*, int): The port to use for OTA updates. Defaults
-   to ``3232`` for the ESP32 and ``8266`` for the ESP8266.
+-  **port** (*Optional*, int): The port to use for OTA updates.
+   Defaults:
+
+   - ``3232`` for the ESP32
+   - ``8266`` for the ESP8266
+   - ``2040`` for the RP2040
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 -  **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when in
    safe mode. Defaults to ``5min``.
@@ -174,6 +181,9 @@ enum. These values are:
 Updating the password:
 ----------------------
 
+Changing an existing password:
+******************************
+
 Since the password is used both for compiling and uploading the regular ``esphome <file> run``
 won't work of course. This issue can be worked around by executing the operations separately
 through an ``on_boot`` trigger:
@@ -188,8 +198,16 @@ through an ``on_boot`` trigger:
       password: "Old password"
       id: my_ota
 
+Adding a password:
+******************
+
+If OTA is already enabled without a password, simply add a ``password:`` line to the existing
+``ota:`` config block.
+
 See Also
 --------
 
 - :apiref:`ota/ota_component.h`
+- :doc:`/components/button/safe_mode`
+- :doc:`/components/switch/safe_mode`
 - :ghedit:`Edit`

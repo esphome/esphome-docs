@@ -18,13 +18,13 @@ T1
 
     esphome:
       name: my_t1
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      use_address: xxx.xxx.xxx.xxx
 
     logger:
 
@@ -83,13 +83,13 @@ T2
 
     esphome:
       name: my_t2
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      use_address: xxx.xxx.xxx.xxx
 
     logger:
 
@@ -158,13 +158,13 @@ T3
 
     esphome:
       name: my_t3
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      use_address: xxx.xxx.xxx.xxx
 
     logger:
 
