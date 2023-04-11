@@ -66,4 +66,5 @@ See Also
 
 - `b-parasite on GitHub <https://github.com/rbaron/b-parasite>`__
 - :doc:`/components/esp32_ble_tracker`
+- :doc:`absolute_humidity`
 - :ghedit:`Edit`

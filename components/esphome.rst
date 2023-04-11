@@ -29,6 +29,9 @@ Configuration variables:
   characters, digits and hyphens, and can be at most 24 characters long by default, or 31
   characters long if ``name_add_mac_suffix`` is ``false``.
   See :ref:`esphome-changing_node_name`.
+- **friendly_name** (*Optional*, string): This is the name sent to the frontend. It is used
+  by Home Assistant as the integration name, device name, and is automatically prefixed to entities
+  where necessary.
 
 Advanced options:
 
@@ -318,10 +321,16 @@ The same procedure can be done for changing the static IP of a device.
 Adding the MAC address as a suffix to the device name
 -----------------------------------------------------
 
-Using ``name_add_mac_suffix`` allows the user to compile a single binary file to flash
-many of the same device and they will all have unique names/hostnames.
-Note that you will still need to create an individual YAML config file if you want to
-OTA update the devices in the future.
+Using ``name_add_mac_suffix`` allows :doc:`creators </guides/creators>` to 
+provision multiple devices at the factory with a single firmware and still 
+have unique identification for customer installs.
+
+.. note::
+
+    End users will need to create an individual YAML config file if they want to OTA update the 
+    devices in the future.  Creators can facilitate this process by providing ``dashboard_import`` URL
+    for end users.  This allows them to easily update their devices as new features are made available 
+    upstream.
 
 
 .. _esphome-creators_project:

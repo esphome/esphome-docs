@@ -1,11 +1,11 @@
-CCS811 CO_2 and Volatile Organic Compound Sensor
-================================================
+CCS811 eCO_2 and Volatile Organic Compound Sensor
+=================================================
 
 .. seo::
     :description: Instructions for setting up CCS811 sensors.
     :image: ccs811.jpg
 
-The ``ccs811`` sensor platform allows you to use CCS811 CO_2 and volatile organic compound sensors
+The ``ccs811`` sensor platform allows you to use CCS811 eCO_2 and volatile organic compound sensors
 (`Adafruit`_) with ESPHome.
 
 .. note::
