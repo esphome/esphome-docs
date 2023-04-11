@@ -14,7 +14,7 @@ ESPHome devices with a microphone are able to stream the audio to Home Assistant
 Configuration:
 --------------
 
-.. code-block::yaml
+.. code-block:: yaml
 
     microphone:
       - platform: ...
@@ -33,8 +33,8 @@ Voice Assistant Actions
 
 The following actions are available for use in automations:
 
-``voice_assistant.start`` - Start listening for voice commands.
-``voice_assistant.stop`` - Stop listening for voice commands.
+- ``voice_assistant.start`` - Start listening for voice commands.
+- ``voice_assistant.stop`` - Stop listening for voice commands.
 
 
 Push to Talk
@@ -42,7 +42,7 @@ Push to Talk
 
 Here is an example offering Push to Talk with a :doc:`/components/binary_sensor/index`.
 
-.. code-block::yaml
+.. code-block:: yaml
 
     voice_assistant:
       microphone: mic_id

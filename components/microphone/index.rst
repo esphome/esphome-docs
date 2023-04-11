@@ -94,13 +94,16 @@ Configuration variables:
 This condition will check if the microphone is currently capturing audio data.
 
 
-See Also
---------
+Platforms
+---------
 
 .. toctree::
     :maxdepth: 1
     :glob:
 
     *
+
+See Also
+--------
 
 - :ghedit:`Edit`
