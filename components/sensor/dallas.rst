@@ -155,23 +155,16 @@ Use this if you have multiple dallas hubs:
     # Example configuration entry
     dallas:
       - pin: GPIO23
+        id: hub_1
       - pin: GPIO24
+        id: hub_2
 
     sensor:
       - platform: dallas
-        dallas_id: dallas_hub_1
-        address: 0xA40000031F055028
-        name: "Temperature #1"
+        dallas_id: hub_1
+        # ...
       - platform: dallas
-        dallas_id: dallas_hub_1
-        address: 0xDD0000031EFB0428
-        name: "Temperature #2"
-        
-      - platform: dallas
-        dallas_id: dallas_hub_2
-        address: 0xDD0000031EFB0438
-        name: "Temperature #3"
-      - platform: dallas
+        dallas_id: hub_2
         # ...
 
 
