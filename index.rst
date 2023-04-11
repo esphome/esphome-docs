@@ -668,6 +668,14 @@ Media Player Components
     Media Player Core, components/media_player/index, folder-open.svg
     I2S Audio, components/media_player/i2s_audio, i2s_audio.svg
 
+Microphone Components
+---------------------
+
+.. imgtable::
+
+    Microphone Core, components/microphone/index, microphone.svg
+    I2S Microphone, components/microphone/i2s_audio, i2s_audio.svg
+
 Time Components
 ---------------
 
@@ -679,6 +687,17 @@ Time Components
     GPS Time, components/time/gps, crosshairs-gps.svg
     DS1307 RTC, components/time/ds1307, clock-outline.svg
     PCF85063 RTC, components/time/pcf85063, clock-outline.svg
+
+Home Assistant Companion Components
+-----------------------------------
+
+.. imgtable::
+
+    Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg
+    Voice Assistant, components/voice_assistant, voice-assistant.svg
+    Sensor, components/sensor/homeassistant, home-assistant.svg
+    Text Sensor, components/text_sensor/homeassistant, home-assistant.svg
+    Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg
 
 Misc Components
 ---------------
@@ -706,6 +725,8 @@ Misc Components
     ESP32 Ethernet, components/ethernet, ethernet.svg
     ESP32 Camera, components/esp32_camera, camera.svg
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg
+
+    I²S Audio, components/i2s_audio, i2s_audio.svg
 
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
@@ -785,7 +806,7 @@ Cookbook
     IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
     EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
     Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
-    AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg                                               
+    AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg
     Geiger Counter, cookbook/geiger-counter, radiationD-v1-1-cajoe_small.jpg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
 
