@@ -6,7 +6,7 @@ I²S Audio Microphone
     :image: i2s_audio.svg
 
 The ``i2s_audio`` microphone platform allows you to receive audio via the the
-:ref:`/components/i2s_audio`. This platform only works on ESP32 based chips.
+:doc:`/components/i2s_audio`. This platform only works on ESP32 based chips.
 
 .. code-block:: yaml
 
