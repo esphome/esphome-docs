@@ -399,8 +399,8 @@ Weight
 
 
 Looking for a sensor that outputs its values as an analog voltage? Have a look at the
-:doc:`ADC Sensor </components/sensor/adc>` together with a formula like in the :doc:`TEMT6000
-example </cookbook/temt6000>`.
+:doc:`ADC Sensor </components/sensor/adc>` together with a formula like in the `TEMT6000
+configuration <https://devices.esphome.io/devices/temt6000>`__.
 
 
 Binary Sensor Components
