@@ -2,16 +2,22 @@ H801 RGBW LED controller
 ========================
 
 The H801 is pretty affordable and easy to hack and adapt to your needs. It can be found on `AliExpress <https://s.click.aliexpress.com/e/bbnUDBZW>`__
-`Here <http://tinkerman.cat/closer-look-h801-led-wifi-controller/>`__ is an article about the
-hardware for those who have an interest for more details about the board.
-It can be used as a RGB, RGBW, RGB dual white or even control 5 individual monochromatic strips if you want or combinations of these.
+and other sites. The board is based on an `ESP8266EX <https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf>`__ chip.
+
+It has 5 seperate PWM outputs (each driven by a `DTU35N06 <http://www.din-tek.jp/Upload/Product%20Doc/Datasheet/DTU35N06.pdf>`__ MOSFET rated
+for 106W max power), and can be used as a :doc:`RGB </components/light/rgb>` / :doc:`RGBW </components/light/rgbw>` / 
+:doc:`RGBWW </components/light/rgbww>` / :doc:`RGBCT </components/light/rgbct>` controller or configured with any combination of up to
+five :doc:`individual monochromatic PWM </components/light/monochromatic>` lights. 
+See `A closer look at the H801 LED WiFi Controller <https://tinkerman.cat/post/closer-look-h801-led-wifi-controller>`__ for more details on the hardware.
 
 .. figure:: images/h801.jpg
     :align: center
     :width: 80.0%
 
-For ESPHome, you can then use the :doc:`RGBW </components/light/rgbw>`
-and the :doc:`ESP8266 Software PWM output </components/output/esp8266_pwm>` components using below configuration:
+Sample configuration
+--------------------
+
+You can use the :doc:`RGBWW </components/light/rgbww>` and the :doc:`ESP8266 Software PWM output </components/output/esp8266_pwm>` components using below configuration:
 
 .. code-block:: yaml
 
@@ -45,43 +51,38 @@ and the :doc:`ESP8266 Software PWM output </components/output/esp8266_pwm>` comp
       - platform: esp8266_pwm
         pin: 14
         frequency: 1000 Hz
-        id: pwm_w
+        id: pwm_w1
+      - platform: esp8266_pwm
+        pin: 4
+        frequency: 1000 Hz
+        id: pwm_w2
+    light:
+      - platform: rgbww
+        name: "H801 Light"
+        red: pwm_r
+        green: pwm_g
+        blue: pwm_b
+        cold_white: pwm_w1
+        warm_white: pwm_w2
+
+For :doc:`RGBW </components/light/rgbw>` lights, the ``pwm_w2`` output is not used (and can be removed):
+
+.. code-block:: yaml
+
     light:
       - platform: rgbw
         name: "H801 Light"
         red: pwm_r
         green: pwm_g
         blue: pwm_b
-        white: pwm_w
+        white: pwm_w1
 
+Flashing
+--------
 
 Make your node in the ESPHome dashboard and compile/upload it.
 (if it fails OTA it must be uploaded manually with your favorite ESP flasher,
 e.g. :ref:`esphome-flasher <esphome-flasher>`)
-
-.. figure:: images/gpio.jpg
-    :align: center
-    :width: 80.0%
-
-Front side of board with pins soldered on
-
-.. figure:: images/back.jpg
-    :align: center
-    :width: 80.0%
-
-Back side of the board (don't melt the blue and red wire when soldering)
-
-.. figure:: images/rgbwarm.jpg
-    :align: center
-    :width: 80.0%
-
-This LED strip can be used with the sketch as-is
-
-.. figure:: images/rgbw.jpg
-    :align: center
-    :width: 80.0%
-
-For this type of led strip you have to swap the white and blue GPIO numbers in the sketch.
 
 You will need to solder pins to the board inside the H801 (fortunately it's pretty roomy and
 not a lot of components or stuff in the way apart from the 2 wires on the back).
@@ -89,6 +90,18 @@ not a lot of components or stuff in the way apart from the 2 wires on the back).
 3.3V, GND, TX and RX (RX to RX and TX to TX) needs to be connected to your serial adapter, the
 two other pins must be shorted throughout the flashing process by a jumper or a breadboard cable.
 (Remember to remove it after flashing)
+
+.. figure:: images/h801-board-front.jpg
+    :align: center
+    :width: 80.0%
+
+Front side of board with pins soldered on
+
+.. figure:: images/h801-board-back.jpg
+    :align: center
+    :width: 80.0%
+
+Back side of the board (don't melt the blue and red wire when soldering)
 
 Add A PIR(Motion) Sensor
 ------------------------
@@ -113,9 +126,42 @@ sensor input.
         name: "GPIO3-TX Motion"
         device_class: motion
 
+Pinout
+------
+
+.. list-table::
+    :header-rows: 1
+
+    * - Function
+      - ESP Pin
+    * - R (PWM1)
+      - GPIO15
+    * - G (PWM2)
+      - GPIO13
+    * - B (PWM3)
+      - GPIO12
+    * - W1 (PWM4)
+      - GPIO14
+    * - W2 (PWM5)
+      - GPIO4
+    * - Jumper J3
+      - GPIO0
+    * - RX
+      - GPIO2
+    * - TX
+      - GPIO3
+    * - LED D1 (red)
+      - GPIO5
+    * - LED D2 (green)
+      - GPIO1
+
 See Also
 --------
 
+- :doc:`/components/light/rgb`
 - :doc:`/components/light/rgbw`
+- :doc:`/components/light/rgbww`
+- :doc:`/components/light/rgbct`
+- :doc:`/components/light/monochromatic`
 - :doc:`/components/output/esp8266_pwm`
 - :ghedit:`Edit`
