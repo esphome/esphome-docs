@@ -1,8 +1,8 @@
-I2S Audio Microphone
+I²S Audio Microphone
 ====================
 
 .. seo::
-    :description: Instructions for setting up I2S based microphones in ESPHome.
+    :description: Instructions for setting up I²S based microphones in ESPHome.
     :image: i2s_audio.svg
 
 The ``i2s_audio`` microphone platform allows you to receive audio via the the
@@ -18,7 +18,7 @@ The ``i2s_audio`` microphone platform allows you to receive audio via the the
 Configuration variables:
 ------------------------
 
-- **i2s_din_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S DIN (Data In) signal.
+- **i2s_din_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I²S DIN (Data In) signal.
 
 - All other options from :ref:`Microphone <config-microphone>`
 
