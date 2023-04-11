@@ -62,5 +62,4 @@ See Also
 
 - `Awesome article explaining how PIR Sensors work <https://learn.adafruit.com/pir-passive-infrared-proximity-motion-sensor/how-pirs-work>`__.
 - :doc:`/components/binary_sensor/gpio`
-- :doc:`bruh`
 - :ghedit:`Edit`

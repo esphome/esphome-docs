@@ -399,8 +399,8 @@ Weight
 
 
 Looking for a sensor that outputs its values as an analog voltage? Have a look at the
-:doc:`ADC Sensor </components/sensor/adc>` together with a formula like in the :doc:`TEMT6000
-example </cookbook/temt6000>`.
+:doc:`ADC Sensor </components/sensor/adc>` together with a formula like in the `TEMT6000
+configuration <https://devices.esphome.io/devices/temt6000>`__.
 
 
 Binary Sensor Components
@@ -783,40 +783,28 @@ Cookbook
 
 .. imgtable::
 
-    Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
-    Endstop Cover, cookbook/endstop-cover, window-open.svg
-    PIR Sensor, cookbook/pir, pir.jpg
-    Relay, cookbook/relay, relay.jpg
-    BRUH Multisensor, cookbook/bruh, bruh.png
-    TEMT6000, cookbook/temt6000, temt6000.jpg
+    Generic PIR Sensor, cookbook/pir, pir.jpg
+    Generic Relay, cookbook/relay, relay.jpg
+    Garage Door, cookbook/garage-door, window-open.svg
     Non-Invasive Power Meter, cookbook/power_meter, power_meter.jpg
     Dual Relay Motor Cover, cookbook/dual-r2-cover, sonoff_dual_r2.jpg
     BME280 Environment, cookbook/bme280_environment, bme280.jpg
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
-    H801 LED Controller, cookbook/h801, h801.jpg
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
     Mirabella Genio Bulb, cookbook/mirabella-genio-bulb, cookbook-mirabella-genio-b22-rgbw.jpg
-    Garage Door, cookbook/garage-door, window-open.svg
     Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
-    Etekcity Voltson (ESW01-EU) , cookbook/esw01-eu, esw01-eu.jpg
-    Sonoff iFan02, cookbook/ifan02, fan.svg
     Zemismart RGBW Downlights, cookbook/zemismart-rgbw-downlights, cookbook-zemismart-rgbw-downlight.jpg
-    Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
-    ESP32 BLE iTag Button, cookbook/ble_itag, esp32_ble_itag.jpg
-    IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
-    TUYA Smart Life RGBW Controller, cookbook/tuya_rgbw, tuya_rgbw.jpg
+    Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
+    Endstop Cover, cookbook/endstop-cover, window-open.svg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
-    IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
-    EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
-    Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
-    AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg                                               
-    Geiger Counter, cookbook/geiger-counter, radiationD-v1-1-cajoe_small.jpg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
+
+If you'd like to share configurations for specific devices, please contribute to our `ESPHome Devices <https://devices.esphome.io/>`__ database.
 
 .. toctree::
     :hidden:
