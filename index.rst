@@ -783,21 +783,21 @@ Cookbook
 
 .. imgtable::
 
-    Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
-    Endstop Cover, cookbook/endstop-cover, window-open.svg
-    PIR Sensor, cookbook/pir, pir.jpg
-    Relay, cookbook/relay, relay.jpg
+    Generic PIR Sensor, cookbook/pir, pir.jpg
+    Generic Relay, cookbook/relay, relay.jpg
+    Garage Door, cookbook/garage-door, window-open.svg
     Non-Invasive Power Meter, cookbook/power_meter, power_meter.jpg
     Dual Relay Motor Cover, cookbook/dual-r2-cover, sonoff_dual_r2.jpg
     BME280 Environment, cookbook/bme280_environment, bme280.jpg
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
     Mirabella Genio Bulb, cookbook/mirabella-genio-bulb, cookbook-mirabella-genio-b22-rgbw.jpg
-    Garage Door, cookbook/garage-door, window-open.svg
     Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
     Zemismart RGBW Downlights, cookbook/zemismart-rgbw-downlights, cookbook-zemismart-rgbw-downlight.jpg
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
+    Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
+    Endstop Cover, cookbook/endstop-cover, window-open.svg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
 
