@@ -18,7 +18,7 @@ value:
 
 - ``PMSX003`` for generic PMS5003, PMS7003, ...; these sensors support ``pm_1_0``, ``pm_2_5`` and ``pm_10_0`` output.
 - ``PMS5003S`` for PMS5003S. These support ``pm_1_0``, ``pm_2_5`` and ``pm_10_0`` and ``formaldehyde``.
-- ``PMS5003T`` for PMS5003T. These support ``pm_2_5``, ``temperature`` and ``humidity``.
+- ``PMS5003T`` for PMS5003T. These support ``pm_1_0``, ``pm_2_5`` and ``pm_10_0``, ``temperature`` and ``humidity``.
 - ``PMS5003ST`` for PMS5003ST. These support ``pm_2_5``, ``temperature``, ``humidity`` and ``formaldehyde``.
 
 .. code-block:: yaml
