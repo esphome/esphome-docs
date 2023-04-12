@@ -1,7 +1,7 @@
 .. _m5stack4relay_switch:
 
 M5Stack 4 Relay Switch Component
-===============================
+================================
 
 .. seo::
     :description: Instructions for setting up m5stack4relay Switch.
