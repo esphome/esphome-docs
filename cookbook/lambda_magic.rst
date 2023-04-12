@@ -16,41 +16,41 @@ You can send such UDP commands from ESPHome using a Lambda in a script.
 
 .. code-block:: yaml
 
-	script:
-	- id: send_udp
-	  parameters:
-		msg: string
-		host: string
-		port: int
-	  then:
-		- lambda: |-
-			  int sock = ::socket(AF_INET, SOCK_DGRAM, 0);
-			  struct sockaddr_in destination, source;
+    script:
+    - id: send_udp
+      parameters:
+        msg: string
+        host: string
+        port: int
+      then:
+        - lambda: |-
+              int sock = ::socket(AF_INET, SOCK_DGRAM, 0);
+              struct sockaddr_in destination, source;
 
-			  destination.sin_family = AF_INET;
-			  destination.sin_port = htons(port);
-			  destination.sin_addr.s_addr = inet_addr(host.c_str());
+              destination.sin_family = AF_INET;
+              destination.sin_port = htons(port);
+              destination.sin_addr.s_addr = inet_addr(host.c_str());
 
-			  //you can remove the next 4 lines if you don't want to set the source port for outgoing packets
-			  source.sin_family = AF_INET;
-			  source.sin_addr.s_addr = htonl(INADDR_ANY);
-			  source.sin_port = htons(64998); //source port number
-			  bind(sock, (struct sockaddr*)&source, sizeof(source));
+              // you can remove the next 4 lines if you don't want to set the source port for outgoing packets
+              source.sin_family = AF_INET;
+              source.sin_addr.s_addr = htonl(INADDR_ANY);
+              source.sin_port = htons(64998);  // the source port number
+              bind(sock, (struct sockaddr*)&source, sizeof(source));
 
-			  int n_bytes = ::sendto(sock, msg.c_str(), msg.length(), 0, reinterpret_cast<sockaddr*>(&destination), sizeof(destination));
-			  ESP_LOGD("lambda", "Sent %s to %s:%d in %d bytes", msg.c_str(), host.c_str(), port, n_bytes);
-			  ::close(sock);
+              int n_bytes = ::sendto(sock, msg.c_str(), msg.length(), 0, reinterpret_cast<sockaddr*>(&destination), sizeof(destination));
+              ESP_LOGD("lambda", "Sent %s to %s:%d in %d bytes", msg.c_str(), host.c_str(), port, n_bytes);
+              ::close(sock);
 
-	button:
-	- platform: template
-	  id: button_udp_sender
-	  name: "Send UDP Command"
-	  on_press:
-		- script.execute:
-			id: send_udp
-			msg: "Hello World!"
-			host: "192.168.1.10"
-			port: 5000
+    button:
+    - platform: template
+      id: button_udp_sender
+      name: "Send UDP Command"
+      on_press:
+        - script.execute:
+            id: send_udp
+            msg: "Hello World!"
+            host: "192.168.1.10"
+            port: 5000
 
 Tested on both `arduino` and `esp-idf` platforms.
 
