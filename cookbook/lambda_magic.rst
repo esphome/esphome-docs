@@ -186,12 +186,15 @@ And in YAML:
       text_sensors:
         id: "uart_readline"
 
-**Example usage**
+.. _lambda_magic_uart_switch:
 
-Here is an example switch using the uart text sensor to set switch state.
+Custom UART Switch
+------------------
+
+Here is an example switch using the uart text sensor above to set switch state.
 
 Here we use interval to request status from the device. The response will be stored in uart text sensor.
-Then the switch uses the text sensor state to set its own state.
+Then the switch uses the text sensor state to publish its own state.
 
 .. code-block:: yaml
 
@@ -219,9 +222,9 @@ Then the switch uses the text sensor state to set its own state.
 See Also
 --------
 
+- :ref:`config-lambda`
+- :ref:`automation`
 - :doc:`/components/uart`
 - :doc:`/custom/uart`
-- :ref:`lambda <config-lambda>`
-- :ref:`automation`
 
 - :ghedit:`Edit`
