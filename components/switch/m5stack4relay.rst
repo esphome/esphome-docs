@@ -37,11 +37,12 @@ Configuration variables:
 
 - All other options from :ref:`Switch <config-switch>`.
 
-This switch supports the same interlocking as the GPIO switch :ref:`Switch <config-gpio-switch>`.
+This switch supports the same interlocking as the GPIO switch.
 
 See Also
 --------
 
 - :doc:`index`
 - :apiref:`m5stack4relay/switch/m5stack4relay_switch.h`
+- :apiref:`gpio/switch/gpio_switch.h`
 - :ghedit:`Edit`
