@@ -266,6 +266,7 @@ See Also
 - :doc:`/components/switch/gpio`
 - :doc:`/components/binary_sensor/gpio`
 - :ref:`LCD Menu <lcd_menu>`
+- :ref:`Add pages to LCD display <lambda_magic_pages>`
 - :doc:`/components/pcf8574`
 - `HD44780U (LCD-II) datasheet <https://www.sparkfun.com/datasheets/LCD/HD44780.pdf>`__
 - `Charset cheatsheet <https://user-images.githubusercontent.com/1550668/173113487-9c98e866-8ee4-4a3c-a83f-61fe62057c5f.png>`__
