@@ -5,7 +5,7 @@ M5Stack 4 Relay Switch Component
 
 .. seo::
     :description: Instructions for setting up m5stack4relay Switch.
-    :image: m5stack4relay.png
+    :image: m5stack4relay.jpg
 
 The ``m5stack4relay`` switch platform supports 
 
