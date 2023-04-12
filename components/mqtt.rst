@@ -84,6 +84,7 @@ Configuration variables:
 - **idf_send_async** (*Optional*, bool): Only with ``esp-idf``. If true publishing the message happens from the internal mqtt task. The client only enqueues the message. Defaults to ``false``.
   The advantage of asyncronous publishing is that it doesn't block the esphome main thread. The disadvantage is a delay (up to 1-2 seconds) until the messages are actually sent out.
   Set this to true if you send large amounts of of data over mqtt.
+- **idf_use_crt_bundle** (*Optional*, bool): Only with ``esp-idf``. If true, the esp-idf Certificate Bundle feature will be enabled, which includes a trusted source of certificates from Mozilla (containing more than 130 certificates). Keep in mind that this list should be updated often for each esp-idf release, or else the certificates could expire. Defaults to ``false``.
 - **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   MQTT connection exists. Can be disabled by setting this to ``0s``. Defaults to ``15min``.
 - **keepalive** (*Optional*, :ref:`config-time`): The time
