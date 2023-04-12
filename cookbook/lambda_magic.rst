@@ -221,8 +221,8 @@ Then the switch uses the text sensor state to publish its own state.
 
 .. _lambda_magic_rf_queues:
 
-Queuing Remote Transmissions
-----------------------------
+Delaying Remote Transmissions
+-----------------------------
 
 The solution below handles the problem of RF frames being sent out by :doc:`/components/rf_bridge` (or
 :doc:`/components/remote_transmitter`) too quickly one after another when operating radio controlled
@@ -273,6 +273,7 @@ will still look like they operate simultaneously.
              - delay: !lambda 'return id(queue_delay).state;'
 
     cover:
+        # have multiple covers
       - platform: time_based
         name: 'My Room 1'
         disabled_by_default: false
