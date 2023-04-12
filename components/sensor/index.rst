@@ -40,6 +40,12 @@ Configuration variables:
 
 - **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
 - **name** (*Optional*, string): The name for the sensor. At least one of **id** and **name** must be specified.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the sensor to use that name, you can set ``name: None``.
+
 - **unit_of_measurement** (*Optional*, string): Manually set the unit
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
@@ -524,6 +530,16 @@ the result of the lambda is used as the output (use ``return``).
 
 Make sure to add ``.0`` to all values in the lambda, otherwise divisions of integers will
 result in integers (not floating point values).
+
+To prevent values from being published, return ``{}``:
+
+.. code-block:: yaml
+
+    filters:
+      - lambda: !lambda |-
+          if (x < 10) return {};
+          return x-10;
+
 
 Example: Converting Celsius to Fahrenheit
 -----------------------------------------
