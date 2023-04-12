@@ -219,6 +219,81 @@ Then the switch uses the text sensor state to publish its own state.
         then:
           - uart.write: "\r*pow=?#\r"
 
+.. _lambda_magic_rf_queues:
+
+Queuing Remote Transmissions
+----------------------------
+
+The solution below handles the problem of RF frames being sent out by :doc:`/components/rf_bridge` (or
+:doc:`/components/remote_transmitter`) too quickly one after another when operating radio controlled
+covers. The cover motors seem to need at least 600-700ms of silence between the individual code transmissions 
+to be able to recognize them.
+
+This can be solved by building up a queue of raw RF codes and sending them out one after the other with
+(a configurable) delay between them. Delay is only added to the next commands coming from a list of 
+covers which have to be operated at once from Home Assistant. This is transparent to the system, which 
+will still look like they operate simultaneously. 
+
+.. code-block:: yaml
+
+    rf_bridge:
+
+    number:
+    - platform: template
+      name: Delay commands
+      icon: mdi:clock-fast
+      entity_category: config
+      optimistic: true
+      restore_value: true
+      initial_value: 750
+      unit_of_measurement: "ms"
+      id: queue_delay
+      min_value: 10
+      max_value: 1000
+      step: 50
+      mode: box
+
+    globals:
+    - id: rf_code_queue
+      type: 'std::vector<std::string>'
+
+    script:
+    - id: rf_transmitter_queue
+      mode: single
+      then:
+        while:
+          condition:
+            lambda: 'return !id(rf_code_queue).empty();'
+          then:
+             - rf_bridge.send_raw:
+                 raw: !lambda |-
+                   std::string rf_code = id(rf_code_queue).front();
+                   id(rf_code_queue).erase(id(rf_code_queue).begin());
+                   return rf_code;
+             - delay: !lambda 'return id(queue_delay).state;'
+
+    cover:
+      - platform: time_based
+        name: 'My Room 1'
+        disabled_by_default: false
+        device_class: shutter
+        assumed_state: true
+        has_built_in_endstop: true
+
+        close_action:
+          - lambda: id(rf_code_queue).push_back("AAB0XXXXX..the.closing.code..XXXXXXXXXX");
+          - script.execute: rf_transmitter_queue
+        close_duration: 26s
+
+        stop_action:
+          - lambda: id(rf_code_queue).push_back("AAB0YXXXX..the.stopping.code..XXXXXXXXXX");
+          - script.execute: rf_transmitter_queue
+
+        open_action:
+          - lambda: id(rf_code_queue).push_back("AAB0ZXXXX..the.opening.code..XXXXXXXXXX");
+          - script.execute: rf_transmitter_queue
+        open_duration: 27s
+
 See Also
 --------
 
