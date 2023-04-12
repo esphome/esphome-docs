@@ -11,3 +11,5 @@ venv
 .vscode
 *.DS_Store
 /.idea/
+/.vs/m5stackrelaydoc/v16
+/.vs
