@@ -428,6 +428,14 @@ Capacitive Touch
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
 
+Mechanical
+**********
+.. imgtable::
+
+    Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
+    TM1637, components/display/tm1637, tm1637.jpg
+    TM1638, components/display/tm1638, tm1638.jpg
+
 NFC/RFID Components
 *******************
 
@@ -456,6 +464,8 @@ Miscellaneous
     Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     LD2410, components/sensor/ld2410, ld2410.jpg
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
+    PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
+    Remote Receiver, components/remote_receiver, remote.svg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
 
