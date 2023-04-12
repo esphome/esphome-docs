@@ -8,6 +8,51 @@ Lambda Magic
 Here are a couple recipes for various interesting things you can do with :ref:`Lambdas <config-lambda>` in ESPHome.
 These things don't need external or custom components, and show how powerful :ref:`Lambda <config-lambda>` usage can be.
 
+.. _lambda_magic_pages:
+
+Display pages alternative
+-------------------------
+
+Some displays like :ref:`lcd-pcf8574` don't support pages natively, but you can easily implement them 
+using Lambdas:
+
+.. code-block:: yaml
+
+    display:
+      - platform: lcd_pcf8574
+        dimensions: 20x4
+        address: 0x27
+        id: lcd
+        lambda: |-
+              switch (id(page)){
+                case 1:
+                  it.print(0, 1, "Page1");
+                  break;
+                case 2: 
+                  it.print(0, 1, "Page2");
+                  break;
+                case 3: 
+                  it.print(0, 1, "Page3");
+                  break;
+              }
+
+    globals:
+    - id: page
+      type: int
+      initial_value: "1"
+
+    interval:
+    - interval: 5s
+      then:
+        - lambda: |-
+            id(page) = (id(page) + 1);
+            if (id(page) > 3) {
+              id(page) = 1;
+            }
+
+
+.. _lambda_magic_udp_sender:
+
 Send UDP commands
 -----------------
 
@@ -53,6 +98,8 @@ You can send such UDP commands from ESPHome using a Lambda in a script.
             port: 5000
 
 Tested on both `arduino` and `esp-idf` platforms.
+
+.. _lambda_magic_uart_text_sensor:
 
 Custom UART Text Sensor
 -----------------------
