@@ -1,9 +1,108 @@
-Custom UART Text Sensor
-=======================
+Lambda Magic
+============
 
 .. seo::
-    :description: Instructions for setting up a custom uart text sensor.
+    :description: Recipes for various interesting things you can do with Lambdas in ESPHome
     :image: language-cpp.svg
+
+Here are a couple recipes for various interesting things you can do with :ref:`Lambdas <config-lambda>` in ESPHome.
+These things don't need external or custom components, and show how powerful :ref:`Lambda <config-lambda>` usage can be.
+
+.. _lambda_magic_pages:
+
+Display pages alternative
+-------------------------
+
+Some displays like :ref:`lcd-pcf8574` don't support pages natively, but you can easily implement them 
+using Lambdas:
+
+.. code-block:: yaml
+
+    display:
+      - platform: lcd_pcf8574
+        dimensions: 20x4
+        address: 0x27
+        id: lcd
+        lambda: |-
+              switch (id(page)){
+                case 1:
+                  it.print(0, 1, "Page1");
+                  break;
+                case 2: 
+                  it.print(0, 1, "Page2");
+                  break;
+                case 3: 
+                  it.print(0, 1, "Page3");
+                  break;
+              }
+
+    globals:
+    - id: page
+      type: int
+      initial_value: "1"
+
+    interval:
+    - interval: 5s
+      then:
+        - lambda: |-
+            id(page) = (id(page) + 1);
+            if (id(page) > 3) {
+              id(page) = 1;
+            }
+
+
+.. _lambda_magic_udp_sender:
+
+Send UDP commands
+-----------------
+
+There are various network devices which can be commanded with UDP packets containing command strings.
+You can send such UDP commands from ESPHome using a Lambda in a script.
+
+.. code-block:: yaml
+
+    script:
+    - id: send_udp
+      parameters:
+        msg: string
+        host: string
+        port: int
+      then:
+        - lambda: |-
+              int sock = ::socket(AF_INET, SOCK_DGRAM, 0);
+              struct sockaddr_in destination, source;
+
+              destination.sin_family = AF_INET;
+              destination.sin_port = htons(port);
+              destination.sin_addr.s_addr = inet_addr(host.c_str());
+
+              // you can remove the next 4 lines if you don't want to set the source port for outgoing packets
+              source.sin_family = AF_INET;
+              source.sin_addr.s_addr = htonl(INADDR_ANY);
+              source.sin_port = htons(64998);  // the source port number
+              bind(sock, (struct sockaddr*)&source, sizeof(source));
+
+              int n_bytes = ::sendto(sock, msg.c_str(), msg.length(), 0, reinterpret_cast<sockaddr*>(&destination), sizeof(destination));
+              ESP_LOGD("lambda", "Sent %s to %s:%d in %d bytes", msg.c_str(), host.c_str(), port, n_bytes);
+              ::close(sock);
+
+    button:
+    - platform: template
+      id: button_udp_sender
+      name: "Send UDP Command"
+      on_press:
+        - script.execute:
+            id: send_udp
+            msg: "Hello World!"
+            host: "192.168.1.10"
+            port: 5000
+
+Tested on both `arduino` and `esp-idf` platforms.
+
+.. _lambda_magic_uart_text_sensor:
+
+Custom UART Text Sensor
+-----------------------
 
 Lots of devices communicate using the UART protocol. If you want to read 
 lines from uart to a Text Sensor you can do so using this code example.
@@ -87,8 +186,7 @@ And in YAML:
       text_sensors:
         id: "uart_readline"
 
-Example usage
--------------
+**Example usage**
 
 Here is an example switch using the uart text sensor to set switch state.
 
@@ -123,4 +221,7 @@ See Also
 
 - :doc:`/components/uart`
 - :doc:`/custom/uart`
+- :ref:`lambda <config-lambda>`
+- :ref:`automation`
+
 - :ghedit:`Edit`

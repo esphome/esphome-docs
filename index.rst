@@ -789,7 +789,7 @@ Cookbook
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
     BME280 Environment, cookbook/bme280_environment, bme280.jpg
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
-    Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
+    Lambda Magic, cookbook/lambda_magic, language-cpp.svg
     Endstop Cover, cookbook/endstop-cover, window-open.svg
     Non-Invasive Power Meter, cookbook/power_meter, power_meter.jpg
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
