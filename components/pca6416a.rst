@@ -1,5 +1,5 @@
 PCA6416A I/O Expander
-====================
+=====================
 
 .. seo::
     :description: Instructions for setting up PCA6416A and PCAL6416A, digital port expanders in ESPHome.
