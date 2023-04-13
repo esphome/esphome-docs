@@ -15,8 +15,6 @@ touch devices and determining Bayesian probabilities for an event.
 This platform supports three measurement types: ``BAYESIAN``, ``GROUP``, and ``SUM``.
 You need to specify your desired mapping with the ``type:`` configuration value.
 
-The maximum amount of possible ``channels`` / ``observations`` is 64.
-
 When using the ``BAYESIAN`` type, add your binary sensors as ``observations`` to the binary sensor map. 
 If you use the ``GROUP`` or ``SUM`` type, add your binary sensors as ``channels``. 
 The maximum amount of observations/channels supported is 64.
