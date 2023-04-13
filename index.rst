@@ -793,7 +793,7 @@ Cookbook
 
 .. imgtable::
 
-    Lambda Magic, cookbook/lambda_magic, language-cpp.svg
+    Lambda Magic, cookbook/lambda_magic, head-lightbulb-outline.svg
     Garage Door Template Cover, cookbook/garage-door, garage-variant.svg
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
