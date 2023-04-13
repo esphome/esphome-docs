@@ -93,11 +93,11 @@ Build
 
 .. note::
 
-    The easiest way is to use the `esphome-docs Docker image <https://hub.docker.com/r/esphome/esphome-docs/>`__:
+    The easiest way is to use the `esphome-docs container image <ghcr.io/esphome/esphome-docs/>`__:
 
     .. code-block:: bash
 
-        docker run --rm -v "${PWD}/":/data/esphomedocs -p 8000:8000 -it esphome/esphome-docs
+        docker run --rm -v "${PWD}/":/data/esphomedocs -p 8000:8000 -it ghcr.io/esphome/esphome-docs
 
     With ``PWD`` referring to the root of the ``esphome-docs`` git repository. Then go to ``<CONTAINER_IP>:8000`` in your browser.
 
@@ -662,10 +662,10 @@ Standard for the esphome-core codebase:
     .. code-block:: bash
 
         # Full lint+test suite
-        docker run --rm -v "${PWD}/":/esphome -it esphome/esphome-lint script/fulltest
+        docker run --rm -v "${PWD}/":/esphome -it ghcr.io/esphome/esphome-lint script/fulltest
 
         # Run lint only over changed files
-        docker run --rm -v "${PWD}/":/esphome -it esphome/esphome-lint script/quicklint
+        docker run --rm -v "${PWD}/":/esphome -it ghcr.io/esphome/esphome-lint script/quicklint
 
 
     If you are using Windows and have docker installed the syntax is slightly different.
@@ -676,7 +676,7 @@ Standard for the esphome-core codebase:
         # convert the volume format
         $current_dir=(Get-Location).Path.ToLower().Replace(':','').Replace('\','/')
         # Run lint only over changed files from powershell
-        docker run --rm -v "$($current_dir):/esphome" -it esphome/esphome-lint script/quicklint
+        docker run --rm -v "$($current_dir):/esphome" -it ghcr.io/esphome/esphome-lint script/quicklint
 
 
 

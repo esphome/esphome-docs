@@ -19,6 +19,9 @@ sensor sends out a BLE broadcast.
       + Mopeka Pro Check devices
       + Mopeka Pro Plus devices
       + Lippert Propane Tank Sensor, part number 2021130655
+      
+    See :doc:`/components/sensor/mopeka_std_check` for original Mopeka Check sensors support.
+
 
 (images/mopeka_pro_check.jpg)
 (images/mopeka_pro_check_lippert.jpg)
@@ -119,11 +122,12 @@ and the ``mopeka_ble`` component like so:
 
 After uploading, the ESP32 will immediately try to scan for BLE devices.  For Mopeka Pro
 Check / Pro Plus / Lippert devices you must press and hold the green sync button for it to be identified.
+Or alternativly set the configuration flag ``show_sensors_without_sync: true`` to see all devices.
 For all sensors found the ``mopeka_ble`` component will print a message like this one:
 
 .. code::
 
-    [20:43:26][I][mopeka_ble:040]: SENSOR FOUND: D3:75:F2:DC:16:91
+    [20:43:26][I][mopeka_ble:074]: MOPEKA PRO (NRF52) SENSOR FOUND: D3:75:F2:DC:16:91
 
 Then just copy the address (``D3:75:F2:DC:16:91``) into a new
 ``sensor.mopeka_pro_check`` platform entry like in the configuration example at the top.
