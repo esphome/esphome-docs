@@ -52,6 +52,13 @@ Configuration variables:
   detectors. In this configuration the ``stop_action`` is not performed when the open or close
   time is completed and if the cover is commanded to open or close the corresponding actions
   will be performed without checking current state. Defaults to ``false``.
+- **manual_control** (*Optional*, boolean): For covers with manual external controls. With this 
+  configuration if the cover is commanded to open or close the corresponding actions will be 
+  performed even if the current state fully open or fully closed matches desired state, then 
+  ``stop_action`` will be called after the full duration of the action elapses. 
+  The current state will then be relearned upon completion.
+  It's recommended to  set ``assumed_state`` to true so the cover control button aren't disabled 
+  in the interface. Defaults to ``false``. 
 - **assumed_state** (*Optional*, boolean): Whether the true state of the cover is not known.
   This will make the Home Assistant frontend show buttons for both OPEN and CLOSE actions, instead
   of hiding or disabling one of them. Defaults to ``true``.
