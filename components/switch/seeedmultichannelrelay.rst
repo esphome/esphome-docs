@@ -8,7 +8,7 @@ Seeed Multi Channel Relay Switch Component
     :image: seeedmultichannelrelay.png
 
 The ``seeedmultichannelrelay`` switch platform supports the 8 channels of the relay unit. There are multi relays which are supported.
-The relays can be used to switch up to AC-230VDC-28V. For more information: 
+The relays can be used to switch up to AC-250V or DC-110V. For more information: 
 
 Below are several links to supported relays
 https://wiki.seeedstudio.com/Grove-4-Channel_SPDT_Relay/
