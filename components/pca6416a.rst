@@ -3,8 +3,9 @@ PCA6416A I/O Expander
 
 .. seo::
     :description: Instructions for setting up PCA6416A and PCAL6416A, digital port expanders in ESPHome.
+    :image: pca6416a.svg
 
-The PCA6416A component allows you to use **PCA6416A** or **PCAL6416A** I/O expanders in ESPHome. 
+The PCA6416A component allows you to use **PCA6416A** or **PCAL6416A** I/O expanders in ESPHome.
 It uses :ref:`I²C Bus <i2c>` for communication.
 
 Once configured, you can use any of the **16** pins for your projects. Within ESPHome they emulate a real internal
@@ -20,10 +21,10 @@ GPIO pin and can therefore be used with many of ESPHome's components such as the
     For the PCA6416A and PCAL6416A, the actual choice of the I²C device address depends on state of the address pin.
     Please refer to the individual datasheets linked at the bottom of the page for further details to set the address.
 
-    Up to two PCA6416A or PCAL6416A devices can reside on the same I²C bus. 
+    Up to two PCA6416A or PCAL6416A devices can reside on the same I²C bus.
 
     The PCA6416A and PCAL6416A provide 16 bits of GPIO's (pin numbers 0-15).
-    
+
     Only the PCAL6416A supports pull-up resistors.
 
     Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically be used, but some more
@@ -35,7 +36,7 @@ GPIO pin and can therefore be used with many of ESPHome's components such as the
     pca6416a:
       - id: 'pca6416a_device'
         address: 0x20
-      
+
     # Individual outputs
     switch:
       - platform: gpio
@@ -56,7 +57,7 @@ GPIO pin and can therefore be used with many of ESPHome's components such as the
     pca6416a:
       - id: 'pcal6416a_device'
         address: 0x20
-      
+
     # Individual outputs
     switch:
       - platform: gpio
@@ -96,8 +97,7 @@ See Also
 - :ref:`i2c`
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
-- `PCA6416A datasheet <https://www.nxp.com/docs/en/data-sheet/PCA6416A.pdf>`__ 
-- `PCAL6416A datasheet <https://www.nxp.com/docs/en/data-sheet/PCAL6416A.pdf>`__ 
+- `PCA6416A datasheet <https://www.nxp.com/docs/en/data-sheet/PCA6416A.pdf>`__
+- `PCAL6416A datasheet <https://www.nxp.com/docs/en/data-sheet/PCAL6416A.pdf>`__
 - :apiref:`pca6416a/pca6416a.h`
 - :ghedit:`Edit`
-
