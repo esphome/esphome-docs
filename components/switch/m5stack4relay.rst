@@ -10,6 +10,10 @@ M5Stack 4 Relay Switch Component
 The ``m5stack4relay`` switch platform supports the 4 channels of the relay unit. 
 The relays can be used to switch up to AC-230VDC-28V. For more information: https://docs.m5stack.com/en/unit/4relay
 
+.. figure:: images/m5stack4relay.png
+    :align: center
+    :width: 80.0%
+
 .. code-block:: yaml
 
     # Example configuration entry
