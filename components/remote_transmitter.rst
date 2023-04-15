@@ -78,6 +78,43 @@ Configuration variables:
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
+.. _remote_transmitter-transmit_abbwelcome:
+
+``remote_transmitter.transmit_abbwelcome`` Action
+*************************************************
+
+This :ref:`action <config-action>` sends a ABB-Welcome message to the intercom bus.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_abbwelcome:
+          source_address: 0x1001 # your indoor station address
+          destination_address: 0x4001 # door address
+          message_type: 0x0d # unlock door
+          data: [0xab, 0xcd, 0xef]  # door opener secret code, see receiver dump
+
+Configuration variables:
+
+- **source_address** (**Required**, int):The source address to send the command from,
+  see dumper output for more info. The highest 4 bits indicate the device type.
+- **destination_address** (**Required**, int): The destination address to send the command to,
+  see dumper output for more info. The highest 4 bits indicate the device type.
+
+  - ``0x1...`` Indoor station
+  - ``0x2...`` Outdoor station
+  - ``0x3...`` Gateway
+  - ``0x4...`` Door opener
+  - ...
+
+- **retransmission** (**Optional**, boolean): ``true`` if the message will be re-transmitted. Defaults to ``false``.
+- **message_type** (**Required**, int): The message type, see dumper output for more info.
+  The highest bit indicates a reply.
+- **message_id** (**Optional**, int): The message ID, see dumper output for more info.
+  Defaults to a randomly generated ID if this message is not a reply or retransmission.
+- **data** (**Optional**, 0-7 bytes list): The code to send, see :ref:`remote_transmitter-transmit_abbwelcome`
+  for more info. Usually you only need to copy this directly from the dumper output. Defaults to ``[]``
+
 .. _remote_transmitter-transmit_aeha:
 
 ``remote_transmitter.transmit_aeha`` Action
