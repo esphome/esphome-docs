@@ -43,5 +43,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`as7341/as7341.h`
+- :apiref:`mlx90614/mlx90614.h`
 - :ghedit:`Edit`
