@@ -110,10 +110,24 @@ Configuration variables:
 - **retransmission** (**Optional**, boolean): ``true`` if the message will be re-transmitted. Defaults to ``false``.
 - **message_type** (**Required**, int): The message type, see dumper output for more info.
   The highest bit indicates a reply.
+
+  - ``0x01`` / ``0x81`` Doorbell Outdoor
+  - ``0x02`` / ``0x82`` End Call
+  - ``0x03`` / ``0x83`` Accept Call
+  - ``0x04`` / ``0x84`` Manual Video
+  - ``0x09`` / ``0x89`` Light
+  - ``0x0a`` / ``0x8a`` Start Call
+  - ``0x0d`` / ``0x8d`` Door
+  - ``0x11`` / ``0x91`` Doorbell Indoor
+  - ``0x12`` / ``0x92`` Ping
+  - ``0x16`` / ``0x96`` Push To Talk
+  - ...
+
+
 - **message_id** (**Optional**, int): The message ID, see dumper output for more info.
   Defaults to a randomly generated ID if this message is not a reply or retransmission.
-- **data** (**Optional**, 0-7 bytes list): The code to send, see :ref:`remote_transmitter-transmit_abbwelcome`
-  for more info. Usually you only need to copy this directly from the dumper output. Defaults to ``[]``
+- **data** (**Optional**, 0-7 bytes list): The code to send.
+  Usually you only need to copy this directly from the dumper output. Defaults to ``[]``
 
 .. _remote_transmitter-transmit_aeha:
 
