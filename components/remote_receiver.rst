@@ -197,37 +197,16 @@ Remote code selection (exactly one of these has to be included):
 
 - **abbwelcome**: Trigger on a decoded ABB-Welcome code with the given data.
 
-  - **source_address** (**Required**, int): The source address to trigger on, see dumper output for more info.
-    The highest 4 bits indicate the device type.
-  - **destination_address** (**Required**, int): The destination address to trigger on, see dumper output for more info.
-    The highest 4 bits indicate the device type.
-
-    - ``0x1...`` Indoor station
-    - ``0x2...`` Outdoor station
-    - ``0x3...`` Gateway
-    - ``0x4...`` Door opener
-    - ...
-
+  - **source_address** (**Required**, int): The source address to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
+    for more info.
+  - **destination_address** (**Required**, int): The destination address to trigger on, see
+    :ref:`remote_transmitter-transmit_abbwelcome` for more info.
   - **retransmission** (**Optional**, boolean): ``true`` if the message was re-transmitted. Defaults to ``false``.
-  - **message_type** (**Required**, int): The message type to trigger on, see dumper output for more info.
-    The highest bit indicates a reply.
-
-    - ``0x01`` / ``0x81`` Doorbell Outdoor
-    - ``0x02`` / ``0x82`` End Call
-    - ``0x03`` / ``0x83`` Accept Call
-    - ``0x04`` / ``0x84`` Manual Video
-    - ``0x09`` / ``0x89`` Light
-    - ``0x0a`` / ``0x8a`` Start Call
-    - ``0x0d`` / ``0x8d`` Door
-    - ``0x11`` / ``0x91`` Doorbell Indoor
-    - ``0x12`` / ``0x92`` Ping
-    - ``0x16`` / ``0x96`` Push To Talk
-    - ...
-
-
+  - **message_type** (**Required**, int): The message type to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
+    for more info.
   - **message_id** (**Optional**, int): The random message ID to trigger on, see dumper output for more info. Defaults to any ID.
-  - **data** (**Optional**, 0-7 bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_abbwelcome`
-    for more info. Usually you only need to copy this directly from the dumper output. Defaults to ``[]``
+  - **data** (**Optional**, 0-7 bytes list): The code to listen for. Usually you only need to copy this directly from the
+    dumper output. Defaults to ``[]``
 
 - **aeha**: Trigger on a decoded AEHA remote code with the given data.
 
