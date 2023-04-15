@@ -14,7 +14,7 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
 
 .. code-block:: yaml
 
-    # Example configuration entry
+    # Example configuration entry for RMII chips
     ethernet:
       type: LAN8720
       mdc_pin: GPIO23
@@ -27,6 +27,19 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
         static_ip: 10.0.0.42
         gateway: 10.0.0.1
         subnet: 255.255.255.0
+        
+.. code-block:: yaml
+
+    # Example configuration entry for SPI chips
+    ethernet:
+      type: W5500
+      clk_pin: GPIO19
+      mosi_pin: GPIO21
+      miso_pin: GPIO23
+      cs_pin: GPIO18
+      interrupt_pin: GPIO36
+      reset_pin: GPIO22
+      clock_speed: 30
 
 Configuration variables:
 ------------------------
@@ -42,10 +55,11 @@ Configuration variables:
   - ``JL1101``
   - ``KSZ8081``
   - ``KSZ8081RNA``
+  - ``W5500``
 
-- **mdc_pin** (**Required**, :ref:`config-pin`): The MDC pin of the board.
+- **mdc_pin** (**Required for RMII chips**, :ref:`config-pin`): The MDC pin of the board.
   Usually this is ``GPIO23``.
-- **mdio_pin** (**Required**, :ref:`config-pin`): The MDIO pin of the board.
+- **mdio_pin** (**Required for RMII chips**, :ref:`config-pin`): The MDIO pin of the board.
   Usually this is ``GPIO18``.
 - **clk_mode** (*Optional*, string): The clock mode of the data lines. See your board's
   datasheet for more details. Must be one of the following values:
@@ -54,10 +68,18 @@ Configuration variables:
   - ``GPIO0_OUT`` - Internal clock
   - ``GPIO16_OUT`` - Internal clock
   - ``GPIO17_OUT`` - Internal clock
-
-- **phy_addr** (*Optional*, int): The PHY addr type of the Ethernet controller. Defaults to 0.
+  
+  Only available for RMII chips.
+- **phy_addr** (*Optional*, int): The PHY addr type of the Ethernet controller. Defaults to 0. Only available for RMII chips.
 - **power_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin controlling the
-  power/reset status of the Ethernet controller. Leave unspecified for no power pin (default).
+  power/reset status of the Ethernet controller. Leave unspecified for no power pin (default). Only available for RMII chips.
+- **clk_pin** (**Required for SPI chips**, :ref:`config-pin`): The SPI clock pin.
+- **mosi_pin** (**Required for SPI chips**, :ref:`config-pin`): The SPI MOSI pin.
+- **miso_pin** (**Required for SPI chips**, :ref:`config-pin`): The SPI MISO pin.
+- **cs_pin** (**Required for SPI chips**, :ref:`config-pin`): The SPI chip select pin.
+- **interrupt_pin** (*Optional*, :ref:`config-pin`): The interrupt pin. Only available for SPI chips.
+- **reset_pin** (*Optional*, :ref:`config-pin`): The reset pin. Only available for SPI chips.
+- **clock_speed** (*Optional*, int): The SPI clock speed in Mhz. Defaults to 30. Only available for SPI chips.
 - **manual_ip** (*Optional*): Manually configure the static IP of the node.
 
   - **static_ip** (**Required**, IPv4 address): The static IP of your node.
@@ -82,6 +104,10 @@ Configuration variables:
     This approach is likely to fail, however, as the Ethernet interface uses a high frequency
     clock signal that will not travel reliably over these types of connections. For more
     information and wiring details refer to the link in the *See also* section.
+    
+.. note::
+
+    SPI based chips do *not* use :doc:`spi`. This means that SPI pins can't be shared with other devices.
 
 Configuration examples
 ----------------------
