@@ -1,5 +1,5 @@
 MLX90614  non-contact thermometer
-============================
+=================================
 
 .. seo::
     :description: Instructions for setting up Melexis MLX90614 non-contact thermometer.
