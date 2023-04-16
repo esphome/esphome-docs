@@ -40,7 +40,7 @@ https://wiki.seeedstudio.com/Grove-8-Channel_Solid_State_Relay/
 Configuration variables:
 ------------------------
 **Control**
-- **addres** (*Optional*, hex-address): This should only be added to change the i2c address 
+- **addres** (*Optional*, hex-address): This should only be added to change the i2c address
   on the EPROM of the relay. Afterwards the address will be permanently changed.
 
 - All other options from I2C devices.
