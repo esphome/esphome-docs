@@ -43,7 +43,7 @@ Control:
 - **addres** (*Optional*, hex-address): This should only be added to change the i2c address 
   on the EPROM of the relay. Afterwards the address will be permanently changed.
 
-- All other options from I²C devices.
+- All other options from I2C devices.
 
 Switch:
 - **channel** (*Required*, string): The name of channel to switch, options are relay_1, relay_2, relay_3 or relay_4.
