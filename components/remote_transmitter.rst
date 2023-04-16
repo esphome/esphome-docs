@@ -136,7 +136,7 @@ Configuration variables:
     RX and TX pins should not be inverted. Use at your own risk!
 
     .. figure:: images/abbwelcome_circuit.png
-    
+
     Recommended config for this circuit:
 
     .. code-block:: yaml
