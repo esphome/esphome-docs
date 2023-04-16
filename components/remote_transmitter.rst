@@ -129,6 +129,31 @@ Configuration variables:
 - **data** (**Optional**, 0-7 bytes list): The code to send.
   Usually you only need to copy this directly from the dumper output. Defaults to ``[]``
 
+.. note::
+
+    ABB-Welcome messages are sent over the two-wire bus of your intercom system.
+    A custom receiver / transmitter circuit is required. For this example circuit the
+    RX and TX pins should not be inverted. Use at your own risk!
+
+    .. figure:: images/abbwelcome_circuit.png
+    
+    Recommended config for this circuit:
+
+    .. code-block:: yaml
+
+        remote_transmitter:
+          pin: GPIO26
+          carrier_duty_percent: 100%
+
+        remote_receiver:
+          pin: GPIO25
+          filter: 8us
+          tolerance: 26us
+          idle: 1500us
+          buffer_size: 15kB
+          memory_blocks: 6
+          clock_divider: 160
+
 .. _remote_transmitter-transmit_aeha:
 
 ``remote_transmitter.transmit_aeha`` Action
