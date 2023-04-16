@@ -17,6 +17,7 @@ The relays can be used to switch up to AC-230V or DC-28V. For more information: 
 .. figure:: images/m5stack4relay.png
     :align: center
     :width: 80.0%
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -33,7 +34,7 @@ The relays can be used to switch up to AC-230V or DC-28V. For more information: 
 
 Configuration variables:
 ------------------------
-The control has all other options from the I2C devices
+The control has all other options from the I2C devices.
 
 Switch:
 - **channel** (*Required*, string): The name of channel to switch, options are relay_1, relay_2, relay_3 or relay_4.
