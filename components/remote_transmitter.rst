@@ -154,6 +154,8 @@ Configuration variables:
           memory_blocks: 6
           clock_divider: 160
 
+    ABB-Welcome IP devices are not compatible.
+
 .. _remote_transmitter-transmit_aeha:
 
 ``remote_transmitter.transmit_aeha`` Action
