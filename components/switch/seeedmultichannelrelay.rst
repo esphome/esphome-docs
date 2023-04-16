@@ -39,13 +39,13 @@ https://wiki.seeedstudio.com/Grove-8-Channel_Solid_State_Relay/
 
 Configuration variables:
 ------------------------
-Control:
+**Control**
 - **addres** (*Optional*, hex-address): This should only be added to change the i2c address 
   on the EPROM of the relay. Afterwards the address will be permanently changed.
 
 - All other options from I2C devices.
 
-Switch:
+**Switch**
 - **channel** (*Required*, string): The name of channel to switch, options are relay_1, relay_2, relay_3 or relay_4.
 - **seeedmultichannelrelay_id** (*Optional*, :ref:`config-id`): The ID of the Seed relay.
 - **interlock** (*Optional*, list): A list of other switches in an interlock group. See
