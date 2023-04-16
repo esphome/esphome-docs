@@ -33,7 +33,6 @@ beyond the typical SPI connections, it is better suited for use with the ESP32.
     display:
       - platform: ili9xxx
         model: ili9341
-        cs_pin: 14
         dc_pin: 27
         reset_pin: 33
         lambda: |-
@@ -140,7 +139,6 @@ To configure an image adaptive color pallet to show greater than 8 bit color dep
     display:
       - platform: ili9xxx
         model: ili9341
-        cs_pin: 5
         dc_pin: 4
         reset_pin: 22
         rotation: 90
