@@ -35,15 +35,15 @@ Configuration variables
 -----------------------
 - **ambient** (*Optional*): Enables sensor entity for ambient temperature reading.
 
-  - All options from :ref:`Sensor <config-sensor>`. At least one of **id** or **name** must be specified.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 - **object** (*Optional*): Enables sensor entity for object temperature reading.
 
-  - All options from :ref:`Sensor <config-sensor>`.  At least one of **id** or **name** must be specified.
+  - All options from :ref:`Sensor <config-sensor>`.
 
-- **emissivity** (*Optional*): The emissivity is the coefficient.
-
-  - The  emissivity is the coefficient shows how well the object emits IR radiation compared to a theoretical perfect black body emitter. See `Emissivity Application note <https://media.melexis.com/-/media/files/documents/application-notes/mlx90614-changing-emissivity-unlocking-key-application-note-melexis.pdf?la=en>`__ for details on determining custom emissivity. Default is 1.0 which is 100% and corresponds to the ideal black body.
+- **emissivity** (*Optional*): The emissivity is the coefficient shows how well the object emits IR radiation compared to a
+  theoretical perfect black body emitter. See `Emissivity Application note <https://media.melexis.com/-/media/files/documents/application-notes/mlx90614-changing-emissivity-unlocking-key-application-note-melexis.pdf?la=en>`__
+  for details on determining custom emissivity. Default is 1.0 which is 100% and corresponds to the ideal black body.
 
 - All other options for I²C devices described at :ref:`I²C Bus <i2c>`.
 
