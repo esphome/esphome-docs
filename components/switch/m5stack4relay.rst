@@ -36,7 +36,7 @@ Configuration variables:
 ------------------------
 The control has all other options from the I2C devices.
 
-Switch:
+**Switch**
 - **channel** (*Required*, string): The name of channel to switch, options are relay_1, relay_2, relay_3 or relay_4.
 - **m5stack4relay_id** (*Optional*, :ref:`config-id`): The ID of the M5Stack 4 relay.
 - **interlock** (*Optional*, list): A list of other switches in an interlock group. See
