@@ -5,7 +5,7 @@ Kuntze pool monitor
     :description: Instructions for setting up Kuntze pool monitor in ESPHome.
     :image: kuntze.jpg
 
-The ``kuntze`` component allows you to integrate the Kuntze water measurement 
+The ``kuntze`` component allows you to integrate the Kuntze water measurement
 instrument in ESPHome. It uses :ref:`UART <uart>` (ModBUS) for communication.
 
 Once configured you can use sensors as described below for your projects.
@@ -19,25 +19,25 @@ Once configured you can use sensors as described below for your projects.
 Overview
 --------
 
-Kuntze devices have an RS485 (ModBUS RTU) communication port. Please see the 
+Kuntze devices have an RS485 (ModBUS RTU) communication port. Please see the
 Kuntze papers for the pinout of the RS485 connector on your unit. ModBUS line
 has to be terminated properly (with a ``120Ω`` resistor), and since this is likely
 your only unit connected to ESPHome, you should activate bus termination in the
-Network menu (this component doesn't support multiple Kuntze devices on the same 
+Network menu (this component doesn't support multiple Kuntze devices on the same
 bus). ModBUS address should remain at factory default value.
 
-The device communicates at ``19200`` baud ``8E1``. To connect to ESPHome, an RS485 
-transceiver is needed. Choose a type which does not need a trigger to send and 
+The device communicates at ``19200`` baud ``8E1``. To connect to ESPHome, an RS485
+transceiver is needed. Choose a type which does not need a trigger to send and
 receive data,  for example:
 
 .. figure:: ../../images/rs485.jpg
 
-The controller connects to the UART of the MCU. For ESP32 GPIO `16` to `TXD` and `17` 
+The controller connects to the UART of the MCU. For ESP32 GPIO `16` to `TXD` and `17`
 to RXD are the default ones but any other pins can be used as well. 3.3V to VCC and GND to GND.
 
 .. warning::
 
-    If you are using the :ref:`logger` make sure you are not using the same pins for it or otherwise disable the UART 
+    If you are using the :ref:`logger` make sure you are not using the same pins for it or otherwise disable the UART
     logging with the ``baud_rate: 0`` option.
 
 Component

@@ -90,18 +90,16 @@ Configuration variables:
 - **deadband_parameters** (*Optional*): Enables a deadband to stabilise and minimise changes in the
   output when the temperature is close to the target temperature. See `Deadband Setup`_.
 
-  - **threshold_low/threshold_high** (**Required**, float): Specifies a high/low
-    threshold defining the deadband
-    around the target temperature. For instance with ``default_target_temperature`` of ``21°C`` and
-    thresholds of ``+/-0.5°C``, the deadband will be
+  - **threshold_high/threshold_low** (**Required**, float): Specifies a high/low
+    threshold defining the deadband around the target temperature. For instance with
+    ``default_target_temperature`` of ``21°C`` and thresholds of ``+/-0.5°C``, the deadband will be
     between ``20.5°C - 21.5°C``. The PID controller will limit output changes within the deadband.
+  - **kp_multiplier** (*Optional*, float): Set the ``kp`` gain when inside the deadband. Defaults to ``0``.
+  - **ki_multiplier** (*Optional*, float): Set the ``ki`` gain when inside the deadband. Defaults to ``0``.
+  - **kd_multiplier** (*Optional*, float): Set the ``kd`` gain when inside the deadband. Recommended this
+    is set to ``0``. Defaults to ``0``.
 
-  - **kp_multiplier** (**Optional**, float): Set the ``kp`` gain when inside the deadband. Defaults to ``0``.
-  - **ki_multiplier** (**Optional**, float): Set the ``ki`` gain when inside the deadband. Defaults to ``0``.
-  - **kd_multiplier** (**Optional**, float): Set the ``kd`` gain when inside the deadband. Recommended this
-    is set to 0. Defaults to ``0``.
-
-  - **deadband_output_averaging_samples** (**Optional**, int): Typically when inside the deadband the PID Controller has
+  - **deadband_output_averaging_samples** (*Optional*, int): Typically when inside the deadband the PID Controller has
     reached a state of equilibrium, so it advantageous to use a higher number of output samples
     like 10-30 samples. Defaults to ``1`` which is no sampling/averaging.
 

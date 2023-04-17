@@ -207,7 +207,7 @@ Remote code selection (exactly one of these has to be included):
       Depending on the hardware used they may interfere with each other when enabled simultaneously.
 
   - **device** (**Required**, int): The device to trigger on, see dumper output for more info.
-  - **address** (**Optional**, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
+  - **address** (*Optional*, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
   - **command** (**Required**, int): The command to listen for.
 
 - **canalsatld**: Trigger on a decoded CanalSatLD remote code with the given data.
@@ -218,7 +218,7 @@ Remote code selection (exactly one of these has to be included):
       Depending on the hardware used they may interfere with each other when enabled simultaneously.
 
   - **device** (**Required**, int): The device to trigger on, see dumper output for more info.
-  - **address** (**Optional**, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
+  - **address** (*Optional*, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
   - **command** (**Required**, int): The command to listen for.
 
 - **coolix**: Trigger on a decoded Coolix remote code with the given data.

@@ -96,8 +96,8 @@ Configuration variables:
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 -  **resolution** (*Optional*, string): the resolution of this sensor. Defaults to ``16 bits``.
 
-  - **16 bits**
-  - **12 bits**
+  - ``16 bits``
+  - ``12 bits``
 
 
 Multiplexer and Gain
@@ -105,10 +105,10 @@ Multiplexer and Gain
 
 .. note::
 
-    As per (`datasheet <http://www.ti.com/lit/ds/symlink/ads1115.pdf>`__, `Adafruit`_) Section 7.3 Note 2: 
+    As per (`datasheet <http://www.ti.com/lit/ds/symlink/ads1115.pdf>`__, `Adafruit`_) Section 7.3 Note 2:
     "No more than VDD + 0.3V must be applied to the analog inputs of the device."
     This means if you power the device with 3.3V, take care not to supply the 4 AIN pins with more than 3.6V.
-    
+
 The ADS1115 has a multiplexer that can be configured to measure voltage between several pin configurations. These are:
 
  - ``A0_A1`` (between Pin 0 and Pin 1)
@@ -128,11 +128,11 @@ Additionally, the ADS1115 has a Programmable Gain Amplifier (PGA) that can help 
  - ``1.024`` (measures up to 1.024V)
  - ``0.512`` (measures up to 0.512V)
  - ``0.256`` (measures up to 0.256V)
- 
+
 The ADS1115 can be used with defaults settings.
 When using an ADS1015, the resolution has to be specified and should be defined to ``12_BITS``
 (or equivalent notations like ``12 BITS`` or ``12 bits``).
- 
+
 See Also
 --------
 
