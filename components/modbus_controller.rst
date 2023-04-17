@@ -53,7 +53,7 @@ Configuration variables:
 - **address** (**Required**, :ref:`config-id`): The modbus address of the device
   Specify the modbus device address of the.
 
-- **command_throttle** (*Optional*, int): minimum time in milliseconds between 2 requests to the device. Default is 0ms
+- **command_throttle** (*Optional*, :ref:`config-time`): minimum time in between 2 requests to the device. Default is 0ms
   Because some modbus devices limit the rate of requests the interval between sending requests to the device can be modified.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
@@ -529,6 +529,6 @@ See Also
 - :doc:`/components/switch/modbus_controller`
 - :doc:`/components/number/modbus_controller`
 - :doc:`/components/output/modbus_controller`
-- :doc:`EPEVER MPPT Solar Charge Controller Tracer-AN Series</cookbook/tracer-an>`
+- `EPEVER MPPT Solar Charge Controller (Tracer-AN Series) <https://devices.esphome.io/devices/epever_mptt_tracer_an>`__
 - `Modbus RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
 - :ghedit:`Edit`

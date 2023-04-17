@@ -7,7 +7,7 @@ Tuya Climate
 
 The ``tuya`` climate platform creates a climate device from a tuya component.
 
-The Tuya fan requires a :doc:`/components/tuya` to be configured.
+Tuya climate requires a :doc:`/components/tuya` to be configured.
 
 .. code-block:: text
 

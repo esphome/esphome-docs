@@ -149,7 +149,7 @@ Core Components
 Sensor Components
 -----------------
 
-Sensors have been split into categories. If a sensor fits into more than one category, it will be listed multiple times.
+Sensors are split into categories. If a sensor fits into more than one category, it will be listed multiple times.
 
 Core
 ****
@@ -399,38 +399,75 @@ Weight
 
 
 Looking for a sensor that outputs its values as an analog voltage? Have a look at the
-:doc:`ADC Sensor </components/sensor/adc>` together with a formula like in the :doc:`TEMT6000
-example </cookbook/temt6000>`.
+:doc:`ADC Sensor </components/sensor/adc>` together with a formula like in the `TEMT6000
+configuration <https://devices.esphome.io/devices/temt6000>`__.
 
 
 Binary Sensor Components
 ------------------------
 
+Binary Sensors are split into categories. If a sensor fits into more than one category, it will be listed multiple times.
+
+Core
+****
 .. imgtable::
 
     Binary Sensor Core, components/binary_sensor/index, folder-open.svg
+    Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
     GPIO, components/binary_sensor/gpio, pin.svg
     Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg
     Status, components/binary_sensor/status, server-network.svg
-    Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg
-    ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
-    ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
-    Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
-    MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
-    Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
+
+Capacitive Touch
+****************
+.. imgtable::
+
+    CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
+    ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
+    MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
+    TTP229, components/binary_sensor/ttp229, ttp229.jpg
+
+Mechanical
+**********
+.. imgtable::
+
+    Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
+    TM1637, components/display/tm1637, tm1637.jpg
+    TM1638, components/display/tm1638, tm1638.jpg
+
+NFC/RFID Components
+*******************
+
+Often known as "tag" or "card" readers within the community.
+
+.. imgtable::
+
     PN532, components/binary_sensor/pn532, pn532.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
-    TTP229, components/binary_sensor/ttp229, ttp229.jpg
-    Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
-    Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
-    XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
-    CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
+
+Touchscreen
+***********
+.. imgtable::
+
+    Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Touchscreen, components/touchscreen/index, touch.svg
-    Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
+
+Miscellaneous
+*************
+.. imgtable::
+
+    Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg
+    ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
+    Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     LD2410, components/sensor/ld2410, ld2410.jpg
-    Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
+    Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
+    PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
+    Remote Receiver, components/remote_receiver, remote.svg
+    Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
 
 Output Components
 -----------------
@@ -651,7 +688,7 @@ Select Components
     Tuya Select, components/select/tuya, tuya.png
 
 Lock Components
------------------
+---------------
 
 .. imgtable::
 
@@ -679,8 +716,8 @@ Time Components
     DS1307 RTC, components/time/ds1307, clock-outline.svg
     PCF85063 RTC, components/time/pcf85063, clock-outline.svg
 
-Misc Components
----------------
+Miscellaneous Components
+------------------------
 
 .. imgtable::
 
@@ -756,39 +793,20 @@ Cookbook
 
 .. imgtable::
 
-    Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
-    Endstop Cover, cookbook/endstop-cover, window-open.svg
-    PIR Sensor, cookbook/pir, pir.jpg
-    Relay, cookbook/relay, relay.jpg
-    BRUH Multisensor, cookbook/bruh, bruh.png
-    TEMT6000, cookbook/temt6000, temt6000.jpg
-    Non-Invasive Power Meter, cookbook/power_meter, power_meter.jpg
-    Dual Relay Motor Cover, cookbook/dual-r2-cover, sonoff_dual_r2.jpg
-    BME280 Environment, cookbook/bme280_environment, bme280.jpg
-    Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
-    H801 LED Controller, cookbook/h801, h801.jpg
+    Lambda Magic: Tips and Tricks, cookbook/lambda_magic, head-lightbulb-outline.svg
+    Garage Door Template Cover, cookbook/garage-door, garage-variant.svg
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
-    Mirabella Genio Bulb, cookbook/mirabella-genio-bulb, cookbook-mirabella-genio-b22-rgbw.jpg
-    Garage Door, cookbook/garage-door, window-open.svg
-    Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
-    Etekcity Voltson (ESW01-EU) , cookbook/esw01-eu, esw01-eu.jpg
-    Sonoff iFan02, cookbook/ifan02, fan.svg
-    Zemismart RGBW Downlights, cookbook/zemismart-rgbw-downlights, cookbook-zemismart-rgbw-downlight.jpg
-    Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
-    Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
-    ESP32 BLE iTag Button, cookbook/ble_itag, esp32_ble_itag.jpg
-    IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
-    TUYA Smart Life RGBW Controller, cookbook/tuya_rgbw, tuya_rgbw.jpg
-    Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
-    IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
-    EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
-    Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
-    AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg
-    Geiger Counter, cookbook/geiger-counter, radiationD-v1-1-cajoe_small.jpg
+    BME280 Environment extras, cookbook/bme280_environment, bme280.jpg
+    Non-Invasive Power Meter, cookbook/power_meter, power_meter.jpg
+    Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
+    Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
+    EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
+
+If you'd like to share configurations for specific devices, please contribute to our `ESPHome Devices <https://devices.esphome.io/>`__ database.
 
 .. toctree::
     :hidden:
