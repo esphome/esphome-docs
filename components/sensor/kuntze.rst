@@ -66,14 +66,13 @@ A configured modbus component is optional. It will be automatically created.
 
 Configuration variables:
 
-- **ph**: Measured pH value
-- **temperature**: Measured temperature value
-- **dis1**: Measured DIS 1 value
-- **dis2**: Measured DIS 2 value
-- **redox**: Measured Redox value
-- **ec**: Measured EC value
-- **oci**: Measured OCI value
-
+- **ph** (*Optional*): Measured pH value.
+- **temperature** (*Optional*): Measured temperature value.
+- **dis1** (*Optional*): Measured DIS 1 value.
+- **dis2** (*Optional*): Measured DIS 2 value.
+- **redox** (*Optional*): Measured Redox value.
+- **ec** (*Optional*): Measured EC value.
+- **oci** (*Optional*): Measured OCI value.
 
 All sensors are *Optional* and support all other options from :ref:`Sensor <config-sensor>`.
 
