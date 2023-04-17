@@ -56,7 +56,7 @@ Configuration variables:
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
-- **auto_clear_enabled** (*Optional*, boolean): Whether to automatically clear the display in each loop (''true'', default),
+- **auto_clear_enabled** (*Optional*, boolean): Whether to automatically clear the display in each loop (``true``, default),
   or to keep the existing display content (must overwrite explicitly, e.g., only on data change).
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -65,7 +65,7 @@ Configuration variables:
   - ``NONE`` (default)
   - ``GRAYSCALE``
   - ``IMAGE_ADAPTIVE``
-- **background_color** (*Optional*, :ref:`config-color`):  The background color used for font. Recommendation: Set if **auto_clear_enabled** is ''false'' for simpler partial refresh logic. If partial refresh is not desired or **auto_clear_enabled** is ''true'' (default) then don't set background color.
+- **background_color** (*Optional*, :ref:`config-color`):  The background color used for font. Recommendation: Set if **auto_clear_enabled** is ``false`` for simpler partial refresh logic. If partial refresh is not desired or **auto_clear_enabled** is ``true`` (default) then don't set background color.
 - **color_palette_images** (*Optional*): A list of image files that will be used to generate the color pallet for the display.  This should only be used in conjunction with ``-color_palette: IMAGE_ADAPTIVE`` above.  The images will be analysed at compile time and a custom color pallet will be created based on the most commonly occuring colors.  A typical setting would be a sample image that represented the fully populated display.  This can significantly improve the quality of displayed images.  Note that these images are not stored on the ESP device, just the 256byte color pallet created from them.
 
 Configuration examples
@@ -153,7 +153,7 @@ To configure an image adaptive color pallet to show greater than 8 bit color dep
         lambda: |-
           it.image(0, 0, id(myimage));
 
-To use partial refresh a pixel must not be changed. Therefore disable `auto_clear_enabled` and set `background_color`:
+To use partial refresh a pixel must not be changed. Therefore disable ``auto_clear_enabled`` and set ``background_color``:
 
 .. code-block:: yaml
 
@@ -183,7 +183,11 @@ To use partial refresh a pixel must not be changed. Therefore disable `auto_clea
             it.fill(Color::BLACK);
             it.print(0, 0, id(font_name), id(font_color), TextAlign::TOP_LEFT, "Heading");
           }
-          it.printf(0, 40, id(font_name), id(font_color), TextAlign::TOP_LEFT, "%.2f", id(sensor).state);
+
+          // Only if sensor values are change the display will be updated.
+          // Spaces after value are necessery if value has different length.
+          it.printf(0, 40, id(font_name), id(font_color), TextAlign::TOP_LEFT, "%.2f            ", id(sensor1).state);
+          it.printf(0, 80, id(font_name), id(font_color), TextAlign::TOP_LEFT, "%.2f            ", id(sensor2).state);
 
 See Also
 --------
