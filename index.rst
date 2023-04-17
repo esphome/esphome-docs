@@ -386,7 +386,7 @@ Miscellaneous
     Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
     WireGuard, components/wireguard, wireguard_custom_logo.svg
-
+    GDK101, components/sensor/gdk101, gdk101.jpg, Radiation
 
 Motion
 ******

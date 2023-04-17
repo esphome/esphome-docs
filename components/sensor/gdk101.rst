@@ -1,0 +1,135 @@
+FTLab GDK101 Gamma Radiation Sensor Module
+==========================================
+
+.. seo::
+    :description: Instructions for setting up GDK101 Gamma Radiation Sensor Module
+    :image: gdk101.jpg
+    :keywords: gdk101
+
+The **GDK101** sensor platform allows you to use your GDKA101 sensor
+(`AliExpress`_, `Amazon`_, `DesertCart`_, `RadonShop`_, `FTLab`_) to monitor radiation levels at your place.
+
+The GDK101 can measure average dose rate per 1 and 10 minutes, it also detect vibrations that can disturb the measurement.
+
+Component/Hub
+-------------
+
+The GDK101 using I²C protocol for data communication.
+Connect your sensor module to MCU using I²C pins and setup your esphome to use apropariet pins for I²C communication.
+Set the I²C adress on module using jumpers and also set it up in esphome configuration.
+
+Module Pins
+-----------
+
+============  ===============================================================
+ Module Pin   Description
+============  ===============================================================
+TX            UART TX pin
+RX            UART RX pin
++5VIN         Positive supply voltage
+GND1          Ground
+SDA           I²C data bus
+SCL           I²C clock bus
+
+A0            Adress Jumper 1
+A1            Adress Jumper 2
+============  ===============================================================
+
+============  ===============================================================
+I2C Address   Jumpers State
+============  ===============================================================
+0x18          A0 Short, A1 Short
+0x19          A0 Open,  A1 Short
+0x1A          A0 Short, A1 Open
+0x1B          A0 Open,  A1 Open
+============  ===============================================================
+
+.. figure:: images/gdk101.jpg
+    :align: center
+    :width: 50.0%
+
+    GDK101 Gamma Radiation Sensor Module.
+
+.. _AliExpress: https://pl.aliexpress.com/i/1005001299979570.html
+.. _Amazon: https://www.amazon.com/GDK101-Radiation-Sensor-Module-Aduino/product-reviews/B01I4RZWA8
+.. _DesertCart: https://www.desertcart.in/products/98880150-gdk-101-gamma-radiation-sensor-module-aduino-sensor-module
+.. _RadonShop: https://www.radonshop.com/ftlab-gdk101-gamma-radiation-sensor-module-arduino
+.. _FTLab: http://allsmartlab.com/eng/294-2/
+
+Sample Configuration:
+---------------------
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    i2c:
+      sda: GPIO21
+      scl: GPIO22
+      scan: True
+      id: bus_a
+      frequency: 100kHz
+    gdk101:
+      i2c_id: bus_a
+      address: 0x18
+      update_interval: 10s
+    sensor:
+      - platform: gdk101
+        radiation_dose_per_1m:
+          name: "GDK101 Radiation Dose @ 1 min"
+        radiation_dose_per_10m:
+          name: "GDK101 Radiation Dose @ 10 min"
+        status:
+          name: "GDK101 Status"
+        version:
+          name: "GDK101 FW Version"
+        meas_time: 
+          name: "GDK101 Measuring Time"
+    binary_sensor:
+      - platform: gdk101
+        vibrations:
+          name: "GDK101 Vibrations"
+          
+
+Configuration variables:
+************************
+
+
+- **address** (*Optional*, int): Manually specify the I²C address of
+  the sensor. Defaults to ``0x18`` (``A0`` and ``A1`` shorted).
+  The address is made up using the state of ``A0`` as bit 1 and the state of ``A1`` as bit 2, so a total of four addresses is possible.
+- **update_interval** (*Optional*, int): Manually defined update iterval of sensor. Default to 60s.
+- **i2c_id** (*Optional*, string): Optional name of the bus.
+
+Sensor
+------
+
+A sensor platform to radiation data
+
+Configuration variables:
+
+- **radiation_dose_per_1m** (**Required**): Radiation average dose per 1 minute.
+- **radiation_dose_per_10m** (**Required**): Radiation average dose per 10 minutes.
+- **version** (**Required**): Fimware version of the module.
+- **status** (*Optional*): Sensor status.
+- **meas_time** (*Optional*): Total time of measurement.
+
+Binary Sensor
+-------------
+
+Binary sensor that indicates if measurement was disturbed by vibrations.
+
+Configuration variables:
+
+-  **vibrations** (**Required**): Vibration status.
+
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :apiref:`gdk101/gdk101.h`
+- `Data Sheet <http://allsmartlab.com/eng/wp-content/uploads/sites/2/2017/01/GDK101datasheet_v1.6.pdf>`__
+- `Application Notes <https://merona.blob.core.windows.net/radonftlab-web/GDK101.zip>`__
+- `Arduino Sensors for Everyone blog post <https://arduino.steamedu123.com/entry/GDK101-Radiation-Sensor>`__
+- :ghedit:`Edit`
