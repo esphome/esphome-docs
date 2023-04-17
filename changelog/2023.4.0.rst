@@ -56,6 +56,14 @@ Due to ``uart0`` / ``uart1`` / ``uart2`` being defined in some of the platform c
 ESPHome will now disallow these ids from being used in the config. You can simply change them to
 ``uart_0`` to continue using.
 
+Beta Changes
+------------
+
+- debug component, allow without debug logging :esphomepr:`4685` by :ghuser:`jesserockz`
+- Fixed dns2 for ethernet :esphomepr:`4698` by :ghuser:`HeMan`
+- Add timeout to i2c write error logs :esphomepr:`4697` by :ghuser:`Szewcson`
+- Add event triggers to voice_assistant :esphomepr:`4699` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
@@ -141,6 +149,10 @@ All changes
 - Fix cut-off on 2.13" waveshare/ttgo epaper displays :esphomepr:`4255` by :ghuser:`unhold`
 - [Ethernet] Add PHY KSZ8081 support :esphomepr:`4668` by :ghuser:`Fabian-Schmidt`
 - Fix restore :esphomepr:`4655` by :ghuser:`spacemanspiff2007` (breaking-change)
+- debug component, allow without debug logging :esphomepr:`4685` by :ghuser:`jesserockz`
+- Fixed dns2 for ethernet :esphomepr:`4698` by :ghuser:`HeMan`
+- Add timeout to i2c write error logs :esphomepr:`4697` by :ghuser:`Szewcson`
+- Add event triggers to voice_assistant :esphomepr:`4699` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
