@@ -29,7 +29,7 @@ Documentation:
 - `Second discussion in the homeassistant community <https://community.home-assistant.io/t/a-simple-diy-status-display-with-an-8x32-rgb-led/379051>`__
 - `Optional notify component <https://github.com/lubeda/EHMTX_custom_component>`__
 
-`sample YAML configuration for ESP32 <https://raw.githubusercontent.com/lubeda/EsphoMaTrix/main/ehmtx32.yaml>`__
+`YAML configuration example for ESP32 <https://github.com/lubeda/EsphoMaTrix/blob/main/UlanziTC001.yaml>`__.
 
 Sample video:
 
