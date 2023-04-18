@@ -530,5 +530,6 @@ See Also
 - :doc:`/components/number/modbus_controller`
 - :doc:`/components/output/modbus_controller`
 - `EPEVER MPPT Solar Charge Controller (Tracer-AN Series) <https://devices.esphome.io/devices/epever_mptt_tracer_an>`__
+- `Ginlong Solis Solar Inverter <https://github.com/hn/ginlong-solis#replacing-the-main-application>`__
 - `Modbus RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
 - :ghedit:`Edit`
