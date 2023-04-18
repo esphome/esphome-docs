@@ -167,7 +167,7 @@ Configuration variables:
 
 - **pylontech_id** (**Required**): ID of the pylontech instance
 - **battery** (**Required**): Which battery to monitor. 1 stands for the master battery, 2..6 for slave batteries.
-- **base_state** (*Optional*): Base state. Usually reads ``Dischg`` or ``Charge``.
+- **base_state** (*Optional*): Base state. Usually reads ``Dischg``, ``Charge`` or ``Idle``.
 - **voltage_state** (*Optional*): Voltage state. Usually reads ``Normal``.
 - **current_state** (*Optional*): Current state. Usually reads ``Normal``.
 - **temperature_state** (*Optional*): Temperature state. Usually reads ``Normal``.
