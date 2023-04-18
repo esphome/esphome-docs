@@ -278,7 +278,7 @@ using a generic templatable action call.
     - number.operation:
         id: my_number
         operation: !lambda "return NUMBER_OP_INCREMENT;"
-        cycle: !lambda: "return true;"
+        cycle: !lambda "return true;"
 
 Configuration variables:
 
