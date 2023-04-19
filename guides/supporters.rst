@@ -655,7 +655,6 @@ Contributors
 - `Jakub Šimo (@kubik369) <https://github.com/kubik369>`__
 - `Mark Kuchel (@kuchel77) <https://github.com/kuchel77>`__
 - `Ken Davidson (@kwdavidson) <https://github.com/kwdavidson>`__
-- `Kyle Hendricks (@kylehendricks) <https://github.com/kylehendricks>`__
 - `Kyle Hill (@kylhill) <https://github.com/kylhill>`__
 - `Kalashnikov Ilya (@l1bbcsg) <https://github.com/l1bbcsg>`__
 - `Limor "Ladyada" Fried (@ladyada) <https://github.com/ladyada>`__
@@ -663,6 +662,7 @@ Contributors
 - `Fredrik Lindqvist (@Landrash) <https://github.com/Landrash>`__
 - `Lawrie George (@lawriege) <https://github.com/lawriege>`__
 - `Laszlo Gazdag (@lazlyhu) <https://github.com/lazlyhu>`__
+- `Ludovic BOUÉ (@lboue) <https://github.com/lboue>`__
 - `lcavalli (@lcavalli) <https://github.com/lcavalli>`__
 - `Craig Fletcher (@leakypixel) <https://github.com/leakypixel>`__
 - `Dominik Wagenknecht (@LeDominik) <https://github.com/LeDominik>`__
@@ -704,6 +704,7 @@ Contributors
 - `Malle355 (@Malle355) <https://github.com/Malle355>`__
 - `raymonder jin (@mamil) <https://github.com/mamil>`__
 - `Manuel Díez (@manutenfruits) <https://github.com/manutenfruits>`__
+- `marcelolcosta (@marcelolcosta) <https://github.com/marcelolcosta>`__
 - `Marcel van der Veldt (@marcelveldt) <https://github.com/marcelveldt>`__
 - `Marc (@MarcHagen) <https://github.com/MarcHagen>`__
 - `marcinkowalczyk (@marcinkowalczyk) <https://github.com/marcinkowalczyk>`__
@@ -1138,4 +1139,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated April 17, 2023.*
+*This page was last updated April 20, 2023.*
