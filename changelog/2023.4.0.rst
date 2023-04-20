@@ -64,6 +64,8 @@ Beta Changes
 - Add timeout to i2c write error logs :esphomepr:`4697` by :ghuser:`Szewcson`
 - Add event triggers to voice_assistant :esphomepr:`4699` by :ghuser:`jesserockz`
 - Call on_error if no api client connected that handles voice :esphomepr:`4709` by :ghuser:`jesserockz`
+- Add ethernet powerdown (fixes esphome/issues#4420) :esphomepr:`4706` by :ghuser:`tracestep`
+- Bump arduino platform version to 5.3.0 :esphomepr:`4713` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------
@@ -155,6 +157,8 @@ All changes
 - Add timeout to i2c write error logs :esphomepr:`4697` by :ghuser:`Szewcson`
 - Add event triggers to voice_assistant :esphomepr:`4699` by :ghuser:`jesserockz`
 - Call on_error if no api client connected that handles voice :esphomepr:`4709` by :ghuser:`jesserockz`
+- Add ethernet powerdown (fixes esphome/issues#4420) :esphomepr:`4706` by :ghuser:`tracestep`
+- Bump arduino platform version to 5.3.0 :esphomepr:`4713` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
