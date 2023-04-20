@@ -23,5 +23,6 @@ Components
     lock/index
     display_menu/index
     media_player/index
+    microphone/index
     time/index
     *
