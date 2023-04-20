@@ -28,12 +28,45 @@ With this also comes preliminary :doc:`microphone </components/microphone/index>
 components, like ``voice_assistant`` can request start / stop of the microphone and get the data. We
 hope this leads to more interesting use cases for the microphone in the future.
 
-.. note::
+Keith joins Nabu Casa
+---------------------
 
-    TODO: Add link to tutorial for setting up M5Stack Atom Echo with Voice Assistant.
+Nabu Casa is pleased to annouce that long time contributor Keith Burzinski (:ghuser:`kbx81`) is joining the
+team as a full time developer to help out on ESPHome.
 
 Breaking Changes
 ----------------
+
+I²S Media Player
+^^^^^^^^^^^^^^^^
+
+With the introduction of the :doc:`/components/microphone/i2s_audio`, the media player platform has some
+required breaking changes to the YAML configuration. This involves moving the ``i2s_lrclk_pin`` and
+``i2s_bclk_pin`` to a new :doc:`/components/i2s_audio` component.
+
+.. code-block:: yaml
+
+    # Before
+    media_player:
+      - platform: i2s_audio
+        name: ESPHome I2S Media Player
+        dac_type: external
+        i2s_lrclk_pin: GPIO33
+        i2s_bclk_pin: GPIO19
+        i2s_dout_pin: GPIO22
+        mode: mono
+
+    # After
+    i2s_audio:
+      i2s_lrclk_pin: GPIO33
+      i2s_bclk_pin: GPIO19
+
+    media_player:
+      - platform: i2s_audio
+        name: ESPHome I2S Media Player
+        dac_type: external
+        i2s_dout_pin: GPIO22
+        mode: mono
 
 Default restore mode for Switches, Fans and Lights
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -56,17 +89,6 @@ Due to ``uart0`` / ``uart1`` / ``uart2`` being defined in some of the platform c
 ESPHome will now disallow these ids from being used in the config. You can simply change them to
 ``uart_0`` to continue using.
 
-Beta Changes
-------------
-
-- debug component, allow without debug logging :esphomepr:`4685` by :ghuser:`jesserockz`
-- Fixed dns2 for ethernet :esphomepr:`4698` by :ghuser:`HeMan`
-- Add timeout to i2c write error logs :esphomepr:`4697` by :ghuser:`Szewcson`
-- Add event triggers to voice_assistant :esphomepr:`4699` by :ghuser:`jesserockz`
-- Call on_error if no api client connected that handles voice :esphomepr:`4709` by :ghuser:`jesserockz`
-- Add ethernet powerdown (fixes esphome/issues#4420) :esphomepr:`4706` by :ghuser:`tracestep`
-- Bump arduino platform version to 5.3.0 :esphomepr:`4713` by :ghuser:`jesserockz`
-
 Full list of changes
 --------------------
 
@@ -82,6 +104,17 @@ Breaking Changes
 - Disallow uart0/1/2 as ids in config :esphomepr:`4446` by :ghuser:`jesserockz` (breaking-change)
 - Require step to be set when calling register_number :esphomepr:`4622` by :ghuser:`jesserockz` (breaking-change)
 - Fix restore :esphomepr:`4655` by :ghuser:`spacemanspiff2007` (breaking-change)
+
+Beta Changes
+^^^^^^^^^^^^
+
+- debug component, allow without debug logging :esphomepr:`4685` by :ghuser:`jesserockz`
+- Fixed dns2 for ethernet :esphomepr:`4698` by :ghuser:`HeMan`
+- Add timeout to i2c write error logs :esphomepr:`4697` by :ghuser:`Szewcson`
+- Add event triggers to voice_assistant :esphomepr:`4699` by :ghuser:`jesserockz`
+- Call on_error if no api client connected that handles voice :esphomepr:`4709` by :ghuser:`jesserockz`
+- Add ethernet powerdown (fixes esphome/issues#4420) :esphomepr:`4706` by :ghuser:`tracestep`
+- Bump arduino platform version to 5.3.0 :esphomepr:`4713` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -136,8 +169,8 @@ All changes
 - VSCode / devcontainer updates :esphomepr:`4647` by :ghuser:`jesserockz`
 - Retry PN532_COMMAND_VERSION_DATA on setup() (fixes esphome/issues#3823) :esphomepr:`4651` by :ghuser:`tracestep`
 - Bump pylint from 2.16.4 to 2.17.2 :esphomepr:`4650` by :ghuser:`dependabot[bot]`
-- Added in mmc5603 code :esphomepr:`4175` by :ghuser:`benhoff` (new-integration)
 - Bump black from 23.1.0 to 23.3.0 :esphomepr:`4635` by :ghuser:`dependabot[bot]`
+- Added in mmc5603 code :esphomepr:`4175` by :ghuser:`benhoff` (new-integration)
 - fix compilation with latest esp-idf :esphomepr:`4671` by :ghuser:`Mic92`
 - Bump zeroconf from 0.47.4 to 0.56.0 :esphomepr:`4674` by :ghuser:`dependabot[bot]`
 - Bump pytest from 7.2.2 to 7.3.0 :esphomepr:`4673` by :ghuser:`dependabot[bot]`
