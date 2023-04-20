@@ -43,7 +43,11 @@ Keith joins Nabu Casa
 ---------------------
 
 Nabu Casa is pleased to annouce that long time contributor Keith Burzinski (:ghuser:`kbx81`) is joining the
-team as a full time developer to help out on ESPHome.
+team as a full time developer to help out on ESPHome. Keith created the :doc:`/components/sprinkler`,
+:doc:`/components/climate/thermostat`, a bunch of the ``ssd`` display components and a few other components
+as well as fixing many bug along the way. I expect his house climate and garden area are kept well in line.
+
+Looking forward to working with you Keith.
 
 Breaking Changes
 ----------------
