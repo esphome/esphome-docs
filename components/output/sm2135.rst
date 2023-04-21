@@ -70,6 +70,7 @@ Configuration variables:
    white channels, higher is more power.  Default is 7 per SM2135 datasheet. See table below.
 
 .. note::
+
     To prevent overheating and failure of the LEDs, the current 
     of channels 5 and 6 (CW) is limited by software at the level of 30 mA.(4)
     The LED driver may be able to tolerate more power than
