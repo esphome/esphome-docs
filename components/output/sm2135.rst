@@ -29,6 +29,8 @@ global ``sm2135`` hub and give it an id, and then define the
     sm2135:
       data_pin: GPIO12
       clock_pin: GPIO14
+      max_power_color_channels: 2 # Default 2 Valid values 0-7 
+      max_power_white_channels: 4 # Default 4 Valid values 0-10
 
     # Individual outputs
     output:
