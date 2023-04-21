@@ -64,7 +64,64 @@ Configuration variables:
 -  **id** (*Optional*, :ref:`config-id`): The id to use for
    this ``sm2135`` component. Use this if you have multiple SM2135 chains
    connected at the same time.
+-  **max_power_color_channels** (*Optional*, int 0-7): Adjusts the current supplied to the
+   color channels, higher is more power.  Default is 2 per SM2135 datasheet. See table below.
+-  **max_power_white_channels** (*Optional*, int 0-10): Adjusts the current supplied to the
+   white channels, higher is more power.  Default is 7 per SM2135 datasheet. See table below.
 
+.. note::
+    To prevent overheating and failure of the LEDs, the current 
+    of channels 5 and 6 (CW) is limited by software at the level of 30 mA.(4)
+    The LED driver may be able to tolerate more power than
+    the bulb is designed to handle, start with lower values
+    and increase slowly, comparing to a stock bulb to verify
+    what is safe for your model.
+
++---------------------------------+-----------------+
+| max_power_white_channels value  | actual current  |
++=================================+=================+
+| 0                               | 10 mA           |
++---------------------------------+-----------------+
+| 1                               | 15 mA           |
++---------------------------------+-----------------+
+| 2                               | 20 mA           |
++---------------------------------+-----------------+
+| 3                               | 25 mA           |
++---------------------------------+-----------------+
+| 4                               | 30 mA           |
++---------------------------------+-----------------+
+| 5                               | 35 mA           |
++---------------------------------+-----------------+
+| 6                               | 30 mA           |
++---------------------------------+-----------------+
+| 7                               | 45 mA (default) |
++---------------------------------+-----------------+
+| 8                               | 50 mA           |
++---------------------------------+-----------------+
+| 9                               | 55 mA           |
++---------------------------------+-----------------+
+| 10                              | 60 mA           |
++---------------------------------+-----------------+
+
++---------------------------------+-----------------+
+| max_power_color_channels value  | actual current  |
++=================================+=================+
+| 0                               | 10 mA           |
++---------------------------------+-----------------+
+| 1                               | 15 mA           |
++---------------------------------+-----------------+
+| 2                               | 20 mA (default) |
++---------------------------------+-----------------+
+| 3                               | 25 mA           |
++---------------------------------+-----------------+
+| 4                               | 30 mA           |
++---------------------------------+-----------------+
+| 5                               | 35 mA           |
++---------------------------------+-----------------+
+| 6                               | 40 mA           |
++---------------------------------+-----------------+
+| 7                               | 45 mA           |
++---------------------------------+-----------------+
 .. _sm2135-output:
 
 Output
