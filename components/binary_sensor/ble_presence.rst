@@ -22,7 +22,7 @@ Bluetooth Low Energy device.
       - platform: ble_presence
         mac_address: AC:37:43:77:5F:4C
         name: "ESP32 BLE Tracker Google Home Mini"
-        min_rssi: 80
+        min_rssi: -80dB
       # Presence based on BLE Service UUID
       - platform: ble_presence
         service_uuid: '11aa'
