@@ -49,6 +49,12 @@ as well as fixing many bug along the way. I expect his house climate and garden 
 
 Looking forward to working with you Keith.
 
+Release 2023.4.1 - April 24
+---------------------------
+
+- fix flip_x :esphomepr:`4727` by :ghuser:`ssieb`
+- Use proper schema for delta filter :esphomepr:`4723` by :ghuser:`jesserockz`
+
 Breaking Changes
 ----------------
 
