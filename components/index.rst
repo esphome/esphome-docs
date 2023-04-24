@@ -2,6 +2,7 @@ Components
 ==========
 
 .. toctree::
+    :maxdepth: 3
     :glob:
 
     binary_sensor/index
@@ -22,4 +23,6 @@ Components
     lock/index
     display_menu/index
     media_player/index
+    microphone/index
+    time/index
     *

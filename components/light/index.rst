@@ -26,6 +26,13 @@ All light configuration schemas inherit these options.
 
 Configuration variables:
 
+- **name** (**Required**, string): The name of the light.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the light to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the light in the frontend.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **gamma_correct** (*Optional*, float): Apply a `gamma correction
@@ -39,13 +46,13 @@ Configuration variables:
   For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
   :doc:`esphome section </components/esphome>`.
 
-    - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
+    - ``RESTORE_DEFAULT_OFF`` - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
     - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
     - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
     - ``RESTORE_AND_OFF`` - Attempt to restore state but initialize the light as OFF.
     - ``RESTORE_AND_ON`` - Attempt to restore state but initialize the light as ON.
-    - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
+    - ``ALWAYS_OFF`` (Default) - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
 - **on_turn_on** (*Optional*, :ref:`Action <config-action>`): An automation to perform
@@ -202,6 +209,13 @@ them to zero.
         call.set_effect("The Effect");
         // perform action:
         call.perform();
+
+    Shorter example using auto call , call.set_brightness and call.perform.
+
+    .. code-block:: cpp
+
+        id(light_1).turn_on().set_brightness(1.0).perform();
+
 
 .. note::
 
