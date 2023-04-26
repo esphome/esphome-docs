@@ -352,7 +352,7 @@ The parameter ``x`` this trigger provides is of type ``std::string`` and is the 
 
 .. code-block:: yaml
 
-    pn7160:
+    pn7160_...:
       # ...
       on_tag_removed:
         then:
@@ -371,7 +371,7 @@ sent *from* the PN7160 *to* the scanning device.
 
 .. code-block:: yaml
 
-    pn7160:
+    pn7160_...:
       # ...
       on_emulated_tag_scan:
         then:
@@ -382,16 +382,23 @@ sent *from* the PN7160 *to* the scanning device.
 Binary Sensor
 -------------
 
-The ``pn7160`` binary sensor platform provides an easy way to determine exactly when an NFC tag with either a specific
-unique ID (``uid``) or NDEF message is detected by the PN7160.
+The ``pn7160`` binary sensor platform provides an easy way to determine exactly when the PN7160 detects an NFC tag with
+either a specific:
+
+- string contained within its NDEF message, 
+- tag ID (name), or 
+- unique ID (``uid``)
 
 .. code-block:: yaml
 
-    # Example configuration entry
+    # Example configuration entries
     binary_sensor:
       - platform: pn7160
-        ndef_contains: pulse
-        name: "PN7160 Pulse Tag"
+        ndef_contains: pulse1
+        name: "PN7160 Pulse 1 Tag"
+      - platform: pn7160
+        tag_id: pulse2
+        name: "PN7160 Pulse 2 Tag"
       - platform: pn7160
         uid: 74-10-37-94
         name: "PN7160 NFC Tag"
@@ -400,9 +407,12 @@ Configuration variables:
 ************************
 
 - **ndef_contains** (*Optional*, string): A (sub)string that must appear in the tag's NDEF message. May not be used
-  with ``uid`` (below).
+  with ``tag_id`` and/or ``uid`` (below).
+- **tag_id** (*Optional*, string): A string that identifies the tag; in effect, its name. Specifically, this looks
+  for the Home Assistant URI encoded into one of the tag's NDEF records and then looks for this specific string. May
+  not be used with ``ndef_contains`` and/or ``uid``.
 - **uid** (*Optional*, string): The unique ID of the NFC tag. This is a hyphen-separated list of hexadecimal values.
-  For example: ``74-10-37-94``. May not be used with ``ndef_contains`` (above).
+  For example: ``74-10-37-94``. May not be used with ``ndef_contains`` and/or ``tag_id`` (above).
 - **name** (**Required**, string): The name of the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
