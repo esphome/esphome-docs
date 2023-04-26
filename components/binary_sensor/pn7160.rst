@@ -422,8 +422,8 @@ Configuration variables:
 Setting Up Tags
 ***************
 
-To set up a binary sensor for a given NFC tag, you must first know either its unique ID (``uid``) or (part of) a string
-that is contained within its NDEF message.
+To set up a binary sensor for a given NFC tag, you must first know either its unique ID (``uid``), tag ID (if it was
+prepared using the Home Assistant Companion app) or (part of) a string that is contained within its NDEF message.
 
 To obtain a tag's UID:
 
@@ -438,6 +438,8 @@ To obtain a tag's UID:
 - Either:
 
   - Copy this ID and use it to create a ``binary_sensor`` entry as shown in the configuration example above, or...
+  - Use the tag ID (as determined when it was prepared with the Home Assistant Companion app) to define the ``tag_id``
+    parameter for the ``binary_sensor`` as shown above, or...
   - Choose a substring contained within the tag's NDEF message and use this to define the ``ndef_contains`` parameter
     as shown in the example above. If present, the tag's NDEF records will appear in the log on the lines just below
     the "Read tag" message as shown above.
@@ -460,9 +462,11 @@ The PN7160 supports reading NDEF messages from and writing NDEF messages to card
 NDEF Reading
 ------------
 
-Given an NFC tag formatted and written using the Home Assistant Companion App, the following example will send the NDEF
-message the tag contains to Home Assistant using the :ref:`api-homeassistant_tag_scanned_action`. The ``tag`` variable
-is supplied to the ``on_tag`` and ``on_tag_removed`` triggers and any actions that run in them.
+Given an NFC tag formatted and written using the Home Assistant Companion App, the following example will send the tag
+ID contained within its NDEF message to Home Assistant using the :ref:`api-homeassistant_tag_scanned_action`.
+If no NDEF record is found with a tag ID, the tag's UID will be sent to Home Assistant, instead.
+
+The ``tag`` variable is available to any actions that run within the ``on_tag`` and ``on_tag_removed`` triggers.
 
 .. code-block:: yaml
 
@@ -470,20 +474,7 @@ is supplied to the ``on_tag`` and ``on_tag_removed`` triggers and any actions th
       # ...
       on_tag:
         then:
-          - homeassistant.tag_scanned: !lambda |
-              if (!tag.has_ndef_message()) {
-                return x;
-              }
-              auto message = tag.get_ndef_message();
-              auto records = message->get_records();
-              for (auto record : records) {
-                std::string payload = record->get_payload();
-                size_t pos = payload.find("https://www.home-assistant.io/tag/");
-                if (pos != std::string::npos) {
-                  return payload.substr(pos + 34);
-                }
-              }
-              return x;
+          - homeassistant.tag_scanned: !lambda "return tag.has_ha_tag_id() ? tag.get_ha_tag_id() : x;"
 
 .. _pn7160-ndef_writing:
 
