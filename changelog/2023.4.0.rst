@@ -55,6 +55,14 @@ Release 2023.4.1 - April 24
 - fix flip_x :esphomepr:`4727` by :ghuser:`ssieb`
 - Use proper schema for delta filter :esphomepr:`4723` by :ghuser:`jesserockz`
 
+Release 2023.4.2 - April 27
+---------------------------
+
+- I2c scan recovery reset fix :esphomepr:`4724` by :ghuser:`gcopeland`
+- Debug component doesn't work on RP2040 :esphomepr:`4728` by :ghuser:`HeMan`
+- Only request VA port from first client that is subscribed :esphomepr:`4747` by :ghuser:`jesserockz`
+- Don't allow fingerprint_grow enroll cancellation when no enrollment started :esphomepr:`4745` by :ghuser:`itpeters`
+
 Breaking Changes
 ----------------
 
