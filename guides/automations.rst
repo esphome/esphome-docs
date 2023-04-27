@@ -332,7 +332,8 @@ All Triggers
 - :ref:`time.on_time <time-on_time>` / - :ref:`time.on_time_sync <time-on_time_sync>`
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>` /
   :ref:`mqtt.on_connect / mqtt.on_disconnect <mqtt-on_connect_disconnect>`
-- :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
+- :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`pn532.on_tag_removed <pn532-on_tag_removed>` / :ref:`rc522.on_tag <rc522-on_tag>`
+  / :ref:`rc522.on_tag_removed <rc522-on_tag_removed>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
 - :ref:`interval.interval <interval>`
 - :ref:`switch.on_turn_on / switch.on_turn_off <switch-on_turn_on_off_trigger>`
 - :doc:`remote_receiver.on_* </components/remote_receiver>`

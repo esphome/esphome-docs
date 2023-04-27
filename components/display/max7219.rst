@@ -104,7 +104,7 @@ segment of the previous position will be enabled.
 
           // Print the current time
           it.print("        ");
-          it.strftime("%H.%M.%S");
+          it.strftime("%H.%M.%S", id(esptime).now());
           // Result for 10:06:42 -> "10.06.42  "
 
           // Change the display intnsity based on another id.
