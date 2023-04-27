@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Live HTML build",
+      "type": "shell",
+      "command": "make live-html",
+      "problemMatcher": []
+    },
+  ]
+}
