@@ -299,6 +299,7 @@ Environmental
     Internal Temperature, components/sensor/internal_temperature, thermometer.svg, Temperature
     MCP9808, components/sensor/mcp9808, mcp9808.jpg, Temperature
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
+    MLX90614, components/sensor/mlx90614, mlx90614.jpg, Temperature
     MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
@@ -815,14 +816,11 @@ Cookbook
 
 .. imgtable::
 
-    Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
-    Garage Door, cookbook/garage-door, window-open.svg
-    Dual Relay Motor Cover, cookbook/dual-r2-cover, sonoff_dual_r2.jpg
-    ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
-    BME280 Environment, cookbook/bme280_environment, bme280.jpg
+    Lambda Magic: Tips and Tricks, cookbook/lambda_magic, head-lightbulb-outline.svg
+    Garage Door Template Cover, cookbook/garage-door, garage-variant.svg
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
-    Lambda Magic, cookbook/lambda_magic, language-cpp.svg
-    Endstop Cover, cookbook/endstop-cover, window-open.svg
+    ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
+    BME280 Environment extras, cookbook/bme280_environment, bme280.jpg
     Non-Invasive Power Meter, cookbook/power_meter, power_meter.jpg
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
