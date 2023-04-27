@@ -24,7 +24,22 @@ Configuration:
       microphone: mic_id
 
 - **microphone** (**Required**, :ref:`config-id`): The microphone to use for input.
-
+- **on_start** (*Optional*, :ref:`Automation <automation>`): An automation to
+  perform when the voice assistant starts listening.
+- **on_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the voice assistant is finished all tasks.
+- **on_stt_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the voice assistant has finished speech-to-text. The resulting text is
+  available to automations as the variable ``x``.
+- **on_tts_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the voice assistant has started text-to-speech. The text to be spoken is
+  available to automations as the variable ``x``.
+- **on_tts_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the voice assistant has finished text-to-speech. A URL containing the audio response
+  is available to automations as the variable ``x``.
+- **on_error** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the voice assistant has encountered an error. The error code and message are available to
+  automations as the variables ``code`` and ``message``.
 
 .. _voice_assistant-actions:
 
