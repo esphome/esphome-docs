@@ -135,6 +135,7 @@ Contributors
 - `beaudeanadams (@beaudeanadams) <https://github.com/beaudeanadams>`__
 - `Benjamin Freeman (@Beetix) <https://github.com/Beetix>`__
 - `beikeland (@beikeland) <https://github.com/beikeland>`__
+- `Bella Coola (@BellaCoola) <https://github.com/BellaCoola>`__
 - `Ben-Schwabe (@Ben-Schwabe) <https://github.com/Ben-Schwabe>`__
 - `Ben Hoff (@benhoff) <https://github.com/benhoff>`__
 - `Benno Pütz (@bennop) <https://github.com/bennop>`__
@@ -203,7 +204,6 @@ Contributors
 - `Cellie (@CelliesProjects) <https://github.com/CelliesProjects>`__
 - `Chris Feenstra (@cfeenstra1024) <https://github.com/cfeenstra1024>`__
 - `cg089 (@cg089) <https://github.com/cg089>`__
-- `Kostas Chatzikokolakis (@chatziko) <https://github.com/chatziko>`__
 - `Audric Schiltknecht (@chemicalstorm) <https://github.com/chemicalstorm>`__
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__
 - `Chris (@chrismaki) <https://github.com/chrismaki>`__
@@ -618,7 +618,6 @@ Contributors
 - `Karl0ss (@karl0ss) <https://github.com/karl0ss>`__
 - `Karol Zlot (@karolzlot) <https://github.com/karolzlot>`__
 - `Kattni (@kattni) <https://github.com/kattni>`__
-- `Krasimir Nedelchev (@kaykayehnn) <https://github.com/kaykayehnn>`__
 - `Krzysztof Białek (@kbialek) <https://github.com/kbialek>`__
 - `Keilin Bickar (@kbickar) <https://github.com/kbickar>`__
 - `Keith Burzinski (@kbx81) <https://github.com/kbx81>`__
@@ -640,7 +639,6 @@ Contributors
 - `Marcus Klein (@kleini) <https://github.com/kleini>`__
 - `Kevin Lewis (@kll) <https://github.com/kll>`__
 - `KNXBroker (@KNXBroker) <https://github.com/KNXBroker>`__
-- `Koen Vervloesem (@koenvervloesem) <https://github.com/koenvervloesem>`__
 - `kokangit (@kokangit) <https://github.com/kokangit>`__
 - `Petr Vraník (@konikvranik) <https://github.com/konikvranik>`__
 - `Kevin Pelzel (@kpelzel) <https://github.com/kpelzel>`__
@@ -908,6 +906,7 @@ Contributors
 - `Marc Seeger (@rb2k) <https://github.com/rb2k>`__
 - `rbaron (@rbaron) <https://github.com/rbaron>`__
 - `Robert Cambridge (@rcambrj) <https://github.com/rcambrj>`__
+- `Russell Cloran (@rcloran) <https://github.com/rcloran>`__
 - `Rebbe Pod (@RebbePod) <https://github.com/RebbePod>`__
 - `reddn (@reddn) <https://github.com/reddn>`__
 - `Alex (@redwngsrul) <https://github.com/redwngsrul>`__
@@ -915,7 +914,6 @@ Contributors
 - `Regev Brody (@regevbr) <https://github.com/regevbr>`__
 - `Alex Reid (@reidprojects) <https://github.com/reidprojects>`__
 - `RenierM26 (@RenierM26) <https://github.com/RenierM26>`__
-- `Reuben (@reubn) <https://github.com/reubn>`__
 - `Robin Pronk (@rfpronk) <https://github.com/rfpronk>`__
 - `Robert Gabrielson (@rgabrielson11) <https://github.com/rgabrielson11>`__
 - `Rafael Goes (@rgriffogoes) <https://github.com/rgriffogoes>`__
@@ -931,7 +929,6 @@ Contributors
 - `rnauber (@rnauber) <https://github.com/rnauber>`__
 - `Rob Deutsch (@rob-deutsch) <https://github.com/rob-deutsch>`__
 - `Robert Alfaro (@robert-alfaro) <https://github.com/robert-alfaro>`__
-- `Rob Gridley (@robgridley) <https://github.com/robgridley>`__
 - `Robinson1999 (@Robinson1999) <https://github.com/Robinson1999>`__
 - `RoboMagus (@RoboMagus) <https://github.com/RoboMagus>`__
 - `Roeland Lutters (@Roeland54) <https://github.com/Roeland54>`__
@@ -1110,6 +1107,7 @@ Contributors
 - `Ian Wells (@wellsi) <https://github.com/wellsi>`__
 - `wifwucite (@wifwucite) <https://github.com/wifwucite>`__
 - `wilberforce (@wilberforce) <https://github.com/wilberforce>`__
+- `wildekek (@wildekek) <https://github.com/wildekek>`__
 - `Wingman3434 (@Wingman3434) <https://github.com/Wingman3434>`__
 - `Emil Hesslow (@WizKid) <https://github.com/WizKid>`__
 - `WJCarpenter (@wjcarpenter) <https://github.com/wjcarpenter>`__
@@ -1139,4 +1137,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated April 20, 2023.*
+*This page was last updated April 24, 2023.*
