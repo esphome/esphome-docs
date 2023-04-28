@@ -20,7 +20,7 @@ connecting the wires from each device back to the two I²C pins on the ESP.
 
     # Example configuration entry for ESP32
     i2c:
-      sda: 21
+      sda: 21  # 23 for Adafruit HUZZAH32 ESP32 Feather
       scl: 22
       scan: true
       id: bus_a
