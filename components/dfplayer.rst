@@ -112,7 +112,7 @@ Configuration options:
   the same track. Defaults to ``false``.
 
 ``dfplayer.play_mp3`` Action
-------------------------
+----------------------------
 
 Plays a track inside the folder ``MP3``. Files inside the folder must be numbered from 1 
 to 65535, like ``001.mp3``, ``002.mp3``, ... etc.
