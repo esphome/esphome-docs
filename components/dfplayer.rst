@@ -114,14 +114,17 @@ Configuration options:
 ``dfplayer.play_mp3`` Action
 ----------------------------
 
-Plays a track inside the folder ``MP3``. Files inside the folder must be numbered from 1 
-to 65535, like ``001.mp3``, ``002.mp3``, ... etc.
+Plays a track inside the folder ``mp3``. Files inside the folder must be numbered from 1 
+to 65535, like ``0001.mp3``, ``0002.mp3``, ... etc.
+The folder name needs to be ``mp3``, placed under the SD card root directory, and the 
+mp3 file name needs to be 4 digits, for example, "0001.mp3", placed under the mp3 folder. 
+If you want to name it, you can add it after the number, for example, "0001hello.mp3".
 
 .. code-block:: bash
 
-    /MP3
-      /001.mp3
-      /002.mp3
+    /mp3
+      /0001.mp3
+      /0002.mp3
       ..
 
 .. code-block:: yaml
