@@ -111,6 +111,34 @@ Configuration options:
 - **loop** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Repeats playing
   the same track. Defaults to ``false``.
 
+``dfplayer.play_mp3`` Action
+------------------------
+
+Plays a track inside the folder ``MP3``. Files inside the folder must be numbered from 1 
+to 65535, like ``001.mp3``, ``002.mp3``, ... etc.
+
+.. code-block:: bash
+
+    /MP3
+      /001.mp3
+      /002.mp3
+      ..
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - dfplayer.play_mp3:
+            file: 23
+        # Shorthand
+        - dfplayer.play_mp3: 23
+
+Configuration options:
+
+- **file** (**Required**, int, :ref:`templatable <config-templatable>`): The file number
+  inside the folder to play.
+
+
 ``dfplayer.play_folder`` Action
 -------------------------------
 
