@@ -115,11 +115,11 @@ Configuration options:
 ----------------------------
 
 Plays a track inside the folder ``mp3``. Files inside the folder must be numbered from 1 
-to 65535, like ``0001.mp3``, ``0002.mp3``, ... etc.
+to 9999, like ``0001.mp3``, ``0002.mp3``, ... etc.
 The folder name needs to be ``mp3``, placed under the SD card root directory, and the 
 mp3 file name needs to be 4 digits, for example, "0001.mp3", placed under the mp3 folder. 
 If you want, you can add additional text after the number in the filename, for example, 
-``0001hello.mp3``, but must always reference it by number only in yaml.
+``0001hello.mp3``, but must always be referenced by number only in yaml.
 
 .. code-block:: bash
 
