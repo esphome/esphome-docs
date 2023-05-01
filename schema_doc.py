@@ -252,7 +252,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     ]
 
             else:  # sub component, e.g. output/esp8266_pwm
-
                 # components here might have a core / hub, eg. dallas, ads1115
                 # and then they can be a binary_sensor, sensor, etc.
                 self.platform = self.path[1]
@@ -777,7 +776,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             and (self.props or self.multi_component)
             and self.bullet_list_level > 1
         ):
-
             self.prop_stack.append((self.current_prop, node))
             self.accept_props = True
             return
@@ -877,7 +875,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         return markdown
 
     def update_prop(self, node, props):
-
         prop_name = None
 
         for s_prop, n in self.prop_stack:
@@ -988,7 +985,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
         prop_names = str(prop_name)
         for k in prop_names.split("/"):
-
             config_var = props.get(k)
 
             if not config_var:
@@ -1138,7 +1134,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 )
 
         def _set_typed(self, inner_key, original_dict, key, value):
-            if inner_key == self.component.get("typed_key"):
+            if inner_key == self.component.get("typed_key", "type"):
                 self.component[key] = value
             else:
                 for tk, tv in self.component["types"].items():
