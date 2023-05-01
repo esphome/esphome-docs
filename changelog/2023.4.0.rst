@@ -22,7 +22,7 @@ Voice Assistant
 
 This year is the Year of the Voice for Home Assistant, and ESPHome is charging ahead with this in mind.
 We've added a new :doc:`/components/voice_assistant` component that allows you to use ESPHome devices as an input
-for `assist <https://www.home-assistant.io/docs/assist/>`__ in Home Assistant.
+for `assist <https://www.home-assistant.io/docs/assist/>`__ in Home Assistant **2023.5 or later**.
 
 With this also comes preliminary :doc:`microphone </components/microphone/index>` support, which has been built in a way that multiple
 components, like ``voice_assistant`` can request start / stop of the microphone and get the data. We
@@ -42,12 +42,18 @@ Home Assistant is hosting a live stream all about the Year of the Voice - Chapte
 Keith joins Nabu Casa
 ---------------------
 
-Nabu Casa is pleased to annouce that long time contributor Keith Burzinski (:ghuser:`kbx81`) is joining the
+Nabu Casa is pleased to announce that long time contributor Keith Burzinski (:ghuser:`kbx81`) is joining the
 team as a full time developer to help out on ESPHome. Keith created the :doc:`/components/sprinkler`,
 :doc:`/components/climate/thermostat`, a bunch of the ``ssd`` display components and a few other components
 as well as fixing many bug along the way. I expect his house climate and garden area are kept well in line.
 
 Looking forward to working with you Keith.
+
+Release 2023.4.1 - April 24
+---------------------------
+
+- fix flip_x :esphomepr:`4727` by :ghuser:`ssieb`
+- Use proper schema for delta filter :esphomepr:`4723` by :ghuser:`jesserockz`
 
 Breaking Changes
 ----------------
