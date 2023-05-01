@@ -31,6 +31,12 @@ All numbers in ESPHome have a name and an optional icon.
 Configuration variables:
 
 - **name** (**Required**, string): The name for the number.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the number to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the number in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
@@ -278,7 +284,7 @@ using a generic templatable action call.
     - number.operation:
         id: my_number
         operation: !lambda "return NUMBER_OP_INCREMENT;"
-        cycle: !lambda: "return true;"
+        cycle: !lambda "return true;"
 
 Configuration variables:
 

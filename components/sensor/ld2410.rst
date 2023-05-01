@@ -25,7 +25,6 @@ Use of hardware UART pins is highly recommended, in order to support the out-of-
 
     # Example configuration entry
     uart:
-      id: uart1
       tx_pin: REPLACEME
       rx_pin: REPLACEME
       baud_rate: 256000
