@@ -81,6 +81,8 @@ PLATFORMS_TITLES = {
     "Stepper": "stepper",
     "Switch": "switch",
     "I²C": "i2c",
+    "Media Player": "media_player",
+    "Microphone": "microphone",
 }
 
 CUSTOM_DOCS = {
