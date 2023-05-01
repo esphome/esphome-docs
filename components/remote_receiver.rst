@@ -93,7 +93,7 @@ Automations:
   is passed to the automation for use in lambdas.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
 - **on_drayton** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  Drayton Digistat RF code has been decoded. A variable ``x`` of type :apiclass:`remote_base::DraytonData`
+  Drayton Digistat RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DraytonData`
   is passed to the automation for use in lambdas.
 - **on_jvc** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   JVC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::JVCData`
