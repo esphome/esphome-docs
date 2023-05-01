@@ -317,6 +317,7 @@ Environmental
     TEE501, components/sensor/tee501, TEE501.png, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
+    HYT271, components/sensor/hyt271, hyt271.jpg, Temperature & Humidity
 
 
 Light
@@ -770,6 +771,7 @@ Miscellaneous Components
     Servo, components/servo, servo.svg
     Sprinkler, components/sprinkler, sprinkler-variant.svg
 
+    PCA6416A I/O Expander, components/pca6416a, pca6416a.svg
     PCA9554 I/O Expander, components/pca9554, pca9554a.jpg
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
