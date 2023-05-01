@@ -317,6 +317,7 @@ Environmental
     TEE501, components/sensor/tee501, TEE501.png, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
+    HYT271, components/sensor/hyt271, hyt271.jpg, Temperature & Humidity
 
 
 Light
