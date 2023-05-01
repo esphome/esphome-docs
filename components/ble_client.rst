@@ -41,75 +41,6 @@ client devices.
       - mac_address: FF:FF:20:00:0F:15
         id: itag_black
 
-Secure connection with a fixed passkey:
-
-.. code-block:: yaml
-
-    esp32_ble:
-      io_capability: keyboard_only
-
-    esp32_ble_tracker:
-
-    ble_client:
-      - mac_address: A4:C1:38:B1:CD:7F
-        id: pvvx_ble_display
-        on_passkey_request:
-          then:
-            - logger.log: "Authenticating with passkey"
-            - ble_client.passkey_reply:
-                id: pvvx_ble_display
-                passkey: 123456
-
-Secure connection with a dynamically generated passkey:
-
-.. code-block:: yaml
-
-    api:
-      services:
-        - service: passkey_reply
-          variables:
-            passkey: int
-          then:
-            - logger.log: "Authenticating with passkey"
-            - ble_client.passkey_reply:
-                id: my_ble_client
-                passkey: !lambda return passkey;
-        - service: numeric_comparison_reply
-          variables:
-            accept: bool
-          then:
-            - logger.log: "Authenticating with numeric comparison"
-            - ble_client.numeric_comparison_reply:
-                id: my_ble_client
-                accept: !lambda return accept;
-
-    esp32_ble:
-      io_capability: keyboard_display
-
-    esp32_ble_tracker:
-
-    ble_client:
-      - mac_address: AA:BB:CC:DD:EE:FF
-        id: my_ble_client
-        on_passkey_request:
-          then:
-            - logger.log: "Enter the passkey displayed on your BLE device"
-            - logger.log: " Go to https://my.home-assistant.io/redirect/developer_services/ and select passkey_reply"
-        on_passkey_notification:
-          then:
-            - logger.log:
-                format: "Enter this passkey on your BLE device: %06d"
-                args: [ passkey ]
-        on_numeric_comparison_request:
-          then:
-            - logger.log:
-                format: "Compare this passkey with the one on your BLE device: %06d"
-                args: [ passkey ]
-            - logger.log: " Go to https://my.home-assistant.io/redirect/developer_services/ and select numeric_comparison_reply"
-        on_connect:
-          then:
-            - logger.log: "Connected"
-
 Configuration variables:
 ------------------------
 
@@ -447,6 +378,78 @@ display them in the log:
 The discovered services can then be used to enable and configure other
 ESPHome components, for example Service UUID 0xFFE0 is used for iTag style
 keychain button events, used by the :doc:`/components/sensor/ble_client` component.
+
+Passkey examples
+----------------
+
+Secure connection with a fixed passkey:
+
+.. code-block:: yaml
+
+    esp32_ble:
+      io_capability: keyboard_only
+
+    esp32_ble_tracker:
+
+    ble_client:
+      - mac_address: A4:C1:38:B1:CD:7F
+        id: pvvx_ble_display
+        on_passkey_request:
+          then:
+            - logger.log: "Authenticating with passkey"
+            - ble_client.passkey_reply:
+                id: pvvx_ble_display
+                passkey: 123456
+
+Secure connection with a dynamically generated passkey:
+
+.. code-block:: yaml
+
+    api:
+      services:
+        - service: passkey_reply
+          variables:
+            passkey: int
+          then:
+            - logger.log: "Authenticating with passkey"
+            - ble_client.passkey_reply:
+                id: my_ble_client
+                passkey: !lambda return passkey;
+        - service: numeric_comparison_reply
+          variables:
+            accept: bool
+          then:
+            - logger.log: "Authenticating with numeric comparison"
+            - ble_client.numeric_comparison_reply:
+                id: my_ble_client
+                accept: !lambda return accept;
+
+    esp32_ble:
+      io_capability: keyboard_display
+
+    esp32_ble_tracker:
+
+    ble_client:
+      - mac_address: AA:BB:CC:DD:EE:FF
+        id: my_ble_client
+        on_passkey_request:
+          then:
+            - logger.log: "Enter the passkey displayed on your BLE device"
+            - logger.log: " Go to https://my.home-assistant.io/redirect/developer_services/ and select passkey_reply"
+        on_passkey_notification:
+          then:
+            - logger.log:
+                format: "Enter this passkey on your BLE device: %06d"
+                args: [ passkey ]
+        on_numeric_comparison_request:
+          then:
+            - logger.log:
+                format: "Compare this passkey with the one on your BLE device: %06d"
+                args: [ passkey ]
+            - logger.log: " Go to https://my.home-assistant.io/redirect/developer_services/ and select numeric_comparison_reply"
+        on_connect:
+          then:
+            - logger.log: "Connected"
 
 See Also
 --------
