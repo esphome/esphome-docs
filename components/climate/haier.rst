@@ -103,6 +103,7 @@ Configuration variables:
 - **wifi_signal** (*Optional*, boolean): If true - send wifi signal level to AC. Supported only by hOn protocol.
 - **beeper** (*Optional*, boolean): Can be used to disable beeping on commands from AC. Supported only by hOn protocol.
 - **outdoor_temperature** (*Optional*): Temperature sensor for outdoor temperature. Supported only by hOn protocol.
+
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): ID of the sensor, can be used for code generation
   - All other options from :ref:`Sensor <config-sensor>`.
