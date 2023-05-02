@@ -95,44 +95,44 @@ Example:
 
 .. code-block:: yaml
 
-  alarm_control_panel:
-    name: Alarm Panel
-    code: "1234"
-    requires_code_to_arm: true
-    arming_time: 10
-    delay_time: 15
-    trigger_time: 30
-    binary_sensors:
-      - input: zone_1
-      - input: zone_2
-        bypass_armed_home: true
-      - input: ha_test
-    on_state:
-      then:
-        - lambda: !lambda |-
-            ESP_LOGD("TEST", "State change %s", id(alarm)->to_string(id(alarm)->get_state()).c_str());
+    alarm_control_panel:
+      name: Alarm Panel
+      code: "1234"
+      requires_code_to_arm: true
+      arming_time: 10
+      delay_time: 15
+      trigger_time: 30
+      binary_sensors:
+        - input: zone_1
+        - input: zone_2
+          bypass_armed_home: true
+        - input: ha_test
+      on_state:
+        then:
+          - lambda: !lambda |-
+              ESP_LOGD("TEST", "State change %s", id(alarm)->to_string(id(alarm)->get_state()).c_str());
 
-  binary_sensor:
-    - platform: gpio
-      id: zone_1
-      name: Zone 1
-      device_class: door
-      pin:
-        number: D1
-        mode: INPUT_PULLUP
-        inverted: True
-    - platform: gpio
-      id: zone_2
-      name: Zone 2
-      device_class: motion
-      pin:
-        number: D2
-        mode: INPUT_PULLUP
-        inverted: True
-    - platform: homeassistant
-      id: ha_test
-      name: Zone 3
-      entity_id: input_boolean.test_switch
+    binary_sensor:
+      - platform: gpio
+        id: zone_1
+        name: Zone 1
+        device_class: door
+        pin:
+          number: D1
+          mode: INPUT_PULLUP
+          inverted: True
+      - platform: gpio
+        id: zone_2
+        name: Zone 2
+        device_class: motion
+        pin:
+          number: D2
+          mode: INPUT_PULLUP
+          inverted: True
+      - platform: homeassistant
+        id: ha_test
+        name: Zone 3
+        entity_id: input_boolean.test_switch
 
 See Also
 --------
