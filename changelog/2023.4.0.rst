@@ -63,6 +63,12 @@ Release 2023.4.2 - April 27
 - Only request VA port from first client that is subscribed :esphomepr:`4747` by :ghuser:`jesserockz`
 - Don't allow fingerprint_grow enroll cancellation when no enrollment started :esphomepr:`4745` by :ghuser:`itpeters`
 
+Release 2023.4.3 - May 2
+------------------------
+
+- Fix sprinkler switch restore_mode :esphomepr:`4756` by :ghuser:`kbx81`
+- Fix i2s media player on devices with no internal DAC :esphomepr:`4768` by :ghuser:`jesserockz`
+
 Breaking Changes
 ----------------
 
