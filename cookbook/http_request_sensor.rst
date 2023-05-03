@@ -83,6 +83,6 @@ Result
 .. figure:: images/clients.png
     :align: center
     :width: 40.0%
-    
-    Client side template sensor.
+
+Client side template sensor.
   
