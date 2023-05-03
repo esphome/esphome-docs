@@ -28,7 +28,6 @@ Automation
 **********
 To automate the request of data we will add a interval component 
 
-see :doc:`/guides/automations.html#interval-component` , 
 
 and  url is link to the sensor id of the sensor for which the state is required.
 
