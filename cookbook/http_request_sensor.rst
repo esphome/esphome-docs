@@ -15,7 +15,7 @@ http_request component
 ----------------------
 Now we need to setup a http_request component on client/s with http_request_data id using the following code
 
-See :doc:`/components/components/http_request'
+See :doc:`/components/components/http request'
 
 .. code-block:: yaml
 
