@@ -60,11 +60,12 @@ Template sensor
 
 .. code-block:: yaml
 
-sensor:
+    sensor:
   - platform: template
     name: "name of the template sensor"
     id: id_of_the_template_sensor
                   
+
 
                   
                   
