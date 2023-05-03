@@ -75,9 +75,9 @@ Result
 
 .. figure:: images/server.png
     :align: center
-    :width: 40.0%
-    
-    server side actual sensor.
+    :width: 40.0
+
+Server side actual sensor.
 
 
 .. figure:: images/clients.png
