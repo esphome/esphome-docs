@@ -192,6 +192,28 @@ Configuration variables:
 
 You can find a list of commands in the `LIRC project <https://sourceforge.net/p/lirc-remotes/code/ci/master/tree/remotes/dishnet/Dish_Network.lircd.conf>`__.
 
+.. _remote_transmitter-transmit_drayton:
+
+``remote_transmitter.transmit_drayton`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends a Draton Digistat RF remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_drayton:
+          address: '0x6180'
+          channel: '0x12'
+          command: '0x02'      
+
+Configuration variables:
+
+- **address** (**Required**, int): The 16-bit ID to send, see dumper output for more info.
+- **channel** (**Required**, int): The switch/channel to send, between 0 and 127 inclusive.
+- **command** (**Required**, int): The command to send, between 0 and 63 inclusive.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 .. _remote_transmitter-transmit_jvc:
 
 ``remote_transmitter.transmit_jvc`` Action
@@ -895,6 +917,7 @@ See Also
 
 - :doc:`index`
 - :doc:`/components/remote_receiver`
+- :ref:`lambda_magic_rf_queues`
 - `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote_transmitter/remote_transmitter.h`
