@@ -21,9 +21,10 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
 - **timezone** (*Optional*, string): Manually tell ESPHome what time zone to use with `this format
-  <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated)
+  <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__
+  (warning: the format is quite complicated, see `examples <https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv>`__)
   or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form
-  <Region>/<City>. ESPHome tries to automatically infer the time zone string based on the time zone of the computer
+  :code:`<Region>/<City>`. ESPHome tries to automatically infer the time zone string based on the time zone of the computer
   that is running ESPHome, but this might not always be accurate.
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
@@ -39,12 +40,19 @@ This :ref:`Condition <config-condition>` checks if time has been set and is vali
 
 .. code-block:: yaml
 
+    # Example configuration
     on_...:
       if:
         condition:
           time.has_time:
         then:
           - logger.log: Time has been set and is valid!
+    
+    # Example lambda
+    lambda: |-
+        if (id(my_time).now().is_valid()) {
+          //do something here
+        }
 
 .. _time-on_time:
 
