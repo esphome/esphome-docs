@@ -35,7 +35,9 @@ Configuration variables:
   - **canalsatld**: Decode and dump CanalSatLD infrared codes.
   - **coolix**: Decode and dump Coolix infrared codes.
   - **dish**: Decode and dump Dish infrared codes.
+  - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **hob2hood**: Decode and dump AEG Hob2Hood infrared codes.
+  - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **jvc**: Decode and dump JVC infrared codes.
   - **lg**: Decode and dump LG infrared codes.
   - **magiquest**: Decode and dump MagiQuest wand infrared codes.
@@ -92,6 +94,9 @@ Automations:
   dish network remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DishData`
   is passed to the automation for use in lambdas.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
+- **on_drayton** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Drayton Digistat RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DraytonData`
+  is passed to the automation for use in lambdas.
 - **on_hob2hood** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Hob2Hood remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::Hob2HoodData`
   is passed to the automation for use in lambdas.
@@ -223,6 +228,12 @@ Remote code selection (exactly one of these has to be included):
   - **address** (*Optional*, int): The number of the receiver to target, between 1 and 16 inclusive. Defaults to ``1``.
   - **command** (**Required**, int): The Dish command to listen for, between 0 and 63 inclusive.
 
+- **drayton**: Trigger on a decoded Drayton Digistat RF remote code with the given data.
+
+  - **address** (**Required**, int): The 16-bit ID code to trigger on, see dumper output for more info.
+  - **channel** (**Required**, int): The 7-bit switch/channel to listen for.
+  - **command** (**Required**, int): The 5-bit command to listen for.
+
 - **hob2hood**: Trigger on a decoded Hob2Hood remote code with the given data.
 
   - **command** (**Required**, enum): The Hob2Hood command to trigger on.
@@ -234,7 +245,6 @@ Remote code selection (exactly one of these has to be included):
     - ``fan_medium``
     - ``fan_high``
     - ``fan_max``
-
 
 - **jvc**: Trigger on a decoded JVC remote code with the given data.
 
