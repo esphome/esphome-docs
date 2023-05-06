@@ -37,7 +37,6 @@ Configuration variables:
   - **dish**: Decode and dump Dish infrared codes.
   - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **hob2hood**: Decode and dump AEG Hob2Hood infrared codes.
-  - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **jvc**: Decode and dump JVC infrared codes.
   - **lg**: Decode and dump LG infrared codes.
   - **magiquest**: Decode and dump MagiQuest wand infrared codes.
