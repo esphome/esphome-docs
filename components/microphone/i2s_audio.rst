@@ -53,21 +53,21 @@ M5Stack Atom Echo
 
 .. code-block:: yaml
 
-  microphone:
-    - platform: i2s_audio
-      adc_type: external:
-      i2s_din_pin: GPIO23
+    microphone:
+      - platform: i2s_audio
+        adc_type: external:
+        i2s_din_pin: GPIO23
 
 RaspiAudio Muse Luxe
 ********************
 
 .. code-block:: yaml
 
-  microphone:
-    - platform: i2s_audio
-      i2s_din_pin: GPIO35
-      adc_type: external
-      pdm: false
+    microphone:
+      - platform: i2s_audio
+        i2s_din_pin: GPIO35
+        adc_type: external
+        pdm: false
 
 
 See also
