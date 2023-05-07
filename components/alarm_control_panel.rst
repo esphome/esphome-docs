@@ -39,8 +39,8 @@ Automation:
 
 .. _alarm_control_panel_on_state_trigger:
 
-``alarm_control_panel.on_state`` Trigger
-****************************************
+``on_state`` Trigger
+********************
 
 This trigger is activated each time the alarm changes state.
 
@@ -54,8 +54,8 @@ This trigger is activated each time the alarm changes state.
 
 .. _alarm_control_panel_arm_away_action:
 
-``alarm_control_panel.arm_away`` Action
-***************************************
+``arm_away`` Action
+*******************
 
 This action arms the alarm in away mode. The ``code`` is required when *requires_code_to_arm* is *true*.
 
@@ -69,8 +69,8 @@ This action arms the alarm in away mode. The ``code`` is required when *requires
 
 .. _alarm_control_panel_arm_home_action:
 
-``alarm_control_panel.arm_away`` Action
-***************************************
+``arm_away`` Action
+*******************
 
 This action arms the alarm in home mode. The ``code`` is required when *requires_code_to_arm* is *true*.
 
@@ -84,8 +84,8 @@ This action arms the alarm in home mode. The ``code`` is required when *requires
 
 .. _alarm_control_panel_disarm_action:
 
-``alarm_control_panel.disarm`` Action
-*************************************
+``disarm`` Action
+*****************
 
 This action disarms the alarm. The ``code`` is required when *codes* is not empty.
 
@@ -99,8 +99,8 @@ This action disarms the alarm. The ``code`` is required when *codes* is not empt
 
 .. _alarm_control_panel_is_armed_condition:
 
-``alarm_control_panel.is_armed`` Condition
-******************************************
+``is_armed`` Condition
+**********************
 
 This :ref:`Condition <config-condition>` checks if the alarm control panel is armed.
 
