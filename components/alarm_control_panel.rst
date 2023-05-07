@@ -60,6 +60,7 @@ This trigger is activated each time the alarm changes state.
 This action arms the alarm in away mode. The ``code`` is required when *requires_code_to_arm* is *true*.
 
 .. code-block:: yaml
+
       on_...:
         then:
           - alarm_control_panel.arm_away:
@@ -74,6 +75,7 @@ This action arms the alarm in away mode. The ``code`` is required when *requires
 This action arms the alarm in home mode. The ``code`` is required when *requires_code_to_arm* is *true*.
 
 .. code-block:: yaml
+
       on_...:
         then:
           - alarm_control_panel.arm_home:
@@ -88,6 +90,7 @@ This action arms the alarm in home mode. The ``code`` is required when *requires
 This action disarms the alarm. The ``code`` is required when *codes* is not empty.
 
 .. code-block:: yaml
+
       on_...:
         then:
           - alarm_control_panel.arm_home:
@@ -102,6 +105,7 @@ This action disarms the alarm. The ``code`` is required when *codes* is not empt
 This :ref:`Condition <config-condition>` checks if the alarm control panel is armed.
 
 .. code-block:: yaml
+
     on_...:
       if:
         condition:
