@@ -1,5 +1,5 @@
 Share data between ESphome nodes without using Homeassistant.
-============================================================
+=============================================================
 You need two esphome nodes. One will be the server, and the other will be the client/s ( can be multiple). You must set up a web server on your primary esphome to push the required sensor data using the following web server component.
 
 See :doc:`/components/web_server`
