@@ -61,11 +61,11 @@ This action arms the alarm in away mode. The ``code`` is required when *requires
 
 .. code-block:: yaml
 
-      on_...:
-        then:
-          - alarm_control_panel.arm_away:
-              id: alarm
-              code: "1234"
+    on_...:
+      then:
+        - alarm_control_panel.arm_away:
+            id: alarm
+            code: "1234"
 
 .. _alarm_control_panel_arm_home_action:
 
@@ -76,11 +76,11 @@ This action arms the alarm in home mode. The ``code`` is required when *requires
 
 .. code-block:: yaml
 
-      on_...:
-        then:
-          - alarm_control_panel.arm_home:
-              id: alarm
-              code: "1234"
+    on_...:
+      then:
+        - alarm_control_panel.arm_home:
+            id: alarm
+            code: "1234"
 
 .. _alarm_control_panel_disarm_action:
 
