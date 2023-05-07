@@ -715,6 +715,14 @@ Microphone Components
     Microphone Core, components/microphone/index, microphone.svg
     I2S Microphone, components/microphone/i2s_audio, i2s_audio.svg
 
+Speaker Components
+------------------
+
+.. imgtable::
+
+    Speaker Core, components/speaker/index, speaker.svg
+    I2S Speaker, components/speaker/i2s_audio, i2s_audio.svg
+
 Time Components
 ---------------
 
