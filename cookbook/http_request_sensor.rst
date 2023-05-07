@@ -25,10 +25,7 @@ See :doc:`/components/http_request`
 
 Automation
 **********
-To automate the request of data we will add a interval component 
-
-
-and  url is link to the sensor id of the sensor for which the state is required.
+To automate the request for data, we will add an interval component and the URL is linked to the sensor id for which the state is required.
 
 See `Rest Api </web-api/index.html#rest-api>`.
 
@@ -74,7 +71,7 @@ Result
 
 .. figure:: images/server.png
     :align: center
-    :width: 40.0
+    :width: 40.0%
 
 Server side actual sensor.
 
