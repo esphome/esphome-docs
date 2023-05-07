@@ -21,11 +21,11 @@ Configuration:
 --------------
 
 - **name** (**Required**, string): The name of the alarm control panel.
-- **code** (*Optional*, string): Code for disarming the alarm, if *requires_code_to_arm* set to true then for arming the alarm too.
+- **codes** (*Optional*, list of string): A list of codes for disarming the alarm, if *requires_code_to_arm* set to true then for arming the alarm too.
 - **requires_code_to_arm** (*Optional*, boolean): Code required for arming the alarm, *code* must be provided.
-- **arming_time** (*Optional*, number): The exit delay before the alarm is armed.
-- **delay_time** (*Optional*, number): The entry delay before the alarm is triggered.
-- **trigger_time** (*Optional*, number): The time after a triggered alarm before resetting to previous state if the sensors are cleared/off.
+- **arming_time** (*Optional*, :ref:`config-time`): The exit delay before the alarm is armed.
+- **delay_time** (*Optional*, :ref:`config-time`): The entry delay before the alarm is triggered.
+- **trigger_time** (*Optional*, :ref:`config-time`): The time after a triggered alarm before resetting to previous state if the sensors are cleared/off.
 - **binary_sensors** (**Required**, *list*): A list of binary sensors the panel should use. Each consists of:
 
   - **input** (**Required**, string): The id of the binary sensor component 
@@ -52,6 +52,62 @@ This trigger is activated each time the alarm changes state.
         then:
           - logger.log: "Alarm Panel State Changed!"
 
+.. _alarm_control_panel_arm_away_action:
+
+``alarm_control_panel.arm_away`` Action
+***************************************
+
+This action arms the alarm in away mode. The ``code`` is required when *requires_code_to_arm* is *true*.
+
+.. code-block:: yaml
+      on_...:
+        then:
+          - alarm_control_panel.arm_away:
+              id: alarm
+              code: "1234"
+
+.. _alarm_control_panel_arm_home_action:
+
+``alarm_control_panel.arm_away`` Action
+***************************************
+
+This action arms the alarm in home mode. The ``code`` is required when *requires_code_to_arm* is *true*.
+
+.. code-block:: yaml
+      on_...:
+        then:
+          - alarm_control_panel.arm_home:
+              id: alarm
+              code: "1234"
+
+.. _alarm_control_panel_disarm_action:
+
+``alarm_control_panel.disarm`` Action
+*************************************
+
+This action disarms the alarm. The ``code`` is required when *codes* is not empty.
+
+.. code-block:: yaml
+      on_...:
+        then:
+          - alarm_control_panel.arm_home:
+              id: alarm
+              code: "1234"
+
+.. _alarm_control_panel_is_armed_condition:
+
+``alarm_control_panel.is_armed`` Condition
+******************************************
+
+This :ref:`Condition <config-condition>` checks if the alarm control panel is armed.
+
+.. code-block:: yaml
+    on_...:
+      if:
+        condition:
+          alarm_control_panel.is_armed: alarm
+
+
 .. _alarm_control_panel_lambda_calls:
 
 lambda calls
@@ -65,8 +121,8 @@ From :ref:`lambdas <config-lambda>`, you can call the following methods:
 
 .. code-block:: cpp
 
-    id(alarm).arm_away("");
-    id(alarm).arm_home("");
+    id(alarm).arm_away();
+    id(alarm).arm_home();
     id(alarm).arm_disarm("1234");
 
 .. _alarm_control_panel_state_flow:
@@ -97,11 +153,12 @@ Example:
 
     alarm_control_panel:
       name: Alarm Panel
-      code: "1234"
+      codes:
+        - "1234"
       requires_code_to_arm: true
-      arming_time: 10
-      delay_time: 15
-      trigger_time: 30
+      arming_time: 10s
+      delay_time: 15s
+      trigger_time: 5min
       binary_sensors:
         - input: zone_1
         - input: zone_2
@@ -111,6 +168,12 @@ Example:
         then:
           - lambda: !lambda |-
               ESP_LOGD("TEST", "State change %s", id(alarm)->to_string(id(alarm)->get_state()).c_str());
+      on_triggered:
+        then:
+          - switch.turn_on: siren
+      on_cleared:
+        then:
+          - switch.turn_off: siren
 
     binary_sensor:
       - platform: gpio
@@ -133,6 +196,14 @@ Example:
         id: ha_test
         name: Zone 3
         entity_id: input_boolean.test_switch
+
+    switch:
+      - platform: gpio
+        id: siren
+        name: Siren
+        icon: mdi:alarm-bell
+        pin: D7
+
 
 See Also
 --------
