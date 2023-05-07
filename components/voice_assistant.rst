@@ -23,7 +23,8 @@ Configuration:
     voice_assistant:
       microphone: mic_id
 
-- **microphone** (**Required**, :ref:`config-id`): The microphone to use for input.
+- **microphone** (**Required**, :ref:`config-id`): The :doc:`microphone </components/microphone/index>` to use for input.
+- **speaker** (*Optional*, :ref:`config-id`): The :doc:`speaker </components/speaker/index>` to use to output the response.
 - **on_start** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when the voice assistant starts listening.
 - **on_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
