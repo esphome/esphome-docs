@@ -91,11 +91,11 @@ This action disarms the alarm. The ``code`` is required when *codes* is not empt
 
 .. code-block:: yaml
 
-      on_...:
-        then:
-          - alarm_control_panel.arm_home:
-              id: alarm
-              code: "1234"
+    on_...:
+      then:
+        - alarm_control_panel.arm_home:
+            id: alarm
+            code: "1234"
 
 .. _alarm_control_panel_is_armed_condition:
 
