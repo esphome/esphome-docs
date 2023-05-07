@@ -12,7 +12,7 @@ See :doc:`/components/web_server`
   
 http_request component
 ----------------------
-Now we need to setup a http_request component on client/s with http_request_data id using the following code
+Using the following code, set up a http_request component on client/s with http_request_data id.
 
 See :doc:`/components/http_request`
 
