@@ -11,7 +11,8 @@ Turn your binary sensors into an alarm control panel with the power of ESPHome.
 
     alarm_control_panel:
       name: Alarm Panel
-      code: "1234"
+      codes:
+        - "1234"
       binary_sensors:
         - input: zone_1
         - input: zone_2
