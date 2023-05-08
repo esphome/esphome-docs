@@ -346,8 +346,13 @@ Remote code selection (exactly one of these has to be included):
 
 - **toshiba_ac**: Trigger on a decoded Toshiba AC remote code with the given data.
 
+  - **rc_code_1** (**Required**, int): The remote control code to trigger on, see dumper output for more details.
+  - **rc_code_2** (*Optional*, int): The second part of the remote control code to trigger on, see dumper output for more details.
+
+- **tr_502msv**: Trigger on a decoded TR-502MSV remote code with the given data.
+
   - **group** (**Required**, int): The group code to trigger on, see dumper output for more details.
-  - **device** (**Required**, enum): The device to trigger on, see dumper output for more details.
+  - **device** (**Required**, enum): The device code to trigger on, see dumper output for more details.
 
     - ``1``
     - ``2``
@@ -361,11 +366,6 @@ Remote code selection (exactly one of these has to be included):
     - ``turn_on``
     - ``increase_brightness``
     - ``decrease_brightness``
-
-- **tr_502msv**: Trigger on a decoded TR-502MSV remote code with the given data.
-
-  - **rc_code_1** (**Required**, int): The remote control code to trigger on, see dumper output for more details.
-  - **rc_code_2** (*Optional*, int): The second part of the remote control code to trigger on, see dumper output for more details.
 
 .. note::
 
