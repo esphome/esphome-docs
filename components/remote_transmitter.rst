@@ -677,7 +677,7 @@ Configuration variables:
 ``remote_transmitter.transmit_sony`` Action
 *******************************************
 
-This :ref:`action <config-action>` a Sony infrared remote code to a remote transmitter.
+This :ref:`action <config-action>` sends a Sony infrared remote code to a remote transmitter.
 
 .. code-block:: yaml
 
@@ -715,6 +715,41 @@ Configuration variables:
 - **rc_code_1** (**Required**, int): The remote control code to send, see dumper output for more details.
 - **rc_code_2** (*Optional*, int): The secondary remote control code to send; some codes are sent in
   two parts.
+
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+.. _remote_transmitter-transmit_tr_502msv:
+
+``remote_transmitter.transmit_tr_502msv`` Action
+*******************************************
+
+This :ref:`action <config-action>` sends a TR-502MSV remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_tr_502msv:
+          group: 0x123
+          device: all
+          command: turn_on
+
+Configuration variables:
+
+- **group** (**Required**, int): The group code to send, see dumper output for more details.
+- **device** (**Required**, enum): The device code to send, see dumper output for more details.
+
+  - ``1``
+  - ``2``
+  - ``3``
+  - ``4``
+  - ``all``
+
+- **command** (**Required**, enum): The command to send, see dumper output for more details.
+
+  - ``turn_off``
+  - ``turn_on``
+  - ``increase_brightness``
+  - ``decrease_brightness``
 
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
