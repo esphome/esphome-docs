@@ -5,7 +5,7 @@ GP8403 Component
     :description: Instructions for setting up GP8403 outputs in ESPHome.
     :image: gp8403.svg
 
-The `GP8403`_ is a 2-channel DAC output module. It requires an :doc:`/components/i2c` to be setup.
+The ``gp8403`` is a 2-channel DAC output module. It requires an :doc:`/components/i2c` to be setup.
 
 Component/Hub
 -------------
