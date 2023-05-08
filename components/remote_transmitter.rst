@@ -721,7 +721,7 @@ Configuration variables:
 .. _remote_transmitter-transmit_tr_502msv:
 
 ``remote_transmitter.transmit_tr_502msv`` Action
-*******************************************
+************************************************
 
 This :ref:`action <config-action>` sends a TR-502MSV remote code to a remote transmitter.
 
@@ -752,7 +752,6 @@ Configuration variables:
   - ``decrease_brightness``
 
 - All other options from :ref:`remote_transmitter-transmit_action`.
-
 
 Lambda calls
 ************
