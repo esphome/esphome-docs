@@ -24,16 +24,16 @@ Configuration variables
 - **pin** (**Required**, :ref:`config-pin`): The pin for the data line of the light.
 - **num_leds** (**Required**, int): The number of LEDs in the strip.
 - **rmt_channel** (**Required**, int): The RMT channel to use. If using multiple strips, you need to use different channels.
-  - **ESP32**: ``0`` to ``7``
-  - **ESP32-S2**: ``0`` to ``3``
-  - **ESP32-S3**: ``0`` to ``3``
-  - **ESP32-C3**: ``0`` or ``1``
+    - **ESP32**: ``0`` to ``7``
+    - **ESP32-S2**: ``0`` to ``3``
+    - **ESP32-S3**: ``0`` to ``3``
+    - **ESP32-C3**: ``0`` or ``1``
 
 - **chipset** (**Required**, enum): The chipset to apply known timings from. Not used if specifying the timings manually, see below.
-  - ``WS2812``
-  - ``SK6812``
-  - ``APA106``
-  - ``SM16703``
+    - ``WS2812``
+    - ``SK6812``
+    - ``APA106``
+    - ``SM16703``
 
 - **rgb_order** (**Required**, string): The RGB order of the strip.
     - ``RGB``
