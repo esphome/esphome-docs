@@ -504,6 +504,7 @@ Output Components
     BP1658CJ, components/output/bp1658cj, bp1658cj.svg
     BP5758D, components/output/bp5758d, bp5758d.svg
     X9C Potentiometer, components/output/x9c, x9c.jpg
+    GP8403, components/output/gp8403, gp8403.svg
 
 Light Components
 ----------------
@@ -714,6 +715,14 @@ Microphone Components
 
     Microphone Core, components/microphone/index, microphone.svg
     I2S Microphone, components/microphone/i2s_audio, i2s_audio.svg
+
+Speaker Components
+------------------
+
+.. imgtable::
+
+    Speaker Core, components/speaker/index, speaker.svg
+    I2S Speaker, components/speaker/i2s_audio, i2s_audio.svg
 
 Time Components
 ---------------
