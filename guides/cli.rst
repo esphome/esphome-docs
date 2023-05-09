@@ -73,7 +73,8 @@ The ``esphome run <CONFIG>`` command is the most common command for ESPHome. It
 .. option:: --device UPLOAD_PORT
 
     Manually specify the upload port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``, or ``192.168.1.176``
-    to perform an OTA.
+    to perform an OTA. To specify that the device's name should be used for OTA, use ``OTA`` (e.g. to avoid 
+    asking about a serial device each time when specifying multiple device CONFIGs.)
 
 .. option:: --no-logs
 
