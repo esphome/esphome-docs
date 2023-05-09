@@ -572,6 +572,13 @@ Button Components
     Factory Reset Button, components/button/factory_reset, restart-alert.svg
     Wake-on-LAN, components/button/wake_on_lan, power_settings.svg
 
+
+Motor Components
+----------------
+
+    Grove TB6612FNG, components/grove-tb6612fng, motor.png
+
+
 Fan Components
 --------------
 
