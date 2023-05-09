@@ -18,8 +18,8 @@ The ``i2s_audio`` microphone platform allows you to receive audio via the the
 Configuration variables:
 ------------------------
 
-- **i2s_din_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I²S DIN (Data In) signal.
-
+- **i2s_din_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I²S ``DIN/SDIN`` *(Data In)* signal, also referred to as ``SD/SDATA`` *(Serial Data)* or ``ADCDAT`` *(Analog to Digital Converter Data)*.
+- **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this microphone.
 - All other options from :ref:`Microphone <config-microphone>`
 
 See also
