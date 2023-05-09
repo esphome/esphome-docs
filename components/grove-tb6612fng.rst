@@ -8,6 +8,9 @@ Grove TB6612FNG Motor Drive
 The Grove TBB6612FNG a runs over  I²C bus and has the capability to control DC and Stepper motors.
 At the current stage of implementation only DC motor is implemented.
 
+.. figure:: images/grove_tb6612fng.jpg
+    :align: center
+    :width: 50.0%
 
 .. code-block:: yaml
 
