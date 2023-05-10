@@ -80,6 +80,7 @@ Relevant Documentation
   the ``esp32_improv`` / ``improv_serial`` components.
 - ``dashboard_import``
     .. note::
+
         The :ref:`esphome-creators_project` above is required for adoption to work in the Dashboard.
 
     - ``package_import_url`` - This should point to the public repository containing
