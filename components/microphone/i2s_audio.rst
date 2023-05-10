@@ -31,12 +31,13 @@ Configuration variables:
   - ``external``: Use an external ADC connected to the I²S bus.
   - ``internal``: Use the internal ADC of the ESP32. Only supported on ESP32, no variant support.
 
+- **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this microphone.
 - All other options from :ref:`Microphone <config-microphone>`
 
 External ADC
 ------------
 
-- **i2s_din_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I²S DIN (Data In) signal.
+- **i2s_din_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I²S ``DIN/SDIN`` *(Data In)* signal, also referred to as ``SD/SDATA`` *(Serial Data)* or ``ADCDAT`` *(Analog to Digital Converter Data)*.
 - **pdm** (**Required**, boolean): Set this to ``true`` if your external ADC uses PDM (Pulse Density Modulation) instead of I²S.
 
   .. note::

@@ -1063,6 +1063,7 @@ Contributors
 - `Tijs-B (@Tijs-B) <https://github.com/Tijs-B>`__
 - `Tim Laurence (@timdaman) <https://github.com/timdaman>`__
 - `Aidan Timson (@timmo001) <https://github.com/timmo001>`__
+- `Tim Niemueller (@timn) <https://github.com/timn>`__
 - `Tim Savage (@timsavage) <https://github.com/timsavage>`__
 - `Tinkerfish (@tinkerfish) <https://github.com/tinkerfish>`__
 - `TJ Horner (@tjhorner) <https://github.com/tjhorner>`__
@@ -1149,4 +1150,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated May 2, 2023.*
+*This page was last updated May 4, 2023.*
