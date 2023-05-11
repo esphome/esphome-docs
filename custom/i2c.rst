@@ -60,26 +60,26 @@ We want to write this number to a ``REGISTER_ADDRESS`` on the slave device via I
     char temp = 20; //Initial value of the register
 
     class MyCustomComponent : public PollingComponent {
-    public:
-    MyCustomComponent() : PollingComponent(POLLING_PERIOD) {}
-    float get_setup_priority() const override { return esphome::setup_priority::BUS; } //Access I2C bus
+     public:
+      MyCustomComponent() : PollingComponent(POLLING_PERIOD) {}
+      float get_setup_priority() const override { return esphome::setup_priority::BUS; } //Access I2C bus
 
-    void setup() override {
-    //Add code here as needed
-    Wire.begin();
-    }
-  
-    void update() override {  
-    char register_value = id(input_1).state; //Read the number set on the dashboard
-    //Did the user change the input?
-    if(register_value != temp){
-        Wire.beginTransmission(I2C_ADDRESS);
-        Wire.write(REGISTER_ADDRESS);
-        Wire.write(register_value);
-        Wire.endTransmission();
-        temp = register_value; //Swap in the new value
+      void setup() override {
+        //Add code here as needed
+        Wire.begin();
         }
-    }
+  
+      void update() override {  
+      char register_value = id(input_1).state; //Read the number set on the dashboard
+      //Did the user change the input?
+      if(register_value != temp){
+            Wire.beginTransmission(I2C_ADDRESS);
+            Wire.write(REGISTER_ADDRESS);
+            Wire.write(register_value);
+            Wire.endTransmission();
+            temp = register_value; //Swap in the new value
+            }
+        }
     };
         
 The ``Component`` class has been replaced with ``PollingComponent`` and the free-running ``loop()`` is changed to the  ``update()`` method with period set by ``POLLING_PERIOD``. The numerical value from the dashboard is accessed with its ``id`` tag and its state is set to the byte variable that we call ``register_value``.  To prevent an I²C write on every iteration, the contents of the register are stored in ``temp`` and checked for a change. Configuring the hardware with ``get_setup_priority()`` is explained in :ref:`step-1-custom-sensor-definition`.
