@@ -29,6 +29,62 @@ them publish values.
       }
     };
 
+I²C Write
+---------
+It may be useful to write to a register via I²C using a numerical input. For example, the following yaml code snippet captures a user-supplied numerical input in the range 1--255 from the dashboard:
+
+.. code-block:: yaml
+
+    number:
+        - platform: template
+        name: "Input 1"
+        optimistic: true
+        min_value: 1
+        max_value: 255
+        initial_value: 20
+        step: 1
+        mode: box
+        id: input_1
+        icon: "mdi:counter"
+        
+We want to write this number to a ``REGISTER_ADDRESS`` via I²C. The Arduino-based looping code shown above is modified following the guidance in  `Custom Sensor Component <https://esphome.io/components/sensor/custom.html>`__:
+ 
+.. code-block:: cpp
+ 
+ #include "esphome.h"
+ 
+ const uint16_t I2C_ADDRESS = 0x21;
+ const uint16_t REGISTER_ADDRESS = 0x78; 
+ const uint16_t POLLING_PERIOD = 15000; //milliseconds
+ char temp1 = 20; //Initial value of the register
+
+ class MyCustomComponent : public PollingComponent {
+ public:
+  MyCustomComponent() : PollingComponent(POLLING_PERIOD) {}
+  float get_setup_priority() const override { return esphome::setup_priority::BUS; } //Access I2C bus
+
+  void setup() override {
+    //Add code here as needed
+  }
+  
+  void update() override {  
+  char register_value = id(input_1).state; //Read the number set on the dashboard
+  //Did the user change the input?
+  if(register_value != temp1){
+    Wire.beginTransmission(I2C_ADDRESS);
+    Wire.write(REGISTER_ADDRESS);
+    Wire.write(register_value);
+    Wire.endTransmission();
+    temp1 = register_value; //Swap in the new value
+    }
+  }
+ };
+        
+The ``Component`` class has been replaced with ``PollingComponent`` and the free-running ``loop()`` is changed to the  ``update()`` method with period set by ``POLLING_PERIOD``. The numerical value from the dashboard is accessed with its ``id`` tag and its state is set to the byte variable that we call ``register_value``.  To prevent an I²C write on every iteration, the contents of the register are stored in ``temp1`` and checked for a change. Configuring the hardware with ``get_setup_priority()`` is explained `here <https://esphome.io/components/sensor/custom.html#step-1-custom-sensor-definition>`__.
+
+
+
+
 See Also
 --------
 
