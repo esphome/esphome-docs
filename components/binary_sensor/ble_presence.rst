@@ -22,6 +22,7 @@ Bluetooth Low Energy device.
       - platform: ble_presence
         mac_address: AC:37:43:77:5F:4C
         name: "ESP32 BLE Tracker Google Home Mini"
+        min_rssi: -80dB
       # Presence based on BLE Service UUID
       - platform: ble_presence
         service_uuid: '11aa'
@@ -58,6 +59,7 @@ Configuration variables:
    to be tracked. Usually used to identify beacons within an iBeacon group.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation.
+-  **min_rssi** (*Optional*, int): at which minimum RSSI level would the component report the device be precent
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _esp32_ble_tracker-setting_up_devices:
