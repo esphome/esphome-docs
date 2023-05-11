@@ -47,9 +47,10 @@ It may be useful to write to a register via I²C using a numerical input. For ex
         id: input_1
         icon: "mdi:counter"
         
-We want to write this number to a ``REGISTER_ADDRESS`` on the slave device via I²C. The Arduino-based looping code shown above is modified following the guidance in  `Custom Sensor Component <https://esphome.io/components/sensor/custom.html>`__:
+We want to write this number to a ``REGISTER_ADDRESS`` on the slave device via I²C. The Arduino-based looping code shown above is modified following the guidance in :ref:`custom-sensor-component`.
  
 .. code-block:: cpp
+ 
  
  #include "esphome.h"
  
@@ -80,7 +81,7 @@ We want to write this number to a ``REGISTER_ADDRESS`` on the slave device via I
   }
  };
         
-The ``Component`` class has been replaced with ``PollingComponent`` and the free-running ``loop()`` is changed to the  ``update()`` method with period set by ``POLLING_PERIOD``. The numerical value from the dashboard is accessed with its ``id`` tag and its state is set to the byte variable that we call ``register_value``.  To prevent an I²C write on every iteration, the contents of the register are stored in ``temp`` and checked for a change. Configuring the hardware with ``get_setup_priority()`` is explained `here <https://esphome.io/components/sensor/custom.html#step-1-custom-sensor-definition>`__.
+The ``Component`` class has been replaced with ``PollingComponent`` and the free-running ``loop()`` is changed to the  ``update()`` method with period set by ``POLLING_PERIOD``. The numerical value from the dashboard is accessed with its ``id`` tag and its state is set to the byte variable that we call ``register_value``.  To prevent an I²C write on every iteration, the contents of the register are stored in ``temp`` and checked for a change. Configuring the hardware with ``get_setup_priority()`` is explained in :ref:`step-1-custom-sensor-definition`.
 
 
 
