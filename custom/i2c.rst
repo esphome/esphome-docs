@@ -29,6 +29,7 @@ them publish values.
       }
     };
 
+
 I²C Write
 ---------
 It may be useful to write to a register via I²C using a numerical input. For example, the following yaml code snippet captures a user-supplied numerical input in the range 1--255 from the dashboard:
