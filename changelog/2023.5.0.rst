@@ -76,6 +76,13 @@ Breaking Changes
 - Remove climate legacy away flags :esphomepr:`4744` by :ghuser:`jesserockz` (breaking-change)
 - Revert "Template sensors always publish on update interval (#2224)" :esphomepr:`4774` by :ghuser:`nuttytree` (breaking-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- Fixed access point for ESP32 IDF platform :esphomepr:`4784` by :ghuser:`HeMan`
+- Remove AUTO_LOAD from apds9960 :esphomepr:`4746` by :ghuser:`jesserockz`
+- Supposed to fix #4069, by changing the default value to 0s (timeunit … :esphomepr:`4806` by :ghuser:`Alex1602`
+
 All changes
 ^^^^^^^^^^^
 
@@ -132,3 +139,43 @@ All changes
 - Wrap VA code :esphomepr:`4800` by :ghuser:`jesserockz`
 - Make i2s_audio bclk_pin optional :esphomepr:`4801` by :ghuser:`jesserockz`
 - Validate project details are set for dashboard_import :esphomepr:`4802` by :ghuser:`jesserockz`
+- Fixed access point for ESP32 IDF platform :esphomepr:`4784` by :ghuser:`HeMan`
+- Remove AUTO_LOAD from apds9960 :esphomepr:`4746` by :ghuser:`jesserockz`
+- Supposed to fix #4069, by changing the default value to 0s (timeunit … :esphomepr:`4806` by :ghuser:`Alex1602`
+
+Past Changelogs
+---------------
+
+- :doc:`2023.4.0`
+- :doc:`2023.3.0`
+- :doc:`2023.2.0`
+- :doc:`2022.12.0`
+- :doc:`2022.11.0`
+- :doc:`2022.10.0`
+- :doc:`2022.9.0`
+- :doc:`2022.8.0`
+- :doc:`2022.6.0`
+- :doc:`2022.5.0`
+- :doc:`2022.4.0`
+- :doc:`2022.3.0`
+- :doc:`2022.2.0`
+- :doc:`2022.1.0`
+- :doc:`2021.12.0`
+- :doc:`2021.11.0`
+- :doc:`2021.10.0`
+- :doc:`2021.9.0`
+- :doc:`2021.8.0`
+- :doc:`v1.20.0`
+- :doc:`v1.19.0`
+- :doc:`v1.18.0`
+- :doc:`v1.17.0`
+- :doc:`v1.16.0`
+- :doc:`v1.15.0`
+- :doc:`v1.14.0`
+- :doc:`v1.13.0`
+- :doc:`v1.12.0`
+- :doc:`v1.11.0`
+- :doc:`v1.10.0`
+- :doc:`v1.9.0`
+- :doc:`v1.8.0`
+- :doc:`v1.7.0`
