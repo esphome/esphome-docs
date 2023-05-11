@@ -48,7 +48,7 @@ It may be useful to write to a register via I²C using a numerical input. For ex
         id: input_1
         icon: "mdi:counter"
         
-We want to write this number to a ``REGISTER_ADDRESS`` on the slave device via I²C. The Arduino-based looping code shown above is modified following the guidance in :doc:`Custom Sensor Component <components/sensor/custom.rst>`.
+We want to write this number to a ``REGISTER_ADDRESS`` on the slave device via I²C. The Arduino-based looping code shown above is modified following the guidance in :doc:`Custom Sensor Component <custom>`.
  
 .. code-block:: cpp
 
