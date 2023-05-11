@@ -57,6 +57,7 @@ Contributors
 - `Albin Kauffmann (@albinou) <https://github.com/albinou>`__
 - `Andre Lengwenus (@alengwenus) <https://github.com/alengwenus>`__
 - `Alex (@alex-richards) <https://github.com/alex-richards>`__
+- `Alex Dekker (@Alex1602) <https://github.com/Alex1602>`__
 - `Alexander Leisentritt (@Alex9779) <https://github.com/Alex9779>`__
 - `Alex Barcelo (@alexbarcelo) <https://github.com/alexbarcelo>`__
 - `AlexCPU (@AlexCPU) <https://github.com/AlexCPU>`__
@@ -352,6 +353,7 @@ Contributors
 - `Erwin Kooi (@egeltje) <https://github.com/egeltje>`__
 - `Eike (@ei-ke) <https://github.com/ei-ke>`__
 - `Elazar Leibovich (@elazarl) <https://github.com/elazarl>`__
+- `Eli (@eli-xciv) <https://github.com/eli-xciv>`__
 - `Eli Yu (@elizhyu) <https://github.com/elizhyu>`__
 - `Elkropac (@Elkropac) <https://github.com/Elkropac>`__
 - `Elliot Wood (@elliot-wood) <https://github.com/elliot-wood>`__
@@ -632,7 +634,6 @@ Contributors
 - `Kelvie Wong (@kelvie) <https://github.com/kelvie>`__
 - `Kenny Stier (@KennyStier) <https://github.com/KennyStier>`__
 - `kernelpanic85 (@kernelpanic85) <https://github.com/kernelpanic85>`__
-- `Kevin O'Rourke (@kevinior) <https://github.com/kevinior>`__
 - `kevlar10 (@kevlar10) <https://github.com/kevlar10>`__
 - `kfulko (@kfulko) <https://github.com/kfulko>`__
 - `Kai Gerken (@KG3RK3N) <https://github.com/KG3RK3N>`__
@@ -665,6 +666,7 @@ Contributors
 - `Limor "Ladyada" Fried (@ladyada) <https://github.com/ladyada>`__
 - `Luca Adrian L (@lal12) <https://github.com/lal12>`__
 - `Fredrik Lindqvist (@Landrash) <https://github.com/Landrash>`__
+- `lanik (@lanik) <https://github.com/lanik>`__
 - `Lawrie George (@lawriege) <https://github.com/lawriege>`__
 - `Laszlo Gazdag (@lazlyhu) <https://github.com/lazlyhu>`__
 - `Ludovic BOUÉ (@lboue) <https://github.com/lboue>`__
@@ -878,7 +880,6 @@ Contributors
 - `pedrobsm (@pedrobsm) <https://github.com/pedrobsm>`__
 - `per1234 (@per1234) <https://github.com/per1234>`__
 - `David (@perldj) <https://github.com/perldj>`__
-- `Peter Valkov (@peter-valkov) <https://github.com/peter-valkov>`__
 - `Peter Galantha (@peterg79) <https://github.com/peterg79>`__
 - `Peter Halicky (@peterhalicky) <https://github.com/peterhalicky>`__
 - `Philippe Delodder (@phdelodder) <https://github.com/phdelodder>`__
@@ -1154,4 +1155,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated May 11, 2023.*
+*This page was last updated May 12, 2023.*
