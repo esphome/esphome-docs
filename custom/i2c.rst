@@ -50,8 +50,7 @@ It may be useful to write to a register via I²C using a numerical input. For ex
 We want to write this number to a ``REGISTER_ADDRESS`` on the slave device via I²C. The Arduino-based looping code shown above is modified following the guidance in :ref:`custom-sensor-component`.
  
 .. code-block:: cpp
- 
- 
+
  #include "esphome.h"
  
  const uint16_t I2C_ADDRESS = 0x21;
@@ -66,6 +65,7 @@ We want to write this number to a ``REGISTER_ADDRESS`` on the slave device via I
 
   void setup() override {
     //Add code here as needed
+    Wire.begin();
   }
   
   void update() override {  
