@@ -18,7 +18,7 @@ The RC522 supports SPI, I²C and UART communication protocols, ESPHome can use e
 Component/Hub
 -------------
 
-* If you have a module like the image above, it can only be used in SPI mode (`unless hacked <https://forum.arduino.cc/index.php?topic=442750.0>`__)
+* If you have a module like the image below, it can only be used in SPI mode (`unless hacked <https://forum.arduino.cc/index.php?topic=442750.0>`__)
   and you need to have an :ref:`SPI bus <spi>` in your configuration with both the **miso_pin** and **mosi_pin** set.
 
 * If you have a RC522 which communicates via I²C like in the M5 Stack then you need to have an :ref:`I²C <i2c>` bus configured.
