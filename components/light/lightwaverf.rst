@@ -59,6 +59,7 @@ Configuration variables:
 Send the raw data that has been captured via the dump system
 
 .. code-block:: yaml
+
     on_...:
       then:
         - lightwaverf.send_raw:

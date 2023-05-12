@@ -531,9 +531,13 @@ Light Components
     Tuya Dimmer, components/light/tuya, tuya.png
     Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg
     Custom Light, components/light/custom, language-cpp.svg
+    LightWaveRF, components/light/lightwaverf, brightness-medium.svg
+
 
     H-bridge Light, components/light/hbridge, brightness-medium.svg
     Sonoff D1 Dimmer, components/light/sonoff_d1, sonoff_d1.jpg
+
+
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.
