@@ -38,7 +38,7 @@ Using cheap RF receiver and transmitter you can implemented a simple implementat
 
 
 Configuration variables module:
-------------------------
+-------------------------------
 
 - **read_pin** (**Required**, int): Internal Pin that the receiver is connected to
 - **write_pin** (**Required**, string): Internal Pin that the transmitter is connected to
@@ -54,7 +54,7 @@ Configuration variables:
 
 
 ``lightwaverf.send_raw`` Action
--------------------------------------
+--------------------------------
 
 Send the raw data that has been captured via the dump system
 
