@@ -74,7 +74,7 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id of the switch to call via HA
 - **code** (**Required**, list hex): The raw dump in an array of hex
 - **repeat** (*Optional*, int): The amount of repeats to send the signal
-- **invert** (*Optional*, int): Send the signal inverted
+- **inverted** (*Optional*, boolean): Send the signal inverted
 
 
 See Also
