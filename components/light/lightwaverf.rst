@@ -40,8 +40,8 @@ Using cheap RF receiver and transmitter you can implemented a simple implementat
 Configuration variables module:
 -------------------------------
 
-- **read_pin** (**Required**, int): Internal Pin that the receiver is connected to
-- **write_pin** (**Required**, string): Internal Pin that the transmitter is connected to
+- **read_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin that the receiver is connected to
+- **write_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): the pin that the transmitter is connected to
 
 Configuration variables:
 ------------------------
