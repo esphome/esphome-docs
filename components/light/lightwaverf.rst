@@ -11,8 +11,7 @@ The ``LightWaveRF`` light platform creates a module to dump and send commands to
     :align: center
     :width: 40.0%
 
-LightwaveRF switches are very common in UK automation. They allow control of lights, sockets, relays and more via RF remote
- or via a hub.
+LightwaveRF switches are very common in UK automation. They allow control of lights, sockets, relays and more via RF remote or via a hub.
 Using an inexpensive RF transmitter and receiver you can control your devices via ESPHome.
 
 .. code-block:: yaml
