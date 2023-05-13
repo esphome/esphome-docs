@@ -6,7 +6,6 @@ LightWaveRF Switch
     :image: brightness-medium.svg
 
 The ``LightWaveRF`` light platform creates a module to dump and send commands to light switches
-:ref:`float output component <output>`.
 
 .. figure:: images/lightwaverf.jpg
     :align: center
@@ -42,12 +41,6 @@ Configuration variables:
 
 - **read_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin that the receiver is connected to
 - **write_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): the pin that the transmitter is connected to
-
-Configuration variables:
-------------------------
-
-- **name** (*Optional*, string): The name to give for the action
-- **id** (**Required**, :ref:`config-id`): The id of the switch to call via HA
 
 
 .. lightwaverf.send_raw:
