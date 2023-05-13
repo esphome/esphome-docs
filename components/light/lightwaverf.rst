@@ -37,8 +37,8 @@ Using an inexpensive RF transmitter and receiver you can control your devices vi
             repeat: 1
 
 
-Configuration variables module:
--------------------------------
+Configuration variables:
+------------------------
 
 - **read_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin that the receiver is connected to
 - **write_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): the pin that the transmitter is connected to
