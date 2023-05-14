@@ -82,6 +82,10 @@ Beta Changes
 - Fixed access point for ESP32 IDF platform :esphomepr:`4784` by :ghuser:`HeMan`
 - Remove AUTO_LOAD from apds9960 :esphomepr:`4746` by :ghuser:`jesserockz`
 - Supposed to fix #4069, by changing the default value to 0s (timeunit … :esphomepr:`4806` by :ghuser:`Alex1602`
+- Wording :esphomepr:`4805` by :ghuser:`fgsch`
+- Tuya: Prevent loop when setting colors on case-sensitive dps :esphomepr:`4809` by :ghuser:`richardhopton`
+- Fix i2s media player volume control :esphomepr:`4813` by :ghuser:`jesserockz`
+- Dontr try stop if not actually started :esphomepr:`4814` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -142,6 +146,10 @@ All changes
 - Fixed access point for ESP32 IDF platform :esphomepr:`4784` by :ghuser:`HeMan`
 - Remove AUTO_LOAD from apds9960 :esphomepr:`4746` by :ghuser:`jesserockz`
 - Supposed to fix #4069, by changing the default value to 0s (timeunit … :esphomepr:`4806` by :ghuser:`Alex1602`
+- Wording :esphomepr:`4805` by :ghuser:`fgsch`
+- Tuya: Prevent loop when setting colors on case-sensitive dps :esphomepr:`4809` by :ghuser:`richardhopton`
+- Fix i2s media player volume control :esphomepr:`4813` by :ghuser:`jesserockz`
+- Dont try stop if not actually started :esphomepr:`4814` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
