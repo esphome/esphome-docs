@@ -1,11 +1,11 @@
-ESP32 RMT LED Strip
+PICO PIO LED Strip
 ===================
 
 .. seo::
     :description: Instructions for setting up addressable lights like NEOPIXEL on an RP2040 using the PIO peripheral.
     :image: color_lens.svg
 
-This is a component using the ESP32 RMT peripheral to drive most addressable LED strips.
+This is a component using the RP2040 PIO peripheral to drive most addressable LED strips.
 
 .. code-block:: yaml
 
@@ -27,7 +27,7 @@ Configuration variables
 - **PIO** (**Required**, int): The PIO peripheral to use. If using multiple strips, you can use up to 4 strips per PIO.
     - **RP2040**: ``0`` or ``1``
 
-- **chipset** (**Required**, enum): The chipset to apply known timings from. Not used if specifying the timings manually, see below.
+- **chipset** (**Required**, enum): The chipset to apply known timings from.
     - ``WS2812``
     - ``WS2812B``
     - ``SK6812``
