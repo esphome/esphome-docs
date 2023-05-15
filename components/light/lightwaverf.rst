@@ -77,9 +77,11 @@ Compatible sensors
 These are the sensors which are been confirmed to work with the current code base, if you use different onces and they work, please report them to the team.
 
 Compatible transmitter:
+
 - MX-FS-03V
 
 Compatible receiver:
+
 - RXB6
 
 
