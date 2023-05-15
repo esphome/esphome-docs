@@ -498,8 +498,8 @@ Configuration variables:
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Pulse``.
 - **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``1s``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transition is started. Defaults to ``1s``.
-- **min_brightness** (*Optional*, percentage): The min brightness value. Defaults to ``0.0``
-- **max_brightness** (*Optional*, percentage): The max brightness value. Defaults to ``1.0``
+- **min_brightness** (*Optional*, percentage): The min brightness value. Defaults to ``0%``
+- **max_brightness** (*Optional*, percentage): The max brightness value. Defaults to ``100%``
 
 
 Random Effect
