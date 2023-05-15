@@ -14,6 +14,8 @@ The ``LightWaveRF`` light platform creates a module to dump and send commands to
 LightwaveRF switches are very common in UK automation. They allow control of lights, sockets, relays and more via RF remote or via a hub.
 Using an inexpensive RF transmitter and receiver you can control your devices via ESPHome.
 
+
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -67,6 +69,18 @@ Configuration variables:
 - **code** (**Required**, list hex): The raw dump in an array of hex
 - **repeat** (*Optional*, int): The amount of repeats to send the signal
 - **inverted** (*Optional*, boolean): Send the signal inverted
+
+
+Compatible sensors
+------------------
+
+These are the sensors which are been confirmed to work with the current code base, if you use different onces and they work, please report them to the team.
+
+Compatible transmitter:
+- MX-FS-03V
+
+Compatible receiver:
+- RXB6
 
 
 See Also
