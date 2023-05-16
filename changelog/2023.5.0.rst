@@ -85,7 +85,15 @@ Beta Changes
 - Wording :esphomepr:`4805` by :ghuser:`fgsch`
 - Tuya: Prevent loop when setting colors on case-sensitive dps :esphomepr:`4809` by :ghuser:`richardhopton`
 - Fix i2s media player volume control :esphomepr:`4813` by :ghuser:`jesserockz`
-- Dontr try stop if not actually started :esphomepr:`4814` by :ghuser:`jesserockz`
+- Dont try stop if not actually started :esphomepr:`4814` by :ghuser:`jesserockz`
+- Fix missing stop trait in send_cover_info :esphomepr:`4826` by :ghuser:`RoboMagus`
+- Bump aioesphomeapi from 13.7.2 to 13.7.5 :esphomepr:`4830` by :ghuser:`dependabot[bot]`
+- Update PulseLightEffect with range brightness :esphomepr:`4820` by :ghuser:`max246`
+- Bump esphome-dashboard to 20230516.0 :esphomepr:`4831` by :ghuser:`jesserockz`
+- Fix time period validation for the auto cleaning interval :esphomepr:`4811` by :ghuser:`fgsch`
+- Bump tzlocal from 4.2 to 5.0.1 :esphomepr:`4829` by :ghuser:`dependabot[bot]`
+- Start UART assignment at UART0 if the logger is not enabled or is not configured for hardware logging on ESP32 :esphomepr:`4762` by :ghuser:`spectrumjade`
+- Synchronise Device Classes from Home Assistant :esphomepr:`4825` by :ghuser:`github-actions[bot]`
 
 All changes
 ^^^^^^^^^^^
@@ -150,6 +158,14 @@ All changes
 - Tuya: Prevent loop when setting colors on case-sensitive dps :esphomepr:`4809` by :ghuser:`richardhopton`
 - Fix i2s media player volume control :esphomepr:`4813` by :ghuser:`jesserockz`
 - Dont try stop if not actually started :esphomepr:`4814` by :ghuser:`jesserockz`
+- Fix missing stop trait in send_cover_info :esphomepr:`4826` by :ghuser:`RoboMagus`
+- Bump aioesphomeapi from 13.7.2 to 13.7.5 :esphomepr:`4830` by :ghuser:`dependabot[bot]`
+- Update PulseLightEffect with range brightness :esphomepr:`4820` by :ghuser:`max246`
+- Bump esphome-dashboard to 20230516.0 :esphomepr:`4831` by :ghuser:`jesserockz`
+- Fix time period validation for the auto cleaning interval :esphomepr:`4811` by :ghuser:`fgsch`
+- Bump tzlocal from 4.2 to 5.0.1 :esphomepr:`4829` by :ghuser:`dependabot[bot]`
+- Start UART assignment at UART0 if the logger is not enabled or is not configured for hardware logging on ESP32 :esphomepr:`4762` by :ghuser:`spectrumjade`
+- Synchronise Device Classes from Home Assistant :esphomepr:`4825` by :ghuser:`github-actions[bot]`
 
 Past Changelogs
 ---------------
