@@ -94,6 +94,8 @@ Beta Changes
 - Bump tzlocal from 4.2 to 5.0.1 :esphomepr:`4829` by :ghuser:`dependabot[bot]`
 - Start UART assignment at UART0 if the logger is not enabled or is not configured for hardware logging on ESP32 :esphomepr:`4762` by :ghuser:`spectrumjade`
 - Synchronise Device Classes from Home Assistant :esphomepr:`4825` by :ghuser:`github-actions[bot]`
+- support sending keys to the collector :esphomepr:`4838` by :ghuser:`ssieb`
+- handle Wiegand 8-bit keys :esphomepr:`4837` by :ghuser:`ssieb`
 
 All changes
 ^^^^^^^^^^^
@@ -166,6 +168,8 @@ All changes
 - Bump tzlocal from 4.2 to 5.0.1 :esphomepr:`4829` by :ghuser:`dependabot[bot]`
 - Start UART assignment at UART0 if the logger is not enabled or is not configured for hardware logging on ESP32 :esphomepr:`4762` by :ghuser:`spectrumjade`
 - Synchronise Device Classes from Home Assistant :esphomepr:`4825` by :ghuser:`github-actions[bot]`
+- support sending keys to the collector :esphomepr:`4838` by :ghuser:`ssieb`
+- handle Wiegand 8-bit keys :esphomepr:`4837` by :ghuser:`ssieb`
 
 Past Changelogs
 ---------------
