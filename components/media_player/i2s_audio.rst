@@ -32,6 +32,7 @@ External DAC
 ************
 
 - **i2s_dout_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I²S ``DOUT/SDOUT`` *(Data Out)* signal, also referred to as ``SD/SDATA`` *(Serial Data)* or ``DACDAT`` *(Digital to Analog Converter Data)*.
+- **mute_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use to mute the media player.
 - **mode** (*Optional*, string): The mode of the I²S bus. Can be ``mono`` or ``stereo``. Defaults to ``mono``.
 - **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this media player.
 
