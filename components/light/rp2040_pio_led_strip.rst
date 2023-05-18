@@ -1,5 +1,5 @@
-PICO PIO LED Strip
-===================
+RP2040 PIO LED Strip
+====================
 
 .. seo::
     :description: Instructions for setting up addressable lights like NEOPIXEL on an RP2040 using the PIO peripheral.
