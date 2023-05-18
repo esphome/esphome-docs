@@ -54,6 +54,7 @@ please consider adding support to the codebase and add it to the list above.
 - **bit0_low** (*Optional*, :ref:`config-time`): The time to hold the data line low for a ``0`` bit.
 - **bit1_high** (*Optional*, :ref:`config-time`): The time to hold the data line high for a ``1`` bit.
 - **bit1_low** (*Optional*, :ref:`config-time`): The time to hold the data line low for a ``1`` bit.
+
 See Also
 --------
 
