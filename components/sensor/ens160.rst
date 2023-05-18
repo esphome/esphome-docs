@@ -9,6 +9,11 @@ The ``ens160`` sensor platform allows you to use your ENS160
 (`datasheet <https://www.sciosense.com/wp-content/uploads/documents/SC-001224-DS-7-ENS160-Datasheet.pdf>`__) air-quality sensors with ESPHome. The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
+.. note::
+
+    On very first power-up of ENS160, there is an 1 hour initial start up delay before readings will be available.
+    For subsequent starts or reboots, there is a 3 minutes warm up period before readings are available.
+    
 .. figure:: images/ens160.jpg
     :align: center
     :width: 80.0%
@@ -26,8 +31,12 @@ required to be set up in your configuration for this sensor to work.
           name: "ENS160 Total Volatile Organic Compounds"
         aqi:
           name: "ENS160 Air Quality Index"
+        update_interval: 60s  
         address: 0x53
-        update_interval: 10s
+        compensation:
+          temperature: id_temperature_sensor
+          humidity: id_humidity_sensor
+        
 
 Configuration variables:
 ------------------------
@@ -60,15 +69,51 @@ Advanced:
 - **address** (*Optional*, int): Manually specify the I²C address of
   the sensor. Defaults to ``0x53``. Another address can be ``0x52``.
  
-- **temperature** (*Optional*, :ref:`config-id`): Give an external temperature sensor ID
-  here. This can improve the sensor's internal calculations.
-- **humidity** (*Optional*, :ref:`config-id`): Give an external humidity sensor ID
-  here. This can improve the sensor's internal calculations.
+- **compensation** (*Optional*): The block containing sensors used for compensation.
+
+  - **temperature** (**Required**, :ref:`config-id`): Give an external temperature sensor ID
+    here. This can improve the sensor's internal calculations.
+  - **humidity** (**Required**, :ref:`config-id`): Give an external humidity sensor ID
+    here. This can improve the sensor's internal calculations.
+    
+Example Text Sensor configuration
+---------------------------------
+
+The Air Quality Index(AQI) from this sensor is a number between 1 and 5. ENS160
+(`datasheet <https://www.sciosense.com/wp-content/uploads/documents/SC-001224-DS-7-ENS160-Datasheet.pdf>`__) states that
+"The AQI-UBA air quality index is derived from a guideline by the German Federal Environmental
+Agency based on a TVOC sum signal". The following is an example configuration to convert the numeric ENS160 AQI to the rating text. 
+
+.. code-block:: yaml
+    text_sensor:
+      - platform: template
+        name: "ENS160 Air Quality Rating
+        lambda: |-
+          if (id(ens160_air_quality_index).state == 1) {
+            return {"Excellent"}; 
+          }
+          else if (id(ens160_air_quality_index).state == 2) {
+            return {"Good"}; 
+          }
+          else if (id(ens160_air_quality_index).state == 3) {
+            return {"Moderate"}; 
+          }
+          else if (id(ens160_air_quality_index).state == 4) {
+            return {"Poor"}; 
+          }
+          else if (id(ens160_air_quality_index).state == 5) {
+            return {"Unhealthy"}; 
+          }
+          else {
+            return {"Not Available"};
+          };
+
 
 See Also
 --------
 
 - :ref:`sensor-filters`
 - :doc:`ccs811`
+- :doc:`sgp30`
 - :apiref:`ens160/ens160.h`
 - :ghedit:`Edit`
