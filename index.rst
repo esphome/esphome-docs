@@ -523,8 +523,8 @@ Light Components
     RGBWW Light, components/light/rgbww, rgbw.png
     RGBCT Light, components/light/rgbct, rgbw.png
 
-    PICO PIO, components/light/rp2040_pio_led_strip, color_lens.svg
     ESP32 RMT, components/light/esp32_rmt_led_strip, color_lens.svg
+    RP2040 PIO, components/light/rp2040_pio_led_strip, color_lens.svg
     FastLED Light, components/light/fastled, color_lens.svg
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
     Light Partition, components/light/partition, color_lens.svg
