@@ -42,6 +42,18 @@ Configuration variables
 
 - **is_rgbw** (*Optional*, boolean): Set to ``true`` if the strip is RGBW. Defaults to ``false``.
 
+
+
+Manual Timings
+**************
+
+These can be used if you know the timings and your chipset is not set above. If you have a new specific chipset,
+please consider adding support to the codebase and add it to the list above.
+
+- **bit0_high** (*Optional*, :ref:`config-time`): The time to hold the data line high for a ``0`` bit.
+- **bit0_low** (*Optional*, :ref:`config-time`): The time to hold the data line low for a ``0`` bit.
+- **bit1_high** (*Optional*, :ref:`config-time`): The time to hold the data line high for a ``1`` bit.
+- **bit1_low** (*Optional*, :ref:`config-time`): The time to hold the data line low for a ``1`` bit.
 See Also
 --------
 
