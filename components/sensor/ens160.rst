@@ -9,10 +9,9 @@ The ``ens160`` sensor platform allows you to use your ENS160
 (`datasheet <https://www.sciosense.com/wp-content/uploads/documents/SC-001224-DS-7-ENS160-Datasheet.pdf>`__) air-quality sensors with ESPHome. The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
-.. note::
 
-    On very first power-up of ENS160, there is an 1 hour initial start up delay before readings will be available.
-    For subsequent starts or reboots, there is a 3 minutes warm up period before readings are available.
+Note: On very first power-up of ENS160, there is an 1 hour initial start up delay before readings will be available.
+For subsequent starts or reboots, there is a 3 minute warm up period before readings are available.
     
 .. figure:: images/ens160.jpg
     :align: center
@@ -85,28 +84,19 @@ The Air Quality Index(AQI) from this sensor is a number between 1 and 5. ENS160
 Agency based on a TVOC sum signal". The following is an example configuration to convert the numeric ENS160 AQI to the rating text. 
 
 .. code-block:: yaml
+
     text_sensor:
       - platform: template
         name: "ENS160 Air Quality Rating
         lambda: |-
-          if (id(ens160_air_quality_index).state == 1) {
-            return {"Excellent"}; 
+          switch ( (int) (id(ens160_air_quality_index).state) ) {
+            case 1: return {"Excellent"};
+            case 2: return {"Good"};
+            case 3: return {"Moderate"};
+            case 4: return {"Poor"};
+            case 5: return {"Unhealthy"}; 
+            default: return {"Not Available"};
           }
-          else if (id(ens160_air_quality_index).state == 2) {
-            return {"Good"}; 
-          }
-          else if (id(ens160_air_quality_index).state == 3) {
-            return {"Moderate"}; 
-          }
-          else if (id(ens160_air_quality_index).state == 4) {
-            return {"Poor"}; 
-          }
-          else if (id(ens160_air_quality_index).state == 5) {
-            return {"Unhealthy"}; 
-          }
-          else {
-            return {"Not Available"};
-          };
 
 
 See Also
