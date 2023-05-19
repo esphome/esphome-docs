@@ -237,6 +237,7 @@ Distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
     VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg, IR optical distance
+    A01NYUB, components/sensor/a01nyub, a01nyub.jpg, Acoustic distance
 
 
 Electricity
