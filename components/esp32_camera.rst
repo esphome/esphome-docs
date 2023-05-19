@@ -162,7 +162,7 @@ Automations:
   when a stream starts.
 - **on_stream_stop** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a stream stops.
-- **on_image** (*Optional*, :ref:`Automation <automation>`): An automation called when image taken. Image is available as `image` variable.
+- **on_image** (*Optional*, :ref:`Automation <automation>`): An automation called when image taken. Image is available as ``image`` variable.
 
 Test Setting:
 
