@@ -178,7 +178,7 @@ Base64 encode/decode
 There are a helper functions which can decode or encode raw image data to base64 string. So it can be sent over MQTT or other protocols.
 
 .. code-block:: yaml
-  
+
     # Example of how to encode data
     esp32_camera:
       ...
