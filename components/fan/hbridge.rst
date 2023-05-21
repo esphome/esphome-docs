@@ -50,7 +50,7 @@ Configuration variables:
 - **enable_pin** (*Optional*, :ref:`config-id`): The id of the
   :ref:`float output <output>` connected to the Enable pin of the h-bridge (if h-bridge uses enable).
 - **decay_mode** (*Optional*, string): The decay mode you want to use with
-  the h-bridge. Either ``slow`` (braking) or ``fast`` (coasting). Defaults to ``slow``.
+  the h-bridge. Either ``slow`` (coasting) or ``fast`` (braking). Defaults to ``slow``.
 - **speed_count** (*Optional*, int): Set the number of supported discrete speed levels. The value is used
   to calculate the percentages for each speed. E.g. ``2`` means that you have 50% and 100% while ``100``
   will allow 1% increments in the output. Defaults to ``100``.

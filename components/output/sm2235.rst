@@ -10,7 +10,7 @@ SM2235 LED driver
 Component/Hub
 -------------
 
-The SM2235 component represents a SM2235 LED diver chain in
+The SM2235 component represents a SM2235 LED driver chain in
 ESPHome. Communication is done with two GPIO pins (DATA and CLK).
 
 To use the channels of this components, you first need to setup the

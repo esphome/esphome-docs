@@ -84,6 +84,7 @@ Configuration variables:
   first. This is required for hidden networks and can significantly improve connection times. Defaults to ``off``.
   The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
   better ones are available.
+- **passive_scan** (*Optional*, boolean): If enabled, then the device will perform WiFi scans in a passive fashion. Defaults to ``false``.
 
 - **enable_btm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11v BSS Transition Management support.
 - **enable_rrm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11k Radio Resource Management support.

@@ -10,7 +10,7 @@ BP1658CJ LED driver
 Component/Hub
 -------------
 
-The BP1658CJ component represents a BP1658CJ LED diver chain in
+The BP1658CJ component represents a BP1658CJ LED driver chain in
 ESPHome. Communication is done with two GPIO pins (DATA and CLK).
 
 To use the channels of this components, you first need to setup the
@@ -39,9 +39,9 @@ Configuration variables:
    this ``bp1658cj`` component. Use this if you have multiple BP1658CJ chains
    connected at the same time.
 -  **max_power_color_channels** (*Optional*, int 0-15): Adjusts the current supplied to the
-   color channels, higher is more power.  Default is 2 per BP1658CJ datasheet. See table below.
+   color channels, higher is more power.  Default is 4 per BP1658CJ datasheet. See table below.
 -  **max_power_white_channels** (*Optional*, int 0-15): Adjusts the current supplied to the
-   white channels, higher is more power.  Default is 4 per BP1658CJ datasheet. See table below.
+   white channels, higher is more power.  Default is 6 per BP1658CJ datasheet. See table below.
 
 .. note::
 

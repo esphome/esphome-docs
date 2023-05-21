@@ -111,7 +111,7 @@ See Also
 
 - :doc:`/components/sensor/bh1750`
 - :doc:`/components/sensor/tsl2561`
-- :doc:`/cookbook/temt6000`
+- `TEMT6000 <https://devices.esphome.io/devices/temt6000>`__
 - :ref:`sensor-filters`
 - :apiref:`ltr390/ltr390.h`
 - :ghedit:`Edit`

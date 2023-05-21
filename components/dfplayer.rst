@@ -111,6 +111,39 @@ Configuration options:
 - **loop** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Repeats playing
   the same track. Defaults to ``false``.
 
+``dfplayer.play_mp3`` Action
+----------------------------
+
+Plays a track inside the folder ``mp3``. Files inside the folder must be numbered from 1 
+to 9999, like ``0001.mp3``, ``0002.mp3``, ... etc.
+The folder name needs to be ``mp3``, placed under the SD card root directory, and the 
+mp3 file name needs to be 4 digits, for example, "0001.mp3", placed under the mp3 folder. 
+If you want, you can add additional text after the number in the filename, for example, 
+``0001hello.mp3``, but must always be referenced by number only in yaml.
+
+.. code-block:: bash
+
+    /mp3
+      /0001hello.mp3
+      /0002.mp3
+      /0003_thisistheway.mp3
+      ..
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - dfplayer.play_mp3:
+            file: 1
+        # Shorthand
+        - dfplayer.play_mp3: 1
+
+Configuration options:
+
+- **file** (**Required**, int, :ref:`templatable <config-templatable>`): The file number
+  inside the ``mp3`` folder to play.
+
+
 ``dfplayer.play_folder`` Action
 -------------------------------
 
