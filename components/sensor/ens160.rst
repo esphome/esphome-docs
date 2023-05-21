@@ -10,6 +10,7 @@ The ``ens160`` sensor platform allows you to use your ENS160
 required to be set up in your configuration for this sensor to work.
 
 .. note::
+
     On first power-up of the ENS160 sensor, there is a 1 hour initial startup delay before readings will be available.
     For subsequent starts or reboots, there is a 3 minute warm up period before readings are available. Also, be aware that the 
     ENS160 can take up to 1 second for sucessive data measurements to be ready.
