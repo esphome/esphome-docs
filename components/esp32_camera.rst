@@ -175,7 +175,7 @@ Test Setting:
 
 Base64 encode/decode
 --------------------
-There are a helper functions which can decode or encode raw image data to base64 string. So it can be sent over MQTT or other protocols.
+There are helper functions available which can encode or decode raw image data into Base64 strings and vice versa. This can be useful to sent images over MQTT or other protocols.
 
 .. code-block:: yaml
 
