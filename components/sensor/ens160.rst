@@ -10,9 +10,9 @@ The ``ens160`` sensor platform allows you to use your ENS160
 required to be set up in your configuration for this sensor to work.
 
 .. note::
-On very first power-up of ENS160, there is a 1 hour initial start up delay before readings will be available.
-For subsequent starts or reboots, there is a 3 minute warm up period before readings are available. Also, be aware that the 
-ENS160 can take up to 1 second for sucessive data measurements to be ready.
+    On very first power-up of ENS160, there is a 1 hour initial start up delay before readings will be available.
+    For subsequent starts or reboots, there is a 3 minute warm up period before readings are available. Also, be aware that the 
+    ENS160 can take up to 1 second for sucessive data measurements to be ready.
     
 .. figure:: images/ens160.jpg
     :align: center
@@ -72,7 +72,7 @@ Advanced:
  
 - **compensation** (*Optional*): The block containing sensors used for compensation. 
   Temperature and humidity compensation improves the accuracy of sensor readings. Without compensation, the
-  ENS160 internally assumes 25°C temperature and 50% humidity, with readings noticeably moving with changes in temperature and humidity.
+  ENS160 internally assumes 25°C temperature and 50% humidity, with readings noticeably moving with actual changes in temperature and humidity.
   
   - **temperature** (**Required**, :ref:`config-id`): Give an external temperature sensor ID
     here. 
@@ -91,7 +91,7 @@ Agency based on a TVOC sum signal". The following is an example configuration to
 
     text_sensor:
       - platform: template
-        name: "ENS160 Air Quality Rating
+        name: "ENS160 Air Quality Rating"
         lambda: |-
           switch ( (int) (id(ens160_air_quality_index).state) ) {
             case 1: return {"Excellent"};
