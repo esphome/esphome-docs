@@ -65,6 +65,12 @@ Release 2023.5.2 - May 22
 
 - Fix i2s_audio media_player mutex acquisition :esphomepr:`4867` by :ghuser:`kroimon`
 
+Release 2023.5.3 - May 22
+-------------------------
+
+- Allow microphone channel to be specified in config :esphomepr:`4871` by :ghuser:`jesserockz`
+- [PSRam] Change log unit to KB to minimize rounding error. :esphomepr:`4872` by :ghuser:`Fabian-Schmidt`
+
 Full list of changes
 --------------------
 
