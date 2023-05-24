@@ -278,6 +278,7 @@ Contributors
 - `David Newgas (@davidn) <https://github.com/davidn>`__
 - `David Noyes (@davidnoyes) <https://github.com/davidnoyes>`__
 - `David Zovko (@davidzovko) <https://github.com/davidzovko>`__
+- `Davrosx (@Davrosx) <https://github.com/Davrosx>`__
 - `Davy Landman (@DavyLandman) <https://github.com/DavyLandman>`__
 - `Dawid Cieszyński (@dawidcieszynski) <https://github.com/dawidcieszynski>`__
 - `Darren Tucker (@daztucker) <https://github.com/daztucker>`__
@@ -555,6 +556,7 @@ Contributors
 - `Jason Hines (@jasonehines) <https://github.com/jasonehines>`__
 - `JasperPlant (@JasperPlant) <https://github.com/JasperPlant>`__
 - `Jas Strong (@jasstrong) <https://github.com/jasstrong>`__
+- `Jay Newstrom (@JayNewstrom) <https://github.com/JayNewstrom>`__
 - `Jeff (@jazzmonger) <https://github.com/jazzmonger>`__
 - `Jonas Bergler (@jbergler) <https://github.com/jbergler>`__
 - `JbLb (@jblb) <https://github.com/jblb>`__
@@ -1156,4 +1158,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated May 22, 2023.*
+*This page was last updated May 24, 2023.*
