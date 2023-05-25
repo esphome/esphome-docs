@@ -504,6 +504,7 @@ Output Components
     BP1658CJ, components/output/bp1658cj, bp1658cj.svg
     BP5758D, components/output/bp5758d, bp5758d.svg
     X9C Potentiometer, components/output/x9c, x9c.jpg
+    GP8403, components/output/gp8403, gp8403.svg
 
 Light Components
 ----------------
@@ -522,6 +523,8 @@ Light Components
     RGBWW Light, components/light/rgbww, rgbw.png
     RGBCT Light, components/light/rgbct, rgbw.png
 
+    ESP32 RMT, components/light/esp32_rmt_led_strip, color_lens.svg
+    RP2040 PIO, components/light/rp2040_pio_led_strip, color_lens.svg
     FastLED Light, components/light/fastled, color_lens.svg
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
     Light Partition, components/light/partition, color_lens.svg
@@ -714,6 +717,14 @@ Microphone Components
 
     Microphone Core, components/microphone/index, microphone.svg
     I2S Microphone, components/microphone/i2s_audio, i2s_audio.svg
+
+Speaker Components
+------------------
+
+.. imgtable::
+
+    Speaker Core, components/speaker/index, speaker.svg
+    I2S Speaker, components/speaker/i2s_audio, i2s_audio.svg
 
 Time Components
 ---------------
