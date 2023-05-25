@@ -31,6 +31,7 @@ Configuration variables:
   - ``external``: Use an external ADC connected to the I²S bus.
   - ``internal``: Use the internal ADC of the ESP32. Only supported on ESP32, no variant support.
 
+- **channel** (*Optional*, enum): The channel of the microphone. One of ``left`` or ``right``. Defaults to ``right``.
 - **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this microphone.
 - All other options from :ref:`Microphone <config-microphone>`
 

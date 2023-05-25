@@ -54,6 +54,11 @@ but below is a small example for the M5Stack Atom Echo.
       adc_type: external
       pdm: false
 
+Release 2023.5.1 - May 18
+-------------------------
+
+- Remove i2c dependency from ttp229_bsf :esphomepr:`4851` by :ghuser:`jesserockz`
+- Sprinkler fixes :esphomepr:`4816` by :ghuser:`kbx81`
 
 Full list of changes
 --------------------
