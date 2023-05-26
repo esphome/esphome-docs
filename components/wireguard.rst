@@ -19,7 +19,7 @@ implementation not directly developed by |wireguard| authors.
 
     This component requires the system clock to be synchronized.
 
-    See :doc:`/components/time/index` to setup a time source
+    See :doc:`time/index` to setup a time source
     and **do not use** ``homeassistant`` time platform if
     Home Assistant is on the remote peer because the time
     synchronization is a prerequisite to establish the VPN link.
@@ -80,22 +80,14 @@ Configuration variables
 - **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait
   before rebooting the board when the remote peer is unreachable. Can be disabled
   by setting this to ``0s``. Default to ``15min``.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 See Also
 --------
 
 - :doc:`binary_sensor/wireguard_status`
 - :doc:`sensor/wireguard_handshake`
-- :ghedit:`Edit`
-
-.. toctree::
-    :maxdepth: 1
-    
-    ../components/time/index
-    ../components/time/ds1307
-    ../components/time/gps
-    ../components/time/pcf85063
-    ../components/time/sntp
-    
-
+- :doc:`time/index`
+- :doc:`time/sntp`
 - `"WireGuard" Trademark Usage Policy <https://www.wireguard.com/trademark-policy/>`__
+- :ghedit:`Edit`
