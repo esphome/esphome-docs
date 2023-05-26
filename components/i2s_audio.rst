@@ -29,4 +29,5 @@ See also
 
 - :doc:`microphone/i2s_audio`
 - :doc:`media_player/i2s_audio`
+- :doc:`/speaker/i2s_audio`
 - :ghedit:`Edit`
