@@ -278,10 +278,10 @@ it will be granted a chunk of it.
       pool_start: 1024
       pool_size: 2KiB
 
-  - **fram_id** (**Required** :ref:`config-id`) ID of the FRAM :ref:`fram-comp-device`
-  - **pool_start** (*Optional*, int) Starting address, ex.: ``1024`` (``0x0400``)
-  - **pool_size** (*Optional*, string) Size of the pool
-      - ``100`` - 100 bytes, ``1 KB`` - 1000 bytes, ``1 KiB`` - 1024 bytes
+- **fram_id** (**Required** :ref:`config-id`) ID of the FRAM :ref:`fram-comp-device`
+- **pool_start** (*Optional*, int) Starting address, ex.: ``1024`` (``0x0400``)
+- **pool_size** (*Optional*, string) Size of the pool
+    - ``100`` - 100 bytes, ``1 KB`` - 1000 bytes, ``1 KiB`` - 1024 bytes
 
 If using a pool, you have to define both **pool_start** and **pool_size**.
 
