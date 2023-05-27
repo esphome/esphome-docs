@@ -10,10 +10,12 @@ WireGuard Component
 
 |wireguard|_ is an extremely simple yet fast and modern VPN that utilizes
 state-of-the-art cryptography. This component uses a **custom**
-implementation not directly developed by |wireguard| authors.
+implementation not developed by original authors.
 
   Please note that *"WireGuard" and the "WireGuard" logo are
-  registered trademarks of Jason A. Donenfeld.*
+  registered trademarks of Jason A. Donenfeld.* See
+  `"WireGuard" Trademark Usage Policy <https://www.wireguard.com/trademark-policy/>`__
+  for additional information.
 
 .. warning::
 
@@ -29,7 +31,7 @@ adding the following to your configuration:
 
 .. code-block:: yaml
 
-    # Setup WireGuard
+    # Example configuration entry
     wireguard:
       address: x.y.z.w
       private_key: private_key=
@@ -39,7 +41,7 @@ adding the following to your configuration:
       # Optional pre-shared key
       peer_preshared_key: shared_key=
 
-      # Optional list of allowed ip/mask (any host is allowed if omitted)
+      # Optional list of ip/mask (any host is allowed if omitted)
       peer_allowed_ips:
         - x.y.z.0/24
         - l.m.n.o/32  # the /32 can be omitted for single host
@@ -60,7 +62,7 @@ Configuration variables
 ------------------------
 
 - **address** (**Required**, IPv4 address): The local VPN address of your board.
-- **netmask** (*Optional*, IPv4 address): The netmask for the configured ``address``.
+- **netmask** (*Optional*, IPv4 address): The netmask for the configured address.
   Default to ``255.255.255.255``.
 - **private_key** (**Required**, string): The private key of your board.
 
@@ -89,5 +91,4 @@ See Also
 - :doc:`sensor/wireguard_handshake`
 - :doc:`time/index`
 - :doc:`time/sntp`
-- `"WireGuard" Trademark Usage Policy <https://www.wireguard.com/trademark-policy/>`__
 - :ghedit:`Edit`
