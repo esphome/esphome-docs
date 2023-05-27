@@ -812,6 +812,7 @@ Miscellaneous Components
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Demo, components/demo, description.svg
     Copy, components/copy, content-copy.svg
+    FRAM I²C, components/fram, fram_i2c.jpg
 
 Additional Custom Components
 ----------------------------
