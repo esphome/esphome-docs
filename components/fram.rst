@@ -108,40 +108,40 @@ it may still be supported if
 it handles addresses according to one of the types.
 
 .. list-table::
-   :header-rows: 1
+    :header-rows: 1
 
-   * - Device
-     - Size
-     - Type
-     - I²C address
-   * - MB85RC04
-     - 512 B
-     - FRAM9
-     - ``0x50,0x52,0x54,0x56``
-   * - MB85RC16
-     - 2 KiB
-     - FRAM11
-     - ``0x50``
-   * - MB85RC64T
-     - 8 KiB
-     - FRAM
-     - ``0x50-0x57``
-   * - MB85RC128A
-     - 16 KiB
-     - FRAM
-     - ``0x50-0x57``
-   * - MB85RC256V
-     - 32 KiB
-     - FRAM
-     - ``0x50-0x57``
-   * - MB85RC512T
-     - 64 KiB
-     - FRAM
-     - ``0x50-0x57``
-   * - MB85RC1MT
-     - 128 KiB
-     - FRAM17
-     - ``0x50,0x52,0x54,0x56``
+    * - Device
+      - Size
+      - Type
+      - I²C address
+    * - MB85RC04
+      - 512 B
+      - FRAM9
+      - ``0x50,0x52,0x54,0x56``
+    * - MB85RC16
+      - 2 KiB
+      - FRAM11
+      - ``0x50``
+    * - MB85RC64T
+      - 8 KiB
+      - FRAM
+      - ``0x50-0x57``
+    * - MB85RC128A
+      - 16 KiB
+      - FRAM
+      - ``0x50-0x57``
+    * - MB85RC256V
+      - 32 KiB
+      - FRAM
+      - ``0x50-0x57``
+    * - MB85RC512T
+      - 64 KiB
+      - FRAM
+      - ``0x50-0x57``
+    * - MB85RC1MT
+      - 128 KiB
+      - FRAM17
+      - ``0x50,0x52,0x54,0x56``
 
 Address can be selected by connecting the address pins to VCC (pull them high).
 Some devices have three pins (``A0,A1,A2``) some have two and some have none.
