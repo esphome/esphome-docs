@@ -31,7 +31,7 @@ First you need to set up :doc:`/components/i2c` then the FRAM device:
 
 .. code-block:: yaml
 
-  fram:
+    fram:
 
 Adds an FRAM device on default address (``0x50``) on the default I²C Bus.
 
@@ -42,17 +42,17 @@ However, it's better to give it an ``id``:
 
 .. code-block:: yaml
 
-  fram:
-    id: fram_1
+    fram:
+      id: fram_1
 
 You can also add multiple devices:
 
 .. code-block:: yaml
 
-  fram:
-    - id: fram_1
-    - id: fram_2
-      address: 0x52
+    fram:
+      - id: fram_1
+      - id: fram_2
+        address: 0x52
 
 This will add a device with ``id``: ``fram_1`` on default address
 and another with ``id``: ``fram_2`` on address ``0x52``.
@@ -61,17 +61,17 @@ Full example:
 
 .. code-block:: yaml
 
-  i2c:
-    scl: 10
-    sda: 8
-    id: i2c_1
-
-  fram:
-    id: fram_1
-    i2c_id: i2c_1
-    address: 0x50
-    type: FRAM
-    size: 2KiB
+    i2c:
+      scl: 10
+      sda: 8
+      id: i2c_1
+  
+    fram:
+      id: fram_1
+      i2c_id: i2c_1
+      address: 0x50
+      type: FRAM
+      size: 2KiB
 
 - **id** (*Optional*, :ref:`config-id`): ID for use in lambdas
 - **i2c_id** (*Optional*, :ref:`config-id`): I²C Bus ID
@@ -164,13 +164,13 @@ This component can be used from other components or lambdas:
 
 .. code-block:: yaml
 
-  on_...:
-    - lambda: |-
-        // write 16 bit int at address 15
-        id(fram_1).write16(0x000A, 12345);
-        
-        // read back that number
-        uint16_t = id(fram_1).read16(0x000A);
+    on_...:
+      - lambda: |-
+          // write 16 bit int at address 15
+          id(fram_1).write16(0x000A, 12345);
+          
+          // read back that number
+          uint16_t = id(fram_1).read16(0x000A);
 
 Methods:
 
@@ -273,15 +273,15 @@ it will be granted a chunk of it.
 
 .. code-block:: yaml
 
-  fram_pref:
-    fram_id: fram_1
-    pool_start: 1024
-    pool_size: 2KiB
-
-- **fram_id** (**Required** :ref:`config-id`) ID of the FRAM :ref:`fram-comp-device`
-- **pool_start** (*Optional*, int) Starting address, ex.: ``1024`` (``0x0400``)
-- **pool_size** (*Optional*, string) Size of the pool
-    - ``100`` - 100 bytes, ``1 KB`` - 1000 bytes, ``1 KiB`` - 1024 bytes
+    fram_pref:
+      fram_id: fram_1
+      pool_start: 1024
+      pool_size: 2KiB
+  
+  - **fram_id** (**Required** :ref:`config-id`) ID of the FRAM :ref:`fram-comp-device`
+  - **pool_start** (*Optional*, int) Starting address, ex.: ``1024`` (``0x0400``)
+  - **pool_size** (*Optional*, string) Size of the pool
+      - ``100`` - 100 bytes, ``1 KB`` - 1000 bytes, ``1 KiB`` - 1024 bytes
 
 If using a pool, you have to define both **pool_start** and **pool_size**.
 
@@ -299,17 +299,17 @@ and even transfer the FRAM device to another ESP.
 
 .. code-block:: yaml
 
-  fram_pref:
-    static_prefs:
-      - key: sw1
-        lambda: |-
-          return id(switch_1).get_object_id_hash();
-        addr: 12
-        size: 3
-        persist_key: true
-      - key: wifi
-        lambda: |-
-          return fnv1_hash(App.get_compilation_time());
+    fram_pref:
+      static_prefs:
+        - key: sw1
+          lambda: |-
+            return id(switch_1).get_object_id_hash();
+          addr: 12
+          size: 3
+          persist_key: true
+        - key: wifi
+          lambda: |-
+            return fnv1_hash(App.get_compilation_time());
 
 - **key** (**Required** string) Unique key
 - **lambda** (**Required** :ref:`lambda <config-lambda>`) Lambda to return the ``hash``
@@ -344,13 +344,13 @@ Sample logs:
 
 .. code-block::
 
-  [19:15:06][C][fram_pref:135]: FramPref:
-  [19:15:06][C][fram_pref:144]:   Pool: 2048 bytes (1024-3071)
-  [19:15:06][C][fram_pref:153]:   Pool: 4 bytes used
-  [19:15:06][C][fram_pref:190]:   Pref: key: sw1, persist_key, addr: 12-14, request size: 3
-  [19:15:06][W][fram_pref:176]:   Pref: key: wifi, request size: 100
-  [19:15:06][E][fram_pref:178]:   Pref: key: foo, addr: 4000-36767
-  [19:15:06][E][fram_pref:184]:   * Does not fit in FRAM (0-32767)!
+    [19:15:06][C][fram_pref:135]: FramPref:
+    [19:15:06][C][fram_pref:144]:   Pool: 2048 bytes (1024-3071)
+    [19:15:06][C][fram_pref:153]:   Pool: 4 bytes used
+    [19:15:06][C][fram_pref:190]:   Pref: key: sw1, persist_key, addr: 12-14, request size: 3
+    [19:15:06][W][fram_pref:176]:   Pref: key: wifi, request size: 100
+    [19:15:06][E][fram_pref:178]:   Pref: key: foo, addr: 4000-36767
+    [19:15:06][E][fram_pref:184]:   * Does not fit in FRAM (0-32767)!
 
 If ``key`` is numeric, like ``key: 2006088186``, the preference is in the pool and not static.
 
