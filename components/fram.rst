@@ -242,7 +242,7 @@ Types:
 .. _fram-comp-pref:
 
 Global Preferences
------------
+------------------
 
 This component will replace the default storage (in flash) for persistent states
 and preferences of other components.
