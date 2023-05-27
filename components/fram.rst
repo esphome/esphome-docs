@@ -277,7 +277,7 @@ it will be granted a chunk of it.
       fram_id: fram_1
       pool_start: 1024
       pool_size: 2KiB
-  
+
   - **fram_id** (**Required** :ref:`config-id`) ID of the FRAM :ref:`fram-comp-device`
   - **pool_start** (*Optional*, int) Starting address, ex.: ``1024`` (``0x0400``)
   - **pool_size** (*Optional*, string) Size of the pool
