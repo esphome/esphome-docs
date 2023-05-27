@@ -342,7 +342,7 @@ Logs
 
 Sample logs:
 
-.. code-block::
+.. code-block:: text
 
     [19:15:06][C][fram_pref:135]: FramPref:
     [19:15:06][C][fram_pref:144]:   Pool: 2048 bytes (1024-3071)
