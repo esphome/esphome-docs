@@ -317,6 +317,7 @@ Environmental
     TEE501, components/sensor/tee501, TEE501.png, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
+    TMP1075, components/sensor/tmp1075, tmp1075.jpg, Temperature
     HYT271, components/sensor/hyt271, hyt271.jpg, Temperature & Humidity
 
 
@@ -524,6 +525,7 @@ Light Components
     RGBCT Light, components/light/rgbct, rgbw.png
 
     ESP32 RMT, components/light/esp32_rmt_led_strip, color_lens.svg
+    RP2040 PIO, components/light/rp2040_pio_led_strip, color_lens.svg
     FastLED Light, components/light/fastled, color_lens.svg
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
     Light Partition, components/light/partition, color_lens.svg
