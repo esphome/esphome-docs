@@ -71,6 +71,20 @@ Release 2023.5.3 - May 22
 - Allow microphone channel to be specified in config :esphomepr:`4871` by :ghuser:`jesserockz`
 - [PSRam] Change log unit to KB to minimize rounding error. :esphomepr:`4872` by :ghuser:`Fabian-Schmidt`
 
+Release 2023.5.4 - May 24
+-------------------------
+
+- [internal_temperature] ESP32-S3 needs ESP IDF V4.4.3 or higher :esphomepr:`4873` by :ghuser:`Fabian-Schmidt`
+- Update cover.h for compile errors with stop() :esphomepr:`4879` by :ghuser:`Davrosx`
+- Print ESPHome version when running commands :esphomepr:`4883` by :ghuser:`jesserockz`
+- fix modbus sending FP32_R values :esphomepr:`4882` by :ghuser:`ssieb`
+- Fix esp32_rmt_led_strip color modes :esphomepr:`4886` by :ghuser:`jesserockz`
+
+Release 2023.5.5 - May 29
+-------------------------
+
+- Fix version printing not breaking yaml parsing :esphomepr:`4904` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
