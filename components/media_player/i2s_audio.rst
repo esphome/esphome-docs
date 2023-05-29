@@ -1,4 +1,4 @@
- I²S Audio Media Player
+I²S Audio Media Player
 ======================
 
 .. seo::
