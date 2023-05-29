@@ -60,6 +60,26 @@ Release 2023.5.1 - May 18
 - Remove i2c dependency from ttp229_bsf :esphomepr:`4851` by :ghuser:`jesserockz`
 - Sprinkler fixes :esphomepr:`4816` by :ghuser:`kbx81`
 
+Release 2023.5.2 - May 22
+-------------------------
+
+- Fix i2s_audio media_player mutex acquisition :esphomepr:`4867` by :ghuser:`kroimon`
+
+Release 2023.5.3 - May 22
+-------------------------
+
+- Allow microphone channel to be specified in config :esphomepr:`4871` by :ghuser:`jesserockz`
+- [PSRam] Change log unit to KB to minimize rounding error. :esphomepr:`4872` by :ghuser:`Fabian-Schmidt`
+
+Release 2023.5.4 - May 24
+-------------------------
+
+- [internal_temperature] ESP32-S3 needs ESP IDF V4.4.3 or higher :esphomepr:`4873` by :ghuser:`Fabian-Schmidt`
+- Update cover.h for compile errors with stop() :esphomepr:`4879` by :ghuser:`Davrosx`
+- Print ESPHome version when running commands :esphomepr:`4883` by :ghuser:`jesserockz`
+- fix modbus sending FP32_R values :esphomepr:`4882` by :ghuser:`ssieb`
+- Fix esp32_rmt_led_strip color modes :esphomepr:`4886` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
