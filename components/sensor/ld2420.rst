@@ -1,0 +1,213 @@
+LD2420 24Ghz mmWave Radar Sensor
+================================
+
+.. seo::
+    :description: Instructions for setting up LD2420 sensors.
+    :image: ld2420.jpg
+
+Component/Hub
+-------------
+.. _ld2420-component:
+
+The ``ld2420`` sensor platform allows you to use HI-LINK HLK-LD2420 motion and presence sensor.
+The :ref:`UART <uart>` is required to be set up in your configuration for this sensor to work.
+
+Use of hardware UART pins is critical in order to support the baud rates of the LD2420 sensor.
+Firmware v1.5.3 and newer default to 115200 baud, 256000 baud on all older firmwares.
+
+.. figure:: /images/ld2420.jpg
+    :align: center
+    :width: 50.0%
+
+    HLK-LD2420 Low power motion and presence sensor
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    uart:
+      id: ld2420_uart
+      tx_pin: REPLACEME
+      rx_pin: REPLACEME
+      baud_rate: 115200
+      parity: NONE
+      stop_bits: 1
+
+    # The LD2420 has 16 time gate intervals (0-15) with a gate
+    # resolution of 0.75 meters
+    ld2420:
+      presence_time_window: 120s
+      detection_gate_min: 1
+      detection_gate_max: 12
+      g0_move_threshold: 60000
+      g0_still_threshold: 40000
+      g1_move_threshold: 30000
+      g1_still_threshold: 20000
+      g2_move_threshold: 3000
+      g2_still_threshold: 400
+      g3_move_threshold: 2000
+      g3_still_threshold: 3000
+      g4_move_threshold: 500
+      g4_still_threshold: 300
+      g5_move_threshold: 400
+      g5_still_threshold: 200
+      g6_move_threshold: 400
+      g6_still_threshold: 200
+      g7_move_threshold: 300
+      g7_still_threshold: 150
+      g8_move_threshold: 300
+      g8_still_threshold: 150
+      g9_move_threshold: 300
+      g9_still_threshold: 100
+      g10_move_threshold: 300
+      g10_still_threshold: 100
+      g11_move_threshold: 250
+      g11_still_threshold: 100
+      g12_move_threshold: 250
+      g12_still_threshold: 100
+      g13_move_threshold: 200
+      g13_still_threshold: 100
+      g14_move_threshold: 200
+      g14_still_threshold: 100
+      g15_move_threshold: 200
+      g15_still_threshold: 100
+
+.. note::
+
+    For UART configurations, ``baud_rate``, ``parity`` and ``stop_bits`` **must be** respectively ``115200 or 256000``, ``NONE`` and ``1``.
+    Use of hardware UART pins is critical in order to support the out-of-the-box 256000 or 115200 baud rates of the LD2420 sensor.
+
+Configuration variables:
+************************
+
+The configuration is made up of three parts: The LD2420 component, individual sensors,
+and binary sensors. These may change, this is a early component release based on firmware v1.5.3. 
+*There are clearly undocumented functions in the firmware which are not available at this time.* 
+
+- **presence_time_window** (*Optional*, int): Time in seconds during which presence state will stay present
+  after leaving. Any move or still energy detection within the time window restarts a count down from the set value. 
+  Defaults to ``120s``.
+- **detection_gate_min** (*Optional*, int): Minimum distance for move or still energy detection.
+  Value between gate ``1`` and ``detection_gate_max - 1`` incrementally (each increment equals ``0.75m`` at this time). 
+  Defaults to ``1``.
+- **detection_gate_max** (*Optional*, int): Maximum gate for movement detection.
+  Value between ``1`` to ``15`` each gate detects movement and still energy within ``0.75m`` of range incrementally. 
+  Defaults to ``12``.
+  With maximum distance equates to ``16`` * ``0.75m`` resulting in a possible ``12m`` however accuracy at ``12m`` is not certain.
+  The recommended maximum value is ``12`` * ``0.75`` which results in approximately ``9m``.
+- **g#_move_threshold** (*Optional*, int): Gate threashold level for motion energy detection (Gate # from 0 to 15).
+  Above this level for the considered gate (distance), movement detection will be triggered. 
+  Defaults to ``see table below``.
+- **g#_still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (Gate # from 0 to 15).
+  Above this level for the considered gate (distance), still detection will be triggered. 
+  Defaults to ``see table below``.
+
+.. list-table:: Default values for gate thresholds
+    :widths: 25 25 25
+    :header-rows: 1
+
+    * - Gate:
+      - Default: Move threshold
+      - Default: Still threshold
+    * - 0
+      - 60000
+      - 40000
+    * - 1
+      - 30000
+      - 20000
+    * - 2
+      - 3000
+      - 400
+    * - 3
+      - 2000
+      - 3000
+    * - 4
+      - 500
+      - 300
+    * - 5
+      - 400
+      - 200
+    * - 6
+      - 400
+      - 200
+    * - 7
+      - 300
+      - 150
+    * - 8
+      - 300
+      - 150
+    * - 9
+      - 300
+      - 100
+    * - 10
+      - 300
+      - 100
+    * - 11
+      - 250
+      - 100
+    * - 12
+      - 250
+      - 100
+    * - 13
+      - 200
+      - 100
+    * - 14
+      - 200
+      - 100
+    * - 15
+      - 200
+      - 100
+
+Sensor
+------
+
+The ``ld2420`` sensor allows you to use your :doc:`ld2420` to sense mmWave 
+distance measurements.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: ld2420
+        moving_distance:
+          name : Moving Distance
+
+
+Configuration variables:
+************************
+
+- **moving_distance** (*Optional*): Distance of detected moving target.
+  All options from :ref:`Sensor <config-sensor>`.
+
+Binary Sensor
+-------------
+
+The ``ld2420`` binary sensor allows you to use your :doc:`ld2420` to sence presence.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ld2420
+        has_target:
+          name: Presence
+
+Configuration variables:
+************************
+
+- **has_target** (*Optional*): If true target detect either still or in movement.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
+
+Important Information:
+**********************
+
+Solid objects and noise outside the ``detection_gate_max`` and ``detection_gate_min`` can cause false
+detections or abnormal gate thresholds. For example if the gate max range includes a wall it can potentially
+generate signal reflections. If you see unusual detections confirm the issue by placing the sensor in a
+completely open area. Never place two sensors in each others detection field, this will certainly
+cause false detections. Noise is a problem in many enviroments and future releases of this component
+will have an auto noise floor configuration option once Hi-Link provided full documentation.
+
+See Also
+--------
+
+- Official Datasheet/Manuals: Still in development `email:sales@hlktech.com`_
+- Official web site: `https://www.hlktech.net/`_
+- :ghedit:`Edit`
