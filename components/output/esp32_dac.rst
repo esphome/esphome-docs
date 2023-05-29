@@ -36,6 +36,17 @@ The output level is a percentage of the board supply voltage (VDD_A) - generally
         output: dac_output
         gamma_correct: 1.4
         id: mono_light
+        
+    # Change value using service that can be called from Home Assistant
+    api:
+      services:
+        - service: set_dac_value
+          variables:
+            dac_value: int
+          then:
+            - output.set_level:
+                id: dac_output
+                level: !lambda 'return dac_value / 100.0;'
 
 
 Configuration variables:
