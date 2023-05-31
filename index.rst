@@ -838,6 +838,7 @@ Cookbook
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
+    Share data directly between ESPHome nodes, cookbook/http_request_sensor, connection.svg
     Automatic Updates with Home Assistant, cookbook/homeassistant_upgrade, home-assistant.svg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
