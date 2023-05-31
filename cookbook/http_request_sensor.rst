@@ -32,7 +32,7 @@ On the client nodes we need a :doc:`/components/http_request` with an ``http_req
 Pulling the data
 ****************
 
-To automate the request for data, we will add an interval component requesting the URL pointing to the sensor id for which the state is needed. See `REST API`_ on how to build up the URL for your sensors.
+To automate the request for data, we will add an interval component requesting the URL pointing to the sensor id for which the state is needed. See :ref:`api-rest` on how to build up the URL for your sensors.
 
 .. note::
 
@@ -71,3 +71,11 @@ Server side real sensor.
 
 Client side template sensor.
   
+See Also
+--------
+
+- :doc:`/components/web_server`
+- :doc:`/components/http_request`
+- :ref:`api-rest`
+- :doc:`template`
+- :ghedit:`Edit
