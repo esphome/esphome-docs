@@ -14,7 +14,7 @@ Server part
 Client part
 -----------
 
-On the client nodes we need a :doc:`/components/http_request` with an ``http_request_data`` id set, and a :doc:`template` to make it accessible locally.
+On the client nodes we need a :doc:`/components/http_request` with an ``http_request_data`` id set, and a :doc:`/components/sensor/template` to make it accessible locally.
 
 .. code-block:: yaml
 
@@ -60,14 +60,14 @@ Result
 
 .. figure:: images/server.png
     :align: center
-    :width: 70.0%
+    :width: 90.0%
 
 Server side real sensor.
 
 
 .. figure:: images/clients.png
     :align: center
-    :width: 70.0%
+    :width: 90.0%
 
 Client side template sensor.
   
@@ -77,5 +77,5 @@ See Also
 - :doc:`/components/web_server`
 - :doc:`/components/http_request`
 - :ref:`api-rest`
-- :doc:`template`
+- :doc:`/components/sensor/template`
 - :ghedit:`Edit`
