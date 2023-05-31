@@ -54,9 +54,9 @@ In the example below we pull the value of a sensor, and after parsing the result
                       id(id_of_the_template_sensor).publish_state(root["value"]);
                   });
 
-                  
+                 
 Result
-======
+------
 
 .. figure:: images/server.png
     :align: center
@@ -70,7 +70,8 @@ Server side real sensor.
     :width: 90.0%
 
 Client side template sensor.
-  
+
+
 See Also
 --------
 
