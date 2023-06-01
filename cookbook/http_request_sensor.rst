@@ -96,11 +96,19 @@ Add an ``Authorization`` header to your ``http_request.get`` action. The simples
 
 .. code-block:: yaml
 
+    interval:
+      - interval: 60s
+        then:
           - http_request.get: 
               url: http://ip or nodename.local/sensor/ID_of_the_sensor
               headers:
                 Authorization: 'Digest username="admin", realm="asyncesp", nonce="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", uri="/sensor/ID_of_the_sensor", response="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", opaque="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", qop=auth, nc=xxxxxxxx, cnonce="xxxxxxxxxxxxxxxx"'
-
+              on_response:
+                then:
+                  - lambda: |-
+                      json::parse_json(id(http_request_id).get_string(), [](JsonObject root) {
+                          id(template_sensor_id).publish_state(root["value"]);
+                      });
 
 See Also
 --------
