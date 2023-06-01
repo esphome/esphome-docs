@@ -8,7 +8,7 @@ Web Server Component
 
 The ``web_server`` component creates a simple web server on the node that can be accessed
 through any browser and a simple :ref:`api-rest`. Please note that enabling this component
-will take up *a lot* of memory and can lead to problems, especially on the ESP8266.
+will take up *a lot* of memory and may decrease stability, especially on ESP8266.
 
 To navigate to the web server in your browser, either use the IP address of the node or
 use ``<node_name>.local/`` (note the trailing forward slash) via mDNS.
@@ -48,7 +48,7 @@ Configuration variables:
 - **js_include** (*Optional*, local file): Path to local file to be included in web server index page.
   Contents of this file will be served as ``/0.js`` and used as JS script by internal webserver.
   Useful when building device without internet access, where you want to use built-in AP and webserver.
-- **auth** (*Optional*): Enables basic authentication with username and password.
+- **auth** (*Optional*): Enables *Digest* authentication with username and password.
 
   - **username** (**Required**, string): The username to use for authentication.
   - **password** (**Required**, string): The password to check for authentication.
@@ -62,7 +62,7 @@ Configuration variables:
 
 .. note::
 
-    Example web_server configuration using HTTP authentication:
+    Example ``web_server`` configuration using HTTP authentication:
 
     .. code-block:: yaml
 
@@ -70,10 +70,10 @@ Configuration variables:
         web_server:
           port: 80
           auth:
-            username: admin
+            username: !secret web_server_username
             password: !secret web_server_password
 
-    Example web_server configuration using version 1 (previous behaviour):
+    Example ``web_server`` configuration using version 1:
 
     .. code-block:: yaml
 
@@ -82,7 +82,7 @@ Configuration variables:
           port: 80
           version: 1
 
-    Example web_server configuration using version 2  - no internet/intranet required:
+    Example ``web_server`` configuration using version 2  - no internet/intranet required on the client:
 
     .. code-block:: yaml
 
@@ -91,21 +91,20 @@ Configuration variables:
           local: true
 
 
-
     All of the assets are inlined, compressed and served from flash
 
-Here be Dragons
-===============
+Advanced usage
+==============
 
 The following assume copies of the files with local paths - which are config dependant.
 
-Example web_server version 1 configuration with CSS and JS included from esphome-docs.
+Example ``web_server`` version 1 configuration with CSS and JS included from esphome-docs.
 CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
 Force to turn off OTA function because the missing authentication.
 
 .. code-block:: yaml
 
-    # Example configuration entry V1
+    # Example configuration entry v1
     web_server:
       port: 80
       version: 1
@@ -115,14 +114,14 @@ Force to turn off OTA function because the missing authentication.
       js_include: "../../../esphome-docs/_static/webserver-v1.min.js"
       js_url: ""
 
-Example web_server version 2 configuration with JS included from a local file.
+Example ``web_server`` version 2 configuration with JS included from a local file.
 
 CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
 V2 embeds the css within the js file so is not required, however you could include your own CSS.
 
 .. code-block:: yaml
 
-    # Example configuration entry V2
+    # Example configuration entry v2
     web_server:
       js_include: "./v2/www.js"
       js_url: ""
