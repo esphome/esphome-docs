@@ -11,18 +11,16 @@ through any browser and a simple :ref:`api-rest`. Please note that enabling this
 will take up *a lot* of memory and may decrease stability, especially on ESP8266.
 
 .. figure:: /components/images/web_server.png
-
     :align: center
     :width: 86.0%
-    
+
     Web server version 1
 
 
 .. figure:: /components/images/web_server-v2.png
-
     :align: center
     :width: 86.0%
-    
+
     Web server version 2
 
 
