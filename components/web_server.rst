@@ -7,7 +7,7 @@ Web Server Component
     :keywords: web server, http, REST API
 
 The ``web_server`` component creates a simple web server on the node that can be accessed
-through any browser and a simple `REST API`_. Please note that enabling this component
+through any browser and a simple :ref:`api-rest`. Please note that enabling this component
 will take up *a lot* of memory and can lead to problems, especially on the ESP8266.
 
 To navigate to the web server in your browser, either use the IP address of the node or
@@ -16,8 +16,6 @@ use ``<node_name>.local/`` (note the trailing forward slash) via mDNS.
 To conserve flash size, the CSS and JS files used on the root page to show a simple user
 interface are hosted by esphome.io. If you want to use your own service, use the
 ``css_url`` and ``js_url`` options in your configuration.
-
-.. _REST API: /web-api/index.html
 
 .. figure:: /components/images/web_server.png
 
@@ -137,6 +135,8 @@ Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
 See Also
 --------
 
+- :ref:`api-event-source`
+- :ref:`api-rest`
 - :apiref:`web_server/web_server.h`
 - :doc:`prometheus`
 - :ghedit:`Edit`
