@@ -10,22 +10,21 @@ The ``web_server`` component creates a simple web server on the node that can be
 through any browser and a simple :ref:`api-rest`. Please note that enabling this component
 will take up *a lot* of memory and may decrease stability, especially on ESP8266.
 
+.. figure:: /components/images/web_server.png
+    :align: center
+    :width: 60.0%
+    
+    Web server version 1
+
+.. figure:: /components/images/web_server-v2.png
+    :align: center
+    :width: 60.0%
+    
+    Web server version 2
+
 To navigate to the web server in your browser, either use the IP address of the node or
 use ``<node_name>.local/`` (note the trailing forward slash) via mDNS.
 
-To conserve flash size, the CSS and JS files used on the root page to show a simple user
-interface are hosted by esphome.io. If you want to use your own service, use the
-``css_url`` and ``js_url`` options in your configuration.
-
-.. figure:: /components/images/web_server.png
-
-    Example web server frontend (Version 1)
-
-Version 2:
-----------
-.. figure:: /components/images/web_server-v2.png
-
-    Web Components (Version 2)
 
 .. code-block:: yaml
 
@@ -60,41 +59,44 @@ Configuration variables:
 - **local** (*Optional*, boolean): Include supporting javascript locally allowing it to work without internet access. Defaults to ``false``.
 - **version** (*Optional*, string): ``1`` or ``2``. Version 1 displays as a table. Version 2 uses web components and has more functionality. Defaults to ``2``.
 
-.. note::
+To conserve flash size, the CSS and JS files used on the root page to show a simple user
+interface are hosted by esphome.io. If you want to use your own service, use the
+``css_url`` and ``js_url`` options in your configuration.
 
-    Example ``web_server`` configuration using HTTP authentication:
+Example configurations:
+-----------------------
 
-    .. code-block:: yaml
+Enabling HTTP authentication:
 
-        # Example configuration entry
-        web_server:
-          port: 80
-          auth:
-            username: !secret web_server_username
-            password: !secret web_server_password
+.. code-block:: yaml
 
-    Example ``web_server`` configuration using version 1:
+    # Example configuration entry
+    web_server:
+      port: 80
+      auth:
+        username: !secret web_server_username
+        password: !secret web_server_password
 
-    .. code-block:: yaml
+Use version 1 user interface:
 
-        # Example configuration entry
-        web_server:
-          port: 80
-          version: 1
+.. code-block:: yaml
 
-    Example ``web_server`` configuration using version 2  - no internet/intranet required on the client:
+    # Example configuration entry
+    web_server:
+      port: 80
+      version: 1
 
-    .. code-block:: yaml
+No internet/intranet required on the clients (all assets are inlined, compressed and served from flash):
 
-        # Example configuration entry
-        web_server:
-          local: true
+.. code-block:: yaml
 
+    # Example configuration entry
+    web_server:
+      local: true
 
-    All of the assets are inlined, compressed and served from flash
 
 Advanced usage
-==============
+--------------
 
 The following assume copies of the files with local paths - which are config dependant.
 
@@ -104,7 +106,6 @@ Force to turn off OTA function because the missing authentication.
 
 .. code-block:: yaml
 
-    # Example configuration entry v1
     web_server:
       port: 80
       version: 1
@@ -115,7 +116,6 @@ Force to turn off OTA function because the missing authentication.
       js_url: ""
 
 Example ``web_server`` version 2 configuration with JS included from a local file.
-
 CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
 V2 embeds the css within the js file so is not required, however you could include your own CSS.
 
@@ -126,7 +126,6 @@ V2 embeds the css within the js file so is not required, however you could inclu
       js_include: "./v2/www.js"
       js_url: ""
       version: 2
-
 
 Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
 
