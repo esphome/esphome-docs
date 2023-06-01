@@ -92,7 +92,7 @@ Add authentication to the ``web_server`` component on the primary node:
 Client part
 ***********
 
-Add an ``Authorization`` header to your ``http_request.get`` action. The simplest way to determine a working authorization header is to visit the password-protected REST URL of the primary node using a browser while watching the network traffic in the browser's developer tools. If you look at the headers of the request sent by the browser, you'll find the ``Authorization`` header it sends to the node, and you can copy it for your own use:
+Add an ``Authorization`` header to your ``http_request.get`` action. The simplest way to determine a working authorization header is to visit the password-protected REST URL of the primary node using a browser while watching the network traffic in the browser's developer tools. If you look at the headers of the request sent by the browser, you'll find the ``Authorization`` header it sends to the node, and you can copy it for your own replay:
 
 .. code-block:: yaml
 
