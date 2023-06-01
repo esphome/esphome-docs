@@ -17,7 +17,7 @@ Any GPS module that uses the standardized NMEA communication protocol will work.
 .. _Adafruit: https://www.adafruit.com/product/746
 
 For this integration to work you need to have set up a :ref:`UART bus <uart>`
-in your configuration - only the RX pin should be necessary.
+in your configuration - only the TX pin on the GPS board should be necessary.
 
 .. code-block:: yaml
 
