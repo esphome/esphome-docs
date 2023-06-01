@@ -12,15 +12,17 @@ will take up *a lot* of memory and may decrease stability, especially on ESP8266
 
 .. figure:: /components/images/web_server.png
     :align: center
-    :width: 60.0%
+    :width: 86.0%
     
     Web server version 1
 
+
 .. figure:: /components/images/web_server-v2.png
     :align: center
-    :width: 60.0%
+    :width: 86.0%
     
     Web server version 2
+
 
 To navigate to the web server in your browser, either use the IP address of the node or
 use ``<node_name>.local/`` (note the trailing forward slash) via mDNS.
@@ -47,7 +49,7 @@ Configuration variables:
 - **js_include** (*Optional*, local file): Path to local file to be included in web server index page.
   Contents of this file will be served as ``/0.js`` and used as JS script by internal webserver.
   Useful when building device without internet access, where you want to use built-in AP and webserver.
-- **auth** (*Optional*): Enables *Digest* authentication with username and password.
+- **auth** (*Optional*): Enables a simple *Digest* authentication with username and password.
 
   - **username** (**Required**, string): The username to use for authentication.
   - **password** (**Required**, string): The password to check for authentication.
