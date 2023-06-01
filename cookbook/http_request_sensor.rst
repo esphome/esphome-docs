@@ -83,6 +83,8 @@ Add authentication to the ``web_server`` component on the primary node:
 
 .. code-block:: yaml
 
+    web_server:
+      port: 80
       auth:
         username: !secret admin
         password: !secret web_server_password
@@ -94,6 +96,8 @@ Add an ``Authorization`` header to your ``http_request.get`` action. The simples
 
 .. code-block:: yaml
 
+          - http_request.get: 
+              url: http://ip or nodename.local/sensor/ID_of_the_sensor
               headers:
                 Authorization: 'Digest username="admin", realm="asyncesp", nonce="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", uri="/sensor/ID_of_the_sensor", response="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", opaque="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", qop=auth, nc=xxxxxxxx, cnonce="xxxxxxxxxxxxxxxx"'
 
