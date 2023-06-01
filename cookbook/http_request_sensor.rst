@@ -14,7 +14,7 @@ Setting up a webserver using the  :doc:`/components/web_server` on the primary n
 
     web_server:
       port: 80
-  
+
 Client part
 -----------
 
@@ -45,7 +45,7 @@ In the example below we request the value of a sensor from the server node, and 
       - interval: 60s
         then:
           - http_request.get: 
-              url: http://address.of.server.node/sensor/ID.of.the.sensor
+              url: http://ip or nodename.local/sensor/ID_of_the_sensor
               on_response:
                 then:
                   - lambda: |-
@@ -70,6 +70,45 @@ Result
 
     Client side template sensor
 
+
+Increasing security
+-------------------
+
+For security reasons, it's always recommended to protect the web interface of the nodes with authentication, even if you're using them on your local network.
+
+Server part
+***********
+
+Add authentication to the ``web_server`` component on the primary node:
+
+.. code-block:: yaml
+
+    web_server:
+      port: 80
+      auth:
+        username: !secret admin
+        password: !secret web_server_password
+
+Client part
+***********
+
+Add an ``Authorization`` header to your ``http_request.get`` action. The simplest way to determine a working authorization header is to visit the password-protected REST URL of the primary node using a browser while watching the network traffic in the browser's developer tools. If you look at the headers of the request sent by the browser, you'll find the ``Authorization`` header it sends to the node, and you can copy it for your own use:
+
+.. code-block:: yaml
+
+    interval:
+      - interval: 60s
+        then:
+          - http_request.get: 
+              url: http://ip or nodename.local/sensor/ID_of_the_sensor
+              headers:
+                Authorization: 'Digest username="admin", realm="asyncesp", nonce="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", uri="/sensor/ID_of_the_sensor", response="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", opaque="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", qop=auth, nc=xxxxxxxx, cnonce="xxxxxxxxxxxxxxxx"'
+              on_response:
+                then:
+                  - lambda: |-
+                      json::parse_json(id(http_request_id).get_string(), [](JsonObject root) {
+                          id(template_sensor_id).publish_state(root["value"]);
+                      });
 
 See Also
 --------
