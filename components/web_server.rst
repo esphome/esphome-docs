@@ -48,7 +48,7 @@ Configuration variables:
 - **js_include** (*Optional*, local file): Path to local file to be included in web server index page.
   Contents of this file will be served as ``/0.js`` and used as JS script by internal webserver.
   Useful when building device without internet access, where you want to use built-in AP and webserver.
-- **auth** (*Optional*): Enables basic authentication with username and password.
+- **auth** (*Optional*): Enables _Digest_ authentication with username and password.
 
   - **username** (**Required**, string): The username to use for authentication.
   - **password** (**Required**, string): The password to check for authentication.
@@ -70,7 +70,7 @@ Configuration variables:
         web_server:
           port: 80
           auth:
-            username: admin
+            username: !secret web_server_username
             password: !secret web_server_password
 
     Example web_server configuration using version 1 (previous behaviour):
@@ -89,7 +89,6 @@ Configuration variables:
         # Example configuration entry
         web_server:
           local: true
-
 
 
     All of the assets are inlined, compressed and served from flash
