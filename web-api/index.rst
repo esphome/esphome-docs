@@ -305,5 +305,7 @@ For example POST ``/number/desired_delay/set?value=24`` will set the number to 2
 See Also
 --------
 
+- :doc:`/components/web_server`
+- :doc:`/components/prometheus`
 - :doc:`/components/http_request`
 - :ghedit:`Edit`
