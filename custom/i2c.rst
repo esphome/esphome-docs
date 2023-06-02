@@ -5,7 +5,7 @@ Lots of devices communicate using the I²C protocol. If you want to integrate
 a device into ESPHome that uses this protocol you can pretty much use almost
 all Arduino-based code because the ``Wire`` library is also available in ESPHome.
 
-The following example writes a constant value to a slave register inside an un-timed loop:
+The following firmware example writes a constant value to a slave register inside an un-timed loop:
 
 .. code-block:: cpp
 
@@ -85,7 +85,7 @@ The ``Component`` class has been replaced with ``PollingComponent`` and the free
 
 Dashboard Interfacing: I²C Read
 --------------------------------
-To read and display data from a sensor that is slave on the I²C bus, it is instantiated as explained in :doc:`Step 2 </components/sensor/custom>`. In the  yaml file below, three register values are made available to the dashboard:
+To read and display data from a sensor that is slave on the I²C bus, it is instantiated as explained in :doc:`Step 2 </components/sensor/custom>`. In the  yaml file below, three register values on the slave are made available to the dashboard:
 
 .. code-block:: yaml
 
