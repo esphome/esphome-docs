@@ -5,8 +5,7 @@ Lots of devices communicate using the I²C protocol. If you want to integrate
 a device into ESPHome that uses this protocol you can pretty much use almost
 all Arduino-based code because the ``Wire`` library is also available in ESPHome.
 
-See the other custom component guides for how to register components and make
-them publish values.
+The following example writes a constant value to a slave register inside an un-timed loop:
 
 .. code-block:: cpp
 
@@ -15,7 +14,7 @@ them publish values.
     class MyCustomComponent : public Component {
      public:
       void setup() override {
-        // Initialize the device here. Usually Wire.begin() will be called in here,
+        // Initialize the device. Usually Wire.begin() will be called in here,
         // though that call is unnecessary if you have an 'i2c:' entry in your config
 
         Wire.begin();
@@ -30,9 +29,9 @@ them publish values.
     };
 
 
-I²C Write
----------
-It may be useful to write to a register via I²C using a numerical input. For example, the following yaml code snippet captures a user-supplied numerical input in the range 1--255 from the dashboard:
+Dashboard Interfacing: I²C Write
+-------------------------------
+It may be useful to write to the slave register via I²C using a numerical input from the dashboard. For example, the following yaml code snippet captures a user-supplied numerical input in the range 1--255:
 
 .. code-block:: yaml
 
