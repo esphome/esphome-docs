@@ -85,6 +85,8 @@ The ``Component`` class has been replaced with ``PollingComponent`` and the free
 
 Dashboard Interfacing: I²C Read
 --------------------------------
+To read and display data from a sensor that is slave on the I²C bus, it is instantiated as explained in :doc:`Step 2 </components/sensor/custom>`. In the  yaml file below, three register values are made available to the dashboard:
+
 .. code-block:: yaml
 
     sensor:
@@ -99,7 +101,7 @@ Dashboard Interfacing: I²C Read
     - name: "Data 2 Display"
     - name: "Data 3 Display"
 
-test
+The timed polling loop is modified to periodically retrieve three sequential data bytes beginning at ``REGISTER_ADDRESS``. Three pointers are defined to publish the data bytes:
 
 .. code-block:: cpp
 
