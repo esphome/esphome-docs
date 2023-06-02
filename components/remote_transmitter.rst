@@ -122,7 +122,7 @@ This :ref:`action <config-action>` sends a CanalSat infrared remote code to a re
 Configuration variables:
 
 - **device** (**Required**, int): The device to send to, see dumper output for more details.
-- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **address** (*Optional*, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
@@ -149,7 +149,7 @@ This :ref:`action <config-action>` sends a CanalSatLD infrared remote code to a 
 Configuration variables:
 
 - **device** (**Required**, int): The device to send to, see dumper output for more details.
-- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **address** (*Optional*, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
@@ -191,6 +191,28 @@ Configuration variables:
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 You can find a list of commands in the `LIRC project <https://sourceforge.net/p/lirc-remotes/code/ci/master/tree/remotes/dishnet/Dish_Network.lircd.conf>`__.
+
+.. _remote_transmitter-transmit_drayton:
+
+``remote_transmitter.transmit_drayton`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends a Draton Digistat RF remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_drayton:
+          address: '0x6180'
+          channel: '0x12'
+          command: '0x02'      
+
+Configuration variables:
+
+- **address** (**Required**, int): The 16-bit ID to send, see dumper output for more info.
+- **channel** (**Required**, int): The switch/channel to send, between 0 and 127 inclusive.
+- **command** (**Required**, int): The command to send, between 0 and 63 inclusive.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_jvc:
 
@@ -261,7 +283,7 @@ This :ref:`action <config-action>` sends a 40-bit Midea code to a remote transmi
     on_...:
       - remote_transmitter.transmit_midea:
           code: [0xA2, 0x08, 0xFF, 0xFF, 0xFF]
-    
+
     on_...:
       - remote_transmitter.transmit_midea:
           code: !lambda |-
