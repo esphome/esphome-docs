@@ -30,7 +30,7 @@ The following example writes a constant value to a slave register inside an un-t
 
 
 Dashboard Interfacing: I²C Write
--------------------------------
+--------------------------------
 It may be useful to write to the slave register via I²C using a numerical input from the dashboard. For example, the following yaml code snippet captures a user-supplied numerical input in the range 1--255:
 
 .. code-block:: yaml
@@ -78,13 +78,67 @@ We want to write this number to a ``REGISTER_ADDRESS`` on the slave device via I
             Wire.endTransmission();
             temp = register_value; //Swap in the new value
             }
-        }
+            }
     };
         
 The ``Component`` class has been replaced with ``PollingComponent`` and the free-running ``loop()`` is changed to the  ``update()`` method with period set by ``POLLING_PERIOD``. The numerical value from the dashboard is accessed with its ``id`` tag and its state is set to the byte variable that we call ``register_value``.  To prevent an I²C write on every iteration, the contents of the register are stored in ``temp`` and checked for a change. Configuring the hardware with ``get_setup_priority()`` is explained in :doc:`Step 1 </components/sensor/custom>`.
 
+Dashboard Interfacing: I²C Read
+--------------------------------
+.. code-block:: yaml
 
+    sensor:
+    - platform: custom
+    lambda: |-
+        auto my_sensor = new MyCustomComponent();
+        App.register_component(my_sensor);
+        return {my_sensor->register_value_1,my_sensor->register_value_2,my_sensor->register_value_3};
 
+    sensors:
+    - name: "Data 1 Display" 
+    - name: "Data 2 Display"
+    - name: "Data 3 Display"
+
+test
+
+.. code-block:: cpp
+
+    #include "esphome.h"
+
+    const uint16_t I2C_ADDRESS = 0x21;
+    const uint16_t REGISTER_ADDRESS = 0x78;
+    const uint16_t POLLING_PERIOD = 15000; //milliseconds
+    static char Data_array[3];
+
+    class MyCustomComponent : public PollingComponent {
+        public:
+        Sensor *register_value_1 = new Sensor();
+        Sensor *register_value_2 = new Sensor();
+        Sensor *register_value_3 = new Sensor();
+    MyCustomComponent() : PollingComponent(update_interval) {}  
+    float get_setup_priority() const override { return esphome::setup_priority::BUS; } //Access I2C bus
+
+    void setup() override {
+    //Add code here as needed
+    Wire.begin();
+    }
+
+    void update() override { 
+    // Read 3 bytes in sequence starting at REGISTER_ADDRESS
+        Wire.beginTransmission(I2C_ADDRESS);
+        Wire.write(REGISTER_ADDRESS);
+        Wire.endTransmission(); // End write; starting register address is now specified
+        Wire.requestFrom(I2C_ADDRESS, 3); 
+        //Could also do this in a loop
+        Data_array[0]=Wire.read(); 
+        Data_array[1]=Wire.read(); 
+        Data_array[2]=Wire.read();       
+        //Publish the sensor data on the Home Assistant GUI
+        register_value_1->publish_state(Data_array[0]);
+        register_value_2->publish_state(Data_array[1]);
+        register_value_3->publish_state(Data_array[2]);
+        }
+      };
 
 See Also
 --------
