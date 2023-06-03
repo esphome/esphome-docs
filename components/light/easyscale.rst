@@ -8,6 +8,7 @@ EasyScale Light
 The ``easyscale`` light platform creates a a simple brightness-only light using a supported Texas Instruments device.
 
 .. note:: 
+    
     Tested devices: TPS61165
 
 .. code-block:: yaml
