@@ -465,6 +465,7 @@ Miscellaneous
 
     Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
+    ESP32 BT Classic Presence, components/binary_sensor/bt_classic_presence, bluetooth.svg
     Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     LD2410, components/sensor/ld2410, ld2410.jpg
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
@@ -772,6 +773,7 @@ Miscellaneous Components
     ESP32 BLE Client, components/ble_client, bluetooth.svg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
+    ESP32 BT Classic, components/esp32_bt_classic, bluetooth.svg
 
     ESP32 Ethernet, components/ethernet, ethernet.svg
     ESP32 Camera, components/esp32_camera, camera.svg
