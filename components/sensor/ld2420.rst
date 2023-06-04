@@ -21,6 +21,55 @@ Firmware v1.5.3 and newer default to 115200 baud, 256000 baud on all older firmw
 
     HLK-LD2420 Low power motion and presence sensor.
 
+Pinouts
+-------
+
+.. list-table:: Firmware 1.5.2 and older
+    :widths: 25 25 25
+    :header-rows: 1
+
+    * - Pin#
+      - Name
+      - Function
+    * - 1
+      - 3v3
+      - VCC
+    * - 2
+      - GND
+      - GND
+    * - 3
+      - OT1
+      - Presence Signal Output
+    * - 4
+      - RX
+      - Serial Rx (to ESP Tx)
+    * - 5
+      - OT2
+      - Serial Tx (to ESP Rx)
+
+.. list-table:: Firmware 1.5.3 and newer
+    :widths: 25 25 25
+    :header-rows: 1
+
+    * - Pin#
+      - Name
+      - Function
+    * - 1
+      - 3v3
+      - VCC
+    * - 2
+      - GND
+      - GND
+    * - 3
+      - OT1
+      - Serial Tx (to ESP Rx)
+    * - 4
+      - RX
+      - Serial Rx (to ESP Tx)
+    * - 5
+      - OT2
+      - Presence Signal Output
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -42,23 +91,23 @@ Firmware v1.5.3 and newer default to 115200 baud, 256000 baud on all older firmw
       g0_still_threshold: 40000
       g1_move_threshold: 30000
       g1_still_threshold: 20000
-      g2_move_threshold: 3000
-      g2_still_threshold: 400
-      g3_move_threshold: 2000
-      g3_still_threshold: 3000
-      g4_move_threshold: 500
-      g4_still_threshold: 300
-      g5_move_threshold: 400
+      g2_move_threshold: 400
+      g2_still_threshold: 200
+      g3_move_threshold: 250
+      g3_still_threshold: 200
+      g4_move_threshold: 250
+      g4_still_threshold: 200
+      g5_move_threshold: 250
       g5_still_threshold: 200
-      g6_move_threshold: 400
+      g6_move_threshold: 250
       g6_still_threshold: 200
-      g7_move_threshold: 300
+      g7_move_threshold: 250
       g7_still_threshold: 150
-      g8_move_threshold: 300
+      g8_move_threshold: 250
       g8_still_threshold: 150
-      g9_move_threshold: 300
+      g9_move_threshold: 250
       g9_still_threshold: 100
-      g10_move_threshold: 300
+      g10_move_threshold: 250
       g10_still_threshold: 100
       g11_move_threshold: 250
       g11_still_threshold: 100
@@ -115,35 +164,35 @@ and binary sensors. These may change, this is a early component release based on
       - 30000
       - 20000
     * - 2
-      - 3000
       - 400
+      - 200
     * - 3
-      - 2000
-      - 3000
+      - 300
+      - 250
     * - 4
-      - 500
-      - 300
+      - 250
+      - 150
     * - 5
-      - 400
-      - 200
+      - 250
+      - 150
     * - 6
-      - 400
-      - 200
+      - 250
+      - 150
     * - 7
-      - 300
+      - 250
       - 150
     * - 8
       - 300
       - 150
     * - 9
-      - 300
-      - 100
+      - 250
+      - 150
     * - 10
-      - 300
-      - 100
+      - 250
+      - 150
     * - 11
       - 250
-      - 100
+      - 150
     * - 12
       - 250
       - 100
