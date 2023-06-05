@@ -263,7 +263,7 @@ Configuration variables:
   - **fan_high** (*Required*, string)
   - Options are ``fan1``, ``fan2``, ``fan3``, ``fan4``, ``fan5``
 - **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Default is ``middle``. Options are: ``left``, ``middle-left``, ``middle``, ``middle-right``, ``right``, ``auto``
-- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Default is ``middle``. Options are: ``down``, ``mdown``, ``middle``, ``mup``, ``up``, ``auto``
+- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Default is ``middle``. Options are: ``down``, ``middle-down``, ``middle``, ``middle-up``, ``up``, ``auto``
 
 .. note::
 
