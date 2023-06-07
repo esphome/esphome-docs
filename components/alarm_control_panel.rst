@@ -34,6 +34,10 @@ Configuration:
 
 - **on_state** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the alarm changes state. See :ref:`alarm_control_panel_on_state_trigger`.
+- **on_triggered** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm triggers. See :ref:`alarm_control_panel_on_triggered_trigger`.
+- **on_cleared** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm clears. See :ref:`alarm_control_panel_on_cleared_trigger`.
 
 .. note::
 
