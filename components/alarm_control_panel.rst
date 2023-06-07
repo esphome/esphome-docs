@@ -70,7 +70,7 @@ This action arms the alarm in away mode. The ``code`` is required when *requires
 
 .. _alarm_control_panel_arm_home_action:
 
-``arm_away`` Action
+``arm_home`` Action
 *******************
 
 This action arms the alarm in home mode. The ``code`` is required when *requires_code_to_arm* is *true*.
@@ -99,6 +99,29 @@ This action disarms the alarm. The ``code`` is required when *codes* is not empt
             code: "1234"
 
 .. _alarm_control_panel_is_armed_condition:
+
+``pending`` Action
+*******************
+
+This action puts the alarm in pending state (the state before triggered after *delay_time*).
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - alarm_control_panel.pending: alarm
+
+``triggered`` Action
+*******************
+
+This action puts the alarm in triggered state.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - alarm_control_panel.triggered: alarm
+
 
 ``is_armed`` Condition
 **********************
