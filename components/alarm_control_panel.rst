@@ -98,7 +98,7 @@ This action disarms the alarm. The ``code`` is required when *codes* is not empt
             id: alarm
             code: "1234"
 
-.. _alarm_control_panel_is_armed_condition:
+.. _alarm_control_panel_pending_action:
 
 ``pending`` Action
 *******************
@@ -111,6 +111,8 @@ This action puts the alarm in pending state (the state before triggered after *d
       then:
         - alarm_control_panel.pending: alarm
 
+.. _alarm_control_panel_triggered_action:
+
 ``triggered`` Action
 *******************
 
@@ -122,6 +124,7 @@ This action puts the alarm in triggered state.
       then:
         - alarm_control_panel.triggered: alarm
 
+.. _alarm_control_panel_is_armed_condition:
 
 ``is_armed`` Condition
 **********************
