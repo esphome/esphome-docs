@@ -11,3 +11,6 @@ venv
 .vscode
 *.DS_Store
 /.idea/
+
+.cproject
+.project

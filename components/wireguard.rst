@@ -10,7 +10,8 @@ WireGuard Component
 
 |wireguard|_ is an extremely simple yet fast and modern VPN that utilizes
 state-of-the-art cryptography. This component uses a **custom**
-implementation not developed by original authors.
+implementation not developed by original authors and currently
+available for **ESP32 platform only**.
 
   Please note that *"WireGuard" and the "WireGuard" logo are
   registered trademarks of Jason A. Donenfeld.* See
@@ -22,9 +23,11 @@ implementation not developed by original authors.
     This component requires the system clock to be synchronized.
 
     See :doc:`time/index` to setup a time source
-    and **do not use** ``homeassistant`` time platform if
+    and **do not use** ``homeassistant`` time-platform if
     Home Assistant is on the remote peer because the time
     synchronization is a prerequisite to establish the VPN link.
+
+    The :doc:`time/sntp` is a valid time-platform choice.
 
 A VPN tunnel can be created to a **single** remote peer
 adding the following to your configuration:
@@ -61,8 +64,16 @@ It is recommended to use *secrets* at least for private and pre-shared keys:
       private_key: !secret wg_privkey
       peer_preshared_key: !secret wg_shrdkey
 
+.. warning::
+
+    To successfully use this component you must have |wireguard| also
+    on your remote host (already installed and ready to accept connections).
+    If you don't have it please read the section :ref:`wireguard-installation`.
+
 Configuration variables
 ------------------------
+
+.. _wireguard-address:
 
 - **address** (**Required**, IPv4 address): The local VPN address of the device.
 
@@ -170,6 +181,42 @@ Let's explain with some examples:
     through the VPN link any traffic. It is like having set the wireguard
     interface as the system default.
 
+.. _wireguard-installation:
+
+Remote peer setup
+-----------------
+
+There are many different ways for installing and configuring
+|wireguard| on servers, home servers or general host. It depends
+on the platform and on the operating system in use.
+
+You can start reading the `official documentation <https://www.wireguard.com/>`__ to
+have an overview of what it is and on how to install it *system wide*
+for common operating systems. Or you can jump directly to the
+`Home Assistant Community Add-on: WireGuard
+<https://community.home-assistant.io/t/home-assistant-community-add-on-wireguard/134662>`__
+if you intend to install it through Home Assistant.
+
+Once everything is configured you should be able to add the device
+to Home Assistant. See next section.
+
+Connecting to remote Home Assistant
+-----------------------------------
+
+The ESP device should interact with remote Home Assistant, across the VPN link,
+as it is on the local network but probably the initial *auto discovery*
+will not work and you have to add the device **manually**.
+
+These are the steps:
+
+1. go to the Home Assistant "Integrations" page
+2. click on the "Add Integration" button (bottom right corner)
+3. select "ESPHome" from the list
+4. insert the configured IP :ref:`address <wireguard-address>`
+   as the host name
+
+The device should now be linked to your remote Home Assistant.
+
 See Also
 --------
 
@@ -177,4 +224,8 @@ See Also
 - :doc:`sensor/wireguard_handshake`
 - :doc:`time/index`
 - :doc:`time/sntp`
+- |wireguard|_ official website
+- `Home Assistant Community Add-on: WireGuard
+  <https://community.home-assistant.io/t/home-assistant-community-add-on-wireguard/134662>`__
+  (also on `GitHub <https://github.com/hassio-addons/addon-wireguard>`__)
 - :ghedit:`Edit`
