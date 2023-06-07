@@ -92,11 +92,35 @@
   const search = async () => {
     Search._query = new URLSearchParams(window.location.search).get("q");
     document.querySelector("input[name=q]").value = Search._query;
+    const gooogleLink =
+      "https://google.com/search?q=" +
+      encodeURIComponent(Search._query + " site:esphome.io");
+    const footerHtml = `
+      <a href="${gooogleLink}" class="search-footer" target="_blank">
+        Google it
+      </a>
+    `;
 
-    const resp = await fetch("https://esphome-search.ktibow.workers.dev/", {
-      method: "POST",
-      body: JSON.stringify({ query: Search._query }),
-    });
+    let resp;
+    try {
+      resp = await fetch("https://esphome-search.ktibow.workers.dev/", {
+        method: "POST",
+        body: JSON.stringify({ query: Search._query }),
+      });
+    } catch (e) {
+      console.error("failed to fetch", e);
+      document.querySelectorAll(".loader").forEach(e => e.style.display = "none");
+      document.querySelector("#search-results").innerHTML =
+        "<p>Failed to get embedding for search.</p>" + footerHtml;
+      return;
+    }
+    if (!resp.ok) {
+      console.error("resp not ok", resp);
+      document.querySelectorAll(".loader").forEach(e => e.style.display = "none");
+      document.querySelector("#search-results").innerHTML =
+        "<p>Failed to get embedding for search.</p>" + footerHtml;
+      return;
+    }
     const data = await resp.json();
     Search._embedding = data.data[0].embedding;
 
@@ -109,14 +133,6 @@
     articles.sort((a, b) => b.distance - a.distance);
 
     const articleHtml = articles.map(articleCard).slice(0, 10).join("\n");
-    const gooogleLink =
-      "https://google.com/search?q=" +
-      encodeURIComponent(Search._query + " site:esphome.io");
-    const footerHtml = `
-      <a href="${gooogleLink}" class="search-footer" target="_blank">
-        Google it
-      </a>
-    `;
     document.querySelector("#search-results").innerHTML =
       articleHtml + footerHtml;
     document.querySelector("#search-results").style.animation = "scrollIn 1s";
