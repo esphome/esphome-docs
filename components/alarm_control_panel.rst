@@ -101,7 +101,7 @@ This action disarms the alarm. The ``code`` is required when *codes* is not empt
 .. _alarm_control_panel_pending_action:
 
 ``pending`` Action
-*******************
+******************
 
 This action puts the alarm in pending state (the state before triggered after *delay_time*).
 
@@ -114,7 +114,7 @@ This action puts the alarm in pending state (the state before triggered after *d
 .. _alarm_control_panel_triggered_action:
 
 ``triggered`` Action
-*******************
+********************
 
 This action puts the alarm in triggered state.
 
