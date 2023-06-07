@@ -27,13 +27,19 @@ Configuration:
 - **arming_time** (*Optional*, :ref:`config-time`): The exit delay before the alarm is armed.
 - **delay_time** (*Optional*, :ref:`config-time`): The entry delay before the alarm is triggered.
 - **trigger_time** (*Optional*, :ref:`config-time`): The time after a triggered alarm before resetting to previous state if the sensors are cleared/off.
-- **binary_sensors** (**Required**, *list*): A list of binary sensors the panel should use. Each consists of:
+- **binary_sensors** (*Optional*, *list*): A list of binary sensors the panel should use. Each consists of:
 
   - **input** (**Required**, string): The id of the binary sensor component 
   - **bypass_armed_home** (*Optional*, boolean): This binary sensor will not trigger the alarm when in ``armed_home`` state.
 
 - **on_state** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the alarm changes state. See :ref:`alarm_control_panel_on_state_trigger`.
+
+.. note::
+
+    If ``binary_sensors`` is ommited then you're expected to trigger the alarm using
+    :ref:`alarm_control_panel_pending_action` or :ref:`alarm_control_panel_triggered_action`.
+
 
 Automation:
 -----------
