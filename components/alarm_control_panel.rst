@@ -53,6 +53,36 @@ This trigger is activated each time the alarm changes state.
         then:
           - logger.log: "Alarm Panel State Changed!"
 
+.. _alarm_control_panel_on_triggered_trigger:
+
+``on_triggered`` Trigger
+********************
+
+This trigger is activated when the alarm changes to triggered state.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_triggered:
+        then:
+          - logger.log: "Alarm Triggered!"
+
+.. _alarm_control_panel_on_cleared_trigger:
+
+``on_cleared`` Trigger
+********************
+
+This trigger is activated when the alarm changes from triggered back to either the previous armed state or disarmed.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_cleared:
+        then:
+          - logger.log: "Alarm Cleared!"
+
 .. _alarm_control_panel_arm_away_action:
 
 ``arm_away`` Action
@@ -94,7 +124,7 @@ This action disarms the alarm. The ``code`` is required when *codes* is not empt
 
     on_...:
       then:
-        - alarm_control_panel.arm_home:
+        - alarm_control_panel.disarm:
             id: alarm
             code: "1234"
 
@@ -148,13 +178,13 @@ From :ref:`lambdas <config-lambda>`, you can call the following methods:
 
 - ``arm_away(code)``
 - ``arm_home(code)``
-- ``arm_disarm(code)``
+- ``disarm(code)``
 
 .. code-block:: cpp
 
     id(alarm).arm_away();
     id(alarm).arm_home();
-    id(alarm).arm_disarm("1234");
+    id(alarm).disarm("1234");
 
 .. _alarm_control_panel_state_flow:
 
