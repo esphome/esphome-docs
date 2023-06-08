@@ -10,6 +10,7 @@ Turn your binary sensors into an alarm control panel with the power of ESPHome.
 .. code-block:: yaml
 
     alarm_control_panel:
+      platform: template
       name: Alarm Panel
       codes:
         - "1234"
@@ -21,6 +22,7 @@ Turn your binary sensors into an alarm control panel with the power of ESPHome.
 Configuration:
 --------------
 
+- **platform** (**Required**, string): The alarm control panel platform, ``template`` is the only one for now.
 - **name** (**Required**, string): The name of the alarm control panel.
 - **codes** (*Optional*, list of string): A list of codes for disarming the alarm, if *requires_code_to_arm* set to true then for arming the alarm too.
 - **requires_code_to_arm** (*Optional*, boolean): Code required for arming the alarm, *code* must be provided.
@@ -66,7 +68,7 @@ This trigger is activated each time the alarm changes state.
 .. _alarm_control_panel_on_triggered_trigger:
 
 ``on_triggered`` Trigger
-********************
+************************
 
 This trigger is activated when the alarm changes to triggered state.
 
@@ -81,7 +83,7 @@ This trigger is activated when the alarm changes to triggered state.
 .. _alarm_control_panel_on_cleared_trigger:
 
 ``on_cleared`` Trigger
-********************
+**********************
 
 This trigger is activated when the alarm changes from triggered back to either the previous armed state or disarmed.
 
@@ -223,6 +225,7 @@ Example:
 .. code-block:: yaml
 
     alarm_control_panel:
+      platform: template
       name: Alarm Panel
       codes:
         - "1234"
