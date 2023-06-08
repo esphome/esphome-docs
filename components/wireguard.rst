@@ -37,15 +37,15 @@ adding the following to your configuration:
     # Example configuration entry
     wireguard:
       address: x.y.z.w
-      private_key: private_key=
+      private_key: AaBbCcDd...=
       peer_endpoint: wg.server.example
-      peer_public_key: public_key=
+      peer_public_key: EeFfGgHh...=
 
       # Optional netmask (this is the default if omitted)
       netmask: 255.255.255.255
 
-      # Optional pre-shared key
-      peer_preshared_key: shared_key=
+      # Optional pre-shared key (omit if not in use)
+      peer_preshared_key: XxYyZzWw...=
 
       # Optional list of ip/mask (any host is allowed if omitted)
       peer_allowed_ips:
