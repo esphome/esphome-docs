@@ -27,7 +27,7 @@ Configuration:
 - **codes** (*Optional*, list of string): A list of codes for disarming the alarm, if *requires_code_to_arm* set to true then for arming the alarm too.
 - **requires_code_to_arm** (*Optional*, boolean): Code required for arming the alarm, *code* must be provided.
 - **arming_time** (*Optional*, :ref:`config-time`): The exit delay before the alarm is armed.
-- **delay_time** (*Optional*, :ref:`config-time`): The entry delay before the alarm is triggered.
+- **pending_time** (*Optional*, :ref:`config-time`): The entry delay before the alarm is triggered.
 - **trigger_time** (*Optional*, :ref:`config-time`): The time after a triggered alarm before resetting to previous state if the sensors are cleared/off.
 - **binary_sensors** (*Optional*, *list*): A list of binary sensors the panel should use. Each consists of:
 
@@ -145,7 +145,7 @@ This action disarms the alarm. The ``code`` is required when *codes* is not empt
 ``pending`` Action
 ******************
 
-This action puts the alarm in pending state (the state before triggered after *delay_time*).
+This action puts the alarm in pending state (the state before triggered after *pending_time*).
 
 .. code-block:: yaml
 
@@ -209,10 +209,10 @@ State Flow:
   a. ``arming_time`` greater than 0 the state is ``ARMING``
   b. ``arming_time`` is 0 or after the ``arming_time`` delay the state is ``ARM_AWAY`` or ``ARM_HOME``
 
-3. When the alarm is triggered by a sensor state changing to ``on``
+3. When the alarm is tripped by a sensor state changing to ``on``
 
-  a. ``delay_time`` greater than 0 the state is ``PENDING``
-  b. ``delay_time`` is 0 or after the ``delay_time`` delay the state is ``TRIGGERED``
+  a. ``pending_time`` greater than 0 the state is ``PENDING``
+  b. ``pending_time`` is 0 or after the ``pending_time`` delay the state is ``TRIGGERED``
 
 4. If ``trigger_time`` greater than 0 and no sensors are ``on`` after ``trigger_time`` delay
    the state returns to ``ARM_AWAY`` or ``ARM_HOME``
@@ -231,7 +231,7 @@ Example:
         - "1234"
       requires_code_to_arm: true
       arming_time: 10s
-      delay_time: 15s
+      pending_time: 15s
       trigger_time: 5min
       binary_sensors:
         - input: zone_1
@@ -241,7 +241,7 @@ Example:
       on_state:
         then:
           - lambda: !lambda |-
-              ESP_LOGD("TEST", "State change %s", id(alarm)->to_string(id(alarm)->get_state()).c_str());
+              ESP_LOGD("TEST", "State change %s", alarm_control_panel_state_to_string(id(acp1)->get_state()));
       on_triggered:
         then:
           - switch.turn_on: siren
