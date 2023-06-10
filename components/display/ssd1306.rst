@@ -51,6 +51,7 @@ Configuration variables:
   - ``SSD1306 128x32`` - SSD1306 with 128 columns and 32 rows
   - ``SSD1306 128x64``
   - ``SSD1306 96x16``
+  - ``SSD1306 72x40``
   - ``SSD1306 64x48``
   - ``SH1106 128x32``
   - ``SH1106 128x64``
@@ -130,6 +131,7 @@ Configuration variables:
   - ``SSD1306 128x32`` (SSD1306 with 128 columns and 32 rows)
   - ``SSD1306 128x64``
   - ``SSD1306 96x16``
+  - ``SSD1306 72x40``
   - ``SSD1306 64x48``
   - ``SH1106 128x32``
   - ``SH1106 128x64``

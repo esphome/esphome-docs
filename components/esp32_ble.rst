@@ -13,9 +13,18 @@ can run.
     # Example configuration
 
     esp32_ble:
+      io_capability: keyboard_only
 
+Configuration variables:
+------------------------
 
-No configuration variables.
+- **io_capability** (*Optional*, enum): The IO capability of this ESP32, used for securely connecting to other BLE devices. Defaults to ``none``.
+
+    - ``none`` - No IO capability (Connections that require PIN code authentication will fail)
+    - ``keyboard_only`` - Only a keyboard to enter PIN codes (or a fixed PIN code)
+    - ``display_only`` - Only a display to show PIN codes
+    - ``keyboard_display`` - A keyboard and a display
+    - ``display_yes_no`` - A display to show PIN codes and buttons to confirm or deny the connection
 
 See Also
 --------

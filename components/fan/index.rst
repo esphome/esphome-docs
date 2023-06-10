@@ -37,11 +37,11 @@ Configuration variables:
 - **restore_mode** (*Optional*): Control how the fan attempts to restore state on boot.
 
     - ``NO_RESTORE`` - Don't restore any state.
-    - ``RESTORE_DEFAULT_OFF`` - Attempt to restore state and default to OFF if not possible to restore (default).
+    - ``RESTORE_DEFAULT_OFF`` - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
     - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
     - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
-    - ``ALWAYS_OFF`` - Always initialize the fan as OFF on bootup.
+    - ``ALWAYS_OFF`` (Default) - Always initialize the fan as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the fan as ON on bootup.
 
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
