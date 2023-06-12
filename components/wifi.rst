@@ -84,9 +84,12 @@ Configuration variables:
   first. This is required for hidden networks and can significantly improve connection times. Defaults to ``off``.
   The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
   better ones are available.
+- **passive_scan** (*Optional*, boolean): If enabled, then the device will perform WiFi scans in a passive fashion. Defaults to ``false``.
 
 - **enable_btm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11v BSS Transition Management support.
 - **enable_rrm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11k Radio Resource Management support.
+
+- **enable_on_boot** (*Optional*, boolean): If enabled, the WiFi interface will be enabled on boot. Defaults to ``true``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
@@ -268,6 +271,18 @@ Configuration variables:
 - **certificate** (*Optional*, string): Path to a PEM encoded certificate to use for EAP-TLS authentication.
 - **key** (*Optional*, string): Path to a PEM encoded private key matching ``certificate`` for EAP-TLS authentication.
   Optionally encrypted with ``password``.
+
+
+Turning on and off WiFi
+-----------------------
+
+Using the actions ``wifi.enable`` and ``wifi.disable``, you can turn on and off the WiFi interface on demand.
+The configuration option ``enable_on_boot`` can be set to ``false`` if you do not want wifi to be enabled on boot.
+
+.. note::
+
+    Be aware that if you disable WiFi, the API timeout will need to be disabled otherwise the device will reboot.
+
 
 .. _wifi-connected_condition:
 

@@ -141,7 +141,7 @@ Additionally, you have access to two helper methods which will fetch the width a
 
 You can view the full API documentation for the rendering engine in the "API Reference" in the See Also section.
 
-.. _display-static_text:
+.. _display-fonts:
 
 Fonts
 *****
@@ -169,6 +169,13 @@ Next, create a ``font:`` section in your configuration:
       - file: "gfonts://Roboto"
         id: roboto
         size: 20
+
+      - file:
+          type: gfonts
+          family: Roboto
+          weight: 900
+        id: font2
+        size: 16
 
       - file: "fonts/tom-thumb.bdf"
         id: tomthumb
@@ -225,6 +232,8 @@ Configuration variables:
     add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
     to install it using
     ``pip install pillow``.
+
+.. _display-static_text:
 
 Drawing Static Text
 *******************
@@ -382,6 +391,62 @@ Displaying Time
 
 You can display current time using a time component. Please see the example :ref:`here <strftime>`.
 
+.. _clipping:
+
+Screen Clipping
+***************
+
+Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show 
+a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
+
+With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region 
+you can stop the clipping process with ``end_clipping();`` . You can nest as many ``start_clipping();`` as you want as long
+you end them as many times as well.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ...
+        # ...
+        id: my_binary_sensor
+    
+    color:
+      - name: my_red
+        red: 100%
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          if (id(my_binary_sensor).state) {
+            it.print(0, 0, id(my_font), "state: ON");
+          } else {
+            it.print(0, 0, id(my_font), "state: OFF");
+          }
+          // Shorthand:
+          it.start_clipping(40,0,140,20);
+          it.printf(0, 0, id(my_font), id(my_red), "State: %s", id(my_binary_sensor).state ? "ON" : "OFF");
+          it.end_clipping();
+
+After you started clipping you can manipulate the region with ``extend_clipping(left, top, right, bottom);`` 
+and ``shrink_clipping(left, top, right, bottom);`` within previous set clipping region.
+
+With ``get_clipping();`` you get a ``Rect`` object back with the latest set clipping region.
+
+.. code-block:: cpp 
+
+    class Rect {
+        int16_t x;  ///< X/Left coordinate
+        int16_t y;  ///< Y/Top coordinate
+        int16_t w;  ///< Width
+        int16_t h;  ///< Height
+        int16_t x2();  ///< Right coordinate
+        int16_t y2();  ///< bottom coordinate
+      };
+
+With ``is_clipping();`` tells you if clipping is activated.
+
+
 
 .. _config-color:
 
@@ -400,13 +465,36 @@ A ``color`` component exists for just this purpose:
         blue: 25%
         white: 0%
 
+Alternatively, you can use ``<color>_int`` to specify the color as an int value:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        red_int: 255
+        green_int: 51
+        blue_int: 64
+        white_int: 0
+
+Or, if you are more comforatble with hex values, you can use ``hex``:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        hex: FF3340
 
 Configuration variables:
 
 - **red** (*Optional*, percentage): The percentage of the red component. Defaults to ``100%``.
+- **red_int** (*Optional*, integer): The brightness of the red component on a scale of ``0`` to ``255``. Defaults to ``255``.
 - **green** (*Optional*, percentage): The percentage of the green component. Defaults to ``100%``.
+- **green_int** (*Optional*, integer): The brightness of the green component on a scale of ``0`` to ``255``. Defaults to ``255``.
 - **blue** (*Optional*, percentage): The percentage of the blue component. Defaults to ``100%``.
+- **blue_int** (*Optional*, integer): The brightness of the blue component on a scale of ``0`` to ``255``. Defaults to ``255``.
 - **white** (*Optional*, percentage): The percentage of the white component. Defaults to ``100%``.
+- **white_int** (*Optional*, integer): The brightness of the white component on a scale of ``0`` to ``255``. Defaults to ``255``.
+- **hex** (*Optional*, string): The color in hexadecimal representation. Defaults to ``FFFFFF``.
 
 RGB displays use red, green, and blue, while grayscale displays may use white.
 
@@ -415,7 +503,7 @@ RGB displays use red, green, and blue, while grayscale displays may use white.
 Graph Component
 ***************
 
-You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in 
+You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in
 memory at the time the sensor updates and will be lost when the device reboots.
 
 Examples:
@@ -477,6 +565,7 @@ Configuration variables:
 - **traces** (*Optional*): Use this to specify more than a single trace.
 
 Trace specific fields:
+
 - **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
 - **line_thickness** (*Optional*): Defaults to 3
 - **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
@@ -571,22 +660,35 @@ Use this component to store graphical images on the device, you can then draw th
         id: my_image
         resize: 100x100
 
+.. code-block:: yaml
+
+    image:
+      - file: mdi:alert-outline
+        id: alert
+        resize: 80x80
+
 Configuration variables:
 
-- **file** (**Required**, string): The path (relative to where the .yaml file is) of the image file.
+- **file** (**Required**, string):
+
+  - **Local files**: The path (relative to where the .yaml file is) of the image file.
+  - **Material Design Icons**: Specify the `Material Design Icon <https://pictogrammers.com/library/mdi/>`_ id in the format ``mdi:icon-name``, and that icon will automatically be downloaded and added to the configuration.
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
 - **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
   and preserve the aspect ratio.
-- **type** (*Optional*): Specifies how to encode image internally. Defaults to ``BINARY``.
+- **type** (*Optional*): Specifies how to encode image internally. Defaults to ``BINARY`` for local images and ``TRANSPARENT_BINARY`` for MDIs.
 
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
-  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
-  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
-  - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
   - ``TRANSPARENT_BINARY``: One color, any pixel that is fully transparent will not be drawn, and any other pixel
     will be the on color. Uses 1 bit per pixel, 8 pixels per byte.
+  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
+  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+  - ``RGBA``: Full RGB color stored. Uses 4 bytes per pixel. Any pixel with an alpha value < 127 will not be drawn.
+
+- **use_transparency** (*Optional*): If set the alpha channel of the input image will be taken into account, and pixels with alpha < 127 will not be drawn. For image types without explicit alpha channel, the color (0, 0, 1) (very dark blue) will be mapped to black, to be able to store transparency information within the image. Explicitly transparent types (``TRANSPARENT_BINARY`` and ``RGBA``) default to ``True`` and cannot be set to ``False``; other types default to ``False``.
 
 - **dither** (*Optional*): Specifies which dither method used to process the image, only used in GRAYSCALE and BINARY type image. Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__ and `here <https://en.wikipedia.org/wiki/Dither>`__.
 
@@ -598,6 +700,9 @@ Configuration variables:
     To use images you will need to have the python ``pillow`` package installed.
     If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should already be
     installed. Otherwise you need to install it using ``pip install pillow``.
+    Additionally, if you want to use SVG images (including MDI images), you will additionally need to have the python ``cairosvg`` package installed.
+    If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should also already be
+    installed. Otherwise you need to install it using ``pip install cairosvg``.
 
 And then later in code:
 
@@ -680,9 +785,19 @@ Configuration variables:
 
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
+  - ``TRANSPARENT_BINARY``: One color, any pixel that is fully transparent will not be drawn, and any other pixel
+    will be the on color. Uses 1 bit per pixel, 8 pixels per byte.
   - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
-  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
   - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
+  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+  - ``RGBA``: Full RGB color stored. Uses 4 bytes per pixel. Any pixel with an alpha value < 127 will not be drawn.
+
+- **use_transparency** (*Optional*): If set the alpha channel of the input image will be taken into account, and pixels with alpha < 127 will not be drawn. For image types without explicit alpha channel, the color (0, 0, 1) (very dark blue) will be mapped to black, to be able to store transparency information within the image. Explicitly transparent types (``TRANSPARENT_BINARY`` and ``RGBA``) default to ``True`` and cannot be set to ``False``; other types default to ``False``.
+- **loop** (*Optional*): If you want to loop over a subset of your animation (e.g. a fire animation where the fire "starts", then "burns" and "dies") you can specify some frames to loop over.
+
+  - **start_frame** (*Optional*, int): The frame to loop back to when ``end_frame`` is reached. Defaults to the first frame in the animation.
+  - **end_frame** (*Optional*, int): The last frame to show in the loop; when this frame is reached it will loop back to ``start_frame``. Defaults to the last frame in the animation.
+  - **repeat** (*Optional*, int): Specifies how many times the loop will run. When the count is reached, the animation will continue with the next frame after ``end_frame``, or restart from the beginning if ``end_frame`` was the last frame. Defaults to "loop forever".
 
 .. _display-pages:
 
