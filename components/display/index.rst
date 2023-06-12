@@ -660,14 +660,24 @@ Use this component to store graphical images on the device, you can then draw th
         id: my_image
         resize: 100x100
 
+.. code-block:: yaml
+
+    image:
+      - file: mdi:alert-outline
+        id: alert
+        resize: 80x80
+
 Configuration variables:
 
-- **file** (**Required**, string): The path (relative to where the .yaml file is) of the image file.
+- **file** (**Required**, string):
+
+  - **Local files**: The path (relative to where the .yaml file is) of the image file.
+  - **Material Design Icons**: Specify the `Material Design Icon <https://pictogrammers.com/library/mdi/>`_ id in the format ``mdi:icon-name``, and that icon will automatically be downloaded and added to the configuration.
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
 - **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
   and preserve the aspect ratio.
-- **type** (*Optional*): Specifies how to encode image internally. Defaults to ``BINARY``.
+- **type** (*Optional*): Specifies how to encode image internally. Defaults to ``BINARY`` for local images and ``TRANSPARENT_BINARY`` for MDIs.
 
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
@@ -690,6 +700,9 @@ Configuration variables:
     To use images you will need to have the python ``pillow`` package installed.
     If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should already be
     installed. Otherwise you need to install it using ``pip install pillow``.
+    Additionally, if you want to use SVG images (including MDI images), you will additionally need to have the python ``cairosvg`` package installed.
+    If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should also already be
+    installed. Otherwise you need to install it using ``pip install cairosvg``.
 
 And then later in code:
 
