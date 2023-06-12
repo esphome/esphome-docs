@@ -20,6 +20,12 @@ available for **ESP32 platform only**.
 
 .. warning::
 
+    To successfully use this component you must have |wireguard| also
+    on your remote host (already installed and ready to accept connections).
+    If you don't have it please read the section :ref:`wireguard-installation`.
+
+.. warning::
+
     This component requires the system clock to be synchronized.
 
     See :doc:`time/index` to setup a time source
@@ -63,12 +69,6 @@ It is recommended to use *secrets* at least for private and pre-shared keys:
     wireguard:
       private_key: !secret wg_privkey
       peer_preshared_key: !secret wg_shrdkey
-
-.. warning::
-
-    To successfully use this component you must have |wireguard| also
-    on your remote host (already installed and ready to accept connections).
-    If you don't have it please read the section :ref:`wireguard-installation`.
 
 Configuration variables
 ------------------------
