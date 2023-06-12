@@ -117,6 +117,21 @@ Configuration variables
   before rebooting the device when the remote peer is unreachable. Can be disabled
   by setting this to ``0s``. Default to ``15min``.
 
+- **require_connection_to_proceed** (*Optional*, boolean): Set to ``true`` to
+  wait for the remote peer to be up before continuing to boot the device.
+  Default to ``false``.
+
+  This can be used to delay the initialization of components that use the
+  VPN tunnel as long as the VPN isn't ready. For example if you are using
+  :doc:`mqtt` to reach a remote broker you may experience boot freeze just
+  after the setup of MQTT because it waits for the broker to be reachable,
+  but the connection cannot be established until the VPN link is
+  active too. To bypass such deadlock set this parameter to ``true`` in
+  order to not initialize MQTT until the remote peer is up.
+
+- **update_interval** (*Optional*, :ref:`config-time`): How often to check
+  the connection status. Default to ``10s``.
+
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 .. _wireguard-static-routes:
