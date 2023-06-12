@@ -3,13 +3,13 @@ XL9535 I/O Expander
 
 .. seo::
     :description: Instructions for setting up XL9535 digital port expanders in ESPHome.
-    :image: ../images/cap1188.jpg
+    :image: xl9535.svg
 
 
 The XL9535 component allows you to use **XL9535** I/O expander in ESPHome. 
 It uses :ref:`I²C Bus <i2c>` for communication.
 
-Once configured, you can use any of the **16** pins for your projects.
+Once configured, you can use any of the **16** available pins for your projects.
 Within ESPHome they emulate a real internal GPIO pin
 and can therefore be used with many of ESPHome's components such as the GPIO
 Binary Sensor or GPIO Switch.
