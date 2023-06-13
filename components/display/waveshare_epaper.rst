@@ -7,7 +7,9 @@ Waveshare E-Paper Display
 
 The ``waveshare_epaper`` display platform allows you to use
 some E-Paper displays sold by `Waveshare <https://www.waveshare.com/product/displays/e-paper.htm>`__
-with ESPHome. The 2.13" `TTGO module <https://github.com/lewisxhe/TTGO-EPaper-Series>`__ with an ESP32 on the board is supported as well.
+with ESPHome. The 2.13" `TTGO module <https://github.com/lewisxhe/TTGO-EPaper-Series>`__ with an ESP32 on the board 
+is supported as well, and so is the 1.54" `Good Display gdew0154m09 <https://www.good-display.com/product/206.html>`__ 
+as used in the `M5Stack Core Ink <https://shop.m5stack.com/products/m5stack-esp32-core-ink-development-kit1-54-elnk-display>`__.
 Depending on your specific revision of the board you might need to try out the ``-b73`` or ``-b1`` version (see below).
 Similar modules sold by other vendors might also work but not have been tested yet. Currently only
 single-color E-Ink displays are implemented and of those only a few modules.
@@ -99,6 +101,12 @@ Configuration variables:
   - ``7.50inV2alt`` (alternative version to the above ``7.50inV2``)
   - ``7.50in-hd-b`` - Can't use with an ESP8266 as it runs out of RAM
   - ``gdey029t94`` - GooDisplay GDEY029T94, as used on the AdaFruit MagTag
+  - ``1.54in-m5coreink-m09`` - GoodDisplay gdew0154m09, as used in the M5Stack Core Ink
+
+.. warning::
+
+    The M5Stack Core Ink implements the BUSY pin on the gdew0154m09 inverted. Set it to `inverted: true` in 
+    the config to prevent display damage (due to miscommunication leading to the panel not getting powered down). 
 
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
