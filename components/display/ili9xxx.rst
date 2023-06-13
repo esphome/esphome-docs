@@ -45,8 +45,10 @@ Configuration variables:
 
 - **model** (**Required**): The model of the display. Options are:
 
-  - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R`` 
+  - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R``, ``S3BOX_LITE``
   - ``ILI9341``, ``ILI9342``, ``ILI9481``, ``ILI9486``, ``ILI9488``, ``ST7796``
+
+.. note:: According to the official specs The ESP32 S3 Box Lite has an st7789v display driver. Experience shows that it actually has an ILI9xxx one. This migth depend on the hardware batch.
 
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
