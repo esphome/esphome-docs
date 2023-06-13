@@ -48,7 +48,7 @@ Configuration variables:
   - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R``, ``S3BOX_LITE``
   - ``ILI9341``, ``ILI9342``, ``ILI9481``, ``ILI9486``, ``ILI9488``, ``ST7796``
 
-.. note:: According to the official specs The ESP32 S3 Box Lite has an st7789v display driver. Experience shows that it actually has an ILI9xxx one. This migth depend on the hardware batch.
+.. note:: According to its documentation, the ESP32 S3 Box Lite has an ST7789V display driver. We've found, however, that it instead works with the ILIxxxx component here, instead. This could change in the future.
 
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
