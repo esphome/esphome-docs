@@ -34,6 +34,11 @@ Configuration variables:
   - **input** (**Required**, string): The id of the binary sensor component
   - **bypass_armed_home** (*Optional*, boolean): This binary sensor will not trigger the alarm when in ``armed_home`` state.
 
+- **restore_mode** (*Optional*, enum):
+
+  - **ALWAYS_DISARMED** (Default): Always start in ``disarmed`` state.
+  - **RESTORE_DEFAULT_DISARMED**: Restore state or default to ``disarmed`` state if no saved state was found.
+
 - All other options from :ref:`Alarm Control Panel <config-alarm_control_panel>`
 
 .. note::
