@@ -236,8 +236,8 @@ The device should now be linked to your remote Home Assistant.
 See Also
 --------
 
-- :doc:`binary_sensor/wireguard_status`
-- :doc:`sensor/wireguard_handshake`
+- :doc:`binary_sensor/wireguard`
+- :doc:`sensor/wireguard`
 - :doc:`time/index`
 - :doc:`time/sntp`
 - |wireguard|_ official website
