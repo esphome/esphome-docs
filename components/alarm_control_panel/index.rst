@@ -1,38 +1,30 @@
-Alarm Control Panel
-===================
+Alarm Control Panel Component
+=============================
 
 .. seo::
-    :description: Instructions for setting up an Alarm Control Panel in ESPHome.
+    :description: Instructions for setting up generic Alarm Control Panels in ESPHome.
     :image: alarm-panel.svg
 
-Turn your binary sensors into an alarm control panel with the power of ESPHome.
+.. _config-alarm_control_panel:
+
+Base Alarm COntrol Panel Configuration
+--------------------------------------
 
 .. code-block:: yaml
 
     alarm_control_panel:
-      platform: template
-      name: Alarm Panel
-      codes:
-        - "1234"
-      binary_sensors:
-        - input: zone_1
-        - input: zone_2
-          bypass_armed_home: true
+      - platform: ...
+        name: Alarm Panel
 
-Configuration:
---------------
 
-- **platform** (**Required**, string): The alarm control panel platform, ``template`` is the only one for now.
+Configuration variables:
+
 - **name** (**Required**, string): The name of the alarm control panel.
-- **codes** (*Optional*, list of string): A list of codes for disarming the alarm, if *requires_code_to_arm* set to true then for arming the alarm too.
-- **requires_code_to_arm** (*Optional*, boolean): Code required for arming the alarm, *code* must be provided.
-- **arming_time** (*Optional*, :ref:`config-time`): The exit delay before the alarm is armed.
-- **pending_time** (*Optional*, :ref:`config-time`): The entry delay before the alarm is triggered.
-- **trigger_time** (*Optional*, :ref:`config-time`): The time after a triggered alarm before resetting to previous state if the sensors are cleared/off.
-- **binary_sensors** (*Optional*, *list*): A list of binary sensors the panel should use. Each consists of:
 
-  - **input** (**Required**, string): The id of the binary sensor component 
-  - **bypass_armed_home** (*Optional*, boolean): This binary sensor will not trigger the alarm when in ``armed_home`` state.
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the switch to use that name, you can set ``name: None``.
 
 - **on_state** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the alarm changes state. See :ref:`alarm_control_panel_on_state_trigger`.
@@ -40,11 +32,6 @@ Configuration:
   when the alarm triggers. See :ref:`alarm_control_panel_on_triggered_trigger`.
 - **on_cleared** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the alarm clears. See :ref:`alarm_control_panel_on_cleared_trigger`.
-
-.. note::
-
-    If ``binary_sensors`` is ommited then you're expected to trigger the alarm using
-    :ref:`alarm_control_panel_pending_action` or :ref:`alarm_control_panel_triggered_action`.
 
 
 Automation:
@@ -198,86 +185,15 @@ From :ref:`lambdas <config-lambda>`, you can call the following methods:
     id(alarm).arm_home();
     id(alarm).disarm("1234");
 
-.. _alarm_control_panel_state_flow:
 
-State Flow:
------------
+Platforms
+---------
 
-1. The alarm starts in ``DISARMED`` state
-2. When the ``arm_...`` method is invoked
+.. toctree::
+    :maxdepth: 1
+    :glob:
 
-  a. ``arming_time`` greater than 0 the state is ``ARMING``
-  b. ``arming_time`` is 0 or after the ``arming_time`` delay the state is ``ARM_AWAY`` or ``ARM_HOME``
-
-3. When the alarm is tripped by a sensor state changing to ``on``
-
-  a. ``pending_time`` greater than 0 the state is ``PENDING``
-  b. ``pending_time`` is 0 or after the ``pending_time`` delay the state is ``TRIGGERED``
-
-4. If ``trigger_time`` greater than 0 and no sensors are ``on`` after ``trigger_time`` delay
-   the state returns to ``ARM_AWAY`` or ``ARM_HOME``
-
-.. _alarm_control_panel_example:
-
-Example:
---------
-
-.. code-block:: yaml
-
-    alarm_control_panel:
-      platform: template
-      name: Alarm Panel
-      codes:
-        - "1234"
-      requires_code_to_arm: true
-      arming_time: 10s
-      pending_time: 15s
-      trigger_time: 5min
-      binary_sensors:
-        - input: zone_1
-        - input: zone_2
-          bypass_armed_home: true
-        - input: ha_test
-      on_state:
-        then:
-          - lambda: !lambda |-
-              ESP_LOGD("TEST", "State change %s", alarm_control_panel_state_to_string(id(acp1)->get_state()));
-      on_triggered:
-        then:
-          - switch.turn_on: siren
-      on_cleared:
-        then:
-          - switch.turn_off: siren
-
-    binary_sensor:
-      - platform: gpio
-        id: zone_1
-        name: Zone 1
-        device_class: door
-        pin:
-          number: D1
-          mode: INPUT_PULLUP
-          inverted: True
-      - platform: gpio
-        id: zone_2
-        name: Zone 2
-        device_class: motion
-        pin:
-          number: D2
-          mode: INPUT_PULLUP
-          inverted: True
-      - platform: homeassistant
-        id: ha_test
-        name: Zone 3
-        entity_id: input_boolean.test_switch
-
-    switch:
-      - platform: gpio
-        id: siren
-        name: Siren
-        icon: mdi:alarm-bell
-        pin: D7
-
+    *
 
 See Also
 --------
