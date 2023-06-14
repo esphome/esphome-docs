@@ -750,6 +750,14 @@ Home Assistant Companion Components
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg
     Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg
 
+Alarm Control Panel Components
+------------------------------
+
+.. imgtable::
+
+    Alarm Control Panel Core, components/alarm_control_panel/index, alarm-panel.svg
+    Template Alarm Control Panel, components/alarm_control_panel/template, description.svg
+
 Miscellaneous Components
 ------------------------
 
@@ -813,7 +821,6 @@ Miscellaneous Components
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Demo, components/demo, description.svg
     Copy, components/copy, content-copy.svg
-    Alarm Control Panel, components/alarm_control_panel, alarm-panel.svg
 
 Additional Custom Components
 ----------------------------
