@@ -130,7 +130,7 @@ Configuration variables
   order to not initialize MQTT until the remote peer is up.
 
 - **update_interval** (*Optional*, :ref:`config-time`): How often to check
-  the connection status. Default to ``10s``.
+  the connection status and the latest handshake value. Default to ``10s``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
@@ -205,12 +205,13 @@ There are many different ways for installing and configuring
 |wireguard| on servers, home servers or general host. It depends
 on the platform and on the operating system in use.
 
-You can start reading the `official documentation <https://www.wireguard.com/>`__ to
-have an overview of what it is and on how to install it *system wide*
-for common operating systems. Or you can jump directly to the
-`Home Assistant Community Add-on: WireGuard
+You can start reading the `official documentation <https://www.wireguard.com/>`__
+to have an overview of what it is and on how to install it *system wide* for
+common operating systems. Read the thread at `Home Assistant Community Add-on: WireGuard
 <https://community.home-assistant.io/t/home-assistant-community-add-on-wireguard/134662>`__
-if you intend to install it through Home Assistant.
+if you intend to install it through Home Assistant. Plase note that securely
+setting up a VPN requires some networking experience, you will need to open
+router ports and possibly use custom commands to redirect traffic.
 
 Once everything is configured you should be able to add the device
 to Home Assistant. See next section.
