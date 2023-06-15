@@ -122,7 +122,7 @@ This :ref:`action <config-action>` sends a CanalSat infrared remote code to a re
 Configuration variables:
 
 - **device** (**Required**, int): The device to send to, see dumper output for more details.
-- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **address** (*Optional*, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
@@ -149,7 +149,7 @@ This :ref:`action <config-action>` sends a CanalSatLD infrared remote code to a 
 Configuration variables:
 
 - **device** (**Required**, int): The device to send to, see dumper output for more details.
-- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **address** (*Optional*, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
@@ -283,7 +283,7 @@ This :ref:`action <config-action>` sends a 40-bit Midea code to a remote transmi
     on_...:
       - remote_transmitter.transmit_midea:
           code: [0xA2, 0x08, 0xFF, 0xFF, 0xFF]
-    
+
     on_...:
       - remote_transmitter.transmit_midea:
           code: !lambda |-
