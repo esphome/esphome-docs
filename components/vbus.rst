@@ -96,7 +96,7 @@ Configuration variables:
 
 .. note::
 
-    Functionality of the sensors depends on the type of the device and the the scheme arrangement of the hydraulic
+    Functionality of the sensors depends on the type of the device and the scheme arrangement of the hydraulic
     system it controls. The actual arrangement number set up can be determined from the settings of the device. Please
     check the user manual and assess your arrangement to determine the functionality of each sensor and name them
     accordingly.
