@@ -369,7 +369,7 @@ Miscellaneous
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
-    WireGuard Latest Handshake, components/sensor/wireguard, wireguard_custom_logo.svg
+    WireGuard, components/wireguard, wireguard_custom_logo.svg
 
 
 Motion
@@ -472,7 +472,7 @@ Miscellaneous
     Remote Receiver, components/remote_receiver, remote.svg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
-    WireGuard Status, components/binary_sensor/wireguard, wireguard_custom_logo.svg
+    WireGuard, components/wireguard, wireguard_custom_logo.svg
 
 Output Components
 -----------------

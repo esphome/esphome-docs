@@ -196,6 +196,45 @@ Let's explain with some examples:
     through the VPN link any traffic. It is like having set the wireguard
     interface as the system default.
 
+.. _wireguard-sensors:
+
+Sensors
+-------
+
+Here after the sensors available for this component.
+
+Status Binary Sensor
+^^^^^^^^^^^^^^^^^^^^
+
+This binary sensor tracks the connection status (*online*/*offline*) of the remote peer.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    binary_sensor:
+      - platform: wireguard
+        status:
+          name: 'WireGuard Status'
+
+All options from :ref:`Binary Sensor <config-binary_sensor>` can be added to the
+above configuration.
+
+Latest Handshake Sensor
+^^^^^^^^^^^^^^^^^^^^^^^
+
+This sensor reports the *timestamp* of the latest completed handshake.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: wireguard
+        latest_handshake:
+          name: 'WireGuard Latest Handshake'
+
+All options from :ref:`Sensor <config-sensor>` can be added to the
+above configuration.
+
 .. _wireguard-installation:
 
 Remote peer setup
@@ -236,8 +275,6 @@ The device should now be linked to your remote Home Assistant.
 See Also
 --------
 
-- :doc:`binary_sensor/wireguard`
-- :doc:`sensor/wireguard`
 - :doc:`time/index`
 - :doc:`time/sntp`
 - |wireguard|_ official website
