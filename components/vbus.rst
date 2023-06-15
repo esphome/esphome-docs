@@ -20,14 +20,14 @@ Supported Models
 The following table shows the currently supported models of Vbus devices.
 
 .. csv-table:: Supported Models
-   :header: "Name", "Config Value", "Hex Address", "Notes"
+    :header: "Name", "Config Value", "Hex Address", "Notes"
 
-   "DeltaSol BS Plus","deltasol_bs_plus","4221"
-   "DeltaSol BS 2009","deltasol_bs_2009","427B"
-   "Dux H3214","deltasol_bs_2009","427B", "Pump 2 unsupported"
-   "DeltaSol C","deltasol_c","4212"
-   "DeltaSol CS2","deltasol_cs2","1121"
-   "DeltaSol CS2 Plus","deltasol_cs2_plus","2211"
+    "DeltaSol BS Plus","deltasol_bs_plus","4221"
+    "DeltaSol BS 2009","deltasol_bs_2009","427B"
+    "Dux H3214","deltasol_bs_2009","427B", "Pump 2 unsupported"
+    "DeltaSol C","deltasol_c","4212"
+    "DeltaSol CS2","deltasol_cs2","1121"
+    "DeltaSol CS2 Plus","deltasol_cs2_plus","2211"
 
 The ``Config Value`` should be used for the ``model`` parameter in your ``sensor`` and ``binary_sensor`` entries.
 
