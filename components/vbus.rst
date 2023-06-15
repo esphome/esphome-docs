@@ -137,8 +137,7 @@ Sensor
 
 Configuration variables:
 
-- **model** (**Required**): Specify the model of the connected controller. Choose one of the config values listed in the
-table of supported models above.
+- **model** (**Required**): Specify the model of the connected controller. Choose one of the config values listed in the table of supported models above.
 
 All sensors are *Optional* and support all other options from :ref:`Sensor <config-sensor>`.
 
@@ -186,8 +185,7 @@ Binary Sensor
 
 Configuration variables:
 
-- **model** (**Required**): Specify the model of the connected controller. Choose one of the config values listed in the
-table of supported models above.
+- **model** (**Required**): Specify the model of the connected controller. Choose one of the config values listed in the table of supported models above.
 
 All binary sensors are *Optional* and support all other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
