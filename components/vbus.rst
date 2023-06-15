@@ -139,6 +139,14 @@ Configuration variables:
 
 - **model** (**Required**): Specify the model of the connected controller. Choose one of the config values listed in the table of supported models above.
 
+Supported sensors:
+
+- for **deltasol_bs_plus** and **deltasol_bs_2009**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``, ``version``.
+- for **deltasol_c**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``.
+- for **deltasol_cs2**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``,  ``pump_speed``, ``operating_hours``, ``heat_quantity``, ``version``.
+- for **deltasol_cs_plus**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``temperature_5``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``, ``version``, ``flow_rate``.
+
+
 All sensors are *Optional* and support all other options from :ref:`Sensor <config-sensor>`.
 
 .. note::
@@ -186,6 +194,14 @@ Binary Sensor
 Configuration variables:
 
 - **model** (**Required**): Specify the model of the connected controller. Choose one of the config values listed in the table of supported models above.
+
+Supported sensors:
+
+- for **deltasol_bs_plus**: ``relay1``,  ``relay2``, ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``, ``collector_max``, ``collector_min``, ``collector_frost``, ``tube_collector``, ``recooling``, ``hqm``.
+- for **deltasol_bs_2009**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``, ``frost_protection_active``.
+- for **deltasol_c**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.
+- for **deltasol_cs2**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.
+- for **deltasol_cs_plus**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.
 
 All binary sensors are *Optional* and support all other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
