@@ -499,7 +499,7 @@ Output Components
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
-    Sigma-Delta Output, components/output/sigma_delta, sigma-delta.svg
+    Sigma-Delta Output, components/output/sigma_delta_output, sigma-delta.svg
     Template Output, components/output/template, description.svg
     BP1658CJ, components/output/bp1658cj, bp1658cj.svg
     BP5758D, components/output/bp5758d, bp5758d.svg
@@ -838,6 +838,7 @@ Cookbook
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
+    Share data directly between ESPHome nodes, cookbook/http_request_sensor, connection.svg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

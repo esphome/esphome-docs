@@ -12,7 +12,7 @@ temperature sensor of the ESP32 and RP2040 chip.
 .. note::
 
     Some ESP32 variants return a large amount of invalid temperature
-    values. Invalid measurements are ignored by this component.
+    values, including 53.3°C which equates to a raw value of 128. Invalid measurements are ignored by this component.
 
 .. figure:: images/internal_temperature-ui.png
     :align: center

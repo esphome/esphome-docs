@@ -33,7 +33,6 @@ beyond the typical SPI connections, it is better suited for use with the ESP32.
     display:
       - platform: ili9xxx
         model: ili9341
-        cs_pin: 14
         dc_pin: 27
         reset_pin: 33
         lambda: |-
@@ -48,7 +47,6 @@ Configuration variables:
   - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R`` 
   - ``ILI9341``, ``ILI9342``, ``ILI9481``, ``ILI9486``, ``ILI9488``, ``ST7796``
 
-- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **rotation** (*Optional*): Set the rotation of the display. Everything drawn in the ``lambda:`` will be rotated
@@ -66,6 +64,7 @@ Configuration variables:
   - ``GRAYSCALE``
   - ``IMAGE_ADAPTIVE``
 - **color_palette_images** (*Optional*): A list of image files that will be used to generate the color pallet for the display.  This should only be used in conjunction with ``-color_palette: IMAGE_ADAPTIVE`` above.  The images will be analysed at compile time and a custom color pallet will be created based on the most commonly occuring colors.  A typical setting would be a sample image that represented the fully populated display.  This can significantly improve the quality of displayed images.  Note that these images are not stored on the ESP device, just the 256byte color pallet created from them.
+- **dimensions** (*Optional*): Dimensions of the screen with WIDTHxHEIGHT. Usually not needed since ``model:`` has good defaults.
 
 Configuration examples
 **********************
@@ -140,7 +139,6 @@ To configure an image adaptive color pallet to show greater than 8 bit color dep
     display:
       - platform: ili9xxx
         model: ili9341
-        cs_pin: 5
         dc_pin: 4
         reset_pin: 22
         rotation: 90
