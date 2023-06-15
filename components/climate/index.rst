@@ -52,8 +52,8 @@ Configuration variables:
   - **temperature_step** (*Optional*, float): The granularity with which the target temperature
     can be controlled. Can be a single number, or split as below:
 
-    - **target_temperature** (**Required**, float)
-    - **current_temperature** (**Required**, float)
+    - **target_temperature** (**Required**, float): The granularity for target temperature
+    - **current_temperature** (**Required**, float): The granularity for current temperature
 
 Advanced options:
 
