@@ -7,7 +7,7 @@ Alarm Control Panel Component
 
 .. _config-alarm_control_panel:
 
-Base Alarm COntrol Panel Configuration
+Base Alarm Control Panel Configuration
 --------------------------------------
 
 .. code-block:: yaml
