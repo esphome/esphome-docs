@@ -5,13 +5,13 @@
 
 .. seo::
     :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that
-      tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers
+      tries to provide the best possible use experience for using ESP8266, ESP32 and Raspberry Pi Pico microcontrollers
       for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
     :image: logo.svg
 
 .. image:: /images/logo-text.svg
 
-ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.
+ESPHome is a system to control your ESP8266/ESP32 and Raspberry Pi Pico by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
 .. image:: /images/hero.png
 
