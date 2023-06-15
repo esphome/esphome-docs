@@ -25,7 +25,7 @@ Configuration variables:
 ------------------------
 
 - **codes** (*Optional*, list of string): A list of codes for disarming the alarm, if *requires_code_to_arm* set to true then for arming the alarm too.
-- **requires_code_to_arm** (*Optional*, boolean): Code required for arming the alarm, *code* must be provided.
+- **requires_code_to_arm** (*Optional*, boolean): Code required for arming the alarm, *codes* must be provided.
 - **arming_time** (*Optional*, :ref:`config-time`): The exit delay before the alarm is armed.
 - **pending_time** (*Optional*, :ref:`config-time`): The entry delay before the alarm is triggered.
 - **trigger_time** (*Optional*, :ref:`config-time`): The time after a triggered alarm before resetting to previous state if the sensors are cleared/off.
@@ -36,8 +36,8 @@ Configuration variables:
 
 - **restore_mode** (*Optional*, enum):
 
-  - **ALWAYS_DISARMED** (Default): Always start in ``disarmed`` state.
-  - **RESTORE_DEFAULT_DISARMED**: Restore state or default to ``disarmed`` state if no saved state was found.
+  - ``ALWAYS_DISARMED`` (Default): Always start in ``disarmed`` state.
+  - ``RESTORE_DEFAULT_DISARMED``: Restore state or default to ``disarmed`` state if no saved state was found.
 
 - All other options from :ref:`Alarm Control Panel <config-alarm_control_panel>`
 
