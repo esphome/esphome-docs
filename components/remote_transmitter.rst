@@ -918,9 +918,12 @@ in the frontend. Click on it and you should see the remote signal being transmit
 
 .. note::
 
-Some devices require that the transmitted code be repeated for the signal to be picked up as valid. 
-Also the interval between repetitions can be important. You can adjust the `repeat:` settings 
-accordingly.
+    Some devices require that the transmitted code be repeated for the signal to be picked up 
+    as valid. Also the interval between repetitions can be important. Check that the pace of 
+    repetition logs are consistent between the remote controller and the transmitter node. 
+    You can adjust the ``repeat:`` settings accordingly.
+
+
 
 See Also
 --------
