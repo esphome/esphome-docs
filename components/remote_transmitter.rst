@@ -898,6 +898,10 @@ earlier, create a new template switch that sends the RF code when triggered:
           - remote_transmitter.transmit_rc_switch_raw:
               code: '100010000000000010111110'
               protocol: 2
+              repeat: 
+                times: 10
+                wait_time: 0s
+
 
     # Or for raw code
     switch:
@@ -911,6 +915,15 @@ earlier, create a new template switch that sends the RF code when triggered:
 
 Recompile again, when you power up the device the next time you will see a new switch
 in the frontend. Click on it and you should see the remote signal being transmitted. Done!
+
+.. note::
+
+    Some devices require that the transmitted code be repeated for the signal to be picked up 
+    as valid. Also the interval between repetitions can be important. Check that the pace of 
+    repetition logs are consistent between the remote controller and the transmitter node. 
+    You can adjust the ``repeat:`` settings accordingly.
+
+
 
 See Also
 --------
