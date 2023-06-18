@@ -33,6 +33,17 @@ Breaking Changes
 - Move ESPTime into core esphome namespace :esphomepr:`4926` by :ghuser:`jesserockz` (breaking-change)
 - display: add `BaseImage` and provide only `Image::get_pixel` method :esphomepr:`4932` by :ghuser:`ayufan` (breaking-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- Add support in vbus component for Deltasol BS 2009 :esphomepr:`4943` by :ghuser:`clydebarrow`
+- fix vbus sensor offsets :esphomepr:`4952` by :ghuser:`ssieb`
+- Add support for ESP32-S3-BOX-Lite displays :esphomepr:`4941` by :ghuser:`guillempages`
+- Split display_buffer sub-components into own files :esphomepr:`4950` by :ghuser:`guillempages`
+- Add support for S3 box display :esphomepr:`4942` by :ghuser:`guillempages`
+- display: allow to align image with `ImageAlign` :esphomepr:`4933` by :ghuser:`ayufan`
+- Use HW SPI for rp2040 :esphomepr:`4955` by :ghuser:`jesserockz`
+
 All changes
 ^^^^^^^^^^^
 
@@ -93,6 +104,13 @@ All changes
 - display: Improve Image rendering by removing usage of virtual functions :esphomepr:`4931` by :ghuser:`ayufan`
 - display: add `BaseImage` and provide only `Image::get_pixel` method :esphomepr:`4932` by :ghuser:`ayufan` (breaking-change)
 - Add Alarm Control Panel :esphomepr:`4770` by :ghuser:`grahambrown11` (new-integration)
+- Add support in vbus component for Deltasol BS 2009 :esphomepr:`4943` by :ghuser:`clydebarrow`
+- fix vbus sensor offsets :esphomepr:`4952` by :ghuser:`ssieb`
+- Add support for ESP32-S3-BOX-Lite displays :esphomepr:`4941` by :ghuser:`guillempages`
+- Split display_buffer sub-components into own files :esphomepr:`4950` by :ghuser:`guillempages`
+- Add support for S3 box display :esphomepr:`4942` by :ghuser:`guillempages`
+- display: allow to align image with `ImageAlign` :esphomepr:`4933` by :ghuser:`ayufan`
+- Use HW SPI for rp2040 :esphomepr:`4955` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
