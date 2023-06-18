@@ -5,7 +5,7 @@ Haier Climate
     :description: Instructions for setting up a Haier climate devices.
     :image: air-conditioner.svg
 
-This is an implementation of the ESPHoime component to control HVAC on the base of the SmartAir2 and hOn Haier protocols (AC that is controlled by the hOn or SmartAir2 application).
+This is an implementation of the ESPHome component to control HVAC on the base of the SmartAir2 and hOn Haier protocols (AC that is controlled by the hOn or SmartAir2 application).
 
 There are two versions of the Haier protocol. The older one is using an application called SmartAir2 and the newer one - an application called hOn. Both protocols are compatible on the transport level but have different commands to control appliances.
 
@@ -41,7 +41,7 @@ Older Haier models controlled by the SmartAir2 application are using the KZW-W00
 
     KZW-W002 module pinout
 
-Newer Haier models using a module called ESP32-for-Haier. It is an ESP32 single-core board with an ESP32-S0WD chip. In some cases, you can reuse this  module and flash it with ESPHome, but some new modules don’t support this.  They look the same but have encryption enabled.
+Newer Haier models using a module called ESP32-for-Haier. It is an ESP32 single-core board with an ESP32-S0WD chip. In some cases, you can reuse this module and flash it with ESPHome, but some new modules don’t support this. They look the same but have encryption enabled.
 
 **Warning!** The new generation of ESP32-Haier devices has encryption enabled, so they can only be flashed with firmware that is signed with a private key. There is no way to make them work with ESPHome, so if you try to do it, the board will get into a boot loop with error ``rst:0x10 (RTCWDT_RTC_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)`` The only way to recover this board is to flash it with the original image. So before starting your experiments make a backup image.
 
