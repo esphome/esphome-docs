@@ -43,6 +43,11 @@ after you leave the room.
           number: GPIO15
           mode: INPUT_PULLDOWN
 
+    switch:
+      # Switch to turn on/off detection
+      - platform: dfrobot_mmwave_radar
+        name: Mmwave Active
+
 .. _dfr_mmwave-component:
 
 Component
@@ -115,12 +120,32 @@ Configuration variables:
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
+Switch
+-------------
+
+You can use the switch to get an indication whether the sensor is currently active or not and you can use it to turn the sensor on and off.
+Don't confuse it with the detection state. When turned off, you won't get detected when in front of the sensor.
+
+.. code-block:: yaml
+
+    switch:
+      - platform: dfrobot_mmwave_radar
+        name: Mmwave Active
+        dfrobot_mmwave_radar_id: mmwave
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **dfrobot_mmwave_radar_id** (*Optional*, :ref:`config-id`): The ID of the DFRobot mmWave component defined above. Useful for multiple mmWave sensors.
+- All other options from :ref:`Switch <config-switch>`.
+
+
 ``dfrobot_mmwave_radar.settings`` Action
 ----------------------------------------
 
 .. warning::
 
-    As it seems every time you change / save the configuration of the mmwave radar, it is written to its internal flash or EEPROM
+    As it seems every time you save the configuration of the mmwave radar, it is written to its internal flash or EEPROM
     which can be susceptible to damage when writing a lot. Do not change setting on every boot or several times per second,
     otherwise the mmwave radar might suffer damage. Instead, find the correct settings during setup phase and do not regularly change
     settings later on.
@@ -128,7 +153,7 @@ Configuration variables:
 The DFRobot mmWave Radar has several settings which can be changed. These settings are saved in non-volatile memory and do not need to be set on each boot.
 
 All options of the settings action are optional and only the specified options are changed. Unspecified parameters are untouched (not set to a default value).
-You can change one option, a few or all a the same time.
+You can change one option, a few or all a the same time. All settings are tempatable.
 
 .. code-block:: yaml
 
@@ -137,8 +162,8 @@ You can change one option, a few or all a the same time.
           factory_reset: true
           detection_segments:
             # Define between one and four segments
-            - 0cm - 3m
-            - 5.1m - 6.6m
+            - [0cm, 3m]
+            - [5.1m, 6.6m]
           output_latency:
             delay_after_detect: 0s
             delay_after_disappear: 0s
@@ -153,35 +178,51 @@ Configuration options:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the mmwave sensor which settings should be changed. If only one radar is defined, this is optional.
 
 - **factory_reset** (*Optional*, boolean): If set to true, a factory reset of the sensor will be performed (before changing other options if present). Ignored if not set or set to false.
+  A lambda function can be used to set the value. Return true or false.
 
 - **detection_segments** (*Optional*, list): A list of detection segments. A segment specifies from where to where detection should trigger.
   One up to four segments and ranges from 0cm to 9m can be specified. Distances should be defined in steps of 15cm. Internally the specified ranges are rounded.
-  A range is defined using a start distance followed by a dash and the end distance.
+  Segments can be defined in a one or two dimensional list. Pairs of values must be defined (from distance to distance). One up to four pairs can be defined. Factory default is 0cm - 3m.
   
-    .. code-block:: yaml
+  .. code-block:: yaml
 
-        detection_segments:
-          - 0cm - 3m
-          - 5.1m - 6.6m
+      detection_segments:
+        - [0cm, 3m]
+        - [5.1m, 6.6m]
 
 
   In the above example, if a person was present in the range between 0cm and 3m (distance from the sensor) or between 5.1m and 6.6m 
   the sensor would trigger (meaning a person was detected). If a person is present between 3.1m and 5m or 6.7m and 9m it would not trigger.
-  Factory default is 0cm - 3m.
+
+  .. code-block:: yaml
+
+      detection_segments:
+        - !lambda |-
+            return 0;
+        - !lambda |-
+            return return id(mwave_max_distance).state;
+
+
+  Section values can be defined using lambdas, so you can set the distances depending on other entities. Distances are defined as a float in meters (10cm = 0.1).
+  If you return a negative value (-1) the segment will not be set.
 
 - **output_latency** (*Optional*, dictionary):
 
   - **delay_after_detect** (**Required**, :ref:`config-time`): Time to wait before signaling that a person was detected. Specify in steps of 25ms. Factory default is 2.5s.
+    Value is tempatable: Return seconds value (100ms = 0.1). Returning -1 keeps the value unchanged. Both values need to be specified.
   - **delay_after_disappear** (**Required**, :ref:`config-time`): Time to wait before signaling that a person disappeared. Specify in steps of 25ms. Factory default is 10s.
+    Value is tempatable: Return seconds value (100ms = 0.1). Returning -1 keeps the value unchanged. Both values need to be specified.
 
 - **start_after_power_on** (*Optional*, boolean): If set to true, sensor will start immediately after power-on. If set to false (and if sensor was previously stopped), the sensor needs
-  to be manually started. Factory default is false.
+  to be manually started. Factory default is false. Value is tempatable: Return true or false. Returning -1 keeps the value unchanged.
 
 - **turn_on_led** (*Optional*, boolean): If set to true, the LED soldered on the mmwave sensor blinks during operation. If set to false it stays off. Factory default is true.
+  Value is tempatable: Return true or false. Returning -1 keeps the value unchanged.
 
 - **presence_via_uart** (*Optional*, boolean): If set to true, send presence information via uart (and GPIO). If set to false, only send presence info using GPIO. Factory default is true.
+  Value is tempatable: Return true or false. Returning -1 keeps the value unchanged.
 
-- **sensitivity** (*Optional*, int): Set the sensitivity of the sensor. Ranges from 0 to 9.
+- **sensitivity** (*Optional*, int): Set the sensitivity of the sensor. Ranges from 0 to 9. Value is tempatable: Return 0-9. Returning -1 keeps the value unchanged.
 
 ``dfrobot_mmwave_radar.start`` Action
 ----------------------------------------
