@@ -5,7 +5,7 @@ Haier Climate
     :description: Instructions for setting up a Haier climate devices.
     :image: air-conditioner.svg
 
-The `haier` climate platform creates a Haier climate device.  
+The ``haier`` climate platform creates a Haier climate device.
 The component can be used as a replacement of a Haier proprietary WiFi modules such as KZW-W001 and KZW-W002.
 
 This component requires a :ref:`uart` to be setup.
@@ -33,7 +33,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the climate device.
-- **update_interval** (*Optional*, :ref:`config-time`): How often device will be polled for status. Defaults to `5s`.
+- **update_interval** (*Optional*, :ref:`config-time`): How often device will be polled for status. Defaults to ``5s``.
 - **supported_swing_modes** (*Optional*, list): List of supported swing modes. Possible values are: ``VERTICAL``, ``HORIZONTAL``, ``BOTH``.
 - All other options from :ref:`Climate <config-climate>`.
 
@@ -42,10 +42,10 @@ Hardware setup
 
 Most units will have a dedicated USB-A port for Haier WiFi module.
 The physical USB port is in fact UART and does not "speak" USB protocol.
-It uses four USB pins as 5V, GND, RX, TX. 
+It uses four USB pins as 5V, GND, RX, TX.
 You can use spare male USB cable to connect esphome device directly to the climate appliance.
 
-Other units will not have USB ports, but will still probably have UART exposed somewhere on the main board. 
+Other units will not have USB ports, but will still probably have UART exposed somewhere on the main board.
 
 .. list-table:: Haier UART pinout
     :header-rows: 1
