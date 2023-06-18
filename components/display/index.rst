@@ -715,6 +715,25 @@ And then later in code:
           // Draw the image my_image at position [x=0,y=0]
           it.image(0, 0, id(my_image));
 
+By default, ESPHome will *align* the image at the top left. That means if you enter the coordinates
+``[0,10]`` for your image, the top left of the image will be at ``[0,10]``. If you want to draw some
+image at the right side of the display, it is however sometimes useful to choose a different **image alignment**.
+When you enter ``[0,10]`` you're really telling ESPHome that it should position the **anchor point** of the image
+at ``[0,10]``. When using a different alignment, like ``TOP_RIGHT``, the image will be positioned left of the anchor
+pointed, so that, as the name implies, the anchor point is a the *top right* corner of the image.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          // Aligned on left by default
+          it.image(0, 0, id(my_image));
+
+          // Aligned on right edge
+          it.image(it.get_width(), 0, id(my_image), ImageAlign::TOP_RIGHT);
+
 For binary images the ``image`` method accepts two additional color parameters which can
 be supplied to modify the color used to represent the on and off bits respectively. e.g.
 
@@ -727,6 +746,9 @@ be supplied to modify the color used to represent the on and off bits respective
           // Draw the image my_image at position [x=0,y=0]
           // with front color red and back color blue
           it.image(0, 0, id(my_image), id(red), id(blue));
+
+          // Aligned on right edge
+          it.image(it.get_width(), 0, id(my_image), ImageAlign::TOP_RIGHT, id(red), id(blue));
 
 You can also use this to invert images in two colors display, use ``COLOR_OFF`` then ``COLOR_ON``
 as the additional parameters.
