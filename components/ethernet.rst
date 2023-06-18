@@ -31,8 +31,17 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
 Configuration variables:
 ------------------------
 
-- **type** (**Required**, string): The type of LAN chipset/phy. Must be one of
-  ``LAN8720``, ``RTL8201``, ``DP83848`` or ``IP101``.
+- **type** (**Required**, string): The type of LAN chipset/phy.
+
+  Supported chipsets are:
+
+  - ``LAN8720``
+  - ``RTL8201``
+  - ``DP83848``
+  - ``IP101``
+  - ``JL1101``
+  - ``KSZ8081``
+
 - **mdc_pin** (**Required**, :ref:`config-pin`): The MDC pin of the board.
   Usually this is ``GPIO23``.
 - **mdio_pin** (**Required**, :ref:`config-pin`): The MDIO pin of the board.
@@ -111,6 +120,18 @@ Configuration examples
       clk_mode: GPIO17_OUT
       phy_addr: 0
 
+**LILYGO TTGO T-Internet ESP32-WROVER-E LAN8270**:
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO0_OUT
+      phy_addr: 0
+      power_pin: GPIO04
+
 **Wireless Tag WT32-ETH01** and **SMLIGHT SLZB-06 PoE Zigbee**:
 
 .. code-block:: yaml
@@ -134,7 +155,7 @@ Configuration examples
       clk_mode: GPIO0_IN
       phy_addr: 1
       power_pin: GPIO5
-      
+
 **AiThinker ESP32-G Gateway**:
 
 .. code-block:: yaml

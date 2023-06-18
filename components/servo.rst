@@ -150,8 +150,10 @@ configuration. See :ref:`Number <config-number>` for more information.
       - platform: template
         name: Servo Control
         min_value: -100
+        initial_value: 0
         max_value: 100
         step: 1
+        optimistic: true
         set_action:
           then:
             - servo.write:

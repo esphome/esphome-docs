@@ -31,6 +31,8 @@ Configuration variables:
   If multiple modbus devices are attached increasing this value can help avoiding to to overlapping reads.
   When 2 devices are sending a command at the same the response read from uart can't be assigned to the proper design.
   This value defines the maximum queuing time for a command before it is send anyways.
+  
+- **disable_crc** (*Optional*, boolean): Ignores a bad CRC if set to ``true``. Defaults to ``false``
 
 
 See Also
@@ -42,7 +44,7 @@ See Also
 - :doc:`/components/switch/modbus_controller`
 - :doc:`/components/number/modbus_controller`
 - :doc:`/components/output/modbus_controller`
-- :doc:`EPEVER MPPT Solar Charge Controller Tracer-AN Series</cookbook/tracer-an>`
+- `EPEVER MPPT Solar Charge Controller (Tracer-AN Series) <https://devices.esphome.io/devices/epever_mptt_tracer_an>`__
 - `Modbus RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
 - :ref:`uart`
 - :apiref:`modbus/modbus.h`

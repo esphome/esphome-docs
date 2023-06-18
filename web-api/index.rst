@@ -2,8 +2,8 @@ Web Server API
 ==============
 
 .. seo::
-    :description: Migration guide for installing ESPHome on ESPs running ESPEasy.
-    :image: espeasy.svg
+    :description: Information on Web Server APIs, including Event Source APIs and REST APIs.
+    :image: logo-text.svg
 
 Since version 1.3, ESPHome includes a built-in web server that can be used to view states
 and send commands. In addition to the web-frontend available under the root index of the
@@ -23,6 +23,8 @@ mDNS with ``<name>.local/``. So for example to navigate to the web server of a n
 While it's currently recommended to use ESPHome directly through Home Assistant, if you want
 to integrate ESPHome with an external or self-built application you can use two available
 APIs: the real-time event source API and REST API.
+
+.. _api-event-source:
 
 Event Source API
 ~~~~~~~~~~~~~~~~
@@ -55,6 +57,8 @@ states so that the client can catch up with reality.
 
 The payloads of these state events are also the same as the payloads of the REST API GET calls.
 I would recommend just opening the network debug panel of your web browser to see what's sent.
+
+.. _api-rest:
 
 REST API
 --------
@@ -297,3 +301,11 @@ method is ``set``. The following parameter can be used:
    minimum and maximum range of the number otherwise it will be ignored.
 
 For example POST ``/number/desired_delay/set?value=24`` will set the number to 24.
+
+See Also
+--------
+
+- :doc:`/components/web_server`
+- :doc:`/components/prometheus`
+- :doc:`/components/http_request`
+- :ghedit:`Edit`
