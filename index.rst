@@ -11,7 +11,7 @@
 
 .. image:: /images/logo-text.svg
 
-ESPHome is a system to control your ESP8266/ESP32 and Raspberry Pi Pico by simple yet powerful configuration files and control them remotely through Home Automation systems.
+ESPHome is a system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
 .. image:: /images/hero.png
 
