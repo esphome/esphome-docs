@@ -101,55 +101,55 @@ Keeping the calibration values at the top of your yaml might make editing easier
 
 .. code-block:: yaml
 
-  substitutions:
-    plconst_cal: '1429876' # default: 1429876, compute as 838860800 * (gain_pga * <sampled voltage (mV) at 1Amp current> * <sampled voltage (mV) at reference voltage> / (<pulse constant (e.g. 3200 pulses/kWh)> * <reference voltage, e.g. 230V>))
-    current_cal: '32801'   # default: 31251
-    voltage_cal: '17528'   # default: 26400 - Application note says this should be < 32768, maybe for some internal computation?
-    metering_cal: '7481'   # default: 7481 - Calibrate this to match your meter based on the CF1 (CFx) pulse.
+    substitutions:
+      plconst_cal: '1429876' # default: 1429876, compute as 838860800 * (gain_pga * <sampled voltage (mV) at 1Amp current> * <sampled voltage (mV) at reference voltage> / (<pulse constant (e.g. 3200 pulses/kWh)> * <reference voltage, e.g. 230V>))
+      current_cal: '32801'   # default: 31251
+      voltage_cal: '17528'   # default: 26400 - Application note says this should be < 32768, maybe for some internal computation?
+      metering_cal: '7481'   # default: 7481 - Calibrate this to match your meter based on the CF1 (CFx) pulse.
 
-  spi:
-    clk_pin: 18
-    miso_pin: 19
-    mosi_pin: 23
+    spi:
+      clk_pin: 18
+      miso_pin: 19
+      mosi_pin: 23
 
-  sensor:
-    - platform: atm90e26
-      cs_pin: 5
-      voltage:
-        name: House Voltage
-        accuracy_decimals: 1
-        filters:
-          - multiply: 4
-      current:
-        name: House Amps
-  # The max value for current that the meter can output is 65.535. If you expect to measure current over 65A,
-  # divide the gain_ct by 2 (120A CT) or 4 (200A CT) and multiply the current and power values by 2 or 4 by uncommenting the filter below
-  #      filters:
-  #        - multiply: 2
-      power:
-        name: House Watts
-        accuracy_decimals: 1
-        filters:
-          - multiply: 4
-      reactive_power:
-        name: House Reactive Power
-      power_factor:
-        name: House Power Factor
-        accuracy_decimals: 2
-      forward_active_energy:
-        name: House Forward Active Energy
-      reverse_active_energy:
-        name: House Reverse Active Energy
-      frequency:
-        name: House Freq
-      line_frequency: 50Hz
-      pl_const: ${plconst_cal}
-      meter_constant: '3200.0'  # My old rotating-disc meter has a meter constant of 1666.66
-      gain_metering: ${metering_cal}
-      gain_voltage: ${voltage_cal}
-      gain_ct: ${current_cal}
-      gain_pga: 1X
-      update_interval: '10s'
+    sensor:
+        - platform: atm90e26
+            cs_pin: 5
+            voltage:
+                name: House Voltage
+                accuracy_decimals: 1
+                filters:
+                    - multiply: 4
+            current:
+                name: House Amps
+      # The max value for current that the meter can output is 65.535. If you expect to measure current over 65A,
+      # divide the gain_ct by 2 (120A CT) or 4 (200A CT) and multiply the current and power values by 2 or 4 by uncommenting the filter below
+      #      filters:
+      #        - multiply: 2
+            power:
+                name: House Watts
+                accuracy_decimals: 1
+                filters:
+                    - multiply: 4
+            reactive_power:
+                name: House Reactive Power
+            power_factor:
+                name: House Power Factor
+                accuracy_decimals: 2
+            forward_active_energy:
+                name: House Forward Active Energy
+            reverse_active_energy:
+                name: House Reverse Active Energy
+            frequency:
+                name: House Freq
+            line_frequency: 50Hz
+            pl_const: ${plconst_cal}
+            meter_constant: '3200.0'  # My old rotating-disc meter has a meter constant of 1666.66
+            gain_metering: ${metering_cal}
+            gain_voltage: ${voltage_cal}
+            gain_ct: ${current_cal}
+            gain_pga: 1X
+            update_interval: '10s'
 
 See Also
 --------
