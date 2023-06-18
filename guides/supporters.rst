@@ -222,6 +222,7 @@ Contributors
 - `Colby Rome (@cisasteelersfan) <https://github.com/cisasteelersfan>`__
 - `Chris Debenham (@cjd) <https://github.com/cjd>`__
 - `Chester (@clowrey) <https://github.com/clowrey>`__
+- `Clyde Stubbs (@clydebarrow) <https://github.com/clydebarrow>`__
 - `Colin McCambridge (@cmccambridge) <https://github.com/cmccambridge>`__
 - `Clifford Roche (@cmroche) <https://github.com/cmroche>`__
 - `Casey Burnett (@codeangler) <https://github.com/codeangler>`__
@@ -320,6 +321,7 @@ Contributors
 - `Dmitriy Lopatko (@dmitriy5181) <https://github.com/dmitriy5181>`__
 - `Farzad E. (@dnetguru) <https://github.com/dnetguru>`__
 - `DrZoid (@docteurzoidberg) <https://github.com/docteurzoidberg>`__
+- `DominikBitzer (@DominikBitzer) <https://github.com/DominikBitzer>`__
 - `Dominik (@DomiStyle) <https://github.com/DomiStyle>`__
 - `Derek M. (@doolbneerg) <https://github.com/doolbneerg>`__
 - `Dorian Zedler (@dorianim) <https://github.com/dorianim>`__
@@ -797,6 +799,7 @@ Contributors
 - `Morgan Robertson (@mrgnr) <https://github.com/mrgnr>`__
 - `Mariusz Kryński (@mrk-its) <https://github.com/mrk-its>`__
 - `Michael Davidson (@MrMDavidson) <https://github.com/MrMDavidson>`__
+- `mrred2k (@mrred2k) <https://github.com/mrred2k>`__
 - `Murray Scott (@mscottco) <https://github.com/mscottco>`__
 - `MSe-5-14 (@MSe-5-14) <https://github.com/MSe-5-14>`__
 - `mtl010957 (@mtl010957) <https://github.com/mtl010957>`__
@@ -878,6 +881,7 @@ Contributors
 - `Paul Monigatti (@paulmonigatti) <https://github.com/paulmonigatti>`__
 - `Paul Nicholls (@pauln) <https://github.com/pauln>`__
 - `Bartłomiej Biernacki (@pax0r) <https://github.com/pax0r>`__
+- `pcr20 (@pcr20) <https://github.com/pcr20>`__
 - `peddamat (@peddamat) <https://github.com/peddamat>`__
 - `pedjas (@pedjas) <https://github.com/pedjas>`__
 - `pedrobsm (@pedrobsm) <https://github.com/pedrobsm>`__
@@ -918,6 +922,7 @@ Contributors
 - `Aaron Zhang (@rabbit-aaron) <https://github.com/rabbit-aaron>`__
 - `RadekHvizdos (@RadekHvizdos) <https://github.com/RadekHvizdos>`__
 - `Florian Ragwitz (@rafl) <https://github.com/rafl>`__
+- `Ben V. Brown (@Ralim) <https://github.com/Ralim>`__
 - `randomllama (@randomllama) <https://github.com/randomllama>`__
 - `Marc Seeger (@rb2k) <https://github.com/rb2k>`__
 - `rbaron (@rbaron) <https://github.com/rbaron>`__
@@ -1159,4 +1164,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 15, 2023.*
+*This page was last updated June 19, 2023.*
