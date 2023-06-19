@@ -43,6 +43,10 @@ Beta Changes
 - Add support for S3 box display :esphomepr:`4942` by :ghuser:`guillempages`
 - display: allow to align image with `ImageAlign` :esphomepr:`4933` by :ghuser:`ayufan`
 - Use HW SPI for rp2040 :esphomepr:`4955` by :ghuser:`jesserockz`
+- Fix for Fujitsu AC not having Quiet Fan Mode :esphomepr:`4962` by :ghuser:`TaruDesigns`
+- Store app comment and compilation_time in flash :esphomepr:`4945` by :ghuser:`bdraco`
+- Construct web_server assets at build time instead of run time :esphomepr:`4944` by :ghuser:`bdraco`
+- Update pca9685_output.cpp :esphomepr:`4929` by :ghuser:`standahabich`
 
 All changes
 ^^^^^^^^^^^
@@ -111,6 +115,10 @@ All changes
 - Add support for S3 box display :esphomepr:`4942` by :ghuser:`guillempages`
 - display: allow to align image with `ImageAlign` :esphomepr:`4933` by :ghuser:`ayufan`
 - Use HW SPI for rp2040 :esphomepr:`4955` by :ghuser:`jesserockz`
+- Fix for Fujitsu AC not having Quiet Fan Mode :esphomepr:`4962` by :ghuser:`TaruDesigns`
+- Store app comment and compilation_time in flash :esphomepr:`4945` by :ghuser:`bdraco`
+- Construct web_server assets at build time instead of run time :esphomepr:`4944` by :ghuser:`bdraco`
+- Update pca9685_output.cpp :esphomepr:`4929` by :ghuser:`standahabich`
 
 Past Changelogs
 ---------------
