@@ -818,7 +818,7 @@ Miscellaneous Components
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
     SML, components/sml, sml.svg
-    SUN-GTIL2 inverter, components/sun_gtil2
+    SUN-GTIL2 inverter, components/sun_gtil2, 
     Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Demo, components/demo, description.svg
