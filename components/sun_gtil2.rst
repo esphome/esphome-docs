@@ -10,6 +10,7 @@ or ``SUN-2000G2`` grid tie inverter. This is done by reading the UART data trans
 controller board to the display board.
 
 .. note::
+
     You need to open your inverter to apply this modification. Use at your own risk! If you want to connect your
     inverter via the (more limited) external RS232 interface you should use the :ref:`Modbus <modbus_controller>`
     component instead.
