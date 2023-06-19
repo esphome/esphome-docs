@@ -27,6 +27,12 @@ controller board to the display board.
 
     Pinout of the inverter's display board
 
+.. figure:: images/sun_gtil2_schematic.png
+    :align: center
+    :width: 75.0%
+
+    Simplified connection diagram
+
 As the data is read from the inverter using UART, you need to have an :ref:`UART bus <uart>` in your
 configuration with the ``rx_pin`` connected to the TX pin of the inverter's controller board. Additionally, you
 need to set the ``baud_rate`` to 9600.
