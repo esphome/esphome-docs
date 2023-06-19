@@ -823,7 +823,6 @@ Contributors
 - `ueno (@nayuta-ueno) <https://github.com/nayuta-ueno>`__
 - `Nazar Mokrynskyi (@nazar-pc) <https://github.com/nazar-pc>`__
 - `Bergont Nicolas (@nbergont) <https://github.com/nbergont>`__
-- `NMC (@ncareau) <https://github.com/ncareau>`__
 - `Nejc Koncan (@nejc-cc) <https://github.com/nejc-cc>`__
 - `Mike Meessen (@netmikey) <https://github.com/netmikey>`__
 - `Nicolas Graziano (@ngraziano) <https://github.com/ngraziano>`__
@@ -1049,6 +1048,7 @@ Contributors
 - `Levente Tamas (@tamisoft) <https://github.com/tamisoft>`__
 - `Aleksandr Oleinikov (@tannisroot) <https://github.com/tannisroot>`__
 - `tantive (@tantive) <https://github.com/tantive>`__
+- `Hawawa McTaru (@TaruDesigns) <https://github.com/TaruDesigns>`__
 - `Ryan Hoffman (@tekmaven) <https://github.com/tekmaven>`__
 - `testbughub (@testbughub) <https://github.com/testbughub>`__
 - `Greg Lincoln (@tetious) <https://github.com/tetious>`__
@@ -1151,6 +1151,7 @@ Contributors
 - `WitchKing (@xvil) <https://github.com/xvil>`__
 - `Yaroslav (@Yarikx) <https://github.com/Yarikx>`__
 - `Marcin Jaworski (@yawor) <https://github.com/yawor>`__
+- `yousaf465 (@yousaf465) <https://github.com/yousaf465>`__
 - `Yuval Aboulafia (@yuvalabou) <https://github.com/yuvalabou>`__
 - `Björn Stenberg (@zagor) <https://github.com/zagor>`__
 - `david reid (@zathras777) <https://github.com/zathras777>`__
@@ -1164,4 +1165,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 19, 2023.*
+*This page was last updated June 20, 2023.*
