@@ -15,6 +15,18 @@ controller board to the display board.
     inverter via the (more limited) external RS232 interface you should use the
     :doc:`Modbus </components/modbus_controller>` component instead.
 
+.. figure:: images/sun_gtil2_controller_board.png
+    :align: center
+    :width: 50.0%
+
+    Pinout of the inverter's controller board
+
+.. figure:: images/sun_gtil2_display_board.png
+    :align: center
+    :width: 50.0%
+
+    Pinout of the inverter's display board
+
 As the data is read from the inverter using UART, you need to have an :ref:`UART bus <uart>` in your
 configuration with the ``rx_pin`` connected to the TX pin of the inverter's controller board. Additionally, you
 need to set the ``baud_rate`` to 9600.
