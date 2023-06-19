@@ -12,8 +12,8 @@ controller board to the display board.
 .. note::
 
     You need to open your inverter to apply this modification. Use at your own risk! If you want to connect your
-    inverter via the (more limited) external RS232 interface you should use the :ref:`Modbus <modbus_controller>`
-    component instead.
+    inverter via the (more limited) external RS232 interface you should use the
+    :doc:`Modbus </components/modbus_controller>` component instead.
 
 As the data is read from the inverter using UART, you need to have an :ref:`UART bus <uart>` in your
 configuration with the ``rx_pin`` connected to the TX pin of the inverter's controller board. Additionally, you
