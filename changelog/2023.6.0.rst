@@ -51,6 +51,8 @@ Beta Changes
 - Make growatt play nicer with other modbus components. :esphomepr:`4947` by :ghuser:`onnlucky`
 - Bump esphome-dashboard to 20230621.0 :esphomepr:`4980` by :ghuser:`jesserockz`
 - Fix pypi release :esphomepr:`4983` by :ghuser:`jesserockz`
+- Add configuration option to disable the log UI. :esphomepr:`4419` by :ghuser:`dd32`
+- Update webserver and captive portal pages to 67c48ee9 :esphomepr:`4986` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -127,6 +129,8 @@ All changes
 - Make growatt play nicer with other modbus components. :esphomepr:`4947` by :ghuser:`onnlucky`
 - Bump esphome-dashboard to 20230621.0 :esphomepr:`4980` by :ghuser:`jesserockz`
 - Fix pypi release :esphomepr:`4983` by :ghuser:`jesserockz`
+- Add configuration option to disable the log UI. :esphomepr:`4419` by :ghuser:`dd32`
+- Update webserver and captive portal pages to 67c48ee9 :esphomepr:`4986` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
