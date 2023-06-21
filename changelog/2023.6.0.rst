@@ -50,6 +50,7 @@ Beta Changes
 - Apply configured IIR filter setting in generated BMP280 code :esphomepr:`4975` by :ghuser:`murrayma`
 - Make growatt play nicer with other modbus components. :esphomepr:`4947` by :ghuser:`onnlucky`
 - Bump esphome-dashboard to 20230621.0 :esphomepr:`4980` by :ghuser:`jesserockz`
+- Fix pypi release :esphomepr:`4983` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -125,6 +126,7 @@ All changes
 - Apply configured IIR filter setting in generated BMP280 code :esphomepr:`4975` by :ghuser:`murrayma`
 - Make growatt play nicer with other modbus components. :esphomepr:`4947` by :ghuser:`onnlucky`
 - Bump esphome-dashboard to 20230621.0 :esphomepr:`4980` by :ghuser:`jesserockz`
+- Fix pypi release :esphomepr:`4983` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
