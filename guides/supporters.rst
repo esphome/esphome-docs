@@ -289,6 +289,7 @@ Contributors
 - `David Buezas (@dbuezas) <https://github.com/dbuezas>`__
 - `dckiller51 (@dckiller51) <https://github.com/dckiller51>`__
 - `Daniel Correa Lobato (@dclobato) <https://github.com/dclobato>`__
+- `Dion Hulse (@dd32) <https://github.com/dd32>`__
 - `DeadEnd (@DeadEnded) <https://github.com/DeadEnded>`__
 - `Debashish Sahu (@debsahu) <https://github.com/debsahu>`__
 - `declanshanaghy (@declanshanaghy) <https://github.com/declanshanaghy>`__
@@ -797,7 +798,6 @@ Contributors
 - `moritzj29 (@moritzj29) <https://github.com/moritzj29>`__
 - `Chris Laplante (@mostthingsweb) <https://github.com/mostthingsweb>`__
 - `MrEditor97 (@mreditor97) <https://github.com/mreditor97>`__
-- `Morgan Robertson (@mrgnr) <https://github.com/mrgnr>`__
 - `Mariusz Kryński (@mrk-its) <https://github.com/mrk-its>`__
 - `Michael Davidson (@MrMDavidson) <https://github.com/MrMDavidson>`__
 - `mrred2k (@mrred2k) <https://github.com/mrred2k>`__
@@ -1165,4 +1165,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 21, 2023.*
+*This page was last updated June 22, 2023.*
