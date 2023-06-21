@@ -47,6 +47,9 @@ Beta Changes
 - Store app comment and compilation_time in flash :esphomepr:`4945` by :ghuser:`bdraco`
 - Construct web_server assets at build time instead of run time :esphomepr:`4944` by :ghuser:`bdraco`
 - Update pca9685_output.cpp :esphomepr:`4929` by :ghuser:`standahabich`
+- Apply configured IIR filter setting in generated BMP280 code :esphomepr:`4975` by :ghuser:`murrayma`
+- Make growatt play nicer with other modbus components. :esphomepr:`4947` by :ghuser:`onnlucky`
+- Bump esphome-dashboard to 20230621.0 :esphomepr:`4980` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -119,6 +122,9 @@ All changes
 - Store app comment and compilation_time in flash :esphomepr:`4945` by :ghuser:`bdraco`
 - Construct web_server assets at build time instead of run time :esphomepr:`4944` by :ghuser:`bdraco`
 - Update pca9685_output.cpp :esphomepr:`4929` by :ghuser:`standahabich`
+- Apply configured IIR filter setting in generated BMP280 code :esphomepr:`4975` by :ghuser:`murrayma`
+- Make growatt play nicer with other modbus components. :esphomepr:`4947` by :ghuser:`onnlucky`
+- Bump esphome-dashboard to 20230621.0 :esphomepr:`4980` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
