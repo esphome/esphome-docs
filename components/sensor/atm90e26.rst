@@ -80,10 +80,10 @@ expect to measure 193 mV at a line voltage of 230V. The resulting PL Constant is
 3200 pulses/kWh (see below): `838860800 * 1 * 6 * 193 / (3200 * 230) = 1319838`.
 
 **Meter Calibration** is completed by matching the ATM90E26's CF1 (active energy) pulse to those of your electricity
-meter by adjusting the `gain_metering` value until the pulses match. Depending on your meter, you may want to adjust
-the `meter_constant`, which defaults to 3200 pulses/kWh so that the accumulated Wh of energy are correctly emitted
-by this sensor. Some rotating disc meters use 1666 pulses per kWh. If you're not matching against a meter you may want
-to calibrate this value to emit one pulse per Wh, or whatever other value is useful for your project.
+meter by adjusting the `gain_metering` value until the pulses match. Next, set the `meter_constant`, which defines
+how many pulses make up one kWh of energy. If you are matching an existing meter, typical values may be 3200 pulses/kWh,
+1000 pulses/kWh, or for some rotating meters 1666.66 pulses per kWh. If you're not matching against a meter you may
+want to calibrate this value to emit 1000 pulses per kWh, or whatever other value is useful for your project.
 
 If your current clamp or voltage transformer aren't well matched to the specific A90E26-based device you're using
 it **may be necessary to multiply values**, to stay within the value ranges specified in the
