@@ -21,6 +21,7 @@ Configuration variables:
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin CS is connected to. For the 6 channel meter main board, this will always be 5 and 4. For the add-on boards a jumper can be selected for each CS pin, but default to 0 and 16.
 - **line_frequency** (**Required**, string): The AC line frequency of the supply voltage. One of ``50Hz``, ``60Hz``.
+- **meter_constant** (**Required**, float): The number of pulses per kWh. The ATM90E26 internally works based on pulses and this value converts a pulse into Wh, which are emitted as `forward_active_energy` etc. Matching it against an existing meter is useful in that it allows visual confirmation for some devices that blink an LED for each pulse. Common values are 1000 pulses/kWh, 1666.66 pulses/kWh, or 3200 pulses/kWh. See also **gain_metering** which determines after how much energy a pulse is emitted.
 - **voltage** (*Optional*): Use the voltage value of this phase in V (RMS).
   All options from :ref:`Sensor <config-sensor>`.
 - **current** (*Optional*): Use the current value of this phase in amperes. All options from
@@ -37,11 +38,9 @@ Configuration variables:
   All options from :ref:`Sensor <config-sensor>`.
 - **frequency** (*Optional*): Use the frequency value calculated by the meter. All options from
   :ref:`Sensor <config-sensor>`.
-- **meter_constant** (*Optional*, float): The number of pulses per kWh. The ATM90E26 internally works based on pulses and this value converts a pulse into Wh, which are emitted as `forward_active_energy` etc.
-  Defaults to ``3200.0``.
 - **pl_const** (*Optional*, int): A constant derived from the physical characteristics of your measurement setup. See the Calibration section.
   Defaults to ``1429876``.
-- **gain_metering** (*Optional*, int): This value determines how quickly internal energy registers accumulate and hence defines the value of a "pulse". Matching it against an existing meter is useful in that it allows visual confirmation for some devices that blink an LED for each pulse.
+- **gain_metering** (*Optional*, int): This value determines how quickly internal energy registers accumulate and hence defines the value of a "pulse". Matching it against an existing meter is useful in that it allows visual confirmation for some devices that blink an LED for each pulse. See also the **meter_constant**.
   Defaults to ``7481``.
 - **gain_voltage** (*Optional*, int): Voltage gain to scale the low voltage AC power back to household mains feed.
   Defaults to ``26400``.
