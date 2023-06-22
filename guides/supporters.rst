@@ -398,6 +398,7 @@ Contributors
 - `C W (@fake-name) <https://github.com/fake-name>`__
 - `Florian idB (@fbeek) <https://github.com/fbeek>`__
 - `Fabian Berthold (@fbrthld) <https://github.com/fbrthld>`__
+- `F.D.Castel (@fdcastel) <https://github.com/fdcastel>`__
 - `felixlungu (@felixlungu) <https://github.com/felixlungu>`__
 - `Felix Storm (@felixstorm) <https://github.com/felixstorm>`__
 - `Christian Ferbar (@ferbar) <https://github.com/ferbar>`__
@@ -501,7 +502,6 @@ Contributors
 - `highground88 (@highground88) <https://github.com/highground88>`__
 - `Hamish Moffatt (@hmoffatt) <https://github.com/hmoffatt>`__
 - `Marcel Hoppe (@hobbypunk90) <https://github.com/hobbypunk90>`__
-- `MoA (@honomoa) <https://github.com/honomoa>`__
 - `Hopperpop (@Hopperpop) <https://github.com/Hopperpop>`__
 - `Yang Hau (@howjmay) <https://github.com/howjmay>`__
 - `hpineapples (@hpineapples) <https://github.com/hpineapples>`__
