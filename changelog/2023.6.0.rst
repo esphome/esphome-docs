@@ -15,6 +15,41 @@ ESPHome 2023.6.0 - 21th June 2023
     RP2040 PIO LED Strip, components/light/rp2040_pio_led_strip, color_lens.svg
     TMP1075, components/sensor/tmp1075, tmp1075.jpg
 
+Dark Mode 😎
+------------
+
+Thanks to :ghuser:`grahambrown11` for implement a dark mode for the ESPHome dashboard!
+It will take the preference of your browser and is not configurable at this time.
+
+Alarm Control Panel
+-------------------
+
+:ghuser:`grahambrown11` also has contributed the base alarm control panel code and a template alarm control panel.
+This is available to use now in ESPHome, but will require Home Assistant 2023.7 or newer for the entity to show up
+and be control from that side.
+
+Breaking Changes
+----------------
+
+VOC sensors
+^^^^^^^^^^^
+
+Some VOC sensors have had their default device class changed from ``volatile_organic_compounds`` to ``volatile_organic_compounds_parts``
+to better align with what they are returning.
+
+
+Microphone
+^^^^^^^^^^
+
+The ``on_data`` trigger (and the internal callback) for the microphone now provides ``std::vector<int16>`` instead of a ``std::vector<uin8_t>``.
+
+
+Header files moved
+^^^^^^^^^^^^^^^^^^
+
+There are a couple of breaking changes for users who publish ``external_components`` and may use the internal APIs.
+See the list below for the pull requests that have been marked as breaking changes.
+
 
 Full list of changes
 --------------------
@@ -32,6 +67,7 @@ Breaking Changes
 - Allow i2s microphone bits per sample to be configured :esphomepr:`4884` by :ghuser:`jesserockz` (breaking-change)
 - Move ESPTime into core esphome namespace :esphomepr:`4926` by :ghuser:`jesserockz` (breaking-change)
 - display: add `BaseImage` and provide only `Image::get_pixel` method :esphomepr:`4932` by :ghuser:`ayufan` (breaking-change)
+- Migrate VOC sensors that use ppb to use volatile_organic_compounds_parts device class :esphomepr:`4982` by :ghuser:`bdraco` (breaking-change)
 
 Beta Changes
 ^^^^^^^^^^^^
@@ -53,6 +89,9 @@ Beta Changes
 - Fix pypi release :esphomepr:`4983` by :ghuser:`jesserockz`
 - Add configuration option to disable the log UI. :esphomepr:`4419` by :ghuser:`dd32`
 - Update webserver and captive portal pages to 67c48ee9 :esphomepr:`4986` by :ghuser:`jesserockz`
+- airthings_wave: refactor to eliminate code duplication :esphomepr:`4910` by :ghuser:`kpfleming` (new-integration)
+- Migrate VOC sensors that use ppb to use volatile_organic_compounds_parts device class :esphomepr:`4982` by :ghuser:`bdraco` (breaking-change)
+- dashboard: Adds "compressed=1" to /download.bin endpoint. (...) :esphomepr:`4966` by :ghuser:`fdcastel`
 
 All changes
 ^^^^^^^^^^^
@@ -131,6 +170,9 @@ All changes
 - Fix pypi release :esphomepr:`4983` by :ghuser:`jesserockz`
 - Add configuration option to disable the log UI. :esphomepr:`4419` by :ghuser:`dd32`
 - Update webserver and captive portal pages to 67c48ee9 :esphomepr:`4986` by :ghuser:`jesserockz`
+- airthings_wave: refactor to eliminate code duplication :esphomepr:`4910` by :ghuser:`kpfleming` (new-integration)
+- Migrate VOC sensors that use ppb to use volatile_organic_compounds_parts device class :esphomepr:`4982` by :ghuser:`bdraco` (breaking-change)
+- dashboard: Adds "compressed=1" to /download.bin endpoint. (...) :esphomepr:`4966` by :ghuser:`fdcastel`
 
 Past Changelogs
 ---------------
