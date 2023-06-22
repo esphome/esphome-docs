@@ -1,4 +1,4 @@
-PMSX003 Particulate Matter Sensor
+Panasonic SN-GCJA5 Particulate Matter Sensor
 =================================
 
 .. seo::
