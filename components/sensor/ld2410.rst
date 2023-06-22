@@ -25,7 +25,6 @@ Use of hardware UART pins is highly recommended, in order to support the out-of-
 
     # Example configuration entry
     uart:
-      id: uart1
       tx_pin: REPLACEME
       rx_pin: REPLACEME
       baud_rate: 256000
@@ -76,7 +75,7 @@ and binary sensors.
   Value between ``0.75m`` and ``6m`` inclusive. Defaults to ``4.5m``.
 - **gX_move_threshold** (*Optional*, int): Threshold for the Xth gate for motion detection (X => 0 to 8).
   Above this level for the considered gate (distance), movement detection will be triggered. Defaults to ``see table below``.
-- **gX _still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8).
+- **gX_still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8).
   Above this level for the considered gate (distance), still detection will be triggered. Defaults to ``see table below``.
 
 .. list-table:: Default values for gate threshold

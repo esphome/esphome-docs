@@ -81,6 +81,8 @@ PLATFORMS_TITLES = {
     "Stepper": "stepper",
     "Switch": "switch",
     "I²C": "i2c",
+    "Media Player": "media_player",
+    "Microphone": "microphone",
 }
 
 CUSTOM_DOCS = {
@@ -196,6 +198,8 @@ CUSTOM_DOCS = {
     },
 }
 
+REQUIRED_OPTIONAL_TYPE_REGEX = r"(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s"
+
 
 def get_node_title(node):
     return list(node.traverse(nodes.title))[0].astext()
@@ -250,7 +254,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     ]
 
             else:  # sub component, e.g. output/esp8266_pwm
-
                 # components here might have a core / hub, eg. dallas, ads1115
                 # and then they can be a binary_sensor, sensor, etc.
                 self.platform = self.path[1]
@@ -775,7 +778,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             and (self.props or self.multi_component)
             and self.bullet_list_level > 1
         ):
-
             self.prop_stack.append((self.current_prop, node))
             self.accept_props = True
             return
@@ -844,7 +846,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         try:
             name_type = markdown[: markdown.index(": ") + 2]
             ntr = re.search(
-                r"(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s",
+                REQUIRED_OPTIONAL_TYPE_REGEX,
                 name_type,
                 re.IGNORECASE,
             )
@@ -875,7 +877,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         return markdown
 
     def update_prop(self, node, props):
-
         prop_name = None
 
         for s_prop, n in self.prop_stack:
@@ -901,10 +902,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                             found = True
                             if enum_docs:
                                 enum_docs = enum_docs.strip()
-                                if "values_docs" not in inner:
-                                    inner["values_docs"] = {name: enum_docs}
+                                if inner["values"][name] is None:
+                                    inner["values"][name] = {"docs": enum_docs}
                                 else:
-                                    inner["values_docs"][name] = enum_docs
+                                    inner["values"][name]["docs"] = enum_docs
                                 statistics.props_documented += 1
                                 statistics.enums_good += 1
                     if not found:
@@ -941,12 +942,19 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             return prop_name, False
 
         # Example properties formats are:
-        # **name** (**Required**, string): Long Description...
-        # **name** (*Optional*, string): Long Description... Defaults to ``value``.
-        # **name** (*Optional*): Long Description... Defaults to ``value``.
+        # **prop_name** (**Required**, string): Long Description...
+        # **prop_name** (*Optional*, string): Long Description... Defaults to ``value``.
+        # **prop_name** (*Optional*): Long Description... Defaults to ``value``.
+        # **prop_name** can be a list of names separated by / e.g. **name1/name2** (*Optional*) see climate/pid/ threshold_low/threshold_high
+
+        PROP_NAME_REGEX = r"\*\*(\w*(?:/\w*)*)\*\*"
+
+        FULL_ITEM_PROP_NAME_TYPE_REGEX = (
+            r"\* " + PROP_NAME_REGEX + r"\s" + REQUIRED_OPTIONAL_TYPE_REGEX
+        )
 
         ntr = re.search(
-            r"\* \*\*(\w*)\*\*\s(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s",
+            FULL_ITEM_PROP_NAME_TYPE_REGEX,
             name_type,
             re.IGNORECASE,
         )
@@ -956,14 +964,14 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             param_type = ntr.group(7)
         else:
             s2 = re.search(
-                r"\* \*\*(\w*)\*\*\s(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s",
+                FULL_ITEM_PROP_NAME_TYPE_REGEX,
                 markdown,
                 re.IGNORECASE,
             )
             if s2:
                 # this is e.g. when a property has a list inside, and the list inside are the options.
                 # just validate **prop_name**
-                s3 = re.search(r"\* \*\*(\w*)\*\*:\s", name_type)
+                s3 = re.search(r"\* " + PROP_NAME_REGEX + r"*:\s", name_type)
                 if s3 is not None:
                     prop_name = s3.group(1)
                 else:
@@ -977,61 +985,61 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 )
                 return prop_name, False
 
-        k = str(prop_name)
+        prop_names = str(prop_name)
+        for k in prop_names.split("/"):
+            config_var = props.get(k)
 
-        config_var = props.get(k)
+            if not config_var:
+                # Create docs for common properties when descriptions are overridden
+                # in the most specific component.
 
-        if not config_var:
-            # Create docs for common properties when descriptions are overridden
-            # in the most specific component.
-
-            if k in [
-                "id",
-                "name",
-                "internal",
-                # i2c
-                "address",
-                "i2c_id",
-                # polling component
-                "update_interval",
-                # uart
-                "uart_id",
-                # light
-                "effects",
-                "gamma_correct",
-                "default_transition_length",
-                "flash_transition_length",
-                "color_correct",
-                # display
-                "lambda",
-                "pages",
-                "rotation",
-                # spi
-                "spi_id",
-                "cs_pin",
-                # output (binary/float output)
-                "inverted",
-                "power_supply",
-                # climate
-                "receiver_id",
-            ]:
-                config_var = props[k] = {}
-            else:
-                if self.path[1] == "esphome" and k in [
-                    # deprecated esphome
-                    "platform",
-                    "board",
-                    "arduino_version",
-                    "esp8266_restore_from_flash",
+                if k in [
+                    "id",
+                    "name",
+                    "internal",
+                    # i2c
+                    "address",
+                    "i2c_id",
+                    # polling component
+                    "update_interval",
+                    # uart
+                    "uart_id",
+                    # light
+                    "effects",
+                    "gamma_correct",
+                    "default_transition_length",
+                    "flash_transition_length",
+                    "color_correct",
+                    # display
+                    "lambda",
+                    "pages",
+                    "rotation",
+                    # spi
+                    "spi_id",
+                    "cs_pin",
+                    # output (binary/float output)
+                    "inverted",
+                    "power_supply",
+                    # climate
+                    "receiver_id",
                 ]:
-                    return prop_name, True
-                return prop_name, False
+                    config_var = props[k] = {}
+                else:
+                    if self.path[1] == "esphome" and k in [
+                        # deprecated esphome
+                        "platform",
+                        "board",
+                        "arduino_version",
+                        "esp8266_restore_from_flash",
+                    ]:
+                        return prop_name, True
+                    return prop_name, False
 
-        desc = markdown[markdown.index(": ") + 2 :].strip()
-        if param_type:
-            desc = "**" + param_type + "**: " + desc
+            desc = markdown[markdown.index(": ") + 2 :].strip()
+            if param_type:
+                desc = "**" + param_type + "**: " + desc
 
-        config_var["docs"] = desc
+            config_var["docs"] = desc
 
         statistics.props_documented += 1
 
@@ -1084,7 +1092,11 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
         def _find_extended(self, component, key):
             for extended in component.get("extends", []):
-                schema = self.visitor.get_component_schema(extended).get("schema", {})
+                c = self.visitor.get_component_schema(extended)
+                if c.get("type") == "typed":
+                    p = self.visitor.Props(self.visitor, c)
+                    return p[key]
+                schema = c.get("schema", {})
                 for k, cv in schema.get("config_vars", {}).items():
                     if k == key:
                         return SetObservable(
@@ -1124,7 +1136,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 )
 
         def _set_typed(self, inner_key, original_dict, key, value):
-            if inner_key == self.component.get("typed_key"):
+            if inner_key == self.component.get("typed_key", "type"):
                 self.component[key] = value
             else:
                 for tk, tv in self.component["types"].items():
