@@ -322,6 +322,9 @@ This :ref:`Condition <config-condition>` checks if the WiFi client is currently 
           - logger.log: WiFi is connected!
 
 
+The lambda equivalent for this is ``id(wifi_id).is_connected()``.
+
+
 .. _wifi-enabled_condition:
 
 ``wifi.enabled`` Condition
@@ -330,14 +333,17 @@ This :ref:`Condition <config-condition>` checks if the WiFi client is currently 
 This :ref:`Condition <config-condition>` checks if WiFi is currently enabled or not.
 
 .. code-block:: yaml
-    
+
     on_...:
       - if:
           condition: wifi.enabled
-          then:	  
+          then:
             - wifi.disable:
           else:
             - wifi.enable:
+
+
+The lambda equivalent for this is ``!id(wifi_id).is_disabled()``.
 
 
 See Also
