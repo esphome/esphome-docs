@@ -273,15 +273,36 @@ Configuration variables:
   Optionally encrypted with ``password``.
 
 
-Turning on and off WiFi
+``wifi.disable`` Action
 -----------------------
 
-Using the actions ``wifi.enable`` and ``wifi.disable``, you can turn on and off the WiFi interface on demand.
-The configuration option ``enable_on_boot`` can be set to ``false`` if you do not want wifi to be enabled on boot.
+This action turns off the WiFi interface on demand.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - wifi.disable:
 
 .. note::
 
     Be aware that if you disable WiFi, the API timeout will need to be disabled otherwise the device will reboot.
+
+
+``wifi.enable`` Action
+----------------------
+
+This action turns on the WiFi interface on demand.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - wifi.enable:
+
+.. note::
+
+    The configuration option ``enable_on_boot`` can be set to ``false`` if you do not want wifi to be enabled on boot.
 
 
 .. _wifi-connected_condition:
@@ -300,6 +321,25 @@ This :ref:`Condition <config-condition>` checks if the WiFi client is currently 
         then:
           - logger.log: WiFi is connected!
 
+
+.. _wifi-enabled_condition:
+
+``wifi.enabled`` Condition
+--------------------------
+
+This :ref:`Condition <config-condition>` checks if WiFi is currently enabled or not.
+
+.. code-block:: yaml
+    
+    on_...:
+      - if:
+          condition: wifi.enabled
+          then:	  
+            - wifi.disable:
+          else:
+            - wifi.enable:
+
+
 See Also
 --------
 
@@ -308,5 +348,6 @@ See Also
 - :doc:`sensor/wifi_signal`
 - :doc:`network`
 - :doc:`/components/ethernet`
+- :doc:`api`
 - :apiref:`wifi/wifi_component.h`
 - :ghedit:`Edit`
