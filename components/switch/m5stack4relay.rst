@@ -25,13 +25,13 @@ The relays can be used to switch up to AC-230V or DC-28V. For more information: 
       - platform: m5stack4relay
         id: relay_1
         name: relay1
-        channel: relay_1
+        channel: 1
         m5stack4relay_id: M5stackrelay_ID1
 
 Configuration variables:
 ------------------------
 
-- **channel** (*Required*, string): The name of channel to switch, options are relay_1, relay_2, relay_3 or relay_4.
+- **channel** (*Required*, string): The channel number to switch, options are 1, 2, 3 or 4.
 - **m5stack4relay_id** (*Optional*, :ref:`config-id`): The ID of the M5Stack 4 relay.
 - **interlock** (*Optional*, list): A list of other switches in an interlock group. See
   :ref:`switch-gpio-interlocking`.

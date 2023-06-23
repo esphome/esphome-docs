@@ -34,7 +34,7 @@ https://wiki.seeedstudio.com/Grove-8-Channel_Solid_State_Relay/
       - platform: seeedmultichannelrelay
         id: relay_1
         name: relay1
-        channel: relay_1
+        channel: 1
         seeedmultichannelrelay_id: SeeedMultiChannelRelay_ID
 
 Configuration variables:
@@ -48,7 +48,7 @@ Configuration variables:
 
 **Switch**
 
-- **channel** (*Required*, string): The name of channel to switch, options are relay_1, relay_2, relay_3 or relay_4.
+- **channel** (*Required*, string): The channel number to switch, options are 1 to 8 (depending on the relay switch design).
 - **seeedmultichannelrelay_id** (*Optional*, :ref:`config-id`): The ID of the Seed relay.
 - **interlock** (*Optional*, list): A list of other switches in an interlock group. See
   :ref:`switch-gpio-interlocking`.
