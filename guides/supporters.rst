@@ -553,7 +553,6 @@ Contributors
 - `Juraj Andrássy (@JAndrassy) <https://github.com/JAndrassy>`__
 - `Delio Castillo (@jangeador) <https://github.com/jangeador>`__
 - `Jan Grewe (@jangrewe) <https://github.com/jangrewe>`__
-- `János Rusiczki (@janosrusiczki) <https://github.com/janosrusiczki>`__
 - `Jan Pieper (@janpieper) <https://github.com/janpieper>`__
 - `Jared Ring (@jaredring) <https://github.com/jaredring>`__
 - `Jarek.P (@JaroslawPrzybyl) <https://github.com/JaroslawPrzybyl>`__
@@ -591,7 +590,6 @@ Contributors
 - `Jérémy JOURDIN (@JJK801) <https://github.com/JJK801>`__
 - `Jonathan Jefferies (@jjok) <https://github.com/jjok>`__
 - `John K. Luebs (@jkl1337) <https://github.com/jkl1337>`__
-- `Justin Maxwell (@jkmaxwell) <https://github.com/jkmaxwell>`__
 - `Jeppe Ladefoged (@jladefoged) <https://github.com/jladefoged>`__
 - `Jean-Luc Béchennec (@jlbirccyn) <https://github.com/jlbirccyn>`__
 - `Jonas De Kegel (@jlsjonas) <https://github.com/jlsjonas>`__
@@ -623,12 +621,9 @@ Contributors
 - `James Szalay (@jtszalay) <https://github.com/jtszalay>`__
 - `Jules-R (@Jules-R) <https://github.com/Jules-R>`__
 - `Julie Koubová (@juliekoubova) <https://github.com/juliekoubova>`__
-- `Justahobby01 (@Justahobby01) <https://github.com/Justahobby01>`__
 - `Mike Ryan (@justfalter) <https://github.com/justfalter>`__
 - `Justin Gerhardt (@justin-gerhardt) <https://github.com/justin-gerhardt>`__
-- `Justyn Shull (@justyns) <https://github.com/justyns>`__
 - `Jasper van der Neut - Stulen (@jvanderneutstulen) <https://github.com/jvanderneutstulen>`__
-- `João Vitor M. Roma (@jvmr1) <https://github.com/jvmr1>`__
 - `Jack Wozny (@jwozny) <https://github.com/jwozny>`__
 - `Jozef Zuzelka (@jzlka) <https://github.com/jzlka>`__
 - `Kris (@K-r-i-s-t-i-a-n) <https://github.com/K-r-i-s-t-i-a-n>`__
@@ -957,6 +952,7 @@ Contributors
 - `Jérôme W. (@RomRider) <https://github.com/RomRider>`__
 - `roscoegray (@roscoegray) <https://github.com/roscoegray>`__
 - `rotarykite (@rotarykite) <https://github.com/rotarykite>`__
+- `Rajan Patel (@rpatel3001) <https://github.com/rpatel3001>`__
 - `Bob Perciaccante (@rperciaccante) <https://github.com/rperciaccante>`__
 - `rradar (@rradar) <https://github.com/rradar>`__
 - `rspaargaren (@rspaargaren) <https://github.com/rspaargaren>`__
@@ -1165,4 +1161,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 22, 2023.*
+*This page was last updated June 23, 2023.*

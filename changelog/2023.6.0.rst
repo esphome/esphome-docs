@@ -49,6 +49,13 @@ Wi-Fi can now be enabled and disabled on demand using the ``wifi.enable`` and ``
 It can also be set to not enable on bootup. See the :doc:`Wi-Fi documentation </components/wifi>` for more details.
 
 
+Release 2023.6.1 - June 23
+--------------------------
+
+- Make ethernet_info work with esp-idf framework :esphomepr:`4976` by :ghuser:`HeMan`
+- display: fix white screen on binary displays :esphomepr:`4991` by :ghuser:`ayufan`
+
+
 Breaking Changes
 ----------------
 
