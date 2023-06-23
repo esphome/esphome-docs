@@ -14,10 +14,6 @@ The relays can be used to switch up to AC-230V or DC-28V. For more information: 
     :align: center
     :width: 80.0%
 
-.. figure:: images/m5stack4relay.png
-    :align: center
-    :width: 80.0%
-
 .. code-block:: yaml
 
     # Example configuration entry
