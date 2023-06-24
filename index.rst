@@ -5,13 +5,13 @@
 
 .. seo::
     :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that
-      tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers
+      tries to provide the best possible use experience for using ESP8266, ESP32 and RP2040 microcontrollers
       for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
     :image: logo.svg
 
 .. image:: /images/logo-text.svg
 
-ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.
+ESPHome is a system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
 .. image:: /images/hero.png
 
@@ -317,6 +317,7 @@ Environmental
     TEE501, components/sensor/tee501, TEE501.png, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
+    TMP1075, components/sensor/tmp1075, tmp1075.jpg, Temperature
     HYT271, components/sensor/hyt271, hyt271.jpg, Temperature & Humidity
 
 
@@ -524,6 +525,7 @@ Light Components
     RGBCT Light, components/light/rgbct, rgbw.png
 
     ESP32 RMT, components/light/esp32_rmt_led_strip, color_lens.svg
+    RP2040 PIO, components/light/rp2040_pio_led_strip, color_lens.svg
     FastLED Light, components/light/fastled, color_lens.svg
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
     Light Partition, components/light/partition, color_lens.svg
@@ -747,6 +749,14 @@ Home Assistant Companion Components
     Sensor, components/sensor/homeassistant, home-assistant.svg
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg
     Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg
+
+Alarm Control Panel Components
+------------------------------
+
+.. imgtable::
+
+    Alarm Control Panel Core, components/alarm_control_panel/index, alarm-panel.svg
+    Template Alarm Control Panel, components/alarm_control_panel/template, description.svg
 
 Miscellaneous Components
 ------------------------
