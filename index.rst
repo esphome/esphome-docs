@@ -5,13 +5,13 @@
 
 .. seo::
     :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that
-      tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers
+      tries to provide the best possible use experience for using ESP8266, ESP32 and RP2040 microcontrollers
       for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
     :image: logo.svg
 
 .. image:: /images/logo-text.svg
 
-ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.
+ESPHome is a system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
 .. image:: /images/hero.png
 
@@ -299,6 +299,7 @@ Environmental
     Internal Temperature, components/sensor/internal_temperature, thermometer.svg, Temperature
     MCP9808, components/sensor/mcp9808, mcp9808.jpg, Temperature
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
+    MLX90614, components/sensor/mlx90614, mlx90614.jpg, Temperature
     MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
@@ -316,6 +317,8 @@ Environmental
     TEE501, components/sensor/tee501, TEE501.png, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
+    TMP1075, components/sensor/tmp1075, tmp1075.jpg, Temperature
+    HYT271, components/sensor/hyt271, hyt271.jpg, Temperature & Humidity
 
 
 Light
@@ -497,11 +500,12 @@ Output Components
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
-    Sigma-Delta Output, components/output/sigma_delta, sigma-delta.svg
+    Sigma-Delta Output, components/output/sigma_delta_output, sigma-delta.svg
     Template Output, components/output/template, description.svg
     BP1658CJ, components/output/bp1658cj, bp1658cj.svg
     BP5758D, components/output/bp5758d, bp5758d.svg
     X9C Potentiometer, components/output/x9c, x9c.jpg
+    GP8403, components/output/gp8403, gp8403.svg
 
 Light Components
 ----------------
@@ -520,6 +524,8 @@ Light Components
     RGBWW Light, components/light/rgbww, rgbw.png
     RGBCT Light, components/light/rgbct, rgbw.png
 
+    ESP32 RMT, components/light/esp32_rmt_led_strip, color_lens.svg
+    RP2040 PIO, components/light/rp2040_pio_led_strip, color_lens.svg
     FastLED Light, components/light/fastled, color_lens.svg
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
     Light Partition, components/light/partition, color_lens.svg
@@ -713,6 +719,14 @@ Microphone Components
     Microphone Core, components/microphone/index, microphone.svg
     I2S Microphone, components/microphone/i2s_audio, i2s_audio.svg
 
+Speaker Components
+------------------
+
+.. imgtable::
+
+    Speaker Core, components/speaker/index, speaker.svg
+    I2S Speaker, components/speaker/i2s_audio, i2s_audio.svg
+
 Time Components
 ---------------
 
@@ -735,6 +749,14 @@ Home Assistant Companion Components
     Sensor, components/sensor/homeassistant, home-assistant.svg
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg
     Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg
+
+Alarm Control Panel Components
+------------------------------
+
+.. imgtable::
+
+    Alarm Control Panel Core, components/alarm_control_panel/index, alarm-panel.svg
+    Template Alarm Control Panel, components/alarm_control_panel/template, description.svg
 
 Miscellaneous Components
 ------------------------
@@ -769,14 +791,17 @@ Miscellaneous Components
     Servo, components/servo, servo.svg
     Sprinkler, components/sprinkler, sprinkler-variant.svg
 
+    PCA6416A I/O Expander, components/pca6416a, pca6416a.svg
     PCA9554 I/O Expander, components/pca9554, pca9554a.jpg
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
+    MAX6956 I/O expander - I²C Bus, components/max6956, max6956.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SN74HC165 I/O Expander, components/sn74hc165, sn74hc595.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
+    XL9535 I/O Expander, components/xl9535, xl9535.svg
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
@@ -824,6 +849,7 @@ Cookbook
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
+    Share data directly between ESPHome nodes, cookbook/http_request_sensor, connection.svg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

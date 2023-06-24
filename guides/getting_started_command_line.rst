@@ -40,6 +40,12 @@ If you want to use `docker-compose` instead, here's a sample file:
         privileged: true
         network_mode: host
 
+.. note::
+
+    If you are using NFS share to back your container's config volume, you may 
+    need to mount the volume with the `nolock` option, otherwise platformio may 
+    freeze on container startup as per `platformIO-core Issue 3089 <https://github.com/platformio/platformio-core/issues/3089>`__
+
 The project provides multiple docker tags; please pick the one that suits you
 better:
 
