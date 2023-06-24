@@ -71,5 +71,9 @@ Set the ``id`` and ``name`` label values of the Prometheus metric for the sensor
 See Also
 --------
 
+- :doc:`/components/web_server`
+- :ref:`api-rest`
+- :doc:`/components/http_request`
 - :apiref:`prometheus/prometheus_handler.h`
+- `Prometheus <https://prometheus.io/>`__
 - :ghedit:`Edit`
