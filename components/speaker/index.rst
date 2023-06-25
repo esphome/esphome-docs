@@ -51,8 +51,8 @@ This action will start playing raw audio data from the speaker.
 
 Configuration variables:
 
-**id** (*Optional*, :ref:`config-id`): The speaker to control. Defaults to the only one in YAML.
-**data** (*Required*, list of bytes): The raw audio data to play.
+- **id** (*Optional*, :ref:`config-id`): The speaker to control. Defaults to the only one in YAML.
+- **data** (**Required**, list of bytes): The raw audio data to play.
 
 .. _speaker-stop:
 
@@ -71,7 +71,7 @@ your configuration YAML.
 
 Configuration variables:
 
-**id** (*Optional*, :ref:`config-id`): The speaker to check. Defaults to the only one in YAML.
+- **id** (*Optional*, :ref:`config-id`): The speaker to check. Defaults to the only one in YAML.
 
 .. _speaker-is_playing:
 
