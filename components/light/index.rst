@@ -318,6 +318,7 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **relative_brightness** (**Required**, :ref:`templatable <config-templatable>`, percentage):
   The relative brightness to dim the light by.
+- **relative_color_temp** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The relative color temperature to adjust the light color temperature by. Positive percentages increase warmth, negative percentages decrease warmth.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition.
 
 .. note::
