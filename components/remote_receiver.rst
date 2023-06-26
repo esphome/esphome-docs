@@ -53,6 +53,7 @@ Configuration variables:
   - **samsung36**: Decode and dump Samsung36 infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
   - **toshiba_ac**: Decode and dump Toshiba AC infrared codes.
+  - **virtualwire**: Decode and dump VirtualWire / RadioHead RH_ASK codes.
 
 - **tolerance** (*Optional*, int): The percentage that the remote signal lengths can deviate in the
   decoding process. Defaults to ``25%``.
@@ -146,6 +147,9 @@ Automations:
 - **on_toshiba_ac** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Toshiba AC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ToshibaAcData`
   is passed to the automation for use in lambdas.
+- **on_virtualwire** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  VirtualWire / RadioHead RH_ASK code has been decoded. A variable ``x`` of
+  type :apistruct:`remote_base::VirtualWireData` is passed to the automation for use in lambdas.
 
 .. code-block:: yaml
 
@@ -344,6 +348,12 @@ Remote code selection (exactly one of these has to be included):
 
   - **rc_code_1** (**Required**, int): The remote control code to trigger on, see dumper output for more details.
   - **rc_code_2** (*Optional*, int): The second part of the remote control code to trigger on, see dumper output for more details.
+
+- **virtualwire**: Trigger on a decoded VirtualWire / RadioHead RH_ASK remote code with the given data.
+
+  - **data** (**Required**, list): The data to trigger on, see :ref:`remote_transmitter-transmit_virtualwire` for more info.
+  - **speed** (*Optional*, int): The transmission speed in bits per second. Set to ``0`` for automatic speed detection.
+    Defaults to ``0``.
 
 .. note::
 

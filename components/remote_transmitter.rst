@@ -718,6 +718,29 @@ Configuration variables:
 
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+.. _remote_transmitter-transmit_virtualwire:
+
+``remote_transmitter.transmit_virtualwire`` Action
+**************************************************
+
+This :ref:`action <config-action>` sends a VirtualWire / RadioHead RH_ASK message to a remote transmitter.
+It can be used to transmit messages between ESPHome and Arduino devices and is compatible with the
+VirtualWire and RadioHead Arduino libraries
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_virtualwire:
+          data: [0x00, 0x01]
+          speed: 2000
+
+Configuration variables:
+
+- **data** (**Required**, list): The content of the message, see dumper output for more details.
+- **speed** (*Optional*, int): The transmission speed in bits per second. Defaults to ``2000``.
+
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 
 Lambda calls
 ************
