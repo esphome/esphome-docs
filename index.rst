@@ -609,6 +609,7 @@ Display Components
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     ST7920, components/display/st7920, st7920.jpg
+    ILI9xxx, components/display/ili9xxx, ili9341.jpg
     ILI9341, components/display/ili9xxx, ili9341.jpg
     ILI9342, components/display/ili9xxx, ili9341.jpg
     ILI9481, components/display/ili9xxx, ili9341.jpg 
