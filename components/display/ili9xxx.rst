@@ -3,10 +3,27 @@ ILI9xxx TFT LCD Series
 ======================
 
 .. seo::
-    :description: Instructions for setting up ILI9xxx TFT LCD display drivers.
+    :description: Instructions for setting up ILI9xxx like TFT LCD display drivers.
     :image: ili9341.jpg
 
 .. _ili9xxx:
+
+Models
+------
+With this display driver you can control the following displays:
+  - ILI9341
+  - ILI9342
+  - ILI9481
+  - ILI9486
+  - ILI9488
+  - M5STACK
+  - S3BOX
+  - S3BOX_LITE
+  - ST7796
+  - TFT 2.4
+  - TFT 2.4R
+
+More display drivers will come in the future.
 
 Usage
 -----
