@@ -616,6 +616,11 @@ Display Components
     ILI9486, components/display/ili9xxx, ili9341.jpg 
     ILI9488, components/display/ili9xxx, ili9341.jpg 
     ST7796, components/display/ili9xxx, ili9341.jpg
+    M5STACK, components/display/ili9xxx, ili9341.jpg
+    TFT 2.4, components/display/ili9xxx, ili9341.jpg
+    TFT 2.4R, components/display/ili9xxx, ili9341.jpg
+    S3BOX, components/display/ili9xxx, ili9341.jpg
+    S3BOX_LITE, components/display/ili9xxx, ili9341.jpg
 
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     Inkplate, components/display/inkplate6, inkplate6.jpg
