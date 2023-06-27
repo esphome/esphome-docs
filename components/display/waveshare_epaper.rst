@@ -108,7 +108,7 @@ Configuration variables:
 .. warning::
 
     The BUSY pin on the gdew0154m09 must be inverted to prevent permanent display damage. Set the pin to 
-    `inverted: true` in the config. 
+    ``inverted: true`` in the config. 
 
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
