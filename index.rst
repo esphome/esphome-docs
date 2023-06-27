@@ -317,6 +317,7 @@ Environmental
     TEE501, components/sensor/tee501, TEE501.png, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
+    TMP1075, components/sensor/tmp1075, tmp1075.jpg, Temperature
     HYT271, components/sensor/hyt271, hyt271.jpg, Temperature & Humidity
 
 
@@ -524,6 +525,7 @@ Light Components
     RGBCT Light, components/light/rgbct, rgbw.png
 
     ESP32 RMT, components/light/esp32_rmt_led_strip, color_lens.svg
+    RP2040 PIO, components/light/rp2040_pio_led_strip, color_lens.svg
     FastLED Light, components/light/fastled, color_lens.svg
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
     Light Partition, components/light/partition, color_lens.svg
@@ -590,13 +592,18 @@ Display Components
 
     Display Core, components/display/index, folder-open.svg
     Addressable Light, components/display/addressable_light, addressable_light.jpg
+    ILI9xxx, components/display/ili9xxx, ili9341.jpg
+    ILI9341, components/display/ili9xxx, ili9341.svg
+    ILI9342, components/display/ili9xxx, ili9342.svg
+    ILI9481, components/display/ili9xxx, ili9481.svg
+    ILI9486, components/display/ili9xxx, ili9341.jpg
+    ILI9488, components/display/ili9xxx, ili9488.svg
+    Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
-    TM1621, components/display/tm1621, tm1621.jpg
-    TM1637, components/display/tm1637, tm1637.jpg
-    TM1638, components/display/tm1638, tm1638.jpg
     Nextion, components/display/nextion, nextion.jpg
+    PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
     PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1322, components/display/ssd1322, ssd1322.jpg
@@ -606,11 +613,12 @@ Display Components
     SSD1351, components/display/ssd1351, ssd1351.jpg
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
+    ST7796, components/display/ili9xxx, st7796.svg
     ST7920, components/display/st7920, st7920.jpg
-    ILI9xxx, components/display/ili9xxx, ili9341.jpg
+    TM1621, components/display/tm1621, tm1621.jpg
+    TM1637, components/display/tm1637, tm1637.jpg
+    TM1638, components/display/tm1638, tm1638.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
-    Inkplate, components/display/inkplate6, inkplate6.jpg
-    PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
 Touchscreen Components
 ----------------------
@@ -747,6 +755,14 @@ Home Assistant Companion Components
     Sensor, components/sensor/homeassistant, home-assistant.svg
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg
     Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg
+
+Alarm Control Panel Components
+------------------------------
+
+.. imgtable::
+
+    Alarm Control Panel Core, components/alarm_control_panel/index, alarm-panel.svg
+    Template Alarm Control Panel, components/alarm_control_panel/template, description.svg
 
 Miscellaneous Components
 ------------------------
