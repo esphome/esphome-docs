@@ -10,9 +10,9 @@ ESPHome 2023.6.0 - 21st June 2023
 .. imgtable::
     :columns: 2
 
-    Alarm Control Panel Core, components/alarm_control_panel/index, alarm-panel.svg
-    Template Alarm Control Panel, components/alarm_control_panel/template, description.svg
-    RP2040 PIO LED Strip, components/light/rp2040_pio_led_strip, color_lens.svg
+    Alarm Control Panel Core, components/alarm_control_panel/index, alarm-panel.svg, dark-invert
+    Template Alarm Control Panel, components/alarm_control_panel/template, description.svg, dark-invert
+    RP2040 PIO LED Strip, components/light/rp2040_pio_led_strip, color_lens.svg, dark-invert
     TMP1075, components/sensor/tmp1075, tmp1075.jpg
 
 Dark Mode 😎

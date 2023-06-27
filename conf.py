@@ -100,7 +100,7 @@ html_extra_path = [
 # default_role = 'cpp:any'
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = "xcode"
+pygments_style = "solarized-dark"
 
 highlight_language = "yaml"
 
