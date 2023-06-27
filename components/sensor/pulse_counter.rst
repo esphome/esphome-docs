@@ -93,7 +93,7 @@ measure the total consumed energy in kWh.
     sensor:
       - platform: pulse_counter
         pin: 12
-        unit_of_measurement: 'Wh'
+        unit_of_measurement: 'kW'
         name: 'Power Meter House'
         filters:
           - multiply: 0.06  # (60s/1000 pulses per kWh)
