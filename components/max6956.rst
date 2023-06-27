@@ -47,12 +47,13 @@ Configuration variables:
   Defaults to ``false``
 - **brightness_global** (*Optional*): Set the value of the current to be sink by all pins configured as led driver.
   Defaults to ``0``
-- **brightness_mode**  (*Optional*): Define if the current to be sink will be confgured globaly or per pin configured as led driver.
+- **brightness_mode** (*Optional*): Define if the current to be sink will be confgured globaly or per pin configured as led driver.
   Defaults to ``global``  
 
 
-Binary Sensor
--------------
+Binary Sensor Example
+---------------------
+
 ``max6956`` pins can be use as binary sensor. Individual pullup are supported.
 
 .. code-block:: yaml
@@ -83,8 +84,9 @@ Binary Sensor
           inverted: False
 
 
-Switch
--------------
+Switch Example
+--------------
+
 ``max6956`` pins can be use as switch.
 
 .. code-block:: yaml
@@ -113,8 +115,9 @@ Switch
             inverted: False 
 
 
-Led driver
--------------
+Led driver Example
+------------------
+
 ``max6956`` can control a constant-current sink to drive leds, with 16 equal steps from 1.5mA to 24mA.
 
 
