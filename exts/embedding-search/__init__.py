@@ -65,7 +65,9 @@ class IndexBuilder:
             else:
                 pending_embeddings.append(docname)
         if len(pending_embeddings) > 0:
-            print(f"getting embeddings from openai on {len(pending_embeddings)} documents...")
+            print(
+                f"getting embeddings from openai on {len(pending_embeddings)} documents..."
+            )
             resp = requests.post(
                 "https://api.openai.com/v1/embeddings",
                 headers={
@@ -113,13 +115,18 @@ class IndexBuilder:
         first_subheader = None
         main_node = doctree.children[-1]
         if isinstance(main_node, docutils.nodes.section):
+            has_text = False
             for child in main_node.children:
-                if not isinstance(child, docutils.nodes.section):
-                    continue
-                first_node = child.children[0]
-                if isinstance(first_node, docutils.nodes.title):
-                    first_subheader = first_node.astext()
-                    break
+                if isinstance(child, docutils.nodes.paragraph):
+                    has_text = True
+                if isinstance(child, docutils.nodes.section):
+                    if not has_text:
+                        has_text = True
+                        continue
+                    first_node = child.children[0]
+                    if isinstance(first_node, docutils.nodes.title):
+                        first_subheader = first_node.astext()
+                        break
         if first_subheader:
             text = contents.split("\n" + first_subheader + "\n")[0]
 
