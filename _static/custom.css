@@ -246,7 +246,7 @@ div.body p, div.body dd, div.body li, div.body blockquote {
     background-color: #212121;
   }
 
-  .dark-invert, img.logo {
+  img.dark-invert, img.logo {
     filter: invert(1);
   }
 
