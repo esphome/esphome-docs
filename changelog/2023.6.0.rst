@@ -61,6 +61,15 @@ Release 2023.6.2 - June 23
 - remove unused static declarations :esphomepr:`4993` by :ghuser:`ssieb`
 - Fix rp2040 pio tool download :esphomepr:`4994` by :ghuser:`jesserockz`
 
+Release 2023.6.3 - June 28
+--------------------------
+
+- Update webserver to 56d73b5 :esphomepr:`5007` by :ghuser:`jesserockz`
+- Synchronise Device Classes from Home Assistant :esphomepr:`5018` by :ghuser:`esphomebot`
+- Fixes compressed downloads :esphomepr:`5014` by :ghuser:`fdcastel`
+- Add CONFIG_BT_BLE_42_FEATURES_SUPPORTED for ble :esphomepr:`5008` by :ghuser:`jesserockz`
+
+
 Breaking Changes
 ----------------
 
