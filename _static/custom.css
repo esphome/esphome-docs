@@ -144,7 +144,7 @@ div.index-shields {
   display: block;
   height: auto;
   width: 300px;
-  background-color: #d5f7f7;
+  background-color: #f3f6f6;
   border-radius: 8px;
   box-shadow: 4px 4px 8px -4px #00000075;
   padding-bottom: 8px;
@@ -158,7 +158,6 @@ div.index-shields {
 
 .guide-card .example {
   margin: 10px;
-  border: 1px solid #212121;
 }
 
 .guide-card pre {
@@ -297,11 +296,11 @@ div.body p, div.body dd, div.body li, div.body blockquote {
   }
 
   .guide-card {
-    background-color: #14504f;
+    background-color: #393939;
   }
 
   pre {
-    background-color: #0a0a0a;
+    background-color: #0d1117;
   }
 
   code {
