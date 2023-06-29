@@ -236,7 +236,7 @@ is updated via a ``ClimateCall`` (which includes changes coming in from Home
 Assistant).  That is, this trigger is activated for, for example, changes to
 the mode, *but not* on temperature measurements.  It will be invoked prior to
 the ``on_state`` trigger, if both are defined. The ``ClimateCall`` control
-object is available to automations as the variable ``x`` that can be changed.
+object is available to automations as the reference ``x`` that can be changed.
 
 .. code-block:: yaml
 
