@@ -94,7 +94,8 @@ of these entries matters!)
           - invert:
           - delayed_on: 100ms
           - delayed_off: 100ms
-          - delayed_on_off: 100ms
+          # Templated, delays for 1s (1000ms) only if a reed switch is active
+          - delayed_on_off: !lambda "if (id(reed_switch).state) return 1000; else return 0;"
           - autorepeat:
             - delay: 1s
               time_off: 100ms
@@ -117,24 +118,29 @@ Simple filter that just inverts every value from the binary sensor.
 ``delayed_on``
 **************
 
-(**Required**, :ref:`config-time`): When a signal ON is received, wait for the specified time period until publishing
-an ON state. If an OFF value is received while waiting, the ON action is discarded. Or in other words:
+(**Required**, time, :ref:`templatable <config-templatable>`): When a signal ON is received,
+wait for the specified time period until publishing an ON state. If an OFF value is received
+while waiting, the ON action is discarded. Or in other words:
 Only send an ON value if the binary sensor has stayed ON for at least the specified time period.
+When using a lambda call, you should return the delay value in milliseconds.
 **Useful for debouncing push buttons**.
 
 ``delayed_off``
 ***************
 
-(**Required**, :ref:`config-time`): When a signal OFF is received, wait for the specified time period until publishing
-an OFF state. If an ON value is received while waiting, the OFF action is discarded. Or in other words:
+(**Required**, time, :ref:`templatable <config-templatable>`): When a signal OFF is received,
+wait for the specified time period until publishing an OFF state. If an ON value is received
+while waiting, the OFF action is discarded. Or in other words:
 Only send an OFF value if the binary sensor has stayed OFF for at least the specified time period.
+When using a lambda call, you should return the delay value in milliseconds.
 **Useful for debouncing push buttons**.
 
 ``delayed_on_off``
 ******************
 
-(**Required**, :ref:`config-time`): Only send an ON or OFF value if the binary sensor has stayed in the same state
-for at least the specified time period.
+(**Required**, time, :ref:`templatable <config-templatable>`): Only send an ON or OFF value
+if the binary sensor has stayed in the same state for at least the specified time period.
+When using a lambda call, you should return the delay value in milliseconds.
 **Useful for debouncing binary switches**.
 
 ``autorepeat``
