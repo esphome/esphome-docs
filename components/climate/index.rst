@@ -217,6 +217,7 @@ advanced stuff.
 
 This trigger is activated each time the state of the climate device is updated
 (for example, if the current temperature measurement or the mode set by the users changes).
+The ``Climate`` itself is available to automations as the reference ``x``.
 
 .. code-block:: yaml
 
@@ -224,7 +225,11 @@ This trigger is activated each time the state of the climate device is updated
       - platform: midea  # or any other platform
         # ...
         on_state:
-        - logger.log: "State updated!"
+          - logger.log: "State updated!"
+          - lambda: |-
+              if (x.mode != CLIMATE_MODE_OFF)
+                id(some_binary_sensor).publish_state(true);
+
 
 .. _climate-on_control_trigger:
 
