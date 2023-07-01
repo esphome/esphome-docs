@@ -99,10 +99,10 @@ You may also use Tasmota console to invoke the upgrade with just two commands:
 
 :: 
 
-  OtaUrl http://<MY-ESPHOME:6502>/download.bin?configuration=<MY_DEVICE>.yaml&type=firmware-factory.bin&compressed=1
+  OtaUrl http://<MY-ESPHOME:6052>/download.bin?configuration=<MY_DEVICE>.yaml&type=firmware-factory.bin&compressed=1
   Upgrade 1
 
-replacing ``http://<MY-ESPHOME:6502>/`` with the host and port of your ESPHome installation and ``<MY_DEVICE>.yaml``
+replacing ``http://<MY-ESPHOME:6052>/`` with the host and port of your ESPHome installation and ``<MY_DEVICE>.yaml``
 with your device configuration file name.
 
 If you need to use the uncompressed image for any reason, just remove ``&compressed=1`` from the above url.
