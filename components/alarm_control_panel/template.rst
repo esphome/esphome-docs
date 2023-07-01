@@ -74,11 +74,13 @@ Example:
 
     alarm_control_panel:
       platform: template
+      id: acp1
       name: Alarm Panel
       codes:
         - "1234"
       requires_code_to_arm: true
-      arming_time: 10s
+      arming_away_time: 10s
+      arming_home_time: 10s
       pending_time: 15s
       trigger_time: 5min
       binary_sensors:
