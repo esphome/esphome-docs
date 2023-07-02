@@ -206,6 +206,33 @@ then fit a linear equation to the values (using least squares). So you need to s
 two values. If more than two values are given a linear solution will be calculated and may not
 represent each value exactly.
 
+.. _sensor-filter-map_linear:
+
+``map_linear``
+**************
+
+Similar to ``calibrate_linear`` but may create multiple linear functions to connect your data points
+instead of just one.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: dht
+      # ...
+      temperature:
+        name: "DHT22 Temperature"
+        filters:
+          - map_linear:
+              # Map 0.0 (from sensor) to 0.0 (true value)
+              - 0.0 -> 0.0
+              - 10.0 -> 12.1
+              - 13.0 -> 14.0
+
+The arguments are a list of data points, each in the form ``MEASURED -> TRUTH``. ESPHome will
+then fit one or multiple linear equations to connect the values. So you need to supply at least
+two values. If only two values are given this behaves exactly the same as ``calibrate_linear``.
+
+
 .. _sensor-calibrate_polynomial:
 
 ``calibrate_polynomial``
@@ -244,6 +271,17 @@ degree with a least squares solver.
       # ...
       filters:
         - filter_out: 85.0
+
+``clamp``
+*********
+
+Limits the value to the range between ``min_value`` and ``max_value``. If ``min_value`` is not set, there is
+no lower bound, if ``max_value`` is not set there is no upper bound.
+
+Configuration variables:
+
+- **min_value** (*Optional*, float): The lower bound of the range.
+- **max_value** (*Optional*, float): The upper bound of the range.
 
 ``quantile``
 ************
