@@ -96,6 +96,9 @@ of these entries matters!)
           - delayed_off: 100ms
           # Templated, delays for 1s (1000ms) only if a reed switch is active
           - delayed_on_off: !lambda "if (id(reed_switch).state) return 1000; else return 0;"
+          - delayed_on_off:
+              time_on: 10s
+              time_off: !lambda "if (id(reed_switch).state) return 1000; else return 0;"
           - autorepeat:
             - delay: 1s
               time_off: 100ms
@@ -138,10 +141,40 @@ When using a lambda call, you should return the delay value in milliseconds.
 ``delayed_on_off``
 ******************
 
-(**Required**, time, :ref:`templatable <config-templatable>`): Only send an ON or OFF value
-if the binary sensor has stayed in the same state for at least the specified time period.
+Only send an ON or OFF value if the binary sensor has stayed in the same state for at least the specified time period.
+
+This filter uses two time delays: on and off.
+
+If the delays are equal, then you can configure the filter in short form by passing the time parameter:
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ...
+        # ...
+        filters:
+          - delayed_on_off: 1s
+
+(**Required**, time, :ref:`templatable <config-templatable>`): ON and OFF delay.
 When using a lambda call, you should return the delay value in milliseconds.
 **Useful for debouncing binary switches**.
+
+If the delays are different, then you need to pass them as in the example below:
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ...
+        # ...
+        filters:
+          - delayed_on_off:
+              time_on: 10s
+              time_off: 20s
+
+- **time_on** (**Required**, time, :ref:`templatable <config-templatable>`): ON delay.
+- **time_off** (**Required**, time, :ref:`templatable <config-templatable>`): OFF delay.
+When using a lambda call, you should return the delay value in milliseconds.
+
 
 ``autorepeat``
 **************
