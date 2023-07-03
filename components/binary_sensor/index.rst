@@ -171,8 +171,11 @@ If the delays are different, then you need to pass them as in the example below:
               time_on: 10s
               time_off: 20s
 
+Configuration variables:
+
 - **time_on** (**Required**, time, :ref:`templatable <config-templatable>`): ON delay.
 - **time_off** (**Required**, time, :ref:`templatable <config-templatable>`): OFF delay.
+
 When using a lambda call, you should return the delay value in milliseconds.
 
 
