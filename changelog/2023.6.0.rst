@@ -69,6 +69,14 @@ Release 2023.6.3 - June 28
 - Fixes compressed downloads :esphomepr:`5014` by :ghuser:`fdcastel`
 - Add CONFIG_BT_BLE_42_FEATURES_SUPPORTED for ble :esphomepr:`5008` by :ghuser:`jesserockz`
 
+Release 2023.6.4 - July 4
+-------------------------
+
+- [SCD30] Disable negative temperature offset :esphomepr:`4850` by :ghuser:`ardichoke`
+- fix template binary_sensor publish_initial_state option :esphomepr:`5033` by :ghuser:`dudanov`
+- Add alarm to reserved ids :esphomepr:`5042` by :ghuser:`grahambrown11`
+- Advertise noise is enabled :esphomepr:`5034` by :ghuser:`bdraco`
+- Update webserver to ea86d81 :esphomepr:`5023` by :ghuser:`jesserockz`
 
 Breaking Changes
 ----------------
