@@ -335,12 +335,12 @@ The suffix is applied to both ``name`` and ``friendly_name``.
     upstream.
 
 
-.. _esphome-creators_project:
-
 Some tools, such as the ESPHome Add-On to Home Assistant, expect the name of the device configuration
 file to match exactly the device name, ``<name>.yaml``. Adding the MAC address suffix may prevent these tools 
 correlating a discovered device to a matching configuration file.
 
+
+.. _esphome-creators_project:
 
 Project information
 -------------------
