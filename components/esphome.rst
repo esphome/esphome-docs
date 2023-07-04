@@ -325,6 +325,8 @@ Using ``name_add_mac_suffix`` allows :doc:`creators </guides/creators>` to
 provision multiple devices at the factory with a single firmware and still 
 have unique identification for customer installs.
 
+The suffix is applied to both ``name`` and ``friendly_name``.
+
 .. note::
 
     End users will need to create an individual YAML config file if they want to OTA update the 
@@ -334,6 +336,11 @@ have unique identification for customer installs.
 
 
 .. _esphome-creators_project:
+
+Some tools, such as the ESPHome Add-On to Home Assistant, expect the name of the device configuration
+file to match exactly the device name, ``<name>.yaml``. Adding the MAC address suffix may prevent these tools 
+correlating a discovered device to a matching configuration file.
+
 
 Project information
 -------------------
