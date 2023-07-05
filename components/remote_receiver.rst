@@ -274,6 +274,8 @@ Remote code selection (exactly one of these has to be included):
 
   - **data** (**Required**, string): The code to listen for, see :ref:`remote_transmitter-transmit_raw`
     for more info. Usually you only need to copy this directly from the dumper output.
+  - **delta** (**Optional**, integer): This parameter allows you to manually specify the allowed difference
+    between what Pronto code is specified, and what IR signal has been sent by the remote control.
 
 - **raw**: Trigger on a raw remote code with the given code.
 
