@@ -44,6 +44,8 @@ Configuration variables:
 - **force_sw** (*Optional*, boolean): Whether software implementation should be used even if hardware one is available.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this SPI hub if you need multiple SPI hubs.
 
+**Please note:** while both ESP8266 and ESP32 support the reassignment of the default SPI pins to other GPIO pins, using the dedicated SPI pins can improve performance and stability for certain ESP/device combinations.
+
 See Also
 --------
 
