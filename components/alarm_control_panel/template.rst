@@ -26,9 +26,10 @@ Configuration variables:
 
 - **codes** (*Optional*, list of string): A list of codes for disarming the alarm, if *requires_code_to_arm* set to true then for arming the alarm too.
 - **requires_code_to_arm** (*Optional*, boolean): Code required for arming the alarm, *codes* must be provided.
-- **arming_time** (*Optional*, :ref:`config-time`): The exit delay before the alarm is armed.
-- **pending_time** (*Optional*, :ref:`config-time`): The entry delay before the alarm is triggered.
-- **trigger_time** (*Optional*, :ref:`config-time`): The time after a triggered alarm before resetting to previous state if the sensors are cleared/off.
+- **arming_away_time** (*Optional*, :ref:`config-time`): The exit delay before the alarm is armed to away mode. Defaults to ``0s``.
+- **arming_home_time** (*Optional*, :ref:`config-time`): The exit delay before the alarm is armed to home mode.  
+- **pending_time** (*Optional*, :ref:`config-time`): The entry delay before the alarm is triggered. Defaults to ``0s``.
+- **trigger_time** (*Optional*, :ref:`config-time`): The time after a triggered alarm before resetting to previous state if the sensors are cleared/off. Defaults to ``0s``.
 - **binary_sensors** (*Optional*, *list*): A list of binary sensors the panel should use. Each consists of:
 
   - **input** (**Required**, string): The id of the binary sensor component
