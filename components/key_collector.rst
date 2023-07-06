@@ -83,6 +83,10 @@ Automations:
   if the timeout happens. The current sequence of pressed keys is placed in a ``vector<uint8_t>`` variable ``x``
   and ``start`` holds the start key that activated this sequence or else ``0``.
 
+Lambda:
+-------
+
+- **send_key(uint8_t key)**: Send a key to the collector directly.
 
 See Also
 --------

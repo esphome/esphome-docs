@@ -340,6 +340,14 @@ This is only possible for ``pip`` installs.
     git checkout -b my-new-feature
     cd ..
 
+The environment is now ready for use, but you need to activate the Python virtual environment 
+every time you are using it. 
+
+.. code-block:: bash
+
+    # Activate venv
+    source venv/bin/activate
+
 Now you can open ESPHome in your IDE of choice (mine is CLion) with the PlatformIO
 addons (see PlatformIO docs for more info). Then develop the new feature with the
 guidelines below.
