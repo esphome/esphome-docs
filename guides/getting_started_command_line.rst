@@ -39,6 +39,9 @@ If you want to use `docker-compose` instead, here's a sample file:
         restart: always
         privileged: true
         network_mode: host
+        environment:
+          - USERNAME=test 
+          - PASSWORD=ChangeMe
 
 .. note::
 
