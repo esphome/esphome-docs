@@ -160,6 +160,7 @@ Core
     Integration, components/sensor/integration, sigma.svg
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     Uptime Sensor, components/sensor/uptime, timer.svg
+    Duty Time, components/sensor/duty_time, timer-play-outline.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Template Sensor, components/sensor/template, description.svg
     Custom Sensor, components/sensor/custom, language-cpp.svg
