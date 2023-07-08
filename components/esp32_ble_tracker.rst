@@ -108,7 +108,9 @@ This automation will be triggered when a Bluetooth advertising is received. A va
 
     esp32_ble_tracker:
       on_ble_advertise:
-        - mac_address: 11:22:33:44:55:66
+        - mac_address: 
+            - 11:11:11:11:11:11
+            - 22:22:22:22:22:22
           then:
             - lambda: |-
                 ESP_LOGD("ble_adv", "New BLE device");
@@ -129,7 +131,7 @@ This automation will be triggered when a Bluetooth advertising is received. A va
 
 Configuration variables:
 
-- **mac_address** (*Optional*, MAC Address): The MAC address to filter for this automation.
+- **mac_address** (*Optional*, list of MAC Address): The MAC address to filter for this automation.
 - See :ref:`Automation <automation>`.
 
 .. _esp32_ble_tracker-on_ble_manufacturer_data_advertise:

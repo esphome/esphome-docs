@@ -122,7 +122,7 @@ This :ref:`action <config-action>` sends a CanalSat infrared remote code to a re
 Configuration variables:
 
 - **device** (**Required**, int): The device to send to, see dumper output for more details.
-- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **address** (*Optional*, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
@@ -149,7 +149,7 @@ This :ref:`action <config-action>` sends a CanalSatLD infrared remote code to a 
 Configuration variables:
 
 - **device** (**Required**, int): The device to send to, see dumper output for more details.
-- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **address** (*Optional*, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
@@ -283,7 +283,7 @@ This :ref:`action <config-action>` sends a 40-bit Midea code to a remote transmi
     on_...:
       - remote_transmitter.transmit_midea:
           code: [0xA2, 0x08, 0xFF, 0xFF, 0xFF]
-    
+
     on_...:
       - remote_transmitter.transmit_midea:
           code: !lambda |-
@@ -932,6 +932,10 @@ earlier, create a new template switch that sends the RF code when triggered:
           - remote_transmitter.transmit_rc_switch_raw:
               code: '100010000000000010111110'
               protocol: 2
+              repeat: 
+                times: 10
+                wait_time: 0s
+
 
     # Or for raw code
     switch:
@@ -945,6 +949,15 @@ earlier, create a new template switch that sends the RF code when triggered:
 
 Recompile again, when you power up the device the next time you will see a new switch
 in the frontend. Click on it and you should see the remote signal being transmitted. Done!
+
+.. note::
+
+    Some devices require that the transmitted code be repeated for the signal to be picked up 
+    as valid. Also the interval between repetitions can be important. Check that the pace of 
+    repetition logs are consistent between the remote controller and the transmitter node. 
+    You can adjust the ``repeat:`` settings accordingly.
+
+
 
 See Also
 --------

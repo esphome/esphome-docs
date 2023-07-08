@@ -25,7 +25,7 @@ for this sensor to work.
 
     # Example configuration entry
     sensor:
-      - platform: MMC5603 
+      - platform: mmc5603 
         address: 0x30
         field_strength_x:
           name: "MMC5603 Field Strength X"

@@ -5,13 +5,13 @@
 
 .. seo::
     :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that
-      tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers
+      tries to provide the best possible use experience for using ESP8266, ESP32 and RP2040 microcontrollers
       for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
     :image: logo.svg
 
 .. image:: /images/logo-text.svg
 
-ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.
+ESPHome is a system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
 .. image:: /images/hero.png
 
@@ -317,6 +317,7 @@ Environmental
     TEE501, components/sensor/tee501, TEE501.png, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
+    TMP1075, components/sensor/tmp1075, tmp1075.jpg, Temperature
     HYT271, components/sensor/hyt271, hyt271.jpg, Temperature & Humidity
 
 
@@ -499,7 +500,7 @@ Output Components
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
-    Sigma-Delta Output, components/output/sigma_delta, sigma-delta.svg
+    Sigma-Delta Output, components/output/sigma_delta_output, sigma-delta.svg
     Template Output, components/output/template, description.svg
     BP1658CJ, components/output/bp1658cj, bp1658cj.svg
     BP5758D, components/output/bp5758d, bp5758d.svg
@@ -523,6 +524,8 @@ Light Components
     RGBWW Light, components/light/rgbww, rgbw.png
     RGBCT Light, components/light/rgbct, rgbw.png
 
+    ESP32 RMT, components/light/esp32_rmt_led_strip, color_lens.svg
+    RP2040 PIO, components/light/rp2040_pio_led_strip, color_lens.svg
     FastLED Light, components/light/fastled, color_lens.svg
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
     Light Partition, components/light/partition, color_lens.svg
@@ -589,13 +592,18 @@ Display Components
 
     Display Core, components/display/index, folder-open.svg
     Addressable Light, components/display/addressable_light, addressable_light.jpg
+    ILI9xxx, components/display/ili9xxx, ili9341.jpg
+    ILI9341, components/display/ili9xxx, ili9341.svg
+    ILI9342, components/display/ili9xxx, ili9342.svg
+    ILI9481, components/display/ili9xxx, ili9481.svg
+    ILI9486, components/display/ili9xxx, ili9341.jpg
+    ILI9488, components/display/ili9xxx, ili9488.svg
+    Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
-    TM1621, components/display/tm1621, tm1621.jpg
-    TM1637, components/display/tm1637, tm1637.jpg
-    TM1638, components/display/tm1638, tm1638.jpg
     Nextion, components/display/nextion, nextion.jpg
+    PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
     PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1322, components/display/ssd1322, ssd1322.jpg
@@ -605,11 +613,12 @@ Display Components
     SSD1351, components/display/ssd1351, ssd1351.jpg
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
+    ST7796, components/display/ili9xxx, st7796.svg
     ST7920, components/display/st7920, st7920.jpg
-    ILI9xxx, components/display/ili9xxx, ili9341.jpg
+    TM1621, components/display/tm1621, tm1621.jpg
+    TM1637, components/display/tm1637, tm1637.jpg
+    TM1638, components/display/tm1638, tm1638.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
-    Inkplate, components/display/inkplate6, inkplate6.jpg
-    PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
 Touchscreen Components
 ----------------------
@@ -747,6 +756,14 @@ Home Assistant Companion Components
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg
     Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg
 
+Alarm Control Panel Components
+------------------------------
+
+.. imgtable::
+
+    Alarm Control Panel Core, components/alarm_control_panel/index, alarm-panel.svg
+    Template Alarm Control Panel, components/alarm_control_panel/template, description.svg
+
 Miscellaneous Components
 ------------------------
 
@@ -790,6 +807,7 @@ Miscellaneous Components
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SN74HC165 I/O Expander, components/sn74hc165, sn74hc595.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
+    XL9535 I/O Expander, components/xl9535, xl9535.svg
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
@@ -837,6 +855,7 @@ Cookbook
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
+    Share data directly between ESPHome nodes, cookbook/http_request_sensor, connection.svg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
