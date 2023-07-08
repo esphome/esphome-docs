@@ -34,9 +34,9 @@ Configuration variables:
 ------------------------
 
 - **sensor** (*Optional*, :ref:`config-id`): The ID of the ``binary_sensor`` to track the duty time. *May not be
-  used with ``lambda``*.
+  used with* ``lambda``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): Lambda that will be called in a loop to get the current
-  state of the tracked object. *May not be used with ``sensor``*.
+  state of the tracked object. *May not be used with* ``sensor``.
 - **last_time** (*Optional*): Information of the last switch-on time sensor.
 - **restore** (*Optional*, boolean): Whether to store the intermediate result on the device so that the value can be
   restored upon power cycle or reboot.
