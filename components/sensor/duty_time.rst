@@ -8,7 +8,7 @@ Duty Time
 The ``duty_time`` sensor allows you to track the total duty time of the some object, for example, a light bulb, in seconds.
 Able to calculate the last turn-on time when an optional sensor ``last_time`` is included in the configuration.
 
-Supports boolean signal sources: ``binary_sensor`` or ``lambda`` that returns a boolean state of tracked object: ``true`` or ``false``.
+Supports boolean signal sources: ``binary_sensor`` or ``lambda`` that returns a boolean state of tracked object.
 As an alternative to controlling a component in automations, may be used the ``sensor.duty_time.start`` and ``sensor.duty_time.stop`` actions.
 
 
@@ -56,7 +56,7 @@ In addition to all basic :ref:`sensor automations <sensor-automations>`, the com
 ``sensor.duty_time.start`` Action
 *********************************
 
-This action starts/resume time tracking. In lambdas, use the ``start()`` method.
+This action starts/resume time tracking. In lambdas, you may use the ``start()`` method.
 
 .. code-block:: yaml
 
@@ -71,7 +71,7 @@ This action starts/resume time tracking. In lambdas, use the ``start()`` method.
 ``sensor.duty_time.stop`` Action
 ********************************
 
-This action suspends time tracking. Causes the sensor to be updated, including the last turn-on time sensor. In lambdas, use the ``stop()`` method.
+This action suspends time tracking. Causes the sensor to be updated, including the ``last_time`` sensor. In lambdas, you may use the ``stop()`` method.
 
 .. code-block:: yaml
 
@@ -85,7 +85,7 @@ This action suspends time tracking. Causes the sensor to be updated, including t
 ``sensor.duty_time.reset`` Action
 *********************************
 
-This action resets the duty time counter. Causes a sensor update. Does not affect the sensor of the last turn-on time. In lambdas, use the ``reset()`` method.
+This action resets the duty time counter. Causes a sensor update. Does not affect the ``last_time`` sensor. In lambdas, you may use the ``reset()`` method.
 
 .. code-block:: yaml
 
@@ -100,7 +100,7 @@ This action resets the duty time counter. Causes a sensor update. Does not affec
 ``sensor.duty_time.is_running`` / ``sensor.duty_time.is_not_running`` Condition
 *******************************************************************************
 
-This :ref:`Condition <config-condition>` checks if the ``duty_time`` counter is currently running (or suspended). In lambdas, use the ``is_running()`` method.
+This :ref:`Condition <config-condition>` checks if the ``duty_time`` counter is currently running (or suspended). In lambdas, you may use the ``is_running()`` method.
 
 .. code-block:: yaml
 
