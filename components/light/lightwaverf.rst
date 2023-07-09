@@ -74,7 +74,7 @@ Configuration variables:
 Compatible Hardware
 -------------------
 
-These are the sensors which are been confirmed to work with the current code base, if you use different onces and they work, please report them to the team.
+The RF transmitters/receivers listed below have been confirmed to work with the current code base. If you discover others that work, please let us know!
 
 Compatible transmitter:
 
