@@ -16,7 +16,7 @@ the device manually by choosing "ESPHome" from the integration overview and ente
 "<NODE_NAME>.local" or the IP address of the unit in the "Host" field.
 
 The ESPHome native API is based on a custom TCP protocol using protocol buffers. You can find
-the protocol data structure definitions here: https://github.com/esphome/esphome/blob/dev/esphome/components/api/api.proto
+the protocol data structure definitions here: `api.proto <https://github.com/esphome/esphome/blob/dev/esphome/components/api/api.proto>`__
 A Python library that implements this protocol is `aioesphomeapi <https://github.com/esphome/aioesphomeapi>`__.
 
 .. code-block:: yaml
@@ -35,7 +35,7 @@ Configuration variables:
 
     .. raw:: html
 
-        <input type="text" id="api-key" onclick="this.focus();this.select()" style="width: 240px;" readonly="readonly">
+        <input type="text" id="api-key" onclick="this.focus();this.select()" style="width: 350px; max-width: 75vw;" readonly="readonly">
         <script>
           // https://stackoverflow.com/a/62362724
           function bytesArrToBase64(arr) {
