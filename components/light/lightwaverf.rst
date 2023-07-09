@@ -71,8 +71,8 @@ Configuration variables:
 - **inverted** (*Optional*, boolean): Send the signal inverted
 
 
-Compatible sensors
-------------------
+Compatible Hardware
+-------------------
 
 These are the sensors which are been confirmed to work with the current code base, if you use different onces and they work, please report them to the team.
 
