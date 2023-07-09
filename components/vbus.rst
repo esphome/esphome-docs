@@ -8,20 +8,54 @@ VBus Component
 
 The ``VBus`` Component provides status reading connectivity to solar heat energy collector controllers using VBus
 protocol. These devices are mainly produced by Resol, often also found under different brand names like Viessmann,
-Kioto, Wagner etc. The component currently supports natively Resol DeltaSol C, DeltaSol CS2, DeltaSol CS Plus, and DeltaSol BS Plus
+Kioto, Wagner etc. The component currently supports natively the models in the table below
 but any device can be added via lambda by knowing `its packet structure <https://danielwippermann.github.io/resol-vbus>`__.
 
 .. figure:: ../images/resol_deltasol_bs_plus.jpg
     :align: center
 
+Supported Models
+----------------
+
+The following table shows the currently supported models of Vbus devices.
+
+.. csv-table:: Supported Models
+    :header: "Name", "Config Value", "Hex Address", "Notes"
+
+    "DeltaSol BS Plus","deltasol_bs_plus","4221"
+    "DeltaSol BS 2009","deltasol_bs_2009","427B"
+    "Dux H3214","deltasol_bs_2009","427B", "Pump 2 unsupported"
+    "DeltaSol C","deltasol_c","4212"
+    "DeltaSol CS2","deltasol_cs2","1121"
+    "DeltaSol CS2 Plus","deltasol_cs2_plus","2211"
+
+The ``Config Value`` should be used for the ``model`` parameter in your ``sensor`` and ``binary_sensor`` entries.
+
+The ``Hex Address`` field is the value sent by a device in the ``from`` field of a message. To identify an unknown
+model, set the logger level to ``VERBOSE`` and look for lines like this in the log output:
+
+``[10:53:48][V][vbus:068]: P1 C0500 427b->0000: 0000 0000 (0)``
+
+The value before the ``->`` symbol is the device source address. If it matches one of the entries in the table above
+then that model should work with your unit.
+
+
+Hardware Connection
+-------------------
+
 The device must be connected via a :doc:`UART bus </components/uart>` supporting the receiving line only. The UART bus
 must be configured at the same speed of the module which is by default 9600bps. The controller outputs data every second.
 
 To connect to this and read data from the bus a level shifting is needed as the voltage is around 8V (direct connection
-would damage the MCU). Although this is a symmetric connection supporting long wires, for our read-only purposes it's
-enough to adapt the level appropriately to 3.3V using a circuit like below:
+would damage the MCU). For our read-only purposes it's
+sufficient to adapt the level appropriately to 3.3V using a circuit like below:
 
 .. figure:: ../images/resol_vbus_adapter_schematic.png
+    :align: center
+
+An electrically isolated version using an opto-coupler:
+
+.. figure:: images/vbus_serial_optocoupler.png
     :align: center
 
 Another approach, with PCB design ready to be manufactured `can be found here <https://github.com/FatBeard/vbus-arduino-library/tree/master/pcb>`__.
@@ -62,7 +96,7 @@ Configuration variables:
 
 .. note::
 
-    Functionality of the sensors depends on the type of the device and the the scheme arrangement of the hydraulic
+    Functionality of the sensors depends on the type of the device and the scheme arrangement of the hydraulic
     system it controls. The actual arrangement number set up can be determined from the settings of the device. Please
     check the user manual and assess your arrangement to determine the functionality of each sensor and name them
     accordingly.
@@ -103,12 +137,11 @@ Sensor
 
 Configuration variables:
 
-- **model** (**Required**): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``deltasol_cs_plus``.
-
+- **model** (**Required**): Specify the model of the connected controller. Choose one of the config values listed in the table of supported models above.
 
 Supported sensors:
 
-- for **deltasol_bs_plus**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``, ``version``.
+- for **deltasol_bs_plus** and **deltasol_bs_2009**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``, ``version``.
 - for **deltasol_c**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``.
 - for **deltasol_cs2**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``,  ``pump_speed``, ``operating_hours``, ``heat_quantity``, ``version``.
 - for **deltasol_cs_plus**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``temperature_5``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``, ``version``, ``flow_rate``.
@@ -160,15 +193,15 @@ Binary Sensor
 
 Configuration variables:
 
-- **model** (**Required**): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``deltasol_cs_plus``.
+- **model** (**Required**): Specify the model of the connected controller. Choose one of the config values listed in the table of supported models above.
 
 Supported sensors:
 
 - for **deltasol_bs_plus**: ``relay1``,  ``relay2``, ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``, ``collector_max``, ``collector_min``, ``collector_frost``, ``tube_collector``, ``recooling``, ``hqm``.
+- for **deltasol_bs_2009**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``, ``frost_protection_active``.
 - for **deltasol_c**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.
 - for **deltasol_cs2**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.
 - for **deltasol_cs_plus**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.
-
 
 All binary sensors are *Optional* and support all other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
@@ -176,8 +209,8 @@ All binary sensors are *Optional* and support all other options from :ref:`Binar
 ``Custom`` VBus sensors
 -----------------------
 
-Devices on a VBus are identified with a source address. There can be multiple devices on the same bus, 
-each device type has a different address. 
+Devices on a VBus are identified with a source address. There can be multiple devices on the same bus,
+each device type has a different address.
 
 
 .. code-block:: yaml
@@ -203,7 +236,7 @@ Configuration variables:
 - **sensors** (**Required**): A list of :ref:`Sensor <config-sensor>` definitions that include a ``lambda`` to do the decoding and return a ``float`` value.
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): Code to parse a value from the incoming data packets and return it.
-  The data packet is in a `std::vector<uint8_t>` called `x`.
+  The data packet is in a ``std::vector<uint8_t>`` called ``x``.
 
 
 ``custom`` VBus binary sensors
@@ -218,7 +251,7 @@ Configuration variables:
 - **binary_sensors** (**Required**): A list of :ref:`Binary Sensor <config-binary_sensor>` definitions that include a ``lambda`` to do the decoding and return a ``bool`` value.
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): Code to parse a value from the incoming data packets and return it.
-  The data packet is in a `std::vector<uint8_t>` called `x`.
+  The data packet is in a ``std::vector<uint8_t>`` called ``x``.
 
 To determine the correct values for the parameters above, visit `packet definitions list <http://danielwippermann.github.io/resol-vbus/#/vsf>`__. In the search field of the **Packets** table, enter the name of your device.
 
