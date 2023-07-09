@@ -22,7 +22,7 @@ Voice Assistant
 
 This year is the Year of the Voice for Home Assistant, and ESPHome is charging ahead with this in mind.
 We've added a new :doc:`/components/voice_assistant` component that allows you to use ESPHome devices as an input
-for `assist <https://www.home-assistant.io/docs/assist/>`__ in Home Assistant **2023.5 or later**.
+for `assist <https://www.home-assistant.io/voice_control/>`__ in Home Assistant **2023.5 or later**.
 
 With this also comes preliminary :doc:`microphone </components/microphone/index>` support, which has been built in a way that multiple
 components, like ``voice_assistant`` can request start / stop of the microphone and get the data. We
@@ -68,6 +68,11 @@ Release 2023.4.3 - May 2
 
 - Fix sprinkler switch restore_mode :esphomepr:`4756` by :ghuser:`kbx81`
 - Fix i2s media player on devices with no internal DAC :esphomepr:`4768` by :ghuser:`jesserockz`
+
+Release 2023.4.4 - May 4
+------------------------
+
+- Fixes for Arduino 2.7.4 (for FastLED) :esphomepr:`4777` by :ghuser:`timn`
 
 Breaking Changes
 ----------------
