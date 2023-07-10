@@ -104,7 +104,7 @@ of the ESP32 like ESP32S2, ESP32S3, ESP32C3 and single-core ESP32 chips.
         version: recommended
         # Custom sdkconfig options
         sdkconfig_options:
-          CONFIG_COMPILER_OPTIMIZATION: Size
+          COMPILER_OPTIMIZATION_PERF: y
         # Advanced tweaking options
         advanced:
           ignore_efuse_mac_crc: false
