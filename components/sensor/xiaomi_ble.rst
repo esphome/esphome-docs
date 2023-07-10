@@ -544,8 +544,10 @@ Configuration example:
         bindkey: 48403ebe2d385db8d0c187f81e62cb64
         light:
           name: Mi Door Window Sensor 2 Light
-        on_open:
+        open:
           name: Mi Door Window Sensor 2 Switch
+        battery_level:
+          name: Mi Door Window Sensor 2 battery
 
 Setting Up Devices
 ------------------
