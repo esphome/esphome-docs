@@ -78,6 +78,12 @@ Release 2023.6.4 - July 4
 - Advertise noise is enabled :esphomepr:`5034` by :ghuser:`bdraco`
 - Update webserver to ea86d81 :esphomepr:`5023` by :ghuser:`jesserockz`
 
+Release 2023.6.5 - July 10
+--------------------------
+
+- Fix bulk and single Bluetooth parser coexistence :esphomepr:`5073` by :ghuser:`bdraco`
+- binary_sensor: Validate max_length for on_click/on_double_click :esphomepr:`5068` by :ghuser:`kpfleming`
+
 Breaking Changes
 ----------------
 
