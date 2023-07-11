@@ -26,7 +26,7 @@ for this sensor to work.
     # Example configuration entry
     sensor:
       - platform: hmc5883l
-        address: 0x68
+        address: 0x1E
         field_strength_x:
           name: "HMC5883L Field Strength X"
         field_strength_y:

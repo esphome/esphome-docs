@@ -486,6 +486,8 @@ This effect makes a pulsating light. The period can be defined by ``update_inter
               name: "Fast Pulse"
               transition_length: 0.5s
               update_interval: 0.5s
+              min_brightness: 0%
+              max_brightness: 100%
           - pulse:
               name: "Slow Pulse"
               # transition_length: 1s      # defaults to 1s
@@ -496,6 +498,8 @@ Configuration variables:
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Pulse``.
 - **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``1s``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transition is started. Defaults to ``1s``.
+- **min_brightness** (*Optional*, percentage): The minimum brightness value. Defaults to ``0%``
+- **max_brightness** (*Optional*, percentage): The maximum brightness value. Defaults to ``100%``
 
 
 Random Effect
