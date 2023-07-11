@@ -3,10 +3,28 @@ ILI9xxx TFT LCD Series
 ======================
 
 .. seo::
-    :description: Instructions for setting up ILI9xxx TFT LCD display drivers.
+    :description: Instructions for setting up ILI9xxx like TFT LCD display drivers.
     :image: ili9341.jpg
 
 .. _ili9xxx:
+
+Models
+------
+With this display driver you can control the following displays:
+  - ILI9341
+  - ILI9342
+  - ILI9481
+  - ILI9486
+  - ILI9488
+  - ILI9488_A (alternative gamma configuration for ILI9488)
+  - M5STACK
+  - S3BOX
+  - S3BOX_LITE
+  - ST7796
+  - TFT 2.4
+  - TFT 2.4R
+
+More display drivers will come in the future.
 
 Usage
 -----
@@ -33,7 +51,6 @@ beyond the typical SPI connections, it is better suited for use with the ESP32.
     display:
       - platform: ili9xxx
         model: ili9341
-        cs_pin: 14
         dc_pin: 27
         reset_pin: 33
         lambda: |-
@@ -45,10 +62,11 @@ Configuration variables:
 
 - **model** (**Required**): The model of the display. Options are:
 
-  - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R`` 
-  - ``ILI9341``, ``ILI9342``, ``ILI9481``, ``ILI9486``, ``ILI9488``, ``ST7796``
+  - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R``, ``S3BOX``, ``S3BOX_LITE``
+  - ``ILI9341``, ``ILI9342``, ``ILI9481``, ``ILI9486``, ``ILI9488``, ``ILI9488_A`` (alternative gamma configuration for ILI9488), ``ST7796``
 
-- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+.. note:: According to its documentation, the ESP32 S3 Box Lite has an ST7789V display driver. We've found, however, that it works with the ILIxxxx component here, instead. This could change in the future.
+
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **rotation** (*Optional*): Set the rotation of the display. Everything drawn in the ``lambda:`` will be rotated
@@ -66,6 +84,8 @@ Configuration variables:
   - ``GRAYSCALE``
   - ``IMAGE_ADAPTIVE``
 - **color_palette_images** (*Optional*): A list of image files that will be used to generate the color pallet for the display.  This should only be used in conjunction with ``-color_palette: IMAGE_ADAPTIVE`` above.  The images will be analysed at compile time and a custom color pallet will be created based on the most commonly occuring colors.  A typical setting would be a sample image that represented the fully populated display.  This can significantly improve the quality of displayed images.  Note that these images are not stored on the ESP device, just the 256byte color pallet created from them.
+- **dimensions** (*Optional*): Dimensions of the screen with WIDTHxHEIGHT. Usually not needed since ``model:`` has good defaults.
+- **data_rate** (*Optional*): Set the data rate of the SPI interface to the display. One of ``80MHz``, ``40MHz`` (default), ``20MHz``, ``10MHz``, ``5MHz``, ``2MHz``, ``1MHz``, ``200kHz``, ``75kHz`` or ``1kHz``. If you have multiple ILI9xxx displays they must all use the same **data_rate**.
 
 Configuration examples
 **********************
@@ -140,7 +160,6 @@ To configure an image adaptive color pallet to show greater than 8 bit color dep
     display:
       - platform: ili9xxx
         model: ili9341
-        cs_pin: 5
         dc_pin: 4
         reset_pin: 22
         rotation: 90

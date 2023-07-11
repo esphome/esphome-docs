@@ -10,11 +10,11 @@ ESPHome 2023.4.0 - 19th April 2023
 .. imgtable::
     :columns: 3
 
-    Voice Assistant, components/voice_assistant, voice-assistant.svg
-    Microphone Core, components/microphone/index, microphone.svg
+    Voice Assistant, components/voice_assistant, voice-assistant.svg, dark-invert
+    Microphone Core, components/microphone/index, microphone.svg, dark-invert
     I2S Microphone, components/microphone/i2s_audio, i2s_audio.svg
     MMC5603, components/sensor/mmc5603, mmc5603.jpg
-    KSZ8081 Ethernet, components/ethernet, ethernet.svg
+    KSZ8081 Ethernet, components/ethernet, ethernet.svg, dark-invert
 
 
 Voice Assistant
@@ -22,7 +22,7 @@ Voice Assistant
 
 This year is the Year of the Voice for Home Assistant, and ESPHome is charging ahead with this in mind.
 We've added a new :doc:`/components/voice_assistant` component that allows you to use ESPHome devices as an input
-for `assist <https://www.home-assistant.io/docs/assist/>`__ in Home Assistant **2023.5 or later**.
+for `assist <https://www.home-assistant.io/voice_control/>`__ in Home Assistant **2023.5 or later**.
 
 With this also comes preliminary :doc:`microphone </components/microphone/index>` support, which has been built in a way that multiple
 components, like ``voice_assistant`` can request start / stop of the microphone and get the data. We
