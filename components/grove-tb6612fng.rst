@@ -15,7 +15,7 @@ At the current stage of implementation only DC motor is implemented.
 .. code-block:: yaml
 
     # Example configuration grove motor
-    grove_i2c_motor:
+    grove_tb6612fng:
         id: test_motor
         name: motor_outside
         address: 0x14
@@ -28,7 +28,7 @@ At the current stage of implementation only DC motor is implemented.
         optimistic: True
         on_turn_on:
           then:
-            - grove_i2c_motor.run:
+            - grove_tb6612fng.run:
                 channel: 1
                 speed: 255
                 direction: BACKWARD
@@ -45,9 +45,9 @@ Configuration variables:
   Defaults to ``0x14``.
 - **name** (*Required*, boolean): The name of the component
 
-.. grove_i2c_motor.run:
+.. grove_tb6612fng.run:
 
-``grove_i2c_motor.run`` Action
+``grove_tb6612fng.run`` Action
 ------------------------------------
 
 Set the motor to spin by defining the direction and speed of the rotation, speed is a range from 0 to 255
@@ -56,17 +56,17 @@ Set the motor to spin by defining the direction and speed of the rotation, speed
 
     on_...:
       then:
-        - grove_i2c_motor.run:
+        - grove_tb6612fng.run:
             channel: 1
             speed: 255
             direction: BACKWARD
             id: test_motor
 
 
-.. grove_i2c_motor.stop:
+.. grove_tb6612fng.stop:
 
 
-``grove_i2c_motor.stop`` Action
+``grove_tb6612fng.stop`` Action
 -------------------------------------
 
 Set the motor to stop motion but wont stop to spin in case there is a force pulling down, you would want to use break action if this is your case
@@ -75,15 +75,15 @@ Set the motor to stop motion but wont stop to spin in case there is a force pull
 
     on_...:
       then:
-        - grove_i2c_motor.stop:
+        - grove_tb6612fng.stop:
             channel: 1
 
 
 
-.. grove_i2c_motor.break:
+.. grove_tb6612fng.break:
 
 
-``grove_i2c_motor.break`` Action
+``grove_tb6612fng.break`` Action
 --------------------------------------
 
 Set the motor channel to be on break mode which it ensure the wheel wont spin even if forced or pushed
@@ -92,13 +92,13 @@ Set the motor channel to be on break mode which it ensure the wheel wont spin ev
 
     on_...:
       then:
-        - grove_i2c_motor.break:
+        - grove_tb6612fng.break:
             channel: 1
             id: test_motor
 
-.. grove_i2c_motor.standby:
+.. grove_tb6612fng.standby:
 
-``grove_i2c_motor.standby`` Action
+``grove_tb6612fng.standby`` Action
 ----------------------------------
 
 Set the board to be on standby when is not used for a long time which reduces power consumptions and any jerking motion when stationary
@@ -107,12 +107,12 @@ Set the board to be on standby when is not used for a long time which reduces po
 
     on_...:
       then:
-        - grove_i2c_motor.standby
+        - grove_tb6612fng.standby
             id: test_motor
 
-.. grove_i2c_motor.no_standby:
+.. grove_tb6612fng.no_standby:
 
-``grove_i2c_motor.no_standby`` Action
+``grove_tb6612fng.no_standby`` Action
 -------------------------------------
 
 Set the board to be awake, every esphome is restarted the default mode is set to standby to ensure the motor wont spin accidentally
@@ -121,7 +121,7 @@ Set the board to be awake, every esphome is restarted the default mode is set to
 
     on_...:
       then:
-        - grove_i2c_motor.no_standby
+        - grove_tb6612fng.no_standby
             id: test_motor
 
 
