@@ -37,6 +37,8 @@ Using an inexpensive RF transmitter and receiver you can control your devices vi
             repeat: 1
 
 
+Note: To gather the RAW codes from the remote, setup the ``read_pin`` and observe in the logs the printing of the codes.
+
 Configuration variables:
 ------------------------
 
@@ -65,7 +67,6 @@ Configuration variables:
 ------------------------
 
 - **name** (*Optional*, string): The name to give for the action
-- **id** (**Required**, :ref:`config-id`): The id of the switch to call via HA
 - **code** (**Required**, list hex): The raw dump in an array of hex
 - **repeat** (*Optional*, int): The amount of repeats to send the signal
 - **inverted** (*Optional*, boolean): Send the signal inverted
