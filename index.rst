@@ -157,10 +157,8 @@ Core
 
     Sensor Core, components/sensor/index, folder-open.svg
     Home Assistant, components/sensor/homeassistant, home-assistant.svg
-    Integration, components/sensor/integration, sigma.svg
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     Uptime Sensor, components/sensor/uptime, timer.svg
-    Duty Time, components/sensor/duty_time, timer-play-outline.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Template Sensor, components/sensor/template, description.svg
     Custom Sensor, components/sensor/custom, language-cpp.svg
@@ -355,9 +353,11 @@ Miscellaneous
     AS3935, components/sensor/as3935, as3935.jpg, Storm lightning
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
+    Duty Time, components/sensor/duty_time, timer-play-outline.svg
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
+    Integration, components/sensor/integration, sigma.svg
     Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
     Kalman Combinator, components/sensor/kalman_combinator, function.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
