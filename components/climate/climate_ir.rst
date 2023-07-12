@@ -52,6 +52,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Whynter<whynter>`               | ``whynter``         | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| Noblex                                | ``noblex``          | yes                  |
++---------------------------------------+---------------------+----------------------+
 
 This component requires that you have configured a :doc:`/components/remote_transmitter`.
 
