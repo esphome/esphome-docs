@@ -805,7 +805,7 @@ Miscellaneous Components
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
     Sprinkler, components/sprinkler, sprinkler-variant.svg, dark-invert
-    Grove TB6612FNG, components/grove-tb6612fng, motor.png
+    Grove TB6612FNG, components/grove_tb6612fng, motor.png
 
     PCA6416A I/O Expander, components/pca6416a, pca6416a.svg
     PCA9554 I/O Expander, components/pca9554, pca9554a.jpg
