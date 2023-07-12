@@ -38,6 +38,7 @@ Configuration variables:
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): Lambda that will be called in a loop to get the current
   state of the tracked object. *May not be used with* ``sensor``.
 - **last_time** (*Optional*): Information of the last switch-on time sensor.
+  All options from :ref:`Sensor <config-sensor>`.
 - **restore** (*Optional*, boolean): Whether to store the intermediate result on the device so that the value can be
   restored upon power cycle or reboot.
   Warning: this option can wear out your flash. Defaults to ``false``.
