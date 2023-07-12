@@ -17,9 +17,10 @@ a pull request.
 Contributing to ESPHome-Docs
 ----------------------------
 
-.. figure:: /images/logo-docs.svg
+.. image:: /images/logo-docs.svg
     :align: center
     :width: 60.0%
+    :class: dark-invert
 
 One of the areas of ESPHome that can always be improved is the documentation.
 If you see an issue somewhere, a spelling mistakes or if you want to share your awesome
@@ -415,9 +416,10 @@ a "rebase". More info `here <https://developers.home-assistant.io/docs/en/develo
 Contributing to ESPHome
 -----------------------
 
-.. figure:: /images/logo-text.svg
+.. image:: /images/logo-text.svg
     :align: center
     :width: 60.0%
+    :class: dark-invert
 
 This is a guide to contributing to the ESPHome codebase. ESPHome uses two languages for its project:
 Python and C++.
