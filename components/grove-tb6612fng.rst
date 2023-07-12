@@ -28,7 +28,7 @@ At the current stage of implementation only DC motor is implemented.
         optimistic: True
         on_turn_on:
           then:
-            - grove_i2c_motor.motor_run:
+            - grove_i2c_motor.run:
                 channel: 1
                 speed: 255
                 direction: BACKWARD
@@ -45,9 +45,9 @@ Configuration variables:
   Defaults to ``0x14``.
 - **name** (*Required*, boolean): The name of the component
 
-.. grove_i2c_motor.motor_run:
+.. grove_i2c_motor.run:
 
-``grove_i2c_motor.motor_run`` Action
+``grove_i2c_motor.run`` Action
 ------------------------------------
 
 Set the motor to spin by defining the direction and speed of the rotation, speed is a range from 0 to 255
@@ -56,17 +56,17 @@ Set the motor to spin by defining the direction and speed of the rotation, speed
 
     on_...:
       then:
-        - grove_i2c_motor.motor_run:
+        - grove_i2c_motor.run:
             channel: 1
             speed: 255
             direction: BACKWARD
             id: test_motor
 
 
-.. grove_i2c_motor.motor_stop:
+.. grove_i2c_motor.stop:
 
 
-``grove_i2c_motor.motor_stop`` Action
+``grove_i2c_motor.stop`` Action
 -------------------------------------
 
 Set the motor to stop motion but wont stop to spin in case there is a force pulling down, you would want to use break action if this is your case
@@ -75,15 +75,15 @@ Set the motor to stop motion but wont stop to spin in case there is a force pull
 
     on_...:
       then:
-        - grove_i2c_motor.motor_stop:
+        - grove_i2c_motor.stop:
             channel: 1
 
 
 
-.. grove_i2c_motor.motor_break:
+.. grove_i2c_motor.break:
 
 
-``grove_i2c_motor.motor_break`` Action
+``grove_i2c_motor.break`` Action
 --------------------------------------
 
 Set the motor channel to be on break mode which it ensure the wheel wont spin even if forced or pushed
@@ -92,7 +92,7 @@ Set the motor channel to be on break mode which it ensure the wheel wont spin ev
 
     on_...:
       then:
-        - grove_i2c_motor.motor_break:
+        - grove_i2c_motor.break:
             channel: 1
             id: test_motor
 
@@ -107,7 +107,7 @@ Set the board to be on standby when is not used for a long time which reduces po
 
     on_...:
       then:
-        - grove_i2c_motor.motor_:standby
+        - grove_i2c_motor.standby
             id: test_motor
 
 .. grove_i2c_motor.no_standby:
@@ -121,7 +121,7 @@ Set the board to be awake, every esphome is restarted the default mode is set to
 
     on_...:
       then:
-        - grove_i2c_motor.motor_:standby
+        - grove_i2c_motor.no_standby
             id: test_motor
 
 
