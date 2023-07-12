@@ -19,6 +19,8 @@ This sensor supports both UART and I²C communication. However, at the moment on
 .. code-block:: yaml
 
     # Example configuration entry
+    i2c:
+
     sensor:
       - platform: sps30
         pm_1_0:
