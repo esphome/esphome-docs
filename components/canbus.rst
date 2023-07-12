@@ -269,6 +269,10 @@ Configuration variables:
 
 - All other options from :ref:`Canbus <config-canbus>`.
 
+Note that not all combinations of clock and bitrate are supported. An unsupported
+combination will not be flagged at compile time, check the runtime log for a message like
+``Invalid frequency/bitrate combination`` if you suspect this is an issue.
+
 Wiring options
 **************
 
