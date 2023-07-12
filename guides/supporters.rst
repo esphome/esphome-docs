@@ -303,6 +303,7 @@ Contributors
 - `dckiller51 (@dckiller51) <https://github.com/dckiller51>`__
 - `Daniel Correa Lobato (@dclobato) <https://github.com/dclobato>`__
 - `Dion Hulse (@dd32) <https://github.com/dd32>`__
+- `ddt154 (@ddt154) <https://github.com/ddt154>`__
 - `DeadEnd (@DeadEnded) <https://github.com/DeadEnded>`__
 - `Debashish Sahu (@debsahu) <https://github.com/debsahu>`__
 - `declanshanaghy (@declanshanaghy) <https://github.com/declanshanaghy>`__
@@ -518,6 +519,7 @@ Contributors
 - `Ha Thach (@hathach) <https://github.com/hathach>`__
 - `hcoohb (@hcoohb) <https://github.com/hcoohb>`__
 - `Héctor Giménez (@hectorgimenez) <https://github.com/hectorgimenez>`__
+- `hellotomtom (@hellotomtom) <https://github.com/hellotomtom>`__
 - `Jimmy Hedman (@HeMan) <https://github.com/HeMan>`__
 - `Hemi03 (@Hemi03) <https://github.com/Hemi03>`__
 - `HepoH3 (@HepoH3) <https://github.com/HepoH3>`__
@@ -1124,6 +1126,7 @@ Contributors
 - `Tijs-B (@Tijs-B) <https://github.com/Tijs-B>`__
 - `Tim Boldt (@timboldt) <https://github.com/timboldt>`__
 - `Tim Laurence (@timdaman) <https://github.com/timdaman>`__
+- `Aidan Timson (@timmo001) <https://github.com/timmo001>`__
 - `Tim Niemueller (@timn) <https://github.com/timn>`__
 - `Tim Savage (@timsavage) <https://github.com/timsavage>`__
 - `Tinkerfish (@tinkerfish) <https://github.com/tinkerfish>`__
@@ -1217,4 +1220,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 28, 2023.*
+*This page was last updated July 4, 2023.*
