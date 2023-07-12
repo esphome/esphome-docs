@@ -160,7 +160,6 @@ Core
 
     Sensor Core, components/sensor/index, folder-open.svg, dark-invert
     Home Assistant, components/sensor/homeassistant, home-assistant.svg, dark-invert
-    Integration, components/sensor/integration, sigma.svg, dark-invert
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     Uptime Sensor, components/sensor/uptime, timer.svg, dark-invert
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg, dark-invert
@@ -360,9 +359,11 @@ Miscellaneous
     AS3935, components/sensor/as3935, as3935.jpg, Storm lightning
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
+    Duty Time, components/sensor/duty_time, timer-play-outline.svg, dark-invert
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
+    Integration, components/sensor/integration, sigma.svg, dark-invert
     Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
     Kalman Combinator, components/sensor/kalman_combinator, function.svg, dark-invert
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
