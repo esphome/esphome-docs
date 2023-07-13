@@ -68,7 +68,7 @@ Configuration variables:
 
 - **name** (*Optional*, string): The name to give for the action
 - **code** (**Required**, list hex): The raw dump in an array of hex
-- **repeat** (*Optional*, int): The amount of repeats to send the signal
+- **repeat** (*Optional*, int): The number of times the message will be repeated
 - **inverted** (*Optional*, boolean): Send the signal inverted
 
 
