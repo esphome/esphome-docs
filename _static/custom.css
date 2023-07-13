@@ -331,8 +331,12 @@ div.body p, div.body dd, div.body li, div.body blockquote {
     border: 1px solid #808080;
   }
 
-  div.warning {
+  div.warning, div.caution {
     background-color: #5d1616;
+  }
+
+  dt:target, span.highlighted {
+    background-color: #8e8129;
   }
 
 }
