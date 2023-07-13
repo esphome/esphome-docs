@@ -415,7 +415,7 @@ Configuration variables:
 ``skip_initial``
 ****************
 
-A simple skip filter; `skip_initial: N` skips the first `N` sensor readings and passes on the
+A simple skip filter; ``skip_initial: N`` skips the first ``N`` sensor readings and passes on the
 rest. This can be used when the sensor needs a few readings to 'warm up'. After the initial
 readings have been skipped, this filter does nothing.
 
@@ -556,6 +556,8 @@ Fahrenheit.
     filters:
       - lambda: return x * (9.0/5.0) + 32.0;
     unit_of_measurement: "°F"
+
+.. _sensor-automations:
 
 Sensor Automation
 -----------------

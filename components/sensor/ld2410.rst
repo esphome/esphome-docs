@@ -9,7 +9,7 @@ Component/Hub
 -------------
 .. _ld2410-component:
 
-The ``ld2410`` sensor platform allows you to use HI-LINK LD2410 motion and presence sensor.
+The ``ld2410`` sensor platform allows you to use HI-LINK LD2410 motion and presence sensor
 (`datasheet and user manual <https://drive.google.com/drive/folders/1p4dhbEJA3YubyIjIIC7wwVsSo8x29Fq-?spm=a2g0o.detail.1000023.17.93465697yFwVxH>`__) with ESPHome.
 The :ref:`UART <uart>` is required to be set up in your configuration for this sensor to work.
 
@@ -75,7 +75,7 @@ and binary sensors.
   Value between ``0.75m`` and ``6m`` inclusive. Defaults to ``4.5m``.
 - **gX_move_threshold** (*Optional*, int): Threshold for the Xth gate for motion detection (X => 0 to 8).
   Above this level for the considered gate (distance), movement detection will be triggered. Defaults to ``see table below``.
-- **gX _still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8).
+- **gX_still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8).
   Above this level for the considered gate (distance), still detection will be triggered. Defaults to ``see table below``.
 
 .. list-table:: Default values for gate threshold
