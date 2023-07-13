@@ -128,12 +128,22 @@ class ImageTableDirective(Table):
                     link = "/{}".format(link)
                 if ".html" not in link:
                     link += ".html"
+            category = None
+            dark_invert = False
+            if len(row) == 4:
+                if row[3].strip() == "dark-invert":
+                    dark_invert = True
+                else:
+                    category = row[3].strip()
+            if len(row) == 5 and row[4].strip() == "dark-invert":
+                dark_invert = True
             items.append(
                 {
                     "name": name.strip(),
                     "link": link,
                     "image": "/images/{}".format(image.strip()),
-                    "category": row[3] if len(row) >= 4 else None
+                    "category": category,
+                    "dark_invert": dark_invert,
                 }
             )
 
@@ -164,6 +174,8 @@ class ImageTableDirective(Table):
                 reference_node = nodes.reference(refuri=link)
                 img = nodes.image(uri=directives.uri(image), alt=name)
                 img["classes"].append("component-image")
+                if cell["dark_invert"]:
+                    img["classes"].append("dark-invert")
                 reference_node += img
                 para = nodes.paragraph()
                 para += reference_node
