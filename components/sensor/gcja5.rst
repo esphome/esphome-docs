@@ -3,6 +3,7 @@ Panasonic SN-GCJA5 Particulate Matter Sensor
 
 .. seo::
     :description: Instructions for setting up Panasonic SN-GCJA5 Particulate matter sensors
+    :image: gcja5.svg
 
 The ``gcja5`` sensor platform allows you to use your Panasonic SN-GCJA5 laser based particulate matter sensor
 (`datasheet <https://na.industrial.panasonic.com/products/sensors/air-quality-gas-flow-sensors/lineup/laser-type-pm-sensor/series/123557/model/123559>`__)
