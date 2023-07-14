@@ -15,13 +15,13 @@ ESPHome 2023.2.0 - 15th February 2023
     BP5758D, components/output/bp5758d, bp5758d.svg
     SM2235, components/output/sm2235, sm2235.svg
     SM2335, components/output/sm2335, sm2335.svg
-    PCF85063 RTC, components/time/pcf85063, clock-outline.svg
+    PCF85063 RTC, components/time/pcf85063, clock-outline.svg, dark-invert
     Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
     X9C Potentiometer, components/output/x9c, x9c.jpg
     EE895, components/sensor/ee895, EE895.png
     HTE501, components/sensor/hte501, HTE501.png
     TEE501, components/sensor/tee501, TEE501.png
-    Sigma-Delta Output, components/output/sigma_delta, sigma-delta.svg
+    Sigma-Delta Output, components/output/sigma_delta, sigma-delta.svg, dark-invert
     Wiegand Reader, components/wiegand, wiegand.jpg
     MiCS-4514, components/sensor/mics_4514, mics_4514.jpg
     LD2410, components/sensor/ld2410, ld2410.jpg

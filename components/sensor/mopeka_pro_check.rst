@@ -105,6 +105,9 @@ Currently supported Tank types are:
 - ``20LB_V`` - 20 LB vertical tank
 - ``30LB_V`` - 30 LB vertical tank
 - ``40LB_V`` - 40 LB vertical tank
+- ``EUROPE_6KG`` - 6kg vertical tank
+- ``EUROPE_11KG`` - 11kg vertical tank
+- ``EUROPE_14KG`` - 14kg vertical tank
 - ``CUSTOM`` - Allows you to define your own full and empty points
 
 Setting Up Devices

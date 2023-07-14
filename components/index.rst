@@ -26,4 +26,5 @@ Components
     microphone/index
     speaker/index
     time/index
+    alarm_control_panel/index
     *
