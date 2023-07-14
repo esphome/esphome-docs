@@ -9,7 +9,7 @@ NeoPixelBus Light
 
     NeoPixelBus does **not** work with ESP-IDF.
 
-    For addressable lights, you can use :doc:`esp32_rmt_led_strip`.
+    For addressable lights, you can use :doc:`esp32_rmt_led_strip` or :doc:`esp32_spi_led_strip`.
 
 The ``neopixelbus`` light platform allows you to create RGB lights
 in ESPHome for an individually addressable lights like NeoPixel or WS2812.

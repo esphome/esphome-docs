@@ -24,7 +24,7 @@ FastLED Light
 
     FastLED does **not** work with ESP-IDF.
 
-    For addressable lights, you can use :doc:`esp32_rmt_led_strip`.
+    For addressable lights, you can use :doc:`esp32_rmt_led_strip` or :doc:`esp32_spi_led_strip`.
 
 .. _fastled-clockless:
 

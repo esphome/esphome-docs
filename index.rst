@@ -533,6 +533,7 @@ Light Components
     RGBCT Light, components/light/rgbct, rgbw.png
 
     ESP32 RMT, components/light/esp32_rmt_led_strip, color_lens.svg, dark-invert
+    ESP32 SPI, components/light/esp32_spi_led_strip, color_lens.svg, dark-invert
     RP2040 PIO, components/light/rp2040_pio_led_strip, color_lens.svg, dark-invert
     FastLED Light, components/light/fastled, color_lens.svg, dark-invert
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg, dark-invert
