@@ -326,7 +326,7 @@ div.body p, div.body dd, div.body li, div.body blockquote {
     color: #e2e2e2;
   }
 
-  div.note {
+  div.note, div.tip {
     background-color: #2d2c2c;
     border: 1px solid #808080;
   }

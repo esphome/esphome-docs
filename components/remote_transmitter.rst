@@ -41,7 +41,7 @@ Configuration variables:
 
 -  **pin** (**Required**, :ref:`config-pin`): The pin to transmit the remote signal on.
 -  **carrier_duty_percent** (*Optional*, int): How much of the time the remote is on. For example, infrared
-   protocols modulate the signal using a carrier signal. Set this is ``50%`` if you're working with IR LEDs and to
+   protocols modulate the signal using a carrier signal. Set this to ``50%`` if you're working with IR LEDs and to
    ``100%`` if working with other things like 433MHz transmitters.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation. Use this if you have multiple remote transmitters.
