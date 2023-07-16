@@ -39,6 +39,16 @@ Breaking Changes
 ^^^^^^^^^^^^^^^^
 
 - display: add `BaseFont` and introduce `Font::draw` methods :esphomepr:`4963` by :ghuser:`ayufan` (breaking-change)
+- Remove template switch restore_state :esphomepr:`5106` by :ghuser:`jesserockz` (breaking-change)
+
+Beta Changes
+^^^^^^^^^^^^
+
+- Dont do mqtt ip lookup if `use_address` has ip address :esphomepr:`5096` by :ghuser:`jesserockz`
+- ESP32 enable ADC2 when wifi is disabled :esphomepr:`4381` by :ghuser:`pciavald`
+- [Sprinkler] Resume fixes :esphomepr:`5100` by :ghuser:`hostcc`
+- Remove template switch restore_state :esphomepr:`5106` by :ghuser:`jesserockz` (breaking-change)
+- Add timeout filter :esphomepr:`5104` by :ghuser:`clydebarrow`
 
 All changes
 ^^^^^^^^^^^
