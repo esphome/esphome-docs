@@ -82,7 +82,7 @@ ESP32 pins
 ``ADC2`` pins are only usable when Wi-Fi is not configured on the device.
 
 .. list-table::
-  :header-rows: 1
+    :header-rows: 1
 
     * - Variant
       - ADC1
