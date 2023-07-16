@@ -84,21 +84,21 @@ ESP32 pins
 .. list-table::
   :header-rows: 1
 
-  * - Variant
-    - ADC1
-    - ADC2
-  * - ESP32
-    - GPIO32 - GPIO39
-    - GPIO0, GPIO2, GPIO4, GPIO12 - GPIO15, GPIO25 - GPIO27
-  * - ESP32-C3
-    - GPIO0 - GPIO4
-    - GPIO5
-  * - ESP32-S2
-    - GPIO1 - GPIO10
-    - GPIO11 - GPIO20
-  * - ESP32-S3
-    - GPIO1 - GPIO10
-    - GPIO11 - GPIO20
+    * - Variant
+      - ADC1
+      - ADC2
+    * - ESP32
+      - GPIO32 - GPIO39
+      - GPIO0, GPIO2, GPIO4, GPIO12 - GPIO15, GPIO25 - GPIO27
+    * - ESP32-C3
+      - GPIO0 - GPIO4
+      - GPIO5
+    * - ESP32-S2
+      - GPIO1 - GPIO10
+      - GPIO11 - GPIO20
+    * - ESP32-S3
+      - GPIO1 - GPIO10
+      - GPIO11 - GPIO20
 
 
 .. _adc-raw:
