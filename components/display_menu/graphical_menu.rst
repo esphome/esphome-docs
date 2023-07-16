@@ -18,8 +18,7 @@ The integration implements the :ref:`Display Menu <display_menu>` integration pr
 a hierarchical menu primarily intended to be controlled either by a rotary encoder
 with a button or a five-button joystick controller.
 
-The component needs to be connected to an instance of a Graphical LCD display, which
-like :ref:`ssd1306-i2c`.
+The component needs to be connected to an instance of a Graphical LCD display, like :ref:`ssd1306`.
 
 .. code-block:: yaml
 
