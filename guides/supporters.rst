@@ -307,7 +307,6 @@ Contributors
 - `ddt154 (@ddt154) <https://github.com/ddt154>`__
 - `DeadEnd (@DeadEnded) <https://github.com/DeadEnded>`__
 - `Debashish Sahu (@debsahu) <https://github.com/debsahu>`__
-- `declanshanaghy (@declanshanaghy) <https://github.com/declanshanaghy>`__
 - `Maximilian (@DeerMaximum) <https://github.com/DeerMaximum>`__
 - `definitio (@definitio) <https://github.com/definitio>`__
 - `Christiaan Blom (@Deinara) <https://github.com/Deinara>`__
@@ -530,6 +529,7 @@ Contributors
 - `Hamish Moffatt (@hmoffatt) <https://github.com/hmoffatt>`__
 - `Marcel Hoppe (@hobbypunk90) <https://github.com/hobbypunk90>`__
 - `Hopperpop (@Hopperpop) <https://github.com/Hopperpop>`__
+- `Ilia Sotnikov (@hostcc) <https://github.com/hostcc>`__
 - `Yang Hau (@howjmay) <https://github.com/howjmay>`__
 - `hpineapples (@hpineapples) <https://github.com/hpineapples>`__
 - `Antonio Vanegas (@hpsaturn) <https://github.com/hpsaturn>`__
@@ -1216,11 +1216,10 @@ Contributors
 - `Brynley McDonald (@ZephireNZ) <https://github.com/ZephireNZ>`__
 - `Geek_cat (@zhzhzhy) <https://github.com/zhzhzhy>`__
 - `I. Tomita (@ziceva) <https://github.com/ziceva>`__
-- `Michael Labuschke (@zigman79) <https://github.com/zigman79>`__
 - `Stefan Goethals (@zipkid) <https://github.com/zipkid>`__
 - `zivillian (@zivillian) <https://github.com/zivillian>`__
 - `Loïc (@zoic21) <https://github.com/zoic21>`__
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated July 13, 2023.*
+*This page was last updated July 17, 2023.*
