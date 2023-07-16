@@ -74,6 +74,33 @@ To simplify this, we provide the setting ``attenuation: auto`` for an automatic/
     Even though the measurements are calibrated, the range *limits* are variable among chips due to differences in the internal voltage reference.
 
 
+.. _adc-esp32_pins:
+
+ESP32 pins
+----------
+
+``ADC2`` pins are only usable when Wi-Fi is not configured on the device.
+
+.. list-table::
+  :header-rows: 1
+
+  * - Variant
+    - ADC1
+    - ADC2
+  * - ESP32
+    - GPIO32 - GPIO39
+    - GPIO0, GPIO2, GPIO4, GPIO12 - GPIO15, GPIO25 - GPIO27
+  * - ESP32-C3
+    - GPIO0 - GPIO4
+    - GPIO5
+  * - ESP32-S2
+    - GPIO1 - GPIO10
+    - GPIO11 - GPIO20
+  * - ESP32-S3
+    - GPIO1 - GPIO10
+    - GPIO11 - GPIO20
+
+
 .. _adc-raw:
 
 Different ESP32-ADC behavior since 2021.11
