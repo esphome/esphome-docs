@@ -48,6 +48,18 @@ Based on this, you can create a number as follows:
       max_value: 2
       step: 1
 
+The value for ``step`` is used as the scaling factor for the Number. All numbers in Tuya are integers, so a scaling factor is sometimes needed to convert the Tuya reported value into floating point.
+
+For instance, assume we have a pH sensor that reads from 0.00 to 15.00 with a scaling of 0.01. By setting `step` to 0.01, on the Tuya side (not visible to the user) the number will be reported as an integer from 0 to 1500. The following configuration could be used:
+
+.. code-block:: yaml
+    - platform: "tuya"
+      name: "pH Sensor"
+      number_datapoint: 106
+      min_value: 0.00
+      max_value: 15.00
+      step: 0.01
+
 Configuration variables:
 ------------------------
 
