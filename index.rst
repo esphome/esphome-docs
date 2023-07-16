@@ -784,6 +784,7 @@ Miscellaneous Components
     Status LED, components/status_led, led-on.svg, dark-invert
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
+    Graphical Menu, components/display_menu/graphical_menu, graphical_menu.png
     Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
     Wiegand Reader, components/wiegand, wiegand.jpg
     HTTP Request, components/http_request, connection.svg, dark-invert

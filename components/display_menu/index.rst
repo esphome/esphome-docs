@@ -18,7 +18,7 @@ Overview
 
 This document describes the configuration and automations common for the components implementing
 this integration. At the moment the character based LCD displays are supported using
-the :ref:`lcd_menu <lcd_menu>` integration and an instance of this is used in the configuration
+the :ref:`lcd_menu <lcd_menu>` integration and graphical LCD displays are supported by :ref:`graphical_menu <graphical_menu>` and an instance of this is used in the configuration
 examples.
 
 
