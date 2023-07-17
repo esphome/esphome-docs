@@ -102,8 +102,16 @@ Configuration variables:
 - **dallas_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`dallas hub <dallas-component>`.
   Use this if you have multiple dallas hubs.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **max31850** (*Optional*, boolean): Override the sensor type from the DS1825 to the MAX31850.
-  Defaults to false.
+- **chipset** (*Optional*, enum): Override the sensor type. Defaults to ``auto``.
+
+    - ``auto``: Determine the chipset based on the ID returned as part of the serial number.
+    - ``ds18s20``: Force the chipset to the DS18S20.
+    - ``ds1822``: Force the chipset to the DS1822.
+    - ``ds18b20``: Force the chipset to the DS18B20.
+    - ``ds1825``: Force the chipset to the DS1825.
+    - ``ds28ea00``: Force the chipset to the DS28EA00.
+    - ``max31850``: Force the chipset to the MAX31850.
+
 - All other options from :ref:`Sensor <config-sensor>`.
 
 .. _dallas-getting-ids:
