@@ -70,6 +70,7 @@ Configuration variables:
   - ``TTGO TDisplay 135x240``
   - ``Adafruit Funhouse 240x240``
   - ``Adafruit RR 280x240`` (round-rectangular display -- some pixels are "deleted" from corners to form rounded shape)
+  - ``Adafruit S2 TFT FEATHER 240X135`` (requires ``power_supply`` be specified, see below)
   - ``Custom`` (see details below)
 
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
@@ -86,6 +87,10 @@ Configuration variables:
 - **eightbitcolor** (*Optional*, boolean): Limits the supported color depth to eight bits. May be useful on
   memory-constrained devices.
 - **backlight_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The display's backlight pin.
+- **power_supply** (*Optional*, :ref:`config-id`): The :doc:`power supply </components/power_supply>` to connect to
+  this display. The power supply will be turned on before attempting to initialize the display. When ``model`` is set
+  to "Adafruit S2 TFT FEATHER 240X135" this option is required as there are variations of this board sold with differing
+  pin assignments.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
@@ -271,5 +276,6 @@ See Also
 --------
 
 - :doc:`index`
+- :doc:`Power Supply Component </components/power_supply>`
 - :apiref:`st7789v_base/st7789v_base.h`
 - :ghedit:`Edit`
