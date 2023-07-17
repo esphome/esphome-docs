@@ -10,8 +10,8 @@ ESPHome 2022.10.0 - 19th October 2022
 .. imgtable::
     :columns: 2
 
-    BLE Client RSSI Sensor, components/sensor/ble_client, bluetooth.svg
-    ZHLT01 IR Climate, components/climate/climate_ir, air-conditioner-ir.svg
+    BLE Client RSSI Sensor, components/sensor/ble_client, bluetooth.svg, dark-invert
+    ZHLT01 IR Climate, components/climate/climate_ir, air-conditioner-ir.svg, dark-invert
 
 
 
