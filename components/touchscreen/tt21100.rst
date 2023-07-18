@@ -51,8 +51,8 @@ Configuration variables:
     only configure the reset pin for the display and remove the **reset_pin** variable for the TT21100 touchscreen.
     The display component should be initialized before the touchscreen component, which has then already performed the reset.
 
-Additional Buttons
-------------------
+Binary Sensor
+-------------
 
 In addition to touch areas on the screen configured through the :ref:`Touchscreen <config-touchscreen>` component,
 the TT21100 supports up to four buttons located outside of the normal touchscreen area.
