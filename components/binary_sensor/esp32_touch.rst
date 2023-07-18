@@ -16,9 +16,9 @@ In ESPHome, it is configured in two parts:
 Component/Hub
 -------------
 
-The ``esp32_touch`` component creates a global hub enabling (capacitive) touch detection on GPIO pins as supported by
-ESP32, ESP32-S2 or ESP32-S3 processors. With this enabled, :ref:`binary sensors <esp32-touch-binary-sensor>` may then
-be configured to permit touch detection.
+The ``esp32_touch`` component creates a global hub enabling (capacitive) touch detection on GPIO pins
+:ref:`supported by ESP32, ESP32-S2 or ESP32-S3 processors <esp32-touch-pad-pins>`. With this enabled,
+:ref:`binary sensors <esp32-touch-binary-sensor>` may then be configured to permit touch detection.
 
 .. code-block:: yaml
 
