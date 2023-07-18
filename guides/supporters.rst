@@ -238,6 +238,7 @@ Contributors
 - `CODeRUS (@CODeRUS) <https://github.com/CODeRUS>`__
 - `Alex Miller (@Codex-) <https://github.com/Codex->`__
 - `Cody James (@codyjamestechnical) <https://github.com/codyjamestechnical>`__
+- `Coenie Richards (@coenier) <https://github.com/coenier>`__
 - `Ashton Lafferty (@cogneato) <https://github.com/cogneato>`__
 - `Colin Leroy-Mira (@colinleroy) <https://github.com/colinleroy>`__
 - `Max (@coltoncat) <https://github.com/coltoncat>`__
@@ -804,7 +805,6 @@ Contributors
 - `melyux (@melyux) <https://github.com/melyux>`__
 - `Merlin Schumacher (@merlinschumacher) <https://github.com/merlinschumacher>`__
 - `Martin Flasskamp (@MFlasskamp) <https://github.com/MFlasskamp>`__
-- `Michael Gorven (@mgorven) <https://github.com/mgorven>`__
 - `M Hightower (@mhightower83) <https://github.com/mhightower83>`__
 - `Jörg Thalheim (@Mic92) <https://github.com/Mic92>`__
 - `Michael Muré (@MichaelMure) <https://github.com/MichaelMure>`__
@@ -939,6 +939,7 @@ Contributors
 - `Piotr Kubiak (@piotr-kubiak) <https://github.com/piotr-kubiak>`__
 - `Peter Kuehne (@pkuehne) <https://github.com/pkuehne>`__
 - `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__
+- `PlainTechEnthusiast (@PlainTechEnthusiast) <https://github.com/PlainTechEnthusiast>`__
 - `Marcus Kempe (@plopp) <https://github.com/plopp>`__
 - `Jan Pluskal (@pluskal) <https://github.com/pluskal>`__
 - `DK (@poldim) <https://github.com/poldim>`__
@@ -1222,4 +1223,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated July 17, 2023.*
+*This page was last updated July 19, 2023.*
