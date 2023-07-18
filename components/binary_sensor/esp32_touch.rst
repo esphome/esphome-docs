@@ -211,6 +211,23 @@ configuration. You may need to repeat this process a few times to fine-tune the 
 Finally, don't forget to disable the ``setup_mode`` option by setting it back to ``false``; leaving it enabled will
 reduce the ESP's overall performance.
 
+.. _esp32-note-about-variants:
+
+A Note About S2 and S3 Variants
+-------------------------------
+
+If you're familiar with the ESP32 hardware and pick up an S2 or S3 variant, you're likely to notice some behavioral
+differences between them. In particular:
+
+- Raw touch sensor readings on the S2 and S3 variants will generally return larger numeric values than the original
+  ESP32 hardware.
+- Contact with the touch sensor on the S2 and S3 variants will result in the raw sensor value reading *increasing*; on
+  the original ESP32, contact would cause this value to *decrease*.
+
+These behavioral differences are due to changes in the hardware and software (ESP-IDF) interfaces and should be
+expected -- if you are moving your configuration from an original ESP32 to an S2 or S3 variant, expect that you'll need
+to make some adjustments to your configuration to accommodate this behavior.
+
 See Also
 --------
 
