@@ -48,15 +48,15 @@ the sensors aren't behaving as expected.
 - **measurement_duration** (*Optional*, :ref:`config-time`): Set the conversion
   time for all touch pads. A longer conversion time means that more charge/discharge cycles of the touch pad
   can be performed, therefore increasing accuracy. Default is about 8ms, the maximum amount.
-- **low_voltage_reference** (*Optional*): The low voltage reference to use for the charge cycles. See
-  the `ESP-IDF documentation <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/touch_pad.html#optimization-of-measurements>`__
-  for a nice explanation of this. One of ``0.5V``, ``0.6V``, ``0.7V``, ``0.8V``. Default is ``0.5V``.
-- **high_voltage_reference** (*Optional*): The high voltage reference to use for the charge cycles. See
-  the `ESP-IDF documentation <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/touch_pad.html#optimization-of-measurements>`__
-  for a nice explanation of this. One of ``2.4V``, ``2.5V``, ``2.6V``, ``2.7V``. Default is ``2.7V``.
-- **voltage_attenuation** (*Optional*): The voltage attenuation to use for the charge cycles. See
-  the `ESP-IDF documentation <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/touch_pad.html#optimization-of-measurements>`__
-  for a nice explanation of this. One of ``1.5V``, ``1V``, ``0.5V``, ``0V``. Default is ``0V``.
+- **low_voltage_reference** (*Optional*): The low voltage reference to use for the charge cycles. One of ``0.5V``,
+  ``0.6V``, ``0.7V``, ``0.8V``. Default is ``0.5V``.
+- **high_voltage_reference** (*Optional*): The high voltage reference to use for the charge cycles. One of ``2.4V``,
+  ``2.5V``, ``2.6V``, ``2.7V``. Default is ``2.7V``.
+- **voltage_attenuation** (*Optional*): The voltage attenuation to use for the charge cycles. One of ``1.5V``, ``1V``,
+  ``0.5V``, ``0V``. Default is ``0V``.
+
+For a more detailed explanation of the parameters above, please see the
+`ESP-IDF documentation. <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/touch_pad.html#optimization-of-measurements>`__
 
 *ESP32 only*
 
