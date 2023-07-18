@@ -653,6 +653,7 @@ Cover Components
     Custom Cover, components/cover/custom, language-cpp.svg, dark-invert
     AM43 Cover, components/cover/am43, am43.jpg
     Tuya Cover, components/cover/tuya, tuya.png
+    Motion Blinds Cover, components/cover/motion_blinds, window_blind_icon.svg
 
 Text Sensor Components
 ----------------------
