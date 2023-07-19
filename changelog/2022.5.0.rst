@@ -15,7 +15,7 @@ ESPHome 2022.5.0 - 18th May 2022
     ENS210, components/sensor/ens210, ens210.jpg
     SEN5x, components/sensor/sen5x, sen54.jpg
     SML, components/sml, sml.svg
-    Delonghi Penguino PAC W120HP, components/climate/climate_ir, air-conditioner-ir.svg
+    Delonghi Penguino PAC W120HP, components/climate/climate_ir, air-conditioner-ir.svg, dark-invert
 
 Rename
 ------
