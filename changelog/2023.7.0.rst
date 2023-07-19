@@ -49,6 +49,11 @@ Beta Changes
 - [Sprinkler] Resume fixes :esphomepr:`5100` by :ghuser:`hostcc`
 - Remove template switch restore_state :esphomepr:`5106` by :ghuser:`jesserockz` (breaking-change)
 - Add timeout filter :esphomepr:`5104` by :ghuser:`clydebarrow`
+- P1 values for capacity tariff in Belgium :esphomepr:`5081` by :ghuser:`bwynants`
+- airthings_wave: Silence compiler warnings :esphomepr:`5098` by :ghuser:`kpfleming`
+- Sigma delta fix :esphomepr:`4911` by :ghuser:`PlainTechEnthusiast`
+- [LD2410] Remove baud_rate check :esphomepr:`5112` by :ghuser:`voed`
+- Fix silence detection flag on voice assistant :esphomepr:`5120` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
