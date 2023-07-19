@@ -1,5 +1,5 @@
 Panasonic SN-GCJA5 Particulate Matter Sensor
-=================================
+============================================
 
 .. seo::
     :description: Instructions for setting up Panasonic SN-GCJA5 Particulate matter sensors
