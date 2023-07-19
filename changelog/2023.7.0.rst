@@ -19,6 +19,19 @@ ESPHome 2023.7.0 - 19th July 2023
     ATM90E26, components/sensor/atm90e26, atm90e26.jpg
     Duty Time, components/sensor/duty_time, timer-play-outline.svg, dark-invert
 
+Webserver with ESP-IDF
+----------------------
+
+This releases adds support for the :doc:`Webserver </components/web_server>` and :doc:`/components/captive_portal`
+when using the ``esp-idf`` framework on ESP32 boards.
+
+Display components
+------------------
+
+This release adds a few changes to the display core code to optimise and allow for future
+improvements which are already in progress. This also may bring breaking changes to the internal APIs that ``external_components``
+may be relying on.
+
 
 Full list of changes
 --------------------
@@ -30,6 +43,7 @@ New Components
 - Add Zio Ultrasonic Distance Sensor Component :esphomepr:`5059` by :ghuser:`kahrendt` (new-integration)
 - Add Alpha3 pump component :esphomepr:`3787` by :ghuser:`jan-hofmeier` (new-integration)
 - RTC implementation of pcf8563 :esphomepr:`4998` by :ghuser:`KoenBreeman` (new-integration)
+- web server esp idf suppport :esphomepr:`3500` by :ghuser:`dentra` (new-integration)
 - Add TT21100 touchscreen component :esphomepr:`4793` by :ghuser:`kroimon` (new-integration)
 - Add support for Grove tb6612 fng :esphomepr:`4797` by :ghuser:`max246` (new-integration)
 - Add support for ATM90E26 :esphomepr:`4366` by :ghuser:`danieltwagner` (new-integration)
@@ -39,6 +53,7 @@ Breaking Changes
 ^^^^^^^^^^^^^^^^
 
 - display: add `BaseFont` and introduce `Font::draw` methods :esphomepr:`4963` by :ghuser:`ayufan` (breaking-change)
+- display: Rename `display.DisplayBufferRef` to `display.DisplayRef` used by lambda :esphomepr:`5002` by :ghuser:`ayufan` (breaking-change)
 - Remove template switch restore_state :esphomepr:`5106` by :ghuser:`jesserockz` (breaking-change)
 
 Beta Changes
@@ -105,7 +120,7 @@ All changes
 - Improve BME680 BSEC sensor device classes :esphomepr:`4859` by :ghuser:`trvrnrth`
 - Update RP2040 Aruino framwork and platform to latest :esphomepr:`5025` by :ghuser:`HeMan`
 - Allow pillow versions over 10 :esphomepr:`5071` by :ghuser:`HeMan`
-- display: Rename `display.DisplayBufferRef` to `display.DisplayRef` used by lambda :esphomepr:`5002` by :ghuser:`ayufan`
+- display: Rename `display.DisplayBufferRef` to `display.DisplayRef` used by lambda :esphomepr:`5002` by :ghuser:`ayufan` (breaking-change)
 - Add Zio Ultrasonic Distance Sensor Component :esphomepr:`5059` by :ghuser:`kahrendt` (new-integration)
 - Add Alpha3 pump component :esphomepr:`3787` by :ghuser:`jan-hofmeier` (new-integration)
 - RTC implementation of pcf8563 :esphomepr:`4998` by :ghuser:`KoenBreeman` (new-integration)
@@ -127,6 +142,16 @@ All changes
 - New 'Duty Time' sensor component :esphomepr:`5069` by :ghuser:`dudanov` (new-integration)
 - Fix PIDController::in_deadband() to give correct result when error is zero :esphomepr:`5078` by :ghuser:`lewissbaker`
 - Edit error message for pillow install to add version restrictions :esphomepr:`5094` by :ghuser:`jesserockz`
+- Dont do mqtt ip lookup if `use_address` has ip address :esphomepr:`5096` by :ghuser:`jesserockz`
+- ESP32 enable ADC2 when wifi is disabled :esphomepr:`4381` by :ghuser:`pciavald`
+- [Sprinkler] Resume fixes :esphomepr:`5100` by :ghuser:`hostcc`
+- Remove template switch restore_state :esphomepr:`5106` by :ghuser:`jesserockz` (breaking-change)
+- Add timeout filter :esphomepr:`5104` by :ghuser:`clydebarrow`
+- P1 values for capacity tariff in Belgium :esphomepr:`5081` by :ghuser:`bwynants`
+- airthings_wave: Silence compiler warnings :esphomepr:`5098` by :ghuser:`kpfleming`
+- Sigma delta fix :esphomepr:`4911` by :ghuser:`PlainTechEnthusiast`
+- [LD2410] Remove baud_rate check :esphomepr:`5112` by :ghuser:`voed`
+- Fix silence detection flag on voice assistant :esphomepr:`5120` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
