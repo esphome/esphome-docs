@@ -16,7 +16,7 @@ Changelog - Version 1.17.0 - 4th May 2021
     Xiaomi Miscale2, components/sensor/xiaomi_miscale2, xiaomi_miscale2.jpg
     Midea Air Conditioner, components/climate/midea_ac, midea.svg
     Addressable Light Display, components/display/addressable_light, addressable_light.jpg
-    Pulse Meter, components/sensor/pulse_meter, pulse.svg
+    Pulse Meter, components/sensor/pulse_meter, pulse.svg, dark-invert
 
 
 So, ESPHome was acquired by Nabu Casa. That was big and unexpected, but awesome news for the project as now I have been hired

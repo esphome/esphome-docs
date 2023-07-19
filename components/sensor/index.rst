@@ -151,6 +151,7 @@ Filters are processed in the order they are defined in your configuration.
       - throttle_average: 1s
       - heartbeat: 5s
       - debounce: 0.1s
+      - timeout: 1min
       - delta: 5.0
       - or:
         - throttle: 1s
@@ -466,6 +467,14 @@ The last value of the sensor will be sent.
 So a value of ``10s`` will cause the filter to output values every 10s regardless
 of the input values.
 
+``timeout``
+************
+
+After the first value has been sent, if no subsequent value is published within the
+``specified time period``, send ``NaN``.
+Especially useful when data is derived from some other communication
+channel, e.g. a serial port, which can potentially be interrupted.
+
 ``debounce``
 ************
 
@@ -556,6 +565,8 @@ Fahrenheit.
     filters:
       - lambda: return x * (9.0/5.0) + 32.0;
     unit_of_measurement: "°F"
+
+.. _sensor-automations:
 
 Sensor Automation
 -----------------
