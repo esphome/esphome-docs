@@ -45,7 +45,7 @@ These 2 log lines may show up in the most recent version of ESPHome due to the l
 I made this change because changing the device log level to verbose just to see if these lines show up significantly slowed down
 the device due to all the extra logging it had to do.
 
-Please do not report new issues for this, but `comment on this issue <https://github.com/esphome/issues/issues/4714>`__
+Please do not report new issues for this, but `comment on this issue <https://github.com/esphome/issues/issues/4717>`__
 if someone has not already commented for that specific component.
 
 
