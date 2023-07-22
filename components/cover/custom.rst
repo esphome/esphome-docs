@@ -30,6 +30,7 @@ two methods:
         traits.set_is_assumed_state(false);
         traits.set_supports_position(true);
         traits.set_supports_tilt(false);
+        traits.set_supports_stop(true);
         return traits;
       }
       void control(const CoverCall &call) override {

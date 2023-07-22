@@ -40,6 +40,8 @@ Configuration variables:
   - ``DP83848``
   - ``IP101``
   - ``JL1101``
+  - ``KSZ8081``
+  - ``KSZ8081RNA``
 
 - **mdc_pin** (**Required**, :ref:`config-pin`): The MDC pin of the board.
   Usually this is ``GPIO23``.
