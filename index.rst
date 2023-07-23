@@ -391,10 +391,11 @@ Motion
 .. imgtable::
 
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
+    BMI160, components/sensor/bmi160, bmi160.jpg, Accelerometer & Gyroscope
+    LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
     MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
-    LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
 
 
 Thermocouple
