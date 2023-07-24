@@ -27,7 +27,6 @@ SMA Sunny Island CAN protocol. CAN ids recognised are:
 * 0x35A - alarm and warning flags (SMA)
 * 0x35C - request charge/discharge flags
 * 0x35E - battery name
-* 0x35F - chemistry, capacity and versions
 
 
 Basic Configuration
