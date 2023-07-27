@@ -53,7 +53,7 @@ To use the component, first, provide the source sensor and then configure the wi
 Configuration variables:
 ------------------------
 
-- **type** (**Required**, enum): One of ``sliding``, ``chunked_sliding``, ``continuous``, or ``chunked_continuous``.
+- **type** (**Required**, enum): One of ``sliding``, ``continuous``, or ``chunked_continuous``.
 - **average_type** (*Optional*, enum): How each measurement is weighted, one of ``simple`` or ``time_weighted``. Defaults to ``simple``.
 - **group_type** (*Optional*, enum): The type of the set of sensor measurements, one of ``sample`` or ``population``. Defaults to ``sample``.
 - **time_unit** (*Optional*, enum): The time unit used for the trend sensor, one of
@@ -115,17 +115,6 @@ Configuration variables:
 
 
 ``sliding`` window type options:
-********************************
-
-- **window_size** (**Required**, int): The number of *measurements* over which to calculate the summary statistics when pushing out a
-  value.
-- **send_every** (*Optional*, int): How often the sensor statistics should be pushed out. For example, if set to 15, then the statistic sensors will publish updates every 15 *measurements*. Defaults to ``1``.
-- **send_first_at** (*Optional*, int): By default, the first *measurement's* statistics on boot is immediately
-  published. With this parameter you can specify how many *measurements* should be collected before the first statistics are sent.
-  Must be less than or equal to ``send_every``
-  Defaults to ``1``.
-
-``chunked_sliding`` window type options:
 ****************************************
 
 - **window_size** (**Required**, int): The number of *chunks* over which to calculate the summary statistics when pushing out a value.
@@ -175,30 +164,6 @@ The second category is a continuous window. This category of windows has a pre-d
 Instead of inserting individual measurements, the component can combine several sensor measurements into a chunk. When this chunk exceeds ``chunk_size`` sensor measurements or ``chunk_size`` duration, this component adds that chunk to the window. This approach saves memory for sliding windows, as memory does not hold every individual sensor measurement but only stores several sensor measurements combined. For continuous windows, this improves accuracy for significantly large windows.
 
 If you want to collect statistics from a significant number of measurements (potentially unlimited), use a ``chunked_continuous`` type. It uses slightly more memory and is slower but is numerically accurate. A ``continuous`` type uses very little memory and is extremely fast. However, it can lose accuracy with significantly large windows.
-
-.. list-table:: Sliding Window Type Comparison
-    :header-rows: 1 
-
-    * - 
-      - ``sliding``
-      - ``chunked_sliding``
-    * - Capacity set by count
-      - yes
-      - yes
-    * - Capacity set by duration
-      - no
-      - indirectly
-    * - Memory usage
-      - low to high (depends on window size)
-      - low (if chunk size is large) to medium (if chunk size is small)
-    * - CPU usage
-      - very low
-      - very low
-    * - Accurate Long-Term
-      - yes
-      - yes
-
-
 
 .. list-table:: Continuous Window Type Comparison
     :header-rows: 1
@@ -318,7 +283,7 @@ If you use an ESP32 board with external memory, then this component will automat
 Group Types
 ***********
 
-You can configure whether the component considers the set of sensor measurements to be a population or a sample using the ``population`` or ``sample`` type respectively. This setting affects the standard deviation ``std_dev`` sensor. For sliding windows or continuous windows that reset the ``sample`` type is appropriate. If you use a ``chunked_continuous`` window type without automatic reset, you should most likely use the ``population`` type.
+You can configure whether the component considers the set of sensor measurements to be a population or a sample using the ``population`` or ``sample`` type respectively. This setting affects the standard deviation ``std_dev`` sensor. For sliding windows or continuous windows that reset the ``sample`` type is usually appropriate. If you use a ``chunked_continuous`` window type without automatic reset, you should most likely use the ``population`` type.
 
 Trend Sensor
 ************
@@ -329,12 +294,6 @@ Which Continuous Window Type to Choose
 **************************************
 
 If you collect long-term statistics that include thousands (or more) of measurements, you should use the ``chunked_continuous`` window type. If you only collect statistics over a smaller set of measurements, then use the ``continuous`` window type.
-
-Which Sliding Window Type to Choose
-***********************************
-
-Unless you need your statistics to update after every sensor measurement or you need to set the ``send_every`` option to a number that does not divide ``window_size``, you should use the ``chunked_sliding`` window type.
-
 
 Example Configurations
 ----------------------
@@ -369,7 +328,7 @@ Suppose you want to send the minimum and maximum value of a sensor’s measureme
       - platform: statistics
         source_id: source_measurement_sensor_id
         window:
-          type: chunked_sliding
+          type: sliding
           window_size: 60         # 60 chunks that are 1 minute each is 1 hour
           chunk_duration: 1min
           send_every: 1
@@ -443,7 +402,7 @@ Automation Actions
 ``sensor.statistics.force_publish`` Action
 ******************************************
 
-This :ref:`Action <config-action>` allows you to force all statistics sensors to publish an update. Note, the action may send statistics over a window larger than configured for ``chunked_sliding`` types.
+This :ref:`Action <config-action>` allows you to force all statistics sensors to publish an update. Note, the action may send statistics over a different window size than configured for ``sliding`` types.
 
 .. code-block:: yaml
 
