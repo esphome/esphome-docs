@@ -27,10 +27,6 @@ To use the component, first, provide the source sensor and then configure the wi
           send_first_at: 3
         average_type: time_weighted
         group_type: sample
-        argmax:
-          name: "Time Since Last Maximum of Sensor"
-        argmin:
-          name: "Time Since Last Minimum of Sensor"
         count:
           name: "Count of Valid Sensor Measurements"         
         duration:
@@ -41,6 +37,10 @@ To use the component, first, provide the source sensor and then configure the wi
           name: "Sensor Minimum"
         mean:
           name: "Sensor Average"
+        since_argmax:
+          name: "Time Since Last Maximum of Sensor"
+        since_argmin:
+          name: "Time Since Last Minimum of Sensor"          
         std_dev: 
           name: "Sensor Sample Standard Deviation"
         trend:
@@ -58,17 +58,6 @@ Configuration variables:
 - **group_type** (*Optional*, enum): The type of the set of sensor measurements, one of ``sample`` or ``population``. Defaults to ``sample``.
 - **time_unit** (*Optional*, enum): The time unit used for the trend sensor, one of
   ``ms``, ``s``, ``min``, ``h`` or ``d``. Defaults to ``s``.
-- **argmax** (*Optional*): The information for the argmax sensor.
-
-  - **name** (**Required**, string): The name for the argmax sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.  
-
-- **argmin** (*Optional*): The information for the argmin sensor.
-
-  - **name** (**Required**, string): The name for the argmin sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.  
 
 - **count** (*Optional*): The information for the count sensor.
 
@@ -99,6 +88,18 @@ Configuration variables:
   - **name** (**Required**, string): The name for the minimum sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
+
+- **since_argmax** (*Optional*): The information for the since argmax sensor.
+
+  - **name** (**Required**, string): The name for the since argmax sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.  
+
+- **since_argmin** (*Optional*): The information for the since argmin sensor.
+
+  - **name** (**Required**, string): The name for the since argmin sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.  
 
 - **std_dev** (*Optional*): The information for the standard deviation sensor.
 
@@ -227,20 +228,6 @@ If you want to collect statistics from a significant number of measurements (pot
 Statistics Description
 ----------------------
 
-- ``argmax`` sensor:
-
-  - The timespan since the most recent maximum value in the window.
-  - By default, its ``state_class`` is ``measurement``, and its ``device_class`` is ``duration``.
-  - By default, it inherits ``entity_category`` and ``icon`` from the source sensor.  
-  - The ``unit_of_measurement`` is millseconds (ms).
-
-- ``argmin`` sensor:
-
-  - The timespan since the most recent minimum value in the window.
-  - By default, its ``state_class`` is ``measurement``, and its ``device_class`` is ``duration``.
-  - By default, it inherits ``entity_category`` and ``icon`` from the source sensor.    
-  - The ``unit_of_measurement`` is millseconds (ms).
-
 - ``count`` sensor:
 
   - Counts the number of sensor measurements in the window that are not ``NaN``.
@@ -271,6 +258,20 @@ Statistics Description
   - The minimum value of measurements from the source sensor in the window.
   - By default, its ``state_class`` is ``measurement``.  
   - By default, it inherits ``accuracy_decimals``, ``device_class``, ``entity_category``, ``icon``, and ``unit_of_measurement`` from the source sensor.
+
+- ``since_argmax`` sensor:
+
+  - The timespan since the most recent maximum value in the window.
+  - By default, its ``state_class`` is ``measurement``, and its ``device_class`` is ``duration``.
+  - By default, it inherits ``entity_category`` and ``icon`` from the source sensor.  
+  - The ``unit_of_measurement`` is millseconds (ms).
+
+- ``since_argmin`` sensor:
+
+  - The timespan since the most recent minimum value in the window.
+  - By default, its ``state_class`` is ``measurement``, and its ``device_class`` is ``duration``.
+  - By default, it inherits ``entity_category`` and ``icon`` from the source sensor.    
+  - The ``unit_of_measurement`` is millseconds (ms).
 
 - ``std_dev`` sensor:
 
