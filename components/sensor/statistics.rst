@@ -218,14 +218,14 @@ Statistics Description
   - The timespan since the most recent maximum value in the window.
   - By default, its ``state_class`` is ``measurement``, and its ``device_class`` is ``duration``.
   - By default, it inherits ``entity_category`` and ``icon`` from the source sensor.  
-  - The ``unit_of_measurement`` is millseconds (ms).
+  - The ``unit_of_measurement`` is seconds (s).
 
 - ``since_argmin`` sensor:
 
   - The timespan since the most recent minimum value in the window.
   - By default, its ``state_class`` is ``measurement``, and its ``device_class`` is ``duration``.
   - By default, it inherits ``entity_category`` and ``icon`` from the source sensor.    
-  - The ``unit_of_measurement`` is millseconds (ms).
+  - The ``unit_of_measurement`` is seconds (s).
 
 - ``std_dev`` sensor:
 
