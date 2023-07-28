@@ -369,11 +369,11 @@ And a docker compose file looks like this:
     to have the online/offline stat (see below)
 
     mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
-    If your router supports Avahi, you are able to get mDNS working over different subnets.
+    If your router supports Avahi (or you use OpenWrt or pfSense), you are able to get mDNS working over different subnets.
 
     Just follow the next steps:
 
-    1. Enable Avahi on both subnets.
+    1. Enable Avahi on both subnets (install Avahi modules on OpenWrt or pfSense).
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 
     Alternatively, you can make esphome use ICMP pings to check the status of the device
