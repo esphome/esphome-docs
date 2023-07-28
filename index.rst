@@ -753,6 +753,7 @@ Time Components
     SNTP, components/time/sntp, clock-outline.svg, dark-invert
     GPS Time, components/time/gps, crosshairs-gps.svg, dark-invert
     DS1307 RTC, components/time/ds1307, clock-outline.svg, dark-invert
+    PCF8563 RTC, components/time/pcf8563, clock-outline.svg, dark-invert
     PCF85063 RTC, components/time/pcf85063, clock-outline.svg, dark-invert
 
 Home Assistant Companion Components
