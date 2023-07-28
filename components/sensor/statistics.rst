@@ -139,7 +139,7 @@ Configuration variables:
   published. With this parameter you can specify how many *chunks* should be collected before the first statistics are sent.
   Must be less than or equal to ``send_every``.
   Defaults to ``1``.
-- **restore** (*Optional*, boolean): Whether to store the intermediate statistics on the device so that they can be restored upon power cycle or reboot. Warning: this option can wear out your flash. Defaults to ``false``.
+- **restore** (*Optional*, boolean): Whether to store the intermediate statistics on the device so that they can be restored upon power cycle or reboot. Cannot be enabled if the ``trend`` sensor is configured. Warning: this option can wear out your flash. Defaults to ``false``.
 
 .. _window-types:
 
@@ -239,6 +239,7 @@ Statistics Description
 - ``trend`` sensor:
 
   - Gives the slope of the line of best fit for the source sensor measurements in the window versus their timestamps.
+  - Cannot be enabled if the ``window`` configuration option ``restore`` is set to true.
   - By default, its ``state_class`` is ``measurement``.  
   - By default, it inherits ``entity_category`` and ``icon`` from the source sensor.
   - By default, it uses 2 more ``accuracy_decimals`` than the source sensor.
