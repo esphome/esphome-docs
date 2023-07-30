@@ -378,10 +378,6 @@ Below is a config example:
       vcom_pin:
         pca6416a: pca6416a_hub
         number: 5
-
-    mcp23017:
-      - id: mcp23017_hub
-        address: 0x20
         
 See Also
 --------
