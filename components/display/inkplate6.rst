@@ -343,41 +343,41 @@ Below is a config example:
 .. code-block:: yaml
 
     # Example minimal configuration entry
-	pca6416a:
-	  - id: pca6416a_hub
-		address: 0x20
+    pca6416a:
+      - id: pca6416a_hub
+        address: 0x20
 
-	display:
-	- platform: inkplate6
-	  id: inkplate_display
-	  greyscale: true
-	  partial_updating: false
-	  update_interval: never
-	  model: inkplate_6_v2
+    display:
+    - platform: inkplate6
+      id: inkplate_display
+      greyscale: true
+      partial_updating: false
+      update_interval: never
+      model: inkplate_6_v2
 
-	  ckv_pin: 32
-	  sph_pin: 33
-	  gmod_pin:
-		pca6416a: pca6416a_hub
-		number: 1
-	  gpio0_enable_pin:
-		pca6416a: pca6416a_hub
-		number: 8
-	  oe_pin:
-		pca6416a: pca6416a_hub
-		number: 0
-	  spv_pin:
-		pca6416a: pca6416a_hub
-		number: 2
-	  powerup_pin:
-		pca6416a: pca6416a_hub
-		number: 4
-	  wakeup_pin:
-		pca6416a: pca6416a_hub
-		number: 3
-	  vcom_pin:
-		pca6416a: pca6416a_hub
-		number: 5
+      ckv_pin: 32
+      sph_pin: 33
+      gmod_pin:
+        pca6416a: pca6416a_hub
+        number: 1
+      gpio0_enable_pin:
+        pca6416a: pca6416a_hub
+        number: 8
+      oe_pin:
+        pca6416a: pca6416a_hub
+        number: 0
+      spv_pin:
+        pca6416a: pca6416a_hub
+        number: 2
+      powerup_pin:
+        pca6416a: pca6416a_hub
+        number: 4
+      wakeup_pin:
+        pca6416a: pca6416a_hub
+        number: 3
+      vcom_pin:
+        pca6416a: pca6416a_hub
+        number: 5
 
     mcp23017:
       - id: mcp23017_hub
