@@ -78,6 +78,7 @@ Configuration variables:
   - ``inkplate_6``
   - ``inkplate_10``
   - ``inkplate_6_plus``
+  - ``inkplate_6_v2``
 
 - **greyscale** (*Optional*, boolean): Makes the screen display 3 bit colors. Defaults to ``false``
 - **partial_updating** (*Optional*, boolean): Makes the screen update partially, which is faster, but leaves burnin. Defaults to ``false``
@@ -332,6 +333,55 @@ Below is a config example:
         id: backlight
         default_transition_length: 0.2s
         name: '${friendly_name} Backlight'
+
+Inkplate 6 v2
+***************************
+
+The Inkplate 6 v2 has a slightly different configuration. The main difference is that it is using pca6416a instead of the mcp23017.
+Below is a config example:
+
+.. code-block:: yaml
+
+    # Example minimal configuration entry
+	pca6416a:
+	  - id: pca6416a_hub
+		address: 0x20
+
+	display:
+	- platform: inkplate6
+	  id: inkplate_display
+	  greyscale: true
+	  partial_updating: false
+	  update_interval: never
+	  model: inkplate_6_v2
+
+	  ckv_pin: 32
+	  sph_pin: 33
+	  gmod_pin:
+		pca6416a: pca6416a_hub
+		number: 1
+	  gpio0_enable_pin:
+		pca6416a: pca6416a_hub
+		number: 8
+	  oe_pin:
+		pca6416a: pca6416a_hub
+		number: 0
+	  spv_pin:
+		pca6416a: pca6416a_hub
+		number: 2
+	  powerup_pin:
+		pca6416a: pca6416a_hub
+		number: 4
+	  wakeup_pin:
+		pca6416a: pca6416a_hub
+		number: 3
+	  vcom_pin:
+		pca6416a: pca6416a_hub
+		number: 5
+
+    mcp23017:
+      - id: mcp23017_hub
+        address: 0x20
         
 See Also
 --------
