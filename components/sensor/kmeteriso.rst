@@ -12,7 +12,7 @@ The ``kmeteriso`` sensor platform allows you to use your KMeterISO
 The :ref:`I²C <i2c>` is required to be set up in your configuration
 for this sensor to work.
 
-.. figure:: images/kmeteriso.jpg
+.. figure:: ../../images/kmeteriso.jpg
     :align: center
     :width: 50.0%
 
