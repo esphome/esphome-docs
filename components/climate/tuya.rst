@@ -11,23 +11,33 @@ Tuya climate requires a :doc:`/components/tuya` to be configured.
 
 .. code-block:: text
 
-    [22:03:11][C][tuya:023]: Tuya:
-    [22:03:11][C][tuya:032]:   Datapoint 1: switch (value: ON)
-    [22:03:11][C][tuya:032]:   Datapoint 2: switch (value: OFF)
-    [22:03:11][C][tuya:034]:   Datapoint 3: int value (value: 20)
-    [22:03:11][C][tuya:034]:   Datapoint 4: int value (value: 19)
-    [22:03:11][C][tuya:034]:   Datapoint 5: int value (value: 0)
-    [22:03:11][C][tuya:036]:   Datapoint 7: enum (value: 1)
-    [22:03:11][C][tuya:046]:   Product: '{"p":"ynjanlglr4qa6dxf","v":"1.0.0","m":0}'
+    [10:07:48][C][tuya:041]: Tuya:
+    [10:07:48][C][tuya:056]:   Datapoint 1: switch (value: OFF)
+    [10:07:48][C][tuya:058]:   Datapoint 2: int value (value: 25)
+    [10:07:48][C][tuya:062]:   Datapoint 4: enum (value: 0)
+    [10:07:48][C][tuya:062]:   Datapoint 5: enum (value: 4)
+    [10:07:48][C][tuya:056]:   Datapoint 8: switch (value: OFF)
+    [10:07:48][C][tuya:056]:   Datapoint 101: switch (value: OFF)
+    [10:07:48][C][tuya:058]:   Datapoint 3: int value (value: 31)
+    [10:07:48][C][tuya:056]:   Datapoint 104: switch (value: ON)
+    [10:07:48][C][tuya:056]:   Datapoint 106: switch (value: OFF)
+    [10:07:48][C][tuya:056]:   Datapoint 107: switch (value: OFF)
+    [10:07:48][C][tuya:056]:   Datapoint 103: switch (value: OFF)
+    [10:07:48][C][tuya:076]:   Product: 'stgbzbctueolecwx1.0.0'
 
 On this controller, the data points are:
 
 - 1 represents the climate on/off state.
-- 2 represents the child lock switch. (use the :doc:`/components/switch/tuya` component to control this)
-- 3 represents the target temperature.
-- 4 represents the current temperature.
-- 5 represents the timer but is not yet available to be used in ESPHome.
-- 7 represents the eco mode switch.
+- 2 represents the target temperature.
+- 3 represents the current temperature
+- 4 represents the active state (operating mode, such as heat/cool). This is a value that can range from 0-4 on this device. Each value is a different mode.
+- 5 represents the Fan Speed / Fan Mode. This is a value that can range from 0-4 on this device. Each value is a different speed.
+- 8 represents the Eco Mode preset.
+- 101 represents the Sleep Mode preset.
+- 103 represents the Auto-Clean feature. (use the :doc:`/components/switch/tuya` component to control this)
+- 104 represents the display toggle (on device) feature. (use the :doc:`/components/switch/tuya` component to control this)
+- 106 represents the Vertical Swing switch.
+- 107 represents the Horizontal Swing switch.
 
 Based on this, you can create the climate device as follows:
 
@@ -37,10 +47,32 @@ Based on this, you can create the climate device as follows:
       - platform: tuya
         name: "My Climate Device"
         switch_datapoint: 1
-        target_temperature_datapoint: 3
-        current_temperature_datapoint: 4
-        eco_datapoint: 7
-        eco_temperature: 20 °C
+        target_temperature_datapoint: 2
+        current_temperature_datapoint: 3
+        supports_heat: True
+        supports_cool: True
+        active_state:
+          datapoint: 4
+          cooling_value: 0
+          heating_value: 1
+          drying_value: 2
+          fanonly_value: 3
+        preset:
+          eco:
+            datapoint: 8
+            temperature: 28
+          sleep:
+            datapoint: 101
+        swing_mode:
+          vertical_datapoint: 106
+          horizontal_datapoint: 107
+        fan_mode:
+          datapoint: 5
+          auto_value: 0
+          low_value: 2
+          medium_value: 3
+          middle_value: 4
+          high_value: 1
 
 Configuration variables:
 ------------------------
@@ -50,24 +82,56 @@ Configuration variables:
 - **supports_heat** (*Optional*, boolean): Specifies if the device has a heating mode. Defaults to ``true``.
 - **supports_cool** (*Optional*, boolean): Specifies if the device has a cooling mode. Defaults to ``false``.
 - **switch_datapoint** (**Required**, int): The datapoint id number of the climate switch (device on/off).
-- **active_state_datapoint** (*Optional*, int): The datapoint id number of the active state - :ref:`see below <active_state_detection>`.
-- **active_state_heating_value** (*Optional*, int): The active state datapoint value the device reports when heating. Defaults to ``1`` - :ref:`see below <active_state_detection>`.
-- **active_state_cooling_value** (*Optional*, int): The active state datapoint value the device reports when cooling - :ref:`see below <active_state_detection>`.
+- **active_state** (*Optional*): Information for the Active State Configuration.
+
+    - **datapoint** (**Required**, int): The datapoint id number of the active state - :ref:`see below <active_state_detection>`.
+    - **heating_value** (*Optional*, int): The active state datapoint value the device reports when heating. Defaults to ``1`` - :ref:`see below <active_state_detection>`.
+    - **cooling_value** (*Optional*, int): The active state datapoint value the device reports when cooling - :ref:`see below <active_state_detection>`.
+    - **drying_value** (*Optional*, int): The active state datapoint value the device reports when in drying mode.
+    - **fanonly_value** (*Optional*, int): The active state datapoint value the device reports when in Fan Only mode.
+- **preset** (*Optional*): Information for presets.
+
+    - **eco** (*Optional*): Config block for Eco preset.
+
+        - **datapoint** (**Required**, int): The datapoint id number of the Eco action.
+        - **temperature** (*Optional*, int): Temperature setpoint for Eco preset.
+    - **sleep** (*Optional*): Config block for Sleep preset
+
+        - **datapoint** (**Required**, int): The Datapoint id number of the Sleep Action
+- **swing_mode** (*Optional*): Information for the Swing (Oscillation) modes.
+
+    - **vertical_datapoint** (*Optional*, int): The datapoint id number of the vertical swing action.
+    - **horizontal_datapoint** (*Optional*, int): The datapoint id number of the horizontal swing action.
+- **fan_mode** (*Optional*): Information for Fan Mode / Fan Speeds.
+
+    - **datapoint** (**Required**, int): The datapoint id number of the Fan value state.
+    - **auto_value** (*Optional*, int): The datapoint value the device reports when the fan is on ``auto`` speed.
+    - **low_value** (*Optional*, int):  The datapoint value the device reports when the fan is on ``low`` speed.
+    - **medium_value** (*Optional*, int):  The datapoint value the device reports when the fan is on ``medium`` speed.
+    - **middle_value** (*Optional*, int):  The datapoint value the device reports when the fan is on ``middle`` speed. (May set to device's ``high`` value if you have a ``Turbo`` option).
+    - **high_value** (*Optional*, int):  The datapoint value the device reports when the fan is on ``high`` speed. (Sometimes called ``Turbo``).
 - **heating_state_pin** (*Optional*, :ref:`config-pin`): The input pin indicating that the device is heating - :ref:`see below <active_state_detection>`. Only used if **active_state_datapoint** is not configured.
 - **cooling_state_pin** (*Optional*, :ref:`config-pin`): The input pin indicating that the device is cooling - :ref:`see below <active_state_detection>`. Only used if **active_state_datapoint** is not configured.
 - **target_temperature_datapoint** (**Required**, int): The datapoint id number of the target temperature.
 - **current_temperature_datapoint** (**Required**, int): The datapoint id number of the current temperature.
 - **temperature_multiplier** (*Optional*, float): A multiplier to modify the incoming and outgoing temperature values - :ref:`see below <temperature-multiplier>`.
-- **eco_datapoint** (*Optional*, int): The datapoint id number of the eco mode state.
-- **eco_temperature** (*Optional*, float): The target temperature the controller uses while the eco mode is active.
+
 - **reports_fahrenheit** (*Optional*, boolean): Set to ``true`` if the device reports temperatures in Fahrenheit. ESPHome expects all climate temperatures to be in Celcius, otherwise unexpected conversions will take place when it is published to Home Assistant. Defaults to ``false``.
 
 If the device has different multipliers for current and target temperatures, **temperature_multiplier** can be replaced with both of:
 
-- **current_temperature_multiplier** (*Optional*, float): A multiplier to modify the current temperature value.
-- **target_temperature_multiplier** (*Optional*, float): A multiplier to modify the target temperature value.
+    - **current_temperature_multiplier** (*Optional*, float): A multiplier to modify the current temperature value.
+    - **target_temperature_multiplier** (*Optional*, float): A multiplier to modify the target temperature value.
 
 - All other options from :ref:`Climate <config-climate>`.
+
+**Deprecated:**
+
+    - **active_state_datapoint** (*Optional*, int): Moved under the ``active_state`` config block.
+    - **active_state_heating_value** (*Optional*, int): Moved under the ``active_state`` config block.
+    - **active_state_cooling_value** (*Optional*, int): Moved under the ``active_state`` config block.
+    - **eco_datapoint** (*Optional*, int): Moved under the ``preset`` and ``eco`` config blocks.
+    - **eco_temperature** (*Optional*, float): Moved under the ``preset`` and ``eco`` config blocks.
 
 .. _active_state_detection:
 
