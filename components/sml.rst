@@ -179,6 +179,7 @@ These meters send multiple conflicting values with the OBIS code ``1-0:1.8.0``, 
 Because the first value of every package is the correct value, in order to discard the erroneous values a throttle filter of 0.5s can be applied.
 
 .. code-block:: yaml
+
     sensor:
       - platform: sml
         name: "Total energy Consumption"
@@ -195,6 +196,7 @@ Because the first value of every package is the correct value, in order to disca
 These meters can also measure the instantaneous power usage.
 
 .. code-block:: yaml
+
     sensor:
       - platform: sml
         name: "Instantaneous power"
