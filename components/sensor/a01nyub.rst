@@ -11,7 +11,9 @@ This sensor allows you to use A01NYUB waterproof ultrasonic sensor by DFRobot
 with ESPHome to measure distances. This sensor can measure
 ranges between 28 centimeters and 750 centimeters with a resolution of 1 milimeter.
 
-Since this sensor reads multiple times per second, filtering is highly recommended.
+Since this sensor reads multiple times per second, :ref:`sensor-filters` are highly recommended.
+
+To use the sensor, first set up an :ref:`uart` with a baud rate of 9600 and connect the sensor to the specified pin.
 
 .. figure:: images/a01nyub-full.jpg
     :align: center
@@ -28,34 +30,21 @@ Since this sensor reads multiple times per second, filtering is highly recommend
 
     sensor:
       - platform: "a01nyub"
-        name: "Rainwater Tank"
-        # Tweak the filters for your application
-        filters:
-          - sliding_window_moving_average:
-              window_size: 12
-              send_every: 12
-          - or:
-            - throttle: "20min"
-            - delta: 0.02
-
+        name: "Distance"
+ 
 
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the sensor.
-- All other options from :ref:`Sensor <config-sensor>`.
-
-Advanced options:
-
 - **uart_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`UART bus <uart>` you wish to use for this sensor.
   Use this if you want to use multiple UART buses at once.
-
+- All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
 
 - :ref:`sensor-filters`
 - :ref:`uart`
-- :doc:`template`
 - :apiref:`a01nyub/a01nyub.h`
 - :ghedit:`Edit`
