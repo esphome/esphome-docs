@@ -115,7 +115,7 @@ This action arms the alarm in home mode. The ``code`` is required when *requires
 .. _alarm_control_panel_arm_night_action:
 
 ``arm_night`` Action
-*******************
+********************
 
 This action arms the alarm in night mode. The ``code`` is required when *requires_code_to_arm* is *true*.
 
