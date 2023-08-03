@@ -47,7 +47,6 @@ Configuration variables:
 See Also
 --------
 
-- :doc:`Sensor Component </components/sensor>`
 - :ref:`sensor-filters`
 - :doc:`template`
 - :ghedit:`Edit`
