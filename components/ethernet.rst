@@ -214,6 +214,7 @@ Configuration examples
 **Esp32-Stick-Eth** and **Esp32-Stick-PoE-P** and **Esp32-Stick-PoE-A**:
 
 .. code-block:: yaml
+
   ethernet:
     type: LAN8720
     mdc_pin: GPIO23
