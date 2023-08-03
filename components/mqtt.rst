@@ -56,6 +56,10 @@ Configuration variables:
 - **discovery_object_id_generator** (*Optional*, string): The object_id generator
   to use. Can be one of ``none`` or ``device_name``. Defaults to ``none`` which
   does not generate object_id. ``device_name`` generator uses format ``<device_name>_<friendly_name>``.
+- **internal_mqtt_default** (*Optional*, enum): The default behavior for entities to be internal with respect to 
+  publishing via MQTT. Can be one of ``copy``, which follows the entity's regular ``internal`` setting; 
+  ``internal``, where entities by default do not publish their state over MQTT; or ``external``, where 
+  entities by default publish their state over MQTT. Defaults to ``copy``.
 - **use_abbreviations** (*Optional*, boolean): Whether to use
   `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
   in discovery messages. Defaults to ``true``.
@@ -367,6 +371,10 @@ Configuration variables:
    be retained. Defaults to ``true``.
 -  **discovery** (*Optional*, boolean): Manually enable/disable
    discovery for a component. Defaults to the global default.
+-  **internal_mqtt** (*Optional*, boolean): Manually set whether the component is 
+   internal with respect to publishing via MQTT. Set to ``true`` to disable 
+   publishing over MQTT, and set to ``false`` to enable publishing over MQTT. If 
+   not configured, the component follows the global ``internal_mqtt_default`` setting.
 -  **availability** (*Optional*): Manually set what should be sent to
    Home Assistant for showing entity availability. Default derived from
    :ref:`global birth/last will message <mqtt-last_will_birth>`.
