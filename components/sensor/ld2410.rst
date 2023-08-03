@@ -53,7 +53,8 @@ Use of hardware UART pins is highly recommended, in order to support the out-of-
       g7_still_threshold: 71
       g8_move_threshold: 80
       g8_still_threshold: 81
-
+      restore_settings: false
+      id: ld2410_dev
 
 .. note::
 
@@ -77,6 +78,7 @@ and binary sensors.
   Above this level for the considered gate (distance), movement detection will be triggered. Defaults to ``see table below``.
 - **gX_still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8).
   Above this level for the considered gate (distance), still detection will be triggered. Defaults to ``see table below``.
+- **retore_settings** (*Optional*, bool): Restore settings from ``LD2410`` and ignore ``timeout``,  ``max_move_distance``, ``max_still_distance``, ``gX_move_threshold``, ``gX_still_threshold`` settings
 
 .. list-table:: Default values for gate threshold
     :widths: 25 25 25
@@ -157,6 +159,7 @@ measurements.
 .. code-block:: yaml
 
     binary_sensor:
+
       - platform: ld2410
         has_target:
           name: Presence
@@ -174,6 +177,76 @@ Configuration variables:
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
 - **has_still_target** (*Optional*): If true a still target is detected.
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
+
+
+Text Sensor
+-------------
+
+The ``ld2410`` text sensor provides firmware version and current device setting when combining button callback
+lambda.
+
+.. code-block:: yaml
+
+    text_sensor:
+      - platform: ld2410
+        fw_version:
+          name: Firmware Version
+        info_query:
+          name: Query Result
+
+Button callback lambda example:
+
+.. code-block:: yaml
+
+    button:
+      - platform: template
+        name: Query Button
+        on_press:
+          lambda: 'id(ld2410_dev)->query_parameters();'
+
+Configuration variables:
+************************
+
+- **fw_version** (*Optional*): Firmware version
+- **info_query** (*Optional*): Current device settings. Refresh when callback button is pressed
+
+
+Number
+-------------
+
+The ``ld2410`` number provides a way to update device settings interactively via Home-assistant GUI
+
+.. code-block:: yaml
+
+    number:
+      - platform: ld2410
+        maxdist_move:
+          name: Max Distance Move
+        maxdist_still:
+          name: Max Distance Still
+        timeout:
+          name: Present Timeout
+        threshold:
+          - gate_num: 0
+            type: move
+            name: Gate 0 Move Threshold
+          - gate_num: 0
+            type: still
+            name: Gate 0 Still Threshold
+          - gate_num: 8
+            type: move
+            name: Gate 1 Move Threshold
+          - gate_num: 8
+            type: still
+            name: Gate 8 Move Threshold
+
+Configuration variables:
+************************
+
+- **maxdist_move** (*Optional*):  Max distance for movement detection, from 1 to 8
+- **maxdist_still** (*Optional*):  Max distance for still detection, from 1 to 8
+- **timeout** (*Optional*):  Time in seconds during which presence state will stay present after leaving
+- **threshold** (*Optional*): List of threshold settings. Each item has two required fields: **gate_num**, from 0 to 8; and **type**: either ``move`` or ``still``
 
 
 See Also
