@@ -215,12 +215,12 @@ Configuration examples
 
 .. code-block:: yaml
 
-  ethernet:
-    type: LAN8720
-    mdc_pin: GPIO23
-    mdio_pin: GPIO18
-    clk_mode: GPIO17_OUT
-    phy_addr: 1
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO17_OUT
+      phy_addr: 1
 
 
 
