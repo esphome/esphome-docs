@@ -118,8 +118,8 @@ Configuration variables:
 ****************************************
 
 - **window_size** (**Required**, int): The number of *chunks* over which to calculate the summary statistics when pushing out a value.
-- **chunk_size** (*Optional*, int): The number of *measurements* to be stored in a chunk before inserting into the window. Note that if ``chunk_size`` and ``chunk_duration`` are both configured, then whichever is exceeded first causes the chunk to be inserted into the window. If both ``chunk_size`` and ``chunk_duration`` are not configured, then ``chunk_size`` defaults to ``1`` measurement.
-- **chunk_duration** (*Optional*, :ref:`config-time`): The duration of *measurements* to be stored in a chunk before inserting into the window. Note that if ``chunk_size`` and ``chunk_duration`` are both configured, then whichever is exceeded first causes the chunk to be inserted into the window. If both ``chunk_size`` and ``chunk_duration`` are not configured, then ``chunk_size`` defaults to ``1`` measurement.
+- **chunk_size** (*Optional*, int): The number of *measurements* to be stored in a chunk before inserting into the window. Note that only one of ``chunk_size`` and ``chunk_duration`` may be configured. If neither are configured, ``chunk_size`` defaults to ``1``.
+- **chunk_duration** (*Optional*, :ref:`config-time`): The duration of *measurements* to be stored in a chunk before inserting into the window. Note, only one of ``chunk_size`` and ``chunk_duration`` may be configured. If neither are configured, ``chunk_size`` defaults to ``1``.
 - **send_every** (*Optional*, int): How often the sensor statistics should be pushed out. For example, if set to 15, then the statistic sensors will publish updates every 15 *chunks*. Defaults to ``1``.
 - **send_first_at** (*Optional*, int): By default, the first *chunk's* statistics on boot is immediately
   published. With this parameter you can specify how many *chunks* should be collected before the first statistics are sent.
@@ -130,10 +130,9 @@ Configuration variables:
 ``continuous`` and ``continuous_long_term`` window type options:
 ****************************************************************
 
-- **window_size** (*Optional*, int): The number of *chunks* after which all statistics are reset. Set to ``0`` to disable automatic resets. Note that at least one of ``window_duration`` and ``window_size`` must be configured. If both are configured, whichever causes a reset first will do so.
-- **window_duration** (*Optional*, :ref:`config-time`): Time duration after which all statistics are reset. Note that at least one of ``window_duration`` and ``window_size`` must be configured. If both are configured, whichever causes a reset first will do so.
-- **chunk_size** (*Optional*, int): The number of *measurements* to be stored in a chunk before inserting into the window. Note that if ``chunk_size`` and ``chunk_duration`` are both configured, then whichever is exceeded first causes the chunk to be inserted into the window. If both ``chunk_size`` and ``chunk_duration`` are not configured, then ``chunk_size`` defaults to ``1`` measurement.
-- **chunk_duration** (*Optional*, :ref:`config-time`): The duration of *measurements* to be stored in a chunk before inserting into the window. Note that if ``chunk_size`` and ``chunk_duration`` are both configured, then whichever is exceeded first causes the chunk to be inserted into the window. If both ``chunk_size`` and ``chunk_duration`` are not configured, then ``chunk_size`` defaults to ``1`` measurement.
+- **window_size** (*Optional*, int): The number of *chunks* after which all statistics are reset. Set to ``0`` to disable automatic resets.
+- **chunk_size** (*Optional*, int): The number of *measurements* to be stored in a chunk before inserting into the window. Note that only one of ``chunk_size`` and ``chunk_duration`` may be configured. If neither are configured, ``chunk_size`` defaults to ``1``.
+- **chunk_duration** (*Optional*, :ref:`config-time`): The duration of *measurements* to be stored in a chunk before inserting into the window. Note that only one of ``chunk_size`` and ``chunk_duration`` may be configured. If neither are configured, ``chunk_size`` defaults to ``1``.
 - **send_every** (*Optional*, int): How often the sensor statistics should be pushed out. For example, if set to 15, then the statistic sensors will publish updates every 15 *chunks*. Set to ``0`` to disable automatic sensor publication. Defaults to ``1``.
 - **send_first_at** (*Optional*, int): By default, the first *chunk's* statistics on boot is immediately
   published. With this parameter you can specify how many *chunks* should be collected before the first statistics are sent.
@@ -148,11 +147,11 @@ Window Types
 
 There are two categories of windows. The first category is a sliding window. A sliding window has a pre-defined capacity of ``window_size`` measurements. The component inserts sensor measurements until it has inserted ``window_size`` total. Before this component inserts another sensor measurement, it removes the oldest measurement in the window.
 
-The second category is a continuous window. This category of windows has a pre-defined capacity of ``window_size`` measurements or a pre-defined duration ``window_duration``. The component inserts sensor measurements until it inserts ``window_size`` total or the difference between the timestamps of the oldest and most recent sensor measurements exceeds ``window_duration``. Then, this component removes **all** of the sensor measurements in the window.
+The second category is a continuous window. This category of windows has a pre-defined capacity of ``window_size`` measurements. The component inserts sensor measurements until it inserts ``window_size`` total. Then, this component removes **all** of the sensor measurements in the window. If ``window_size`` is set to ``0``, then the window is **never** reset.
 
-Instead of inserting individual measurements, the component can combine several sensor measurements into a chunk. When this chunk exceeds ``chunk_size`` sensor measurements or ``chunk_size`` duration, this component adds that chunk to the window. This approach saves memory for sliding windows, as memory does not hold every individual sensor measurement but only stores several sensor measurements combined. For continuous windows, this improves accuracy for significantly large windows.
+Instead of inserting individual measurements, the component can combine several sensor measurements into a chunk. When this chunk exceeds ``chunk_size`` sensor measurements or ``chunk_duration`` time has passed, this component adds that chunk to the window. This approach saves memory for sliding windows, as memory does not hold every individual sensor measurement but only stores several sensor measurements combined into the chunk. For continuous windows, this improves accuracy for significantly large windows.
 
-If you want to collect statistics from a significant number of measurements (potentially unlimited), use a ``continuous_long_term`` type. It uses slightly more memory and is slightly slower but is numerically accurate. A ``continuous`` type uses very little memory and is extremely fast. However, it may lose accuracy with significantly large windows.
+If you want to collect statistics from a significant number of measurements (potentially unlimited), use a ``continuous_long_term`` type. It uses slightly more memory and is slightly slower but is numerically accurate than a ``continuous`` type. A ``continuous`` type uses very little memory and is extremely fast. However, it may lose accuracy with significantly large windows.
 
 .. list-table:: Continuous Window Type Comparison
     :header-rows: 1
@@ -301,7 +300,8 @@ Suppose you want to send the mean/average of a sensor’s measurements over the 
         source_id: source_measurement_sensor_id
         window:
           type: continuous
-          window_duration: 1min
+          window_size: 1
+          chunk_duration: 1min
           send_every: 1
         mean:
           name: "Sensor Mean (1 minute)"  
@@ -366,6 +366,7 @@ Suppose you want to send the mean temperature measurement so far in a day, with 
           type: continuous_long_term
           window_size: 0        # we will manually reset the window
           chunk_duration: 15min
+          send_every: 1
         mean:
           name: "Temperature Mean (Day so Far)"
 
