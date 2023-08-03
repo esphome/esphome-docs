@@ -38,8 +38,10 @@ Configuration variables:
 - **i2c_id** (*Optional*, ID): The id of the I²C Bus.
 - **address** (*Optional*, int): Manually specifiy the I²C address of the sensor. Defaults to ``0x5A``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
-- **co2** (*Optional*, :ref:`sensor-component`): The configuration for the CO2 sensor.
-- **tvoc** (*Optional*, :ref:`sensor-component`): The configuration for the TVOC sensor.
+- **co2** (*Optional*): The configuration for the CO2 sensor. All options from
+  :ref:`Sensor <config-sensor>`.
+- **tvoc** (*Optional*): The configuration for the TVOC sensor. All options from
+  :ref:`Sensor <config-sensor>`.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
