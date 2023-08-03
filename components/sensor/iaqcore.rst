@@ -48,5 +48,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`template`
+- :doc:`/components/sensor/index`
 - :ghedit:`Edit`
