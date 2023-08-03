@@ -39,7 +39,7 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the motion sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specifiy the ID used for code generation.
-- **debounce_mode** (*Optional*, enum): How should the sensor debounce the motion sensor's signal. Must be one of ``HYBRID``, ``NATIVE``, or ``RAW``. See :ref:`debounce-modes` for details. Defaults to ``HYBRID``.
+- **debounce_mode** (*Optional*, enum): How the component debounces the motion sensor's signal. Must be one of ``HYBRID``, ``NATIVE``, or ``RAW``. See :ref:`debounce-modes` for details. Defaults to ``HYBRID``.
 - **debounce** (*Optional*, :ref:`config-time`): Only valid when using ``NATIVE`` debounce mode. Configures the debounce time on the sensor to reduce noise and false detections. Defaults to ``1ms``.
 
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
@@ -60,7 +60,7 @@ There are three options for ``debounce_mode``.
 - ``NATIVE``:
     
     - Use the sensor's native event detection to debounce the signal.
-    - Uses the logic in `SparkFun's example implementation <https://github.com/sparkfun/SparkFun_Qwiic_PIR_Arduino_Library/blob/master/examples/Example2_PrintPIRStatus/Example2_PrintPIRStatus.ino>`__.
+    - Logic follows `SparkFun's reference example implementation <https://github.com/sparkfun/SparkFun_Qwiic_PIR_Arduino_Library/blob/master/examples/Example2_PrintPIRStatus/Example2_PrintPIRStatus.ino>`__.
     - May be unreliable at detecting when an object is removed, especially at high debounce rates.
     - Binary sensor filters are not necessary to reduce noise and false detections.
 
