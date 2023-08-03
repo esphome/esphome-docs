@@ -183,7 +183,7 @@ From :ref:`lambdas <config-lambda>`, you can call the following methods:
 
     id(acp1).arm_away();
     id(acp1).arm_home();
-    id(acp1).disarm("1234");
+    id(acp1).disarm(std::string("1234"));
 
 
 Platforms
