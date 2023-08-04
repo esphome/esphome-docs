@@ -107,7 +107,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the climate device.
 - **wifi_signal** (*Optional*, boolean): If true - send wifi signal level to AC.
 - **answer_timeout** (*Optional*, :ref:`config-time`): Responce timeout. Default value is 150ms.
-- **display** (*Optional*, :ref:`config-time`): Can be used to set AC display off.
+- **display** (*Optional*, boolean): Can be used to set AC display off.
 - **beeper** (*Optional*, boolean): Can be used to disable beeping on commands from AC. Supported only by hOn protocol.
 - **outdoor_temperature** (*Optional*): Temperature sensor for outdoor temperature. Supported only by hOn protocol.
 
