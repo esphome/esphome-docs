@@ -73,6 +73,7 @@ This component requires a :ref:`uart` to be setup.
         uart_id: ac_port
         wifi_signal: true
         beeper: true
+        display: true
         outdoor_temperature:
           name: Haier AC outdoor temperature
         visual:
@@ -91,6 +92,10 @@ This component requires a :ref:`uart` to be setup.
         - VERTICAL
         - HORIZONTAL
         - BOTH
+    supported_presets:
+      - ECO
+      - BOOST
+      - SLEEP
 
 
 Configuration variables:
@@ -100,7 +105,9 @@ Configuration variables:
 - **uart_id** (*Optional*, :ref:`config-id`): ID of the UART port to communicate with AC.
 - **protocol** (*Optional*, string): Defines protocol of communication with AC. Possible values: hon or smartair2. Default value is smartair2.
 - **name** (**Required**, string): The name of the climate device.
-- **wifi_signal** (*Optional*, boolean): If true - send wifi signal level to AC. Supported only by hOn protocol.
+- **wifi_signal** (*Optional*, boolean): If true - send wifi signal level to AC.
+- **answer_timeout** (*Optional*, :ref:`config-time`): Responce timeout. Default value is 150ms.
+- **display** (*Optional*, :ref:`config-time`): Can be used to set AC display off.
 - **beeper** (*Optional*, boolean): Can be used to disable beeping on commands from AC. Supported only by hOn protocol.
 - **outdoor_temperature** (*Optional*): Temperature sensor for outdoor temperature. Supported only by hOn protocol.
 
@@ -108,7 +115,8 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): ID of the sensor, can be used for code generation
   - All other options from :ref:`Sensor <config-sensor>`.
 - **supported_modes** (*Optional*, list): Can be used to disable some of AC modes. Possible values: 'OFF', AUTO, COOL, HEAT, DRY, FAN_ONLY
-- **supported_swing_modes** (*Optional*, list): Can be used to disablesome swing modes if your AC does not support it. Possible values: 'OFF', VERTICAL, HORIZONTAL, BOTH
+- **supported_swing_modes** (*Optional*, list): Can be used to disable some swing modes if your AC does not support it. Possible values: 'OFF', VERTICAL, HORIZONTAL, BOTH
+- **supported_presets** (*Optional*, list): Can be used to disable some presets. Possible values for smartair2 are: BOOST, COMFORT. Possible values for hOn are: ECO, BOOST, SLEEP
 - All other options from :ref:`Climate <config-climate>`.
 
 Automations
