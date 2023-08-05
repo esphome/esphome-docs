@@ -70,6 +70,8 @@ Configuration example:
           name: "WavePlus CO2"
         tvoc:
           name: "WavePlus VOC"
+        illuminance:
+          name: "WavePlus ambient light"
         battery_voltage:
           name: "WavePlus Battery Voltage"
 
