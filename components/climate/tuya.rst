@@ -125,14 +125,6 @@ If the device has different multipliers for current and target temperatures, **t
 
 - All other options from :ref:`Climate <config-climate>`.
 
-**Deprecated:**
-
-    - **active_state_datapoint** (*Optional*, int): Moved under the ``active_state`` config block.
-    - **active_state_heating_value** (*Optional*, int): Moved under the ``active_state`` config block.
-    - **active_state_cooling_value** (*Optional*, int): Moved under the ``active_state`` config block.
-    - **eco_datapoint** (*Optional*, int): Moved under the ``preset`` and ``eco`` config blocks.
-    - **eco_temperature** (*Optional*, float): Moved under the ``preset`` and ``eco`` config blocks.
-
 .. _active_state_detection:
 
 Active state detection
