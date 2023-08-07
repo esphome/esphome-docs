@@ -34,19 +34,8 @@ for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **temperature** (*Optional*): The information for the temperature sensor.
-
-  - **name** (**Required**, string): The name for the temperature
-    sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **internal_temperature** (*Optional*): The information for the temperature sensor inside the probe.
-
-  - **name** (**Required**, string): The name for the temperature sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
+- **temperature** (*Optional*): The information for the temperature sensor. All options from :ref:`Sensor <config-sensor>`.
+- **internal_temperature** (*Optional*): The information for the temperature sensor inside the probe. All options from :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``5s``.
 
