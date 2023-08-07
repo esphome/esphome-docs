@@ -112,6 +112,21 @@ This action arms the alarm in home mode. The ``code`` is required when *requires
             id: acp1
             code: "1234"
 
+.. _alarm_control_panel_arm_night_action:
+
+``arm_night`` Action
+********************
+
+This action arms the alarm in night mode. The ``code`` is required when *requires_code_to_arm* is *true*.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - alarm_control_panel.arm_night:
+            id: acp1
+            code: "1234"
+
 .. _alarm_control_panel_disarm_action:
 
 ``disarm`` Action
@@ -177,12 +192,14 @@ From :ref:`lambdas <config-lambda>`, you can call the following methods:
 
 - ``arm_away(code)``
 - ``arm_home(code)``
+- ``arm_night(code)``
 - ``disarm(code)``
 
 .. code-block:: cpp
 
     id(acp1).arm_away();
     id(acp1).arm_home();
+    id(acp1).arm_night();
     id(acp1).disarm("1234");
 
 
