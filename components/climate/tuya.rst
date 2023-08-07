@@ -9,37 +9,6 @@ The ``tuya`` climate platform creates a climate device from a tuya component.
 
 Tuya climate requires a :doc:`/components/tuya` to be configured.
 
-.. code-block:: text
-
-    [10:07:48][C][tuya:041]: Tuya:
-    [10:07:48][C][tuya:056]:   Datapoint 1: switch (value: OFF)
-    [10:07:48][C][tuya:058]:   Datapoint 2: int value (value: 25)
-    [10:07:48][C][tuya:062]:   Datapoint 4: enum (value: 0)
-    [10:07:48][C][tuya:062]:   Datapoint 5: enum (value: 4)
-    [10:07:48][C][tuya:056]:   Datapoint 8: switch (value: OFF)
-    [10:07:48][C][tuya:056]:   Datapoint 101: switch (value: OFF)
-    [10:07:48][C][tuya:058]:   Datapoint 3: int value (value: 31)
-    [10:07:48][C][tuya:056]:   Datapoint 104: switch (value: ON)
-    [10:07:48][C][tuya:056]:   Datapoint 106: switch (value: OFF)
-    [10:07:48][C][tuya:056]:   Datapoint 107: switch (value: OFF)
-    [10:07:48][C][tuya:056]:   Datapoint 103: switch (value: OFF)
-    [10:07:48][C][tuya:076]:   Product: 'stgbzbctueolecwx1.0.0'
-
-On this controller, the data points are:
-
-- 1 represents the climate on/off state.
-- 2 represents the target temperature.
-- 3 represents the current temperature
-- 4 represents the active state (operating mode, such as heat/cool). This is a value that can range from 0-4 on this device. Each value is a different mode.
-- 5 represents the Fan Speed / Fan Mode. This is a value that can range from 0-4 on this device. Each value is a different speed.
-- 8 represents the Eco Mode preset.
-- 101 represents the Sleep Mode preset.
-- 103 represents the Auto-Clean feature. (use the :doc:`/components/switch/tuya` component to control this)
-- 104 represents the display toggle (on device) feature. (use the :doc:`/components/switch/tuya` component to control this)
-- 106 represents the Vertical Swing switch.
-- 107 represents the Horizontal Swing switch.
-
-Based on this, you can create the climate device as follows:
 
 .. code-block:: yaml
 
@@ -47,10 +16,6 @@ Based on this, you can create the climate device as follows:
       - platform: tuya
         name: "My Climate Device"
         switch_datapoint: 1
-        target_temperature_datapoint: 2
-        current_temperature_datapoint: 3
-        supports_heat: True
-        supports_cool: True
         active_state:
           datapoint: 4
           cooling_value: 0
@@ -61,18 +26,6 @@ Based on this, you can create the climate device as follows:
           eco:
             datapoint: 8
             temperature: 28
-          sleep:
-            datapoint: 101
-        swing_mode:
-          vertical_datapoint: 106
-          horizontal_datapoint: 107
-        fan_mode:
-          datapoint: 5
-          auto_value: 0
-          low_value: 2
-          medium_value: 3
-          middle_value: 4
-          high_value: 1
 
 Configuration variables:
 ------------------------
