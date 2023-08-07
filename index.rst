@@ -236,6 +236,7 @@ Distance
 ********
 .. imgtable::
 
+    A01NYUB, components/sensor/a01nyub, a01nyub.jpg, Acoustic distance
     HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg, Acoustic distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
