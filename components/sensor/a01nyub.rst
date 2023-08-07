@@ -24,10 +24,6 @@ To use the sensor, first set up an :ref:`uart` with a baud rate of 9600 and conn
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      rx_pin: 36
-      baud_rate: 9600
-
     sensor:
       - platform: "a01nyub"
         name: "Distance"
