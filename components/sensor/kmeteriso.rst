@@ -29,8 +29,6 @@ for this sensor to work.
         name: Temperature
       internal_temperature:
         name: Internal temperature
-        # By default this will be
-        # entity_category: diagnostic
 
 Configuration variables:
 ------------------------
