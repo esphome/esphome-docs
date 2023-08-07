@@ -30,7 +30,6 @@ for this sensor to work.
       internal_temperature:
         name: Internal temperature
         entity_category: diagnostic
-      update_interval: 10s
 
 Configuration variables:
 ------------------------
