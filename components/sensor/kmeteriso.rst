@@ -23,13 +23,6 @@ for this sensor to work.
 .. code-block:: yaml
 
     # Example configuration entry
-    i2c:
-      sda: GPIO21
-      scl: GPIO22
-      scan: true
-      id: bus_a
-      frequency: 100kHz
-
     sensor:
     - platform: kmeteriso
       temperature:
