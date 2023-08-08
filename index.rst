@@ -791,6 +791,7 @@ Miscellaneous Components
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SN74HC165 I/O Expander, components/sn74hc165, sn74hc595.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
+    WK2132 I²C UART Expander, components/wk2132, wk2132.jpg
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
