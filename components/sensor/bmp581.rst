@@ -24,12 +24,8 @@ required to be set up in your configuration for this sensor to work.
       - platform: bmp581
         temperature:
           name: "Indoor Temperature"
-          iir_filter: 2x
         pressure:
           name: "Indoor Pressure"
-          oversampling: 128x
-        address: 0x47
-        update_interval: 60s
 
 Configuration variables:
 ------------------------
