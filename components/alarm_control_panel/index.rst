@@ -28,8 +28,20 @@ Configuration variables:
 
 - **on_state** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the alarm changes state. See :ref:`alarm_control_panel_on_state_trigger`.
+- **on_arming** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm state changes to `arming`. See :ref:`alarm_control_panel_on_arming_trigger`.
+- **on_pending** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm state changes to `pending`. See :ref:`alarm_control_panel_on_pending_trigger`.
+- **on_armed_home** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm state changes to `armed_home`. See :ref:`alarm_control_panel_on_armed_home_trigger`.
+- **on_armed_night** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm state changes to `armed_night`. See :ref:`alarm_control_panel_on_armed_night_trigger`.
+- **on_armed_away** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm state changes to `armed_away`. See :ref:`alarm_control_panel_on_armed_away_trigger`.
 - **on_triggered** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the alarm triggers. See :ref:`alarm_control_panel_on_triggered_trigger`.
+- **on_disarmed** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm state changes to `disarmed`. See :ref:`alarm_control_panel_on_disarmed_trigger`.
 - **on_cleared** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the alarm clears. See :ref:`alarm_control_panel_on_cleared_trigger`.
 
