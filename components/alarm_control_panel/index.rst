@@ -52,6 +52,81 @@ This trigger is activated each time the alarm changes state.
         then:
           - logger.log: "Alarm Panel State Changed!"
 
+.. _alarm_control_panel_on_pending_trigger:
+
+``on_pending`` Trigger
+********************
+
+This trigger is activated when the alarm changes to pending state.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_pending:
+        then:
+          - logger.log: "Alarm Pending!"
+
+.. _alarm_control_panel_on_arming_trigger:
+
+``on_arming`` Trigger
+********************
+
+This trigger is activated when the alarm changes to arming state.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_arming:
+        then:
+          - logger.log: "Alarm Arming!"
+
+.. _alarm_control_panel_on_armed_home_trigger:
+
+``on_armed_home`` Trigger
+********************
+
+This trigger is activated when the alarm changes to armed_home state.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_armed_home:
+        then:
+          - logger.log: "Alarm armed_home!"
+
+.. _alarm_control_panel_on_armed_night_trigger:
+
+``on_armed_night`` Trigger
+********************
+
+This trigger is activated when the alarm changes to armed_night state.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_armed_night:
+        then:
+          - logger.log: "Alarm armed_night!"
+
+.. _alarm_control_panel_on_armed_away_trigger:
+
+``on_armed_away`` Trigger
+********************
+
+This trigger is activated when the alarm changes to armed_away state.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_armed_away:
+        then:
+          - logger.log: "Alarm armed_away!"
+
 .. _alarm_control_panel_on_triggered_trigger:
 
 ``on_triggered`` Trigger
@@ -81,6 +156,21 @@ This trigger is activated when the alarm changes from triggered back to either t
       on_cleared:
         then:
           - logger.log: "Alarm Cleared!"
+
+.. _alarm_control_panel_on_disarmed_trigger:
+
+``on_disarmed`` Trigger
+**********************
+
+This trigger is activated when the alarm changes from to disarmed.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_disarmed:
+        then:
+          - logger.log: "Alarm Disarmed!"
 
 .. _alarm_control_panel_arm_away_action:
 
