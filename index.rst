@@ -395,6 +395,7 @@ Thermocouple
 ************
 .. imgtable::
 
+    KMeterISO, components/sensor/kmeteriso, kmeteriso.jpg, K-Type,
     MAX31855, components/sensor/max31855, max31855.jpg, K-Type
     MAX31856, components/sensor/max31856, max31856.jpg, All types
     MAX31865, components/sensor/max31865, max31865.jpg, Platinum RTD
