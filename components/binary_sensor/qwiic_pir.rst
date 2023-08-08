@@ -29,10 +29,6 @@ To use the sensor, first set up an :ref:`I²C Bus <i2c>` and connect the sensor 
     binary_sensor:
       - platform: qwiic_pir
         name: "Qwiic PIR Motion Sensor"
-        filters: 
-          - delayed_on_off:
-              time_on: 50ms
-              time_off: 1s
 
 Configuration variables:
 ------------------------
