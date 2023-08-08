@@ -171,12 +171,13 @@ Configuration variables:
   All options from :ref:`Sensor <config-sensor>`.
 - **detection_distance** (*Optional*, int): Distance in cm of target.
   All options from :ref:`Sensor <config-sensor>`.
-- **gX_move_energy** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, the move energy of the Xth gate(X => 0 to 8), otherwise ``unknown``.
-  Value between ``0`` and ``100`` inclusive.
-  All options from :ref:`Sensor <config-sensor>`.
-- **gX_still_energy** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, the still energy of the Xth gate(X => 0 to 8), otherwise ``unknown``.
-  Value between ``0`` and ``100`` inclusive.
-  All options from :ref:`Sensor <config-sensor>`.
+- **gX** (*Optional*): Energies for the Xth gate (X => 0 to 8).
+    - **move_energy** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, the move energy of the gate, otherwise ``unknown``.
+      Value between ``0`` and ``100`` inclusive.
+      All options from :ref:`Sensor <config-sensor>`.
+    - **still_energy** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, the still energy of the gate, otherwise ``unknown``.
+      Value between ``0`` and ``100`` inclusive.
+      All options from :ref:`Sensor <config-sensor>`.
 - **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 Switch
@@ -288,14 +289,15 @@ Configuration variables:
 - **max_still_distance_gate** (*Optional*, int): Maximum distance gate for still detection.
   Value between ``2`` and ``8`` inclusive. Defaults to ``8``.
   All options from :ref:`Number <config-number>`.
-- **gX_move_threshold** (*Optional*, int): Threshold for the Xth gate for motion detection (X => 0 to 8).
-  Above this level for the considered gate (distance), movement detection will be triggered.
-  Value between ``0`` and ``100`` inclusive. See default values below.
-  All options from :ref:`Number <config-number>`.
-- **gX_still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8).
-  Above this level for the considered gate (distance), still detection will be triggered.
-  Value between ``0`` and ``100`` inclusive. See default values below.
-  All options from :ref:`Number <config-number>`.
+- **gX** (*Optional*): Thresholds for the Xth gate (X => 0 to 8).
+    - **move_threshold** (**Required**, int): Threshold for the gate for motion detection.
+      Above this level for the considered gate (distance), movement detection will be triggered.
+      Value between ``0`` and ``100`` inclusive. See default values below.
+      All options from :ref:`Number <config-number>`.
+    - **still_threshold** (**Required**, int): Threshold for the gate for still detection.
+      Above this level for the considered gate (distance), still detection will be triggered.
+      Value between ``0`` and ``100`` inclusive. See default values below.
+      All options from :ref:`Number <config-number>`.
 - **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 .. list-table:: Default values for gate threshold
@@ -487,7 +489,7 @@ For easy calibration process you can use the following custom manual card.
 .. code-block:: yaml
 
     type: vertical-stack
-    title: '[[title]]'
+    title: 'DEVICE'
     cards:
       - type: horizontal-stack
         cards:
@@ -721,7 +723,7 @@ For easy calibration process you can use the following custom manual card.
                   name: ' '
                   icon: ' '
 
-Then set your own title, and replace all instances of `DEVICE` with your device name
+Then replace all instances of ``DEVICE`` with your device name
 
 The result:
 
