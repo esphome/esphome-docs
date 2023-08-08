@@ -32,23 +32,18 @@ Configuration variables:
 
 - **temperature** (*Optional*): The information for the temperature sensor.
 
-  - **name** (**Required**, string): The name for the temperature
-    sensor.
   - **oversampling** (*Optional*): The oversampling rate for the temperature sensor.
     See :ref:`Oversampling Options <bmp581-oversampling>`.
   - **iir_filter** (*Optional*): The Infinite Impulse Response Filter level for the temperature sensor.
     See :ref:`Infinite Impulse Response Filter Options <bmp581-iir>`.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pressure** (*Optional*): The information for the pressure sensor.
 
-  - **name** (**Required**, string): The name for the pressure sensor.
   - **oversampling** (*Optional*): The oversampling rate for the pressure sensor.
     See :ref:`Oversampling Options <bmp581-oversampling>`.
   - **iir_filter** (*Optional*): The Infinite Impulse Response Filter level for the pressure sensor.
     See :ref:`Infinite Impulse Response Filter Options <bmp581-iir>`.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **address** (*Optional*, int): Manually specify the I²C address of
