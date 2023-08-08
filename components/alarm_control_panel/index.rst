@@ -94,7 +94,7 @@ This action arms the alarm in away mode. The ``code`` is required when *requires
     on_...:
       then:
         - alarm_control_panel.arm_away:
-            id: alarm
+            id: acp1
             code: "1234"
 
 .. _alarm_control_panel_arm_home_action:
@@ -109,7 +109,7 @@ This action arms the alarm in home mode. The ``code`` is required when *requires
     on_...:
       then:
         - alarm_control_panel.arm_home:
-            id: alarm
+            id: acp1
             code: "1234"
 
 .. _alarm_control_panel_disarm_action:
@@ -124,7 +124,7 @@ This action disarms the alarm. The ``code`` is required when *codes* is not empt
     on_...:
       then:
         - alarm_control_panel.disarm:
-            id: alarm
+            id: acp1
             code: "1234"
 
 .. _alarm_control_panel_pending_action:
@@ -138,7 +138,7 @@ This action puts the alarm in pending state (the state before triggered after *p
 
     on_...:
       then:
-        - alarm_control_panel.pending: alarm
+        - alarm_control_panel.pending: acp1
 
 .. _alarm_control_panel_triggered_action:
 
@@ -151,7 +151,7 @@ This action puts the alarm in triggered state.
 
     on_...:
       then:
-        - alarm_control_panel.triggered: alarm
+        - alarm_control_panel.triggered: acp1
 
 .. _alarm_control_panel_is_armed_condition:
 
@@ -165,7 +165,7 @@ This :ref:`Condition <config-condition>` checks if the alarm control panel is ar
     on_...:
       if:
         condition:
-          alarm_control_panel.is_armed: alarm
+          alarm_control_panel.is_armed: acp1
 
 
 .. _alarm_control_panel_lambda_calls:
@@ -181,9 +181,9 @@ From :ref:`lambdas <config-lambda>`, you can call the following methods:
 
 .. code-block:: cpp
 
-    id(alarm).arm_away();
-    id(alarm).arm_home();
-    id(alarm).disarm("1234");
+    id(acp1).arm_away();
+    id(acp1).arm_home();
+    id(acp1).disarm(std::string("1234"));
 
 
 Platforms
