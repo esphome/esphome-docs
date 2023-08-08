@@ -55,7 +55,7 @@ This trigger is activated each time the alarm changes state.
 .. _alarm_control_panel_on_pending_trigger:
 
 ``on_pending`` Trigger
-********************
+**********************
 
 This trigger is activated when the alarm changes to pending state.
 
@@ -70,7 +70,7 @@ This trigger is activated when the alarm changes to pending state.
 .. _alarm_control_panel_on_arming_trigger:
 
 ``on_arming`` Trigger
-********************
+*********************
 
 This trigger is activated when the alarm changes to arming state.
 
@@ -85,7 +85,7 @@ This trigger is activated when the alarm changes to arming state.
 .. _alarm_control_panel_on_armed_home_trigger:
 
 ``on_armed_home`` Trigger
-********************
+*************************
 
 This trigger is activated when the alarm changes to armed_home state.
 
@@ -100,7 +100,7 @@ This trigger is activated when the alarm changes to armed_home state.
 .. _alarm_control_panel_on_armed_night_trigger:
 
 ``on_armed_night`` Trigger
-********************
+**************************
 
 This trigger is activated when the alarm changes to armed_night state.
 
@@ -115,7 +115,7 @@ This trigger is activated when the alarm changes to armed_night state.
 .. _alarm_control_panel_on_armed_away_trigger:
 
 ``on_armed_away`` Trigger
-********************
+*************************
 
 This trigger is activated when the alarm changes to armed_away state.
 
@@ -160,7 +160,7 @@ This trigger is activated when the alarm changes from triggered back to either t
 .. _alarm_control_panel_on_disarmed_trigger:
 
 ``on_disarmed`` Trigger
-**********************
+***********************
 
 This trigger is activated when the alarm changes from to disarmed.
 
