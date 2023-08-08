@@ -157,8 +157,7 @@ Configuration variables:
 ************************
 
 - **light** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, indicates the light sensitivity, otherwise ``unknown``.
-  Value between ``0`` and ``255`` inclusive. Thought it seems that the value ``85`` is the lowest value at complete darkness.
-  Notice that this sensor is not very reliable. A more suitable alternative will be :ref:`BH1750<BH1750>`.
+  Value between ``0`` and ``255`` inclusive. Though it seems that the value ``85`` is the lowest value at complete darkness.
   All options from :ref:`Sensor <config-sensor>`.
 - **moving_distance** (*Optional*, int): Distance in cm of detected moving target.
   All options from :ref:`Sensor <config-sensor>`.
@@ -483,273 +482,246 @@ In order to calibrate your ``ld2410`` sensor perform the following:
 Home Assistant Card
 *******************
 
-For easy calibration process you can use the following card.
-
-It requires the following HACS custom cards:
-
-- `Decluttering Card <https://github.com/custom-cards/decluttering-card>`__
-- `Vertical Stack In Card <https://github.com/ofekashery/vertical-stack-in-card>`__
-
-First add the templates using the ``raw configuration editor``:
+For easy calibration process you can use the following custom manual card.
 
 .. code-block:: yaml
 
-    decluttering_templates:
-      ld2410_gate_row_header:
+    type: vertical-stack
+    title: '[[title]]'
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: 'switch.DEVICE_engineering_mode'
+                name: engineering mode
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: 'number.DEVICE_timeout'
+                name: timeout
+              - entity: 'number.DEVICE_max_move_distance_gate'
+                name: max move distance gate
+              - entity: 'number.DEVICE_max_still_distance_gate'
+                name: max still distance gate
+              - entity: 'select.DEVICE_light_function'
+                name: light function
+              - entity: 'number.DEVICE_light_threshold'
+                name: light threshold
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: 'sensor.DEVICE_distance_detection_cm'
+                name: distance
+              - type: entity
+                entity: 'sensor.DEVICE_moving_distance_cm'
+                name: move
+              - type: entity
+                entity: 'sensor.DEVICE_still_distance_cm'
+                name: still
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: 'sensor.DEVICE_move_energy'
+            name: move energy
+          - type: entity
+            entity: 'sensor.DEVICE_still_energy'
+            name: still energy
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: 'binary_sensor.DEVICE_gpio_out_pin_presence'
+            name: gpio presence
+            state_color: true
+          - type: entity
+            entity: 'binary_sensor.DEVICE_presence'
+            name: presence
+            state_color: true
+          - type: entity
+            entity: 'binary_sensor.DEVICE_movement'
+            name: movement
+            state_color: true
+          - type: entity
+            entity: 'binary_sensor.DEVICE_still'
+            name: still
+            state_color: true
+      - type: conditional
+        conditions:
+          - entity: 'switch.DEVICE_engineering_mode'
+            state: 'on'
         card:
-          type: custom:vertical-stack-in-card
-          horizontal: true
+          type: vertical-stack
           cards:
-            - type: entity
-              entity: '[[move_energy_sensor]]'
-              name: '[[gate]]'
-            - type: entity
-              entity: '[[move_threshold_number]]'
-              name: ' '
-            - type: entity
-              entity: '[[still_energy_sensor]]'
-              name: ' '
-            - type: entity
-              entity: '[[still_threshold_number]]'
-              name: ' '
-      ld2410_gate_row:
-        card:
-          type: custom:vertical-stack-in-card
-          horizontal: true
-          cards:
-            - type: entity
-              entity: '[[move_energy_sensor]]'
-              name: '[[gate]]'
-              icon: ' '
-            - type: entity
-              entity: '[[move_threshold_number]]'
-              name: ' '
-              icon: ' '
-            - type: entity
-              entity: '[[still_energy_sensor]]'
-              name: ' '
-              icon: ' '
-            - type: entity
-              entity: '[[still_threshold_number]]'
-              name: ' '
-              icon: ' '
-      ld2410:
-        card:
-          type: custom:vertical-stack-in-card
-          title: '[[title]]'
-          cards:
-            - type: custom:vertical-stack-in-card
-              horizontal: true
-              cards:
-                - type: entities
-                  entities:
-                    - entity: '[[engineering_mode_switch]]'
-                      name: engineering mode
-            - type: custom:vertical-stack-in-card
-              cards:
-                - type: entities
-                  entities:
-                    - entity: '[[presence_timeout_number]]'
-                      name: timeout
-                    - entity: '[[presence_max_move_distance_gate_number]]'
-                      name: max move distance gate
-                    - entity: '[[presence_max_still_distance_gate_number]]'
-                      name: max still distance gate
-                    - entity: '[[light_function_select]]'
-                      name: light function
-                    - entity: '[[light_threshold_number]]'
-                      name: light threshold
-                - type: custom:vertical-stack-in-card
-                  horizontal: true
-                  cards:
-                    - type: entity
-                      entity: '[[distance_detection_sensor]]'
-                      name: distance
-                    - type: entity
-                      entity: '[[moving_distance_sensor]]'
-                      name: move
-                    - type: entity
-                      entity: '[[still_distance_sensor]]'
-                      name: still
-            - type: custom:vertical-stack-in-card
-              horizontal: true
+            - type: horizontal-stack
               cards:
                 - type: entity
-                  entity: '[[move_energy_sensor]]'
-                  name: move energy
+                  entity: 'sensor.DEVICE_light'
+                  name: light
                 - type: entity
-                  entity: '[[still_energy_sensor]]'
-                  name: still energy
-            - type: custom:vertical-stack-in-card
-              horizontal: true
+                  entity: 'binary_sensor.DEVICE_out_pin_presence_status'
+                  name: out pin presence
+                  state_color: true
+            - type: horizontal-stack
               cards:
                 - type: entity
-                  entity: '[[gpio_out_pin_presence_binary_sensor]]'
-                  name: gpio presence
-                  state_color: true
+                  entity: 'sensor.DEVICE_g0_move_energy'
+                  name: 'g0'
                 - type: entity
-                  entity: '[[presence_binary_sensor]]'
-                  name: presence
-                  state_color: true
+                  entity: 'number.DEVICE_g0_move_threshold'
+                  name: ' '
                 - type: entity
-                  entity: '[[movement_binary_sensor]]'
-                  name: movement
-                  state_color: true
+                  entity: 'sensor.DEVICE_g0_still_energy'
+                  name: ' '
                 - type: entity
-                  entity: '[[still_binary_sensor]]'
-                  name: still
-                  state_color: true
-            - type: conditional
-              conditions:
-                - entity: '[[engineering_mode_switch]]'
-                  state: 'on'
-              card:
-                type: custom:vertical-stack-in-card
-                cards:
-                  - type: custom:vertical-stack-in-card
-                    horizontal: true
-                    cards:
-                      - type: entity
-                        entity: '[[light_sensor]]'
-                        name: light
-                      - type: entity
-                        entity: '[[out_pin_presence_status_binary_sensor]]'
-                        name: out pin presence
-                        state_color: true
-                  - type: custom:decluttering-card
-                    template: ld2410_gate_row_header
-                    variables:
-                      - gate: g0
-                      - move_energy_sensor: '[[g0_move_energy_sensor]]'
-                      - move_threshold_number: '[[g0_move_threshold_number]]'
-                      - still_energy_sensor: '[[g0_still_energy_sensor]]'
-                      - still_threshold_number: '[[g0_still_threshold_number]]'
-                  - type: custom:decluttering-card
-                    template: ld2410_gate_row
-                    variables:
-                      - gate: g1
-                      - move_energy_sensor: '[[g1_move_energy_sensor]]'
-                      - move_threshold_number: '[[g1_move_threshold_number]]'
-                      - still_energy_sensor: '[[g1_still_energy_sensor]]'
-                      - still_threshold_number: '[[g1_still_threshold_number]]'
-                  - type: custom:decluttering-card
-                    template: ld2410_gate_row
-                    variables:
-                      - gate: g2
-                      - move_energy_sensor: '[[g2_move_energy_sensor]]'
-                      - move_threshold_number: '[[g2_move_threshold_number]]'
-                      - still_energy_sensor: '[[g2_still_energy_sensor]]'
-                      - still_threshold_number: '[[g2_still_threshold_number]]'
-                  - type: custom:decluttering-card
-                    template: ld2410_gate_row
-                    variables:
-                      - gate: g3
-                      - move_energy_sensor: '[[g3_move_energy_sensor]]'
-                      - move_threshold_number: '[[g3_move_threshold_number]]'
-                      - still_energy_sensor: '[[g3_still_energy_sensor]]'
-                      - still_threshold_number: '[[g3_still_threshold_number]]'
-                  - type: custom:decluttering-card
-                    template: ld2410_gate_row
-                    variables:
-                      - gate: g4
-                      - move_energy_sensor: '[[g4_move_energy_sensor]]'
-                      - move_threshold_number: '[[g4_move_threshold_number]]'
-                      - still_energy_sensor: '[[g4_still_energy_sensor]]'
-                      - still_threshold_number: '[[g4_still_threshold_number]]'
-                  - type: custom:decluttering-card
-                    template: ld2410_gate_row
-                    variables:
-                      - gate: g5
-                      - move_energy_sensor: '[[g5_move_energy_sensor]]'
-                      - move_threshold_number: '[[g5_move_threshold_number]]'
-                      - still_energy_sensor: '[[g5_still_energy_sensor]]'
-                      - still_threshold_number: '[[g5_still_threshold_number]]'
-                  - type: custom:decluttering-card
-                    template: ld2410_gate_row
-                    variables:
-                      - gate: g6
-                      - move_energy_sensor: '[[g6_move_energy_sensor]]'
-                      - move_threshold_number: '[[g6_move_threshold_number]]'
-                      - still_energy_sensor: '[[g6_still_energy_sensor]]'
-                      - still_threshold_number: '[[g6_still_threshold_number]]'
-                  - type: custom:decluttering-card
-                    template: ld2410_gate_row
-                    variables:
-                      - gate: g7
-                      - move_energy_sensor: '[[g7_move_energy_sensor]]'
-                      - move_threshold_number: '[[g7_move_threshold_number]]'
-                      - still_energy_sensor: '[[g7_still_energy_sensor]]'
-                      - still_threshold_number: '[[g7_still_threshold_number]]'
-                  - type: custom:decluttering-card
-                    template: ld2410_gate_row
-                    variables:
-                      - gate: g8
-                      - move_energy_sensor: '[[g8_move_energy_sensor]]'
-                      - move_threshold_number: '[[g8_move_threshold_number]]'
-                      - still_energy_sensor: '[[g8_still_energy_sensor]]'
-                      - still_threshold_number: '[[g8_still_threshold_number]]'
+                  entity: 'number.DEVICE_g0_still_threshold'
+                  name: ' '
+            - type: horizontal-stack
+              cards:
+                - type: entity
+                  entity: 'sensor.DEVICE_g1_move_energy'
+                  name: 'g1'
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g1_move_threshold'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'sensor.DEVICE_g1_still_energy'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g1_still_threshold'
+                  name: ' '
+                  icon: ' '
+            - type: horizontal-stack
+              cards:
+                - type: entity
+                  entity: 'sensor.DEVICE_g2_move_energy'
+                  name: 'g2'
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g2_move_threshold'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'sensor.DEVICE_g2_still_energy'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g2_still_threshold'
+                  name: ' '
+                  icon: ' '
+            - type: horizontal-stack
+              cards:
+                - type: entity
+                  entity: 'sensor.DEVICE_g3_move_energy'
+                  name: 'g3'
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g3_move_threshold'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'sensor.DEVICE_g3_still_energy'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g3_still_threshold'
+                  name: ' '
+                  icon: ' '
+            - type: horizontal-stack
+              cards:
+                - type: entity
+                  entity: 'sensor.DEVICE_g4_move_energy'
+                  name: 'g4'
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g4_move_threshold'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'sensor.DEVICE_g4_still_energy'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g4_still_threshold'
+                  name: ' '
+                  icon: ' '
+            - type: horizontal-stack
+              cards:
+                - type: entity
+                  entity: 'sensor.DEVICE_g5_move_energy'
+                  name: 'g5'
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g5_move_threshold'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'sensor.DEVICE_g5_still_energy'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g5_still_threshold'
+                  name: ' '
+                  icon: ' '
+            - type: horizontal-stack
+              cards:
+                - type: entity
+                  entity: 'sensor.DEVICE_g6_move_energy'
+                  name: 'g6'
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g6_move_threshold'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'sensor.DEVICE_g6_still_energy'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g6_still_threshold'
+                  name: ' '
+                  icon: ' '
+            - type: horizontal-stack
+              cards:
+                - type: entity
+                  entity: 'sensor.DEVICE_g7_move_energy'
+                  name: 'g7'
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g7_move_threshold'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'sensor.DEVICE_g7_still_energy'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g7_still_threshold'
+                  name: ' '
+                  icon: ' '
+            - type: horizontal-stack
+              cards:
+                - type: entity
+                  entity: 'sensor.DEVICE_g8_move_energy'
+                  name: 'g8'
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g8_move_threshold'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'sensor.DEVICE_g8_still_energy'
+                  name: ' '
+                  icon: ' '
+                - type: entity
+                  entity: 'number.DEVICE_g8_still_threshold'
+                  name: ' '
+                  icon: ' '
 
-Then create a custom card and fill all of the entities:
-
-.. code-block:: yaml
-
-    type: custom:decluttering-card
-    template: ld2410
-    variables:
-      - title: bathroom presence
-      - engineering_mode_switch: switch.bathroom_presence_engineering_mode
-      - presence_timeout_number: number.bathroom_presence_timeout
-      - presence_max_move_distance_gate_number: number.bathroom_presence_max_move_distance_gate
-      - presence_max_still_distance_gate_number: number.bathroom_presence_max_still_distance_gate
-      - distance_detection_sensor: sensor.bathroom_presence_distance_detection_cm
-      - moving_distance_sensor: sensor.bathroom_presence_moving_distance_cm
-      - still_distance_sensor: sensor.bathroom_presence_still_distance_cm
-      - move_energy_sensor: sensor.bathroom_presence_move_energy
-      - still_energy_sensor: sensor.bathroom_presence_still_energy
-      - presence_binary_sensor: binary_sensor.bathroom_presence_presence
-      - movement_binary_sensor: binary_sensor.bathroom_presence_movement
-      - still_binary_sensor: binary_sensor.bathroom_presence_still
-      - light_function_select: select.bathroom_presence_light_function
-      - light_threshold_number: number.bathroom_presence_light_threshold
-      - gpio_out_pin_presence_binary_sensor: binary_sensor.bathroom_presence_gpio_out_pin_presence
-      - out_pin_presence_status_binary_sensor: binary_sensor.bathroom_presence_out_pin_presence_status
-      - light_sensor: sensor.bathroom_presence_light
-      - g0_move_energy_sensor: sensor.bathroom_presence_g0_move_energy
-      - g0_move_threshold_number: number.bathroom_presence_g0_move_threshold
-      - g0_still_energy_sensor: sensor.bathroom_presence_g0_still_energy
-      - g0_still_threshold_number: number.bathroom_presence_g0_still_threshold
-      - g1_move_energy_sensor: sensor.bathroom_presence_g1_move_energy
-      - g1_move_threshold_number: number.bathroom_presence_g1_move_threshold
-      - g1_still_energy_sensor: sensor.bathroom_presence_g1_still_energy
-      - g1_still_threshold_number: number.bathroom_presence_g1_still_threshold
-      - g2_move_energy_sensor: sensor.bathroom_presence_g2_move_energy
-      - g2_move_threshold_number: number.bathroom_presence_g2_move_threshold
-      - g2_still_energy_sensor: sensor.bathroom_presence_g2_still_energy
-      - g2_still_threshold_number: number.bathroom_presence_g2_still_threshold
-      - g3_move_energy_sensor: sensor.bathroom_presence_g3_move_energy
-      - g3_move_threshold_number: number.bathroom_presence_g3_move_threshold
-      - g3_still_energy_sensor: sensor.bathroom_presence_g3_still_energy
-      - g3_still_threshold_number: number.bathroom_presence_g3_still_threshold
-      - g4_move_energy_sensor: sensor.bathroom_presence_g4_move_energy
-      - g4_move_threshold_number: number.bathroom_presence_g4_move_threshold
-      - g4_still_energy_sensor: sensor.bathroom_presence_g4_still_energy
-      - g4_still_threshold_number: number.bathroom_presence_g4_still_threshold
-      - g5_move_energy_sensor: sensor.bathroom_presence_g5_move_energy
-      - g5_move_threshold_number: number.bathroom_presence_g5_move_threshold
-      - g5_still_energy_sensor: sensor.bathroom_presence_g5_still_energy
-      - g5_still_threshold_number: number.bathroom_presence_g5_still_threshold
-      - g6_move_energy_sensor: sensor.bathroom_presence_g6_move_energy
-      - g6_move_threshold_number: number.bathroom_presence_g6_move_threshold
-      - g6_still_energy_sensor: sensor.bathroom_presence_g6_still_energy
-      - g6_still_threshold_number: number.bathroom_presence_g6_still_threshold
-      - g7_move_energy_sensor: sensor.bathroom_presence_g7_move_energy
-      - g7_move_threshold_number: number.bathroom_presence_g7_move_threshold
-      - g7_still_energy_sensor: sensor.bathroom_presence_g7_still_energy
-      - g7_still_threshold_number: number.bathroom_presence_g7_still_threshold
-      - g8_move_energy_sensor: sensor.bathroom_presence_g8_move_energy
-      - g8_move_threshold_number: number.bathroom_presence_g8_move_threshold
-      - g8_still_energy_sensor: sensor.bathroom_presence_g8_still_energy
-      - g8_still_threshold_number: number.bathroom_presence_g8_still_threshold
+Then set your own title, and replace all instances of `DEVICE` with your device name
 
 The result:
 
