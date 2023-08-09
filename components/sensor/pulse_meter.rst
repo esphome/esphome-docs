@@ -27,10 +27,11 @@ Configuration variables:
   time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. For S0 pulse meters that are used to meter power consumption 50-100 ms is a reasonable value.
 
 - **internal_filter_mode** (*Optional*, string): Determines how the internal filter is applied.
-  One of ``EDGE`` and ``PULSE``. Defaults to ``EDGE``. In ``EDGE`` mode subsequent rising edges are compared and if they fall into an interval lesser than the internal filter value, the last one is discarded. In ``PULSE`` mode the rising edge is discarded if any further interrupts are detected before the internal_filter time has passed. In other words, a high pulse must be at least internal_filter long to be counted. This is useful if you are detecting long pulses that may bounces before and/or after the main pulse.  
+  One of ``EDGE`` and ``PULSE``. Defaults to ``EDGE``. In ``EDGE`` mode subsequent rising edges are compared and if they fall into an interval lesser than the internal filter value, the last one is discarded. In ``PULSE`` mode the rising edge is discarded if any further interrupts are detected before the internal_filter time has passed. In other words, a high pulse must be at least internal_filter long to be counted. This is useful if you are detecting long pulses that may bounces before and/or after the main pulse.
 
-- **timeout** (*Optional*, :ref:`config-time`): If we don't see a pulse for this length of time, we assume 0 pulses/sec. Defaults to ``5 min``.
+- **timeout** (*Optional*, :ref:`config-time`): If we don't see a pulse for this length of time, we assume 0 pulses/min. Defaults to ``5 min``.
 - **total** (*Optional*, :ref:`config-id`): An additional sensor that outputs the total number of pulses counted.
+- **fade** (*Optional*, boolean): If ``true``, the sensor will output fake pulses to fade towards zero when no pulses are detected. Defaults to ``false``.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 Converting units
@@ -98,6 +99,26 @@ trying to match.
     This value is the raw count of pulses, and not the value you see after the filters
     are applied.
 
+Fading to zero
+--------------
+
+When the fade option is enabled, the pulse meter will generate fading simulated values in cases where the sensor doesn't detect any pulses.
+Use this feature when you need to trigger automations when something turning off, as it ensures events are triggered even when pulses stop.
+
+With the fade option turned on, the sensor gradually generates simulated values that fade toward zero.
+These simulated values fire when the time since the last detected pulse is double the last reported pulse width value.
+
+Enabling the fade option introduces a slight change in understanding the sensor's behavior.
+When a simulated pulse occurs, it indicates that no real pulse has been detected for at least double the currently reported pulse width.
+Consequently, the true value will consistently be the same as or lower than the simulated value.
+To show this consider the following two cases:
+If a real pulse coincided with the generation of the simulated value, it will result in the same output value.
+If a real pulse occurred after the simulated value it will always produce a lower value than the simulated output.
+
+When using the fade option do not integrate the sensor's output.
+Doing so will result in an overestimation of the total due to the simulated values.
+Instead, rely on the total sensor output to accurately count the pulses.
+The total count remains unaffected by the fade option.
 
 See Also
 --------
