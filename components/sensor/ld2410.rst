@@ -11,8 +11,8 @@ Component/Hub
 
 The ``ld2410`` sensor platform allows you to use HI-LINK LD2410 motion and presence sensor
 (`datasheet and user manual <https://drive.google.com/drive/folders/1p4dhbEJA3YubyIjIIC7wwVsSo8x29Fq-?spm=a2g0o.detail.1000023.17.93465697yFwVxH>`__) with ESPHome.
-The :ref:`UART <uart>` is required to be set up in your configuration for this sensor to work.
 
+The :ref:`UART <uart>` is required to be set up in your configuration for this sensor to work, ``parity`` and ``stop_bits`` **must be** respectively ``NONE`` and ``1``.
 Use of hardware UART pins is highly recommended, in order to support the out-of-the-box 256000 baud rate of the LD2410 sensor.
 
 .. figure:: images/ld2410.jpg
@@ -24,23 +24,7 @@ Use of hardware UART pins is highly recommended, in order to support the out-of-
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      id: ld2410_uart
-      tx_pin: REPLACEME
-      rx_pin: REPLACEME
-      baud_rate: 256000
-      parity: NONE
-      stop_bits: 1
-
     ld2410:
-      uart_id: ld2410_uart
-      throttle: 1500ms
-
-.. note::
-
-    For UART configuration, ``parity`` and ``stop_bits`` **must be** respectively ``NONE`` and ``1``.
-
-    Use of hardware UART pins is highly recommended, in order to support the out-of-the-box 256000 baud rate of the LD2410 sensor.
 
 Configuration variables:
 ************************
