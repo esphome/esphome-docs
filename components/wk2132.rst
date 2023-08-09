@@ -82,12 +82,16 @@ Each channel acts, for the connected component, as a virtual UART Bus.
             baud_rate: 19200
 
     # Device using one of the wk2132 Uart channel
-    sensor:
-      - platform: pmsx003
-        uart_id: uart_0
-        type: PMSX003
-        pm_1_0:
-          name: "PM <1.0µm Concentration"
+    sensor: 
+      - platform: sds011
+        pm_2_5:
+          name: test_2_5µm_concentration
+          id: test_2_5um_concentration
+        pm_10_0:
+          name: test_10_0µm_concentration
+          id: test_10_0um_concentration
+        update_interval: 1min
+        uart_id: uart_01
 
 .. caution:: 
   Currently, due to some internal limitation, it is necessary to declare a ``uart:`` component in
