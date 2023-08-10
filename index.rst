@@ -174,6 +174,7 @@ Air Quality
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Radon, CO2, Volatile organics
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
     EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
+    GCJA5, components/sensor/gcja5, gcja5.svg, Particulate
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MiCS-4514, components/sensor/mics_4514, mics_4514.jpg, Gas concentration
