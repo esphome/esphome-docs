@@ -122,6 +122,7 @@ Hygro thermometer, rectangular body, e-ink display, broadcasts temperature, humi
     :width: 30.0%
 
 - Battery Level, needs xiaomi firmware 1.1.2_0085
+- New firmware requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`)
 
 Configuration example:
 
