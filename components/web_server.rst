@@ -56,6 +56,7 @@ Configuration variables:
 
 - **include_internal** (*Optional*, boolean): Whether ``internal`` entities should be displayed on the
   web interface. Defaults to ``false``.
+- **log** (*Optional*, boolean): Turn on or off the log feature inside webserver. Defaults to ``true``.
 - **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Defaults to ``true``. Cannot be used with the ``esp-idf`` framework.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **local** (*Optional*, boolean): Include supporting javascript locally allowing it to work without internet access. Defaults to ``false``.
