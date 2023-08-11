@@ -117,6 +117,42 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
+- **electricity_sags_l1** (*Optional*): Number of voltage sags in phase L1.
+
+  - **name** (**Required**, string): The name for the electricity_sags_l1 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **electricity_sags_l2** (*Optional*): Number of voltage sags in phase L2.
+
+  - **name** (**Required**, string): The name for the electricity_sags_l2 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **electricity_sags_l3** (*Optional*): Number of voltage sags in phase L3.
+
+  - **name** (**Required**, string): The name for the electricity_sags_l3 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **electricity_swells_l1** (*Optional*): Number of voltage swells in phase L1.
+
+  - **name** (**Required**, string): The name for the electricity_swells_l1 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **electricity_swells_l2** (*Optional*): Number of voltage swells in phase L2.
+
+  - **name** (**Required**, string): The name for the electricity_swells_l2 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **electricity_swells_l3** (*Optional*): Number of voltage swells in phase L3.
+
+  - **name** (**Required**, string): The name for the electricity_swells_l3 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
 - **voltage_l1** (*Optional*): Voltage Phase 1.
 
   - **name** (**Required**, string): The name for the voltage_l1 sensor.
