@@ -40,7 +40,7 @@ The tone generator needs a PWM capable output to work with, currently only the
 Overview Using the I2S speaker
 ------------------------------
 
-The tone generator needs the :ref:`I2S Speaker <speaker>` for this to work.
+Using the tone generator with the :ref:`I2S Speaker <speaker>` the following code sample is needed.
 
 .. code-block:: yaml
 
