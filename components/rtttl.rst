@@ -3,6 +3,7 @@ Rtttl Buzzer
 
 .. seo::
     :description: Instructions for setting up a buzzer to play tones and rtttl songs with ESPHome.
+                  **NEW:** Or play the song using the I2S speaker.
     :image: buzzer.jpg
 
 The ``rtttl``, component allows you to easily connect a passive piezo buzzer to your microcontroller
@@ -15,8 +16,8 @@ and play monophonic songs. It accepts the Ring Tone Text Transfer Language, rttt
 
     Buzzer Module
 
-Overview
---------
+Overview Using a passive buzzer
+-------------------------------
 
 It's important that your buzzer is a **passive** one, if it beeps when you feed it with 3.3V then it is not
 a passive one and this library will not work properly.
@@ -36,15 +37,40 @@ The tone generator needs a PWM capable output to work with, currently only the
     rtttl:
       output: rtttl_out
 
+Overview Using the I2S speaker
+------------------------------
+
+The tone generator needs the :doc:`I2S Speaker<speaker>`for this to work.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    i2s_audio:
+      - i2s_lrclk_pin: GPIO25
+        i2s_bclk_pin: GPIO5
+
+    speaker:
+      - platform: i2s_audio
+        id: board_external_speakers
+        dac_type: external
+        i2s_dout_pin: GPIO26
+        mode: mono
+
+    rtttl:
+      speaker: board_external_speakers
+      id: my_rtttl
+
 Configuration variables:
 ------------------------
 
-- **output** (**Required**, :ref:`config-id`): The id of the :ref:`float output <output>` to use for
+- **output** (**Exclusive**, :ref:`config-id`): The id of the :ref:`float output <output>` to use for
   this buzzer.
+- **speaker** (**Exclusive**, :ref:`config-id`): The id of the :ref:`speaker <speaker>` to play the song on.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **on_finished_playback** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when playback is finished.
 
+Note: You can only use the **output** or **speaker** variable, not both of them.
 
 ``rtttl.play`` Action
 ---------------------
