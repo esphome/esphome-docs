@@ -40,7 +40,7 @@ The tone generator needs a PWM capable output to work with, currently only the
 Overview Using the I2S speaker
 ------------------------------
 
-Using the tone generator with the :ref:`I2S Speaker <speaker/i2s_audio>` the following code sample is needed.
+Using the tone generator with the :ref:`I2S Speaker <i2s_audio>` the following code sample is needed.
 
 .. code-block:: yaml
 
@@ -65,7 +65,7 @@ Configuration variables:
 
 - **output** (**Exclusive**, :ref:`config-id`): The id of the :ref:`float output <output>` to use for
   this buzzer.
-- **speaker** (**Exclusive**, :ref:`config-id`): The id of the :ref:`speaker <speaker/i2s_audio>` to play the song on.
+- **speaker** (**Exclusive**, :ref:`config-id`): The id of the :ref:`speaker <i2s_audio>` to play the song on.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **on_finished_playback** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when playback is finished.
