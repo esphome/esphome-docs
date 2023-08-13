@@ -3,12 +3,18 @@ ESPHome 2023.8.0 - 16th August 2023
 
 .. seo::
     :description: Changelog for ESPHome 2023.8.0.
-    :image: /_static/changelog-2023.7.0.png
+    :image: /_static/changelog-2023.8.0.png
     :author: Jesse Hills
     :author_twitter: @jesserockz
 
+.. imgtable::
+    :columns: 2
 
-(Note to self: Insert imgtable)
+    A01NYUB, components/sensor/a01nyub, a01nyub.jpg
+    KMeterISO, components/sensor/kmeteriso, kmeteriso.jpg
+    BMP581, components/sensor/bmp581, bmp581.jpg
+    GCJA5, components/sensor/gcja5, gcja5.svg
+
 
 Full list of changes
 --------------------
@@ -32,6 +38,19 @@ Notable Changes
 ^^^^^^^^^^^^^^^
 
 - Change MQTT client for ESP32 Arduino :esphomepr:`5157` by :ghuser:`HeMan` (notable-change)
+
+Beta Changes
+^^^^^^^^^^^^
+
+- Read string of bool env and match against well known values :esphomepr:`5232` by :ghuser:`jesserockz`
+- fix aeha data template :esphomepr:`5231` by :ghuser:`ssieb`
+- Expose start to speaker interface :esphomepr:`5228` by :ghuser:`jesserockz`
+- New features added for Haier integration :esphomepr:`5196` by :ghuser:`paveldn`
+- pca9554 cache reads :esphomepr:`5137` by :ghuser:`hwstar`
+- fix midea: undo approved PR#4053 :esphomepr:`5233` by :ghuser:`dudanov`
+- Fixing smartair2 protocol implementation if no Wi-Fi :esphomepr:`5238` by :ghuser:`paveldn`
+- tuya: add time sync callback only once to prevent memleak :esphomepr:`5234` by :ghuser:`afflux`
+- Fix duplicate tuya time warning :esphomepr:`5243` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -99,6 +118,15 @@ All changes
 - Add missing `on_(arming|pending|armed_home|armed_night|armed_away|disarmed)` triggers to alarm_control_panel :esphomepr:`5219` by :ghuser:`primeroz`
 - add value option to timeout filter :esphomepr:`5222` by :ghuser:`ssieb`
 - Tweak Color init because IDF 5+ :esphomepr:`5221` by :ghuser:`kbx81`
+- Read string of bool env and match against well known values :esphomepr:`5232` by :ghuser:`jesserockz`
+- fix aeha data template :esphomepr:`5231` by :ghuser:`ssieb`
+- Expose start to speaker interface :esphomepr:`5228` by :ghuser:`jesserockz`
+- New features added for Haier integration :esphomepr:`5196` by :ghuser:`paveldn`
+- pca9554 cache reads :esphomepr:`5137` by :ghuser:`hwstar`
+- fix midea: undo approved PR#4053 :esphomepr:`5233` by :ghuser:`dudanov`
+- Fixing smartair2 protocol implementation if no Wi-Fi :esphomepr:`5238` by :ghuser:`paveldn`
+- tuya: add time sync callback only once to prevent memleak :esphomepr:`5234` by :ghuser:`afflux`
+- Fix duplicate tuya time warning :esphomepr:`5243` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
