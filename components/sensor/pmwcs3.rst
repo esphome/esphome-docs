@@ -25,23 +25,21 @@ your configuration for this sensor to work. Wiring scheme: red is 3.3V, black & 
     sensor:
       - platform: pmwcs3
         e25:
-          name: "pmwcs3 e25"    
+          name: "pmwcs3 e25"
         ec:
           name: "pmwcs3 ec"
         temperature:
-          name: "pmwcs3 temperature" 
+          name: "pmwcs3 temperature"
         vwc:
           name: "pmwcs3 vwc"
-        address: 0x63
-        update_interval: 60s
  
 Configuration variables:
 ------------------------
 
-- **e25** (*Optional*): Electrical Conductivity, reference at 25°C in dS/m. All options from
-  :ref:`Sensor <config-sensor>`.
-- **ec** (*Optional*): Electrical Conductivity in mS/m. All options from
-  :ref:`Sensor <config-sensor>`.
+- **e25** (*Optional*): Electrical Conductivity, reference at 25°C in dS/m. 
+  All options from :ref:`Sensor <config-sensor>`.
+- **ec** (*Optional*): Electrical Conductivity in mS/m. 
+  All options from :ref:`Sensor <config-sensor>`.
 - **temperature** (*Optional*): Soil temperature in °C.
   All options from :ref:`Sensor <config-sensor>`.
 - **vwc** (*Optional*): Volumetric Water Content in cm3cm−3.
