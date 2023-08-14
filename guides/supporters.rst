@@ -43,6 +43,7 @@ Contributors
 - `Adrian Fretwell (@AdrianFretwell) <https://github.com/AdrianFretwell>`__
 - `Adrien Brault (@adrienbrault) <https://github.com/adrienbrault>`__
 - `Ian Blais (@aeonsablaze) <https://github.com/aeonsablaze>`__
+- `Kjell Braden (@afflux) <https://github.com/afflux>`__
 - `Stefan Agner (@agners) <https://github.com/agners>`__
 - `Anders (@ahd71) <https://github.com/ahd71>`__
 - `Alexander Pohl (@ahpohl) <https://github.com/ahpohl>`__
@@ -406,7 +407,6 @@ Contributors
 - `Josh Gwosdz (@erdii) <https://github.com/erdii>`__
 - `Eric Coffman (@ericbrian) <https://github.com/ericbrian>`__
 - `Eric Hiller (@erichiller) <https://github.com/erichiller>`__
-- `Matt Hamilton (@Eriner) <https://github.com/Eriner>`__
 - `Ernst Klamer (@Ernst79) <https://github.com/Ernst79>`__
 - `Eduardo Roldan (@eroldan) <https://github.com/eroldan>`__
 - `escoand (@escoand) <https://github.com/escoand>`__
@@ -603,6 +603,7 @@ Contributors
 - `JbLb (@jblb) <https://github.com/jblb>`__
 - `Jonathan Burns (@jburns20) <https://github.com/jburns20>`__
 - `James Callaghan (@jcallaghan) <https://github.com/jcallaghan>`__
+- `Jc Miñarro (@JcMinarro) <https://github.com/JcMinarro>`__
 - `Josh Willox (@jcwillox) <https://github.com/jcwillox>`__
 - `JeeCee1 (@JeeCee1) <https://github.com/JeeCee1>`__
 - `Jeef (@jeeftor) <https://github.com/jeeftor>`__
@@ -797,7 +798,6 @@ Contributors
 - `mbo18 (@mbo18) <https://github.com/mbo18>`__
 - `mcmuller (@mcmuller) <https://github.com/mcmuller>`__
 - `Miguel Diaz Gonçalves (@mdiazgoncalves) <https://github.com/mdiazgoncalves>`__
-- `Matthew Donoughe (@mdonoughe) <https://github.com/mdonoughe>`__
 - `Me No Dev (@me-no-dev) <https://github.com/me-no-dev>`__
 - `Alexandr Zarubkin (@me21) <https://github.com/me21>`__
 - `mechanarchy (@mechanarchy) <https://github.com/mechanarchy>`__
@@ -1229,9 +1229,8 @@ Contributors
 - `I. Tomita (@ziceva) <https://github.com/ziceva>`__
 - `Stefan Goethals (@zipkid) <https://github.com/zipkid>`__
 - `zivillian (@zivillian) <https://github.com/zivillian>`__
-- `Loïc (@zoic21) <https://github.com/zoic21>`__
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated August 10, 2023.*
+*This page was last updated August 14, 2023.*
