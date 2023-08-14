@@ -19,15 +19,15 @@ be travelling a lot (and enjoying my vacation 😎), so don't expect too many aw
 
 .. imgtable::
 
-    ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
-    Status LED, components/status_led, led-on.svg
-    WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
+    ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg, dark-invert
+    Status LED, components/status_led, led-on.svg, dark-invert
+    WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg, dark-invert
 
-    Duty Cycle Sensor, components/sensor/duty_cycle, percent.svg
-    Pulse Counter for ESP8266, components/sensor/pulse_counter, pulse.svg
-    Remote Transmitter, components/remote_transmitter, remote.svg
+    Duty Cycle Sensor, components/sensor/duty_cycle, percent.svg, dark-invert
+    Pulse Counter for ESP8266, components/sensor/pulse_counter, pulse.svg, dark-invert
+    Remote Transmitter, components/remote_transmitter, remote.svg, dark-invert
 
-    Remote Receiver, components/remote_receiver, remote.svg
+    Remote Receiver, components/remote_receiver, remote.svg, dark-invert
 
 New Components
 **************

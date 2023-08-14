@@ -10,7 +10,7 @@ This is a component using the RP2040 PIO peripheral to drive most addressable LE
 .. code-block:: yaml
 
     light:
-  - platform: rp2040_pio_led_strip
+      - platform: rp2040_pio_led_strip
         name: led_strip
         id: led_strip
         pin: GPIO13

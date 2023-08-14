@@ -10,10 +10,10 @@ Changelog - Version 1.14.0 - November 1
 .. imgtable::
     :columns: 5
 
-    Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
-    Visual Studio Code Plugin, https://marketplace.visualstudio.com/items?itemName=ESPHome.esphome-vscode, visual-studio-code.svg
+    Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg, dark-invert
+    Visual Studio Code Plugin, https://marketplace.visualstudio.com/items?itemName=ESPHome.esphome-vscode, visual-studio-code.svg, dark-invert
     SIM800L, components/sim800l, sim800l.jpg
-    DFPlayer, components/dfplayer, dfplayer.svg
+    DFPlayer, components/dfplayer, dfplayer.svg, dark-invert
     AS3935, components/sensor/as3935, as3935.jpg
 
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg
@@ -36,9 +36,9 @@ Changelog - Version 1.14.0 - November 1
 
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     SM16716, components/output/sm16716, sm16716.svg
-    Tuya Dimmer, components/light/tuya, brightness-medium.svg
+    Tuya Dimmer, components/light/tuya, brightness-medium.svg, dark-invert
     SSD1325, components/display/ssd1325, ssd1325.jpg
-    Yashima IR Remote, components/climate/yashima, air-conditioner.svg
+    Yashima IR Remote, components/climate/yashima, air-conditioner.svg, dark-invert
 
     MCP23008 I/O Expander, components/mcp230xx, mcp230xx.svg
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
