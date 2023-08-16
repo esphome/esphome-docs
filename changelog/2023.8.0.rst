@@ -15,6 +15,13 @@ ESPHome 2023.8.0 - 16th August 2023
     BMP581, components/sensor/bmp581, bmp581.jpg
     GCJA5, components/sensor/gcja5, gcja5.svg
 
+LD2410
+------
+
+The LD2410 component has had a massive upgrade thanks to :ghuser:`regevbr`!
+It now supports settings most if not all configuration parameters via ``switches`` / ``numbers`` and ``selects``
+and exposes more data via various ``sensors``.
+This includes breaking changes that mean the existing gate configuration options have been moved to the ``number`` platform.
 
 Full list of changes
 --------------------
@@ -33,11 +40,17 @@ Breaking Changes
 - Coolix IR protocol improvements :esphomepr:`5105` by :ghuser:`dudanov` (breaking-change)
 - Speaker return bytes written and do not wait for queue :esphomepr:`5182` by :ghuser:`jesserockz` (breaking-change)
 - Change device name in MQTT discovery messages to friendly names :esphomepr:`5205` by :ghuser:`pidpawel` (breaking-change)
+- Change XL9535 `setup_priority` to IO :esphomepr:`5246` by :ghuser:`mreditor97`
+- rmt_base additional minor changes :esphomepr:`5245` by :ghuser:`dudanov`
+- Fix 24 bit signed integer parsing in sml parser :esphomepr:`5250` by :ghuser:`mulder-fbi`
+- Fix IDFI2CBus::writev ignoring stop parameter :esphomepr:`4840` by :ghuser:`CarsonF`
+- Add configuration flow abilites to the ld2410 component :esphomepr:`4434` by :ghuser:`regevbr` (new-integration) (notable-change) (breaking-change)
 
 Notable Changes
 ^^^^^^^^^^^^^^^
 
 - Change MQTT client for ESP32 Arduino :esphomepr:`5157` by :ghuser:`HeMan` (notable-change)
+- Add configuration flow abilites to the ld2410 component :esphomepr:`4434` by :ghuser:`regevbr` (new-integration) (notable-change) (breaking-change)
 
 Beta Changes
 ^^^^^^^^^^^^
