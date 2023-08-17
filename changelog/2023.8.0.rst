@@ -64,6 +64,9 @@ Beta Changes
 - Fixing smartair2 protocol implementation if no Wi-Fi :esphomepr:`5238` by :ghuser:`paveldn`
 - tuya: add time sync callback only once to prevent memleak :esphomepr:`5234` by :ghuser:`afflux`
 - Fix duplicate tuya time warning :esphomepr:`5243` by :ghuser:`jesserockz`
+- Add `libfreetype-dev` Debian package for armv7 Docker builds :esphomepr:`5262` by :ghuser:`pierlon`
+- Add delay before enabling ipv6 :esphomepr:`5256` by :ghuser:`HeMan`
+- Bump zeroconf from 0.74.0 to 0.80.0 :esphomepr:`5260` by :ghuser:`dependabot[bot]`
 
 All changes
 ^^^^^^^^^^^
@@ -140,6 +143,9 @@ All changes
 - Fixing smartair2 protocol implementation if no Wi-Fi :esphomepr:`5238` by :ghuser:`paveldn`
 - tuya: add time sync callback only once to prevent memleak :esphomepr:`5234` by :ghuser:`afflux`
 - Fix duplicate tuya time warning :esphomepr:`5243` by :ghuser:`jesserockz`
+- Add `libfreetype-dev` Debian package for armv7 Docker builds :esphomepr:`5262` by :ghuser:`pierlon`
+- Add delay before enabling ipv6 :esphomepr:`5256` by :ghuser:`HeMan`
+- Bump zeroconf from 0.74.0 to 0.80.0 :esphomepr:`5260` by :ghuser:`dependabot[bot]`
 
 Past Changelogs
 ---------------
