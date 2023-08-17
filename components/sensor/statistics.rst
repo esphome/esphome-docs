@@ -59,59 +59,23 @@ Configuration variables:
 - **time_unit** (*Optional*, enum): The time unit used for the trend sensor, one of
   ``ms``, ``s``, ``min``, ``h`` or ``d``. Defaults to ``s``.
 
-- **count** (*Optional*): The information for the count sensor.
+- **count** (*Optional*): The information for the count sensor. All options from :ref:`Sensor <config-sensor>`.  
 
-  - **name** (**Required**, string): The name for the count sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.  
+- **duration** (*Optional*): The information for the duration sensor. All options from :ref:`Sensor <config-sensor>`.  
 
-- **duration** (*Optional*): The information for the duration sensor.
+- **max** (*Optional*): The information for the maximum sensor. All options from :ref:`Sensor <config-sensor>`.  
 
-  - **name** (**Required**, string): The name for the duration sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.    
+- **mean** (*Optional*): The information for the mean (average) sensor. All options from :ref:`Sensor <config-sensor>`.  
 
-- **max** (*Optional*): The information for the maximum sensor.
+- **min** (*Optional*): The information for the minimum sensor. All options from :ref:`Sensor <config-sensor>`.  
 
-  - **name** (**Required**, string): The name for the maximum sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- **since_argmax** (*Optional*): The information for the since argmax sensor. All options from :ref:`Sensor <config-sensor>`.  
 
-- **mean** (*Optional*): The information for the mean (average) sensor.
+- **since_argmin** (*Optional*): The information for the since argmin sensor. All options from :ref:`Sensor <config-sensor>`.  
 
-  - **name** (**Required**, string): The name for the mean sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- **std_dev** (*Optional*): The information for the standard deviation sensor. All options from :ref:`Sensor <config-sensor>`.  
 
-- **min** (*Optional*): The information for the minimum sensor.
-
-  - **name** (**Required**, string): The name for the minimum sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **since_argmax** (*Optional*): The information for the since argmax sensor.
-
-  - **name** (**Required**, string): The name for the since argmax sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.  
-
-- **since_argmin** (*Optional*): The information for the since argmin sensor.
-
-  - **name** (**Required**, string): The name for the since argmin sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.  
-
-- **std_dev** (*Optional*): The information for the standard deviation sensor.
-
-  - **name** (**Required**, string): The name for the standard deviation sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **trend** (*Optional*): The information for the trend sensor.
-
-  - **name** (**Required**, string): The name for the trend sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- **trend** (*Optional*): The information for the trend sensor. All options from :ref:`Sensor <config-sensor>`.  
 
 
 ``sliding`` window type options:
