@@ -693,7 +693,7 @@ Climate Components
     Anova Cooker, components/climate/anova, anova.png
     BedJet Climate System, components/climate/bedjet, bedjet.png
     Haier Climate, components/climate/haier, haier.svg
-    Mitsubishi Electric Climate, components/climate/climate_mitsubishi, mitsubishi-electric-logo.svg
+    Mitsubishi Electric Climate, components/climate/climate_mitsubishi, mitsubishi-electric-logo.png
 
 Number Components
 -----------------
