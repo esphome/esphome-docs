@@ -23,6 +23,12 @@ It now supports settings most if not all configuration parameters via ``switches
 and exposes more data via various ``sensors``.
 This includes breaking changes that mean the existing gate configuration options have been moved to the ``number`` platform.
 
+Release 2023.8.1 - August 18
+----------------------------
+
+- Fix checksum calculation for sml :esphomepr:`5271` by :ghuser:`Mat931`
+- Change haier from AUTO to HEAT_COOL :esphomepr:`5267` by :ghuser:`jesserockz` (breaking-change)
+
 Full list of changes
 --------------------
 
