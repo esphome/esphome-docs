@@ -98,7 +98,8 @@ Actions
 -------
 
 Now comes the actual automation block. With ``then``, you tell ESPHome what should happen when the press happens.
-Within this block, you can define several "actions". For example, ``switch.toggle`` and the line after that form an
+Within this block, you can define several "actions" that will be executed sequentially.
+For example, ``switch.toggle`` and the line after that form an
 action. Each action is separated by a dash and multiple actions can be executed in series by just adding another ``-``
 like so:
 
