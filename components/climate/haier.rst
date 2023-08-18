@@ -82,7 +82,7 @@ This component requires a :ref:`uart` to be setup.
           temperature_step: 1 °C
         supported_modes:
         - 'OFF'
-        - AUTO
+        - HEAT_COOL
         - COOL
         - HEAT
         - DRY
@@ -114,7 +114,7 @@ Configuration variables:
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): ID of the sensor, can be used for code generation
   - All other options from :ref:`Sensor <config-sensor>`.
-- **supported_modes** (*Optional*, list): Can be used to disable some of AC modes. Possible values: 'OFF', AUTO, COOL, HEAT, DRY, FAN_ONLY
+- **supported_modes** (*Optional*, list): Can be used to disable some of AC modes. Possible values: 'OFF', HEAT_COOL, COOL, HEAT, DRY, FAN_ONLY
 - **supported_swing_modes** (*Optional*, list): Can be used to disable some swing modes if your AC does not support it. Possible values: 'OFF', VERTICAL, HORIZONTAL, BOTH
 - **supported_presets** (*Optional*, list): Can be used to disable some presets. Possible values for smartair2 are: BOOST, COMFORT. Possible values for hOn are: ECO, BOOST, SLEEP
 - All other options from :ref:`Climate <config-climate>`.
