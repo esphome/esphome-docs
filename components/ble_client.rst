@@ -203,7 +203,7 @@ if scanning has been stopped - another mechanism may be required to restart it.
 .. _ble_client-disconnect_action:
 
 ``ble_client.disconnect`` Action
------------------------------
+--------------------------------
 
 This action disconnects a device that was connected with the ``ble_client.connect`` action.
 Execution of the automation block sequence resumes after the disconnect has completed.
