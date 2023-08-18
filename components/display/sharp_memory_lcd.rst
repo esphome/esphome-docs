@@ -43,15 +43,9 @@ The underlying C++ driver implementation pulls `extmode_pin` low and generates V
 
 .. code-block:: yaml
 
-    # Example configuration entry
     spi:
       clk_pin: GPIO36
       mosi_pin: GPIO35
-
-    font:
-      - file: "gfonts://Roboto"
-        id: roboto_40
-        size: 40
 
     display:
       - platform: sharp_memory_lcd
@@ -61,7 +55,6 @@ The underlying C++ driver implementation pulls `extmode_pin` low and generates V
         update_interval: 30s
         invert_color: false
         lambda: |-
-          it.print(0, 0, id(roboto_40), "Hello World!");
           it.line(0, 0, 400, 240);
           it.line(400, 0, 0, 240);
           it.rectangle(20, 50, 30, 30);
