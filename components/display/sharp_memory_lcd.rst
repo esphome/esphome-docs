@@ -49,7 +49,9 @@ The underlying C++ driver implementation pulls `extmode_pin` low and generates V
 
     display:
       - platform: sharp_memory_lcd
-        cs_pin: GPIO34
+        cs_pin:
+          number: GPIO34
+          inverted: true # CS Pin must be inverted
         width: 400
         height: 240
         update_interval: 30s
