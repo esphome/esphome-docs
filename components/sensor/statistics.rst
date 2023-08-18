@@ -348,7 +348,7 @@ For example, you could use a time-based automation to reset all the statistics s
 ``sensor.statistics.on_update`` Trigger
 ***************************************
 
-This automation will be triggered after all configured sensors have updated. In :ref:`Lambdas <lambdas>`, you can get the ``Aggregate`` object containing all the statistics (for the configured sensors only) from the trigger with ``x``. See :ref:`lambdas-aggregate-functions` for available functions.
+This automation will be triggered after all configured sensors have updated. In :ref:`Lambdas <config-lambda>`, you can get the ``Aggregate`` object containing all the statistics (for the configured sensors only) from the trigger with ``x``. See :ref:`lambdas-aggregate-functions` for available functions.
 
 .. code-block:: yaml
 
