@@ -22,7 +22,9 @@ With this display driver you can control the following displays:
   - S3BOX_LITE
   - ST7796
   - TFT 2.4
+  - TFT 2.4 RGB
   - TFT 2.4R
+  - TFT 2.4R RGB
 
 More display drivers will come in the future.
 
@@ -62,7 +64,7 @@ Configuration variables:
 
 - **model** (**Required**): The model of the display. Options are:
 
-  - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R``, ``S3BOX``, ``S3BOX_LITE``
+  - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R``, ``TFT 2.4 RGB``, ``TFT 2.4R RGB``, ``S3BOX``, ``S3BOX_LITE``
   - ``ILI9341``, ``ILI9342``, ``ILI9481``, ``ILI9486``, ``ILI9488``, ``ILI9488_A`` (alternative gamma configuration for ILI9488), ``ST7796``
 
 .. note:: According to its documentation, the ESP32 S3 Box Lite has an ST7789V display driver. We've found, however, that it works with the ILIxxxx component here, instead. This could change in the future.
