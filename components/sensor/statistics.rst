@@ -4,9 +4,9 @@ Statistics
 .. seo::
     :description: Instructions for setting up a Statistics Sensor
 
-The ``statistics`` sensor platform quickly generates summary statistics from another sensor’s measurements. See :ref:`statistics-description` for information about the available summary statistics.
+The ``statistics`` sensor platform quickly generates summary statistics from another sensor’s measurements. See :ref:`statistics-descriptions` for information about the available summary statistics.
 
-The component calculates statistics over a sliding window or a resettable continuous window. See :ref:`window-types` for details about each possible type.
+The component calculates statistics over a sliding window or a resettable continuous window. See :ref:`statistics-window_types` for details about each possible type.
 
 Each summary statistic sensor is optional, and the component stores the measurement information only necessary for the enabled sensors. The component uses external memory on ESP32 boards if available.
 
@@ -25,8 +25,6 @@ To use the component, first, provide the source sensor and then configure the wi
           window_size: 15
           send_every: 5
           send_first_at: 3
-        average_type: time_weighted
-        group_type: sample
         count:
           name: "Count of Valid Sensor Measurements"         
         duration:
@@ -56,11 +54,11 @@ Configuration Variables
 - **window** (**Required**, Window Schema): The configuration for the window of sensor measurements.
 
     - **type** (**Required**, enum): One of ``sliding``, ``continuous``, or ``continuous_long_term``.
-    - All other options from :ref:`sliding-options` or :ref:`continuous-options`.
+    - All other options from :ref:`statistics-sliding_options` or :ref:`statistics-continuous_options`.
 
 - **average_type** (*Optional*, enum): How each measurement is weighted, one of ``simple`` or ``time_weighted``. Defaults to ``simple``.
 - **group_type** (*Optional*, enum): The type of the set of sensor measurements, one of ``sample`` or ``population``. Defaults to ``sample``.
-- **time_unit** (*Optional*, enum): The time unit used for the duration, since_argmax, since_argmin, and trend sensors, one of
+- **time_unit** (*Optional*, enum): The time unit used for the duration, since argmax, since argmin, and trend sensors, one of
   ``ms``, ``s``, ``min``, ``h`` or ``d``. Defaults to ``s``.
 
 - **count** (*Optional*): The information for the count sensor. All options from :ref:`Sensor <config-sensor>`.  
@@ -81,9 +79,9 @@ Configuration Variables
 
 - **trend** (*Optional*): The information for the trend sensor. All options from :ref:`Sensor <config-sensor>`.
 
-- **on_update** (*Optional*, :ref:`Automation <automation>`): List of actions to be performed after all sensors have updated. See :ref:`on-update-trigger`.
+- **on_update** (*Optional*, :ref:`Automation <automation>`): List of actions to be performed after all sensors have updated. See :ref:`statistics-on_update_trigger`.
 
-.. _sliding-options:
+.. _statistics-sliding_options:
 
 ``sliding`` window type options
 *******************************
@@ -97,7 +95,7 @@ Configuration Variables
   Must be less than or equal to ``send_every``
   Defaults to ``1``.
 
-.. _continuous-options:
+.. _statistics-continuous_options:
 
 ``continuous`` and ``continuous_long_term`` window type options
 ***************************************************************
@@ -125,7 +123,7 @@ Group Types
 
 You can configure whether the component considers the set of sensor measurements to be a population or a sample using the ``population`` or ``sample`` type respectively. This setting affects the standard deviation ``std_dev`` sensor. For sliding windows or continuous windows that reset the ``sample`` type is usually appropriate. If you use a ``continuous`` or ``continuous_long_term`` window type without automatic reset, you should most likely use the ``population`` type.
 
-.. _statistics-description:
+.. _statistics-descriptions:
 
 Statistic Sensors
 *****************
@@ -197,7 +195,7 @@ Statistic Sensors
 
   The trend sensor may be unstable over a small set of sensor measurements, especially if the sensor is noisy. To avoid this, use a trend sensor on large windows; e.g., 50 or more sensor measurements. Or, apply a smoothing filter like an exponential moving average to the source sensor.
   
-.. _window-types:
+.. _statistics-window_types:
 
 Window Type
 ***********
@@ -305,6 +303,8 @@ Suppose you want statistics so far in a day, with updates every 15 minutes.
 Statistics Automation
 ---------------------
 
+.. _statistics-force_publish_action:
+
 ``sensor.statistics.force_publish`` Action
 ******************************************
 
@@ -313,7 +313,9 @@ This :ref:`Action <config-action>` allows you to force all statistics sensors to
 .. code-block:: yaml
 
     on_...:
-      - sensor.statistics.force_publish:  my_statistics_component  
+      - sensor.statistics.force_publish: my_statistics_component  
+
+.. _statistics-reset_action:
 
 ``sensor.statistics.reset`` Action
 **********************************
@@ -324,14 +326,14 @@ For example, you could use time-based automations to reset all the statistics se
 .. code-block:: yaml
 
     on_...:
-      - sensor.statistics.reset:  my_statistics_component  
+      - sensor.statistics.reset: my_statistics_component  
 
-.. _on-update-trigger:
+.. _statistics-on_update_trigger:
 
 ``sensor.statistics.on_update`` Trigger
 ***************************************
 
-This automation triggers after all the configured sensors update.  In :ref:`Lambdas <config-lambda>`, you can get the ``Aggregate`` object containing all the statistics (for the configured sensors only) from the trigger with ``x``. See :ref:`lambdas-aggregate-functions` for available functions.
+This automation triggers after all the configured sensors update.  In :ref:`Lambdas <config-lambda>`, you can get the ``Aggregate`` object containing all the statistics (for the configured sensors only) from the trigger with ``x``. See :ref:`statistics-lambdas_calls` for available functions.
 
 .. code-block:: yaml
 
@@ -343,10 +345,10 @@ This automation triggers after all the configured sensors update.  In :ref:`Lamb
             - logger.log: "Statistics sensors have all updated"
 
 
-.. _lambdas-aggregate-functions:
+.. _statistics-lambdas_calls:
 
-Lambdas Using ``Aggregate`` Object Functions
-********************************************
+Lambdas Calls for ``Aggregate`` Objects
+***************************************
 
 The ``on_update`` trigger provides the variable ``x``, which stores the :apiref:`Aggregate Object <statistics/aggregate.h>` that contains the current statistics available based on the configured sensors. This object has many functions that access the underlying data in their native data types, which may be helpful to compute other statistics not currently available as a sensor.
 
@@ -444,7 +446,7 @@ The ``on_update`` trigger provides the variable ``x``, which stores the :apiref:
 These raw statistics values are more accurate when you use their native data type. For example, the ``since_argmax`` and ``since_argmin`` sensors give the time since the most recent maximum or minimum value. The component actually stores the Unix UTC time (in seconds) of when the maximum or minimum value occurred. Since these native integer values are so large, the float data type used for ESPHome and Home Assistant sensor values is only accurate within 1 or 2 minutes of the actual value due to floating point precision issues, despite this component natively storing the value accurately to the second.
 
 Coeffecient of Determination
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""
 
 Another use case is to compute statistics unavailable as a sensor. In this example, we calculate the linear coefficient of determination (r²) of the set of measurements and timestamps. The value of r² gives the strength of a linear relationship between two variables.
 
