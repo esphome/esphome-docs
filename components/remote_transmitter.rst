@@ -41,7 +41,7 @@ Configuration variables:
 
 -  **pin** (**Required**, :ref:`config-pin`): The pin to transmit the remote signal on.
 -  **carrier_duty_percent** (*Optional*, int): How much of the time the remote is on. For example, infrared
-   protocols modulate the signal using a carrier signal. Set this is ``50%`` if you're working with IR LEDs and to
+   protocols modulate the signal using a carrier signal. Set this to ``50%`` if you're working with IR LEDs and to
    ``100%`` if working with other things like 433MHz transmitters.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation. Use this if you have multiple remote transmitters.
@@ -236,17 +236,19 @@ Configuration variables:
 ``remote_transmitter.transmit_coolix`` Action
 *********************************************
 
-This :ref:`action <config-action>` sends a 24-bit Coolix infrared remote code to a remote transmitter.
+This :ref:`action <config-action>` sends one or two (stricted or not) 24-bit Coolix infrared remote codes to a remote transmitter.
 
 .. code-block:: yaml
 
     on_...:
       - remote_transmitter.transmit_coolix:
-          data: 0xB23FE4
+          first: 0xB23FE4
+          second: 0xB23FE4
 
 Configuration variables:
 
-- **data** (**Required**, int): The Coolix code to send, see dumper output for more info.
+- **first** (**Required**, :ref:`templatable <config-templatable>`, uint32_t): The first 24-bit Coolix code to send, see dumper output for more info.
+- **second** (**Optional**, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
 
 .. _remote_transmitter-transmit_dish:
 
