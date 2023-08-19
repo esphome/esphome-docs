@@ -231,7 +231,7 @@ Configuration variables:
     to translate the TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
     add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
     to install it using
-    ``pip install pillow``.
+    ``pip install "pillow>4.0.0,<10.0.0"``.
 
 .. _display-static_text:
 
@@ -672,7 +672,9 @@ Configuration variables:
 - **file** (**Required**, string):
 
   - **Local files**: The path (relative to where the .yaml file is) of the image file.
-  - **Material Design Icons**: Specify the `Material Design Icon <https://pictogrammers.com/library/mdi/>`_ id in the format ``mdi:icon-name``, and that icon will automatically be downloaded and added to the configuration.
+  - **Material Design Icons**: Specify the `Material Design Icon <https://pictogrammers.com/library/mdi/>`_
+    id in the format ``mdi:icon-name``, and that icon will automatically be downloaded and added to the configuration.
+  
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
 - **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``

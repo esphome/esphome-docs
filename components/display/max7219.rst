@@ -119,6 +119,17 @@ Please see :ref:`display-printf` for a quick introduction into the ``printf`` fo
 All 7-Segment Characters
 ------------------------
 
+.. raw:: html
+
+    <style>
+        /* dark theme */
+        @media (prefers-color-scheme: dark) {
+            #all-7-segment-characters img {
+                background-color: #6b6b6b;
+            }
+        }
+    </style>
+
 ============================== ==============================
 **MAX7219 Representation**     **Character**
 ------------------------------ ------------------------------
@@ -228,109 +239,109 @@ All 7-Segment Characters
 ============================== ==============================
 
 .. |max721900| image:: images/max7219/seg00.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721980| image:: images/max7219/seg80.svg
-    :class: component-image
+    :class: component-image segment
 .. |max7219B0| image:: images/max7219/segB0.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72197E| image:: images/max7219/seg7E.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721930| image:: images/max7219/seg30.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72196D| image:: images/max7219/seg6D.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721979| image:: images/max7219/seg79.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721933| image:: images/max7219/seg33.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72195B| image:: images/max7219/seg5B.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72195F| image:: images/max7219/seg5F.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721970| image:: images/max7219/seg70.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72197F| image:: images/max7219/seg7F.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721973| image:: images/max7219/seg73.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721937| image:: images/max7219/seg37.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72194E| image:: images/max7219/seg4E.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721931| image:: images/max7219/seg31.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721978| image:: images/max7219/seg78.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721907| image:: images/max7219/seg07.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721920| image:: images/max7219/seg20.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721902| image:: images/max7219/seg02.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721922| image:: images/max7219/seg22.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72196F| image:: images/max7219/seg6F.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721965| image:: images/max7219/seg65.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721910| image:: images/max7219/seg10.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721949| image:: images/max7219/seg49.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721940| image:: images/max7219/seg40.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721948| image:: images/max7219/seg48.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721958| image:: images/max7219/seg58.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721977| image:: images/max7219/seg77.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72191F| image:: images/max7219/seg1F.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72193D| image:: images/max7219/seg3D.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72194F| image:: images/max7219/seg4F.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721947| image:: images/max7219/seg47.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72195E| image:: images/max7219/seg5E.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72193C| image:: images/max7219/seg3C.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72190E| image:: images/max7219/seg0E.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721915| image:: images/max7219/seg15.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721967| image:: images/max7219/seg67.svg
-    :class: component-image
+    :class: component-image segment
 .. |max7219FE| image:: images/max7219/segFE.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721905| image:: images/max7219/seg05.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72193E| image:: images/max7219/seg3E.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72193F| image:: images/max7219/seg3F.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721927| image:: images/max7219/seg27.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721901| image:: images/max7219/seg01.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721908| image:: images/max7219/seg08.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721909| image:: images/max7219/seg09.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721906| image:: images/max7219/seg06.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72190D| image:: images/max7219/seg0D.svg
-    :class: component-image
+    :class: component-image segment
 .. |max721917| image:: images/max7219/seg17.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72191D| image:: images/max7219/seg1D.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72191C| image:: images/max7219/seg1C.svg
-    :class: component-image
+    :class: component-image segment
 .. |max72198E| image:: images/max7219/seg8E.svg
-    :class: component-image
+    :class: component-image segment
 
 .. note::
 
