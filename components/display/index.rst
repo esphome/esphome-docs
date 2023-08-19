@@ -231,7 +231,7 @@ Configuration variables:
     to translate the TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
     add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
     to install it using
-    ``pip install pillow``.
+    ``pip install "pillow>4.0.0,<10.0.0"``.
 
 .. _display-static_text:
 
