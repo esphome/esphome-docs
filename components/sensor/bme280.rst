@@ -39,8 +39,7 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **temperature** (*Optional*): The information for the temperature.
-  sensor
+- **temperature** (*Optional*): The information for the temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature
     sensor.
