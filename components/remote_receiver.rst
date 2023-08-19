@@ -217,9 +217,12 @@ Remote code selection (exactly one of these has to be included):
   - **address** (*Optional*, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
   - **command** (**Required**, int): The command to listen for.
 
-- **coolix**: Trigger on a decoded Coolix remote code with the given data.
+- **coolix**: Trigger on a decoded Coolix remote code with the given data. It is possible to directly specify a 24-bit code,
+  it will be checked for a match to at least one of the two received packets. The main configuration scheme is below.
 
-  - **data** (**Required**, int): The 24-bit Coolix code to trigger on, see dumper output for more info.
+  - **first** (**Required**, uint32_t): The first 24-bit Coolix code to trigger on, see dumper output for more info.
+  - **second** (**Optional**, uint32_t): The second 24-bit Coolix code to trigger on, see dumper output for more info.
+    If not set, trigger on on only single non-strict packet, specified by the ``first`` parameter.
 
 - **dish**: Trigger on a decoded Dish Network remote code with the given data.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
