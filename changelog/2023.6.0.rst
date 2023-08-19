@@ -10,9 +10,9 @@ ESPHome 2023.6.0 - 21st June 2023
 .. imgtable::
     :columns: 2
 
-    Alarm Control Panel Core, components/alarm_control_panel/index, alarm-panel.svg
-    Template Alarm Control Panel, components/alarm_control_panel/template, description.svg
-    RP2040 PIO LED Strip, components/light/rp2040_pio_led_strip, color_lens.svg
+    Alarm Control Panel Core, components/alarm_control_panel/index, alarm-panel.svg, dark-invert
+    Template Alarm Control Panel, components/alarm_control_panel/template, description.svg, dark-invert
+    RP2040 PIO LED Strip, components/light/rp2040_pio_led_strip, color_lens.svg, dark-invert
     TMP1075, components/sensor/tmp1075, tmp1075.jpg
 
 Dark Mode 😎
@@ -69,6 +69,20 @@ Release 2023.6.3 - June 28
 - Fixes compressed downloads :esphomepr:`5014` by :ghuser:`fdcastel`
 - Add CONFIG_BT_BLE_42_FEATURES_SUPPORTED for ble :esphomepr:`5008` by :ghuser:`jesserockz`
 
+Release 2023.6.4 - July 4
+-------------------------
+
+- [SCD30] Disable negative temperature offset :esphomepr:`4850` by :ghuser:`ardichoke`
+- fix template binary_sensor publish_initial_state option :esphomepr:`5033` by :ghuser:`dudanov`
+- Add alarm to reserved ids :esphomepr:`5042` by :ghuser:`grahambrown11`
+- Advertise noise is enabled :esphomepr:`5034` by :ghuser:`bdraco`
+- Update webserver to ea86d81 :esphomepr:`5023` by :ghuser:`jesserockz`
+
+Release 2023.6.5 - July 10
+--------------------------
+
+- Fix bulk and single Bluetooth parser coexistence :esphomepr:`5073` by :ghuser:`bdraco`
+- binary_sensor: Validate max_length for on_click/on_double_click :esphomepr:`5068` by :ghuser:`kpfleming`
 
 Breaking Changes
 ----------------

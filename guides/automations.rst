@@ -287,7 +287,7 @@ global variables can be used to store the state of a garage door.
              id(my_global_int) += 10;
            }
 
-           ESP_LOGD(TAG, "%s: %d", id(my_global_string), id(my_global_int));
+           ESP_LOGD(TAG, "%s: %d", id(my_global_string).c_str(), id(my_global_int));
 
 Configuration variables:
 
