@@ -193,7 +193,7 @@ Statistic Sensors
 
 .. note::
 
-  The trend sensor may be unstable over a small set of sensor measurements, especially if the sensor is noisy. To avoid this, use a trend sensor on large windows; e.g., 50 or more sensor measurements. Or, apply a smoothing filter like an exponential moving average to the source sensor.
+    The trend sensor may be unstable over a small set of sensor measurements, especially if the sensor is noisy. To avoid this, use a trend sensor on large windows; e.g., 50 or more sensor measurements. Or, apply a smoothing filter like an exponential moving average to the source sensor.
   
 .. _statistics-window_types:
 
