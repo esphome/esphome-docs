@@ -197,8 +197,8 @@ Statistic Sensors
   
 .. _statistics-window_types:
 
-Window Type
-***********
+Window Types
+************
 
 There are two categories of windows. The first category is a sliding window. A sliding window has a pre-defined capacity of ``window_size`` measurements. The component inserts sensor measurements until it has inserted ``window_size`` total. When full, this component removes the oldest measurement in the window and then inserts the newwest senesor measurement.
 
