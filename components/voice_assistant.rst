@@ -5,7 +5,7 @@ Voice Assistant
     :description: Instructions for setting up a Voice Assistant in ESPHome.
     :image: voice-assistant.svg
 
-ESPHome devices with a microphone are able to stream the audio to Home Assistant and be processed there by `assist <https://www.home-assistant.io/docs/assist/>`__.
+ESPHome devices with a microphone are able to stream the audio to Home Assistant and be processed there by `assist <https://www.home-assistant.io/voice_control/>`__.
 
 .. note::
 
@@ -25,6 +25,13 @@ Configuration:
 
 - **microphone** (**Required**, :ref:`config-id`): The :doc:`microphone </components/microphone/index>` to use for input.
 - **speaker** (*Optional*, :ref:`config-id`): The :doc:`speaker </components/speaker/index>` to use to output the response.
+  Cannot be used with ``media_player`` below.
+- **media_player** (*Optional*, :ref:`config-id`): The :doc:`media_player </components/media_player/index>` to use
+  to output the response. Cannot be used with ``speaker`` above.
+- **silence_detection** (*Optional*, bool): Whether Home Assistant uses Voice Activity Detection to detect when you
+  have stopped talking and start processing the command. Defaults to ``true``.
+- **on_listening** (*Optional*, :ref:`Automation <automation>`): An automation to
+  perform when the voice assistant starts listening.
 - **on_start** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when the voice assistant starts listening.
 - **on_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
@@ -50,8 +57,16 @@ Voice Assistant Actions
 The following actions are available for use in automations:
 
 - ``voice_assistant.start`` - Start listening for voice commands.
+- ``voice_assistant.start_continuous`` - Start listening for voice commands. This will start listening again after
+  the response audio has finished playing. Errors will stop the cycle. Call ``voice_assistant.stop`` to stop the cycle.
 - ``voice_assistant.stop`` - Stop listening for voice commands.
 
+Voice Assistant Conditions
+--------------------------
+
+The following conditions are available for use in automations:
+
+- ``voice_assistant.is_running`` - Returns true if the voice assistant is currently running.
 
 Push to Talk
 ------------
@@ -61,7 +76,8 @@ Here is an example offering Push to Talk with a :doc:`/components/binary_sensor/
 .. code-block:: yaml
 
     voice_assistant:
-      microphone: mic_id
+      microphone: ...
+      speaker: ...
 
     binary_sensor:
       - platform: gpio
@@ -70,6 +86,26 @@ Here is an example offering Push to Talk with a :doc:`/components/binary_sensor/
           - voice_assistant.start:
         on_release:
           - voice_assistant.stop:
+
+Click to Converse
+-----------------
+
+.. code-block:: yaml
+
+    voice_assistant:
+      microphone: ...
+      speaker: ...
+
+    binary_sensor:
+      - platform: gpio
+        pin: ...
+        on_click:
+          - if:
+              condition: voice_assistant.is_running
+              then:
+                - voice_assistant.stop:
+              else:
+                - voice_assistant.start_continuous:
 
 
 See Also
