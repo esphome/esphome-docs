@@ -46,7 +46,7 @@ Configuration variables:
 - All other options from :ref:`Light <config-light>`.
 
 You may also need to configure an ``output`` GPIO pin to control power to the LEDs, depending on your hardware. The
-APA102 does not have a ``CS`` input.
+APA102 does not have a ``CS`` input, and is write-only so the SPI ``miso`` pin should not be specified.
 
 See Also
 --------
