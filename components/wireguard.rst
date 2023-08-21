@@ -50,6 +50,9 @@ adding the following to your configuration:
       # Optional netmask (this is the default if omitted)
       netmask: 255.255.255.255
 
+      # Optional endpoint port (WireGuard default if omitted)
+      peer_port: 51820
+
       # Optional pre-shared key (omit if not in use)
       peer_preshared_key: XxYyZzWw...=
 
@@ -88,10 +91,10 @@ Configuration variables
 
 - **peer_endpoint** (**Required**, string): The hostname of the remote peer.
 
-- **peer_public_key** (**Required**, string): The public key of the remote peer.
-
-- **peer_port** (*Optional*, UDP port): The port where remote peer is listening.
+- **peer_port** (*Optional*, UDP port): The port where remote peer is listening on.
   The |wireguard| default is ``51820``.
+
+- **peer_public_key** (**Required**, string): The public key of the remote peer.
 
 - **peer_preshared_key** (*Optional*, string): The chosen pre-shared key between
   local device and remote peer.
