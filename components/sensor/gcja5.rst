@@ -11,7 +11,7 @@ sensors with ESPHome.
 
 As the communication with the GCJA5 is done using UART, you need
 to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the SEND/TX. Additionally, you need to set the baud rate to 9600, and you
-MUST have `EVEN`` parity.
+MUST have ``EVEN`` parity.
 
 The sensor itself will push values every second. You may wish to :ref:`filter <sensor-filters>` this value to reduce the amount of data you are ingesting.
 The sensor will internally track changes to the Laser Diode and Photo Diode over time to adjust and ensure accuracy.
