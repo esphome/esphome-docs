@@ -197,7 +197,6 @@ Contributors
 - `brtchip-tuannguyen (@brtchip-tuannguyen) <https://github.com/brtchip-tuannguyen>`__
 - `buddydvd (@buddydvd) <https://github.com/buddydvd>`__
 - `Matt Burke (@burkemw3) <https://github.com/burkemw3>`__
-- `Jon Little (@burundiocibu) <https://github.com/burundiocibu>`__
 - `buxtronix (@buxtronix) <https://github.com/buxtronix>`__
 - `bvansambeek (@bvansambeek) <https://github.com/bvansambeek>`__
 - `c0ffeeca7 (@c0ffeeca7) <https://github.com/c0ffeeca7>`__
@@ -644,6 +643,7 @@ Contributors
 - `Dave Johnston (@johnsto) <https://github.com/johnsto>`__
 - `joiboi (@joiboi) <https://github.com/joiboi>`__
 - `JonasEr (@JonasEr) <https://github.com/JonasEr>`__
+- `Jonas Niesner (@jonasniesner) <https://github.com/jonasniesner>`__
 - `Jonathan Adams (@jonathanadams) <https://github.com/jonathanadams>`__
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__
 - `Jonathan V (@jonofmac) <https://github.com/jonofmac>`__
@@ -785,7 +785,6 @@ Contributors
 - `Christopher Masto (@masto) <https://github.com/masto>`__
 - `Mat931 (@Mat931) <https://github.com/Mat931>`__
 - `Maciej Sokołowski (@matemaciek) <https://github.com/matemaciek>`__
-- `Mateus Demboski (@mateusdemboski) <https://github.com/mateusdemboski>`__
 - `matikij (@matikij) <https://github.com/matikij>`__
 - `Michel Marti (@matoxp) <https://github.com/matoxp>`__
 - `matt123p (@matt123p) <https://github.com/matt123p>`__
@@ -980,6 +979,7 @@ Contributors
 - `Russell Cloran (@rcloran) <https://github.com/rcloran>`__
 - `Rebbe Pod (@RebbePod) <https://github.com/RebbePod>`__
 - `reddn (@reddn) <https://github.com/reddn>`__
+- `redlukas (@redlukas) <https://github.com/redlukas>`__
 - `Alex (@redwngsrul) <https://github.com/redwngsrul>`__
 - `Refferic (@Refferic) <https://github.com/Refferic>`__
 - `Regev Brody (@regevbr) <https://github.com/regevbr>`__
@@ -1231,4 +1231,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated August 18, 2023.*
+*This page was last updated August 21, 2023.*
