@@ -123,7 +123,7 @@ Advanced options:
   connected circuitry pulls the pin up or down at reset, and ESPHome will warn when strapping pins are used
   for I/O. If you are sure that you are using a strapping pin for I/O in a way that will not cause problems,
   you can suppress the warning by setting this option to ``true`` in the pin configuration. Defaults to ``false``.
-  Other than suppressing the warning this option has no other effect.
+  This option has no other effect beyond suppressing the warning.
 
 .. _config-time:
 
