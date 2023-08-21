@@ -80,6 +80,9 @@ Configuration variables
 
 - **address** (**Required**, IPv4 address): The local VPN address of the device.
 
+  If you intend to upload firmwares through the VPN link you probably need
+  to copy this value to the ``use_address`` parameter of the :doc:`wifi`.
+
 - **netmask** (*Optional*, IPv4 address): The netmask for the configured address.
   Default to ``255.255.255.255``.
 
@@ -274,6 +277,12 @@ These are the steps:
    as the host name
 
 The device should now be linked to your remote Home Assistant.
+
+.. note::
+
+    If you have issues linking the ESP device try setting
+    the ``use_address`` parameter of the :doc:`wifi` to the value
+    of the :ref:`address <wireguard-address>` configured here.
 
 See Also
 --------
