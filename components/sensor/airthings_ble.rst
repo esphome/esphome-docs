@@ -55,6 +55,7 @@ Configuration example:
       - platform: airthings_wave_plus
         ble_client_id: airthings01
         update_interval: 5min # default
+        battery_update_interval: 24h # default
         temperature:
           name: "WavePlus Temperature"
         radon:
@@ -69,6 +70,8 @@ Configuration example:
           name: "WavePlus CO2"
         tvoc:
           name: "WavePlus VOC"
+        battery_voltage:
+          name: "WavePlus Battery Voltage"
 
     ble_client:
       - mac_address: 01:02:03:04:05:06
@@ -93,6 +96,7 @@ Configuration example:
       - platform: airthings_wave_mini
         ble_client_id: airthingsmini
         update_interval: 5min # default
+        battery_update_interval: 24h # default
         temperature:
           name: "WaveMini Temperature"
         pressure:
@@ -101,6 +105,8 @@ Configuration example:
           name: "WaveMini Humidity"
         tvoc:
           name: "WaveMini VOC"
+        battery_voltage:
+          name: "WaveMini Battery Voltage"
 
     ble_client:
       - mac_address: 01:02:03:04:05:06
@@ -111,3 +117,66 @@ Configuration example:
 .. note::
 
     The sensor uses active polling of devices every 5 minutes as per the device reported internal refresh timeout.
+
+.. note::
+
+    Battery-voltage reporting defaults to once every 24 hours in order
+    to reduce BLE traffic (obtaining the battery voltage requires quite
+    a few BLE commands/responses); if you wish to have it reported
+    more frequently configure the ``battery_update_interval``. The main
+    sensor ``update_interval`` controls the overall polling frequency
+    so setting the interval for the battery voltage to a lower value
+    will result in the battery voltage being reported once per polling
+    interval.
+
+
+Battery Level Reporting
+***********************
+
+If you wish to have the 'percentage of battery life remaining'
+reported as a sensor, you can make use of the :ref:`copy-sensor`
+integration.
+
+The examples below are based on standard alkaline-chemistry batteries;
+if you use other types of batteries you may need to adjust the
+reference voltages to obtain a proper 0-100% scale. The voltage
+references were chosen to closely match the 0-100% range displayed by
+the AirThings mobile app.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: airthings_wave_mini
+        ble_client_id: airthingsmini
+        battery_voltage:
+          id: bv
+          name: "WaveMini Battery Voltage"
+      - platform: copy
+        source_id: bv
+        name: "WaveMini Battery Level"
+        unit_of_measurement: percent
+        device_class: battery
+        accuracy_decimals: 0
+        filters:
+          - calibrate_linear:
+            - 2.7 -> 0
+            - 4.5 -> 100
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: airthings_wave_plus
+        ble_client_id: airthings01
+        battery_voltage:
+          id: bv
+          name: "WavePlus Battery Voltage"
+      - platform: copy
+        source_id: bv
+        name: "WavePlus Battery Level"
+        unit_of_measurement: percent
+        device_class: battery
+        accuracy_decimals: 0
+        filters:
+          - calibrate_linear:
+            - 2.2 -> 0
+            - 3.1 -> 100
