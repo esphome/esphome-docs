@@ -139,8 +139,8 @@ Clockless
 
 .. warning::
 
-   The ``fastled_clockless`` light platform is deprecated.  Use the new,
-   unified ``fastled`` light platform, instead.
+    The ``fastled_clockless`` light platform is deprecated.  Use the new,
+    unified ``fastled`` light platform, instead.
 
 The ``fastled_clockless`` light platform allows you to create RGB lights
 in ESPHome for a :ref:`number of supported chipsets <fastled_clockless-chipsets>`.
@@ -220,8 +220,8 @@ SPI
 
 .. warning::
 
-   The ``fastled_spi`` light platform is deprecated.  Use the new,
-   unified ``fastled`` light platform, instead.
+    The ``fastled_spi`` light platform is deprecated.  Use the new,
+    unified ``fastled`` light platform, instead.
 
 The ``fastled_spi`` light platform allows you to create RGB lights
 in ESPHome for a :ref:`number of supported chipsets <fastled_spi-chipsets>`.
