@@ -6,7 +6,7 @@ ESPHOME_REF = dev
 html:
 	sphinx-build -M html . _build -j auto -n $(O)
 live-html:
-	sphinx-autobuild . _build -j auto -n $(O) --host 0.0.0.0 --port 8125
+	sphinx-autobuild . _build -j auto -n $(O) --host 0.0.0.0
 
 html-strict:
 	sphinx-build -M html . _build -W -j auto -n $(O)
