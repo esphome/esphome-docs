@@ -28,12 +28,10 @@ Configuration:
   Cannot be used with ``media_player`` below.
 - **media_player** (*Optional*, :ref:`config-id`): The :doc:`media_player </components/media_player/index>` to use
   to output the response. Cannot be used with ``speaker`` above.
-- **silence_detection** (*Optional*, bool): Whether Home Assistant uses Voice Activity Detection to detect when you
-  have stopped talking and start processing the command. Defaults to ``true``.
 - **on_listening** (*Optional*, :ref:`Automation <automation>`): An automation to
-  perform when the voice assistant starts listening.
+  perform when the voice assistant microphone starts listening.
 - **on_start** (*Optional*, :ref:`Automation <automation>`): An automation to
-  perform when the voice assistant starts listening.
+  perform when the assist pipeline is started.
 - **on_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the voice assistant is finished all tasks.
 - **on_stt_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
