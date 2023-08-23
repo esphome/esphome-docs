@@ -35,6 +35,7 @@ Configuration variables:
   - **canalsatld**: Decode and dump CanalSatLD infrared codes.
   - **coolix**: Decode and dump Coolix infrared codes.
   - **dish**: Decode and dump Dish infrared codes.
+  - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **jvc**: Decode and dump JVC infrared codes.
   - **lg**: Decode and dump LG infrared codes.
   - **magiquest**: Decode and dump MagiQuest wand infrared codes.
@@ -91,6 +92,9 @@ Automations:
   dish network remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DishData`
   is passed to the automation for use in lambdas.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
+- **on_drayton** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Drayton Digistat RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DraytonData`
+  is passed to the automation for use in lambdas.
 - **on_jvc** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   JVC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::JVCData`
   is passed to the automation for use in lambdas.
@@ -200,24 +204,33 @@ Remote code selection (exactly one of these has to be included):
 - **canalsat**: Trigger on a decoded CanalSat remote code with the given data.
 
   - **device** (**Required**, int): The device to trigger on, see dumper output for more info.
-  - **address** (**Optional**, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
+  - **address** (*Optional*, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
   - **command** (**Required**, int): The command to listen for.
 
 - **canalsatld**: Trigger on a decoded CanalSatLD remote code with the given data.
 
   - **device** (**Required**, int): The device to trigger on, see dumper output for more info.
-  - **address** (**Optional**, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
+  - **address** (*Optional*, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
   - **command** (**Required**, int): The command to listen for.
 
-- **coolix**: Trigger on a decoded Coolix remote code with the given data.
+- **coolix**: Trigger on a decoded Coolix remote code with the given data. It is possible to directly specify a 24-bit code,
+  it will be checked for a match to at least one of the two received packets. The main configuration scheme is below.
 
-  - **data** (**Required**, int): The 24-bit Coolix code to trigger on, see dumper output for more info.
+  - **first** (**Required**, uint32_t): The first 24-bit Coolix code to trigger on, see dumper output for more info.
+  - **second** (**Optional**, uint32_t): The second 24-bit Coolix code to trigger on, see dumper output for more info.
+    If not set, trigger on on only single non-strict packet, specified by the ``first`` parameter.
 
 - **dish**: Trigger on a decoded Dish Network remote code with the given data.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
 
   - **address** (*Optional*, int): The number of the receiver to target, between 1 and 16 inclusive. Defaults to ``1``.
   - **command** (**Required**, int): The Dish command to listen for, between 0 and 63 inclusive.
+
+- **drayton**: Trigger on a decoded Drayton Digistat RF remote code with the given data.
+
+  - **address** (**Required**, int): The 16-bit ID code to trigger on, see dumper output for more info.
+  - **channel** (**Required**, int): The 7-bit switch/channel to listen for.
+  - **command** (**Required**, int): The 5-bit command to listen for.
 
 - **jvc**: Trigger on a decoded JVC remote code with the given data.
 

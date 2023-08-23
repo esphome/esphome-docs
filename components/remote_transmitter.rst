@@ -41,7 +41,7 @@ Configuration variables:
 
 -  **pin** (**Required**, :ref:`config-pin`): The pin to transmit the remote signal on.
 -  **carrier_duty_percent** (*Optional*, int): How much of the time the remote is on. For example, infrared
-   protocols modulate the signal using a carrier signal. Set this is ``50%`` if you're working with IR LEDs and to
+   protocols modulate the signal using a carrier signal. Set this to ``50%`` if you're working with IR LEDs and to
    ``100%`` if working with other things like 433MHz transmitters.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation. Use this if you have multiple remote transmitters.
@@ -122,7 +122,7 @@ This :ref:`action <config-action>` sends a CanalSat infrared remote code to a re
 Configuration variables:
 
 - **device** (**Required**, int): The device to send to, see dumper output for more details.
-- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **address** (*Optional*, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
@@ -149,7 +149,7 @@ This :ref:`action <config-action>` sends a CanalSatLD infrared remote code to a 
 Configuration variables:
 
 - **device** (**Required**, int): The device to send to, see dumper output for more details.
-- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **address** (*Optional*, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
@@ -158,17 +158,19 @@ Configuration variables:
 ``remote_transmitter.transmit_coolix`` Action
 *********************************************
 
-This :ref:`action <config-action>` sends a 24-bit Coolix infrared remote code to a remote transmitter.
+This :ref:`action <config-action>` sends one or two (stricted or not) 24-bit Coolix infrared remote codes to a remote transmitter.
 
 .. code-block:: yaml
 
     on_...:
       - remote_transmitter.transmit_coolix:
-          data: 0xB23FE4
+          first: 0xB23FE4
+          second: 0xB23FE4
 
 Configuration variables:
 
-- **data** (**Required**, int): The Coolix code to send, see dumper output for more info.
+- **first** (**Required**, :ref:`templatable <config-templatable>`, uint32_t): The first 24-bit Coolix code to send, see dumper output for more info.
+- **second** (**Optional**, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
 
 .. _remote_transmitter-transmit_dish:
 
@@ -191,6 +193,28 @@ Configuration variables:
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 You can find a list of commands in the `LIRC project <https://sourceforge.net/p/lirc-remotes/code/ci/master/tree/remotes/dishnet/Dish_Network.lircd.conf>`__.
+
+.. _remote_transmitter-transmit_drayton:
+
+``remote_transmitter.transmit_drayton`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends a Draton Digistat RF remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_drayton:
+          address: '0x6180'
+          channel: '0x12'
+          command: '0x02'      
+
+Configuration variables:
+
+- **address** (**Required**, int): The 16-bit ID to send, see dumper output for more info.
+- **channel** (**Required**, int): The switch/channel to send, between 0 and 127 inclusive.
+- **command** (**Required**, int): The command to send, between 0 and 63 inclusive.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_jvc:
 
@@ -261,7 +285,7 @@ This :ref:`action <config-action>` sends a 40-bit Midea code to a remote transmi
     on_...:
       - remote_transmitter.transmit_midea:
           code: [0xA2, 0x08, 0xFF, 0xFF, 0xFF]
-    
+
     on_...:
       - remote_transmitter.transmit_midea:
           code: !lambda |-
@@ -876,6 +900,10 @@ earlier, create a new template switch that sends the RF code when triggered:
           - remote_transmitter.transmit_rc_switch_raw:
               code: '100010000000000010111110'
               protocol: 2
+              repeat: 
+                times: 10
+                wait_time: 0s
+
 
     # Or for raw code
     switch:
@@ -889,6 +917,15 @@ earlier, create a new template switch that sends the RF code when triggered:
 
 Recompile again, when you power up the device the next time you will see a new switch
 in the frontend. Click on it and you should see the remote signal being transmitted. Done!
+
+.. note::
+
+    Some devices require that the transmitted code be repeated for the signal to be picked up 
+    as valid. Also the interval between repetitions can be important. Check that the pace of 
+    repetition logs are consistent between the remote controller and the transmitter node. 
+    You can adjust the ``repeat:`` settings accordingly.
+
+
 
 See Also
 --------

@@ -22,13 +22,13 @@ to some pins on your board and the baud rate set to 9600.
 
     # Example configuration entry
     uart:
-      - id: uart1
+      - id: gw_uart
         baud_rate: 9600
         tx_pin: GPIO1
         rx_pin: GPIO3
 
     modbus:
-      uart_id: uart1
+      uart_id: gw_uart
       flow_control_pin: GPIO4
 
     sensor:

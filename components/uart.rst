@@ -82,7 +82,7 @@ use ``tx_pin: GPIO2``. Any other combination of pins will result in use of a sof
 
 .. note::
 
-    The the Software UART is only available on the ESP8266. It is not available on ESP32 and variants.
+    The Software UART is only available on the ESP8266. It is not available on ESP32 and variants.
 
 .. _uart-write_action:
 
