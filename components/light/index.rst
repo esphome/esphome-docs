@@ -46,13 +46,13 @@ Configuration variables:
   For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
   :doc:`esphome section </components/esphome>`.
 
-    - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
+    - ``RESTORE_DEFAULT_OFF`` - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
     - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
     - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
     - ``RESTORE_AND_OFF`` - Attempt to restore state but initialize the light as OFF.
     - ``RESTORE_AND_ON`` - Attempt to restore state but initialize the light as ON.
-    - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
+    - ``ALWAYS_OFF`` (Default) - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
 - **on_turn_on** (*Optional*, :ref:`Action <config-action>`): An automation to perform
@@ -486,6 +486,8 @@ This effect makes a pulsating light. The period can be defined by ``update_inter
               name: "Fast Pulse"
               transition_length: 0.5s
               update_interval: 0.5s
+              min_brightness: 0%
+              max_brightness: 100%
           - pulse:
               name: "Slow Pulse"
               # transition_length: 1s      # defaults to 1s
@@ -496,6 +498,8 @@ Configuration variables:
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Pulse``.
 - **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``1s``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transition is started. Defaults to ``1s``.
+- **min_brightness** (*Optional*, percentage): The minimum brightness value. Defaults to ``0%``
+- **max_brightness** (*Optional*, percentage): The maximum brightness value. Defaults to ``100%``
 
 
 Random Effect
@@ -904,7 +908,7 @@ Available variables in the lambda:
               // stopping and starting the effect again
               static uint16_t progress = 0;
 
-              // normal variables lost their value after each
+              // normal variables lose their value after each
               // execution - basically after each update_interval
               uint16_t changes = 0;
 

@@ -84,9 +84,12 @@ Configuration variables:
   first. This is required for hidden networks and can significantly improve connection times. Defaults to ``off``.
   The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
   better ones are available.
+- **passive_scan** (*Optional*, boolean): If enabled, then the device will perform WiFi scans in a passive fashion. Defaults to ``false``.
 
 - **enable_btm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11v BSS Transition Management support.
 - **enable_rrm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11k Radio Resource Management support.
+
+- **enable_on_boot** (*Optional*, boolean): If enabled, the WiFi interface will be enabled on boot. Defaults to ``true``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
@@ -269,6 +272,39 @@ Configuration variables:
 - **key** (*Optional*, string): Path to a PEM encoded private key matching ``certificate`` for EAP-TLS authentication.
   Optionally encrypted with ``password``.
 
+
+``wifi.disable`` Action
+-----------------------
+
+This action turns off the WiFi interface on demand.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - wifi.disable:
+
+.. note::
+
+    Be aware that if you disable WiFi, the API timeout will need to be disabled otherwise the device will reboot.
+
+
+``wifi.enable`` Action
+----------------------
+
+This action turns on the WiFi interface on demand.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - wifi.enable:
+
+.. note::
+
+    The configuration option ``enable_on_boot`` can be set to ``false`` if you do not want wifi to be enabled on boot.
+
+
 .. _wifi-connected_condition:
 
 ``wifi.connected`` Condition
@@ -285,6 +321,31 @@ This :ref:`Condition <config-condition>` checks if the WiFi client is currently 
         then:
           - logger.log: WiFi is connected!
 
+
+The lambda equivalent for this is ``id(wifi_id).is_connected()``.
+
+
+.. _wifi-enabled_condition:
+
+``wifi.enabled`` Condition
+--------------------------
+
+This :ref:`Condition <config-condition>` checks if WiFi is currently enabled or not.
+
+.. code-block:: yaml
+
+    on_...:
+      - if:
+          condition: wifi.enabled
+          then:
+            - wifi.disable:
+          else:
+            - wifi.enable:
+
+
+The lambda equivalent for this is ``!id(wifi_id).is_disabled()``.
+
+
 See Also
 --------
 
@@ -293,5 +354,6 @@ See Also
 - :doc:`sensor/wifi_signal`
 - :doc:`network`
 - :doc:`/components/ethernet`
+- :doc:`api`
 - :apiref:`wifi/wifi_component.h`
 - :ghedit:`Edit`

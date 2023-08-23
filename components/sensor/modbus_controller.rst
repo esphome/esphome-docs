@@ -271,5 +271,5 @@ See Also
 - :doc:`/components/binary_sensor/modbus_controller`
 - :doc:`/components/text_sensor/modbus_controller`
 - :doc:`/components/switch/modbus_controller`
-- :doc:`EPEVER MPPT Solar Charge Controller Tracer-AN Series</cookbook/tracer-an>`
+- `EPEVER MPPT Solar Charge Controller (Tracer-AN Series) <https://devices.esphome.io/devices/epever_mptt_tracer_an>`__
 - :ghedit:`Edit`
