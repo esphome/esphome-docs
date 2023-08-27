@@ -337,6 +337,7 @@ This is only possible for ``pip`` installs.
     # Install ESPHome
     cd esphome/
     script/setup
+    pip install -e .
     # Start a new feature branch
     git checkout -b my-new-feature
     cd ..
