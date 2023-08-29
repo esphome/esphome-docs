@@ -17,9 +17,10 @@ a pull request.
 Contributing to ESPHome-Docs
 ----------------------------
 
-.. figure:: /images/logo-docs.svg
+.. image:: /images/logo-docs.svg
     :align: center
     :width: 60.0%
+    :class: dark-invert
 
 One of the areas of ESPHome that can always be improved is the documentation.
 If you see an issue somewhere, a spelling mistakes or if you want to share your awesome
@@ -93,11 +94,11 @@ Build
 
 .. note::
 
-    The easiest way is to use the `esphome-docs Docker image <https://hub.docker.com/r/esphome/esphome-docs/>`__:
+    The easiest way is to use the `esphome-docs container image <ghcr.io/esphome/esphome-docs/>`__:
 
     .. code-block:: bash
 
-        docker run --rm -v "${PWD}/":/data/esphomedocs -p 8000:8000 -it esphome/esphome-docs
+        docker run --rm -v "${PWD}/":/data/esphomedocs -p 8000:8000 -it ghcr.io/esphome/esphome-docs
 
     With ``PWD`` referring to the root of the ``esphome-docs`` git repository. Then go to ``<CONTAINER_IP>:8000`` in your browser.
 
@@ -340,6 +341,14 @@ This is only possible for ``pip`` installs.
     git checkout -b my-new-feature
     cd ..
 
+The environment is now ready for use, but you need to activate the Python virtual environment 
+every time you are using it. 
+
+.. code-block:: bash
+
+    # Activate venv
+    source venv/bin/activate
+
 Now you can open ESPHome in your IDE of choice (mine is CLion) with the PlatformIO
 addons (see PlatformIO docs for more info). Then develop the new feature with the
 guidelines below.
@@ -407,9 +416,10 @@ a "rebase". More info `here <https://developers.home-assistant.io/docs/en/develo
 Contributing to ESPHome
 -----------------------
 
-.. figure:: /images/logo-text.svg
+.. image:: /images/logo-text.svg
     :align: center
     :width: 60.0%
+    :class: dark-invert
 
 This is a guide to contributing to the ESPHome codebase. ESPHome uses two languages for its project:
 Python and C++.
@@ -662,10 +672,10 @@ Standard for the esphome-core codebase:
     .. code-block:: bash
 
         # Full lint+test suite
-        docker run --rm -v "${PWD}/":/esphome -it esphome/esphome-lint script/fulltest
+        docker run --rm -v "${PWD}/":/esphome -it ghcr.io/esphome/esphome-lint script/fulltest
 
         # Run lint only over changed files
-        docker run --rm -v "${PWD}/":/esphome -it esphome/esphome-lint script/quicklint
+        docker run --rm -v "${PWD}/":/esphome -it ghcr.io/esphome/esphome-lint script/quicklint
 
 
     If you are using Windows and have docker installed the syntax is slightly different.
@@ -676,7 +686,7 @@ Standard for the esphome-core codebase:
         # convert the volume format
         $current_dir=(Get-Location).Path.ToLower().Replace(':','').Replace('\','/')
         # Run lint only over changed files from powershell
-        docker run --rm -v "$($current_dir):/esphome" -it esphome/esphome-lint script/quicklint
+        docker run --rm -v "$($current_dir):/esphome" -it ghcr.io/esphome/esphome-lint script/quicklint
 
 
 

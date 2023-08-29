@@ -63,7 +63,7 @@ ESP32 Attenuation
 
 On the ESP32 the voltage measured with the ADC caps out at ~1.1V by default as the sensing range (attenuation of the ADC) is set to ``0db`` by default.
 Measuring higher voltages requires setting ``attenuation`` to one of the following values: ``0db``, ``2.5db``, ``6db``, ``11db``.
-There's more information `at the manufacturer's website <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc.html#_CPPv425adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__.
+There's more information `at the manufacturer's website <https://docs.espressif.com/projects/esp-idf/en/v4.4.2/esp32/api-reference/peripherals/adc.html#_CPPv425adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__.
 
 To simplify this, we provide the setting ``attenuation: auto`` for an automatic/seamless transition among scales. `Our implementation
 <https://github.com/esphome/esphome/blob/dev/esphome/components/adc/adc_sensor.cpp>`__ combines all available ranges to allow the best resolution without having to compromise on a specific attenuation.
@@ -72,6 +72,33 @@ To simplify this, we provide the setting ``attenuation: auto`` for an automatic/
 
     In our tests, the usable ADC range was from ~0.075V to ~3.12V (with the ``attenuation: auto`` setting), and anything outside that range capped out at either end.
     Even though the measurements are calibrated, the range *limits* are variable among chips due to differences in the internal voltage reference.
+
+
+.. _adc-esp32_pins:
+
+ESP32 pins
+----------
+
+``ADC2`` pins are only usable when Wi-Fi is not configured on the device.
+
+.. list-table::
+    :header-rows: 1
+
+    * - Variant
+      - ADC1
+      - ADC2
+    * - ESP32
+      - GPIO32 - GPIO39
+      - GPIO0, GPIO2, GPIO4, GPIO12 - GPIO15, GPIO25 - GPIO27
+    * - ESP32-C3
+      - GPIO0 - GPIO4
+      - GPIO5
+    * - ESP32-S2
+      - GPIO1 - GPIO10
+      - GPIO11 - GPIO20
+    * - ESP32-S3
+      - GPIO1 - GPIO10
+      - GPIO11 - GPIO20
 
 
 .. _adc-raw:

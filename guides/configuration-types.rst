@@ -110,6 +110,7 @@ Configuration variables:
    - ``ANALOG``
    - ``INPUT_PULLUP``
    - ``INPUT_PULLDOWN``
+   - ``INPUT_OUTPUT_OPEN_DRAIN``
 
 Advanced options:
 
@@ -449,6 +450,76 @@ them locally with their own subsitution value.
 
       # shorthand form github://username/repository/[folder/]file-path.yml[@branch-or-tag]
       remote_package_three: github://esphome/non-existant-repo/file1.yml@main
+
+Packages as Templates
+*********************
+
+Since packages are incorporated using the ``!include`` system,
+variables can be provided to them.  This means that packages can be
+used as `templates`, allowing complex or repetitive configurations to
+be stored in a package file and then incorporated into the
+configuration more than once.
+
+As an example, if the configuration needed to support three garage
+doors using the ``gpio`` switch platform and the ``time_based`` cover
+platform, it could be constructed like this:
+
+.. code-block:: yaml
+
+    # In config.yaml
+    packages:
+      left_garage_door: !include
+        file: garage-door.yaml
+        vars:
+          door_name: Left
+          door_location: left
+          open_switch_gpio: 25
+          close_switch_gpio: 26
+      middle_garage_door: !include
+        file: garage-door.yaml
+        vars:
+          door_name: Middle
+          door_location: middle
+          open_switch_gpio: 27
+          close_switch_gpio: 29
+      right_garage_door: !include
+        file: garage-door.yaml
+        vars:
+          door_name: Right
+          door_location: right
+          open_switch_gpio: 15
+          close_switch_gpio: 18
+
+
+.. code-block:: yaml
+
+    # In garage-door.yaml
+    switch:
+      - id: open_${door_location}_door_switch
+        name: ${door_name} Garage Door Open Switch
+        platform: gpio
+        pin: ${open_switch_gpio}
+
+      - id: close_${door_location}_door_switch
+        name: ${door_name} Garage Door Close Switch
+        platform: gpio
+        pin: ${close_switch_gpio}
+
+    cover:
+      - platform: time_based
+        name: ${door_name} Garage Door
+
+        open_action:
+          - switch.turn_on: open_${door_location}_door_switch
+        open_duration: 2.1min
+
+        close_action:
+          - switch.turn_on: close_${door_location}_door_switch
+        close_duration: 2min
+
+        stop_action:
+          - switch.turn_off: open_${door_location}_door_switch
+          - switch.turn_off: close_${door_location}_door_switch
 
 
 See Also

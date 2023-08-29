@@ -36,7 +36,7 @@ Tips for using ESPHome
 
    .. code-block:: yaml
 
-       - timing: !include click-single.yaml 
+       - timing: !include click-single.yaml
          then:
            - mqtt.publish:
                topic: ${device_name}/button${id}/status
@@ -158,7 +158,7 @@ It's simple. Run:
 
     pip3 install -U esphome
     # From docker:
-    docker pull esphome/esphome:latest
+    docker pull ghcr.io/esphome/esphome:stable
 
 And in Home Assistant, there's a simple UPDATE button when there's an update
 available as with all add-ons.
@@ -178,7 +178,7 @@ by installing the tested beta:
     pip3 install --pre -U esphome
 
     # For docker-based installs
-    docker run [...] -it esphome/esphome:beta run livingroom.yaml
+    docker run [...] -it ghcr.io/esphome/esphome:beta run livingroom.yaml
 
 For Home Assistant supervised installs add the community addons beta repository by
 adding
@@ -198,11 +198,11 @@ To install the dev version of ESPHome:
 - In Home Assistant: Add the ESPHome repository `https://github.com/esphome/home-assistant-addon <https://github.com/esphome/home-assistant-addon>`__
   in Add-on store -> Repositories. Then install the add-on  ``ESPHome Dev``
 - From ``pip``: Run ``pip3 install https://github.com/esphome/esphome/archive/dev.zip``
-- From docker, use the `esphome/esphome:dev <https://hub.docker.com/r/esphome/esphome/tags?page=1&name=dev>`__ image
+- From docker, use the `ghcr.io/esphome/esphome:dev <https://github.com/esphome/esphome/pkgs/container/esphome/>`__ image
 
   .. code-block:: bash
 
-      docker run [...] -it esphome:dev livingroom.yaml compile
+      docker run [...] -it ghcr.io/esphome/esphome:dev livingroom.yaml compile
 
 The latest dev docs are here: `next.esphome.io <https://next.esphome.io/>`__
 
@@ -305,37 +305,37 @@ Install versions:
 .. code-block:: bash
 
     # Stable Release
-    docker pull esphome/esphome
+    docker pull ghcr.io/esphome/esphome
     # Beta
-    docker pull esphome/esphome:beta
+    docker pull ghcr.io/esphome/esphome:beta
     # Dev version
-    docker pull esphome/esphome:dev
+    docker pull ghcr.io/esphome/esphome:dev
 
 Command reference:
 
 .. code-block:: bash
 
     # Start a new file wizard for file livingroom.yaml
-    docker run --rm -v "${PWD}":/config -it esphome/esphome wizard livingroom.yaml
+    docker run --rm -v "${PWD}":/config -it ghcr.io/esphome/esphome wizard livingroom.yaml
 
     # Compile and upload livingroom.yaml
-    docker run --rm -v "${PWD}":/config -it esphome/esphome run livingroom.yaml
+    docker run --rm -v "${PWD}":/config -it ghcr.io/esphome/esphome run livingroom.yaml
 
     # View logs
-    docker run --rm -v "${PWD}":/config -it esphome/esphome logs livingroom.yaml
+    docker run --rm -v "${PWD}":/config -it ghcr.io/esphome/esphome logs livingroom.yaml
 
     # Map /dev/ttyUSB0 into container
-    docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome ...
+    docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it ghcr.io/esphome/esphome ...
 
     # Start dashboard on port 6052 (general command)
     # Warning: this command is currently not working with Docker on MacOS. (see note below)
-    docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome
+    docker run --rm -v "${PWD}":/config --net=host -it ghcr.io/esphome/esphome
 
     # Start dashboard on port 6052 (MacOS specific command)
-    docker run --rm -p 6052:6052 -e ESPHOME_DASHBOARD_USE_PING=true -v "${PWD}":/config -it esphome/esphome
+    docker run --rm -p 6052:6052 -e ESPHOME_DASHBOARD_USE_PING=true -v "${PWD}":/config -it ghcr.io/esphome/esphome
 
     # Setup a bash alias:
-    alias esphome='docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome'
+    alias esphome='docker run --rm -v "${PWD}":/config --net=host -it ghcr.io/esphome/esphome'
 
 And a docker compose file looks like this:
 
@@ -345,7 +345,7 @@ And a docker compose file looks like this:
 
     services:
       esphome:
-        image: esphome/esphome
+        image: ghcr.io/esphome/esphome
         volumes:
           - ./:/config:rw
           # Use local time for logging timestamps
@@ -356,24 +356,21 @@ And a docker compose file looks like this:
           - /dev/ttyACM0:/dev/ttyACM0
         network_mode: host
         restart: always
-        
+
 
 .. _docker-reference-notes:
 .. note::
 
-    By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
-    to work you need to enable host networking mode
+    By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature to work you need to enable host networking mode. 
 
     On MacOS the networking mode ("-net=host" option) doesn't work as expected. You have to use
     another way to launch the dashboard with a port mapping option and use alternative to mDNS
     to have the online/offline stat (see below)
 
     mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
-    If your router supports Avahi, you are able to get mDNS working over different subnets.
+    If your router supports Avahi (eg. OpenWRT or pfSense), you are able to get mDNS working over different subnets following the steps below:
 
-    Just follow the next steps:
-
-    1. Enable Avahi on both subnets.
+    1. Enable Avahi on both subnets (install Avahi modules on OpenWRT or pfSense).
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 
     Alternatively, you can make esphome use ICMP pings to check the status of the device
@@ -420,7 +417,7 @@ If an external pullup/down changes the configured voltage levels boot failures o
 While the use of them in software is not a problem, if there's something attached to the pins (particularly if they're not floating during the bootup) you may run into problems.
 It's recommended to avoid them unless you have a pressing need to use them and you have reviewed the expected boot voltage levels of these pins from the ESP datasheet.
 
-Some development boards connect GPIO 0 to a button, often labeled "boot". Holding this button while the ESP is turning on will cause it to go into bootloader mode. Once the ESP is fully booted up, this button can be used as a normal input safely. 
+Some development boards connect GPIO 0 to a button, often labeled "boot". Holding this button while the ESP is turning on will cause it to go into bootloader mode. Once the ESP is fully booted up, this button can be used as a normal input safely.
 
 How can I test a Pull Request?
 ------------------------------

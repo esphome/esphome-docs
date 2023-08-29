@@ -31,8 +31,18 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
 Configuration variables:
 ------------------------
 
-- **type** (**Required**, string): The type of LAN chipset/phy. Must be one of
-  ``LAN8720``, ``RTL8201``, ``DP83848`` or ``IP101``.
+- **type** (**Required**, string): The type of LAN chipset/phy.
+
+  Supported chipsets are:
+
+  - ``LAN8720``
+  - ``RTL8201``
+  - ``DP83848``
+  - ``IP101``
+  - ``JL1101``
+  - ``KSZ8081``
+  - ``KSZ8081RNA``
+
 - **mdc_pin** (**Required**, :ref:`config-pin`): The MDC pin of the board.
   Usually this is ``GPIO23``.
 - **mdio_pin** (**Required**, :ref:`config-pin`): The MDIO pin of the board.
@@ -122,7 +132,7 @@ Configuration examples
       clk_mode: GPIO0_OUT
       phy_addr: 0
       power_pin: GPIO04
-      
+
 **Wireless Tag WT32-ETH01** and **SMLIGHT SLZB-06 PoE Zigbee**:
 
 .. code-block:: yaml
@@ -146,7 +156,7 @@ Configuration examples
       clk_mode: GPIO0_IN
       phy_addr: 1
       power_pin: GPIO5
-      
+
 **AiThinker ESP32-G Gateway**:
 
 .. code-block:: yaml
@@ -183,6 +193,7 @@ Configuration examples
 
     Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY. Revision 7 and newer of it use the RTL8201 Ethernet PHY. Support for RTL8201 is available from ESPHome version 2022.12 upwards.
 
+
 **OpenHacks LAN8720**:
 
 .. code-block:: yaml
@@ -198,6 +209,18 @@ Configuration examples
     This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure
     you are monitoring the serial output and reboot the device several times to see if it boots into the
     program properly.
+
+
+**Esp32-Stick-Eth** and **Esp32-Stick-PoE-P** and **Esp32-Stick-PoE-A**:
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO17_OUT
+      phy_addr: 1
 
 
 

@@ -31,25 +31,18 @@ Example sensors:
     sensor:
       - platform: htu21d
         temperature:
-          name: "Living Room Temperature"
+          name: "Temperature"
         humidity:
-          name: "Living Room Humidity"
-        update_interval: 60s
+          name: "Humidity"
 
 Configuration variables:
 ------------------------
 
-- **temperature** (**Required**): The information for the temperature sensor.
+- **temperature** (*Optional*): The information for the temperature sensor.
+  All options from :ref:`Sensor <config-sensor>`.
 
-  - **name** (**Required**, string): The name for the temperature sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **humidity** (**Required**): The information for the humidity sensor.
-
-  - **name** (**Required**, string): The name for the humidity sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- **humidity** (*Optional*): The information for the humidity sensor.
+  All options from :ref:`Sensor <config-sensor>`.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 
@@ -58,6 +51,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :doc:`dht`
 - :doc:`dht12`
 - :doc:`hdc1080`
