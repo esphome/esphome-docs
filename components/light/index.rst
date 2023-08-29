@@ -909,7 +909,7 @@ Available variables in the lambda:
               // stopping and starting the effect again
               static uint16_t progress = 0;
 
-              // normal variables lost their value after each
+              // normal variables lose their value after each
               // execution - basically after each update_interval
               uint16_t changes = 0;
 

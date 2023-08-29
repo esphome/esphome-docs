@@ -231,7 +231,7 @@ Configuration variables:
     to translate the TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
     add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
     to install it using
-    ``pip install pillow``.
+    ``pip install "pillow>4.0.0,<10.0.0"``.
 
 .. _display-static_text:
 
@@ -672,7 +672,9 @@ Configuration variables:
 - **file** (**Required**, string):
 
   - **Local files**: The path (relative to where the .yaml file is) of the image file.
-  - **Material Design Icons**: Specify the `Material Design Icon <https://pictogrammers.com/library/mdi/>`_ id in the format ``mdi:icon-name``, and that icon will automatically be downloaded and added to the configuration.
+  - **Material Design Icons**: Specify the `Material Design Icon <https://pictogrammers.com/library/mdi/>`_
+    id in the format ``mdi:icon-name``, and that icon will automatically be downloaded and added to the configuration.
+  
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
 - **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
@@ -782,6 +784,8 @@ This can be combined with all Lambdas:
           // Draw the animation my_animation at position [x=0,y=0]
           it.image(0, 0, id(my_animation), COLOR_ON, COLOR_OFF);
 
+Additionally, you can use the ``animation.next_frame``, ``animation.prev_frame`` or ``animation.set_frame`` actions.
+
 .. note::
 
     To draw the next animation independent of Display draw cycle use an interval:
@@ -791,8 +795,7 @@ This can be combined with all Lambdas:
         interval:
           - interval: 5s
               then:
-                lambda: |-
-                  id(my_animation).next_frame();
+                animation.next_frame: my_animation
 
 
 Configuration variables:
@@ -820,6 +823,22 @@ Configuration variables:
   - **start_frame** (*Optional*, int): The frame to loop back to when ``end_frame`` is reached. Defaults to the first frame in the animation.
   - **end_frame** (*Optional*, int): The last frame to show in the loop; when this frame is reached it will loop back to ``start_frame``. Defaults to the last frame in the animation.
   - **repeat** (*Optional*, int): Specifies how many times the loop will run. When the count is reached, the animation will continue with the next frame after ``end_frame``, or restart from the beginning if ``end_frame`` was the last frame. Defaults to "loop forever".
+
+Actions:
+^^^^^^^^
+
+- **animation.next_frame**: Moves the animation to the next frame. This is equivalent to the ``id(my_animation).next_frame();`` lambda call.
+
+  - **id** (**Required**, :ref:`config-id`): The ID of the animation to animate.
+
+- **animation.prev_frame**: Moves the animation to the previous frame. This is equivalent to the ``id(my_animation).prev_frame();`` lambda call.
+
+  - **id** (**Required**, :ref:`config-id`): The ID of the animation to animate.
+
+- **animation.set_frame**: Moves the animation to a specific frame. This is equivalent to the ``id(my_animation).set_frame(frame);`` lambda call.
+
+  - **id** (**Required**, :ref:`config-id`): The ID of the animation to animate.
+  - **frame** (**Required**, int): The frame index to show next.
 
 .. _display-pages:
 
