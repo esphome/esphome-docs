@@ -18,7 +18,7 @@ networks (WiFi, Ethernet).
 Configuration variables:
 ------------------------
 
-- **enable_ipv6** (*Optional*, boolean): Enables IPv6 support. Defaults to ``false``. Available on ESP32 with ESP-IDF and Arduino framework.
+- **enable_ipv6** (*Optional*, boolean): Enables IPv6 support. Defaults to ``true``. Available on ESP32 with ESP-IDF and Arduino framework.
 
 See Also
 --------
