@@ -1,3 +1,5 @@
+.. _gpio-binary-sensor:
+
 GPIO Binary Sensor
 ==================
 

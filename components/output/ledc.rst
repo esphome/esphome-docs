@@ -78,6 +78,11 @@ Advanced options:
   channel <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel>`__
   to use. Two adjacent channels share the same timer. Defaults to an automatic selection.
 
+Note: When configuring custom frequencies for two or more outputs, ensure that you manually specify
+channel 0, 2, 4, 6 for each output. This will prevent issues that arise from automatic selection,
+which chooses adjacent channels with shared timers. See
+`Issue #3114 <https://github.com/esphome/issues/issues/3114>`__ for more details.
+
 Recommended frequencies
 -----------------------
 

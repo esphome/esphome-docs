@@ -174,6 +174,7 @@ Air Quality
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Radon, CO2, Volatile organics
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
     EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
+    GCJA5, components/sensor/gcja5, gcja5.svg, Particulate
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MiCS-4514, components/sensor/mics_4514, mics_4514.jpg, Gas concentration
@@ -236,6 +237,7 @@ Distance
 ********
 .. imgtable::
 
+    A01NYUB, components/sensor/a01nyub, a01nyub.jpg, Acoustic distance
     HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg, Acoustic distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
@@ -289,6 +291,7 @@ Environmental
     BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
     BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Pressure
     BMP388 and BMP390, components/sensor/bmp3xx, bmp388.jpg, Temperature & Pressure
+    BMP581, components/sensor/bmp581, bmp581.jpg, Temperature & Pressure
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
@@ -394,6 +397,7 @@ Thermocouple
 ************
 .. imgtable::
 
+    KMeterISO, components/sensor/kmeteriso, kmeteriso.jpg, K-Type,
     MAX31855, components/sensor/max31855, max31855.jpg, K-Type
     MAX31856, components/sensor/max31856, max31856.jpg, All types
     MAX31865, components/sensor/max31865, max31865.jpg, Platinum RTD

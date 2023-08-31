@@ -217,6 +217,7 @@ advanced stuff.
 
 This trigger is activated each time the state of the climate device is updated
 (for example, if the current temperature measurement or the mode set by the users changes).
+The ``Climate`` itself is available to automations as the reference ``x``.
 
 .. code-block:: yaml
 
@@ -224,7 +225,11 @@ This trigger is activated each time the state of the climate device is updated
       - platform: midea  # or any other platform
         # ...
         on_state:
-        - logger.log: "State updated!"
+          - logger.log: "State updated!"
+          - lambda: |-
+              if (x.mode != CLIMATE_MODE_OFF)
+                id(some_binary_sensor).publish_state(true);
+
 
 .. _climate-on_control_trigger:
 
@@ -235,15 +240,22 @@ This trigger is activated each time a *control* input of the climate device
 is updated via a ``ClimateCall`` (which includes changes coming in from Home
 Assistant).  That is, this trigger is activated for, for example, changes to
 the mode, *but not* on temperature measurements.  It will be invoked prior to
-the ``on_state`` trigger, if both are defined.
+the ``on_state`` trigger, if both are defined. The ``ClimateCall`` control
+object is available to automations as the reference ``x`` that can be changed.
 
 .. code-block:: yaml
 
     climate:
-      - platform: midea  # or any other platform
+      - platform: ...
         # ...
         on_control:
-        - logger.log: "Control input received; configuration updated!"
+          - logger.log: "Control input received; configuration updated!"
+          - lambda: |-
+              if (x.get_mode() != CLIMATE_MODE_OFF) {
+                  id(turnoff_script).stop();
+                  x.set_target_temperature(25.0f);
+              }
+
 
 See Also
 --------
