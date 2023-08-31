@@ -43,13 +43,35 @@ Configuration variables:
 - **clk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for the clock line of the SPI bus.
 - **mosi_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the MOSI line of the SPI bus.
 - **miso_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the MISO line of the SPI bus.
-- **force_sw** (*Optional*, boolean): Whether software implementation should be used even if hardware one is available.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this SPI hub if you need multiple SPI hubs.
+- **interface** (*Optional*): Controls which hardware or software SPI interface should be used.
+  Value may be one of ``any`` (default), ``software`` or a number corresponding to a hardware interface.
+  See discussion below.
+- **force_sw** (*Optional*, **Deprecated**, boolean): Whether software implementation should be used even if a hardware
+  interface is available. Default is ``false``.
 
-**Please note:** while both ESP8266 and ESP32 support the reassignment of the default SPI pins to other GPIO pins, using the dedicated SPI pins can improve performance and stability for certain ESP/device combinations. The ESP8266 supports only one SPI bus,
-while the ESP32 supports 2. Additional software SPI buses can be configured, but the maximum achievable data rate with
-the software implementation is less than 1MHz.
+Interface selection:
+--------------------
 
+ESP32 and ESP8266 chips have several hardware SPI controller interfaces - usually the first one or two are reserved for use to access
+the flash and PSRAM memories, leaving one or two user-accessible SPI controllers. An SPI hub configured in
+ESPHome can be assigned to one of these interfaces with the ``interface:`` configuration option.
+
+The numbering of
+these interfaces in the YAML configuration starts with 0, corresponding to the first user-accessible SPI controller. Check the datasheet
+for a given chip to determine which this is, but it will typically be ``SPI1`` on ESP8266 and ``SPI2`` on ESP32. Any further
+available interfaces will be sequentially numbered. Unless you have a particular need to choose a specific interface
+just leave this option at the default of ``any``.
+
+If the ``software`` option is chosen, or you configure more SPI hubs than there are available hardware controllers,
+the remaining hubs will use a software implementation, which is unable to achieve data rates above a few hundred
+kHz.
+
+While the ESP32 supports the reassignment of the default SPI pins to most other GPIO pins, using the dedicated SPI pins can improve performance and stability for certain ESP/device combinations. ESP8266 has a more limited selection of pins that can be used, again
+check the datasheet for more information.
+
+Generic SPI device component:
+-----------------------------
 .. _spi_device:
 
 Other components that depend on the SPI component will reference the SPI component, typically to communicate with specific
@@ -66,6 +88,7 @@ Reads and writes on the device can be performed with lambdas. For example:
 
     spi_device:
         id: spidev
+        cs_pin: GPIO13
         data_rate: 2MHz
         mode: 3
         bit_order: lsb_first
@@ -84,9 +107,24 @@ Configuration variables:
 - **data_rate** (*Optional*): Set the data rate of the SPI interface. One of ``80MHz``, ``40MHz``, ``20MHz``, ``10MHz``,
   ``5MHz``, ``4MHz``, ``2MHz``, ``1MHz`` (default), ``200kHz``, ``75kHz`` or ``1kHz``. A numeric value in Hz can alternatively
   be specified.
-- **mode** (*Optional*): Set the SPI mode - one of ``mode0``, ``mode``, ``mode2``, ``mode3``. The default is ``mode3``.
+- **mode** (*Optional*): Set the SPI mode - one of ``mode0``, ``mode1``, ``mode2``, ``mode3``. The default is ``mode3``.
+  See table below for more information
 - **bit_order** (*Optional*): Set the SPI bit order - choose one of ``msb_first`` (default) or ``lsb_first``.
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+
+SPI modes:
+----------
+
+SPI devices operate in one of four modes as per the table below. Mode 3 is the most commonly used.
+
+.. csv-table:: Supported Modes
+    :header: "Mode", "Clock Idle Polarity", "Clock Phase", "Data shifted on", "Data sampled on"
+
+    "0", "low", "leading", "/CS activation and falling CLK", "rising CLK"
+    "1", "low", "trailing", "rising CLK", "falling CLK"
+    "2", "high", "leading", "/CS activation and rising CLK", "falling CLK"
+    "3", "high", "trailing", "falling CLK", "rising CLK"
+
 
 
 See Also
