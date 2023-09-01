@@ -52,7 +52,7 @@ Configuration variables:
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 
-Heater can be enable to helps to correct the reading, please read the datasheet for more information.
+The heater may be enabled to help correct the reading; see the datasheet for more information.
 
 See Also
 --------
