@@ -39,7 +39,7 @@ ESP heap memory (free space, maximum free block size and fragmentation level) an
         loop_time:
           name: "Loop Time"
         psram:
-          name: "PSRAM Free"
+          name: "Free PSRAM"
 
     # Logger must be at least debug (default)
     logger:
