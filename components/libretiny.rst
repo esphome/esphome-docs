@@ -14,7 +14,7 @@ It provides support for the following microcontrollers:
 Since different microcontrollers are supported, you need to include the appropriate ESPHome component,
 depending on which processor your device has.
 
-Refer to `LibreTiny/Boards <https://docs.libretiny.eu/docs/status/supported/>`__ to find your board type.
+Refer to `LibreTiny/Boards <https://docs.libretiny.eu/link/boards>`__ to find your board type.
 
 .. code-block:: yaml
 
@@ -62,6 +62,25 @@ Configuration variables:
 
     Please report any issues on `LibreTiny GitHub <https://github.com/kuba2k2/libretiny>`__.
 
+Getting Started
+---------------
+
+Since BK72xx and RTL87xx chips are relatively new on the IoT Open Source development stage,
+there aren't many resources on flashing and configuring them.
+
+Here are a few useful links:
+
+- `tuya-cloudcutter <https://github.com/tuya-cloudcutter/tuya-cloudcutter>`__ - flashing ESPHome Over-the-Air
+  to some devices compatible with Tuya/SmartLife apps (BK72xx only!)
+
+  - `Textual & video guide by digiblurDIY <https://docs.libretiny.eu/link/cloudcutter-digiblur>`__
+  - `Video guide by LibreTiny <https://docs.libretiny.eu/link/cloudcutter-video>`__
+  - `ESPHome-Kickstart <https://docs.libretiny.eu/link/kickstart>`__ - starter firmware to upload OTA with Cloudcutter
+
+- `Flashing BK72xx by UART <https://docs.libretiny.eu/link/flashing-beken-72xx>`__
+- `Flashing RTL8710B by UART <https://docs.libretiny.eu/link/flashing-realtek-ambz>`__
+- `UPK2ESPHome <https://upk.libretiny.eu/>`__ - generating ESPHome YAML automatically, from Cloudcutter profiles or Kickstart firmware (also BK72xx only)
+
 GPIO Pin Numbering
 ------------------
 
@@ -70,11 +89,11 @@ you don't have to worry about other kinds of pin numberings, yay!
 
 Additionally, you can use **pin function macros** to quickly access a GPIO tied to a particular peripheral,
 such as UART1 TX/RX or PWM0.
-See `LibreTiny/GPIO Access <https://docs.libretiny.eu/docs/getting-started/gpio/>`__ to learn more.
+See `LibreTiny/GPIO Access <https://docs.libretiny.eu/link/gpio-access>`__ to learn more.
 
 Most of the popular boards (often incorrectly called "chips"), that are usually shipped with Smart Home devices,
 are *supported by LibreTiny*, which means that a pinout drawing is available, with all GPIOs described.
-Visit `LibreTiny/Boards <https://docs.libretiny.eu/docs/status/supported/>`__ to find all supported boards.
+Visit `LibreTiny/Boards <https://docs.libretiny.eu/link/boards>`__ to find all supported boards.
 
 The ``Pin functions`` table outlines all GPIOs available on the chosen board.
 *You can use any of the visible names* to access a particular GPIO.
@@ -82,7 +101,7 @@ The ``Pin functions`` table outlines all GPIOs available on the chosen board.
 Some notes about the pins on BK72xx:
 
 - ``TX2 (P0)`` and ``RX2 (P1)`` are used for the default :doc:`/components/logger` UART port.
-- ``TX1 (P11)`` and ``TX1 (P10)`` are used for flashing firmware, as well as for :doc:`/components/tuya`.
+- ``TX1 (P11)`` and ``RX1 (P10)`` are used for flashing firmware, as well as for :doc:`/components/tuya`.
 - ``ADC3 (P23)`` is the only :doc:`/components/sensor/adc` available on BK7231.
 
 Some notes about the pins on RTL8710BN/BX:
@@ -153,7 +172,7 @@ These are some advanced configuration options of LibreTiny platform.
   ``warn`` (default), ``error``, ``fatal``, ``none``.
 
 - **debug** (*Optional*, string or string list): Modules to enable LibreTiny debugging for.
-  Refer to `LibreTiny/Configuration <https://docs.libretiny.eu/docs/dev/config/#per-module-logging-debugging>`__
+  Refer to `LibreTiny/Configuration <https://docs.libretiny.eu/link/config-debug>`__
   for more information - some modules are enabled by default.
   One or more of ``wifi``, ``client``, ``server``, ``ssl``, ``ota``, ``fdb``,
   ``mdns``, ``lwip``, ``lwip_assert``.
@@ -162,7 +181,7 @@ These are some advanced configuration options of LibreTiny platform.
 - **sdk_silent** (*Optional*, string): Define the SDK logging "silent mode".
   This disables messages from vendor SDKs, which makes UART output more readable, but can hide some error messages.
   *This affects the physical UART port only*.
-  Refer to `LibreTiny/Configuration <https://docs.libretiny.eu/docs/dev/config/#serial-output>`__ for more information.
+  Refer to `LibreTiny/Configuration <https://docs.libretiny.eu/link/config-serial>`__ for more information.
 
   - ``all``: Disable all messages (default).
   - ``auto``: Disable selectively, i.e. during Wi-Fi activation.
@@ -177,7 +196,7 @@ These are some advanced configuration options of LibreTiny platform.
   to free GPIOs that should be used for other functions. Defaults to ``true``.
 
 - **options** (*Optional*, mapping): Custom options passed to LibreTiny platform.
-  Refer to `LibreTiny/Configuration <https://docs.libretiny.eu/docs/dev/config/>`__ to see all options.
+  Refer to `LibreTiny/Configuration <https://docs.libretiny.eu/link/config>`__ to see all options.
   *This takes precedence (overrides) all options described above*.
 
 See Also
