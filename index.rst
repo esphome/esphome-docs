@@ -5,14 +5,14 @@
 
 .. seo::
     :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that
-      tries to provide the best possible use experience for using ESP8266, ESP32 and RP2040 microcontrollers
+      tries to provide the best possible use experience for using IoT microcontrollers
       for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
     :image: logo.svg
 
 .. image:: /images/logo-text.svg
     :class: dark-invert
 
-ESPHome is a system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
+ESPHome is a system to control your microcontrollers by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
 .. image:: /images/hero.png
 
@@ -124,6 +124,8 @@ Platforms
     ESP8266, components/esp8266, esp8266.svg
     ESP32, components/esp32, esp32.svg
     RP2040, components/rp2040, rp2040.svg
+    BK72xx, components/libretiny, bk72xx.svg
+    RTL87xx, components/libretiny, rtl87xx.svg
 
 Core Components
 ---------------
