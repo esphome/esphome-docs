@@ -499,6 +499,7 @@ Output Components
     GPIO Output, components/output/gpio, pin.svg, dark-invert
     ESP32 DAC, components/output/esp32_dac, dac.svg
     ESP32 LEDC, components/output/ledc, pwm.png
+    LibreTiny PWM, components/output/libretiny_pwm, pwm.png
     AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg, dark-invert
     PCA9685, components/output/pca9685, pca9685.jpg
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg

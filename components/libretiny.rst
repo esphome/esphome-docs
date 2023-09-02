@@ -203,5 +203,6 @@ See Also
 --------
 
 - :doc:`esphome`
+- :doc:`/components/output/libretiny_pwm`
 - `LibreTiny Documentation <https://docs.libretiny.eu/>`__ (external)
 - :ghedit:`Edit`
