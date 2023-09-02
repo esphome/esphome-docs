@@ -1,5 +1,5 @@
 LibreTiny PWM Output
-===========================
+====================
 
 .. seo::
     :description: Instructions for setting up LibreTiny hardware PWMs.
@@ -36,7 +36,7 @@ Configuration variables:
 .. _output-libretiny_pwm-set_frequency_action:
 
 ``output.libretiny_pwm.set_frequency`` Action
--------------------------------------------
+---------------------------------------------
 
 This :ref:`Action <config-action>` allows you to manually change the frequency of a LibreTiny PWM
 channel at runtime. Use cases include controlling a passive buzzer (for pitch control).
