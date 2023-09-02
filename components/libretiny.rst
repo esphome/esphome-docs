@@ -115,31 +115,42 @@ Example configuration entries using various naming styles:
 
 .. code-block:: yaml
 
+    # GPIO switch on P26/GPIO26 (BK72xx example)
     switch:
       - platform: gpio
         name: Relay 1
         pin: P26
 
+    # GPIO binary sensor on PA12 (RTL87xx example)
     binary_sensor:
       - platform: gpio
         name: "Pin PA12"
         pin: PA12
 
+    # ADC reading (BK72xx example)
     sensor:
       - platform: adc
         pin: ADC3
         name: "Battery Level"
 
+    # PWM component
     output:
       - platform: libretiny_pwm
         pin: PWM2
         frequency: 1000 Hz
         id: pwm_output
-
+    # using light with the PWM
     light:
       - platform: monochromatic
         output: pwm_output
         name: "Kitchen Light"
+
+    # Tuya MCU on UART1 (BK72xx example)
+    uart:
+      rx_pin: RX1
+      tx_pin: TX1
+      baud_rate: 9600
+    tuya:
 
 .. _advanced-options:
 
@@ -206,4 +217,5 @@ See Also
 - :doc:`/components/output/libretiny_pwm`
 - :doc:`/components/text_sensor/libretiny`
 - `LibreTiny Documentation <https://docs.libretiny.eu/>`__ (external)
+- :doc:`/components/tuya`
 - :ghedit:`Edit`
