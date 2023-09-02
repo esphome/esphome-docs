@@ -57,7 +57,7 @@ Configuration variables:
   - ESP32:
 
     - Chip model, cores, revision
-    - Chip features (BLE / BT / WiFi_BGN / EMB_FLASH / ...)
+    - Chip features (BLE / BT / WiFi_BGN / EMB_FLASH / EMB_PSRAM / ...)
     - ESP-IDF version
     - EFuse MAC
     - Reset reason
