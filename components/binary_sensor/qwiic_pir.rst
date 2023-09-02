@@ -33,8 +33,6 @@ To use the sensor, first set up an :ref:`I²C Bus <i2c>` and connect the sensor 
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the motion sensor.
-- **id** (*Optional*, :ref:`config-id`): Manually specifiy the ID used for code generation.
 - **debounce_mode** (*Optional*, enum): How the component debounces the motion sensor's signal. Must be one of ``HYBRID``, ``NATIVE``, or ``RAW``. See :ref:`debounce-modes` for details. Defaults to ``HYBRID``.
 - **debounce** (*Optional*, :ref:`config-time`): Only valid when using ``NATIVE`` debounce mode. Configures the debounce time on the sensor to reduce noise and false detections. Defaults to ``1ms``.
 
