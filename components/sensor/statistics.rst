@@ -350,7 +350,7 @@ This automation triggers after all the configured sensors update.  In :ref:`Lamb
 Lambdas Calls for ``Aggregate`` Objects
 ***************************************
 
-The ``on_update`` trigger provides the variable ``x``, which stores the :apiref:`Aggregate Object <statistics/aggregate.h>` that contains the current statistics available based on the configured sensors. This object has many functions that access the underlying data in their native data types, which may be helpful to compute other statistics not currently available as a sensor.
+The ``on_update`` trigger provides the variable ``x``, which stores the :apiref:`Aggregate Object <statistics/aggregate.h>` that contains the current statistics available based on the configured sensors. This object has many functions that access the underlying data in their native data types, which may be helpful to compute other statistics not currently available as a sensor. If you are using the ``continuous`` window type, all functions return valid statistics. For other window types, be sure to configure the required sensors noted for each function that you want to use.
 
   - ``compute_covariance(bool time_weighted, GroupType type)``: Compute the covariance of the set of measurements with respect to timestamps. It applies Bessel's correction or implements reliability weights if the group type is a sample.
   
@@ -358,6 +358,11 @@ The ``on_update`` trigger provides the variable ``x``, which stores the :apiref:
     - ``GroupType type``: Either ``SAMPLE_GROUP_TYPE`` OR ``POPULATION_GROUP_TYPE``
     - returns the covariance as a ``double`` type
     - valid if ``trend`` sensor is configured
+
+  - ``compute_quadrature()``: Compute the area under the curve of the measurements.
+
+    - returns the area under the curve as a ``double`` type, with units of the source sensor times milliseconds
+    - valid if ``mean`` and ``duration`` sensors are configured
 
   - ``compute_std_dev(bool time_weighted, GroupType type)``: Compute the standard deviation of the set of measurements. Applies Bessel's correction or implements reliability weights if the group type is a sample.
 
