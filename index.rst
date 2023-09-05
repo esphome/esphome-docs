@@ -540,7 +540,7 @@ Light Components
 
     Tuya Dimmer, components/light/tuya, tuya.png
     Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg
-    Custom Light, components/light/custom, language-cpp.svg
+    Custom Light, components/light/custom, language-cpp.svg, dark-invert
     LightWaveRF, components/light/lightwaverf, brightness-medium.svg
 
     H-bridge Light, components/light/hbridge, brightness-medium.svg, dark-invert

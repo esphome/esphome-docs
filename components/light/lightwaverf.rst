@@ -90,5 +90,4 @@ See Also
 --------
 
 - :doc:`/components/light/index`
-- :doc:`/components/output/esp8266_pwm`
 - :ghedit:`Edit`
