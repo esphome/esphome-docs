@@ -5,7 +5,7 @@ SPI RGB LED Light
     :description: Instructions for setting up SPI LED RGB lights in ESPHome.
     :image: ../components/light/images/apa102.jpg
 
-The ``spi_rgb_led`` light platform drives one or more SPI interfaced RGB LEDs. These LEDs are often used in strips, where
+The ``spi_led_strip`` light platform drives one or more SPI interfaced RGB LEDs. These LEDs are often used in strips, where
 each LED is individually addressable. This component requires an SPI interface to be configured.
 
 This component has been tested with APA102 LEDs and should also work with HD107 and SK9822 type LEDs, or any others
@@ -23,7 +23,7 @@ with a similar interface - SPI, 8 bits per colour and BGR ordering.
       clk_pin: GPIO9
 
     light:
-      - platform: spi_rgb_led
+      - platform: spi_led_strip
         num_leds: 30
         color_correct: [80%, 60%, 100%]
         id: rgb_led
