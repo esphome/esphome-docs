@@ -72,22 +72,24 @@ Configuration variables:
     ``backlight_pin`` and ``reset_pin``.
   - ``Custom`` (see details below)
 
-- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
-- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin - required except for some boards with presets.
-- **reset_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The RESET pin - also has presets on some boards.
-- **height** (*Optional*, int): Sets height of display in pixels.
-- **width** (*Optional*, int): Sets width of display.
-- **offset_height** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the display's vertical
+Options below marked **Required unless preset** must be provided but may be defined by a preset depending on the selected model, so
+may not need to be explicitly specified in your YAML file. If you do specify them they will override any preset.
+
+- **cs_pin** (**Required unless preset**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **dc_pin** (**Required unless preset**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (**Required unless preset**, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **height** (**Required unless preset**, int): Sets height of display in pixels.
+- **width** (**Required unless preset**, int): Sets width of display.
+- **offset_height** (**Required unless preset**, int): When ``model`` is set to "Custom", use this to specify the display's vertical
   offset in pixels. This option may not be specified when the ``model`` is not set to "Custom".
-- **offset_width** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the display's horizontal
+- **offset_width** (**Required unless preset**, int): When ``model`` is set to "Custom", use this to specify the display's horizontal
   offset in pixels. This option may not be specified when the ``model`` is not set to "Custom".
 - **eightbitcolor** (*Optional*, boolean): Limits the supported color depth to eight bits. May be useful on
-  memory-constrained devices.
-- **backlight_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The display's backlight pin.
+  memory-constrained devices. Defaults to false.
+- **backlight_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The display's backlight pin. May be required
+  depending on the hardware configuration.
 - **power_supply** (*Optional*, :ref:`config-id`): The :doc:`power supply </components/power_supply>` to connect to
-  this display. The power supply will be turned on before attempting to initialize the display. When ``model`` is set
-  to "Adafruit S2 TFT FEATHER 240X135" this option is required as there are variations of this board sold with differing
-  pin assignments.
+  this display if required by hardware. The power supply will be turned on before attempting to initialize the display.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
@@ -98,16 +100,93 @@ Configuration variables:
 Preset configuration
 ********************
 
-For specific models there is some preset configuration. All the above models except ``Custom`` preset the ``width``, ``height``
-``offset_width`` and ``offset_height`` since these are inherent to the display itself. For models that are part of a complete
-board (currently the two Lilygo boards, the Adafruit Funhouse and S2) the ``cs_pin``, ``dc_pin``, ``backlight_pin`` and ``reset_pin`` are preset.
+For specific models there is some preset configuration which will satisy some of the **Required unless preset** values.
+All models except ``Custom`` preset the ``height``, ``width`` and ``offset_...`` values.
+The table below summarises the other presets. Note that SPI CLK and SDO (mosi) pins, and the power supply pin must be separately
+configured in ``spi:`` and ``power_supply:`` blocks - the pins are noted below for convenience only.
 
-SPI clock and data pins must be configured in an ``spi:`` component (for the T-Embed board these are 12 and 11 respectively).
+Items marked RQ are hardware dependent but required and not preset. Items marked ? are optional depending on the hardware.
 
-A power supply component must be configured and specified for some boards (E.g. T-Embed, and Adafruit S2.)
+.. list-table:: Model presets
+   :header-rows: 1
+
+
+   * - Model
+     - Height/ width
+     - Offsets
+     - CS
+     - DC
+     - Reset
+     - Back light
+     - Pwr sup
+     - SPI clk
+     - SPI mosi
+   * - TTGO TDisplay 135x240
+     - 240/135
+     - 52/40
+     - 5
+     - 6
+     - 23
+     - 4
+     -
+     - 18
+     - 19
+   * - Adafruit Funhouse 240x240
+     - 240/240
+     - 0/0
+     - 40
+     - 39
+     - 41
+     - 21
+     -
+     - 36
+     - 35
+   * - Adafruit RR 280x240
+     - 240/240
+     - 0/20
+     - RQ
+     - RQ
+     - RQ
+     - ?
+     - ?
+     - RQ
+     - RQ
+   * - Adafruit S2 TFT FEATHER 240X135
+     - 240/135
+     - 52/40
+     - 7
+     - 39
+     - 40
+     - 45
+     - 21
+     - 36
+     - 35
+   * - LILYGO T-Embed 170X320
+     - 320/170
+     - 35/0
+     - 10
+     - 13
+     - 9
+     - 15
+     - 46
+     - 12
+     - 11
+   * - Custom
+     - RQ
+     - RQ
+     - RQ
+     - RQ
+     - RQ
+     - ?
+     - ?
+     - RQ
+     - RQ
+
+
 
 For all boards you can override the presets by specifying any of the configuration options. Pin assignments on some
-boards can change between versions.
+boards can change between versions so if it doesn't work with the presets check the board pinouts and override options as
+required.
 
 .. note::
 
