@@ -100,7 +100,7 @@ Preset configuration
 
 For specific models there is some preset configuration. All the above models except ``Custom`` preset the ``width``, ``height``
 ``offset_width`` and ``offset_height`` since these are inherent to the display itself. For models that are part of a complete
-board (currently the two Lilygo boards and the Adafruit S2) the ``cs_pin``, ``dc_pin``, ``backlight_pin`` and ``reset_pin`` are preset.
+board (currently the two Lilygo boards, the Adafruit Funhouse and S2) the ``cs_pin``, ``dc_pin``, ``backlight_pin`` and ``reset_pin`` are preset.
 
 SPI clock and data pins must be configured in an ``spi:`` component (for the T-Embed board these are 12 and 11 respectively).
 
