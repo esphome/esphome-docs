@@ -32,10 +32,7 @@ updates its measurements every 2 seconds.
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name for the ozone
-  sensor.
-- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-- All other options from :ref:`Sensor <config-sensor>`.
+- All options from :ref:`Sensor <config-sensor>`.
 
 - **address** (*Optional*, int): Manually specify the I²C address of
   the sensor. Defaults to ``0x73``. Sensor can be configured to ``0x70``, ``0x71``, ``0x72``, or ``0x73`` using jumpers on the board.
