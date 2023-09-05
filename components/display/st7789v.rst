@@ -62,28 +62,27 @@ to an ESP module.
 Configuration variables:
 ************************
 
-- **model** (**Required**, string): The display model to use. One of the following options:
-
-  - ``TTGO TDisplay 135x240`` Automatically specifies required pins.
-  - ``Adafruit Funhouse 240x240``
-  - ``Adafruit RR 280x240`` (round-rectangular display -- some pixels are "deleted" from corners to form rounded shape)
-  - ``Adafruit S2 TFT FEATHER 240X135`` (requires ``power_supply`` be specified, see below)
-  - ``LILYGO T-Embed 170X320`` requires ``power_supply`` be specified, but automatically specifies ``dc_pin``, ``cs_pin``,
-    ``backlight_pin`` and ``reset_pin``.
-  - ``Custom`` (see details below)
-
-Options below marked **Required unless preset** must be provided but may be defined by a preset depending on the selected model, so
+Options below marked **Required** *unless preset* must be provided but may be defined by a preset depending on the selected model, so
 may not need to be explicitly specified in your YAML file. If you do specify them they will override any preset.
 
-- **cs_pin** (**Required unless preset**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
-- **dc_pin** (**Required unless preset**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
-- **reset_pin** (**Required unless preset**, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
-- **height** (**Required unless preset**, int): Sets height of display in pixels.
-- **width** (**Required unless preset**, int): Sets width of display.
-- **offset_height** (**Required unless preset**, int): When ``model`` is set to "Custom", use this to specify the display's vertical
+- **model** (**Required**, string): The display model to use. One of the following options:
+
+  - ``TTGO TDisplay 135x240``
+  - ``Adafruit Funhouse 240x240``
+  - ``Adafruit RR 280x240`` (round-rectangular display -- some pixels are "deleted" from corners to form rounded shape)
+  - ``Adafruit S2 TFT FEATHER 240X135``
+  - ``LILYGO T-Embed 170X320``
+  - ``Custom`` For other displays not listed above
+
+- **height** (**Required** *unless preset*, int): Sets height of display in pixels.
+- **width** (**Required** *unless preset*, int): Sets width of display.
+- **offset_height** (**Required** *unless preset*, int): When ``model`` is set to "Custom", use this to specify the display's vertical
   offset in pixels. This option may not be specified when the ``model`` is not set to "Custom".
-- **offset_width** (**Required unless preset**, int): When ``model`` is set to "Custom", use this to specify the display's horizontal
+- **offset_width** (**Required** *unless preset*, int): When ``model`` is set to "Custom", use this to specify the display's horizontal
   offset in pixels. This option may not be specified when the ``model`` is not set to "Custom".
+- **cs_pin** (**Required** *unless preset*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **dc_pin** (**Required** *unless preset*, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (**Required** *unless preset*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **eightbitcolor** (*Optional*, boolean): Limits the supported color depth to eight bits. May be useful on
   memory-constrained devices. Defaults to false.
 - **backlight_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The display's backlight pin. May be required
@@ -100,7 +99,7 @@ may not need to be explicitly specified in your YAML file. If you do specify the
 Preset configuration
 ********************
 
-For specific models there is some preset configuration which will satisy some of the **Required unless preset** values.
+For specific models there is some preset configuration which will satisy some of the **Required** *unless preset* values.
 All models except ``Custom`` preset the ``height``, ``width`` and ``offset_...`` values.
 The table below summarises the other presets. Note that SPI CLK and SDO (mosi) pins, and the power supply pin must be separately
 configured in ``spi:`` and ``power_supply:`` blocks - the pins are noted below for convenience only.
