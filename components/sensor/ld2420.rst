@@ -120,10 +120,10 @@ Pinouts
       g15_move_threshold: 200
       g15_still_threshold: 100
 
-.. note::
+.. warning::
 
-    For UART configuration, ``baud_rate``, ``parity`` and ``stop_bits`` **must be** respectively ``115200 or 256000``, ``NONE`` and ``1``.
-    Use of hardware UART pins is critical in order to support the out-of-the-box 256000 or 115200 baud rates of the LD2420 sensor.
+    Use of a hardware UART is critical in order to support the out-of-the-box 256000 or 115200 baud rates of the LD2420 sensor. Communication problems are likely to result otherwise.
+    In addition, for UART configuration, ``baud_rate``, ``parity`` and ``stop_bits`` **must be** respectively ``115200 or 256000``, ``NONE`` and ``1``.
 
 Configuration variables:
 ************************
