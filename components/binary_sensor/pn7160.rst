@@ -503,24 +503,7 @@ Companion App.
     on_...
       then:
         - tag.set_write_message:
-            message: !lambda |-
-              static const char alphanum[] = "0123456789abcdef";
-              std::string uri = "https://www.home-assistant.io/tag/";
-              for (int i = 0; i < 8; i++) {
-                uri += alphanum[random_uint32() % (sizeof(alphanum) - 1)];
-              }
-              uri += "-";
-              for (int j = 0; j < 3; j++) {
-                for (int i = 0; i < 4; i++) {
-                  uri += alphanum[random_uint32() % (sizeof(alphanum) - 1)];
-                }
-                uri += "-";
-              }
-              for (int i = 0; i < 12; i++) {
-                uri += alphanum[random_uint32() % (sizeof(alphanum) - 1)];
-              }
-              ESP_LOGD("pn7160", "Payload to be written: %s", uri.c_str());
-              return uri;
+            message: !lambda "return nfc::get_random_ha_tag_ndef();"
         - tag.set_write_mode: my_pn7160_id
 
 See Also
