@@ -246,12 +246,16 @@ Configuration variables:
 Important Information:
 **********************
 
-Solid objects and noise outside the ``detection_gate_max`` and ``detection_gate_min`` can cause false
-detections or abnormal gate thresholds. For example if the gate max range includes a wall it can potentially
-generate signal reflections. If you see unusual detections confirm the issue by placing the sensor in a
-completely open area. Never place two sensors in each others detection field, this will certainly
-cause false detections. Noise is a problem in many enviroments and future releases of this component
-will have an auto noise floor configuration option once Hi-Link provided full documentation.
+Solid objects and noise outside the ``detection_gate_max`` and ``detection_gate_min`` may cause false
+detections or result in abnormal gate thresholds. For example, a wall within the gate max range can result
+in signal reflections. If your sensor reports unexpected detections, you should test it by placing it in a
+completely open room with no moving objects.
+
+Also, never place two or more sensors in a manner such that their detection fields overlap, as this will certainly
+result in false detections.
+
+Noise is a problem in many environments and we anticipate that future releases of this component will have an auto
+noise floor configuration option.
 
 See Also
 --------
