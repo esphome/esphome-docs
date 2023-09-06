@@ -145,7 +145,7 @@ and binary sensors. These may change, this is a early component release based on
   approximately 12-meter range; however, accuracy at this range may be diminished.
   The recommended maximum value is 12 * 70 cm which results in approximately 9 meters.
 - **g#_move_threshold** (*Optional*, int): Gate threashold level for motion energy detection (Gate # from 0 to 15).
-  Above this level for the considered gate (distance), movement detection will be triggered.
+  A value greater than that specified for the gate (distance) will trigger movement detection.
   Defaults to ``see table below``.
 - **g#_still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (Gate # from 0 to 15).
   Above this level for the considered gate (distance), still detection will be triggered.
