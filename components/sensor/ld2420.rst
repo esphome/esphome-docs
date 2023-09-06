@@ -82,7 +82,7 @@ Pinouts
       stop_bits: 1
 
     # The LD2420 has 16 time gate intervals (0-15) with a gate
-    # resolution of 0.75 meters
+    # resolution of 0.70 meters
     ld2420:
       presence_time_window: 120s
       detection_gate_min: 1
@@ -241,8 +241,8 @@ The ``ld2420`` binary sensor allows you to use your :doc:`ld2420` to sense prese
 Configuration variables:
 ************************
 
-- **has_target** (*Optional*): If true target detect either still or in movement.
-  All options from :ref:`Binary Sensor <config-binary_sensor>`.
+- **has_target** (*Optional*): If a target is detected with either still or in movement **has_target** will be set true
+  for the duration of the **presence_time_window** setting.
 
 Important Information:
 **********************
