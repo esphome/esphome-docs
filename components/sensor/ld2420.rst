@@ -228,7 +228,7 @@ Configuration variables:
 Binary Sensor
 -------------
 
-The ``ld2420`` binary sensor allows you to use your :doc:`ld2420` to sence presence.
+The ``ld2420`` binary sensor allows you to use your :doc:`ld2420` to sense presence.
 
 .. code-block:: yaml
 
