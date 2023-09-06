@@ -139,10 +139,11 @@ and binary sensors. These may change, this is a early component release based on
   Value between gate ``1`` and ``detection_gate_max - 1`` incrementally (each increment equals ``0.75m`` at this time).
   Defaults to ``1``.
 - **detection_gate_max** (*Optional*, int): Maximum gate for movement detection.
-  Value between ``1`` to ``15`` each gate detects movement and still energy within ``0.75m`` of range incrementally.
-  Defaults to ``12``.
-  With maximum distance equates to ``16`` * ``0.75m`` resulting in a possible ``12m`` however accuracy at ``12m`` is not certain.
-  The recommended maximum value is ``12`` * ``0.75`` which results in approximately ``9m``.
+  Value from 1 to 15. Each gate detects movement and still energy at 70 cm increments.
+  Defaults to 12.
+  At the maximum value, the sensor's range equates to 16 * 70 cm resulting in an
+  approximately 12-meter range; however, accuracy at this range may be diminished.
+  The recommended maximum value is 12 * 70 cm which results in approximately 9 meters.
 - **g#_move_threshold** (*Optional*, int): Gate threashold level for motion energy detection (Gate # from 0 to 15).
   Above this level for the considered gate (distance), movement detection will be triggered.
   Defaults to ``see table below``.
