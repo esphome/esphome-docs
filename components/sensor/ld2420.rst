@@ -132,8 +132,8 @@ The configuration is made up of three parts: The LD2420 component, individual se
 and binary sensors. These may change, this is a early component release based on firmware v1.5.3.
 *There are clearly undocumented functions in the firmware which are not available at this time.*
 
-- **presence_time_window** (*Optional*, int): Time in seconds during which presence state will stay present
-  after leaving. Any move or still energy detection within the time window restarts a count down from the set value.
+- **presence_time_window** (*Optional*, int): The time in seconds during which the occupied state (presence) will persist
+  after presence is no longer detected. Any energy detection within the time window restarts the countdown from this value.
   Defaults to ``120s``.
 - **detection_gate_min** (*Optional*, int): Minimum distance for move or still energy detection.
   Value between gate ``1`` and ``detection_gate_max - 1`` incrementally (each increment equals ``0.75m`` at this time).
