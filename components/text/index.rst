@@ -1,24 +1,23 @@
-Input Text Component
+Text Component
 ====================
 
 .. seo::
-    :description: Instructions for setting up input text components in ESPHome.
+    :description: Instructions for setting up text components in ESPHome.
     :image: folder-open.svg
 
-ESPHome has support for components to create an input text entity. An input text entity is
-like a sensor that can read a value from a device, but is useful when that value
-can be set by the user/frontend.
+ESPHome has support for components to create a text entity. A text entity is
+like a text sensor, but additionally may be set by the frontend via the API, and by the Web Server.
 
-.. _config-input_text:
+.. _config-text:
 
-Base Input Text Configuration
+Base Text Configuration
 -----------------------------
 
-All input texts in ESPHome have a name and an optional icon.
+All texts in ESPHome have a name and an optional icon.
 
 .. code-block:: yaml
 
-    # Example input text configuration
+    # Example text configuration
     name: Greeting
 
     # Optional variables:
@@ -27,8 +26,8 @@ All input texts in ESPHome have a name and an optional icon.
 
 Configuration variables:
 
-- **name** (**Required**, string): The name for the input text.
-- **icon** (*Optional*, icon): Manually set the icon to use for the input text in the frontend.
+- **name** (**Required**, string): The name for the text.
+- **icon** (*Optional*, icon): Manually set the icon to use for the text in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
@@ -39,26 +38,26 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Requires Home Assistant 2021.11 or newer.
   Set to ``""`` to remove the default entity category.
-- **mode** (*Optional*, string): Defines how the input text should be displayed in the frontend.
+- **mode** (*Optional*, string): Defines how the text should be displayed in the frontend.
   Can either be ``auto``, ``string`` or ``password``.
   Defaults to ``"auto"``.
 
 Automations:
 
 - **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when a new value is published. See :ref:`input_text-on_value`.
+  when a new value is published. See :ref:`text-on_value`.
 
 MQTT Options:
 
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
-Input Text Automation
+text Automation
 ---------------------
 
-You can access the most recent state of the input text in :ref:`lambdas <config-lambda>` using
-``id(input_text_id).state``.
+You can access the most recent state of the text in :ref:`lambdas <config-lambda>` using
+``id(text_id).state``.
 
-.. _input_text-on_value:
+.. _text-on_value:
 
 ``on_value``
 ************
@@ -68,7 +67,7 @@ you can get the value from the trigger with ``x``.
 
 .. code-block:: yaml
 
-    input_text:
+    text:
       - platform: template
         # ...
         on_value:
@@ -79,31 +78,31 @@ you can get the value from the trigger with ``x``.
 
 Configuration variables: See :ref:`Automation <automation>`.
 
-.. _input_text-set_action:
+.. _text-set_action:
 
-``input_text.set`` Action
+``text.set`` Action
 *************************
 
-This is an :ref:`Action <config-action>` for setting a input text state.
+This is an :ref:`Action <config-action>` for setting a text state.
 
 .. code-block:: yaml
 
-    - input_text.set:
+    - text.set:
         id: my_text
         value: "Good bye!"
 
 Configuration variables:
 
-- **id** (**Required**, :ref:`config-id`): The ID of the input text to set.
+- **id** (**Required**, :ref:`config-id`): The ID of the text to set.
 - **value** (**Required**, string, :ref:`templatable <config-templatable>`):
-  The value to set the input text to.
+  The value to set the text to.
 
 
 
 See Also
 --------
 
-- :apiref:`Input Text <input_text/input_text.h>`
+- :apiref:`text <text/text.h>`
 - :ghedit:`Edit`
 
 .. toctree::
