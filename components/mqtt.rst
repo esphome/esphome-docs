@@ -63,7 +63,7 @@ Configuration variables:
   messages. Should not contain trailing slash. Defaults to
   ``<APP_NAME>``.
 - **log_topic** (*Optional*, :ref:`mqtt-message`): The topic to send MQTT log
-  messages to.
+  messages to. Use `null` if you want to disable sending logs to MQTT.
 
   The ``log_topic`` has an additional configuration option:
 
