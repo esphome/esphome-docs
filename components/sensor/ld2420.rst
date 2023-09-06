@@ -223,7 +223,7 @@ The ``ld2420`` sensor allows you to use your :doc:`ld2420` to sense mmWave dista
 Configuration variables:
 ************************
 
-- **moving_distance** (*Optional*): Distance of detected moving target.
+- **moving_distance** (*Optional*): Distance between the sensor and the detected moving target.
   All options from :ref:`Sensor <config-sensor>`.
 
 Binary Sensor
