@@ -147,8 +147,8 @@ and binary sensors. These may change, this is a early component release based on
 - **g#_move_threshold** (*Optional*, int): Gate threashold level for motion energy detection (Gate # from 0 to 15).
   A value greater than that specified for the gate (distance) will trigger movement detection.
   Defaults to ``see table below``.
-- **g#_still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (Gate # from 0 to 15).
-  Above this level for the considered gate (distance), still detection will be triggered.
+- **g#_still_threshold** (*Optional*, int): Gate threashold level for still energy detection (Gate # from 0 to 15).
+  A value less than that specified for the gate (distance) will trigger still detection.
   Defaults to ``see table below``.
 
 .. list-table:: Default values for gate threshold
