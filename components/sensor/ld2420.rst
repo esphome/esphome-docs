@@ -146,12 +146,14 @@ and binary sensors. These may change, this is a early component release based on
   The recommended maximum value is 12 * 70 cm which results in approximately 9 meters.
 - **g#_move_threshold** (*Optional*, int): Gate threashold level for motion energy detection (Gate # from 0 to 15).
   A value greater than that specified for the gate (distance) will trigger movement detection.
-  Defaults to ``see table below``.
+  Defaults are as shown in :ref:`the table below <ld2420-default_values_for_gate_threshold>`.
 - **g#_still_threshold** (*Optional*, int): Gate threashold level for still energy detection (Gate # from 0 to 15).
   A value less than that specified for the gate (distance) will trigger still detection.
-  Defaults to ``see table below``.
+  Defaults are as shown in :ref:`the table below <ld2420-default_values_for_gate_threshold>`.
 
-.. list-table:: Default values for gate threshold
+.. _ld2420-default_values_for_gate_threshold:
+
+.. list-table:: Default Values for Gate Threshold
     :widths: 25 25 25
     :header-rows: 1
 
