@@ -136,8 +136,8 @@ and binary sensors. These may change, this is a early component release based on
   after presence is no longer detected. Any energy detection within the time window restarts the countdown from this value.
   Defaults to ``120s``.
 - **detection_gate_min** (*Optional*, int): Minimum distance for move or still energy detection.
-  Value between gate ``1`` and ``detection_gate_max - 1`` incrementally (each increment equals ``0.75m`` at this time).
-  Defaults to ``1``.
+  Value between 0 and ``detection_gate_max - 1``. Each increment equals 70 cm.
+  Defaults to 1.
 - **detection_gate_max** (*Optional*, int): Maximum gate for movement detection.
   Value from 1 to 15. Each gate detects movement and still energy at 70 cm increments.
   Defaults to 12.
