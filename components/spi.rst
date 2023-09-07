@@ -45,8 +45,8 @@ Configuration variables:
 - **miso_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the MISO line of the SPI bus.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this SPI hub if you need multiple SPI hubs.
 - **interface** (*Optional*): Controls which hardware or software SPI interface should be used.
-  Value may be one of ``any`` (default), ``software`` or a number corresponding to a hardware interface.
-  See discussion below.
+  Value may be one of ``any`` (default), ``software``, ``hardware``, ``spi``, ``spi2`` or ``spi3``, depending on
+  the particular chip. See discussion below.
 - **force_sw** (*Optional*, **Deprecated**, boolean): Whether software implementation should be used even if a hardware
   interface is available. Default is ``false``.
 
@@ -57,17 +57,18 @@ ESP32 and ESP8266 chips have several hardware SPI controller interfaces - usuall
 the flash and PSRAM memories, leaving one or two user-accessible SPI controllers. An SPI hub configured in
 ESPHome can be assigned to one of these interfaces with the ``interface:`` configuration option.
 
-The numbering of
-these interfaces in the YAML configuration starts with 0, corresponding to the first user-accessible SPI controller. Check the datasheet
-for a given chip to determine which this is, but it will typically be ``SPI1`` on ESP8266 and ``SPI2`` on ESP32. Any further
-available interfaces will be sequentially numbered. Unless you have a particular need to choose a specific interface
-just leave this option at the default of ``any``.
+By default (``interface: any``) the first available hardware SPI interface will be assigned, a second if available then
+any further spi interfaces configured will use software mode. You can choose a specific interface with ``spi`` (meaning
+the first or only available interface) or one of ``spi2`` and ``spi3`` for ESP32 chips with two available SPI
+controllers. Note that SPI0 and SPI1 are typically not available, being reserved for accessing flash and PSRAM.
 
 If the ``software`` option is chosen, or you configure more SPI hubs than there are available hardware controllers,
 the remaining hubs will use a software implementation, which is unable to achieve data rates above a few hundred
 kHz.
 
-While the ESP32 supports the reassignment of the default SPI pins to most other GPIO pins, using the dedicated SPI pins can improve performance and stability for certain ESP/device combinations. ESP8266 has a more limited selection of pins that can be used, again
+While the ESP32 supports the reassignment of the default SPI pins to most other GPIO pins, using the dedicated SPI pins
+can improve performance and stability for certain ESP/device combinations.
+ESP8266 has a more limited selection of pins that can be used, again
 check the datasheet for more information.
 
 Generic SPI device component:
@@ -85,6 +86,7 @@ Reads and writes on the device can be performed with lambdas. For example:
         clk_pin: GPIO14
         mosi_pin: GPIO27
         miso_pin: GPIO26
+        interface: hardware
 
     spi_device:
         id: spidev
