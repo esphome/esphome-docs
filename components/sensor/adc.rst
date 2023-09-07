@@ -156,7 +156,7 @@ On the Raspberry Pi Pico and Pico W the ADC can measure VSYS voltage. Depending 
 
 .. note::
 
-   On Raspberry Pi Pico W the ADC GPIO29 pin for VSYS is shared with WiFi chip, so attempting to use it explicitly will likely hang the WiFi connection. It is recommended to use ``VCC`` as ADC pin in that case.
+    On Raspberry Pi Pico W the ADC GPIO29 pin for VSYS is shared with WiFi chip, so attempting to use it explicitly will likely hang the WiFi connection. It is recommended to use ``VCC`` as ADC pin in that case.
 
 
 RP2040 Internal Core Temperature
