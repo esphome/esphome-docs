@@ -498,7 +498,7 @@ For easy calibration process, you can use the following custom manual card.
           - type: horizontal-stack
             cards:
               - type: entity
-                entity: 'sensor.DEVICE_distance_detection'
+                entity: 'sensor.DEVICE_detection_distance'
                 name: distance
               - type: entity
                 entity: 'sensor.DEVICE_moving_distance'
