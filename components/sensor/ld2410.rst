@@ -349,7 +349,7 @@ Configuration variables:
 Text Sensor
 -----------
 
-The ``ld2410`` text sensor allows you get information about your :doc:`ld2410`.
+The ``ld2410`` text sensor allows you to get information about your :doc:`ld2410`.
 
 .. code-block:: yaml
 
@@ -372,7 +372,7 @@ Configuration variables:
 Select
 -----------
 
-The ``ld2410`` select allows you control your :doc:`ld2410`.
+The ``ld2410`` select allows you to control your :doc:`ld2410`.
 
 .. code-block:: yaml
 
@@ -468,7 +468,7 @@ In order to calibrate your ``ld2410`` sensor perform the following:
 Home Assistant Card
 *******************
 
-For easy calibration process you can use the following custom manual card.
+For easy calibration process, you can use the following custom manual card.
 
 .. code-block:: yaml
 
@@ -498,13 +498,13 @@ For easy calibration process you can use the following custom manual card.
           - type: horizontal-stack
             cards:
               - type: entity
-                entity: 'sensor.DEVICE_distance_detection_cm'
+                entity: 'sensor.DEVICE_distance_detection'
                 name: distance
               - type: entity
-                entity: 'sensor.DEVICE_moving_distance_cm'
+                entity: 'sensor.DEVICE_moving_distance'
                 name: move
               - type: entity
-                entity: 'sensor.DEVICE_still_distance_cm'
+                entity: 'sensor.DEVICE_still_distance'
                 name: still
       - type: horizontal-stack
         cards:
@@ -525,11 +525,11 @@ For easy calibration process you can use the following custom manual card.
             name: presence
             state_color: true
           - type: entity
-            entity: 'binary_sensor.DEVICE_movement'
+            entity: 'binary_sensor.DEVICE_moving_target'
             name: movement
             state_color: true
           - type: entity
-            entity: 'binary_sensor.DEVICE_still'
+            entity: 'binary_sensor.DEVICE_still_target'
             name: still
             state_color: true
       - type: conditional
