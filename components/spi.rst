@@ -4,11 +4,11 @@ SPI Bus
 =======
 
 .. seo::
-    :description: Instructions for setting up an SPI bus in ESPHome
+    :description: Instructions for setting up SPI components in ESPHome
     :image: spi.svg
     :keywords: SPI
 
-SPI is a very common high-speed protocol for a lot of devices. The ESPHome SPI component implements only the controller
+SPI is a very common high-speed protocol for a lot of devices. The ESPHome SPI component implements only the host controller
 role, where it controls the bus, and writes or reads data from peripherals attached to the bus.
 
 The SPI bus usually consists of 4 wires:
@@ -24,18 +24,31 @@ The SPI bus usually consists of 4 wires:
 
 In some cases one of **MOSI** or **MISO** do not exist as the receiving device only accepts data or sends data.
 
-To set up SPI devices in ESPHome, you first need to place a top-level SPI hub like below which defines what pins to
-use for the functions described above. The **CS** pins are then individually managed by the components. The ``spi:``
-component also accepts a list of buses if you want to have multiple SPI buses with your ESP (though this should
-rarely be necessary, as the SPI bus can be shared by the devices).
+To set up SPI devices in ESPHome, you first need to place a top-level SPI component which defines the pins to
+use for the functions described above. The **CS** pins are individually managed by the other components that
+reference the ``spi`` component.
+This component also accepts a list of controllers if you want to implement multiple SPI buses.
 
 .. code-block:: yaml
 
-    # Example configuration entry
+    # Example configuration entry - single controller
     spi:
       clk_pin: GPIO14
       mosi_pin: GPIO13
       miso_pin: GPIO12
+
+    # Example configuration entry - two controllers
+    spi:
+      - id: spi_bus0
+        clk_pin: GPIO18
+        mosi_pin: GPIO23
+        miso_pin: GPIO19
+        interface: hardware
+      - id: spi_bus1
+        clk_pin: GPIO14
+        mosi_pin: GPIO27
+        miso_pin: GPIO26
+        interface: any
 
 Configuration variables:
 ------------------------
@@ -44,40 +57,41 @@ Configuration variables:
 - **mosi_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the MOSI line of the SPI bus.
 - **miso_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the MISO line of the SPI bus.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this SPI hub if you need multiple SPI hubs.
-- **interface** (*Optional*): Controls which hardware or software SPI interface should be used.
+- **interface** (*Optional*): Controls which hardware or software SPI implementation should be used.
   Value may be one of ``any`` (default), ``software``, ``hardware``, ``spi``, ``spi2`` or ``spi3``, depending on
   the particular chip. See discussion below.
 - **force_sw** (*Optional*, **Deprecated**, boolean): Whether software implementation should be used even if a hardware
-  interface is available. Default is ``false``.
+  controller is available. Default is ``false``.
 
 Interface selection:
 --------------------
 
-ESP32 and ESP8266 chips have several hardware SPI controller interfaces - usually the first one or two are reserved for use to access
-the flash and PSRAM memories, leaving one or two user-accessible SPI controllers. An SPI hub configured in
-ESPHome can be assigned to one of these interfaces with the ``interface:`` configuration option.
+ESP32 and ESP8266 chips have several hardware SPI controller implementations - usually the first one or two
+are reserved for use to access
+the flash and PSRAM memories, leaving one or two user-accessible controllers. SPI controller instances configured in
+ESPHome can be assigned to one of these with the ``interface:`` configuration option.
 
-By default (``interface: any``) the first available hardware SPI interface will be assigned, a second if available then
-any further spi interfaces configured will use software mode. You can choose a specific interface with ``spi`` (meaning
-the first or only available interface) or one of ``spi2`` and ``spi3`` for ESP32 chips with two available SPI
+By default (``interface: any``) the first available hardware controller will be assigned, a second if available then
+any further instances configured will use software mode. You can choose a specific controller with ``spi`` (meaning
+the first or only available controller) or one of ``spi2`` and ``spi3`` for ESP32 chips with two available SPI
 controllers. Note that SPI0 and SPI1 are typically not available, being reserved for accessing flash and PSRAM.
 
-If the ``software`` option is chosen, or you configure more SPI hubs than there are available hardware controllers,
-the remaining hubs will use a software implementation, which is unable to achieve data rates above a few hundred
-kHz.
+If the ``software`` option is chosen, or you configure more SPI instances than there are available hardware controllers,
+the remaining instances will use a software implementation, which is unable to achieve data rates above a few hundred
+kHz. This is acceptable for sensors or other devices not transferring large amounts of data, but will be too slow
+to drive a display for example.
 
 While the ESP32 supports the reassignment of the default SPI pins to most other GPIO pins, using the dedicated SPI pins
 can improve performance and stability for certain ESP/device combinations.
-ESP8266 has a more limited selection of pins that can be used, again
-check the datasheet for more information.
+ESP8266 has a more limited selection of pins that can be used; check the datasheet for more information.
 
 Generic SPI device component:
 -----------------------------
 .. _spi_device:
 
-Other components that depend on the SPI component will reference the SPI component, typically to communicate with specific
-peripheral devices. There is also a general-purpose SPI device component that can be used to talk to devices not
-supported by a specific component. It allows selection of the SPI bus mode, data_rate, CS pin and bit order.
+Other components that depend on the SPI component will reference it, typically to communicate with specific
+peripheral devices. There is also a general-purpose SPI device component that can be used to communicate with hardware not
+supported by a specific component. It allows selection of the SPI mode, data_rate, CS pin and bit order.
 Reads and writes on the device can be performed with lambdas. For example:
 
 .. code-block:: yaml
@@ -106,18 +120,19 @@ Reads and writes on the device can be performed with lambdas. For example:
 Configuration variables:
 ------------------------
 
-- **data_rate** (*Optional*): Set the data rate of the SPI interface. One of ``80MHz``, ``40MHz``, ``20MHz``, ``10MHz``,
+- **data_rate** (*Optional*): Set the data rate of the controller. One of ``80MHz``, ``40MHz``, ``20MHz``, ``10MHz``,
   ``5MHz``, ``4MHz``, ``2MHz``, ``1MHz`` (default), ``200kHz``, ``75kHz`` or ``1kHz``. A numeric value in Hz can alternatively
   be specified.
-- **mode** (*Optional*): Set the SPI mode - one of ``mode0``, ``mode1``, ``mode2``, ``mode3``. The default is ``mode3``.
+- **mode** (*Optional*): Set the controller mode - one of ``mode0``, ``mode1``, ``mode2``, ``mode3``. The default is ``mode3``.
   See table below for more information
-- **bit_order** (*Optional*): Set the SPI bit order - choose one of ``msb_first`` (default) or ``lsb_first``.
+- **bit_order** (*Optional*): Set the bit order - choose one of ``msb_first`` (default) or ``lsb_first``.
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 
 SPI modes:
 ----------
 
-SPI devices operate in one of four modes as per the table below. Mode 3 is the most commonly used.
+SPI devices operate in one of four modes as per the table below. The choice of mode is dictated by the requirements
+of the speficic peripheral chip.
 
 .. csv-table:: Supported Modes
     :header: "Mode", "Clock Idle Polarity", "Clock Phase", "Data shifted on", "Data sampled on"
