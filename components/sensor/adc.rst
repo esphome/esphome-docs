@@ -154,8 +154,8 @@ On Raspberry Pi Pico
 
 On the Raspberry Pi Pico and Pico W the ADC can measure VSYS voltage.
 
-Depending on how VSYS is powered the readings will have different meanings - either power supply voltage when it is connected to VSYS pin directly, or USB voltage (VBUS) minus some drop on Schottky diode the Raspberry Pi Pico has between those pins.
-Our experiments indicate the drop being ~0.1V for Pico and ~0.25V for Pico W, you can use sensor filters to adjust the final value.
+Depending on how VSYS is powered the readings will have different meanings - either power supply voltage when it is connected to VSYS pin directly, or USB voltage (VBUS) minus some drop on the Schottky diode the Raspberry Pi Pico has between those pins.
+Our experiments indicate the drop being ~0.1V for Pico and ~0.25V for Pico W; you can use sensor filters to adjust the final value.
 
 .. note::
 
