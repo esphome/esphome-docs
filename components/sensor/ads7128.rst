@@ -1,0 +1,170 @@
+ADS7128 8-Channel 12-Bit ADC with GPIO & RMS Module
+===================================================
+
+.. seo::
+    :description: Instructions for setting up ADS7128 multiplexed analog voltage sensors.
+    :keywords: ADS7128
+
+The ADS7128 (`datasheet <https://www.ti.com/lit/ds/symlink/ads7128.pdf>`__) is an 8-channel ADC with an :ref:`I²C <i2c>` interface. Each of its pins can be configured as either an analog ADC sensor or a digital GPIO. In addition, it features an RMS module, which can be programmed to take a series of analog samples over time then compute and return the root-mean-squared power of that signal. This can for example be used as a hardware replacement for the software-based :doc:`CT Clamp Current Sensor <ct_clamp>`.
+
+.. _ads7128-component:
+
+Component/Hub
+-------------
+
+The ``ads7128`` domain creates a global hub so that you can later create
+individual sensors using the :ref:`ADS7128 Sensor Platform <ads7128-sensor>`.
+To use this hub, first setup the :ref:`I²C Bus <i2c>` and connect the sensor to the pins specified there.
+
+.. code-block:: yaml
+
+    ads7128:
+      - address: 0x10
+
+Configuration variables:
+************************
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ADS7128 Hub. Use this if you
+  want to use multiple ADS7128 hubs at once.
+- **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <i2c>` if you want
+  to use multiple I²C buses.
+- **address** (*Optional*, int): The i²c address of the sensor. Defaults to 0x10.
+  See :ref:`I²C Addresses <ads7128_i2c_addresses>` for more information.
+
+.. _ads7128_i2c_addresses:
+
+I²C Addresses
+-------------
+
+In order to allow multiple sensors to be connected to the same i²c bus,
+the creators of this sensor hardware have included some options to
+change the i²c address. See the `datasheet <https://www.ti.com/lit/ds/symlink/ads7128.pdf>`__, Table 2, "I²C Address Selection"
+
+.. _ads7128-sensor:
+
+Sensor
+------
+
+The ``ads7128`` sensor allows you to use a channel of your ADS7128 as an analog (single point or RMS) sensor with ESPHome.
+First, setup an :ref:`ADS7128 Hub <ads7128-component>` for your ADS7128 sensor and then use this
+sensor platform to create individual sensors that will report the
+voltage to Home Assistant.
+
+.. code-block:: yaml
+
+    ads7128:
+      - address: 0x10
+    sensor:
+      - platform: ads7128
+        name: "My Single-Sample Sensor"
+        channel: 0
+        oversampling: 64
+        update_interval: 1s
+      - platform: ads7128
+        name: "My RMS Sensor"
+        channel: 1
+        oversampling: 64
+        rms: true
+        rms_samples: 16384
+        cycle_time: 1
+        update_interval: 5s
+
+Configuration variables:
+************************
+
+-  **name** (**Required**, string): The name for this sensor.
+-  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+-  **ads7128_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
+   :ref:`ADS7128 Hub <ads7128-component>` you want to use this sensor.
+-  **channel** (**Required**, int): The multiplexer channel of this sensor. 
+-  **oversampling** (*Optional*, int): For each sample reported, the ADS7128 can take multiple samples and return their mean. This option configures the number of measured samples per reported sample. Must be a power of 2 from 1 to 64. (Note: The ADS7128 also supports 128 samples, but this module does not at this time.) Defaults to 1.
+-  **rms** (*Optional*, boolean): If ``true``, this sensor will use the RMS module in the ADS7128, and return the RMS power of the signal. Otherwise acts as a standard ADC and returns single-point measurements. Defaults to ``false``.
+-  **cycle_time** (*Optional*, float): The period, in microseconds, between each sample taken when using the RMS module. Defaults to 1. Must be one of the following valid values:
+
+  - ``1``
+  - ``1.5``
+  - ``2``
+  - ``3``
+  - ``4``
+  - ``6``
+  - ``8``
+  - ``12``
+  - ``16``
+  - ``24``
+  - ``32``
+  - ``48``
+  - ``64``
+  - ``96``
+  - ``128``
+  - ``192``
+  - ``256``
+  - ``384``
+  - ``512``
+  - ``768``
+  - ``1024``
+  - ``1536``
+  - ``2048``
+  - ``3072``
+  - ``4096``
+  - ``6144``
+
+-  **rms_samples** (*Optional*, int): The count of (possibly oversampled) samples to be taken when measuring a signal with the RMS module. Defaults to 1024. Must be one of the following valid values:
+
+  - ``1024``
+  - ``4096``
+  - ``16384``
+  - ``65536``
+
+-  **update_interval** (*Optional*, :ref:`config-time`): The interval
+   to check the sensor. Defaults to ``60s``.
+
+.. note::
+
+    When using the RMS module, the total time of the signal measured cannot be specified directly, but is equal to (``oversampling`` * ``rms_samples`` * ``cycle_time``) microseconds. Changing any of these values will indirectly change the duration of the signal measured.
+
+GPIO
+----
+
+Each pin of the ADS7128 may be configured for use as a GPIO rather than an ADC.
+
+.. code-block:: yaml
+
+    ads7128:
+      - id: ads7128_hub
+        address: 0x10
+    binary_sensor:
+      - platform: gpio
+        name: "ads7128 Input #0"
+        pin:
+          ads7128: ads7128_hub
+          number: 0
+          # One of INPUT, OUTPUT, or OUTPUT_OPEN_DRAIN
+          mode:
+            input: true
+          inverted: false
+    switch:
+      - platform: gpio
+        name: "ads7128 Output #1"
+        pin:
+          ads7128: ads7128_hub
+          number: 1
+          # One of INPUT, OUTPUT, or OUTPUT_OPEN_DRAIN
+          mode:
+            output: true
+          inverted: false
+
+Pin configuration variables:
+****************************
+
+- **ads7128** (**Required**, :ref:`config-id`): The id of the ads7128 component of the pin.
+- **number** (**Required**, int): The pin number.
+- **inverted** (*Optional*, boolean): If all read and written values
+  should be treated as inverted. Defaults to ``false``.
+- **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT``, ``OUTPUT``, or ``OUTPUT_OPEN_DRAIN``.
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :doc:`adc`
+- :ghedit:`Edit`
