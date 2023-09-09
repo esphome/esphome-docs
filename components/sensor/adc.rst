@@ -127,7 +127,7 @@ Note we don't recommend this method as it will change between chips, and newer E
 Measuring VCC
 -------------
 
-Following configuration block adds the sensor reflecting VCC on a supported hardware.
+The following configuration block adds the sensor reflecting VCC on a supported hardware platform.
 Please see specific sections below of what voltage is actually measured.
 
 .. code-block:: yaml
