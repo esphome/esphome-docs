@@ -160,7 +160,6 @@ Core
 
     Sensor Core, components/sensor/index, folder-open.svg, dark-invert
     Home Assistant, components/sensor/homeassistant, home-assistant.svg, dark-invert
-    Integration, components/sensor/integration, sigma.svg, dark-invert
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     Uptime Sensor, components/sensor/uptime, timer.svg, dark-invert
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg, dark-invert
@@ -175,6 +174,7 @@ Air Quality
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Radon, CO2, Volatile organics
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
     EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
+    GCJA5, components/sensor/gcja5, gcja5.svg, Particulate
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MiCS-4514, components/sensor/mics_4514, mics_4514.jpg, Gas concentration
@@ -220,6 +220,7 @@ Bluetooth Low Energy (BLE)
     Mopeka Standard Check LP, components/sensor/mopeka_std_check, mopeka_std_check.jpg, tank level
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
+    Alpha3, components/sensor/alpha3, alpha3.jpg
 
 
 Digital Signals
@@ -236,10 +237,12 @@ Distance
 ********
 .. imgtable::
 
+    A01NYUB, components/sensor/a01nyub, a01nyub.jpg, Acoustic distance
     HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg, Acoustic distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
     VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg, IR optical distance
+    Zio Ultrasonic Sensor, components/sensor/zio_ultrasonic, zio_ultrasonic.jpg, Acoustic distance
 
 
 Electricity
@@ -247,6 +250,7 @@ Electricity
 .. imgtable::
 
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
+    ATM90E26, components/sensor/atm90e26, atm90e26.jpg, Voltage & Current & Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
     BL0939, components/sensor/bl0939, bl0939.png, Voltage & Current & Power & Energy
     BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
@@ -287,6 +291,7 @@ Environmental
     BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
     BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Pressure
     BMP388 and BMP390, components/sensor/bmp3xx, bmp388.jpg, Temperature & Pressure
+    BMP581, components/sensor/bmp581, bmp581.jpg, Temperature & Pressure
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
@@ -357,9 +362,11 @@ Miscellaneous
     AS3935, components/sensor/as3935, as3935.jpg, Storm lightning
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
+    Duty Time, components/sensor/duty_time, timer-play-outline.svg, dark-invert
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
+    Integration, components/sensor/integration, sigma.svg, dark-invert
     Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
     Kalman Combinator, components/sensor/kalman_combinator, function.svg, dark-invert
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
@@ -390,6 +397,7 @@ Thermocouple
 ************
 .. imgtable::
 
+    KMeterISO, components/sensor/kmeteriso, kmeteriso.jpg, K-Type,
     MAX31855, components/sensor/max31855, max31855.jpg, K-Type
     MAX31856, components/sensor/max31856, max31856.jpg, All types
     MAX31865, components/sensor/max31865, max31865.jpg, Platinum RTD
@@ -460,6 +468,7 @@ Touchscreen
 
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Touchscreen, components/touchscreen/index, touch.svg, dark-invert
+    TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
 
 Miscellaneous
@@ -577,6 +586,7 @@ Button Components
     Factory Reset Button, components/button/factory_reset, restart-alert.svg, dark-invert
     Wake-on-LAN, components/button/wake_on_lan, power_settings.svg, dark-invert
 
+
 Fan Components
 --------------
 
@@ -631,6 +641,7 @@ Touchscreen Components
     Touchscreen Core, components/touchscreen/index, folder-open.svg, dark-invert
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
+    TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
 
 Cover Components
 ----------------
@@ -746,6 +757,7 @@ Time Components
     SNTP, components/time/sntp, clock-outline.svg, dark-invert
     GPS Time, components/time/gps, crosshairs-gps.svg, dark-invert
     DS1307 RTC, components/time/ds1307, clock-outline.svg, dark-invert
+    PCF8563 RTC, components/time/pcf8563, clock-outline.svg, dark-invert
     PCF85063 RTC, components/time/pcf85063, clock-outline.svg, dark-invert
 
 Home Assistant Companion Components
@@ -799,6 +811,7 @@ Miscellaneous Components
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
     Sprinkler, components/sprinkler, sprinkler-variant.svg, dark-invert
+    Grove TB6612FNG, components/grove_tb6612fng, motor.png
 
     PCA6416A I/O Expander, components/pca6416a, pca6416a.svg
     PCA9554 I/O Expander, components/pca9554, pca9554a.jpg
@@ -810,6 +823,7 @@ Miscellaneous Components
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SN74HC165 I/O Expander, components/sn74hc165, sn74hc595.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
+    XL9535 I/O Expander, components/xl9535, xl9535.svg
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg, dark-invert
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg, dark-invert
