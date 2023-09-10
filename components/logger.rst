@@ -36,6 +36,8 @@ Advanced settings:
 -  **tx_buffer_size** (*Optional*, int): The size of the buffer used
    for log messages. Decrease this if you’re having memory problems.
    Defaults to ``512``.
+-  **log_queue_length** (*Optional*, int): The size of the queue used to decouple log producing components and log consuming components. Set to ``0`` to disable log queue. Maximum value is ``32``. If used a recommended value is ``10``. Decrease this if you’re having memory problems.
+   Defaults to ``0``.
 -  **hardware_uart** (*Optional*, string): The Hardware UART to use for logging.
    Defaults to ``UART0``.
 -  **esp8266_store_log_strings_in_flash** (*Optional*, boolean): If set to false, disables storing
