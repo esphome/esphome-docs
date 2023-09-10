@@ -110,6 +110,8 @@ SPI
 The ``fastled_spi`` light platform allows you to create RGB lights
 in ESPHome for a :ref:`number of supported chipsets <fastled_spi-chipsets>`.
 
+See :doc:`/components/light/spi_led_strip` for an alternative component that works on ESP-IDF (and Arduino.)
+
 SPI FastLED lights differ from the
 :ref:`fastled-clockless` in that they require two pins to be connected, one for a data and one for a clock signal
 whereas the clockless lights only need a single pin.
@@ -169,6 +171,7 @@ See Also
 --------
 
 - :doc:`/components/light/index`
+- :doc:`/components/light/spi_led_strip`
 - :doc:`/components/power_supply`
 - :apiref:`fastled_base/fastled_light.h`
 - `Arduino FastLED library <https://github.com/FastLED/FastLED>`__

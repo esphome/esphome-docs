@@ -547,6 +547,7 @@ Light Components
     FastLED Light, components/light/fastled, color_lens.svg, dark-invert
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg, dark-invert
     Light Partition, components/light/partition, color_lens.svg, dark-invert
+    SPI LED Strips, components/light/spi_led_strip, apa102.jpg
 
     Tuya Dimmer, components/light/tuya, tuya.png
     Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg

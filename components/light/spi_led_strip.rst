@@ -1,4 +1,4 @@
-SPI RGB LED Light
+SPI LED Strip Light
 =================
 
 .. seo::
