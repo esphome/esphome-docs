@@ -23,11 +23,6 @@ Speaker Actions
 All ``speaker`` actions can be used without specifying an ``id`` if you have only one ``speaker`` in
 your configuration YAML.
 
-Configuration variables:
-
-**id** (*Optional*, :ref:`config-id`): The speaker to control. Defaults to the only one in YAML.
-
-
 .. _speaker-play:
 
 ``speaker.play`` Action
@@ -61,6 +56,10 @@ Configuration variables:
 
 This action will stop playing audio data from the speaker and discard the unplayed data.
 
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The speaker to control. Defaults to the only one in YAML.
+
 .. _speaker-conditions:
 
 Speaker Conditions
@@ -69,16 +68,16 @@ Speaker Conditions
 All ``speaker`` conditions can be used without specifying an ``id`` if you have only one ``speaker`` in
 your configuration YAML.
 
-Configuration variables:
-
-- **id** (*Optional*, :ref:`config-id`): The speaker to check. Defaults to the only one in YAML.
-
 .. _speaker-is_playing:
 
 ``speaker.is_playing`` Condition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This condition will check if the speaker is currently playing audio data.
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The speaker to check. Defaults to the only one in YAML.
 
 
 Platforms

@@ -259,7 +259,7 @@ Configuration variables:
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device
   when it should listen for data on the SPI bus. Each device has an individual ``CS`` line.
   Sometimes also called ``SS``.
-- **clock** (*Optional*): One of ``8MHZ``, ``16MHZ`` or ``20MHZ``. Clock crystal used on the MCP2515 device.
+- **clock** (*Optional*): One of ``8MHZ``, ``12MHz``, ``16MHZ`` or ``20MHZ``. Clock crystal used on the MCP2515 device.
   Defaults to ``8MHZ``.
 - **mode** (*Optional*): Operation mode. Default to ``NORMAL``
 
@@ -268,6 +268,10 @@ Configuration variables:
   - ``LISTENONLY``: only receive data
 
 - All other options from :ref:`Canbus <config-canbus>`.
+
+Note that not all combinations of clock and bitrate are supported. An unsupported
+combination will not be flagged at compile time, check the runtime log for a message like
+``Invalid frequency/bitrate combination`` if you suspect this is an issue.
 
 Wiring options
 **************

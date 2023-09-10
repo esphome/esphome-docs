@@ -39,11 +39,14 @@ If you want to use `docker-compose` instead, here's a sample file:
         restart: always
         privileged: true
         network_mode: host
+        environment:
+          - USERNAME=test 
+          - PASSWORD=ChangeMe
 
 .. note::
 
-    If you are using NFS share to back your container's config volume, you may 
-    need to mount the volume with the `nolock` option, otherwise platformio may 
+    If you are using NFS share to back your container's config volume, you may
+    need to mount the volume with the `nolock` option, otherwise platformio may
     freeze on container startup as per `platformIO-core Issue 3089 <https://github.com/platformio/platformio-core/issues/3089>`__
 
 The project provides multiple docker tags; please pick the one that suits you
@@ -208,8 +211,7 @@ Bonus: ESPHome dashboard
 
 ESPHome features a dashboard that you can use to easily manage your nodes
 from a nice web interface. It was primarily designed for
-:doc:`the Home Assistant add-on <getting_started_hassio>`, but also works with a simple command on
-\*nix machines (sorry, no windows).
+:doc:`the Home Assistant add-on <getting_started_hassio>`, but also works with a simple command.
 
 To start the ESPHome dashboard, simply start ESPHome with the following command
 (with ``config/`` pointing to a directory where you want to store your configurations)
