@@ -1,5 +1,5 @@
 SPI LED Strip Light
-=================
+===================
 
 .. seo::
     :description: Instructions for setting up SPI LED RGB lights in ESPHome.
