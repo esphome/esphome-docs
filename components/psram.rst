@@ -8,7 +8,7 @@ PSRAM
 This component enables and configures PSRAM if/when available on ESP32 modules/boards.
 It is automatically loaded and enabled by components that require it.
 
-PSRAM is not available on the ESP8266.
+PSRAM is only available on the ESP32.
 
 .. code-block:: yaml
 
