@@ -133,7 +133,7 @@ Core Components
 .. imgtable::
 
     Core, components/esphome, cloud-circle.svg, dark-invert
-    ESP32 PSRAM, components/esp32_psram, psram.svg, dark-invert
+    PSRAM, components/psram, psram.svg
     WiFi, components/wifi, network-wifi.svg, dark-invert
     Network, components/network, network-wifi.svg, dark-invert
 

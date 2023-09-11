@@ -1,12 +1,14 @@
-ESP32 PSRAM
-===========
+PSRAM
+=====
 
 .. seo::
     :description: Configuration for the ESP32 PSRAM platform for ESPHome.
-    :image: esp32.svg
+    :image: psram.svg
 
 This component enables and configures PSRAM if/when available on ESP32 modules/boards.
 It is automatically loaded and enabled by components that require it.
+
+PSRAM is not available on the ESP8266.
 
 .. code-block:: yaml
 
