@@ -385,6 +385,7 @@ Miscellaneous
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
+    WireGuard, components/wireguard, wireguard_custom_logo.svg
 
 
 Motion
@@ -490,6 +491,7 @@ Miscellaneous
     Remote Receiver, components/remote_receiver, remote.svg, dark-invert
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
+    WireGuard, components/wireguard, wireguard_custom_logo.svg
 
 Output Components
 -----------------
@@ -852,6 +854,7 @@ Miscellaneous Components
     SML, components/sml, sml.svg
     Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    WireGuard, components/wireguard, wireguard_custom_logo.svg
     Demo, components/demo, description.svg, dark-invert
     Copy, components/copy, content-copy.svg, dark-invert
 
