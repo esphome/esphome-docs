@@ -133,8 +133,8 @@ Core Components
 .. imgtable::
 
     Core, components/esphome, cloud-circle.svg, dark-invert
+    PSRAM, components/psram, psram.svg
     WiFi, components/wifi, network-wifi.svg, dark-invert
-    MQTT, components/mqtt, mqtt.png
     Network, components/network, network-wifi.svg, dark-invert
 
     I²C Bus, components/i2c, i2c.svg
@@ -142,6 +142,7 @@ Core Components
     UART Bus, components/uart, uart.svg
     CAN Bus, components/canbus, canbus.svg
 
+    MQTT, components/mqtt, mqtt.png
     OTA Updates, components/ota, system-update.svg, dark-invert
     Logger, components/logger, file-document-box.svg, dark-invert
     Web Server, components/web_server, http.svg, dark-invert
@@ -384,6 +385,7 @@ Miscellaneous
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
+    WireGuard, components/wireguard, wireguard_custom_logo.svg
 
 
 Motion
@@ -391,10 +393,11 @@ Motion
 .. imgtable::
 
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
+    BMI160, components/sensor/bmi160, bmi160.jpg, Accelerometer & Gyroscope
+    LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
     MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
-    LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
 
 
 Thermocouple
@@ -488,6 +491,7 @@ Miscellaneous
     Remote Receiver, components/remote_receiver, remote.svg, dark-invert
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
+    WireGuard, components/wireguard, wireguard_custom_logo.svg
 
 Output Components
 -----------------
@@ -546,6 +550,7 @@ Light Components
     FastLED Light, components/light/fastled, color_lens.svg, dark-invert
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg, dark-invert
     Light Partition, components/light/partition, color_lens.svg, dark-invert
+    SPI LED Strips, components/light/spi_led_strip, apa102.jpg
 
     Tuya Dimmer, components/light/tuya, tuya.png
     Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg
@@ -849,6 +854,7 @@ Miscellaneous Components
     SML, components/sml, sml.svg
     Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    WireGuard, components/wireguard, wireguard_custom_logo.svg
     Demo, components/demo, description.svg, dark-invert
     Copy, components/copy, content-copy.svg, dark-invert
 
