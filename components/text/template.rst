@@ -33,7 +33,7 @@ Configuration variables:
 - **initial_value** (*Optional*, float): The value to set the state to on setup if not
   restored with ``restore_value``.
 - **max_restore_data_length** (*Optional*, int): The maximum string length to restore_value with ``restore_value``. 
-  Longer values will not be persisted. Defaults to ``64`` characters.
+  Longer values will not be persisted. Defaults to ``63`` characters.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`text <config-text>`.
 
