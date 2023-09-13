@@ -72,7 +72,7 @@ See Also
 - :doc:`cse7766`
 - :doc:`/components/sensor/pulse_counter`
 - :doc:`/components/sensor/pulse_meter`
-- :doc:`/components/sensor/time/homeassistant`
+- :doc:`/components/time/homeassistant`
 - :doc:`/cookbook/power_meter`
 - :apiref:`total_daily_energy/total_daily_energy.h`
 - :ghedit:`Edit`
