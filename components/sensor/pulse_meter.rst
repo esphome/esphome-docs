@@ -13,7 +13,7 @@ This leads to a higher resolution, especially for low pulse rates, as the pulse 
 
 Here's a comparison of the two sensors; both are set to an update interval of 10 seconds (using the :ref:`update_interval` and the :ref:`throttle_average` option respectively):
 
-.. figure:: images/pulse-counter_vs_pulse-meter.png
+.. figure:: /images/pulse-counter_vs_pulse-meter.png
     :align: center
     :width: 50.0%
 
