@@ -19,6 +19,7 @@ Contributors
 - `007hacky007 (@007hacky007) <https://github.com/007hacky007>`__
 - `0hax (@0hax) <https://github.com/0hax>`__
 - `0x0a11c0de (@0x0a11c0de) <https://github.com/0x0a11c0de>`__
+- `Tercio Filho (@0x3333) <https://github.com/0x3333>`__
 - `Denis Bodor (aka Lefinnois) (@0xDRRB) <https://github.com/0xDRRB>`__
 - `2016for (@2016for) <https://github.com/2016for>`__
 - `2mikrobi (@2mikrobi) <https://github.com/2mikrobi>`__
@@ -354,7 +355,6 @@ Contributors
 - `Dominik (@DomiStyle) <https://github.com/DomiStyle>`__
 - `Derek M. (@doolbneerg) <https://github.com/doolbneerg>`__
 - `Dorian Zedler (@dorianim) <https://github.com/dorianim>`__
-- `Mark Dietzer (@Doridian) <https://github.com/Doridian>`__
 - `Sebastian Krzyszkowiak (@dos1) <https://github.com/dos1>`__
 - `Jiang Sheng (@doskoi) <https://github.com/doskoi>`__
 - `Artem Sheremet (@dotdoom) <https://github.com/dotdoom>`__
@@ -506,6 +506,7 @@ Contributors
 - `Greg Arnold (@GregJArnold) <https://github.com/GregJArnold>`__
 - `Greg MacLellan (@gregmac) <https://github.com/gregmac>`__
 - `Gil Peeters (@grillp) <https://github.com/grillp>`__
+- `Guillaume Rischard (@grischard) <https://github.com/grischard>`__
 - `George (@grob6000) <https://github.com/grob6000>`__
 - `groovejumper (@groovejumper) <https://github.com/groovejumper>`__
 - `gsexton (@gsexton) <https://github.com/gsexton>`__
@@ -538,6 +539,7 @@ Contributors
 - `Hermann Kraus (@herm) <https://github.com/herm>`__
 - `Herr Frei (@herrfrei) <https://github.com/herrfrei>`__
 - `highground88 (@highground88) <https://github.com/highground88>`__
+- `hindenbugbite (@hindenbugbite) <https://github.com/hindenbugbite>`__
 - `Hamish Moffatt (@hmoffatt) <https://github.com/hmoffatt>`__
 - `Marcel Hoppe (@hobbypunk90) <https://github.com/hobbypunk90>`__
 - `Hopperpop (@Hopperpop) <https://github.com/Hopperpop>`__
@@ -1222,6 +1224,7 @@ Contributors
 - `wysiwyng (@wysiwyng) <https://github.com/wysiwyng>`__
 - `Jakob (@XDjackieXD) <https://github.com/XDjackieXD>`__
 - `Mike Brown (@xenoxaos) <https://github.com/xenoxaos>`__
+- `Péter Sárközi (@Xmister) <https://github.com/Xmister>`__
 - `Xose Pérez (@xoseperez) <https://github.com/xoseperez>`__
 - `WitchKing (@xvil) <https://github.com/xvil>`__
 - `Andrew Kroll (@xxxajk) <https://github.com/xxxajk>`__
@@ -1240,4 +1243,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated September 6, 2023.*
+*This page was last updated September 13, 2023.*
