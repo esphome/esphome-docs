@@ -104,5 +104,8 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`/components/sensor/pulse_counter`
+- :doc:`/components/sensor/total_daily_energy`
+- :doc:`/components/sensor/time`
+- :doc:`/cookbook/power_meter`
 - :apiref:`pulse_meter/pulse_meter_sensor.h`
 - :ghedit:`Edit`
