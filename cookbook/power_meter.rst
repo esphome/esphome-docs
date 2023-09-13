@@ -114,5 +114,5 @@ See Also
 - :doc:`/components/sensor/pulse_counter`
 - :doc:`/components/sensor/pulse_meter`
 - :doc:`/components/sensor/total_daily_energy`
-- :doc:`/components/sensor/time/homeassistant`
+- :doc:`/components/time/homeassistant`
 - :ghedit:`Edit`
