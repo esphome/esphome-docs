@@ -37,25 +37,56 @@ And... that should already be it :)
         .    +--------- GPIO12
 
 For ESPHome, you can then use the
-:doc:`pulse counter sensor </components/sensor/pulse_counter>` using below configuration:
+:doc:`pulse meter sensor </components/sensor/pulse_meter>` using below configuration:
 
 .. code-block:: yaml
 
     sensor:
-      - platform: pulse_counter
+      - platform: pulse_meter
+        name: 'Power'
+        id: sensor_energy_pulse_meter
+        unit_of_measurement: 'W'
+        state_class: measurement
+        device_class: power
+        icon: mdi:flash-outline
+        accuracy_decimals: 0
         pin: GPIO12
-        unit_of_measurement: 'kW'
-        name: 'Power Meter'
         filters:
-          - multiply: 0.06  # (60s/1000 pulses per kWh)
+          # multiply value = (60s / x pulses per kWh) * 1000
+          - multiply: 60
 
 Adjust ``GPIO12`` to match your set up of course. The output from the pulse counter sensor is in
 ``pulses/min`` and we also know that 1000 pulses from the LED should equal 1kWh of power usage.
-Thus, rearranging the expression yields a proportional factor of ``0.06`` from ``pulses/min`` to
-``kW``.
+Thus, rearranging the expression yields a proportional factor of ``60`` from ``pulses/min`` to
+``W``.
 
 And if a technician shows up and he looks confused about what the heck you have done to your
 power meter, tell them about ESPHome 😉
+
+To accurately convert the power value ``W`` to energy ``kWh``, you can use the :doc:`Total Daily Energy </components/sensor/total_daily_energy>` using below configuration:
+
+.. code-block:: yaml
+
+    sensor:
+     #(...)
+      - platform: total_daily_energy
+        name: 'Total Daily Energy'
+        id: sensor_total_daily_energy
+        power_id: sensor_energy_pulse_meter
+        unit_of_measurement: 'kWh'
+        icon: mdi:circle-slice-3
+        state_class: total_increasing
+        device_class: energy
+        accuracy_decimals: 3
+        filters:
+          # Multiplication factor from W to kW is 0.001
+          - multiply: 0.001
+    
+    time:
+      - platform: homeassistant
+        id: homeassistant_time
+
+While you can in theory also do this with the home assistant `integration <https://www.home-assistant.io/integrations/integration/>`__ integration, the benefit of this is that it continues to integrate the power during times home assistant is unable to work with values, i.e. during updates, restarts and so on.
 
 .. note::
 
@@ -73,8 +104,15 @@ power meter, tell them about ESPHome 😉
 See :doc:`/components/sensor/total_daily_energy` for counting up the total daily energy usage
 with these ``pulse_counter`` power meters.
 
+Example Configuration
+
+
+
 See Also
 --------
 
 - :doc:`/components/sensor/pulse_counter`
+- :doc:`/components/sensor/pulse_meter`
+- :doc:`/components/sensor/total_daily_energy`
+- :doc:`/components/sensor/time`
 - :ghedit:`Edit`
