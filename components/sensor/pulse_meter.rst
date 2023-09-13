@@ -11,7 +11,7 @@ It measures the time between rising edges on a pin, for each pulse it outputs th
 
 This leads to a higher resolution, especially for low pulse rates, as the pulse counter sensor is limited by the number of pulses within a time interval. The difference between 1 pulse/min and 2 pulse/min is much higher than 2000 pulses/min and 2001 pulses/min. The pulse_meter is only limited by its accuracy to measure the time between pulses, which leads to an inverse relationship between pulse rate and accuracy. The lower the pulse rate, the higher the accuracy. Lower accuracy with very high pulse rates is less likely to be a problem, as the ESP32 can measure time intervals with a resolution of 1us.
 
-Here's a comparison of the two sensors; both are set to an update interval of 10 seconds (using the :ref:`update_interval` and the :ref:`throttle_average` option respectively):
+Here's a comparison of the two sensors; both are set to an update interval of 10 seconds (using the ``update_interval`` and the :ref:`throttle_average` option respectively):
 
 .. figure:: /images/pulse-counter_vs_pulse-meter.png
     :align: center
