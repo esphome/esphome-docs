@@ -28,8 +28,8 @@ daily energy usage in ``Wh`` or ``kWh``.
 
     # Enable time component to reset energy at midnight
     time:
-      - platform: sntp
-        id: my_time
+      - platform: homeassistant
+        id: homeassistant_time
 
 Configuration variables:
 ------------------------
@@ -70,6 +70,9 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`hlw8012`
 - :doc:`cse7766`
+- :doc:`/components/sensor/pulse_counter`
+- :doc:`/components/sensor/pulse_meter`
+- :doc:`/components/sensor/time/homeassistant`
 - :doc:`/cookbook/power_meter`
 - :apiref:`total_daily_energy/total_daily_energy.h`
 - :ghedit:`Edit`
