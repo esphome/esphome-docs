@@ -3,7 +3,7 @@ FROM python:3.8-slim
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
         git \
-        nvm \
+        npm \
         make \
         doxygen \
         openssh-client \
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir --no-binary :all: -r requirements.txt
-RUN nvm install npx
+RUN npm install npx
 
 EXPOSE 8000
 WORKDIR /data/esphomedocs
