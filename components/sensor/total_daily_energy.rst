@@ -17,8 +17,15 @@ daily energy usage in ``Wh`` or ``kWh``.
     # Example configuration entry
     sensor:
       - platform: total_daily_energy
-        name: "Total Daily Energy"
+        name: 'Total Daily Energy'
         power_id: my_power
+        unit_of_measurement: 'kWh'
+        state_class: total_increasing
+        device_class: energy
+        accuracy_decimals: 3
+        filters:
+          # Multiplication factor from W to kW is 0.001
+          - multiply: 0.001
 
       # The power sensor to convert, can be any power sensor
       - platform: hlw8012

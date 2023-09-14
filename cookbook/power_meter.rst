@@ -26,7 +26,7 @@ And... that should already be it :)
 
 .. note::
 
-    Some energy meters have an exposed S0 port (which essentially just is a switch that closes), if
+    Some energy meters have an exposed `S0 port <https://en.wikipedia.org/wiki/S_interface/>`__ (which essentially just is a switch that closes), if
     that is the case the photodiode can be replaced with the following connection.
 
     .. code-block::
@@ -44,20 +44,18 @@ For ESPHome, you can then use the
     sensor:
       - platform: pulse_meter
         name: 'Power'
-        id: sensor_energy_pulse_meter
+        id: sensor_pulse_meter # Optional ID, necessary if you want to calculate the total daily energy
         unit_of_measurement: 'W'
-        state_class: measurement
         device_class: power
-        icon: mdi:flash-outline
+        state_class: measurement
         accuracy_decimals: 0
         pin: GPIO12
         filters:
-          # multiply value = (60s / x pulses per kWh) * 1000
-          - multiply: 60
+          - multiply: 6 # (60s / impulse constant) * (1000W / 1kW)
 
 Adjust ``GPIO12`` to match your set up of course. The output from the pulse counter sensor is in
-``pulses/min`` and we also know that 1000 pulses from the LED should equal 1kWh of power usage.
-Thus, rearranging the expression yields a proportional factor of ``60`` from ``pulses/min`` to
+``pulses/min`` and we also know that 10000 pulses from the LED should equal 1kWh of power usage.
+Thus, rearranging the expression yields a proportional factor of ``6`` from ``pulses/min`` to
 ``W``.
 
 And if a technician shows up and he looks confused about what the heck you have done to your
@@ -74,7 +72,6 @@ To accurately convert the power value ``W`` to energy ``kWh``, you can use the :
         id: sensor_total_daily_energy
         power_id: sensor_energy_pulse_meter
         unit_of_measurement: 'kWh'
-        icon: mdi:circle-slice-3
         state_class: total_increasing
         device_class: energy
         accuracy_decimals: 3
@@ -97,15 +94,12 @@ While you can in theory also do this with the home assistant `integration <https
     .. code-block:: yaml
 
         sensor:
-          - platform: pulse_counter
+          - platform: pulse_meter
             # ...
             internal_filter: 10us
 
 See :doc:`/components/sensor/total_daily_energy` for counting up the total daily energy usage
-with these ``pulse_counter`` power meters.
-
-Example Configuration
-
+with these ``pulse_meter`` power meters.
 
 
 See Also
@@ -115,4 +109,5 @@ See Also
 - :doc:`/components/sensor/pulse_meter`
 - :doc:`/components/sensor/total_daily_energy`
 - :doc:`/components/time/homeassistant`
+- `Home Assistant Glow 🌟 <https://github.com/klaasnicolaas/home-assistant-glow/>`__.
 - :ghedit:`Edit`
