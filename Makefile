@@ -11,7 +11,7 @@ live-html:	html
 	sphinx-autobuild . _build -j auto -n $(O) --host 0.0.0.0
 
 live-npx:	html
-	npx --serve
+	npx pagefind --serve
 
 html-strict:
 	sphinx-build -M html . _build -W -j auto -n $(O)

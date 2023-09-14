@@ -3,7 +3,7 @@ name: Lint
 on:
   push:
     # On other branches the `pull_request` trigger will be used
-    branches: [current, next]
+    branches: [current, next, pagefind]
 
   pull_request:
     types: [opened, edited, reopened, synchronize]
