@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir --no-binary :all: -r requirements.txt
-npm install -g npx
+RUN npm install -g npx
 
 EXPOSE 8000
 WORKDIR /data/esphomedocs
