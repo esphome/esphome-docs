@@ -177,3 +177,4 @@ See Also
   by `Miles Burton <https://github.com/milesburton>`__
 - :apiref:`dallas/dallas_component.h`
 - :ghedit:`Edit`
+- `Guidelines for Reliable Long Line 1-Wire Networks <https://www.analog.com/en/technical-articles/guidelines-for-reliable-long-line-1wire-networks.html>`__
