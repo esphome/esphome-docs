@@ -1,15 +1,21 @@
 ESPHOME_PATH = ../esphome
 ESPHOME_REF = 2023.8.3
 
-.PHONY: html html-strict cleanhtml deploy help live-html Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
+.PHONY: html html-strict cleanhtml deploy help live-html live-npx Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
 
 html:
 	sphinx-build -M html . _build -j auto -n $(O)
-live-html:
+	npx -q pagefind
+
+live-html:	html
 	sphinx-autobuild . _build -j auto -n $(O) --host 0.0.0.0
+
+live-npx:	html
+	npx -q pagefind --serve
 
 html-strict:
 	sphinx-build -M html . _build -W -j auto -n $(O)
+	npx -q pagefind
 
 minify:
 	minify _static/webserver-v1.js > _static/webserver-v1.min.js

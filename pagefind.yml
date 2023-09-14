@@ -1,0 +1,5 @@
+site: _build/html
+root_selector: div.document
+exclude_selectors:
+  - a.headerlink
+
