@@ -38,6 +38,8 @@ If available on your reader model, it's recommended to connect 3.3VT (touch indu
     # Declare Grow Fingerprint Reader
     fingerprint_grow:
       sensing_pin: GPIO12
+      on_finger_scan_start:
+        ...
       on_finger_scan_matched:
         ...
       on_finger_scan_unmatched:
@@ -64,6 +66,7 @@ Base Configuration:
 - **sensing_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Pin connected to the reader's finger detection signal (WAKEUP) output.
 - **password** (*Optional*, int): Password to use for authentication. Defaults to ``0x00``.
 - **new_password** (*Optional*, int): Sets a new password to use for authentication. See :ref:`fingerprint_grow-set_new_password` for more information.
+- **on_finger_scan_start** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the finger touches the sensor. See :ref:`fingerprint_grow-on_finger_scan_start`.
 - **on_finger_scan_matched** (*Optional*, :ref:`Automation <automation>`): An action to be performed when an enrolled fingerprint is scanned. See :ref:`fingerprint_grow-on_finger_scan_matched`.
 - **on_finger_scan_unmatched** (*Optional*, :ref:`Automation <automation>`): An action to be performed when an unknown fingerprint is scanned. See :ref:`fingerprint_grow-on_finger_scan_unmatched`.
 - **on_finger_scan_misplaced** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the finger is not entirely touching the sensor. See :ref:`fingerprint_grow-on_finger_scan_misplaced`.
@@ -146,6 +149,22 @@ The ``new_password:`` configuration option is meant to be compiled, flashed to t
     fingerprint_grow:
       password: 0x72AB96CD      # Update the existing password with the new one
 
+
+.. _fingerprint_grow-on_finger_scan_start:
+
+``on_finger_scan_start`` Trigger
+------------------------------------
+
+With this configuration option, you can trigger an automation when a finger is detected touching the sensor. Very useful to indicate to the user via AuraLed that the sensor has detected the finger touch and will perform the scan. This trigger will **only** activate if your fingerprint sensor is configured with the ``sensing_pin`` option. 
+
+.. code-block:: yaml
+
+    on_finger_scan_start:
+      - fingerprint_grow.aura_led_control:
+          state: ALWAYS_ON
+          color: GREEN
+          speed: 0
+          count: 0
 
 .. _fingerprint_grow-on_finger_scan_matched:
 
@@ -359,6 +378,12 @@ Controls the Aura LED on the reader. Only available on select models.  NOTE: The
             count: 2
     # Sample Aura LED config for all reader triggers
     fingerprint_grow:
+      on_finger_scan_start:
+        - fingerprint_grow.aura_led_control:
+            state: ALWAYS_ON
+            color: GREEN
+            speed: 0
+            count: 0
       on_finger_scan_matched:
         - fingerprint_grow.aura_led_control:
             state: BREATHING
