@@ -8,11 +8,14 @@
 }
 
 div.document {
+  max-width: 1800px;
+  width: 100%;
   margin-bottom: 50px;
 }
 
 div.body {
   min-width: initial;
+  max-width: 1500px
 }
 
 div.sphinxsidebar {
