@@ -52,10 +52,13 @@ netlify-dependencies: pagefind-binary
 	chmod +x ../doxybin/doxygen
 
 pagefind-binary:
+	mkdir -o ../pagefindbin
 	curl -o pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz https://github.com/CloudCannon/pagefind/releases/download/v1.0.2/pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz -L
 	tar xzf pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz
 	rm pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz
-	mv pagefind /usr/local/bin
+	mv pagefind ../pagefindbin
+	export PATH := ../pagefindbin:$(PATH)
+
 
 copy-svg2png:
 	cp svg2png/*.png _build/html/_images/
