@@ -3,7 +3,7 @@ ESPHOME_REF = 2023.8.3
 
 .PHONY: html html-strict cleanhtml deploy help live-html live-pagefind Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
 
-html:
+html: pagefind-binary
 	sphinx-build -M html . _build -j auto -n $(O)
 	pagefind
 
@@ -13,7 +13,7 @@ live-html:	html
 live-pagefind:	html
 	pagefind --serve
 
-html-strict:
+html-strict: pagefind-binary
 	sphinx-build -M html . _build -W -j auto -n $(O)
 	pagefind
 
@@ -46,10 +46,16 @@ netlify-api: netlify-dependencies
 	fi
 	ESPHOME_PATH=$(ESPHOME_PATH) ../doxybin/doxygen Doxygen
 
-netlify-dependencies:
+netlify-dependencies: pagefind-binary
 	mkdir -p ../doxybin
 	curl -L https://github.com/esphome/esphome-docs/releases/download/v1.10.1/doxygen-1.8.13.xz | xz -d >../doxybin/doxygen
 	chmod +x ../doxybin/doxygen
+
+pagefind-binary:
+	curl -o pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz https://github.com/CloudCannon/pagefind/releases/download/v1.0.2/pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz -L
+	tar xzf pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz
+	rm pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz
+	mv pagefind /usr/local/bin
 
 copy-svg2png:
 	cp svg2png/*.png _build/html/_images/
