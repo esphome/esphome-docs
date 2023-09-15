@@ -16,7 +16,7 @@ WORKDIR /data/esphomedocs
 RUN curl -o pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz https://github.com/CloudCannon/pagefind/releases/download/v1.0.2/pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz -L
 RUN tar xzf pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz
 RUN rm pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz
-RIN mv pagefind /usr/local/bin
+RUN mv pagefind /usr/local/bin
 
 EXPOSE 8000
 
