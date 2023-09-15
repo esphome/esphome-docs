@@ -3,7 +3,7 @@ ESPHOME_REF = 2023.8.3
 
 .PHONY: html html-strict cleanhtml deploy help live-html live-pagefind Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
 
-html: pagefind-binary
+html:
 	sphinx-build -M html . _build -j auto -n $(O)
 	pagefind
 
@@ -13,7 +13,7 @@ live-html:	html
 live-pagefind:	html
 	pagefind --serve
 
-html-strict: pagefind-binary
+html-strict:
 	sphinx-build -M html . _build -W -j auto -n $(O)
 	pagefind
 
@@ -52,7 +52,7 @@ netlify-dependencies: pagefind-binary
 	chmod +x ../doxybin/doxygen
 
 pagefind-binary:
-	mkdir -o ../pagefindbin
+	mkdir -p ../pagefindbin
 	curl -o pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz https://github.com/CloudCannon/pagefind/releases/download/v1.0.2/pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz -L
 	tar xzf pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz
 	rm pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz
