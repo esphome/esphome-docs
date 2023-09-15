@@ -57,50 +57,140 @@ to an ESP module.
 
     For more information about the font options see: :ref:`display-fonts`.
 
-.. warning::
 
-    When using the TTGO T-Display module, the GPIO pin numbers above *cannot be changed* as they are
-    hardwired within the module/PCB.
 
 Configuration variables:
 ************************
+
+Options below marked **Required** *unless preset* must be provided but may be defined by a preset depending on the selected model, so
+may not need to be explicitly specified in your YAML file. If you do specify them they will override any preset.
 
 - **model** (**Required**, string): The display model to use. One of the following options:
 
   - ``TTGO TDisplay 135x240``
   - ``Adafruit Funhouse 240x240``
   - ``Adafruit RR 280x240`` (round-rectangular display -- some pixels are "deleted" from corners to form rounded shape)
-  - ``Adafruit S2 TFT FEATHER 240X135`` (requires ``power_supply`` be specified, see below)
-  - ``Custom`` (see details below)
+  - ``Adafruit S2 TFT FEATHER 240X135``
+  - ``LILYGO T-Embed 170X320``
+  - ``Custom`` For other displays not listed above
 
-- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
-- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
-- **reset_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
-- **height** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the ``height`` of the display
-  in pixels. This option may not be specified when the ``model`` is not set to "Custom".
-- **width** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the ``width`` of the display
-  in pixels. This option may not be specified when the ``model`` is not set to "Custom".
-- **offset_height** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the display's vertical
+- **height** (**Required** *unless preset*, int): Sets height of display in pixels.
+- **width** (**Required** *unless preset*, int): Sets width of display.
+- **offset_height** (**Required** *unless preset*, int): When ``model`` is set to "Custom", use this to specify the display's vertical
   offset in pixels. This option may not be specified when the ``model`` is not set to "Custom".
-- **offset_width** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the display's horizontal
+- **offset_width** (**Required** *unless preset*, int): When ``model`` is set to "Custom", use this to specify the display's horizontal
   offset in pixels. This option may not be specified when the ``model`` is not set to "Custom".
+- **cs_pin** (**Required** *unless preset*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **dc_pin** (**Required** *unless preset*, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (**Required** *unless preset*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **eightbitcolor** (*Optional*, boolean): Limits the supported color depth to eight bits. May be useful on
-  memory-constrained devices.
-- **backlight_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The display's backlight pin.
+  memory-constrained devices. Defaults to false.
+- **backlight_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The display's backlight pin. May be required
+  depending on the hardware configuration.
 - **power_supply** (*Optional*, :ref:`config-id`): The :doc:`power supply </components/power_supply>` to connect to
-  this display. The power supply will be turned on before attempting to initialize the display. When ``model`` is set
-  to "Adafruit S2 TFT FEATHER 240X135" this option is required as there are variations of this board sold with differing
-  pin assignments.
+  this display if required by hardware. The power supply will be turned on before attempting to initialize the display.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+
+Preset configuration
+********************
+
+For specific models there is some preset configuration which will satisy some of the **Required** *unless preset* values.
+All models except ``Custom`` preset the ``height``, ``width`` and ``offset_...`` values.
+The table below summarises the other presets. Note that SPI CLK and SDO (mosi) pins, and the power supply pin must be separately
+configured in ``spi:`` and ``power_supply:`` blocks - the pins are noted below for convenience only.
+
+Items marked RQ are hardware dependent but required and not preset. Items marked ? are optional depending on the hardware.
+
+.. list-table:: Model presets
+   :header-rows: 1
+
+
+   * - Model
+     - Height/ width
+     - Offsets
+     - CS
+     - DC
+     - Reset
+     - Back light
+     - Pwr sup
+     - SPI clk
+     - SPI mosi
+   * - TTGO TDisplay 135x240
+     - 240/135
+     - 52/40
+     - 5
+     - 6
+     - 23
+     - 4
+     -
+     - 18
+     - 19
+   * - Adafruit Funhouse 240x240
+     - 240/240
+     - 0/0
+     - 40
+     - 39
+     - 41
+     - 21
+     -
+     - 36
+     - 35
+   * - Adafruit RR 280x240
+     - 240/240
+     - 0/20
+     - RQ
+     - RQ
+     - RQ
+     - ?
+     - ?
+     - RQ
+     - RQ
+   * - Adafruit S2 TFT FEATHER 240X135
+     - 240/135
+     - 52/40
+     - 7
+     - 39
+     - 40
+     - 45
+     - 21
+     - 36
+     - 35
+   * - LILYGO T-Embed 170X320
+     - 320/170
+     - 35/0
+     - 10
+     - 13
+     - 9
+     - 15
+     - 46
+     - 12
+     - 11
+   * - Custom
+     - RQ
+     - RQ
+     - RQ
+     - RQ
+     - RQ
+     - ?
+     - ?
+     - RQ
+     - RQ
+
+
+
+For all boards you can override the presets by specifying any of the configuration options. Pin assignments on some
+boards can change between versions so if it doesn't work with the presets check the board pinouts and override options as
+required.
+
 .. note::
 
-    On memory-constrained devices, it may be possible to use *part* of the display area by setting the model to "custom"
-    and specifying a smaller ``height`` and/or ``width`` than that of the actual display.
+    On memory-constrained devices, it may be possible to use *part* of the display area by
+    specifying a smaller ``height`` and/or ``width`` than that of the actual display.
 
 
 Configuration examples
