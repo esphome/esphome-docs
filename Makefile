@@ -1,21 +1,22 @@
 ESPHOME_PATH = ../esphome
 ESPHOME_REF = 2023.8.3
+BINPATH=../pagefindbin:$(PATH)
 
 .PHONY: html html-strict cleanhtml deploy help live-html live-pagefind Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
 
 html:
 	sphinx-build -M html . _build -j auto -n $(O)
-	pagefind
+	PATH=$(BINPATH) pagefind
 
 live-html:	html
 	sphinx-autobuild . _build -j auto -n $(O) --host 0.0.0.0
 
 live-pagefind:	html
-	pagefind --serve
+	PATH=$(BINPATH) pagefind --serve
 
 html-strict:
 	sphinx-build -M html . _build -W -j auto -n $(O)
-	pagefind
+	PATH=$(BINPATH) pagefind
 
 minify:
 	minify _static/webserver-v1.js > _static/webserver-v1.min.js
@@ -57,7 +58,6 @@ pagefind-binary:
 	tar xzf pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz
 	rm pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz
 	mv pagefind ../pagefindbin
-	export PATH := ../pagefindbin:$(PATH)
 
 
 copy-svg2png:
