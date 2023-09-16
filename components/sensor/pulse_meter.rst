@@ -93,7 +93,7 @@ measure the total transmitted energy in ``kWh``.
           state_class: total_increasing
           accuracy_decimals: 3
           filters:
-            - multiply: 0.001  # (1/1000 pulses per kWh)
+            - multiply: 0.0001  # (1/10000 pulses per kWh)
 
 
 
