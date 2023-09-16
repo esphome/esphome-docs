@@ -134,6 +134,7 @@ html_theme_options = {
     "sidebar_collapse": True,
     "fixed_sidebar": True,
     "show_powered_by": False,
+    "page_width": "1800px",
 }
 
 html_context = {
