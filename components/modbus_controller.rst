@@ -59,6 +59,11 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
   Defaults to 60 seconds.
 
+- **offline_skip_updates** (*Optional*, integer): When a controller doesn't respond to a command, it is
+  marked as offline, you can specify how many updates will be skipped while it is offline. If using a bus with multiple
+  controllers, this avoids waiting for timeouts allowing to read other controllers in the same bus. When the controller
+  responds to a command, it'll be marked online again.
+
 
 Example
 -------
