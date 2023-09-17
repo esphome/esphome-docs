@@ -34,13 +34,7 @@ Configuration variables:
 - **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
   time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. 
   
-  The minimum pulse width threshold is determined by considering the upper limit of the *load* the meter is designed to handle, as well as the meter's *impulse constant* (``x pulses / kWh``). Here's the calculation involved:
-
-  **Load Limit in Watts**: Establish the *upper load limit* that the meter is designed to measure. For example, if the limit is 16 kW (16,000 Watts), this becomes a reference point.
-
-  **Pulse Rate Calculation**: Determine the pulse rate corresponding to this load limit. For this we need to know the impulse constant. In our example, the power meter has an impulse constant of ``10000 pulses/kWh``. Dividing both sides by 60s gives us ``166.67 pulses/s = 60 kWs``. This means that 60 kW corresponds to 1,000 impulses per 6 seconds, or 166.67 impulses per second. Scaling this down to 16 kW, we get ``16 kW = 44.44 Pulses/s``  (or 400 pulses per 9 seconds). This is the upper bound of the pulse rate we expect to see.
-
-  **Minimum Pulse Width Calculation**: Use the pulse rate to calculate the minimum pulse width threshold. Employ the formula: ``Minimum Pulse Width (seconds) = Time Period / Number of Pulses``. In our example, with a time period of 9 seconds and 400 pulses, the minimum pulse width we expect to see is approximately 22.5 milliseconds. This means you don't want to increase the internal filter time above ``22.5ms``, or you will start to miss pulses within the expected load range.
+  To calculate a meaningful value, you need to know the shortest pulse you expect to see, as not to filter out valid pulses.
 
 - **internal_filter_mode** (*Optional*, string): Determines how the internal filter is applied.
   One of ``EDGE`` and ``PULSE``. Defaults to ``EDGE``. In ``EDGE`` mode subsequent rising edges are compared and if they fall into an interval lesser than the internal filter value, the last one is discarded. In ``PULSE`` mode the rising edge is discarded if any further interrupts are detected before the ``internal_filter`` time has passed. In other words, a high pulse must be at least ``internal_filter`` long to be counted. This is useful if you are detecting long pulses that may bounces before and/or after the main pulse.  
@@ -53,9 +47,7 @@ Converting units
 ----------------
 
 The sensor defaults to units of ``pulses/min``. You can change this by using :ref:`sensor-filters`.
-For example, if you’re using the pulse meter with a photodiode to
-count the light pulses on a power meter that outputs ``10000 pulses / kWh``,
-you can use the following to output instantaneous usage in ``W``:
+For example, if you’re using the pulse meter with a photodiode to count the light pulses on a power meter that has an impulse constant of ``10000 pulses / kWh``, you can use the following to output instantaneous usage in ``W``:
 
 .. code-block:: yaml
 
@@ -63,7 +55,7 @@ you can use the following to output instantaneous usage in ``W``:
     sensor:
       - platform: pulse_meter
         name: 'Electricity Usage'
-        id: sensor_pulse_meter # Optional ID, necessary if you want to calculate the total daily energy
+        id: sensor_pulse_meter # Optional ID, necessary if you want to calculate the total number of pulses.
         unit_of_measurement: 'W'
         device_class: power
         state_class: measurement
@@ -77,8 +69,7 @@ Counting total pulses
 ---------------------
 
 When the total sensor is configured, ``pulse_meter`` also reports the total
-number of pulses measured. When used on a power meter, this can be used to
-measure the total transmitted energy in ``kWh``.
+number of pulses measured.
 
 .. code-block:: yaml
 
@@ -87,17 +78,9 @@ measure the total transmitted energy in ``kWh``.
       - platform: pulse_meter
       # ...
         total:
-          name: "Electricity Total"
-          unit_of_measurement: "kWh"
-          device_class: energy
-          state_class: total_increasing
-          accuracy_decimals: 3
-          filters:
-            - multiply: 0.0001  # (1/10000 pulses per kWh)
+          name: "Total Pulses"
 
-
-
-(Re)Setting the total (pulse) count
+(Re)Setting the total pulse count
 -----------------------------------
 
 Using this action, you are able to reset/set the total pulse count. This can be useful
@@ -114,12 +97,7 @@ trying to match.
           then:
             - pulse_counter.set_total_pulses:
                 id: sensor_pulse_meter
-                value: !lambda 'return new_total * 1000;'
-
-.. note::
-
-    If you just want to set the total pulse count instead of the total energy, you can remove the multiplication by 1000.
-
+                value: !lambda 'return new_total;'
 
 See Also
 --------
