@@ -7,7 +7,7 @@ Non-Invasive Power Meter
 
 So an essential part of making your home smart is knowing how much power it uses over the day. Tracking this can be difficult, often you need to install a completely new power meter which can often cost a bunch of money. However, quite a few power meters have a red LED on the front that blinks every time that one Wh has been used.
 
-The simple idea therefore is: Why don't we just abuse that functionality to make the power-meter IoT enabled? We just have to hook up a simple photoresistor in front of that aforementioned LED and track the amount of pulses we receive. Then using ESPHome we can instantly have the power meter show up in Home Assistant 🎉
+The simple idea therefore is: Why don't we just abuse that functionality to make the power-meter IoT enabled? We just have to hook up a simple photoresistor in front of that aforementioned LED and track the number of pulses we receive. Then using ESPHome we can instantly have the power meter show up in Home Assistant 🎉
 
 Hooking it all up is quite easy: Just buy a suitable photoresistor (make sure the wave length approximately matches the one from your power meter). Then connect it using a simple variable resistor divider (see `this article <https://blog.udemy.com/arduino-ldr/>`__ for inspiration). And... that should already be it :)
 
@@ -66,16 +66,16 @@ Adjust ``GPIO12`` to match your set up of course. The output from the pulse coun
 
     - **Load Limit in Watts**: Establish the *upper load limit* that the meter is designed to measure. For example, if the limit is 16 kW (16,000 Watts), this becomes a reference point.
 
-    - **Pulse Rate Calculation**: Determine the pulse rate corresponding to this load limit. For this we need to know the impulse constant. In our example, the power meter has an impulse constant of ``10000 pulses/kWh``. Dividing both sides by 60s gives us ``166.67 pulses/s = 60 kWs``. This means that ``60 kWs`` corresponds to 1,000 impulses per 6 seconds, or 166.67 impulses per second. Scaling this down to 16 kW, we get ``16 kWs = 44.44 Pulses/s``  (or 400 pulses per 9 seconds). This is the upper bound of the pulse rate we expect to see.
+    - **Pulse Rate Calculation**: Determine the pulse rate corresponding to this load limit. For this we need to know the impulse constant. In our example, the power meter has an impulse constant of ``10000 pulses/kWh``, resulting in 160000 pulses per hour at the maximum 16kW load, i.e. 44.4 pulses/second.
 
-    - **Minimum Pulse Width Calculation**: Use the pulse rate to calculate the minimum pulse width threshold. Employ the formula: ``Minimum Pulse Width (seconds) = Time Period / Number of Pulses``. In our example, with a time period of 9 seconds and 400 pulses, the minimum pulse width we expect to see is approximately 22.5 milliseconds. This means you don't want to increase the internal filter time above ``22.5ms``, or you will start to miss pulses within the expected load range.
+    - **Minimum Pulse Width Calculation**: Use the pulse rate to calculate the minimum pulse width threshold. In our example, with a maximum pulse rate of 44.4/sec, the minimum pulse width we expect to see is approximately 22.5 milliseconds. Choose a slightly smaller value than this to avoid missing pulses.
 
     .. code-block:: yaml
 
         sensor:
           - platform: pulse_meter
             # ...
-            internal_filter: 22.5ms
+            internal_filter: 20ms
 
 
 If a technician shows up and he looks confused about what the heck you have done to your power meter, tell them about ESPHome 😉
