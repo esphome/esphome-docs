@@ -100,7 +100,7 @@ trying to match.
                 value: !lambda 'return new_total;'
 
 
-  .. note::
+.. note::
 
     This value is the raw count of pulses, and not the value you see after the filters
 
