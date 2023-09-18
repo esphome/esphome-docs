@@ -42,7 +42,7 @@ For ESPHome, you can then use the :doc:`pulse meter sensor </components/sensor/p
         filters:
           - multiply: 6 # (60s / impulse constant) * (1000W / 1kW)
 
-Adjust ``GPIO12`` to match your set up of course. The output from the pulse counter sensor is in ``pulses/min`` and we also know that 10000 pulses from the LED should equal 1kWh of power usage. Thus, rearranging the expression yields a proportional factor of ``6`` from ``pulses/min`` to ``W``.
+Adjust ``GPIO12`` to match your set up of course. The output from the pulse counter sensor is in pulses/min and we also know that 10000 pulses from the LED should equal 1kWh of power usage. Thus, rearranging the expression yields a proportional factor of 6 from pulses/min to *W*.
 
 .. note::
 
@@ -57,16 +57,15 @@ Adjust ``GPIO12`` to match your set up of course. The output from the pulse coun
               - average_throttle: 10s
               - filter_out: NaN
 
-
 .. note::
 
     The ``pulse_meter`` sensor has an internal filter that is used to debounce the input signal. This filter is set to ``13us`` by default. To increase the safety margin, you can increase this value. For this you need to know the *minimum pulse width* that you can expect to see from your power meter within the expected load range.
 
-    The minimum pulse width threshold is determined by considering the upper limit of the *load* the meter is designed to handle, as well as the meter's *impulse constant* (``x pulses / kWh``). Here's the calculation involved:
+    The minimum pulse width threshold is determined by considering the upper limit of the *load* the meter is designed to handle, as well as the meter's *impulse constant* (x pulses / kWh). Here's the calculation involved:
 
     - **Load Limit in Watts**: Establish the *upper load limit* that the meter is designed to measure. For example, if the limit is 16 kW (16,000 Watts), this becomes a reference point.
 
-    - **Pulse Rate Calculation**: Determine the pulse rate corresponding to this load limit. For this we need to know the impulse constant. In our example, the power meter has an impulse constant of ``10000 pulses/kWh``, resulting in 160000 pulses per hour at the maximum 16kW load, i.e. 44.4 pulses/second.
+    - **Pulse Rate Calculation**: Determine the pulse rate corresponding to this load limit. For this we need to know the impulse constant. In our example, the power meter has an impulse constant of 10000 pulses/kWh, resulting in 160000 pulses per hour at the maximum 16 kW load, i.e. 44.4 pulses/second.
 
     - **Minimum Pulse Width Calculation**: Use the pulse rate to calculate the minimum pulse width threshold. In our example, with a maximum pulse rate of 44.4/sec, the minimum pulse width we expect to see is approximately 22.5 milliseconds. Choose a slightly smaller value than this to avoid missing pulses.
 
@@ -77,16 +76,12 @@ Adjust ``GPIO12`` to match your set up of course. The output from the pulse coun
             # ...
             internal_filter: 20ms
 
-
 If a technician shows up and he looks confused about what the heck you have done to your power meter, tell them about ESPHome 😉
-
 
 Counting total generated energy
 -------------------------------
 
-When the total sensor is configured, ``pulse_meter`` also reports the total
-number of pulses measured. When used on a power meter, this can be used to
-measure the total transmitted energy in ``kWh``.
+When the total sensor is configured, ``pulse_meter`` also reports the total number of pulses measured. When used on a power meter, this can be used to measure the total transmitted energy in kWh.
 
 .. code-block:: yaml
 
@@ -105,14 +100,10 @@ measure the total transmitted energy in ``kWh``.
             # - average_throttle: 10s
             # - filter_out: NaN
 
-
-
 (Re)Setting the total energy value
 ----------------------------------
 
-Using this action, you are able to reset/set the total pulse count. This can be useful
-if you would like the ``total`` sensor to match what you see on your meter you are
-trying to match.
+Using this action, you are able to reset/set the total pulse count. This can be useful if you would like the ``total`` sensor to match what you see on your meter you are trying to match.
 
 .. code-block:: yaml
 
@@ -125,7 +116,6 @@ trying to match.
             - pulse_counter.set_total_pulses:
                 id: sensor_pulse_meter
                 value: !lambda 'return new_total * 1000;'
-
 
 Tracking Total Daily Energy
 ---------------------------

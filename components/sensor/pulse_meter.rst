@@ -23,23 +23,22 @@ Here's a comparison of the two sensors; both are set to an update interval of 10
         pin: 12
         name: "Pulse Meter"
 
-Configuration variables:
+Configuration variables
 ------------------------
 
 - **pin** (**Required**, :ref:`config-pin`): The pin to count pulses on.
 - **name** (**Required**, string): The name of the sensor.
 
-- **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
-  time is detected, it is discarded. Defaults to ``13us``. 
+- **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this   time is detected, it is discarded. Defaults to ``13us``.
   
   This acts as a debounce filter to eliminate input noise, so choose a value a little less than your expected minimum pulse width.
 
 - **internal_filter_mode** (*Optional*, string): Determines how the internal filter is applied.
-  One of ``EDGE`` or ``PULSE``. Defaults to ``EDGE``. 
+  One of ``EDGE`` or ``PULSE``. Defaults to ``EDGE``.
   - In ``EDGE`` mode, only rising edges are detected and pulse width is calculated as the time between successive rising edges.  
-  - In ``PULSE`` mode, both rising and falling edges are detected and pulse width is calculated as the time between a rising and a falling edge. 
+  - In ``PULSE`` mode, both rising and falling edges are detected and pulse width is calculated as the time between a rising and a falling edge.
   
-  In either case, a pulse with width less than ``interval_timer`` is ignored. 
+  In either case, a pulse with width less than ``interval_timer`` is ignored.
   
   In other words, a high pulse must be at least ``internal_filter`` long to be counted. This is useful if you are detecting long pulses that may bounces before and/or after the main pulse.  
 
@@ -103,11 +102,9 @@ trying to match.
                 id: sensor_pulse_meter
                 value: !lambda 'return new_total;'
 
-
 .. note::
 
     This value is the raw count of pulses, and not the value you see after the filters
-
 
 See Also
 --------
