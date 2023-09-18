@@ -7,9 +7,7 @@ Pulse Meter Sensor
 
 The pulse meter sensor allows you to count the number and frequency of pulses on any pin. It is intended to be a drop-in replacement
 for the :doc:`pulse counter integration </components/sensor/pulse_counter>`.
-Rather than counting pulses over a fixed time interval, the pulse meter sensor measures the time between pulses. The precise manner in which this is done depends on the ``internal_filter_mode`` option.
-
-This leads to a higher resolution, especially for low pulse rates, as the pulse counter sensor is limited by the number of pulses within a time interval. The difference between ``1 pulse/min`` and ``2 pulses/min`` is much higher than ``2000 pulses/min`` and ``2001 pulses/min``. The pulse_meter is only limited by its accuracy to measure the time between pulses, which leads to an inverse relationship between pulse rate and accuracy. The lower the pulse rate, the higher the accuracy. Lower accuracy with very high pulse rates is less likely to be a problem.
+Rather than counting pulses over a fixed time interval, the pulse meter sensor measures the time between pulses. The precise manner in which this is done depends on the ``internal_filter_mode`` option. This leads to a higher resolution, especially for low pulse rates, as the pulse counter sensor is limited by the number of pulses within a time interval.
 
 Here's a comparison of the two sensors; both are set to an update interval of 10 seconds (using the ``update_interval`` and the ``throttle_average`` option respectively):
 
@@ -37,17 +35,23 @@ Configuration variables:
   This acts as a debounce filter to eliminate input noise, so choose a value a little less than your expected minimum pulse width.
 
 - **internal_filter_mode** (*Optional*, string): Determines how the internal filter is applied.
-  One of ``EDGE`` and ``PULSE``. Defaults to ``EDGE``. In ``EDGE`` mode, each rising edge is considered a pulse, and the time between these rising edges is measured, provided they are shorter than the ``internal_filter`` duration. In ``PULSE`` mode, the code treats the duration from the falling edge of one pulse to the rising edge of the next as a single pulse, and this duration is measured.. In other words, a high pulse must be at least ``internal_filter`` long to be counted. This is useful if you are detecting long pulses that may bounces before and/or after the main pulse.  
+  One of ``EDGE`` or ``PULSE``. Defaults to ``EDGE``. 
+  - In ``EDGE`` mode, only rising edges are detected and pulse width is calculated as the time between successive rising edges.  
+  - In ``PULSE`` mode, both rising and falling edges are detected and pulse width is calculated as the time between a rising and a falling edge. 
+  
+  In either case, a pulse with width less than ``interval_timer`` is ignored. 
+  
+  In other words, a high pulse must be at least ``internal_filter`` long to be counted. This is useful if you are detecting long pulses that may bounces before and/or after the main pulse.  
 
-- **timeout** (*Optional*, :ref:`config-time`): If we don't see a pulse for this length of time, we assume ``0 pulses/s``. Defaults to ``5 min``.
+- **timeout** (*Optional*, :ref:`config-time`): If we don't see a pulse for this length of time, we assume *0 pulses/s*. Defaults to ``5 min``.
 - **total** (*Optional*, :ref:`config-id`): An additional sensor that outputs the total number of pulses counted.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 Converting units
 ----------------
 
-The sensor defaults to units of ``pulses/min``. You can change this by using :ref:`sensor-filters`.
-For example, if you’re using the pulse meter with a photodiode to count the light pulses on a power meter that has an impulse constant of ``10000 pulses / kWh``, you can use the following to output instantaneous usage in ``W``:
+The sensor defaults to units of *pulses/min*, You can change this by using :ref:`sensor-filters`.
+For example, if you’re using the pulse meter with a photodiode to count the light pulses on a power meter that has an impulse constant of *10000 pulses / kWh*, you can use the following to output instantaneous usage in *W*:
 
 .. code-block:: yaml
 
