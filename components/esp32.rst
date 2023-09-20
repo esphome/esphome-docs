@@ -23,7 +23,7 @@ Configuration variables:
   choose a generic board from Espressif such as ``esp32dev``.
 - **framework** (*Optional*): Options for the underlying framework used by ESPHome.
   See :ref:`esp32-arduino_framework` and :ref:`esp32-espidf_framework`.
-- **variant** (*Optional*, boolean): The variant of the ESP32 that is used on this board. One of ``esp32``,
+- **variant** (*Optional*, string): The variant of the ESP32 that is used on this board. One of ``esp32``,
   ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``. Defaults to the variant that is detected from the board, if
   a board that's unknown to ESPHome is used, this option is mandatory.
 
