@@ -437,7 +437,7 @@ Configuration for ESP-EYE
       # ...
 
 Configuration for ESP32S3_EYE on `Freenove ESP32-S3-DevKitC-1 <https://github.com/Freenove/Freenove_ESP32_S3_WROOM_Board>`_
-----------------------------------
+---------------------------------------------------------------------------------------------------------------------------
 
 .. code-block:: yaml
 
