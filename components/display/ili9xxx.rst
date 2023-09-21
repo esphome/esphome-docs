@@ -14,6 +14,7 @@ With this display driver you can control the following displays:
   - ILI9341
   - ILI9342
   - ILI9481
+  - ILI9481-18 (ILI9481 in 18 bit, i.e. 262K color, mode)
   - ILI9486
   - ILI9488
   - ILI9488_A (alternative gamma configuration for ILI9488)
