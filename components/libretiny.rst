@@ -58,7 +58,7 @@ Configuration variables:
 
     Support for the LibreTiny platform is still in development and there could be issues or missing components.
 
-    In particular, **MQTT is not supported yet**, because of reported stability issues.
+    In particular, **MQTT is not supported on RTL87xx yet**, because of reported stability issues. Some peripherals (like I2C or SPI) may also be missing.
 
     Please report any issues on `LibreTiny GitHub <https://github.com/kuba2k2/libretiny>`__.
 
