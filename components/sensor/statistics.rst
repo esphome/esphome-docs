@@ -25,24 +25,27 @@ To use the component, first, provide the source sensor and then configure the wi
           window_size: 15
           send_every: 5
           send_first_at: 3
-        count:
-          name: "Count of Valid Sensor Measurements"         
-        duration:
-          name: "Sample Duration"
-        max:
-          name: "Sensor Maximum"   
-        min:
-          name: "Sensor Minimum"
-        mean:
-          name: "Sensor Average"
-        since_argmax:
-          name: "Time Since Last Maximum of Sensor"
-        since_argmin:
-          name: "Time Since Last Minimum of Sensor"          
-        std_dev: 
-          name: "Sensor Sample Standard Deviation"
-        trend:
-          name: "Sensor Trend"          
+        statistics:
+          - type: count
+            name: "Count of Valid Sensor Measurements"         
+          - type: duration
+            name: "Sample Duration"
+          - type: max
+            name: "Sensor Maximum"   
+          - type: min
+            name: "Sensor Minimum"
+          - type: mean
+            name: "Sensor Average"
+          - type: quadrature
+            name: "Sensor Quadrature"
+          - type: since_argmax
+            name: "Time Since Last Maximum of Sensor"
+          - type: since_argmin
+            name: "Time Since Last Minimum of Sensor"          
+          - type: std_dev
+            name: "Sensor Sample Standard Deviation"
+          - type: trend
+            name: "Sensor Trend"          
 
       # Use any other sensor component to gather statistics for
       - platform: ...
@@ -56,28 +59,16 @@ Configuration Variables
     - **type** (**Required**, enum): One of ``sliding``, ``continuous``, or ``continuous_long_term``.
     - All other options from :ref:`statistics-sliding_options` or :ref:`statistics-continuous_options`.
 
-- **average_type** (*Optional*, enum): How each measurement is weighted, one of ``simple`` or ``time_weighted``. Defaults to ``simple``.
+- **weight_type** (*Optional*, enum): How each measurement is weighted, one of ``simple`` or ``duration``. Defaults to ``simple``.
 - **group_type** (*Optional*, enum): The type of the set of sensor measurements, one of ``sample`` or ``population``. Defaults to ``sample``.
-- **time_unit** (*Optional*, enum): The time unit used for the duration, since argmax, since argmin, and trend sensors, one of
-  ``ms``, ``s``, ``min``, ``h`` or ``d``. Defaults to ``s``.
 
-- **count** (*Optional*): The information for the count sensor. All options from :ref:`Sensor <config-sensor>`.  
 
-- **duration** (*Optional*): The information for the duration sensor. All options from :ref:`Sensor <config-sensor>`.  
+- **statistics** (*Optional*, list): A list of the statistic sensors.
 
-- **max** (*Optional*): The information for the maximum sensor. All options from :ref:`Sensor <config-sensor>`.  
-
-- **mean** (*Optional*): The information for the mean (average) sensor. All options from :ref:`Sensor <config-sensor>`.  
-
-- **min** (*Optional*): The information for the minimum sensor. All options from :ref:`Sensor <config-sensor>`.  
-
-- **since_argmax** (*Optional*): The information for the since argmax sensor. All options from :ref:`Sensor <config-sensor>`.  
-
-- **since_argmin** (*Optional*): The information for the since argmin sensor. All options from :ref:`Sensor <config-sensor>`.  
-
-- **std_dev** (*Optional*): The information for the standard deviation sensor. All options from :ref:`Sensor <config-sensor>`.  
-
-- **trend** (*Optional*): The information for the trend sensor. All options from :ref:`Sensor <config-sensor>`.
+    - **type** (**Required**, enum): One of ``count``, ``duration``, ``max``, ``mean``, ``min``, ``quadrature``, ``since_argmax``, ``since_argmin``, ``std_dev``, or ``trend``.
+    - **time_unit** (*Optional* - only for ``duration``, ``quadrature``, ``since argmax``, ``since argmin``, and ``trend`` types, enum): The time unit used for the statistics calculation, one of
+      ``ms``, ``s``, ``min``, ``h`` or ``d``. Defaults to ``s``.
+    - All options from :ref:`Sensor <config-sensor>`.  
 
 - **on_update** (*Optional*, :ref:`Automation <automation>`): List of actions to be performed after all sensors have updated. See :ref:`statistics-on_update_trigger`.
 
@@ -113,10 +104,10 @@ Configuration Variables
 Detailed Descriptions
 ---------------------
 
-Average Types
+Weight Types
 *************
 
-You can configure the average type to equally weigh each sensor measurement using ``simple`` or weigh each measurement by its duration using ``time_weighted``. If your sensor updates have a consistent update interval, then ``simple`` should work well. If your sensor is not updated consistently, then choose the ``time_weighted`` type. Note that with the ``time_weighted`` type, the component does not insert a sensor measurement into the window until it receives another sensor measurement; i.e., there is a delay of one measurement. This delay is necessary to determine each measurement’s duration.
+You can configure the weight type to equally weigh each sensor measurement using ``simple`` or weigh each measurement by its duration using ``duration``. If your sensor updates have a consistent update interval, then ``simple`` should work well. If your sensor is not updated consistently, then choose the ``duration`` type. Note that with the ``duration`` type, the component does not insert a sensor measurement into the window until it receives another sensor measurement; i.e., there is a delay of one measurement. This delay is necessary to determine each measurement’s duration.
 
 Group Types
 ***********
@@ -131,14 +122,14 @@ Statistic Sensors
 - ``count`` sensor:
 
   - Counts the number of sensor measurements in the window that are not ``NaN``.
-  - By default, its ``state_class`` is ``total``.
-  - By default, it inherits ``entity_category`` and ``icon`` from the source sensor.     
+  - By default, its ``state_class`` is ``total_increasing``.
+  - By default, it inherits ``entity_category`` from the source sensor.     
 
 - ``duration`` sensor:
 
   - Gives the sum of the durations between each measurements' timestamps in the window.
   - By default, its ``state_class`` is ``measurement``, and its ``device_class`` is ``duration``.
-  - By default, it inherits ``entity_category`` and ``icon`` from the source sensor.     
+  - By default, it inherits ``entity_category`` from the source sensor.     
   - The ``unit_of_measurement`` is the configured ``time_unit``.
 
 - ``max`` sensor:
@@ -159,25 +150,33 @@ Statistic Sensors
   - By default, its ``state_class`` is ``measurement``.  
   - By default, it inherits ``accuracy_decimals``, ``device_class``, ``entity_category``, ``icon``, and ``unit_of_measurement`` from the source sensor.
 
+- ``quadrature`` sensor type:
+  
+  - The area under the values of the measurements from the source sensor in the window.
+  - By default, its ``state_class`` is ``total``.
+  - By default, it inherits ``entity_category`` from the source sensor.
+  - By default, it uses 2 more ``accuracy_decimals`` than the source sensor.
+  - The ``unit_of_measurement`` is the source sensor's unit multiplied by the configured ``time_unit``. For example, if the source sensor is in ``W`` and ``time_unit`` is in hours, the unit is ``Wh``.
+
 - ``since_argmax`` sensor:
 
   - The timespan since the most recent maximum value in the window.
   - By default, its ``state_class`` is ``measurement``, and its ``device_class`` is ``duration``.
-  - By default, it inherits ``entity_category`` and ``icon`` from the source sensor.  
+  - By default, it inherits ``entity_category`` from the source sensor.  
   - The ``unit_of_measurement`` is the configured ``time_unit``.
 
 - ``since_argmin`` sensor:
 
   - The timespan since the most recent minimum value in the window.
   - By default, its ``state_class`` is ``measurement``, and its ``device_class`` is ``duration``.
-  - By default, it inherits ``entity_category`` and ``icon`` from the source sensor.    
+  - By default, it inherits ``entity_category`` from the source sensor.    
   - The ``unit_of_measurement`` is the configured ``time_unit``.
 
 - ``std_dev`` sensor:
 
   - The standard deviation of measurements from the source sensor in the window.
-  - If ``group_type`` is ``sample``, and ``average_type`` is ``simple``, then it uses Bessel's correction to give an unbiased estimator.
-  - If ``group_type`` is ``sample``, and ``average_type`` is ``time_weighted``, then it uses reliability weights to give an unbiased estimator.  
+  - If ``group_type`` is ``sample``, and ``weight_type`` is ``simple``, then it uses Bessel's correction to give an unbiased estimator.
+  - If ``group_type`` is ``sample``, and ``weight_type`` is ``duration``, then it uses reliability weights to give an unbiased estimator.  
   - By default, its ``state_class`` is ``measurement``.  
   - By default, it inherits ``device_class``, ``entity_category``, ``icon``, and ``unit_of_measurement`` from the source sensor.
   - By default, it uses 2 more ``accuracy_decimals`` than the source sensor.
@@ -187,7 +186,7 @@ Statistic Sensors
   - Gives the slope of the line of best fit for the source sensor measurements in the window versus their timestamps.
   - Cannot be enabled if the ``window`` configuration option ``restore`` is set to true.
   - By default, its ``state_class`` is ``measurement``.  
-  - By default, it inherits ``entity_category`` and ``icon`` from the source sensor.
+  - By default, it inherits ``entity_category`` from the source sensor.
   - By default, it uses 2 more ``accuracy_decimals`` than the source sensor.
   - The ``unit_of_measurement`` is the source sensor's unit divided by the configured ``time_unit``. For example, if the source sensor is in ``Pa`` and ``time_unit`` is in seconds, the unit is ``Pa/s``.
 
@@ -352,10 +351,8 @@ Lambdas Calls for ``Aggregate`` Objects
 
 The ``on_update`` trigger provides the variable ``x``, which stores the :apiref:`Aggregate Object <statistics/aggregate.h>` that contains the current statistics available based on the configured sensors. This object has many functions that access the underlying data in their native data types, which may be helpful to compute other statistics not currently available as a sensor. If you are using the ``continuous`` window type, all functions return valid statistics. For other window types, be sure to configure the required sensors noted for each function that you want to use.
 
-  - ``compute_covariance(bool time_weighted, GroupType type)``: Compute the covariance of the set of measurements with respect to timestamps. It applies Bessel's correction or implements reliability weights if the group type is a sample.
+  - ``compute_covariance()``: Compute the covariance of the set of measurements with respect to timestamps. It applies Bessel's correction or implements reliability weights if the group type is a sample.
   
-    - ``bool time_weighted``: ``true`` if averages use duration as weight
-    - ``GroupType type``: Either ``SAMPLE_GROUP_TYPE`` OR ``POPULATION_GROUP_TYPE``
     - returns the covariance as a ``double`` type
     - valid if ``trend`` sensor is configured
 
@@ -364,10 +361,8 @@ The ``on_update`` trigger provides the variable ``x``, which stores the :apiref:
     - returns the area under the curve as a ``double`` type, with units of the source sensor times milliseconds
     - valid if ``mean`` and ``duration`` sensors are configured
 
-  - ``compute_std_dev(bool time_weighted, GroupType type)``: Compute the standard deviation of the set of measurements. Applies Bessel's correction or implements reliability weights if the group type is a sample.
+  - ``compute_std_dev()``: Compute the standard deviation of the set of measurements. Applies Bessel's correction or implements reliability weights if the group type is a sample.
 
-    - ``bool time_weighted``: ``true`` if averages use duration as weight
-    - ``GroupType type``: Either ``SAMPLE_GROUP_TYPE`` OR ``POPULATION_GROUP_TYPE``
     - returns the standard deviation as a ``double`` type
     - valid if ``std_dev`` or ``trend`` sensor is configured
 
@@ -375,10 +370,8 @@ The ``on_update`` trigger provides the variable ``x``, which stores the :apiref:
     - returns the trend as a ``double`` type
     - valid if ``trend`` sensor is configured
 
-  - ``compute_variance(bool time_weighted, GroupType type)``: Compute the variance of the set of measurements. Applies Bessel's correction or implements reliability weights if the group type is a sample.
+  - ``compute_variance()``: Compute the variance of the set of measurements. Applies Bessel's correction or implements reliability weights if the group type is a sample.
 
-    - ``bool time_weighted``: ``true`` if averages use duration as weight
-    - ``GroupType type``: Either ``SAMPLE_GROUP_TYPE`` OR ``POPULATION_GROUP_TYPE``
     - returns the variance as a ``double`` type
     - valid if ``std_dev`` or ``trend`` sensor is configured
 
@@ -392,7 +385,7 @@ The ``on_update`` trigger provides the variable ``x``, which stores the :apiref:
     - returns the UTC Unix time as a ``time_t`` type
     - valid if ``argmax`` sensor is configured
 
-  - ``get_c2()``: From Welford's algorithm, it is used for computing covariance of the measurements and timestamps weighted.
+  - ``get_c2()``: From Welford's algorithm, it is used for computing covariance of the measurements and timestamps.
 
     - returns the value as a ``double`` type
     - valid if ``trend`` sensor is configured
@@ -405,12 +398,12 @@ The ``on_update`` trigger provides the variable ``x``, which stores the :apiref:
   - ``get_duration()``: The duration of measurements in the Aggregate in milliseconds.
 
     - returns the milliseconds as a ``uint64_t`` type
-    - valid if ``duration`` sensor is configured or if the ``average_type`` is ``time_weighted``
+    - valid if ``duration`` sensor is configured or if the ``weight_type`` is ``duration``
 
   - ``get_duration_squared()``: The sum of squared durations of measurements in the Aggregate in milliseconds squared.
 
     - returns the milliseconds squared as a ``uint64_t`` type
-    - valid if the ``average_type`` is ``time_weighted``
+    - valid if the ``weight_type`` is ``duration``
 
   - ``get_m2()``: From Welford's algorithm, it is used for computing variance of the measurements.
 
@@ -448,7 +441,7 @@ The ``on_update`` trigger provides the variable ``x``, which stores the :apiref:
     - returns the timestamp reference as a ``uint32_t`` type
     - valid if ``trend`` sensor is configured
 
-These raw statistics values are more accurate when you use their native data type. For example, the ``since_argmax`` and ``since_argmin`` sensors give the time since the most recent maximum or minimum value. The component actually stores the Unix UTC time (in seconds) of when the maximum or minimum value occurred. Since these native integer values are so large, the float data type used for ESPHome and Home Assistant sensor values is only accurate within 1 or 2 minutes of the actual value due to floating point precision issues, despite this component natively storing the value accurately to the second.
+These raw statistics values are more accurate when you use their native data type. For example, the ``since_argmax`` and ``since_argmin`` sensors give the time since the most recent maximum or minimum value. The component actually stores the Unix UTC time (in seconds) of when the most recent extreme value occurred. Since these native integer values are so large, the float data type used for ESPHome and Home Assistant sensor values is only accurate within 1 or 2 minutes of the actual value as a result of floating point precision issues, despite this component natively storing the value accurately to the second.
 
 Coeffecient of Determination
 """"""""""""""""""""""""""""
@@ -465,8 +458,9 @@ Another use case is to compute statistics unavailable as a sensor. In this examp
           window_size: 4          # 4 chunks of duration 15 seconds for a sliding window over 1 minute
           chunk_duration: 15s
           send_every: 1
-        trend:
-          name: "Sensor 1 Minute Trend"
+        statistics: 
+          - type: trend           # guarantees the covariance and variance statistics are tracked
+            id: sensor_1_min_trend
         on_update:
           then:
             - lambda: |-
