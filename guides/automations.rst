@@ -273,7 +273,8 @@ global variables can be used to store the state of a garage door.
       # Example for global string variable
       - id: my_global_string
         type: std::string
-        restore_value: no  # Strings cannot be saved/restored
+        restore_value: yes
+        max_restore_data_length: 24
         initial_value: '"Global value is"'
 
    # In an automation
@@ -287,7 +288,7 @@ global variables can be used to store the state of a garage door.
              id(my_global_int) += 10;
            }
 
-           ESP_LOGD(TAG, "%s: %d", id(my_global_string), id(my_global_int));
+           ESP_LOGD(TAG, "%s: %d", id(my_global_string).c_str(), id(my_global_int));
 
 Configuration variables:
 
@@ -298,6 +299,8 @@ Configuration variables:
 - **restore_value** (*Optional*, boolean): Whether to try to restore the state on boot up.
   Be careful: on the ESP8266, you only have a total of 96 bytes available for this! Defaults to ``no``.
   This will use storage in "RTC memory", so it won't survive a power-cycle unless you use the ``esp8266_restore_from_flash`` option to save to flash. See :doc:`esp8266_restore_from_flash </components/esphome>` for details.
+- **max_restore_data_length** (*Optional*, integer): Only applies to variables of type ``std::string``.  ESPHome will allocate enough space for this many characters,
+  plus single character of overhead. Strings longer than this will not be saved. The max value of this variable is 254 characters, and the default is 63 characters.
 - **initial_value** (*Optional*, string): The value with which to initialize this variable if the state
   can not be restored or if state restoration is not enabled. This needs to be wrapped in quotes! Defaults to
   the C++ default value for this type (for example ``0`` for integers).
