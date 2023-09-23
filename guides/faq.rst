@@ -361,19 +361,16 @@ And a docker compose file looks like this:
 .. _docker-reference-notes:
 .. note::
 
-    By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
-    to work you need to enable host networking mode
+    By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature to work you need to enable host networking mode. 
 
     On MacOS the networking mode ("-net=host" option) doesn't work as expected. You have to use
     another way to launch the dashboard with a port mapping option and use alternative to mDNS
     to have the online/offline stat (see below)
 
     mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
-    If your router supports Avahi, you are able to get mDNS working over different subnets.
+    If your router supports Avahi (eg. OpenWRT or pfSense), you are able to get mDNS working over different subnets following the steps below:
 
-    Just follow the next steps:
-
-    1. Enable Avahi on both subnets.
+    1. Enable Avahi on both subnets (install Avahi modules on OpenWRT or pfSense).
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 
     Alternatively, you can make esphome use ICMP pings to check the status of the device
