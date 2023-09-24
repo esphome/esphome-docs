@@ -675,10 +675,11 @@ Using this action you can manually call the ``stop_poller()`` method of a compon
 
 After this action the component will stop being refreshed.
 
+While the poller is suspendend, it's still possible to trigger on-demand updates by
+using :ref:`component.update <component-update_action>`
+
 Please note that this only works with PollingComponent types and others will result in a
 compile error.
-
-While the poller is suspendend, it's still possible to trigger on-demand updates by using :ref:`component.update <component-update_action>`
 
 .. code-block:: yaml
 
@@ -695,6 +696,8 @@ While the poller is suspendend, it's still possible to trigger on-demand updates
 ---------------------------
 
 Using this action you can manually call the ``start_poller()`` method of a component.
+
+After this action the component will refresh at the original update_interval rate
 
 This will allow the component to resume automatic update at the defined interval.
 
