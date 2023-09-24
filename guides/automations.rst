@@ -356,8 +356,7 @@ All Actions
 - :ref:`lambda <lambda_action>`
 - :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_until <wait_until_action>`
 - :ref:`component.update <component-update_action>`
-- :ref:`component.suspend <component-suspend_action>`
-- :ref:`component.resume <component-resume_action>`
+- :ref:`component.suspend <component-suspend_action>` / :ref:`component.resume <component-resume_action>`
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`homeassistant.service <api-homeassistant_service_action>`
@@ -679,7 +678,7 @@ After this action the component will stop being refreshed.
 Please note that this only works with PollingComponent types and others will result in a
 compile error.
 
-While the poller is supsendend, it's still possible to updata manually the component by using `component.update`
+While the poller is suspendend, it's still possible to trigger on-demand updates by using :ref:`component.update <component-update_action>`
 
 .. code-block:: yaml
 
