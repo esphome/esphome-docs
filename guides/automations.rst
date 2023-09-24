@@ -670,7 +670,7 @@ compile error.
 .. _component-suspend_action:
 
 ``component.suspend`` Action
----------------------------
+----------------------------
 
 Using this action you can manually call the ``stop_poller()`` method of a component.
 
