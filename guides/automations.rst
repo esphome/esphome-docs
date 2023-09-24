@@ -665,6 +665,50 @@ compile error.
         # The same as:
         - lambda: 'id(my_component).update();'
 
+.. _component-suspend_action:
+
+``component.suspend`` Action
+---------------------------
+
+Using this action you can manually call the ``stop_poller()`` method of a component.
+
+After this action the component will stop being refreshed.
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+While the poller is supsendend, it's still possible to updata manually the component by using `component.update`
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.suspend: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).stop_poller();'
+
+.. _component-resume_action:
+
+``component.resume`` Action
+---------------------------
+
+Using this action you can manually call the ``start_poller()`` method of a component.
+
+This will allow the component to resume automatic update at the defined interval.
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.resume: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).start_poller();'
+
 .. _globals-set_action:
 
 ``globals.set`` Action
