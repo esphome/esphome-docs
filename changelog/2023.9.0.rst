@@ -22,15 +22,26 @@ ESPHome 2023.9.0 - 27th September 2023
 LibreTiny
 ---------
 
-LibreTiny is a platform for the RTL87xx and BK72xx family of chips. ESPHome leverages
+:doc:`LibreTiny </components/libretiny>` is a platform for the RTL87xx and BK72xx family of chips. ESPHome leverages
 this platform and brings the powerful yet simple YAML configuration to these chips.
 
 It has been months in the making, and many back and forwards with :ghuser:`kuba2k2`
 (and all of the contributors to LibreTiny), but we finally got there and merged it in.
 
+.. |wireguard| unicode:: WireGuard 0xAE
 
-TODO: Add more items here?
+Wireguard
+---------
 
+:doc:`WireGuard </components/wireguard>` is a new component that allows you to connect to a |wireguard| Peer.
+
+LED Strips
+----------
+
+Following on from the previously added :doc:`/components/light/esp32_rmt_led_strip`, we now have
+:doc:`SPI LED Strips </components/light/spi_led_strip>`. These are replacement components for
+:doc:`/components/light/neopixelbus` and :doc:`/components/light/fastled` that
+do not rely on the Arduino framework.
 
 Full list of changes
 --------------------
@@ -69,6 +80,10 @@ Beta Changes
 - Make the pulse meter timeout on startup when no pulses are received :esphomepr:`5388` by :ghuser:`TrentHouliston`
 - Wizard: fix colored text in input prompts :esphomepr:`5313` by :ghuser:`kuba2k2`
 - support keypads with pulldowns :esphomepr:`5404` by :ghuser:`ssieb`
+- Fix SPI inverted clock on ESP8266 :esphomepr:`5416` by :ghuser:`clydebarrow`
+- [RP2040W] Fix WiFi bootloop upon LibreTiny support :esphomepr:`5414` by :ghuser:`hostcc`
+- dallas: limit addresses to 64 bits :esphomepr:`5413` by :ghuser:`oddstr13`
+- Bump zeroconf from 0.108.0 to 0.112.0 :esphomepr:`5392` by :ghuser:`dependabot[bot]`
 
 All changes
 ^^^^^^^^^^^

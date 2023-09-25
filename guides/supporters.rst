@@ -170,6 +170,7 @@ Contributors
 - `Bill Church (@billchurch) <https://github.com/billchurch>`__
 - `Brian Kaufman (@bkaufx) <https://github.com/bkaufx>`__
 - `JDavid (@blackhack) <https://github.com/blackhack>`__
+- `blackshoals (@blackshoals) <https://github.com/blackshoals>`__
 - `blacktirion (@blacktirion) <https://github.com/blacktirion>`__
 - `blakadder (@blakadder) <https://github.com/blakadder>`__
 - `Branimir Lambov (@blambov) <https://github.com/blambov>`__
@@ -227,6 +228,7 @@ Contributors
 - `Carlos Cordero (@ccorderor) <https://github.com/ccorderor>`__
 - `cdmonk (@cdmonk) <https://github.com/cdmonk>`__
 - `ceaswaran (@ceaswaran) <https://github.com/ceaswaran>`__
+- `Xavi (@Cebeerre) <https://github.com/Cebeerre>`__
 - `Cellie (@CelliesProjects) <https://github.com/CelliesProjects>`__
 - `Jeppe H. (@cenobitedk) <https://github.com/cenobitedk>`__
 - `Chris Feenstra (@cfeenstra1024) <https://github.com/cfeenstra1024>`__
@@ -328,6 +330,7 @@ Contributors
 - `denes44 (@denes44) <https://github.com/denes44>`__
 - `Dennis (@dennisvbussel) <https://github.com/dennisvbussel>`__
 - `dentra (@dentra) <https://github.com/dentra>`__
+- `depasseg (@depasseg) <https://github.com/depasseg>`__
 - `Davide Depau (@depau) <https://github.com/depau>`__
 - `dependabot[bot] (@dependabot[bot]) <https://github.com/dependabot[bot]>`__
 - `Joeri Colman (@depuits) <https://github.com/depuits>`__
@@ -498,6 +501,7 @@ Contributors
 - `Germain Masse (@gmasse) <https://github.com/gmasse>`__
 - `Garret Buell (@gmbuell) <https://github.com/gmbuell>`__
 - `Jelle Raaijmakers (@gmta) <https://github.com/gmta>`__
+- `gnicolasb (@gnicolasb) <https://github.com/gnicolasb>`__
 - `Go0oSer (@Go0oSer) <https://github.com/Go0oSer>`__
 - `Dario Gogliandolo (@godario) <https://github.com/godario>`__
 - `Gonzalo Paniagua Javier (@gonzalop) <https://github.com/gonzalop>`__
@@ -678,6 +682,7 @@ Contributors
 - `kaegi (@kaegi) <https://github.com/kaegi>`__
 - `kahrendt (@kahrendt) <https://github.com/kahrendt>`__
 - `Kamahat (@kamahat) <https://github.com/kamahat>`__
+- `Kapil Yedidi (@kapily) <https://github.com/kapily>`__
 - `Karl0ss (@karl0ss) <https://github.com/karl0ss>`__
 - `Kattni (@kattni) <https://github.com/kattni>`__
 - `Krzysztof Białek (@kbialek) <https://github.com/kbialek>`__
@@ -782,7 +787,6 @@ Contributors
 - `maringeph (@maringeph) <https://github.com/maringeph>`__
 - `Mark Hildreth (@markhildreth) <https://github.com/markhildreth>`__
 - `Mark Schabacker (@markschabacker) <https://github.com/markschabacker>`__
-- `Marek Marczykowski-Górecki (@marmarek) <https://github.com/marmarek>`__
 - `marshn (@marshn) <https://github.com/marshn>`__
 - `marsjan155 (@marsjan155) <https://github.com/marsjan155>`__
 - `Martin (@martgras) <https://github.com/martgras>`__
@@ -951,7 +955,6 @@ Contributors
 - `Peter Kuehne (@pkuehne) <https://github.com/pkuehne>`__
 - `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__
 - `PlainTechEnthusiast (@PlainTechEnthusiast) <https://github.com/PlainTechEnthusiast>`__
-- `Marcus Kempe (@plopp) <https://github.com/plopp>`__
 - `Jan Pluskal (@pluskal) <https://github.com/pluskal>`__
 - `DK (@poldim) <https://github.com/poldim>`__
 - `poloswiss (@poloswiss) <https://github.com/poloswiss>`__
@@ -988,7 +991,6 @@ Contributors
 - `reddn (@reddn) <https://github.com/reddn>`__
 - `redlukas (@redlukas) <https://github.com/redlukas>`__
 - `Alex (@redwngsrul) <https://github.com/redwngsrul>`__
-- `Refferic (@Refferic) <https://github.com/Refferic>`__
 - `Regev Brody (@regevbr) <https://github.com/regevbr>`__
 - `Rei Vilo (@rei-vilo) <https://github.com/rei-vilo>`__
 - `Alex Reid (@reidprojects) <https://github.com/reidprojects>`__
@@ -1207,6 +1209,7 @@ Contributors
 - `Wauter (@Wauter) <https://github.com/Wauter>`__
 - `WeekendWarrior1 (@WeekendWarrior1) <https://github.com/WeekendWarrior1>`__
 - `Ian Wells (@wellsi) <https://github.com/wellsi>`__
+- `Andrew Garrett (@werdnum) <https://github.com/werdnum>`__
 - `whimsee (@whimsee) <https://github.com/whimsee>`__
 - `wifwucite (@wifwucite) <https://github.com/wifwucite>`__
 - `wilberforce (@wilberforce) <https://github.com/wilberforce>`__
@@ -1242,4 +1245,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated September 21, 2023.*
+*This page was last updated September 25, 2023.*
