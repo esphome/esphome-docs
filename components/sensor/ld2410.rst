@@ -480,57 +480,57 @@ For easy calibration process you can use the following custom manual card.
           - type: entities
             entities:
               - entity: 'switch.DEVICE_engineering_mode'
-                name: engineering mode
+                name: 'engineering mode'
       - type: vertical-stack
         cards:
           - type: entities
             entities:
               - entity: 'number.DEVICE_timeout'
-                name: timeout
+                name: 'timeout'
               - entity: 'number.DEVICE_max_move_distance_gate'
-                name: max move distance gate
+                name: 'max move distance gate'
               - entity: 'number.DEVICE_max_still_distance_gate'
-                name: max still distance gate
+                name: 'max still distance gate'
               - entity: 'select.DEVICE_light_function'
-                name: light function
+                name: 'light function'
               - entity: 'number.DEVICE_light_threshold'
-                name: light threshold
+                name: 'light threshold'
           - type: horizontal-stack
             cards:
               - type: entity
-                entity: 'sensor.DEVICE_distance_detection_cm'
-                name: distance
+                entity: 'sensor.DEVICE_detection_distance'
+                name: 'distance'
               - type: entity
-                entity: 'sensor.DEVICE_moving_distance_cm'
-                name: move
+                entity: 'sensor.DEVICE_moving_distance'
+                name: 'move'
               - type: entity
-                entity: 'sensor.DEVICE_still_distance_cm'
-                name: still
+                entity: 'sensor.DEVICE_still_distance'
+                name: 'still'
       - type: horizontal-stack
         cards:
           - type: entity
             entity: 'sensor.DEVICE_move_energy'
-            name: move energy
+            name: 'move energy'
           - type: entity
             entity: 'sensor.DEVICE_still_energy'
-            name: still energy
+            name: 'still energy'
       - type: horizontal-stack
         cards:
           - type: entity
-            entity: 'binary_sensor.DEVICE_gpio_out_pin_presence'
-            name: gpio presence
+            entity: 'binary_sensor.DEVICE_out_pin_presence_status'
+            name: 'gpio presence'
             state_color: true
           - type: entity
             entity: 'binary_sensor.DEVICE_presence'
-            name: presence
+            name: 'presence'
             state_color: true
           - type: entity
-            entity: 'binary_sensor.DEVICE_movement'
-            name: movement
+            entity: 'binary_sensor.DEVICE_moving_target'
+            name: 'movement'
             state_color: true
           - type: entity
-            entity: 'binary_sensor.DEVICE_still'
-            name: still
+            entity: 'binary_sensor.DEVICE_still_target'
+            name: 'still'
             state_color: true
       - type: conditional
         conditions:
@@ -543,10 +543,10 @@ For easy calibration process you can use the following custom manual card.
               cards:
                 - type: entity
                   entity: 'sensor.DEVICE_light'
-                  name: light
+                  name: 'light'
                 - type: entity
                   entity: 'binary_sensor.DEVICE_out_pin_presence_status'
-                  name: out pin presence
+                  name: 'out pin presence'
                   state_color: true
             - type: horizontal-stack
               cards:
