@@ -701,6 +701,9 @@ After this action the component will refresh at the original update_interval rat
 
 This will allow the component to resume automatic update at the defined interval.
 
+This action also allows to change the update interval, calling it without suspend, 
+replace the poller directly.
+
 Please note that this only works with PollingComponent types and others will result in a
 compile error.
 
@@ -712,6 +715,14 @@ compile error.
 
         # The same as:
         - lambda: 'id(my_component).start_poller();'
+
+    # Change the poller interval
+    on_...:
+      then:
+        - component.resume: 
+            id: my_component
+            update_interval: 15s
+
 
 .. _globals-set_action:
 
