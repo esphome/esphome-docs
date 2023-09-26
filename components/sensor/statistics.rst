@@ -65,9 +65,10 @@ Configuration Variables
 
 - **statistics** (*Optional*, list): A list of the statistic sensors.
 
-    - **type** (**Required**, enum): One of ``count``, ``duration``, ``max``, ``mean``, ``min``, ``quadrature``, ``since_argmax``, ``since_argmin``, ``std_dev``, or ``trend``.
+    - **type** (**Required**, enum): One of ``count``, ``duration``, ``lambda``, ``max``, ``mean``, ``min``, ``quadrature``, ``since_argmax``, ``since_argmin``, ``std_dev``, or ``trend``.
     - **time_unit** (*Optional* - only for ``duration``, ``quadrature``, ``since argmax``, ``since argmin``, and ``trend`` types, enum): The time unit used for the statistics calculation, one of
       ``ms``, ``s``, ``min``, ``h`` or ``d``. Defaults to ``s``.
+    - **lambda** (**Required** - only for ``lambda`` type, :ref:`lambda <config-lambda>`): Lambda to be evaluated to get the new value of the sensor. See :ref:`statistics-lambdas_calls` for details.
     - All options from :ref:`Sensor <config-sensor>`.  
 
 - **on_update** (*Optional*, :ref:`Automation <automation>`): List of actions to be performed after all sensors have updated. See :ref:`statistics-on_update_trigger`.
@@ -131,6 +132,11 @@ Statistic Sensors
   - By default, its ``state_class`` is ``measurement``, and its ``device_class`` is ``duration``.
   - By default, it inherits ``entity_category`` from the source sensor.     
   - The ``unit_of_measurement`` is the configured ``time_unit``.
+
+- ``lambda`` sensor:
+
+  - Returns a custom lambda sensor value using a lambda template.
+  - By default, it inherits ``entity_category`` from the source sensor.     
 
 - ``max`` sensor:
 
@@ -341,7 +347,10 @@ This automation triggers after all the configured sensors update.  In :ref:`Lamb
         # ...
         on_update:
           then:
-            - logger.log: "Statistics sensors have all updated"
+            - logger.log:
+                format: "Statistic sensors updated with %u measurements in the window."
+                level: DEBUG
+                args: [ 'agg.get_count()']
 
 
 .. _statistics-lambdas_calls:
@@ -349,7 +358,7 @@ This automation triggers after all the configured sensors update.  In :ref:`Lamb
 Lambdas Calls for ``Aggregate`` Objects
 ***************************************
 
-The ``on_update`` trigger provides the variable ``x``, which stores the :apiref:`Aggregate Object <statistics/aggregate.h>` that contains the current statistics available based on the configured sensors. This object has many functions that access the underlying data in their native data types, which may be helpful to compute other statistics not currently available as a sensor. If you are using the ``continuous`` window type, all functions return valid statistics. For other window types, be sure to configure the required sensors noted for each function that you want to use.
+The ``on_update`` trigger or the ``lambda`` type sensor provides the variable ``agg``, which stores the :apiref:`Aggregate Object <statistics/aggregate.h>` that contains the current statistics available based on the configured sensors. This object has many functions that access the underlying data in their native data types, which may be helpful to compute other statistics not currently available as a sensor. If you are using the ``continuous`` window type, all functions return valid statistics. For other window types, be sure to configure the required sensors noted for each function that you want to use.
 
   - ``compute_covariance()``: Compute the covariance of the set of measurements with respect to timestamps. It applies Bessel's correction or implements reliability weights if the group type is a sample.
   
@@ -461,9 +470,9 @@ Another use case is to compute statistics unavailable as a sensor. In this examp
         statistics: 
           - type: trend           # guarantees the covariance and variance statistics are tracked
             id: sensor_1_min_trend
-        on_update:
-          then:
-            - lambda: |-
+          - type: lambda
+            name: "Sensor 1 Minute Linear Coeffecient of Determination"
+            lambda: |-
                 double c2 = x.get_c2();   // c2/count gives covariance
                 double m2 = x.get_m2();   // m2/count gives variance
                 double timestamp_m2 = x.get_timestamp_m2();   // timestamp_m2/count gives variance of the timestamps
@@ -475,10 +484,6 @@ Another use case is to compute statistics unavailable as a sensor. In this examp
                 // Update a template sensor with r_squared
                 id(sensor_1min_r_squared).publish_state(r_squared);
 
-      - platform: template
-        name: "Sensor 1 Minute Linear Coeffecient of Determination"
-        id: sensor_1min_r_squared
-        update_interval: never    # the statistics component will update
 
 See Also
 --------
