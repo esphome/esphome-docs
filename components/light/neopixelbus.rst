@@ -105,7 +105,7 @@ on the chipset, ESP platform and pin.
 
 Each of these has their own advantages/disadvantages regarding stability and speed. By default
 ESPHome will choose the best one that is available on the device. However, you can override this
-by manually supplying the method option.
+by manually supplying the ``method`` option.
 
 .. code-block:: yaml
 
