@@ -14,6 +14,8 @@ data and control.
     # Example configuration
 
     esp32_ble_server:
+      manufacturer: "Orange"
+      manufacturer_data: [0x4C, 0, 0x23, 77, 0xF0 ]
 
 
 Configuration variables:
@@ -22,6 +24,9 @@ Configuration variables:
 - **manufacturer** (*Optional*, string): The name of the manufacturer/firmware creator. Defaults to ``ESPHome``.
 - **model** (*Optional*, string): The model name of the device. Defaults to the friendly name of the ``board`` chosen
   in the :ref:`core configuration <esphome-configuration_variables>`.
+- **manufacturer_data** (*Optional*, list of bytes): The manufacturer-specific data to include in the advertising
+  packet. Should be a list of bytes, where the first two are the little-endian representation of the 16-bit
+  manufacturer ID as assigned by the Bluetooth SIG.
 
 See Also
 --------

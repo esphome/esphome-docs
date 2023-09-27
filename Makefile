@@ -1,5 +1,5 @@
 ESPHOME_PATH = ../esphome
-ESPHOME_REF = 2023.8.3
+ESPHOME_REF = 2023.9.0
 BINPATH=../pagefindbin:$(PATH)
 
 .PHONY: html html-strict cleanhtml deploy help live-html live-pagefind Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
