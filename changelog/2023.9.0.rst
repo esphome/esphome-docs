@@ -174,6 +174,26 @@ All changes
 - Modbus Controller added some features :esphomepr:`5318` by :ghuser:`0x3333`
 - Force heater off on setup :esphomepr:`5161` by :ghuser:`rufuswilson`
 - Add IDF 5 test yaml, add adc to IDF tests, fix adc for IDF 5 :esphomepr:`5379` by :ghuser:`kbx81`
+- Add patch to apt install :esphomepr:`5389` by :ghuser:`synesthesiam`
+- Fix Waveshare 7.5v2 epaper screens are always powered on :esphomepr:`5283` by :ghuser:`phoenixswiss`
+- Update radon_eye_listener.cpp :esphomepr:`5401` by :ghuser:`rmmacias`
+- Add shelly-dimmer-stm32 51.7 to known versions :esphomepr:`5400` by :ghuser:`trvrnrth`
+- Add E-Trailer Gaslevel support to Mopeka Std Check :esphomepr:`5397` by :ghuser:`Phhere`
+- fix disabled wifi power on 8266 :esphomepr:`5409` by :ghuser:`ssieb`
+- fix handling of web server version :esphomepr:`5405` by :ghuser:`ssieb`
+- Climate preset fix :esphomepr:`5407` by :ghuser:`Jorre05`
+- Remove Wi-Fi dependency from Midea component :esphomepr:`5394` by :ghuser:`AnthonyMaiorani`
+- http_request: Cleanups and safety improvements :esphomepr:`5360` by :ghuser:`kpfleming`
+- Make the pulse meter timeout on startup when no pulses are received :esphomepr:`5388` by :ghuser:`TrentHouliston`
+- Wizard: fix colored text in input prompts :esphomepr:`5313` by :ghuser:`kuba2k2`
+- support keypads with pulldowns :esphomepr:`5404` by :ghuser:`ssieb`
+- Fix SPI inverted clock on ESP8266 :esphomepr:`5416` by :ghuser:`clydebarrow`
+- [RP2040W] Fix WiFi bootloop upon LibreTiny support :esphomepr:`5414` by :ghuser:`hostcc`
+- dallas: limit addresses to 64 bits :esphomepr:`5413` by :ghuser:`oddstr13`
+- Bump zeroconf from 0.108.0 to 0.112.0 :esphomepr:`5392` by :ghuser:`dependabot[bot]`
+- LibreTiny: enable MQTT, bump to v1.4.1 :esphomepr:`5419` by :ghuser:`kuba2k2`
+- Wireguard keepalive remove uint16 type :esphomepr:`5430` by :ghuser:`glmnet`
+- Fix #4896 and #4903 :esphomepr:`5433` by :ghuser:`clydebarrow`
 
 Past Changelogs
 ---------------
