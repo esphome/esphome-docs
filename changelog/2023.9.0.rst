@@ -84,6 +84,9 @@ Beta Changes
 - [RP2040W] Fix WiFi bootloop upon LibreTiny support :esphomepr:`5414` by :ghuser:`hostcc`
 - dallas: limit addresses to 64 bits :esphomepr:`5413` by :ghuser:`oddstr13`
 - Bump zeroconf from 0.108.0 to 0.112.0 :esphomepr:`5392` by :ghuser:`dependabot[bot]`
+- LibreTiny: enable MQTT, bump to v1.4.1 :esphomepr:`5419` by :ghuser:`kuba2k2`
+- Wireguard keepalive remove uint16 type :esphomepr:`5430` by :ghuser:`glmnet`
+- Fix #4896 and #4903 :esphomepr:`5433` by :ghuser:`clydebarrow`
 
 All changes
 ^^^^^^^^^^^
