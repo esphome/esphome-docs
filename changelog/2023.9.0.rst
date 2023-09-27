@@ -43,6 +43,20 @@ Following on from the previously added :doc:`/components/light/esp32_rmt_led_str
 :doc:`/components/light/neopixelbus` and :doc:`/components/light/fastled` that
 do not rely on the Arduino framework.
 
+Breaking Changes
+----------------
+
+Home Assistant Add-on
+^^^^^^^^^^^^^^^^^^^^^
+
+The `/config/esphome/.esphome` folder has been
+removed and replaced with `/data` when running ESPHome as a Home Assistant add-on. This was done because it is exactly what the add-on `/data` folder was made for and there were many files in the `.esphome` folder that were making the Home Assistant Backup larger for no reason at all. All files in there are generated or sourced from online based on your configurations files which have not been touched.
+
+Enum device class
+^^^^^^^^^^^^^^^^^
+
+The `enum` device class was removed from ESPHome to keep in sync with Home Assistant. The class was already not able to be used by any of the built in components and only potentially used by `external_components`.
+
 Full list of changes
 --------------------
 
