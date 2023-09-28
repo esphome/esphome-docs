@@ -46,11 +46,23 @@ Over I²C
           name: ADE7953 Current A
         current_b:
           name: ADE7953 Current B
+        power_factor_a:
+          name: "ADE7953 Power Factor A"
+        power_factor_b:
+          name: "ADE7953 Power Factor B"
+        apparent_power_a:
+          name: "ADE7953 Apparent Power A"
+        apparent_power_b:
+          name: "ADE7953 Apparent Power B"
         active_power_a:
           name: ADE7953 Active Power A
         active_power_b:
           name: ADE7953 Active Power B
-        update_interval: 60s
+        reactive_power_a:
+          name: "ADE7953 Reactive Power A"
+        reactive_power_b:
+          name: "ADE7953 Reactive Power B"
+        update_interval: 10s
 
 Configuration variables:
 ************************
@@ -63,9 +75,21 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **current_b** (*Optional*): Use the current value of the B channel in amperes. All options from
   :ref:`Sensor <config-sensor>`.
+- **power_factor_a** (*Optional*): Use the power factor of the A channel in percentage. All options from
+  :ref:`Sensor <config-sensor>`.
+- **power_factor_b** (*Optional*): Use the power factor of the B channel in percentage. All options from
+  :ref:`Sensor <config-sensor>`.
+- **aparent_power_a** (*Optional*): Use the apparent power value of the A channel in volt ampers. All options from
+  :ref:`Sensor <config-sensor>`.
+- **aparent_power_b** (*Optional*): Use the apparent power value of the B channel in volt ampers. All options from
+  :ref:`Sensor <config-sensor>`.
 - **active_power_a** (*Optional*): Use the power value of the A channel in watts. All options from
   :ref:`Sensor <config-sensor>`.
 - **active_power_b** (*Optional*): Use the power value of the B channel in watts. All options from
+  :ref:`Sensor <config-sensor>`.
+- **reactive_power_a** (*Optional*): Use the rective power value of the A channel in volt ampers. All options from
+  :ref:`Sensor <config-sensor>`.
+- **reactive_power_b** (*Optional*): Use the rective power value of the B channel in volt ampers. All options from
   :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``1s``.
 
@@ -76,36 +100,60 @@ Over SPI
 
     # Example configuration entry for SPI
     sensor:
-    - platform: ade7953_spi
-      cs_pin: GPIO04
-      irq_pin: GPIO35
-      voltage:
-        name: "Voltage"
-        filters:
-        - delta: 1
-      current_a:
-        name: "Current A"
-        filters:
-        - delta: 0.01
-      current_b:
-        name: "Current B"
-        filters:
-        - delta: 0.01
-      active_power_a:
-        name: "Power A"
-        id: active_power_1
-        # active_power is inverted, so multiply by -1
-        filters:
-        - multiply: -1
-        - delta: 1
-      active_power_b:
-        name: "Power B"
-        id: active_power_2
-        # active_power is inverted, so multiply by -1
-        filters:
-        - multiply: -1
-        - delta: 1
-      update_interval: 1s
+      - platform: ade7953_spi
+        cs_pin: GPIO04
+        irq_pin: GPIO35
+        voltage:
+          name: "Voltage"
+          filters:
+          - delta: 1
+        current_a:
+          name: "Current A"
+          filters:
+          - delta: 0.01
+        current_b:
+          name: "Current B"
+          filters:
+          - delta: 0.01
+        power_factor_a:
+          name: "Power Factor A"
+          filters:
+          - delta: 5
+        power_factor_b:
+          name: "ADE7953 Power Factor B"
+          filters:
+          - delta: 5
+        apparent_power_a:
+          name: "Apparent Power A"
+          filters:
+          - delta: 1
+        apparent_power_b:
+          name: "Apparent Power B"
+          filters:
+          - delta: 1
+        active_power_a:
+          name: "Power A"
+          id: active_power_1
+          # active_power is inverted, so multiply by -1
+          filters:
+          - multiply: -1
+          - delta: 1
+        active_power_b:
+          name: "Power B"
+          id: active_power_2
+          # active_power is inverted, so multiply by -1
+          filters:
+          - multiply: -1
+          - delta: 1
+        reactive_power_a:
+          name: "Reactive Power A"
+          filters:
+          - delta: 1
+        reactive_power_b:
+          name: "Reactive Power B"
+          filters:
+          - delta: 1
+        update_interval: 1s
 
 Configuration variables:
 ************************
@@ -118,9 +166,21 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **current_b** (*Optional*): Use the current value of the B channel in amperes. All options from
   :ref:`Sensor <config-sensor>`.
+- **power_factor_a** (*Optional*): Use the power factor of the A channel in percentage. All options from
+  :ref:`Sensor <config-sensor>`.
+- **power_factor_b** (*Optional*): Use the power factor of the B channel in percentage. All options from
+  :ref:`Sensor <config-sensor>`.
+- **aparent_power_a** (*Optional*): Use the apparent power value of the A channel in volt ampers. All options from
+  :ref:`Sensor <config-sensor>`.
+- **aparent_power_b** (*Optional*): Use the apparent power value of the B channel in volt ampers. All options from
+  :ref:`Sensor <config-sensor>`.
 - **active_power_a** (*Optional*): Use the power value of the A channel in watts. All options from
   :ref:`Sensor <config-sensor>`.
 - **active_power_b** (*Optional*): Use the power value of the B channel in watts. All options from
+  :ref:`Sensor <config-sensor>`.
+- **reactive_power_a** (*Optional*): Use the rective power value of the A channel in volt ampers. All options from
+  :ref:`Sensor <config-sensor>`.
+- **reactive_power_b** (*Optional*): Use the rective power value of the B channel in volt ampers. All options from
   :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``1s``.
 
