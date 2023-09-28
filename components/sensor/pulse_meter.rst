@@ -35,12 +35,8 @@ Configuration variables
 
 - **internal_filter_mode** (*Optional*, string): Determines how the internal filter is applied.
   One of ``EDGE`` or ``PULSE``. Defaults to ``EDGE``.
-  - In ``EDGE`` mode, only rising edges are detected and pulse width is calculated as the time between successive rising edges.  
-  - In ``PULSE`` mode, both rising and falling edges are detected and pulse width is calculated as the time between a rising and a falling edge.
-  
-  In either case, a pulse with width less than ``interval_timer`` is ignored.
-  
-  In other words, a high pulse must be at least ``internal_filter`` long to be counted. This is useful if you are detecting long pulses that may bounces before and/or after the main pulse.  
+  - In ``EDGE``  mode, subsequent rising edges are compared and if they fall into an interval lesser than the ``internal filter`` value, the last one is discarded. This is useful if your input signal bounces, but is otherwise clean.
+  - In ``PULSE`` mode, the rising edge is discarded if any further interrupts are detected before the ``internal_filter`` time has passed. In other words, a high pulse must be at least ``internal_filter`` long to be counted. This is useful if you have a noisy input signal that may have bounces before and/or after the main pulse.
 
 - **timeout** (*Optional*, :ref:`config-time`): If we don't see a pulse for this length of time, we assume *0 pulses/s*. Defaults to ``5 min``.
 - **total** (*Optional*, :ref:`config-id`): An additional sensor that outputs the total number of pulses counted.
