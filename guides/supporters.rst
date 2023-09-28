@@ -362,7 +362,6 @@ Contributors
 - `Derek M. (@doolbneerg) <https://github.com/doolbneerg>`__
 - `Dorian Zedler (@dorianim) <https://github.com/dorianim>`__
 - `Sebastian Krzyszkowiak (@dos1) <https://github.com/dos1>`__
-- `Jiang Sheng (@doskoi) <https://github.com/doskoi>`__
 - `Artem Sheremet (@dotdoom) <https://github.com/dotdoom>`__
 - `Robert Schütz (@dotlambda) <https://github.com/dotlambda>`__
 - `Daniel Hyles (@DotNetDann) <https://github.com/DotNetDann>`__
@@ -578,6 +577,7 @@ Contributors
 - `Dom (@Ing-Dom) <https://github.com/Ing-Dom>`__
 - `Ingo Becker (@ingobecker) <https://github.com/ingobecker>`__
 - `Ingurum (@Ingurum) <https://github.com/Ingurum>`__
+- `Marc J (@InvncibiltyCloak) <https://github.com/InvncibiltyCloak>`__
 - `IoT-devices LLC (@iotdevicesdev) <https://github.com/iotdevicesdev>`__
 - `Ivo Roefs (@ironirc) <https://github.com/ironirc>`__
 - `irtimaled (@irtimaled) <https://github.com/irtimaled>`__
@@ -629,7 +629,6 @@ Contributors
 - `Jej (@jej) <https://github.com/jej>`__
 - `Jens-Christian Skibakk (@jenscski) <https://github.com/jenscski>`__
 - `Jeremy Willans (@jeremywillans) <https://github.com/jeremywillans>`__
-- `Jeroen (@jeroen85) <https://github.com/jeroen85>`__
 - `jerome992 (@jerome992) <https://github.com/jerome992>`__
 - `Jérôme Laban (@jeromelaban) <https://github.com/jeromelaban>`__
 - `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__
@@ -816,7 +815,6 @@ Contributors
 - `Mohammed Chamma (@mef51) <https://github.com/mef51>`__
 - `megabitdragon (@megabitdragon) <https://github.com/megabitdragon>`__
 - `meijerwynand (@meijerwynand) <https://github.com/meijerwynand>`__
-- `Marco  (@Melkor82) <https://github.com/Melkor82>`__
 - `Melopero (@melopero) <https://github.com/melopero>`__
 - `melyux (@melyux) <https://github.com/melyux>`__
 - `Merlin Schumacher (@merlinschumacher) <https://github.com/merlinschumacher>`__
@@ -1246,4 +1244,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated September 27, 2023.*
+*This page was last updated September 28, 2023.*
