@@ -62,53 +62,44 @@ MicroNova configuration
       stop_bits: 2
 
     micronova:
-      enable_rx_pin: 4
-      update_interval: 20s
-
-    text_sensor:
-      - platform: micronova
-        stove_state:
-          name: Stove status
-
-    number:
-      - platform: micronova
-        thermostat_temperature:
-          name: Thermostat temperature
-
-    sensor:
-      - platform: micronova
+        enable_rx_pin: 7
+        update_interval: 10s
+        scan_memory_location: 0x00
         room_temperature:
-          name: Room temperature
+            memory_address: 0x01
+            name: Ambient temperature
+            id: ambient_temperature
+        thermostat_temperature:
+            name: Stove thermostat temperature
         fumes_temperature:
-          name: Fumes temperature
-        water_temperature:
-          name: Water temperature
-          # every sensor can specify memory parameters
-          memory_location: 0x00
-          memory_address: 0x3B
-        water_pressure:
-          name: Water pressure
+            name: Smoke temperature
         stove_power:
-          name: Stove power level
+            name: Stove current power
         fan_speed:
-          fan_rpm_offset: 240
-          name: Fan RPM
+            fan_rpm_offset: 240
+            name: Fan RPM
+            id: fan_rpm
         memory_address_sensor:
-          memory_location: 0x20
-          memory_address: 0x7d
-          name: Custom Address sensor
-
-    switch:
-      - platform: micronova
-        stove:
-          name: Stove on/off switch
-
-    button:
-      - platform: micronova
-        temperature_up:
-          name: Thermostat Up
-        temperature_down:
-          name: Thermostat Down
+            memory_location: 0x20
+            memory_address: 0x7d
+            name: Memory Adres sensor
+            id: mem_adres_sensor
+        stove_state:
+            memory_address: 0x21
+            name: Stove Status
+        stove_switch:
+            memory_location: 0x80
+            memory_address: 0x21
+            memory_data_on: 0x01
+            memory_data_off: 0x06
+            name: Switch stove on/off
+        but_temp_up:
+            name: Increase thermostat
+            memory_location: 0xA0
+            memory_address: 0x7D
+            memory_data: 0x21
+        but_temp_down:
+            name: Decrease thermostat
 
 
 Micronova variables:
@@ -117,24 +108,12 @@ Micronova variables:
 - **enable_rx_pin** (**Required**, :ref:`config-pin`): Output pin to be used to switch the line between RX en TX.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
   Defaults to 60 seconds.
-
-.. note::
-  For most Micronova boards the default **memory_location** and **memory_address** parameters will work so you should
-  not specify them. However your Micronova boad may require you to specify alternate values. So every (text)sensor, button,
-  switch or number accepts these parameters:
-
-  - **memory_location** (*Optional*): The memory location where the parameter must be read. For most stoves this is 0x00 for RAM
-    or 0x20 for EPROM.
-  - **memory_address** (*Optional*): The address where the parameter is stored.
-
-
-Text Sensor variables:
-~~~~~~~~~~~~~~~~~
-- **stove_state** (*Optional*): The current stove state.
-- All other options from :ref:`Text Sensor <config-text_sensor>`.
+- **scan_memory_location** (*Optional*): When dumping the config, this memory location will be scanned from 0x00 to 0x0F
+  for debugging purposes
 
 Sensor variables:
 ~~~~~~~~~~~~~~~~~
+
 - **room_temperature** (*Optional*): Sensor that reads the stoves ambient room temperature.
 - **thermostat_temperature** (*Optional*): The current stove thermostat value.
 - **fumes_temperature** (*Optional*): Fumes temperature.
@@ -142,47 +121,43 @@ Sensor variables:
 - **fan_speed** (*Optional*): Current fan speed. The raw value from the stove is multiplied by 10 + **fan_rpm_offset**
 - **memory_address_sensor** (*Optional*): Can be any **memory_location** / **memory_address** you want to track. Usefull
   when you don't know where the parameter is for your stove is.
-- All other options from :ref:`Sensor <config-sensor>`.
+- **stove_state** (*Optional*): The current stove state.
 
+All sensors are normal sensors... so all sensor variables are working to.
 
-Number variables:
-~~~~~~~~~~~~~~~~~
-- **thermostat_temperature** (*Optional*): Number that holds the current stove thermostat value.
-- All other options from :ref:`Number <config-number>`.
+For all sensors you can set specific **memory_location** and **memory_address** parameters:
 
-.. note::
-  Besides **memory_location** and **memory_address** you can specify a specific **memory_write_location** parameter.
-  This parameter is a hex value for the **memory_location** where the new thermostat value must be written.
+- **memory_location** (*Optional*): The memory location where the parameter must be read. For most stoves this is 0x00 for RAM
+  or 0x20 for EPROM.
+- **memory_address** (*Optional*): The address where the parameter is stored.
 
-  - **memory_write_location** (*Optional*): The **memory_location** where to write the new thermostat value.
 
 Button variables:
 ~~~~~~~~~~~~~~~~~
 To use these buttons, you will need the **thermostat_temperature** sensor.
 
-- **temperature_up** (*Optional*): Increase the current stove thermostat temperature by 1°C
-- **temperature_down** (*Optional*): Decrease the current stove thermostat temperature by 1°C
-- All other options from :ref:`Button <config-button>`.
+- **but_temp_up** (*Optional*): Increase the current stove thermostat temperature by 1°C
+- **but_temp_up** (*Optional*): Decrease the current stove thermostat temperature by 1°C
 
-.. note::
-  Besides **memory_location** and **memory_address** you can specify a specific **memory_data** parameter.
-  This parameter is the hex value to be written to the **memory_location** and **memory_address** location when pressing the button.
+For all buttons you can set specific **memory_location**, **memory_address** and **memory_data** parameters:
 
-  - **memory_data** (*Optional*): The hex value to be written to the **memory_location** and **memory_address**.
+- **memory_location** (*Optional*): The memory location where the parameter must be written. For most stoves this is 0x80 for RAM
+  or 0xA0 for EPROM.
+- **memory_address** (*Optional*): The address where the parameter is stored.
+- **memory_data** (*Optional*): The data to write.
 
 Switch variables:
 ~~~~~~~~~~~~~~~~~
-- **stove** (*Optional*): Turn the stove on or off. This switch will also reflect the current stove state. 
+- **stove_switch** (*Optional*): Turn the stove on or off. This switch will also reflect the current stove state. 
   If the **stove_state** is "Off" the switch will be off, in all other states, the switch wil be on.
-- All other options from :ref:`Switch <config-switch>`.
 
-.. note::
-  Besides **memory_location** and **memory_address** you can specify specific **memory_data_on** and **memory_data_off** parameters. 
-  These parameters contain the hex value to be written to the **memory_location** and **memory_address** when the switch 
-  turns on or off.
+For switches you can set specific **memory_location**, **memory_address**, **memory_data_on** and **memory_data_off** parameters:
 
-  - **memory_data_on** (*Optional*): The data to write when turning the switch on.
-  - **memory_data_off** (*Optional*): The data to write when turning the switch off.
+- **memory_location** (*Optional*): The memory location where the parameter must be written. For most stoves this is 0x80 for RAM
+  or 0xA0 for EPROM.
+- **memory_address** (*Optional*): The address where the parameter is stored.
+- **memory_data_on** (*Optional*): The data to write when turning the switch on.
+- **memory_data_off** (*Optional*): The data to write when turning the switch off.
 
 See Also
 --------
