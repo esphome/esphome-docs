@@ -1,0 +1,74 @@
+SPL06-007 Temperature+Pressure Sensor
+==================================
+
+.. seo::
+    :description: Instructions for setting up SPL06-007 temperature and pressure sensors with ESPHome
+    :keywords: SPL06-007
+
+The ``spl06_007`` sensor platform allows you to use your SPL06-007
+(`datasheet <https://datasheet.lcsc.com/szlcsc/1912111437_Goertek-SPL06-007_C233787.pdf>`__) temperature and
+pressure sensors with ESPHome. The :ref:`I²C <i2c>` is required to be set up in your configuration for
+this sensor to work.
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: spl06_007
+        temperature:
+          name: "Outside Temperature"
+          oversampling: 8x
+        pressure:
+          name: "Outside Pressure"
+        address: 0x77
+        update_interval: 60s
+
+Configuration variables:
+------------------------
+
+- **temperature** (*Optional*): The information for the temperature.
+  sensor
+
+  - **name** (**Required**, string): The name for the temperature
+    sensor.
+  - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
+    See :ref:`Oversampling Options <spl06_007--oversampling>`.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **pressure** (*Optional*): The information for the pressure sensor.
+
+  - **name** (**Required**, string): The name for the pressure sensor.
+  - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
+    See :ref:`Oversampling Options <spl06_007-oversampling>`.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **address** (*Optional*, int): Manually specify the I²C address of
+  the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``60s``.
+
+    Pins on the SPL06-007. Only VCC, GND, SCL, and SDA need to be connected.
+
+.. _spl06_007-oversampling:
+
+Oversampling Options
+--------------------
+
+By default, the SPL06-007 sensor measures each value 2 times when requesting a new value. You can, however,
+configure this amount. Possible oversampling values:
+
+-  ``1x``
+-  ``2x``  (default)
+-  ``4x``
+-  ``8x``
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :apiref:`spl06_007/spl06_007.h`
+- `SPL06-007 Library <https://github.com/rv701/SPL06-007>`__
+- :ghedit:`Edit`

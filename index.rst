@@ -325,6 +325,7 @@ Environmental
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
+    SPL06-007, components/sensor/spl06_007, thermometer.svg, Temperature & Pressure
     SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     STS3X, components/sensor/sts3x, sts3x.jpg, Temperature
     TEE501, components/sensor/tee501, TEE501.png, Temperature
