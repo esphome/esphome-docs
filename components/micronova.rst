@@ -120,13 +120,13 @@ Micronova variables:
 
 .. note::
 
-  For most Micronova boards the default **memory_location** and **memory_address** parameters will work so you should
-  not specify them. However your Micronova boad may require you to specify alternate values. So every (text)sensor, button,
-  switch or number accepts these parameters:
+    For most Micronova boards the default **memory_location** and **memory_address** parameters will work so you should
+    not specify them. However your Micronova boad may require you to specify alternate values. So every (text)sensor, button,
+    switch or number accepts these parameters:
 
-  - **memory_location** (*Optional*): The memory location where the parameter must be read. For most stoves this is 0x00 for RAM
-    or 0x20 for EPROM.
-  - **memory_address** (*Optional*): The address where the parameter is stored.
+    - **memory_location** (*Optional*): The memory location where the parameter must be read. For most stoves this is 0x00 for RAM
+      or 0x20 for EPROM.
+    - **memory_address** (*Optional*): The address where the parameter is stored.
 
 
 Text Sensor variables:
@@ -153,10 +153,10 @@ Number variables:
 
 .. note::
 
-  Besides **memory_location** and **memory_address** you can specify a specific **memory_write_location** parameter.
-  This parameter is a hex value for the **memory_location** where the new thermostat value must be written.
+    Besides **memory_location** and **memory_address** you can specify a specific **memory_write_location** parameter.
+    This parameter is a hex value for the **memory_location** where the new thermostat value must be written.
 
-  - **memory_write_location** (*Optional*): The **memory_location** where to write the new thermostat value.
+    - **memory_write_location** (*Optional*): The **memory_location** where to write the new thermostat value.
 
 Button variables:
 ~~~~~~~~~~~~~~~~~
@@ -168,10 +168,10 @@ To use these buttons, you will need the **thermostat_temperature** sensor.
 
 .. note::
 
-  Besides **memory_location** and **memory_address** you can specify a specific **memory_data** parameter.
-  This parameter is the hex value to be written to the **memory_location** and **memory_address** location when pressing the button.
+    Besides **memory_location** and **memory_address** you can specify a specific **memory_data** parameter.
+    This parameter is the hex value to be written to the **memory_location** and **memory_address** location when pressing the button.
 
-  - **memory_data** (*Optional*): The hex value to be written to the **memory_location** and **memory_address**.
+    - **memory_data** (*Optional*): The hex value to be written to the **memory_location** and **memory_address**.
 
 Switch variables:
 ~~~~~~~~~~~~~~~~~
@@ -181,12 +181,12 @@ Switch variables:
 
 .. note::
 
-  Besides **memory_location** and **memory_address** you can specify specific **memory_data_on** and **memory_data_off** parameters. 
-  These parameters contain the hex value to be written to the **memory_location** and **memory_address** when the switch 
-  turns on or off.
+    Besides **memory_location** and **memory_address** you can specify specific **memory_data_on** and **memory_data_off** parameters. 
+    These parameters contain the hex value to be written to the **memory_location** and **memory_address** when the switch 
+    turns on or off.
 
-  - **memory_data_on** (*Optional*): The data to write when turning the switch on.
-  - **memory_data_off** (*Optional*): The data to write when turning the switch off.
+    - **memory_data_on** (*Optional*): The data to write when turning the switch on.
+    - **memory_data_off** (*Optional*): The data to write when turning the switch off.
 
 See Also
 --------
