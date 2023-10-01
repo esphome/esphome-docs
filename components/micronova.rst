@@ -113,7 +113,6 @@ MicroNova configuration
 
 Micronova variables:
 ~~~~~~~~~~~~~~~~~~~~
-
 - **enable_rx_pin** (**Required**, :ref:`config-pin`): Output pin to be used to switch the line between RX en TX.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
   Defaults to 60 seconds.
@@ -130,7 +129,7 @@ Micronova variables:
 
 
 Text Sensor variables:
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 - **stove_state** (*Optional*): The current stove state.
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
