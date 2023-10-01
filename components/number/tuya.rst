@@ -48,9 +48,9 @@ Based on this, you can create a number as follows:
       max_value: 2
       step: 1
 
-The value for ``step`` is used as the scaling factor for the Number. All numbers in Tuya are integers, so a scaling factor is sometimes needed to convert the Tuya reported value into floating point.
+The value for ``multiply`` is used as the scaling factor for the Number. All numbers in Tuya are integers, so a scaling factor is sometimes needed to convert the Tuya reported value into floating point.
 
-For instance, assume we have a pH sensor that reads from 0.00 to 15.00 with a scaling of 0.01. By setting `step` to 0.01, on the Tuya side (not visible to the user) the number will be reported as an integer from 0 to 1500. The following configuration could be used:
+For instance, assume we have a pH sensor that reads from 0.00 to 15.00 with a scaling of 0.01. By setting ``multiply`` to 100, on the Tuya side (not visible to the user) the number will be reported as an integer from 0 to 1500. The following configuration could be used:
 
 .. code-block:: yaml
 
@@ -59,7 +59,7 @@ For instance, assume we have a pH sensor that reads from 0.00 to 15.00 with a sc
       number_datapoint: 106
       min_value: 0.00
       max_value: 15.00
-      step: 0.01
+      multiply: 100
 
 Configuration variables:
 ------------------------
@@ -69,7 +69,9 @@ Configuration variables:
 - **number_datapoint** (**Required**, int): The datapoint id number of the number.
 - **min_value** (**Required**, float): The minimum value this number can be.
 - **max_value** (**Required**, float): The maximum value this number can be.
-- **step** (**Required**, float): The granularity with which the number can be set.
+- **step** (**Optional**, float): The granularity with which the number can be set. Defaults to 1.
+- **multiply** (**Optional**, float): multiply the new value with this factor before sending the requests.
+
 - All other options from :ref:`Number <config-number>`.
 
 See Also
