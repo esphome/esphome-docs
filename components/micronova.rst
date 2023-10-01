@@ -119,6 +119,7 @@ Micronova variables:
   Defaults to 60 seconds.
 
 .. note::
+
   For most Micronova boards the default **memory_location** and **memory_address** parameters will work so you should
   not specify them. However your Micronova boad may require you to specify alternate values. So every (text)sensor, button,
   switch or number accepts these parameters:
@@ -151,6 +152,7 @@ Number variables:
 - All other options from :ref:`Number <config-number>`.
 
 .. note::
+
   Besides **memory_location** and **memory_address** you can specify a specific **memory_write_location** parameter.
   This parameter is a hex value for the **memory_location** where the new thermostat value must be written.
 
@@ -165,6 +167,7 @@ To use these buttons, you will need the **thermostat_temperature** sensor.
 - All other options from :ref:`Button <config-button>`.
 
 .. note::
+
   Besides **memory_location** and **memory_address** you can specify a specific **memory_data** parameter.
   This parameter is the hex value to be written to the **memory_location** and **memory_address** location when pressing the button.
 
@@ -177,6 +180,7 @@ Switch variables:
 - All other options from :ref:`Switch <config-switch>`.
 
 .. note::
+
   Besides **memory_location** and **memory_address** you can specify specific **memory_data_on** and **memory_data_off** parameters. 
   These parameters contain the hex value to be written to the **memory_location** and **memory_address** when the switch 
   turns on or off.
