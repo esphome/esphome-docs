@@ -356,6 +356,7 @@ All Actions
 - :ref:`lambda <lambda_action>`
 - :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_until <wait_until_action>`
 - :ref:`component.update <component-update_action>`
+- :ref:`component.suspend <component-suspend_action>` / :ref:`component.resume <component-resume_action>`
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`homeassistant.service <api-homeassistant_service_action>`
@@ -664,6 +665,64 @@ compile error.
 
         # The same as:
         - lambda: 'id(my_component).update();'
+
+.. _component-suspend_action:
+
+``component.suspend`` Action
+----------------------------
+
+Using this action you can manually call the ``stop_poller()`` method of a component.
+
+After this action the component will stop being refreshed.
+
+While the poller is suspendend, it's still possible to trigger on-demand updates by
+using :ref:`component.update <component-update_action>`
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.suspend: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).stop_poller();'
+
+.. _component-resume_action:
+
+``component.resume`` Action
+---------------------------
+
+Using this action you can manually call the ``start_poller()`` method of a component.
+
+After this action the component will refresh at the original update_interval rate
+
+This will allow the component to resume automatic update at the defined interval.
+
+This action also allows to change the update interval, calling it without suspend, 
+replace the poller directly.
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.resume: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).start_poller();'
+
+    # Change the poller interval
+    on_...:
+      then:
+        - component.resume: 
+            id: my_component
+            update_interval: 15s
+
 
 .. _globals-set_action:
 
