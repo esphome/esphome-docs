@@ -33,6 +33,11 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
                     </a>
                 </li>
                 <li>
+                    <a class="reference" href="/ready-made/devices.html">
+                        install ready-made project
+                    </a>
+                </li>
+                <li>
                     <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
                         by migrating from Tasmota
                     </a>
@@ -902,3 +907,4 @@ If you'd like to share configurations for specific devices, please contribute to
     changelog/index
     custom/index
     images/index
+    ready-made/devices
