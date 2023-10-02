@@ -593,11 +593,13 @@
 
   <div class="hidden info espressif">
     <div class="question-prompt">Start the installation:</div>
-    <esp-web-install-button></esp-web-install-button>
+    <esp-web-install-button
+      manifest="https://firmware.esphome.io/esphome-web/manifest.json"
+    ></esp-web-install-button>
   </div>
 
   <div class="hidden info raspberry">
-    <div class="question-prompt">Start the installation:</div>
+    <div class="question-prompt">Installation instructions:</div>
 
     <ol>
       <li>Disconnect your Raspberry Pi Pico from your computer</li>
@@ -684,8 +686,10 @@
     radio.addEventListener("change", () => {
       const typeRoot = radio.closest(".type");
       const manifestRoot = typeRoot.dataset.manifestRoot;
-      const button = typeRoot.querySelector("esp-web-install-button");
-      button.manifest = `${manifestRoot}/${radio.value}-manifest.json`;
+      if (manifestRoot) {
+        const button = typeRoot.querySelector("esp-web-install-button");
+        button.manifest = `${manifestRoot}/${radio.value}-manifest.json`;
+      }
 
       typeRoot.querySelectorAll(".info").forEach((info) => {
         info.classList.add("hidden");
