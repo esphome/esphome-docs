@@ -1,4 +1,4 @@
-.. _ready_made_device:
+.. _ready_made_projects:
 
 Ready-Made Projects
 =========================

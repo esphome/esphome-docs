@@ -33,7 +33,7 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/ready-made/devices.html">
+                    <a class="reference" href="/ready-made/projects.html">
                         install ready-made project
                     </a>
                 </li>
@@ -907,4 +907,4 @@ If you'd like to share configurations for specific devices, please contribute to
     changelog/index
     custom/index
     images/index
-    ready-made/devices
+    ready-made/projects
