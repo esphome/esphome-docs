@@ -1,7 +1,7 @@
 .. _ready_made_projects:
 
 Ready-Made Projects
-=========================
+====================
 
 .. seo::
     :description: Install ready-made projects directly on your device.
