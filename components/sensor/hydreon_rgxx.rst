@@ -85,6 +85,7 @@ Configuration variables:
 
 - **disable_led** (*Optional*): Disables the on-board LED. Defaults to ``false``. Only on RG-9 firmware version 1.200-onwards.
 
+
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
