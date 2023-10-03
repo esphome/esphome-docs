@@ -14,6 +14,7 @@ networks (WiFi, Ethernet).
     # Example configuration
     network:
         enable_ipv6: true
+        min_ipv6_addr_count: 2
         
 Configuration variables:
 ------------------------
