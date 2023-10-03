@@ -43,6 +43,20 @@ Following on from the previously added :doc:`/components/light/esp32_rmt_led_str
 :doc:`/components/light/neopixelbus` and :doc:`/components/light/fastled` that
 do not rely on the Arduino framework.
 
+Release 2023.9.1 - September 28
+-------------------------------
+
+- Tuya Number Scaling :esphomepr:`5108` by :ghuser:`InvncibiltyCloak`
+- Migrate dashboard json files to /data folder instead of wiping out :esphomepr:`5441` by :ghuser:`jesserockz`
+
+Release 2023.9.2 - October 2
+----------------------------
+
+- SPI fixes for buggy components :esphomepr:`5446` by :ghuser:`clydebarrow`
+- Fix an Issue with IR Remote Climate and Whirlpool protocol toggle :esphomepr:`5447` by :ghuser:`the-mentor`
+- Fix SPI support for second bus on 2023.9.1 :esphomepr:`5456` by :ghuser:`angelnu`
+- Ensure esphome directory exists on addon startup :esphomepr:`5464` by :ghuser:`jesserockz`
+
 Breaking Changes
 ----------------
 
@@ -53,6 +67,12 @@ The ``/config/esphome/.esphome`` folder has been removed and replaced with ``/da
 This was done because it is exactly what the add-on ``/data`` folder was made for and there were many files in the ``.esphome`` folder
 that were making the Home Assistant Backup larger for no reason at all. All files in there are generated or sourced from online based
 on your configurations files which have not been touched.
+
+.. note::
+
+    2023.9.1 makes a further small change that moves the ``json`` files used by the dashboard into the new ``/data`` folder.
+    If you had already updated to 2023.9.0 though, the files would have already been removed and they will be re-generated
+    next time you install each device.
 
 Enum device class
 ^^^^^^^^^^^^^^^^^
