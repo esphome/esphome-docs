@@ -19,6 +19,7 @@ Configuration variables:
 ------------------------
 
 - **enable_ipv6** (*Optional*, boolean): Enables IPv6 support. Defaults to ``false``.
+- **min_ipv6_addr_count** (*Optional*, integer): ESPhome considers network connected when it has gotten one IPv4 address and this amount of IPv6 addresses. Defaults to ``0`` to not hang on boot with networks with no IPv6 enabled. ``2`` could be a good value for a configuration that requires IPv6.
 
 See Also
 --------
