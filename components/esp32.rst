@@ -23,7 +23,7 @@ Configuration variables:
   choose a generic board from Espressif such as ``esp32dev``.
 - **framework** (*Optional*): Options for the underlying framework used by ESPHome.
   See :ref:`esp32-arduino_framework` and :ref:`esp32-espidf_framework`.
-- **variant** (*Optional*, boolean): The variant of the ESP32 that is used on this board. One of ``esp32``,
+- **variant** (*Optional*, string): The variant of the ESP32 that is used on this board. One of ``esp32``,
   ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``. Defaults to the variant that is detected from the board, if
   a board that's unknown to ESPHome is used, this option is mandatory.
 
@@ -104,7 +104,7 @@ of the ESP32 like ESP32S2, ESP32S3, ESP32C3 and single-core ESP32 chips.
         version: recommended
         # Custom sdkconfig options
         sdkconfig_options:
-          CONFIG_COMPILER_OPTIMIZATION_SIZE: y
+          COMPILER_OPTIMIZATION_SIZE: y
         # Advanced tweaking options
         advanced:
           ignore_efuse_mac_crc: false
@@ -121,7 +121,7 @@ Configuration variables:
 
 - **source** (*Optional*, string): The PlatformIO package or repository to use for the framework. This can be used to use a custom or patched version of the framework.
 - **platform_version** (*Optional*, string): The version of the `platformio/espressif32 <https://github.com/platformio/platform-espressif32/releases/>`__ package to use.
-- **sdkconfig_options** (*Optional*, mapping): Custom sdkconfig options to set in the ESP-IDF project.
+- **sdkconfig_options** (*Optional*, mapping): Custom sdkconfig `compiler options <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/kconfig.html#compiler-options>`__ to set in the ESP-IDF project.
 - **advanced** (*Optional*, mapping): Advanced options for highly specific tweaks.
 
   - **ignore_efuse_mac_crc** (*Optional*, boolean): Can be set to ``true`` for devices on which the burnt in MAC address does not
