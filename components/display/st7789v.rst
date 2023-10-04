@@ -94,6 +94,13 @@ may not need to be explicitly specified in your YAML file. If you do specify the
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **data_rate** (*Optional*, frequency): The SPI data rate (default 20MHz.) Can be reduced if required, e.g. to
+  compensate for long data cables.
+- **spi_mode** (*Optional*, 0-3): The SPI clock mode to use (default: ``mode0``.) The ST7789V datasheet specifies mode 0,
+  but some displays appear to require mode 3. This should be one of ``mode0``, ``mode1``, ``mode2`` or ``mode3`` (or just
+  a digit from 0-3.)
+
+
 
 
 Preset configuration
