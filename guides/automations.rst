@@ -415,7 +415,7 @@ All Conditions
 --------------
 
 - :ref:`lambda <lambda_condition>`
-- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`not <not_condition>`
+- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`xor <xor_condition>` / :ref:`not <not_condition>` 
 - :ref:`for <for_condition>`
 - :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` / :ref:`binary_sensor.is_off <binary_sensor-is_off_condition>`
 - :ref:`switch.is_on <switch-is_on_condition>` / :ref:`switch.is_off <switch-is_off_condition>`
@@ -501,10 +501,11 @@ and can be used to create conditional flow in actions.
 
 .. _and_condition:
 .. _or_condition:
+.. _xor_condition:
 .. _not_condition:
 
-``and`` / ``or`` / ``not`` Condition
-------------------------------------
+``and`` / ``or`` / ``xor`` / ``not`` Condition
+----------------------------------------------
 
 Check a combination of conditions
 
@@ -514,7 +515,7 @@ Check a combination of conditions
       then:
         - if:
             condition:
-              # Same syntax for and
+              # Same syntax for `and` as well as `xor` conditions
               or:
                 - binary_sensor.is_on: some_binary_sensor
                 - binary_sensor.is_on: other_binary_sensor
