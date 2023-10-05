@@ -135,7 +135,7 @@
 
 <div
   class="type type-bluetooth"
-  data-manifest-root="https://esphome.github.io/bluetooth-proxies"
+  data-manifest-root="https://firmware.esphome.io/bluetooth-proxy"
 >
   <div class="question-prompt">
     Pick the device you want to turn into a Bluetooth proxy:
@@ -398,7 +398,7 @@
 
 <div
   class="type type-media hidden"
-  data-manifest-root="https://esphome.github.io/media-players"
+  data-manifest-root="https://firmware.esphome.io/media-player"
 >
   <div class="question-prompt">
     Pick the device you want to turn into a media player:
@@ -671,6 +671,7 @@
     document.body.appendChild(improv);
   }
 
+  // Handle selecting a project type
   document.querySelectorAll('input[name="type"]').forEach((radio) =>
     radio.addEventListener("change", () => {
       document.querySelectorAll(".type").forEach((info) => {
@@ -679,13 +680,15 @@
       document.querySelector(`.type-${radio.value}`).classList.remove("hidden");
     })
   );
+
+  // Handle selecting a device
   document.querySelectorAll("input.device-option").forEach((radio) =>
     radio.addEventListener("change", () => {
       const typeRoot = radio.closest(".type");
       const manifestRoot = typeRoot.dataset.manifestRoot;
       if (manifestRoot) {
         const button = typeRoot.querySelector("esp-web-install-button");
-        button.manifest = `${manifestRoot}/${radio.value}-manifest.json`;
+        button.manifest = `${manifestRoot}/${radio.value}/manifest.json`;
       }
 
       typeRoot.querySelectorAll(".info").forEach((info) => {
@@ -694,12 +697,27 @@
       typeRoot.querySelector(`.info.${radio.value}`).classList.remove("hidden");
     })
   );
+
+  // Check URL for type
+  if (window.location.search) {
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get("type");
+    if (type) {
+      document.querySelector(
+        `input[name="type"][value="${type}"]`
+      ).checked = true;
+    }
+  }
+
+  // Show current selection on page load
   document
     .querySelector('input[name="type"]:checked')
     .dispatchEvent(new Event("change"));
   document
     .querySelectorAll("input.device-option:checked")
     .forEach((radio) => radio.dispatchEvent(new Event("change")));
+
+  // Check if web installation is supported
   customElements.whenDefined("esp-web-install-button").then((cls) => {
     if (cls.isSupported) {
       return;
