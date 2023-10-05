@@ -76,13 +76,13 @@ Example config:
 
 .. code-block:: yaml
 
-  # Example configuration entry
-  on_boot:
-    priority: 240
-    then:
-      - uart.write:
-          id: ikea #id of the uart bus used for the PM1006
-          data: [0x11, 0x02, 0x0B, 0x01, 0xE1]
+    # Example configuration entry
+    on_boot:
+      priority: 240
+      then:
+        - uart.write:
+            id: ikea #id of the uart bus used for the PM1006
+            data: [0x11, 0x02, 0x0B, 0x01, 0xE1]
 
 
 See Also
