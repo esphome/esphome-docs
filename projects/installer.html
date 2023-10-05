@@ -688,7 +688,6 @@
       const manifestRoot = typeRoot.dataset.manifestRoot;
       if (manifestRoot) {
         const button = typeRoot.querySelector("esp-web-install-button");
-        // TODO this has to be adjusted for firmware repo.
         button.manifest = `${manifestRoot}/${radio.value}/manifest.json`;
       }
 
