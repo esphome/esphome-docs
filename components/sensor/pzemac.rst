@@ -197,15 +197,15 @@ Configuration adopts internal sensors processing data from PZEM module, public s
         #password: "yorufallbackpasswordhere"
     
     # fallback mechanism for when connecting to the configured WiFi fails
-    # https://esphome.io/components/captive_portal.html
+    # <see_esphome_web>/components/captive_portal.html
     captive_portal:
     
     # Web server to be able to consult information with a Web browser
-    # https://esphome.io/components/web_server.html
+    # <see_esphome_web>/components/web_server.html
     web_server:
       
     # We indicate the pin of the board's LED to blink according to its status
-    # https://esphome.io/components/status_led.html
+    # <see_esphome_web>/components/status_led.html
     status_led:
       pin:
         number: D4
@@ -223,7 +223,7 @@ Configuration adopts internal sensors processing data from PZEM module, public s
     modbus:
     
     # Need time for helper sensors
-    # https://esphome.io/components/time.html
+    # <see_esphome_web>/components/time.html
     time:
       - platform: sntp
         id: my_time
@@ -233,7 +233,7 @@ Configuration adopts internal sensors processing data from PZEM module, public s
     sensor:
       # --- Fast sensors (internal) for Energy calculation & local display
       # PZEM-004T V3
-      # https://esphome.io/components/sensor/pzemac
+      # <see_esphome_web>/components/sensor/pzemac
       - platform: pzemac
         id: pzemac_1
         current:
@@ -364,7 +364,7 @@ Configuration adopts internal sensors processing data from PZEM module, public s
         update_interval: 10s
     
     # Helper sensors
-      # https://esphome.io/components/sensor/total_daily_energy.html
+      # <see_esphome_web>/components/sensor/total_daily_energy.html
       - platform: total_daily_energy
         name: "Total Daily Energy" #(sum for today)
         id: daily_energy_total
@@ -375,7 +375,7 @@ Configuration adopts internal sensors processing data from PZEM module, public s
         unit_of_measurement: kWh
         icon: mdi:counter
     
-      # https://esphome.io/components/sensor/integration.html
+      # <see_esphome_web>/components/sensor/integration.html
       - platform: integration
         name: "Total Energy Running" #(sum since last restart)
         id: "running_energy_total"
@@ -389,14 +389,14 @@ Configuration adopts internal sensors processing data from PZEM module, public s
     
     # General info sensors
       # Uptime sensor
-      # https://esphome.io/components/sensor/uptime.html
+      # <see_esphome_web>/components/sensor/uptime.html
       - platform: uptime
         name: "Uptime"
         id: "powernode_device_uptime"
         entity_category: "diagnostic"
     
       # WiFi Signal sensor
-      # https://esphome.io/components/sensor/wifi_signal.html
+      # <see_esphome_web>/components/sensor/wifi_signal.html
       - platform: wifi_signal
         name: "WiFi Signal"
         id: "powernode_device_wifi_signal"
@@ -413,7 +413,7 @@ Configuration adopts internal sensors processing data from PZEM module, public s
         entity_category: "diagnostic"
     
     # Status sensor
-    # https://esphome.io/components/binary_sensor/status.html
+    # <see_esphome_web>/components/binary_sensor/status.html
     binary_sensor:
       - platform: status
         name: "Status"
@@ -422,19 +422,19 @@ Configuration adopts internal sensors processing data from PZEM module, public s
     # ----- Buttons -----
     button:
       # restart button
-      # https://esphome.io/components/button/restart
+      # <see_esphome_web>/components/button/restart
       - platform: restart
         name: "Device Restart"
         id: device_restart_button
     
       # restart button (safe mode)
-      # https://esphome.io/components/button/safe_mode
+      # <see_esphome_web>/components/button/safe_mode
       - platform: safe_mode
         name: "Device Restart (Safe Mode)"
         id: device_restart_safe_button
     
       # reset energy button
-      # https://esphome.io/components/sensor/pzemac#pzemac-reset-energy-action
+      # <see_esphome_web>/components/sensor/pzemac#pzemac-reset-energy-action
       - platform: template
         name: "Energy meter Reset"
         id: energy_reset_button
