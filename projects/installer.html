@@ -699,6 +699,17 @@
     })
   );
 
+  // Check URL for type
+  if (window.location.search) {
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get("type");
+    if (type) {
+      document.querySelector(
+        `input[name="type"][value="${type}"]`
+      ).checked = true;
+    }
+  }
+
   // Show current selection on page load
   document
     .querySelector('input[name="type"]:checked')
