@@ -154,6 +154,294 @@ You must set the ``address`` of the ``modbus_controller`` to the current address
         setup_priority: -10
         update_interval: 30s
 
+Complete example:
+-----------------
+
+A complete working example of a advanced energy monitoring node (here runnnig on a esp8266 - D1 Mini board), that can be integrated to HA, detailed comments included.
+Configuration adopts internal sensors processing data from PZEM module, public sensors with pre-processed data (for HA), helper sensors with aggregated data, diagnostic sensors monitoring device status, and control buttons.
+
+.. code-block:: yaml
+
+    substitutions:
+      name: my-powernode
+      #board: esp01_1m
+      board: d1_mini
+    
+    esphome:
+      name: ${name}
+      #friendly_name: 'Powernode'
+      comment: 'PZEM-004T V3 Energy Meter'
+    
+    esp8266:
+      board: ${board}
+    
+    # Enable logging
+    logger:
+    
+    # Enable Home Assistant API
+    api:
+      encryption:
+        key: "yourapikeyhere"
+    
+    ota:
+      #password: "yourotapasswordhere"
+    
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+      fast_connect: True
+    
+      # Enable fallback hotspot (captive portal) in case wifi connection fails
+      ap:
+        ssid: "Home-Powernode"
+        #password: "yorufallbackpasswordhere"
+    
+    # fallback mechanism for when connecting to the configured WiFi fails
+    # https://esphome.io/components/captive_portal.html
+    captive_portal:
+    
+    # Web server to be able to consult information with a Web browser
+    # https://esphome.io/components/web_server.html
+    web_server:
+      
+    # We indicate the pin of the board's LED to blink according to its status
+    # https://esphome.io/components/status_led.html
+    status_led:
+      pin:
+        number: D4
+        inverted: true
+    
+    # We indicate the pins where we have connected TX and RX of the device, taking into account that TX-> RX, RX-> TX must always be inverted
+    uart:
+      rx_pin: D2
+      tx_pin: D1
+      baud_rate: 9600
+      # stop_bits is only necessary if indicated by the log while testing the circuit
+      stop_bits: 1
+    
+    # enable Modbus
+    modbus:
+    
+    # Need time for helper sensors
+    # https://esphome.io/components/time.html
+    time:
+      - platform: sntp
+        id: my_time
+        timezone: "Europe/Bratislava" #change yours
+    
+    # ----- Sensors -----
+    sensor:
+      # --- Fast sensors (internal) for Energy calculation & local display
+      # PZEM-004T V3
+      # https://esphome.io/components/sensor/pzemac
+      - platform: pzemac
+        id: pzemac_1
+        current:
+          name: "PZEM Current"
+          id: "pzem_current"
+          internal: true
+        voltage:
+          name: "PZEM Voltage"
+          id: "pzem_voltage"
+          internal: true
+        energy:
+          name: "PZEM Energy"
+          id: "pzem_energy"
+          internal: true
+          # convert it to kWh
+          filters:
+            - multiply: 0.001
+          unit_of_measurement: 'kWh'
+          accuracy_decimals: 3
+        power:
+          name: "PZEM Power"
+          id: "pzem_power"
+          internal: true
+        frequency:
+          name: "PZEM Frequency"
+          id: "pzem_frequency"
+          internal: true
+        power_factor:
+          name: "PZEM Power Factor"
+          id: "pzem_power_factor"
+          internal: true
+        update_interval: 2s
+    
+      # --- Slow sensors (public) for Home Assistant
+      - platform: template
+        name: "Current"
+        #id: "home_current"
+        lambda: |-
+          if (id(pzem_current).state) {
+            return (id(pzem_current).state);
+          } else {
+            return 0;
+          }
+        unit_of_measurement: 'A'
+        accuracy_decimals: 3
+        state_class: measurement
+        device_class: current
+        icon: "mdi:alpha-a-circle"
+        update_interval: 10s
+      
+      - platform: template
+        name: "Voltage"
+        #id: "home_voltage"
+        lambda: |-
+          if (id(pzem_voltage).state) {
+            return (id(pzem_voltage).state);
+          } else {
+            return 0;
+          }
+        unit_of_measurement: 'V'
+        accuracy_decimals: 3
+        state_class: measurement
+        device_class: voltage
+        icon: "mdi:alpha-v-circle"
+        update_interval: 10s
+      
+      - platform: template
+        name: "Energy"
+        #id: "home_energy"
+        lambda: |-
+          if (id(pzem_energy).state) {
+            return (id(pzem_energy).state);
+          } else {
+            return 0;
+          }
+        unit_of_measurement: 'kWh' 
+        accuracy_decimals: 4
+        state_class: total_increasing
+        device_class: energy
+        icon: "mdi:counter"
+        update_interval: 10s
+      
+      - platform: template
+        name: "Power"
+        #id: "home_power"
+        lambda: |-
+          if (id(pzem_power).state) {
+            return (id(pzem_power).state);
+          } else {
+            return 0;
+          }
+        unit_of_measurement: 'W' 
+        accuracy_decimals: 2
+        state_class: measurement
+        device_class: power
+        icon: "mdi:alpha-w-circle"
+        update_interval: 10s
+      
+      - platform: template
+        name: "Frequency"
+        #id: "home_frequency"
+        lambda: |-
+          if (id(pzem_frequency).state) {
+            return (id(pzem_frequency).state);
+          } else {
+            return 0;
+          }
+        unit_of_measurement: 'Hz'
+        state_class: measurement
+        device_class: frequency
+        icon: "mdi:alpha-f-circle"
+        update_interval: 10s
+    
+      - platform: template
+        name: "Power Factor"
+        #id: "home_power_factor"
+        lambda: |-
+          if (id(pzem_power_factor).state) {
+            return (id(pzem_power_factor).state);
+          } else {
+            return 0;
+          }
+        unit_of_measurement: '%'
+        accuracy_decimals: 2
+        state_class: measurement
+        device_class: power_factor
+        icon: "mdi:alpha-p-circle"
+        update_interval: 10s
+    
+    # Helper sensors
+      # https://esphome.io/components/sensor/total_daily_energy.html
+      - platform: total_daily_energy
+        name: "Total Daily Energy" #(sum for today)
+        id: daily_energy_total
+        power_id: pzem_power
+        filters:
+            # Multiplication factor from W to kW is 0.001
+            - multiply: 0.001
+        unit_of_measurement: kWh
+        icon: mdi:counter
+    
+      # https://esphome.io/components/sensor/integration.html
+      - platform: integration
+        name: "Total Energy Running" #(sum since last restart)
+        id: "running_energy_total"
+        sensor: pzem_power
+        time_unit: h
+        filters:
+         # Multiplication factor from W to kW is 0.001
+          - multiply: 0.001
+        unit_of_measurement: kWh
+        icon: mdi:counter
+    
+    # General info sensors
+      # Uptime sensor
+      # https://esphome.io/components/sensor/uptime.html
+      - platform: uptime
+        name: "Uptime"
+        id: "powernode_device_uptime"
+        entity_category: "diagnostic"
+    
+      # WiFi Signal sensor
+      # https://esphome.io/components/sensor/wifi_signal.html
+      - platform: wifi_signal
+        name: "WiFi Signal"
+        id: "powernode_device_wifi_signal"
+        update_interval: 60s
+        entity_category: "diagnostic"
+    
+      - platform: copy # Reports the WiFi signal strength in %
+        source_id: powernode_device_wifi_signal
+        name: "WiFi Signal Percent"
+        id: "powernode_device_wifi_signal_perc"
+        filters:
+          - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
+        unit_of_measurement: "%"
+        entity_category: "diagnostic"
+    
+    # Status sensor
+    # https://esphome.io/components/binary_sensor/status.html
+    binary_sensor:
+      - platform: status
+        name: "Status"
+        entity_category: "diagnostic"
+    
+    # ----- Buttons -----
+    button:
+      # restart button
+      # https://esphome.io/components/button/restart
+      - platform: restart
+        name: "Device Restart"
+        id: device_restart_button
+    
+      # restart button (safe mode)
+      # https://esphome.io/components/button/safe_mode
+      - platform: safe_mode
+        name: "Device Restart (Safe Mode)"
+        id: device_restart_safe_button
+    
+      # reset energy button
+      # https://esphome.io/components/sensor/pzemac#pzemac-reset-energy-action
+      - platform: template
+        name: "Energy meter Reset"
+        id: energy_reset_button
+        icon: "mdi:restore"
+        entity_category: "config"
+        on_press:
+          - pzemac.reset_energy: pzemac_1
 
 See Also
 --------
