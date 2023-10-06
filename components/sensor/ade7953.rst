@@ -42,6 +42,8 @@ Over I²C
         irq_pin: GPIO16
         voltage:
           name: ADE7953 Voltage
+        frequency:
+          name: ADE7953 Frequency
         current_a:
           name: ADE7953 Current A
         current_b:
@@ -69,7 +71,9 @@ Configuration variables:
 
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x38``.
 - **irq_pin** (*Optional*, :ref:`config-pin`): The pin connected to the ADE7935 IRQ line (if connected)
-- **voltage** (*Optional*): Use the voltage value of the sensor in volt. All options from
+- **voltage** (*Optional*): Use the voltage value of the sensor in volts. All options from
+  :ref:`Sensor <config-sensor>`.
+- **frequency** (*Optional*): Use the frequency value of the sensor in hertzs. All options from
   :ref:`Sensor <config-sensor>`.
 - **current_a** (*Optional*): Use the current value of the A channel in amperes. All options from
   :ref:`Sensor <config-sensor>`.
@@ -91,6 +95,25 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **reactive_power_b** (*Optional*): Use the rective power value of the B channel in volt ampers. All options from
   :ref:`Sensor <config-sensor>`.
+- **current_pga_gain_a** (*Optional*, mapping): Set the input PGA current amplification of the A channel. Defaults to ``1x``. Possible values are:
+
+  - ``1x``
+  - ``2x``
+  - ``4x``
+  - ``8x``
+  - ``16x``
+  - ``22x``
+
+- **current_pga_gain_b** (*Optional*, mapping): Set input PGA current amplification of the B channel. Defaults to ``1x``. Possible values are:
+
+  - ``1x``
+  - ``2x``
+  - ``4x``
+  - ``8x``
+  - ``16x``
+
+- **current_gain_a** (*Optional*, int): Set the current amplification of the A channel. Defaults to ``0x400000``.
+- **current_gain_b** (*Optional*, int): Set the current amplification of the B channel. Defaults to ``0x400000``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``1s``.
 
 Over SPI
@@ -98,15 +121,23 @@ Over SPI
 
 .. code-block:: yaml
 
-    # Example configuration entry for SPI
+    # Example configuration entry for SPI (taken from a Shelly Pro 4PM)
     sensor:
       - platform: ade7953_spi
         cs_pin: GPIO04
         irq_pin: GPIO35
+        current_pga_gain_a: 2x
+        current_pga_gain_b: 2x
+        current_gain_a: 0x600000
+        current_gain_b: 0x600000
         voltage:
           name: "Voltage"
           filters:
           - delta: 1
+        frequency:
+          name: ADE7953 Frequency
+          filters:
+          - delta: 0.1
         current_a:
           name: "Current A"
           filters:
@@ -160,7 +191,9 @@ Configuration variables:
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The chip select pin.
 - **irq_pin** (*Optional*, :ref:`config-pin`): The pin connected to the ADE7935 IRQ line (if connected)
-- **voltage** (*Optional*): Use the voltage value of the sensor in volt. All options from
+- **voltage** (*Optional*): Use the voltage value of the sensor in volts. All options from
+  :ref:`Sensor <config-sensor>`.
+- **frequency** (*Optional*): Use the frequency value of the sensor in hertzs. All options from
   :ref:`Sensor <config-sensor>`.
 - **current_a** (*Optional*): Use the current value of the A channel in amperes. All options from
   :ref:`Sensor <config-sensor>`.
@@ -182,6 +215,25 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **reactive_power_b** (*Optional*): Use the rective power value of the B channel in volt ampers. All options from
   :ref:`Sensor <config-sensor>`.
+- **current_pga_gain_a** (*Optional*, mapping): Set the input PGA current amplification of the A channel. Defaults to ``1x``. Possible values are:
+
+  - ``1x``
+  - ``2x``
+  - ``4x``
+  - ``8x``
+  - ``16x``
+  - ``22x``
+
+- **current_pga_gain_b** (*Optional*, mapping): Set input PGA current amplification of the B channel. Defaults to ``1x``. Possible values are:
+
+  - ``1x``
+  - ``2x``
+  - ``4x``
+  - ``8x``
+  - ``16x``
+
+- **current_gain_a** (*Optional*, int): Set the current amplification of the A channel. Defaults to ``0x400000``.
+- **current_gain_b** (*Optional*, int): Set the current amplification of the B channel. Defaults to ``0x400000``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``1s``.
 
 Use with Shelly 2.5
