@@ -26,6 +26,48 @@ using an API that is designed to
 
 .. _display-engine:
 
+Color test patron
+-----------------
+
+When you have issues with your color display you can best test your display with bellow test script.
+It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine 
+what the best way is to help you, we would love to see an image of the below result, thanks in advance.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        ...
+        lambda: |-
+          int shift_x = (it.get_width()-310)/2;
+          int shift_y = (it.get_height()-256)/2;
+          for(auto i = 0; i<256; i++) {
+            it.horizontal_line(shift_x+  0,i+shift_y,50, my_red.fade_to_white(i));
+            it.horizontal_line(shift_x+ 50,i+shift_y,50, my_red.fade_to_black(i));
+    
+            it.horizontal_line(shift_x+105,i+shift_y,50, my_green.fade_to_white(i));
+            it.horizontal_line(shift_x+155,i+shift_y,50, my_green.fade_to_black(i));
+    
+            it.horizontal_line(shift_x+210,i+shift_y,50, my_blue.fade_to_white(i));
+            it.horizontal_line(shift_x+260,i+shift_y,50, my_blue.fade_to_black(i));
+          }
+          it.rectangle(shift_x+ 0, 0+shift_y, shift_x+ 310, 256+shift_y, my_yellow);
+    
+    color:
+      - id: my_blue
+        blue: 100%
+      - id: my_red
+        red: 100%
+      - id: my_green
+        green: 100%
+      - id: my_white
+        red: 100%
+        blue: 100%
+        green: 100%
+      - id: my_yellow
+        hex: ffff00
+
+
 Display Rendering Engine
 ------------------------
 
