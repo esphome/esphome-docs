@@ -31,7 +31,13 @@ Color test patron
 
 When you have issues with your color display you can best test your display with bellow test script.
 It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine 
-what the best way is to help you, we would love to see an image of the below result, thanks in advance.
+what the best way is to help you, we would love to see an image of the below result.
+
+Also when you create an issue about your display, please add the link where you brought the display from 
+so we can validate the used configuration.
+
+Thanks in advance.
+
 
 .. code-block:: yaml
 
