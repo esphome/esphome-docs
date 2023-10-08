@@ -30,10 +30,6 @@ is required to be set up in your configuration for this sensor to work.
 Over I²C
 --------
 
-.. note::
-
-    Previously the platform name was _ade7953_. This name can still but _ade7953_i2c_ is recommended.
-
 .. code-block:: yaml
 
     # Example configuration entry for i2c
@@ -259,7 +255,7 @@ Additionally, the device has an ::doc:`NTC temperature sensor <ntc>`.
       scl: GPIO14
 
     sensor:
-      - platform: ade7953
+      - platform: ade7953_i2c
         irq_pin: GPIO16
         voltage:
           name: Shelly Voltage
