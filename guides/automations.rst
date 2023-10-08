@@ -790,7 +790,7 @@ script was already running.
 
 This action allows you to stop a given script during execution. If the
 script is not running, it does nothing.
-This is useful right now if your want to stop a script that contains a
+This is useful if you want to stop a script that contains a
 ``delay`` action, ``wait_until`` action, or is inside a ``while`` loop, etc.
 You can also call this action from the script itself, and any subsequent action
 will not be executed.
