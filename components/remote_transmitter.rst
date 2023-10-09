@@ -99,7 +99,25 @@ Configuration variables:
 
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
 
-.. _remote_transmitter-transmit_canalsat:
+.. _remote_transmitter-transmit_byronsx:
+
+``remote_transmitter.transmit_byronsx`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends a Byron Doorbell RF protocol code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_byronsx:
+          address: '0x4f'
+          command: '0x2'      
+
+Configuration variables:
+
+- **address** (**Required**, int): The 8-bit ID to send, see dumper output for more info.
+- **command** (**Required**, int): The command to send, see dumper output for more info.
+- All other options from :ref:`remote_transmitter-transmit_action`... _remote_transmitter-transmit_canalsat:
 
 ``remote_transmitter.transmit_canalsat`` Action
 ***********************************************
