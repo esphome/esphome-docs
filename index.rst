@@ -33,6 +33,11 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
                     </a>
                 </li>
                 <li>
+                    <a class="reference" href="/projects/">
+                        install ready-made project
+                    </a>
+                </li>
+                <li>
                     <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
                         by migrating from Tasmota
                     </a>
@@ -356,6 +361,7 @@ Magnetic
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg, ESP internal, dark-invert
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg, 3-Axis magnetometer
     MMC5603, components/sensor/mmc5603, mmc5603.jpg, 3-Axis magnetometer
+    MMC5983, components/sensor/mmc5983, mmc5983.jpg, 3-Axis magnetometer
     MLX90393, components/sensor/mlx90393, mlx90393.jpg, 3-Axis magnetometer
     QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg, 3-Axis magnetometer
 
@@ -903,3 +909,4 @@ If you'd like to share configurations for specific devices, please contribute to
     changelog/index
     custom/index
     images/index
+    projects/index
