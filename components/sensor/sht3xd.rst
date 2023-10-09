@@ -48,6 +48,8 @@ Configuration variables:
   Defaults to ``0x44``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
+- **heater_enabled** (*Optional*, bool): Turn on/off heater at boot.
+  Defaults to ``false``.
 
 See Also
 --------

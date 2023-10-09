@@ -262,8 +262,7 @@ degree with a least squares solver.
 ``clamp``
 *********
 
-Limits the value to the range between ``min_value`` and ``max_value``. If ``min_value`` is not set, there is
-no lower bound, if ``max_value`` is not set there is no upper bound.
+Limits the value to the range between ``min_value`` and ``max_value``. Sensor values outside these bounds will be set to ``min_value`` or ``max_value``, respectively. If ``min_value`` is not set, there is no lower bound, if ``max_value`` is not set there is no upper bound.
 
 Configuration variables:
 
@@ -495,9 +494,18 @@ of the input values.
 ************
 
 After the first value has been sent, if no subsequent value is published within the
-``specified time period``, send ``NaN``.
+``specified time period``, send a value which defaults to ``NaN``.
 Especially useful when data is derived from some other communication
 channel, e.g. a serial port, which can potentially be interrupted.
+
+.. code-block:: yaml
+
+    # Example filters:
+    filters:
+      - timeout: 10s  # sent value will be NaN
+      - timeout:
+          timeout: 10s
+          value: 0
 
 ``debounce``
 ************
