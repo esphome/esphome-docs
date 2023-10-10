@@ -7,8 +7,8 @@ Matrix keypad
     :description: Matrix key input panel
 
 The ``matrix_keypad`` component allows you to integrate pads which
-have the keys connected at the intersection points of the rows and columns 
-of a matrix. 
+have the keys connected at the intersection points of the rows and columns
+of a matrix.
 
 .. figure:: ../images/matrix_keypad.jpg
     :align: center
@@ -44,14 +44,15 @@ Configuration variables:
 - **columns** (**Required**, list): A list of :ref:`pins <config-pin_schema>` where the vertical
   matrix lines are connected, in order from left to right.  These pins need to be input capable
   with pullups enabled.  If there is no internal pullup, then an external one is required.
-- **keys** (*Optional*, string): The keys present on the matrix, from top left to bottom right, 
+- **keys** (*Optional*, string): The keys present on the matrix, from top left to bottom right,
   row by row. Required for ``key_collector`` and ``binary_sensor`` (if using key selection).
-- **has_diodes** (*Optional*, boolean): For pads where row pins are outputs, and the keys are 
+- **has_diodes** (*Optional*, boolean): For pads where row pins are outputs, and the keys are
   connected with diodes. Defaults to ``false``.
+- **has_pulldowns** (*Optional*, boolean): For pads where the column lines have external pulldowns. Defaults to ``false``.
 
 
-Binary Sensors
---------------
+Binary Sensor
+-------------
 
 Individual keys can be added independently to ESPHome as ``binary_sensor``:
 
@@ -82,7 +83,7 @@ Either the ``row`` and ``col`` parameters, or the ``key`` parameter has to be pr
 
 .. note::
 
-    Automatic handling of multiple keys (e.g. PIN code entry) is possible with the 
+    Automatic handling of multiple keys (e.g. PIN code entry) is possible with the
     the :ref:`Key Collector <key_collector>` component.
 
 See Also

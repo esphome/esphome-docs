@@ -32,6 +32,9 @@ Configuration variables:
   - ``internal``: Use the internal ADC of the ESP32. Only supported on ESP32, no variant support.
 
 - **channel** (*Optional*, enum): The channel of the microphone. One of ``left`` or ``right``. Defaults to ``right``.
+- **bits_per_sample** (*Optional*, enum): The bit depth of the audio samples. Note that while set to ``32bit``, the samples
+  will be scaled down to 16bit before being forwarded.
+  One of ``16bit`` or ``32bit``. Defaults to ``16bit``.
 - **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this microphone.
 - All other options from :ref:`Microphone <config-microphone>`
 

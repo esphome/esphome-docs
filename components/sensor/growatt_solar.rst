@@ -150,6 +150,10 @@ Configuration variables:
   kilo watt hours. All options from :ref:`Sensor <config-sensor>`.
 - **inverter_module_temp** (*Optional*): Use the inverter module temperature value of the sensor in
   degree celsius. All options from :ref:`Sensor <config-sensor>`.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``10s``.
+- **address** (*Optional*, int): The address of the sensor if multiple sensors are attached to
+  the same UART bus. You will need to set the address of each device manually. Defaults to ``1``.
 
 See Also
 --------

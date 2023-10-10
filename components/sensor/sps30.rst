@@ -6,7 +6,7 @@ SPS30 Particulate Matter Sensor
     :image: sps30.jpg
 
 The ``sps30`` sensor platform allows you to use your Sensirion SPS30
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9.6_Particulate_Matter/Datasheets/Sensirion_PM_Sensors_Datasheet_SPS30.pdf>`__) sensors with ESPHome.
+(`datasheet <https://sensirion.com/media/documents/8600FF88/616542B5/Sensirion_PM_Sensors_Datasheet_SPS30.pdf>`__) sensors with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 This sensor supports both UART and I²C communication. However, at the moment only I²C communication is implemented.
 
@@ -81,31 +81,31 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **pmc_0_5** (*Optional*): The information for the **Number Concentration** sensor for ultrafine particles up to 0.5μm. Readings in particles/m³.
+- **pmc_0_5** (*Optional*): The information for the **Number Concentration** sensor for ultrafine particles up to 0.5μm. Readings in particles/cm³.
 
   - **name** (**Required**, string): The name for this sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **pmc_1_0** (*Optional*): The information for the **Number Concentration** sensor for fine particles up to 1μm. Readings in particles/m³.
+- **pmc_1_0** (*Optional*): The information for the **Number Concentration** sensor for fine particles up to 1μm. Readings in particles/cm³.
 
   - **name** (**Required**, string): The name for this sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **pmc_2_5** (*Optional*): The information for the **Number Concentration** sensor for fine particles up to 2.5μm. Readings in particles/m³.
+- **pmc_2_5** (*Optional*): The information for the **Number Concentration** sensor for fine particles up to 2.5μm. Readings in particles/cm³.
 
   - **name** (**Required**, string): The name for this sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **pmc_4_0** (*Optional*): The information for the **Number Concentration** sensor for coarse particles up to 4μm. Readings in particles/m³.
+- **pmc_4_0** (*Optional*): The information for the **Number Concentration** sensor for coarse particles up to 4μm. Readings in particles/cm³.
 
   - **name** (**Required**, string): The name for this sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **pmc_10_0** (*Optional*): The information for the **Number Concentration** sensor for coarse particles up to 10μm. Readings in particles/m³.
+- **pmc_10_0** (*Optional*): The information for the **Number Concentration** sensor for coarse particles up to 10μm. Readings in particles/cm³.
 
   - **name** (**Required**, string): The name for this sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
