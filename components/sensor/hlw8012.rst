@@ -241,6 +241,31 @@ New ESP measurements:
       }
     </script>
 
+Example Config:
+
+.. code-block:: yaml
+
+    substitutions:
+      voltage_divider: "2351"
+      current_resistor: "0.001"
+      current_multiply: "1.0"
+
+    sensor:
+      - platform: hlw8012
+        current_resistor: ${current_resistor}
+        voltage_divider: ${voltage_divider}
+        current:
+          name: "HLW8012 Current"
+          filters:
+            - multiply: ${current_multiply}
+        voltage:
+          name: "HLW8012 Voltage"
+        power:
+          name: "HLW8012 Power"
+        energy:
+          name: "HLW8012 Energy"
+        update_interval: 60s
+
 See Also
 --------
 
