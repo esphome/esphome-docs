@@ -756,6 +756,7 @@ Microphone Components
 
     Microphone Core, components/microphone/index, microphone.svg, dark-invert
     I2S Microphone, components/microphone/i2s_audio, i2s_audio.svg
+    ESP-ADF Microphone, components/microphone/esp_adf, esp-adf.svg
 
 Speaker Components
 ------------------
@@ -764,6 +765,7 @@ Speaker Components
 
     Speaker Core, components/speaker/index, speaker.svg, dark-invert
     I2S Speaker, components/speaker/i2s_audio, i2s_audio.svg
+    ESP-ADF Speaker, components/speaker/esp_adf, esp-adf.svg
 
 Time Components
 ---------------
@@ -825,6 +827,7 @@ Miscellaneous Components
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg, dark-invert
 
     I²S Audio, components/i2s_audio, i2s_audio.svg
+    ESP-ADF, components/esp_adf, esp-adf.svg
 
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
