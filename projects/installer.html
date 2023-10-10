@@ -92,6 +92,9 @@
     font-size: 0.8em;
     border-top: 1px solid darkgrey;
   }
+  a.img {
+    border: 0;
+  }
 </style>
 <script
   type="module"
@@ -248,6 +251,32 @@
 
   <div class="question-prompt">Start the installation:</div>
   <esp-web-install-button></esp-web-install-button>
+
+  <div class="question-prompt">Install Wake Word: (optional)</div>
+  <p>Install the add-on and configure it using the Wyoming integration.</p>
+  <a
+    href="https://my.home-assistant.io/redirect/supervisor_addon/?addon=core_openwakeword"
+    target="_blank"
+    rel="noreferrer noopener"
+    class="img"
+    ><img
+      src="https://my.home-assistant.io/badges/supervisor_addon.svg"
+      alt="Open your Home Assistant instance and show the dashboard of the Open Wake Word add-on."
+  /></a>
+  <br />
+  <br />
+  <a
+    href="https://my.home-assistant.io/redirect/config_flow_start/?domain=wyoming"
+    target="_blank"
+    rel="noreferrer noopener"
+    class="img"
+    ><img
+      src="https://my.home-assistant.io/badges/config_flow_start.svg"
+      alt="Open your Home Assistant instance and start setting up the Wyoming integration."
+  /></a>
+  <p>
+    <i>If skipped, voice control is only available when you push the button.</i>
+  </p>
 
   <div class="hidden info raspiaudio-muse-luxe">
     <h3>Raspiaudio ESP Muse Luxe</h3>
