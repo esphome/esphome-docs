@@ -91,6 +91,15 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **reactive_power_b** (*Optional*): Use the rective power value of the B channel in volt ampers. All options from
   :ref:`Sensor <config-sensor>`.
+- **voltage_pga_gain** (*Optional*, mapping): Set the input PGA voltage amplification. Defaults to ``1x``. Possible values are:
+
+  - ``1x``
+  - ``2x``
+  - ``4x``
+  - ``8x``
+  - ``16x``
+  - ``22x``
+
 - **current_pga_gain_a** (*Optional*, mapping): Set the input PGA current amplification of the A channel. Defaults to ``1x``. Possible values are:
 
   - ``1x``
@@ -108,8 +117,11 @@ Configuration variables:
   - ``8x``
   - ``16x``
 
+- **voltage_gain** (*Optional*, int): Set the voltage amplification. Defaults to ``0x400000``.
 - **current_gain_a** (*Optional*, int): Set the current amplification of the A channel. Defaults to ``0x400000``.
 - **current_gain_b** (*Optional*, int): Set the current amplification of the B channel. Defaults to ``0x400000``.
+- **active_power_gain_a** (*Optional*, int): Set the active power amplification of the A channel. Defaults to ``0x400000``.
+- **active_power_gain_b** (*Optional*, int): Set the active power amplification of the B channel. Defaults to ``0x400000``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``1s``.
 
 Over SPI
@@ -211,6 +223,15 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **reactive_power_b** (*Optional*): Use the rective power value of the B channel in volt ampers. All options from
   :ref:`Sensor <config-sensor>`.
+- **voltage_pga_gain** (*Optional*, mapping): Set the input PGA voltage amplification. Defaults to ``1x``. Possible values are:
+
+  - ``1x``
+  - ``2x``
+  - ``4x``
+  - ``8x``
+  - ``16x``
+  - ``22x``
+
 - **current_pga_gain_a** (*Optional*, mapping): Set the input PGA current amplification of the A channel. Defaults to ``1x``. Possible values are:
 
   - ``1x``
@@ -228,8 +249,11 @@ Configuration variables:
   - ``8x``
   - ``16x``
 
+- **voltage_gain** (*Optional*, int): Set the voltage amplification. Defaults to ``0x400000``.
 - **current_gain_a** (*Optional*, int): Set the current amplification of the A channel. Defaults to ``0x400000``.
 - **current_gain_b** (*Optional*, int): Set the current amplification of the B channel. Defaults to ``0x400000``.
+- **active_power_gain_a** (*Optional*, int): Set the active power amplification of the A channel. Defaults to ``0x400000``.
+- **active_power_gain_b** (*Optional*, int): Set the active power amplification of the B channel. Defaults to ``0x400000``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``1s``.
 
 Use with Shelly 2.5
