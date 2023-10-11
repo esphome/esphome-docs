@@ -30,25 +30,24 @@ Once configured, you can use the UART channels to connect your UART Devices.
 Each channel acts, for the connected component, as a virtual UART Bus. 
 
 .. list-table::
-   :header-rows: 1
-   :width: 300px
-   :align: center
-
-    * - I²C address
-      - A1
-      - A0
-    * - 0x10
-      - 0
-      - 0
-    * - 0x30
-      - 0
-      - 1
-    * - 0x50
-      - 1
-      - 0
-    * - 0x70
-      - 1
-      - 1
+  :header-rows: 1
+  :width: 300px
+  :align: center
+   * - I²C address
+     - A1
+     - A0
+   * - 0x10
+     - 0
+     - 0
+   * - 0x30
+     - 0
+     - 1
+   * - 0x50
+     - 1
+     - 0
+   * - 0x70
+     - 1
+     - 1
 
 .. important:: 
 
