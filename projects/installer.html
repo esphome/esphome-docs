@@ -724,14 +724,5 @@
     }
     // show unsupported note
     document.querySelector(".unsupported").classList.remove("hidden");
-    // disable all radio
-    document
-      .querySelectorAll('input[name="type"]')
-      .forEach((radio) => radio.setAttribute("disabled", "disabled"));
-    // Hide all types
-    document.querySelectorAll(".type").forEach((info) => {
-      info.classList.add("hidden");
-    });
-    document.querySelector(".installer-footer").classList.add("hidden");
   });
 </script>

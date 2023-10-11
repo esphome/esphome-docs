@@ -43,12 +43,12 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this TB6612FNG component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x14``.
-- **name** (*Required*, boolean): The name of the component
+- **name** (**Required**, boolean): The name of the component
 
 .. grove_tb6612fng.run:
 
 ``grove_tb6612fng.run`` Action
-------------------------------------
+------------------------------
 
 Set the motor to spin by defining the direction and speed of the rotation, speed is a range from 0 to 255
 
@@ -67,7 +67,7 @@ Set the motor to spin by defining the direction and speed of the rotation, speed
 
 
 ``grove_tb6612fng.stop`` Action
--------------------------------------
+-------------------------------
 
 Set the motor to stop motion but wont stop to spin in case there is a force pulling down, you would want to use break action if this is your case
 
@@ -84,7 +84,7 @@ Set the motor to stop motion but wont stop to spin in case there is a force pull
 
 
 ``grove_tb6612fng.break`` Action
---------------------------------------
+--------------------------------
 
 Set the motor channel to be on break mode which it ensure the wheel wont spin even if forced or pushed
 
