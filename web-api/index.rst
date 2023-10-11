@@ -268,6 +268,22 @@ a GET request to ``/select/house_mode`` could yield this payload:
       "value": "party"
     }
 
+The detail parameter can be used to include available options in the resonse:
+
+- **detail**: Set to ``all`` to include a list of available options.
+
+For example GET ``/select/house_mode?detail=all`` could yield this payload:
+
+.. code-block:: json
+
+    {
+      "id": "select-house_mode",
+      "name": "House Mode",
+      "state": "party",
+      "value": "party",
+      "option": ["party","sleep","relax","home","away"]
+    }
+
 POST requests on the other hand allow setting the select, the available
 method is ``set``. The following parameter can be used:
 
