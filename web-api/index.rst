@@ -268,7 +268,7 @@ a GET request to ``/select/house_mode`` could yield this payload:
       "value": "party"
     }
 
-The detail parameter can be used to include available options in the resonse:
+The detail parameter can be used to include available options in the response:
 
 - **detail**: Set to ``all`` to include a list of available options.
 
