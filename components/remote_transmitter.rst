@@ -233,6 +233,8 @@ Configuration variables:
 
 - **data** (**Required**, int): The JVC code to send, see dumper output for more info.
 
+.. _remote_transmitter-transmit_keeloq:
+
 ``remote_transmitter.transmit_keeloq`` Action
 **********************************************
 
@@ -257,8 +259,6 @@ Configuration variables:
 - **level** (**Optional**, boolean): Low battery level status bit. Defaults to false.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 - A repeat **wait_time** of 15ms as shown replicates the repetition of an HCS301.
-
-.. _remote_transmitter-transmit_jvc:
 
 .. _remote_transmitter-transmit_lg:
 
