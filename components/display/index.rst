@@ -31,7 +31,7 @@ Color Test Pattern
 
 If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
 It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine 
-what the best way is to help you, we would love to see an image of the below result.
+the best way to help you, a picture of the result of this script is very helpful.
 
 Also when you create an issue about your display, please add the link where you brought the display from 
 so we can validate the used configuration.
