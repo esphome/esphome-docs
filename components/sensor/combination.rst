@@ -36,7 +36,7 @@ The source sensor states can be combined in several ways:
               return 0.5 + std::abs(x - 25) * 0.023
 
 - ``LINEAR`` combination: This type sums all source sensors after multiplying each by 
-  a configured constant.
+  a configured coeffecient.
 
 .. code-block:: yaml
 
@@ -47,9 +47,9 @@ The source sensor states can be combined in several ways:
         name: "Balance Power"
         sources:
           - source: total_power
-            constant: 1.0
+            coeffecient: 1.0
           - source: circuit_1_power
-            constant: -1.0
+            coeffecient: -1.0
 
 - ``MAXIMUM``, ``MEAN``, ``MEDIAN``, ``MINIMUM``, ``MOST_RECENTLY_UPDATED``, 
   ``RANGE``, ``SUM`` combinations: These types compute the specified combination among
@@ -81,8 +81,8 @@ Configuration variables:
     The standard deviation of the sensor's measurements. These work like the **process_std_dev** 
     parameter, with low values marking accurate data. If implemented as a template, the 
     measurement is in parameter ``x``.
-  - **constant** (**Required** - only for ``LINEAR`` type, float, :ref:`templatable <config-templatable>`): 
-    The constant to multiply the sensor's state by before summing all source sensor states.
+  - **coeffecient** (**Required** - only for ``LINEAR`` type, float, :ref:`templatable <config-templatable>`): 
+    The coeffecient to multiply the sensor's state by before summing all source sensor states.
     If implemented as a template, the measurement is in parameter ``x``.
 
 - **process_std_dev** (**Required** - only for ``KALMAN`` type, float): The standard deviation of the
