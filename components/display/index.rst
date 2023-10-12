@@ -33,8 +33,8 @@ If you're experiencing issues with your color display, the script below can help
 It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine 
 the best way to help you, a picture of the result of this script is very helpful.
 
-Also when you create an issue about your display, please add the link where you brought the display from 
-so we can validate the used configuration.
+Should you create an issue in GitHub regarding your display, please include a link to where you purchased it 
+so that we can validate the configuration you've used.
 
 Thanks in advance.
 
