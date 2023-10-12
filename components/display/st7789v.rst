@@ -86,7 +86,7 @@ If you do specify them they will override any default.
 - **eightbitcolor** (*Optional*, boolean): Limits the supported color depth to eight bits. May be useful on
   memory-constrained devices. Defaults to ``false``.
 - **backlight_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The display's backlight pin. May be required
-  depending on the hardware configuration.
+  depending on the hardware configuration. To disable a preset backlight pin (e.g. if controlled by another component) set this to ``no``.
 - **power_supply** (*Optional*, :ref:`config-id`): The :doc:`power supply </components/power_supply>` to connect to
   this display if required by hardware. The power supply will be turned on before attempting to initialize the display.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
