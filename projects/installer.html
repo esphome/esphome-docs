@@ -109,8 +109,15 @@
 <div class="question-prompt">I want to create a:</div>
 <div class="types">
   <label>
-    <input type="radio" name="type" value="bluetooth" checked />
-    <div class="name">Bluetooth Proxy</div>
+    <input type="radio" name="type" value="voice" checked />
+    <div class="name">Voice assistant</div>
+    <div class="description">
+      Create a device to control Home Assistant with your voice.
+    </div>
+  </label>
+  <label>
+    <input type="radio" name="type" value="bluetooth" />
+    <div class="name">Bluetooth proxy</div>
     <div class="description">
       Create a device to allow Home Assistant to control Bluetooth devices.
     </div>
@@ -131,6 +138,145 @@
       No special features built-in. Ready to make it your own.
     </div>
   </label>
+</div>
+
+<div
+  class="type type-voice hidden"
+  data-manifest-root="https://firmware.esphome.io/voice-assistant"
+>
+  <div class="question-prompt">
+    Pick the device you want to turn into a voice assistant:
+  </div>
+  <div class="radios">
+    <label>
+      <input
+        type="radio"
+        name="voice-device"
+        class="device-option"
+        value="m5stack-atom-echo"
+        checked
+      />
+      <img
+        src="/_static/projects/media-player/atom_echo.png"
+        alt="M5Stack Atom Echo Development Kit"
+      />
+    </label>
+    <!-- <label>
+      <input
+        type="radio"
+        name="voice-device"
+        class="device-option"
+        value="esp32-s3-box-3"
+      />
+      <img
+        src="/_static/projects/voice-assistant/esp32-s3-box-3.png"
+        alt="ESP32-S3-BOX-3"
+      />
+    </label> -->
+  </div>
+
+  <div class="hidden info esp32-s3-box-3">
+    <div class="question-prompt">Select your variant:</div>
+    <div class="types">
+      <label>
+        <input
+          type="radio"
+          name="esp32-s3-box-3-variant"
+          value="box-3"
+          disabled
+        />
+        <div class="name" style="opacity: 0.7">
+          ESP32-S3-BOX-3 (Coming soon)
+        </div>
+      </label>
+    </div>
+    <div class="types">
+      <label>
+        <input
+          type="radio"
+          name="esp32-s3-box-3-variant"
+          value="esp32-s3-box"
+          checked
+        />
+        <div class="name">ESP32-S3-BOX</div>
+      </label>
+    </div>
+    <div class="types">
+      <label>
+        <input
+          type="radio"
+          name="esp32-s3-box-3-variant"
+          value="esp32-s3-box-lite"
+        />
+        <div class="name">ESP32-S3-BOX-Lite</div>
+      </label>
+    </div>
+  </div>
+
+  <div class="question-prompt">Start the installation:</div>
+  <esp-web-install-button></esp-web-install-button>
+
+  <div class="question-prompt">Configure Home Assistant:</div>
+  <p>
+    Follow
+    <a
+      href="https://www.home-assistant.io/voice_control/thirteen-usd-voice-remote/"
+      target="_blank"
+      >this tutorial</a
+    >
+    to configure Home Assistant to use your new voice assistant.
+  </p>
+
+  <div class="hidden info esp32-s3-box-3">
+    <h3>ESP32-S3-BOX-3</h3>
+    <p>The open-source reference design for voice assistants by Espressif.</p>
+    <p>Buy</p>
+    <ul>
+      <li>
+        <a
+          href="https://www.aliexpress.us/item/3256805733893224.html?gatewayAdapt=glo2usa4itemAdapt"
+          >AliExpress</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="hidden info m5stack-atom-echo">
+    <h3>M5Stack Atom Echo Development Kit</h3>
+    <p>Tiny ESP32 board with a built-in speaker.</p>
+    <p>Buy</p>
+    <ul>
+      <li>
+        <a
+          href="https://shop.m5stack.com/collections/m5-controllers/products/atom-echo-smart-speaker-dev-kit?ref=NabuCasa"
+          >M5Stack Shop</a
+        >
+      </li>
+      <li>
+        <a
+          href="https://www.aliexpress.com/item/1005003299332198.html?aff_platform=portals-tool&sk=_A8G2YF&aff_trace_key=90326d2a90444b4887632f62dd533ce4-1654058373639-07963-_A8G2YF&terminal_id=c5517a8c9bb44b4fb32147398fbc2576&aff_fcid=90326d2a90444b4887632f62dd533ce4-1654058373639-07963-_A8G2YF&tt=CPS_NORMAL&aff_fsk=_A8G2YF"
+          >AliExpress</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <h3>For advanced users</h3>
+  <ul>
+    <li>
+      The device is adoptable in
+      <a
+        href="https://my.home-assistant.io/redirect/supervisor_addon/?addon=5c53de3b_esphome&amp;repository_url=https%3A%2F%2Fgithub.com%2Fesphome%2Fhome-assistant-addon"
+        >the ESPHome dashboard</a
+      >
+    </li>
+    <li>
+      The YAML configuration is on
+      <a href="https://github.com/esphome/firmware/tree/main/voice-assistant/"
+        >GitHub</a
+      >
+    </li>
+  </ul>
 </div>
 
 <div
@@ -688,13 +834,33 @@
       const manifestRoot = typeRoot.dataset.manifestRoot;
       if (manifestRoot) {
         const button = typeRoot.querySelector("esp-web-install-button");
-        button.manifest = `${manifestRoot}/${radio.value}/manifest.json`;
+
+        let device = radio.value;
+        const variant = typeRoot.querySelector(
+          `input[name="${device}-variant"]:checked`
+        );
+        if (variant) {
+          device = variant.value;
+        }
+
+        button.manifest = `${manifestRoot}/${device}/manifest.json`;
       }
 
+      // Show matching info blocks, hide the others
       typeRoot.querySelectorAll(".info").forEach((info) => {
-        info.classList.add("hidden");
+        info.classList.toggle("hidden", !info.classList.contains(radio.value));
       });
-      typeRoot.querySelector(`.info.${radio.value}`).classList.remove("hidden");
+    })
+  );
+
+  // Handle selecting a variant
+  document.querySelectorAll('input[name$="-variant"]').forEach((radio) =>
+    radio.addEventListener("change", () => {
+      const typeRoot = radio.closest(".type");
+      // Selecting a device handles the variant, so just trigger change again
+      typeRoot
+        .querySelector("input.device-option:checked")
+        .dispatchEvent(new Event("change"));
     })
   );
 
