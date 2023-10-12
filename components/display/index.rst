@@ -26,10 +26,10 @@ using an API that is designed to
 
 .. _display-engine:
 
-Color test patron
------------------
+Color Test Pattern
+------------------
 
-When you have issues with your color display you can best test your display with bellow test script.
+If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
 It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine 
 what the best way is to help you, we would love to see an image of the below result.
 
