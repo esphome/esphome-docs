@@ -195,18 +195,19 @@ Configuration variables:
 
 - **model** (**Required**): Specify the model of the connected controller. Choose one of the config values listed in the table of supported models above.
 
-Supported sensors:
+  Supported models:
 
-- for **deltasol_bs_plus**: ``relay1``,  ``relay2``, ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``, ``collector_max``, ``collector_min``, ``collector_frost``, ``tube_collector``, ``recooling``, ``hqm``.
-- for **deltasol_bs_2009**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``, ``frost_protection_active``.
-- for **deltasol_c**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.
-- for **deltasol_cs2**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.
-- for **deltasol_cs_plus**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.
+  - **``deltasol_bs_plus``**: ``relay1``,  ``relay2``, ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``, ``collector_max``, ``collector_min``, ``collector_frost``, ``tube_collector``, ``recooling``, ``hqm``.
+  - **``deltasol_bs_2009``**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``, ``frost_protection_active``.
+  - **``deltasol_c``**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.
+  - **``deltasol_cs2``**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.
+  - **``deltasol_cs_plus``**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.
+  - **``custom``**: See below.
 
 All binary sensors are *Optional* and support all other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
-``Custom`` VBus sensors
+``custom`` VBus sensors
 -----------------------
 
 Devices on a VBus are identified with a source address. There can be multiple devices on the same bus,
@@ -229,12 +230,11 @@ each device type has a different address.
 
 Configuration variables:
 
-- **model** (**Required**): Set to ``custom``.
 - **dest** (**Required**): The ``DFA`` value corresponding to your device (see below).
 - **source** (**Required**): The address corresponding to ``your device model`` (see below).
 - **command** (**Required**): The ``command`` corresponding to your device (see below).
 - **sensors** (**Required**): A list of :ref:`Sensor <config-sensor>` definitions that include a ``lambda`` to do the decoding and return a ``float`` value.
-
+  
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): Code to parse a value from the incoming data packets and return it.
   The data packet is in a ``std::vector<uint8_t>`` called ``x``.
 
@@ -244,7 +244,6 @@ Configuration variables:
 
 Configuration variables:
 
-- **model** (**Required**): Set to ``custom``.
 - **dest** (**Required**): The ``DFA`` value corresponding to your device (see below).
 - **source** (**Required**): The address corresponding to ``your device model`` (see below).
 - **command** (**Required**): The ``command`` corresponding to your device (see below).
