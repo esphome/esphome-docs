@@ -1,0 +1,149 @@
+ESPHome 2023.10.0 - 18th October 2023
+=====================================
+
+.. seo::
+    :description: Changelog for ESPHome 2023.10.0.
+    :image: /_static/changelog-2023.10.0.png
+    :author: Jesse Hills
+    :author_twitter: @jesserockz
+
+.. imgtable::
+    :columns: 3
+
+    MMC5983, components/sensor/mmc5983, mmc5983.jpg
+
+
+This release is quite small as myself (:ghuser:`jesserockz`) and :ghuser:`kbx81` have been focusing
+on ``voice_assistant`` updates and preparations for the Year of the Voice - Chapter 4.
+
+Check out the live stream (replay) here:
+
+.. raw:: html
+
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/YzgYYkOrnhQ"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+    </iframe>
+
+
+XOR Condition
+-------------
+
+A new ``xor`` condition has been added to the automation engine. This condition will only be true
+when a single condition in the list is true.
+
+
+Breaking changes
+----------------
+
+The SHT3x had a ``heater_enabled`` config option added in the 2023.9.0 release with a default value of ``true``.
+This has been flipped this release to be ``false`` as it started causing issues with various sensors.
+
+The SPS30 number concentration sensors had their units fixed to be ``#/cm³`` instead of ``#/m³``.
+
+Full list of changes
+--------------------
+
+New Components
+^^^^^^^^^^^^^^
+
+- Implement sensor component for MMC5983 :esphomepr:`5361` by :ghuser:`agoode` (new-integration)
+
+Breaking Changes
+^^^^^^^^^^^^^^^^
+
+- Do not enable SHT3x heater by default. Fixes #4886. :esphomepr:`5445` by :ghuser:`jkl1337` (breaking-change)
+- Fix units for SPS30 number concentration sensors :esphomepr:`5452` by :ghuser:`kahrendt` (breaking-change)
+
+Notable Changes
+^^^^^^^^^^^^^^^
+
+- Add xor automation condition :esphomepr:`5453` by :ghuser:`kahrendt` (notable-change)
+
+All changes
+^^^^^^^^^^^
+
+- SX1509 component  :esphomepr:`5385` by :ghuser:`vr6racer`
+- Ci find YAML tests dynamically :esphomepr:`5399` by :ghuser:`Fabian-Schmidt`
+- Make ESPHome data dir configurable :esphomepr:`5417` by :ghuser:`werdnum`
+- Bump actions/checkout from 4.0.0 to 4.1.0 :esphomepr:`5420` by :ghuser:`dependabot[bot]`
+- Fix typo in documentation :esphomepr:`5425` by :ghuser:`kapily`
+- Bump pylint from 2.17.5 to 2.17.6 :esphomepr:`5429` by :ghuser:`dependabot[bot]`
+- Refactor ip address representation :esphomepr:`5252` by :ghuser:`HeMan`
+- Fix .esphome path when not using envvar :esphomepr:`5440` by :ghuser:`jesserockz`
+- [BP1658CJ] Missing clock line delays and ack bit :esphomepr:`5448` by :ghuser:`leoshusar`
+- [ssd1351] fix: wait for the component to be at least in setup phase b… :esphomepr:`5454` by :ghuser:`xdecock`
+- Do not enable SHT3x heater by default. Fixes #4886. :esphomepr:`5445` by :ghuser:`jkl1337` (breaking-change)
+- Add testcases for multiple SPI buses on ESP32 Arduino :esphomepr:`5457` by :ghuser:`angelnu`
+- Feat/component poller suspend :esphomepr:`5423` by :ghuser:`xdecock`
+- Bump actions/setup-python from 4.7.0 to 4.7.1 :esphomepr:`5467` by :ghuser:`dependabot[bot]`
+- Add xor automation condition :esphomepr:`5453` by :ghuser:`kahrendt` (notable-change)
+- Fix units for SPS30 number concentration sensors :esphomepr:`5452` by :ghuser:`kahrendt` (breaking-change)
+- ST7789v - Allow predefined backlight pin to be disabled. :esphomepr:`5476` by :ghuser:`clydebarrow`
+- MAX7219 - Update intensity :esphomepr:`5477` by :ghuser:`clydebarrow`
+- St7789v and SPI data rate :esphomepr:`5472` by :ghuser:`clydebarrow`
+- Move CONF_IRQ_PIN into const.py :esphomepr:`5488` by :ghuser:`kbx81`
+- Initial ESP32-H2 Support :esphomepr:`5498` by :ghuser:`vidplace7`
+- Increased debug message precision :esphomepr:`5496` by :ghuser:`lukeansell`
+- Support for Haier IR protocol added :esphomepr:`5403` by :ghuser:`paveldn`
+- add USE_SPI define :esphomepr:`5500` by :ghuser:`angelnu`
+- Implement sensor component for MMC5983 :esphomepr:`5361` by :ghuser:`agoode` (new-integration)
+- Bump docker dependencies :esphomepr:`5501` by :ghuser:`jesserockz`
+- Move to Pillow 10.x :esphomepr:`5489` by :ghuser:`hostcc`
+- [Sprinkler] Initialize timers early to avoid crash :esphomepr:`5499` by :ghuser:`hostcc`
+- Deep sleep is only available on esp32 and esp8266 :esphomepr:`5507` by :ghuser:`jesserockz`
+- Use platform consts :esphomepr:`5508` by :ghuser:`jesserockz`
+- Fixed precision for Nextion sensor with float values :esphomepr:`5497` by :ghuser:`olegtarasov`
+- Remote wake word support for voice assistant :esphomepr:`5229` by :ghuser:`jesserockz`
+- Don't allow entity category "CONFIG" for sensors :esphomepr:`5505` by :ghuser:`edenhaus`
+- Prepare protobuf for ESP-IDF >= 5 :esphomepr:`5510` by :ghuser:`HeMan`
+- fix build lang schema for spi and i2c :esphomepr:`5509` by :ghuser:`glmnet`
+- Added Nextion display error handling during setup :esphomepr:`5493` by :ghuser:`olegtarasov`
+- Fix e131 and voice_assistant sockets :esphomepr:`5502` by :ghuser:`justdaniel-gh`
+- Allow manual set "Invert_display" :esphomepr:`5494` by :ghuser:`nielsnl68`
+- As3935 calibration :esphomepr:`5366` by :ghuser:`mveinot`
+- Small fixes for voice assistant :esphomepr:`5513` by :ghuser:`synesthesiam`
+- Add detail param to allow listing of select options in WebServer REST API :esphomepr:`5503` by :ghuser:`DanielBaulig`
+
+Past Changelogs
+---------------
+
+- :doc:`2023.9.0`
+- :doc:`2023.8.0`
+- :doc:`2023.7.0`
+- :doc:`2023.6.0`
+- :doc:`2023.5.0`
+- :doc:`2023.4.0`
+- :doc:`2023.3.0`
+- :doc:`2023.2.0`
+- :doc:`2022.12.0`
+- :doc:`2022.11.0`
+- :doc:`2022.10.0`
+- :doc:`2022.9.0`
+- :doc:`2022.8.0`
+- :doc:`2022.6.0`
+- :doc:`2022.5.0`
+- :doc:`2022.4.0`
+- :doc:`2022.3.0`
+- :doc:`2022.2.0`
+- :doc:`2022.1.0`
+- :doc:`2021.12.0`
+- :doc:`2021.11.0`
+- :doc:`2021.10.0`
+- :doc:`2021.9.0`
+- :doc:`2021.8.0`
+- :doc:`v1.20.0`
+- :doc:`v1.19.0`
+- :doc:`v1.18.0`
+- :doc:`v1.17.0`
+- :doc:`v1.16.0`
+- :doc:`v1.15.0`
+- :doc:`v1.14.0`
+- :doc:`v1.13.0`
+- :doc:`v1.12.0`
+- :doc:`v1.11.0`
+- :doc:`v1.10.0`
+- :doc:`v1.9.0`
+- :doc:`v1.8.0`
+- :doc:`v1.7.0`
