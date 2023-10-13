@@ -31,10 +31,7 @@ Configuration variables:
 ------------------------
 
 - **formaldehyde** (*Optional*): The information for the Formaldehyde sensor.
-
-  - **name** (**Required**, string): The name for the Formaldehyde sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Sensor <config-sensor>`.
 
 - **temperature** (*Optional*): The information for the Temperature sensor.
 
