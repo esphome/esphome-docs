@@ -41,6 +41,17 @@ Configuration variables:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
+- **restore_mode** (*Optional*): Control how the number attempts to restore state on bootup.
+  **NOTE** : Not all components consider **restore_mode**. Check the documentation of the specific component to understand how
+  this feature works for a particular component or device.
+  For restoring on ESP8266s, also see ``restore_from_flash`` in the
+  :doc:`esp8266 section </components/esp8266>`.
+
+    - ``ENABLED`` - State restore is enabled. If number value is not found if flash, ``restore_default_state`` will be used.
+    - ``DISABLED`` - Does nothing and leaves it up to the downstream platform component to decide. For example, the component could read hardware and determine the state, or have a specific configuration option to regulate initial state.
+
+  Unless a specific platform defines another default value, the default is ``DISABLED``.
+- **restore_default_state** (*Optional*): Default value to set if ``restore_mode`` is ``ENABLED``, but no value was found in flash. Default value is ``0``.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
