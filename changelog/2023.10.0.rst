@@ -16,7 +16,7 @@ ESPHome 2023.10.0 - 18th October 2023
 This release is quite small as myself (:ghuser:`jesserockz`) and :ghuser:`kbx81` have been focusing
 on ``voice_assistant`` updates and preparations for the Year of the Voice - Chapter 4.
 
-Check out the live stream (replay) here:
+Check out the stream replay here:
 
 .. raw:: html
 
@@ -60,6 +60,15 @@ Notable Changes
 ^^^^^^^^^^^^^^^
 
 - Add xor automation condition :esphomepr:`5453` by :ghuser:`kahrendt` (notable-change)
+
+Beta Changes
+^^^^^^^^^^^^
+
+- Update htu21d.cpp, fix publishing of heater level :esphomepr:`5520` by :ghuser:`Nippey`
+- BD5758D - Add delays and ACKs :esphomepr:`5524` by :ghuser:`Cossid`
+- Update Improv BLE component :esphomepr:`5518` by :ghuser:`jesserockz`
+- SM10BIT_BASE - Add delays and ACKs, clear all channels before sleeping. :esphomepr:`5526` by :ghuser:`Cossid`
+- BP1658CJ - Clear all channels before sleeping. :esphomepr:`5525` by :ghuser:`Cossid`
 
 All changes
 ^^^^^^^^^^^
@@ -105,6 +114,11 @@ All changes
 - As3935 calibration :esphomepr:`5366` by :ghuser:`mveinot`
 - Small fixes for voice assistant :esphomepr:`5513` by :ghuser:`synesthesiam`
 - Add detail param to allow listing of select options in WebServer REST API :esphomepr:`5503` by :ghuser:`DanielBaulig`
+- Update htu21d.cpp, fix publishing of heater level :esphomepr:`5520` by :ghuser:`Nippey`
+- BD5758D - Add delays and ACKs :esphomepr:`5524` by :ghuser:`Cossid`
+- Update Improv BLE component :esphomepr:`5518` by :ghuser:`jesserockz`
+- SM10BIT_BASE - Add delays and ACKs, clear all channels before sleeping. :esphomepr:`5526` by :ghuser:`Cossid`
+- BP1658CJ - Clear all channels before sleeping. :esphomepr:`5525` by :ghuser:`Cossid`
 
 Past Changelogs
 ---------------
