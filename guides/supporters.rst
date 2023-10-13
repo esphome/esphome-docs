@@ -753,8 +753,6 @@ Contributors
 - `Lucas Reiners (@lucasreiners) <https://github.com/lucasreiners>`__
 - `Joakim Sørensen (@ludeeus) <https://github.com/ludeeus>`__
 - `ludrao (@ludrao) <https://github.com/ludrao>`__
-- `Lukas Klass (@LukasK13) <https://github.com/LukasK13>`__
-- `Lukas Lindner (@lukasl96) <https://github.com/lukasl96>`__
 - `Łukasz Świtaj (@lukaszswitaj) <https://github.com/lukaszswitaj>`__
 - `Luke (@Lukeskaiwalker) <https://github.com/Lukeskaiwalker>`__
 - `Jayden (@lukyjay) <https://github.com/lukyjay>`__
@@ -896,6 +894,7 @@ Contributors
 - `JJ (@notjj) <https://github.com/notjj>`__
 - `notsonominal (@notsonominal) <https://github.com/notsonominal>`__
 - `nouser2013 (@nouser2013) <https://github.com/nouser2013>`__
+- `Paul Read (@nsolvepaul) <https://github.com/nsolvepaul>`__
 - `Nick (@ntompson) <https://github.com/ntompson>`__
 - `Stephen Edgar (@ntwb) <https://github.com/ntwb>`__
 - `Matthias (@NuclearPhoenixx) <https://github.com/NuclearPhoenixx>`__
@@ -1028,6 +1027,7 @@ Contributors
 - `RubyBailey (@RubyBailey) <https://github.com/RubyBailey>`__
 - `Rus Ti (@Rusti-gotrage) <https://github.com/Rusti-gotrage>`__
 - `rweather (@rweather) <https://github.com/rweather>`__
+- `Rob Weir (@rweir) <https://github.com/rweir>`__
 - `rwilson131 (@rwilson131) <https://github.com/rwilson131>`__
 - `Ryan Lang (@ryan-lang) <https://github.com/ryan-lang>`__
 - `ryanalden (@ryanalden) <https://github.com/ryanalden>`__
@@ -1166,6 +1166,7 @@ Contributors
 - `tomle (@tomole444) <https://github.com/tomole444>`__
 - `Tom Price (@tomtom5152) <https://github.com/tomtom5152>`__
 - `David Kiliani (@torfbolt) <https://github.com/torfbolt>`__
+- `Aleksandra M (@tort32) <https://github.com/tort32>`__
 - `tracestep (@tracestep) <https://github.com/tracestep>`__
 - `Trent Houliston (@TrentHouliston) <https://github.com/TrentHouliston>`__
 - `Felix Eckhofer (@tribut) <https://github.com/tribut>`__
@@ -1248,4 +1249,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated October 12, 2023.*
+*This page was last updated October 13, 2023.*
