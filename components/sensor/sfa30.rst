@@ -1,5 +1,5 @@
 SFA30 Formaldehyde Sensor
-===================================================
+=========================
 
 .. seo::
     :description: Instructions for setting up SFA30 Formaldehyde Sensor
