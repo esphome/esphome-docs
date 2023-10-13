@@ -771,7 +771,6 @@ Contributors
 - `Scott Cappellani (@maeneak) <https://github.com/maeneak>`__
 - `Magnus Nordlander (@magnusnordlander) <https://github.com/magnusnordlander>`__
 - `majbthrd (@majbthrd) <https://github.com/majbthrd>`__
-- `Major Péter (@majorpeter) <https://github.com/majorpeter>`__
 - `Kasper Malfroid (@malfroid) <https://github.com/malfroid>`__
 - `Malle355 (@Malle355) <https://github.com/Malle355>`__
 - `raymonder jin (@mamil) <https://github.com/mamil>`__
@@ -929,6 +928,7 @@ Contributors
 - `Derrick Lyndon Pallas (@pallas) <https://github.com/pallas>`__
 - `Panuruj Khambanonda (PK) (@panuruj) <https://github.com/panuruj>`__
 - `Daniel Mahaney (@Papa-DMan) <https://github.com/Papa-DMan>`__
+- `Faidon Liambotis (@paravoid) <https://github.com/paravoid>`__
 - `Patrick Collins (@patrickcollins12) <https://github.com/patrickcollins12>`__
 - `Paul Deen (@PaulAntonDeen) <https://github.com/PaulAntonDeen>`__
 - `Paul Monigatti (@paulmonigatti) <https://github.com/paulmonigatti>`__
@@ -1246,4 +1246,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated October 2, 2023.*
+*This page was last updated October 3, 2023.*
