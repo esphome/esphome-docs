@@ -34,21 +34,21 @@ Each channel acts, for the connected component, as a virtual UART Bus.
   :width: 300px
   :align: center
 
-  * - I²C address
-    - A1
-    - A0
-  * - 0x10
-    - 0
-    - 0
-  * - 0x30
-    - 0
-    - 1
-  * - 0x50
-    - 1
-    - 0
-  * - 0x70
-    - 1
-    - 1
+    * - I²C address
+      - A1
+      - A0
+    * - 0x10
+      - 0
+      - 0
+    * - 0x30
+      - 0
+      - 1
+    * - 0x50
+      - 1
+      - 0
+    * - 0x70
+      - 1
+      - 1
 
 .. important:: 
 
@@ -118,8 +118,8 @@ Component configuration variables:
   - **parity** (*Optional*): The parity used on the UART channel. Options: ``NONE``, ``EVEN``, ``ODD``. Defaults to ``NONE``.
   - **stop_bits** (*Optional*): The number of stop bits to send. Options: ``1``, ``2``. Defaults to ``1``.
 
-.. note:: 
-  
+.. note::
+
     For the wk2132 the number of data bits used on the UART channel is set to 8 and cannot be changed
 
 See Also
