@@ -14,11 +14,25 @@ At the current stage of implementation only DC motor is implemented.
 
 .. code-block:: yaml
 
+    #Enable I2C with scan to find address
+    i2c: 
+      sda: 4
+      scl: 5
+      scan: True
+
     # Example configuration grove motor
     grove_tb6612fng:
+      id: test_motor
+      address: 0x14
+    
+    # Example of multi config
+    grove_tb6612fng:
+      - address: 0x14
         id: test_motor
-        name: motor_outside
-        address: 0x14
+
+      - address: 0x15
+        id: test_motor2
+
 
     # Example switch trigger
     switch:
@@ -43,7 +57,6 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this TB6612FNG component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x14``.
-- **name** (**Required**, boolean): The name of the component
 
 .. grove_tb6612fng.run:
 
@@ -122,6 +135,21 @@ Set the board to be awake, every esphome is restarted the default mode is set to
     on_...:
       then:
         - grove_tb6612fng.no_standby
+            id: test_motor
+
+.. grove_tb6612fng.change_address:
+
+``grove_tb6612fng.change_address`` Action
+-------------------------------------
+
+Set the board can change address in case you want to connect multiple once, the addresses avialable are: 0x01 ~ 0x7f 
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - grove_tb6612fng.change_address
+            address: 0x15
             id: test_motor
 
 
