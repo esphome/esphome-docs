@@ -33,28 +33,29 @@ Each channel acts, for the connected component, as a virtual UART Bus.
   :header-rows: 1
   :width: 300px
   :align: center
-   * - I²C address
-     - A1
-     - A0
-   * - 0x10
-     - 0
-     - 0
-   * - 0x30
-     - 0
-     - 1
-   * - 0x50
-     - 1
-     - 0
-   * - 0x70
-     - 1
-     - 1
+
+  * - I²C address
+    - A1
+    - A0
+  * - 0x10
+    - 0
+    - 0
+  * - 0x30
+    - 0
+    - 1
+  * - 0x50
+    - 1
+    - 0
+  * - 0x70
+    - 1
+    - 1
 
 .. important:: 
 
-  The above addresses are referred to as the component's base address. But in reality the component
-  uses 8 consecutive addresses starting from the base address. For example if the component base address 
-  is 0x10, it will occupy the addresses from 0x10 to 0x17 on the I²C bus. \ :raw-html-m2r:`<br>`
-  This is important to know if you want to connect other devices on the same I²C bus.
+    The above addresses are referred to as the component's base address. But in reality the component
+    uses 8 consecutive addresses starting from the base address. For example if the component base address 
+    is 0x10, it will occupy the addresses from 0x10 to 0x17 on the I²C bus. \ :raw-html-m2r:`<br>`
+    This is important to know if you want to connect other devices on the same I²C bus.
 
 .. code-block:: yaml
 
@@ -95,9 +96,9 @@ Each channel acts, for the connected component, as a virtual UART Bus.
 
 .. caution:: 
 
-  Currently, due to some internal limitation, it is necessary to declare a ``uart:`` component in
-  your configuration **even if you do not need one**. See the example above. This requirement 
-  might disappear in the future.
+    Currently, due to some internal limitation, it is necessary to declare a ``uart:`` component in
+    your configuration **even if you do not need one**. See the example above. This requirement 
+    might disappear in the future.
 
 Component configuration variables:
 **********************************
@@ -119,7 +120,7 @@ Component configuration variables:
 
 .. note:: 
   
-  For the wk2132 the number of data bits used on the UART channel is set to 8 and cannot be changed
+    For the wk2132 the number of data bits used on the UART channel is set to 8 and cannot be changed
 
 See Also
 ********
