@@ -170,7 +170,7 @@ This :ref:`action <config-action>` sends one or two (stricted or not) 24-bit Coo
 Configuration variables:
 
 - **first** (**Required**, :ref:`templatable <config-templatable>`, uint32_t): The first 24-bit Coolix code to send, see dumper output for more info.
-- **second** (**Optional**, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
+- **second** (*Optional*, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
 
 .. _remote_transmitter-transmit_dish:
 
