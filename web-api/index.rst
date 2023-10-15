@@ -182,6 +182,7 @@ creating a POST request at ``/light/<id>/turn_on?brightness=128&transition=2`` w
 -  **flash**: Flash the color provided by the other properties for a duration in seconds.
 -  **transition**: Transition to the specified color values in this duration in seconds.
 -  **effect**: Set an effect for the light.
+-  ***color_temp***: Set the color temperature of the light, in mireds.
 
 ``turn_off`` optional URL parameters:
 
