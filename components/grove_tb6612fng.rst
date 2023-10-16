@@ -142,7 +142,7 @@ Set the board to be awake, every esphome is restarted the default mode is set to
 ``grove_tb6612fng.change_address`` Action
 -----------------------------------------
 
-Set the board can change address in case you want to connect multiple once, the addresses avialable are: 0x01 ~ 0x7f 
+If you require connecting multiple boards at once, the address can be changed using this action. The address can be changed to a value in the range of ``0x01 - 0x7f`` inclusive.
 
 .. code-block:: yaml
 
