@@ -14,25 +14,10 @@ At the current stage of implementation only DC motor is implemented.
 
 .. code-block:: yaml
 
-    #Enable I2C with scan to find address
-    i2c: 
-      sda: 4
-      scl: 5
-      scan: True
-
-    # Example configuration grove motor
-    grove_tb6612fng:
-      id: test_motor
-      address: 0x14
-    
     # Example of multi config
     grove_tb6612fng:
       - address: 0x14
         id: test_motor
-
-      - address: 0x15
-        id: test_motor2
-
 
     # Example switch trigger
     switch:
