@@ -148,7 +148,7 @@ If you require connecting multiple boards at once, the address can be changed us
 
     on_...:
       then:
-        - grove_tb6612fng.change_address
+        - grove_tb6612fng.change_address:
             address: 0x15
             id: test_motor
 
