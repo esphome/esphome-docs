@@ -88,6 +88,69 @@ Configuration variables:
     :align: center
     :width: 80.0%
 
+.. _bme680-advanced-configuration:
+
+Advanced configuration
+----------------------
+
+The following code also calculates an indoor air quality (IAQ) index and returns a text sensor showing the `classification of the IAQ <https://esphome.io/components/sensor/bme680_bsec.html?highlight=bme680#index-for-air-quality-iaq-measurement>`__
+
+.. code-block:: yaml
+
+    # Advanced configuration entry
+    sensor:
+      - platform: bme680
+        temperature:
+          name: "BME680 Temperature"
+          oversampling: 16x
+        pressure:
+          name: "BME680 Pressure"
+        humidity:
+          name: "BME680 Humidity"
+          id: "humidity"
+        gas_resistance:
+          name: "BME680 Gas Resistance"
+          id: "gas_resistance"
+        address: 0x77
+        update_interval: 60s
+      - platform: template
+        name: "BME680 Indoor Air Quality"
+        id: iaq
+        unit_of_measurement: IAQ
+        icon: "mdi:gauge"
+        # IAQ = log(R_gas[ohm]) + 0.04 log(Ohm)/%rh * hum[%rh]    
+        lambda: 'return log(id(gas_resistance).state) + 0.04 *  id(humidity).state;'  
+
+    text_sensor:
+      - platform: template
+        name: "BME680 IAQ Classification"
+        icon: "mdi:checkbox-marked-circle-outline"
+        lambda: |-
+          if ( int(id(iaq).state) <= 50) {
+            return {"Excellent"};
+          }
+          else if (int(id(iaq).state) <= 100) {
+            return {"Good"};
+          }
+          else if (int(id(iaq).state) <= 150) {
+            return {"Lightly polluted"};
+          }
+          else if (int(id(iaq).state) <= 200) {
+            return {"Moderately polluted"};
+          }
+          else if (int(id(iaq).state) <= 250) {
+            return {"Heavily polluted"};
+          }
+          else if (int(id(iaq).state) <= 350) {
+            return {"Severely polluted"};
+          }
+          else if (int(id(iaq).state) <= 500) {
+            return {"Extremely polluted"};
+          }
+          else {
+            return {"unknown"};
+          }
+
 .. _bme680-oversampling:
 
 Oversampling Options
