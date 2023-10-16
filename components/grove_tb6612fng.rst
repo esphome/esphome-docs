@@ -14,27 +14,10 @@ At the current stage of implementation only DC motor is implemented.
 
 .. code-block:: yaml
 
-    # Example of multi config
+    # Example configuration
     grove_tb6612fng:
       - address: 0x14
         id: test_motor
-
-    # Example switch trigger
-    switch:
-      - platform: template
-        name: open_vent
-        id: open_vent
-        optimistic: True
-        on_turn_on:
-          then:
-            - grove_tb6612fng.run:
-                channel: 1
-                speed: 255
-                direction: BACKWARD
-                id: test_motor
-            - delay: 10s
-            - switch.turn_on: stop_motor
-            - switch.turn_off:  open_vent
 
 Configuration variables:
 ************************
