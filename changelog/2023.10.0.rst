@@ -69,6 +69,12 @@ Beta Changes
 - Update Improv BLE component :esphomepr:`5518` by :ghuser:`jesserockz`
 - SM10BIT_BASE - Add delays and ACKs, clear all channels before sleeping. :esphomepr:`5526` by :ghuser:`Cossid`
 - BP1658CJ - Clear all channels before sleeping. :esphomepr:`5525` by :ghuser:`Cossid`
+- Prometheus fix for esp-idf and fix newlines :esphomepr:`5536` by :ghuser:`jesserockz`
+- Make IPAddress's operator!= compare values, not memory addresses. :esphomepr:`5537` by :ghuser:`raineth`
+- Add change i2c address and allow multi conf for TB6612FNG  :esphomepr:`5492` by :ghuser:`max246`
+- Add stream start and end events :esphomepr:`5545` by :ghuser:`jesserockz`
+- Fix esp32_improv authorizer with no binary sensors in config :esphomepr:`5546` by :ghuser:`jesserockz`
+- More voice assistant fixes :esphomepr:`5547` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -119,6 +125,12 @@ All changes
 - Update Improv BLE component :esphomepr:`5518` by :ghuser:`jesserockz`
 - SM10BIT_BASE - Add delays and ACKs, clear all channels before sleeping. :esphomepr:`5526` by :ghuser:`Cossid`
 - BP1658CJ - Clear all channels before sleeping. :esphomepr:`5525` by :ghuser:`Cossid`
+- Prometheus fix for esp-idf and fix newlines :esphomepr:`5536` by :ghuser:`jesserockz`
+- Make IPAddress's operator!= compare values, not memory addresses. :esphomepr:`5537` by :ghuser:`raineth`
+- Add change i2c address and allow multi conf for TB6612FNG  :esphomepr:`5492` by :ghuser:`max246`
+- Add stream start and end events :esphomepr:`5545` by :ghuser:`jesserockz`
+- Fix esp32_improv authorizer with no binary sensors in config :esphomepr:`5546` by :ghuser:`jesserockz`
+- More voice assistant fixes :esphomepr:`5547` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
