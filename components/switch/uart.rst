@@ -41,8 +41,8 @@ Configuration variables:
 - **data** (*Optional*, string or list of bytes): The data to send via UART. Either an ASCII string
   or a list of bytes or one or both of the following nested options (see example above).
 
-  - **turn_on** (*Optional* string or list of bytes): The data to send when turning on.
-  - **turn_off** (*Optional* string or list of bytes): The data to send when turning off.
+  - **turn_on** (*Optional*, string or list of bytes): The data to send when turning on.
+  - **turn_off** (*Optional*, string or list of bytes): The data to send when turning off.
 - **send_every** (*Optional*, :ref:`config-time`): Sends recurring data instead of sending once.
 - All other options from :ref:`Switch <config-switch>`.
 
