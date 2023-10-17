@@ -733,6 +733,7 @@ Contributors
 - `Dominik Wagenknecht (@LeDominik) <https://github.com/LeDominik>`__
 - `Benny de Leeuw (@leeuwte) <https://github.com/leeuwte>`__
 - `Leonardo La Rocca (@leoli51) <https://github.com/leoli51>`__
+- `leoshusar (@leoshusar) <https://github.com/leoshusar>`__
 - `Leo Winter (@LeoWinterDE) <https://github.com/LeoWinterDE>`__
 - `Lewis Baker (@lewissbaker) <https://github.com/lewissbaker>`__
 - `Leon Loopik (@Lewn) <https://github.com/Lewn>`__
@@ -744,7 +745,6 @@ Contributors
 - `Markus (@Links2004) <https://github.com/Links2004>`__
 - `LinusHeu (@LinusHeu) <https://github.com/LinusHeu>`__
 - `lkomurcu (@lkomurcu) <https://github.com/lkomurcu>`__
-- `Luis Andrade (@llluis) <https://github.com/llluis>`__
 - `loadrunner42 (@loadrunner42) <https://github.com/loadrunner42>`__
 - `Lazar Obradovic (@lobradov) <https://github.com/lobradov>`__
 - `Barry Loong (@loongyh) <https://github.com/loongyh>`__
@@ -1249,4 +1249,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated October 13, 2023.*
+*This page was last updated October 17, 2023.*
