@@ -196,6 +196,7 @@ Air Quality
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
+    SFA30, components/sensor/sfa30, sfa30.jpg, Formaldehyde
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
     SGP4x, components/sensor/sgp4x, sgp40.jpg, Volatile organics and NOx
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
@@ -327,6 +328,7 @@ Environmental
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
     SDP3x / SDP800 Series, components/sensor/sdp3x, sdp31.jpg, Pressure
+    SFA30, components/sensor/sfa30, sfa30.jpg, Formaldehyde
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
@@ -361,6 +363,7 @@ Magnetic
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg, ESP internal, dark-invert
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg, 3-Axis magnetometer
     MMC5603, components/sensor/mmc5603, mmc5603.jpg, 3-Axis magnetometer
+    MMC5983, components/sensor/mmc5983, mmc5983.jpg, 3-Axis magnetometer
     MLX90393, components/sensor/mlx90393, mlx90393.jpg, 3-Axis magnetometer
     QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg, 3-Axis magnetometer
 
