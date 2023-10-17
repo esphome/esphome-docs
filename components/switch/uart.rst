@@ -28,8 +28,9 @@ The ``uart`` switch platform allows you to send a pre-defined sequence of bytes 
         send_every: 1s
       - platform: uart
         name: "UART On/Off"
-        data_on: "TurnOn\r\n"
-        data_off: "TurnOff\r\n"
+        data:
+          turn_on: "TurnOn\r\n"
+          turn_off: "TurnOff\r\n"
 
 Configuration variables:
 ------------------------
@@ -38,18 +39,11 @@ Configuration variables:
 - **name** (*Optional*, string): The name for the switch.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub.
 - **data** (*Optional*, string or list of bytes): The data to send via UART. Either an ASCII string
-  or a list of bytes.
+  or a list of bytes or one or both of the following nested options (see example above).
+  - **turn_on** (*Optional* string or list of bytes): The data to send when turning on.
+  - **turn_off** (*Optional* string or list of bytes): The data to send when turning off.
 - **send_every** (*Optional*, :ref:`config-time`): Sends recurring data instead of sending once.
-- **data_on** (*Optional*, string or list of bytes): The data to send via UART when the switch is turned on.
-  Either an ASCII string or a list of bytes.
-- **data_off** (*Optional*, string or list of bytes): The data to send via UART when the switch is turned off.
-  Either an ASCII string or a list of bytes.
 - All other options from :ref:`Switch <config-switch>`.
-
-.. note::
-
-    You can either have ``data`` with an optional ``send_every`` or you can have one or both of
-    ``data_on`` and ``data_off``.
 
 See Also
 --------
