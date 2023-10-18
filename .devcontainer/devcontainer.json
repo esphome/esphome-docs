@@ -3,6 +3,7 @@
   "name": "ESPHome - docs",
   "image": "mcr.microsoft.com/vscode/devcontainers/python:0-3.11",
   "postCreateCommand": "pip3 install -r requirements.txt -r requirements_test.txt",
+  "postAttachCommand": "make live-html",
   "forwardPorts": [8000],
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {}
