@@ -23,6 +23,30 @@ It now supports settings most if not all configuration parameters via ``switches
 and exposes more data via various ``sensors``.
 This includes breaking changes that mean the existing gate configuration options have been moved to the ``number`` platform.
 
+Release 2023.8.1 - August 18
+----------------------------
+
+- Fix checksum calculation for sml :esphomepr:`5271` by :ghuser:`Mat931`
+- Change haier from AUTO to HEAT_COOL :esphomepr:`5267` by :ghuser:`jesserockz` (breaking-change)
+
+Release 2023.8.2 - August 21
+----------------------------
+
+- Move libcairo to all architectures in docker :esphomepr:`5276` by :ghuser:`jesserockz`
+- Resolve offline ESPs in dashboard when using ESPHOME_DASHBOARD_USE_PING=true :esphomepr:`5281` by :ghuser:`mwolter805`
+- Align SPI data rates in C++ code with Python :esphomepr:`5284` by :ghuser:`clydebarrow`
+- Change htu21d sensors from required to optional :esphomepr:`5285` by :ghuser:`jesserockz`
+- Reserve keyword "clock" :esphomepr:`5279` by :ghuser:`clydebarrow`
+
+Release 2023.8.3 - September 6
+------------------------------
+
+- Introduce cv.temperature_delta and fix problematic thermostat configuration behavior :esphomepr:`5297` by :ghuser:`sebastianrasor`
+- fix to PR # 3887 MQTT connection not using discovery: false :esphomepr:`5275` by :ghuser:`luka6000`
+- Attempt to fix secret blurring :esphomepr:`5326` by :ghuser:`jesserockz`
+- Bugfix: disable channels after IO if multiple tca9548a  I2C multiplexers are configured :esphomepr:`5317` by :ghuser:`kahrendt`
+- Fix checksum calculation for pipsolar :esphomepr:`5299` by :ghuser:`Mat931`
+
 Full list of changes
 --------------------
 

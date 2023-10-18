@@ -323,6 +323,20 @@ your configuration file. This can be used to create generic 'template' configura
 files (like the ``example.yaml`` above) which can be used for multiple devices,
 using substitutions which are provided on the command line.
 
+Extend
+------
+
+To make changes or add additional configuration to included configurations ``!extend config_id`` can be used, where ``config_id`` is the ID of the configuration to modify.
+For example to set a specific update interval on a common uptime sensor that is shared between configurations:
+
+.. code-block:: yaml
+
+    <<: !include common.yaml
+
+    sensor:
+    - id: !extend uptime_sensor
+      update_interval: 10s
+
 .. _config-packages:
 
 Packages
