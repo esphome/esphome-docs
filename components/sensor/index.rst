@@ -272,7 +272,7 @@ Configuration variables:
 ``quantile``
 ************
 
-A `simple moving quantile <https://en.wikipedia.org/wiki/Quantile>`__
+A `simple moving quantile <https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/quantile.htm>`__
 over the last few values. This can be used to filter outliers from the received sensor data. A large
 window size will make the filter slow to react to input changes.
 
@@ -422,7 +422,7 @@ Configuration variables:
 ******************************
 
 A simple `exponential moving average
-<https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/quantile.htm>`__ over the last few
+<https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average>`__ over the last few
 values. It can be used to have a short update interval on the sensor but only push
 out an average on a specific interval (thus increasing resolution).
 
