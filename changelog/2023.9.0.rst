@@ -49,6 +49,24 @@ Release 2023.9.1 - September 28
 - Tuya Number Scaling :esphomepr:`5108` by :ghuser:`InvncibiltyCloak`
 - Migrate dashboard json files to /data folder instead of wiping out :esphomepr:`5441` by :ghuser:`jesserockz`
 
+Release 2023.9.2 - October 2
+----------------------------
+
+- SPI fixes for buggy components :esphomepr:`5446` by :ghuser:`clydebarrow`
+- Fix an Issue with IR Remote Climate and Whirlpool protocol toggle :esphomepr:`5447` by :ghuser:`the-mentor`
+- Fix SPI support for second bus on 2023.9.1 :esphomepr:`5456` by :ghuser:`angelnu`
+- Ensure esphome directory exists on addon startup :esphomepr:`5464` by :ghuser:`jesserockz`
+
+Release 2023.9.3 - October 3
+----------------------------
+
+- Bump zeroconf from 0.112.0 to 0.115.0 :esphomepr:`5432` by :ghuser:`dependabot[bot]`
+- add pin config for denky_d4 :esphomepr:`5471` by :ghuser:`alucryd`
+- Support RP2040 hardware SPI :esphomepr:`5466` by :ghuser:`clydebarrow`
+- Bump zeroconf from 0.115.0 to 0.115.1 :esphomepr:`5470` by :ghuser:`dependabot[bot]`
+- Sleep mode fix for BP5758D driver :esphomepr:`5461` by :ghuser:`dwildstr`
+- Tuya Number: split "multiply" to a separate option :esphomepr:`5458` by :ghuser:`paravoid`
+
 Breaking Changes
 ----------------
 
