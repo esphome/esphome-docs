@@ -75,6 +75,9 @@ Beta Changes
 - Add stream start and end events :esphomepr:`5545` by :ghuser:`jesserockz`
 - Fix esp32_improv authorizer with no binary sensors in config :esphomepr:`5546` by :ghuser:`jesserockz`
 - More voice assistant fixes :esphomepr:`5547` by :ghuser:`jesserockz`
+- Fix default libretiny manufacturer reported to HA :esphomepr:`5549` by :ghuser:`jesserockz`
+- SML: fix incomplete sign extension for abbreviated transmissions :esphomepr:`5544` by :ghuser:`fblaese`
+- esp32_improv advertise capabilities and state in ble service data :esphomepr:`5553` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -131,6 +134,9 @@ All changes
 - Add stream start and end events :esphomepr:`5545` by :ghuser:`jesserockz`
 - Fix esp32_improv authorizer with no binary sensors in config :esphomepr:`5546` by :ghuser:`jesserockz`
 - More voice assistant fixes :esphomepr:`5547` by :ghuser:`jesserockz`
+- Fix default libretiny manufacturer reported to HA :esphomepr:`5549` by :ghuser:`jesserockz`
+- SML: fix incomplete sign extension for abbreviated transmissions :esphomepr:`5544` by :ghuser:`fblaese`
+- esp32_improv advertise capabilities and state in ble service data :esphomepr:`5553` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
