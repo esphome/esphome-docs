@@ -30,6 +30,8 @@ Configuration variables:
   to be re-authorized. Defaults to ``1min``.
 - **status_indicator** (*Optional*, :ref:`config-id`): An :doc:`output <output/index>` to display feedback to the user.
 - **identify_duration** (*Optional*, :ref:`config-time`): The amount of time to identify for. Defaults to ``10s``.
+- **wifi_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before starting the improv service after Wi-Fi
+  is no longer connected. Defaults to ``1min``.
 
 Status Indicator
 ----------------
