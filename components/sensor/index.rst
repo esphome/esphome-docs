@@ -269,6 +269,18 @@ Configuration variables:
 - **min_value** (*Optional*, float): The lower bound of the range.
 - **max_value** (*Optional*, float): The upper bound of the range.
 
+``round``
+*********
+
+Rounds the value to the given decimal places.
+
+.. code-block:: yaml
+
+    - platform: ...
+      filters:
+        - round: 1 # will round to 1 decimal place
+
+
 ``quantile``
 ************
 

@@ -31,6 +31,17 @@ Configuration variables:
 - **status_indicator** (*Optional*, :ref:`config-id`): An :doc:`output <output/index>` to display feedback to the user.
 - **identify_duration** (*Optional*, :ref:`config-time`): The amount of time to identify for. Defaults to ``10s``.
 
+Status Indicator
+----------------
+
+The ``status_indicator`` has the following patterns:
+
+- solid: The improv service is active and waiting to be authorized.
+- blinking once per second: The improv service is awaiting credentials.
+- blinking 3 times per second with a break in between: The identify command has been used by the client.
+- blinking 5 times per second: Credentials are being verified and saved to the device.
+- off: The improv service is not running.
+
 See Also
 --------
 
