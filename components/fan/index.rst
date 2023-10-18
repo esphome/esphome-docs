@@ -137,21 +137,22 @@ Configuration options:
 ``fan.cycle_speed`` Action
 --------------------------
 
-Increments through speed levels of the fan with the given ID when executed. If the fan's speed level is set to maximum when executed, fan will cycle off unless off_speed_cycle is set to ``false``.
+Increments through speed levels of the fan with the given ID when executed. If the fan's speed level is set to maximum when executed, fan will cycle off unless ``off_speed_cycle`` is set to ``false``.
 
 .. code-block:: yaml
 
     on_...:
       then:
         - fan.cycle_speed:
-            id: myFan
-            off_speed_cycle: true #default
+            id: fan_1
+            off_speed_cycle: true
+        # Shorthand:
+        - fan.cycle_speed:: fan_1
 
 Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the fan.
-- **off_speed_cycle** (*Optional*, boolean, :ref:`templatable <config-templatable>`):
-   Determines if the fan will cycle off after cycling though its highest speed. Can be ``true`` or ``false``. If ``false`` fan will cycle to its lowest speed instead of turning off.  Defaults to ``true``.
+- **off_speed_cycle** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Determines if the fan will cycle off after cycling though its highest speed. Can be ``true`` or ``false``. If ``false`` fan will cycle to its lowest speed instead of turning off.  Defaults to ``true``.
 
 .. _fan-is_on_condition:
 .. _fan-is_off_condition:
