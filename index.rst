@@ -339,7 +339,7 @@ Environmental
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
     TMP1075, components/sensor/tmp1075, tmp1075.jpg, Temperature
     HYT271, components/sensor/hyt271, hyt271.jpg, Temperature & Humidity
-    XGZP68xx / XGZP68xx Series, components/sensor/xgzp68xx, 6897d.jpg, Pressure
+    XGZP68xx Series, components/sensor/xgzp68xx, 6897d.jpg, Pressure
 
 
 Light
