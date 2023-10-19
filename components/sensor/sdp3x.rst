@@ -3,7 +3,7 @@ SDP3x / SDP800 Series Differential Pressure Sensor
 
 .. seo::
     :description: Instructions for setting up the SDP3x or SDP800 Series Differential Pressure sensor.
-    :image: images/sdp31.jpg
+    :image: sdp31.jpg
     :keywords: SDP3x, SDP31, SDP32, SDP800 Series, SDP810, SDP810
 
 The SDP3x Differential Pressure sensor allows you to use your SDP3x
