@@ -39,7 +39,7 @@ Configuration variables:
 
 - **name** (**Required**, string): The name for this sensor.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for lambdas/multiple sensors.
-- **k_value** (*Optional*, int): The K values comes from the datasheet. It will default to 4096 if not specified, which is appropriate for a sensor with a range of +/- 0.5kPa.
+- **k_value** (*Optional*, int): The K value comes from the datasheet. It will default to 4096 if not specified, which is appropriate for a sensor with a range of +/- 0.5kPa.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 - All other options from :ref:`Sensor <config-sensor>`.
 
