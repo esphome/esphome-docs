@@ -135,7 +135,7 @@ What you need:
 
 Steps:
 
-- Find the currently used calibration values or upload a firmware with some default calibration values to the ESP.
+- Find the currently used calibration values for ``current_resistor`` and ``voltage_divider`` in your device's YAML configuration or upload a new firmware with some known calibration values to the ESP.
 - Plug the ESP power measurement plug into the calibrated power meter.
 - Plug the load into the ESP plug.
 - Turn on the load and make sure the power factor (PF) displayed on the power meter is 1.0. If it's not, you need to pick a different load.
