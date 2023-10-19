@@ -262,13 +262,24 @@ degree with a least squares solver.
 ``clamp``
 *********
 
-Limits the value to the range between ``min_value`` and ``max_value``. If ``min_value`` is not set, there is
-no lower bound, if ``max_value`` is not set there is no upper bound.
+Limits the value to the range between ``min_value`` and ``max_value``. Sensor values outside these bounds will be set to ``min_value`` or ``max_value``, respectively. If ``min_value`` is not set, there is no lower bound, if ``max_value`` is not set there is no upper bound.
 
 Configuration variables:
 
 - **min_value** (*Optional*, float): The lower bound of the range.
 - **max_value** (*Optional*, float): The upper bound of the range.
+
+``round``
+*********
+
+Rounds the value to the given decimal places.
+
+.. code-block:: yaml
+
+    - platform: ...
+      filters:
+        - round: 1 # will round to 1 decimal place
+
 
 ``quantile``
 ************
