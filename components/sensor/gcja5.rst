@@ -11,7 +11,7 @@ sensors with ESPHome.
 
 As the communication with the GCJA5 is done using UART, you need
 to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the SEND/TX. Additionally, you need to set the baud rate to 9600, and you
-MUST have `EVEN`` parity.
+MUST have ``EVEN`` parity.
 
 The sensor itself will push values every second. You may wish to :ref:`filter <sensor-filters>` this value to reduce the amount of data you are ingesting.
 The sensor will internally track changes to the Laser Diode and Photo Diode over time to adjust and ensure accuracy.
@@ -33,14 +33,26 @@ Based on continous runtime, the sensor is rated to last at least 5 years.
 Configuration variables:
 ------------------------
 
-- **pm_1_0_std** (*Optional*): Use the concentration of particulates of size less than 1.0µm in µg per cubic meter at standard particle.
+- **pm_1_0** (*Optional*): Mass of particles with a diameter of 1 micrometres or less (μg/m^3).
   All options from :ref:`Sensor <config-sensor>`.
-- **pm_2_5_std** (*Optional*): Use the concentration of particulates of size less than 2.5µm in µg per cubic meter at standard particle.
+- **pm_2_5** (*Optional*): Mass of particles with a diameter of 2.5 micrometres or less (μg/m^3).
   All options from :ref:`Sensor <config-sensor>`.
-- **pm_10_0_std** (*Optional*): Use the concentration of particulates of size less than 10.0µm in µg per cubic meter at standard particle.
+- **pm_10_0** (*Optional*): Mass of particles with a diameter of 10 micrometres or less (μg/m^3).
   All options from :ref:`Sensor <config-sensor>`.
-- **pm_1_0** (*Optional*): Use the concentration of particulates of size less than 1.0µm in µg per cubic meter under atmospheric environment.
-
+- **pm_10_0** (*Optional*): Mass of particles with a diameter of 10 micrometres or less (μg/m^3).
+  All options from :ref:`Sensor <config-sensor>`.
+- **pmc_0_3** (*Optional*): Count of particles with diameter > 0.3 um in 0.1 L of air (#/0.1L).
+  All options from :ref:`Sensor <config-sensor>`.
+- **pmc_0_5** (*Optional*): Count of particles with diameter > 0.5 um in 0.1 L of air (#/0.1L).
+  All options from :ref:`Sensor <config-sensor>`.
+- **pmc_1_0** (*Optional*): Count of particles with diameter > 1 um in 0.1 L of air (#/0.1L).
+  All options from :ref:`Sensor <config-sensor>`.
+- **pmc_2_5** (*Optional*): Count of particles with diameter > 2.5 um in 0.1 L of air (#/0.1L).
+  All options from :ref:`Sensor <config-sensor>`.
+- **pmc_5_0** (*Optional*): Count of particles with diameter > 5 um in 0.1 L of air (#/0.1L).
+  All options from :ref:`Sensor <config-sensor>`.
+- **pmc_10_0** (*Optional*): Count of particles with diameter > 10 um in 0.1 L of air (#/0.1L).
+  All options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
