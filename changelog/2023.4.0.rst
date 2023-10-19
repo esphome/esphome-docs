@@ -10,11 +10,11 @@ ESPHome 2023.4.0 - 19th April 2023
 .. imgtable::
     :columns: 3
 
-    Voice Assistant, components/voice_assistant, voice-assistant.svg
-    Microphone Core, components/microphone/index, microphone.svg
+    Voice Assistant, components/voice_assistant, voice-assistant.svg, dark-invert
+    Microphone Core, components/microphone/index, microphone.svg, dark-invert
     I2S Microphone, components/microphone/i2s_audio, i2s_audio.svg
     MMC5603, components/sensor/mmc5603, mmc5603.jpg
-    KSZ8081 Ethernet, components/ethernet, ethernet.svg
+    KSZ8081 Ethernet, components/ethernet, ethernet.svg, dark-invert
 
 
 Voice Assistant
