@@ -15,7 +15,7 @@ sensors with ESPHome. The sensors pressure ranges are specified in the datasheet
     :align: center
     :width: 30.0%
 
-    XGZP6897D6897D Differential Pressure Sensor.
+    XGZP6897D Differential Pressure Sensor.
     (Credit: `CFSensor <https://cfsensor.net/i2c-differential-pressure-sensor-xgzp6897d/>`__, image cropped and compressed)
 
 .. _Sparkfun: https://www.sparkfun.com/products/17874
