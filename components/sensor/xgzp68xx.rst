@@ -25,13 +25,14 @@ To use the sensor, set up an :ref:`I²C Bus <i2c>` and connect the sensor to the
 .. code-block:: yaml
 
     # Example configuration entry
-    - platform: xgzp68xx
-        temperature:
-            name: "Temperature"
-        pressure:
-            name: "Differential Pressure"
-        k_value: 4096
-        update_interval: 5s
+    sensor:
+        - platform: xgzp68xx
+            temperature:
+                name: "Temperature"
+            pressure:
+                name: "Differential Pressure"
+            k_value: 4096
+            update_interval: 5s
 
 Configuration variables:
 ------------------------
