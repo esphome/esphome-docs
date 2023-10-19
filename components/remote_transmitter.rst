@@ -170,7 +170,7 @@ This :ref:`action <config-action>` sends one or two (stricted or not) 24-bit Coo
 Configuration variables:
 
 - **first** (**Required**, :ref:`templatable <config-templatable>`, uint32_t): The first 24-bit Coolix code to send, see dumper output for more info.
-- **second** (**Optional**, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
+- **second** (*Optional*, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
 
 .. _remote_transmitter-transmit_dish:
 
@@ -232,6 +232,24 @@ This :ref:`action <config-action>` sends a JVC infrared remote code to a remote 
 Configuration variables:
 
 - **data** (**Required**, int): The JVC code to send, see dumper output for more info.
+
+.. _remote_transmitter-transmit_haier:
+
+``remote_transmitter.transmit_haier`` Action
+********************************************
+
+This :ref:`action <config-action>` sends a 104-bit Haier code to a remote transmitter. 8-bits of checksum added automatically.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_haier:
+          code: [0xA6, 0xDA, 0x00, 0x00, 0x40, 0x40, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x05]
+
+Configuration variables:
+
+- **code** (**Required**, list): The 13 byte Haier code to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_lg:
 
