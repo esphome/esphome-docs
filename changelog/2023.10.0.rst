@@ -34,6 +34,15 @@ A new ``xor`` condition has been added to the automation engine. This condition 
 when a single condition in the list is true.
 
 
+Release 2023.10.1 - October 19
+------------------------------
+
+- Fix voice_assistant without a speaker :esphomepr:`5558` by :ghuser:`jesserockz`
+- esp32_improv add timeout :esphomepr:`5556` by :ghuser:`jesserockz`
+- Create IPv4 sockets if ipv6 is not enabled :esphomepr:`5565` by :ghuser:`jesserockz`
+- Incorrect ESP32 Strapping PIN Defined :esphomepr:`5563` by :ghuser:`descipher`
+
+
 Breaking changes
 ----------------
 
