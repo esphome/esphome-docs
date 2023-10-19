@@ -3,12 +3,12 @@ CFSensor XGZP68xx Series Differential Pressure Sensor
 
 .. seo::
     :description: Instructions for setting up the CFSensor XGZP68xx Series Differential Pressure sensor.
-    :image: 6897d.jpg
+    :image: images/6897d.jpg
     :keywords: XGZP68xx, XGZP6897, XGZP6899, XGZP6899D, XGZP6897D
 
 The XGZP68xx Differential Pressure sensor allows you to use digital differential pressure sensors such as the 6899D
 (`datasheet <https://cfsensor.com/wp-content/uploads/2022/11/XGZP6899D-Pressure-Sensor-V2.8.pdf>`__,
-`sparkfun <https://www.sparkfun.com/products/17874>`__) or 6897D Series (`datasheet <https://cfsensor.com/wp-content/uploads/2022/11/XGZP6897D-Pressure-Sensor-V2.7.pdf>`__)
+`Tindie <https://www.tindie.com/products/gcormier/esphome-pressure/>`__) or 6897D Series (`datasheet <https://cfsensor.com/wp-content/uploads/2022/11/XGZP6897D-Pressure-Sensor-V2.7.pdf>`__)
 sensors with ESPHome. The sensors pressure ranges are specified in the datasheets.
 
 .. figure:: images/6897d.jpg
