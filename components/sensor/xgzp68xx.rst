@@ -1,0 +1,48 @@
+CFSensor XGZP68xx Series Differential Pressure Sensor
+===================================================
+
+.. seo::
+    :description: Instructions for setting up the CFSensor XGZP68xx Series Differential Pressure sensor.
+    :image: 6897D.jpg
+    :keywords: XGZP68xx, XGZP6897, XGZP6899, XGZP6899D, XGZP6897D
+
+The XGZP68xx Differential Pressure sensor allows you to use digital differential pressure sensors such as the 6899D
+(`datasheet <https://cfsensor.com/wp-content/uploads/2022/11/XGZP6899D-Pressure-Sensor-V2.8.pdf>`__,
+`sparkfun <https://www.sparkfun.com/products/17874>`__) or 6897D Series (`datasheet <https://cfsensor.com/wp-content/uploads/2022/11/XGZP6897D-Pressure-Sensor-V2.7.pdf>`__)
+sensors with ESPHome. The sensors pressure ranges are specified in the datasheets.
+
+.. figure:: images/6897D.jpg
+    :align: center
+    :width: 30.0%
+
+    XGZP6897D6897D Differential Pressure Sensor.
+    (Credit: `CFSensor <https://cfsensor.net/i2c-differential-pressure-sensor-xgzp6897d/>`__, image cropped and compressed)
+
+.. _Sparkfun: https://www.sparkfun.com/products/17874
+
+To use the sensor, set up an :ref:`I²C Bus <i2c>` and connect the sensor to the specified pins.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: xgzp68xx
+        temperature:
+            name: "Temperature"
+        pressure:
+            name: "Differential Pressure"
+        update_interval: 5s
+
+Configuration variables:
+------------------------
+
+- **name** (**Required**, string): The name for this sensor.
+- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for lambdas/multiple sensors.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+- All other options from :ref:`Sensor <config-sensor>`.
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :apiref:`sdp3x/sdp3x.h`
+- :ghedit:`Edit`
