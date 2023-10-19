@@ -182,6 +182,7 @@ creating a POST request at ``/light/<id>/turn_on?brightness=128&transition=2`` w
 -  **flash**: Flash the color provided by the other properties for a duration in seconds.
 -  **transition**: Transition to the specified color values in this duration in seconds.
 -  **effect**: Set an effect for the light.
+-  ***color_temp***: Set the color temperature of the light, in mireds.
 
 ``turn_off`` optional URL parameters:
 
@@ -266,6 +267,22 @@ a GET request to ``/select/house_mode`` could yield this payload:
       "id": "select-house_mode",
       "state": "party",
       "value": "party"
+    }
+
+The detail parameter can be used to include available options in the response:
+
+- **detail**: Set to ``all`` to include a list of available options.
+
+For example GET ``/select/house_mode?detail=all`` could yield this payload:
+
+.. code-block:: json
+
+    {
+      "id": "select-house_mode",
+      "name": "House Mode",
+      "state": "party",
+      "value": "party",
+      "option": ["party","sleep","relax","home","away"]
     }
 
 POST requests on the other hand allow setting the select, the available
