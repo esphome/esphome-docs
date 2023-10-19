@@ -33,6 +33,11 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
                     </a>
                 </li>
                 <li>
+                    <a class="reference" href="/projects/">
+                        install ready-made project
+                    </a>
+                </li>
+                <li>
                     <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
                         by migrating from Tasmota
                     </a>
@@ -191,6 +196,7 @@ Air Quality
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
+    SFA30, components/sensor/sfa30, sfa30.jpg, Formaldehyde
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
     SGP4x, components/sensor/sgp4x, sgp40.jpg, Volatile organics and NOx
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
@@ -323,6 +329,7 @@ Environmental
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
     SDP3x / SDP800 Series, components/sensor/sdp3x, sdp31.jpg, Pressure
+    SFA30, components/sensor/sfa30, sfa30.jpg, Formaldehyde
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
@@ -357,6 +364,7 @@ Magnetic
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg, ESP internal, dark-invert
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg, 3-Axis magnetometer
     MMC5603, components/sensor/mmc5603, mmc5603.jpg, 3-Axis magnetometer
+    MMC5983, components/sensor/mmc5983, mmc5983.jpg, 3-Axis magnetometer
     MLX90393, components/sensor/mlx90393, mlx90393.jpg, 3-Axis magnetometer
     QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg, 3-Axis magnetometer
 
@@ -556,7 +564,7 @@ Light Components
     Tuya Dimmer, components/light/tuya, tuya.png
     Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg
     Custom Light, components/light/custom, language-cpp.svg, dark-invert
-    LightWaveRF, components/light/lightwaverf, brightness-medium.svg
+    LightWaveRF, components/lightwaverf, brightness-medium.svg
 
     H-bridge Light, components/light/hbridge, brightness-medium.svg, dark-invert
     Sonoff D1 Dimmer, components/light/sonoff_d1, sonoff_d1.jpg
@@ -597,6 +605,7 @@ Button Components
     Shutdown Button, components/button/shutdown, power_settings.svg, dark-invert
     Factory Reset Button, components/button/factory_reset, restart-alert.svg, dark-invert
     Wake-on-LAN, components/button/wake_on_lan, power_settings.svg, dark-invert
+    UART Button, components/button/uart, uart.svg
 
 
 Fan Components
@@ -903,3 +912,4 @@ If you'd like to share configurations for specific devices, please contribute to
     changelog/index
     custom/index
     images/index
+    projects/index
