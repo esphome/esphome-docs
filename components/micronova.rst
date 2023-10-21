@@ -74,6 +74,10 @@ MicroNova configuration
       - platform: micronova
         thermostat_temperature:
           name: Thermostat temperature
+          step: 1
+      - platform: micronova
+        power_level:
+          name: Thermostat temperature
 
     sensor:
       - platform: micronova
@@ -105,10 +109,11 @@ MicroNova configuration
 
     button:
       - platform: micronova
-        temperature_up:
-          name: Thermostat Up
-        temperature_down:
-          name: Thermostat Down
+        custom_button:
+          name: Custom button
+          memory_location: 0x20
+          memory_address: 0x7d
+          memory_data: 0x08
 
 
 Micronova variables:
@@ -136,7 +141,6 @@ Text Sensor variables:
 Sensor variables:
 ~~~~~~~~~~~~~~~~~
 - **room_temperature** (*Optional*): Sensor that reads the stoves ambient room temperature.
-- **thermostat_temperature** (*Optional*): The current stove thermostat value.
 - **fumes_temperature** (*Optional*): Fumes temperature.
 - **stove_power** (*Optional*): Current stove power.
 - **fan_speed** (*Optional*): Current fan speed. The raw value from the stove is multiplied by 10 + **fan_rpm_offset**
@@ -148,6 +152,9 @@ Sensor variables:
 Number variables:
 ~~~~~~~~~~~~~~~~~
 - **thermostat_temperature** (*Optional*): Number that holds the current stove thermostat value.
+  - **step** (*Optional*): Temperature step. This value is used to multiply/devide the raw value when setting/reading
+    the **thermostat_temperature**
+- **power_level** (*Optional*): Number that sets/reads the requested stove power.
 - All other options from :ref:`Number <config-number>`.
 
 .. note::
@@ -161,16 +168,14 @@ Button variables:
 ~~~~~~~~~~~~~~~~~
 To use these buttons, you will need the **thermostat_temperature** sensor.
 
-- **temperature_up** (*Optional*): Increase the current stove thermostat temperature by 1°C
-- **temperature_down** (*Optional*): Decrease the current stove thermostat temperature by 1°C
+- **custom_button** (*Optional*): Write some hex value to a **memory_location** and **memory_address**
 - All other options from :ref:`Button <config-button>`.
 
 .. note::
 
-    Besides **memory_location** and **memory_address** you can specify a specific **memory_data** parameter.
-    This parameter is the hex value to be written to the **memory_location** and **memory_address** location when pressing the button.
+    Besides **memory_location** and **memory_address** you must specify a specific **memory_data** parameter.
 
-    - **memory_data** (*Optional*): The hex value to be written to the **memory_location** and **memory_address**.
+    - **memory_data** (*Required*): The hex value to be written to the **memory_location** and **memory_address**.
 
 Switch variables:
 ~~~~~~~~~~~~~~~~~
