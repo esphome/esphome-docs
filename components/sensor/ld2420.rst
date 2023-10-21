@@ -5,15 +5,21 @@ LD2420 24Ghz mmWave Radar Sensor
     :description: Instructions for setting up LD2420 sensors.
     :image: ld2420.jpg
 
-Component/Hub
--------------
+Component
+---------
 .. _ld2420-component:
 
 The ``ld2420`` sensor platform allows you to use the HLK-LD2420 motion and presence sensor.
 The :ref:`UART <uart>` is required to be set up in your configuration for this sensor to work.
 
-Use of hardware UART pins is critical in order to support the baud rates of the LD2420 sensor.
-Firmware v1.5.3 and newer default to 115200 baud, 256000 baud on all older firmwares.
+Depending on the firmware you have serial baudrates will be 256000 for any module with less than
+firmware v1.5.3 and 115200 on newer versions. The tx_pin changed from ot2 to ot1 with firmware v1.5.3.
+Firmware v1.5.4 and up now features the ability to observe gate energy signal levels and with this
+release we can dynamically calibrate gate still and move thresholds.
+
+This component has dynamic configuration functionallity with a compact UI format.
+Select, number and button components provide configuration value inputs and control.
+
 
 .. figure:: /images/ld2420.jpg
     :align: center
@@ -84,82 +90,191 @@ Pinouts
     # The LD2420 has 16 time gate intervals (0-15) with a gate
     # resolution of 0.70 meters
     ld2420:
-      presence_time_window: 120s
-      detection_gate_min: 1
-      detection_gate_max: 12
-      g0_move_threshold: 60000
-      g0_still_threshold: 40000
-      g1_move_threshold: 30000
-      g1_still_threshold: 20000
-      g2_move_threshold: 400
-      g2_still_threshold: 200
-      g3_move_threshold: 250
-      g3_still_threshold: 200
-      g4_move_threshold: 250
-      g4_still_threshold: 200
-      g5_move_threshold: 250
-      g5_still_threshold: 200
-      g6_move_threshold: 250
-      g6_still_threshold: 200
-      g7_move_threshold: 250
-      g7_still_threshold: 150
-      g8_move_threshold: 250
-      g8_still_threshold: 150
-      g9_move_threshold: 250
-      g9_still_threshold: 100
-      g10_move_threshold: 250
-      g10_still_threshold: 100
-      g11_move_threshold: 250
-      g11_still_threshold: 100
-      g12_move_threshold: 250
-      g12_still_threshold: 100
-      g13_move_threshold: 200
-      g13_still_threshold: 100
-      g14_move_threshold: 200
-      g14_still_threshold: 100
-      g15_move_threshold: 200
-      g15_still_threshold: 100
 
-.. warning::
+    text_sensor:
+      - platform: ld2420
+        fw_version:
+          name: LD2420 Firmware
 
-    Use of a hardware UART is critical in order to support the out-of-the-box 256000 or 115200 baud rates of the LD2420 sensor. Communication problems are likely to result otherwise.
-    In addition, for UART configuration, ``baud_rate``, ``parity`` and ``stop_bits`` **must be** respectively ``115200 or 256000``, ``NONE`` and ``1``.
+    sensor:
+      - platform: ld2420
+        moving_distance:
+          name : Moving Distance
+
+    binary_sensor:
+      - platform: ld2420
+        has_target:
+          name: Presence
+
+    select:
+      - platform: ld2420
+        operating_mode:
+          name: (s) Operating Mode
+
+    number:
+      - platform: ld2420
+        timeout:
+          name: (n) Detection Presence Timeout
+        min_gate_distance:
+          name: (n) Detection Gate Minimum
+        max_gate_distance:
+          name: (n) Detection Gate Maximum
+        gate_select:
+          name: (n) Select Gate to Set
+        still_threshold:
+          name: (n) Set Still Threshold Value
+        move_threshold:
+          name: (n) Set Move Threshold Value
+
+    button:
+      - platform: ld2420
+        apply_config:
+          name: (b) Apply Config
+        factory_reset:
+          name: (b) Factory Reset
+        restart_module:
+          name: (b) Restart Module
+        revert_config:
+          name: (b) Undo Edits
+
+
+Platform
+--------
+
+.. code-block:: yaml
+
+    ld2420:
 
 Configuration variables:
 ************************
 
-The configuration is made up of three parts: The LD2420 component, individual sensors,
-and binary sensors. These may change, this is a early component release based on firmware v1.5.3.
-*There are clearly undocumented functions in the firmware which are not available at this time.*
+**ld2420** (Required): Component platform.
 
-- **presence_time_window** (*Optional*, int): The time in seconds during which the occupied state (presence) will persist
-  after presence is no longer detected. Any energy detection within the time window restarts the countdown from this value.
-  Defaults to ``120s``.
-- **detection_gate_min** (*Optional*, int): Minimum distance for move or still energy detection.
-  Value between 0 and ``detection_gate_max - 1``. Each increment equals 70 cm.
-  Defaults to 1.
-- **detection_gate_max** (*Optional*, int): Maximum gate for movement detection.
-  Value from 1 to 15. Each gate detects movement and still energy at 70 cm increments.
-  Defaults to 12.
-  At the maximum value, the sensor's range equates to 16 * 70 cm resulting in an
-  approximately 12-meter range; however, accuracy at this range may be diminished.
-  The recommended maximum value is 12 * 70 cm which results in approximately 9 meters.
-- **g#_move_threshold** (*Optional*, int): Gate threashold level for motion energy detection (Gate # from 0 to 15).
-  A value greater than that specified for the gate (distance) will trigger movement detection.
-  Defaults are as shown in :ref:`the table below <ld2420-default_values_for_gate_threshold>`.
-- **g#_still_threshold** (*Optional*, int): Gate threashold level for still energy detection (Gate # from 0 to 15).
-  A value less than that specified for the gate (distance) will trigger still detection.
-  Defaults are as shown in :ref:`the table below <ld2420-default_values_for_gate_threshold>`.
+
+Select
+------
+
+**Operating Modes:**
+
+.. code-block:: yaml
+
+    select:
+      - platform: ld2420
+        operating_mode:
+          name: (s) Operating Mode
+
+
+The dynamic UI provides 3 operational modes which are **Normal**, **Calibrate** and **Simple** using a select component.
+
+- **Normal**
+  This is the default mode. It sets the ld2420 in energy reporting mode and is availble with firmware v1.5.4 or greater.
+  When in this mode the module logs all gate energy levels continuouly in a local array making it available
+  for dynamic calibration functions.
+- **Calibrate**
+  When calibration mode is selected the module will collect the average and peak energy levels reporting them every 5 seconds.
+  The report is provided in the log console and for information only. In order to calibrate the gate configurations no
+  objects should be present in the target environment. The recording will establish the mmWave noise floor levels and
+  undesirable reflections or signal distortions peaks. This should be collected for at least 30 seconds. Longer runs can
+  catch more potential false signals when devices near the module are used such as Microwave ovens and other signal
+  emiting sources.
+  When the **apply_config** button is triggered in calibration mode the ld2420 will be configured with calculated values
+  based on its collected noise floor data and the module will be returned to Normal Mode. Selecting any other mode drops
+  the sessions collected noise data and no changes setting are staged. Once the **apply_config** action is performed it
+  will persist. The gate values can be manually adjusted or calibrated again or you can trigger the
+  factory reset button.
+- **Simple** Provides backward compatibility with firmware v1.5.3 and older and will be automatically set when
+  the detected firmware version is v1.5.3 or older.
+
+Configuration variables:
+************************
+
+- **operating_mode** (*Required*): Provsions the operating mode select component.
+
+Number
+------
+
+.. code-block:: yaml
+
+    number:
+      - platform: ld2420
+        timeout:
+          name: (n) Detection Presence Timeout
+        min_gate_distance:
+          name: (n) Detection Gate Minimum
+        max_gate_distance:
+          name: (n) Detection Gate Maximum
+        gate_select:
+          name: (n) Select Gate to Set
+        still_threshold:
+          name: (n) Set Still Threshold Value
+        move_threshold:
+          name: (n) Set Move Threshold Value
+
+Configuration variables:
+************************
+
+ - **timeout** (Optional+Inclusive+Group1): The time in seconds during which the occupied state (presence) will persist after presence is no longer detected. Any energy detection within the time window restarts the countdown from this value. Defaults to 120s.
+ - **min_gate_distance** (Optional+Inclusive+Group1): Minimum distance for move or still energy detection. Value between 0 and max_gate_distance - 1. Each increment equals 70 cm. Defaults to 1.
+ - **max_gate_distance** (Optional+Inclusive+Group1): Maximum gate for movement detection. Value from 1 to 15. Each gate detects movement and still energy at 70 cm increments. At the maximum value, the sensor’s range equates to 16 * 70 cm resulting in an approximately 12-meter range; however, accuracy at this range may be diminished. The recommended maximum value is 12 * 70 cm which results in approximately 9 meters.
+ - **gate_select** (Optional+Inclusive+Group2): Gate value to edit selection (Gate # from 0 to 15).
+ - **still_threshold** (Optional+Inclusive+Group2): Gate still value threashold level for motion energy detection on currently selected gate number. A value greater than that specified for the gate (distance) will trigger movement detection.
+ - **move_threshold** (Optional+Inclusive+Group2): Gate move value threashold level for still energy detection on currently selected gate number. A value less than that specified for the gate (distance) will trigger still detection.
+
+Button
+-------
+
+.. code-block:: yaml
+
+    button:
+      - platform: ld2420
+        apply_config:
+          name: (b) Apply Config
+        factory_reset:
+          name: (b) Factory Reset
+        restart_module:
+          name: (b) Restart Module
+        revert_config:
+          name: (b) Undo Edits
+
+Four button components are available enabling configuration controls for editing, saving, restarting and factory reseting the LD2420 module.
+
+Configuration variables:
+************************
+
+- **apply_config** (*Optional*): Saves both manual config tuning or the auto calibrate still and move threshold config settings.
+
+- **restart_module** (*Optional*): Reboots the LD2420 modules.
+
+- **revert_config** (*Optional*): Undoes in progress edite prior to using the apply_config button.
+
+- **factory_reset** (*Optional*): Restores a base set of LD2420 configuration values.
+
+Factory Reset Values:
+*********************
 
 .. _ld2420-default_values_for_gate_threshold:
 
-.. list-table:: Default Values for Gate Threshold
+.. list-table::
+    :widths: 25 25
+    :header-rows: 1
+
+    * - Setting:
+      - Value:
+
+    * - Timeout
+      - 120s
+    * - Min Gate Distance
+      - 1
+    * - Max Gate Distance
+      - 12
+
+.. list-table::
     :widths: 25 25 25
     :header-rows: 1
 
-    * - Gate:
-      - Default: Move threshold
-      - Default: Still threshold
+    * - Gate Number:
+      - Move threshold
+      - Still threshold
     * - 0
       - 60000
       - 40000
@@ -246,6 +361,24 @@ Configuration variables:
 - **has_target** (*Optional*): If a target is detected with either still or in movement **has_target** will be set true
   for the duration of the **presence_time_window** setting.
 
+Text Sensor
+-----------
+
+The ``ld2420`` text sensor provides version information for the :doc:`ld2420`.
+
+.. code-block:: yaml
+
+    text_sensor:
+      - platform: ld2420
+        fw_version:
+          name: LD2420 Firmware
+
+Configuration variables:
+************************
+
+- **fw_version** (*Optional*): Allows you to retrieve the :doc:`ld2420` firmware version.
+
+
 Important Information:
 **********************
 
@@ -257,8 +390,10 @@ completely open room with no moving objects.
 Also, never place two or more sensors in a manner such that their detection fields overlap, as this will certainly
 result in false detections.
 
-Noise is a problem in many environments and we anticipate that future releases of this component will have an auto
-noise floor configuration option.
+Firmware update capability is available using the LD2420 tool provided by HLKTech.
+You will need to email them and request the bin file.
+At this time only firmware version v1.5.6 and up can be upgraded.
+**DO NOT** attemp to update older firmware versions. It will brick the module.
 
 See Also
 --------
