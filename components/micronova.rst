@@ -153,7 +153,7 @@ Number variables:
 ~~~~~~~~~~~~~~~~~
 - **thermostat_temperature** (*Optional*): Number that holds the current stove thermostat value.
   - **step** (*Optional*): Temperature step. This value is used to multiply/devide the raw value when setting/reading
-    the **thermostat_temperature**
+  the **thermostat_temperature**
 - **power_level** (*Optional*): Number that sets/reads the requested stove power.
 - All other options from :ref:`Number <config-number>`.
 
