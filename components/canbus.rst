@@ -171,12 +171,11 @@ There are several forms to use it:
       - canbus.send: 'hello'
 
       # Templated, return type is std::vector<uint8_t>
-      - canbus.send: !lambda
-          return {0x00, 0x20, 0x42};
+      - canbus.send: !lambda return {0x00, 0x20, 0x42};
 
 Configuration variables:
 
-- **data** (**Required**, binary data): Data to transmit, up to 8 bytes or
+- **data** (**Required**, binary data, :ref:`templatable <config-templatable>`): Data to transmit, up to 8 bytes or
   characters are supported by can bus per frame.
 - **canbus_id** (*Optional*): Optionally set the can bus id to use for transmitting
   the frame. Not needed if you are using only 1 can bus.
