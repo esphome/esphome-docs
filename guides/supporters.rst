@@ -580,6 +580,7 @@ Contributors
 - `Dom (@Ing-Dom) <https://github.com/Ing-Dom>`__
 - `Ingo Becker (@ingobecker) <https://github.com/ingobecker>`__
 - `Ingurum (@Ingurum) <https://github.com/Ingurum>`__
+- `Marc J (@InvncibiltyCloak) <https://github.com/InvncibiltyCloak>`__
 - `IoT-devices LLC (@iotdevicesdev) <https://github.com/iotdevicesdev>`__
 - `Ivo Roefs (@ironirc) <https://github.com/ironirc>`__
 - `irtimaled (@irtimaled) <https://github.com/irtimaled>`__
@@ -618,12 +619,10 @@ Contributors
 - `Jay Newstrom (@JayNewstrom) <https://github.com/JayNewstrom>`__
 - `Jeff (@jazzmonger) <https://github.com/jazzmonger>`__
 - `Jonas Bergler (@jbergler) <https://github.com/jbergler>`__
-- `JbLb (@jblb) <https://github.com/jblb>`__
 - `James Callaghan (@jcallaghan) <https://github.com/jcallaghan>`__
 - `Jc Miñarro (@JcMinarro) <https://github.com/JcMinarro>`__
 - `Josh Willox (@jcwillox) <https://github.com/jcwillox>`__
 - `JeeCee1 (@JeeCee1) <https://github.com/JeeCee1>`__
-- `Jeef (@jeeftor) <https://github.com/jeeftor>`__
 - `jeff-h (@jeff-h) <https://github.com/jeff-h>`__
 - `Jeffrey Borg (@jeffborg) <https://github.com/jeffborg>`__
 - `Jeff Eberl (@jeffeb3) <https://github.com/jeffeb3>`__
@@ -1250,4 +1249,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated October 18, 2023.*
+*This page was last updated October 19, 2023.*
