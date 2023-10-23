@@ -52,6 +52,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Whynter<whynter>`               | ``whynter``         | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`ZH/LT-01<zhlt01>`               | ``zhlt01``          | yes                  |
++---------------------------------------+---------------------+----------------------+
 
 This component requires that you have configured a :doc:`/components/remote_transmitter`.
 
@@ -322,6 +324,35 @@ Configuration variables:
         supports_heat: true
 
 
+
+.. _zhlt01:
+
+
+``zhlt01`` Climate
+---------------------
+
+ZH/LT-01 is a remote control that is used with many locally branded split airconditioners. 
+Supported brands include: 
+
+- Eurom
+- Chigo
+- Tristar
+- Tecnomaster
+- Elgin
+- Geant
+- Tekno
+- Topair
+- Proma
+- Sumikura
+- JBS
+- Turbo Air
+- Nakatomy
+- Celestial Air
+- Ager
+- Blueway
+- Airlux
+
+No additional configuration is required for this model.
 
 See Also
 --------
