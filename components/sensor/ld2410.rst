@@ -156,12 +156,14 @@ Configuration variables:
 - **detection_distance** (*Optional*, int): Distance in cm of target.
   All options from :ref:`Sensor <config-sensor>`.
 - **gX** (*Optional*): Energies for the Xth gate (X => 0 to 8).
+  
     - **move_energy** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, the move energy of the gate, otherwise ``unknown``.
       Value between ``0`` and ``100`` inclusive.
       All options from :ref:`Sensor <config-sensor>`.
     - **still_energy** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, the still energy of the gate, otherwise ``unknown``.
       Value between ``0`` and ``100`` inclusive.
       All options from :ref:`Sensor <config-sensor>`.
+
 - **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 Switch
@@ -274,6 +276,7 @@ Configuration variables:
   Value between ``2`` and ``8`` inclusive. Defaults to ``8``.
   All options from :ref:`Number <config-number>`.
 - **gX** (*Optional*): Thresholds for the Xth gate (X => 0 to 8).
+  
     - **move_threshold** (**Required**, int): Threshold for the gate for motion detection.
       Above this level for the considered gate (distance), movement detection will be triggered.
       Value between ``0`` and ``100`` inclusive. See default values below.
@@ -282,6 +285,7 @@ Configuration variables:
       Above this level for the considered gate (distance), still detection will be triggered.
       Value between ``0`` and ``100`` inclusive. See default values below.
       All options from :ref:`Number <config-number>`.
+
 - **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 .. list-table:: Default values for gate threshold
@@ -421,7 +425,7 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the :doc:`ld2410` component to set.
 - **password** (**Required**, string, :ref:`templatable <config-templatable>`):
-  The password to set. Case sensitive. Must be exactly 6 characters long. Default password is `HiLink`.
+  The password to set. Case sensitive. Must be exactly 6 characters long. Default password is ``HiLink``.
 
 To change the password from HA you can use the following example config:
 
