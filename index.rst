@@ -697,6 +697,7 @@ Text Sensor Components
     Tuya Text Sensor, components/text_sensor/tuya, tuya.png
     WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg, dark-invert
     LibreTiny, components/text_sensor/libretiny, libretiny.svg
+    WireGuard, components/wireguard, wireguard_custom_logo.svg
 
 Climate Components
 ------------------
