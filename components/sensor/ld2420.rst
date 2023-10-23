@@ -188,7 +188,7 @@ The dynamic UI provides 3 operational modes which are **Normal**, **Calibrate** 
 Configuration variables:
 ************************
 
-- **operating_mode** (*Required*): Provsions the operating mode select component.
+- **operating_mode** (*Required*): Provisions the operating mode select component.
 
 Number
 ------
