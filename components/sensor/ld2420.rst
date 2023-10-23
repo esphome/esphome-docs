@@ -327,7 +327,8 @@ Factory Reset Values:
 Sensor
 ------
 
-The ``ld2420`` sensor allows you to use your :doc:`ld2420` to sense mmWave distance measurements.
+The ``ld2420`` sensor allows you to use your :doc:`ld2420` to approximate the distance
+between the sensor and an object moving within its field of detection.
 
 .. code-block:: yaml
 
