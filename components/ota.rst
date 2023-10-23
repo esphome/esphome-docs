@@ -210,4 +210,5 @@ See Also
 - :apiref:`ota/ota_component.h`
 - :doc:`/components/button/safe_mode`
 - :doc:`/components/switch/safe_mode`
+- :doc:`/components/ota_http`
 - :ghedit:`Edit`
