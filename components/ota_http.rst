@@ -24,6 +24,7 @@ As the device is in client mode, it can be on a foreign network, or behind a fir
             - logger.log: "This message should be not displayed(reboot)"
 
 .. note::
+  
   The file ``firmware.bin`` can be found at ```.esphome/build/xxxx/.pioenvs/xxx/firmware.bin`` if esphome CLI is used, 
   or downloaded as ``Legacy format`` from the esphome HA addon. **Do not use** ``firmware-factory.bin`` or ``Modern format``.
 
