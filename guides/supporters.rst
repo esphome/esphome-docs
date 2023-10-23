@@ -76,7 +76,6 @@ Contributors
 - `Andreas Mandel (@amandel) <https://github.com/amandel>`__
 - `Amish Vishwakarma (@amishv) <https://github.com/amishv>`__
 - `Amit Keret (@amitkeret) <https://github.com/amitkeret>`__
-- `Jason Nader (@ammgws) <https://github.com/ammgws>`__
 - `Branden Cash (@ammmze) <https://github.com/ammmze>`__
 - `Alexander Momchilov (@amomchilov) <https://github.com/amomchilov>`__
 - `Oliver King (@AnachronisticPenguin) <https://github.com/AnachronisticPenguin>`__
@@ -373,6 +372,7 @@ Contributors
 - `drmodding (@drmodding) <https://github.com/drmodding>`__
 - `drmpf (@drmpf) <https://github.com/drmpf>`__
 - `drogfild (@drogfild) <https://github.com/drogfild>`__
+- `Simone Rossetto (@droscy) <https://github.com/droscy>`__
 - `DrRob (@DrRob) <https://github.com/DrRob>`__
 - `Drzony (@drzony) <https://github.com/drzony>`__
 - `Daniel Müller (@dtmuller) <https://github.com/dtmuller>`__
@@ -395,6 +395,7 @@ Contributors
 - `Niclas Larsson (@edge90) <https://github.com/edge90>`__
 - `EdJoPaTo (@EdJoPaTo) <https://github.com/EdJoPaTo>`__
 - `Eduardo Pérez (@eduperez) <https://github.com/eduperez>`__
+- `Edward Firmo (@edwardtfn) <https://github.com/edwardtfn>`__
 - `Eenoo (@Eenoo) <https://github.com/Eenoo>`__
 - `Eli Fidler (@efidler) <https://github.com/efidler>`__
 - `egandro (@egandro) <https://github.com/egandro>`__
@@ -738,7 +739,6 @@ Contributors
 - `Leo Winter (@LeoWinterDE) <https://github.com/LeoWinterDE>`__
 - `Lewis Baker (@lewissbaker) <https://github.com/lewissbaker>`__
 - `Leon Loopik (@Lewn) <https://github.com/Lewn>`__
-- `Luca Gugelmann (@lgugelmann) <https://github.com/lgugelmann>`__
 - `Lubos Horacek (@lhoracek) <https://github.com/lhoracek>`__
 - `Juraj Liso (@LiJu09) <https://github.com/LiJu09>`__
 - `lillborje71 (@lillborje71) <https://github.com/lillborje71>`__
@@ -750,7 +750,6 @@ Contributors
 - `Lazar Obradovic (@lobradov) <https://github.com/lobradov>`__
 - `Barry Loong (@loongyh) <https://github.com/loongyh>`__
 - `LuBeDa (@lubeda) <https://github.com/lubeda>`__
-- `Lucas Prim (@lucasprim) <https://github.com/lucasprim>`__
 - `Joakim Sørensen (@ludeeus) <https://github.com/ludeeus>`__
 - `ludrao (@ludrao) <https://github.com/ludrao>`__
 - `Łukasz Świtaj (@lukaszswitaj) <https://github.com/lukaszswitaj>`__
@@ -1249,4 +1248,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated October 19, 2023.*
+*This page was last updated October 24, 2023.*
