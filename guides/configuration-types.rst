@@ -31,6 +31,12 @@ names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf
 -  … can not have special characters except the underscore (“_“).
 -  … must not be a keyword.
 
+
+.. note::
+
+    These IDs are used only within ESPHome and are not translated to Home Assistant's Entity ID. 
+
+
 .. _config-pin:
 
 Pin
@@ -104,12 +110,21 @@ Configuration variables:
    - ``ANALOG``
    - ``INPUT_PULLUP``
    - ``INPUT_PULLDOWN``
+   - ``INPUT_OUTPUT_OPEN_DRAIN``
 
 Advanced options:
 
 - **drive_strength** (*Optional*, string): On ESP32s with esp-idf framework the pad drive strength,
   i.e. the maximum amount of current can additionally be set. Defaults to ``20mA``.
   Options are ``5mA``, ``10mA``, ``20mA``, ``40mA``.
+- **ignore_strapping_warning** (*Optional*, boolean): Certain pins on ESP32s are designated *strapping pins* and are read
+  by the chip on reset to configure initial operation, e.g. to enable bootstrap mode.
+  Using such pins for I/O should be avoided and ESPHome will warn if I/O is configured on a strapping pin.
+
+  For more detail see :ref:`strapping-warnings`.
+
+  If you are *absolutely* sure that you are using a strapping pin for I/O in a way that will not cause problems,
+  you can suppress the warning by setting this option to ``true`` in the pin configuration.
 
 .. _config-time:
 
@@ -176,7 +191,24 @@ validating your configuration, ESPHome will automatically replace all occurrence
 by their value. The syntax for a substitution is based on bash and is case-sensitive: ``$substitution_key`` or
 ``${substitution_key}`` (same).
 
-Additionally, you can use the YAML ``<<`` syntax to create a single YAML file from which a number
+Two substitution passes are performed allowing compound replacements.
+
+.. code-block:: yaml
+
+    substitutions:
+      foo: yellow
+      bar_yellow_value: !secret yellow_secret
+      bar_green_value: !secret green_secret
+    
+    something:
+      test: ${bar_${foo}_value}
+
+.. _YAML-insertion-operator:
+
+YAML insertion operator
+***********************
+
+Additionally, you can use the YAML insertion operator ``<<`` syntax to create a single YAML file from which a number
 of nodes inherit:
 
 .. code-block:: yaml
@@ -209,6 +241,44 @@ of nodes inherit:
 
     - Place them in a subdirectory (dashboard only shows files in top-level directory)
     - Prepend a dot to the filename, like ``.base.yaml``
+
+.. _substitute-include-variables:
+
+Substitute !include variables
+*****************************
+
+ESPHome's ``!include`` accepts a list of variables that can be substituted within the included file.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        id: button1
+        pin: GPIO16
+        on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
+      - platform: gpio
+        id: button2
+        pin: GPIO4
+        on_multi_click: !include
+          # multi-line syntax
+          file: on-multi-click.yaml
+          vars:
+            id: 2
+            
+``on-multi-click.yaml``:
+
+.. code-block:: yaml
+
+    - timing: !include click-single.yaml 
+      then:
+        - mqtt.publish:
+            topic: ${device_name}/button${id}/status
+            payload: single
+    - timing: !include click-double.yaml
+      then:
+        - mqtt.publish:
+            topic: ${device_name}/button${id}/status
+            payload: double
 
 .. _command-line-substitutions:
 
@@ -261,6 +331,20 @@ your configuration file. This can be used to create generic 'template' configura
 files (like the ``example.yaml`` above) which can be used for multiple devices,
 using substitutions which are provided on the command line.
 
+Extend
+------
+
+To make changes or add additional configuration to included configurations ``!extend config_id`` can be used, where ``config_id`` is the ID of the configuration to modify.
+For example to set a specific update interval on a common uptime sensor that is shared between configurations:
+
+.. code-block:: yaml
+
+    <<: !include common.yaml
+
+    sensor:
+    - id: !extend uptime_sensor
+      update_interval: 10s
+
 .. _config-packages:
 
 Packages
@@ -271,6 +355,10 @@ you to put common pieces of configuration in separate files and keep only unique
 config in the main yaml file. All definitions from packages will be merged with your main
 config in non-destructive way so you could always override some bits and pieces of package
 configuration.
+
+Dictionaries are merged key-by-key. Lists of components are merged by component
+ID if specified. Other lists are merged by concatenation. All other config
+values are replaced with the later value.
 
 Local packages
 **************
@@ -384,6 +472,76 @@ them locally with their own subsitution value.
 
       # shorthand form github://username/repository/[folder/]file-path.yml[@branch-or-tag]
       remote_package_three: github://esphome/non-existant-repo/file1.yml@main
+
+Packages as Templates
+*********************
+
+Since packages are incorporated using the ``!include`` system,
+variables can be provided to them.  This means that packages can be
+used as `templates`, allowing complex or repetitive configurations to
+be stored in a package file and then incorporated into the
+configuration more than once.
+
+As an example, if the configuration needed to support three garage
+doors using the ``gpio`` switch platform and the ``time_based`` cover
+platform, it could be constructed like this:
+
+.. code-block:: yaml
+
+    # In config.yaml
+    packages:
+      left_garage_door: !include
+        file: garage-door.yaml
+        vars:
+          door_name: Left
+          door_location: left
+          open_switch_gpio: 25
+          close_switch_gpio: 26
+      middle_garage_door: !include
+        file: garage-door.yaml
+        vars:
+          door_name: Middle
+          door_location: middle
+          open_switch_gpio: 27
+          close_switch_gpio: 29
+      right_garage_door: !include
+        file: garage-door.yaml
+        vars:
+          door_name: Right
+          door_location: right
+          open_switch_gpio: 15
+          close_switch_gpio: 18
+
+
+.. code-block:: yaml
+
+    # In garage-door.yaml
+    switch:
+      - id: open_${door_location}_door_switch
+        name: ${door_name} Garage Door Open Switch
+        platform: gpio
+        pin: ${open_switch_gpio}
+
+      - id: close_${door_location}_door_switch
+        name: ${door_name} Garage Door Close Switch
+        platform: gpio
+        pin: ${close_switch_gpio}
+
+    cover:
+      - platform: time_based
+        name: ${door_name} Garage Door
+
+        open_action:
+          - switch.turn_on: open_${door_location}_door_switch
+        open_duration: 2.1min
+
+        close_action:
+          - switch.turn_on: close_${door_location}_door_switch
+        close_duration: 2min
+
+        stop_action:
+          - switch.turn_off: open_${door_location}_door_switch
+          - switch.turn_off: close_${door_location}_door_switch
 
 
 See Also

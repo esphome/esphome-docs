@@ -88,6 +88,7 @@ Configuration variables:
 ************************
 
 - **update_interval** (*Optional*, :ref:`config-time`): Delay between data requests.
+- **address** (*Optional*, int): Address to use, defaults to ``0x80``.
 
 Sensor
 ------
@@ -227,6 +228,136 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
+
+Control BMS
+-----------
+At this moment Daly sensor platform don't suppport controlling you BMS, but you can make some stuff using uart.write
+
+First you need to setup binary sensors for charging and disharging MOS  
+  
+.. code-block:: yaml  
+
+    
+    binary_sensor:
+      - platform: daly_bms
+        charging_mos_enabled:
+          name: "Daly Charging MOS"
+          id: bin_daly_chg_mos # binary MOS sensor must have ID to use with switch
+          internal: True # but you can make it internal to avoid duplication
+        discharging_mos_enabled:
+          name: "Daly Discharging MOS"
+          id: bin_daly_dischg_mos # binary MOS sensor must have ID to use with switch
+          internal: True # but you can make it internal to avoid duplication
+
+Then you can add switches  
+  
+.. code-block:: yaml  
+
+    
+    switch:
+      - platform: template
+        name: "Daly Charging MOS"
+        lambda: |-
+          if (id(bin_daly_chg_mos).state) {
+            return true;
+          } else {
+            return false;
+          }
+        turn_on_action:
+          - uart.write:
+              data: [0xA5, 0x40, 0xDA, 0x08, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC8]
+          - logger.log: 
+              format: "Send cmd to Daly: Set charge MOS on"
+        turn_off_action:
+          - uart.write:
+              data: [0xA5, 0x40, 0xDA, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC7]
+          - logger.log: 
+              format: "Send cmd to Daly: Set charge MOS off"
+
+      - platform: template
+        name: "Daly Discharging MOS"
+        lambda: |-
+          if (id(bin_daly_dischg_mos).state) {
+            return true;
+          } else {
+            return false;
+          }
+        turn_on_action:
+          - uart.write:
+              data: [0xA5, 0x40, 0xD9, 0x08, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC7]
+          - logger.log: 
+              format: "Send cmd to Daly: Set discharge MOS on"
+        turn_off_action:
+          - uart.write:
+              data: [0xA5, 0x40, 0xD9, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC6]
+          - logger.log: 
+              format: "Send cmd to Daly: Set discharge MOS off"
+
+
+Also you can add select to change battery level
+  
+.. code-block:: yaml  
+
+    
+    select:
+      - platform: template
+        name: "Daly Battery Level setup"
+        optimistic: True
+        options:
+          - 100%
+          - 75%
+          - 50%
+          - 25%
+          - 0%
+        initial_option: 100%
+        set_action:
+          then:
+            - if:
+                condition:
+                  lambda: 'return x == "100%";'
+                then:
+                  - uart.write:
+                      data: [0xA5, 0x40, 0x21, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xE8, 0xF9]
+                  - logger.log: 
+                      format: "Send cmd to Daly: Set SOC to 100%"
+                else:
+                  - if:
+                      condition:
+                        lambda: 'return x == "75%";'
+                      then:
+                        - uart.write:
+                            data: [0xA5, 0x40, 0x21, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xEE, 0xFE]
+                        - logger.log: 
+                            format: "Send cmd to Daly: Set SOC to 75%"
+                      else:
+                        - if:
+                            condition:
+                              lambda: 'return x == "50%";'
+                            then:
+                              - uart.write:
+                                  data: [0xA5, 0x40, 0x21, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xF4, 0x03]
+                              - logger.log: 
+                                  format: "Send cmd to Daly: Set SOC to 50%"
+                            else:
+                              - if:
+                                  condition:
+                                    lambda: 'return x == "25%";'
+                                  then:
+                                    - uart.write:
+                                        data: [0xA5, 0x40, 0x21, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFA, 0x08]
+                                    - logger.log: 
+                                        format: "Send cmd to Daly: Set SOC to 25%"
+                                  else:
+                                    - if:
+                                        condition:
+                                          lambda: 'return x == "0%";'
+                                        then:
+                                          - uart.write:
+                                              data: [0xA5, 0x40, 0x21, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0E]
+                                          - logger.log: 
+                                              format: "Send cmd to Daly: Set SOC to 0%"
+                                              
+                                                
 UART Connection
 ---------------
 
@@ -237,6 +368,19 @@ Connect RX from BMS to TX in ESP board and TX from BMS to RX in ESP board
     :width: 100.0%
 
     Uart Pinout.
+    
+**3.3v Warning:** some BMS 3.3v cant source large currents and may not work to properly power the ESP. If you are having WIFI connection issues or similar, try a different power source. There is 12-15v available on the Daly connector which via a proper step-down converter can properly power the ESP.
+
+On the ESP32 (untested on ESP8266) if you are having missing data (such as Temperature 1/2), it may be due to UART buffer size.
+Add the following to your configuration to increase the buffer from the default 256 to 512.
+
+.. code-block:: 
+
+    uart: 
+      ...
+      rx_buffer_size: 512
+
+
 
 See Also
 --------

@@ -63,7 +63,7 @@ Configuration variables:
   messages. Should not contain trailing slash. Defaults to
   ``<APP_NAME>``.
 - **log_topic** (*Optional*, :ref:`mqtt-message`): The topic to send MQTT log
-  messages to.
+  messages to. Use ``null`` if you want to disable sending logs to MQTT.
 
   The ``log_topic`` has an additional configuration option:
 
@@ -83,7 +83,7 @@ Configuration variables:
 - **skip_cert_cn_check** (*Optional*, bool): Only with ``esp-idf``. Don't verify if the common name in the server certificate matches the value of ``broker``.
 - **idf_send_async** (*Optional*, bool): Only with ``esp-idf``. If true publishing the message happens from the internal mqtt task. The client only enqueues the message. Defaults to ``false``.
   The advantage of asyncronous publishing is that it doesn't block the esphome main thread. The disadvantage is a delay (up to 1-2 seconds) until the messages are actually sent out.
-  Set this to true if ypi send large amounts of of data over mqtt.
+  Set this to true if you send large amounts of of data over mqtt.
 - **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   MQTT connection exists. Can be disabled by setting this to ``0s``. Defaults to ``15min``.
 - **keepalive** (*Optional*, :ref:`config-time`): The time
@@ -149,7 +149,6 @@ discovery in your Home Assistant configuration with the following:
     # Example Home Assistant configuration.yaml entry
     mqtt:
       broker: ...
-      discovery: true
 
 And that should already be it 🎉 All devices defined through ESPHome should show up automatically
 in the entities section of Home Assistant.
@@ -166,13 +165,13 @@ retained messages for you:
 
 .. code-block:: bash
 
-    esphome configuration.yaml clean-mqtt
+    esphome clean-mqtt configuration.yaml
 
 With Docker:
 
 .. code-block:: bash
 
-    docker run --rm -v "${PWD}":/config -it esphome/esphome clean-mqtt configuration.yaml
+    docker run --rm -v "${PWD}":/config -it ghcr.io/esphome/esphome clean-mqtt configuration.yaml
 
 This will remove all retained messages with the topic
 ``<DISCOVERY_PREFIX>/+/NODE_NAME/#``. If you want to purge on another
@@ -275,8 +274,6 @@ then run the ``mqtt-fingerprint`` script of ESPHome to get the certificate:
       ssl_fingerprints:
         - a502ff13999f8b398ef1834f1123650b3236fc07
 
-.. _config-mqtt-component:
-
 
 .. _mqtt-tls-idf:
 
@@ -290,14 +287,29 @@ You have to download the server CA certficiate in PEM format and add it to ``cer
 Usually these are .crt files and you can open them with any text editor.
 Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 8883 for TLS connections.
 
+.. warning::
+
+    MbedTLS, the library that handles TLS for the esp-idf, doesn't validate wildcard certificates.
+
+    The Common Name check only works if the CN is explicitly reported in the certificate.
+
+    - \*.example.com -> Fail
+    - mqtt.example.com -> Success
+
+    If a secure connection is necessary for your device, you really want to set:
+
+    .. code-block:: yaml
+
+        skip_cert_cn_check: false
+
 .. code-block:: yaml
 
     mqtt:
       broker: test.mymqtt.local
       port: 8883
-      discovery: true
       discovery_prefix: ${mqtt_prefix}/homeassistant
       log_topic: ${mqtt_prefix}/logs
+      # Evaluate carefully skip_cert_cn_check
       skip_cert_cn_check: true
       idf_send_async: false
       certificate_authority: |
@@ -326,6 +338,7 @@ Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 
         m/XriWr/Cq4h/JfB7NTsezVslgkBaoU=
         -----END CERTIFICATE-----
 
+.. _config-mqtt-component:
 
 MQTT Component Base Configuration
 ---------------------------------
@@ -338,7 +351,6 @@ MQTT can have some overrides for specific options.
     name: "Component Name"
     # Optional variables:
     retain: true
-    discovery: true
     availability:
       topic: livingroom/status
       payload_available: online

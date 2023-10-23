@@ -7,5 +7,8 @@
 
 ## Checklist:
 
-  - [ ] Branch: `next` is for changes and new documentation that will go public with the next ESPHome release. Fixes, changes and adjustments for the current release should be created against `current`.
+  - [ ] I am merging into `next` because this is new documentation that has a matching pull-request in [esphome](https://github.com/esphome/esphome) as linked above.  
+    or
+  - [ ] I am merging into `current` because this is a fix, change and/or adjustment in the current documentation and is not for a new component or feature.
+
   - [ ] Link added in `/index.rst` when creating new documents for new components or cookbook.

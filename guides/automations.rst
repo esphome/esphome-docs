@@ -273,8 +273,9 @@ global variables can be used to store the state of a garage door.
       # Example for global string variable
       - id: my_global_string
         type: std::string
-        restore_value: no  # Strings cannot be saved/restored
-        initial_value: '"hello world"'
+        restore_value: yes
+        max_restore_data_length: 24
+        initial_value: '"Global value is"'
 
    # In an automation
    on_press:
@@ -287,7 +288,7 @@ global variables can be used to store the state of a garage door.
              id(my_global_int) += 10;
            }
 
-           ESP_LOGD(TAG, "Global value is: %d", id(my_global_int));
+           ESP_LOGD(TAG, "%s: %d", id(my_global_string).c_str(), id(my_global_int));
 
 Configuration variables:
 
@@ -298,6 +299,8 @@ Configuration variables:
 - **restore_value** (*Optional*, boolean): Whether to try to restore the state on boot up.
   Be careful: on the ESP8266, you only have a total of 96 bytes available for this! Defaults to ``no``.
   This will use storage in "RTC memory", so it won't survive a power-cycle unless you use the ``esp8266_restore_from_flash`` option to save to flash. See :doc:`esp8266_restore_from_flash </components/esphome>` for details.
+- **max_restore_data_length** (*Optional*, integer): Only applies to variables of type ``std::string``.  ESPHome will allocate enough space for this many characters,
+  plus single character of overhead. Strings longer than this will not be saved. The max value of this variable is 254 characters, and the default is 63 characters.
 - **initial_value** (*Optional*, string): The value with which to initialize this variable if the state
   can not be restored or if state restoration is not enabled. This needs to be wrapped in quotes! Defaults to
   the C++ default value for this type (for example ``0`` for integers).
@@ -332,12 +335,12 @@ All Triggers
 - :ref:`time.on_time <time-on_time>` / - :ref:`time.on_time_sync <time-on_time_sync>`
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>` /
   :ref:`mqtt.on_connect / mqtt.on_disconnect <mqtt-on_connect_disconnect>`
-- :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
+- :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`pn532.on_tag_removed <pn532-on_tag_removed>` / :ref:`rc522.on_tag <rc522-on_tag>`
+  / :ref:`rc522.on_tag_removed <rc522-on_tag_removed>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
 - :ref:`interval.interval <interval>`
 - :ref:`switch.on_turn_on / switch.on_turn_off <switch-on_turn_on_off_trigger>`
 - :doc:`remote_receiver.on_* </components/remote_receiver>`
 - :doc:`sun.on_sunrise </components/sun>` / :doc:`sun.on_sunset </components/sun>`
-- :ref:`switch.on_turn_on/off <switch-on_turn_on_off_trigger>`
 - :ref:`sim800l.on_sms_received <sim800l-on_sms_received>`
 - :ref:`rf_bridge.on_code_received <rf_bridge-on_code_received>`
 - :ref:`ota.on_begin <ota-on_begin>` / :ref:`ota.on_progress <ota-on_progress>` /
@@ -353,6 +356,7 @@ All Actions
 - :ref:`lambda <lambda_action>`
 - :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_until <wait_until_action>`
 - :ref:`component.update <component-update_action>`
+- :ref:`component.suspend <component-suspend_action>` / :ref:`component.resume <component-resume_action>`
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`homeassistant.service <api-homeassistant_service_action>`
@@ -374,6 +378,14 @@ All Actions
 - :ref:`stepper.set_target <stepper-set_target_action>` / :ref:`stepper.report_position <stepper-report_position_action>`
   / :ref:`stepper.set_speed <stepper-set_speed_action>`
 - :ref:`servo.write <servo-write_action>` / :ref:`servo.detach <servo-detach_action>`
+- :ref:`sprinkler.start_full_cycle <sprinkler-controller-action_start_full_cycle>` /   :ref:`sprinkler.start_from_queue <sprinkler-controller-action_start_from_queue>` /
+  :ref:`sprinkler.start_single_valve <sprinkler-controller-action_start_single_valve>` /   :ref:`sprinkler.shutdown <sprinkler-controller-action_shutdown>` /
+  :ref:`sprinkler.next_valve <sprinkler-controller-action_next_valve>` /   :ref:`sprinkler.previous_valve <sprinkler-controller-action_previous_valve>` /
+  :ref:`sprinkler.pause <sprinkler-controller-action_pause>` /   :ref:`sprinkler.resume <sprinkler-controller-action_resume>` /
+  :ref:`sprinkler.resume_or_start_full_cycle <sprinkler-controller-action_resume_or_start_full_cycle>` /   :ref:`sprinkler.queue_valve <sprinkler-controller-action_queue_valve>` /
+  :ref:`sprinkler.clear_queued_valves <sprinkler-controller-action_clear_queued_valves>` /   :ref:`sprinkler.set_multiplier <sprinkler-controller-action_set_multiplier>` /
+  :ref:`sprinkler.set_repeat <sprinkler-controller-action_set_repeat>` /   :ref:`sprinkler.set_divider <sprinkler-controller-action_set_divider>` /
+  :ref:`sprinkler.set_valve_run_duration <sprinkler-controller-action_set_valve_run_duration>`
 - :ref:`globals.set <globals-set_action>`
 - :ref:`remote_transmitter.transmit_* <remote_transmitter-transmit_action>`
 - :ref:`climate.control <climate-control_action>`
@@ -388,12 +400,14 @@ All Actions
 - :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
+- :ref:`pcf85063.read_time <pcf85063-read_time_action>` / :ref:`pcf85063.write_time <pcf85063-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
 - :ref:`pzemac.reset_energy <pzemac-reset_energy_action>`
 - :ref:`number.set <number-set_action>` / :ref:`number.to_min <number-to-min_action>` / :ref:`number.to_max <number-to-max_action>` / :ref:`number.decrement <number-decrement_action>` / :ref:`number.increment <number-increment_action>` / :ref:`number.operation <number-operation_action>`
 - :ref:`select.set <select-set_action>` / :ref:`select.set_index <select-set_index_action>` / :ref:`select.first <select-first_action>` / :ref:`select.last <select-last_action>` / :ref:`select.previous <select-previous_action>`  / :ref:`select.next <select-next_action>`  / :ref:`select.operation <select-operation_action>`
 - :ref:`media_player.play <media_player-play>` / :ref:`media_player.pause <media_player-pause>` / :ref:`media_player.stop <media_player-stop>` / :ref:`media_player.toggle <media_player-toggle>`
   / :ref:`media_player.volume_up <media_player-volume_up>` / :ref:`media_player.volume_down <media_player-volume_down>` / :ref:`media_player.volume_set <media_player-volume_set>`
+- :ref:`ble_client.ble_write <ble_client-ble_write_action>`
 
 .. _config-condition:
 
@@ -401,7 +415,7 @@ All Conditions
 --------------
 
 - :ref:`lambda <lambda_condition>`
-- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`not <not_condition>`
+- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`xor <xor_condition>` / :ref:`not <not_condition>` 
 - :ref:`for <for_condition>`
 - :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` / :ref:`binary_sensor.is_off <binary_sensor-is_off_condition>`
 - :ref:`switch.is_on <switch-is_on_condition>` / :ref:`switch.is_off <switch-is_off_condition>`
@@ -487,10 +501,11 @@ and can be used to create conditional flow in actions.
 
 .. _and_condition:
 .. _or_condition:
+.. _xor_condition:
 .. _not_condition:
 
-``and`` / ``or`` / ``not`` Condition
-------------------------------------
+``and`` / ``or`` / ``xor`` / ``not`` Condition
+----------------------------------------------
 
 Check a combination of conditions
 
@@ -500,7 +515,7 @@ Check a combination of conditions
       then:
         - if:
             condition:
-              # Same syntax for and
+              # Same syntax for `and` as well as `xor` conditions
               or:
                 - binary_sensor.is_on: some_binary_sensor
                 - binary_sensor.is_on: other_binary_sensor
@@ -652,6 +667,64 @@ compile error.
         # The same as:
         - lambda: 'id(my_component).update();'
 
+.. _component-suspend_action:
+
+``component.suspend`` Action
+----------------------------
+
+Using this action you can manually call the ``stop_poller()`` method of a component.
+
+After this action the component will stop being refreshed.
+
+While the poller is suspendend, it's still possible to trigger on-demand updates by
+using :ref:`component.update <component-update_action>`
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.suspend: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).stop_poller();'
+
+.. _component-resume_action:
+
+``component.resume`` Action
+---------------------------
+
+Using this action you can manually call the ``start_poller()`` method of a component.
+
+After this action the component will refresh at the original update_interval rate
+
+This will allow the component to resume automatic update at the defined interval.
+
+This action also allows to change the update interval, calling it without suspend, 
+replace the poller directly.
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.resume: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).start_poller();'
+
+    # Change the poller interval
+    on_...:
+      then:
+        - component.resume: 
+            id: my_component
+            update_interval: 15s
+
+
 .. _globals-set_action:
 
 ``globals.set`` Action
@@ -705,8 +778,44 @@ Configuration variables:
 
 - **max_runs** (*Optional*, int): Allows limiting the maxiumun number of runs when using script
   modes ``queued`` and ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
+- **parameters** (*Optional*, :ref:`Script Parameters <script-parameters>`): A script can define one
+  or more parameters that must be provided in order to execute. All parameters defined here are
+  mandatory and must be given when calling the script.
 - **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
+
+.. _script-parameters:
+
+``Script Parameters``
+---------------------
+
+Scripts can be defined with parameters. The arguments given when calling the script can be used within
+the script's lambda actions. To define the parameters, add the parameter names under `parameters:` key
+and specify the data type for that parameter.
+
+Supported data types:
+
+* `bool`: A boolean true/false. C++ type: `bool`
+* `int`: An integer. C++ type: `int32_t`
+* `float`: A floating point number. C++ type: `float`
+* `string`: A string. C++ type: `std::string`
+
+Each of these also exist in array form:
+
+* `bool[]`: An array of boolean values. C++ type: `std::vector<bool>`
+* Same for other types.
+
+.. code-block:: yaml
+
+    script:
+      - id: blink_light
+        parameters:
+          delay_ms: int
+        then:
+          - light.turn_on: status_light
+          # The param delay_ms is accessible using a lambda
+          - delay: !lambda return delay_ms;
+          - light.turn_off: status_light
 
 .. _script-execute_action:
 
@@ -723,6 +832,17 @@ script was already running.
       then:
         - script.execute: my_script
 
+        # Calling a non-parameterised script in a lambda
+        - lambda: id(my_script).execute();
+
+        # Calling a script with parameters
+        - script.execute:
+            id: blink_light
+            delay_ms: 500
+
+        # Calling a parameterised script inside a lambda
+        - lambda: id(blink_light)->execute(1000);
+
 .. _script-stop_action:
 
 ``script.stop`` Action
@@ -730,7 +850,7 @@ script was already running.
 
 This action allows you to stop a given script during execution. If the
 script is not running, it does nothing.
-This is useful right now if your want to stop a script that contains a
+This is useful if you want to stop a script that contains a
 ``delay`` action, ``wait_until`` action, or is inside a ``while`` loop, etc.
 You can also call this action from the script itself, and any subsequent action
 will not be executed.
@@ -749,6 +869,12 @@ will not be executed.
     on_...:
       then:
         - script.stop: my_script
+
+or as lambda
+
+.. code-block:: yaml
+
+    lambda: 'id(my_script).stop();'
 
 .. _script-wait_action:
 
@@ -776,6 +902,8 @@ of the script are running in parallel, this will block until all of them have te
         - script.execute: my_script
         - script.wait: my_script
 
+This can't be used in a lambda as it would block all functioning of the device.  The script wouldn't even get to run.
+
 .. _script-is_running_condition:
 
 ``script.is_running`` Condition
@@ -783,7 +911,7 @@ of the script are running in parallel, this will block until all of them have te
 
 This :ref:`condition <config-condition>` allows you to check if a given script is running.
 In case scripts are run in ``parallel``, this condition only tells you if at least one script
-of the given id is running, not how many.
+of the given id is running, not how many. Not designed for use with :ref:`while <while_action>`, instead try :ref:`script.wait <script-wait_action>`.
 
 .. code-block:: yaml
 
@@ -793,6 +921,15 @@ of the given id is running, not how many.
           - script.is_running: my_script
         then:
           - logger.log: Script is running!
+
+or as lambda
+
+.. code-block:: yaml
+
+    lambda: |-
+        if (id(my_script).is_running()) {
+            ESP_LOGI("main", "Script is running!");
+        }
 
 .. _for_condition:
 

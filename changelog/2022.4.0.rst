@@ -56,7 +56,7 @@ Google Fonts
 
 :ghuser:`OttoWinter` has given everyone a way to use Google Fonts in their YAML and displays without having to manually download
 TTF font files. The example below will automatically download and cache the Roboto TTF font file required so you can utilise it.
-See the :ref:`display-static_text` documentation for more details.
+See the :ref:`display-fonts` documentation for more details.
 
 .. code-block:: yaml
 

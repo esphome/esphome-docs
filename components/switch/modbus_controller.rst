@@ -4,7 +4,7 @@ Modbus Controller Switch
 .. seo::
     :description: Instructions for setting up a modbus_controller device sensor.
 
-The ``modbus_controller`` sensor platform creates a sensor from a modbus_controller component
+The ``modbus_controller`` switch platform creates a switch from a modbus_controller component
 and requires :doc:`/components/modbus_controller` to be configured.
 
 
@@ -13,6 +13,9 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
+- **restore_mode** (*Optional*): See :ref:`Switch <config-switch>`, since this configuration variable is inherited. The default value for this setting is ``DISABLED`` (recommended).
+  ``DISABLED`` leaves the initial state up to the hardware: usually the state lives in the device and ESPHome does not need to remember it. The switch frontend will show an undetermined 
+  state until the real state is retrieved from the device on the next refresh. Use any other setting if a reboot of your ESPHome device is tied to a reboot of the modbus device.
 - **register_type** (**Required**): type of the modbus register.
 - **address** (**Required**, int): start address of the first register in a range
 - **offset** (*Optional*, int): not required in most cases

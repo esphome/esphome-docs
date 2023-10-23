@@ -21,7 +21,7 @@ CS to your set ``cs_pin`` and finally GND to GND.
 
 You can even daisy-chain multiple MAX7219s by connecting the DOUT of the previous chip in the chain to the
 next DIN. With more than ~3 chips the 3.3V will probably not be enough, so then you will have to potentially
-use a logic level converted.
+use a logic level converter.
 
 .. code-block:: yaml
 
@@ -68,6 +68,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **num_chip_lines** (*Optional*, int): Number of lines if you want to use the displays in Multiline Mode. Defaults to ``1`` Example: https://github.com/esphome/esphome/pull/1622#issue-836179156
 - **chip_lines_style** (*Optional*): How are the lines in Multiline Mode connected? Possible values are ``zigzag`` and ``snake``. Defaults to ``snake``
+- **flip_x** (*Optional*, boolean): Flip the horizontal axis on the screen. Defaults to ``false``.
 
 .. _display-max7219digit_lambda:
 

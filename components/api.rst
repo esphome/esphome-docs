@@ -16,20 +16,18 @@ the device manually by choosing "ESPHome" from the integration overview and ente
 "<NODE_NAME>.local" or the IP address of the unit in the "Host" field.
 
 The ESPHome native API is based on a custom TCP protocol using protocol buffers. You can find
-the protocol data structure definitions here: https://github.com/esphome/esphome/blob/dev/esphome/components/api/api.proto
+the protocol data structure definitions here: `api.proto <https://github.com/esphome/esphome/blob/dev/esphome/components/api/api.proto>`__
 A Python library that implements this protocol is `aioesphomeapi <https://github.com/esphome/aioesphomeapi>`__.
 
 .. code-block:: yaml
 
     # Example configuration entry
     api:
-      password: !secret api_password
 
 Configuration variables:
 ------------------------
 
 - **port** (*Optional*, int): The port to run the API Server on. Defaults to ``6053``.
-- **password** (*Optional*, string): The password to protect the API Server with. Defaults to no password.
 - **encryption** (*Optional*): Enable transport encryption of the API layer.
 
   - **key** (**Required**, string): The pre-shared key for the encryption. This is a 32-byte base64 encoded string.
@@ -37,7 +35,7 @@ Configuration variables:
 
     .. raw:: html
 
-        <input type="text" id="api-key" onclick="this.focus();this.select()" style="width: 240px;" readonly="readonly">
+        <input type="text" id="api-key" onclick="this.focus();this.select()" style="width: 350px; max-width: 75vw;" readonly="readonly">
         <script>
           // https://stackoverflow.com/a/62362724
           function bytesArrToBase64(arr) {
@@ -68,6 +66,8 @@ Configuration variables:
   the ESP is connected to the network, when in fact it is not - only a full reboot fixes it.
   Can be disabled by setting this to ``0s``. Defaults to ``15min``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **password** (*Optional*, **Deprecated**, string): The password to protect the API Server with. Defaults to no password.
+  It is recommended to use the ``encryption`` -> ``key`` above instead of the the ``password``.
 
 .. _api-homeassistant_service_action:
 

@@ -45,8 +45,8 @@ Configuration variables:
 
 .. _dac7678-output:
 
-DAC Output
-----------
+DAC7678 Output
+--------------
 
 The DAC7678 output component exposes a DAC7678 DAC channel of a global
 :ref:`DAC7678 hub <dac7678-component>` as a float

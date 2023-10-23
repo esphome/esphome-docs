@@ -134,7 +134,8 @@ This example logs the value as parsed and the raw modbus bytes received for this
             ESP_LOGI("","Sensor properties: adress = 0x%X, offset = 0x%X value type=%d",item->start_address,item->offset,item->sensor_value_type);
             int i=0 ;
             for (auto val : data) {
-              ESP_LOGI("","data[%d]=0x%02X (%d)",i++ ,data[i],data[i]);
+              ESP_LOGI("","data[%d]=0x%02X (%d)",i,data[i],data[i]);
+              i++;
             }
             return x ;
 
@@ -270,5 +271,5 @@ See Also
 - :doc:`/components/binary_sensor/modbus_controller`
 - :doc:`/components/text_sensor/modbus_controller`
 - :doc:`/components/switch/modbus_controller`
-- :doc:`EPEVER MPPT Solar Charge Controller Tracer-AN Series</cookbook/tracer-an>`
+- `EPEVER MPPT Solar Charge Controller (Tracer-AN Series) <https://devices.esphome.io/devices/epever_mptt_tracer_an>`__
 - :ghedit:`Edit`

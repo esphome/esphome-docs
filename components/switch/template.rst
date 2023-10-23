@@ -43,8 +43,6 @@ Configuration variables:
   be performed when the remote (like Home Assistant's frontend) requests the switch to be turned on.
 - **turn_off_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests the switch to be turned off.
-- **restore_state** (*Optional*, boolean): Sets whether ESPHome should attempt to restore the
-  state on boot-up and call the turn on/off actions with the recovered values. Defaults to ``no``.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
   any command sent to the template switch will immediately update the reported state.
   Defaults to ``false``.
@@ -89,7 +87,7 @@ Configuration options:
 
 .. note::
 
-    This action can also be written in lambdas, the parameter of the `public_state` method denotes if
+    This action can also be written in lambdas, the parameter of the `publish_state` method denotes if
     the switch is currently on or off:
 
     .. code-block:: cpp

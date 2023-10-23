@@ -27,6 +27,13 @@ you can always override it.
 
 Configuration variables:
 
+- **name** (**Required**, string): The name for the binary sensor.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the binary sensor to use that name, you can set ``name: None``.
+
 - **device_class** (*Optional*, string): The device class for the
   sensor. See https://developers.home-assistant.io/docs/core/entity/binary-sensor/#available-device-classes
   for a list of available options.
@@ -60,6 +67,8 @@ Advanced options:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **publish_initial_state** (*Optional*, boolean): If true, then the sensor will publish its initial state at boot or when
+  HA first connects, depending on the platform.  This means that any applicable triggers will be run. Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Requires Home Assistant 2021.11 or newer.
@@ -85,7 +94,11 @@ of these entries matters!)
           - invert:
           - delayed_on: 100ms
           - delayed_off: 100ms
-          - delayed_on_off: 100ms
+          # Templated, delays for 1s (1000ms) only if a reed switch is active
+          - delayed_on_off: !lambda "if (id(reed_switch).state) return 1000; else return 0;"
+          - delayed_on_off:
+              time_on: 10s
+              time_off: !lambda "if (id(reed_switch).state) return 1000; else return 0;"
           - autorepeat:
             - delay: 1s
               time_off: 100ms
@@ -108,25 +121,63 @@ Simple filter that just inverts every value from the binary sensor.
 ``delayed_on``
 **************
 
-(**Required**, :ref:`config-time`): When a signal ON is received, wait for the specified time period until publishing
-an ON state. If an OFF value is received while waiting, the ON action is discarded. Or in other words:
+(**Required**, time, :ref:`templatable <config-templatable>`): When a signal ON is received,
+wait for the specified time period until publishing an ON state. If an OFF value is received
+while waiting, the ON action is discarded. Or in other words:
 Only send an ON value if the binary sensor has stayed ON for at least the specified time period.
+When using a lambda call, you should return the delay value in milliseconds.
 **Useful for debouncing push buttons**.
 
 ``delayed_off``
 ***************
 
-(**Required**, :ref:`config-time`): When a signal OFF is received, wait for the specified time period until publishing
-an OFF state. If an ON value is received while waiting, the OFF action is discarded. Or in other words:
+(**Required**, time, :ref:`templatable <config-templatable>`): When a signal OFF is received,
+wait for the specified time period until publishing an OFF state. If an ON value is received
+while waiting, the OFF action is discarded. Or in other words:
 Only send an OFF value if the binary sensor has stayed OFF for at least the specified time period.
+When using a lambda call, you should return the delay value in milliseconds.
 **Useful for debouncing push buttons**.
 
 ``delayed_on_off``
 ******************
 
-(**Required**, :ref:`config-time`): Only send an ON or OFF value if the binary sensor has stayed in the same state
-for at least the specified time period.
+Only send an ON or OFF value if the binary sensor has stayed in the same state for at least the specified time period.
+
+This filter uses two time delays: on and off.
+
+If the delays are equal, then you can configure the filter in short form by passing the time parameter:
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ...
+        # ...
+        filters:
+          - delayed_on_off: 1s
+
+(**Required**, time, :ref:`templatable <config-templatable>`): ON and OFF delay.
+When using a lambda call, you should return the delay value in milliseconds.
 **Useful for debouncing binary switches**.
+
+If the delays are different, then you need to pass them as in the example below:
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ...
+        # ...
+        filters:
+          - delayed_on_off:
+              time_on: 10s
+              time_off: 20s
+
+Configuration variables:
+
+- **time_on** (**Required**, time, :ref:`templatable <config-templatable>`): ON delay.
+- **time_off** (**Required**, time, :ref:`templatable <config-templatable>`): OFF delay.
+
+When using a lambda call, you should return the delay value in milliseconds.
+
 
 ``autorepeat``
 **************

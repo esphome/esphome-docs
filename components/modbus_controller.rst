@@ -53,8 +53,16 @@ Configuration variables:
 - **address** (**Required**, :ref:`config-id`): The modbus address of the device
   Specify the modbus device address of the.
 
-- **command_throttle** (*Optional*, int): minimum time in milliseconds between 2 requests to the device. Default is 0ms
+- **command_throttle** (*Optional*, :ref:`config-time`): minimum time in between 2 requests to the device. Default is 0ms
   Because some modbus devices limit the rate of requests the interval between sending requests to the device can be modified.
+
+- **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
+  Defaults to 60 seconds.
+
+- **offline_skip_updates** (*Optional*, integer): When a controller doesn't respond to a command, it is
+  marked as offline, you can specify how many updates will be skipped while it is offline. If using a bus with multiple
+  controllers, this avoids waiting for timeouts allowing to read other controllers in the same bus. When the controller
+  responds to a command, it'll be marked online again.
 
 
 Example
@@ -375,7 +383,7 @@ The response is mapped to the sensor based on register_count and offset in bytes
 Note
 ----
 
-Write support is only implemented for switches.
+Write support is only implemented for switches and selects.
 However the C++ code provides the required API to write to a modbus device.
 
 These methods can be called from a lambda.
@@ -526,6 +534,6 @@ See Also
 - :doc:`/components/switch/modbus_controller`
 - :doc:`/components/number/modbus_controller`
 - :doc:`/components/output/modbus_controller`
-- :doc:`EPEVER MPPT Solar Charge Controller Tracer-AN Series</cookbook/tracer-an>`
+- `EPEVER MPPT Solar Charge Controller (Tracer-AN Series) <https://devices.esphome.io/devices/epever_mptt_tracer_an>`__
 - `Modbus RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
 - :ghedit:`Edit`

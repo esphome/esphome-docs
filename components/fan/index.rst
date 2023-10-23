@@ -27,15 +27,21 @@ Base Fan Configuration
 Configuration variables:
 
 - **name** (**Required**, string): The name of the fan.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the fan to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the fan in the frontend.
 - **restore_mode** (*Optional*): Control how the fan attempts to restore state on boot.
 
     - ``NO_RESTORE`` - Don't restore any state.
-    - ``RESTORE_DEFAULT_OFF`` - Attempt to restore state and default to OFF if not possible to restore (default).
+    - ``RESTORE_DEFAULT_OFF`` - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
     - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
     - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
-    - ``ALWAYS_OFF`` - Always initialize the fan as OFF on bootup.
+    - ``ALWAYS_OFF`` (Default) - Always initialize the fan as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the fan as ON on bootup.
 
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
@@ -131,14 +137,22 @@ Configuration options:
 ``fan.cycle_speed`` Action
 --------------------------
 
-Increments through speed levels of the fan with the given ID when executed. If the fan's speed level is set to maximum when executed, turns fan off.
+Increments through speed levels of the fan with the given ID when executed. If the fan's speed level is set to maximum when executed, fan will cycle off unless ``off_speed_cycle`` is set to ``false``.
 
 .. code-block:: yaml
 
     on_...:
       then:
-        - fan.cycle_speed: fan_1
+        - fan.cycle_speed:
+            id: fan_1
+            off_speed_cycle: true
+        # Shorthand:
+        - fan.cycle_speed:: fan_1
 
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the fan.
+- **off_speed_cycle** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Determines if the fan will cycle off after cycling though its highest speed. Can be ``true`` or ``false``. If ``false`` fan will cycle to its lowest speed instead of turning off.  Defaults to ``true``.
 
 .. _fan-is_on_condition:
 .. _fan-is_off_condition:

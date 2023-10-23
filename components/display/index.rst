@@ -24,6 +24,11 @@ using an API that is designed to
 - be simple and to be used without programming experience
 - but also be flexible enough to work with more complex tasks like displaying an analog clock.
 
+.. note::
+
+    Display hardware is complex and sometimes doesn't behave as expected. If you're having trouble with your display,
+    please see :ref:`troubleshooting` below.
+
 .. _display-engine:
 
 Display Rendering Engine
@@ -141,7 +146,7 @@ Additionally, you have access to two helper methods which will fetch the width a
 
 You can view the full API documentation for the rendering engine in the "API Reference" in the See Also section.
 
-.. _display-static_text:
+.. _display-fonts:
 
 Fonts
 *****
@@ -149,10 +154,11 @@ Fonts
 The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome.
 Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very
 specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf``) font file
-at **any** size! Granted the reason for it is actually not having to worry about the licensing of font files :)
+at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Portable_Compiled_Format>`_ and `BDF <https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`_ bitmap fonts! Granted the reason for it is
+actually not having to worry about the licensing of font files :)
 
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
-a ``.ttf`` file from somewhere on the internet and place it, for example,
+a ``.ttf``, ``.pcf``, or ``.bdf`` file from somewhere on the internet and place it, for example,
 inside a ``fonts`` folder next to your configuration file.
 
 Next, create a ``font:`` section in your configuration:
@@ -169,12 +175,22 @@ Next, create a ``font:`` section in your configuration:
         id: roboto
         size: 20
 
+      - file:
+          type: gfonts
+          family: Roboto
+          weight: 900
+        id: font2
+        size: 16
+
+      - file: "fonts/tom-thumb.bdf"
+        id: tomthumb
+
     display:
       # ...
 
 Configuration variables:
 
-- **file** (**Required**): The path (relative to where the .yaml file is) of the TrueType font
+- **file** (**Required**): The path (relative to where the .yaml file is) of the font
   file. You can use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
 
   - **type** (**Required**, string): Can be ``gfonts`` or ``local``.
@@ -200,12 +216,13 @@ Configuration variables:
 
     **Local Fonts**:
 
-  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType font file.
+  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType or bitmap font file.
 
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
   in your display code.
 - **size** (*Optional*, int): The size of the font in pt (not pixel!).
-  If you want to use the same font in different sizes, create two font objects. Defaults to ``20``.
+  If you want to use the same font in different sizes, create two font objects. Note: *size* is ignored
+  by bitmap fonts. Defaults to ``20``.
 - **glyphs** (*Optional*, list): A list of characters you plan to use. Only the characters you specify
   here will be compiled into the binary. Adjust this if you need some special characters or want to
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
@@ -216,10 +233,12 @@ Configuration variables:
 .. note::
 
     To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
-    to translate the TrueType files into an internal format. If you're running this as a Home Assistant
+    to translate the TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
     add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
     to install it using
-    ``pip install pillow``.
+    ``pip install "pillow>4.0.0,<10.0.0"``.
+
+.. _display-static_text:
 
 Drawing Static Text
 *******************
@@ -377,6 +396,62 @@ Displaying Time
 
 You can display current time using a time component. Please see the example :ref:`here <strftime>`.
 
+.. _clipping:
+
+Screen Clipping
+***************
+
+Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show 
+a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
+
+With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region 
+you can stop the clipping process with ``end_clipping();`` . You can nest as many ``start_clipping();`` as you want as long
+you end them as many times as well.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ...
+        # ...
+        id: my_binary_sensor
+    
+    color:
+      - name: my_red
+        red: 100%
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          if (id(my_binary_sensor).state) {
+            it.print(0, 0, id(my_font), "state: ON");
+          } else {
+            it.print(0, 0, id(my_font), "state: OFF");
+          }
+          // Shorthand:
+          it.start_clipping(40,0,140,20);
+          it.printf(0, 0, id(my_font), id(my_red), "State: %s", id(my_binary_sensor).state ? "ON" : "OFF");
+          it.end_clipping();
+
+After you started clipping you can manipulate the region with ``extend_clipping(left, top, right, bottom);`` 
+and ``shrink_clipping(left, top, right, bottom);`` within previous set clipping region.
+
+With ``get_clipping();`` you get a ``Rect`` object back with the latest set clipping region.
+
+.. code-block:: cpp 
+
+    class Rect {
+        int16_t x;  ///< X/Left coordinate
+        int16_t y;  ///< Y/Top coordinate
+        int16_t w;  ///< Width
+        int16_t h;  ///< Height
+        int16_t x2();  ///< Right coordinate
+        int16_t y2();  ///< bottom coordinate
+      };
+
+With ``is_clipping();`` tells you if clipping is activated.
+
+
 
 .. _config-color:
 
@@ -395,13 +470,36 @@ A ``color`` component exists for just this purpose:
         blue: 25%
         white: 0%
 
+Alternatively, you can use ``<color>_int`` to specify the color as an int value:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        red_int: 255
+        green_int: 51
+        blue_int: 64
+        white_int: 0
+
+Or, if you are more comforatble with hex values, you can use ``hex``:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        hex: FF3340
 
 Configuration variables:
 
 - **red** (*Optional*, percentage): The percentage of the red component. Defaults to ``100%``.
+- **red_int** (*Optional*, integer): The brightness of the red component on a scale of ``0`` to ``255``. Defaults to ``255``.
 - **green** (*Optional*, percentage): The percentage of the green component. Defaults to ``100%``.
+- **green_int** (*Optional*, integer): The brightness of the green component on a scale of ``0`` to ``255``. Defaults to ``255``.
 - **blue** (*Optional*, percentage): The percentage of the blue component. Defaults to ``100%``.
+- **blue_int** (*Optional*, integer): The brightness of the blue component on a scale of ``0`` to ``255``. Defaults to ``255``.
 - **white** (*Optional*, percentage): The percentage of the white component. Defaults to ``100%``.
+- **white_int** (*Optional*, integer): The brightness of the white component on a scale of ``0`` to ``255``. Defaults to ``255``.
+- **hex** (*Optional*, string): The color in hexadecimal representation. Defaults to ``FFFFFF``.
 
 RGB displays use red, green, and blue, while grayscale displays may use white.
 
@@ -410,7 +508,7 @@ RGB displays use red, green, and blue, while grayscale displays may use white.
 Graph Component
 ***************
 
-You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in 
+You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in
 memory at the time the sensor updates and will be lost when the device reboots.
 
 Examples:
@@ -472,6 +570,7 @@ Configuration variables:
 - **traces** (*Optional*): Use this to specify more than a single trace.
 
 Trace specific fields:
+
 - **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
 - **line_thickness** (*Optional*): Defaults to 3
 - **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
@@ -566,22 +665,37 @@ Use this component to store graphical images on the device, you can then draw th
         id: my_image
         resize: 100x100
 
+.. code-block:: yaml
+
+    image:
+      - file: mdi:alert-outline
+        id: alert
+        resize: 80x80
+
 Configuration variables:
 
-- **file** (**Required**, string): The path (relative to where the .yaml file is) of the image file.
+- **file** (**Required**, string):
+
+  - **Local files**: The path (relative to where the .yaml file is) of the image file.
+  - **Material Design Icons**: Specify the `Material Design Icon <https://pictogrammers.com/library/mdi/>`_
+    id in the format ``mdi:icon-name``, and that icon will automatically be downloaded and added to the configuration.
+  
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
 - **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
   and preserve the aspect ratio.
-- **type** (*Optional*): Specifies how to encode image internally. Defaults to ``BINARY``.
+- **type** (*Optional*): Specifies how to encode image internally. Defaults to ``BINARY`` for local images and ``TRANSPARENT_BINARY`` for MDIs.
 
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
-  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
-  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
-  - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
   - ``TRANSPARENT_BINARY``: One color, any pixel that is fully transparent will not be drawn, and any other pixel
     will be the on color. Uses 1 bit per pixel, 8 pixels per byte.
+  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
+  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+  - ``RGBA``: Full RGB color stored. Uses 4 bytes per pixel. Any pixel with an alpha value < 127 will not be drawn.
+
+- **use_transparency** (*Optional*): If set the alpha channel of the input image will be taken into account, and pixels with alpha < 127 will not be drawn. For image types without explicit alpha channel, the color (0, 0, 1) (very dark blue) will be mapped to black, to be able to store transparency information within the image. Explicitly transparent types (``TRANSPARENT_BINARY`` and ``RGBA``) default to ``True`` and cannot be set to ``False``; other types default to ``False``.
 
 - **dither** (*Optional*): Specifies which dither method used to process the image, only used in GRAYSCALE and BINARY type image. Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__ and `here <https://en.wikipedia.org/wiki/Dither>`__.
 
@@ -593,6 +707,9 @@ Configuration variables:
     To use images you will need to have the python ``pillow`` package installed.
     If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should already be
     installed. Otherwise you need to install it using ``pip install pillow``.
+    Additionally, if you want to use SVG images (including MDI images), you will additionally need to have the python ``cairosvg`` package installed.
+    If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should also already be
+    installed. Otherwise you need to install it using ``pip install cairosvg``.
 
 And then later in code:
 
@@ -604,6 +721,25 @@ And then later in code:
         lambda: |-
           // Draw the image my_image at position [x=0,y=0]
           it.image(0, 0, id(my_image));
+
+By default, ESPHome will *align* the image at the top left. That means if you enter the coordinates
+``[0,10]`` for your image, the top left of the image will be at ``[0,10]``. If you want to draw some
+image at the right side of the display, it is however sometimes useful to choose a different **image alignment**.
+When you enter ``[0,10]`` you're really telling ESPHome that it should position the **anchor point** of the image
+at ``[0,10]``. When using a different alignment, like ``TOP_RIGHT``, the image will be positioned left of the anchor
+pointed, so that, as the name implies, the anchor point is a the *top right* corner of the image.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          // Aligned on left by default
+          it.image(0, 0, id(my_image));
+
+          // Aligned on right edge
+          it.image(it.get_width(), 0, id(my_image), ImageAlign::TOP_RIGHT);
 
 For binary images the ``image`` method accepts two additional color parameters which can
 be supplied to modify the color used to represent the on and off bits respectively. e.g.
@@ -618,6 +754,9 @@ be supplied to modify the color used to represent the on and off bits respective
           // with front color red and back color blue
           it.image(0, 0, id(my_image), id(red), id(blue));
 
+          // Aligned on right edge
+          it.image(it.get_width(), 0, id(my_image), ImageAlign::TOP_RIGHT, id(red), id(blue));
+
 You can also use this to invert images in two colors display, use ``COLOR_OFF`` then ``COLOR_ON``
 as the additional parameters.
 
@@ -625,7 +764,7 @@ Animation
 *********
 
 Allows to use animated images on displays. Animation inherits all options from the image component.
-It adds additional lambda methods: ``next_frame()`` and ``prev_frame()`` to change the shown picture of a gif.
+It adds additional lambda methods: ``next_frame()``, ``prev_frame()`` and ``set_frame()`` to change the shown picture of a gif.
 
 .. code-block:: yaml
 
@@ -636,7 +775,7 @@ It adds additional lambda methods: ``next_frame()`` and ``prev_frame()`` to chan
 
 The animation can be rendered just like the image component with the ``image()`` function of the display component.
 
-To show the next frame of the animation call ``id(my_animation).next_frame()``, to show the previous picture use ``id(my_animation).prev_frame()``.
+To show the next frame of the animation call ``id(my_animation).next_frame()``, to show the previous picture use ``id(my_animation).prev_frame()``. To show a specific picture use ``id(my_animation).set_frame(int frame)``.
 This can be combined with all Lambdas:
 
 .. code-block:: yaml
@@ -650,6 +789,8 @@ This can be combined with all Lambdas:
           // Draw the animation my_animation at position [x=0,y=0]
           it.image(0, 0, id(my_animation), COLOR_ON, COLOR_OFF);
 
+Additionally, you can use the ``animation.next_frame``, ``animation.prev_frame`` or ``animation.set_frame`` actions.
+
 .. note::
 
     To draw the next animation independent of Display draw cycle use an interval:
@@ -659,8 +800,7 @@ This can be combined with all Lambdas:
         interval:
           - interval: 5s
               then:
-                lambda: |-
-                  id(my_animation).next_frame();
+                animation.next_frame: my_animation
 
 
 Configuration variables:
@@ -675,9 +815,35 @@ Configuration variables:
 
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
+  - ``TRANSPARENT_BINARY``: One color, any pixel that is fully transparent will not be drawn, and any other pixel
+    will be the on color. Uses 1 bit per pixel, 8 pixels per byte.
   - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
-  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
   - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
+  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+  - ``RGBA``: Full RGB color stored. Uses 4 bytes per pixel. Any pixel with an alpha value < 127 will not be drawn.
+
+- **use_transparency** (*Optional*): If set the alpha channel of the input image will be taken into account, and pixels with alpha < 127 will not be drawn. For image types without explicit alpha channel, the color (0, 0, 1) (very dark blue) will be mapped to black, to be able to store transparency information within the image. Explicitly transparent types (``TRANSPARENT_BINARY`` and ``RGBA``) default to ``True`` and cannot be set to ``False``; other types default to ``False``.
+- **loop** (*Optional*): If you want to loop over a subset of your animation (e.g. a fire animation where the fire "starts", then "burns" and "dies") you can specify some frames to loop over.
+
+  - **start_frame** (*Optional*, int): The frame to loop back to when ``end_frame`` is reached. Defaults to the first frame in the animation.
+  - **end_frame** (*Optional*, int): The last frame to show in the loop; when this frame is reached it will loop back to ``start_frame``. Defaults to the last frame in the animation.
+  - **repeat** (*Optional*, int): Specifies how many times the loop will run. When the count is reached, the animation will continue with the next frame after ``end_frame``, or restart from the beginning if ``end_frame`` was the last frame. Defaults to "loop forever".
+
+Actions:
+^^^^^^^^
+
+- **animation.next_frame**: Moves the animation to the next frame. This is equivalent to the ``id(my_animation).next_frame();`` lambda call.
+
+  - **id** (**Required**, :ref:`config-id`): The ID of the animation to animate.
+
+- **animation.prev_frame**: Moves the animation to the previous frame. This is equivalent to the ``id(my_animation).prev_frame();`` lambda call.
+
+  - **id** (**Required**, :ref:`config-id`): The ID of the animation to animate.
+
+- **animation.set_frame**: Moves the animation to a specific frame. This is equivalent to the ``id(my_animation).set_frame(frame);`` lambda call.
+
+  - **id** (**Required**, :ref:`config-id`): The ID of the animation to animate.
+  - **frame** (**Required**, int): The frame index to show next.
 
 .. _display-pages:
 
@@ -789,6 +955,55 @@ You can then switch between these with three different actions:
 - **to** (*Optional*, :ref:`config-id`): A page id. If set the automation is only triggered if changing to this page. Defaults to all pages.
 
 Additionally the old page will be given as the variable ``from`` and the new one as the variable ``to``.
+
+.. _troubleshooting:
+
+Troubleshooting
+---------------
+
+Color Test Pattern
+******************
+
+If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
+It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine 
+the best way to help you, **a picture of the result of this script is very helpful.**
+
+Should you `create an issue <https://github.com/esphome/issues/issues>`__ in GitHub regarding your display, please
+be sure to **include a link to where you purchased it** so that we can validate the configuration you've used.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        ...
+        lambda: |-
+          int shift_x = (it.get_width()-310)/2;
+          int shift_y = (it.get_height()-256)/2;
+          for(auto i = 0; i<256; i++) {
+            it.horizontal_line(shift_x+  0,i+shift_y,50, my_red.fade_to_white(i));
+            it.horizontal_line(shift_x+ 50,i+shift_y,50, my_red.fade_to_black(i));
+    
+            it.horizontal_line(shift_x+105,i+shift_y,50, my_green.fade_to_white(i));
+            it.horizontal_line(shift_x+155,i+shift_y,50, my_green.fade_to_black(i));
+    
+            it.horizontal_line(shift_x+210,i+shift_y,50, my_blue.fade_to_white(i));
+            it.horizontal_line(shift_x+260,i+shift_y,50, my_blue.fade_to_black(i));
+          }
+          it.rectangle(shift_x+ 0, 0+shift_y, shift_x+ 310, 256+shift_y, my_yellow);
+    
+    color:
+      - id: my_blue
+        blue: 100%
+      - id: my_red
+        red: 100%
+      - id: my_green
+        green: 100%
+      - id: my_white
+        red: 100%
+        blue: 100%
+        green: 100%
+      - id: my_yellow
+        hex: ffff00
 
 See Also
 --------

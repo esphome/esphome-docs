@@ -91,7 +91,7 @@ You have to replace the numbers in the lambdas to determine your weight which is
       - platform: template
         name: Impedance Aurélien
         id: impedance_user1
-        unit_of_measurement: 'ohm'
+        unit_of_measurement: 'Ω'
         icon: mdi:omega
         accuracy_decimals: 0
       - platform: template
@@ -103,7 +103,7 @@ You have to replace the numbers in the lambdas to determine your weight which is
       - platform: template
         name: Impedance Siham
         id: impedance_user2
-        unit_of_measurement: 'ohm'
+        unit_of_measurement: 'Ω'
         icon: mdi:omega
         accuracy_decimals: 0
 

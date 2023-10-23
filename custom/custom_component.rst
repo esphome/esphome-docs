@@ -49,6 +49,9 @@ And in YAML:
     - lambda: |-
         auto my_custom = new MyCustomComponent();
         return {my_custom};
+      components:
+      - id: my_custom_id 
+      
 
 Configuration variables:
 
@@ -64,7 +67,7 @@ Native API Custom Component
 ---------------------------
 
 If you want to communicate directly with Home Assistant via the :doc:`native API </components/api>`
-you can use the :apiclass:`CustomAPIDevice` class to declare services that can be executed from
+you can use the :apiclass:`api::CustomAPIDevice` class to declare services that can be executed from
 Home Assistant, as well as starting services in Home Assistant.
 
 .. code-block:: cpp
@@ -120,7 +123,7 @@ Home Assistant, as well as starting services in Home Assistant.
       }
     };
 
-See also :apiclass:`CustomAPIDevice`.
+See also :apiclass:`api::CustomAPIDevice`.
 
 MQTT Custom Component
 ---------------------
@@ -154,7 +157,7 @@ custom components that communicate using MQTT.
           publish("the/other/topic", 42);
         }
       }
-      void on_json_message(JsonObject &root) {
+      void on_json_message(JsonObject root) {
         if (!root.containsKey("key"))
           return;
 
@@ -162,7 +165,7 @@ custom components that communicate using MQTT.
         // do something with Json Object
 
         // publish JSON using lambda syntax
-        publish_json("the/other/json/topic", [=](JsonObject &root2) {
+        publish_json("the/other/json/topic", [=](JsonObject root2) {
           root2["key"] = "Hello World";
         });
       }

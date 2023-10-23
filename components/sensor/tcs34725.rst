@@ -11,6 +11,12 @@ The ``tcs34725`` sensor platform allows you to use your TCS34725 RGB color senso
 `Adafruit`_), color temperature and illuminance sensors with ESPHome. The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
+Note: If the `integration_time` is set too long for the light conditions, the sensor will overexpose.
+In this case the sensor may not show 100% on its clear channel. With an `integration_time` of `614ms`
+and a `gain` of `1x` the sensor will max out at around 4100 lx. In this case the individual color
+channels will show `100%`, the clear channel `25%`. The illumination in lux is shown as `0` as well
+as the color temperature in kelvin will show `0`.
+
 .. figure:: images/tcs34725-full.jpg
     :align: center
     :width: 50.0%
@@ -40,8 +46,6 @@ required to be set up in your configuration for this sensor to work.
           name: "TCS34725 Illuminance"
         color_temperature:
           name: "TCS34725 Color Temperature"
-        gain: 1x
-        integration_time: 2.4ms
         glass_attenuation_factor: 1.0
         address: 0x29
         update_interval: 60s

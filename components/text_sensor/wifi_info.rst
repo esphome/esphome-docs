@@ -23,6 +23,8 @@ via text sensors.
           name: ESP Mac Wifi Address
         scan_results:
           name: ESP Latest Scan Results
+        dns_address:
+          name: ESP DNS Address
 
 Configuration variables:
 ------------------------
@@ -37,9 +39,14 @@ Configuration variables:
   :ref:`Text Sensor <config-text_sensor>`.
 - **scan_results** (*Optional*): Expose the latest networks found during the latest scan. All options from
   :ref:`Text Sensor <config-text_sensor>`.
+- **dns_address** (*Optional*): Expose the DNS Address of the ESP as text sensor.
+  :ref:`Text Sensor <config-text_sensor>`.
+
 
 See Also
 --------
 
+- :doc:`/components/wifi`
+- :doc:`/components/sensor/wifi_signal`
 - :apiref:`wifi_info/wifi_info_text_sensor.h`
 - :ghedit:`Edit`

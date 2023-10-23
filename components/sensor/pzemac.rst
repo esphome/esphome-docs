@@ -143,8 +143,12 @@ You must set the ``address`` of the ``modbus_controller`` to the current address
 
     modbus_controller:
       - id: pzem
-        ## the current device addr
+        # The current device address.
         address: 0x1
+        # The special address 0xF8 is a broadcast address accepted by any pzem device,
+        # so if you use this address, make sure there is only one pzem device connected
+        # to the uart bus. 
+        # address: 0xF8
         modbus_id: mod_bus_pzem
         command_throttle: 0ms
         setup_priority: -10

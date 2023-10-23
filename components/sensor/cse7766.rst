@@ -7,7 +7,7 @@ CSE7766 Power Sensor
     :keywords: cse7766, cse7759b, Sonoff Pow R2
 
 The ``cse7766`` sensor platform allows you to use your CSE7766 voltage/current and power sensors
-(`datasheet <http://dl.itead.cc/S31/CSE7766.pdf>`__) sensors with
+(`datasheet <https://itead.cc/wp-content/uploads/2022/05/CSE7766.pdf>`__) sensors with
 ESPHome. This sensor is commonly found in Sonoff POW R2. CSE7759B is similar to CSE7766
 and works with this integration.
 
