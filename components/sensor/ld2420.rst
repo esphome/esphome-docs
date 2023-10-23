@@ -394,7 +394,7 @@ result in false detections.
 Firmware update capability is available using the LD2420 tool provided by HLKTech.
 You will need to email them and request the bin file.
 At this time only firmware version v1.5.6 and up can be upgraded.
-**DO NOT** attemp to update older firmware versions. It will brick the module.
+**DO NOT** attempt to update to older firmware versions. It will brick the module.
 
 See Also
 --------
