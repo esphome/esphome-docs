@@ -7,7 +7,7 @@ EMC2101 Fan Controller and Temperature sensor
     :keywords: EMC2101
 
 The ``emc2101`` component allows you to control a cooling fan from ESPHome (`datasheet <https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/EMC2101-Data-Sheet-DS20006703.pdf>`__). It also provides temperature
-sensors and a tachometer. The fan can be controlled either by a PWN signal or by outputing a DC voltage
+sensors and a tachometer. The fan can be controlled either by a PWM signal or by outputing a DC voltage
 using its DAC.
 
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
@@ -70,7 +70,7 @@ Configuration variables:
 
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x4C``.
 - **inverted** (*Optional*, boolean): Inverts the output so 0 means 100% duty cycle and 1 means 0%.  Defaults to ``false``.
-- **pwn** (*Optional*): Enable PWN output.
+- **pwm** (*Optional*): Enable PWM output.
 
   - **resolution** (*Optional*, int): Determines effective resolution and the frequency of the PWM signal. Defaults to ``23``.
   - **divider** (*Optional*, int): Value for the frequency divider. Defaults to ``1``.
@@ -81,7 +81,7 @@ Configuration variables:
     ``1/4``, ``1/2``, ``1``, ``2``, ``4``, ``8``, ``16``, ``32``. Defaults to ``16``.
 
 
-The PWN signal frequency is determined by the following formula:
+The PWM signal frequency is determined by the following formula:
 
 .. math::
 
@@ -141,29 +141,17 @@ EMC2101 Sensors
 
 Configuration variables:
 ************************
-- **internal_temperature** (*Optional*): The internal temperature sensor.
+- **internal_temperature** (*Optional*): The internal temperature sensor. 
+  All options from :ref:`Sensor <config-sensor>`.
 
-  - **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
-  - **name** (*Optional*, string): The name for the sensor. At least one of **id** and **name** must be specified.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- **external_temperature** (*Optional*): The external temperature sensor. More accurate but it needs an additional transistor to be installed. 
+  All options from :ref:`Sensor <config-sensor>`.
 
-- **external_temperature** (*Optional*): The external temperature sensor. More accurate but it needs an additional transistor to be installed.
+- **speed** (*Optional*): The fan speed sensor in RPMs. 
+  All options from :ref:`Sensor <config-sensor>`.
 
-  - **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
-  - **name** (*Optional*, string): The name for the sensor. At least one of **id** and **name** must be specified.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **speed** (*Optional*): The fan speed sensor in RPMs.
-
-  - **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
-  - **name** (*Optional*, string): The name for the sensor. At least one of **id** and **name** must be specified.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **duty_cycle** (*Optional*): Duty cycle sensor.
-
-  - **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
-  - **name** (*Optional*, string): The name for the sensor. At least one of **id** and **name** must be specified.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- **duty_cycle** (*Optional*): Duty cycle sensor. 
+  All options from :ref:`Sensor <config-sensor>`.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 
