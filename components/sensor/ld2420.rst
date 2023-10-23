@@ -245,7 +245,7 @@ Configuration variables:
 
 - **restart_module** (*Optional*): Reboots the LD2420 modules.
 
-- **revert_config** (*Optional*): Undoes in progress edite prior to using the apply_config button.
+- **revert_config** (*Optional*): Undoes in-progress edits prior to their application via the ``apply_config`` button.
 
 - **factory_reset** (*Optional*): Restores a base set of LD2420 configuration values.
 
