@@ -171,6 +171,41 @@ This results in problems when using the sensor in combination with the `Utility 
 The state template provided above checks for the sensor's availability and keeps the
 current state in case of unavailability.
 
+Holley DTZ541 Smart Meters
+--------------------------
+
+The Holley DTZ541 series of electricity meters have a faulty implementation of the SML protocol.
+These meters send multiple conflicting values with the OBIS code ``1-0:1.8.0``, the code for the meter's energy reading.
+Because the first value of every package is the correct value, in order to discard the erroneous values a throttle filter of 0.5s can be applied.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: sml
+        name: "Total energy Consumption"
+        sml_id: mysml
+        obis_code: "1-0:1.8.0"
+        unit_of_measurement: kWh
+        accuracy_decimals: 5
+        device_class: energy
+        state_class: total_increasing
+        filters:
+          - throttle: 0.5s
+          - multiply: 0.0001
+
+These meters can also measure the instantaneous power usage.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: sml
+        name: "Instantaneous power"
+        sml_id: mysml
+        obis_code: "1-0:16.7.0"
+        unit_of_measurement: W
+        accuracy_decimals: 0
+        device_class: power
+        state_class: measurement
 
 See Also
 --------

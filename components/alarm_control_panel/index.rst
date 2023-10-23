@@ -28,8 +28,20 @@ Configuration variables:
 
 - **on_state** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the alarm changes state. See :ref:`alarm_control_panel_on_state_trigger`.
+- **on_arming** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm state changes to ``arming``. See :ref:`alarm_control_panel_on_arming_trigger`.
+- **on_pending** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm state changes to ``pending``. See :ref:`alarm_control_panel_on_pending_trigger`.
+- **on_armed_home** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm state changes to ``armed_home``. See :ref:`alarm_control_panel_on_armed_home_trigger`.
+- **on_armed_night** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm state changes to ``armed_night``. See :ref:`alarm_control_panel_on_armed_night_trigger`.
+- **on_armed_away** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm state changes to ``armed_away``. See :ref:`alarm_control_panel_on_armed_away_trigger`.
 - **on_triggered** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the alarm triggers. See :ref:`alarm_control_panel_on_triggered_trigger`.
+- **on_disarmed** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the alarm state changes to ``disarmed``. See :ref:`alarm_control_panel_on_disarmed_trigger`.
 - **on_cleared** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the alarm clears. See :ref:`alarm_control_panel_on_cleared_trigger`.
 
@@ -51,6 +63,81 @@ This trigger is activated each time the alarm changes state.
       on_state:
         then:
           - logger.log: "Alarm Panel State Changed!"
+
+.. _alarm_control_panel_on_pending_trigger:
+
+``on_pending`` Trigger
+**********************
+
+This trigger is activated when the alarm changes to pending state.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_pending:
+        then:
+          - logger.log: "Alarm Pending!"
+
+.. _alarm_control_panel_on_arming_trigger:
+
+``on_arming`` Trigger
+*********************
+
+This trigger is activated when the alarm changes to arming state.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_arming:
+        then:
+          - logger.log: "Alarm Arming!"
+
+.. _alarm_control_panel_on_armed_home_trigger:
+
+``on_armed_home`` Trigger
+*************************
+
+This trigger is activated when the alarm changes to armed_home state.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_armed_home:
+        then:
+          - logger.log: "Alarm armed_home!"
+
+.. _alarm_control_panel_on_armed_night_trigger:
+
+``on_armed_night`` Trigger
+**************************
+
+This trigger is activated when the alarm changes to armed_night state.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_armed_night:
+        then:
+          - logger.log: "Alarm armed_night!"
+
+.. _alarm_control_panel_on_armed_away_trigger:
+
+``on_armed_away`` Trigger
+*************************
+
+This trigger is activated when the alarm changes to armed_away state.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_armed_away:
+        then:
+          - logger.log: "Alarm armed_away!"
 
 .. _alarm_control_panel_on_triggered_trigger:
 
@@ -82,6 +169,21 @@ This trigger is activated when the alarm changes from triggered back to either t
         then:
           - logger.log: "Alarm Cleared!"
 
+.. _alarm_control_panel_on_disarmed_trigger:
+
+``on_disarmed`` Trigger
+***********************
+
+This trigger is activated when the alarm changes from to disarmed.
+
+.. code-block:: yaml
+
+    alarm_control_panel:
+      # ...
+      on_disarmed:
+        then:
+          - logger.log: "Alarm Disarmed!"
+
 .. _alarm_control_panel_arm_away_action:
 
 ``arm_away`` Action
@@ -109,6 +211,21 @@ This action arms the alarm in home mode. The ``code`` is required when *requires
     on_...:
       then:
         - alarm_control_panel.arm_home:
+            id: acp1
+            code: "1234"
+
+.. _alarm_control_panel_arm_night_action:
+
+``arm_night`` Action
+********************
+
+This action arms the alarm in night mode. The ``code`` is required when *requires_code_to_arm* is *true*.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - alarm_control_panel.arm_night:
             id: acp1
             code: "1234"
 
@@ -177,13 +294,15 @@ From :ref:`lambdas <config-lambda>`, you can call the following methods:
 
 - ``arm_away(code)``
 - ``arm_home(code)``
+- ``arm_night(code)``
 - ``disarm(code)``
 
 .. code-block:: cpp
 
     id(acp1).arm_away();
     id(acp1).arm_home();
-    id(acp1).disarm("1234");
+    id(acp1).arm_night();
+    id(acp1).disarm(std::string("1234"));
 
 
 Platforms
