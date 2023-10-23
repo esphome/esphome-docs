@@ -33,6 +33,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Fujitsu General                       | ``fujitsu_general`` | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`GREE<gree_ir>`                  | ``gree``            |                      |
++---------------------------------------+---------------------+----------------------+
 | Hitachi                               | ``hitachi_ac344``   | yes                  |
 |                                       | ``hitachi_ac424``   |                      |
 +---------------------------------------+---------------------+----------------------+
@@ -324,6 +326,33 @@ Configuration variables:
         supports_heat: true
 
 
+.. _gree_ir:
+
+
+``gree`` Climate
+---------------------
+
+Additional configuration is available for this model.
+
+
+Configuration variables:
+
+- **model** (*Required*, string): GREE has a few different protocols depending on model. One of these will work for you.
+
+  - ``generic``
+  - ``yan``
+  - ``yaa``
+  - ``yac``
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: gree
+        name: "AC"
+        sensor: room_temperature
+        model: yan
 
 .. _zhlt01:
 
