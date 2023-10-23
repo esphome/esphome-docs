@@ -42,7 +42,6 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **tvoc** (*Optional*): The configuration for the TVOC sensor. All options from
   :ref:`Sensor <config-sensor>`.
-- All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
