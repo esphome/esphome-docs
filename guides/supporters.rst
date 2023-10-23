@@ -723,7 +723,6 @@ Contributors
 - `Mark Kuchel (@kuchel77) <https://github.com/kuchel77>`__
 - `Kyle Hill (@kylhill) <https://github.com/kylhill>`__
 - `Limor "Ladyada" Fried (@ladyada) <https://github.com/ladyada>`__
-- `Luca Adrian L (@lal12) <https://github.com/lal12>`__
 - `Landon Rohatensky (@landonr) <https://github.com/landonr>`__
 - `Fredrik Lindqvist (@Landrash) <https://github.com/Landrash>`__
 - `lanik (@lanik) <https://github.com/lanik>`__
@@ -1236,6 +1235,7 @@ Contributors
 - `Yaroslav (@Yarikx) <https://github.com/Yarikx>`__
 - `Marcin Jaworski (@yawor) <https://github.com/yawor>`__
 - `yousaf465 (@yousaf465) <https://github.com/yousaf465>`__
+- `Jevgeni Kiski (@yozik04) <https://github.com/yozik04>`__
 - `Yuval Aboulafia (@yuvalabou) <https://github.com/yuvalabou>`__
 - `Björn Stenberg (@zagor) <https://github.com/zagor>`__
 - `david reid (@zathras777) <https://github.com/zathras777>`__
