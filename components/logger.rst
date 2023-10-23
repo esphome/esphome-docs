@@ -1,3 +1,5 @@
+.. _logger:
+
 Logger Component
 ================
 
@@ -7,9 +9,8 @@ Logger Component
 
 The logger component automatically logs all log messages through the
 serial port and through MQTT topics (if there is an MQTT client in the
-configuration). By default, all logs with a severity higher than
-``DEBUG`` will be shown. Decreasing the log level can help with the
-performance of the application and memory size.
+configuration). By default, all logs with a severity ``DEBUG`` or higher will be shown.
+Increasing the log level severity (to e.g ``INFO`` or ``WARNING``) can help with the performance of the application and memory size.
 
 .. code-block:: yaml
 

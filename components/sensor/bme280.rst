@@ -8,7 +8,9 @@ BME280 Temperature+Pressure+Humidity Sensor
 
 The ``bme280`` sensor platform allows you to use your BME280
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/BST-BME280_DS001-10.pdf>`__,
-`Adafruit`_) temperature, pressure and humidity sensors with ESPHome. The :ref:`I²C <i2c>` is
+`Adafruit`_) temperature, pressure and humidity sensors with ESPHome. The sensor
+is used in *Forced Mode* where measurement is performed and then 
+the sensor returns to sleep mode until next measurement. The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/bme280-full.jpg
@@ -37,8 +39,7 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **temperature** (*Optional*): The information for the temperature.
-  sensor
+- **temperature** (*Optional*): The information for the temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature
     sensor.
@@ -89,6 +90,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :doc:`bme680`
 - :doc:`bmp085`
 - :apiref:`bme280/bme280.h`

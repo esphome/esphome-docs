@@ -15,13 +15,13 @@ ESPHome 2023.2.0 - 15th February 2023
     BP5758D, components/output/bp5758d, bp5758d.svg
     SM2235, components/output/sm2235, sm2235.svg
     SM2335, components/output/sm2335, sm2335.svg
-    PCF85063 RTC, components/time/pcf85063, clock-outline.svg
+    PCF85063 RTC, components/time/pcf85063, clock-outline.svg, dark-invert
     Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
     X9C Potentiometer, components/output/x9c, x9c.jpg
     EE895, components/sensor/ee895, EE895.png
     HTE501, components/sensor/hte501, HTE501.png
     TEE501, components/sensor/tee501, TEE501.png
-    Sigma-Delta Output, components/output/sigma_delta, sigma-delta.svg
+    Sigma-Delta Output, components/output/sigma_delta_output, sigma-delta.svg, dark-invert
     Wiegand Reader, components/wiegand, wiegand.jpg
     MiCS-4514, components/sensor/mics_4514, mics_4514.jpg
     LD2410, components/sensor/ld2410, ld2410.jpg
@@ -66,6 +66,19 @@ Release 2023.2.2 - February 17
 ------------------------------
 
 - Fix adoption of variants and pico-w :esphomepr:`4455` by :ghuser:`jesserockz`
+
+Release 2023.2.3 - February 20
+------------------------------
+
+- Fix MQTT discovery for climate after preset implementation :esphomepr:`4451` by :ghuser:`jmichiel`
+- Update distribution manifest :esphomepr:`4459` by :ghuser:`jesserockz`
+
+Release 2023.2.4 - February 23
+------------------------------
+
+- BL0939 state_class set for energy sensors :esphomepr:`4463` by :ghuser:`konsulten`
+- fix wiegand tag parity :esphomepr:`4476` by :ghuser:`ssieb`
+- Fix multiple remote_receivers with triggers :esphomepr:`4477` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------

@@ -6,7 +6,7 @@ SCD30 CO₂, Temperature and Relative Humidity Sensor
     :image: scd30.jpg
 
 The ``scd30`` sensor platform allows you to use your Sensirion SCD30 CO₂
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9.5_CO2/Sensirion_CO2_Sensors_SCD30_Datasheet.pdf>`__) sensors with ESPHome.
+(`datasheet <https://sensirion.com/media/documents/4EAF6AF8/61652C3C/Sensirion_CO2_Sensors_SCD30_Datasheet.pdf>`__) sensors with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/scd30.jpg
@@ -108,6 +108,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :doc:`dht`
 - :doc:`dht12`
 - :doc:`hdc1080`

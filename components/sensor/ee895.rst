@@ -7,7 +7,7 @@ EE895 CO₂, Temperature and Pressure Sensor
 
 The ``ee895`` sensor platform allows you to use your EE895 CO₂
 (`datasheet <https://www.epluse.com/fileadmin/data/product/ee895/BA_EE895.pdf>`__,
-`E+E TEE501 <https://www.epluse.com/products/co2-measurement/co2-modules-and-probes/ee895/>`__) sensor with ESPHome.
+`E+E EE895 <https://www.epluse.com/products/co2-measurement/co2-modules-and-probes/ee895/>`__) sensor with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work. We recommend the use of pull up resistors.
 
 .. figure:: images/EE895.png
@@ -36,19 +36,19 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 Configuration variables:
 ------------------------
 
-- **temperature** (*Required*): The information for the Temperature sensor.
+- **temperature** (**Required**): The information for the Temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **co2** (*Required*): The information for the CO₂ sensor.
+- **co2** (**Required**): The information for the CO₂ sensor.
 
   - **name** (**Required**, string): The name for the CO₂eq sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **Pressure** (*Required*): The information for the Pressure sensor.
+- **pressure** (**Required**): The information for the Pressure sensor.
 
   - **name** (**Required**, string): The name for the Pressure sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.

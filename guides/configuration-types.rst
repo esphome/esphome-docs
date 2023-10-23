@@ -117,6 +117,14 @@ Advanced options:
 - **drive_strength** (*Optional*, string): On ESP32s with esp-idf framework the pad drive strength,
   i.e. the maximum amount of current can additionally be set. Defaults to ``20mA``.
   Options are ``5mA``, ``10mA``, ``20mA``, ``40mA``.
+- **ignore_strapping_warning** (*Optional*, boolean): Certain pins on ESP32s are designated *strapping pins* and are read
+  by the chip on reset to configure initial operation, e.g. to enable bootstrap mode.
+  Using such pins for I/O should be avoided and ESPHome will warn if I/O is configured on a strapping pin.
+
+  For more detail see :ref:`strapping-warnings`.
+
+  If you are *absolutely* sure that you are using a strapping pin for I/O in a way that will not cause problems,
+  you can suppress the warning by setting this option to ``true`` in the pin configuration.
 
 .. _config-time:
 
@@ -323,6 +331,20 @@ your configuration file. This can be used to create generic 'template' configura
 files (like the ``example.yaml`` above) which can be used for multiple devices,
 using substitutions which are provided on the command line.
 
+Extend
+------
+
+To make changes or add additional configuration to included configurations ``!extend config_id`` can be used, where ``config_id`` is the ID of the configuration to modify.
+For example to set a specific update interval on a common uptime sensor that is shared between configurations:
+
+.. code-block:: yaml
+
+    <<: !include common.yaml
+
+    sensor:
+    - id: !extend uptime_sensor
+      update_interval: 10s
+
 .. _config-packages:
 
 Packages
@@ -450,6 +472,76 @@ them locally with their own subsitution value.
 
       # shorthand form github://username/repository/[folder/]file-path.yml[@branch-or-tag]
       remote_package_three: github://esphome/non-existant-repo/file1.yml@main
+
+Packages as Templates
+*********************
+
+Since packages are incorporated using the ``!include`` system,
+variables can be provided to them.  This means that packages can be
+used as `templates`, allowing complex or repetitive configurations to
+be stored in a package file and then incorporated into the
+configuration more than once.
+
+As an example, if the configuration needed to support three garage
+doors using the ``gpio`` switch platform and the ``time_based`` cover
+platform, it could be constructed like this:
+
+.. code-block:: yaml
+
+    # In config.yaml
+    packages:
+      left_garage_door: !include
+        file: garage-door.yaml
+        vars:
+          door_name: Left
+          door_location: left
+          open_switch_gpio: 25
+          close_switch_gpio: 26
+      middle_garage_door: !include
+        file: garage-door.yaml
+        vars:
+          door_name: Middle
+          door_location: middle
+          open_switch_gpio: 27
+          close_switch_gpio: 29
+      right_garage_door: !include
+        file: garage-door.yaml
+        vars:
+          door_name: Right
+          door_location: right
+          open_switch_gpio: 15
+          close_switch_gpio: 18
+
+
+.. code-block:: yaml
+
+    # In garage-door.yaml
+    switch:
+      - id: open_${door_location}_door_switch
+        name: ${door_name} Garage Door Open Switch
+        platform: gpio
+        pin: ${open_switch_gpio}
+
+      - id: close_${door_location}_door_switch
+        name: ${door_name} Garage Door Close Switch
+        platform: gpio
+        pin: ${close_switch_gpio}
+
+    cover:
+      - platform: time_based
+        name: ${door_name} Garage Door
+
+        open_action:
+          - switch.turn_on: open_${door_location}_door_switch
+        open_duration: 2.1min
+
+        close_action:
+          - switch.turn_on: close_${door_location}_door_switch
+        close_duration: 2min
+
+        stop_action:
+          - switch.turn_off: open_${door_location}_door_switch
+          - switch.turn_off: close_${door_location}_door_switch
 
 
 See Also

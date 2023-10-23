@@ -6,12 +6,15 @@ MiCS 4514 Gas Sensor
     :image: mics_4514.jpg
     :keywords: MiCS, 4514, MICS-4514
 
-This component exposes the different gas concentration sensors from the `MiCS-4514 <https://www.dfrobot.com/product-2417.html>`__.
+This component exposes the different gas concentration sensors from the `MiCS-4514 <https://www.dfrobot.com/product-2417.html>`__. This is a differnet sensor than the MICS-4514 being sold on AliExpress.
 
 .. note::
 
+
     The sensor has a 3-minute warmup period where data is unreliable and ESPHome will only start publishing sensor values after this time.
     If the sensor was already powered only, such as if you restarted or updated your ESPHome device, then it will start publishing immediately.
+
+    The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. code-block:: yaml
 
@@ -35,7 +38,6 @@ This component exposes the different gas concentration sensors from the `MiCS-45
 Configuration variables:
 ------------------------
 
-- **pin** (**Required**, :ref:`config-pin`): The pin where the DHT bus is connected.
 - **nitrogen_dioxide** (*Optional*): All options from :ref:`Sensor <config-sensor>`
 - **carbon_monoxide** (*Optional*): All options from :ref:`Sensor <config-sensor>`
 - **hydrogen** (*Optional*): All options from :ref:`Sensor <config-sensor>`
