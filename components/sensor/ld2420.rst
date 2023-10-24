@@ -109,33 +109,33 @@ Pinouts
     select:
       - platform: ld2420
         operating_mode:
-          name: (s) Operating Mode
+          name: Operating Mode
 
     number:
       - platform: ld2420
         timeout:
-          name: (n) Detection Presence Timeout
+          name: Detection Presence Timeout
         min_gate_distance:
-          name: (n) Detection Gate Minimum
+          name: Detection Gate Minimum
         max_gate_distance:
-          name: (n) Detection Gate Maximum
+          name: Detection Gate Maximum
         gate_select:
-          name: (n) Select Gate to Set
+          name: Select Gate to Set
         still_threshold:
-          name: (n) Set Still Threshold Value
+          name: Set Still Threshold Value
         move_threshold:
-          name: (n) Set Move Threshold Value
+          name: Set Move Threshold Value
 
     button:
       - platform: ld2420
         apply_config:
-          name: (b) Apply Config
+          name: Apply Config
         factory_reset:
-          name: (b) Factory Reset
+          name: Factory Reset
         restart_module:
-          name: (b) Restart Module
+          name: Restart Module
         revert_config:
-          name: (b) Undo Edits
+          name: Undo Edits
 
 
 Platform
@@ -161,7 +161,7 @@ Select
     select:
       - platform: ld2420
         operating_mode:
-          name: (s) Operating Mode
+          name: Operating Mode
 
 
 The dynamic UI provides 3 operational modes which are **Normal**, **Calibrate** and **Simple** using a select component.
@@ -198,17 +198,17 @@ Number
     number:
       - platform: ld2420
         timeout:
-          name: (n) Detection Presence Timeout
+          name: Detection Presence Timeout
         min_gate_distance:
-          name: (n) Detection Gate Minimum
+          name: Detection Gate Minimum
         max_gate_distance:
-          name: (n) Detection Gate Maximum
+          name: Detection Gate Maximum
         gate_select:
-          name: (n) Select Gate to Set
+          name: Select Gate to Set
         still_threshold:
-          name: (n) Set Still Threshold Value
+          name: Set Still Threshold Value
         move_threshold:
-          name: (n) Set Move Threshold Value
+          name: Set Move Threshold Value
 
 Configuration variables:
 ************************
@@ -228,13 +228,13 @@ Button
     button:
       - platform: ld2420
         apply_config:
-          name: (b) Apply Config
+          name: Apply Config
         factory_reset:
-          name: (b) Factory Reset
+          name: Factory Reset
         restart_module:
-          name: (b) Restart Module
+          name: Restart Module
         revert_config:
-          name: (b) Undo Edits
+          name: Undo Edits
 
 Four button components are available enabling configuration controls for editing, saving, restarting and factory reseting the LD2420 module.
 
