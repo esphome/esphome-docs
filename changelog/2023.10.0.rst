@@ -53,6 +53,11 @@ Release 2023.10.2 - October 24
 - fix canbus send config :esphomepr:`5585` by :ghuser:`ssieb`
 - Allow set climate preset to NONE :esphomepr:`5588` by :ghuser:`dentra`
 
+Release 2023.10.3 - October 24
+------------------------------
+
+- Set IP address `type` only when IPv4 and IPv6 are both enabled :esphomepr:`5595` by :ghuser:`kbx81`
+
 Breaking changes
 ----------------
 
