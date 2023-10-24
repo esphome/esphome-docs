@@ -24,7 +24,7 @@ FastLED Light
 
     FastLED does **not** work with ESP-IDF.
 
-    For addressable lights, you can use :doc:`esp32_rmt_led_strip`.
+    For addressable lights, you can use :doc:`esp32_rmt_led_strip` or for SPI LEDs see :doc:`spi_led_strip`..
 
 .. _fastled:
 
@@ -37,6 +37,10 @@ for a :ref:`number of supported chipsets <fastled-chipsets>`.
 Both clockless and SPI chips are supported, with the former only requiring a
 single data wire to connect and the latter also needing a wire for the clock
 signal.
+
+For alternative components that work on ESP-IDF (and Arduino), see
+:doc:`esp32_rmt_led_strip` for clockless chips, or :doc:`spi_led_strip` for
+SPI chips.
 
 .. warning::
 
@@ -141,6 +145,7 @@ See Also
 --------
 
 - :doc:`/components/light/index`
+- :doc:`/components/light/spi_led_strip`
 - :doc:`/components/power_supply`
 - :apiref:`fastled_base/fastled_light.h`
 - `Arduino FastLED library <https://github.com/FastLED/FastLED>`__
