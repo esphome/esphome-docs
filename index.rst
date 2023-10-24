@@ -203,6 +203,7 @@ Air Quality
     SPS30, components/sensor/sps30, sps30.jpg, Particulate
     T6613/15, components/sensor/t6615, t6615.jpg, CO2
     ZyAura, components/sensor/zyaura, zgm053.jpg, CO2 & Temperature & Humidity
+    iAQ-Core, components/sensor/iaqcore, iaqcore.jpg, CO2 & Volatile organics
 
 
 Analogue
@@ -697,6 +698,7 @@ Text Sensor Components
     Tuya Text Sensor, components/text_sensor/tuya, tuya.png
     WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg, dark-invert
     LibreTiny, components/text_sensor/libretiny, libretiny.svg
+    WireGuard, components/wireguard, wireguard_custom_logo.svg
 
 Climate Components
 ------------------
