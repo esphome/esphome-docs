@@ -356,6 +356,7 @@ All Actions
 - :ref:`lambda <lambda_action>`
 - :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_until <wait_until_action>`
 - :ref:`component.update <component-update_action>`
+- :ref:`component.suspend <component-suspend_action>` / :ref:`component.resume <component-resume_action>`
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`homeassistant.service <api-homeassistant_service_action>`
@@ -414,7 +415,7 @@ All Conditions
 --------------
 
 - :ref:`lambda <lambda_condition>`
-- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`not <not_condition>`
+- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`xor <xor_condition>` / :ref:`not <not_condition>` 
 - :ref:`for <for_condition>`
 - :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` / :ref:`binary_sensor.is_off <binary_sensor-is_off_condition>`
 - :ref:`switch.is_on <switch-is_on_condition>` / :ref:`switch.is_off <switch-is_off_condition>`
@@ -500,10 +501,11 @@ and can be used to create conditional flow in actions.
 
 .. _and_condition:
 .. _or_condition:
+.. _xor_condition:
 .. _not_condition:
 
-``and`` / ``or`` / ``not`` Condition
-------------------------------------
+``and`` / ``or`` / ``xor`` / ``not`` Condition
+----------------------------------------------
 
 Check a combination of conditions
 
@@ -513,7 +515,7 @@ Check a combination of conditions
       then:
         - if:
             condition:
-              # Same syntax for and
+              # Same syntax for `and` as well as `xor` conditions
               or:
                 - binary_sensor.is_on: some_binary_sensor
                 - binary_sensor.is_on: other_binary_sensor
@@ -566,8 +568,8 @@ Configuration variables:
 ``while`` Action
 ----------------
 
-This action is similar to the :ref:`if <if_action>` Action. The ``while`` action executes
-a block until a given condition evaluates to false.
+This action is similar to the :ref:`if <if_action>` Action. The ``while`` action loops
+through a block as long as the given condition is true.
 
 .. code-block:: yaml
 
@@ -664,6 +666,64 @@ compile error.
 
         # The same as:
         - lambda: 'id(my_component).update();'
+
+.. _component-suspend_action:
+
+``component.suspend`` Action
+----------------------------
+
+Using this action you can manually call the ``stop_poller()`` method of a component.
+
+After this action the component will stop being refreshed.
+
+While the poller is suspendend, it's still possible to trigger on-demand updates by
+using :ref:`component.update <component-update_action>`
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.suspend: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).stop_poller();'
+
+.. _component-resume_action:
+
+``component.resume`` Action
+---------------------------
+
+Using this action you can manually call the ``start_poller()`` method of a component.
+
+After this action the component will refresh at the original update_interval rate
+
+This will allow the component to resume automatic update at the defined interval.
+
+This action also allows to change the update interval, calling it without suspend, 
+replace the poller directly.
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.resume: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).start_poller();'
+
+    # Change the poller interval
+    on_...:
+      then:
+        - component.resume: 
+            id: my_component
+            update_interval: 15s
+
 
 .. _globals-set_action:
 
@@ -790,7 +850,7 @@ script was already running.
 
 This action allows you to stop a given script during execution. If the
 script is not running, it does nothing.
-This is useful right now if your want to stop a script that contains a
+This is useful if you want to stop a script that contains a
 ``delay`` action, ``wait_until`` action, or is inside a ``while`` loop, etc.
 You can also call this action from the script itself, and any subsequent action
 will not be executed.

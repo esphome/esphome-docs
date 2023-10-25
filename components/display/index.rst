@@ -24,6 +24,11 @@ using an API that is designed to
 - be simple and to be used without programming experience
 - but also be flexible enough to work with more complex tasks like displaying an analog clock.
 
+.. note::
+
+    Display hardware is complex and sometimes doesn't behave as expected. If you're having trouble with your display,
+    please see :ref:`troubleshooting` below.
+
 .. _display-engine:
 
 Display Rendering Engine
@@ -179,6 +184,11 @@ Next, create a ``font:`` section in your configuration:
 
       - file: "fonts/tom-thumb.bdf"
         id: tomthumb
+        
+      - file: 'gfonts://Material+Symbols+Outlined'
+        id: icon_font_50
+        size: 50
+        glyphs: ["\U0000e425"] # mdi-timer
 
     display:
       # ...
@@ -192,7 +202,8 @@ Configuration variables:
 
     **Google Fonts**:
 
-    Each Google Font will be downloaded once and cached for future use.
+    Each Google Font will be downloaded once and cached for future use. This can also be used to download Material 
+    Symbols or Icons as in the example above.
 
   - **family** (**Required**, string): The name of the Google Font family.
   - **weight** (*Optional*, enum): The weight of the font. Can be either the text name or the integer value:
@@ -950,6 +961,55 @@ You can then switch between these with three different actions:
 - **to** (*Optional*, :ref:`config-id`): A page id. If set the automation is only triggered if changing to this page. Defaults to all pages.
 
 Additionally the old page will be given as the variable ``from`` and the new one as the variable ``to``.
+
+.. _troubleshooting:
+
+Troubleshooting
+---------------
+
+Color Test Pattern
+******************
+
+If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
+It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine 
+the best way to help you, **a picture of the result of this script is very helpful.**
+
+Should you `create an issue <https://github.com/esphome/issues/issues>`__ in GitHub regarding your display, please
+be sure to **include a link to where you purchased it** so that we can validate the configuration you've used.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        ...
+        lambda: |-
+          int shift_x = (it.get_width()-310)/2;
+          int shift_y = (it.get_height()-256)/2;
+          for(auto i = 0; i<256; i++) {
+            it.horizontal_line(shift_x+  0,i+shift_y,50, my_red.fade_to_white(i));
+            it.horizontal_line(shift_x+ 50,i+shift_y,50, my_red.fade_to_black(i));
+    
+            it.horizontal_line(shift_x+105,i+shift_y,50, my_green.fade_to_white(i));
+            it.horizontal_line(shift_x+155,i+shift_y,50, my_green.fade_to_black(i));
+    
+            it.horizontal_line(shift_x+210,i+shift_y,50, my_blue.fade_to_white(i));
+            it.horizontal_line(shift_x+260,i+shift_y,50, my_blue.fade_to_black(i));
+          }
+          it.rectangle(shift_x+ 0, 0+shift_y, shift_x+ 310, 256+shift_y, my_yellow);
+    
+    color:
+      - id: my_blue
+        blue: 100%
+      - id: my_red
+        red: 100%
+      - id: my_green
+        green: 100%
+      - id: my_white
+        red: 100%
+        blue: 100%
+        green: 100%
+      - id: my_yellow
+        hex: ffff00
 
 See Also
 --------
