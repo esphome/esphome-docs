@@ -12,7 +12,7 @@ You can access the coils and registers from the your slave ModBUS devices as sen
     :align: center
     :width: 25%
 
-The ``modbus_controller`` component relies on the ``modbus`` component.
+The ``modbus_controller`` component relies on the :doc:`/components/modbus`.
 
 
 
