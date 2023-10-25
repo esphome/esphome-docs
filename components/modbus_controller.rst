@@ -6,7 +6,7 @@ Modbus Controller
     :image: modbus.png
 
 The ``modbus_controller`` component creates a RS485 connection to control a ModBUS slave device, letting your ESPHome node to act as a ModBUS master.
-You can access the coils and registers from the your slave ModBUS devices as sensors, switches or various other ESPHome components and present them to your favorite Home Automation system.
+You can access the coils and registers from your slave ModBUS device as sensors, switches or various other ESPHome components and present them to your favorite Home Automation system.
 
 .. figure:: /images/modbus.png
     :align: center
@@ -18,13 +18,15 @@ The ``modbus_controller`` component relies on the :doc:`/components/modbus`.
 
 Hardware setup
 --------------
-An RS485 module connected to an ESP32, for example:
+You need an RS485 transceiver module connected to an ESP32, for example:
 
 .. figure:: /images/rs485.jpg
 
 See `How is this RS485 module working? <https://electronics.stackexchange.com/questions/244425/how-is-this-rs485-module-working>`__ on stackexchange for more details.
 
-The controller connects to the UART of the MCU. For ESP32, pin ``16`` to ``TXD`` and pin ``17`` to ``RXD`` are the default ones but any other pins can be used as well. ``3.3V`` to ``VCC`` and naturally ``GND`` to ``GND``.
+The transceiver connects to the UART of the MCU. For ESP32, pin ``16`` to ``TXD`` and pin ``17`` to ``RXD`` are the default ones but any other pins can be used as well. ``3.3V`` to ``VCC`` and naturally ``GND`` to ``GND``.
+
+On the bus side, you need 120 Ohm termination resistors at the ends of the bus cable as per ModBUS standard. Some transceivers have this already solderes onboard, and some slave devices may have them preinstalled with a jumper or a dip switch.
 
 .. note::
 
