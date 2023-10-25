@@ -176,6 +176,12 @@ Test Setting:
 Configuration for Ai-Thinker Camera
 -----------------------------------
 
+.. warning::
+
+    GPIO16 on this board (and possibly other boards below) is connected to onboard PSRAM. 
+    Using this GPIO for other purposes (eg as a button) will trigger the watchdog.
+    Further information on pin notes can be found here: https://github.com/raphaelbs/esp32-cam-ai-thinker/blob/master/docs/esp32cam-pin-notes.md
+
 .. code-block:: yaml
 
     # Example configuration entry
