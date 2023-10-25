@@ -308,6 +308,7 @@ Environmental
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
     DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
+    EMC2101, components/emc2101, emc2101.jpg, Temperature
     ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
     HTE501, components/sensor/hte501, HTE501.png, Temperature & Humidity
@@ -537,6 +538,7 @@ Output Components
     BP5758D, components/output/bp5758d, bp5758d.svg
     X9C Potentiometer, components/output/x9c, x9c.jpg
     GP8403, components/output/gp8403, gp8403.svg
+    EMC2101, components/emc2101, emc2101.jpg
 
 Light Components
 ----------------
