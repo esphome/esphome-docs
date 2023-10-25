@@ -1,6 +1,6 @@
 .. _modbus:
 
-ModBUS Component
+Modbus Component
 ================
 
 .. seo::
@@ -27,9 +27,9 @@ Configuration variables:
   This is useful for RS485 transceivers that do not have automatic flow control switching,
   like the common MAX485.
 
-- **send_wait_time** (*Optional*, :ref:`config-time`): Time in milliseconds before a new modbus command is sent if an answer from a previous command is pending. Defaults to 250 ms.
-  If multiple modbus devices are attached increasing this value can help avoiding to to overlapping reads.
-  When 2 devices are sending a command at the same the response read from uart can't be assigned to the proper design.
+- **send_wait_time** (*Optional*, :ref:`config-time`): Time in milliseconds before the next ModBUS command is sent if an answer from a previous command is pending. Defaults to 250 ms.
+  If multiple ModBUS devices are attached to the same bus increasing this value can help avoiding to to overlapping reads.
+  When two devices are sending a command at the same time the response read from UART can't be assigned to the proper design.
   This value defines the maximum queuing time for a command before it is send anyways.
   
 - **disable_crc** (*Optional*, boolean): Ignores a bad CRC if set to ``true``. Defaults to ``false``
