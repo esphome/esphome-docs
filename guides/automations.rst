@@ -568,8 +568,8 @@ Configuration variables:
 ``while`` Action
 ----------------
 
-This action is similar to the :ref:`if <if_action>` Action. The ``while`` action executes
-a block until a given condition evaluates to false.
+This action is similar to the :ref:`if <if_action>` Action. The ``while`` action loops
+through a block as long as the given condition is true.
 
 .. code-block:: yaml
 
