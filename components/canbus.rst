@@ -63,9 +63,13 @@ Configuration variables:
   *false*: Standard 11 bits IDs, *true*: Extended 29 bits ID
 - **bit_rate** (*Optional*, enum): One of the supported bitrates. Defaults to ``125KBPS``.
 
-    - ``5KBPS`` - Not supported by ``esp32_can``
-    - ``10KBPS`` - Not supported by ``esp32_can``
-    - ``20KBPS`` - Not supported by ``esp32_can``
+    - ``1KBPS`` - Support by ``esp32_can`` depends on ESP32 variant
+    - ``5KBPS`` - Support by ``esp32_can`` depends on ESP32 variant
+    - ``10KBPS`` - Support by ``esp32_can`` depends on ESP32 variant
+    - ``12K5BPS`` - Support by ``esp32_can`` depends on ESP32 variant
+    - ``16KBPS`` - Support by ``esp32_can`` depends on ESP32 variant
+    - ``20KBPS`` - Support by ``esp32_can`` depends on ESP32 variant
+    - ``25KBPS`` 
     - ``31K25BPS`` - Not supported by ``esp32_can``
     - ``33KBPS`` - Not supported by ``esp32_can``
     - ``40KBPS`` - Not supported by ``esp32_can``
@@ -79,6 +83,9 @@ Configuration variables:
     - ``250KBPS``
     - ``500KBPS``
     - ``1000KBPS``
+
+  See :ref:`this table <esp32-can-bit-rate>` for a list of supported bit rates by the internal CAN (TWAI) controllers of different ESP32 variants.
+
 
 Automations:
 ------------
@@ -164,12 +171,11 @@ There are several forms to use it:
       - canbus.send: 'hello'
 
       # Templated, return type is std::vector<uint8_t>
-      - canbus.send: !lambda
-          return {0x00, 0x20, 0x42};
+      - canbus.send: !lambda return {0x00, 0x20, 0x42};
 
 Configuration variables:
 
-- **data** (**Required**, binary data): Data to transmit, up to 8 bytes or
+- **data** (**Required**, binary data, :ref:`templatable <config-templatable>`): Data to transmit, up to 8 bytes or
   characters are supported by can bus per frame.
 - **canbus_id** (*Optional*): Optionally set the can bus id to use for transmitting
   the frame. Not needed if you are using only 1 can bus.
@@ -197,6 +203,36 @@ You only need to specify the RX and TX pins. Any GPIO will work.
         bit_rate: 50kbps
         on_frame:
           ...
+
+
+.. _esp32-can-bit-rate:
+
+The table lists the specific bit rates supported by the component for ESP32 variants:
+ =================== ======= ========== ========== ========== ========== ==========
+  bit_rate            ESP32   ESP32-S2   ESP32-S3   ESP32-C3   ESP32-C6   ESP32-H2   
+ =================== ======= ========== ========== ========== ========== ==========
+  1KBPS                        x          x          x          x          x          
+  5KBPS                        x          x          x          x          x          
+  10KBPS                       x          x          x          x          x          
+  12K5BPS                      x          x          x          x          x          
+  16KBPS                       x          x          x          x          x          
+  20KBPS                       x          x          x          x          x          
+  25KBPS               x       x          x          x          x          x          
+  31K25BPS                                                                           
+  33KBPS                                                                              
+  40KBPS                                                                              
+  50KBPS               x       x          x          x          x          x          
+  80KBPS                                                                              
+  83K38BPS                                                                           
+  95KBPS                                                                              
+  100KBPS              x       x          x          x          x          x          
+  125KBPS (Default)    x       x          x          x          x          x          
+  250KBPS              x       x          x          x          x          x          
+  500KBPS              x       x          x          x          x          x          
+  800KBPS              x       x          x          x          x          x          
+  1000KBPS             x       x          x          x          x          x          
+ =================== ======= ========== ========== ========== ========== ==========
+
 
 Wiring options
 **************
