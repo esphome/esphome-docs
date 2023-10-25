@@ -1,29 +1,30 @@
-Modbus Controller
+ModBUS Controller
 =================
 
 .. seo::
-    :description: Instructions for setting up the Modbus Controller component.
+    :description: Instructions for setting up the ModBUS Controller component.
     :image: modbus.png
 
-The ``modbus_controller`` component creates a RS485 connection to control a modbus device
+The ``modbus_controller`` component creates a RS485 connection to control a ModBUS slave device, letting your ESPHome node to act as a ModBUS master.
+You can access the coils and registers from the your slave ModBUS devices as sensors, switches or various other ESPHome components and present them to your favorite Home Automation system.
 
 .. figure:: /images/modbus.png
     :align: center
     :width: 25%
 
-The ``modbus_controller`` component uses the modbus component
+The ``modbus_controller`` component relies on the ``modbus`` component.
 
 
 
 Hardware setup
 --------------
-A RS 485 module connected to an ESP32, for example:
+A RS485 module connected to an ESP32, for example:
 
 .. figure:: /images/rs485.jpg
 
-See `How is this RS485 Module Working? <https://electronics.stackexchange.com/questions/244425/how-is-this-rs485-module-working>`__ on stackexchange for more details
+See `How is this RS485 module working? <https://electronics.stackexchange.com/questions/244425/how-is-this-rs485-module-working>`__ on stackexchange for more details
 
-The controller connects to the UART of the MCU. For ESP32  GPIO PIN 16 to TXD PIN 17 to RXD are the default ports but any other pins can be used as well. 3.3V to VCC and GND to GND.
+The controller connects to the UART of the MCU. For ESP32, pin ``16`` to ``TXD`` and pin ``17`` to ``RXD`` are the default ones but any other pins can be used as well. ``3.3V`` to ``VCC`` and naturally ``GND`` to ``GND``.
 
 .. note::
 
@@ -31,7 +32,7 @@ The controller connects to the UART of the MCU. For ESP32  GPIO PIN 16 to TXD PI
 
     For hardware serial only a limited set of pins can be used. Either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``  or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``.
 
-    The disadvantage of using the hardware uart is that you can't use serial logging because the serial logs would be sent to the modbus device and cause errors.
+    The disadvantage of using the hardware uart is that you can't use serial logging because the serial logs would be sent to the ModBUS device and cause errors.
 
     Serial logging can be disabled by setting ``baud_rate: 0``.
 
@@ -48,29 +49,27 @@ The controller connects to the UART of the MCU. For ESP32  GPIO PIN 16 to TXD PI
 Configuration variables:
 ------------------------
 
-- **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the modbus hub.
+- **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the ``modbus`` hub.
 
-- **address** (**Required**, :ref:`config-id`): The modbus address of the device
-  Specify the modbus device address of the.
+- **address** (**Required**, :ref:`config-id`): The ModBUS address of the slave device
 
-- **command_throttle** (*Optional*, :ref:`config-time`): minimum time in between 2 requests to the device. Default is 0ms
-  Because some modbus devices limit the rate of requests the interval between sending requests to the device can be modified.
+- **command_throttle** (*Optional*, :ref:`config-time`): minimum time in between 2 requests to the device. Default is ``0ms``.
+  Some ModBUS slave devices limit the rate of requests from the master, the interval between sending requests can be altered.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
   Defaults to 60 seconds.
 
-- **offline_skip_updates** (*Optional*, integer): When a controller doesn't respond to a command, it is
+- **offline_skip_updates** (*Optional*, integer): When a slave doesn't respond to a command, it is
   marked as offline, you can specify how many updates will be skipped while it is offline. If using a bus with multiple
-  controllers, this avoids waiting for timeouts allowing to read other controllers in the same bus. When the controller
+  slaves, this avoids waiting for timeouts allowing to read other slaves in the same bus. When the slave
   responds to a command, it'll be marked online again.
 
 
 Example
 -------
-The following code create a modbus_controller hub talking to a modbus device at address 1 with 115200 bps
+The following code creates a ``modbus_controller`` hub talking to a ModBUS device at address ``1`` with ``115200`` bps
 
-
-Modbus sensors can be directly defined (inline) under the modbus_controller hub or as standalone components
+ModBUS sensors can be directly defined (inline) under the ``modbus_controller`` hub or as standalone components
 Technically there is no difference between the "inline" and the standard definitions approach.
 
 .. code-block:: yaml
@@ -88,8 +87,7 @@ Technically there is no difference between the "inline" and the standard definit
 
     modbus_controller:
       - id: epever
-        ## the Modbus device addr
-        address: 0x1
+        address: 0x1   ## address of the ModBUS slave device on the bus
         modbus_id: modbus1
         setup_priority: -10
 
@@ -100,7 +98,7 @@ Technically there is no difference between the "inline" and the standard definit
         id: rtc_clock
         internal: true
         register_type: holding
-        address: 0x9013
+        address: 0x9013    ## address of the register inside the ModBUS slave device
         register_count: 3
         raw_encode: HEXBYTES
         response_size: 6
@@ -208,7 +206,6 @@ To gather some of these bits as binary sensors in ESPHome, use ``bitmask``:
 
 
 
-
 Protocol decoding example
 -------------------------
 
@@ -298,9 +295,8 @@ Protocol decoding example
         accuracy_decimals: 0
 
 
-
 To minimize the required transactions all registers with the same base address are read in one request.
-The response is mapped to the sensor based on register_count and offset in bytes.
+The response is mapped to the sensor based on ``register_count`` and offset in bytes. For example:
 
 **Request**
 
@@ -331,7 +327,7 @@ The response is mapped to the sensor based on register_count and offset in bytes
 +--------+------------+--------------------+--------------------------------------------+
 | offset | data       | value (type)       | description                                |
 +========+============+====================+============================================+
-|  H     | 0x1  (01)  |                    | device address                             |
+|   H    | 0x1  (01)  |                    | device address                             |
 +--------+------------+--------------------+--------------------------------------------+
 |   H    | 0x4  (04)  |                    | function code                              |
 +--------+------------+--------------------+--------------------------------------------+
@@ -384,7 +380,7 @@ Note
 ----
 
 Write support is only implemented for switches and selects.
-However the C++ code provides the required API to write to a modbus device.
+However the C++ code provides the required API to write to a ModBUS device.
 
 These methods can be called from a lambda.
 
@@ -418,7 +414,7 @@ Then battery charge settings are sent.
                 // create the payload
                 std::vector<uint16_t> rtc_data = {uint16_t((minutes << 8) | seconds), uint16_t((day << 8) | hour),
                                                   uint16_t((year << 8) | month)};
-                // Create a modbus command item with the time information as the payload
+                // Create a ModBUS command item with the time information as the payload
                 esphome::modbus_controller::ModbusCommandItem set_rtc_command =
                     esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x9013, 3, rtc_data);
                 // Submit the command to the send queue
@@ -523,8 +519,6 @@ Then battery charge settings are sent.
           - multiply: 0.01
 
 
-
-
 See Also
 --------
 
@@ -534,6 +528,7 @@ See Also
 - :doc:`/components/switch/modbus_controller`
 - :doc:`/components/number/modbus_controller`
 - :doc:`/components/output/modbus_controller`
+- `ModBUS RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
 - `EPEVER MPPT Solar Charge Controller (Tracer-AN Series) <https://devices.esphome.io/devices/epever_mptt_tracer_an>`__
-- `Modbus RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
+- `Genvex, Nibe, Alpha-Innotec heat recovery ventilation <https://devices.esphome.io/devices/Genvex-Nibe-AlphaInnotec-heat-recovery-ventilation>`__
 - :ghedit:`Edit`
