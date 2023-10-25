@@ -1,4 +1,4 @@
-ModBUS Controller
+Modbus Controller
 =================
 
 .. seo::
