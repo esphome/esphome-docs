@@ -388,7 +388,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
     Then battery charge settings are sent.
     
     .. code-block:: yaml
-    
+
         esphome:
           on_boot:
             ## configure controller settings at setup
