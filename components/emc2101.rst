@@ -33,36 +33,9 @@ EMC2101 Component
 .. code-block:: yaml
 
     # Example configuration entry
-    i2c:
-      sda: GPIO8
-      scl: GPIO9
-
     emc2101:
       pwm:
         resolution: 8
-
-    output:
-      - platform: emc2101
-        id: fan_duty_cycle
-
-    fan:
-      - platform: speed
-        name: "Hall Cabinet Fan"
-        output: fan_duty_cycle
-        speed_count: 16
-
-    sensor:
-      - platform: emc2101
-        internal_temperature:
-          id: internal_temperature_sensor
-          name: "Internal Temperature Sensor"
-        speed:
-          id: speed_sensor
-          name: "Speed Sensor"
-        duty_cycle:
-          id: duty_cycle_sensor
-          name: "Duty Cycle Sensor"
-        update_interval: 5s
 
 
 Configuration variables:
