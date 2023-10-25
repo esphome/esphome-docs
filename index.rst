@@ -746,6 +746,14 @@ Lock Components
     Generic Output Lock, components/lock/output, upload.svg, dark-invert
     Template Lock, components/lock/template, description.svg, dark-invert
 
+Text Components
+---------------
+
+.. imgtable::
+
+    Text Core, components/text/index, folder-open.svg, dark-invert
+    Template Text, components/text/template, description.svg, dark-invert
+
 Media Player Components
 -----------------------
 
