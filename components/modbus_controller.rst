@@ -18,7 +18,7 @@ The ``modbus_controller`` component relies on the :doc:`/components/modbus`.
 
 Hardware setup
 --------------
-You need an RS485 transceiver module connected to an ESP32, for example:
+You need an RS485 transceiver module:
 
 .. figure:: /images/rs485.jpg
 
