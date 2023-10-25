@@ -519,7 +519,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
 See Also
 --------
 
-- :doc:`/components/sensor/modbus_controller`
+- :doc:`/components/modbus`
 - :doc:`/components/binary_sensor/modbus_controller`
 - :doc:`/components/text_sensor/modbus_controller`
 - :doc:`/components/switch/modbus_controller`
