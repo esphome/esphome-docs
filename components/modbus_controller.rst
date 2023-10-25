@@ -18,11 +18,11 @@ The ``modbus_controller`` component relies on the ``modbus`` component.
 
 Hardware setup
 --------------
-A RS485 module connected to an ESP32, for example:
+An RS485 module connected to an ESP32, for example:
 
 .. figure:: /images/rs485.jpg
 
-See `How is this RS485 module working? <https://electronics.stackexchange.com/questions/244425/how-is-this-rs485-module-working>`__ on stackexchange for more details
+See `How is this RS485 module working? <https://electronics.stackexchange.com/questions/244425/how-is-this-rs485-module-working>`__ on stackexchange for more details.
 
 The controller connects to the UART of the MCU. For ESP32, pin ``16`` to ``TXD`` and pin ``17`` to ``RXD`` are the default ones but any other pins can be used as well. ``3.3V`` to ``VCC`` and naturally ``GND`` to ``GND``.
 
@@ -375,148 +375,145 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
 +--------+------------+--------------------+--------------------------------------------+
 
 
+.. note::
 
-Note
-----
+    Write support is only implemented for switches and selects.
+    However the C++ code provides the required API to write to a ModBUS device.
 
-Write support is only implemented for switches and selects.
-However the C++ code provides the required API to write to a ModBUS device.
+    These methods can be called from a lambda.
 
-These methods can be called from a lambda.
-
-Here is an example how to set config values to for an EPEVER Trace AN controller.
-The code synchronizes the localtime of MCU to the epever controller
-The time is set by writing 12 bytes to register 0x9013.
-Then battery charge settings are sent.
-
-
-.. code-block:: yaml
-
-    esphome:
-      on_boot:
-        ## configure controller settings at setup
-        ## make sure priority is lower than setup_priority of modbus_controller
-        priority: -100
-        then:
-          - lambda: |-
-              // get local time and sync to controller
-              time_t now = ::time(nullptr);
-              struct tm *time_info = ::localtime(&now);
-              int seconds = time_info->tm_sec;
-              int minutes = time_info->tm_min;
-              int hour = time_info->tm_hour;
-              int day = time_info->tm_mday;
-              int month = time_info->tm_mon + 1;
-              int year = time_info->tm_year % 100;
-              esphome::modbus_controller::ModbusController *controller = id(epever);
-              // if there is no internet connection localtime returns year 70
-              if (year != 70) {
-                // create the payload
-                std::vector<uint16_t> rtc_data = {uint16_t((minutes << 8) | seconds), uint16_t((day << 8) | hour),
-                                                  uint16_t((year << 8) | month)};
-                // Create a ModBUS command item with the time information as the payload
-                esphome::modbus_controller::ModbusCommandItem set_rtc_command =
-                    esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x9013, 3, rtc_data);
-                // Submit the command to the send queue
-                epever->queue_command(set_rtc_command);
-                ESP_LOGI("ModbusLambda", "EPSOLAR RTC set to %02d:%02d:%02d %02d.%02d.%04d", hour, minutes, seconds, day, month,
-                        year + 2000);
-              }
-              // Battery settings
-              // Note: these values are examples only and apply my AGM Battery
-              std::vector<uint16_t> battery_settings1 = {
-                  0,       // 9000 Battery Type 0 =  User
-                  0x0073,  // 9001 Battery Cap 0x55 == 115AH
-                  0x012C,  // 9002 Temp compensation -3V /°C/2V
-                  0x05DC,  // 9003 0x5DC == 1500 Over Voltage Disconnect Voltage 15,0
-                  0x058C,  // 9004 0x58C == 1480 Charging Limit Voltage 14,8
-                  0x058C,  // 9005 Over Voltage Reconnect Voltage 14,8
-                  0x05BF,  // 9006 Equalize Charging Voltage 14,6
-                  0x05BE,  // 9007 Boost Charging Voltage 14,7
-                  0x0550,  // 9008 Float Charging Voltage 13,6
-                  0x0528,   // 9009 Boost Reconnect Charging Voltage 13,2
-                  0x04C4,  // 900A Low Voltage Reconnect Voltage 12,2
-                  0x04B0,  // 900B Under Voltage Warning Reconnect Voltage 12,0
-                  0x04BA,  // 900c Under Volt. Warning Volt 12,1
-                  0x04BA,  // 900d Low Volt. Disconnect Volt. 11.8
-                  0x04BA   // 900E Discharging Limit Voltage 11.8
-              };
-
-              // Boost and equalization periods
-              std::vector<uint16_t> battery_settings2 = {
-                  0x0000,  // 906B Equalize Duration (min.) 0
-                  0x0075   // 906C Boost Duration (aka absorb) 117 mins
-              };
-              esphome::modbus_controller::ModbusCommandItem set_battery1_command =
-                  esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x9000, battery_settings1.size() ,
-                                                                                              battery_settings1);
-
-              esphome::modbus_controller::ModbusCommandItem set_battery2_command =
-                  esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x906B, battery_settings3.size(),
-                                                                                              battery_settings2);
-              delay(200) ;
-              controller->queue_command(set_battery1_command);
-              delay(200) ;
-              controller->queue_command(set_battery2_command);
-              ESP_LOGI("ModbusLambda", "EPSOLAR Battery set");
-
-    uart:
-      id: mod_bus
-      tx_pin: 19
-      rx_pin: 18
-      baud_rate: 115200
-      stop_bits: 1
-
-    modbus:
-      #flow_control_pin: 23
-      send_wait_time: 200ms
-      id: mod_bus_epever
-
-    modbus_controller:
-      - id: epever
-        ## the Modbus device addr
-        address: 0x1
-        modbus_id: mod_bus_epever
-        command_throttle: 0ms
-        setup_priority: -10
-        update_interval: ${updates}
-
-    sensor:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: array_rated_voltage
-        name: "array_rated_voltage"
-        address: 0x3000
-        unit_of_measurement: "V"
-        register_type: read
-        value_type: U_WORD
-        accuracy_decimals: 1
-        filters:
-          - multiply: 0.01
-
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: array_rated_current
-        name: "array_rated_current"
-        address: 0x3001
-        unit_of_measurement: "A"
-        register_type: read
-        value_type: U_WORD
-        accuracy_decimals: 2
-        filters:
-          - multiply: 0.01
-
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: array_rated_power
-        name: "array_rated_power"
-        address: 0x3002
-        unit_of_measurement: "W"
-        register_type: read
-        value_type: U_DWORD_R
-        accuracy_decimals: 1
-        filters:
-          - multiply: 0.01
+    Here is an example how to set config values to for an EPEVER Trace AN controller.
+    The code synchronizes the localtime of MCU to the epever controller
+    The time is set by writing 12 bytes to register 0x9013.
+    Then battery charge settings are sent.
+    
+    .. code-block:: yaml
+    
+        esphome:
+          on_boot:
+            ## configure controller settings at setup
+            ## make sure priority is lower than setup_priority of modbus_controller
+            priority: -100
+            then:
+              - lambda: |-
+                  // get local time and sync to controller
+                  time_t now = ::time(nullptr);
+                  struct tm *time_info = ::localtime(&now);
+                  int seconds = time_info->tm_sec;
+                  int minutes = time_info->tm_min;
+                  int hour = time_info->tm_hour;
+                  int day = time_info->tm_mday;
+                  int month = time_info->tm_mon + 1;
+                  int year = time_info->tm_year % 100;
+                  esphome::modbus_controller::ModbusController *controller = id(epever);
+                  // if there is no internet connection localtime returns year 70
+                  if (year != 70) {
+                    // create the payload
+                    std::vector<uint16_t> rtc_data = {uint16_t((minutes << 8) | seconds), uint16_t((day << 8) | hour),
+                                                      uint16_t((year << 8) | month)};
+                    // Create a ModBUS command item with the time information as the payload
+                    esphome::modbus_controller::ModbusCommandItem set_rtc_command =
+                        esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x9013, 3, rtc_data);
+                    // Submit the command to the send queue
+                    epever->queue_command(set_rtc_command);
+                    ESP_LOGI("ModbusLambda", "EPSOLAR RTC set to %02d:%02d:%02d %02d.%02d.%04d", hour, minutes, seconds, day, month,
+                            year + 2000);
+                  }
+                  // Battery settings
+                  // Note: these values are examples only and apply my AGM Battery
+                  std::vector<uint16_t> battery_settings1 = {
+                      0,       // 9000 Battery Type 0 =  User
+                      0x0073,  // 9001 Battery Cap 0x55 == 115AH
+                      0x012C,  // 9002 Temp compensation -3V /°C/2V
+                      0x05DC,  // 9003 0x5DC == 1500 Over Voltage Disconnect Voltage 15,0
+                      0x058C,  // 9004 0x58C == 1480 Charging Limit Voltage 14,8
+                      0x058C,  // 9005 Over Voltage Reconnect Voltage 14,8
+                      0x05BF,  // 9006 Equalize Charging Voltage 14,6
+                      0x05BE,  // 9007 Boost Charging Voltage 14,7
+                      0x0550,  // 9008 Float Charging Voltage 13,6
+                      0x0528,   // 9009 Boost Reconnect Charging Voltage 13,2
+                      0x04C4,  // 900A Low Voltage Reconnect Voltage 12,2
+                      0x04B0,  // 900B Under Voltage Warning Reconnect Voltage 12,0
+                      0x04BA,  // 900c Under Volt. Warning Volt 12,1
+                      0x04BA,  // 900d Low Volt. Disconnect Volt. 11.8
+                      0x04BA   // 900E Discharging Limit Voltage 11.8
+                  };
+    
+                  // Boost and equalization periods
+                  std::vector<uint16_t> battery_settings2 = {
+                      0x0000,  // 906B Equalize Duration (min.) 0
+                      0x0075   // 906C Boost Duration (aka absorb) 117 mins
+                  };
+                  esphome::modbus_controller::ModbusCommandItem set_battery1_command =
+                      esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x9000, battery_settings1.size() ,
+                                                                                                  battery_settings1);
+    
+                  esphome::modbus_controller::ModbusCommandItem set_battery2_command =
+                      esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x906B, battery_settings3.size(),
+                                                                                                  battery_settings2);
+                  delay(200) ;
+                  controller->queue_command(set_battery1_command);
+                  delay(200) ;
+                  controller->queue_command(set_battery2_command);
+                  ESP_LOGI("ModbusLambda", "EPSOLAR Battery set");
+    
+        uart:
+          id: mod_bus
+          tx_pin: 19
+          rx_pin: 18
+          baud_rate: 115200
+          stop_bits: 1
+    
+        modbus:
+          #flow_control_pin: 23
+          send_wait_time: 200ms
+          id: mod_bus_epever
+    
+        modbus_controller:
+          - id: epever
+            ## the Modbus device addr
+            address: 0x1
+            modbus_id: mod_bus_epever
+            command_throttle: 0ms
+            setup_priority: -10
+            update_interval: ${updates}
+    
+        sensor:
+          - platform: modbus_controller
+            modbus_controller_id: epever
+            id: array_rated_voltage
+            name: "array_rated_voltage"
+            address: 0x3000
+            unit_of_measurement: "V"
+            register_type: read
+            value_type: U_WORD
+            accuracy_decimals: 1
+            filters:
+              - multiply: 0.01
+    
+          - platform: modbus_controller
+            modbus_controller_id: epever
+            id: array_rated_current
+            name: "array_rated_current"
+            address: 0x3001
+            unit_of_measurement: "A"
+            register_type: read
+            value_type: U_WORD
+            accuracy_decimals: 2
+            filters:
+              - multiply: 0.01
+    
+          - platform: modbus_controller
+            modbus_controller_id: epever
+            id: array_rated_power
+            name: "array_rated_power"
+            address: 0x3002
+            unit_of_measurement: "W"
+            register_type: read
+            value_type: U_DWORD_R
+            accuracy_decimals: 1
+            filters:
+              - multiply: 0.01
 
 
 See Also
