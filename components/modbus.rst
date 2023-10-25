@@ -1,15 +1,15 @@
 .. _modbus:
 
-Modbus Component
+ModBUS Component
 ================
 
 .. seo::
     :description: Instructions for setting up Modbus in ESPHome.
     :keywords: Modbus
 
-The Modbus protocol is used by many consumer and industrial devices for communication.
+The ModBUS protocol is used by many consumer and industrial devices for communication.
 This component allows components in ESPHome to communicate to those devices.
-Modbus requires a :ref:`UART Bus <uart>` to communicate.
+ModBUS requires a :ref:`UART Bus <uart>` to communicate.
 
 .. code-block:: yaml
 
