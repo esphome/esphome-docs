@@ -1,5 +1,5 @@
-Honeywell ABP Pressure Sensors
-==============================
+Honeywell ABP 2 Pressure Sensors
+================================
 
 .. seo::
     :description: Instructions for setting up Honeywell ABP2 Pressure sensors
@@ -22,11 +22,8 @@ required to be set up in your configuration for this sensor to work
 
     sensor:
       - platform: honeywellabp2_i2c
-        id: abp2
-        update_interval: never
         pressure:
           name: "Honeywell2 pressure"
-          unit_of_measurement: "Pa"
           min_pressure: 0
           max_pressure: 16000
           transfer_function: "A"
@@ -42,21 +39,16 @@ set ``min_pressure`` and ``max_pressure`` to the measurement range, ``transfer_f
 
 - **pressure** (*Optional*): The information for the pressure sensor.
 
-  - **name** (**Required**, string): The name for the pressure sensor.
   - **min_pressure** (**Required**, int or float): Minimum pressure for the pressure sensor.
   - **max_pressure** (**Required**, int or float): Maximum pressure for the pressure sensor.
   - **transfer_function** (**Required**, "A" or "B"): Transfer function used by the pressure sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 Some sensors do not have temperature sensing ability, see datasheet. In some cases the sensor may return a valid temperature even though the 
 datasheet indicates that the sensor does not measure temperature.
 
 - **temperature** (*Optional*): The information for the temperature sensor.
-
-  - **name** (**Required**, string): The name for the temperature sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Sensor <config-sensor>`.
 
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
