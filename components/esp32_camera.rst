@@ -442,6 +442,33 @@ Configuration for ESP-EYE
       name: My Camera
       # ...
 
+Configuration for ESP32S3_EYE on `Freenove ESP32-S3-DevKitC-1 <https://github.com/Freenove/Freenove_ESP32_S3_WROOM_Board>`_
+---------------------------------------------------------------------------------------------------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    external_components:
+      - source:
+          type: git
+          url: https://github.com/MichaKersloot/esphome_custom_components
+        components: [ esp32_camera ]
+
+    esp32_camera:
+      external_clock:
+        pin: GPIO15
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO4
+        scl: GPIO5
+      data_pins: [GPIO11, GPIO9, GPIO8, GPIO10, GPIO12, GPIO18, GPIO17, GPIO16]
+      vsync_pin: GPIO6
+      href_pin: GPIO7
+      pixel_clock_pin: GPIO13
+
+      # Image settings
+      name: My Camera
+      # ...
 
 See Also
 --------
