@@ -11,6 +11,9 @@ div.document {
   margin-bottom: 50px;
 }
 
+img {
+  max-width: 600px;
+}
 img.hero-img {
   display: block;
   width: 100%;
