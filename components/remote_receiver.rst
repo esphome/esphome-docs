@@ -38,6 +38,7 @@ Configuration variables:
   - **dish**: Decode and dump Dish infrared codes.
   - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **jvc**: Decode and dump JVC infrared codes.
+  - **haier**: Decode and dump Haier infrared codes.
   - **lg**: Decode and dump LG infrared codes.
   - **magiquest**: Decode and dump MagiQuest wand infrared codes.
   - **midea**: Decode and dump Midea infrared codes.
@@ -101,6 +102,9 @@ Automations:
   is passed to the automation for use in lambdas.
 - **on_jvc** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   JVC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::JVCData`
+  is passed to the automation for use in lambdas.
+- **on_haier** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Haier remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::HaierData`
   is passed to the automation for use in lambdas.
 - **on_lg** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   LG remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::LGData`
@@ -226,7 +230,7 @@ Remote code selection (exactly one of these has to be included):
   it will be checked for a match to at least one of the two received packets. The main configuration scheme is below.
 
   - **first** (**Required**, uint32_t): The first 24-bit Coolix code to trigger on, see dumper output for more info.
-  - **second** (**Optional**, uint32_t): The second 24-bit Coolix code to trigger on, see dumper output for more info.
+  - **second** (*Optional*, uint32_t): The second 24-bit Coolix code to trigger on, see dumper output for more info.
     If not set, trigger on on only single non-strict packet, specified by the ``first`` parameter.
 
 - **dish**: Trigger on a decoded Dish Network remote code with the given data.
@@ -244,6 +248,11 @@ Remote code selection (exactly one of these has to be included):
 - **jvc**: Trigger on a decoded JVC remote code with the given data.
 
   - **data** (**Required**, int): The JVC code to trigger on, see dumper output for more info.
+
+- **haier**: Trigger on a Haier remote code with the given code.
+
+  - **code** (**Required**, 13-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_haier`
+    for more info. Usually you only need to copy this directly from the dumper output.
 
 - **lg**: Trigger on a decoded LG remote code with the given data.
 

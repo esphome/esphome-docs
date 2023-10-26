@@ -69,8 +69,8 @@ Configuration variables:
 - **number_datapoint** (**Required**, int): The datapoint id number of the number.
 - **min_value** (**Required**, float): The minimum value this number can be.
 - **max_value** (**Required**, float): The maximum value this number can be.
-- **step** (**Optional**, float): The granularity with which the number can be set. Defaults to 1.
-- **multiply** (**Optional**, float): multiply the new value with this factor before sending the requests.
+- **step** (*Optional*, float): The granularity with which the number can be set. Defaults to 1.
+- **multiply** (*Optional*, float): multiply the new value with this factor before sending the requests.
 
 - All other options from :ref:`Number <config-number>`.
 
