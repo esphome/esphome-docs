@@ -78,7 +78,7 @@ Configuration variables:
   - **source** (**Required**, :ref:`config-id` of a :doc:`/components/sensor/index`): The
     sensor id that is used as sample source.
   - **error** (**Required** - only for ``KALMAN`` type, float, :ref:`templatable <config-templatable>`): 
-    The standard deviation of the sensor's measurements. These work like the **process_std_dev** 
+    The standard deviation of the sensor's measurements. This works like the ``process_std_dev`` 
     parameter, with low values marking accurate data. If implemented as a template, the 
     measurement is in parameter ``x``.
   - **coeffecient** (**Required** - only for ``LINEAR`` type, float, :ref:`templatable <config-templatable>`): 
