@@ -5,17 +5,17 @@ ESPHOME_REF = 2023.10.3
 
 html:
 	sphinx-build -M html . _build -j auto -n $(O)
-	PATH=$(BINPATH) pagefind
+	pagefind
 
 live-html:	html
 	sphinx-autobuild . _build -j auto -n $(O) --host 0.0.0.0
 
 live-pagefind:	html
-	PATH=$(BINPATH) pagefind --serve
+	pagefind --serve
 
 html-strict:
 	sphinx-build -M html . _build -W -j auto -n $(O)
-	PATH=$(BINPATH) pagefind
+	pagefind
 
 minify:
 	minify _static/webserver-v1.js > _static/webserver-v1.min.js
