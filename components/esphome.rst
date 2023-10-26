@@ -32,6 +32,8 @@ Configuration variables:
 - **friendly_name** (*Optional*, string): This is the name sent to the frontend. It is used
   by Home Assistant as the integration name, device name, and is automatically prefixed to entities
   where necessary.
+- **area** (*Optional*, string): This is the area sent to the frontend. It is used
+  by Home Assistant as the area / zone which the node belongs to.
 
 Advanced options:
 
