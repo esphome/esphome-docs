@@ -51,7 +51,7 @@ after you leave the room.
 .. _dfr_mmwave-component:
 
 Component
--------------
+---------
 
 You only need to have the component (``dfrobot_mmwave_radar:`` entry) defined if you want to change settings of the sensor or read the state via UART.
 If you only want to read the state via a GPIO pin, a :doc:`/components/binary_sensor/gpio` is sufficient.
