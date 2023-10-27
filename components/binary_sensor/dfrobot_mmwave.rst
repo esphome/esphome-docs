@@ -1,5 +1,5 @@
 DFRobot mmWave Radar
-===============================
+====================
 
 .. seo::
     :description: Instructions for setting up DFRobot mmWave Radar
