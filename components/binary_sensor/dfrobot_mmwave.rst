@@ -123,8 +123,8 @@ Configuration variables:
 Switch
 ------
 
-You can use the switch to get an indication whether the sensor is currently active or not and you can use it to turn the sensor on and off.
-Don't confuse it with the detection state. When turned off, you won't get detected when in front of the sensor.
+The switch is used to enable and/or disable detection. *Note that this does not indicate the state of detection.*
+When the switch is turned off, you won't get detected when in front of the sensor.
 
 .. code-block:: yaml
 
