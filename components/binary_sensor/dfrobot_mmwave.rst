@@ -116,7 +116,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (*Optional*, string): The name for the binary sensor.
-- **dfrobot_mmwave_radar_id** (*Optional*, :ref:`config-id`): The ID of the DFRobot mmWave component defined above. Useful for multiple mmWave sensors.
+- **dfrobot_mmwave_radar_id** (*Optional*, :ref:`config-id`): The ID of the DFRobot mmWave component defined above. Useful when multiple instances of this component are defined.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
