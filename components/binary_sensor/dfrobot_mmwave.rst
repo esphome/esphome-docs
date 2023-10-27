@@ -100,8 +100,8 @@ components.
 Via UART
 ********
 
-If you want, you can use the sensor only using a uart connection. It might be an advantage to be able to save an extra pin. However, the CPU
-needs to be running in order to process incoming sensor data. You cannot wake up the processor by using uart only.
+If necessary, you can use the sensor by way of the serial connection alone; this reduces the number of pins required. However, the CPU
+needs to be running in order to process incoming sensor data. The UART cannot wake processor.
 
 First, setup a :ref:`UART bus <uart>` and :ref:`dfr_mmwave-component` and then use this binary sensor platform to create individual
 binary sensors for each presence sensor.
