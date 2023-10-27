@@ -24,11 +24,6 @@ a :doc:`/components/uart` component (and its requisite GPIO pins) is required in
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      tx_pin: GPIO13
-      rx_pin: GPIO14
-      baud_rate: 115200
-
     dfrobot_sen0395:
 
     binary_sensor:
@@ -41,7 +36,7 @@ a :doc:`/components/uart` component (and its requisite GPIO pins) is required in
         name: Mmwave Detected via GPIO
         device_class: motion
         pin:
-          number: GPIO15
+          number: REPLACEME
           mode: INPUT_PULLDOWN
 
     switch:
@@ -102,7 +97,7 @@ If you don't want/need to change the radar's settings and only need to determine
         name: Presence Detected via GPIO
         device_class: motion
         pin:
-          number: GPIO15
+          number: REPLACEME
           mode: INPUT_PULLDOWN
 
 .. _dfrobot_sen0395-via_uart:
@@ -126,8 +121,6 @@ to create individual binary sensors for each presence sensor.
 Configuration variables:
 ************************
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (*Optional*, string): The name for the binary sensor.
 - **dfrobot_sen0395_id** (*Optional*, :ref:`config-id`): The ID of the DFRobot mmWave component defined above.
   Required when multiple instances of the ``dfrobot_sen0395`` component are defined.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
@@ -204,7 +197,7 @@ action, any unspecified parameters will remain unchanged. All settings are tempa
 Configuration variables:
 ````````````````````````
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the mmWave sensor which settings should be
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the mmWave sensor on which settings should be
   changed. If only one radar is defined, this is optional.
 - **factory_reset** (*Optional*, boolean): If set to true, a factory reset of the sensor will be performed (before
   changing other options if present). Ignored if not set or set to ``false``.
