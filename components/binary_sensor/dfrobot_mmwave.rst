@@ -245,7 +245,7 @@ Configuration options:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the mmwave component if you have multiple ones.
 
 ``dfrobot_mmwave_radar.stop`` Action
-----------------------------------------
+------------------------------------
 
 Stop the sensor.
 
