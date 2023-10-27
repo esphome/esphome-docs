@@ -228,7 +228,7 @@ Configuration options:
 
 .. note::
 
-    It seems the DFRobot mmWave Radar has a bug in it's firmware. If the uart tx line (rx on the sensor) is held low (e.g. during serial flashing),
+    It seems the DFRobot mmWave Radar has a bug in its firmware. If the UART TX line (RX on the sensor) is held low (e.g. during serial flashing),
     the sensor resets. When such a "uart reset" happens, the sensor does not immediately start, even if it was configured that way.
     Only after 20 seconds the sensor starts. If you start the sensor during this 20s window, it tries to start again after
     20 seconds and it unexpectedly resets. If you don't wait for 20s it keeps on resetting (and stopping the sensor).
