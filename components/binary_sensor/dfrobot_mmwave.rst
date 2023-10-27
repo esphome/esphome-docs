@@ -151,7 +151,8 @@ Configuration variables:
 
 The DFRobot mmWave Radar has several settings which can be changed. These settings are saved in non-volatile memory and do not need to be set on each boot.
 
-All options of the settings action are optional and only the specified options are changed. Unspecified parameters are untouched (not set to a default value).
+The settings action allows changing of any number of the mmWave radar's internal parameters/settings.
+With this action, any unspecified parameters will remain unchanged.
 You can change one option, a few or all a the same time. All settings are tempatable.
 
 .. code-block:: yaml
