@@ -97,7 +97,7 @@ components.
           number: GPIO15
           mode: INPUT_PULLDOWN
 
-via UART
+Via UART
 ********
 
 If you want, you can use the sensor only using a uart connection. It might be an advantage to be able to save an extra pin. However, the CPU
