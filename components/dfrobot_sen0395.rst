@@ -251,7 +251,7 @@ Restart the sensor.
 .. code-block:: yaml
 
     on_...:
-      dfrobot_sen0395.reset
+      dfrobot_sen0395.reset:
 
 Configuration variables:
 ````````````````````````
