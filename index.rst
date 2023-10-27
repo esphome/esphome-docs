@@ -489,6 +489,12 @@ Touchscreen
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
 
+Presence Detection
+******************
+.. imgtable::
+
+    DFRobot mmWave Radar, components/dfrobot_sen0395, dfrobot_sen0395.jpg
+
 Miscellaneous
 *************
 .. imgtable::
