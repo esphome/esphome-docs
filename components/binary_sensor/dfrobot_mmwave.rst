@@ -270,7 +270,7 @@ Restart the sensor.
 
 Configuration options:
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the mmwave component if you have multiple ones.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the mmWave component. Useful when multiple instances of this component are defined.
 
 See Also
 --------
