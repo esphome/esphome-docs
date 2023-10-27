@@ -178,7 +178,6 @@ Configuration options:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the mmwave sensor which settings should be changed. If only one radar is defined, this is optional.
 
 - **factory_reset** (*Optional*, boolean): If set to true, a factory reset of the sensor will be performed (before changing other options if present). Ignored if not set or set to false.
-  A lambda function can be used to set the value. Return true or false.
 
 - **detection_segments** (*Optional*, list): A list of detection segments. A segment specifies from where to where detection should trigger.
   One up to four segments and ranges from 0cm to 9m can be specified. Distances should be defined in steps of 15cm. Internally the specified ranges are rounded.
