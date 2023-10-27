@@ -72,7 +72,7 @@ it's own :ref:`UART bus <uart>`.
 
 **Configuration variables**:
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Necessary if you want to define multiple mmwave radars.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Necessary if you want to define multiple instances of this component.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART Component if you want to use multiple UART buses.
 
 Binary Sensor
