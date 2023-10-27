@@ -145,10 +145,9 @@ Configuration variables:
 
 .. warning::
 
-    As it seems every time you save the configuration of the mmwave radar, it is written to its internal flash or EEPROM
-    which can be susceptible to damage when writing a lot. Do not change setting on every boot or several times per second,
-    otherwise the mmwave radar might suffer damage. Instead, find the correct settings during setup phase and do not regularly change
-    settings later on.
+    Each change to the configuration of the mmWave radar triggers a write to its internal flash/EEPROM.
+    Write cycles to this memory are limited, so do not change settings frequently or this memory may wear out.
+    Determine the appropriate settings for your device and avoid changing them unless absolutely necessary.
 
 The DFRobot mmWave Radar has several settings which can be changed. These settings are saved in non-volatile memory and do not need to be set on each boot.
 
