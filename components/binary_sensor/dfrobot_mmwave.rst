@@ -136,7 +136,7 @@ When the switch is turned off, you won't get detected when in front of the senso
 Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **dfrobot_mmwave_radar_id** (*Optional*, :ref:`config-id`): The ID of the DFRobot mmWave component defined above. Useful for multiple mmWave sensors.
+- **dfrobot_mmwave_radar_id** (*Optional*, :ref:`config-id`): The ID of the DFRobot mmWave component defined above. Useful when multiple instances of this component are defined.
 - All other options from :ref:`Switch <config-switch>`.
 
 
