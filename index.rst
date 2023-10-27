@@ -478,7 +478,7 @@ Presence Detection
 ******************
 .. imgtable::
 
-    DFRobot mmWave Radar, components/binary_sensor/dfrobot_mmwave, dfrobot_mmwave_radar.jpg
+    DFRobot mmWave Radar, components/binary_sensor/dfrobot_sen0395, dfrobot_sen0395.jpg
 
 
 Output Components
