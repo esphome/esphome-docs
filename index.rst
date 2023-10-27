@@ -459,6 +459,12 @@ Touchscreen
     Touchscreen, components/touchscreen/index, touch.svg
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
 
+Presence Detection
+******************
+.. imgtable::
+
+    DFRobot mmWave Radar, components/dfrobot_sen0395, dfrobot_sen0395.jpg
+
 Miscellaneous
 *************
 .. imgtable::
@@ -472,14 +478,6 @@ Miscellaneous
     Remote Receiver, components/remote_receiver, remote.svg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
-
-
-Presence Detection
-******************
-.. imgtable::
-
-    DFRobot mmWave Radar, components/binary_sensor/dfrobot_sen0395, dfrobot_sen0395.jpg
-
 
 Output Components
 -----------------
