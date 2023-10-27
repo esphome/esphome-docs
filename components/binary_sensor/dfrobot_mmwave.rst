@@ -78,7 +78,7 @@ it's own :ref:`UART bus <uart>`.
 Binary Sensor
 -------------
 
-via GPIO
+Via GPIO
 ********
 
 To read presence values you can simply use a :doc:`/components/binary_sensor/gpio` and connect to IO2 of the mmwave radar.
