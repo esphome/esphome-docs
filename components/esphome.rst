@@ -15,6 +15,7 @@ where you specify the **name** of the node.
     esphome:
         name: livingroom
         comment: Living room ESP32 controller
+        area: Living Room
 
     esp32:
         board: nodemcu-32s
@@ -32,6 +33,8 @@ Configuration variables:
 - **friendly_name** (*Optional*, string): This is the name sent to the frontend. It is used
   by Home Assistant as the integration name, device name, and is automatically prefixed to entities
   where necessary.
+- **area** (*Optional*, string): This is the area sent to the frontend. It is used
+  by Home Assistant as the area / zone which the node belongs to.
 
 Advanced options:
 
