@@ -85,6 +85,7 @@ Configuration variables:
 
 - **source** (*Optional*, string): The PlatformIO package or repository to use for framework. This can be used to use a custom or patched version of the framework.
 - **platform_version** (*Optional*, string): The version of the `platformio/espressif32 <https://github.com/platformio/platform-espressif32/releases/>`__ package to use.
+- **skip_validation_for_pins** (*Optional*, list[string]): List of pins to skip validation; for custom boards, this allows reuse of pins that are otherwise not allowed. Use carefully!
 
 .. _esp32-espidf_framework:
 
