@@ -1,0 +1,124 @@
+LD2450 Sensor
+=============
+
+.. seo::
+    :description: Instructions for setting up LD2450 sensors.
+    :image: ld2450.jpg
+
+Component/Hub
+-------------
+.. _ld2450-component:
+
+The ``ld2450`` sensor platform allows you to use HI-LINK LD2450 motion and presence sensor
+(`datasheet and user manual <https://github.com/esphome/feature-requests/files/11560732/HLK.LD2450.1T2R.V1.00.pdf>`__) with ESPHome.
+
+The :ref:`UART <uart>` is required to be set up in your configuration for this sensor to work, ``parity`` and ``stop_bits`` **must be** respectively ``NONE`` and ``1``.
+Use of hardware UART pins is highly recommended, in order to support the out-of-the-box 256000 baud rate of the LD2450 sensor.
+
+ .. code-block:: yaml
+
+     # Configuration entry
+     ld2450:
+       throttle: 1000ms
+
+Configuration variables:
+************************
+
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
+  to use multiple UART buses.
+- **throttle** (*Optional*, int): Time in milliseconds to control the rate of data updates. Defaults to ``1000ms``.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this :doc:`ld2450` component if you need multiple components.
+
+Binary Sensor
+-------------
+
+The ``ld2450`` binary sensor allows you to use your :doc:`ld2450` to perform different measurements.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ld2450
+        any_presence:
+          name: "Any Presence"
+
+Configuration variables:
+************************
+
+- **any_presence** (*Optional*): If true, at least one target has been identified.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
+
+
+Sensor
+------
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: ld2450
+        all_target_counts:
+          name: All Target Counts
+        target1_x:
+          name: Target1 X
+        target1_y:
+          name: Target1 Y
+        target1_speed:
+          name: Target1 Speed
+        target1_resolution:
+          name: Target1 Resolution
+        target1_angle:
+          name: Target1 Angle
+        target2_x:
+          name: Target2 X
+        target2_y:
+          name: Target2 Y
+        target2_speed:
+          name: Target2 Speed
+        target2_resolution:
+          name: Target2 Resolution
+        target2_angle:
+          name: Target2 Angle
+        target3_x:
+          name: Target3 X
+        target3_y:
+          name: Target3 Y
+        target3_speed:
+          name: Target3 Speed
+        target3_resolution:
+          name: Target3 Resolution
+        target3_angle:
+          name: Target3 Angle
+
+Configuration variables:
+************************
+
+- **all_target_counts** (*Optional*, int): Total number of tracked targets (the LD2450 supports up to 3).
+- **target{n}_x** (*Optional*, int): X-coordinate in `mm` of the target, relative to the sensor.
+- **target{n}_y** (*Optional*, int): Y-coordinate in `mm` of the target, relative to the sensor.
+- **target{n}_speed** (*Optional*, int): Speed in `cm/s` of the target, relative to the sensor.
+- **target{n}_resolution** (*Optional*, unsigned int): Approximate size in `mm` of the tracked object.
+- **target{n}_angle** (*Optional*, float): Angle relative to the sensor in degrees.
+
+Text Sensor
+-----------
+
+.. code-block:: yaml
+
+    text_sensor:
+      - platform: ld2450
+        target1_direction:
+          name: Target1 Direction
+        target1_position:
+          name: Target1 Position
+        target2_direction:
+          name: Target2 Direction
+        target2_position:
+          name: Target2 Position
+        target3_direction:
+          name: Target3 Direction
+        target3_position:
+          name: Target3 Position
+
+Configuration variables:
+************************
+- **target{n}_direction** (*Optional*): Direction the target is moving, as seen from the sensor. Can be one of either ``Left``, ``Right``, ``Middle``, or ``None`` if no movement has been detected.
+- **target{n}_position** (*Optional*): Position of the target relative to the sensor. Can be ``Moving away``, ``Approaching``, or ``Static`` if no movement has been detected.

@@ -406,6 +406,7 @@ Motion
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     BMI160, components/sensor/bmi160, bmi160.jpg, Accelerometer & Gyroscope
     LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
+    LD2450, components/sensor/ld2450, ld2450.jpg, Motion & Presence
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
     MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
@@ -503,6 +504,7 @@ Miscellaneous
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg, dark-invert
     Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     LD2410, components/sensor/ld2410, ld2410.jpg
+    LD2450, components/sensor/ld2450, ld2450.jpg
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Qwiic PIR Motion, components/binary_sensor/qwiic_pir, qwiic_pir.jpg
