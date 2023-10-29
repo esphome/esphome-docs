@@ -136,6 +136,7 @@ Statistic Sensors
 - ``lambda`` sensor:
 
   - Returns a custom lambda sensor value using a lambda template.
+  - By default, its ``state_class`` is ``measurement``.
   - By default, it inherits ``entity_category`` from the source sensor.     
 
 - ``max`` sensor:
@@ -338,7 +339,7 @@ For example, you could use time-based automations to reset all the statistics se
 ``sensor.statistics.on_update`` Trigger
 ***************************************
 
-This automation triggers after all the configured sensors update.  In :ref:`Lambdas <config-lambda>`, you can get the ``Aggregate`` object containing all the statistics (for the configured sensors only) from the trigger with ``x``. See :ref:`statistics-lambdas_calls` for available functions.
+This automation triggers after all the configured sensors update.  In :ref:`Lambdas <config-lambda>`, you can get the ``Aggregate`` object containing all the statistics (for the configured sensors only) from the trigger with ``agg``, and the latest source sensor measurement with ``x``. See :ref:`statistics-lambdas_calls` for available functions.
 
 .. code-block:: yaml
 
@@ -358,7 +359,7 @@ This automation triggers after all the configured sensors update.  In :ref:`Lamb
 Lambdas Calls for ``Aggregate`` Objects
 ***************************************
 
-The ``on_update`` trigger or the ``lambda`` type sensor provides the variable ``agg``, which stores the :apiref:`Aggregate Object <statistics/aggregate.h>` that contains the current statistics available based on the configured sensors. This object has many functions that access the underlying data in their native data types, which may be helpful to compute other statistics not currently available as a sensor. If you are using the ``continuous`` window type, all functions return valid statistics. For other window types, be sure to configure the required sensors noted for each function that you want to use.
+The ``on_update`` trigger or the ``lambda`` type sensor provides the variable ``agg``, which stores the :apiref:`Aggregate Object <statistics/aggregate.h>` that contains the current statistics available based on the configured sensors. It also provides the latest source sensor measurement with the variable ``x``. The Aggregate object has many functions that access the underlying data in their native data types, which may be helpful to compute other statistics not currently available as a sensor. If you are using the ``continuous`` window type, all functions return valid statistics. For other window types, be sure to configure one of the required sensors noted for each function that you want to use.
 
   - ``compute_covariance()``: Compute the covariance of the set of measurements with respect to timestamps. It applies Bessel's correction or implements reliability weights if the group type is a sample.
   
@@ -473,16 +474,14 @@ Another use case is to compute statistics unavailable as a sensor. In this examp
           - type: lambda
             name: "Sensor 1 Minute Linear Coeffecient of Determination"
             lambda: |-
-                double c2 = x.get_c2();   // c2/count gives covariance
-                double m2 = x.get_m2();   // m2/count gives variance
-                double timestamp_m2 = x.get_timestamp_m2();   // timestamp_m2/count gives variance of the timestamps
+                double c2 = agg.get_c2();   // c2/count gives covariance
+                double m2 = agg.get_m2();   // m2/count gives variance
+                double timestamp_m2 = agg.get_timestamp_m2();   // timestamp_m2/count gives variance of the timestamps
 
                 // The linear coeffecient of determination is given by covariance^2/(variance*timestamp_variance)
                 // The counts in covarance, variance, and timestamp_variance would all cancel, so we get
-                double r_squared = (c2*c2)/(m2*timestamp_m2);
-
-                // Update a template sensor with r_squared
-                id(sensor_1min_r_squared).publish_state(r_squared);
+                return (c2*c2)/(m2*timestamp_m2);
+                
 
 
 See Also
