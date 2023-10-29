@@ -11,6 +11,14 @@ ESPHome devices with a microphone are able to stream the audio to Home Assistant
 
     Voice Assistant requires Home Assistant 2023.5 or later.
 
+.. warning::
+
+    Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. In particular, Bluetooth/BLE components are known to cause issues when used in
+    combination with Voice Assistant and/or other audio components.
+
 Configuration:
 --------------
 
