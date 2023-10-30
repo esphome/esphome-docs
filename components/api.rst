@@ -227,8 +227,8 @@ type ``string`` are available for use by actions called from within this trigger
 This trigger is activated each time the API disconnects from the API. Two variables of
 type ``string`` are available for use by actions called from within this trigger:
 
-- ``client_address``: the IP address of the client that connected
-- ``client_info``: the name of the client that connected
+- ``client_address``: the IP address of the client that disconnected
+- ``client_info``: the name of the client that disconnected
 
 .. code-block:: yaml
 
