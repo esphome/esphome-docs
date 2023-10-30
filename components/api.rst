@@ -206,21 +206,32 @@ Triggers
 ``on_client_connected`` Trigger
 *******************************
 
-This trigger is activated each time a client connects to the API.
+This trigger is activated each time a client connects to the API. Two variables of
+type ``std::string`` are available for use by actions called from within this trigger:
+
+- ``client_address``: the IP address of the client that connected
+- ``client_info``: the name of the client that connected
 
 .. code-block:: yaml
 
     api:
       # ...
       on_client_connected:
-        - logger.log: "API client connected!"
+        - logger.log:
+            format: "Client %s connected to API with IP %s"
+            args: ["client_info.c_str()", "client_address.c_str()"]
+
 
 .. _api-on_client_disconnected_trigger:
 
 ``on_client_disconnected`` Trigger
 **********************************
 
-This trigger is activated each time the API disconnects from the API.
+This trigger is activated each time the API disconnects from the API. Two variables of
+type ``std::string`` are available for use by actions called from within this trigger:
+
+- ``client_address``: the IP address of the client that disconnected
+- ``client_info``: the name of the client that disconnected
 
 .. code-block:: yaml
 
