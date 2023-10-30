@@ -66,7 +66,7 @@ Configuration variables:
 
 .. note::
 
-    For al text sensors, sensors, numbers, buttons and switches hereafter most of the the default **memory_location** and **memory_address** parameters will work so you should
+    For all text sensors, sensors, numbers, buttons and switches hereafter most of the the default **memory_location** and **memory_address** parameters will work so you should
     not specify them. However your Micronova boad may require you to specify alternate values. So every text sensor, button,
     switch or number accepts these parameters:
 
@@ -75,8 +75,8 @@ Configuration variables:
     - **memory_address** (*Optional*): The address where the parameter is stored.
 
 
-Text Sensors:
-~~~~~~~~~~~~~
+Text Sensors
+------------
 
 .. code-block:: yaml
 
@@ -88,11 +88,11 @@ Text Sensors:
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **stove_state** (*Optional*): The current stove state.
-- All other options from :ref:`Text Sensor <config-text_sensor>`.
+- **stove_state** (*Optional*): The current stove state. 
+  All options from :ref:`Text Sensor <config-text_sensor>`.
 
-Sensors:
-~~~~~~~~
+Sensors
+-------
 
 .. code-block:: yaml
 
@@ -120,18 +120,24 @@ Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **room_temperature** (*Optional*): Sensor that reads the stoves ambient room temperature.
+  All options from :ref:`Sensor <config-sensor>`.
 - **fumes_temperature** (*Optional*): Fumes temperature.
+  All options from :ref:`Sensor <config-sensor>`.
 - **stove_power** (*Optional*): Current stove power.
+  All options from :ref:`Sensor <config-sensor>`.
 - **fan_speed** (*Optional*): Current fan speed. The raw value from the stove is multiplied by 10 + **fan_rpm_offset**
+  All options from :ref:`Sensor <config-sensor>`.
 - **water_temperature** (*Optional*): Internal boiler water termperature.
-- **water_pressure** (*Optional*): Internal boiler water pressure.
+  All options from :ref:`Sensor <config-sensor>`.
+- **water_pressure** (*Optional*): Internal boiler water pressure. 
+  All options from :ref:`Sensor <config-sensor>`.
 - **memory_address_sensor** (*Optional*): Can be any **memory_location** / **memory_address** you want to track. Usefull
   when you don't know where the parameter is for your stove is.
-- All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Sensor <config-sensor>`.
 
 
-Numbers:
-~~~~~~~~
+Numbers
+-------
 
 .. code-block:: yaml
 
@@ -148,8 +154,9 @@ Configuration variables:
 
 - **thermostat_temperature** (*Optional*): Number that holds the current stove thermostat value.
    - **step** (*Optional*): Temperature step. This value is used to multiply/devide the raw value when setting/reading the **thermostat_temperature**
+   - All other options from :ref:`Number <config-number>`.
 - **power_level** (*Optional*): Number that sets/reads the requested stove power.
-- All other options from :ref:`Number <config-number>`.
+  All options from :ref:`Number <config-number>`.
 
 .. note::
 
@@ -158,8 +165,8 @@ Configuration variables:
 
     - **memory_write_location** (*Optional*): The **memory_location** where to write the new thermostat value.
 
-Buttons:
-~~~~~~~~
+Buttons
+-------
 
 .. code-block:: yaml
 
@@ -175,7 +182,7 @@ Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **custom_button** (*Optional*): Write the hex value **memory_data** to a **memory_location** and **memory_address**
-- All other options from :ref:`Button <config-button>`.
+  All options from :ref:`Button <config-button>`.
 
 .. note::
 
@@ -183,8 +190,8 @@ Configuration variables:
 
     - **memory_data** (*Required*): The hex value to be written to the **memory_location** and **memory_address**.
 
-Switches:
-~~~~~~~~~
+Switches
+--------
 
 .. code-block:: yaml
 
@@ -198,7 +205,7 @@ Configuration variables:
 
 - **stove** (*Optional*): Turn the stove on or off. This switch will also reflect the current stove state. 
   If the **stove_state** is "Off" the switch will be off, in all other states, the switch wil be on.
-- All other options from :ref:`Switch <config-switch>`.
+  All options from :ref:`Switch <config-switch>`.
 
 .. note::
 
