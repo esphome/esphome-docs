@@ -6,7 +6,8 @@ PMSX003 Particulate Matter Sensor
     :image: pmsx003.svg
 
 The ``pmsx003`` sensor platform allows you to use your Plantower PMS5003, PMS7003, ... laser based particulate matter sensors
-(`datasheet <http://www.aqmd.gov/docs/default-source/aq-spec/resources-page/plantower-pms5003-manual_v2-3.pdf>`__)
+(`datasheet <http://www.aqmd.gov/docs/default-source/aq-spec/resources-page/plantower-pms5003-manual_v2-3.pdf>`__,
+`Tindie <https://www.tindie.com/products/gcormier/espairqual/>`__)
 sensors with ESPHome.
 
 As the communication with the PMSX003 is done using UART, you need
