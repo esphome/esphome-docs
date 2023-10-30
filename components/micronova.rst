@@ -60,7 +60,7 @@ Component/Hub
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **enable_rx_pin** (**Required**, :ref:`config-pin`): Output pin to be used to switch the line between RX en TX.
+- **enable_rx_pin** (**Required**, :ref:`config-pin`): Output pin to be used to switch the line between RX and TX.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
   Defaults to 60 seconds.
 
