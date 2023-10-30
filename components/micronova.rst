@@ -11,7 +11,7 @@ The :ref:`UART <uart>` must be configured with a baud rate 1200, 8 data bits, 2 
 
 .. warning::
 
-    The MicroNova bords come in various flavours. This code is only tested on an ExtraFlame Ketty Evo 2.0 stove. The protocol is not
+    MicroNova bords come in various flavours. This code is only tested on an ExtraFlame Ketty Evo 2.0 stove. The protocol is not
     documented but has been reverse engineerd by others. See the links below for all the info that helped me.
     The different sensors, buttons and stove switch may require specific **memory_location** and **memory_address** parameters that 
     match your MicroNova specific board.
@@ -49,83 +49,25 @@ See the references below for all the details about te circuit.
 You can use the 5V output from the stove to power the ESP module, but you will have to put a voltage regulator in between to
 get 3v3.
 
-MicroNova configuration
------------------------
+Component/Hub
+-------------
 
 .. code-block:: yaml
 
-    # Example configuration entry
-    uart:
-      tx_pin: 5
-      rx_pin: 4
-      baud_rate: 1200
-      stop_bits: 2
-
     micronova:
-      enable_rx_pin: 4
-      update_interval: 20s
+      enable_rx_pin: REPLACEME
 
-    text_sensor:
-      - platform: micronova
-        stove_state:
-          name: Stove status
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-    number:
-      - platform: micronova
-        thermostat_temperature:
-          name: Thermostat temperature
-          step: 1
-      - platform: micronova
-        power_level:
-          name: Thermostat temperature
-
-    sensor:
-      - platform: micronova
-        room_temperature:
-          name: Room temperature
-        fumes_temperature:
-          name: Fumes temperature
-        water_temperature:
-          name: Water temperature
-          # every sensor can specify memory parameters
-          memory_location: 0x00
-          memory_address: 0x3B
-        water_pressure:
-          name: Water pressure
-        stove_power:
-          name: Stove power level
-        fan_speed:
-          fan_rpm_offset: 240
-          name: Fan RPM
-        memory_address_sensor:
-          memory_location: 0x20
-          memory_address: 0x7d
-          name: Custom Address sensor
-
-    switch:
-      - platform: micronova
-        stove:
-          name: Stove on/off switch
-
-    button:
-      - platform: micronova
-        custom_button:
-          name: Custom button
-          memory_location: 0x20
-          memory_address: 0x7d
-          memory_data: 0x08
-
-
-Micronova variables:
-~~~~~~~~~~~~~~~~~~~~
 - **enable_rx_pin** (**Required**, :ref:`config-pin`): Output pin to be used to switch the line between RX en TX.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
   Defaults to 60 seconds.
 
 .. note::
 
-    For most Micronova boards the default **memory_location** and **memory_address** parameters will work so you should
-    not specify them. However your Micronova boad may require you to specify alternate values. So every (text)sensor, button,
+    For al text sensors, sensors, numbers, buttons and switches hereafter most of the the default **memory_location** and **memory_address** parameters will work so you should
+    not specify them. However your Micronova boad may require you to specify alternate values. So every text sensor, button,
     switch or number accepts these parameters:
 
     - **memory_location** (*Optional*): The memory location where the parameter must be read. For most stoves this is 0x00 for RAM
@@ -133,27 +75,79 @@ Micronova variables:
     - **memory_address** (*Optional*): The address where the parameter is stored.
 
 
-Text Sensor variables:
-~~~~~~~~~~~~~~~~~~~~~~
+Text Sensors:
+~~~~~~~~~~~~~
+
+.. code-block:: yaml
+
+    text_sensor:
+      - platform: micronova
+        stove_state:
+          name: Stove status
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
 - **stove_state** (*Optional*): The current stove state.
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
-Sensor variables:
-~~~~~~~~~~~~~~~~~
+Sensors:
+~~~~~~~~
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: micronova
+        room_temperature:
+          name: Room temperature
+        fumes_temperature:
+          name: Fumes temperature
+        stove_power:
+          name: Stove power level
+        fan_speed:
+          fan_rpm_offset: 240
+          name: Fan RPM
+        water_temperature:
+          name: Water temperature
+        water_pressure:
+          name: Water pressure
+        memory_address_sensor:
+          memory_location: 0x20
+          memory_address: 0x7d
+          name: Custom Address sensor
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
 - **room_temperature** (*Optional*): Sensor that reads the stoves ambient room temperature.
 - **fumes_temperature** (*Optional*): Fumes temperature.
 - **stove_power** (*Optional*): Current stove power.
 - **fan_speed** (*Optional*): Current fan speed. The raw value from the stove is multiplied by 10 + **fan_rpm_offset**
+- **water_temperature** (*Optional*): Internal boiler water termperature.
+- **water_pressure** (*Optional*): Internal boiler water pressure.
 - **memory_address_sensor** (*Optional*): Can be any **memory_location** / **memory_address** you want to track. Usefull
   when you don't know where the parameter is for your stove is.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 
-Number variables:
-~~~~~~~~~~~~~~~~~
+Numbers:
+~~~~~~~~
+
+.. code-block:: yaml
+
+    number:
+      - platform: micronova
+        thermostat_temperature:
+          name: Thermostat temperature
+          step: 0.5
+        power_level:
+          name: Thermostat temperature
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
 - **thermostat_temperature** (*Optional*): Number that holds the current stove thermostat value.
-  - **step** (*Optional*): Temperature step. This value is used to multiply/devide the raw value when setting/reading
-  the **thermostat_temperature**
+   - **step** (*Optional*): Temperature step. This value is used to multiply/devide the raw value when setting/reading the **thermostat_temperature**
 - **power_level** (*Optional*): Number that sets/reads the requested stove power.
 - All other options from :ref:`Number <config-number>`.
 
@@ -164,11 +158,23 @@ Number variables:
 
     - **memory_write_location** (*Optional*): The **memory_location** where to write the new thermostat value.
 
-Button variables:
-~~~~~~~~~~~~~~~~~
-To use these buttons, you will need the **thermostat_temperature** sensor.
+Buttons:
+~~~~~~~~
 
-- **custom_button** (*Optional*): Write some hex value to a **memory_location** and **memory_address**
+.. code-block:: yaml
+
+    button:
+      - platform: micronova
+        custom_button:
+          name: Custom button
+          memory_location: 0x20
+          memory_address: 0x7d
+          memory_data: 0x08
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **custom_button** (*Optional*): Write the hex value **memory_data** to a **memory_location** and **memory_address**
 - All other options from :ref:`Button <config-button>`.
 
 .. note::
@@ -177,8 +183,19 @@ To use these buttons, you will need the **thermostat_temperature** sensor.
 
     - **memory_data** (*Required*): The hex value to be written to the **memory_location** and **memory_address**.
 
-Switch variables:
-~~~~~~~~~~~~~~~~~
+Switches:
+~~~~~~~~~
+
+.. code-block:: yaml
+
+    switch:
+      - platform: micronova
+        stove:
+          name: Stove on/off switch
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
 - **stove** (*Optional*): Turn the stove on or off. This switch will also reflect the current stove state. 
   If the **stove_state** is "Off" the switch will be off, in all other states, the switch wil be on.
 - All other options from :ref:`Switch <config-switch>`.
