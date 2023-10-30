@@ -206,7 +206,11 @@ Triggers
 ``on_client_connected`` Trigger
 *******************************
 
-This trigger is activated each time a client connects to the API.
+This trigger is activated each time a client connects to the API. Two variables of
+type ``string`` are available for use by actions called from within this trigger:
+
+- ``client_address``: the IP address of the client that connected
+- ``client_info``: the name of the client that connected
 
 .. code-block:: yaml
 
@@ -220,7 +224,11 @@ This trigger is activated each time a client connects to the API.
 ``on_client_disconnected`` Trigger
 **********************************
 
-This trigger is activated each time the API disconnects from the API.
+This trigger is activated each time the API disconnects from the API. Two variables of
+type ``string`` are available for use by actions called from within this trigger:
+
+- ``client_address``: the IP address of the client that connected
+- ``client_info``: the name of the client that connected
 
 .. code-block:: yaml
 
