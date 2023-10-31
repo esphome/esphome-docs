@@ -10,7 +10,8 @@ The PCA9554 component allows you to use a variety of Texas Instrument I/O expand
 :ref:`I²C Bus <i2c>` for communication.
 
 Devices tested as working with this component include **PCA9554**, **PCA9554A**, **PCA9536** and **PCA9535**.
-Equivalent TI I/O expanders with the same command interface such as the **TCA9554** should also work.
+Equivalent TI I/O expanders with the same command interface and up to 16 I/O pins such as the **TCA9554**
+and **TCA9535** should also work.
 
 
 .. figure:: ../images/pca9554a.jpg
