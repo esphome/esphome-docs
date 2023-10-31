@@ -58,6 +58,14 @@ Release 2023.10.3 - October 24
 
 - Set IP address `type` only when IPv4 and IPv6 are both enabled :esphomepr:`5595` by :ghuser:`kbx81`
 
+Release 2023.10.4 - October 30
+------------------------------
+
+- Update current_based_cover bugfix :esphomepr:`5587` by :ghuser:`rogerbusser`
+- Fixes ip include on arduino 2.7.4 :esphomepr:`5620` by :ghuser:`HeMan`
+- Fix bug when requesting italic gfonts :esphomepr:`5623` by :ghuser:`dewet22`
+- Handle enum type in tuya text_sensor :esphomepr:`5626` by :ghuser:`jesserockz`
+
 Breaking changes
 ----------------
 
