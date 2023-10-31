@@ -73,7 +73,7 @@ Configuration variables:
   to 16 when using a PCA9535 and 4 when using a PCA95367.
 
 .. note::
-    A PCA9535 will not work (even on the lower 8 bits) unless the **nbits** is set to 16.
+    A PCA9535 will not work (even on the lower 8 bits) unless the **pin_count** is set to 16.
 
 
 
