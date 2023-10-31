@@ -34,6 +34,30 @@ A new ``xor`` condition has been added to the automation engine. This condition 
 when a single condition in the list is true.
 
 
+Release 2023.10.1 - October 19
+------------------------------
+
+- Fix voice_assistant without a speaker :esphomepr:`5558` by :ghuser:`jesserockz`
+- esp32_improv add timeout :esphomepr:`5556` by :ghuser:`jesserockz`
+- Create IPv4 sockets if ipv6 is not enabled :esphomepr:`5565` by :ghuser:`jesserockz`
+- Incorrect ESP32 Strapping PIN Defined :esphomepr:`5563` by :ghuser:`descipher`
+
+Release 2023.10.2 - October 24
+------------------------------
+
+- Fix XOR condition :esphomepr:`5567` by :ghuser:`jesserockz`
+- Improv Serial support via USB CDC and JTAG :esphomepr:`5559` by :ghuser:`kbx81`
+- Publish the `pulse_meter` total when setting the total :esphomepr:`5475` by :ghuser:`TrentHouliston`
+- Remove explicit cast for IPAddress :esphomepr:`5574` by :ghuser:`HeMan`
+- Set addr type when copy from ip4_addr_t :esphomepr:`5583` by :ghuser:`HeMan`
+- fix canbus send config :esphomepr:`5585` by :ghuser:`ssieb`
+- Allow set climate preset to NONE :esphomepr:`5588` by :ghuser:`dentra`
+
+Release 2023.10.3 - October 24
+------------------------------
+
+- Set IP address `type` only when IPv4 and IPv6 are both enabled :esphomepr:`5595` by :ghuser:`kbx81`
+
 Breaking changes
 ----------------
 

@@ -203,6 +203,7 @@ Air Quality
     SPS30, components/sensor/sps30, sps30.jpg, Particulate
     T6613/15, components/sensor/t6615, t6615.jpg, CO2
     ZyAura, components/sensor/zyaura, zgm053.jpg, CO2 & Temperature & Humidity
+    iAQ-Core, components/sensor/iaqcore, iaqcore.jpg, CO2 & Volatile organics
 
 
 Analogue
@@ -307,10 +308,12 @@ Environmental
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
     DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
+    EMC2101, components/emc2101, emc2101.jpg, Temperature
     ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
     HTE501, components/sensor/hte501, HTE501.png, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
+    Honeywell ABP2 I2C, components/sensor/honeywellabp2_i2c, honeywellabp.jpg, Pressure & Temperature
     HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
     Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
@@ -486,6 +489,12 @@ Touchscreen
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
 
+Presence Detection
+******************
+.. imgtable::
+
+    DFRobot mmWave Radar, components/dfrobot_sen0395, dfrobot_sen0395.jpg
+
 Miscellaneous
 *************
 .. imgtable::
@@ -496,6 +505,7 @@ Miscellaneous
     LD2410, components/sensor/ld2410, ld2410.jpg
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
+    Qwiic PIR Motion, components/binary_sensor/qwiic_pir, qwiic_pir.jpg
     Remote Receiver, components/remote_receiver, remote.svg, dark-invert
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
@@ -535,6 +545,7 @@ Output Components
     BP5758D, components/output/bp5758d, bp5758d.svg
     X9C Potentiometer, components/output/x9c, x9c.jpg
     GP8403, components/output/gp8403, gp8403.svg
+    EMC2101, components/emc2101, emc2101.jpg
 
 Light Components
 ----------------
@@ -697,6 +708,7 @@ Text Sensor Components
     Tuya Text Sensor, components/text_sensor/tuya, tuya.png
     WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg, dark-invert
     LibreTiny, components/text_sensor/libretiny, libretiny.svg
+    WireGuard, components/wireguard, wireguard_custom_logo.svg
 
 Climate Components
 ------------------
@@ -743,6 +755,14 @@ Lock Components
     Lock Core, components/lock/index, folder-open.svg, dark-invert
     Generic Output Lock, components/lock/output, upload.svg, dark-invert
     Template Lock, components/lock/template, description.svg, dark-invert
+
+Text Components
+---------------
+
+.. imgtable::
+
+    Text Core, components/text/index, folder-open.svg, dark-invert
+    Template Text, components/text/template, description.svg, dark-invert
 
 Media Player Components
 -----------------------
