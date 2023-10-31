@@ -95,6 +95,63 @@ Example With Compensation
           humidity_source: dht1_hum
           temperature_source: dht1_temp
 
+Example With Sensor Classifications
+-----------------------------------
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+    - platform: sgp4x
+        voc:
+          name: "VOC Index"
+          id: voc_index
+        nox:
+          name: "NOx Index"
+          id: nox_index
+
+    text_sensor:
+      - platform: template
+        name: "VOC Classification"
+        icon: "mdi:checkbox-marked-circle-outline"
+        lambda: |-
+          if (int(id(voc_index).state) <= 50) {
+            return {"Good"};
+          }
+          else if (int(id(voc_index).state) <= 100) {
+            return {"Moderate"};
+          }
+          else if (int(id(voc_index).state) <= 150) {
+            return {"High"};
+          }
+          else if (int(id(voc_index).state) <= 500) {
+            return {"Very high"};
+          }
+          else {
+            return {"unknown"};
+          }
+      - platform: template
+        name: "NOx Classification"
+        icon: "mdi:checkbox-marked-circle-outline"
+        lambda: |-
+          if (int(id(nox_index).state) == 1) {
+            return {"None"};
+          }
+          else if (int(id(nox_index).state) <= 80) {
+            return {"Low"};
+          }
+          else if (int(id(nox_index).state) <= 168) {
+            return {"Moderate"};
+          }
+          else if (int(id(nox_index).state) <= 270) {
+            return {"High"};
+          }
+          else if (int(id(nox_index).state) <= 500) {
+            return {"Very high"};
+          }
+          else {
+            return {"unknown"};
+          }
+
 See Also
 --------
 
