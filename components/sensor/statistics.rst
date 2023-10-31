@@ -482,6 +482,31 @@ Another use case is to compute statistics unavailable as a sensor. In this examp
                 // The counts in covarance, variance, and timestamp_variance would all cancel, so we get
                 return (c2*c2)/(m2*timestamp_m2);
                 
+Z-Score
+"""""""
+
+A z-score (standard score) is a unitless quantity that measures an individual measurement's relationship to the mean of the set of measurements. It is the number of standard deviations away the measurement is from the mean.
+
+.. code-block:: yaml
+  
+    sensor:
+      - platform: statistics
+        source_id: source_measurement_sensor_id
+        window:
+          type: sliding
+          window_size: 120          # rolling window over the last 120 measurements
+          chunk_size: 1
+          send_every: 1
+        statistics:
+          - type: mean
+            id: sensor_mean
+          - type: std_dev
+            id: sensor_std_dev
+          - type: lambda
+            name: "Measurement Z-Score"
+            accuracy_decimals: 3
+            lambda: |-
+              return (x-agg.get_mean())/(agg.compute_std_dev());
 
 
 See Also
@@ -493,6 +518,7 @@ See Also
 - `Bessel's Correction (Wikipedia) <https://en.wikipedia.org/wiki/Bessel%27s_correction>`__
 - `Reliability Weights (Wikipedia) <http://en.wikipedia.org/wiki/Weighted_arithmetic_mean#Weighted_sample_variance>`__
 - `Coeffecient of Determination (Wikipedia) <https://en.wikipedia.org/wiki/Coefficient_of_determination>`__
+- `Standard Score (Wikipedia) <https://en.wikipedia.org/wiki/Standard_score>`__
 - :apiref:`Aggregate API Reference <statistics/aggregate.h>`
 - :apiref:`Statistics API Reference <statistics/statistics.h>`
 - :ghedit:`Edit`
