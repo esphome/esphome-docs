@@ -6,8 +6,12 @@ PCA9554 I/O Expander
     :image: ../images/pca9554a.jpg
 
 
-The PCA9554 component allows you to use **PCA9554**, **PCA9554A**, **PCA9536** or **PCA9535** I/O expanders in ESPHome.
-It uses :ref:`I²C Bus <i2c>` for communication.
+The PCA9554 component allows you to use a variety of Texas Instrument I/O expanders in ESPHome using the
+:ref:`I²C Bus <i2c>` for communication.
+
+Devices tested as working with this component include **PCA9554**, **PCA9554A**, **PCA9536** and **PCA9535**.
+Equivalent TI I/O expanders with the same command interface such as the **TCA9554** should also work.
+
 
 .. figure:: ../images/pca9554a.jpg
     :align: center
