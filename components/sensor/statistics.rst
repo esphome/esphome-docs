@@ -4,13 +4,13 @@ Statistics
 .. seo::
     :description: Instructions for setting up a Statistics Sensor
 
-The ``statistics`` sensor platform quickly generates summary statistics from another sensor’s measurements. See :ref:`statistics-descriptions` for information about the available summary statistics.
+The ``statistics`` sensor platform computes summary statistics from another sensor’s measurements. See :ref:`statistics-descriptions` for information about the available summary statistics.
 
 The component calculates statistics over a sliding window or a resettable continuous window. See :ref:`statistics-window_types` for details about each possible type.
 
 Each summary statistic sensor is optional, and the component stores the measurement information only necessary for the enabled sensors. The component uses external memory on ESP32 boards if available.
 
-As an alternative to this component, you could use :ref:`sensor-filters` to compute some of the available summary statistics over a sliding window. In contrast, this component allows you to generate multiple summary statistics from the same source sensor. Additionally, it calculates them more efficiently than sensors filters.
+As an alternative to this component, you could use :ref:`sensor-filters` to compute some of the available summary statistics over a sliding window. In contrast, this component allows you to generate multiple summary statistics from the same source sensor. Additionally, it calculates them more efficiently and typically uses less memory than sensors filters.
 
 To use the component, first, provide the source sensor and then configure the window settings and the desired statistics.
 
@@ -182,8 +182,8 @@ Statistic Sensors
 - ``std_dev`` sensor:
 
   - The standard deviation of measurements from the source sensor in the window.
-  - If ``group_type`` is ``sample``, and ``weight_type`` is ``simple``, then it uses Bessel's correction to give an unbiased estimator.
-  - If ``group_type`` is ``sample``, and ``weight_type`` is ``duration``, then it uses reliability weights to give an unbiased estimator.  
+  - If ``group_type`` is ``sample`` and ``weight_type`` is ``simple``, then it uses Bessel's correction to give an unbiased estimator.
+  - If ``group_type`` is ``sample`` and ``weight_type`` is ``duration``, then it uses reliability weights to give an unbiased estimator.  
   - By default, its ``state_class`` is ``measurement``.  
   - By default, it inherits ``device_class``, ``entity_category``, ``icon``, and ``unit_of_measurement`` from the source sensor.
   - By default, it uses 2 more ``accuracy_decimals`` than the source sensor.
@@ -208,9 +208,9 @@ Window Types
 
 There are two categories of windows. The first category is a sliding window. A sliding window has a pre-defined capacity of ``window_size`` measurements. The component inserts sensor measurements until it has inserted ``window_size`` total. When full, this component removes the oldest measurement in the window and then inserts the newwest senesor measurement.
 
-The second category is a continuous window. This category of windows has a pre-defined capacity of ``window_size`` measurements. The component inserts sensor measurements until it inserts ``window_size`` total. Then, this component removes **all** of the sensor measurements in the window. If ``window_size`` is set to ``0``, then the window is **never** reset.
+The second category is a continuous window. This category of windows has a pre-defined capacity of ``window_size`` measurements. The component inserts sensor measurements until it inserts ``window_size`` total. Then, this component removes **all** of the sensor measurements in the window. If ``window_size`` is set to ``0``, then the window is **never** automatically reset.
 
-Instead of inserting individual measurements, the component can first combine several sensor measurements into a chunk. When this chunk exceeds ``chunk_size`` sensor measurements or ``chunk_duration`` time has passed, this component adds that chunk to the window. This approach saves memory for sliding windows, as memory does not hold every individual sensor measurement but only stores several sensor measurements combined into the chunk. For continuous windows, this improves accuracy for significantly large windows.
+Instead of inserting individual measurements, the component can first combine several sensor measurements into a chunk. When this chunk exceeds ``chunk_size`` sensor measurements or ``chunk_duration`` time has passed, this component adds that chunk to the window. This approach saves memory for sliding windows, as memory does not hold every individual sensor measurement but only stores several sensor measurements combined into a single chunk. For continuous windows, this improves accuracy for significantly large windows.
 
 If you want to collect statistics from a significant number of measurements (potentially unlimited), use a ``continuous_long_term`` type. It uses slightly more memory and is slightly slower but is numerically more accurate than a ``continuous`` type. A ``continuous`` type uses very little memory and is extremely fast. However, it may lose accuracy with significantly large windows. A rough rule of thumb is to use ``continuous_long_term`` if you are collecting data that include more than several thousand measurements.
 
@@ -339,7 +339,7 @@ For example, you could use time-based automations to reset all the statistics se
 ``sensor.statistics.on_update`` Trigger
 ***************************************
 
-This automation triggers after all the configured sensors update.  In :ref:`Lambdas <config-lambda>`, you can get the ``Aggregate`` object containing all the statistics (for the configured sensors only) from the trigger with ``agg``, and the latest source sensor measurement with ``x``. See :ref:`statistics-lambdas_calls` for available functions.
+This automation triggers after all the configured sensors update.  In :ref:`Lambdas <config-lambda>`, you can get the ``Aggregate`` object containing all the statistics (for the configured sensors only) from the trigger with ``agg`` and the latest source sensor measurement with ``x``. See :ref:`statistics-lambdas_calls` for available functions.
 
 .. code-block:: yaml
 
@@ -488,7 +488,7 @@ Z-Score
 A z-score (standard score) is a unitless quantity that measures an individual measurement's relationship to the mean of the set of measurements. It is the number of standard deviations away the measurement is from the mean.
 
 .. code-block:: yaml
-  
+
     sensor:
       - platform: statistics
         source_id: source_measurement_sensor_id
