@@ -65,7 +65,7 @@ Configuration variables:
 - **filter** (*Optional*, :ref:`config-time`): Filter any pulses that are shorter than this. Useful for removing
   glitches from noisy signals. Allowed values are in range ``0..4294967295us``. Defaults to ``50us``.
 - **idle** (*Optional*, :ref:`config-time`): The amount of time that a signal should remain stable (i.e. not
-  change) for it to be considered complete. Allowed values are in range ``0..4294967295us``. Defaults to ``10ms``.
+  change) for it to be considered complete. Allowed values are in range ``0`` to ``4294967295us``. Defaults to ``10ms``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this if you have
   multiple remote receivers.
 - **clock_divider** (*Optional*, int): The clock divider used by the RMT peripheral. A clock divider of ``80`` leads to
