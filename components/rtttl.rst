@@ -31,33 +31,29 @@ The tone generator needs a PWM capable output to work with, currently only the
     # Example configuration entry
     output:
       - platform: ledc
-        pin: GPIO22
         id: rtttl_out
+        ...
 
     rtttl:
       output: rtttl_out
+      id: my_rtttl
 
 Overview Using the I2S speaker
 ------------------------------
 
-Using the tone generator with the :ref:`I2S Speaker <i2s_audio>` the following code sample is needed.
+Using the tone generator with the :ref:`I2S Speaker <speaker>` the following code sample is needed.
+:doc:`ESP32 speaker <speaker>` is supported.
 
 .. code-block:: yaml
 
     # Example configuration entry
-    i2s_audio:
-      - i2s_lrclk_pin: GPIO25
-        i2s_bclk_pin: GPIO5
-
     speaker:
       - platform: i2s_audio
-        id: board_external_speakers
-        dac_type: external
-        i2s_dout_pin: GPIO26
-        mode: mono
+        id: my_speaker
+        ...
 
     rtttl:
-      speaker: board_external_speakers
+      speaker: my_speaker
       id: my_rtttl
 
 Configuration variables:
@@ -70,7 +66,7 @@ Configuration variables:
 - **on_finished_playback** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when playback is finished.
 
-Note: You can only use the **output** or **speaker** variable, not both of them.
+Note: You can only use the **output** or **speaker** variable, not both at the same time.
 
 ``rtttl.play`` Action
 ---------------------
@@ -129,7 +125,7 @@ Common beeps
 
 You can do your own beep patterns too! Here's a short collection so you can just use right away or tweak them to your like:
 
-.. code-block:: yaml
+.. code-block:: 
 
     two_short:d=4,o=5,b=100:16e6,16e6
     long:d=1,o=5,b=100:e6
@@ -186,6 +182,8 @@ Sample code
 
 See Also
 --------
-
+- :doc:`ESP8266 Software PWM Output</components/output/esp8266_pwm>`
+- :doc:`ESP32 LEDC Output </components/output/ledc>`
+- :doc:`/components/remote_receiver`
 - :apiref:`rtttl/rtttl.h`
 - :ghedit:`Edit`
