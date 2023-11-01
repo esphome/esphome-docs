@@ -323,7 +323,7 @@ if it fails to connect to the network without a reboot)
 All Triggers
 ------------
 
-- :ref:`api.services <api-services>`
+- :ref:`api.services <api-services>` / :ref:`api.on_client_connected <api-on_client_connected_trigger>` / :ref:`api.on_client_disconnected <api-on_client_disconnected_trigger>`
 - :ref:`sensor.on_value <sensor-on_value>` / :ref:`sensor.on_raw_value <sensor-on_raw_value>` / :ref:`sensor.on_value_range <sensor-on_value_range>`
 - :ref:`binary_sensor.on_press <binary_sensor-on_press>` / :ref:`binary_sensor.on_release <binary_sensor-on_release>` /
   :ref:`binary_sensor.on_state <binary_sensor-on_state>`
