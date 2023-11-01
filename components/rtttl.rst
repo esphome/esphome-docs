@@ -3,6 +3,7 @@ Rtttl Buzzer
 
 .. seo::
     :description: Instructions for setting up a buzzer to play tones and rtttl songs with ESPHome.
+                  **NEW:** Or play the song using the I2S speaker.
     :image: buzzer.jpg
 
 The ``rtttl``, component allows you to easily connect a passive piezo buzzer to your microcontroller
@@ -15,8 +16,8 @@ and play monophonic songs. It accepts the Ring Tone Text Transfer Language, rttt
 
     Buzzer Module
 
-Overview
---------
+Overview Using a passive buzzer
+-------------------------------
 
 It's important that your buzzer is a **passive** one, if it beeps when you feed it with 3.3V then it is not
 a passive one and this library will not work properly.
@@ -30,21 +31,42 @@ The tone generator needs a PWM capable output to work with, currently only the
     # Example configuration entry
     output:
       - platform: ledc
-        pin: GPIO22
         id: rtttl_out
+        ...
 
     rtttl:
       output: rtttl_out
+      id: my_rtttl
+
+Overview Using the I2S speaker
+------------------------------
+
+Using the tone generator with the :ref:`I2S Speaker <speaker>` the following code sample is needed.
+:doc:`ESP32 speaker <speaker>` is supported.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    speaker:
+      - platform: i2s_audio
+        id: my_speaker
+        ...
+
+    rtttl:
+      speaker: my_speaker
+      id: my_rtttl
 
 Configuration variables:
 ------------------------
 
-- **output** (**Required**, :ref:`config-id`): The id of the :ref:`float output <output>` to use for
+- **output** (**Exclusive**, :ref:`config-id`): The id of the :ref:`float output <output>` to use for
   this buzzer.
+- **speaker** (**Exclusive**, :ref:`config-id`): The id of the :ref:`speaker <i2s_audio>` to play the song on.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **on_finished_playback** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when playback is finished.
 
+Note: You can only use the **output** or **speaker** variable, not both at the same time.
 
 ``rtttl.play`` Action
 ---------------------
@@ -103,7 +125,7 @@ Common beeps
 
 You can do your own beep patterns too! Here's a short collection so you can just use right away or tweak them to your like:
 
-.. code-block:: yaml
+.. code-block:: 
 
     two_short:d=4,o=5,b=100:16e6,16e6
     long:d=1,o=5,b=100:e6
@@ -160,6 +182,8 @@ Sample code
 
 See Also
 --------
-
+- :doc:`ESP8266 Software PWM Output</components/output/esp8266_pwm>`
+- :doc:`ESP32 LEDC Output </components/output/ledc>`
+- :doc:`/components/remote_receiver`
 - :apiref:`rtttl/rtttl.h`
 - :ghedit:`Edit`
