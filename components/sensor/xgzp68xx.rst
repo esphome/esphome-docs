@@ -11,6 +11,10 @@ The XGZP68xx Differential Pressure sensor allows you to use digital differential
 `Tindie <https://www.tindie.com/products/gcormier/esphome-pressure/>`__) or 6897D Series (`datasheet <https://cfsensor.com/wp-content/uploads/2022/11/XGZP6897D-Pressure-Sensor-V2.7.pdf>`__)
 sensors with ESPHome. The sensors pressure ranges are specified in the datasheets.
 
+Calibrating the sensor can be done by checking the value that is returned when
+the ports are open to the air. This value should be 0. If it is not, you can use the offset option to correct the
+reading. For example, if your sensor is reading -40Pa when the ports are disconnected, you can set the offset to 40.
+
 .. figure:: images/6897d.jpg
     :align: center
     :width: 30.0%
@@ -32,6 +36,7 @@ To use the sensor, set up an :ref:`I²C Bus <i2c>` and connect the sensor to the
         pressure:
             name: "Differential Pressure"
         k_value: 4096
+        offset: -5.3
         update_interval: 5s
 
 Configuration variables:
@@ -40,6 +45,7 @@ Configuration variables:
 - **name** (**Required**, string): The name for this sensor.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for lambdas/multiple sensors.
 - **k_value** (*Optional*, int): The K value comes from the datasheet. It will default to 4096 if not specified, which is appropriate for a sensor with a range of +/- 0.5kPa.
+- **offset** (*Optional*, float): The offset you want applied to your reading.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 - All other options from :ref:`Sensor <config-sensor>`.
 
