@@ -57,6 +57,16 @@ Release 2023.9.2 - October 2
 - Fix SPI support for second bus on 2023.9.1 :esphomepr:`5456` by :ghuser:`angelnu`
 - Ensure esphome directory exists on addon startup :esphomepr:`5464` by :ghuser:`jesserockz`
 
+Release 2023.9.3 - October 3
+----------------------------
+
+- Bump zeroconf from 0.112.0 to 0.115.0 :esphomepr:`5432` by :ghuser:`dependabot[bot]`
+- add pin config for denky_d4 :esphomepr:`5471` by :ghuser:`alucryd`
+- Support RP2040 hardware SPI :esphomepr:`5466` by :ghuser:`clydebarrow`
+- Bump zeroconf from 0.115.0 to 0.115.1 :esphomepr:`5470` by :ghuser:`dependabot[bot]`
+- Sleep mode fix for BP5758D driver :esphomepr:`5461` by :ghuser:`dwildstr`
+- Tuya Number: split "multiply" to a separate option :esphomepr:`5458` by :ghuser:`paravoid`
+
 Breaking Changes
 ----------------
 
