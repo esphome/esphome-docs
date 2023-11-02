@@ -183,6 +183,6 @@ See Also
 --------
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/components/output/ledc`
-- :doc:`/components/speaker`
+- :doc:`/components/speaker/index`
 - :apiref:`rtttl/rtttl.h`
 - :ghedit:`Edit`
