@@ -409,6 +409,8 @@ Motion
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
     MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
+    HLK-LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
+    HLK-LD2420, components/sensor/ld2420, ld2420.jpg, Motion & Presence
 
 
 Thermocouple
@@ -502,7 +504,6 @@ Miscellaneous
     Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg, dark-invert
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg, dark-invert
     Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
-    LD2410, components/sensor/ld2410, ld2410.jpg
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Qwiic PIR Motion, components/binary_sensor/qwiic_pir, qwiic_pir.jpg
