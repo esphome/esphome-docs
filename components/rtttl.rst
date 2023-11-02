@@ -41,7 +41,7 @@ The tone generator needs a PWM capable output to work with, currently only the
 Overview Using the I2S speaker
 ------------------------------
 
-The tone generator can instead be used with a :doc:`Speaker </components/speaker>` to output the audio.
+The tone generator can instead be used with a :doc:`Speaker </components/speaker/index>` to output the audio.
 
 .. code-block:: yaml
 
