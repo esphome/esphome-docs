@@ -74,6 +74,11 @@ Release 2023.10.5 - November 1
 - Ensure that all uses of strncpy in wifi component are safe. :esphomepr:`5636` by :ghuser:`kpfleming`
 - Remove some explicit IPAddress casts  :esphomepr:`5639` by :ghuser:`HeMan`
 
+Release 2023.10.6 - November 3
+------------------------------
+
+- Revert "Ensure that all uses of strncpy in wifi component are safe." :esphomepr:`5662` by :ghuser:`jesserockz`
+
 Breaking changes
 ----------------
 
