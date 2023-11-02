@@ -42,7 +42,7 @@ Overview Using the I2S speaker
 ------------------------------
 
 Using the tone generator with the :ref:`I2S Speaker <speaker>` the following code sample is needed.
-:doc:`ESP32 speaker <speaker>` is supported.
+:doc:`ESP32 speaker </components/speaker>` is supported.
 
 .. code-block:: yaml
 
@@ -182,8 +182,8 @@ Sample code
 
 See Also
 --------
-- :doc:`ESP8266 Software PWM Output</components/output/esp8266_pwm>`
-- :doc:`ESP32 LEDC Output </components/output/ledc>`
-- :doc:`ESP32 Speaker Output </components/speaker>`
+- :doc:`/components/output/esp8266_pwm`
+- :doc:`/components/output/ledc`
+- :doc:`/components/speaker`
 - :apiref:`rtttl/rtttl.h`
 - :ghedit:`Edit`
