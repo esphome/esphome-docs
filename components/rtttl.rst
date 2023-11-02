@@ -30,7 +30,7 @@ The tone generator needs a PWM capable output to work with, currently only the
 
     # Example configuration entry
     output:
-      - platform: ledc
+      - platform: ...
         id: rtttl_out
         ...
 
@@ -41,14 +41,13 @@ The tone generator needs a PWM capable output to work with, currently only the
 Overview Using the I2S speaker
 ------------------------------
 
-Using the tone generator with the :ref:`I2S Speaker <speaker>` the following code sample is needed.
-:doc:`ESP32 speaker </components/speaker>` is supported.
+The tone generator can instead be used with a :doc:`Speaker </components/speaker>` to output the audio.
 
 .. code-block:: yaml
 
     # Example configuration entry
     speaker:
-      - platform: i2s_audio
+      - platform: ...
         id: my_speaker
         ...
 
