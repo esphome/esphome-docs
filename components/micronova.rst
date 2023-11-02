@@ -7,13 +7,13 @@ MicroNova based pellet stove
 The MicroNova component allows you to integrate a pellet stove with a MicroNova board in ESPHome.
 It uses :ref:`UART <uart>` for communication.
 
-The :ref:`UART <uart>` must be configured with a baud rate 1200, 8 data bits, 2 stop bits, no parity, no flow control. 
+The :ref:`UART <uart>` must be configured with a baud rate 1200, 8 data bits, 2 stop bits, no parity, no flow control.
 
 .. warning::
 
     MicroNova bords come in various flavours. This code is only tested on an ExtraFlame Ketty Evo 2.0 stove. The protocol is not
     documented but has been reverse engineerd by others. See the links below for all the info that helped me.
-    The different sensors, buttons and stove switch may require specific **memory_location** and **memory_address** parameters that 
+    The different sensors, buttons and stove switch may require specific **memory_location** and **memory_address** parameters that
     match your MicroNova specific board.
 
     Also, switching your stove on or off can behave different on the various MicroNova flavours.
@@ -33,7 +33,7 @@ Most MicroNova based pellet stoves have a serial output. In most cases this outp
     :align: center
     :width: 50.0%
 
-You will have to build a simple circuit to interface with your stove. It is based on optocouplers for galvanic separation and logic 
+You will have to build a simple circuit to interface with your stove. It is based on optocouplers for galvanic separation and logic
 level shifting between 5v and 3V3.
 
 .. figure:: images/micronova_optocouplers.png
@@ -88,7 +88,7 @@ Text Sensors
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **stove_state** (*Optional*): The current stove state. 
+- **stove_state** (*Optional*): The current stove state.
   All options from :ref:`Text Sensor <config-text_sensor>`.
 
 Sensors
@@ -125,13 +125,12 @@ Configuration variables:
   All options from :ref:`Sensor <config-sensor>`.
 - **stove_power** (*Optional*): Current stove power.
   All options from :ref:`Sensor <config-sensor>`.
-- **fan_speed** (*Optional*): Current fan speed. The raw value from the stove is multiplied by 10 + **fan_rpm_offset**
-  - **fan_rpm_offset** (*Optional*, integer): Offset the reported RPM value. 
-    Must be between 0 and 255. Defaults to 0.
+- **fan_speed** (*Optional*): Current fan speed. The raw value from the stove is multiplied by 10 + ``fan_rpm_offset``.
+  - **fan_rpm_offset** (*Optional*, integer): Offset the reported RPM value. Must be between 0 and 255. Defaults to 0.
   - All other options from :ref:`Sensor <config-sensor>`.
 - **water_temperature** (*Optional*): Internal boiler water termperature.
   All options from :ref:`Sensor <config-sensor>`.
-- **water_pressure** (*Optional*): Internal boiler water pressure. 
+- **water_pressure** (*Optional*): Internal boiler water pressure.
   All options from :ref:`Sensor <config-sensor>`.
 - **memory_address_sensor** (*Optional*): Can be any **memory_location** / **memory_address** you want to track. Usefull
   when you don't know where the parameter is for your stove is.
@@ -205,14 +204,14 @@ Switches
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **stove** (*Optional*): Turn the stove on or off. This switch will also reflect the current stove state. 
+- **stove** (*Optional*): Turn the stove on or off. This switch will also reflect the current stove state.
   If the **stove_state** is "Off" the switch will be off, in all other states, the switch wil be on.
   All options from :ref:`Switch <config-switch>`.
 
 .. note::
 
-    Besides **memory_location** and **memory_address** you can specify specific **memory_data_on** and **memory_data_off** parameters. 
-    These parameters contain the hex value to be written to the **memory_location** and **memory_address** when the switch 
+    Besides **memory_location** and **memory_address** you can specify specific **memory_data_on** and **memory_data_off** parameters.
+    These parameters contain the hex value to be written to the **memory_location** and **memory_address** when the switch
     turns on or off.
 
     - **memory_data_on** (*Optional*): The data to write when turning the switch on.
