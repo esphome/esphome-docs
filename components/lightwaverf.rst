@@ -1,5 +1,5 @@
-LightWaveRF Switch
-==================
+LightWaveRF
+===========
 
 .. seo::
     :description: LightWaveRF Switch Lights
