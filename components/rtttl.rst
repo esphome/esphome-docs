@@ -184,6 +184,6 @@ See Also
 --------
 - :doc:`ESP8266 Software PWM Output</components/output/esp8266_pwm>`
 - :doc:`ESP32 LEDC Output </components/output/ledc>`
-- :doc:`/components/remote_receiver`
+- :doc:`ESP32 Speaker Output </components/speaker>`
 - :apiref:`rtttl/rtttl.h`
 - :ghedit:`Edit`
