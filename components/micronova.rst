@@ -126,6 +126,7 @@ Configuration variables:
 - **stove_power** (*Optional*): Current stove power.
   All options from :ref:`Sensor <config-sensor>`.
 - **fan_speed** (*Optional*): Current fan speed. The raw value from the stove is multiplied by 10 + ``fan_rpm_offset``.
+
   - **fan_rpm_offset** (*Optional*, integer): Offset the reported RPM value. Must be between 0 and 255. Defaults to 0.
   - All other options from :ref:`Sensor <config-sensor>`.
 - **water_temperature** (*Optional*): Internal boiler water termperature.
