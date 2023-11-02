@@ -148,7 +148,7 @@ Platform
 Configuration variables:
 ************************
 
-**ld2420** (Required): Component platform.
+**ld2420** (*Required*): Component platform.
 
 
 Select
@@ -231,16 +231,16 @@ Configuration variables:
 ************************
 
  - **timeout** (*Optional+Inclusive+Group1*): The time in seconds during which the occupied state (presence) will persist after presence is no longer detected. Any energy detection within the time window restarts the countdown from this value. Defaults to 120s.
- - **min_gate_distance** (Optional+Inclusive+Group1*): Minimum distance for move or still energy detection. Value between 0 and max_gate_distance - 1. Each increment equals 70 cm. Defaults to 1.
- - **max_gate_distance** (Optional+Inclusive+Group1*): Maximum gate for movement detection. Value from 1 to 15. Each gate detects movement and still energy at 70 cm increments. At the maximum value, the sensor’s range equates to 16 * 70 cm resulting in an approximately 12-meter range; however, accuracy at this range may be diminished. The recommended maximum value is 12 * 70 cm which results in approximately 9 meters.
+ - **min_gate_distance** (*Optional+Inclusive+Group1*): Minimum distance for move or still energy detection. Value between 0 and max_gate_distance - 1. Each increment equals 70 cm. Defaults to 1.
+ - **max_gate_distance** (*Optional+Inclusive+Group1*): Maximum gate for movement detection. Value from 1 to 15. Each gate detects movement and still energy at 70 cm increments. At the maximum value, the sensor’s range equates to 16 * 70 cm resulting in an approximately 12-meter range; however, accuracy at this range may be diminished. The recommended maximum value is 12 * 70 cm which results in approximately 9 meters.
  - **gate_select** (*Optional+Inclusive+Group2*): Gate value to edit selection (Gate # from 0 to 15). When this variable is defined the component will run in compact UI mode. Gate thresholds are edited by selecting the gate number and then adjusting the move and still thresholds.
  - **still_threshold** (*Optional+Inclusive+Group2*): Gate still value threshold level for motion energy detection on a currently selected gate number. A value greater than that specified for the gate (distance) will trigger movement detection.
  - **move_threshold** (*Optional+Inclusive+Group2*): Gate move value threshold level for still energy detection on a currently selected gate number. A value less than that specified for the gate (distance) will trigger still detection.
  - **gate_still_sensitivity** (*Optional*): Gate still threshold calibration sensitivity factor. Defaults as 0.5 with a range of 0-1, 0 = high and 1 = low.
  - **gate_move_sensitivity** (*Optional*): Gate move threshold calibration sensitivity factor. Defaults as 0.5 with a range of 0-1, 0 = high and 1 = low
- - **gate_n** (Optional): Provides individual gate threshold number inputs when gate_select is not defined. Range is gate_0 to gate_15. Each gate entry requires a still_threshold and move_threshold sub variable.
-  - **still_threshold** (Required with gate_n entries): Gate still value threshold level for motion energy detection on currently selected gate number. A value greater than that specified for the gate (distance) will trigger movement detection.
-  - **move_threshold** (Required with gate_n entries): Gate move value threshold level for still energy detection on currently selected gate number. A value less than that specified for the gate (distance) will trigger still detection.
+ - **gate_n** (*Optional*): Provides individual gate threshold number inputs when gate_select is not defined. Range is gate_0 to gate_15. Each gate entry requires a still_threshold and move_threshold sub variable.
+  - **still_threshold** (*Required with gate_n entries*): Gate still value threshold level for motion energy detection on currently selected gate number. A value greater than that specified for the gate (distance) will trigger movement detection.
+  - **move_threshold** (*Required with gate_n entries*): Gate move value threshold level for still energy detection on currently selected gate number. A value less than that specified for the gate (distance) will trigger still detection.
 Button
 -------
 
