@@ -24,6 +24,12 @@ A Python library that implements this protocol is `aioesphomeapi <https://github
     # Example configuration entry
     api:
 
+.. note::
+
+    Before a new ESPHome device can use the Home Assistant API it needs to be allowed to communicate with HA. This is done in
+    the ESPHome integration (NOT in the Add-On) by clicking "CONFIGURE" for that device and check the "Allow device to make
+    service calls" option.
+
 Configuration variables:
 ------------------------
 
