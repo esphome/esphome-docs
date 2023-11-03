@@ -406,11 +406,10 @@ Motion
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     BMI160, components/sensor/bmi160, bmi160.jpg, Accelerometer & Gyroscope
     LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
+    LD2420, components/sensor/ld2420, ld2420.jpg, Motion & Presence
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
     MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
-    HLK-LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
-    HLK-LD2420, components/sensor/ld2420, ld2420.jpg, Motion & Presence
 
 
 Thermocouple
@@ -496,6 +495,8 @@ Presence Detection
 .. imgtable::
 
     DFRobot mmWave Radar, components/dfrobot_sen0395, dfrobot_sen0395.jpg
+    LD2410, components/sensor/ld2410, ld2410.jpg
+    LD2420, components/sensor/ld2420, ld2420.jpg
 
 Miscellaneous
 *************
