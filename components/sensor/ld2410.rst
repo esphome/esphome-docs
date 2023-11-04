@@ -725,3 +725,4 @@ See Also
 - `Source of inspiration for implementation <https://github.com/rain931215/ESPHome-LD2410>`_
 - :apiref:`ld2410/ld2410.h`
 - :ghedit:`Edit`
+
