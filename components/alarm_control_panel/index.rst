@@ -218,9 +218,9 @@ opens.
 
     alarm_control_panel:
       # ...
-      on_disarmed:
+      on_chime:
         then:
-          - logger.log: "Alarm Disarmed!"
+          - logger.log: "Alarm Chime!"
 
 .. _alarm_control_panel_arm_away_action:
 ``arm_away`` Action
