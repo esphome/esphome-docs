@@ -87,7 +87,7 @@ Configuration variables:
 
 See Also
 --------
-
+- `esphome-pressure device <https://www.tindie.com/products/gcormier/esphome-pressure/>`__
 - :doc:`/components/sensor/sds011`
 - :ref:`sensor-filters`
 - :apiref:`pmsx003/pmsx003.h`

@@ -7,8 +7,8 @@ CFSensor XGZP68xx Series Differential Pressure Sensor
     :keywords: XGZP68xx, XGZP6897, XGZP6899, XGZP6899D, XGZP6897D
 
 The XGZP68xx Differential Pressure sensor allows you to use digital differential pressure sensors such as the 6899D
-(`datasheet <https://cfsensor.com/wp-content/uploads/2022/11/XGZP6899D-Pressure-Sensor-V2.8.pdf>`__,
-`Tindie <https://www.tindie.com/products/gcormier/esphome-pressure/>`__) or 6897D Series (`datasheet <https://cfsensor.com/wp-content/uploads/2022/11/XGZP6897D-Pressure-Sensor-V2.7.pdf>`__)
+(`datasheet <https://cfsensor.com/wp-content/uploads/2022/11/XGZP6899D-Pressure-Sensor-V2.8.pdf>`__) or 
+6897D Series (`datasheet <https://cfsensor.com/wp-content/uploads/2022/11/XGZP6897D-Pressure-Sensor-V2.7.pdf>`__)
 sensors with ESPHome. The sensors pressure ranges are specified in the datasheets.
 
 Calibrating the sensor can be done by checking the value that is returned when
@@ -53,7 +53,7 @@ Configuration variables:
 
 See Also
 --------
-
+- `esphome-pressure device <https://www.tindie.com/products/gcormier/esphome-pressure/>`__
 - :ref:`sensor-filters`
 - :apiref:`sdp3x/sdp3x.h`
 - :ghedit:`Edit`
