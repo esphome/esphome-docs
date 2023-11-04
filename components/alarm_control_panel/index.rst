@@ -190,6 +190,7 @@ This trigger is activated when the alarm changes from to disarmed.
           - logger.log: "Alarm Disarmed!"
 
 .. _alarm_control_panel_on_ready_trigger:
+
 ``on_ready`` Trigger
 ***********************
 
@@ -206,6 +207,7 @@ Once this trigger is called, you can get the ready state by calling get_all_sens
               ESP_LOGI("AlarmPanel", "Sensor ready change to: %s", ((id(acp1).get_all_sensors_ready()) ? (const char *) "True" : (const char *) "False"));
 
 .. _alarm_control_panel_on_chime_trigger:
+
 ``on_chime`` Trigger
 ***********************
 
