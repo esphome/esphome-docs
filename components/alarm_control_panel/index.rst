@@ -333,7 +333,7 @@ From :ref:`lambdas <config-lambda>`, you can call the following methods:
 - ``arm_home(code)``
 - ``arm_night(code)``
 - ``disarm(code)``
--- ``get_all_sensors_ready()``
+- ``get_all_sensors_ready()``
 
 .. code-block:: cpp
 
