@@ -65,13 +65,17 @@ State Flow:
 
 3. When the alarm is tripped by a sensor state changing to ``on`` or ``alarm_control_panel_pending_action`` invoked
   1. If sensor_type is set to ``delayed``:
+
     1. ``pending_time`` greater than 0 the state is ``PENDING``
     2. ``pending_time`` is 0 or after the ``pending_time`` delay the state is ``TRIGGERED``
   2. If sensor_type is set to ``instant``:
+
     1. The state is set to ``TRIGGERED``
   3. If the sensor_type is set to ``interior_follower``:
+
     1. If the current state is ``ARMED_...`` the state will be set to ``TRIGGERED``
     2. If the current state is ``PENDING`` then nothing will happen and it will stay in the ``PENDING`` state.
+
 4. If ``trigger_time`` greater than 0 and no sensors are ``on`` after ``trigger_time`` delay
    the state returns to ``ARM_...``
 
