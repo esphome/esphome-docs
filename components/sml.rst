@@ -112,7 +112,7 @@ Automations:
 ------------
 
 - **on_data** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  valid SML message is received. See :ref:`sml-on-data`.
+  SML message is received. See :ref:`sml-on-data`.
 
 .. _sml-on-data:
 
