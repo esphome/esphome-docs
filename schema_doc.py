@@ -83,6 +83,8 @@ PLATFORMS_TITLES = {
     "I²C": "i2c",
     "Media Player": "media_player",
     "Microphone": "microphone",
+    "Speaker": "speaker",
+    "Alarm Control Panel": "alarm_control_panel",
 }
 
 CUSTOM_DOCS = {
@@ -196,6 +198,17 @@ CUSTOM_DOCS = {
     "components/display_menu/lcd_menu": {
         "LCD Menu": "lcd_menu.schemas.CONFIG_SCHEMA",
     },
+    "components/alarm_control_panel/index": {
+        "Base Alarm Control Panel Configuration": "template.alarm_control_panel.schemas.CONFIG_SCHEMA",
+    },
+    "components/vbus": {
+        "custom VBus sensors": "vbus.platform.sensor.schemas.CONFIG_SCHEMA.types.custom",
+        "custom VBus binary sensors": "vbus.platform.binary_sensor.schemas.CONFIG_SCHEMA.types.custom",
+    },
+    "components/spi": {
+        "Generic SPI device component:": "spi_device.schemas.CONFIG_SCHEMA"
+    },
+    "components/libretiny": {"LibreTiny Platform": "bk72xx.schemas.CONFIG_SCHEMA"},
 }
 
 REQUIRED_OPTIONAL_TYPE_REGEX = r"(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s"
@@ -623,6 +636,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             ):  # props are right for typed components so far
                 c = self.json_component
                 if c:
+                    if self.component in c:
+                        c = c[self.component]["schemas"][
+                            self.component.upper() + "_SCHEMA"
+                        ]
                     trigger_schema = self.find_props(c).get(key)
                     if trigger_schema is not None:
                         self.props = self.find_props(trigger_schema)

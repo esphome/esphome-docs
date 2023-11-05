@@ -24,6 +24,11 @@ using an API that is designed to
 - be simple and to be used without programming experience
 - but also be flexible enough to work with more complex tasks like displaying an analog clock.
 
+.. note::
+
+    Display hardware is complex and sometimes doesn't behave as expected. If you're having trouble with your display,
+    please see :ref:`troubleshooting` below.
+
 .. _display-engine:
 
 Display Rendering Engine
@@ -179,6 +184,11 @@ Next, create a ``font:`` section in your configuration:
 
       - file: "fonts/tom-thumb.bdf"
         id: tomthumb
+        
+      - file: 'gfonts://Material+Symbols+Outlined'
+        id: icon_font_50
+        size: 50
+        glyphs: ["\U0000e425"] # mdi-timer
 
     display:
       # ...
@@ -192,7 +202,8 @@ Configuration variables:
 
     **Google Fonts**:
 
-    Each Google Font will be downloaded once and cached for future use.
+    Each Google Font will be downloaded once and cached for future use. This can also be used to download Material 
+    Symbols or Icons as in the example above.
 
   - **family** (**Required**, string): The name of the Google Font family.
   - **weight** (*Optional*, enum): The weight of the font. Can be either the text name or the integer value:
@@ -231,7 +242,7 @@ Configuration variables:
     to translate the TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
     add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
     to install it using
-    ``pip install pillow``.
+    ``pip install "pillow>4.0.0,<10.0.0"``.
 
 .. _display-static_text:
 
@@ -672,7 +683,9 @@ Configuration variables:
 - **file** (**Required**, string):
 
   - **Local files**: The path (relative to where the .yaml file is) of the image file.
-  - **Material Design Icons**: Specify the `Material Design Icon <https://pictogrammers.com/library/mdi/>`_ id in the format ``mdi:icon-name``, and that icon will automatically be downloaded and added to the configuration.
+  - **Material Design Icons**: Specify the `Material Design Icon <https://pictogrammers.com/library/mdi/>`_
+    id in the format ``mdi:icon-name``, and that icon will automatically be downloaded and added to the configuration.
+  
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
 - **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
@@ -715,6 +728,25 @@ And then later in code:
           // Draw the image my_image at position [x=0,y=0]
           it.image(0, 0, id(my_image));
 
+By default, ESPHome will *align* the image at the top left. That means if you enter the coordinates
+``[0,10]`` for your image, the top left of the image will be at ``[0,10]``. If you want to draw some
+image at the right side of the display, it is however sometimes useful to choose a different **image alignment**.
+When you enter ``[0,10]`` you're really telling ESPHome that it should position the **anchor point** of the image
+at ``[0,10]``. When using a different alignment, like ``TOP_RIGHT``, the image will be positioned left of the anchor
+pointed, so that, as the name implies, the anchor point is a the *top right* corner of the image.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          // Aligned on left by default
+          it.image(0, 0, id(my_image));
+
+          // Aligned on right edge
+          it.image(it.get_width(), 0, id(my_image), ImageAlign::TOP_RIGHT);
+
 For binary images the ``image`` method accepts two additional color parameters which can
 be supplied to modify the color used to represent the on and off bits respectively. e.g.
 
@@ -727,6 +759,9 @@ be supplied to modify the color used to represent the on and off bits respective
           // Draw the image my_image at position [x=0,y=0]
           // with front color red and back color blue
           it.image(0, 0, id(my_image), id(red), id(blue));
+
+          // Aligned on right edge
+          it.image(it.get_width(), 0, id(my_image), ImageAlign::TOP_RIGHT, id(red), id(blue));
 
 You can also use this to invert images in two colors display, use ``COLOR_OFF`` then ``COLOR_ON``
 as the additional parameters.
@@ -760,6 +795,8 @@ This can be combined with all Lambdas:
           // Draw the animation my_animation at position [x=0,y=0]
           it.image(0, 0, id(my_animation), COLOR_ON, COLOR_OFF);
 
+Additionally, you can use the ``animation.next_frame``, ``animation.prev_frame`` or ``animation.set_frame`` actions.
+
 .. note::
 
     To draw the next animation independent of Display draw cycle use an interval:
@@ -769,8 +806,7 @@ This can be combined with all Lambdas:
         interval:
           - interval: 5s
               then:
-                lambda: |-
-                  id(my_animation).next_frame();
+                animation.next_frame: my_animation
 
 
 Configuration variables:
@@ -798,6 +834,22 @@ Configuration variables:
   - **start_frame** (*Optional*, int): The frame to loop back to when ``end_frame`` is reached. Defaults to the first frame in the animation.
   - **end_frame** (*Optional*, int): The last frame to show in the loop; when this frame is reached it will loop back to ``start_frame``. Defaults to the last frame in the animation.
   - **repeat** (*Optional*, int): Specifies how many times the loop will run. When the count is reached, the animation will continue with the next frame after ``end_frame``, or restart from the beginning if ``end_frame`` was the last frame. Defaults to "loop forever".
+
+Actions:
+^^^^^^^^
+
+- **animation.next_frame**: Moves the animation to the next frame. This is equivalent to the ``id(my_animation).next_frame();`` lambda call.
+
+  - **id** (**Required**, :ref:`config-id`): The ID of the animation to animate.
+
+- **animation.prev_frame**: Moves the animation to the previous frame. This is equivalent to the ``id(my_animation).prev_frame();`` lambda call.
+
+  - **id** (**Required**, :ref:`config-id`): The ID of the animation to animate.
+
+- **animation.set_frame**: Moves the animation to a specific frame. This is equivalent to the ``id(my_animation).set_frame(frame);`` lambda call.
+
+  - **id** (**Required**, :ref:`config-id`): The ID of the animation to animate.
+  - **frame** (**Required**, int): The frame index to show next.
 
 .. _display-pages:
 
@@ -909,6 +961,55 @@ You can then switch between these with three different actions:
 - **to** (*Optional*, :ref:`config-id`): A page id. If set the automation is only triggered if changing to this page. Defaults to all pages.
 
 Additionally the old page will be given as the variable ``from`` and the new one as the variable ``to``.
+
+.. _troubleshooting:
+
+Troubleshooting
+---------------
+
+Color Test Pattern
+******************
+
+If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
+It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine 
+the best way to help you, **a picture of the result of this script is very helpful.**
+
+Should you `create an issue <https://github.com/esphome/issues/issues>`__ in GitHub regarding your display, please
+be sure to **include a link to where you purchased it** so that we can validate the configuration you've used.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        ...
+        lambda: |-
+          int shift_x = (it.get_width()-310)/2;
+          int shift_y = (it.get_height()-256)/2;
+          for(auto i = 0; i<256; i++) {
+            it.horizontal_line(shift_x+  0,i+shift_y,50, my_red.fade_to_white(i));
+            it.horizontal_line(shift_x+ 50,i+shift_y,50, my_red.fade_to_black(i));
+    
+            it.horizontal_line(shift_x+105,i+shift_y,50, my_green.fade_to_white(i));
+            it.horizontal_line(shift_x+155,i+shift_y,50, my_green.fade_to_black(i));
+    
+            it.horizontal_line(shift_x+210,i+shift_y,50, my_blue.fade_to_white(i));
+            it.horizontal_line(shift_x+260,i+shift_y,50, my_blue.fade_to_black(i));
+          }
+          it.rectangle(shift_x+ 0, 0+shift_y, shift_x+ 310, 256+shift_y, my_yellow);
+    
+    color:
+      - id: my_blue
+        blue: 100%
+      - id: my_red
+        red: 100%
+      - id: my_green
+        green: 100%
+      - id: my_white
+        red: 100%
+        blue: 100%
+        green: 100%
+      - id: my_yellow
+        hex: ffff00
 
 See Also
 --------

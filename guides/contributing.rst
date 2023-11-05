@@ -17,9 +17,10 @@ a pull request.
 Contributing to ESPHome-Docs
 ----------------------------
 
-.. figure:: /images/logo-docs.svg
+.. image:: /images/logo-docs.svg
     :align: center
     :width: 60.0%
+    :class: dark-invert
 
 One of the areas of ESPHome that can always be improved is the documentation.
 If you see an issue somewhere, a spelling mistakes or if you want to share your awesome
@@ -340,6 +341,14 @@ This is only possible for ``pip`` installs.
     git checkout -b my-new-feature
     cd ..
 
+The environment is now ready for use, but you need to activate the Python virtual environment
+every time you are using it.
+
+.. code-block:: bash
+
+    # Activate venv
+    source venv/bin/activate
+
 Now you can open ESPHome in your IDE of choice (mine is CLion) with the PlatformIO
 addons (see PlatformIO docs for more info). Then develop the new feature with the
 guidelines below.
@@ -404,12 +413,15 @@ a "rebase". More info `here <https://developers.home-assistant.io/docs/en/develo
     git fetch upstream dev
     git rebase upstream/dev
 
+.. _contributing_to_esphome:
+
 Contributing to ESPHome
 -----------------------
 
-.. figure:: /images/logo-text.svg
+.. image:: /images/logo-text.svg
     :align: center
     :width: 60.0%
+    :class: dark-invert
 
 This is a guide to contributing to the ESPHome codebase. ESPHome uses two languages for its project:
 Python and C++.
@@ -435,18 +447,18 @@ like this:
     ├── codegen.py
     ├── config_validation.py
     ├── components
-    │   ├── __init__.py
-    │   ├── dht12
-    │   │   ├── __init__.py
-    │   │   ├── dht12.cpp
-    │   │   ├── dht12.h
-    │   │   ├── sensor.py
-    │   ├── restart
-    │   │   ├── __init__.py
-    │   │   ├── restart_switch.cpp
-    │   │   ├── restart_switch.h
-    │   │   ├── switch.py
-    │  ...
+    │   ├── __init__.py
+    │   ├── dht12
+    │   │   ├── __init__.py
+    │   │   ├── dht12.cpp
+    │   │   ├── dht12.h
+    │   │   ├── sensor.py
+    │   ├── restart
+    │   │   ├── __init__.py
+    │   │   ├── restart_switch.cpp
+    │   │   ├── restart_switch.h
+    │   │   ├── switch.py
+    │  ...
 
 As you can see, all components are in the "components" folder. Each component is in its own
 subfolder which contains the Python code (.py) and the C++ code (.h and .cpp).

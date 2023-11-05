@@ -16,9 +16,9 @@ sensors with ESPHome.
     :width: 30.0%
 
     FS3000 Air Velocity Sensor.
-    (Credit: `Sparkfun <https://www.sparkfun.com/products/18377>`__, image compressed)
+    (Credit: `SparkFun <https://www.sparkfun.com/products/18377>`__, image compressed)
 
-.. _Sparkfun: https://www.sparkfun.com/products/15805
+.. _SparkFun: https://www.sparkfun.com/products/18377
 
 The FS3000 is a solid state air velocity sensor that communicates over over I²C. It is based on a MEMS thermopile sensor. There are two subtypes available: the FS3000-1005 measures air velocities between 0 meters/second and 7.23 meters/second, and the FS3000-1015 measures air velocities between 0 meters/second and 15 meters/second.
 
@@ -44,4 +44,7 @@ Configuration variables:
 See Also
 --------
 
+- :ref:`sensor-filters`
+- :apiref:`fs3000/fs3000.h`
+- `SparkFun FS3000 Library <https://github.com/sparkfun/SparkFun_FS3000_Arduino_Library>`__ by `SparkFun <https://www.sparkfun.com/>`__
 - :ghedit:`Edit`
