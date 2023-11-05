@@ -36,6 +36,8 @@ Configuration variables:
   - **input** (**Required**, string): The id of the binary sensor component
   - **bypass_armed_home** (*Optional*, boolean): This binary sensor will not trigger the alarm when in ``armed_home`` state.
   - **bypass_armed_night** (*Optional*, boolean): This binary sensor will not trigger the alarm when in ``armed_night`` state.
+  - **sensor_type** (*Optional*, string): Sets the sensor type. One of ``delayed``, ``instant``, or ``interior_follower``. (``delayed`` is default if not specified)
+  - **chime** (*Optional*, boolean): When set ``true``, the chime callback will be called whenever the sensor goes from closed to open. (``false`` is the default if not specified)
 
 - **restore_mode** (*Optional*, enum):
 
@@ -63,8 +65,19 @@ State Flow:
 
 3. When the alarm is tripped by a sensor state changing to ``on`` or ``alarm_control_panel_pending_action`` invoked
 
-  a. ``pending_time`` greater than 0 the state is ``PENDING``
-  b. ``pending_time`` is 0 or after the ``pending_time`` delay the state is ``TRIGGERED``
+  1. If sensor_type is set to ``delayed``:
+
+    1. ``pending_time`` greater than 0 the state is ``PENDING``
+    2. ``pending_time`` is 0 or after the ``pending_time`` delay the state is ``TRIGGERED``
+
+  2. If sensor_type is set to ``instant``:
+
+    1. The state is set to ``TRIGGERED``
+
+  3. If the sensor_type is set to ``interior_follower``:
+
+    1. If the current state is ``ARMED_...`` the state will be set to ``TRIGGERED``
+    2. If the current state is ``PENDING`` then nothing will happen and it will stay in the ``PENDING`` state.
 
 4. If ``trigger_time`` greater than 0 and no sensors are ``on`` after ``trigger_time`` delay
    the state returns to ``ARM_...``
@@ -95,8 +108,16 @@ Example:
       trigger_time: 5min
       binary_sensors:
         - input: zone_1
+          chime: true
+          sensor_type: delayed
         - input: zone_2
+          chime: true
+          sensor_type: delayed
+        - input: zone_3
           bypass_armed_home: true
+          sensor_type: interior_follower
+        - input: zone_4
+          sensor_type: instant
         - input: ha_test
       on_state:
         then:
@@ -108,6 +129,15 @@ Example:
       on_cleared:
         then:
           - switch.turn_off: siren
+      on_ready:
+        then:
+         - lambda: !lambda |-
+             ESP_LOGD("TEST", "Sensor ready change to: %s",
+               (id(acp1).get_all_sensors_ready())) ? (const char *) "True" : (const char *) "False");
+      on_chime:
+        then:
+         - lambda: !lambda |-
+             ESP_LOGD("TEST", "Zone with chime mode set opened");
 
     binary_sensor:
       - platform: gpio
@@ -121,14 +151,30 @@ Example:
       - platform: gpio
         id: zone_2
         name: Zone 2
-        device_class: motion
+        device_class: door
         pin:
           number: D2
           mode: INPUT_PULLUP
           inverted: True
+      - platform: gpio
+        id: zone_3
+        name: Zone 3
+        device_class: motion
+        pin:
+          number: D3
+          mode: INPUT_PULLUP
+          inverted: True
+      - platform: gpio
+        id: zone_4
+        name: Zone 4
+        device_class: door
+        pin:
+          number: D4
+          mode: INPUT_PULLUP
+          inverted: True
       - platform: homeassistant
         id: ha_test
-        name: Zone 3
+        name: HA Test
         entity_id: input_boolean.test_switch
 
     switch:
