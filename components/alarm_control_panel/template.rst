@@ -64,6 +64,7 @@ State Flow:
   b. ``arming_..._time`` is 0 or after the delay the state is ``ARMED_...``
 
 3. When the alarm is tripped by a sensor state changing to ``on`` or ``alarm_control_panel_pending_action`` invoked
+
   1. If sensor_type is set to ``delayed``:
 
     1. ``pending_time`` greater than 0 the state is ``PENDING``
