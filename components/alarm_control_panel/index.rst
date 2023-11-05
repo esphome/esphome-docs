@@ -223,6 +223,7 @@ opens.
           - logger.log: "Alarm Chime!"
 
 .. _alarm_control_panel_arm_away_action:
+
 ``arm_away`` Action
 *******************
 
