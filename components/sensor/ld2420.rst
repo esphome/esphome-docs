@@ -180,6 +180,7 @@ Configuration variables:
 ************************
 
 - **operating_mode** (*Required*): Provisions the operating mode select component.
+- All other options from :ref:`Select <config-select>`.
 
 Number
 ------
