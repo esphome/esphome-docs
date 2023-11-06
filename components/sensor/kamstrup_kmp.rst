@@ -45,6 +45,11 @@ Configuration
           name: 'Heat Temperature Difference'
         flow:
           name: 'Heat Flow'
+        custom:
+          - name: 'Custom Heat Energy'
+            command: 0x003C
+          - name: 'Custom Heat Power'
+            command: 0x0050
         update_interval: 60s
 
 Configuration variables:
@@ -84,33 +89,9 @@ Configuration variables:
   - **name** (**Required**, string): The name for the volume sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **custom1** (*Optional*): Custom Sensor 1.
+- **custom** (*Optional*): List of custom sensors.
 
-  - **name** (**Required**, string): The name for the custom sensor 1.
-  - **command** (**Required**, 2-byte hex): The KMP command code (e.g. 0x003C).
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **custom2** (*Optional*): Custom Sensor 2.
-
-  - **name** (**Required**, string): The name for the custom sensor 2.
-  - **command** (**Required**, 2-byte hex): The KMP command code (e.g. 0x003C).
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **custom3** (*Optional*): Custom Sensor 3.
-
-  - **name** (**Required**, string): The name for the custom sensor 3.
-  - **command** (**Required**, 2-byte hex): The KMP command code (e.g. 0x003C).
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **custom4** (*Optional*): Custom Sensor 4.
-
-  - **name** (**Required**, string): The name for the custom sensor 4.
-  - **command** (**Required**, 2-byte hex): The KMP command code (e.g. 0x003C).
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **custom5** (*Optional*): Custom Sensor 5.
-
-  - **name** (**Required**, string): The name for the custom sensor 5.
+  - **name** (**Required**, string): The name for the custom sensor.
   - **command** (**Required**, 2-byte hex): The KMP command code (e.g. 0x003C).
   - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -124,11 +105,13 @@ Configuration variables:
       For more information regarding uart configuration, refer to :ref:`UART <uart>`.
     - Only the provided sensors will appear as sensor, and only those are read from 
       the meter.
-    - The custom sensors can be used to receive measurements from the Kampstrup meter, 
+    - Custom sensors can be used to receive measurements from the Kampstrup meter, 
       other than the ones provided natively with this component. To request extra
-      measurements, use any of the ``custom1`` through ``custom5`` sensors and provide the 
+      measurements, add one or multiple sensors to the ``custom`` setting and provide the 
       KMP command. This command is a 2 byte integer value. For example ``0x003C`` is
-      the command code for heat energy.
+      the command code for heat energy. In the example above, two custom sensors were 
+      added. These request the Heat Energy and Heat Power respectively. This will be the 
+      same as the native ``heat_energy`` and ``power`` sensors.
     - Keep in mind that the meter is battery operated. The more sensors read and the 
       lower the update interval, the faster the battery will drain.
 
