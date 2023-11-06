@@ -50,7 +50,7 @@ Configuration variables:
 
 See Also
 --------
-- `esphome-pressure device <https://www.tindie.com/products/gcormier/esphome-pressure/>`__
+- `esphome-pressure device <https://github.com/gcormier/esphome-pressure/>`__
 - :ref:`sensor-filters`
 - :apiref:`sdp3x/sdp3x.h`
 - :ghedit:`Edit`
