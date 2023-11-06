@@ -31,25 +31,22 @@ To use the sensor, set up an :ref:`I²C Bus <i2c>` and connect the sensor to the
     # Example configuration entry
     # It uses a filter offset to calibrate the sensor
     sensor:
-        - platform: xgzp68xx
+      - platform: xgzp68xx
         temperature:
             name: "Temperature"
         pressure:
             name: "Differential Pressure"
             filters:
                 - offset: 40.5
-        k_value: 4096
-        
-        update_interval: 5s
 
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name for this sensor.
-- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for lambdas/multiple sensors.
+- **temperature** (*Optional*): All options from :ref:`Sensor <config-sensor>`.
+- **pressure** (*Optional*): All options from :ref:`Sensor <config-sensor>`.
 - **k_value** (*Optional*, int): The K value comes from the datasheet. It will default to 4096 if not specified, which is appropriate for a sensor with a range of +/- 0.5kPa.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
-- All other options from :ref:`Sensor <config-sensor>`.
+- ```
 
 See Also
 --------
