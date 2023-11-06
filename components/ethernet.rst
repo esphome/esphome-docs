@@ -39,7 +39,6 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
       cs_pin: GPIO18
       interrupt_pin: GPIO36
       reset_pin: GPIO22
-      clock_speed: 30
 
 Configuration variables:
 ------------------------
@@ -79,7 +78,9 @@ Configuration variables:
 - **cs_pin** (**Required for SPI chips**, :ref:`config-pin`): The SPI chip select pin.
 - **interrupt_pin** (*Optional*, :ref:`config-pin`): The interrupt pin. Only available for SPI chips.
 - **reset_pin** (*Optional*, :ref:`config-pin`): The reset pin. Only available for SPI chips.
-- **clock_speed** (*Optional*, int): The SPI clock speed in Mhz. Defaults to 30. Only available for SPI chips.
+- **clock_speed** (*Optional*, float): The SPI clock speed. One of ``80MHz``, ``40MHz``, ``20MHz`` (default), ``10MHz``,
+  ``5MHz``, ``4MHz``, ``2MHz``, ``1MHz``, ``200kHz``, ``75kHz`` or ``1kHz``. A numeric value in Hz can alternatively
+  be specified. Only available for SPI chips.
 - **manual_ip** (*Optional*): Manually configure the static IP of the node.
 
   - **static_ip** (**Required**, IPv4 address): The static IP of your node.
