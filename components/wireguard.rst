@@ -257,6 +257,8 @@ This sensor exposes to the frontend the configured :ref:`address <wireguard-addr
 All options from :ref:`Text Sensor <config-text_sensor>` can be added to the
 above configuration.
 
+.. _wireguard-actions:
+
 Actions
 -------
 
@@ -292,6 +294,8 @@ This action enables the component and starts the connection to the remote peer.
         - wireguard.enable:
 
 The lambda equivalent is ``id(wireguard_id).enable()``.
+
+.. _wireguard-conditions:
 
 Conditions
 ----------
@@ -380,6 +384,7 @@ See Also
 
 - :doc:`time/index`
 - :doc:`time/sntp`
+- :ref:`automation`
 - |wireguard|_ official website
 - `Home Assistant Community Add-on: WireGuard
   <https://community.home-assistant.io/t/home-assistant-community-add-on-wireguard/134662>`__
