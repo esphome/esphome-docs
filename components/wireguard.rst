@@ -257,6 +257,81 @@ This sensor exposes to the frontend the configured :ref:`address <wireguard-addr
 All options from :ref:`Text Sensor <config-text_sensor>` can be added to the
 above configuration.
 
+Actions
+-------
+
+The following actions are available.
+
+``wireguard.disable``
+^^^^^^^^^^^^^^^^^^^^^
+
+This action drops down the active VPN link (if any) and disables the component.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - wireguard.disable:
+
+The lambda equivalent is ``id(wireguard_id).disable()``.
+
+.. note::
+
+    To disable |wireguard| since device boot you can execute this action
+    in the :ref:`esphome-on_boot` step.
+
+``wireguard.enable``
+^^^^^^^^^^^^^^^^^^^^
+
+This action enables the component and starts the connection to the remote peer.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - wireguard.enable:
+
+The lambda equivalent is ``id(wireguard_id).enable()``.
+
+Conditions
+----------
+
+The following conditions are available.
+
+``wireguard.enabled``
+^^^^^^^^^^^^^^^^^^^^^
+
+This condition checks if |wireguard| is currently enabled or not.
+
+.. code-block:: yaml
+
+    on_...:
+      - if:
+          condition: wireguard.enabled
+          then:
+            - ...
+          else:
+            - ...
+
+The lambda equivalent is ``id(wireguard_id).is_enabled()``.
+
+``wireguard.peer_online``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This condition checks if the remote peer is *online*.
+
+.. code-block:: yaml
+
+    on_...:
+      - if:
+          condition: wireguard.peer_online
+          then:
+            - ...
+          else:
+            - ...
+
+The lambda equivalent is ``id(wireguard_id).is_peer_up()``.
+
 .. _wireguard-installation:
 
 Remote peer setup
