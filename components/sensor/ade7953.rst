@@ -60,7 +60,6 @@ Over I²C
           name: "ADE7953 Reactive Power A"
         reactive_power_b:
           name: "ADE7953 Reactive Power B"
-        update_interval: 10s
 
 Configuration variables:
 ************************
@@ -122,7 +121,7 @@ Configuration variables:
 - **current_gain_b** (*Optional*, int): Set the current amplification of the B channel. Defaults to ``0x400000``.
 - **active_power_gain_a** (*Optional*, int): Set the active power amplification of the A channel. Defaults to ``0x400000``.
 - **active_power_gain_b** (*Optional*, int): Set the active power amplification of the B channel. Defaults to ``0x400000``.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``1s``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 
 Over SPI
 --------
@@ -192,7 +191,6 @@ Over SPI
           name: "Reactive Power B"
           filters:
           - delta: 1
-        update_interval: 1s
 
 Configuration variables:
 ************************
@@ -254,7 +252,7 @@ Configuration variables:
 - **current_gain_b** (*Optional*, int): Set the current amplification of the B channel. Defaults to ``0x400000``.
 - **active_power_gain_a** (*Optional*, int): Set the active power amplification of the A channel. Defaults to ``0x400000``.
 - **active_power_gain_b** (*Optional*, int): Set the active power amplification of the B channel. Defaults to ``0x400000``.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``1s``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 
 Use with Shelly 2.5
 -------------------
