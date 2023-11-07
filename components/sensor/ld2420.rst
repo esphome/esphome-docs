@@ -247,7 +247,7 @@ Configuration variables:
     selected gate number. A value greater than that specified for the gate (distance) will trigger movement detection.
     May contain any options from :ref:`Number <config-number>`.
   - **move_threshold** (*Optional*): Gate move value threshold level for still energy detection on a currently selected
-    gate number. A value less than that specified for the gate (distance) will trigger still detection. May contain all
+    gate number. A value less than that specified for the gate (distance) will trigger still detection. May contain any
     options from :ref:`Number <config-number>`.
 
 - **gate_n** (*Optional*): Provides individual gate threshold number inputs. Range is ``gate_0`` to ``gate_15``.
