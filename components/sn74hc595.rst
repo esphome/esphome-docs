@@ -22,7 +22,7 @@ Use of the OE pin is optional. If used, the pin should be pulled up externally.
 
 .. _SparkFun: https://www.sparkfun.com/products/13699
 
-The component can be configured using :ref:`GPIO pins <gpio>`
+The component can be configured using :ref:`GPIO pins <config-pin_schema>`
 or :ref:`SPI Bus <spi>`
 .
 
