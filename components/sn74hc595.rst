@@ -62,7 +62,7 @@ Configuration variables:
 Pin configuration variables:
 ****************************
 
-- **sn74hc595** (**Required**, :ref:`config-id`): The id of the SN74HC595 component of the pin.
+- **sn74hc595** (**Required**, :ref:`config-id`): The id of the SN74HC595 component the pin belongs to.
 - **number** (**Required**, int): The pin number.
 - **inverted** (*Optional*, boolean): If all written values should be treated as inverted.
   Defaults to ``false``.
