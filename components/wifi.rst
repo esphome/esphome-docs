@@ -307,7 +307,7 @@ This action turns off the WiFi interface on demand.
 
     Be aware that if you disable WiFi, the API timeout will need to be disabled otherwise the device will reboot.
 
-.. _wifi-on_enable_disable:
+.. _wifi-on_enable:
 
 ``wifi.enable`` Action
 ----------------------
