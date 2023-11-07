@@ -67,18 +67,27 @@ Linux
 -----
 
 Your distribution probably already has Python installed. Confirm that it is at
-least version 3.7:
+least version 3.9:
 
 .. code-block:: console
 
     $ python3 --version
-    Python 3.7.1
+    Python 3.9.15
 
-Looks good? You can go ahead and install ESPHome:
+Looks good? Now create a virtual environment to contain ESPHome and it's dependencies.
+
+.. code-block:: console
+
+    $ python3 -m venv venv
+    $ source venv/bin/activate
+
+You may or may not see ``(venv)`` at the beginning of your prompt depending on your shell configuration. This indicates that you are in the virtual environment.
+
+You can go ahead and install ESPHome:
 
 .. code-block:: bash
 
-    pip3 install --user esphome
+    pip3 install esphome
 
 .. caution::
 
@@ -90,12 +99,15 @@ Looks good? You can go ahead and install ESPHome:
     ``pip install`` is equivalent to ``make install`` in this context. The
     advice in the article applies to all Linux distributions, not just Debian.
 
+    Some people install ESPHome without the virtual environment, which can lead to issues with PATHs etc.
+    Non virtual environment installations are considered not "supported" as people end up having to know your exact system setup.
+
 At this point, you should be able confirm that ESPHome has been successfully installed:
 
 .. code-block:: console
 
     $ esphome version
-    Version: 2021.12.3
+    Version: 2022.11.4
 
 If you get an error like "Command not found", you need to add the binary to
 your ``PATH`` using ``export PATH=$PATH:$HOME/.local/bin``.

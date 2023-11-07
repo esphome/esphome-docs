@@ -53,8 +53,8 @@ Connection Options:
 - **external_clock** (**Required**): The configuration of the external clock to drive the camera.
 
   - **pin** (**Required**, pin): The pin the external clock line is connected to.
-  - **frequency** (*Optional*, float): The frequency of the external clock, must be either 20MHz
-    or 10MHz. Defaults to ``20MHz``.
+  - **frequency** (*Optional*, float): The frequency of the external clock, must be between 10
+    and 20MHz. Defaults to ``20MHz``.
 
 - **i2c_pins** (**Required**): The I²C control pins of the camera.
 
@@ -90,6 +90,15 @@ Image Settings:
     - ``1024x768`` (XGA)
     - ``1280x1024`` (SXGA)
     - ``1600x1200`` (UXGA)
+    - ``1920x1080`` (FHD)
+    - ``720x1280`` (Portrait HD)
+    - ``864x1536`` (Portrait 3MP)
+    - ``2048x1536`` (QXGA)
+    - ``2560x1440`` (QHD)
+    - ``2560x1600`` (WQXGA)
+    - ``1080x1920`` (Portrait FHD)
+    - ``2560x1920`` (QSXGA)
+
 
 - **jpeg_quality** (*Optional*, int): The JPEG quality that the camera should encode images with.
   From 10 (best) to 63 (worst). Defaults to ``10``.
@@ -166,6 +175,12 @@ Test Setting:
 
 Configuration for Ai-Thinker Camera
 -----------------------------------
+
+.. warning::
+
+    GPIO16 on this board (and possibly other boards below) is connected to onboard PSRAM. 
+    Using this GPIO for other purposes (eg as a button) will trigger the watchdog.
+    Further information on pin notes can be found here: https://github.com/raphaelbs/esp32-cam-ai-thinker/blob/master/docs/esp32cam-pin-notes.md
 
 .. code-block:: yaml
 
@@ -427,6 +442,33 @@ Configuration for ESP-EYE
       name: My Camera
       # ...
 
+Configuration for ESP32S3_EYE on `Freenove ESP32-S3-DevKitC-1 <https://github.com/Freenove/Freenove_ESP32_S3_WROOM_Board>`_
+---------------------------------------------------------------------------------------------------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    external_components:
+      - source:
+          type: git
+          url: https://github.com/MichaKersloot/esphome_custom_components
+        components: [ esp32_camera ]
+
+    esp32_camera:
+      external_clock:
+        pin: GPIO15
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO4
+        scl: GPIO5
+      data_pins: [GPIO11, GPIO9, GPIO8, GPIO10, GPIO12, GPIO18, GPIO17, GPIO16]
+      vsync_pin: GPIO6
+      href_pin: GPIO7
+      pixel_clock_pin: GPIO13
+
+      # Image settings
+      name: My Camera
+      # ...
 
 See Also
 --------

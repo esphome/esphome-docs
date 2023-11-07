@@ -137,6 +137,8 @@ Configuration variables:
 - **name** (**Required**, string): The name of the select.
 - All other options from :ref:`Select <config-select>`.
 
+.. _copy-sensor:
+
 Copy Sensor
 -----------
 
@@ -190,6 +192,24 @@ Configuration variables:
 - **source_id** (**Required**, :ref:`config-id`): The text sensor that should be mirrored.
 - **name** (**Required**, string): The name of the text sensor.
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+Copy Text
+---------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    text:
+      - platform: copy
+        source_id: source_text
+        name: "Copy of source_text"
+
+Configuration variables:
+************************
+
+- **source_id** (**Required**, :ref:`config-id`): The text that should be mirrored.
+- **name** (**Required**, string): The name of the number.
+- All other options from :ref:`Text <config-text>`.
 
 See Also
 --------

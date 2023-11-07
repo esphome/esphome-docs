@@ -5,8 +5,7 @@ Safe Mode Switch
     :description: Instructions for setting up switches that can remotely reboot the ESP in ESPHome into safe mode.
     :image: restart.svg
 
-The ``safe_mode`` switch allows you to remotely reboot your node into :ref:`Safe Mode <config-ota>`. This is useful in certain situations
-where a misbehaving component is preventing Over-The-Air updates from completing successfully.
+The ``safe_mode`` switch allows you to remotely reboot your node into :ref:`Safe Mode <config-ota>`. This is useful in certain situations where a misbehaving component, or low memory state is preventing Over-The-Air updates from completing successfully. 
 
 This component requires :ref:`OTA <config-ota>` to be configured.
 

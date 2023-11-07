@@ -1,6 +1,16 @@
 Custom Switch
 =============
 
+.. warning::
+
+    Custom components are deprecated, not recommended for new configurations
+    and will be removed from ESPHome in a future release.
+    Please look at creating a real ESPHome component and "importing" it into your
+    configuration with :doc:`/components/external_components`.
+
+    You can find some basic documentation on creating your own components
+    at :ref:`contributing_to_esphome`.
+
 This integration can be used to create custom switches in ESPHome
 using the C++ (Arduino) API.
 
@@ -50,6 +60,7 @@ And in YAML:
 
       switches:
         name: "My Custom Switches"
+        id: my_custom_switch
 
 Configuration variables:
 

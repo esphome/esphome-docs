@@ -17,11 +17,13 @@ Requirements
 
 Your product has to match the following requirements:
  - Your project is powered by ESPHome
+ - Your project is powered by an ESP32
  - Your ESPHome configuration is open source
  - Users should be able to apply updates if your project sells ready-made devices
  - Your project supports adoption via the ``dashboard_import`` feature of ESPHome
    (see :doc:`Sharing </guides/creators>`)
  - Your product name cannot contain **ESPHome** except in the case of *ending with* **for ESPHome**
+ - Your configuration utilises ``esp32_improv`` and ``improv_serial`` (if a USB connection is available) for easy end-user provisioning.
 
 When your project matches all requirements of the Made for ESPHome program,
 you can apply for permission to carry the logo by emailing esphome@nabucasa.com

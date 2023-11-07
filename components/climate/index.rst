@@ -7,7 +7,7 @@ Climate Component
 
 ESPHome has support for climate devices. Climate devices can represent different types of
 hardware, but the defining factor is that climate devices have a settable target temperature
-and can be put in different modes like HEAT, COOL, HEAT_COOL or OFF.
+and can be put in different modes like ``HEAT``, ``COOL``, ``HEAT_COOL`` or ``OFF``.
 
 .. figure:: images/climate-ui.png
     :align: center
@@ -20,7 +20,7 @@ and can be put in different modes like HEAT, COOL, HEAT_COOL or OFF.
 Base Climate Configuration
 --------------------------
 
-All climate platforms in ESPHome inherit from the climate configuration schema.
+All climate platforms in ESPHome inherit from the climate configuration schema. In ESPHome, ``°C`` is assumed for all temperature values. Some platforms allow conversion or setting in ``°F``, this is specified separately.
 
 .. code-block:: yaml
 
@@ -33,6 +33,13 @@ All climate platforms in ESPHome inherit from the climate configuration schema.
 
 Configuration variables:
 
+- **name** (**Required**, string): The name of the climate device.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the climate to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the climate device in the frontend.
 - **visual** (*Optional*): Visual settings for the climate device - these do not
   affect operation and are solely for controlling how the climate device shows up in the
@@ -43,7 +50,10 @@ Configuration variables:
   - **max_temperature** (*Optional*, float): The maximum temperature the climate device can reach.
     Used to set the range of the frontend gauge.
   - **temperature_step** (*Optional*, float): The granularity with which the target temperature
-    can be controlled.
+    can be controlled. Can be a single number, or split as below:
+
+    - **target_temperature** (**Required**, float): The granularity for target temperature
+    - **current_temperature** (**Required**, float): The granularity for current temperature
 
 Advanced options:
 
@@ -62,10 +72,6 @@ MQTT options:
 
 - **action_state_topic** (*Optional*, string): The topic to publish
   climate device action changes to.
-- **away_state_topic** (*Optional*, string): The topic to publish
-  away mode changes on.
-- **away_command_topic** (*Optional*, string): The topic to receive
-  away mode commands on.
 - **current_temperature_state_topic** (*Optional*, string): The topic to publish
   current temperature changes to.
 - **fan_mode_state_topic** (*Optional*, string): The topic to publish
@@ -76,6 +82,10 @@ MQTT options:
   climate device mode changes to.
 - **mode_command_topic** (*Optional*, string): The topic to receive
   climate device mode commands on.
+- **preset_state_topic** (*Optional*, string): The topic to publish
+  preset changes to.
+- **preset_command_topic** (*Optional*, string): The topic to receive
+  preset commands on.
 - **swing_mode_state_topic** (*Optional*, string): The topic to publish
   swing mode changes to.
 - **swing_mode_command_topic** (*Optional*, string): The topic to receive
@@ -93,6 +103,17 @@ MQTT options:
 - **target_temperature_low_command_topic** (*Optional*, string): The topic to receive
   lower target temperature commands on.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
+.. code-block:: yaml
+
+    climate:
+      - platform: ...
+        visual:
+          min_temperature: 18
+          max_temperature: 25
+          temperature_step:
+            target_temperature: 0.5
+            current_temperature: 0.1
 
 Climate Automation
 ------------------
@@ -131,8 +152,6 @@ Configuration variables:
   lower target temperature of a climate device with a two-point target temperature.
 - **target_temperature_high** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
   higher target temperature of a climate device with a two-point target temperature.
-- **away** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the away mode
-  of the climate device.
 - **preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the preset
   of the climate device. One of ``ECO``, ``AWAY``, ``BOOST``, ``COMFORT``, ``HOME``, ``SLEEP``,
   ``ACTIVITY``.
@@ -140,7 +159,7 @@ Configuration variables:
   supported custom_presets of the climate device.
 - **fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the fan mode
   of the climate device. One of ``ON``, ``OFF``, ``AUTO``, ``LOW``, ``MEDIUM``, ``HIGH``, ``MIDDLE``,
-  ``FOCUS``, ``DIFFUSE``.
+  ``FOCUS``, ``DIFFUSE``, ``QUIET``.
 - **custom_fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the
   supported custom_fan_modes of the climate device.
 - **swing_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the swing mode
@@ -168,14 +187,19 @@ advanced stuff.
       id(my_climate).target_temperature_low
       // High Target temperature, type: float (degrees)
       id(my_climate).target_temperature_high
-      // Away mode, type: bool
-      id(my_climate).away
       // Fan mode, type: FanMode (enum)
       id(my_climate).fan_mode
+      // Custom Fan mode, type: string
+      id(my_climate).custom_fan_mode
       // Swing mode, type: SwingMode (enum)
       id(my_climate).swing_mode
       // Current action (currentl on idle, cooling, heating, etc.), ClimateAction (enum)
       id(my_climate).action
+      // Preset, type: Preset (enum)
+      id(my_climate).preset
+      // Custom Preset, type: string
+      id(my_climate).custom_preset
+
 
 - ``.make_call``: Control the climate device
 
@@ -189,10 +213,11 @@ advanced stuff.
 .. _climate-on_state_trigger:
 
 ``climate.on_state`` Trigger
-******************************************************
+****************************
 
-This trigger is activated each time the state of the climate device is updated 
+This trigger is activated each time the state of the climate device is updated
 (for example, if the current temperature measurement or the mode set by the users changes).
+The ``Climate`` itself is available to automations as the reference ``x``.
 
 .. code-block:: yaml
 
@@ -200,7 +225,37 @@ This trigger is activated each time the state of the climate device is updated
       - platform: midea  # or any other platform
         # ...
         on_state:
-        - logger.log: "State updated!"
+          - logger.log: "State updated!"
+          - lambda: |-
+              if (x.mode != CLIMATE_MODE_OFF)
+                id(some_binary_sensor).publish_state(true);
+
+
+.. _climate-on_control_trigger:
+
+``climate.on_control`` Trigger
+******************************
+
+This trigger is activated each time a *control* input of the climate device
+is updated via a ``ClimateCall`` (which includes changes coming in from Home
+Assistant).  That is, this trigger is activated for, for example, changes to
+the mode, *but not* on temperature measurements.  It will be invoked prior to
+the ``on_state`` trigger, if both are defined. The ``ClimateCall`` control
+object is available to automations as the reference ``x`` that can be changed.
+
+.. code-block:: yaml
+
+    climate:
+      - platform: ...
+        # ...
+        on_control:
+          - logger.log: "Control input received; configuration updated!"
+          - lambda: |-
+              if (x.get_mode() != CLIMATE_MODE_OFF) {
+                  id(turnoff_script).stop();
+                  x.set_target_temperature(25.0f);
+              }
+
 
 See Also
 --------

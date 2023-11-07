@@ -31,9 +31,14 @@ Configuration variables:
   Set to ``all`` to dump all available codecs:
 
   - **aeha**: Decode and dump AEHA infrared codes.
+  - **byronsx**: Decode and dump Byron SX doorbell RF codes.
+  - **canalsat**: Decode and dump CanalSat infrared codes.
+  - **canalsatld**: Decode and dump CanalSatLD infrared codes.
   - **coolix**: Decode and dump Coolix infrared codes.
   - **dish**: Decode and dump Dish infrared codes.
+  - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **jvc**: Decode and dump JVC infrared codes.
+  - **haier**: Decode and dump Haier infrared codes.
   - **lg**: Decode and dump LG infrared codes.
   - **magiquest**: Decode and dump MagiQuest wand infrared codes.
   - **midea**: Decode and dump Midea infrared codes.
@@ -64,10 +69,26 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this if you have
   multiple remote receivers.
 
+.. note::
+
+    The dumped **raw** code is sequence of pulse widths (durations in microseconds), positive for on-pulses (mark)
+    and negative for off-pulses (space). Usually you can to copy this directly to the configuration or automation to be used later.
+
+
 Automations:
+------------
 
 - **on_aeha** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   AEHA remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::AEHAData`
+  is passed to the automation for use in lambdas.
+- **on_byronsx** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Byron SX doorbell RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ByronSXData`
+  is passed to the automation for use in lambdas.
+- **on_canalsat** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  CanalSat remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::CanalSatData`
+  is passed to the automation for use in lambdas.
+- **on_canalsatld** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  CanalSatLD remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::CanalSatLDData`
   is passed to the automation for use in lambdas.
 - **on_coolix** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Coolix remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::CoolixData`
@@ -76,8 +97,14 @@ Automations:
   dish network remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DishData`
   is passed to the automation for use in lambdas.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
+- **on_drayton** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Drayton Digistat RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DraytonData`
+  is passed to the automation for use in lambdas.
 - **on_jvc** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   JVC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::JVCData`
+  is passed to the automation for use in lambdas.
+- **on_haier** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Haier remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::HaierData`
   is passed to the automation for use in lambdas.
 - **on_lg** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   LG remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::LGData`
@@ -91,13 +118,6 @@ Automations:
 - **on_nec** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   NEC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::NECData`
   is passed to the automation for use in lambdas.
-
-  .. note::
-
-      In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
-      Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
-      For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
-
 - **on_nexa** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Nexa RF code has been decoded. A variable ``x`` of type :apiclass:`remote_base::NexaData`
   is passed to the automation for use in lambdas.
@@ -134,6 +154,21 @@ Automations:
 - **on_toshiba_ac** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Toshiba AC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ToshibaAcData`
   is passed to the automation for use in lambdas.
+
+.. code-block:: yaml
+
+    # Example automation for decoded signals
+    remote_receiver:
+      ...
+      on_samsung:
+        then:
+        - if:
+            condition:
+              or:
+                - lambda: 'return (x.data == 0xE0E0E01F);'  # VOL+ newer type
+                - lambda: 'return (x.data == 0xE0E0E01F0);' # VOL+ older type
+            then:
+              - ...
 
 .. _remote-receiver-binary-sensor:
 
@@ -174,9 +209,29 @@ Remote code selection (exactly one of these has to be included):
   - **data** (**Required**, 3-35 bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_aeha`
     for more info. Usually you only need to copy this directly from the dumper output.
 
-- **coolix**: Trigger on a decoded Coolix remote code with the given data.
+- **byronsx**: Trigger on a decoded Byron SX Doorbell RF remote code with the given data.
 
-  - **data** (**Required**, int): The 24-bit Coolix code to trigger on, see dumper output for more info.
+  - **address** (**Required**, int): The 8-bit ID code to trigger on, see dumper output for more info.
+  - **command** (**Optional**, int): The 4-bit command to listen for. If omitted, will match on any command.
+
+- **canalsat**: Trigger on a decoded CanalSat remote code with the given data.
+
+  - **device** (**Required**, int): The device to trigger on, see dumper output for more info.
+  - **address** (*Optional*, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
+  - **command** (**Required**, int): The command to listen for.
+
+- **canalsatld**: Trigger on a decoded CanalSatLD remote code with the given data.
+
+  - **device** (**Required**, int): The device to trigger on, see dumper output for more info.
+  - **address** (*Optional*, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
+  - **command** (**Required**, int): The command to listen for.
+
+- **coolix**: Trigger on a decoded Coolix remote code with the given data. It is possible to directly specify a 24-bit code,
+  it will be checked for a match to at least one of the two received packets. The main configuration scheme is below.
+
+  - **first** (**Required**, uint32_t): The first 24-bit Coolix code to trigger on, see dumper output for more info.
+  - **second** (*Optional*, uint32_t): The second 24-bit Coolix code to trigger on, see dumper output for more info.
+    If not set, trigger on on only single non-strict packet, specified by the ``first`` parameter.
 
 - **dish**: Trigger on a decoded Dish Network remote code with the given data.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
@@ -184,9 +239,20 @@ Remote code selection (exactly one of these has to be included):
   - **address** (*Optional*, int): The number of the receiver to target, between 1 and 16 inclusive. Defaults to ``1``.
   - **command** (**Required**, int): The Dish command to listen for, between 0 and 63 inclusive.
 
+- **drayton**: Trigger on a decoded Drayton Digistat RF remote code with the given data.
+
+  - **address** (**Required**, int): The 16-bit ID code to trigger on, see dumper output for more info.
+  - **channel** (**Required**, int): The 7-bit switch/channel to listen for.
+  - **command** (**Required**, int): The 5-bit command to listen for.
+
 - **jvc**: Trigger on a decoded JVC remote code with the given data.
 
   - **data** (**Required**, int): The JVC code to trigger on, see dumper output for more info.
+
+- **haier**: Trigger on a Haier remote code with the given code.
+
+  - **code** (**Required**, 13-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_haier`
+    for more info. Usually you only need to copy this directly from the dumper output.
 
 - **lg**: Trigger on a decoded LG remote code with the given data.
 
@@ -204,12 +270,6 @@ Remote code selection (exactly one of these has to be included):
     for more info. Usually you only need to copy first 5 bytes directly from the dumper output.
 
 - **nec**: Trigger on a decoded NEC remote code with the given data.
-
-  .. note::
-
-      In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
-      Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
-      For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
 
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
   - **command** (**Required**, int): The NEC command to listen for.
@@ -308,18 +368,16 @@ Remote code selection (exactly one of these has to be included):
 
 .. note::
 
-    For the Sonoff RF Bridge you can use `this hack <https://github.com/xoseperez/espurna/wiki/Hardware-Itead-Sonoff-RF-Bridge---Direct-Hack>`__
-    created by the GitHub user wildwiz. Then use this configuration for the remote receiver/transmitter hubs:
+    The **CanalSat** and **CanalSatLD** protocols use a higher carrier frequency (56khz) and are very similar.
+    Depending on the hardware used they may interfere with each other when enabled simultaneously.
 
-    .. code-block:: yaml
 
-        remote_receiver:
-          pin: 4
-          dump: all
+.. note::
 
-        remote_transmitter:
-          pin: 5
-          carrier_duty_percent: 100%
+    **NEC codes**: In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
+    Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address
+    and command bits when moving to 2021.12 or above. For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
+
 
 .. note::
 
@@ -337,11 +395,30 @@ Remote code selection (exactly one of these has to be included):
           dump: all
 
 
+.. note::
+
+    For the Sonoff RF Bridge, you can bypass the EFM8BB1 microcontroller handling RF signals with
+    `this hack <https://github.com/xoseperez/espurna/wiki/Hardware-Itead-Sonoff-RF-Bridge---Direct-Hack>`__
+    created by the GitHub user wildwiz. Then use this configuration for the remote receiver/transmitter hubs:
+
+    .. code-block:: yaml
+
+        remote_receiver:
+          pin: 4
+          dump: all
+
+        remote_transmitter:
+          pin: 5
+          carrier_duty_percent: 100%
+
+
+
 See Also
 --------
 
 - :doc:`index`
 - :doc:`/components/remote_transmitter`
+- :doc:`/components/rf_bridge`
 - `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote/remote_receiver.h`

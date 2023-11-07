@@ -40,13 +40,13 @@ in your configuration - only the RX pin should be necessary.
       - platform: gps
 
 The component is split up in platforms, by defining the GPS module
-(as seen above). 
+(as seen above).
 
-In addition to retrieving GPS position data, the module can also be used as a 
-time platform to get the current date and time via the very accurate GPS clocks 
+In addition to retrieving GPS position data, the module can also be used as a
+time platform to get the current date and time via the very accurate GPS clocks
 without a network connection.
 
-See :doc:`time` for config options for the GPS time source.
+See :doc:`time/gps` for config options for the GPS time source.
 
 Configuration variables:
 ------------------------
@@ -58,31 +58,31 @@ Configuration variables:
 
 - **longitude** (*Optional*): Include the Longitude as a sensor
 
-  - **name** (**Required**, string): The name to give the latitude sensor
+  - **name** (**Required**, string): The name to give the longitude sensor
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **speed** (*Optional*): Include the measured speed as a sensor
 
-  - **name** (**Required**, string): The name to give the latitude sensor
+  - **name** (**Required**, string): The name to give the speed sensor
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **course** (*Optional*): Include the measured course as a sensor
 
-  - **name** (**Required**, string): The name to give the latitude sensor
+  - **name** (**Required**, string): The name to give the course sensor
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **altitude** (*Optional*): Include the measured altitude as a sensor
 
-  - **name** (**Required**, string): The name to give the latitude sensor
+  - **name** (**Required**, string): The name to give the altitude sensor
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **satellites** (*Optional*): Include the number of tracking satellites being used as a sensor
 
-  - **name** (**Required**, string): The name to give the latitude sensor
+  - **name** (**Required**, string): The name to give the tracking satellites sensor
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 

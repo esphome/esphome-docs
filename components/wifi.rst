@@ -84,12 +84,14 @@ Configuration variables:
   first. This is required for hidden networks and can significantly improve connection times. Defaults to ``off``.
   The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
   better ones are available.
+- **passive_scan** (*Optional*, boolean): If enabled, then the device will perform WiFi scans in a passive fashion. Defaults to ``false``.
 
 - **enable_btm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11v BSS Transition Management support.
 - **enable_rrm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11k Radio Resource Management support.
 
 - **on_connect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a connection is established.
 - **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the connection is dropped.
+- **enable_on_boot** (*Optional*, boolean): If enabled, the WiFi interface will be enabled on boot. Defaults to ``true``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
@@ -122,6 +124,15 @@ devices name as the ssid with no password.
     wifi:
       ap:
         password: "W1PBGyrokfLz"
+
+User Entered Credentials
+------------------------
+
+Some components such as :doc:`captive_portal`, :doc:`improv_serial` and :doc:`esp32_improv`
+enable the user to send and save Wi-Fi credentials to the device. Beginning in 2022.11.0,
+as long as no credentials are set in the config file, and firmware is uploaded without erasing
+the flash (via OTA), the device will keep the saved credentials.
+
 
 .. _wifi-manual_ip:
 
@@ -279,6 +290,41 @@ This trigger is activated when a WiFi connection is established or dropped.
       on_disconnect:
         - switch.turn_off: switch1
 
+.. _wifi-on_disable:
+
+``wifi.disable`` Action
+-----------------------
+
+This action turns off the WiFi interface on demand.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - wifi.disable:
+
+.. note::
+
+    Be aware that if you disable WiFi, the API timeout will need to be disabled otherwise the device will reboot.
+
+.. _wifi-on_enable_disable:
+
+``wifi.enable`` Action
+----------------------
+
+This action turns on the WiFi interface on demand.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - wifi.enable:
+
+.. note::
+
+    The configuration option ``enable_on_boot`` can be set to ``false`` if you do not want wifi to be enabled on boot.
+
+
 .. _wifi-connected_condition:
 
 ``wifi.connected`` Condition
@@ -295,10 +341,39 @@ This :ref:`Condition <config-condition>` checks if the WiFi client is currently 
         then:
           - logger.log: WiFi is connected!
 
+
+The lambda equivalent for this is ``id(wifi_id).is_connected()``.
+
+
+.. _wifi-enabled_condition:
+
+``wifi.enabled`` Condition
+--------------------------
+
+This :ref:`Condition <config-condition>` checks if WiFi is currently enabled or not.
+
+.. code-block:: yaml
+
+    on_...:
+      - if:
+          condition: wifi.enabled
+          then:
+            - wifi.disable:
+          else:
+            - wifi.enable:
+
+
+The lambda equivalent for this is ``!id(wifi_id).is_disabled()``.
+
+
 See Also
 --------
 
 - :doc:`captive_portal`
+- :doc:`text_sensor/wifi_info`
+- :doc:`sensor/wifi_signal`
 - :doc:`network`
+- :doc:`/components/ethernet`
+- :doc:`api`
 - :apiref:`wifi/wifi_component.h`
 - :ghedit:`Edit`

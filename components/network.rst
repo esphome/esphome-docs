@@ -18,5 +18,11 @@ networks (WiFi, Ethernet).
 Configuration variables:
 ------------------------
 
-- **enable_ipv6** (*Optional*, boolean): Enables IPv6 support. Defaults to ``false``. Only available on ESP32 with ESP-IDF framework.
+- **enable_ipv6** (*Optional*, boolean): Enables IPv6 support. Defaults to ``false``.
 
+See Also
+--------
+
+- :doc:`/components/wifi`
+- :doc:`/components/ethernet`
+- :ghedit:`Edit`

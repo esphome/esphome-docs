@@ -9,6 +9,13 @@ The ``esp32_ble_beacon`` component creates a Bluetooth Low Energy Beacon with yo
 Beacons are BLE devices that repeatedly just send out a pre-defined packet of data. This packet
 can then be received by devices like smartphones and can then be used to track a phone's location.
 
+.. warning::
+
+    The BLE software stack on the ESP32 consumes a significant amount of RAM on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. Memory-intensive components such as :doc:`/components/voice_assistant` and other
+    audio components are most likely to cause issues.
 
 .. code-block:: yaml
 
@@ -32,6 +39,18 @@ Advanced options:
   the BLE receiver doesn't use it. Defaults to ``10167``.
 - **minor** (*Optional*, int): The iBeacon minor identifier of this beacon. Usually used to
   identify beacons within an iBeacon group. Defaults to ``61958``.
+- **min_interval** (*Optional*, :ref:`config-time`): The iBeacon minimum transmit interval in milliseconds from 20 to 10240.
+  Setting this less than ``max_interval`` gives the BLE hardware a better chance to avoid
+  collisions with other BLE transmissions. Defaults to the iBeacon specification's defined interval: ``100ms``.
+- **max_interval** (*Optional*, :ref:`config-time`): The iBeacon maximum transmit interval in milliseconds from 20 to 10240.
+  Setting this greater than ``min_interval`` gives the BLE hardware a better chance to avoid
+  collisions with other BLE transmissions. Defaults to the iBeacon specification's defined interval: ``100ms``.
+- **measured_power** (*Optional*, int): The RSSI of the iBeacon as measured 1 meter from the device.
+  This is used to calibrate the ranging calculations in iOS. The procedure for setting this value can
+  be found in Apple's `Getting Started with iBeacon PDF <https://developer.apple.com/ibeacon/Getting-Started-with-iBeacon.pdf>`__
+  under the heading *Calibrating iBeacon*. Between -128 to 0. Defaults to ``-59``.
+- **tx_power** (*Optional*, int): The transmit power of the iBeacon in dBm.
+  One of -12, -9, -6, -3, 0, 3, 6, 9. Defaults to ``3dBm``.
 
 Setting Up
 ----------

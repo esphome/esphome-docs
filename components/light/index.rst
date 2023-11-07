@@ -26,6 +26,13 @@ All light configuration schemas inherit these options.
 
 Configuration variables:
 
+- **name** (**Required**, string): The name of the light.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the light to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the light in the frontend.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **gamma_correct** (*Optional*, float): Apply a `gamma correction
@@ -39,13 +46,13 @@ Configuration variables:
   For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
   :doc:`esphome section </components/esphome>`.
 
-    - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
+    - ``RESTORE_DEFAULT_OFF`` - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
     - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
     - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
     - ``RESTORE_AND_OFF`` - Attempt to restore state but initialize the light as OFF.
     - ``RESTORE_AND_ON`` - Attempt to restore state but initialize the light as ON.
-    - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
+    - ``ALWAYS_OFF`` (Default) - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
 - **on_turn_on** (*Optional*, :ref:`Action <config-action>`): An automation to perform
@@ -202,6 +209,13 @@ them to zero.
         call.set_effect("The Effect");
         // perform action:
         call.perform();
+
+    Shorter example using auto call , call.set_brightness and call.perform.
+
+    .. code-block:: cpp
+
+        id(light_1).turn_on().set_brightness(1.0).perform();
+
 
 .. note::
 
@@ -472,16 +486,30 @@ This effect makes a pulsating light. The period can be defined by ``update_inter
               name: "Fast Pulse"
               transition_length: 0.5s
               update_interval: 0.5s
+              min_brightness: 0%
+              max_brightness: 100%
           - pulse:
               name: "Slow Pulse"
               # transition_length: 1s      # defaults to 1s
               update_interval: 2s
+          - pulse:
+              name: "Asymmetrical Pulse"
+              transition_length:
+                on_length: 1s
+                off_length: 500ms
+              update_interval: 1.5s
 
 Configuration variables:
 
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Pulse``.
-- **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``1s``.
+- **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition.
+  Defaults to ``1s``. Can be a single time or split for on and off using these nested options.
+
+  - **on_length** (*Optional*, :ref:`config-time`): The duration of the transition when the light is turned on.
+  - **off_length** (*Optional*, :ref:`config-time`): The duration of the transition when the light is turned off.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transition is started. Defaults to ``1s``.
+- **min_brightness** (*Optional*, percentage): The minimum brightness value. Defaults to ``0%``
+- **max_brightness** (*Optional*, percentage): The maximum brightness value. Defaults to ``100%``
 
 
 Random Effect
@@ -551,7 +579,7 @@ Configuration variables:
   - **green** (*Optional*, percentage): The green channel of the light, if applicable. Defaults to ``100%``.
   - **blue** (*Optional*, percentage): The blue channel of the light, if applicable. Defaults to ``100%``.
   - **white** (*Optional*, percentage): The white channel of the light, if applicable. Defaults to ``100%``.
-  - **color_temperature** (*Optional*, percentage): The color temperature of the light, if applicable. Defaults to ``100%``.
+  - **color_temperature** (*Optional*, float): The color temperature (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the light, if applicable.
   - **cold_white** (*Optional*, percentage): The cold white channel of the light, if applicable. Defaults to ``100%``.
   - **warm_white** (*Optional*, percentage): The warm white channel of the light, if applicable. Defaults to ``100%``.
   - **duration** (**Required**, :ref:`config-time`): The duration this color should be active.
@@ -890,7 +918,7 @@ Available variables in the lambda:
               // stopping and starting the effect again
               static uint16_t progress = 0;
 
-              // normal variables lost their value after each
+              // normal variables lose their value after each
               // execution - basically after each update_interval
               uint16_t changes = 0;
 

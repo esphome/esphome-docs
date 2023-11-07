@@ -107,10 +107,13 @@ In teleinfo platform:
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation or multiple hubs.
+
 Sensor
 ******
 
 - **tag_name** (**Required**, string): Specify the tag you want to retrieve from the Teleinformation.
+- **teleinfo_id** (*Optional*, :ref:`config-id`): Specify the ID of used hub.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -118,6 +121,7 @@ Text Sensor
 ***********
 
 - **tag_name** (**Required**, string): Specify the tag you want to retrieve from the Teleinformation.
+- **teleinfo_id** (*Optional*, :ref:`config-id`): Specify the ID of used hub.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
 

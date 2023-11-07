@@ -58,6 +58,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :apiref:`aht10/aht10.h`
 - `AHT10 Library <https://github.com/Thinary/AHT10>`__  by `Thinary Electronic <https://github.com/Thinary>`__
 - `Unofficial Translated AHT10 Datasheet (en) <https://wiki.liutyi.info/download/attachments/30507639/Aosong_AHT10_en_draft_0c.pdf>`__

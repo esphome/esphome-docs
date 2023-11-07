@@ -7,7 +7,7 @@ Native API Component
     :keywords: Native API, ESPHome, Home Assistant
 
 The ESPHome native API is used to communicate with clients directly, with a highly-optimized
-network protocol. Currently, only the ESPHome tool and Home Assistant use this native API.
+network protocol. Currently, only the ESPHome tool, Home Assistant and ioBroker use this native API.
 
 After adding an ``api:`` line to your ESPHome configuration you can go to the Home Assistant
 web interface and navigate to the "Integrations" screen in the "Configuration" panel. Then wait
@@ -16,20 +16,18 @@ the device manually by choosing "ESPHome" from the integration overview and ente
 "<NODE_NAME>.local" or the IP address of the unit in the "Host" field.
 
 The ESPHome native API is based on a custom TCP protocol using protocol buffers. You can find
-the protocol data structure definitions here: https://github.com/esphome/esphome/blob/dev/esphome/components/api/api.proto
+the protocol data structure definitions here: `api.proto <https://github.com/esphome/esphome/blob/dev/esphome/components/api/api.proto>`__
 A Python library that implements this protocol is `aioesphomeapi <https://github.com/esphome/aioesphomeapi>`__.
 
 .. code-block:: yaml
 
     # Example configuration entry
     api:
-      password: !secret api_password
 
 Configuration variables:
 ------------------------
 
 - **port** (*Optional*, int): The port to run the API Server on. Defaults to ``6053``.
-- **password** (*Optional*, string): The password to protect the API Server with. Defaults to no password.
 - **encryption** (*Optional*): Enable transport encryption of the API layer.
 
   - **key** (**Required**, string): The pre-shared key for the encryption. This is a 32-byte base64 encoded string.
@@ -37,7 +35,7 @@ Configuration variables:
 
     .. raw:: html
 
-        <input type="text" id="api-key" onclick="this.focus();this.select()" style="width: 240px;" readonly="readonly">
+        <input type="text" id="api-key" onclick="this.focus();this.select()" style="width: 350px; max-width: 75vw;" readonly="readonly">
         <script>
           // https://stackoverflow.com/a/62362724
           function bytesArrToBase64(arr) {
@@ -68,11 +66,50 @@ Configuration variables:
   the ESP is connected to the network, when in fact it is not - only a full reboot fixes it.
   Can be disabled by setting this to ``0s``. Defaults to ``15min``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **password** (*Optional*, **Deprecated**, string): The password to protect the API Server with. Defaults
+  to no password. It is recommended to use the ``encryption`` -> ``key`` above instead of the the ``password``.
+- **on_client_connected** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a client
+  connects to the API. See :ref:`api-on_client_connected_trigger`.
+- **on_client_disconnected** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a client
+  disconnects from the API. See :ref:`api-on_client_disconnected_trigger`.
+
+.. _api-actions:
+
+Actions
+-------
+
+.. _api-homeassistant_event_action:
+
+``homeassistant.event`` Action
+******************************
+
+When using the native API with Home Assistant, you can create events in the Home Assistant event bus
+straight from ESPHome :ref:`Automations <automation>`.
+
+.. code-block:: yaml
+
+    # In some trigger
+    on_...:
+      # Simple
+      - homeassistant.event:
+          event: esphome.button_pressed
+          data:
+            message: Button was pressed
+
+Configuration variables:
+````````````````````````
+
+- **event** (**Required**, string): The event to create - must begin with ``esphome.``
+- **data** (*Optional*, mapping): Optional *static* data to pass along with the event.
+- **data_template** (*Optional*, mapping): Optional template data to pass along with the event.
+  This is evaluated on the Home Assistant side with Home Assistant's templating engine.
+- **variables** (*Optional*, mapping): Optional variables that can be used in the ``data_template``.
+  Values are :ref:`lambdas <config-lambda>` and will be evaluated before sending the request.
 
 .. _api-homeassistant_service_action:
 
 ``homeassistant.service`` Action
---------------------------------
+********************************
 
 When using the native API with Home Assistant, you can create Home Assistant service
 calls straight from ESPHome :ref:`Automations <automation>`.
@@ -97,7 +134,8 @@ calls straight from ESPHome :ref:`Automations <automation>`.
             my_variable: |-
               return id(my_sensor).state;
 
-Configuration options:
+Configuration variables:
+````````````````````````
 
 - **service** (**Required**, string): The Home Assistant `Service <https://www.home-assistant.io/docs/scripts/service-calls/>`__
   to call.
@@ -126,7 +164,7 @@ the parameters in plain format.
             - '{{ green }}'
             - '{{ blue }}'
 
-Then in ESPHome
+Then, in ESPHome:
 
 .. code-block:: yaml
 
@@ -139,6 +177,86 @@ Then in ESPHome
             red: '255'
             green: '199'
             blue: '71'
+
+.. _api-homeassistant_tag_scanned_action:
+
+``homeassistant.tag_scanned`` Action
+************************************
+
+When using the native API with Home Assistant, you can push tag_scanned to Home Assistant
+straight from ESPHome :ref:`Automations <automation>`.
+
+.. code-block:: yaml
+
+    # In some trigger
+    on_...:
+      # Simple
+      - homeassistant.tag_scanned: some-tag
+
+Configuration variables:
+````````````````````````
+
+- **tag** (**Required**, :ref:`templatable <config-templatable>`, string): The id of the scanned tag
+
+Triggers
+--------
+
+.. _api-on_client_connected_trigger:
+
+``on_client_connected`` Trigger
+*******************************
+
+This trigger is activated each time a client connects to the API. Two variables of
+type ``std::string`` are available for use by actions called from within this trigger:
+
+- ``client_address``: the IP address of the client that connected
+- ``client_info``: the name of the client that connected
+
+.. code-block:: yaml
+
+    api:
+      # ...
+      on_client_connected:
+        - logger.log:
+            format: "Client %s connected to API with IP %s"
+            args: ["client_info.c_str()", "client_address.c_str()"]
+
+
+.. _api-on_client_disconnected_trigger:
+
+``on_client_disconnected`` Trigger
+**********************************
+
+This trigger is activated each time the API disconnects from the API. Two variables of
+type ``std::string`` are available for use by actions called from within this trigger:
+
+- ``client_address``: the IP address of the client that disconnected
+- ``client_info``: the name of the client that disconnected
+
+.. code-block:: yaml
+
+    api:
+      # ...
+      on_client_disconnected:
+        - logger.log: "API client disconnected!"
+
+.. _api-connected_condition:
+
+``api.connected`` Condition
+---------------------------
+
+This :ref:`Condition <config-condition>` checks if at least one client is connected to the ESPHome
+native API. Please note client not only includes Home Assistant, but also ESPHome's OTA log output
+if logs are shown remotely.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          api.connected:
+        then:
+          - logger.log: API is connected!
 
 .. _api-services:
 
@@ -208,30 +326,11 @@ Each of these also exist in array form:
 - bool[]: An array of boolean values. C++ type: ``std::vector<bool>``
 - ... - Same for other types.
 
-.. _api-connected_condition:
-
-``api.connected`` Condition
----------------------------
-
-This :ref:`Condition <config-condition>` checks if at least one client is connected to the ESPHome
-native API. Please note client not only includes Home Assistant, but also ESPHome's OTA log output
-if logs are shown remotely.
-
-.. code-block:: yaml
-
-    on_...:
-      if:
-        condition:
-          api.connected:
-        then:
-          - logger.log: API is connected!
-
-
 Advantages over MQTT
 --------------------
 
 The ESPHome native API has many advantages over using MQTT for communication with Home
-Automation software (currently only Home Assistant). But MQTT is a great protocol and will
+Automation software (currently only Home Assistant and ioBroker). But MQTT is a great protocol and will
 never be removed. Features of native API (vs. MQTT):
 
 - **Much more efficient:** ESPHome encodes all messages in a highly optimized format with
@@ -244,54 +343,6 @@ never be removed. Features of native API (vs. MQTT):
   it's really easy for us to roll out stability improvements.
 - **Low Latency:** The native API is optimized for very low latency, usually this is only
   a couple of milliseconds and far less than can be noticed by the eye.
-
-
-.. _api-homeassistant_event_action:
-
-``homeassistant.event`` Action
-------------------------------
-
-When using the native API with Home Assistant, you can create events in the Home Assistant event bus
-straight from ESPHome :ref:`Automations <automation>`.
-
-.. code-block:: yaml
-
-    # In some trigger
-    on_...:
-      # Simple
-      - homeassistant.event:
-          event: esphome.button_pressed
-          data:
-            message: Button was pressed
-
-Configuration options:
-
-- **event** (**Required**, string): The event to create - must begin with ``esphome.``
-- **data** (*Optional*, mapping): Optional *static* data to pass along with the event.
-- **data_template** (*Optional*, mapping): Optional template data to pass along with the event.
-  This is evaluated on the Home Assistant side with Home Assistant's templating engine.
-- **variables** (*Optional*, mapping): Optional variables that can be used in the ``data_template``.
-  Values are :ref:`lambdas <config-lambda>` and will be evaluated before sending the request.
-
-
-.. _api-homeassistant_tag_scanned_action:
-
-``homeassistant.tag_scanned`` Action
-------------------------------------
-
-When using the native API with Home Assistant, you can push tag_scanned to Home Assistant
-straight from ESPHome :ref:`Automations <automation>`.
-
-.. code-block:: yaml
-
-    # In some trigger
-    on_...:
-      # Simple
-      - homeassistant.tag_scanned: some-tag
-
-Configuration options:
-
-- **tag** (**Required**, :ref:`templatable <config-templatable>`, string): The id of the scanned tag
 
 See Also
 --------

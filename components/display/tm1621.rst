@@ -80,7 +80,7 @@ Please see :ref:`display-printf` for a quick introduction into the ``printf`` fo
 Also we have five function to display or not some unites:
   - °C on the first line : ``display_celsius(bool)``
   - °F on the first line : ``display_fahrenheit(bool)``
-  - %HR on the second line : ``display_fahrenheit(bool)``
+  - %HR on the second line : ``display_humidity(bool)``
   - V on the first line and A on the second line : ``display_voltage(bool)``
   - kW/h on the first line and W on the second line : ``display_kwh(bool)``  
 

@@ -31,6 +31,12 @@ All numbers in ESPHome have a name and an optional icon.
 Configuration variables:
 
 - **name** (**Required**, string): The name for the number.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the number to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the number in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
@@ -48,6 +54,9 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/number/#properties
   for a list of available options. Requires Home Assistant Core 2021.12 or newer.
   Defaults to ``"auto"``.
+- **device_class** (*Optional*, string): The device class for the number.
+  See https://developers.home-assistant.io/docs/core/entity/number/#available-device-classes
+  for a list of available options.
 
 Automations:
 
@@ -275,7 +284,7 @@ using a generic templatable action call.
     - number.operation:
         id: my_number
         operation: !lambda "return NUMBER_OP_INCREMENT;"
-        cycle: !lambda: "return true;"
+        cycle: !lambda "return true;"
 
 Configuration variables:
 
@@ -309,8 +318,8 @@ advanced stuff (see the full API Reference for more info).
       call.perform();
 
   Check the API reference for information on the methods that are available for
-  the ``NumberCall`` object. You can for example also use ``call.to_min()``
-  to set the number to its minimum value or ``call.increment(true)`` to increment
+  the ``NumberCall`` object. You can for example also use ``call.number_to_min()``
+  to set the number to its minimum value or ``call.number_increment(true)`` to increment
   the number by its step size with the cycle feature enabled.
 
 - ``.state``: Retrieve the current value of the number. Is ``NAN`` if no value has been read or set.

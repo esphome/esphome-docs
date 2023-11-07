@@ -52,12 +52,8 @@ Happy Hacking!
 See Also
 --------
 
-- :doc:`/devices/nodemcu_esp8266`
-- :doc:`/devices/nodemcu_esp32`
-- :doc:`/devices/esp8266`
-- :doc:`/devices/esp32`
-- :doc:`/devices/sonoff_s20`
-- :doc:`/devices/sonoff_4ch`
+- :doc:`/components/esp8266`
+- :doc:`/components/esp32`
 - :doc:`migrate_espeasy`
 - :doc:`migrate_sonoff_tasmota`
 - :ghedit:`Edit`

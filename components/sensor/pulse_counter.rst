@@ -10,7 +10,7 @@ on any pin.
 
 On the ESP32, this sensor is even highly accurate because it's using the hardware `pulse counter
 peripheral <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>`__
-on the ESP32. However, due to the use of the pulse counter peripheral, a maximum of 8 channels can be used! 
+on the ESP32. However, due to the use of the pulse counter peripheral, a maximum of 8 channels can be used!
 
 .. figure:: images/pulse-counter.png
     :align: center
@@ -24,7 +24,7 @@ on the ESP32. However, due to the use of the pulse counter peripheral, a maximum
         pin: 12
         name: "Pulse Counter"
 
-Configuration variables:
+Configuration variables
 ------------------------
 
 - **pin** (**Required**, :ref:`config-pin`): The pin to count pulses on.
@@ -38,7 +38,6 @@ Configuration variables:
   - **falling_edge** (*Optional*): What to do when a falling edge is
     detected. One of ``DISABLE``, ``INCREMENT`` and ``DECREMENT``.
     Defaults to ``DISABLE``.
-    
 
 - **use_pcnt** (*Optional*, boolean): Use hardware ``PCNT`` pulse counter. Only supported on ESP32. Defaults to ``true``.
 
@@ -79,19 +78,18 @@ count the light pulses on a power meter, you can do the following:
         filters:
           - multiply: 0.06  # (60s/1000 pulses per kWh)
 
-
 Counting total pulses
 ---------------------
 
-When the total sensor is configured, the pulse_counter also reports the total 
-number of pulses measured. When used on a power meter, this can be used to 
-measure the total consumed energy in kWh. 
+When the total sensor is configured, the pulse_counter also reports the total
+number of pulses measured. When used on a power meter, this can be used to
+measure the total consumed energy in kWh.
 
 .. code-block:: yaml
 
     # Example configuration entry
     sensor:
-    - platform: pulse_counter
+      - platform: pulse_counter
         pin: 12
         unit_of_measurement: 'kW'
         name: 'Power Meter House'
@@ -129,6 +127,43 @@ trying to match.
     This value is the raw count of pulses, and not the value you see after the filters
     are applied.
 
+Wiring
+------
+
+If you want to count pulses from a simple reed switch, the simplest way is to make
+use of the internal pull-up/pull-down resistors.
+
+You can wire the switch between a GPIO pin and GND; in this case set the pin to input, pullup and inverted:
+
+.. code-block:: yaml
+
+    # Reed switch between GPIO and GND
+    sensor:
+      - platform: pulse_counter
+        pin:
+          number: 12
+          inverted: true
+          mode:
+            input: true
+            pullup: true
+        name: "Pulse Counter"
+
+If you wire it between a GPIO pin and +3.3V, set the pin to input, pulldown:
+
+.. code-block:: yaml
+
+    # Reed switch between GPIO and +3.3V
+    sensor:
+      - platform: pulse_counter
+        pin:
+          number: 12
+          mode:
+            input: true
+            pulldown: true
+        name: "Pulse Counter"
+
+The safest way is to use GPIO + GND, as this avoids the possibility of short
+circuiting the wire by mistake.
 
 See Also
 --------

@@ -5,11 +5,18 @@ BLE Client Sensor
     :description: Fetch numeric values from BLE devices.
     :image: bluetooth.svg
 
-The ``ble_client`` component is a sensor platform that can
-query BLE devices for specific values of service characteristics.
+The ``ble_client`` component is a sensor platform that can query BLE devices for RSSI or specific
+values of service characteristics.
 
-For more information on BLE services and characteristics, see
-:doc:`/components/ble_client`.
+For more information on BLE services and characteristics, see :doc:`/components/ble_client`.
+
+.. warning::
+
+    The BLE software stack on the ESP32 consumes a significant amount of RAM on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. Memory-intensive components such as :doc:`/components/voice_assistant` and other
+    audio components are most likely to cause issues.
 
 .. code-block:: yaml
 
@@ -21,6 +28,7 @@ For more information on BLE services and characteristics, see
 
     sensor:
       - platform: ble_client
+        type: characteristic
         ble_client_id: itag_black
         name: "iTag battery level"
         service_uuid: '180f'
@@ -28,8 +36,22 @@ For more information on BLE services and characteristics, see
         icon: 'mdi:battery'
         unit_of_measurement: '%'
 
+      - platform: ble_client
+        type: rssi
+        ble_client_id: itag_black
+        name: "iTag RSSI"
+
 Configuration variables:
 ------------------------
+
+- **type** (**Required**): One of ``rssi``, ``characteristic``.
+
+rssi options:
+
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the device.
+- All other options from :ref:`Sensor <config-sensor>`.
+
+characteristic options:
 
 - **ble_client_id** (**Required**, :ref:`config-id`): ID of the associated BLE client.
 - **service_uuid** (**Required**, UUID): UUID of the service on the device.
@@ -64,6 +86,7 @@ variable ``x`` of type ``std::vector<uint8_t>``. The function must return a sing
 
     sensor:
       - platform: ble_client
+        type: characteristic
         ble_client_id: t_sensor
         name: "Temperature Sensor 32bit float"
         ...

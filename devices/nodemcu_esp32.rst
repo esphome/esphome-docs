@@ -61,6 +61,6 @@ Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in
 See Also
 --------
 
-- :doc:`esp32`
+- :doc:`/components/esp32`
 - :doc:`nodemcu_esp8266`
 - :ghedit:`Edit`

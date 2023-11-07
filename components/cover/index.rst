@@ -28,6 +28,13 @@ All cover config schemas inherit from this schema - you can set these keys for c
 
 Configuration variables:
 
+- **name** (**Required**, string): The name for the cover.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the cover to use that name, you can set ``name: None``.
+
 - **device_class** (*Optional*, string): The device class for the
   sensor. See https://www.home-assistant.io/components/cover/ for a list of available options.
 - **icon** (*Optional*, icon): Manually set the icon to use for the cover in the frontend.
@@ -200,7 +207,7 @@ Lambdas
 From :ref:`lambdas <config-lambda>`, you can access the current state of the cover (note that these
 fields are read-only, if you want to act on the cover, use the ``make_call()`` method as shown above).
 
-- ``position``: Retrieve the current position of the cover, as a value between ``0.0`` (open) and ``1.0`` (closed).
+- ``position``: Retrieve the current position of the cover, as a value between ``0.0`` (closed) and ``1.0`` (open).
 
     .. code-block:: cpp
 

@@ -42,9 +42,9 @@ Based on this, you can create the select as follows:
         enum_datapoint: 2
         optimistic: true
         options:
-          0: Internal:
-          1: Floor:
-          2: Both:
+          0: Internal
+          1: Floor
+          2: Both
 
 Configuration variables:
 ------------------------
