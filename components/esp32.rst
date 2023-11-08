@@ -23,13 +23,16 @@ Configuration variables:
   choose a generic board from Espressif such as ``esp32dev``.
 - **framework** (*Optional*): Options for the underlying framework used by ESPHome.
   See :ref:`esp32-arduino_framework` and :ref:`esp32-espidf_framework`.
+- **flash_size** (*Optional*, string): The amount of flash memory available on the ESP32 board/module. One of ``4MB``,
+  ``8MB``, ``16MB`` or ``32MB``. Defaults to ``4MB``. **Warning: specifying a size larger than that available on your
+  board will cause the ESP32 to fail to boot.**
 - **variant** (*Optional*, string): The variant of the ESP32 that is used on this board. One of ``esp32``,
-  ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``. Defaults to the variant that is detected from the board, if
+  ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``. Defaults to the variant that is detected from the board; if
   a board that's unknown to ESPHome is used, this option is mandatory.
 
 .. note::
 
-    Support for the ESP32-S2 and ESP32-C3 is still in development and there could be issues.
+    Support for ESP32 variants such as the S2, S3 and C3 is still in development and there could be issues.
 
 GPIO Pin Numbering
 ------------------
