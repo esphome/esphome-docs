@@ -75,6 +75,12 @@ Configuration variables:
 
 .. _api-actions:
 
+.. note::
+
+    Before a newly added ESPHome device can interact with the Home Assistant API it needs to be allowed to communicate
+    with it. This setting can be found in the ESPHome integration (NOT in the Add-On) by clicking "CONFIGURE" for
+    that device and enabling the "Allow device to make service calls" option.
+
 Actions
 -------
 
