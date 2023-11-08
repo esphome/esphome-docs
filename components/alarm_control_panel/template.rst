@@ -36,7 +36,7 @@ Configuration variables:
   - **input** (**Required**, string): The id of the binary sensor component
   - **bypass_armed_home** (*Optional*, boolean): This binary sensor will not trigger the alarm when in ``armed_home`` state.
   - **bypass_armed_night** (*Optional*, boolean): This binary sensor will not trigger the alarm when in ``armed_night`` state.
-  - **sensor_type** (*Optional*, string): Sets the sensor type. One of ``delayed``, ``instant``, or ``interior_follower``. (``delayed`` is default if not specified)
+  - **trigger_mode** (*Optional*, string): Sets the trigger mode for this sensor. One of ``delayed``, ``instant``, or ``interior_follower``. (``delayed`` is the default if not specified)
   - **chime** (*Optional*, boolean): When set ``true``, the chime callback will be called whenever the sensor goes from closed to open. (``false`` is the default if not specified)
 
 - **restore_mode** (*Optional*, enum):
@@ -48,7 +48,7 @@ Configuration variables:
 
 .. note::
 
-    If ``binary_sensors`` is ommited then you're expected to trigger the alarm using
+    If ``binary_sensors`` is omitted then you're expected to trigger the alarm using
     :ref:`alarm_control_panel_pending_action` or :ref:`alarm_control_panel_triggered_action`.
 
 
@@ -65,16 +65,16 @@ State Flow:
 
 3. When the alarm is tripped by a sensor state changing to ``on`` or ``alarm_control_panel_pending_action`` invoked
 
-  1. If sensor_type is set to ``delayed``:
+  1. If trigger_mode is set to ``delayed``:
 
     1. ``pending_time`` greater than 0 the state is ``PENDING``
     2. ``pending_time`` is 0 or after the ``pending_time`` delay the state is ``TRIGGERED``
 
-  2. If sensor_type is set to ``instant``:
+  2. If trigger_mode is set to ``instant``:
 
     1. The state is set to ``TRIGGERED``
 
-  3. If the sensor_type is set to ``interior_follower``:
+  3. If the trigger_mode is set to ``interior_follower``:
 
     1. If the current state is ``ARMED_...`` the state will be set to ``TRIGGERED``
     2. If the current state is ``PENDING`` then nothing will happen and it will stay in the ``PENDING`` state.
@@ -84,10 +84,10 @@ State Flow:
 
 .. note::
 
-    Although the interface supports all arming modes only ``away`` and ``home`` have been implemented for now.
+    Although the interface supports all arming modes only ``away``, ``home`` and ``night`` have been implemented for now.
     ``arm_...`` is for either ``arm_away`` or ``arm_home``
-    ``arming_..._time`` is for either ``arming_away_time`` or ``arming_home_time``
-    ``ARMED_...`` is for either ``ARMED_AWAY`` or ``ARMED_HOME``
+    ``arming_..._time`` is for either ``arming_away_time``, ``arming_home_time``, or ``arming_night_time``
+    ``ARMED_...`` is for either ``ARMED_AWAY``, ``ARMED_HOME``, or ``ARMED_NIGHT``
 
 
 Example:
@@ -109,15 +109,15 @@ Example:
       binary_sensors:
         - input: zone_1
           chime: true
-          sensor_type: delayed
+          trigger_mode: delayed
         - input: zone_2
           chime: true
-          sensor_type: delayed
+          trigger_mode: delayed
         - input: zone_3
           bypass_armed_home: true
-          sensor_type: interior_follower
+          trigger_mode: interior_follower
         - input: zone_4
-          sensor_type: instant
+          trigger_mode: instant
         - input: ha_test
       on_state:
         then:
