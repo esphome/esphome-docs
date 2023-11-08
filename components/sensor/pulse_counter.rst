@@ -102,6 +102,38 @@ measure the total consumed energy in kWh.
           filters:
             - multiply: 0.001  # (1/1000 pulses per kWh)
 
+To get the total pulses at that very instant, we'll use get_total_pulses() to 
+achieve this.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: gpio
+        pin: GPIO15
+        ...
+        ...
+        on_turn_on:
+          - pulse_counter.set_total_pulses:
+              id: icemaker_water_flow_rate
+              value: 0
+          - while:
+              condition:
+                - switch.is_on: icemaker_relay_water_on
+              then:
+                - component.update: icemaker_water_flow_rate
+                - component.update: icemaker_water_flow_pulses
+                - delay: 1s
+          - delay: 3s
+          - if:
+              condition:
+                - and:
+                  - switch.is_on: icemaker_relay_water_on
+                 # check if water is actually flowing
+                  - lambda: !lambda |-
+                      return id(icemaker_water_flow_rate).get_total_pulses() < 30;
+
+
 (Re)Setting the total pulse count
 ---------------------------------
 
