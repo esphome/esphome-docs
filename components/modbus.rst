@@ -23,6 +23,11 @@ ModBUS requires a :ref:`UART Bus <uart>` to communicate.
 Configuration variables:
 ------------------------
 
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
+  to use multiple UART buses.
+
 - **flow_control_pin** (*Optional*, :ref:`config-pin`): The pin used to switch flow control.
   This is useful for RS485 transceivers that do not have automatic flow control switching,
   like the common MAX485.
