@@ -62,7 +62,7 @@ Each binary sensor "zone" supports 3 trigger modes. The 3 trigger modes are:
 - instant
 - delayed follower
 
-The ``delayed`` trigger mode is typically specified for exterior doors where entry is required to access an alarm keypad or other arm/disarm method. If the alarm panel is armed, and a zone set to ``delayed`` is "faulted" (i.e. the zone state is ``true``) the alarm state will change from the ``armed`` state to the pending state. During the pending state, the user has a preset time to disarm the alarm before it changes to the ``triggered`` state. This is the default trigger mode if not specified.
+The ``delayed`` trigger mode is typically specified for exterior doors where entry is required to access an alarm keypad or other arm/disarm method. If the alarm panel is armed, and a zone set to ``delayed`` is "faulted" (i.e. the zone state is ``true``) the alarm state will change from the ``armed`` state to the ``pending`` state. During the ``pending`` state, the user has a preset time to disarm the alarm before it changes to the ``triggered`` state. This is the default trigger mode if not specified.
 
 The ``instant`` trigger mode is typically used for exterior zones (e.g. windows, and glass break detectors).  If the alarm control panel is armed, a fault on this type of zone will cause the alarm to go from the ``armed`` state directly to the ``triggered`` state.
 
