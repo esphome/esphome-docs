@@ -62,8 +62,7 @@ Each binary sensor "zone" supports 3 trigger modes. The 3 trigger modes are:
 - instant
 - delayed follower
 
-The ``delayed`` trigger mode is typically specified for exterior doors where entry is required to access an alarm keypad or other arm/disarm method. If the alarm panel is armed, and a zone set to ``delayed`` is "faulted" (i.e. goes not ready)
-the alarm state will change from the ``armed`` state to the pending state. During the pending state, the user has a preset time to disarm the alarm before it changes to the ``triggered`` state. This is the default trigger mode if not specified.
+The ``delayed`` trigger mode is typically specified for exterior doors where entry is required to access an alarm keypad or other arm/disarm method. If the alarm panel is armed, and a zone set to ``delayed`` is "faulted" (i.e. the zone state is ``true``) the alarm state will change from the ``armed`` state to the pending state. During the pending state, the user has a preset time to disarm the alarm before it changes to the ``triggered`` state. This is the default trigger mode if not specified.
 
 The ``instant`` trigger mode is typically used for exterior zones (e.g. windows, and glass break detectors).  If the alarm control panel is armed, a fault on this type of zone will cause the alarm to go from the ``armed`` state directly to the ``triggered`` state.
 
@@ -73,8 +72,8 @@ The ``delayed_follower`` trigger mode is typically specifed for interior passive
 
 2. When the alarm panel is in the pending state, a fault on a zone with ``delayed_follower`` specified will remain in the ``pending`` state.
 
-The ``delayed_follower`` trigger mode offers better protection if someone enters a premises via an unprotected window or door, and there is a PIR guarding the main hallway, it will cause an instant trigger of the alarm panel as someone
-entered the premises in a unusual manner. Likewise, if someone enters the premises though a door set to the ``delayed`` trigger mode, and then trigger the PIR, the alarm will stay in the pending mode until either they disarm the alarm, or
+The ``delayed_follower`` trigger mode offers better protection if someone enters a premises via an unprotected window or door. If there is a PIR guarding the main hallway, it will cause an instant trigger of the alarm panel as someone
+entered the premises in a unusual manner. Likewise, if someone enters the premises though a door set to the ``delayed`` trigger mode, and then triggers the PIR, the alarm will stay in the ``pending`` state until either they disarm the alarm, or
 the pending timer expires.
 
 .. _template_alarm_control_panel-state_flow:
