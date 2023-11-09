@@ -375,7 +375,7 @@ Configuration variables:
   All options from :ref:`Select <config-select>`.
 
 Example configuration:
------------
+----------------------
 
 Here is the complete example configuration for :doc:`ld2450`.
 
