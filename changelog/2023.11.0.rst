@@ -104,6 +104,7 @@ Beta Changes
 - fix: Fix broken bluetooth_proxy and ble_clients after BLE enable/disable :esphomepr:`5704` by :ghuser:`Rapsssito`
 - Bump aioesphomeapi to 18.2.7 :esphomepr:`5706` by :ghuser:`bdraco`
 - Update Dockerfile to use piwheels for armv7 :esphomepr:`5709` by :ghuser:`bdraco`
+- Bump zeroconf from 0.120.0 to 0.122.3 :esphomepr:`5715` by :ghuser:`dependabot[bot]`
 
 All changes
 ^^^^^^^^^^^
@@ -210,6 +211,7 @@ All changes
 - fix: Fix broken bluetooth_proxy and ble_clients after BLE enable/disable :esphomepr:`5704` by :ghuser:`Rapsssito`
 - Bump aioesphomeapi to 18.2.7 :esphomepr:`5706` by :ghuser:`bdraco`
 - Update Dockerfile to use piwheels for armv7 :esphomepr:`5709` by :ghuser:`bdraco`
+- Bump zeroconf from 0.120.0 to 0.122.3 :esphomepr:`5715` by :ghuser:`dependabot[bot]`
 
 Past Changelogs
 ---------------
