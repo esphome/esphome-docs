@@ -184,6 +184,11 @@ Next, create a ``font:`` section in your configuration:
 
       - file: "fonts/tom-thumb.bdf"
         id: tomthumb
+        
+      - file: 'gfonts://Material+Symbols+Outlined'
+        id: icon_font_50
+        size: 50
+        glyphs: ["\U0000e425"] # mdi-timer
 
     display:
       # ...
@@ -197,7 +202,8 @@ Configuration variables:
 
     **Google Fonts**:
 
-    Each Google Font will be downloaded once and cached for future use.
+    Each Google Font will be downloaded once and cached for future use. This can also be used to download Material 
+    Symbols or Icons as in the example above.
 
   - **family** (**Required**, string): The name of the Google Font family.
   - **weight** (*Optional*, enum): The weight of the font. Can be either the text name or the integer value:

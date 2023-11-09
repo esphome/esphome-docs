@@ -409,6 +409,8 @@ The top level ``name:`` field in your .yaml file defines the node name(/hostname
 
 Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
 
+.. _strapping-warnings:
+
 Why am I getting a warning about strapping pins?
 --------------------------------------------------
 
@@ -418,6 +420,13 @@ While the use of them in software is not a problem, if there's something attache
 It's recommended to avoid them unless you have a pressing need to use them and you have reviewed the expected boot voltage levels of these pins from the ESP datasheet.
 
 Some development boards connect GPIO 0 to a button, often labeled "boot". Holding this button while the ESP is turning on will cause it to go into bootloader mode. Once the ESP is fully booted up, this button can be used as a normal input safely.
+
+Strapping pins should be safe to use as outputs if they are *only* connected to other devices that have hi-impedance inputs
+with no pull-up or pull-down resistors. Note that I2C clock and data lines *do* have pull-up resistors and are not
+safe on strapping pins.
+
+If you are absolutely sure that your use of strapping pins is safe, and want to suppress the warning, you can
+add ``ignore_strapping_warning: true`` to the relevant pin configurations.
 
 How can I test a Pull Request?
 ------------------------------

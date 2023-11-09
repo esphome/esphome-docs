@@ -5,8 +5,17 @@ I²S Audio Microphone
     :description: Instructions for setting up I²S based microphones in ESPHome.
     :image: i2s_audio.svg
 
-The ``i2s_audio`` microphone platform allows you to receive audio via the the
-:doc:`/components/i2s_audio`. This platform only works on ESP32 based chips.
+The ``i2s_audio`` microphone platform allows you to receive audio via the the :doc:`/components/i2s_audio`.
+
+This platform only works on ESP32 based chips.
+
+.. warning::
+
+    Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. In particular, Bluetooth/BLE components are known to cause issues when used in
+    combination with Voice Assistant and/or other audio components.
 
 .. code-block:: yaml
 

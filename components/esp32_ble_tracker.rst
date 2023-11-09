@@ -5,11 +5,19 @@ ESP32 Bluetooth Low Energy Tracker Hub
     :description: Instructions for setting up ESP32 bluetooth low energy device trackers using ESPHome.
     :image: bluetooth.svg
 
-The ``esp32_ble_tracker`` component creates a global hub so that you can track bluetooth low
-energy devices using your ESP32 node.
+The ``esp32_ble_tracker`` component creates a global hub so that you can track bluetooth low energy devices
+using your ESP32 node.
 
-See :ref:`Setting up devices <esp32_ble_tracker-setting_up_devices>`
-for information on how you can find out the MAC address of a device and track it using ESPHome.
+See :ref:`Setting up devices <esp32_ble_tracker-setting_up_devices>` for information on how you can determine
+the MAC address of a device and track it using ESPHome.
+
+.. warning::
+
+    The BLE software stack on the ESP32 consumes a significant amount of RAM on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. Memory-intensive components such as :doc:`/components/voice_assistant` and other
+    audio components are most likely to cause issues.
 
 .. code-block:: yaml
 

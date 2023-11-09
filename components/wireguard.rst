@@ -241,6 +241,22 @@ This sensor reports the *timestamp* of the latest completed handshake.
 All options from :ref:`Sensor <config-sensor>` can be added to the
 above configuration.
 
+Address Text Sensor
+^^^^^^^^^^^^^^^^^^^
+
+This sensor exposes to the frontend the configured :ref:`address <wireguard-address>`.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    text_sensor:
+      - platform: wireguard
+        address:
+          name: 'WireGuard Address'
+
+All options from :ref:`Text Sensor <config-text_sensor>` can be added to the
+above configuration.
+
 .. _wireguard-installation:
 
 Remote peer setup

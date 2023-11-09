@@ -1,6 +1,16 @@
 Custom UART Device
 ==================
 
+.. warning::
+
+    Custom components are deprecated, not recommended for new configurations
+    and will be removed from ESPHome in a future release.
+    Please look at creating a real ESPHome component and "importing" it into your
+    configuration with :doc:`/components/external_components`.
+
+    You can find some basic documentation on creating your own components
+    at :ref:`contributing_to_esphome`.
+
 Lots of devices communicate using the UART protocol. If you want to integrate
 a device into ESPHome that uses this protocol you can pretty much use almost
 all Arduino-based code because ESPHome has a nice abstraction over the UART bus.

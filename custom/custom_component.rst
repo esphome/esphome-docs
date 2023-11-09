@@ -1,6 +1,16 @@
 Generic Custom Component
 ========================
 
+.. warning::
+
+    Custom components are deprecated, not recommended for new configurations
+    and will be removed from ESPHome in a future release.
+    Please look at creating a real ESPHome component and "importing" it into your
+    configuration with :doc:`/components/external_components`.
+
+    You can find some basic documentation on creating your own components
+    at :ref:`contributing_to_esphome`.
+
 This integration can be used to create generic custom components in ESPHome
 using the C++ (Arduino) API. This integration should be used in cases where
 none of ESPHome's abstraction layers (for example the "sensor", "binary sensor",
@@ -50,8 +60,8 @@ And in YAML:
         auto my_custom = new MyCustomComponent();
         return {my_custom};
       components:
-      - id: my_custom_id 
-      
+      - id: my_custom_id
+
 
 Configuration variables:
 

@@ -89,6 +89,8 @@ Configuration variables:
 - **enable_btm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11v BSS Transition Management support.
 - **enable_rrm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11k Radio Resource Management support.
 
+- **on_connect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a connection is established.
+- **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the connection is dropped.
 - **enable_on_boot** (*Optional*, boolean): If enabled, the WiFi interface will be enabled on boot. Defaults to ``true``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -272,6 +274,23 @@ Configuration variables:
 - **key** (*Optional*, string): Path to a PEM encoded private key matching ``certificate`` for EAP-TLS authentication.
   Optionally encrypted with ``password``.
 
+.. _wifi-on_connect_disconnect:
+
+``on_connect`` / ``on_disconnect`` Trigger
+------------------------------------------
+
+This trigger is activated when a WiFi connection is established or dropped.
+
+.. code-block:: yaml
+
+    wifi:
+      # ...
+      on_connect:
+        - switch.turn_on: switch1
+      on_disconnect:
+        - switch.turn_off: switch1
+
+.. _wifi-on_disable:
 
 ``wifi.disable`` Action
 -----------------------
@@ -288,6 +307,7 @@ This action turns off the WiFi interface on demand.
 
     Be aware that if you disable WiFi, the API timeout will need to be disabled otherwise the device will reboot.
 
+.. _wifi-on_enable:
 
 ``wifi.enable`` Action
 ----------------------

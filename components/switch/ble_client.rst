@@ -5,13 +5,18 @@ BLE Client Switch
     :description: Control the state of BLE clients.
     :image: bluetooth.svg
 
-The ``ble_client`` component is a switch platform that is used to enable
-and disable a ``ble_client``. This has several uses, such as minimizing
-battery usage or for allowing other clients (Eg phone apps) to connect to
-the device.
+The ``ble_client`` component is a switch platform that is used to enable and disable a ``ble_client``. This has
+several uses, such as minimizing battery usage or for allowing other clients (Eg phone apps) to connect to the device.
 
-For more information on BLE services and characteristics, see
-:doc:`/components/ble_client`.
+For more information on BLE services and characteristics, see :doc:`/components/ble_client`.
+
+.. warning::
+
+    The BLE software stack on the ESP32 consumes a significant amount of RAM on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. Memory-intensive components such as :doc:`/components/voice_assistant` and other
+    audio components are most likely to cause issues.
 
 .. code-block:: yaml
 

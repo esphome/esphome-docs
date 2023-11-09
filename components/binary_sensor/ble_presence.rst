@@ -5,8 +5,15 @@ ESP32 Bluetooth Low Energy Device
     :description: Instructions for setting up BLE binary sensors for the ESP32.
     :image: bluetooth.svg
 
-The ``ble_presence`` binary sensor platform lets you track the presence of a
-Bluetooth Low Energy device.
+The ``ble_presence`` binary sensor platform lets you track the presence of a Bluetooth Low Energy device.
+
+.. warning::
+
+    The BLE software stack on the ESP32 consumes a significant amount of RAM on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. Memory-intensive components such as :doc:`/components/voice_assistant` and other
+    audio components are most likely to cause issues.
 
 .. figure:: images/esp32_ble-ui.png
     :align: center
