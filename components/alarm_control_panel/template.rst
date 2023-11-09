@@ -36,7 +36,7 @@ Configuration variables:
   - **input** (**Required**, string): The id of the binary sensor component
   - **bypass_armed_home** (*Optional*, boolean): This binary sensor will not trigger the alarm when in ``armed_home`` state.
   - **bypass_armed_night** (*Optional*, boolean): This binary sensor will not trigger the alarm when in ``armed_night`` state.
-  - **trigger_mode** (*Optional*, string): Sets the trigger mode for this sensor. One of ``delayed``, ``instant``, or ``interior_follower``. (``delayed`` is the default if not specified)
+  - **trigger_mode** (*Optional*, string): Sets the trigger mode for this sensor. One of ``delayed``, ``instant``, or ``delayed_follower``. (``delayed`` is the default if not specified)
   - **chime** (*Optional*, boolean): When set ``true``, the chime callback will be called whenever the sensor goes from closed to open. (``false`` is the default if not specified)
 
 - **restore_mode** (*Optional*, enum):
@@ -51,6 +51,31 @@ Configuration variables:
     If ``binary_sensors`` is omitted then you're expected to trigger the alarm using
     :ref:`alarm_control_panel_pending_action` or :ref:`alarm_control_panel_triggered_action`.
 
+.. _template_alarm_control_panel-trigger_modes:
+
+Trigger Modes
+-------------
+
+Each binary sensor "zone" supports 3 trigger modes. The 3 trigger modes are:
+
+- delayed
+- instant
+- delayed follower
+
+The ``delayed`` trigger mode is typically specified for exterior doors where entry is required to access an alarm keypad or other arm/disarm method. If the alarm panel is armed, and a zone set to ``delayed`` is "faulted" (i.e. goes not ready)
+the alarm state will change from the ``armed`` state to the pending state. During the pending state, the user has a preset time to disarm the alarm before it changes to the ``triggered`` state. This is the default trigger mode if not specified.
+
+The ``instant`` trigger mode is typically used for exterior zones (e.g. windows, and glass break detectors).  If the alarm control panel is armed, a fault on this type of zone will cause the alarm to go from the ``armed`` state directly to the ``triggered`` state.
+
+The ``delayed_follower`` trigger mode is typically specifed for interior passive infared (PIR) or microwave sensors. One of two things happen when a ``delayed_follower`` zone is faulted:
+
+1. When the alarm panel is in the armed state, a fault on a zone with ``delayed_follower`` specified will cause the alarm control panel to go directly to the ``triggered`` state.
+
+2. When the alarm panel is in the pending state, a fault on a zone with ``delayed_follower`` specified will remain in the ``pending`` state.
+
+The ``delayed_follower`` trigger mode offers better protection if someone enters a premises via an unprotected window or door, and there is a PIR guarding the main hallway, it will cause an instant trigger of the alarm panel as someone
+entered the premises in a unusual manner. Likewise, if someone enters the premises though a door set to the ``delayed`` trigger mode, and then trigger the PIR, the alarm will stay in the pending mode until either they disarm the alarm, or
+the pending timer expires.
 
 .. _template_alarm_control_panel-state_flow:
 
@@ -115,7 +140,7 @@ Example:
           trigger_mode: delayed
         - input: zone_3
           bypass_armed_home: true
-          trigger_mode: interior_follower
+          trigger_mode: delayed_follower
         - input: zone_4
           trigger_mode: instant
         - input: ha_test
