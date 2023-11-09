@@ -1,4 +1,4 @@
- above tESPHome 2023.11.0 - 15th November 2023
+ESPHome 2023.11.0 - 15th November 2023
 ======================================
 
 .. seo::
