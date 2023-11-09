@@ -92,6 +92,16 @@ Breaking Changes
 ^^^^^^^^^^^^^^^^
 
 - Hydreon updates :esphomepr:`5424` by :ghuser:`jj-uk` (breaking-change)
+- Fix esp32_rmt_led_strip custom timing units :esphomepr:`5696` by :ghuser:`jesserockz` (breaking-change)
+
+Beta Changes
+^^^^^^^^^^^^
+
+- Handle nanoseconds in config :esphomepr:`5695` by :ghuser:`jesserockz`
+- Fix esp32_rmt_led_strip custom timing units :esphomepr:`5696` by :ghuser:`jesserockz` (breaking-change)
+- Fix static assets cache logic :esphomepr:`5700` by :ghuser:`bdraco`
+- Use piwheels for armv7 docker image builds :esphomepr:`5703` by :ghuser:`bdraco`
+- fix: Fix broken bluetooth_proxy and ble_clients after BLE enable/disable :esphomepr:`5704` by :ghuser:`Rapsssito`
 
 All changes
 ^^^^^^^^^^^
@@ -191,10 +201,16 @@ All changes
 - support spi for sn74hc595 :esphomepr:`5491` by :ghuser:`angelnu`
 - Handle on_disconnect when Wi-Fi is disabled :esphomepr:`5691` by :ghuser:`kbx81`
 - Bump aioesphomeapi from 18.2.1 to 18.2.4 :esphomepr:`5692` by :ghuser:`dependabot[bot]`
+- Handle nanoseconds in config :esphomepr:`5695` by :ghuser:`jesserockz`
+- Fix esp32_rmt_led_strip custom timing units :esphomepr:`5696` by :ghuser:`jesserockz` (breaking-change)
+- Fix static assets cache logic :esphomepr:`5700` by :ghuser:`bdraco`
+- Use piwheels for armv7 docker image builds :esphomepr:`5703` by :ghuser:`bdraco`
+- fix: Fix broken bluetooth_proxy and ble_clients after BLE enable/disable :esphomepr:`5704` by :ghuser:`Rapsssito`
 
 Past Changelogs
 ---------------
 
+- :doc:`2023.10.0`
 - :doc:`2023.9.0`
 - :doc:`2023.8.0`
 - :doc:`2023.7.0`

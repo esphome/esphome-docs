@@ -707,7 +707,6 @@ Contributors
 - `AngeloGioacchino Del Regno (@kholk) <https://github.com/kholk>`__
 - `Kilowatt (@Kilowatt-W) <https://github.com/Kilowatt-W>`__
 - `Ed (@kixtarter) <https://github.com/kixtarter>`__
-- `Kurt Kellner (@kkellner) <https://github.com/kkellner>`__
 - `Klaas Schoute (@klaasnicolaas) <https://github.com/klaasnicolaas>`__
 - `Klarstein (@Klarstein) <https://github.com/Klarstein>`__
 - `Marcus Klein (@kleini) <https://github.com/kleini>`__
@@ -985,6 +984,7 @@ Contributors
 - `Florian Ragwitz (@rafl) <https://github.com/rafl>`__
 - `Ben V. Brown (@Ralim) <https://github.com/Ralim>`__
 - `randomllama (@randomllama) <https://github.com/randomllama>`__
+- `Rodrigo Martín (@Rapsssito) <https://github.com/Rapsssito>`__
 - `Marc Seeger (@rb2k) <https://github.com/rb2k>`__
 - `rbaron (@rbaron) <https://github.com/rbaron>`__
 - `Robert Cambridge (@rcambrj) <https://github.com/rcambrj>`__
@@ -1253,4 +1253,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated November 8, 2023.*
+*This page was last updated November 9, 2023.*
