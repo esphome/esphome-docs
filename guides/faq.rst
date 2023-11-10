@@ -361,19 +361,16 @@ And a docker compose file looks like this:
 .. _docker-reference-notes:
 .. note::
 
-    By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
-    to work you need to enable host networking mode
+    By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature to work you need to enable host networking mode. 
 
     On MacOS the networking mode ("-net=host" option) doesn't work as expected. You have to use
     another way to launch the dashboard with a port mapping option and use alternative to mDNS
     to have the online/offline stat (see below)
 
     mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
-    If your router supports Avahi, you are able to get mDNS working over different subnets.
+    If your router supports Avahi (eg. OpenWRT or pfSense), you are able to get mDNS working over different subnets following the steps below:
 
-    Just follow the next steps:
-
-    1. Enable Avahi on both subnets.
+    1. Enable Avahi on both subnets (install Avahi modules on OpenWRT or pfSense).
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 
     Alternatively, you can make esphome use ICMP pings to check the status of the device
@@ -412,6 +409,8 @@ The top level ``name:`` field in your .yaml file defines the node name(/hostname
 
 Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
 
+.. _strapping-warnings:
+
 Why am I getting a warning about strapping pins?
 --------------------------------------------------
 
@@ -421,6 +420,13 @@ While the use of them in software is not a problem, if there's something attache
 It's recommended to avoid them unless you have a pressing need to use them and you have reviewed the expected boot voltage levels of these pins from the ESP datasheet.
 
 Some development boards connect GPIO 0 to a button, often labeled "boot". Holding this button while the ESP is turning on will cause it to go into bootloader mode. Once the ESP is fully booted up, this button can be used as a normal input safely.
+
+Strapping pins should be safe to use as outputs if they are *only* connected to other devices that have hi-impedance inputs
+with no pull-up or pull-down resistors. Note that I2C clock and data lines *do* have pull-up resistors and are not
+safe on strapping pins.
+
+If you are absolutely sure that your use of strapping pins is safe, and want to suppress the warning, you can
+add ``ignore_strapping_warning: true`` to the relevant pin configurations.
 
 How can I test a Pull Request?
 ------------------------------
