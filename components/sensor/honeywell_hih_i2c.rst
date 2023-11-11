@@ -6,7 +6,7 @@ Honeywell HumidIcon (I2C HIH series) Temperature & Humidity Sensor
     :image: honeywellhih.jpg
     :keywords: Honeywell HIH
 
-Honeywell HumidIcon (I2C HIH series) Temperature & Humidity sensors with ESPHome (`website https://sps.honeywell.com/us/en/products/advanced-sensing-technologies/healthcare-sensing/humidity-with-temperature-sensors`__,
+Honeywell HumidIcon (I2C HIH series) Temperature & Humidity sensors with ESPHome (`website <https://sps.honeywell.com/us/en/products/advanced-sensing-technologies/healthcare-sensing/humidity-with-temperature-sensors>`__,
 `datasheet <https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/humidity-with-temperature-sensors/common/documents/sps-siot-humidity-sensors-line-guide-009034-7-en-ciid-54931.pdf?download=false>`__).
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
