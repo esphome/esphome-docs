@@ -22,7 +22,7 @@ using :ref:`lambdas <config-lambda>`.
 Configuration variables:
 ------------------------
 
-- **min_lenngth** (**Required**, float): The minimum length this text can be.
+- **min_length** (**Required**, float): The minimum length this text can be.
 - **max_length** (**Required**, float): The maximum length this text can be.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the current value of the text.
