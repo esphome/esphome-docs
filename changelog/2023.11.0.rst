@@ -105,6 +105,12 @@ Beta Changes
 - Bump aioesphomeapi to 18.2.7 :esphomepr:`5706` by :ghuser:`bdraco`
 - Update Dockerfile to use piwheels for armv7 :esphomepr:`5709` by :ghuser:`bdraco`
 - Bump zeroconf from 0.120.0 to 0.122.3 :esphomepr:`5715` by :ghuser:`dependabot[bot]`
+- Add resistance_sampler interface for config validation :esphomepr:`5718` by :ghuser:`jesserockz` (new-integration)
+- Fix zeroconf name resolution refactoring error :esphomepr:`5725` by :ghuser:`bdraco`
+- Missed ifdefs :esphomepr:`5727` by :ghuser:`descipher`
+- Bump aioesphomeapi from 18.2.7 to 18.4.0 :esphomepr:`5735` by :ghuser:`dependabot[bot]`
+- Migrate to using aioesphomeapi for the log runner to fix multiple issues :esphomepr:`5733` by :ghuser:`bdraco`
+- Bump zeroconf to 0.123.0 :esphomepr:`5736` by :ghuser:`bdraco`
 
 All changes
 ^^^^^^^^^^^
@@ -212,6 +218,12 @@ All changes
 - Bump aioesphomeapi to 18.2.7 :esphomepr:`5706` by :ghuser:`bdraco`
 - Update Dockerfile to use piwheels for armv7 :esphomepr:`5709` by :ghuser:`bdraco`
 - Bump zeroconf from 0.120.0 to 0.122.3 :esphomepr:`5715` by :ghuser:`dependabot[bot]`
+- Add resistance_sampler interface for config validation :esphomepr:`5718` by :ghuser:`jesserockz` (new-integration)
+- Fix zeroconf name resolution refactoring error :esphomepr:`5725` by :ghuser:`bdraco`
+- Missed ifdefs :esphomepr:`5727` by :ghuser:`descipher`
+- Bump aioesphomeapi from 18.2.7 to 18.4.0 :esphomepr:`5735` by :ghuser:`dependabot[bot]`
+- Migrate to using aioesphomeapi for the log runner to fix multiple issues :esphomepr:`5733` by :ghuser:`bdraco`
+- Bump zeroconf to 0.123.0 :esphomepr:`5736` by :ghuser:`bdraco`
 
 Past Changelogs
 ---------------
