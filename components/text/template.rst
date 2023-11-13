@@ -22,8 +22,8 @@ using :ref:`lambdas <config-lambda>`.
 Configuration variables:
 ------------------------
 
-- **min_length** (**Required**, int): The minimum length this text can be. Defaults to ``0``.
-- **max_length** (**Required**, int): The maximum length this text can be. Defaults to ``255``.
+- **min_length** (*Optional*, int): The minimum length this text can be. Defaults to ``0``.
+- **max_length** (*Optional*, int): The maximum length this text can be. Defaults to ``255``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the current value of the text.
 - **set_action** (*Optional*, :ref:`Action <config-action>`): The action that should
