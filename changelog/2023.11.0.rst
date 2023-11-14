@@ -115,6 +115,8 @@ Beta Changes
 - dashboard: remove usage of codecs module :esphomepr:`5741` by :ghuser:`bdraco`
 - dashboard: Run get_serial_ports in the executor :esphomepr:`5740` by :ghuser:`bdraco`
 - Generate partitions.csv based on flash size :esphomepr:`5697` by :ghuser:`kbx81`
+- Allow setup to continue past mqtt if network/wifi is disabled :esphomepr:`5754` by :ghuser:`jesserockz`
+- Dont dump wifi info when disabled :esphomepr:`5755` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -232,6 +234,8 @@ All changes
 - dashboard: remove usage of codecs module :esphomepr:`5741` by :ghuser:`bdraco`
 - dashboard: Run get_serial_ports in the executor :esphomepr:`5740` by :ghuser:`bdraco`
 - Generate partitions.csv based on flash size :esphomepr:`5697` by :ghuser:`kbx81`
+- Allow setup to continue past mqtt if network/wifi is disabled :esphomepr:`5754` by :ghuser:`jesserockz`
+- Dont dump wifi info when disabled :esphomepr:`5755` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
