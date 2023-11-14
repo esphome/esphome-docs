@@ -117,6 +117,14 @@ Advanced options:
 - **drive_strength** (*Optional*, string): On ESP32s with esp-idf framework the pad drive strength,
   i.e. the maximum amount of current can additionally be set. Defaults to ``20mA``.
   Options are ``5mA``, ``10mA``, ``20mA``, ``40mA``.
+- **ignore_strapping_warning** (*Optional*, boolean): Certain pins on ESP32s are designated *strapping pins* and are read
+  by the chip on reset to configure initial operation, e.g. to enable bootstrap mode.
+  Using such pins for I/O should be avoided and ESPHome will warn if I/O is configured on a strapping pin.
+
+  For more detail see :ref:`strapping-warnings`.
+
+  If you are *absolutely* sure that you are using a strapping pin for I/O in a way that will not cause problems,
+  you can suppress the warning by setting this option to ``true`` in the pin configuration.
 
 .. _config-time:
 

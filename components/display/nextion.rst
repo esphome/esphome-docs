@@ -64,6 +64,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **tft_url** (*Optional*, string): The URL to download the TFT file from for updates. See :ref:`Nextion Upload <nextion_upload_tft>`.
 - **touch_sleep_timeout** (*Optional*, int): Sets internal No-touch-then-sleep timer in seconds.
+- **start_up_page** (*Optional*, int): Sets the page to display when ESPHome connects to the Nextion. (Nextion shows page 0 on start-up by default).
 - **wake_up_page** (*Optional*, int): Sets the page to display after waking up
 - **auto_wake_on_touch** (*Optional*, boolean): Sets if Nextion should auto-wake from sleep when touch press occurs.
 - **on_setup** (*Optional*, :ref:`Action <config-action>`): An action to be performed after ESPHome connects to the Nextion. See :ref:`Nextion Automation <nextion-on_setup>`.
@@ -197,7 +198,8 @@ With Nextion displays, it's possible to define several automation actions. Depen
 
 This automation will be triggered once ESP establishes a connection with Nextion. This happens after a boot up and may take some
 noticeable time (e.g. hundreds of milliseconds) to establish a connection over UART. Typical use scenario for this automation is choosing of the initial
-page to display depending on some runtime conditions or simply showing a page with a non-zero index (Nextion shows page 0 by default).
+page to display depending on some runtime conditions or simply showing a page with a non-zero index (Nextion shows page 0 by default and ESPHome will
+use ``start_up_page`` on connection, if set).
 
 .. code-block:: yaml
 
@@ -235,7 +237,7 @@ for that and :ref:`force-update <nextion_update_all_components>` the on-screen c
 ***********
 
 This automation is triggered when a page is changed on the Nextion display. This includes both ESP and Nextion initiated page changes.
-ESP initiates a page change by calling ``goto_page("page_name")`` function. Nextion can change pages as a reaction to user's activity (e.g. clicks) or using a timer.
+ESP initiates a page change by calling ``goto_page("page_name")`` or ``goto_page(page_id)`` function. Nextion can change pages as a reaction to user's activity (e.g. clicks) or using a timer.
 In either case, this automation can be helpful to update on-screen controls for the newly displayed page.
 
 If you fully own your Nextoin HMI design and follow the best practice of setting the components' vscope to global in the Nextion Editor, you'll probably never need this trigger.
