@@ -112,6 +112,9 @@ Beta Changes
 - Migrate to using aioesphomeapi for the log runner to fix multiple issues :esphomepr:`5733` by :ghuser:`bdraco`
 - Bump zeroconf to 0.123.0 :esphomepr:`5736` by :ghuser:`bdraco`
 - Handle wake word not set up internally :esphomepr:`5738` by :ghuser:`jesserockz`
+- dashboard: remove usage of codecs module :esphomepr:`5741` by :ghuser:`bdraco`
+- dashboard: Run get_serial_ports in the executor :esphomepr:`5740` by :ghuser:`bdraco`
+- Generate partitions.csv based on flash size :esphomepr:`5697` by :ghuser:`kbx81`
 
 All changes
 ^^^^^^^^^^^
@@ -226,6 +229,9 @@ All changes
 - Migrate to using aioesphomeapi for the log runner to fix multiple issues :esphomepr:`5733` by :ghuser:`bdraco`
 - Bump zeroconf to 0.123.0 :esphomepr:`5736` by :ghuser:`bdraco`
 - Handle wake word not set up internally :esphomepr:`5738` by :ghuser:`jesserockz`
+- dashboard: remove usage of codecs module :esphomepr:`5741` by :ghuser:`bdraco`
+- dashboard: Run get_serial_ports in the executor :esphomepr:`5740` by :ghuser:`bdraco`
+- Generate partitions.csv based on flash size :esphomepr:`5697` by :ghuser:`kbx81`
 
 Past Changelogs
 ---------------
