@@ -1,5 +1,5 @@
 Seeed Studio MR24HPC1 mmWave (Kit)
-=============
+==================================
 
 .. seo::
     :description: Instructions for setting up MR24HPC1 mmWave (Kit).
