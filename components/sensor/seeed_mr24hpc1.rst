@@ -157,8 +157,8 @@ The result:
 See Also
 --------
 
-- `Official Using Documents for Seeed Studio 24GHz mmWave Sensor - Human Static Presence Module Lite <https://wiki.seeedstudio.com/Radar_MR24HPC1/->`_
-- `Official Using Documents for Seeed Studio mmWave Human Detection Sensor Kit  <https://wiki.seeedstudio.com/mmwave_human_detection_kit/->`_
+- `Official Using Documents for Seeed Studio 24GHz mmWave Sensor - Human Static Presence Module Lite <https://wiki.seeedstudio.com/Radar_MR24HPC1/>`_
+- `Official Using Documents for Seeed Studio mmWave Human Detection Sensor Kit  <https://wiki.seeedstudio.com/mmwave_human_detection_kit/>`_
 - `Source of inspiration for implementation <https://github.com/limengdu/mmwave-kit-external-components/>`_
 - :apiref:`seeed_mr24hpc1/mr24hpc1.h`
 - :ghedit:`Edit`
