@@ -87,6 +87,7 @@ Configuration variables:
 - **color_palette_images** (*Optional*): A list of image files that will be used to generate the color pallet for the display.  This should only be used in conjunction with ``-color_palette: IMAGE_ADAPTIVE`` above.  The images will be analysed at compile time and a custom color pallet will be created based on the most commonly occuring colors.  A typical setting would be a sample image that represented the fully populated display.  This can significantly improve the quality of displayed images.  Note that these images are not stored on the ESP device, just the 256byte color pallet created from them.
 - **dimensions** (*Optional*): Dimensions of the screen with WIDTHxHEIGHT. Usually not needed since ``model:`` has good defaults.
 - **data_rate** (*Optional*): Set the data rate of the SPI interface to the display. One of ``80MHz``, ``40MHz`` (default), ``20MHz``, ``10MHz``, ``5MHz``, ``2MHz``, ``1MHz``, ``200kHz``, ``75kHz`` or ``1kHz``. If you have multiple ILI9xxx displays they must all use the same **data_rate**.
+- **invert_display** (*Optional*): With this boolean option you can invert the some of the display colors manual. **Note** some of the displays have this option set automatically to true and can't be changed.
 
 Configuration examples
 **********************
