@@ -87,6 +87,7 @@ New Components
 - Add Micronova component :esphomepr:`4760` by :ghuser:`Jorre05` (new-integration)
 - Add differential pressure sensor support for CFSensor XGZP68xxD devices :esphomepr:`5562` by :ghuser:`gcormier` (new-integration)
 - Add spi support for ade7953 :esphomepr:`5439` by :ghuser:`angelnu` (new-integration)
+- Add resistance_sampler interface for config validation :esphomepr:`5718` by :ghuser:`jesserockz` (new-integration)
 
 Breaking Changes
 ^^^^^^^^^^^^^^^^
