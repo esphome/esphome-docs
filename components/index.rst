@@ -27,4 +27,5 @@ Components
     speaker/index
     time/index
     alarm_control_panel/index
+    text/index
     *
