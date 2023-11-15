@@ -25,7 +25,7 @@ You can use the ESP32 software or hardware serial to use this MR24HPC1, its defa
 .. figure:: images/seeed-mr24hpc1-mmwave-kit.png
     :align: center
     :width: 50.0%
-    
+
     Seeed Studio mmWave Human Detection Sensor Kit
 
 
