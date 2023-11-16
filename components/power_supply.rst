@@ -37,6 +37,10 @@ Configuration variables:
 - **keep_on_time** (*Optional*, :ref:`config-time`): The time the
   power supply should be kept enabled after the last output that used
   it has been switch off. Defaults to ``10s``.
+- **enable_at_startup** (*Optional*, bool): If the power supply should be enabled when the power supply
+  component is setup. Defaults to false. The startup delay will be applied (other component setup will be blocked
+  until the delay has elapsed.) This is useful for power supplies that will never be turned off and avoids the need
+  to specifically configure the power supply in a different component.
 
 See the :ref:`output component base configuration <config-output>`
 for information on how to apply the power supply for a specific output.
