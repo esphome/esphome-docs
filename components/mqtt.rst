@@ -81,6 +81,8 @@ Configuration variables:
   for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`.
   for more information.
 - **certificate_authority** (*Optional*, string): Only with ``esp-idf``. CA certificate in PEM format. See :ref:`mqtt-tls-idf` for more information
+- **certificate** (*Optional*, string): Only with ``esp-idf``. Client certificate in PEM format.
+- **key** (*Optional*, string): Only with ``esp-idf``. Client private key in PEM format.
 - **skip_cert_cn_check** (*Optional*, bool): Only with ``esp-idf``. Don't verify if the common name in the server certificate matches the value of ``broker``.
 - **idf_send_async** (*Optional*, bool): Only with ``esp-idf``. If true publishing the message happens from the internal mqtt task. The client only enqueues the message. Defaults to ``false``.
   The advantage of asyncronous publishing is that it doesn't block the esphome main thread. The disadvantage is a delay (up to 1-2 seconds) until the messages are actually sent out.
