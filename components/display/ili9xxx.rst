@@ -1,4 +1,3 @@
-
 ILI9xxx TFT LCD Series
 ======================
 
@@ -73,8 +72,6 @@ Configuration variables:
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **power_supply** (*Optional*, :ref:`config-id`): The :doc:`power supply </components/power_supply>` to connect to
   this display if required by hardware. The power supply will be turned on before attempting to initialize the display.
-- **rotation** (*Optional*): Set the rotation of the display. Everything drawn in the ``lambda:`` will be rotated
-  per this option. One of ``0°`` (default), ``90°``, ``180°``, or ``270°``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
@@ -83,25 +80,27 @@ Configuration variables:
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **color_palette** (*Optional*): The type of color pallet that will be used in the ESP's internal 8-bits-per-pixel buffer.  This can be used to improve color depth quality of the image.  For example if you know that the display will only be showing grayscale images, the clarity of the display can be improved by targeting the available colors to monochrome only.  Options are:
+- **color_order** (*Optional*): Should be one of ``bgr`` (default) or ``rgb``.
 
   - ``NONE`` (default)
   - ``GRAYSCALE``
   - ``IMAGE_ADAPTIVE``
 - **color_palette_images** (*Optional*): A list of image files that will be used to generate the color pallet for the display.  This should only be used in conjunction with ``-color_palette: IMAGE_ADAPTIVE`` above.  The images will be analysed at compile time and a custom color pallet will be created based on the most commonly occuring colors.  A typical setting would be a sample image that represented the fully populated display.  This can significantly improve the quality of displayed images.  Note that these images are not stored on the ESP device, just the 256byte color pallet created from them.
-- **dimensions** (*Optional*): Dimensions of the screen with WIDTHxHEIGHT. Usually not needed since ``model:`` has good defaults.
-- **height** (*Optional*, int): Specifies height of display in pixels. Use *either* ``dimensions`` or ``height`` and ``width``.
-- **width** (*Optional*, int): Specifies width of display.
+- **dimensions** (*Optional*): Dimensions of the screen, specified either as *width* **x** *height* (e.g ``320x240``) or with separate config keys. If not provided the dimensions will be determined by the model selected.
+
+    - **height** (**Required**, int): Specifies height of display in pixels.
+    - **width** (**Required**, int): Specifies width of display.
+    - **offset_width** (*Optional*, int): Specify an offset for the x-direction of the display, typically used when an LCD is smaller than the maximum supported by the driver chip. Default is 0
+    - **offset_height** (*Optional*, int): Specify an offset for the y-direction of the display. Default is 0.
+
 - **data_rate** (*Optional*): Set the data rate of the SPI interface to the display. One of ``80MHz``, ``40MHz`` (default), ``20MHz``, ``10MHz``, ``5MHz``, ``2MHz``, ``1MHz``, ``200kHz``, ``75kHz`` or ``1kHz``. If you have multiple ILI9xxx displays they must all use the same **data_rate**.
 - **spi_mode** (*Optional*): Set the mode for the SPI interface to the display. Default is ``MODE0`` but some displays require ``MODE3``.
 - **invert_display** (*Optional*): With this boolean option you can invert the display colors. **Note** some of the displays have this option set automatically to true and can't be changed.
-- **offset_x** (*Optional*, int): Specify an offset for the x-direction of the display, typically used when an LCD is smaller than the maximum supported by the driver chip. Default is 0
-- **offset_y** (*Optional*, int): Specify an offset for the y-direction of the display. Default is 0.
-- **panel_setup** (*Optional*, mapping): Override some panel setup defaults. This requires a map with the following options:
+- **rotation** (*Optional*): Set the rotation of the display. One of ``0°``, ``90°``, ``180°``, or ``270°``, or it can be a set of options describing the way in which the axes are transformed. Note that the size given in ``dimensions:`` should represent the final display size, after rotation. The default rotation is model-specific.
 
-   - **swap_xy** (*Optional*, boolean): If true, exchange the x and y axes. The height and width specified apply *after* the swap. Default is false. By combining this with one of the ``mirror`` options hardware rotation of the display can be controlled.
+   - **swap_xy** (*Optional*, boolean): If true, exchange the x and y axes. Default is false. By combining this with one of the ``mirror`` options hardware rotation of the display can be controlled.
    - **mirror_x** (*Optional*, boolean): If true, mirror the x axis.
    - **mirror_y** (*Optional*, boolean): If true, mirror the y axis.
-   - **color_order** (*Optional*): Should be one of ``bgr`` (default) or ``rgb``.
 
 
 Configuration examples
