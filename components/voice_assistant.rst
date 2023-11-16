@@ -37,6 +37,8 @@ Configuration:
 - **media_player** (*Optional*, :ref:`config-id`): The :doc:`media_player </components/media_player/index>` to use
   to output the response. Cannot be used with ``speaker`` above.
 - **use_wake_word** (*Optional*, boolean): Enable wake word on the assist pipeline. Defaults to ``false``.
+- **on_intent_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform when intent processing starts.
+- **on_intent_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when intent processing ends.
 - **on_listening** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when the voice assistant microphone starts listening.
 - **on_start** (*Optional*, :ref:`Automation <automation>`): An automation to
@@ -48,6 +50,10 @@ Configuration:
 - **on_stt_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the voice assistant has finished speech-to-text. The resulting text is
   available to automations as the variable ``x``.
+- **on_stt_vad_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform when voice activity
+  detection starts speech-to-text processing.
+- **on_stt_vad_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when voice activity
+  detection ends speech-to-text processing.
 - **on_tts_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the voice assistant has started text-to-speech. The text to be spoken is
   available to automations as the variable ``x``.
