@@ -7,6 +7,11 @@ SNTP Time Source
     time:
       - platform: sntp
         id: sntp_time
+        timezone: Europe/Sofia
+        servers:  
+         - pool.ntp.org 
+         - time.euro.apple.com 
+         - time.windows.com
 
 
 Configuration variables
