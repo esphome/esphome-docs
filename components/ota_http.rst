@@ -12,7 +12,8 @@ As the device is in client mode, it can be on a foreign network, or behind a fir
 
     # Example configuration entry
     ota_http:
-
+        esp8266_disable_ssl_support: no # `no` by default. 
+        safe_mode: false # `false` by default
 
     button:
       - platform: template
@@ -21,7 +22,20 @@ As the device is in client mode, it can be on a foreign network, or behind a fir
           then:
             - ota_http.flash:
                 url: http://example.com/firmware.bin
+                verify_ssl: false
             - logger.log: "This message should be not displayed(reboot)"
+
+Configuration variables:
+------------------------
+
+-  **safe_mode** (*Optional*, boolean): Will retry to flash at boot time if the ota fail.
+   Defaults to ``false``.
+
+ESP8266 Options:
+
+- **esp8266_disable_ssl_support** (*Optional*, boolean): Whether to include SSL support on ESP8266s.
+  Defaults to ``no``. See :ref:`esphome-esp8266_disable_ssl_support` for more info
+
 
 .. note::
 
@@ -33,7 +47,7 @@ As the device is in client mode, it can be on a foreign network, or behind a fir
 ``ota_http.flash`` Action
 -------------------------
 
-Flash the device with a remote http firmware using this action in automations.
+Flash the device with a remote http firmware using this :ref:`action <config-action>` in automations.
 
 .. code-block:: yaml
 
@@ -54,11 +68,13 @@ Configuration options:
 -  **url** (**Required**, string, :ref:`templatable <config-templatable>`):
     The url of the firwmare.
 -  **verify_ssl** (*Optional*, boolean, :ref:`templatable <config-templatable>`): 
-    If the ssl certficiate must be verified or not. Must be explicitely set to ``false`` if using **https**.
+    If the ssl certficiate must be verified or not. Must be explicitly set to ``false`` if using **https**. 
+    See :ref:`http_request-get_action` for more infos.
 
 
 See Also
 --------
 
 - :doc:`/components/ota`
+- :doc:`/components/http_request`
 - :ghedit:`Edit`
