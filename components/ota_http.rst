@@ -66,7 +66,7 @@ Flash the device with a remote http firmware using this :ref:`action <config-act
 Configuration options:
 
 -  **url** (**Required**, string, :ref:`templatable <config-templatable>`):
-    The url of the firwmare.
+    The url of the firwmare. Basic auth is allowed with **https://user:password@example.com/firmware.bin**.
 -  **verify_ssl** (*Optional*, boolean, :ref:`templatable <config-templatable>`): 
     If the ssl certficiate must be verified or not. Must be explicitly set to ``false`` if using **https**. 
     See :ref:`http_request-get_action` for more infos.
