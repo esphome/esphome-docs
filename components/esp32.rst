@@ -26,6 +26,8 @@ Configuration variables:
 - **flash_size** (*Optional*, string): The amount of flash memory available on the ESP32 board/module. One of ``2MB``,
   ``4MB``, ``8MB``, ``16MB`` or ``32MB``. Defaults to ``4MB``. **Warning: specifying a size larger than that available
   on your board will cause the ESP32 to fail to boot.**
+- **partitions** (*Optional*, filename): The name of (optionally including the path to) the file containing the
+  partitioning scheme to be used. When not specified, partitions are automatically generated based on ``flash_size``.
 - **variant** (*Optional*, string): The variant of the ESP32 that is used on this board. One of ``esp32``,
   ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``. Defaults to the variant that is detected from the board; if
   a board that's unknown to ESPHome is used, this option is mandatory.
