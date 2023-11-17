@@ -30,7 +30,7 @@ Configuration variables:
 ------------------------
 
 - **pin** (**Required**, :ref:`config-pin`): The pin to measure the voltage on.
-  Or on the ESP8266 alternatively also ``VCC``, see :ref:`adc-esp8266_vcc`.
+  Or on the ESP8266 or Raspberry Pi Pico it could alternatively be set to ``VCC``, see :ref:`adc-vcc`.
 - **name** (**Required**, string): The name of the voltage sensor.
 - **attenuation** (*Optional*): Only on ESP32. Specify the ADC
   attenuation to use. See :ref:`adc-esp32_attenuation`. Defaults to ``0db``.
@@ -122,10 +122,23 @@ For users that don't need a precise voltage reading, the "raw" output option all
 
 Note we don't recommend this method as it will change between chips, and newer ESP32 modules have different ranges (i.e. 0-8191); it is better to use the new calibrated voltages and update any existing filters accordingly.
 
-.. _adc-esp8266_vcc:
+.. _adc-vcc:
 
-ESP8266 Measuring VCC
----------------------
+Measuring VCC
+-------------
+
+The following configuration block adds the sensor reflecting VCC on a supported hardware platform.
+Please see specific sections below of what voltage is actually measured.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: adc
+        pin: VCC
+        name: "VCC Voltage"
+
+On ESP8266
+~~~~~~~~~~
 
 On the ESP8266 you can even measure the voltage the *chip is getting*. This can be useful in situations
 where you want to shut down the chip if the voltage is low when using a battery.
@@ -136,12 +149,19 @@ To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is con
 
     To avoid confusion: It measures the voltage at the chip, and not at the VCC pin of the board. It should usually be around 3.3V.
 
-.. code-block:: yaml
+On Raspberry Pi Pico
+~~~~~~~~~~~~~~~~~~~~
 
-    sensor:
-      - platform: adc
-        pin: VCC
-        name: "VCC Voltage"
+On the Raspberry Pi Pico and Pico W the ADC can measure VSYS voltage.
+
+Depending on how VSYS is powered the readings will have different meanings - either power supply voltage when it is connected to VSYS pin directly, or USB voltage (VBUS) minus some drop on the Schottky diode the Raspberry Pi Pico has between those pins.
+Our experiments indicate the drop being ~0.1V for Pico and ~0.25V for Pico W; you can use sensor filters to adjust the final value.
+
+.. note::
+
+    On Raspberry Pi Pico W the ADC GPIO29 pin for VSYS is shared with WiFi chip, so attempting to use it explicitly will likely hang the WiFi connection.
+    It is recommended to use ``VCC`` as ADC pin in that case.
+
 
 RP2040 Internal Core Temperature
 --------------------------------
