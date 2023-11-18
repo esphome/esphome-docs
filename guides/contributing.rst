@@ -373,6 +373,10 @@ a fork of the repository that you can modify and create git branches on.
     git clone https://github.com/<YOUR_GITHUB_USERNAME>/<REPO_NAME>.git
     # For example: git clone https://github.com/OttoWinter/esphome.git
 
+    # To continue you now need to enter the directory you created above
+    cd <REPRO_NAME>
+    # For example: cd esphome
+
     # Add "upstream" remote
     git remote add upstream https://github.com/esphome/<REPO_NAME>.git
     # For example: git remote add upstream https://github.com/esphome/esphome.git
