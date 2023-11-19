@@ -222,7 +222,17 @@ Configuration examples
       clk_mode: GPIO17_OUT
       phy_addr: 1
 
+**LILYGO T-ETH-Lite**:
 
+.. code-block:: yaml
+
+    ethernet:
+      type: RTL8201
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO0_IN
+      phy_addr: 0
+      power_pin: GPIO12
 
 See Also
 --------
