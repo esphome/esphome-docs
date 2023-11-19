@@ -9,6 +9,14 @@ The ``esp32_ble_server`` component in ESPHome sets up a simple BLE GATT server t
 manufacturer and board. This component allows other components to create their own services to expose
 data and control.
 
+.. warning::
+
+    The BLE software stack on the ESP32 consumes a significant amount of RAM on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. Memory-intensive components such as :doc:`/components/voice_assistant` and other
+    audio components are most likely to cause issues.
+
 .. code-block:: yaml
 
     # Example configuration
