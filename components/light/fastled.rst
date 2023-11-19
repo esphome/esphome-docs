@@ -61,7 +61,7 @@ SPI chips.
     light:
       - platform: fastled
         chipset: WS2811
-        pin: GPIO23
+        data_pin: GPIO23
         num_leds: 60
         rgb_order: BRG
         name: "FastLED WS2811 Light"
@@ -83,8 +83,9 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the light.
 - **chipset** (**Required**, string): Set a chipset to use. See :ref:`fastled-chipsets` for options.
-- **data_pin** *or* **pin** (**Required**, :ref:`config-pin`): The pin for the data line of the FastLED light.
+- **data_pin** (**Required**, :ref:`config-pin`): The pin for the data line of the FastLED light.
 - **clock_pin** (*Optional*, :ref:`config-pin`): The pin for the clock line of the FastLED light.
+  **Required** for lights using an SPI chip.
 - **num_leds** (**Required**, int): The number of LEDs attached.
 - **rgb_order** (*Optional*, string): The order of the RGB channels. Use this if your
   light doesn't seem to map the RGB light channels correctly. For example if your light
