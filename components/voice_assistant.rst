@@ -11,6 +11,14 @@ ESPHome devices with a microphone are able to stream the audio to Home Assistant
 
     Voice Assistant requires Home Assistant 2023.5 or later.
 
+.. warning::
+
+    Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. In particular, Bluetooth/BLE components are known to cause issues when used in
+    combination with Voice Assistant and/or other audio components.
+
 Configuration:
 --------------
 
@@ -29,6 +37,8 @@ Configuration:
 - **media_player** (*Optional*, :ref:`config-id`): The :doc:`media_player </components/media_player/index>` to use
   to output the response. Cannot be used with ``speaker`` above.
 - **use_wake_word** (*Optional*, boolean): Enable wake word on the assist pipeline. Defaults to ``false``.
+- **on_intent_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform when intent processing starts.
+- **on_intent_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when intent processing ends.
 - **on_listening** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when the voice assistant microphone starts listening.
 - **on_start** (*Optional*, :ref:`Automation <automation>`): An automation to
@@ -40,6 +50,10 @@ Configuration:
 - **on_stt_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the voice assistant has finished speech-to-text. The resulting text is
   available to automations as the variable ``x``.
+- **on_stt_vad_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform when voice activity
+  detection starts speech-to-text processing.
+- **on_stt_vad_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when voice activity
+  detection ends speech-to-text processing.
 - **on_tts_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the voice assistant has started text-to-speech. The text to be spoken is
   available to automations as the variable ``x``.
@@ -49,6 +63,11 @@ Configuration:
 - **on_error** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the voice assistant has encountered an error. The error code and message are available to
   automations as the variables ``code`` and ``message``.
+
+- **on_client_connected** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when Home Assistant has connected and is waiting for Voice Assistant commands.
+- **on_client_disconnected** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when Home Assistant disconnects from the Voice Assistant.
 
 - **noise_suppression_level** (*Optional*, integer): The noise suppression level to apply to the assist pipeline.
   Between 0 and 4 inclusive. Defaults to 0 (disabled).
