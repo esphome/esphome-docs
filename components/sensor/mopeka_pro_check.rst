@@ -24,10 +24,15 @@ device every time the sensor sends out a BLE broadcast.
       
     See :doc:`/components/sensor/mopeka_std_check` for original Mopeka Check sensors support.
 
+.. figure:: images/mopeka_pro_check.jpg
+    :align: center
 
+    Mopeka Pro Check LP over BLE.
 
-(images/mopeka_pro_check.jpg)
-(images/mopeka_pro_check_lippert.jpg)
+.. figure:: images/mopeka_pro_check_lippert.jpg
+    :align: center
+
+    Lippert™ Propane Tank Sensor 
 
 The original Mopeka Check sensors are not supported.
 
