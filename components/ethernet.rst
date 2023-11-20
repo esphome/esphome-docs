@@ -78,9 +78,7 @@ Configuration variables:
 - **cs_pin** (**Required for SPI chips**, :ref:`config-pin`): The SPI chip select pin.
 - **interrupt_pin** (*Optional*, :ref:`config-pin`): The interrupt pin. Only available for SPI chips.
 - **reset_pin** (*Optional*, :ref:`config-pin`): The reset pin. Only available for SPI chips.
-- **clock_speed** (*Optional*, float): The SPI clock speed. One of ``80MHz``, ``40MHz``, ``20MHz`` (default), ``10MHz``,
-  ``5MHz``, ``4MHz``, ``2MHz``, ``1MHz``, ``200kHz``, ``75kHz`` or ``1kHz``. A numeric value in Hz can alternatively
-  be specified. Only available for SPI chips.
+- **clock_speed** (*Optional*, float): The SPI clock speed. Any frequency between `8Mhz` and `80Mhz` is allowed, but the nearest integer division of `80Mhz` is used, i.e. `16Mhz` (`80Mhz` / 5) is used when `15Mhz` is configured. Default: `26.67Mhz`. Only available for SPI chips.
 - **manual_ip** (*Optional*): Manually configure the static IP of the node.
 
   - **static_ip** (**Required**, IPv4 address): The static IP of your node.
