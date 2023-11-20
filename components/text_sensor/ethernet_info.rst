@@ -15,12 +15,24 @@ via text sensors.
       - platform: ethernet_info
         ip_address:
           name: ESP IP Address
+          a0:
+            name: ESP IP Address 0
+          a1:
+            name: ESP IP Address 1
+          a2:
+            name: ESP IP Address 2
+          a3:
+            name: ESP IP Address 3
+          a4:
+            name: ESP IP Address 4
 
 
 Configuration variables:
 ------------------------
 
 - **ip_address** (*Optional*): Expose the IP Address of the ESP as a text sensor. All options from
+  :ref:`Text Sensor <config-text_sensor>`.
+- **a0-a4** (*Optional*): With IPv6 and dual stack the device get's at least two ip addresses, often more. To report all addresses the config could have up to 5 sub sensor to ip_address. All options from
   :ref:`Text Sensor <config-text_sensor>`.
 
 See Also
