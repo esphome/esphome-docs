@@ -78,6 +78,7 @@ Contributors
 - `Andreas Mandel (@amandel) <https://github.com/amandel>`__
 - `Amish Vishwakarma (@amishv) <https://github.com/amishv>`__
 - `Amit Keret (@amitkeret) <https://github.com/amitkeret>`__
+- `Jason Nader (@ammgws) <https://github.com/ammgws>`__
 - `Branden Cash (@ammmze) <https://github.com/ammmze>`__
 - `Alexander Momchilov (@amomchilov) <https://github.com/amomchilov>`__
 - `Oliver King (@AnachronisticPenguin) <https://github.com/AnachronisticPenguin>`__
@@ -1255,4 +1256,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated November 16, 2023.*
+*This page was last updated November 18, 2023.*

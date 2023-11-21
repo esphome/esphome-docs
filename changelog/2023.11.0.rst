@@ -73,6 +73,15 @@ Release 2023.11.1 - November 16
 - Fix MY9231 flicker :esphomepr:`5765` by :ghuser:`Mat931`
 
 
+Release 2023.11.2 - November 18
+-------------------------------
+
+- Bump aioesphomeapi from 18.4.0 to 18.4.1 :esphomepr:`5767` by :ghuser:`dependabot[bot]`
+- Bump aioesphomeapi from 18.4.1 to 18.5.2 :esphomepr:`5780` by :ghuser:`dependabot[bot]`
+- fix 32-bit arm :esphomepr:`5781` by :ghuser:`ssieb`
+- Add 2MB option for partitions.csv generation and restore use of user-defined partitions :esphomepr:`5779` by :ghuser:`kbx81`
+
+
 Full list of changes
 --------------------
 
