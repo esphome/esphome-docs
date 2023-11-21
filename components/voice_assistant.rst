@@ -61,7 +61,7 @@ Configuration:
   when the voice assistant has finished text-to-speech. A URL containing the audio response
   is available to automations as the variable ``x``.
 - **on_tts_stream_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform when audio stream
-  (voice response) playback starts.
+  (voice response) playback starts. Requires ``speaker`` to be configured.
 - **on_tts_stream_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when audio stream
   (voice response) playback ends.
 - **on_error** (*Optional*, :ref:`Automation <automation>`): An automation to perform
