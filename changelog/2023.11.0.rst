@@ -66,6 +66,13 @@ pre-populates when you connect the device.
       area: Living Room
 
 
+Release 2023.11.1 - November 16
+-------------------------------
+
+- Add more VA triggers :esphomepr:`5762` by :ghuser:`kbx81`
+- Fix MY9231 flicker :esphomepr:`5765` by :ghuser:`Mat931`
+
+
 Full list of changes
 --------------------
 
