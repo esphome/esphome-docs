@@ -95,7 +95,7 @@ Configuration variables:
 
 - **data_rate** (*Optional*): Set the data rate of the SPI interface to the display. One of ``80MHz``, ``40MHz`` (default), ``20MHz``, ``10MHz``, ``5MHz``, ``2MHz``, ``1MHz``, ``200kHz``, ``75kHz`` or ``1kHz``. If you have multiple ILI9xxx displays they must all use the same **data_rate**.
 - **spi_mode** (*Optional*): Set the mode for the SPI interface to the display. Default is ``MODE0`` but some displays require ``MODE3``.
-- **invert_display** (*Optional*): With this boolean option you can invert the display colors. **Note** some of the displays have this option set automatically to true and can't be changed.
+- **invert_colors** (*Optional*): With this boolean option you can invert the display colors. **Note** some of the displays have this option set automatically to true and can't be changed.
 - **rotation** (*Optional*): Set the rotation of the display. One of ``0°``, ``90°``, ``180°``, or ``270°``, or it can be a set of options describing the way in which the axes are transformed. Note that the size given in ``dimensions:`` should represent the final display size, after rotation. The default rotation is model-specific.
 
    - **swap_xy** (*Optional*, boolean): If true, exchange the x and y axes. Default is false. By combining this with one of the ``mirror`` options hardware rotation of the display can be controlled.
