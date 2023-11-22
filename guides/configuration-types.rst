@@ -544,6 +544,28 @@ For example to set a specific update interval on a common uptime sensor that is 
     - id: !extend uptime_sensor
       update_interval: 10s
 
+Remove
+------
+
+To remove existing entries from included configurations ``!remove [config_id]`` can be used, where ``config_id`` is the ID of the entry to modify.
+For example to remove a common uptime sensor that is shared between configurations:
+
+.. code-block:: yaml
+
+    packages:
+      common: !include common.yaml
+
+    sensor:
+    - id: !remove uptime_sensor
+
+To remove captive portal for a specific device:
+
+.. code-block:: yaml
+
+    packages:
+      common: !include common.yaml
+
+    captive_portal: !remove
 
 See Also
 --------
