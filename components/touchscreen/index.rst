@@ -5,7 +5,7 @@ Touchscreen Components
     :description: Instruction for using touchscreen components.
     :image: folder-open.svg
 
-The ``touchscreen`` component holds the base code for most touchscreen components
+The ``touchscreen`` component holds the base code for most touchscreen driver components
 available in ESPHome and is responsible for passing the touch events to
 ``binary_sensors`` with the ``touchscreen`` platform.
 
@@ -19,28 +19,85 @@ Base Touchscreen Configuration
     # Example touchscreen
     touchscreen:
       - platform: ...
+        display: display1
         on_touch:
+          then:
+            ...
+        on_update:
+          then:
+            ...
+        on_release:
           then:
             ...
 
 Configuration variables:
 ************************
+- **display** (*Required*, :ref:`config-id`): The display to use this touchscreen with.
 
 - **on_touch** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the touchscreen is touched. See :ref:`touchscreen-on_touch`.
-- **display** (**Required**, :ref:`config-id`): The display to use. If only one display is
-  available, this can be omitted.
+- **on_update** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the touchscreen is touched. See :ref:`touchscreen-on_update`.
+- **on_release** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the touchscreen is touched. See :ref:`touchscreen-on_release`.
+
+
+.. _touchscreen-touchpoint:
+
+``TouchPoint`` argument type.
+-----------------------------
+
+Both the :ref:`touchscreen-on_touch` and :ref:`touchscreen-on_update` have an argument of the type :apistruct:`touchscreen::TouchPoint` in a
+list or as variable (only ``on_touch``).
+
+The integer members for the touch positions below are in relation to the display width and height:
+
+  ``x`` and ``y`` this shows the current position.
+  ``x_last`` and ``y_last`` this shows the priveus position.
+  ``x_first`` and ``y_first`` This shows the position of when the touch was firstly detected.
+
+  ``x_raw`` and ``y_raw`` This if for calibrating the touchscreen in relation of the display. This replaces the properties with the same name in the touchscreen classes.
+
+  ``id`` is a number given by the touchscreen referencing the detected touch on a multi touch screen.
+  ``state`` shows the state of the touch. This can be **1** as just touched or **2** when the touched position has been moved around.
+
 
 .. _touchscreen-on_touch:
 
 ``on_touch`` Trigger
 --------------------
 
-This automation will be triggered when the touchscreen detects a touch.
+This automation will be triggered when the touchscreen detects a first touch on the touchscreen. And will not be fired until
+all touches (for multi touch supported drivers) are release.
 
-This trigger provides one argument named ``touch`` of type :apistruct:`touchscreen::TouchPoint` which has two integer members: ``x`` and ``y`` which
-represent the position of the touch in relation to the display width and height. It also has optional members that will be set
-depending on the touchscreen platform.
+NOTE: This is different from before [TODO]release number[/TODO]. When you still want to get the update positions use the :ref:`touchscreen-on_update`.
+
+This trigger provides two arguments named ``touch`` of type :ref:`touchscreen-touchpoint` and ``touches``with a list of all touches.
+
+
+.. _touchscreen-on_update:
+
+``on_update`` Trigger
+---------------------
+
+This new automation will be triggered when the touchscreen detects an extra touch or that a touch has moved around on the screen.
+
+
+This trigger provides one argument named ``touches`` of type :apistruct:`touchscreen::TouchPoints_t` which has has a list of
+ :ref:`touchscreen::TouchPoint`.
+
+You can use this trigger for example for gesturn's etc.
+
+
+.. _touchscreen-on_release:
+
+``on_release`` Trigger
+----------------------
+
+This new automation will be triggered when all earlier touches where release from the touchscreen.
+
+At this point of time it has no extra arguments.
+
 
 Binary Sensor
 -------------
