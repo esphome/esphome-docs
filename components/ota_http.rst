@@ -12,8 +12,8 @@ As the device is in client mode, it can be on a foreign network, or behind a fir
 
     # Example configuration entry
     ota_http:
-        esp8266_disable_ssl_support: no # `no` by default. 
-        safe_mode: false # `false` by default
+        esp8266_disable_ssl_support: no # by default. 
+        safe_mode: fallback # by default
 
     button:
       - platform: template
@@ -22,14 +22,17 @@ As the device is in client mode, it can be on a foreign network, or behind a fir
           then:
             - ota_http.flash:
                 url: http://example.com/firmware.bin
-                verify_ssl: false
+                verify_ssl: false 
             - logger.log: "This message should be not displayed(reboot)"
 
 Configuration variables:
 ------------------------
 
--  **safe_mode** (*Optional*, boolean): Will retry to flash at boot time if the ota fail.
-   Defaults to ``false``.
+-  **safe_mode** (*Optional*, boolean, string): Flash at boot time. Defaults to ``fallback``.
+    Valid value:
+        - ``no``: Never attempt to flash at boot time.
+        - ``yes``: Always flash at boot time.
+        - ``fallback``: Retry at boot time if ota fail.
 
 ESP8266 Options:
 
