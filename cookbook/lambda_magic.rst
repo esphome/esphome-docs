@@ -365,6 +365,41 @@ In this example a :doc:`/components/cover/time_based` is used with the GPIO conf
         - switch.turn_off: open_cover
         - switch.turn_off: close_cover
 
+Update numeric values from text input
+-------------------------------------
+
+Sometimes it may be more confortable to use a :doc:`/components/text/template` to change some numeric values from the user interface.
+ESPHome has some nice `helper functions <https://github.com/esphome/esphome/blob/dev/esphome/core/helpers.h>`__ among which
+theres's one to convert text to numbers.
+
+In the example below we have a text input and a template sensor which can be updated from the text input field. What the lambda
+does, is to parse and convert the text string to a number - which only succeedes if the entered string contains characters
+represesenting a float number (such as digits, ``-`` and ``.``). If the entered string contains any other characters, the lambda
+will return ``NaN``, which corresponds to ``unknown`` sensor state.
+
+.. code-block:: yaml
+
+    text:
+      - platform: template
+        name: "Number type in"
+        optimistic: true
+        min_length: 0
+        max_length: 16
+        mode: text
+        on_value:
+          then:
+            - sensor.template.publish:
+                id: num_from_text
+                state: !lambda |-
+                  auto n = parse_number<float>(x);
+                  return n.has_value() ? n.value() : NAN;
+
+    sensor:
+      - platform: template
+        id: num_from_text
+        name: "Number from text"
+
+
 See Also
 --------
 
