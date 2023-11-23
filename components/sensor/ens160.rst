@@ -54,7 +54,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **aqi** (*Optional*): The information for the air quality index sensor.
+- **aqi** (*Optional*): Configuration for the air quality index sensor.
 
   - **name** (**Required**, string): The name for the AQI sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
