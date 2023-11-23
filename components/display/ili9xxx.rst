@@ -187,7 +187,7 @@ To configure an image adaptive color pallet to show greater than 8 bit color dep
         lambda: |-
           it.image(0, 0, id(myimage));
 
-Using the ``panel_setup`` options to hardware rotate the display on a Lilygo T-Embed. This has an st7789v but only uses 170 pixels of the 240 width.
+Using the ``rotation`` options to hardware rotate the display on a Lilygo T-Embed. This has an st7789v but only uses 170 pixels of the 240 width.
 This config rotates the display into landscape mode using the driver chip.
 
 .. code-block:: yaml
@@ -200,11 +200,11 @@ This config rotates the display into landscape mode using the driver chip.
         width: 320
         offset_height: 35
         offset_width: 0
-        panel_setup:
+        rotation:
           swap_xy: true
           mirror_x: false
           mirror_y: true
-          color_order: bgr
+        color_order: bgr
         data_rate: 80MHz
         cs_pin: 10
         dc_pin: GPIO13
