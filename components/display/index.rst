@@ -678,6 +678,13 @@ Use this component to store graphical images on the device, you can then draw th
         id: alert
         resize: 80x80
 
+.. code-block:: yaml
+
+    image:
+      - file: https://esphome.io/_images/logo.png
+        id: esphome_logo
+        resize: 200x162
+
 Configuration variables:
 
 - **file** (**Required**, string):
@@ -685,7 +692,8 @@ Configuration variables:
   - **Local files**: The path (relative to where the .yaml file is) of the image file.
   - **Material Design Icons**: Specify the `Material Design Icon <https://pictogrammers.com/library/mdi/>`_
     id in the format ``mdi:icon-name``, and that icon will automatically be downloaded and added to the configuration.
-  
+  - **Remote files**: The URL of the image file.
+
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
 - **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
