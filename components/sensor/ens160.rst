@@ -75,10 +75,8 @@ Advanced:
   Temperature and humidity compensation improves the accuracy of sensor readings. Without compensation, the
   ENS160 internally assumes 25°C temperature and 50% humidity, with readings noticeably diverting from real changes without compensation in temperature and humidity.
   
-  - **temperature** (**Required**, :ref:`config-id`): Give an external temperature sensor ID
-    here. 
-  - **humidity** (**Required**, :ref:`config-id`): Give an external humidity sensor ID
-    here. 
+  - **temperature** (**Required**, :ref:`config-id`): The ID of an external temperature sensor.
+  - **humidity** (**Required**, :ref:`config-id`): The ID of an external humidity sensor.
     
 Example Text Sensor configuration
 ---------------------------------
