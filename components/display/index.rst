@@ -184,7 +184,7 @@ Next, create a ``font:`` section in your configuration:
 
       - file: "fonts/tom-thumb.bdf"
         id: tomthumb
-        
+
       - file: 'gfonts://Material+Symbols+Outlined'
         id: icon_font_50
         size: 50
@@ -202,7 +202,7 @@ Configuration variables:
 
     **Google Fonts**:
 
-    Each Google Font will be downloaded once and cached for future use. This can also be used to download Material 
+    Each Google Font will be downloaded once and cached for future use. This can also be used to download Material
     Symbols or Icons as in the example above.
 
   - **family** (**Required**, string): The name of the Google Font family.
@@ -407,10 +407,10 @@ You can display current time using a time component. Please see the example :ref
 Screen Clipping
 ***************
 
-Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show 
+Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show
 a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
 
-With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region 
+With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region
 you can stop the clipping process with ``end_clipping();`` . You can nest as many ``start_clipping();`` as you want as long
 you end them as many times as well.
 
@@ -420,7 +420,7 @@ you end them as many times as well.
       - platform: ...
         # ...
         id: my_binary_sensor
-    
+
     color:
       - name: my_red
         red: 100%
@@ -439,12 +439,12 @@ you end them as many times as well.
           it.printf(0, 0, id(my_font), id(my_red), "State: %s", id(my_binary_sensor).state ? "ON" : "OFF");
           it.end_clipping();
 
-After you started clipping you can manipulate the region with ``extend_clipping(left, top, right, bottom);`` 
+After you started clipping you can manipulate the region with ``extend_clipping(left, top, right, bottom);``
 and ``shrink_clipping(left, top, right, bottom);`` within previous set clipping region.
 
 With ``get_clipping();`` you get a ``Rect`` object back with the latest set clipping region.
 
-.. code-block:: cpp 
+.. code-block:: cpp
 
     class Rect {
         int16_t x;  ///< X/Left coordinate
@@ -979,7 +979,7 @@ Color Test Pattern
 ******************
 
 If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
-It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine 
+It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine
 the best way to help you, **a picture of the result of this script is very helpful.**
 
 Should you `create an issue <https://github.com/esphome/issues/issues>`__ in GitHub regarding your display, please
@@ -996,15 +996,15 @@ be sure to **include a link to where you purchased it** so that we can validate 
           for(auto i = 0; i<256; i++) {
             it.horizontal_line(shift_x+  0,i+shift_y,50, my_red.fade_to_white(i));
             it.horizontal_line(shift_x+ 50,i+shift_y,50, my_red.fade_to_black(i));
-    
+
             it.horizontal_line(shift_x+105,i+shift_y,50, my_green.fade_to_white(i));
             it.horizontal_line(shift_x+155,i+shift_y,50, my_green.fade_to_black(i));
-    
+
             it.horizontal_line(shift_x+210,i+shift_y,50, my_blue.fade_to_white(i));
             it.horizontal_line(shift_x+260,i+shift_y,50, my_blue.fade_to_black(i));
           }
           it.rectangle(shift_x+ 0, 0+shift_y, shift_x+ 310, 256+shift_y, my_yellow);
-    
+
     color:
       - id: my_blue
         blue: 100%
