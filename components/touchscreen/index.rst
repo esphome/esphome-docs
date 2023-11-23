@@ -80,8 +80,8 @@ This trigger provides two arguments named ``touch`` of type *touchpoint* and ``t
 This new automation will be triggered when the touchscreen detects an extra touch or that a touch has moved around on the screen.
 
 
-This trigger provides one argument named ``touches`` of type :apistruct:`touchscreen::TouchPoints_t` which has has a list of
- :ref:`touchscreen::TouchPoint`.
+This trigger provides one argument named ``touches`` of type :apiref:`touchscreen::TouchPoints_t` which has a list of
+ :ref:`touchscreen-touchpoint`.
 
 You can use this trigger for example for gesturn's etc.
 
