@@ -233,6 +233,7 @@ Contributors
 - `Cameron Bulock (@cbulock) <https://github.com/cbulock>`__
 - `Ciprian Constantinescu (@cciprian5) <https://github.com/cciprian5>`__
 - `Carlos Cordero (@ccorderor) <https://github.com/ccorderor>`__
+- `Cody Cutrer (@ccutrer) <https://github.com/ccutrer>`__
 - `cdmonk (@cdmonk) <https://github.com/cdmonk>`__
 - `ceaswaran (@ceaswaran) <https://github.com/ceaswaran>`__
 - `Xavi (@Cebeerre) <https://github.com/Cebeerre>`__
@@ -267,7 +268,6 @@ Contributors
 - `Max (@coltoncat) <https://github.com/coltoncat>`__
 - `Conclusio (@Conclusio) <https://github.com/Conclusio>`__
 - `Conor Burns (@Conor-Burns) <https://github.com/Conor-Burns>`__
-- `John Coggeshall (@coogle) <https://github.com/coogle>`__
 - `Cooper Dale (@Cooper-Dale) <https://github.com/Cooper-Dale>`__
 - `copercini (@copercini) <https://github.com/copercini>`__
 - `Corban Mailloux (@corbanmailloux) <https://github.com/corbanmailloux>`__
@@ -281,6 +281,7 @@ Contributors
 - `cryptelli (@cryptelli) <https://github.com/cryptelli>`__
 - `cstaahl (@cstaahl) <https://github.com/cstaahl>`__
 - `Chris Talkington (@ctalkington) <https://github.com/ctalkington>`__
+- `CVan (@cvandesande) <https://github.com/cvandesande>`__
 - `cvwillegen (@cvwillegen) <https://github.com/cvwillegen>`__
 - `Christoph Wempe (@CWempe) <https://github.com/CWempe>`__
 - `Steven Webb (@cy1701) <https://github.com/cy1701>`__
@@ -657,7 +658,6 @@ Contributors
 - `JMoratelli (@JMoratelli) <https://github.com/JMoratelli>`__
 - `Jonathas Barbosa (@jnthas) <https://github.com/jnthas>`__
 - `Johboh (@Johboh) <https://github.com/Johboh>`__
-- `John Britton (@johndbritton) <https://github.com/johndbritton>`__
 - `John Moxley (@johnmoxley) <https://github.com/johnmoxley>`__
 - `Dave Johnston (@johnsto) <https://github.com/johnsto>`__
 - `joiboi (@joiboi) <https://github.com/joiboi>`__
@@ -921,6 +921,7 @@ Contributors
 - `Derrick Lyndon Pallas (@pallas) <https://github.com/pallas>`__
 - `Panuruj Khambanonda (PK) (@panuruj) <https://github.com/panuruj>`__
 - `Daniel Mahaney (@Papa-DMan) <https://github.com/Papa-DMan>`__
+- `Christian Schmitt (@papillon81) <https://github.com/papillon81>`__
 - `Faidon Liambotis (@paravoid) <https://github.com/paravoid>`__
 - `Patrick Collins (@patrickcollins12) <https://github.com/patrickcollins12>`__
 - `Paul Deen (@PaulAntonDeen) <https://github.com/PaulAntonDeen>`__
@@ -1213,7 +1214,6 @@ Contributors
 - `WallyCZ (@WallyCZ) <https://github.com/WallyCZ>`__
 - `walzing (@walzing) <https://github.com/walzing>`__
 - `warpzone (@warpzone) <https://github.com/warpzone>`__
-- `John "Warthog9" Hawley (@warthog9) <https://github.com/warthog9>`__
 - `Wauter (@Wauter) <https://github.com/Wauter>`__
 - `WeekendWarrior1 (@WeekendWarrior1) <https://github.com/WeekendWarrior1>`__
 - `Thomas Aldrian (@Weissnix4711) <https://github.com/Weissnix4711>`__
@@ -1256,4 +1256,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated November 18, 2023.*
+*This page was last updated November 22, 2023.*
