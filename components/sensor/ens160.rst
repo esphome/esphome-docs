@@ -42,8 +42,7 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **eco2** (**Required**): The information for the eCO2.
-  sensor
+- **eco2** (**Required**): Configuration for the eCO2 sensor.
 
   - **name** (**Required**, string): The name for the eCO2
     sensor.
