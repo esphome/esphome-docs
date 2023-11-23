@@ -72,7 +72,7 @@ all touches (for multi touch supported drivers) are release.
 
 NOTE: This is different from before [TODO]release number[/TODO]. When you still want to get the update positions use the :ref:`touchscreen-on_update`.
 
-This trigger provides two arguments named ``touch`` of type :ref:`touchscreen-touchpoint` and ``touches`` with a list of all touches.
+This trigger provides two arguments named ``touch`` of type :apiref:`touchscreen-touchpoint` and ``touches`` with a list of all touches.
 
 
 .. _touchscreen-on_update:
