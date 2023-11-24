@@ -38,7 +38,7 @@ The ``hbridge`` fan platform allows you to use a compatible *h-bridge* (L298N, D
         pin_a: motor_forward_pin
         pin_b: motor_reverse_pin
         # enable_pin: motor_enable
-        decay_mode: slow   # slow decay mode (braking) or fast decay (coasting).
+        decay_mode: slow   # slow decay mode (coasting) or fast decay (braking).
 
 Configuration variables:
 ------------------------
