@@ -37,7 +37,7 @@ ILI9341 (`datasheet <https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf>`__,
 displays from the same chip family with ESPHome. As this is a somewhat higher resolution display and may require pins
 beyond the typical SPI connections, it is better suited for use with the ESP32.
 
-**Note:** To use 16bit instead of 8bit colors use a esp32 with enough PSRAM the display.
+**Note:** use of 16 bit colors requires double the amount of RAM as 8 bit, and may need PSRAM to be available.
 
 .. figure:: images/ili9341-full.jpg
     :align: center
@@ -80,11 +80,12 @@ Configuration variables:
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **color_palette** (*Optional*): The type of color pallet that will be used in the ESP's internal 8-bits-per-pixel buffer.  This can be used to improve color depth quality of the image.  For example if you know that the display will only be showing grayscale images, the clarity of the display can be improved by targeting the available colors to monochrome only.  Options are:
-- **color_order** (*Optional*): Should be one of ``bgr`` (default) or ``rgb``.
 
   - ``NONE`` (default)
   - ``GRAYSCALE``
   - ``IMAGE_ADAPTIVE``
+
+- **color_order** (*Optional*): Should be one of ``bgr`` (default) or ``rgb``.
 - **color_palette_images** (*Optional*): A list of image files that will be used to generate the color pallet for the display.  This should only be used in conjunction with ``-color_palette: IMAGE_ADAPTIVE`` above.  The images will be analysed at compile time and a custom color pallet will be created based on the most commonly occuring colors.  A typical setting would be a sample image that represented the fully populated display.  This can significantly improve the quality of displayed images.  Note that these images are not stored on the ESP device, just the 256byte color pallet created from them.
 - **dimensions** (*Optional*): Dimensions of the screen, specified either as *width* **x** *height* (e.g ``320x240``) or with separate config keys. If not provided the dimensions will be determined by the model selected.
 
@@ -96,11 +97,19 @@ Configuration variables:
 - **data_rate** (*Optional*): Set the data rate of the SPI interface to the display. One of ``80MHz``, ``40MHz`` (default), ``20MHz``, ``10MHz``, ``5MHz``, ``2MHz``, ``1MHz``, ``200kHz``, ``75kHz`` or ``1kHz``. If you have multiple ILI9xxx displays they must all use the same **data_rate**.
 - **spi_mode** (*Optional*): Set the mode for the SPI interface to the display. Default is ``MODE0`` but some displays require ``MODE3``.
 - **invert_colors** (*Optional*): With this boolean option you can invert the display colors. **Note** some of the displays have this option set automatically to true and can't be changed.
-- **rotation** (*Optional*): Set the rotation of the display. One of ``0°``, ``90°``, ``180°``, or ``270°``, or it can be a set of options describing the way in which the axes are transformed. Note that the size given in ``dimensions:`` should represent the final display size, after rotation. The default rotation is model-specific.
+- **rotation** (*Optional*): Rotate the display presentation in software. Choose one of ``0°``, ``90°``, ``180°``, or ``270°``. This option cannot be used with ``transform``.
+- **transform** (*Optional*): Transform the display presentation using hardware. All defaults are ``false``. This option cannot be used with ``rotation``.
 
-   - **swap_xy** (*Optional*, boolean): If true, exchange the x and y axes. Default is false. By combining this with one of the ``mirror`` options hardware rotation of the display can be controlled.
+   - **swap_xy** (*Optional*, boolean): If true, exchange the x and y axes.
    - **mirror_x** (*Optional*, boolean): If true, mirror the x axis.
    - **mirror_y** (*Optional*, boolean): If true, mirror the y axis.
+
+
+**Note:** To rotate the display in hardware use one of the following combinations:
+
+    - 90 degrees - use ``swap_xy`` with ``mirror_x``
+    - 180 degrees - use ``mirror_x`` with ``mirror_y``
+    - 270 degrees - use ``swap_xy`` with ``mirror_y``
 
 
 Configuration examples
@@ -187,7 +196,7 @@ To configure an image adaptive color pallet to show greater than 8 bit color dep
         lambda: |-
           it.image(0, 0, id(myimage));
 
-Using the ``rotation`` options to hardware rotate the display on a Lilygo T-Embed. This has an st7789v but only uses 170 pixels of the 240 width.
+Using the ``transform`` options to hardware rotate the display on a Lilygo T-Embed. This has an st7789v but only uses 170 pixels of the 240 width.
 This config rotates the display into landscape mode using the driver chip.
 
 .. code-block:: yaml
@@ -200,7 +209,7 @@ This config rotates the display into landscape mode using the driver chip.
         width: 320
         offset_height: 35
         offset_width: 0
-        rotation:
+        transform:
           swap_xy: true
           mirror_x: false
           mirror_y: true
