@@ -15,6 +15,10 @@ and can be put in different modes like ``HEAT``, ``COOL``, ``HEAT_COOL`` or ``OF
 
     Climate Device UI in Home Assistant.
 
+.. note::
+
+    Not all climate components support all possible features. Check the corresponding documentation page for details on what is supported.
+
 .. _config-climate:
 
 Base Climate Configuration
