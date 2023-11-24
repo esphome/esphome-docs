@@ -193,6 +193,7 @@ Configuration examples
 
     Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY. Revision 7 and newer of it use the RTL8201 Ethernet PHY. Support for RTL8201 is available from ESPHome version 2022.12 upwards.
 
+
 **OpenHacks LAN8720**:
 
 .. code-block:: yaml
@@ -210,6 +211,28 @@ Configuration examples
     program properly.
 
 
+**Esp32-Stick-Eth** and **Esp32-Stick-PoE-P** and **Esp32-Stick-PoE-A**:
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO17_OUT
+      phy_addr: 1
+
+**LILYGO T-ETH-Lite**:
+
+.. code-block:: yaml
+
+    ethernet:
+      type: RTL8201
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO0_IN
+      phy_addr: 0
+      power_pin: GPIO12
 
 See Also
 --------

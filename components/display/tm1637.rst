@@ -46,8 +46,6 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
-.. _display-tm1637_lambda:
-
 Binary Sensor
 -------------
 
@@ -79,6 +77,8 @@ Configuration variables:
   0 to 15.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
+.. _display-tm1637_lambda:
+
 Rendering Lambda
 ----------------
 
@@ -86,7 +86,7 @@ The TM1637 has a similar API to the fully fledged :ref:`display-engine`, but it'
 7-segment displays don't have a concept of individual pixels. In the lambda you're passed a variable called ``it``
 as with all other displays. In this case however, ``it`` is a TM1637 instance (see API Reference).
 
-The most basic operation with the TM1637 is wiring a simple number to the screen as in the configuration example
+The most basic operation with the TM1637 is writing a simple number to the screen as in the configuration example
 at the top of this page. But even though you're passing in a string (here ``"0123"``), ESPHome converts it
 into a representation that the TM1637 can understand: The exact pixels that should be turned on. And of course,
 not all characters can be represented. You can see a full list of characters :ref:`at the MAX7219 docs <display-max7219_characters>`.

@@ -41,7 +41,7 @@ Configuration variables:
 
 -  **pin** (**Required**, :ref:`config-pin`): The pin to transmit the remote signal on.
 -  **carrier_duty_percent** (*Optional*, int): How much of the time the remote is on. For example, infrared
-   protocols modulate the signal using a carrier signal. Set this is ``50%`` if you're working with IR LEDs and to
+   protocols modulate the signal using a carrier signal. Set this to ``50%`` if you're working with IR LEDs and to
    ``100%`` if working with other things like 433MHz transmitters.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation. Use this if you have multiple remote transmitters.
@@ -99,7 +99,25 @@ Configuration variables:
 
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
 
-.. _remote_transmitter-transmit_canalsat:
+.. _remote_transmitter-transmit_byronsx:
+
+``remote_transmitter.transmit_byronsx`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends a Byron Doorbell RF protocol code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_byronsx:
+          address: '0x4f'
+          command: '0x2'      
+
+Configuration variables:
+
+- **address** (**Required**, int): The 8-bit ID to send, see dumper output for more info.
+- **command** (**Required**, int): The command to send, see dumper output for more info.
+- All other options from :ref:`remote_transmitter-transmit_action`... _remote_transmitter-transmit_canalsat:
 
 ``remote_transmitter.transmit_canalsat`` Action
 ***********************************************
@@ -158,17 +176,19 @@ Configuration variables:
 ``remote_transmitter.transmit_coolix`` Action
 *********************************************
 
-This :ref:`action <config-action>` sends a 24-bit Coolix infrared remote code to a remote transmitter.
+This :ref:`action <config-action>` sends one or two (stricted or not) 24-bit Coolix infrared remote codes to a remote transmitter.
 
 .. code-block:: yaml
 
     on_...:
       - remote_transmitter.transmit_coolix:
-          data: 0xB23FE4
+          first: 0xB23FE4
+          second: 0xB23FE4
 
 Configuration variables:
 
-- **data** (**Required**, int): The Coolix code to send, see dumper output for more info.
+- **first** (**Required**, :ref:`templatable <config-templatable>`, uint32_t): The first 24-bit Coolix code to send, see dumper output for more info.
+- **second** (*Optional*, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
 
 .. _remote_transmitter-transmit_dish:
 
@@ -230,6 +250,24 @@ This :ref:`action <config-action>` sends a JVC infrared remote code to a remote 
 Configuration variables:
 
 - **data** (**Required**, int): The JVC code to send, see dumper output for more info.
+
+.. _remote_transmitter-transmit_haier:
+
+``remote_transmitter.transmit_haier`` Action
+********************************************
+
+This :ref:`action <config-action>` sends a 104-bit Haier code to a remote transmitter. 8-bits of checksum added automatically.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_haier:
+          code: [0xA6, 0xDA, 0x00, 0x00, 0x40, 0x40, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x05]
+
+Configuration variables:
+
+- **code** (**Required**, list): The 13 byte Haier code to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_lg:
 

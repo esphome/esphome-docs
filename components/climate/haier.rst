@@ -73,6 +73,7 @@ This component requires a :ref:`uart` to be setup.
         uart_id: ac_port
         wifi_signal: true
         beeper: true
+        display: true
         outdoor_temperature:
           name: Haier AC outdoor temperature
         visual:
@@ -81,7 +82,7 @@ This component requires a :ref:`uart` to be setup.
           temperature_step: 1 °C
         supported_modes:
         - 'OFF'
-        - AUTO
+        - HEAT_COOL
         - COOL
         - HEAT
         - DRY
@@ -91,6 +92,10 @@ This component requires a :ref:`uart` to be setup.
         - VERTICAL
         - HORIZONTAL
         - BOTH
+    supported_presets:
+      - ECO
+      - BOOST
+      - SLEEP
 
 
 Configuration variables:
@@ -100,15 +105,21 @@ Configuration variables:
 - **uart_id** (*Optional*, :ref:`config-id`): ID of the UART port to communicate with AC.
 - **protocol** (*Optional*, string): Defines protocol of communication with AC. Possible values: hon or smartair2. Default value is smartair2.
 - **name** (**Required**, string): The name of the climate device.
-- **wifi_signal** (*Optional*, boolean): If true - send wifi signal level to AC. Supported only by hOn protocol.
+- **wifi_signal** (*Optional*, boolean): If true - send wifi signal level to AC.
+- **answer_timeout** (*Optional*, :ref:`config-time`): Responce timeout. Default value is 200ms.
+- **alternative_swing_control** (*Optional*, boolean): (supported by smartAir2 only) If true - use alternative values to control swing mode. Use only if the original control method is not working for your AC.
+- **control_packet_size** (*Optional*, int): (supported only by hOn) Define the size of the control packet. Can help with some newer models of ACs that use bigger packets. Default value: 10.
+- **control_method** (*Optional*, list): (supported only by hOn) Defines control method (should be supported by AC). Supported values: MONITOR_ONLY - no control, just monitor status, SET_GROUP_PARAMETERS - set all AC parameters with one command (default method), SET_SINGLE_PARAMETER - set each parameter individually (this method is supported by some new ceiling ACs like AD71S2SM3FA)
+- **display** (*Optional*, boolean): Can be used to set AC display off.
 - **beeper** (*Optional*, boolean): Can be used to disable beeping on commands from AC. Supported only by hOn protocol.
 - **outdoor_temperature** (*Optional*): Temperature sensor for outdoor temperature. Supported only by hOn protocol.
 
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): ID of the sensor, can be used for code generation
   - All other options from :ref:`Sensor <config-sensor>`.
-- **supported_modes** (*Optional*, list): Can be used to disable some of AC modes. Possible values: 'OFF', AUTO, COOL, HEAT, DRY, FAN_ONLY
-- **supported_swing_modes** (*Optional*, list): Can be used to disablesome swing modes if your AC does not support it. Possible values: 'OFF', VERTICAL, HORIZONTAL, BOTH
+- **supported_modes** (*Optional*, list): Can be used to disable some of AC modes. Possible values: 'OFF', HEAT_COOL, COOL, HEAT, DRY, FAN_ONLY
+- **supported_swing_modes** (*Optional*, list): Can be used to disable some swing modes if your AC does not support it. Possible values: 'OFF', VERTICAL, HORIZONTAL, BOTH
+- **supported_presets** (*Optional*, list): Can be used to disable some presets. Possible values for smartair2 are: BOOST, COMFORT. Possible values for hOn are: ECO, BOOST, SLEEP
 - All other options from :ref:`Climate <config-climate>`.
 
 Automations
