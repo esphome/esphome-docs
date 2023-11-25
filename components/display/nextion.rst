@@ -263,7 +263,7 @@ Once you know the page id, it's time to update the components. Two strategies wo
 .. _nextion-on_touch:
 
 ``on_touch``
-***********
+************
 
 This automation is triggered when a component is pressed or released on the Nextion display.
 
