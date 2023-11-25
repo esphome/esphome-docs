@@ -42,6 +42,7 @@ uses an inverting transistor driver to send data.
       - platform: gpio
         pin:
           number: 14
+          inverted: true
           mode:
             input: true
             pullup: true
@@ -64,6 +65,7 @@ the ESP32 via USB from 5V.
 
 
 .. figure:: images/he60r-sch.jpg
+    :target: /_images/he60r-sch.jpg
 
 
 Configuration variables:
