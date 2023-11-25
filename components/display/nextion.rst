@@ -276,6 +276,7 @@ The following arguments will be available:
   - ``touch_event``: It will be ``true`` for a "press" event, or ``false`` for a "release" event.
 
 .. code-block:: yaml
+
     on_touch:
       then:
         lambda: |-
