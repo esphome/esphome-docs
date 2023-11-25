@@ -268,9 +268,9 @@ Once you know the page id, it's time to update the components. Two strategies wo
 This automation is triggered when a component is pressed or released on the Nextion display.
 
 The following arguments will be available:
-- ``page_id``: Contains the id (integer) of the page where the touch happened.
-- ``component_id``: Contains the id (integer) of the component touched. It's required that the component have "Send Component ID" enabled either for "Touch Press Event" and/or "Touch Release Event".
-- ``touch_event``: It will be ``true`` for a "press" event, or ``false`` for a "release" event.
+  - ``page_id``: Contains the id (integer) of the page where the touch happened.
+  - ``component_id``: Contains the id (integer) of the component touched. It's required that the component have "Send Component ID" enabled either for "Touch Press Event" and/or "Touch Release Event".
+  - ``touch_event``: It will be ``true`` for a "press" event, or ``false`` for a "release" event.
 
 .. code-block:: yaml
     on_touch:
