@@ -52,10 +52,10 @@ list or as variable (only ``on_touch``).
 
 The integer members for the touch positions below are in relation to the display width and height:
 
-- ``x`` and ``y`` this shows the current position.
-- ``x_last`` and ``y_last`` this shows the priveus position.
-- ``x_first`` and ``y_first`` This shows the position of when the touch was firstly detected.
-- ``x_raw`` and ``y_raw`` This if for calibrating the touchscreen in relation of the display. This replaces the properties with the same name in the touchscreen classes.
+- ``x`` and ``y`` are the current position.
+- ``x_last`` and ``y_last`` are the previous position.
+- ``x_first`` and ``y_first`` are the position of the touch when it was first detected.
+- ``x_raw`` and ``y_raw`` are for calibrating the touchscreen in relation of the display. This replaces the properties with the same name in the touchscreen classes.
 
 - ``id`` is a number given by the touchscreen referencing the detected touch on a multi touch screen.
 - ``state`` shows the state of the touch. This can be **1** as just touched or **2** when the touched position has been moved around.
