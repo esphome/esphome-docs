@@ -83,7 +83,7 @@ This new automation will be triggered when the touchscreen detects an extra touc
 This trigger provides one argument named ``touches`` of type :apiref:`touchscreen::TouchPoints_t` which has a list of
  :ref:`touchscreen-touchpoint`.
 
-You can use this trigger for example for gesturn's etc.
+This trigger may be useful to detect gestures such as swiping across the display.
 
 
 .. _touchscreen-on_release:
