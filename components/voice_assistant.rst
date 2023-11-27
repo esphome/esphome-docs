@@ -14,7 +14,7 @@ ESPHome devices with a microphone are able to stream the audio to Home Assistant
 .. warning::
 
     Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
-    
+
     **Crashes are likely to occur** if you include too many additional components in your device's
     configuration. In particular, Bluetooth/BLE components are known to cause issues when used in
     combination with Voice Assistant and/or other audio components.
@@ -119,6 +119,7 @@ Voice Assistant Conditions
 The following conditions are available for use in automations:
 
 - ``voice_assistant.is_running`` - Returns true if the voice assistant is currently running.
+- ``voice_assistant.connected`` - Returns true if the voice assistant is currently connected to Home Assistant.
 
 Wake word detection
 -------------------
