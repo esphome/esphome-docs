@@ -64,6 +64,22 @@ Advanced features:
   - **mode** (**Required**): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
     all pins go LOW) or ``ANY_HIGH`` (wake up when any pin goes HIGH).
 
+- On devices supporting wake from multiple pins, **wakeup_pin** can take a list of pin definitions like below
+  (this is only supported on ESP32C3 as of now)
+  
+  .. code-block:: yaml
+
+    # Example configuration entry
+    deep_sleep:
+      run_duration: 10s
+      wakeup_pin:
+        - pin: 3
+          wakeup_pin_mode: KEEP_AWAKE
+        - pin: 4
+          wakeup_pin_mode: INVERT_WAKEUP
+        - pin: 5
+
+
 .. note::
 
     Only one deep sleep component may be configured.
