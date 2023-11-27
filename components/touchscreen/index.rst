@@ -44,8 +44,8 @@ Configuration variables:
 
 .. _touchscreen-touchpoint:
 
-``TouchPoint`` argument type.
------------------------------
+``TouchPoint`` Argument Type
+----------------------------
 
 Both the :ref:`touchscreen-on_touch` and :ref:`touchscreen-on_update` have an argument of the type :apistruct:`touchscreen::TouchPoint` in a
 list or as variable (only ``on_touch``).
