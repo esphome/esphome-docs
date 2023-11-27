@@ -57,8 +57,8 @@ The integer members for the touch positions below are in relation to the display
 - ``x_first`` and ``y_first`` are the position of the touch when it was first detected.
 - ``x_raw`` and ``y_raw`` are for calibrating the touchscreen in relation of the display. This replaces the properties with the same name in the touchscreen classes.
 
-- ``id`` is a number given by the touchscreen referencing the detected touch on a multi touch screen.
-- ``state`` shows the state of the touch. This can be **1** as just touched or **2** when the touched position has been moved around.
+- ``id`` is a number provided by the touchscreen to uniquely identify the touch on a multi-touch screen.
+- ``state`` indicates the state of the touch. This can be **1**, indicating it is an initial touch, or **2** indicating the touch position has changed/moved.
 
 .. _touchscreen-on_touch:
 
