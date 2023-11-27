@@ -5,7 +5,7 @@ Touchscreen Components
     :description: Instruction for using touchscreen components.
     :image: folder-open.svg
 
-The ``touchscreen`` component holds the base code for most touchscreen driver components
+The ``touchscreen`` component contains the base code for most touchscreen driver components
 available in ESPHome and is responsible for passing the touch events to
 ``binary_sensors`` with the ``touchscreen`` platform.
 
