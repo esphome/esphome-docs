@@ -74,6 +74,7 @@ Contributors
 - `Alex Mekkering (@AlexMekkering) <https://github.com/AlexMekkering>`__
 - `Alex (@alexyao2015) <https://github.com/alexyao2015>`__
 - `Alfredo (@alfredopironti) <https://github.com/alfredopironti>`__
+- `Alibloke (@Alibloke) <https://github.com/Alibloke>`__
 - `Alessandro Ranellucci (@alranel) <https://github.com/alranel>`__
 - `Maxime Gauduin (@alucryd) <https://github.com/alucryd>`__
 - `Andreas Mandel (@amandel) <https://github.com/amandel>`__
@@ -255,6 +256,7 @@ Contributors
 - `John (@CircuitSetup) <https://github.com/CircuitSetup>`__
 - `Colby Rome (@cisasteelersfan) <https://github.com/cisasteelersfan>`__
 - `Chris Debenham (@cjd) <https://github.com/cjd>`__
+- `Yanik G (@clonyara) <https://github.com/clonyara>`__
 - `Chester (@clowrey) <https://github.com/clowrey>`__
 - `Clyde Stubbs (@clydebarrow) <https://github.com/clydebarrow>`__
 - `Colin McCambridge (@cmccambridge) <https://github.com/cmccambridge>`__
@@ -272,6 +274,7 @@ Contributors
 - `Cooper Dale (@Cooper-Dale) <https://github.com/Cooper-Dale>`__
 - `copercini (@copercini) <https://github.com/copercini>`__
 - `Corban Mailloux (@corbanmailloux) <https://github.com/corbanmailloux>`__
+- `Bertrand Roussel (@CoRfr) <https://github.com/CoRfr>`__
 - `Dmitry Berezovsky (@corvis) <https://github.com/corvis>`__
 - `Cossid (@Cossid) <https://github.com/Cossid>`__
 - `Cougar (@Cougar) <https://github.com/Cougar>`__
@@ -642,7 +645,6 @@ Contributors
 - `Jeremy Willans (@jeremywillans) <https://github.com/jeremywillans>`__
 - `jerome992 (@jerome992) <https://github.com/jerome992>`__
 - `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__
-- `Joel Goguen (@jgoguen) <https://github.com/jgoguen>`__
 - `Yuval Brik (@jhamhader) <https://github.com/jhamhader>`__
 - `Joe (@jhansche) <https://github.com/jhansche>`__
 - `Jim Bauwens (@jimbauwens) <https://github.com/jimbauwens>`__
@@ -1143,6 +1145,7 @@ Contributors
 - `Steve Scott (@thewishy) <https://github.com/thewishy>`__
 - `Florian Gareis (@TheZoker) <https://github.com/TheZoker>`__
 - `Thibault Maekelbergh (@thibmaek) <https://github.com/thibmaek>`__
+- `Thies Gerken (@thiesgerken) <https://github.com/thiesgerken>`__
 - `Matt (@ThisIsTheOnlyUsernameAvailable) <https://github.com/ThisIsTheOnlyUsernameAvailable>`__
 - `Mücahid Kamber (@thlstfs) <https://github.com/thlstfs>`__
 - `Thomas Heiser (@thomasheiser85) <https://github.com/thomasheiser85>`__
@@ -1257,4 +1260,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated November 24, 2023.*
+*This page was last updated November 28, 2023.*
