@@ -106,17 +106,15 @@ Configuration variables:
 
 - **pylontech_id** (*Optional*): Manually specify the ID of the pylontech instance if there are multiple.
 - **battery** (**Required**): Which battery to monitor. 1 stands for the main battery, 2..6 for child batteries.
-- **voltage** (*Optional*): Voltage. Should be around 48V
-- **current** (*Optional*): Current
-- **coulomb** (*Optional*): State of Charge in percent
-- **temperature** (*Optional*): Temperature
-- **temperature_low** (*Optional*): Historic minimum temperature
-- **temperature_high** (*Optional*): Historic maximum temperature
-- **voltage_low** (*Optional*): Historic minimum voltage
-- **voltage_high** (*Optional*): Historic maximum voltage
-- **mos_temperature** (*Optional*): Temperature of the mosfets.
-
-All sensors are normal sensors, so each one supports options from :ref:`Sensor <config-sensor>`.
+- **voltage** (*Optional*): Voltage of the battery. All options from :ref:`Sensor <config-sensor>`.
+- **current** (*Optional*): Current flowing into the battery. Negative when discharging. All options from :ref:`Sensor <config-sensor>`.
+- **coulomb** (*Optional*): State of Charge in percent. All options from :ref:`Sensor <config-sensor>`.
+- **temperature** (*Optional*): Temperature. All options from :ref:`Sensor <config-sensor>`.
+- **temperature_low** (*Optional*): Historic minimum temperature. All options from :ref:`Sensor <config-sensor>`.
+- **temperature_high** (*Optional*): Historic maximum temperature. All options from :ref:`Sensor <config-sensor>`.
+- **voltage_low** (*Optional*): Historic minimum voltage. All options from :ref:`Sensor <config-sensor>`.
+- **voltage_high** (*Optional*): Historic maximum voltage. All options from :ref:`Sensor <config-sensor>`.
+- **mos_temperature** (*Optional*): Temperature of the mosfets. All options from :ref:`Sensor <config-sensor>`.
 
 Text Sensor
 -----------
@@ -137,14 +135,12 @@ Text Sensor
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **pylontech_id** (**Required**): ID of the pylontech instance
-- **battery** (**Required**): Which battery to monitor. 1 stands for the master battery, 2..6 for slave batteries.
-- **base_state** (*Optional*): Base state. Usually reads ``Dischg``, ``Charge`` or ``Idle``.
-- **voltage_state** (*Optional*): Voltage state. Usually reads ``Normal``.
-- **current_state** (*Optional*): Current state. Usually reads ``Normal``.
-- **temperature_state** (*Optional*): Temperature state. Usually reads ``Normal``.
-
-All sensors are normal text sensors, so each one supports options from :ref:`Text Sensor <config-text_sensor>`.
+- **pylontech_id** (**Optional**): Manually specify the ID of the pylontech instance if there are multiple.
+- **battery** (**Required**): Which battery to monitor. 1 stands for the main battery, 2..6 for child batteries.
+- **base_state** (*Optional*): Base state. Usually reads ``Dischg``, ``Charge`` or ``Idle``. All options from :ref:`Text Sensor <config-text_sensor>`.
+- **voltage_state** (*Optional*): Voltage state. Usually reads ``Normal``. All options from :ref:`Text Sensor <config-text_sensor>`.
+- **current_state** (*Optional*): Current state. Usually reads ``Normal``. All options from :ref:`Text Sensor <config-text_sensor>`.
+- **temperature_state** (*Optional*): Temperature state. Usually reads ``Normal``. All options from :ref:`Text Sensor <config-text_sensor>`.
 
 Energy Monitoring
 -----------------
