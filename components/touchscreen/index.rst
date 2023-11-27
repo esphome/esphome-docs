@@ -39,7 +39,7 @@ Configuration variables:
 - **on_update** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the touchscreen is touched. See :ref:`touchscreen-on_update`.
 - **on_release** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when the touchscreen is touched. See :ref:`touchscreen-on_release`.
+  when the touchscreen is no longer touched. See :ref:`touchscreen-on_release`.
 
 
 .. _touchscreen-touchpoint:
