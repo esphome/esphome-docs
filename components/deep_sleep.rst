@@ -69,15 +69,15 @@ Advanced features:
   
   .. code-block:: yaml
 
-    # Example configuration entry
-    deep_sleep:
-      run_duration: 10s
-      wakeup_pin:
-        - pin: 3
-          wakeup_pin_mode: KEEP_AWAKE
-        - pin: 4
-          wakeup_pin_mode: INVERT_WAKEUP
-        - pin: 5
+      # Example configuration entry
+      deep_sleep:
+        run_duration: 10s
+        wakeup_pin:
+          - pin: 3
+            wakeup_pin_mode: KEEP_AWAKE
+          - pin: 4
+            wakeup_pin_mode: INVERT_WAKEUP
+          - pin: 5
 
 
 .. note::
