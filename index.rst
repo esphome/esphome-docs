@@ -483,6 +483,15 @@ Often known as "tag" or "card" readers within the community.
     RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
 
+Touchscreen
+***********
+.. imgtable::
+
+    Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
+    Touchscreen, components/touchscreen/index, touch.svg, dark-invert
+    TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
+    GT911, components/touchscreen/gt911, esp32_s3_box_3.png
+
 Presence Detection
 ******************
 .. imgtable::
@@ -667,7 +676,6 @@ Touchscreen Components
     Touchscreen Core, components/touchscreen/index, folder-open.svg, dark-invert
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
-    Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
