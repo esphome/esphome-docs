@@ -66,22 +66,13 @@ If you have multiple batteries you need to connect to the master battery's conso
       - GND
       - GND
       
-Configuration
+Component/Hub
 -------------
 
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      - id: pylontech_uart
-        tx_pin: GPIO1
-        rx_pin: GPIO3
-        baud_rate: 115200
-
     pylontech:
-      - uart_id: pylontech_uart
-        id: pylontech0
-        update_interval: 5s
 
 
 Configuration variables:
@@ -101,39 +92,20 @@ All values are reported for every Pylontech battery individually.
     # Example configuration entry
     sensor:
       - platform: pylontech
-        pylontech_id: pylontech0
         battery: 1
         
         voltage:
-          id: bat1_voltage
           name: "Battery1 Voltage"
         current:
-          id: bat1_current
           name: "Battery1 Current"
         coulomb:
-          id: bat1_soc
           name: "Battery1 State of Charge"
-          
-          
-      - platform: pylontech
-        pylontech_id: pylontech0
-        battery: 2
-        
-        voltage:
-          id: bat2_voltage
-          name: "Battery2 Voltage"
-        current:
-          id: bat2_current
-          name: "Battery2 Current"
-        coulomb:
-          id: bat2_soc
-          name: "Battery2 State of Charge"
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **pylontech_id** (**Required**): ID of the pylontech instance
-- **battery** (**Required**): Which battery to monitor. 1 stands for the master battery, 2..6 for slave batteries.
+- **pylontech_id** (*Optional*): Manually specify the ID of the pylontech instance if there are multiple.
+- **battery** (**Required**): Which battery to monitor. 1 stands for the main battery, 2..6 for child batteries.
 - **voltage** (*Optional*): Voltage. Should be around 48V
 - **current** (*Optional*): Current
 - **coulomb** (*Optional*): State of Charge in percent
