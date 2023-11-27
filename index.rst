@@ -511,6 +511,7 @@ Miscellaneous
     Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
+    Pylontech Batteries, components/pylontech, pylontech.jpg
     Qwiic PIR Motion, components/binary_sensor/qwiic_pir, qwiic_pir.jpg
     Remote Receiver, components/remote_receiver, remote.svg, dark-invert
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
