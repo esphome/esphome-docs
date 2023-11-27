@@ -91,7 +91,7 @@ This trigger may be useful to detect gestures such as swiping across the display
 ``on_release`` Trigger
 ----------------------
 
-This new automation will be triggered when all earlier touches where release from the touchscreen.
+This automation will be triggered when all touches are released from the touchscreen.
 
 At this point of time it has no extra arguments.
 
