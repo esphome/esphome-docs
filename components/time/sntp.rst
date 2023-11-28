@@ -9,9 +9,9 @@ SNTP Time Source
         id: sntp_time
         timezone: Europe/Sofia
         servers:  
-         - pool.ntp.org 
-         - time.euro.apple.com 
-         - time.windows.com
+         - 0.pool.ntp.org
+         - 1.pool.ntp.org
+         - 2.pool.ntp.org
 
 
 Configuration variables
