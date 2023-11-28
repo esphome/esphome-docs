@@ -182,6 +182,7 @@ Air Quality
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Radon, CO2, Volatile organics
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
     EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
+    ENS160, components/sensor/ens160, ens160.jpg, CO2 & Air Quality
     GCJA5, components/sensor/gcja5, gcja5.svg, Particulate
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
@@ -309,6 +310,7 @@ Environmental
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
     DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
     EMC2101, components/emc2101, emc2101.jpg, Temperature
+    ENS160, components/sensor/ens160, ens160.jpg, CO2 & Air Quality
     ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
     HTE501, components/sensor/hte501, HTE501.png, Temperature & Humidity
@@ -342,6 +344,7 @@ Environmental
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
     TMP1075, components/sensor/tmp1075, tmp1075.jpg, Temperature
     HYT271, components/sensor/hyt271, hyt271.jpg, Temperature & Humidity
+    XGZP68xx Series, components/sensor/xgzp68xx, 6897d.jpg, Differential Pressure
 
 
 Light
@@ -489,7 +492,7 @@ Touchscreen
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Touchscreen, components/touchscreen/index, touch.svg, dark-invert
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
-    XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
+    GT911, components/touchscreen/gt911, esp32_s3_box_3.png
 
 Presence Detection
 ******************
@@ -508,6 +511,7 @@ Miscellaneous
     Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
+    Pylontech Batteries, components/pylontech, pylontech.jpg
     Qwiic PIR Motion, components/binary_sensor/qwiic_pir, qwiic_pir.jpg
     Remote Receiver, components/remote_receiver, remote.svg, dark-invert
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
@@ -676,6 +680,9 @@ Touchscreen Components
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
+    GT911, components/touchscreen/gt911, esp32_s3_box_3.png
+    XPT2046, components/touchscreen/xpt2046, xpt2046.jpg
+
 
 Cover Components
 ----------------
