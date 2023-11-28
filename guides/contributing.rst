@@ -374,7 +374,7 @@ a fork of the repository that you can modify and create git branches on.
     # For example: git clone https://github.com/OttoWinter/esphome.git
 
     # To continue you now need to enter the directory you created above
-    cd <REPRO_NAME>
+    cd <REPO_NAME>
     # For example: cd esphome
 
     # Add "upstream" remote
