@@ -103,7 +103,7 @@ Module Pinouts
 
     number:
       - platform: ld2420
-        timeout:
+        presence_timeout:
           name: Detection Presence Timeout
         min_gate_distance:
           name: Detection Gate Minimum
