@@ -50,8 +50,10 @@ Hardware Connection
 -------------------
 
 A sample circuit is shown below which also draws power from the HE60R - note that the 3.3V regulator must
-be a switching type, a linear regulator will draw too much current and run hot. You can of course simply power
+be a switching type, a linear regulator would draw too much current and run hot. You can of course simply power
 the ESP32 via USB from 5V. This circuit also includes a manual control button connected to a GPIO.
+
+Any microcontroller board supported by ESPHome should be suitable for this application.
 
 
 .. figure:: images/he60r-sch.jpg
@@ -88,6 +90,7 @@ Note that this circuit inverts the TX line. A configuration for this would look 
             input: true
             pullup: true
         name: "Garage Door Manual Button"
+        # debounce the switch
         filters:
           - delayed_on: 50ms
           - delayed_off: 50ms
