@@ -64,6 +64,8 @@ Configuration variables:
 - **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Defaults to ``true``. Cannot be used with the ``esp-idf`` framework.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **local** (*Optional*, boolean): Include supporting javascript locally allowing it to work without internet access. Defaults to ``false``.
+- **local_fallback** (*Optional*, boolean): Enables support for minimal fallback webpage if internet is not available, yet local option is not used.
+  Defaults to ``false``.
 - **version** (*Optional*, string): ``1`` or ``2``. Version 1 displays as a table. Version 2 uses web components and has more functionality. Defaults to ``2``.
 
 To conserve flash size, the CSS and JS files used on the root page to show a simple user
