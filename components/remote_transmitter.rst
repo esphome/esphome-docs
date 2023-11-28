@@ -343,6 +343,8 @@ This :ref:`action <config-action>` sends an NEC infrared remote code to a remote
     In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
     Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
     For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
+    Additionally, ESPHome does not automatically generate parity bits or pad values to 2 bytes.
+    So, in order to send command 0x0, you need to use 0xFF00 (0x00 being the command and 0xFF being the logical inverse).
 
 .. code-block:: yaml
 
@@ -353,8 +355,8 @@ This :ref:`action <config-action>` sends an NEC infrared remote code to a remote
 
 Configuration variables:
 
-- **address** (**Required**, int): The address to send, see dumper output for more details.
-- **command** (**Required**, int): The NEC command to send.
+- **address** (**Required**, int): The 16-bit address to send, see dumper output for more details.
+- **command** (**Required**, int): The 16-bit NEC command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_nexa`` Action
