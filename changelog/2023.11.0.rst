@@ -91,6 +91,21 @@ Release 2023.11.3 - November 22
 - Early return when there are no wifi scan results :esphomepr:`5797` by :ghuser:`jesserockz`
 - Add some additional VA triggers, part 2 :esphomepr:`5811` by :ghuser:`kbx81`
 
+
+Release 2023.11.4 - November 24
+-------------------------------
+
+- Allow images to be downloaded from URLs :esphomepr:`5214` by :ghuser:`landonr`
+
+
+Release 2023.11.5 - November 28
+-------------------------------
+
+- Voice Assistant improvements :esphomepr:`5827` by :ghuser:`jesserockz`
+- Fix missing include in remote_base :esphomepr:`5843` by :ghuser:`jesserockz`
+- Add 'voice_assistant.connected' condition :esphomepr:`5845` by :ghuser:`jesserockz`
+
+
 Full list of changes
 --------------------
 
