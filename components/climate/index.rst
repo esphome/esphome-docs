@@ -167,8 +167,6 @@ Configuration variables:
   higher target temperature of a climate device with a two-point target temperature.
 - **target_humidity** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
   target humidity of a climate device.
-- **aux_heat** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Turn the
-  auxiliary heater of a climate device on or off.
 - **preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the preset
   of the climate device. One of ``ECO``, ``AWAY``, ``BOOST``, ``COMFORT``, ``HOME``, ``SLEEP``,
   ``ACTIVITY``.
@@ -200,8 +198,6 @@ advanced stuff.
       id(my_climate).current_temperature
       // Current humidity, type: float (percentage)
       id(my_climate).current_humidity
-      // Auxiliary heater state, type: bool
-      id(my_climate).aux_heat
       // Target temperature, type: float (degrees)
       id(my_climate).target_temperature
       // Lower Target temperature, type: float (degrees)
