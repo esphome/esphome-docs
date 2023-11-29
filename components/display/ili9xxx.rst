@@ -70,8 +70,6 @@ Configuration variables:
 
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
-- **power_supply** (*Optional*, :ref:`config-id`): The :doc:`power supply </components/power_supply>` to connect to
-  this display if required by hardware. The power supply will be turned on before attempting to initialize the display.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
@@ -204,7 +202,6 @@ This config rotates the display into landscape mode using the driver chip.
     display:
       - platform: ili9xxx
         model: st7789v
-        power_supply: power_on
         height: 170
         width: 320
         offset_height: 35
