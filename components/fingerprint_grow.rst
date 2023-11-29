@@ -38,9 +38,13 @@ If available on your reader model, it's recommended to connect 3.3VT (touch indu
     # Declare Grow Fingerprint Reader
     fingerprint_grow:
       sensing_pin: GPIO12
+      on_finger_scan_start:
+        ...
       on_finger_scan_matched:
         ...
       on_finger_scan_unmatched:
+        ...
+      on_finger_scan_misplaced:
         ...
       on_enrollment_scan:
         ...
@@ -62,8 +66,10 @@ Base Configuration:
 - **sensing_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Pin connected to the reader's finger detection signal (WAKEUP) output.
 - **password** (*Optional*, int): Password to use for authentication. Defaults to ``0x00``.
 - **new_password** (*Optional*, int): Sets a new password to use for authentication. See :ref:`fingerprint_grow-set_new_password` for more information.
+- **on_finger_scan_start** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the finger touches the sensor. See :ref:`fingerprint_grow-on_finger_scan_start`.
 - **on_finger_scan_matched** (*Optional*, :ref:`Automation <automation>`): An action to be performed when an enrolled fingerprint is scanned. See :ref:`fingerprint_grow-on_finger_scan_matched`.
 - **on_finger_scan_unmatched** (*Optional*, :ref:`Automation <automation>`): An action to be performed when an unknown fingerprint is scanned. See :ref:`fingerprint_grow-on_finger_scan_unmatched`.
+- **on_finger_scan_misplaced** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the finger is not entirely touching the sensor. See :ref:`fingerprint_grow-on_finger_scan_misplaced`.
 - **on_enrollment_scan** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint is scanned during enrollment. See :ref:`fingerprint_grow-on_enrollment_scan`.
 - **on_enrollment_done** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint is enrolled. See :ref:`fingerprint_grow-on_enrollment_done`.
 - **on_enrollment_failed** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint enrollment failed. See :ref:`fingerprint_grow-on_enrollment_failed`.
@@ -144,6 +150,22 @@ The ``new_password:`` configuration option is meant to be compiled, flashed to t
       password: 0x72AB96CD      # Update the existing password with the new one
 
 
+.. _fingerprint_grow-on_finger_scan_start:
+
+``on_finger_scan_start`` Trigger
+------------------------------------
+
+With this configuration option, you can trigger an automation when a finger is detected touching the sensor. Very useful to indicate to the user via AuraLed that the sensor has detected the finger touch and will perform the scan. This trigger will **only** activate if your fingerprint sensor is configured with the ``sensing_pin`` option. 
+
+.. code-block:: yaml
+
+    on_finger_scan_start:
+      - fingerprint_grow.aura_led_control:
+          state: ALWAYS_ON
+          color: GREEN
+          speed: 0
+          count: 0
+
 .. _fingerprint_grow-on_finger_scan_matched:
 
 ``on_finger_scan_matched`` Trigger
@@ -187,6 +209,21 @@ With this configuration option you can write complex automations whenever an unk
       - text_sensor.template.publish:
           id: fingerprint_state
           state: "Unauthorized finger"
+
+.. _fingerprint_grow-on_finger_scan_misplaced:
+
+``on_finger_scan_misplaced`` Trigger
+------------------------------------
+
+With this configuration option, you can create automations for situations when the finger is in contact with the sensor but not fully covering it, enabling you to perform a successful scan.
+This trigger will **only** activate if your fingerprint sensor is configured with the ``sensing_pin`` option. It serves as a useful indicator to alert the user when their touch on the sensor is insufficient.
+
+.. code-block:: yaml
+
+    on_finger_scan_misplaced:
+      - text_sensor.template.publish:
+          id: fingerprint_state
+          state: "Misplaced finger"
 
 .. _fingerprint_grow-on_enrollment_scan:
 
@@ -341,6 +378,12 @@ Controls the Aura LED on the reader. Only available on select models.  NOTE: The
             count: 2
     # Sample Aura LED config for all reader triggers
     fingerprint_grow:
+      on_finger_scan_start:
+        - fingerprint_grow.aura_led_control:
+            state: ALWAYS_ON
+            color: GREEN
+            speed: 0
+            count: 0
       on_finger_scan_matched:
         - fingerprint_grow.aura_led_control:
             state: BREATHING
@@ -352,6 +395,12 @@ Controls the Aura LED on the reader. Only available on select models.  NOTE: The
             state: FLASHING
             speed: 25
             color: RED
+            count: 2
+      on_finger_scan_misplaced:
+        - fingerprint_grow.aura_led_control:
+            state: FLASHING
+            speed: 25
+            color: PURPLE
             count: 2
       on_enrollment_scan:
         - fingerprint_grow.aura_led_control:
@@ -429,6 +478,9 @@ Sample code
       on_finger_scan_unmatched:
         - homeassistant.event:
             event: esphome.test_node_finger_scan_unmatched
+      on_finger_scan_misplaced:
+        - homeassistant.event:
+            event: esphome.frontdoor_finger_scan_misplaced
       on_enrollment_scan:
         - homeassistant.event:
             event: esphome.test_node_enrollment_scan
