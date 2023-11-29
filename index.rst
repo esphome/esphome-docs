@@ -492,7 +492,7 @@ Touchscreen
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Touchscreen, components/touchscreen/index, touch.svg, dark-invert
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
-    XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
+    GT911, components/touchscreen/gt911, esp32_s3_box_3.png
 
 Presence Detection
 ******************
@@ -511,6 +511,7 @@ Miscellaneous
     Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
+    Pylontech Batteries, components/pylontech, pylontech.jpg
     Qwiic PIR Motion, components/binary_sensor/qwiic_pir, qwiic_pir.jpg
     Remote Receiver, components/remote_receiver, remote.svg, dark-invert
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
@@ -679,6 +680,9 @@ Touchscreen Components
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
+    GT911, components/touchscreen/gt911, esp32_s3_box_3.png
+    XPT2046, components/touchscreen/xpt2046, xpt2046.jpg
+
 
 Cover Components
 ----------------
@@ -694,6 +698,7 @@ Cover Components
     Custom Cover, components/cover/custom, language-cpp.svg, dark-invert
     AM43 Cover, components/cover/am43, am43.jpg
     Tuya Cover, components/cover/tuya, tuya.png
+    HE60R Cover, components/cover/he60r, he60r.jpg
 
 Text Sensor Components
 ----------------------
