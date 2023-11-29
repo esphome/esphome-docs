@@ -225,6 +225,22 @@ This binary sensor tracks the connection status (*online*/*offline*) of the remo
 All options from :ref:`Binary Sensor <config-binary_sensor>` can be added to the
 above configuration.
 
+Enabled Binary Sensor
+^^^^^^^^^^^^^^^^^^^^^
+
+This binary sensor tracks if |wireguard| is *enabled* or not.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    binary_sensor:
+      - platform: wireguard
+        enabled:
+          name: 'WireGuard Enabled'
+
+All options from :ref:`Binary Sensor <config-binary_sensor>` can be added to the
+above configuration.
+
 Latest Handshake Sensor
 ^^^^^^^^^^^^^^^^^^^^^^^
 
