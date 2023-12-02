@@ -492,6 +492,7 @@ Touchscreen
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Touchscreen, components/touchscreen/index, touch.svg, dark-invert
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
+    FT5X06, components/touchscreen/ft5x06, indicator.jpg
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
 
 Presence Detection
