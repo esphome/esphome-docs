@@ -56,7 +56,7 @@ Configuration variables:
   will allow 1% increments in the output. Defaults to ``100``.
 - **name** (**Required**, string): The name for this fan.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **preset_modes** (*Optional*): A list of preset modes for this fan. Each preset mode must have a unique name and at least one speed or direction value needs to be specified.
+- **preset_modes** (*Optional*): A list of preset modes for this fan. Each preset mode must have a unique name. A preset can specify speed and direction values to apply when selected. Name-only presets can be defined for automations (i.e. `on_preset_set`).
 
   - **name** (*Required*): The name of this preset.
   - **speed** (*Optional*): The speed value for this preset. 
