@@ -9,7 +9,7 @@ Migrating from previous Tasmota setups is very easy. You just need to have
 ESPHome create a binary for you and then upload that in the Tasmota web interface.
 
 Incompatible versions
-------------------
+---------------------
 WARNING! Migrating via OTA on ESP32, from Tasmota v12 (with boot partition) and up is currently not possible! Trying it could soft-brick your device!
 
 
