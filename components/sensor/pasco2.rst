@@ -1,8 +1,8 @@
-PASCO2 CO₂, Temperature and Relative Humidity Sensor
-===================================================
+PASCO2 CO₂, Infineon XENSIV PASCO2 CO₂ Sensor
+=============================================
 
 .. seo::
-    :description: Instructions for setting up PASCO2 CO₂ Temperature and Relative Humidity Sensor
+    :description: Instructions for setting up Infineon XENSIV PASCO2 CO₂ Sensor.
     :image: pasco2.jpg
 
 The ``pasco2`` sensor platform  allows you to use your Infineon PASCO2 CO₂
@@ -89,9 +89,6 @@ value can also be a template, for example to define a Home Assistant calibration
               id: my_pasco2
 
 
-.. _factory_reset_action:
-
-
 Pressure compensation
 ---------------------
 
@@ -114,7 +111,6 @@ Note: remember your pressure sensor needs to output in mBar
         measurement_mode: periodic
         enable_pin: GPIO47
         ambient_pressure_compensation_source: bme_pressure
-        temperature_offset: 0
         co2:
           name: "CO2 level"
 
@@ -137,7 +133,6 @@ This example creates a service `set_ambient_pressure` that can be called from Ho
       - platform: pasco2
         id: my_pasco2
         measurement_mode: periodic
-        temperature_offset: 0
         co2:
           name: "CO2 level"
 
