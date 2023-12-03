@@ -9,7 +9,7 @@ The ``pasco2`` sensor platform  allows you to use your Infineon PASCO2 CO₂
 (`datasheet <https://www.infineon.com/dgdl/Infineon-PASCO2V01-DataSheet-v01_03-DataSheet-v01_03-EN.pdf?fileId=8ac78c8c80027ecd01809278f1af1ba2>`__) sensors with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
-.. figure:: images/scd4x.jpg
+.. figure:: images/pasco2.jpg
     :align: center
     :width: 80.0%
 
