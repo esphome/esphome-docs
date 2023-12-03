@@ -211,7 +211,7 @@ This trigger is activated each time the fan speed is changed. It will fire when 
 .. _fan-on_preset_set_trigger:
 
 ``fan.on_preset_set`` Trigger
-----------------------------
+-----------------------------
 
 This trigger is activated each time the fan preset mode is changed. It will fire when the preset mode is either set via API e.g. in Home Assistant or locally by an automation or a lambda function.
 
