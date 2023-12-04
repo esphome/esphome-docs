@@ -90,6 +90,10 @@ Configuration variables:
 -  **number** (**Required**, pin): The pin number.
 -  **inverted** (*Optional*, boolean): If all read and written values
    should be treated as inverted. Defaults to ``false``.
+-  **allow_other_uses** (*Optional*, boolean): If the pin is also specified elsewhere in the configuration.
+   By default multiple uses of the same pin will be flagged as an error. This option will suppress the error and is
+   intended for rare cases where a pin is shared between multiple components. Defaults to ``false``.
+
 -  **mode** (*Optional*, string or mapping): Configures the pin to behave in different
    modes like input or output. The default value depends on the context.
    Accepts either a shorthand string or a mapping where each feature can be individually
