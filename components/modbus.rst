@@ -39,6 +39,7 @@ Configuration variables:
   
 - **disable_crc** (*Optional*, boolean): Ignores a bad CRC if set to ``true``. Defaults to ``false``
 
+- **role** (*Optional*, string): The role of this component, ``client`` or ``server``. Defaults to ``server``.
 
 See Also
 --------

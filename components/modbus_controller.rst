@@ -5,14 +5,15 @@ Modbus Controller
     :description: Instructions for setting up the ModBUS Controller component.
     :image: modbus.png
 
-The ``modbus_controller`` component creates a RS485 connection to control a ModBUS slave device, letting your ESPHome node to act as a ModBUS master.
-You can access the coils and registers from your slave ModBUS device as sensors, switches or various other ESPHome components and present them to your favorite Home Automation system.
+The ``modbus_controller`` component creates a RS485 connection to either:
+ - control a ModBUS server device, letting your ESPHome node act as a ModBUS client. You can access the coils and registers from your server ModBUS device as sensors, switches or various other ESPHome components and present them to your favorite Home Automation system. Or:
+ - let your ESPHome node act as a Modbus server, allowing a ModBUS client to read data (like sensor values) from your ESPHome node.
+
+To choose the role, set the ``role`` attribute of the :doc:`/components/modbus` upon which this ``modbus_controller`` component relies. ``client`` is the default.
 
 .. figure:: /images/modbus.png
     :align: center
     :width: 25%
-
-The ``modbus_controller`` component relies on the :doc:`/components/modbus`.
 
 
 
@@ -26,7 +27,7 @@ See `How is this RS485 module working? <https://electronics.stackexchange.com/qu
 
 The transceiver connects to the UART of the MCU. For ESP32, pin ``16`` to ``TXD`` and pin ``17`` to ``RXD`` are the default ones but any other pins can be used as well. ``3.3V`` to ``VCC`` and naturally ``GND`` to ``GND``.
 
-On the bus side, you need 120 Ohm termination resistors at the ends of the bus cable as per ModBUS standard. Some transceivers have this already solderes onboard, and some slave devices may have them preinstalled with a jumper or a dip switch.
+On the bus side, you need 120 Ohm termination resistors at the ends of the bus cable as per ModBUS standard. Some transceivers have this already soldered onboard, and some slave devices may have them preinstalled with a jumper or a dip switch.
 
 .. note::
 
@@ -53,7 +54,7 @@ Configuration variables:
 
 - **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the ``modbus`` hub.
 
-- **address** (**Required**, :ref:`config-id`): The ModBUS address of the slave device
+- **address** (**Required**, :ref:`config-id`): The ModBUS address of the device
 
 - **command_throttle** (*Optional*, :ref:`config-time`): minimum time in between 2 requests to the device. Default is ``0ms``.
   Some ModBUS slave devices limit the rate of requests from the master, the interval between sending requests can be altered.
@@ -66,10 +67,32 @@ Configuration variables:
   slaves, this avoids waiting for timeouts allowing to read other slaves in the same bus. When the slave
   responds to a command, it'll be marked online again.
 
+- **server_registers** (*Optional*): A list of registers that are responded to when acting as a server.
+  - **start_address** (**Required**, integer): start address of the first register in a range
+  - **value_type** (*Optional*): datatype of the mod_bus register data. The default data type for ModBUS is a 16 bit integer in big endian format (MSB first)
 
-Example
--------
-The following code creates a ``modbus_controller`` hub talking to a ModBUS device at address ``1`` with ``115200`` bps
+      - ``U_WORD``: unsigned 16 bit integer from 1 register = 16bit
+      - ``S_WORD``: signed 16 bit integer from 1 register = 16bit
+      - ``U_DWORD``: unsigned 32 bit integer from 2 registers = 32bit
+      - ``S_DWORD``: signed 32 bit integer from 2 registers = 32bit
+      - ``U_DWORD_R``: unsigned 32 bit integer from 2 registers low word first
+      - ``S_DWORD_R``: signed 32 bit integer from 2 registers low word first
+      - ``U_QWORD``: unsigned 64 bit integer from 4 registers = 64bit
+      - ``S_QWORD``: signed 64 bit integer from 4 registers = 64bit
+      - ``U_QWORD_R``: unsigned 64 bit integer from 4 registers low word first
+      - ``S_QWORD_R``: signed 64 bit integer from 4 registers low word first
+      - ``FP32``: 32 bit IEEE 754 floating point from 2 registers
+      - ``FP32_R``: 32 bit IEEE 754 floating point - same as FP32 but low word first
+
+    Defaults to ``U_WORD``.
+
+  - **lambda** (**Required**, :ref:`lambda <config-lambda>`):
+    Lambda that returns the value of this register.
+
+
+Example Client
+--------------
+The following code creates a ``modbus_controller`` hub talking to a ModBUS device at address ``1`` with ``115200`` bps.
 
 ModBUS sensors can be directly defined (inline) under the ``modbus_controller`` hub or as standalone components
 Technically there is no difference between the "inline" and the standard definitions approach.
@@ -124,6 +147,54 @@ Technically there is no difference between the "inline" and the standard definit
         unit_of_measurement: "AH"
         value_type: U_WORD
 
+Example Server
+--------------
+The following code allows a ModBUS client to read a sensor value from your ESPHome node, that the node itself read from a ModBUS server.
+
+.. code-block:: yaml
+
+    uart:
+      - id: uart_modbus_client
+        tx_pin: 32
+        rx_pin: 34
+      - id: uart_modbus_server
+        tx_pin: 25
+        rx_pin: 35
+
+    modbus:
+      - uart_id: uart_modbus_client
+        id: modbus_client
+      - uart_id: uart_modbus_server
+        id: modbus_server
+        role: server
+
+    modbus_controller:
+      - id: modbus_evse
+        modbus_id: modbus_client
+        address: 0x2
+        update_interval: 5s
+      - modbus_id: modbus_server
+        address: 0x4
+        server_registers:
+          - start_address: 0x0002
+            value_type: S_DWORD_R
+            lambda: |-
+              return id(evse_voltage_l1).state;
+
+    sensor:
+      - platform: modbus_controller
+        id: evse_voltage_l1
+        modbus_controller_id: modbus_evse
+        name: "EVSE voltage L1"
+        register_type: holding
+        address: 0x0000
+        device_class: voltage
+        value_type: S_DWORD_R
+        accuracy_decimals: 1
+        unit_of_measurement: V
+        filters:
+          - multiply: 0.1
+    
 
 Bitmasks
 --------
