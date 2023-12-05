@@ -400,6 +400,76 @@ will return ``NaN``, which corresponds to ``unknown`` sensor state.
         name: "Number from text"
 
 
+Factory reset after 5 quick reboots
+-----------------------------------
+
+One may want to restore factory settings (eg. Wi-Fi credentials set at runtime, or clear restore states) without having to
+disassemble or dismount the devices from their deployed location. The example below shows how to achieve that using lambdas
+in a script by triggerig the factory reset switch after the system rebooted 5 times with 10 seconds timeframes.
+
+.. code-block:: yaml
+    
+    # Example config.yaml
+    esphome:
+      name: "esphome_ld2410"
+      on_boot:
+        priority: 600.0
+        then:
+          - script.execute: fast_boot_factory_reset_script
+    esp32:
+      board: esp32-c3-devkitm-1
+    
+    globals:
+      - id: fast_boot
+        type: int
+        restore_value: yes
+        initial_value: '0'
+    
+      - id: factory_reset_boot_count_trigger
+        type: int
+        initial_value: '5'
+    
+    logger:
+    
+    script:
+      - id: fast_boot_factory_reset_script
+        then:
+          - if:
+              condition:
+                lambda: return ( id(fast_boot) >= id(factory_reset_boot_count_trigger) );
+              then:
+                - lambda: |-
+                    ESP_LOGD("Fast Boot Factory Reset", "Performing factotry reset");
+                    id(fast_boot) = 0;
+                    fast_boot->loop();
+                    global_preferences->sync();
+                - switch.turn_on: factory_reset_switch
+          - lambda: |-
+              if(id(fast_boot) > 0)
+                ESP_LOGD("Fast Boot Factory Reset", "Quick reboot %d/%d, do it %d more times to factory reset", id(fast_boot), id(factory_reset_boot_count_trigger), id(factory_reset_boot_count_trigger) - id(fast_boot));
+              id(fast_boot) += 1;
+              fast_boot->loop();
+              global_preferences->sync();
+          - delay: 10s
+          - lambda: |-
+              id(fast_boot) = 0;
+              fast_boot->loop();
+              global_preferences->sync();
+    
+    wifi:
+      id: wifi_component
+      ap:
+        ap_timeout: 0s
+      reboot_timeout: 0s
+    
+    captive_portal:
+    
+    switch:
+      - platform: factory_reset
+        id: factory_reset_switch
+        name: "ESPHome: Factory reset"
+
+
 See Also
 --------
 
