@@ -408,7 +408,7 @@ disassemble or dismount the devices from their deployed location. The example be
 in a script by triggerig the factory reset switch after the system rebooted 5 times with 10 seconds timeframes.
 
 .. code-block:: yaml
-    
+
     # Example config.yaml
     esphome:
       name: "esphome_ld2410"
