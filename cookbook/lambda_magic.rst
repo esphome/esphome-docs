@@ -404,8 +404,9 @@ Factory reset after 5 quick reboots
 -----------------------------------
 
 One may want to restore factory settings (eg. Wi-Fi credentials set at runtime, or clear restore states) without having to
-disassemble or dismount the devices from their deployed location. The example below shows how to achieve that using lambdas
-in a script by triggerig the factory reset switch after the system rebooted 5 times with 10 seconds timeframes.
+disassemble or dismount the devices from their deployed location, whilst there's no network access either. The example below
+shows how to achieve that using lambdas in a script by triggerig the factory reset switch after the system rebooted 5 times
+with 10 seconds timeframes.
 
 .. code-block:: yaml
 
