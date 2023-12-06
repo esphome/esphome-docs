@@ -90,6 +90,10 @@ Configuration variables:
 -  **number** (**Required**, pin): The pin number.
 -  **inverted** (*Optional*, boolean): If all read and written values
    should be treated as inverted. Defaults to ``false``.
+-  **allow_other_uses** (*Optional*, boolean): If the pin is also specified elsewhere in the configuration.
+   By default multiple uses of the same pin will be flagged as an error. This option will suppress the error and is
+   intended for rare cases where a pin is shared between multiple components. Defaults to ``false``.
+
 -  **mode** (*Optional*, string or mapping): Configures the pin to behave in different
    modes like input or output. The default value depends on the context.
    Accepts either a shorthand string or a mapping where each feature can be individually
@@ -544,6 +548,28 @@ For example to set a specific update interval on a common uptime sensor that is 
     - id: !extend uptime_sensor
       update_interval: 10s
 
+Remove
+------
+
+To remove existing entries from included configurations ``!remove [config_id]`` can be used, where ``config_id`` is the ID of the entry to modify.
+For example to remove a common uptime sensor that is shared between configurations:
+
+.. code-block:: yaml
+
+    packages:
+      common: !include common.yaml
+
+    sensor:
+      - id: !remove uptime_sensor
+
+To remove captive portal for a specific device:
+
+.. code-block:: yaml
+
+    packages:
+      common: !include common.yaml
+
+    captive_portal: !remove
 
 See Also
 --------
