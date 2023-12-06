@@ -682,7 +682,8 @@ Touchscreen Components
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
     XPT2046, components/touchscreen/xpt2046, xpt2046.jpg
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
-
+    FT63X6, components/touchscreen/ft63x6, wt32-sc01.png
+    
 Cover Components
 ----------------
 
