@@ -556,7 +556,7 @@ For example to remove a common uptime sensor that is shared between configuratio
       common: !include common.yaml
 
     sensor:
-    - id: !remove uptime_sensor
+      - id: !remove uptime_sensor
 
 To remove captive portal for a specific device:
 
