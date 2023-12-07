@@ -7,7 +7,7 @@ Native API Component
     :keywords: Native API, ESPHome, Home Assistant
 
 The ESPHome native API is used to communicate with clients directly, with a highly-optimized
-network protocol. Currently, only the ESPHome tool and Home Assistant use this native API.
+network protocol. Currently, only the ESPHome tool, Home Assistant and ioBroker use this native API.
 
 After adding an ``api:`` line to your ESPHome configuration you can go to the Home Assistant
 web interface and navigate to the "Integrations" screen in the "Configuration" panel. Then wait
@@ -74,6 +74,12 @@ Configuration variables:
   disconnects from the API. See :ref:`api-on_client_disconnected_trigger`.
 
 .. _api-actions:
+
+.. note::
+
+    Before a newly added ESPHome device can interact with the Home Assistant API it needs to be allowed to communicate
+    with it. This setting can be found in the ESPHome integration (NOT in the Add-On) by clicking "CONFIGURE" for
+    that device and enabling the "Allow device to make service calls" option.
 
 Actions
 -------
@@ -330,7 +336,7 @@ Advantages over MQTT
 --------------------
 
 The ESPHome native API has many advantages over using MQTT for communication with Home
-Automation software (currently only Home Assistant). But MQTT is a great protocol and will
+Automation software (currently only Home Assistant and ioBroker). But MQTT is a great protocol and will
 never be removed. Features of native API (vs. MQTT):
 
 - **Much more efficient:** ESPHome encodes all messages in a highly optimized format with

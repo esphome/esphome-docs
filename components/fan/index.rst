@@ -147,7 +147,7 @@ Increments through speed levels of the fan with the given ID when executed. If t
             id: fan_1
             off_speed_cycle: true
         # Shorthand:
-        - fan.cycle_speed:: fan_1
+        - fan.cycle_speed: fan_1
 
 Configuration options:
 
