@@ -275,7 +275,7 @@ Home Assistant Card
 For a more intuitive view of the sensor data, you can use the customised card below.
 
 .. code-block:: yaml
-    
+
     - type: horizontal-stack
       cards:
         - type: entities
