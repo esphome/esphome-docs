@@ -509,6 +509,7 @@ Configuration for Seeed Studio XIAO ESP32S3 Sense
       # Image settings
       name: My Camera
       # ...
+
 See Also
 --------
 
