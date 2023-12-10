@@ -29,6 +29,8 @@ you don't have to worry about other kinds of pin numberings, yay!
 
     Pins on the NodeMCU ESP32 development board.
 
+To do serial flashing you have to press the right buttom, marked a IO0 (looking as 100).
+
 Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in the above image.
 
 - ``GPIO0`` is used to determine the boot mode on startup. It should therefore not be pulled LOW
