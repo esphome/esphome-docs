@@ -36,6 +36,8 @@ You can use the ESP32 software or hardware serial to use this MR24HPC1, its defa
 Configuration variables:
 ************************
 
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
+  to use multiple UART buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this :doc:`seeed_mr24hpc1` component if you need multiple components.
 
 Binary Sensor
