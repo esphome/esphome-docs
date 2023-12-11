@@ -36,6 +36,7 @@ Configuration variables:
   Supported chipsets are:
 
   - ``LAN8720``
+  - ``LAN867x``
   - ``RTL8201``
   - ``DP83848``
   - ``IP101``
