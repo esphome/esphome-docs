@@ -24,7 +24,7 @@ a hierarchical menu primarily intended to be controlled either by a rotary encod
 with a button or a five-button joystick controller.
 
 The component needs to be connected to an instance of a display supporting ESPHome's rendering 
-engine such as :doc:`E-Paper displays <../display/waveshare_epaper>` or :doc:`OLED displays <../display/ssd1306>`.
+engine such as :doc:`E-Paper displays </components/display/waveshare_epaper>` or :doc:`OLED displays </components/display/ssd1306>`.
 
 .. code-block:: yaml
 
