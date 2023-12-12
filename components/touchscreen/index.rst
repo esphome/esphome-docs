@@ -65,7 +65,7 @@ The integer members for the touch positions below are in relation to the display
 ``on_touch`` Trigger
 --------------------
 
-This automation will be triggered when the touchscreen initially detects a touch on the touchscreen; it will not be fired until
+This automation will be triggered when the touchscreen initially detects a touch on the touchscreen; it will not be fired again until
 all touches (for multi-touch supported drivers) are released.
 
 NOTE: This is different from before [TODO]release number[/TODO]. When you still want to get the update positions use the :ref:`touchscreen-on_update`.
