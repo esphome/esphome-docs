@@ -320,7 +320,7 @@ Configuration variables:
 
 - **address** (**Required**, int): The address to send, see dumper output for more details.
 - **command** (**Required**, int): The NEC command to send.
-- **command_repeats** (*Optional*, int): The number of times the command byte are sent in one transimission. Defaults to `1`.
+- **command_repeats** (*Optional*, int): The number of times the command bytes are sent in one transmission. Defaults to `1`.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_nexa`` Action
