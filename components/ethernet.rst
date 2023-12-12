@@ -36,6 +36,7 @@ Configuration variables:
   Supported chipsets are:
 
   - ``LAN8720``
+  - ``LAN867X``
   - ``RTL8201``
   - ``DP83848``
   - ``IP101``
@@ -82,6 +83,8 @@ Configuration variables:
     This approach is likely to fail, however, as the Ethernet interface uses a high frequency
     clock signal that will not travel reliably over these types of connections. For more
     information and wiring details refer to the link in the *See also* section.
+
+.. note:: LAN867X driver compatible with IDF v5.0 and above.
 
 Configuration examples
 ----------------------
@@ -233,6 +236,18 @@ Configuration examples
       clk_mode: GPIO0_IN
       phy_addr: 0
       power_pin: GPIO12
+
+**JetHub JXD E1-T1S series**:
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN867x
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      power_pin: GPIO17
+      clk_mode: GPIO0_IN
+      phy_addr: 0
 
 See Also
 --------
