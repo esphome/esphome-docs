@@ -68,7 +68,7 @@ Configuration variables:
   - **manual_ip** (*Optional*): Manually set the IP options for the AP. Same options as
     manual_ip for station mode.
   - **ap_timeout** (*Optional*, :ref:`config-time`): The time after which to enable the
-    configured fallback hotspot. Defaults to ``1min``.
+    configured fallback hotspot. Can be disabled by setting this to ``0s``, which requires manually starting the AP by other means (eg: from a button press). Defaults to ``1min``.
 
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
