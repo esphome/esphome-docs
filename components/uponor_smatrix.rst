@@ -146,4 +146,5 @@ See Also
 --------
 
 - `Protocol Analysis <https://github.com/kroimon/uponor-smatrix-analysis>`__
+- :apiref:`uponor_smatrix/uponor_smatrix.h`
 - :ghedit:`Edit`
