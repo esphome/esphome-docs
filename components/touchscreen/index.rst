@@ -32,7 +32,7 @@ Base Touchscreen Configuration
 
 Configuration variables:
 ************************
-- **display** (*Required*, :ref:`config-id`): The display to use this touchscreen with.
+- **display** (*Required*, :ref:`config-id`): The display to use this touchscreen with. This will be provided automatically if only one display is configured on the device.
 
 - **on_touch** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the touchscreen is touched. See :ref:`touchscreen-on_touch`.
