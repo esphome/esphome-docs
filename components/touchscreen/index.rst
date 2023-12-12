@@ -48,7 +48,7 @@ Configuration variables:
 ----------------------------
 
 Both the :ref:`touchscreen-on_touch` and :ref:`touchscreen-on_update` have an argument of the type :apistruct:`touchscreen::TouchPoint` in a
-list or as variable (only ``on_touch``).
+list (``on_update``) or as an ``optional`` (``on_touch``).
 
 The integer members for the touch positions below are in relation to the display width and height:
 
