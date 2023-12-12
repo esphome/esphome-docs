@@ -221,7 +221,7 @@ This trigger is activated each time the fan preset mode is changed. It will fire
       - platform: speed # or any other platform
         # ...
         on_preset_set:
-        - logger.log: "Fan preset mode was changed!"
+          - logger.log: "Fan preset mode was changed!"
 
 Lambda calls
 ------------
