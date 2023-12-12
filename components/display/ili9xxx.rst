@@ -103,7 +103,8 @@ Configuration variables:
    - **mirror_y** (*Optional*, boolean): If true, mirror the y axis.
 
 
-**Note:** To rotate the display in hardware use one of the following combinations:
+**Note:** To rotate the display in hardware use one of the following combinations - with 90 and 270 rotations you
+will also need to use `dimensions:` to swap the height and width (see example below.)
 
     - 90 degrees - use ``swap_xy`` with ``mirror_x``
     - 180 degrees - use ``mirror_x`` with ``mirror_y``
@@ -112,6 +113,21 @@ Configuration variables:
 
 Configuration examples
 **********************
+
+To use hardware rotation, use both ``dimensions`` and ``transform``, e.g. this config will turn a landscape display with
+height 320 and width 480 into portrait. Note that the dimensions are those of the final display.
+
+.. code-block:: yaml
+
+    transform:
+      swap_xy: true
+      mirror_x: true
+    dimensions:
+      height: 480
+      width: 320
+
+
+
 
 To utilize the color capabilities of this display module, you'll likely want to add a ``color:`` section to your
 YAML configuration; please see :ref:`color <config-color>` for more detail on this configuration section.
@@ -202,10 +218,11 @@ This config rotates the display into landscape mode using the driver chip.
     display:
       - platform: ili9xxx
         model: st7789v
-        height: 170
-        width: 320
-        offset_height: 35
-        offset_width: 0
+        dimensions:
+          height: 170
+          width: 320
+          offset_height: 35
+          offset_width: 0
         transform:
           swap_xy: true
           mirror_x: false
