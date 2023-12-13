@@ -12,8 +12,7 @@ Component/Hub
 -------------
 
 The ``pn7160`` component allows you to use PN7160 NFC controllers with ESPHome. This component is a global hub that
-establishes a connection to the PN7160 via :ref:`SPI <spi>` or :ref:`I²C <i2c>`, enabling the use of
-:ref:`PN7160 binary sensors <pn7160-binary_sensor>` to track if/when an NFC tag is detected by the PN7160.
+establishes a connection to the PN7160 via :ref:`SPI <spi>` or :ref:`I²C <i2c>`.
 
 .. figure:: images/pn716x-full.jpg
     :align: center
@@ -37,8 +36,6 @@ Over SPI
 --------
 
 The ``pn7160_spi`` component allows you to use :ref:`SPI-equipped <spi>` PN7160 NFC controllers with with ESPHome.
-Using :ref:`PN7160 binary sensors <pn7160-binary_sensor>` you can then create individual binary sensors to track
-if/when an NFC tag is detected by the PN7160.
 
 .. code-block:: yaml
 
@@ -83,9 +80,6 @@ Over I²C
 --------
 
 The ``pn7160_i2c`` component allows you to use :ref:`I²C-equipped <i2c>` PN7160 NFC controllers with ESPHome.
-Using :ref:`PN7160 binary sensors <pn7160-binary_sensor>` you can then create individual binary sensors to track
-if/when an NFC tag is detected by the PN7160.
-
 
 
 .. code-block:: yaml
