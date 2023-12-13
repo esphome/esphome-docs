@@ -99,7 +99,25 @@ Configuration variables:
 
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
 
-.. _remote_transmitter-transmit_canalsat:
+.. _remote_transmitter-transmit_byronsx:
+
+``remote_transmitter.transmit_byronsx`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends a Byron Doorbell RF protocol code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_byronsx:
+          address: '0x4f'
+          command: '0x2'      
+
+Configuration variables:
+
+- **address** (**Required**, int): The 8-bit ID to send, see dumper output for more info.
+- **command** (**Required**, int): The command to send, see dumper output for more info.
+- All other options from :ref:`remote_transmitter-transmit_action`... _remote_transmitter-transmit_canalsat:
 
 ``remote_transmitter.transmit_canalsat`` Action
 ***********************************************
@@ -170,7 +188,7 @@ This :ref:`action <config-action>` sends one or two (stricted or not) 24-bit Coo
 Configuration variables:
 
 - **first** (**Required**, :ref:`templatable <config-templatable>`, uint32_t): The first 24-bit Coolix code to send, see dumper output for more info.
-- **second** (**Optional**, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
+- **second** (*Optional*, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
 
 .. _remote_transmitter-transmit_dish:
 
@@ -232,6 +250,24 @@ This :ref:`action <config-action>` sends a JVC infrared remote code to a remote 
 Configuration variables:
 
 - **data** (**Required**, int): The JVC code to send, see dumper output for more info.
+
+.. _remote_transmitter-transmit_haier:
+
+``remote_transmitter.transmit_haier`` Action
+********************************************
+
+This :ref:`action <config-action>` sends a 104-bit Haier code to a remote transmitter. 8-bits of checksum added automatically.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_haier:
+          code: [0xA6, 0xDA, 0x00, 0x00, 0x40, 0x40, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x05]
+
+Configuration variables:
+
+- **code** (**Required**, list): The 13 byte Haier code to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_lg:
 
@@ -314,11 +350,13 @@ This :ref:`action <config-action>` sends an NEC infrared remote code to a remote
       - remote_transmitter.transmit_nec:
           address: 0x1234
           command: 0x78AB
+          command_repeats: 1
 
 Configuration variables:
 
 - **address** (**Required**, int): The address to send, see dumper output for more details.
 - **command** (**Required**, int): The NEC command to send.
+- **command_repeats** (*Optional*, int): The number of times the command bytes are sent in one transmission. Defaults to `1`.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_nexa`` Action
