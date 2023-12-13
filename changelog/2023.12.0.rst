@@ -3,12 +3,12 @@ ESPHome 2023.12.0 - 20th December 2023
 
 .. seo::
     :description: Changelog for ESPHome 2023.12.0.
-    :image: /_static/changelog-2023.11.0.png
+    :image: /_static/changelog-2023.12.0.png
     :author: Jesse Hills
     :author_twitter: @jesserockz
 
 .. imgtable::
-    :columns: 4
+    :columns: 3
 
     ENS160, components/sensor/ens160, ens160.jpg, CO2 & Air Quality
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
@@ -16,7 +16,8 @@ ESPHome 2023.12.0 - 20th December 2023
     HE60R Cover, components/cover/he60r, he60r.jpg
     Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.jpg
     FT63X6, components/touchscreen/ft63x6, wt32-sc01.png
-    A02YYUW, components/sensor/a02yyuw, a02yyuw.jpg, Acoustic distance
+    A02YYUW, components/sensor/a02yyuw, a02yyuw.jpg
+    PN7150, components/binary_sensor/pn7150, pn7150.jpg
     PN716X, components/binary_sensor/pn7160, pn716x.jpg
 
 
@@ -34,6 +35,7 @@ New Components
 - Updating the touchscreen interface structure  :esphomepr:`4596` by :ghuser:`nielsnl68` (new-integration)
 - Added the A02YYUW distance sensor :esphomepr:`5729` by :ghuser:`TH-Braemer` (new-integration)
 - Add support for PN7160 :esphomepr:`5486` by :ghuser:`kbx81` (new-integration)
+- Add support for PN7150 :esphomepr:`5487` by :ghuser:`kbx81` (new-integration)
 
 Breaking Changes
 ^^^^^^^^^^^^^^^^
@@ -168,6 +170,7 @@ All changes
 - Fix the initial run of lambda light effects :esphomepr:`5921` by :ghuser:`smithjacobj`
 - Exposes `load_settings` to `UARTComponent` class :esphomepr:`5920` by :ghuser:`edwardtfn`
 - Add support for PN7160 :esphomepr:`5486` by :ghuser:`kbx81` (new-integration)
+- Add support for PN7150 :esphomepr:`5487` by :ghuser:`kbx81` (new-integration)
 
 Past Changelogs
 ---------------
