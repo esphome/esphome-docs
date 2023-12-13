@@ -60,10 +60,11 @@ Configuration variables:
   `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
   in discovery messages. Defaults to ``true``.
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
-  messages. Should not contain trailing slash. Defaults to
-  ``<APP_NAME>``.
+  messages. Should not contain trailing slash. Defaults to ``<APP_NAME>``. 
+  Use ``null`` to disable publishing or subscribing of any MQTT topic unless
+  it is explicitly configured.
 - **log_topic** (*Optional*, :ref:`mqtt-message`): The topic to send MQTT log
-  messages to. Use `null` if you want to disable sending logs to MQTT.
+  messages to. Use ``null`` if you want to disable sending logs to MQTT.
 
   The ``log_topic`` has an additional configuration option:
 
@@ -373,9 +374,17 @@ Configuration variables:
 -  **state_topic** (*Optional*, string): The topic to publish state
    updates to. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/state``.
+   
+   ESPHome will always publish a manually configured state topic, even if 
+   the component is internal. Use ``null`` to disable publishing the 
+   component's state.
 -  **command_topic** (*Optional*, string): The topic to subscribe to for
    commands from the remote. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
+   
+   ESPHome will always subscribe to a manually configured command topic, 
+   even if the component is internal. Use ``null`` to disable subscribing 
+   to the component's command topic.
 -  **command_retain** (*Optional*, boolean): Whether MQTT command messages
    sent to the device should be retained or not. Default to ``false``.
 
