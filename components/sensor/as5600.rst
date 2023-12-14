@@ -202,9 +202,9 @@ Configuration variables:
 - **out_of_range_mode** (*Optional*, string): How to treat out of range values. Only applicable if configured
   for a range less than 360 degrees. Defaults to ``min_max``. See :ref:`Out of Range Mode <as5600-out-of-range-mode>`.
 - **as5600_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
-   :ref:`AS5600 Hub <as5600-component>` you want to use this sensor.
+  :ref:`AS5600 Hub <as5600-component>` you want to use this sensor.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
-   to check the sensor. Defaults to ``60s``.
+  to check the sensor. Defaults to ``60s``.
 - **raw_position** (*Optional*): Reports the raw (un-scaled, un-filtered) position of the magnet.
 
   - All other options from :ref:`Sensor <config-sensor>`.
