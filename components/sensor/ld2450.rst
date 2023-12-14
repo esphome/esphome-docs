@@ -17,6 +17,16 @@ Motion target tracking involves real-time tracking of the position of a moving t
 The LD2450 is a sensor module for motion target tracking within the Hi-link 24G millimeter-wave radar series. This module features simplified 24 GHz radar sensor hardware and intelligent algorithm firmware.
 It is is mainly used in general indoor scenarios such as homes, offices and hotels to enable the location tracking of moving human targets.
 
+.. _ld2450-mobile-apps:
+
+`HLKRadarTool Android App <https://play.google.com/store/apps/details?id=com.hlk.hlkradartool>`__
+
+`HLKRadarTool iOS App <https://apps.apple.com/us/app/hlkradartool/id1638651152>`__
+
+.. note::
+
+    Ensure that the LD2450 firmware version is ``V2.02.23090617`` or later for proper integration functionality. You can use the :ref:`HLKRadarTool mobile app<ld2450-mobile-apps>` to update the firmware.
+
 .. figure:: images/ld2450.png
     :align: center
     :width: 50.0%
