@@ -86,6 +86,8 @@ Configuration variables:
     By taking an average of the derivative term it might become more useful for you. Most PID controllers call
     this derivative filtering. The derivative term is used to pre-act so don't filter too much. Defaults to ``1``
     which is no sampling/averaging.
+    Note that averiging only takes place internally in the PIP regulator so you will still see fast variations
+    whenever monitoring the "pid_climate_derivate" entity in the master (e.g. home assistant) or in the logs.
 
 - **deadband_parameters** (*Optional*): Enables a deadband to stabilise and minimise changes in the
   output when the temperature is close to the target temperature. See `Deadband Setup`_.
