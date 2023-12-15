@@ -192,6 +192,7 @@ Air Quality
     RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png, Radon
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
     SEN0321, components/sensor/sen0321, sen0321.jpg, Ozone
+    SEN0231, components/sensor/sen0231, sen0231.jpg, Formaldehyde
     SEN5x, components/sensor/sen5x, sen54.jpg, Temperature & Humidity, Volatile organics and NOx
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
