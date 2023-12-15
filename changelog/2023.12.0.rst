@@ -47,6 +47,15 @@ Breaking Changes
 - Nextion colors parameters :esphomepr:`5699` by :ghuser:`edwardtfn` (breaking-change)
 - Checks for pins used in multiple places :esphomepr:`5666` by :ghuser:`clydebarrow` (breaking-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- Allow use of CDC/JTAG loggers on esp32 variants with Arduino :esphomepr:`4658` by :ghuser:`jesserockz`
+- [Logger] ESP32 S3 serial logger :esphomepr:`4853` by :ghuser:`Fabian-Schmidt`
+- Support toggle action for template cover :esphomepr:`5917` by :ghuser:`jochenvg`
+- Fix SplitDefault with variants :esphomepr:`5928` by :ghuser:`jesserockz`
+- Update ENS160 TVOC device_class and AQI units to match required by HA :esphomepr:`5939` by :ghuser:`mrtoy-me`
+
 All changes
 ^^^^^^^^^^^
 
@@ -171,6 +180,11 @@ All changes
 - Exposes `load_settings` to `UARTComponent` class :esphomepr:`5920` by :ghuser:`edwardtfn`
 - Add support for PN7160 :esphomepr:`5486` by :ghuser:`kbx81` (new-integration)
 - Add support for PN7150 :esphomepr:`5487` by :ghuser:`kbx81` (new-integration)
+- Allow use of CDC/JTAG loggers on esp32 variants with Arduino :esphomepr:`4658` by :ghuser:`jesserockz`
+- [Logger] ESP32 S3 serial logger :esphomepr:`4853` by :ghuser:`Fabian-Schmidt`
+- Support toggle action for template cover :esphomepr:`5917` by :ghuser:`jochenvg`
+- Fix SplitDefault with variants :esphomepr:`5928` by :ghuser:`jesserockz`
+- Update ENS160 TVOC device_class and AQI units to match required by HA :esphomepr:`5939` by :ghuser:`mrtoy-me`
 
 Past Changelogs
 ---------------
