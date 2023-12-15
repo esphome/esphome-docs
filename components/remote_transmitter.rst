@@ -111,7 +111,7 @@ This :ref:`action <config-action>` sends a Byron Doorbell RF protocol code to a 
     on_...:
       - remote_transmitter.transmit_byronsx:
           address: '0x4f'
-          command: '0x2'      
+          command: '0x2'
 
 Configuration variables:
 
@@ -225,7 +225,7 @@ This :ref:`action <config-action>` sends a Draton Digistat RF remote code to a r
       - remote_transmitter.transmit_drayton:
           address: '0x6180'
           channel: '0x12'
-          command: '0x02'      
+          command: '0x02'
 
 Configuration variables:
 
@@ -352,11 +352,13 @@ This :ref:`action <config-action>` sends an NEC infrared remote code to a remote
       - remote_transmitter.transmit_nec:
           address: 0x1234
           command: 0x78AB
+          command_repeats: 1
 
 Configuration variables:
 
 - **address** (**Required**, int): The 16-bit address to send, see dumper output for more details.
 - **command** (**Required**, int): The 16-bit NEC command to send.
+- **command_repeats** (*Optional*, int): The number of times the command bytes are sent in one transmission. Defaults to `1`.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_nexa`` Action
@@ -938,7 +940,7 @@ earlier, create a new template switch that sends the RF code when triggered:
           - remote_transmitter.transmit_rc_switch_raw:
               code: '100010000000000010111110'
               protocol: 2
-              repeat: 
+              repeat:
                 times: 10
                 wait_time: 0s
 
@@ -958,9 +960,9 @@ in the frontend. Click on it and you should see the remote signal being transmit
 
 .. note::
 
-    Some devices require that the transmitted code be repeated for the signal to be picked up 
-    as valid. Also the interval between repetitions can be important. Check that the pace of 
-    repetition logs are consistent between the remote controller and the transmitter node. 
+    Some devices require that the transmitted code be repeated for the signal to be picked up
+    as valid. Also the interval between repetitions can be important. Check that the pace of
+    repetition logs are consistent between the remote controller and the transmitter node.
     You can adjust the ``repeat:`` settings accordingly.
 
 
