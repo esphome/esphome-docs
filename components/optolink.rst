@@ -83,17 +83,6 @@ Configuration variables:
 - **div_ratio** (*Optional*, int): Value factor of datapoint. Defaults to '1'.
 - All other options from :doc:`/components/sensor/index`
 
-.. warning::
-
-    Some temperature sensors might get negative values (e.g. Outside Temperature) but the data type is unsigned integer (positive only). You need to configure a sensor filter to convert it to a signed integer (positive and negative values possible). In such case don't configure ``div_ratio`` but use sensor filter instead. Example below:
-
-    .. code-block:: yaml
-
-        filters:
-          - lambda: !lambda |-
-              return (short)x;
-          - multiply: 0.1
-
 Binary Sensors
 **************
 .. code-block:: yaml
@@ -256,11 +245,20 @@ Configuration variables:
 
 .. warning::
 
-    The optical interface has a limited throughput, ususally getting a response from the Viessmann controller takes 2-3 seconds and is sequential. Keep that in mind when defining sensors / control entities and define appropriate update interval (e.g. for 20 entities maximum frequency would be to update every 60s, for more entities the update interval should be longer). Example config:
+    The optical interface has a limited throughput, getting a response from the Viessmann controller takes a fragment of a second and is sequentially processed. Keep that in mind when defining sensors / control entities and define an appropriate value of ``update_interval`` for each of them. Otherwise the default update interval of 10 seconds will be use which can lead to unprocessed read and write requests.
+    
+    Example config:
 
     .. code-block:: yaml
 
-        update_interval: 60s
+      - platform: optolink
+        name: outdoor temperature
+        address: 0x5525
+        bytes: 2
+        div_ratio: 10
+        unit_of_measurement: °C
+        device_class: temperature
+        update_interval: 120s
 
 Troubleshooting
 ---------------
