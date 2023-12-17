@@ -741,6 +741,7 @@ Climate Components
     Anova Cooker, components/climate/anova, anova.png
     BedJet Climate System, components/climate/bedjet, bedjet.png
     Haier Climate, components/climate/haier, haier.svg
+    Daikin Madoka, components/climate/madoka, daikin.png
 
 Number Components
 -----------------
