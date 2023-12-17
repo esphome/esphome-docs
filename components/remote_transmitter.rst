@@ -99,7 +99,25 @@ Configuration variables:
 
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
 
-.. _remote_transmitter-transmit_canalsat:
+.. _remote_transmitter-transmit_byronsx:
+
+``remote_transmitter.transmit_byronsx`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends a Byron Doorbell RF protocol code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_byronsx:
+          address: '0x4f'
+          command: '0x2'      
+
+Configuration variables:
+
+- **address** (**Required**, int): The 8-bit ID to send, see dumper output for more info.
+- **command** (**Required**, int): The command to send, see dumper output for more info.
+- All other options from :ref:`remote_transmitter-transmit_action`... _remote_transmitter-transmit_canalsat:
 
 ``remote_transmitter.transmit_canalsat`` Action
 ***********************************************
@@ -170,7 +188,7 @@ This :ref:`action <config-action>` sends one or two (stricted or not) 24-bit Coo
 Configuration variables:
 
 - **first** (**Required**, :ref:`templatable <config-templatable>`, uint32_t): The first 24-bit Coolix code to send, see dumper output for more info.
-- **second** (**Optional**, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
+- **second** (*Optional*, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
 
 .. _remote_transmitter-transmit_dish:
 
@@ -325,6 +343,8 @@ This :ref:`action <config-action>` sends an NEC infrared remote code to a remote
     In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
     Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
     For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
+    Additionally, ESPHome does not automatically generate parity bits or pad values to 2 bytes.
+    So, in order to send command 0x0, you need to use 0xFF00 (0x00 being the command and 0xFF being the logical inverse).
 
 .. code-block:: yaml
 
@@ -335,8 +355,8 @@ This :ref:`action <config-action>` sends an NEC infrared remote code to a remote
 
 Configuration variables:
 
-- **address** (**Required**, int): The address to send, see dumper output for more details.
-- **command** (**Required**, int): The NEC command to send.
+- **address** (**Required**, int): The 16-bit address to send, see dumper output for more details.
+- **command** (**Required**, int): The 16-bit NEC command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_nexa`` Action

@@ -156,12 +156,14 @@ Configuration variables:
 - **detection_distance** (*Optional*, int): Distance in cm of target.
   All options from :ref:`Sensor <config-sensor>`.
 - **gX** (*Optional*): Energies for the Xth gate (X => 0 to 8).
+  
     - **move_energy** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, the move energy of the gate, otherwise ``unknown``.
       Value between ``0`` and ``100`` inclusive.
       All options from :ref:`Sensor <config-sensor>`.
     - **still_energy** (*Optional*, int): When in :ref:`engineering mode<ld2410-engineering-mode>`, the still energy of the gate, otherwise ``unknown``.
       Value between ``0`` and ``100`` inclusive.
       All options from :ref:`Sensor <config-sensor>`.
+
 - **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 Switch
@@ -274,6 +276,7 @@ Configuration variables:
   Value between ``2`` and ``8`` inclusive. Defaults to ``8``.
   All options from :ref:`Number <config-number>`.
 - **gX** (*Optional*): Thresholds for the Xth gate (X => 0 to 8).
+  
     - **move_threshold** (**Required**, int): Threshold for the gate for motion detection.
       Above this level for the considered gate (distance), movement detection will be triggered.
       Value between ``0`` and ``100`` inclusive. See default values below.
@@ -282,6 +285,7 @@ Configuration variables:
       Above this level for the considered gate (distance), still detection will be triggered.
       Value between ``0`` and ``100`` inclusive. See default values below.
       All options from :ref:`Number <config-number>`.
+
 - **ld2410_id** (*Optional*, :ref:`config-id`): Manually specify the ID for the :doc:`ld2410` component if you are using multiple components.
 
 .. list-table:: Default values for gate threshold
@@ -349,7 +353,7 @@ Configuration variables:
 Text Sensor
 -----------
 
-The ``ld2410`` text sensor allows you get information about your :doc:`ld2410`.
+The ``ld2410`` text sensor allows you to get information about your :doc:`ld2410`.
 
 .. code-block:: yaml
 
@@ -372,7 +376,7 @@ Configuration variables:
 Select
 -----------
 
-The ``ld2410`` select allows you control your :doc:`ld2410`.
+The ``ld2410`` select allows you to control your :doc:`ld2410`.
 
 .. code-block:: yaml
 
@@ -421,7 +425,7 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the :doc:`ld2410` component to set.
 - **password** (**Required**, string, :ref:`templatable <config-templatable>`):
-  The password to set. Case sensitive. Must be exactly 6 characters long. Default password is `HiLink`.
+  The password to set. Case sensitive. Must be exactly 6 characters long. Default password is ``HiLink``.
 
 To change the password from HA you can use the following example config:
 
@@ -468,7 +472,7 @@ In order to calibrate your ``ld2410`` sensor perform the following:
 Home Assistant Card
 *******************
 
-For easy calibration process you can use the following custom manual card.
+For easy calibration process, you can use the following custom manual card.
 
 .. code-block:: yaml
 
@@ -498,13 +502,13 @@ For easy calibration process you can use the following custom manual card.
           - type: horizontal-stack
             cards:
               - type: entity
-                entity: 'sensor.DEVICE_distance_detection_cm'
+                entity: 'sensor.DEVICE_detection_distance'
                 name: distance
               - type: entity
-                entity: 'sensor.DEVICE_moving_distance_cm'
+                entity: 'sensor.DEVICE_moving_distance'
                 name: move
               - type: entity
-                entity: 'sensor.DEVICE_still_distance_cm'
+                entity: 'sensor.DEVICE_still_distance'
                 name: still
       - type: horizontal-stack
         cards:
@@ -525,11 +529,11 @@ For easy calibration process you can use the following custom manual card.
             name: presence
             state_color: true
           - type: entity
-            entity: 'binary_sensor.DEVICE_movement'
+            entity: 'binary_sensor.DEVICE_moving_target'
             name: movement
             state_color: true
           - type: entity
-            entity: 'binary_sensor.DEVICE_still'
+            entity: 'binary_sensor.DEVICE_still_target'
             name: still
             state_color: true
       - type: conditional
