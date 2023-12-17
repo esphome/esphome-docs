@@ -45,7 +45,7 @@ To use the Daikin Madoka climate controller in your installation, add the follow
 
 Configuration variables:
 
-- **ble_client_id** (Required, :ref:`config-id`): The ID of the :ref:`/components/ble_client` used for the communication.
+- **ble_client_id** (Required, :ref:`config-id`): The ID of the :doc:`/components/ble_client` used for the communication.
 - **update_interval** (Optional, :ref:`config-time`): The interval to check the device for state updates. Defaults to 10s.
 - All other options from :ref:`Climate <config-climate>`.
 
