@@ -52,6 +52,8 @@ Configuration variables:
   be performed when the remote requests the cover to be closed.
 - **stop_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote requests the cover to be stopped.
+- **toggle_action** (*Optional*, :ref:`Action <config-action>`): The action that should
+  be performed when the remote requests to toggle the the cover.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
   any command sent to the template cover will immediately update the reported state and no lambda
   needs to be used. Defaults to ``false``.

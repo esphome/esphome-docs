@@ -73,6 +73,45 @@ Release 2023.11.1 - November 16
 - Fix MY9231 flicker :esphomepr:`5765` by :ghuser:`Mat931`
 
 
+Release 2023.11.2 - November 18
+-------------------------------
+
+- Bump aioesphomeapi from 18.4.0 to 18.4.1 :esphomepr:`5767` by :ghuser:`dependabot[bot]`
+- Bump aioesphomeapi from 18.4.1 to 18.5.2 :esphomepr:`5780` by :ghuser:`dependabot[bot]`
+- fix 32-bit arm :esphomepr:`5781` by :ghuser:`ssieb`
+- Add 2MB option for partitions.csv generation and restore use of user-defined partitions :esphomepr:`5779` by :ghuser:`kbx81`
+
+
+Release 2023.11.3 - November 22
+-------------------------------
+
+- include payload_open when a lock supports OPEN :esphomepr:`5809` by :ghuser:`ccutrer`
+- dashboard: Fix online status when api is disabled :esphomepr:`5791` by :ghuser:`bdraco`
+- fix: compile errors with fonts :esphomepr:`5808` by :ghuser:`cvandesande`
+- Early return when there are no wifi scan results :esphomepr:`5797` by :ghuser:`jesserockz`
+- Add some additional VA triggers, part 2 :esphomepr:`5811` by :ghuser:`kbx81`
+
+
+Release 2023.11.4 - November 24
+-------------------------------
+
+- Allow images to be downloaded from URLs :esphomepr:`5214` by :ghuser:`landonr`
+
+
+Release 2023.11.5 - November 28
+-------------------------------
+
+- Voice Assistant improvements :esphomepr:`5827` by :ghuser:`jesserockz`
+- Fix missing include in remote_base :esphomepr:`5843` by :ghuser:`jesserockz`
+- Add 'voice_assistant.connected' condition :esphomepr:`5845` by :ghuser:`jesserockz`
+
+
+Release 2023.11.6 - November 28
+-------------------------------
+
+- Fix write_speaker without speaker in config :esphomepr:`5847` by :ghuser:`jesserockz`
+
+
 Full list of changes
 --------------------
 

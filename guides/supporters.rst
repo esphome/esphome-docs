@@ -45,6 +45,7 @@ Contributors
 - `Adrian Fretwell (@AdrianFretwell) <https://github.com/AdrianFretwell>`__
 - `Adrien Brault (@adrienbrault) <https://github.com/adrienbrault>`__
 - `Ian Blais (@aeonsablaze) <https://github.com/aeonsablaze>`__
+- `Attila Farago (@afarago) <https://github.com/afarago>`__
 - `Kjell Braden (@afflux) <https://github.com/afflux>`__
 - `Alejandro Galfrascoli (@AGalfra) <https://github.com/AGalfra>`__
 - `Stefan Agner (@agners) <https://github.com/agners>`__
@@ -73,11 +74,13 @@ Contributors
 - `Alex Mekkering (@AlexMekkering) <https://github.com/AlexMekkering>`__
 - `Alex (@alexyao2015) <https://github.com/alexyao2015>`__
 - `Alfredo (@alfredopironti) <https://github.com/alfredopironti>`__
+- `Alibloke (@Alibloke) <https://github.com/Alibloke>`__
 - `Alessandro Ranellucci (@alranel) <https://github.com/alranel>`__
 - `Maxime Gauduin (@alucryd) <https://github.com/alucryd>`__
 - `Andreas Mandel (@amandel) <https://github.com/amandel>`__
 - `Amish Vishwakarma (@amishv) <https://github.com/amishv>`__
 - `Amit Keret (@amitkeret) <https://github.com/amitkeret>`__
+- `Jason Nader (@ammgws) <https://github.com/ammgws>`__
 - `Branden Cash (@ammmze) <https://github.com/ammmze>`__
 - `Alexander Momchilov (@amomchilov) <https://github.com/amomchilov>`__
 - `Oliver King (@AnachronisticPenguin) <https://github.com/AnachronisticPenguin>`__
@@ -232,6 +235,7 @@ Contributors
 - `Cameron Bulock (@cbulock) <https://github.com/cbulock>`__
 - `Ciprian Constantinescu (@cciprian5) <https://github.com/cciprian5>`__
 - `Carlos Cordero (@ccorderor) <https://github.com/ccorderor>`__
+- `Cody Cutrer (@ccutrer) <https://github.com/ccutrer>`__
 - `cdmonk (@cdmonk) <https://github.com/cdmonk>`__
 - `ceaswaran (@ceaswaran) <https://github.com/ceaswaran>`__
 - `Xavi (@Cebeerre) <https://github.com/Cebeerre>`__
@@ -252,6 +256,7 @@ Contributors
 - `John (@CircuitSetup) <https://github.com/CircuitSetup>`__
 - `Colby Rome (@cisasteelersfan) <https://github.com/cisasteelersfan>`__
 - `Chris Debenham (@cjd) <https://github.com/cjd>`__
+- `Yanik G (@clonyara) <https://github.com/clonyara>`__
 - `Chester (@clowrey) <https://github.com/clowrey>`__
 - `Clyde Stubbs (@clydebarrow) <https://github.com/clydebarrow>`__
 - `Colin McCambridge (@cmccambridge) <https://github.com/cmccambridge>`__
@@ -266,10 +271,10 @@ Contributors
 - `Max (@coltoncat) <https://github.com/coltoncat>`__
 - `Conclusio (@Conclusio) <https://github.com/Conclusio>`__
 - `Conor Burns (@Conor-Burns) <https://github.com/Conor-Burns>`__
-- `John Coggeshall (@coogle) <https://github.com/coogle>`__
 - `Cooper Dale (@Cooper-Dale) <https://github.com/Cooper-Dale>`__
 - `copercini (@copercini) <https://github.com/copercini>`__
 - `Corban Mailloux (@corbanmailloux) <https://github.com/corbanmailloux>`__
+- `Bertrand Roussel (@CoRfr) <https://github.com/CoRfr>`__
 - `Dmitry Berezovsky (@corvis) <https://github.com/corvis>`__
 - `Cossid (@Cossid) <https://github.com/Cossid>`__
 - `Cougar (@Cougar) <https://github.com/Cougar>`__
@@ -280,6 +285,7 @@ Contributors
 - `cryptelli (@cryptelli) <https://github.com/cryptelli>`__
 - `cstaahl (@cstaahl) <https://github.com/cstaahl>`__
 - `Chris Talkington (@ctalkington) <https://github.com/ctalkington>`__
+- `CVan (@cvandesande) <https://github.com/cvandesande>`__
 - `cvwillegen (@cvwillegen) <https://github.com/cvwillegen>`__
 - `Christoph Wempe (@CWempe) <https://github.com/CWempe>`__
 - `Steven Webb (@cy1701) <https://github.com/cy1701>`__
@@ -639,7 +645,6 @@ Contributors
 - `Jeremy Willans (@jeremywillans) <https://github.com/jeremywillans>`__
 - `jerome992 (@jerome992) <https://github.com/jerome992>`__
 - `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__
-- `Joel Goguen (@jgoguen) <https://github.com/jgoguen>`__
 - `Yuval Brik (@jhamhader) <https://github.com/jhamhader>`__
 - `Joe (@jhansche) <https://github.com/jhansche>`__
 - `Jim Bauwens (@jimbauwens) <https://github.com/jimbauwens>`__
@@ -656,7 +661,6 @@ Contributors
 - `JMoratelli (@JMoratelli) <https://github.com/JMoratelli>`__
 - `Jonathas Barbosa (@jnthas) <https://github.com/jnthas>`__
 - `Johboh (@Johboh) <https://github.com/Johboh>`__
-- `John Britton (@johndbritton) <https://github.com/johndbritton>`__
 - `John Moxley (@johnmoxley) <https://github.com/johnmoxley>`__
 - `Dave Johnston (@johnsto) <https://github.com/johnsto>`__
 - `joiboi (@joiboi) <https://github.com/joiboi>`__
@@ -920,6 +924,7 @@ Contributors
 - `Derrick Lyndon Pallas (@pallas) <https://github.com/pallas>`__
 - `Panuruj Khambanonda (PK) (@panuruj) <https://github.com/panuruj>`__
 - `Daniel Mahaney (@Papa-DMan) <https://github.com/Papa-DMan>`__
+- `Christian Schmitt (@papillon81) <https://github.com/papillon81>`__
 - `Faidon Liambotis (@paravoid) <https://github.com/paravoid>`__
 - `Patrick Collins (@patrickcollins12) <https://github.com/patrickcollins12>`__
 - `Paul Deen (@PaulAntonDeen) <https://github.com/PaulAntonDeen>`__
@@ -1140,6 +1145,7 @@ Contributors
 - `Steve Scott (@thewishy) <https://github.com/thewishy>`__
 - `Florian Gareis (@TheZoker) <https://github.com/TheZoker>`__
 - `Thibault Maekelbergh (@thibmaek) <https://github.com/thibmaek>`__
+- `Thies Gerken (@thiesgerken) <https://github.com/thiesgerken>`__
 - `Matt (@ThisIsTheOnlyUsernameAvailable) <https://github.com/ThisIsTheOnlyUsernameAvailable>`__
 - `Mücahid Kamber (@thlstfs) <https://github.com/thlstfs>`__
 - `Thomas Heiser (@thomasheiser85) <https://github.com/thomasheiser85>`__
@@ -1212,7 +1218,6 @@ Contributors
 - `WallyCZ (@WallyCZ) <https://github.com/WallyCZ>`__
 - `walzing (@walzing) <https://github.com/walzing>`__
 - `warpzone (@warpzone) <https://github.com/warpzone>`__
-- `John "Warthog9" Hawley (@warthog9) <https://github.com/warthog9>`__
 - `Wauter (@Wauter) <https://github.com/Wauter>`__
 - `WeekendWarrior1 (@WeekendWarrior1) <https://github.com/WeekendWarrior1>`__
 - `Thomas Aldrian (@Weissnix4711) <https://github.com/Weissnix4711>`__
@@ -1255,4 +1260,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated November 16, 2023.*
+*This page was last updated November 28, 2023.*
