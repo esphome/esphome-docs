@@ -55,6 +55,14 @@ Beta Changes
 - Support toggle action for template cover :esphomepr:`5917` by :ghuser:`jochenvg`
 - Fix SplitDefault with variants :esphomepr:`5928` by :ghuser:`jesserockz`
 - Update ENS160 TVOC device_class and AQI units to match required by HA :esphomepr:`5939` by :ghuser:`mrtoy-me`
+- Bump zeroconf from 0.128.4 to 0.130.0 :esphomepr:`5950` by :ghuser:`dependabot[bot]`
+- UARTComponent inline doc :esphomepr:`5930` by :ghuser:`edwardtfn`
+- Fix - Tuya Fan - Allow integer speed datapoint :esphomepr:`5948` by :ghuser:`cram42`
+- i2s_audio: Set player_task's prio to 1 :esphomepr:`5945` by :ghuser:`gaaf`
+- esp32_camera: Set framebuffer task prio to 1 :esphomepr:`5943` by :ghuser:`gaaf`
+- web_server_idf: fix call with hardcoded http code :esphomepr:`5942` by :ghuser:`dentra`
+- Revert pure virtual functions in UART component from #5920 :esphomepr:`5932` by :ghuser:`DrCoolzic`
+- Use the correct UART/`Serial` when CDC is enabled :esphomepr:`5957` by :ghuser:`kbx81`
 
 All changes
 ^^^^^^^^^^^
@@ -185,6 +193,14 @@ All changes
 - Support toggle action for template cover :esphomepr:`5917` by :ghuser:`jochenvg`
 - Fix SplitDefault with variants :esphomepr:`5928` by :ghuser:`jesserockz`
 - Update ENS160 TVOC device_class and AQI units to match required by HA :esphomepr:`5939` by :ghuser:`mrtoy-me`
+- Bump zeroconf from 0.128.4 to 0.130.0 :esphomepr:`5950` by :ghuser:`dependabot[bot]`
+- UARTComponent inline doc :esphomepr:`5930` by :ghuser:`edwardtfn`
+- Fix - Tuya Fan - Allow integer speed datapoint :esphomepr:`5948` by :ghuser:`cram42`
+- i2s_audio: Set player_task's prio to 1 :esphomepr:`5945` by :ghuser:`gaaf`
+- esp32_camera: Set framebuffer task prio to 1 :esphomepr:`5943` by :ghuser:`gaaf`
+- web_server_idf: fix call with hardcoded http code :esphomepr:`5942` by :ghuser:`dentra`
+- Revert pure virtual functions in UART component from #5920 :esphomepr:`5932` by :ghuser:`DrCoolzic`
+- Use the correct UART/`Serial` when CDC is enabled :esphomepr:`5957` by :ghuser:`kbx81`
 
 Past Changelogs
 ---------------
