@@ -10,7 +10,7 @@ on any pin.
 
 On the ESP32, this sensor is even highly accurate because it's using the hardware `pulse counter
 peripheral <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>`__
-on the ESP32. However, due to the use of the pulse counter peripheral, a maximum of 8 channels can be used! 
+on the ESP32. However, due to the use of the pulse counter peripheral, a maximum of 8 channels can be used!
 
 .. figure:: images/pulse-counter.png
     :align: center
@@ -24,7 +24,7 @@ on the ESP32. However, due to the use of the pulse counter peripheral, a maximum
         pin: 12
         name: "Pulse Counter"
 
-Configuration variables:
+Configuration variables
 ------------------------
 
 - **pin** (**Required**, :ref:`config-pin`): The pin to count pulses on.
@@ -38,7 +38,6 @@ Configuration variables:
   - **falling_edge** (*Optional*): What to do when a falling edge is
     detected. One of ``DISABLE``, ``INCREMENT`` and ``DECREMENT``.
     Defaults to ``DISABLE``.
-    
 
 - **use_pcnt** (*Optional*, boolean): Use hardware ``PCNT`` pulse counter. Only supported on ESP32. Defaults to ``true``.
 
@@ -79,13 +78,12 @@ count the light pulses on a power meter, you can do the following:
         filters:
           - multiply: 0.06  # (60s/1000 pulses per kWh)
 
-
 Counting total pulses
 ---------------------
 
-When the total sensor is configured, the pulse_counter also reports the total 
-number of pulses measured. When used on a power meter, this can be used to 
-measure the total consumed energy in kWh. 
+When the total sensor is configured, the pulse_counter also reports the total
+number of pulses measured. When used on a power meter, this can be used to
+measure the total consumed energy in kWh.
 
 .. code-block:: yaml
 

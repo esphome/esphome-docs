@@ -91,6 +91,7 @@ Custom Components & Code
 - `ZclMqttBridge custom component <https://github.com/HyperReap/zcl_mqtt_bridge>`__ by :ghuser:`HyperReap`
 - `Custom esp32 media player and notifier <https://www.printables.com/model/327708-esphome-nodemcu-esp32-media-player>`__ by :ghuser:`rananna`
 - `Blauberg recuperator S22 controller replacement <https://github.com/Benas09/Blauberg_S22>`__ by :ghuser:`Benas09`
+- `Rheem Econet Water Heater and Furnace Controller <https://github.com/esphome-econet/esphome-econet>`__ by `ESPHome-econet <https://github.com/esphome-econet>`__
 
 Sample Configurations
 ---------------------
