@@ -36,6 +36,7 @@ Contributors
 - `Abel Matser (@abelmatser) <https://github.com/abelmatser>`__
 - `Abílio Costa (@abmantis) <https://github.com/abmantis>`__
 - `Antonio (@acarvajalperez) <https://github.com/acarvajalperez>`__
+- `aceindy (@aceindy) <https://github.com/aceindy>`__
 - `Avula Chandra Kiran Reddy (@ackr-8) <https://github.com/ackr-8>`__
 - `Zhenyu Wu (@Adam5Wu) <https://github.com/Adam5Wu>`__
 - `Chris Byrne (@adapt0) <https://github.com/adapt0>`__
@@ -281,6 +282,7 @@ Contributors
 - `Cougar (@Cougar) <https://github.com/Cougar>`__
 - `Connor Prussin (@cprussin) <https://github.com/cprussin>`__
 - `cptquad (@cptquad) <https://github.com/cptquad>`__
+- `Grant Le Roux (@cram42) <https://github.com/cram42>`__
 - `Corey Rice (@crice009) <https://github.com/crice009>`__
 - `crp500 (@crp500) <https://github.com/crp500>`__
 - `cryptelli (@cryptelli) <https://github.com/cryptelli>`__
@@ -382,6 +384,7 @@ Contributors
 - `Robert Schütz (@dotlambda) <https://github.com/dotlambda>`__
 - `Daniel Hyles (@DotNetDann) <https://github.com/DotNetDann>`__
 - `dr-oblivium (@dr-oblivium) <https://github.com/dr-oblivium>`__
+- `Jean  Louis-Guerin (@DrCoolzic) <https://github.com/DrCoolzic>`__
 - `Drew Perttula (@drewp) <https://github.com/drewp>`__
 - `drmodding (@drmodding) <https://github.com/drmodding>`__
 - `drmpf (@drmpf) <https://github.com/drmpf>`__
@@ -501,6 +504,7 @@ Contributors
 - `functionpointer (@functionpointer) <https://github.com/functionpointer>`__
 - `mr G1K (@G1K) <https://github.com/G1K>`__
 - `Aljaž Srebrnič (@g5pw) <https://github.com/g5pw>`__
+- `Alex Hermann (@gaaf) <https://github.com/gaaf>`__
 - `Gabe Cook (@gabe565) <https://github.com/gabe565>`__
 - `Gareth Cooper (@gaco79) <https://github.com/gaco79>`__
 - `gazoodle (@gazoodle) <https://github.com/gazoodle>`__
@@ -647,7 +651,6 @@ Contributors
 - `Josh Willox (@jcwillox) <https://github.com/jcwillox>`__
 - `JeeCee1 (@JeeCee1) <https://github.com/JeeCee1>`__
 - `jeff-h (@jeff-h) <https://github.com/jeff-h>`__
-- `Jeffrey Borg (@jeffborg) <https://github.com/jeffborg>`__
 - `Jeff Eberl (@jeffeb3) <https://github.com/jeffeb3>`__
 - `Jeff Rescignano (@JeffResc) <https://github.com/JeffResc>`__
 - `Jej (@jej) <https://github.com/jej>`__
@@ -659,6 +662,7 @@ Contributors
 - `Joe (@jhansche) <https://github.com/jhansche>`__
 - `jimtng (@jimtng) <https://github.com/jimtng>`__
 - `jivesinger (@jivesinger) <https://github.com/jivesinger>`__
+- `jj-uk (@jj-uk) <https://github.com/jj-uk>`__
 - `John K. Luebs (@jkl1337) <https://github.com/jkl1337>`__
 - `Jeppe Ladefoged (@jladefoged) <https://github.com/jladefoged>`__
 - `Jean-Luc Béchennec (@jlbirccyn) <https://github.com/jlbirccyn>`__
@@ -1288,4 +1292,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated December 15, 2023.*
+*This page was last updated December 18, 2023.*
