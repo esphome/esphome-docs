@@ -101,7 +101,6 @@ Configuration variables:
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The Chip Select (CS) pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
-- **address** (*Optional*, int): Manually specify the :ref:`I²C <i2c>` address of the display. Defaults to 0x3F.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
   by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
 - **flip_x** (*Optional*, boolean): Flip the horizontal axis on the screen. Defaults to ``false``.
