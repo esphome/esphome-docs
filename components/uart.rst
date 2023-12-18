@@ -192,6 +192,7 @@ Below are the methods to read current settings and modify them dynamically:
 - **Reading Current Settings:** Access UART's current configuration using these read-only attributes:
 
   .. code-block:: cpp
+
       // RX buffer size
       id(my_uart).get_rx_buffer_size();
       // Stop bits
@@ -202,10 +203,12 @@ Below are the methods to read current settings and modify them dynamically:
       id(my_uart).get_parity();
       // Baud rate
       id(my_uart).get_baud_rate();
+
 - **Modifying Settings at Runtime:** You can change certain UART parameters during runtime.
   After setting new values, invoke ``load_settings()`` (ESP32 only) to apply these changes:
 
   .. code-block:: yaml
+
       select:
         - id: change_baud_rate
           name: Baud rate
@@ -234,9 +237,11 @@ Below are the methods to read current settings and modify them dynamically:
                   id(my_uart).set_baud_rate(new_baud_rate);
                   id(my_uart).load_settings();
                 }
+
   Available methods for runtime changes:
 
   .. code-block:: cpp
+
       // Set TX/RX pins
       id(my_uart).set_tx_pin(InternalGPIOPin *tx_pin);
       id(my_uart).set_rx_pin(InternalGPIOPin *rx_pin);
@@ -250,6 +255,7 @@ Below are the methods to read current settings and modify them dynamically:
       id(my_uart).set_parity(UARTParityOptions parity);
       // Baud rate
       id(my_uart).set_baud_rate(uint32_t baud_rate);
+
 This flexibility allows for dynamic adaptation to different communication requirements, enhancing the versatility of your ESPHome setup.
 
 See Also
