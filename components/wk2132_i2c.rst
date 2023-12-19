@@ -10,14 +10,13 @@ WK2132 I²C UART Expander
 
 The WK2132 I²C component (wk2132_i2c) allows you to connect through an I²C bus the 
 `Weika WK2332-ISSG chip <https://jlcpcb.com/partdetail/Weikai-WK2132ISSG/C401039>`__
-or boards equipped with this chip like these one:
+or boards equipped with this chip like these:
 
 - `DFROBOT Gravity: I²C to Dual UART Module <https://www.dfrobot.com/product-2001.html>`__
 - `WK2132 Chip Evaluation Board UART/SPI/IIC to 2 Serial Ports <https://www.aliexpress.com/item/1005002018579265.html>`__
 
 The WK2132 chip/module serves as an I²C to Dual UART converter, supporting data transmission rates 
-of up to 1 Mbps. Note that the chip can also interface using an SPI bus, this functionality is supported by 
-a separate ESPHome component (wk2132_spi). Each UART channel features two independent 256-byte FIFO hardware 
+of up to 1 Mbps. Each UART channel features two independent 256-byte FIFO hardware 
 buffers for transmission and reception.
 
 It's worth noting that the baud rate and parity format of each UART channel can be configured independently. 
@@ -111,8 +110,8 @@ least 400kHz. This can be specified in the yaml file as follows:
       id: bus_i2c
       frequency: 400kHz
 
-Component configuration variables:
-**********************************
+Configuration variables:
+************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this WK2312 component.
 - **address** (*Optional*): The I²C address of this component. Defaults to ``0x10``.
@@ -136,4 +135,5 @@ See Also
 ********
 
 - :ref:`i2c`
+- :apiref:`wk2132_i2c/wk2132_i2c.h`
 - :ghedit:`Edit`
