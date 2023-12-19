@@ -106,6 +106,12 @@ Release 2023.11.5 - November 28
 - Add 'voice_assistant.connected' condition :esphomepr:`5845` by :ghuser:`jesserockz`
 
 
+Release 2023.11.6 - November 28
+-------------------------------
+
+- Fix write_speaker without speaker in config :esphomepr:`5847` by :ghuser:`jesserockz`
+
+
 Full list of changes
 --------------------
 
