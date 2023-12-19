@@ -721,8 +721,8 @@ Configuration variables:
   - **blue** (*Optional*, percentage): The percentage the blue color channel should be on. Defaults to ``100%``.
   - **random** (*Optional*, boolean): If set to ``true``, will overwrite the RGB colors by a new, randomly-chosen
     color each time. Defaults to ``false``.
-  - **num_leds** (*Optional*, int): The number of leds of this type to have before moving on to the next color. If ``gradient`` is true, it's the number of leds to transition to the next color over. Defaults to previous color's ``num_leds`` or ``1`` on first color.
-  - **gradient** (*Optional*, boolean): If ``true`` the current color will transition with a gradient over ``num_leds`` to the next color. Defaults to previous color's ``gradient`` setting, or for ``false`` first color.
+  - **num_leds** (**Required**, positive int): The number of leds of this type to have before moving on to the next color. If ``gradient`` is true, it's the number of leds to transition to the next color over.
+  - **gradient** (*Optional*, boolean): If ``true`` the current color will transition with a gradient over ``num_leds`` to the next color. Defaults to ``false``.
 
 - **add_led_interval** (*Optional*, :ref:`config-time`): The interval with which to shift in new leds at the
   beginning of the strip. Defaults to ``100ms``.
