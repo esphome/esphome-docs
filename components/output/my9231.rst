@@ -97,9 +97,7 @@ Sonoff B1 configuration example
 This component can be used with a Sonoff B1 smart light bulb. To flash
 the Sonoff B1, open the plastic cover and connect/solder wires to the
 PCB pads (3.3V, RX, TX, GND, GPIO0). If you connect GPIO0 to GND
-during power up, the device enters flash mode. For more information
-about flashing Sonoff devices, see:
-:doc:`/devices/sonoff_s20`. All LEDs are connected to a
+during power up, the device enters flash mode. All LEDs are connected to a
 chain of two MY9321 chips that are connected to GPIO12 and GPIO14. A
 complete configuration for a Sonoff B1 looks like:
 
