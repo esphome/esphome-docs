@@ -8,13 +8,15 @@ WK2132 I²C UART Expander
 .. role:: raw-html-m2r(raw)
    :format: html
 
-The WK2132 I²C component (wk2132_i2c) allows you to use a 
-`Weika WK2332-ISSG <https://jlcpcb.com/partdetail/Weikai-WK2132ISSG/C401039>`__
-chip or a DFROBOT `Gravity: I²C to Dual UART Module <https://www.dfrobot.com/product-2001.html>`__
-module connected to an ESP32 MCU through an I²C bus. 
+The WK2132 I²C component (wk2132_i2c) allows you to connect through an I²C bus the 
+`Weika WK2332-ISSG chip <https://jlcpcb.com/partdetail/Weikai-WK2132ISSG/C401039>`__
+or boards equipped with this chip like these one:
+
+- `DFROBOT Gravity: I²C to Dual UART Module <https://www.dfrobot.com/product-2001.html>`__
+- `WK2132 Chip Evaluation Board UART/SPI/IIC to 2 Serial Ports <https://www.aliexpress.com/item/1005002018579265.html>`__
 
 The WK2132 chip/module serves as an I²C to Dual UART converter, supporting data transmission rates 
-of up to 1 Mbps. While the chip can also interface with an SPI bus, this functionality is supported by 
+of up to 1 Mbps. Note that the chip can also interface using an SPI bus, this functionality is supported by 
 a separate ESPHome component (wk2132_spi). Each UART channel features two independent 256-byte FIFO hardware 
 buffers for transmission and reception.
 
@@ -57,8 +59,8 @@ as a virtual UART bus for the connected component.
 
 .. important:: 
 
-    Note that the address is given as a range a not a number as you usually find on other I²C component.
-    Indeed due to a peculiar way of adressing the different registers each wk2132 actually occupy 
+    Note that the address is given as a **range** a not a number as you usually find on other I²C component.
+    Indeed due to a peculiar way of addressing the different internal registers each wk2132 component actually occupy 
     8 consecutive addresses. \ :raw-html-m2r:`<br>`
     For example if the component base address is 0x10, it will occupy the addresses ranging from 
     0x10 to 0x17 on the I²C bus. \ :raw-html-m2r:`<br>`
@@ -67,15 +69,6 @@ as a virtual UART bus for the connected component.
 .. code-block:: yaml
 
     # Example of configuration entry
-    esphome:
-      platformio_options:
-        build_flags:
-          - -DI2C_BUFFER_LENGTH=256
-
-    uart:
-      id: dummy_uart_required
-      tx_pin: 3
-      baud_rate: 9600
     
     i2c:
       id: i2c_bus
@@ -97,29 +90,17 @@ as a virtual UART bus for the connected component.
             channel: 1
             baud_rate: 19200
 
-    # Device using one of the wk2132 Uart channel
-    sensor: 
-      - platform: sds011
-        uart_id: uart_0
-        update_interval: 1min
-        pm_2_5:
-          name: test_2_5µm_concentration
-          id: test_2_5um_concentration
-        pm_10_0:
-          name: test_10_0µm_concentration
-          id: test_10_0um_concentration
-
 Performance considerations:
 ***************************
 
-Please be mindful that the communication between the Wk2132 chip and the processor occurs on an I²C bus, 
-with a default operating frequency of 50kHz. At this rate, tasks such as checking the status of the chip's 
+Please be mindful that the communication between the Wk2132 device and the processor occurs on an I²C bus, 
+with a default operating frequency of only 50kHz. At this rate, tasks such as checking the status of the chip's 
 registers or transferring bytes from the internal FIFOs to the processor may experience delays. 
-Despite the 256-byte capacity of the FIFOs, there is a risk of overflow of the reveiver due to the processing time.
+Despite the 256-byte capacity of the FIFOs, there is a risk of receiver overflow due to the processing time.
 
-To mitigate this, it is strongly recommended to consider increasing the I²C bus frequency. Depending on 
-the compatibility with other components on the bus, it should be feasible to elevate the speed to at 
-least 400kHz or more at the very least. This can be specified in the yaml file as follows: 
+To mitigate this, it is strongly recommended to increase the I²C bus frequency. Depending on 
+the compatibility with other components on the bus, it is recommended to elevate the speed to at 
+least 400kHz. This can be specified in the yaml file as follows: 
 
 .. code-block:: yaml
 
@@ -128,28 +109,7 @@ least 400kHz or more at the very least. This can be specified in the yaml file a
       scl: 22
       scan: true
       id: bus_i2c
-      frequency: 600kHz
-
-You should know that, by default, the length of the transactions on the I²C bus are limited to 128 bytes. 
-However, this limit can be modified by specifying the desired length at compile time. 
-This can be specified in the yaml file as follows: 
-
-.. code-block:: yaml
-
-    esphome:
-      platformio_options:
-        build_flags:
-          - -DI2C_BUFFER_LENGTH=256
-
-.. caution:: 
-
-    Currently, due to some internal limitations, it is necessary to declare a dummy ``uart:`` component in
-    your configuration **even if you do not need one**. See the example above. This requirement 
-    will disappear in future release.\ :raw-html-m2r:`<br>`
-
-    Currently, there are bugs in the ESPHome I²C component and in the Arduino Wire library that limit the 
-    maximum transmission size to 255. The current version of wk2132_i2c automatically sets this limit for 
-    you. This limitation will disappear in future versions
+      frequency: 400kHz
 
 Component configuration variables:
 **********************************
