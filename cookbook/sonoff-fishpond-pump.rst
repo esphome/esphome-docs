@@ -162,8 +162,6 @@ Both options USB and OTA are done by running the command:
 
     esphome <some-yaml-file> run
 
-More details on programming can be found on :doc:`/devices/sonoff_basic`
-
 3. Prepping and installing
 **************************
 
