@@ -66,47 +66,47 @@ Default UART GPIO Pins
 .. list-table::
     :header-rows: 1
 
-    * - Hardware Interface
-      - ESP8266
-      - ESP32
-      - ESP32-C3
-      - ESP32-S2
-      - ESP32-S3
-    * - ``UART0``
+    * - 
+      - ``UART0``
+      - ``UART0_SWAP``
+      - ``UART1``
+      - ``UART2``
+      - ``USB_CDC``
+      - ``USB_SERIAL_JTAG``
+    * - ESP8266
       - TX: 1, RX: 3
-      - TX: 1, RX: 3
-      - TX: 21, RX: 20
-      - TX: 43, RX: 44
-      - TX: 43, RX: 44
-    * - ``UART0_SWAP``
       - TX: 15, RX: 13
-      - N/A
-      - N/A
-      - N/A
-      - N/A
-    * - ``UART1``
       - TX: 2, RX: N/A
-      - TX: 9, RX: 10
-      - Undefined
-      - TX: 17, RX: 18
-      - TX: 17, RX: 18
-    * - ``UART2``
       - N/A
+      - N/A
+      - N/A
+    * - ESP32
+      - TX: 1, RX: 3
+      - N/A
+      - TX: 9, RX: 10
       - TX: 16, RX: 17
       - N/A
       - N/A
+    * - ESP32-C3
+      - TX: 21, RX: 20
+      - N/A
       - Undefined
-    * - ``USB_CDC``
-      - N/A
-      - N/A
-      - N/A
-      - 19/20
-      - 19/20
-    * - ``USB_SERIAL_JTAG``
       - N/A
       - N/A
       - 18/19
+    * - ESP32-S2
+      - TX: 43, RX: 44
       - N/A
+      - TX: 17, RX: 18
+      - N/A
+      - 19/20
+      - N/A
+    * - ESP32-S3
+      - TX: 43, RX: 44
+      - N/A
+      - TX: 17, RX: 18
+      - Undefined
+      - 19/20
       - 19/20
 
 *Undefined* means that the logger component cannot use this harware UART at this time.
@@ -124,26 +124,26 @@ the original ESP32 or ESP8266) continue to use USB-to-serial bridge ICs for comm
 .. list-table::
     :header-rows: 1
 
-    * - Framework
-      - ESP8266
-      - ESP32
-      - ESP32-C3
-      - ESP32-S2
-      - ESP32-S3
-      - RP2040
-    * - Arduino
+    * - 
+      - Arduino
+      - ESP-IDF
+    * - ESP8266
+      - ``UART0``
+      - N/A
+    * - ESP32
       - ``UART0``
       - ``UART0``
-      - ``USB_CDC``
-      - ``USB_CDC``
-      - ``USB_CDC``
-      - ``USB_CDC``
-    * - ESP-IDF
-      - ``UART0``
-      - ``UART0``
-      - ``USB_SERIAL_JTAG``
+    * - ESP32-C3
       - ``USB_CDC``
       - ``USB_SERIAL_JTAG``
+    * - ESP32-S2
+      - ``USB_CDC``
+      - ``USB_CDC``
+    * - ESP32-S3
+      - ``USB_CDC``
+      - ``USB_SERIAL_JTAG``
+    * - RP2040
+      - ``USB_CDC``
       - N/A
 
 .. _logger-log_levels:
