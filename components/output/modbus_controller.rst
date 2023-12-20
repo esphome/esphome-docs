@@ -27,7 +27,7 @@ Configuration variables:
 
 - **register_type** (*Optional*): ``holding`` to create a float output or ``coil`` to create a binary output.
 - **multiply** (*Optional*, float): multiply the incoming value with this factor before writing it to the device. Ignored if ``write_lambda`` is defined. Only valid for ``register_type: holding``.
-- **use_write_multiple** (*Optional*, boolean): By default the modbus command *Preset Single Registers* (Function Code 6) is used for setting the holding register if only 1 register is set. If your device only supports *Preset Multiple Registers* (Function Code 16) set this option to ``true``.
+- **use_write_multiple** (*Optional*, boolean): By default the modbus command *Function Code 6 (Preset Single Registers)* is used for setting the holding register if only one register is set. If your device only supports *Function Code 16 (Preset Multiple Registers)* set this option to ``true``.
 - **write_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda is evaluated before the modbus write command is created. The value is passed in as ``float x`` and an empty vector is passed in as ``std::vector<uint16_t>&payload``.
   You can directly define the payload by adding data to payload then the return value is ignored and the content of payload is used.
