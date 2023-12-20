@@ -25,7 +25,10 @@ Configuration variables:
     - ``FP32`` (32 bit IEEE 754 floating point from 2 registers)
     - ``FP32_R`` (32 bit IEEE 754 floating point - same as FP32 but low word first)
 
-- **register_type** (*Optional*): ``holding`` to create a float output or ``coil`` to create a binary output.
+- **register_type** (*Optional*): 
+    - ``coil``: Write Coil - Write the ON/OFF status of a discrete coil in the device with *Function Code 5 or 15*. This will create a binary output.
+    - ``holding``: Write Holding Registers - write contents of holding registers in the device with *Function Code 6 or 16*. This will create a float output.
+
 - **multiply** (*Optional*, float): multiply the incoming value with this factor before writing it to the device. Ignored if ``write_lambda`` is defined. Only valid for ``register_type: holding``.
 - **use_write_multiple** (*Optional*, boolean): By default the modbus command *Function Code 6 (Preset Single Registers)* is used for setting the holding register if only one register is set. If your device only supports *Function Code 16 (Preset Multiple Registers)* set this option to ``true``.
 - **write_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
