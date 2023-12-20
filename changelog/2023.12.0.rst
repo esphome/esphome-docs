@@ -97,6 +97,8 @@ Beta Changes
 - Speed up writing protobuf strings/bytes :esphomepr:`5828` by :ghuser:`bdraco`
 - Bump aioesphomeapi to 21.0.1 :esphomepr:`5969` by :ghuser:`bdraco`
 - rename ``set_raw_touch_position_`` to ``add_raw_touch_position_`` :esphomepr:`5962` by :ghuser:`nielsnl68`
+- image: allow the image to by auto-loaded by animation :esphomepr:`5139` by :ghuser:`ayufan`
+- Fix pin reuse error with pin expanders :esphomepr:`5973` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -241,6 +243,8 @@ All changes
 - Speed up writing protobuf strings/bytes :esphomepr:`5828` by :ghuser:`bdraco`
 - Bump aioesphomeapi to 21.0.1 :esphomepr:`5969` by :ghuser:`bdraco`
 - rename ``set_raw_touch_position_`` to ``add_raw_touch_position_`` :esphomepr:`5962` by :ghuser:`nielsnl68`
+- image: allow the image to by auto-loaded by animation :esphomepr:`5139` by :ghuser:`ayufan`
+- Fix pin reuse error with pin expanders :esphomepr:`5973` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
