@@ -47,36 +47,42 @@ need to set the ``baud_rate`` to 9600.
 
     sun_gtil2:
       uart_id: control_to_display
-      temperature:
-        id: gtil_temperature
-        name: "Heatsink Temperature"
-        filters:
-          - throttle_average: 30s
-      dc_voltage:
-        id: gtil_dc_voltage
-        name: "DC Voltage"
-        filters:
-          - throttle_average: 30s
-      ac_voltage:
-        id: gtil_ac_voltage
-        name: "AC Voltage"
-        filters:
-          - throttle_average: 30s
-      dc_power:
-        id: gtil_dc_power
-        name: "DC Power"
-      ac_power:
-        id: gtil_ac_power
-        name: "AC Power"
-      state:
-        id: gtil_state
-        name: "State"
-      limiter_power:
-        id: gtil_limiter_power
-        internal: True
-      serial_number:
-        id: gtil_serial_number
-        internal: True
+    
+    sensor:
+      - platform: sun_gtil2
+        temperature:
+          id: gtil_temperature
+          name: "Heatsink Temperature"
+          filters:
+            - throttle_average: 30s
+        dc_voltage:
+          id: gtil_dc_voltage
+          name: "DC Voltage"
+          filters:
+            - throttle_average: 30s
+        ac_voltage:
+          id: gtil_ac_voltage
+          name: "AC Voltage"
+          filters:
+            - throttle_average: 30s
+        ac_power:
+          id: gtil_ac_power
+          name: "AC Power"
+        dc_power:
+          id: gtil_dc_power
+          name: "DC Power"
+        limiter_power:
+          id: gtil_limiter_power
+          internal: True
+    
+    text_sensor:
+      - platform: sun_gtil2
+        state:
+          id: gtil_state
+          name: "State"
+        serial_number:
+          id: gtil_serial_number
+          internal: True
 
 The inverter will report new measurements approximately every 1.3 seconds.
 
