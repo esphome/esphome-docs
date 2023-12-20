@@ -2,11 +2,11 @@ Modbus Controller
 =================
 
 .. seo::
-    :description: Instructions for setting up the ModBUS Controller component.
+    :description: Instructions for setting up the Modbus Controller component.
     :image: modbus.png
 
-The ``modbus_controller`` component creates a RS485 connection to control a ModBUS slave device, letting your ESPHome node to act as a ModBUS master.
-You can access the coils and registers from your slave ModBUS device as sensors, switches or various other ESPHome components and present them to your favorite Home Automation system.
+The ``modbus_controller`` component creates a RS485 connection to control a Modbus server (slave) device, letting your ESPHome node to act as a Modbus client (master).
+You can access the coils, inputs, holding, read registers from your devices as sensors, switches, selects, numbers or various other ESPHome components and present them to your favorite Home Automation system. You can even write them as binary or float ouptputs from ESPHome.
 
 .. figure:: /images/modbus.png
     :align: center
@@ -26,7 +26,7 @@ See `How is this RS485 module working? <https://electronics.stackexchange.com/qu
 
 The transceiver connects to the UART of the MCU. For ESP32, pin ``16`` to ``TXD`` and pin ``17`` to ``RXD`` are the default ones but any other pins can be used as well. ``3.3V`` to ``VCC`` and naturally ``GND`` to ``GND``.
 
-On the bus side, you need 120 Ohm termination resistors at the ends of the bus cable as per ModBUS standard. Some transceivers have this already solderes onboard, and some slave devices may have them preinstalled with a jumper or a dip switch.
+On the bus side, you need 120 Ohm termination resistors at the ends of the bus cable as per Modbus standard. Some transceivers have this already solderes onboard, and some slave devices may have them preinstalled with a jumper or a dip switch.
 
 .. note::
 
@@ -34,7 +34,7 @@ On the bus side, you need 120 Ohm termination resistors at the ends of the bus c
 
     For hardware serial only a limited set of pins can be used. Either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``  or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``.
 
-    The disadvantage of using the hardware uart is that you can't use serial logging because the serial logs would be sent to the ModBUS device and cause errors.
+    The disadvantage of using the hardware uart is that you can't use serial logging because the serial logs would be sent to the Modbus device and cause errors.
 
     Serial logging can be disabled by setting ``baud_rate: 0``.
 
@@ -53,10 +53,10 @@ Configuration variables:
 
 - **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the ``modbus`` hub.
 
-- **address** (**Required**, :ref:`config-id`): The ModBUS address of the slave device
+- **address** (**Required**, :ref:`config-id`): The Modbus address of the slave device
 
 - **command_throttle** (*Optional*, :ref:`config-time`): minimum time in between 2 requests to the device. Default is ``0ms``.
-  Some ModBUS slave devices limit the rate of requests from the master, the interval between sending requests can be altered.
+  Some Modbus slave devices limit the rate of requests from the master, the interval between sending requests can be altered.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
   Defaults to 60 seconds.
@@ -69,9 +69,9 @@ Configuration variables:
 
 Example
 -------
-The following code creates a ``modbus_controller`` hub talking to a ModBUS device at address ``1`` with ``115200`` bps
+The following code creates a ``modbus_controller`` hub talking to a Modbus device at address ``1`` with ``115200`` bps
 
-ModBUS sensors can be directly defined (inline) under the ``modbus_controller`` hub or as standalone components
+Modbus sensors can be directly defined (inline) under the ``modbus_controller`` hub or as standalone components
 Technically there is no difference between the "inline" and the standard definitions approach.
 
 .. code-block:: yaml
@@ -89,7 +89,7 @@ Technically there is no difference between the "inline" and the standard definit
 
     modbus_controller:
       - id: epever
-        address: 0x1   ## address of the ModBUS slave device on the bus
+        address: 0x1   ## address of the Modbus slave device on the bus
         modbus_id: modbus1
         setup_priority: -10
 
@@ -100,7 +100,7 @@ Technically there is no difference between the "inline" and the standard definit
         id: rtc_clock
         internal: true
         register_type: holding
-        address: 0x9013    ## address of the register inside the ModBUS slave device
+        address: 0x9013    ## address of the register inside the Modbus slave device
         register_count: 3
         raw_encode: HEXBYTES
         response_size: 6
@@ -123,6 +123,8 @@ Technically there is no difference between the "inline" and the standard definit
         address: 0x9001
         unit_of_measurement: "AH"
         value_type: U_WORD
+
+
 
 
 .. _bitmasks:
@@ -507,7 +509,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
 .. note::
 
     Write support is only implemented for switches and selects.
-    However the C++ code provides the required API to write to a ModBUS device.
+    However the C++ code provides the required API to write to a Modbus device.
 
     These methods can be called from a lambda.
 
@@ -540,7 +542,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
                     // create the payload
                     std::vector<uint16_t> rtc_data = {uint16_t((minutes << 8) | seconds), uint16_t((day << 8) | hour),
                                                       uint16_t((year << 8) | month)};
-                    // Create a ModBUS command item with the time information as the payload
+                    // Create a Modbus command item with the time information as the payload
                     esphome::modbus_controller::ModbusCommandItem set_rtc_command =
                         esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x9013, 3, rtc_data);
                     // Submit the command to the send queue
@@ -656,7 +658,7 @@ See Also
 - :doc:`/components/number/modbus_controller`
 - :doc:`/components/select/modbus_controller`
 - :doc:`/components/text_sensor/modbus_controller`
-- `ModBUS RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
+- `Modbus RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
 - `EPEVER MPPT Solar Charge Controller (Tracer-AN Series) <https://devices.esphome.io/devices/epever_mptt_tracer_an>`__
 - `Genvex, Nibe, Alpha-Innotec heat recovery ventilation <https://devices.esphome.io/devices/Genvex-Nibe-AlphaInnotec-heat-recovery-ventilation>`__
 - :ghedit:`Edit`
