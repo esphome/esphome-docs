@@ -194,7 +194,7 @@ This trigger is activated when the alarm changes from to disarmed.
 ``on_ready`` Trigger
 ***********************
 
-This trigger is activated when the logical 'and' of all the alarm sensors change state. This is useful for implementing alarm ready LED's.
+This trigger is activated when the logical 'and' of all the alarm sensors change state. This is useful for implementing "alarm ready" LEDs.
 Once this trigger is called, you can get the ready state by calling get_all_sensors_ready() in a lambda block.
 
 .. code-block:: yaml
