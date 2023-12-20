@@ -20,6 +20,33 @@ ESPHome 2023.12.0 - 20th December 2023
     PN7150, components/binary_sensor/pn7150, pn7150.jpg
     PN716X, components/binary_sensor/pn7160, pn716x.jpg
 
+Graphical Menu
+--------------
+
+Following on from the previous :doc:`/components/display_menu/lcd_menu` that was only for LCD displays,
+there is now a new :doc:`/components/display_menu/graphical_menu` that can be used with any
+graphical/pixel based display.
+
+Pin Reuse validation
+--------------------
+
+There is a new validation performed on configurations to ensure that pins are not reused unintentionally.
+This is a common source of issues and generally a pin does not need to be reused across multiple components
+in a single configuration. The error can be bypassed by specifically adding another config item to all of the
+duplicate pin definitions. See the :ref:`config-pin_schema` for details.
+
+Touchscreen internal changes
+----------------------------
+
+The touchscreen compoenent code has had a big overhaul which breaks any external components or open PRs for
+new touchscreens. See :esphomepr:`4596` for details if this affects you.
+
+MCP3008 breaking changes
+------------------------
+
+The MCP3008 has has a restructure of the code and at the same time the default update interval has been changed to 60 seconds,
+the units, device class and state class default have also been set to sane defaults expected for a voltage sensor.
+
 
 Full list of changes
 --------------------
@@ -46,6 +73,7 @@ Breaking Changes
 - mcp3008: Tidy up and fix auto load bug :esphomepr:`5842` by :ghuser:`jesserockz` (breaking-change)
 - Nextion colors parameters :esphomepr:`5699` by :ghuser:`edwardtfn` (breaking-change)
 - Checks for pins used in multiple places :esphomepr:`5666` by :ghuser:`clydebarrow` (breaking-change)
+- Updating the touchscreen interface structure  :esphomepr:`4596` by :ghuser:`nielsnl68` (new-integration)
 
 Beta Changes
 ^^^^^^^^^^^^
@@ -63,6 +91,11 @@ Beta Changes
 - web_server_idf: fix call with hardcoded http code :esphomepr:`5942` by :ghuser:`dentra`
 - Revert pure virtual functions in UART component from #5920 :esphomepr:`5932` by :ghuser:`DrCoolzic`
 - Use the correct UART/`Serial` when CDC is enabled :esphomepr:`5957` by :ghuser:`kbx81`
+- Fix build issue with UART component when building with Arduino and CDC :esphomepr:`5964` by :ghuser:`kbx81`
+- Fix I2CBus::write() bug and add i2c documentation :esphomepr:`5947` by :ghuser:`DrCoolzic`
+- Add deep sleep between updates for waveshare epaper 1.54in and 1.54inv2 :esphomepr:`5961` by :ghuser:`mathieu-mp`
+- Speed up writing protobuf strings/bytes :esphomepr:`5828` by :ghuser:`bdraco`
+- Bump aioesphomeapi to 21.0.1 :esphomepr:`5969` by :ghuser:`bdraco`
 
 All changes
 ^^^^^^^^^^^
@@ -201,6 +234,11 @@ All changes
 - web_server_idf: fix call with hardcoded http code :esphomepr:`5942` by :ghuser:`dentra`
 - Revert pure virtual functions in UART component from #5920 :esphomepr:`5932` by :ghuser:`DrCoolzic`
 - Use the correct UART/`Serial` when CDC is enabled :esphomepr:`5957` by :ghuser:`kbx81`
+- Fix build issue with UART component when building with Arduino and CDC :esphomepr:`5964` by :ghuser:`kbx81`
+- Fix I2CBus::write() bug and add i2c documentation :esphomepr:`5947` by :ghuser:`DrCoolzic`
+- Add deep sleep between updates for waveshare epaper 1.54in and 1.54inv2 :esphomepr:`5961` by :ghuser:`mathieu-mp`
+- Speed up writing protobuf strings/bytes :esphomepr:`5828` by :ghuser:`bdraco`
+- Bump aioesphomeapi to 21.0.1 :esphomepr:`5969` by :ghuser:`bdraco`
 
 Past Changelogs
 ---------------
