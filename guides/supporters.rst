@@ -681,6 +681,7 @@ Contributors
 - `Jonas Niesner (@jonasniesner) <https://github.com/jonasniesner>`__
 - `Jonathan Adams (@jonathanadams) <https://github.com/jonathanadams>`__
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__
+- `jonOfrie (@jonOfrie) <https://github.com/jonOfrie>`__
 - `Joris S (@Jorre05) <https://github.com/Jorre05>`__
 - `Jared Sanson (@jorticus) <https://github.com/jorticus>`__
 - `JosephTang (@JosephTang) <https://github.com/JosephTang>`__
@@ -979,6 +980,7 @@ Contributors
 - `Philip Persson (@PhPersson) <https://github.com/PhPersson>`__
 - `Pierre Gordon (@pierlon) <https://github.com/pierlon>`__
 - `pieterbrink123 (@pieterbrink123) <https://github.com/pieterbrink123>`__
+- `Jakub Augustynowicz (@pingwiniasty) <https://github.com/pingwiniasty>`__
 - `Piotr Kubiak (@piotr-kubiak) <https://github.com/piotr-kubiak>`__
 - `Peter Kuehne (@pkuehne) <https://github.com/pkuehne>`__
 - `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__
@@ -1294,4 +1296,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated December 20, 2023.*
+*This page was last updated December 21, 2023.*
