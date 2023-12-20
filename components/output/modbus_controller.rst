@@ -51,10 +51,12 @@ Configuration variables:
 
 - **offset** (*Optional*, int): Offset from start address in bytes (only required for uncommon response encodings). If more than one register is written in a command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
 All other options from :ref:`Output <config-output>`.
 
 
-**Example:**
+Example:
+--------
 
 .. code-block:: yaml
 
@@ -67,7 +69,7 @@ All other options from :ref:`Output <config-output>`.
         multiply: 1000
 
 
-**Example with lambda:**
+**The same with lambda:**
 
 .. code-block:: yaml
 
