@@ -68,14 +68,6 @@ as a virtual UART bus for the connected component.
 .. code-block:: yaml
 
     # Example of configuration entry
-    
-    i2c:
-      id: i2c_bus
-      scan: true
-      sda: 21
-      scl: 22
-      frequency: 600kHz
-
     wk2132_i2c:
       - address: 0x70
         id: bridge_0
