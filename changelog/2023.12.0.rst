@@ -96,6 +96,7 @@ Beta Changes
 - Add deep sleep between updates for waveshare epaper 1.54in and 1.54inv2 :esphomepr:`5961` by :ghuser:`mathieu-mp`
 - Speed up writing protobuf strings/bytes :esphomepr:`5828` by :ghuser:`bdraco`
 - Bump aioesphomeapi to 21.0.1 :esphomepr:`5969` by :ghuser:`bdraco`
+- rename ``set_raw_touch_position_`` to ``add_raw_touch_position_`` :esphomepr:`5962` by :ghuser:`nielsnl68`
 
 All changes
 ^^^^^^^^^^^
@@ -239,6 +240,7 @@ All changes
 - Add deep sleep between updates for waveshare epaper 1.54in and 1.54inv2 :esphomepr:`5961` by :ghuser:`mathieu-mp`
 - Speed up writing protobuf strings/bytes :esphomepr:`5828` by :ghuser:`bdraco`
 - Bump aioesphomeapi to 21.0.1 :esphomepr:`5969` by :ghuser:`bdraco`
+- rename ``set_raw_touch_position_`` to ``add_raw_touch_position_`` :esphomepr:`5962` by :ghuser:`nielsnl68`
 
 Past Changelogs
 ---------------

@@ -179,7 +179,6 @@ Contributors
 - `Brian Kaufman (@bkaufx) <https://github.com/bkaufx>`__
 - `JDavid (@blackhack) <https://github.com/blackhack>`__
 - `blackshoals (@blackshoals) <https://github.com/blackshoals>`__
-- `blacktirion (@blacktirion) <https://github.com/blacktirion>`__
 - `blakadder (@blakadder) <https://github.com/blakadder>`__
 - `Branimir Lambov (@blambov) <https://github.com/blambov>`__
 - `bleeisme (@bleeisme) <https://github.com/bleeisme>`__
@@ -852,6 +851,7 @@ Contributors
 - `mmanza (@mmanza) <https://github.com/mmanza>`__
 - `mnltake (@mnltake) <https://github.com/mnltake>`__
 - `Matt N. (@mnoorenberghe) <https://github.com/mnoorenberghe>`__
+- `Moriah Morgan (@moriahjmorgan) <https://github.com/moriahjmorgan>`__
 - `moritzj29 (@moritzj29) <https://github.com/moritzj29>`__
 - `Chris Laplante (@mostthingsweb) <https://github.com/mostthingsweb>`__
 - `MrEditor97 (@mreditor97) <https://github.com/mreditor97>`__
