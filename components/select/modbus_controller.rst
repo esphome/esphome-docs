@@ -7,27 +7,12 @@ Modbus Controller Select
 The ``modbus_controller`` Select platform allows you to create a Select from modbus
 registers.
 
-.. code-block:: yaml
-
-    # Example configuration entry
-    select:
-      - platform: modbus_controller
-        name: "Modbus Select Register 1000"
-        address: 1000
-        value_type: U_WORD
-        optionsmap:
-          "Zero": 0
-          "One": 1
-          "Two": 2
-          "Three": 3
-
-
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the Select.
 - **address** (**Required**, int): The start address of the first or only register
-  of the Select.
+  of the Select  (can be decimal or hexadecimal).
 - **optionsmap** (**Required**, Map[str, int]): Provide a mapping from options (str) of
   this Select to values (int) of the modbus register and vice versa. All options and
   all values have to be unique.
@@ -75,16 +60,12 @@ Configuration variables:
 
 - **write_lambda** (*Optional*, :ref:`lambda <config-lambda>`): Lambda to be evaluated on every update
   of the Sensor, before the new value is written to the modbus registers.
-- **use_write_multiple** (*Optional*, boolean): By default the modbus command ``Preset Single Registers``
-  (function code 6) is used for setting the holding register if only 1 register is set. If your device only supports *Preset Multiple Registers* (function code 16) set this option to ``true``. Defaults
-  to ``false``.
+- **use_write_multiple** (*Optional*, boolean): By default the modbus command *Function Code 6 (Preset Single Registers)* 
+  is used for setting the holding register if only one register is set. If your device only supports *Function Code 16 (Preset Multiple Registers)* set this option to ``true``.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
   any command sent to the Modbus Select will immediately update the reported state. Defaults
   to ``false``.
 - All other options from :ref:`Select <config-select>`.
-
-
-
 
 .. code-block:: yaml
 
@@ -136,15 +117,34 @@ Possible return values for the lambda:
       // ignore update
       return {};
 
+Example:
+--------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    select:
+      - platform: modbus_controller
+        name: "Modbus Select Register 1000"
+        address: 1000
+        value_type: U_WORD
+        optionsmap:
+          "Zero": 0
+          "One": 1
+          "Two": 2
+          "Three": 3
+
 
 See Also
 --------
+- :doc:`/components/modbus`
 - :doc:`/components/modbus_controller`
 - :doc:`/components/sensor/modbus_controller`
 - :doc:`/components/binary_sensor/modbus_controller`
-- :doc:`/components/switch/modbus_controller`
-- :doc:`/components/text_sensor/modbus_controller`
 - :doc:`/components/output/modbus_controller`
+- :doc:`/components/switch/modbus_controller`
+- :doc:`/components/number/modbus_controller`
+- :doc:`/components/text_sensor/modbus_controller`
 - :ref:`automation`
 - https://www.modbustools.com/modbus.html
 - :ghedit:`Edit`
