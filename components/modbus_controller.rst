@@ -209,6 +209,131 @@ To gather some of these bits as binary sensors in ESPHome, use ``bitmask``:
       bitmask: 0x8000
 
 
+.. _modbus_custom_command:
+
+Using ``custom_command``
+------------------------
+
+``custom_command`` can be used to create an arbitrary modbus command. Combined with a lambda any response can be handled.
+This example re-implements the command to read the registers 0x156 (Total active energy) and 0x158 Total (reactive energy) from a SDM-120.
+SDM-120 returns the values as floats using 32 bits in 2 registers.
+
+    .. code-block:: yaml
+
+        modbus:
+          send_wait_time: 200ms
+          uart_id: mod_uart
+          id: mod_bus
+
+        modbus_controller:
+          - id: sdm
+            address: 2
+            modbus_id: mod_bus
+            command_throttle: 100ms
+            setup_priority: -10
+            update_interval: 30s
+        sensors:
+          - platform: modbus_controller
+            modbus_controller_id: sdm
+            name: "Total active energy"
+            id: total_energy
+            #    address: 0x156
+            #    register_type: "read"
+            ## reimplement using custom_command
+            # 0x2 : modbus device address
+            # 0x4 : modbus function code
+            # 0x1 : high byte of modbus register address
+            # 0x56: low byte of modbus register address
+            # 0x00: high byte of total number of registers requested
+            # 0x02: low byte of total number of registers requested
+            custom_command: [ 0x2, 0x4, 0x1, 0x56,0x00, 0x02]
+            value_type: FP32
+            unit_of_measurement: kWh
+            accuracy_decimals: 1
+
+          - platform: modbus_controller
+            modbus_controller_id: sdm
+            name: "Total reactive energy"
+            #   address: 0x158
+            #   register_type: "read"
+            custom_command: [0x2, 0x4, 0x1, 0x58, 0x00, 0x02]
+            ## the command returns an float value using 4 bytes
+            lambda: |-
+              ESP_LOGD("Modbus Sensor Lambda","Got new data" );
+              union {
+                float float_value;
+                uint32_t raw;
+              } raw_to_float;
+              if (data.size() < 4 ) {
+                ESP_LOGE("Modbus Sensor Lambda", "invalid data size %d",data.size());
+                return NAN;
+              }
+              raw_to_float.raw =   data[0] << 24 | data[1] << 16 | data[2] << 8 |  data[3];
+              ESP_LOGD("Modbus Sensor Lambda", "FP32 = 0x%08X => %f", raw_to_float.raw, raw_to_float.float_value);
+              return raw_to_float.float_value;
+            unit_of_measurement: kVArh
+            accuracy_decimals: 1
+
+.. _modbus_register_count:
+
+Optimize modbus communications
+------------------------------
+
+    ``register_count`` can also be used to skip a register in consecutive range.
+
+    An example is a SDM meter:
+
+    .. code-block:: yaml
+
+        - platform: modbus_controller
+          name: "Voltage Phase 1"
+          address: 0
+          register_type: "read"
+          value_type: FP32
+
+        - platform: modbus_controller
+          name: "Voltage Phase 2"
+          address: 2
+          register_type: "read"
+          value_type: FP32
+
+        - platform: modbus_controller
+          name: "Voltage Phase 3"
+          address: 4
+          register_type: "read"
+          value_type: FP32
+
+        - platform: modbus_controller
+          name: "Current Phase 1"
+          address: 6
+          register_type: "read"
+          value_type: FP32
+          accuracy_decimals: 1
+
+    Maybe you don’t care about the Voltage value for Phase 2 and Phase 3 (or you have a SDM-120).
+    Of course, you can delete the sensors your don’t care about. But then you have a gap in the addresses. The configuration above will generate one modbus  command `read multiple registers from 0 to 6`. If you remove the registers at address 2 and 4 then 2 commands will be generated `read register 0` and `read register 6`.
+    To avoid the generation of multiple commands and reduce the amount of uart communication ``register_count`` can be used to fill the gaps
+
+    .. code-block:: yaml
+
+        - platform: modbus_controller
+          name: "Voltage Phase 1"
+          address: 0
+          unit_of_measurement: "V"
+          register_type: "read"
+          value_type: FP32
+          register_count: 6
+
+        - platform: modbus_controller
+          name: "Current Phase 1"
+          address: 6
+          register_type: "read"
+          value_type: FP32
+
+    Because `register_count: 6` is used for the first register the command “read registers from 0 to 6” can still be used but the values in between are ignored.
+    **Calculation:** FP32 is a 32 bit value and uses 2 registers. Therefore, to skip the 2 FP32 registers the size of these 2 registers must be added to the default size for the first register.
+    So we have 2 for address 0, 2 for address 2 and 2 for address 4 then ``register_count`` must be 6.
+
 
 Protocol decoding example
 -------------------------
