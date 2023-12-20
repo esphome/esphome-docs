@@ -209,7 +209,7 @@ Once this trigger is called, you can get the ready state by calling get_all_sens
 .. _alarm_control_panel_on_chime_trigger:
 
 ``on_chime`` Trigger
-***********************
+********************
 
 This trigger is activated when a zone sensor marked with chime:true changes from closed to open. This is useful for implementing keypad chimes when a zone
 opens.
