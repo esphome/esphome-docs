@@ -180,6 +180,84 @@ In that case, either make sure that the debugger outputs less data per log line 
 ``after.bytes`` option to a lower value) or increase the logger buffer size using the logger
 ``tx_buffer_size`` option.
 
+.. _uart-runtime_change:
+
+Changing at runtime
+-------------------
+
+There are scenarios where you might need to adjust UART parameters during runtime to enhance communication efficiency
+and adapt to varying operational conditions. ESPHome facilitates this through lambda calls.
+Below are the methods to read current settings and modify them dynamically:
+
+- **Reading Current Settings:** Access UART's current configuration using these read-only attributes:
+
+  .. code-block:: cpp
+
+      // RX buffer size
+      id(my_uart).get_rx_buffer_size();
+      // Stop bits
+      id(my_uart).get_stop_bits();
+      // Data bits
+      id(my_uart).get_data_bits();
+      // Parity
+      id(my_uart).get_parity();
+      // Baud rate
+      id(my_uart).get_baud_rate();
+
+- **Modifying Settings at Runtime:** You can change certain UART parameters during runtime.
+  After setting new values, invoke ``load_settings()`` (ESP32 only) to apply these changes:
+
+  .. code-block:: yaml
+
+      select:
+        - id: change_baud_rate
+          name: Baud rate
+          platform: template
+          options:
+            - "2400"
+            - "9600"
+            - "38400"
+            - "57600"
+            - "115200"
+            - "256000"
+            - "512000"
+            - "921600"
+          initial_option: "115200"
+          optimistic: true
+          restore_value: True
+          internal: false
+          entity_category: config
+          icon: mdi:swap-horizontal
+          set_action:
+            - lambda: |-
+                id(my_uart).flush();
+                uint32_t new_baud_rate = stoi(x);
+                ESP_LOGD("change_baud_rate", "Changing baud rate from %i to %i",id(my_uart).get_baud_rate(), new_baud_rate);
+                if (id(my_uart).get_baud_rate() != new_baud_rate) {
+                  id(my_uart).set_baud_rate(new_baud_rate);
+                  id(my_uart).load_settings();
+                }
+
+  Available methods for runtime changes:
+
+  .. code-block:: cpp
+
+      // Set TX/RX pins
+      id(my_uart).set_tx_pin(InternalGPIOPin *tx_pin);
+      id(my_uart).set_rx_pin(InternalGPIOPin *rx_pin);
+      // RX buffer size
+      id(my_uart).set_rx_buffer_size(size_t rx_buffer_size);
+      // Stop bits
+      id(my_uart).set_stop_bits(uint8_t stop_bits);
+      // Data bits
+      id(my_uart).set_data_bits(uint8_t data_bits);
+      // Parity
+      id(my_uart).set_parity(UARTParityOptions parity);
+      // Baud rate
+      id(my_uart).set_baud_rate(uint32_t baud_rate);
+
+This flexibility allows for dynamic adaptation to different communication requirements, enhancing the versatility of your ESPHome setup.
+
 See Also
 --------
 

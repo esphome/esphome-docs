@@ -341,8 +341,8 @@ This is only possible for ``pip`` installs.
     git checkout -b my-new-feature
     cd ..
 
-The environment is now ready for use, but you need to activate the Python virtual environment 
-every time you are using it. 
+The environment is now ready for use, but you need to activate the Python virtual environment
+every time you are using it.
 
 .. code-block:: bash
 
@@ -372,6 +372,10 @@ a fork of the repository that you can modify and create git branches on.
     # Clone your fork
     git clone https://github.com/<YOUR_GITHUB_USERNAME>/<REPO_NAME>.git
     # For example: git clone https://github.com/OttoWinter/esphome.git
+
+    # To continue you now need to enter the directory you created above
+    cd <REPO_NAME>
+    # For example: cd esphome
 
     # Add "upstream" remote
     git remote add upstream https://github.com/esphome/<REPO_NAME>.git
@@ -413,6 +417,8 @@ a "rebase". More info `here <https://developers.home-assistant.io/docs/en/develo
     git fetch upstream dev
     git rebase upstream/dev
 
+.. _contributing_to_esphome:
+
 Contributing to ESPHome
 -----------------------
 
@@ -445,18 +451,18 @@ like this:
     ├── codegen.py
     ├── config_validation.py
     ├── components
-    │   ├── __init__.py
-    │   ├── dht12
-    │   │   ├── __init__.py
-    │   │   ├── dht12.cpp
-    │   │   ├── dht12.h
-    │   │   ├── sensor.py
-    │   ├── restart
-    │   │   ├── __init__.py
-    │   │   ├── restart_switch.cpp
-    │   │   ├── restart_switch.h
-    │   │   ├── switch.py
-    │  ...
+    │   ├── __init__.py
+    │   ├── dht12
+    │   │   ├── __init__.py
+    │   │   ├── dht12.cpp
+    │   │   ├── dht12.h
+    │   │   ├── sensor.py
+    │   ├── restart
+    │   │   ├── __init__.py
+    │   │   ├── restart_switch.cpp
+    │   │   ├── restart_switch.h
+    │   │   ├── switch.py
+    │  ...
 
 As you can see, all components are in the "components" folder. Each component is in its own
 subfolder which contains the Python code (.py) and the C++ code (.h and .cpp).
@@ -612,7 +618,7 @@ loader. These are:
   create the necessary C++ source code.
 - ``DEPENDENCIES``: Mark the component to depend on other components. If the user hasn't explicitly
   added these components in their configuration, a validation error will be generated.
-- ``AUTO_LOAD``: Automatically load an integration if the user hasn't added it manually.
+- ``AUTO_LOAD``: Automatically load a component if the user hasn't added it manually.
 - ``MULTI_CONF``: Mark this component to accept an array of configurations. If this is an
   integer instead of a boolean, validation will only permit the given number of entries.
 - ``CONFLICTS_WITH``: Mark a list of components as conflicting with this integration. If the user
