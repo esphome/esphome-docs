@@ -53,6 +53,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 All other options from :ref:`Output <config-output>`.
 
+
 **Example:**
 
 .. code-block:: yaml
