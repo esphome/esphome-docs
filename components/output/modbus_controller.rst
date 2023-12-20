@@ -87,11 +87,13 @@ Example:
 
 See Also
 --------
+- :doc:`/components/modbus`
 - :doc:`/components/modbus_controller`
 - :doc:`/components/sensor/modbus_controller`
 - :doc:`/components/binary_sensor/modbus_controller`
 - :doc:`/components/switch/modbus_controller`
-- :doc:`/components/text_sensor/modbus_controller`
 - :doc:`/components/number/modbus_controller`
+- :doc:`/components/select/modbus_controller`
+- :doc:`/components/text_sensor/modbus_controller`
 - https://www.modbustools.com/modbus.html
 - :ghedit:`Edit`
