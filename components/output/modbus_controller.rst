@@ -4,7 +4,7 @@ Modbus Controller Output
 .. seo::
     :description: Instructions for setting up a modbus_controller device output.
 
-The ``modbus_controller`` platform creates an output from a modbus_controller. The goal is to write a number to a modbus register.
+The ``modbus_controller`` platform creates an output from a modbus_controller. The goal is to write a value to a modbus register on a device.
 
 Configuration variables:
 ------------------------
