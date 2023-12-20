@@ -352,7 +352,7 @@ Standard IDs and Extended IDs can coexist on the same segment.
                   data: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
               - canbus.send:
                   # Standard ID by default
-                  can_id: 0y100
+                  can_id: 0x100
                   data: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
 
     canbus:

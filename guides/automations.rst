@@ -348,6 +348,7 @@ All Triggers
   :ref:`ota.on_state_change <ota-on_state_change>`
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
 - :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
+- :ref:`wifi.on_connect / wifi.on_disconnect <wifi-on_connect_disconnect>`
 
 All Actions
 -----------
@@ -976,9 +977,14 @@ trigger, but this technique is more light-weight and user-friendly.
         then:
           - switch.toggle: relay_1
 
+
+If a startup delay is configured, the first execution of the actions will not occur before at least that time
+after boot.
+
 Configuration variables:
 
 - **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
+- **startup_delay** (*Optional*, :ref:`config-time`): An optional startup delay - defaults to zero.
 - **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
 

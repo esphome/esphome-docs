@@ -182,6 +182,7 @@ Air Quality
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Radon, CO2, Volatile organics
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
     EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
+    ENS160, components/sensor/ens160, ens160.jpg, CO2 & Air Quality
     GCJA5, components/sensor/gcja5, gcja5.svg, Particulate
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
@@ -249,6 +250,7 @@ Distance
 .. imgtable::
 
     A01NYUB, components/sensor/a01nyub, a01nyub.jpg, Acoustic distance
+    A02YYUW, components/sensor/a02yyuw, a02yyuw.jpg, Acoustic distance
     HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg, Acoustic distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
@@ -309,6 +311,7 @@ Environmental
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
     DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
     EMC2101, components/emc2101, emc2101.jpg, Temperature
+    ENS160, components/sensor/ens160, ens160.jpg, CO2 & Air Quality
     ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
     HTE501, components/sensor/hte501, HTE501.png, Temperature & Humidity
@@ -342,6 +345,7 @@ Environmental
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
     TMP1075, components/sensor/tmp1075, tmp1075.jpg, Temperature
     HYT271, components/sensor/hyt271, hyt271.jpg, Temperature & Humidity
+    XGZP68xx Series, components/sensor/xgzp68xx, 6897d.jpg, Differential Pressure
 
 
 Light
@@ -397,6 +401,7 @@ Miscellaneous
     Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
     WireGuard, components/wireguard, wireguard_custom_logo.svg
+    MicroNova pellet stove, components/micronova, pellet.svg
 
 
 Motion
@@ -406,6 +411,7 @@ Motion
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     BMI160, components/sensor/bmi160, bmi160.jpg, Accelerometer & Gyroscope
     LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
+    LD2420, components/sensor/ld2420, ld2420.jpg, Motion & Presence
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
     MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
@@ -477,6 +483,8 @@ Often known as "tag" or "card" readers within the community.
 .. imgtable::
 
     PN532, components/binary_sensor/pn532, pn532.jpg
+    PN7150, components/binary_sensor/pn7150, pn7150.jpg
+    PN716X, components/binary_sensor/pn7160, pn716x.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
 
@@ -487,13 +495,16 @@ Touchscreen
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Touchscreen, components/touchscreen/index, touch.svg, dark-invert
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
-    XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
+    FT5X06, components/touchscreen/ft5x06, indicator.jpg
+    GT911, components/touchscreen/gt911, esp32_s3_box_3.png
 
 Presence Detection
 ******************
 .. imgtable::
 
     DFRobot mmWave Radar, components/dfrobot_sen0395, dfrobot_sen0395.jpg
+    LD2410, components/sensor/ld2410, ld2410.jpg
+    LD2420, components/sensor/ld2420, ld2420.jpg
 
 Miscellaneous
 *************
@@ -502,9 +513,9 @@ Miscellaneous
     Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg, dark-invert
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg, dark-invert
     Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
-    LD2410, components/sensor/ld2410, ld2410.jpg
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
+    Pylontech Batteries, components/pylontech, pylontech.jpg
     Qwiic PIR Motion, components/binary_sensor/qwiic_pir, qwiic_pir.jpg
     Remote Receiver, components/remote_receiver, remote.svg, dark-invert
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
@@ -673,7 +684,10 @@ Touchscreen Components
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
-
+    XPT2046, components/touchscreen/xpt2046, xpt2046.jpg
+    GT911, components/touchscreen/gt911, esp32_s3_box_3.png
+    FT63X6, components/touchscreen/ft63x6, wt32-sc01.png
+    
 Cover Components
 ----------------
 
@@ -688,6 +702,7 @@ Cover Components
     Custom Cover, components/cover/custom, language-cpp.svg, dark-invert
     AM43 Cover, components/cover/am43, am43.jpg
     Tuya Cover, components/cover/tuya, tuya.png
+    HE60R Cover, components/cover/he60r, he60r.jpg
 
 Text Sensor Components
 ----------------------
@@ -830,6 +845,7 @@ Miscellaneous Components
     Status LED, components/status_led, led-on.svg, dark-invert
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
+    Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.jpg
     Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
     Wiegand Reader, components/wiegand, wiegand.jpg
     HTTP Request, components/http_request, connection.svg, dark-invert

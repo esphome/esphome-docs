@@ -53,6 +53,8 @@ Configuration variables:
 
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current
   temperature.
+- **humidity_sensor** (**Optional**, :ref:`config-id`): If specified, this sensor is used to measure the current humidity.
+  This is used for information only and does not influence temperature control.
 - **default_target_temperature** (**Required**, float): The default target temperature (setpoint)
   for the control algorithm. This can be dynamically set in the frontend later.
 - **heat_output** (*Optional*, :ref:`config-id`): The ID of a :ref:`float output <config-output>`
@@ -68,9 +70,9 @@ Configuration variables:
     Defaults to ``0``.
   - **kd** (*Optional*, float): The factor for the derivative term of the PID controller.
     Defaults to ``0``.
-  - **min_integral** (*Optional*, float): The maximum value of the integral term multiplied by
+  - **min_integral** (*Optional*, float): The minimum value of the integral term multiplied by
     ``ki`` to prevent windup. Defaults to ``-1``.
-  - **max_integral** (*Optional*, float): The minimum value of the integral term multiplied by
+  - **max_integral** (*Optional*, float): The maximum value of the integral term multiplied by
     ``ki`` to prevent windup. Defaults to ``1``.
   - **starting_integral_term** (*Optional*, float): Set the initial output, by priming the integral
     term. This is useful for when your system is rebooted and you don't want to wait
