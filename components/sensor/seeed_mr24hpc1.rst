@@ -49,13 +49,13 @@ The ``seeed_mr24hpc1`` binary sensor allows you to use your :doc:`seeed_mr24hpc1
 
     binary_sensor:
       - platform: seeed_mr24hpc1
-        someone_exist:
+        has_target:
           name: "Presence Information"
 
 Configuration variables:
 ************************
 
-- **someone_exist** (*Optional*): If true target detect either still or in movement. All options from :ref:`Binary Sensor <config-binary_sensor>`.
+- **has_target** (*Optional*): If true target detect either still or in movement. All options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Sensor
 ------
@@ -179,15 +179,15 @@ The ``seeed_mr24hpc1`` button allows you to perfrom actions on your :doc:`seeed_
 
     button:
       - platform: seeed_mr24hpc1
-        reset:
-          name: "Module Reset"
+        restart:
+          name: "Module Restart"
         custom_set_end:
           name: "End Of Custom Mode Settings"
 
 Configuration variables:
 ************************
 
-- **reset**: Restart the device. All options from :ref:`Button <config-button>`.
+- **restart**: Restart the device. All options from :ref:`Button <config-button>`.
 - **custom_set_end**: Valid only in :ref:`custom mode settings <seeed_mr24hpc1-custom_mode>`. This button is used to end the current custom mode setting and enable that custom mode. All options from :ref:`Button <config-button>`.
 
 
@@ -282,8 +282,8 @@ For a more intuitive view of the sensor data, you can use the customised card be
       cards:
         - type: entities
           entities:
-            - entity: button.{$DEVICE}_module_reset
-              name: Module Reset
+            - entity: button.{$DEVICE}_module_restart
+              name: Module Restart
             - entity: sensor.{$DEVICE}_hardware_model
               name: Hardware Model
             - entity: sensor.{$DEVICE}_hardware_version
