@@ -111,7 +111,7 @@ This :ref:`action <config-action>` sends a Byron Doorbell RF protocol code to a 
     on_...:
       - remote_transmitter.transmit_byronsx:
           address: '0x4f'
-          command: '0x2'      
+          command: '0x2'
 
 Configuration variables:
 
@@ -225,7 +225,7 @@ This :ref:`action <config-action>` sends a Draton Digistat RF remote code to a r
       - remote_transmitter.transmit_drayton:
           address: '0x6180'
           channel: '0x12'
-          command: '0x02'      
+          command: '0x02'
 
 Configuration variables:
 
@@ -343,6 +343,8 @@ This :ref:`action <config-action>` sends an NEC infrared remote code to a remote
     In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
     Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
     For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
+    Additionally, ESPHome does not automatically generate parity bits or pad values to 2 bytes.
+    So, in order to send command 0x0, you need to use 0xFF00 (0x00 being the command and 0xFF being the logical inverse).
 
 .. code-block:: yaml
 
@@ -350,11 +352,13 @@ This :ref:`action <config-action>` sends an NEC infrared remote code to a remote
       - remote_transmitter.transmit_nec:
           address: 0x1234
           command: 0x78AB
+          command_repeats: 1
 
 Configuration variables:
 
-- **address** (**Required**, int): The address to send, see dumper output for more details.
-- **command** (**Required**, int): The NEC command to send.
+- **address** (**Required**, int): The 16-bit address to send, see dumper output for more details.
+- **command** (**Required**, int): The 16-bit NEC command to send.
+- **command_repeats** (*Optional*, int): The number of times the command bytes are sent in one transmission. Defaults to `1`.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_nexa`` Action
@@ -936,7 +940,7 @@ earlier, create a new template switch that sends the RF code when triggered:
           - remote_transmitter.transmit_rc_switch_raw:
               code: '100010000000000010111110'
               protocol: 2
-              repeat: 
+              repeat:
                 times: 10
                 wait_time: 0s
 
@@ -956,9 +960,9 @@ in the frontend. Click on it and you should see the remote signal being transmit
 
 .. note::
 
-    Some devices require that the transmitted code be repeated for the signal to be picked up 
-    as valid. Also the interval between repetitions can be important. Check that the pace of 
-    repetition logs are consistent between the remote controller and the transmitter node. 
+    Some devices require that the transmitted code be repeated for the signal to be picked up
+    as valid. Also the interval between repetitions can be important. Check that the pace of
+    repetition logs are consistent between the remote controller and the transmitter node.
     You can adjust the ``repeat:`` settings accordingly.
 
 

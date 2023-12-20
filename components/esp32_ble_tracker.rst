@@ -147,7 +147,7 @@ Configuration variables:
 ``on_ble_manufacturer_data_advertise`` Trigger
 ************************************************
 
-This automation will be triggered when a Bluetooth advertising with manufcaturer data is received. A
+This automation will be triggered when a Bluetooth advertising with manufacturer data is received. A
 variable ``x`` of type ``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
 
 .. code-block:: yaml

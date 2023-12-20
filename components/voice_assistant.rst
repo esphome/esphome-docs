@@ -14,7 +14,7 @@ ESPHome devices with a microphone are able to stream the audio to Home Assistant
 .. warning::
 
     Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
-    
+
     **Crashes are likely to occur** if you include too many additional components in your device's
     configuration. In particular, Bluetooth/BLE components are known to cause issues when used in
     combination with Voice Assistant and/or other audio components.
@@ -37,6 +37,8 @@ Configuration:
 - **media_player** (*Optional*, :ref:`config-id`): The :doc:`media_player </components/media_player/index>` to use
   to output the response. Cannot be used with ``speaker`` above.
 - **use_wake_word** (*Optional*, boolean): Enable wake word on the assist pipeline. Defaults to ``false``.
+- **on_intent_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform when intent processing starts.
+- **on_intent_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when intent processing ends.
 - **on_listening** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when the voice assistant microphone starts listening.
 - **on_start** (*Optional*, :ref:`Automation <automation>`): An automation to
@@ -48,12 +50,20 @@ Configuration:
 - **on_stt_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the voice assistant has finished speech-to-text. The resulting text is
   available to automations as the variable ``x``.
+- **on_stt_vad_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform when voice activity
+  detection starts speech-to-text processing.
+- **on_stt_vad_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when voice activity
+  detection ends speech-to-text processing.
 - **on_tts_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the voice assistant has started text-to-speech. The text to be spoken is
   available to automations as the variable ``x``.
 - **on_tts_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the voice assistant has finished text-to-speech. A URL containing the audio response
   is available to automations as the variable ``x``.
+- **on_tts_stream_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform when audio stream
+  (voice response) playback starts. Requires ``speaker`` to be configured.
+- **on_tts_stream_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when audio stream
+  (voice response) playback ends. Requires ``speaker`` to be configured.
 - **on_error** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the voice assistant has encountered an error. The error code and message are available to
   automations as the variables ``code`` and ``message``.
@@ -109,6 +119,7 @@ Voice Assistant Conditions
 The following conditions are available for use in automations:
 
 - ``voice_assistant.is_running`` - Returns true if the voice assistant is currently running.
+- ``voice_assistant.connected`` - Returns true if the voice assistant is currently connected to Home Assistant.
 
 Wake word detection
 -------------------
