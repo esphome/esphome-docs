@@ -36,7 +36,7 @@ Configuration variables:
     - ``FP32``: 32 bit IEEE 754 floating point from 2 registers
     - ``FP32_R``: 32 bit IEEE 754 floating point - same as FP32 but low word first
 
-- **bitmask** (*Optional*, int): sometimes multiple values are packed in a single register's response. The bitmask can be used to extract a value from the response. 
+- **bitmask** (*Optional*, int): sometimes multiple values are packed in a single register's response. The bitmask can be used to extract a value from the response. See :ref:`bitmasks`.
 - **skip_updates** (*Optional*, int): By default all sensors of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
   Note: The modbus_controller groups component by address ranges to reduce number of transactions. All compoents with the same address will be updated in one request. skip_updates applies for all components in the same range.
 - **register_count** (*Optional*): only required for uncommon response encodings or to :ref:`optimize modbus communications<modbus_register_count>`
@@ -252,6 +252,7 @@ SDM-120 returns the values as floats using 32 bits in 2 registers.
 
 See Also
 --------
+- :doc:`/components/modbus`
 - :doc:`/components/modbus_controller`
 - :doc:`/components/binary_sensor/modbus_controller`
 - :doc:`/components/output/modbus_controller`
