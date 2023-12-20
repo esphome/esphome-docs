@@ -344,7 +344,8 @@ Another way to modularize and reuse your configuration is to use packages. This 
 you to put common pieces of configuration in separate files and keep only unique pieces of your
 config in the main yaml file. All definitions from packages will be merged with your main
 config in non-destructive way so you could always override some bits and pieces of package
-configuration.
+configuration. Substitutions in your main config will override substitutions with the same
+name in a package.
 
 Dictionaries are merged key-by-key. Lists of components are merged by component
 ID if specified. Other lists are merged by concatenation. All other config
