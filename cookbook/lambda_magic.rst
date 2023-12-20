@@ -419,25 +419,22 @@ with 10 seconds timeframes.
           - script.execute: fast_boot_factory_reset_script
     esp32:
       board: esp32-c3-devkitm-1
-    
+
+    substitutions:
+      factory_reset_boot_count_trigger: 5 
+
     globals:
       - id: fast_boot
         type: int
         restore_value: yes
         initial_value: '0'
     
-      - id: factory_reset_boot_count_trigger
-        type: int
-        initial_value: '5'
-    
-    logger:
-    
     script:
       - id: fast_boot_factory_reset_script
         then:
           - if:
               condition:
-                lambda: return ( id(fast_boot) >= id(factory_reset_boot_count_trigger) );
+                lambda: return ( id(fast_boot) >= ${factory_reset_boot_count_trigger});
               then:
                 - lambda: |-
                     ESP_LOGD("Fast Boot Factory Reset", "Performing factotry reset");
@@ -447,7 +444,7 @@ with 10 seconds timeframes.
                 - switch.turn_on: factory_reset_switch
           - lambda: |-
               if(id(fast_boot) > 0)
-                ESP_LOGD("Fast Boot Factory Reset", "Quick reboot %d/%d, do it %d more times to factory reset", id(fast_boot), id(factory_reset_boot_count_trigger), id(factory_reset_boot_count_trigger) - id(fast_boot));
+                ESP_LOGD("Fast Boot Factory Reset", "Quick reboot %d/%d, do it %d more times to factory reset", id(fast_boot), ${factory_reset_boot_count_trigger}, ${factory_reset_boot_count_trigger} - id(fast_boot));
               id(fast_boot) += 1;
               fast_boot->loop();
               global_preferences->sync();
