@@ -31,6 +31,7 @@ Configuration variables:
   Set to ``all`` to dump all available codecs:
 
   - **aeha**: Decode and dump AEHA infrared codes.
+  - **byronsx**: Decode and dump Byron SX doorbell RF codes.
   - **canalsat**: Decode and dump CanalSat infrared codes.
   - **canalsatld**: Decode and dump CanalSatLD infrared codes.
   - **coolix**: Decode and dump Coolix infrared codes.
@@ -80,6 +81,9 @@ Automations:
 
 - **on_aeha** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   AEHA remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::AEHAData`
+  is passed to the automation for use in lambdas.
+- **on_byronsx** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Byron SX doorbell RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ByronSXData`
   is passed to the automation for use in lambdas.
 - **on_canalsat** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   CanalSat remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::CanalSatData`
@@ -208,6 +212,11 @@ Remote code selection (exactly one of these has to be included):
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
   - **data** (**Required**, 3-35 bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_aeha`
     for more info. Usually you only need to copy this directly from the dumper output.
+
+- **byronsx**: Trigger on a decoded Byron SX Doorbell RF remote code with the given data.
+
+  - **address** (**Required**, int): The 8-bit ID code to trigger on, see dumper output for more info.
+  - **command** (**Optional**, int): The 4-bit command to listen for. If omitted, will match on any command.
 
 - **canalsat**: Trigger on a decoded CanalSat remote code with the given data.
 
