@@ -9,7 +9,7 @@ The ``modbus_controller`` platform creates an output from a modbus_controller. T
 Configuration variables:
 ------------------------
 
-- **address** (**Required**, int): start address of the first register in a range.
+- **address** (**Required**, int): start address of the first register in a range (can be decimal or hexadecimal).
 - **value_type** (**Required**): data type of the modbus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first).
 
     - ``U_WORD`` (unsigned 16 bit integer from 1 register = 16bit)
