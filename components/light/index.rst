@@ -492,11 +492,21 @@ This effect makes a pulsating light. The period can be defined by ``update_inter
               name: "Slow Pulse"
               # transition_length: 1s      # defaults to 1s
               update_interval: 2s
+          - pulse:
+              name: "Asymmetrical Pulse"
+              transition_length:
+                on_length: 1s
+                off_length: 500ms
+              update_interval: 1.5s
 
 Configuration variables:
 
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Pulse``.
-- **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``1s``.
+- **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition.
+  Defaults to ``1s``. Can be a single time or split for on and off using these nested options.
+
+  - **on_length** (*Optional*, :ref:`config-time`): The duration of the transition when the light is turned on.
+  - **off_length** (*Optional*, :ref:`config-time`): The duration of the transition when the light is turned off.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transition is started. Defaults to ``1s``.
 - **min_brightness** (*Optional*, percentage): The minimum brightness value. Defaults to ``0%``
 - **max_brightness** (*Optional*, percentage): The maximum brightness value. Defaults to ``100%``
@@ -698,6 +708,7 @@ the strip and shifts them forward every ``add_led_interval``.
                   num_leds: 1
               add_led_interval: 100ms
               reverse: false
+              gradient: false
 
 Configuration variables:
 
@@ -710,7 +721,8 @@ Configuration variables:
   - **blue** (*Optional*, percentage): The percentage the blue color channel should be on. Defaults to ``100%``.
   - **random** (*Optional*, boolean): If set to ``true``, will overwrite the RGB colors by a new, randomly-chosen
     color each time. Defaults to ``false``.
-  - **num_leds** (*Optional*, int): The number of leds of this type to have before moving on to the next color.
+  - **num_leds** (**Required**, positive int): The number of LEDs of this type to have before transitioning to the next color. If ``gradient`` is true, this will be the number of LEDs over which the color transition will occur.
+  - **gradient** (*Optional*, boolean): If ``true`` the current color will transition with a gradient over ``num_leds`` to the next color. Defaults to ``false``.
 
 - **add_led_interval** (*Optional*, :ref:`config-time`): The interval with which to shift in new leds at the
   beginning of the strip. Defaults to ``100ms``.
