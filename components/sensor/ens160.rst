@@ -6,7 +6,7 @@ ENS160 Sensor
     :keywords: ENS160
 
 The ``ens160`` sensor platform allows you to use your ENS160
-(`datasheet <https://www.sciosense.com/wp-content/uploads/documents/SC-001224-DS-7-ENS160-Datasheet.pdf>`__) air-quality sensors with ESPHome. The :ref:`I²C <i2c>` component is
+(`https://www.sciosense.com/wp-content/uploads/documents/SC-001224-DS-9-ENS160-Datasheet.pdf>`__) air-quality sensors with ESPHome. The :ref:`I²C <i2c>` component is
 required to be set up in your configuration for this sensor to work.
 
 .. note::
