@@ -667,6 +667,7 @@ Display Components
     SSD1327, components/display/ssd1327, ssd1327.jpg
     SSD1331, components/display/ssd1331, ssd1331.jpg
     SSD1351, components/display/ssd1351, ssd1351.jpg
+    ST7567, components/display/st7567, st7567.jpg
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     ST7796, components/display/ili9xxx, st7796.svg
