@@ -93,6 +93,7 @@ Configuration variables:
   - ``2.90in``
   - ``2.90inv2``
   - ``2.90in-b`` - B/W rendering only
+  - ``2.90in-bV3`` - B/W rendering only
   - ``4.20in``
   - ``4.20in-bV2`` - B/W rendering only
   - ``5.83in``
