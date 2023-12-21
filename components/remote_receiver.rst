@@ -57,7 +57,7 @@ Configuration variables:
   - **toshiba_ac**: Decode and dump Toshiba AC infrared codes.
 
 - **tolerance** (*Optional*, int or :ref:`config-time`): The percentage or time that the remote signal lengths can
-  deviate in the decoding process. Allowed values are in range ``0`` to ``4294967295%`` or ``0`` to ``4294967295us``. Defaults to
+  deviate in the decoding process. Allowed values are in range ``0`` to ``100%`` or ``0`` to ``4294967295us``. Defaults to
   ``25%``.
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kB``
   on the ESP32 and ``1kB`` on the ESP8266.
