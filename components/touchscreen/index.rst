@@ -60,7 +60,7 @@ Configuration variables:
 - **calibration** (*Optional*): When the touchscreen is not given the right configuration settings. You can set them here.
 
     - **x_min** (*Optional*, int): The raw value corresponding to the left
-      (or top if ``swap_xy`` is specified) edge of the touchscreen. See :ref:`xpt2046-calibration`
+      (or top if ``swap_xy`` is specified) edge of the touchscreen. See :ref:`touchscreen-calibration`
       for the process to calibrate the touchscreen. Defaults to ``0``.
     - **x_max** (*Optional*, int): The raw value corresponding to the right
       (or bottom if ``swap_xy`` is specified) edge of the touchscreen. Defaults to ``0``.
