@@ -326,6 +326,7 @@ Contributors
 - `Dave Wongillies (@davewongillies) <https://github.com/davewongillies>`__
 - `David De Sloovere (@DavidDeSloovere) <https://github.com/DavidDeSloovere>`__
 - `David Beitey (@davidjb) <https://github.com/davidjb>`__
+- `davidmonro (@davidmonro) <https://github.com/davidmonro>`__
 - `David Newgas (@davidn) <https://github.com/davidn>`__
 - `David Noyes (@davidnoyes) <https://github.com/davidnoyes>`__
 - `David Zovko (@davidzovko) <https://github.com/davidzovko>`__
@@ -629,7 +630,6 @@ Contributors
 - `Jake Shirley (@JakeShirley) <https://github.com/JakeShirley>`__
 - `jakub-medrzak (@jakub-medrzak) <https://github.com/jakub-medrzak>`__
 - `James Braid (@jamesbraid) <https://github.com/jamesbraid>`__
-- `James Duke (@jamesduke) <https://github.com/jamesduke>`__
 - `James Hirka (@jameshirka) <https://github.com/jameshirka>`__
 - `James Lakin (@jamesorlakin) <https://github.com/jamesorlakin>`__
 - `Jason (@jamman9000) <https://github.com/jamman9000>`__
@@ -1296,4 +1296,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated December 21, 2023.*
+*This page was last updated December 22, 2023.*
