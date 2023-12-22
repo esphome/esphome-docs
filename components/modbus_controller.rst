@@ -170,7 +170,7 @@ Some devices use decimal values in read registers to show multiple binary states
 | bit 15     | Binary Sensor 15 | 32768     | 8000      |
 +------------+------------------+-----------+-----------+ 
 
-For example, when reading register ``15``, a decimal value of ``12288`` is the sum of ``4096`` + ``8192``, meaning the corresponding bits ``12`` and ``13`` are ``1``, the other bits are ``0``. 
+In the example below, register ``15``, holds several binary values. It stores the decimal value ``12288``, which is the sum of ``4096`` + ``8192``, meaning the corresponding bits ``12`` and ``13`` are ``1``, the other bits are ``0``. 
 
 To gather some of these bits as binary sensors in ESPHome, use ``bitmask``:
 
@@ -178,34 +178,26 @@ To gather some of these bits as binary sensors in ESPHome, use ``bitmask``:
 
     binary_sensor:
     - platform: modbus_controller
-      modbus_controller_id: ventilation_system
+      modbus_controller_id: modbus1
       name: Alarm bit0
-      entity_category: diagnostic
-      device_class: problem
       register_type: read
       address: 15
       bitmask: 0x1
     - platform: modbus_controller
-      modbus_controller_id: ventilation_system
+      modbus_controller_id: modbus1
       name: Alarm bit1
-      entity_category: diagnostic
-      device_class: problem
       register_type: read
       address: 15
       bitmask: 0x2
     - platform: modbus_controller
-      modbus_controller_id: ventilation_system
+      modbus_controller_id: modbus1
       name: Alarm bit10
-      entity_category: diagnostic
-      device_class: problem
       register_type: read
       address: 15
       bitmask: 0x400
     - platform: modbus_controller
-      modbus_controller_id: ventilation_system
+      modbus_controller_id: modbus1
       name: Alarm bit15
-      entity_category: diagnostic
-      device_class: problem
       register_type: read
       address: 15
       bitmask: 0x8000
