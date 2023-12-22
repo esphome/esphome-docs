@@ -23,8 +23,9 @@ Configuration variables:
 
 - **address** (**Required**, int): start address of the first register in a range (can be decimal or hexadecimal).
 - **bitmask** (*Optional*, int): sometimes multiple values are packed in a single register's response. The bitmask is used to determined if the result is true or false. See :ref:`bitmasks`.
-- **skip_updates** (*Optional*, int): By default all sensors of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
-- **response_size** (*Optional*, int): Size of the response for the register in bytes. Defaults to register_count*2.
+- **skip_updates** (*Optional*, int): By default all sensors of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle.
+- **register_count** (*Optional*, int): Number of consecutive registers to skip in a single read command. See :ref:`modbus_register_count` for more details.
+ - **response_size** (*Optional*, int): Size of the response for the register in bytes. Defaults to register_count*2.
 - **force_new_range** (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting ``force_new_range: true`` enforces the start of a new range at that address.
 - **custom_command** (*Optional*, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_command`` is used ``address`` and ``register_type`` can't be used.
   custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
