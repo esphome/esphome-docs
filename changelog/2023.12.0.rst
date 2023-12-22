@@ -63,6 +63,15 @@ Release 2023.12.2 - December 22
 - Add workaround for crash in Arduino 2.0.9 when CDC is configured :esphomepr:`5987` by :ghuser:`kbx81`
 - web_server.py: return empty content when file doesn't exist :esphomepr:`5980` by :ghuser:`jessicah`
 
+Release 2023.12.3 - December 22
+-------------------------------
+
+- Fix unexpected disconnects when outgoing buffer is full during keepalive :esphomepr:`5988` by :ghuser:`bdraco`
+- Regenerate api_pb2 after manual changes were added incorrectly in #5732 :esphomepr:`5990` by :ghuser:`jesserockz`
+- Improved sensor readings in htu21d component. :esphomepr:`5839` by :ghuser:`matzman666`
+- Fix dashboard logs when api is disabled and using MQTT :esphomepr:`5992` by :ghuser:`bdraco`
+- Fix broken configs with non-existent components :esphomepr:`5993` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
