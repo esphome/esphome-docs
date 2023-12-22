@@ -273,60 +273,60 @@ SDM-120 returns the values as floats using 32 bits in 2 registers.
 Optimize modbus communications
 ------------------------------
 
-    ``register_count`` can also be used to skip a register in consecutive range.
+``register_count`` can also be used to skip a register in consecutive range.
 
-    An example is a SDM meter:
+An example is a SDM meter:
 
-    .. code-block:: yaml
+.. code-block:: yaml
 
-        - platform: modbus_controller
-          name: "Voltage Phase 1"
-          address: 0
-          register_type: "read"
-          value_type: FP32
+    - platform: modbus_controller
+      name: "Voltage Phase 1"
+      address: 0
+      register_type: "read"
+      value_type: FP32
 
-        - platform: modbus_controller
-          name: "Voltage Phase 2"
-          address: 2
-          register_type: "read"
-          value_type: FP32
+    - platform: modbus_controller
+      name: "Voltage Phase 2"
+      address: 2
+      register_type: "read"
+      value_type: FP32
 
-        - platform: modbus_controller
-          name: "Voltage Phase 3"
-          address: 4
-          register_type: "read"
-          value_type: FP32
+    - platform: modbus_controller
+      name: "Voltage Phase 3"
+      address: 4
+      register_type: "read"
+      value_type: FP32
 
-        - platform: modbus_controller
-          name: "Current Phase 1"
-          address: 6
-          register_type: "read"
-          value_type: FP32
-          accuracy_decimals: 1
+    - platform: modbus_controller
+      name: "Current Phase 1"
+      address: 6
+      register_type: "read"
+      value_type: FP32
+      accuracy_decimals: 1
 
-    Maybe you don’t care about the Voltage value for Phase 2 and Phase 3 (or you have a SDM-120).
-    Of course, you can delete the sensors your don’t care about. But then you have a gap in the addresses. The configuration above will generate one modbus  command `read multiple registers from 0 to 6`. If you remove the registers at address 2 and 4 then 2 commands will be generated `read register 0` and `read register 6`.
-    To avoid the generation of multiple commands and reduce the amount of uart communication ``register_count`` can be used to fill the gaps
+Maybe you don’t care about the Voltage value for Phase 2 and Phase 3 (or you have a SDM-120).
+Of course, you can delete the sensors your don’t care about. But then you have a gap in the addresses. The configuration above will generate one modbus  command `read multiple registers from 0 to 6`. If you remove the registers at address 2 and 4 then 2 commands will be generated `read register 0` and `read register 6`.
+To avoid the generation of multiple commands and reduce the amount of uart communication ``register_count`` can be used to fill the gaps
 
-    .. code-block:: yaml
+.. code-block:: yaml
 
-        - platform: modbus_controller
-          name: "Voltage Phase 1"
-          address: 0
-          unit_of_measurement: "V"
-          register_type: "read"
-          value_type: FP32
-          register_count: 6
+    - platform: modbus_controller
+      name: "Voltage Phase 1"
+      address: 0
+      unit_of_measurement: "V"
+      register_type: "read"
+      value_type: FP32
+      register_count: 6
 
-        - platform: modbus_controller
-          name: "Current Phase 1"
-          address: 6
-          register_type: "read"
-          value_type: FP32
+    - platform: modbus_controller
+      name: "Current Phase 1"
+      address: 6
+      register_type: "read"
+      value_type: FP32
 
-    Because `register_count: 6` is used for the first register the command “read registers from 0 to 6” can still be used but the values in between are ignored.
-    **Calculation:** FP32 is a 32 bit value and uses 2 registers. Therefore, to skip the 2 FP32 registers the size of these 2 registers must be added to the default size for the first register.
-    So we have 2 for address 0, 2 for address 2 and 2 for address 4 then ``register_count`` must be 6.
+Because `register_count: 6` is used for the first register the command “read registers from 0 to 6” can still be used but the values in between are ignored.
+**Calculation:** FP32 is a 32 bit value and uses 2 registers. Therefore, to skip the 2 FP32 registers the size of these 2 registers must be added to the default size for the first register.
+So we have 2 for address 0, 2 for address 2 and 2 for address 4 then ``register_count`` must be 6.
 
 
 Protocol decoding example
