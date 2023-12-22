@@ -83,18 +83,6 @@ Configuration variables:
       modbus_id: modbus1
       setup_priority: -10
 
-    text_sensor:
-    - name: "rtc_clock"
-      platform: modbus_controller
-      modbus_controller_id: epever
-      id: rtc_clock
-      internal: true
-      register_type: holding
-      address: 0x9013    ## address of the register inside the Modbus slave device
-      register_count: 3
-      raw_encode: HEXBYTES
-      response_size: 6
-
     switch:
     - platform: modbus_controller
       modbus_controller_id: epever
@@ -114,11 +102,23 @@ Configuration variables:
       unit_of_measurement: "AH"
       value_type: U_WORD
 
-The configuration example above creates a ``modbus_controller`` hub talking to a Modbus device at address ``1`` with a baudrate of ``115200`` bps .
+    text_sensor:
+    - name: "rtc_clock"
+      platform: modbus_controller
+      modbus_controller_id: epever
+      id: rtc_clock
+      internal: true
+      register_type: holding
+      address: 0x9013    ## address of the register inside the Modbus slave device
+      register_count: 3
+      raw_encode: HEXBYTES
+      response_size: 6
 
-Modbus sensors can be directly defined (inline) under the ``modbus_controller`` hub or as standalone components. Technically there is no difference between the "inline" and the standard definitions approach.
+The configuration example above creates a ``modbus_controller`` hub talking to a Modbus device at address ``1`` with a baudrate of ``115200`` bps, implementing a switch, a sensor and a text sensor.
 
-Below you find a few general tips about using Modbus in more advanced scenarios. Applicable functionalities have links pointing here:
+Check out the various Modbus components available at the bottom of the document in the :ref:`modbusseealso` section. They can be directly defined *(inline)* under the ``modbus_controller`` hub or as standalone components. Technically there is no difference between the *inline* and the standard definitions approach.
+
+Below you find a few general tips about using Modbus in more advanced scenarios. Applicable component functionalities have links pointing here:
 
 .. _bitmasks:
 
@@ -268,12 +268,12 @@ SDM-120 returns the values as floats using 32 bits in 2 registers.
 
 .. _modbus_register_count:
 
-Optimize modbus communications
+Optimizing modbus communications
 ------------------------------
 
-``register_count`` can also be used to skip a register in consecutive range.
+``register_count`` can be used to skip a register in consecutive range.
 
-An example is a SDM meter, with interesting data in register addresses 0, 2, 4 and 6:
+An example is an SDM meter, with interesting data in register addresses 0, 2, 4 and 6:
 
 .. code-block:: yaml
 
@@ -637,6 +637,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
             filters:
               - multiply: 0.01
 
+.. _modbusseealso:
 
 See Also
 --------
