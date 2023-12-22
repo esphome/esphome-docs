@@ -77,52 +77,48 @@ Technically there is no difference between the "inline" and the standard definit
 .. code-block:: yaml
 
     uart:
-      id: mod_bus
-      tx_pin: 17
-      rx_pin: 16
-      baud_rate: 115200
-      stop_bits: 1
+      ...
 
     modbus:
       flow_control_pin: 5
       id: modbus1
 
     modbus_controller:
-      - id: epever
-        address: 0x1   ## address of the Modbus slave device on the bus
-        modbus_id: modbus1
-        setup_priority: -10
+    - id: epever
+      address: 0x1   ## address of the Modbus slave device on the bus
+      modbus_id: modbus1
+      setup_priority: -10
 
     text_sensor:
-      - name: "rtc_clock"
-        platform: modbus_controller
-        modbus_controller_id: epever
-        id: rtc_clock
-        internal: true
-        register_type: holding
-        address: 0x9013    ## address of the register inside the Modbus slave device
-        register_count: 3
-        raw_encode: HEXBYTES
-        response_size: 6
+    - name: "rtc_clock"
+      platform: modbus_controller
+      modbus_controller_id: epever
+      id: rtc_clock
+      internal: true
+      register_type: holding
+      address: 0x9013    ## address of the register inside the Modbus slave device
+      register_count: 3
+      raw_encode: HEXBYTES
+      response_size: 6
 
     switch:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: reset_to_fabric_default
-        name: "Reset to Factory Default"
-        register_type: coil
-        address: 0x15
-        bitmask: 1
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: reset_to_fabric_default
+      name: "Reset to Factory Default"
+      register_type: coil
+      address: 0x15
+      bitmask: 1
 
     sensor:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        name: "Battery Capacity"
-        id: battery_capacity
-        register_type: holding
-        address: 0x9001
-        unit_of_measurement: "AH"
-        value_type: U_WORD
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      name: "Battery Capacity"
+      id: battery_capacity
+      register_type: holding
+      address: 0x9001
+      unit_of_measurement: "AH"
+      value_type: U_WORD
 
 
 Below you find a few general tips about using Modbus in more advanced scenarios. Applicable functionalities have links pointing here:
@@ -214,45 +210,50 @@ SDM-120 returns the values as floats using 32 bits in 2 registers.
 
 .. code-block:: yaml
 
+    uart:
+      id: mod_uart
+      ...
+
     modbus:
       send_wait_time: 200ms
       uart_id: mod_uart
       id: mod_bus
 
     modbus_controller:
-      - id: sdm
-        address: 2
-        modbus_id: mod_bus
-        command_throttle: 100ms
-        setup_priority: -10
-        update_interval: 30s
-    sensors:
-      - platform: modbus_controller
-        modbus_controller_id: sdm
-        name: "Total active energy"
-        id: total_energy
-        #    address: 0x156
-        #    register_type: "read"
-        ## reimplement using custom_command
-        # 0x2 : modbus device address
-        # 0x4 : modbus function code
-        # 0x1 : high byte of modbus register address
-        # 0x56: low byte of modbus register address
-        # 0x00: high byte of total number of registers requested
-        # 0x02: low byte of total number of registers requested
-        custom_command: [ 0x2, 0x4, 0x1, 0x56,0x00, 0x02]
-        value_type: FP32
-        unit_of_measurement: kWh
-        accuracy_decimals: 1
+    - id: sdm
+      address: 2
+      modbus_id: mod_bus
+      command_throttle: 100ms
+      setup_priority: -10
+      update_interval: 30s
 
-      - platform: modbus_controller
-        modbus_controller_id: sdm
-        name: "Total reactive energy"
-        #   address: 0x158
-        #   register_type: "read"
-        custom_command: [0x2, 0x4, 0x1, 0x58, 0x00, 0x02]
-        ## the command returns an float value using 4 bytes
-        lambda: |-
+    sensors:
+    - platform: modbus_controller
+      modbus_controller_id: sdm
+      name: "Total active energy"
+      id: total_energy
+      #    address: 0x156
+      #    register_type: "read"
+      ## reimplement using custom_command
+      # 0x2 : modbus device address
+      # 0x4 : modbus function code
+      # 0x1 : high byte of modbus register address
+      # 0x56: low byte of modbus register address
+      # 0x00: high byte of total number of registers requested
+      # 0x02: low byte of total number of registers requested
+      custom_command: [ 0x2, 0x4, 0x1, 0x56,0x00, 0x02]
+      value_type: FP32
+      unit_of_measurement: kWh
+      accuracy_decimals: 1
+
+    - platform: modbus_controller
+      modbus_controller_id: sdm
+      name: "Total reactive energy"
+      #   address: 0x158
+      #   register_type: "read"
+      custom_command: [0x2, 0x4, 0x1, 0x58, 0x00, 0x02]
+      ## the command returns an float value using 4 bytes
+      lambda: |-
           ESP_LOGD("Modbus Sensor Lambda","Got new data" );
           union {
             float float_value;
@@ -275,7 +276,7 @@ Optimize modbus communications
 
 ``register_count`` can also be used to skip a register in consecutive range.
 
-An example is a SDM meter:
+An example is a SDM meter, with interesting data in register addresses 0, 2, 4 and 6:
 
 .. code-block:: yaml
 
@@ -304,9 +305,10 @@ An example is a SDM meter:
       value_type: FP32
       accuracy_decimals: 1
 
-Maybe you don’t care about the Voltage value for Phase 2 and Phase 3 (or you have a SDM-120).
-Of course, you can delete the sensors your don’t care about. But then you have a gap in the addresses. The configuration above will generate one modbus  command `read multiple registers from 0 to 6`. If you remove the registers at address 2 and 4 then 2 commands will be generated `read register 0` and `read register 6`.
-To avoid the generation of multiple commands and reduce the amount of uart communication ``register_count`` can be used to fill the gaps
+The configuration above will generate *one* modbus command *read multiple registers from 0 to 6*.
+
+Maybe you don’t care about the data in register addresses 2 and 4, which are voltage values for Phase 2 and Phase 3 (or you have a SDM-120).
+Of course, you can delete the sensors your don’t care about. But then you have a gap in the addresses. If you remove the registers at address 2 and 4 then *two* commands will be generated *read register 0* and *read register 6*. To avoid the generation of multiple commands and reduce the amount of uart communication ``register_count`` can be used to fill the gaps:
 
 .. code-block:: yaml
 
@@ -324,8 +326,9 @@ To avoid the generation of multiple commands and reduce the amount of uart commu
       register_type: "read"
       value_type: FP32
 
-Because `register_count: 6` is used for the first register the command “read registers from 0 to 6” can still be used but the values in between are ignored.
-**Calculation:** FP32 is a 32 bit value and uses 2 registers. Therefore, to skip the 2 FP32 registers the size of these 2 registers must be added to the default size for the first register.
+Because the option `register_count: 6` is used for the first sensor, *one* command *read multiple registers from 0 to 6* will be used but the values in between will be ignored.
+
+.. note:: *Calculation:* FP32 is a 32 bit value and uses 2 registers. Therefore, to skip the 2 FP32 registers the size of these 2 registers must be added to the default size for the first register.
 So we have 2 for address 0, 2 for address 2 and 2 for address 4 then ``register_count`` must be 6.
 
 
