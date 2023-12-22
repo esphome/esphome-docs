@@ -137,6 +137,7 @@ See Also
 - :doc:`XPT2046 </components/touchscreen/xpt2046>`
 - :doc:`TT21100 </components/touchscreen/tt21100>`
 - :doc:`GT911 </components/touchscreen/gt911>`
+- :doc:`CST820 </components/touchscreen/cst820>`
 - :apiref:`touchscreen/touchscreen.h`
 - :apiref:`touchscreen/binary_sensor/touchscreen_binary_sensor.h`
 - :ghedit:`Edit`
