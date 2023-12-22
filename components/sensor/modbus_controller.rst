@@ -38,7 +38,7 @@ Configuration variables:
 
 - **bitmask** (*Optional*, int): sometimes multiple values are packed in a single register's response. The bitmask can be used to extract a value from the response. See :ref:`bitmasks`.
 - **skip_updates** (*Optional*, int): By default all sensors of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle. Note: The modbus_controller groups components by address ranges to reduce number of transactions. All components with the starting same address will be updated in one request. ``skip_updates`` applies for *all* components in the same range.
-- **register_count** (*Optional*, int): Number of consecutive registers to skip in a single read command. See :ref:`modbus_register_count` for more details.
+- **register_count** (*Optional*, int): Number of consecutive registers  this data point spans or to skip in a single read command. Default is 1. See :ref:`modbus_register_count` for more details.
 - **response_size** (*Optional*, int): Size of the response for the register in bytes. Defaults to register_count*2.
 - **force_new_range** (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting ``force_new_range: true`` enforces the start of a new range at that address.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
