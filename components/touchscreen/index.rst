@@ -83,7 +83,7 @@ Configuration variables:
 ----------------------------
 
 Both the :ref:`touchscreen-on_touch` and :ref:`touchscreen-on_update` have an argument of the type :apistruct:`touchscreen::TouchPoint` in a
-list or as variable (only ``on_touch``).
+list (``on_update``) or as an ``optional`` (``on_touch``).
 
 The integer members for the touch positions below are in relation to the display width and height:
 
@@ -215,10 +215,10 @@ To be exact, the component does the following
 ``on_touch`` Trigger
 --------------------
 
-This automation will be triggered when the touchscreen initially detects a touch on the touchscreen; it will not be fired until
+This automation will be triggered when the touchscreen initially detects a touch on the touchscreen; it will not be fired again until
 all touches (for multi-touch supported drivers) are released.
 
-NOTE: This is different from before [TODO]release number[/TODO]. When you still want to get the update positions use the :ref:`touchscreen-on_update`.
+NOTE: This has changed (from ESPHome 2023.11.6.) To receive continuous updates from touch drags, use :ref:`touchscreen-on_update`.
 
 This trigger provides two arguments named ``touch`` of type *touchpoint* and ``touches`` with a list of all touches.
 
