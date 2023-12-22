@@ -43,17 +43,18 @@ Configuration variables:
 
 
  - **offset** (*Optional*, int): Offset from start address in bytes (only required for uncommon response encodings). If more than one register is written in a command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type. The value for offset depends on the register type. If a binary_sensor is created from an input register the offset is in bytes. For coil and discrete input resisters the LSB of the first data byte contains the coil addressed in the request. The other coils follow toward the high-order end of this byte and from low order to high order in subsequent bytes. For the registers  offset is the position of the relevant bit. To get the value of the coil register 2 can be retrieved using address: 2 / offset: 0 or address: 0 / offset 2
+
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
-Example
+Example:
+--------
 
 .. code-block:: yaml
 
     binary_sensor:
     - platform: modbus_controller
-      modbus_controller_id: epever
-      id: battery_internal_resistance_abnormal
-      name: "Battery internal resistance abnormal"
+      modbus_controller_id: modbus1
+      name: "Error status"
       register_type: read
       address: 0x3200
       bitmask: 0x80 #(bit 8)
