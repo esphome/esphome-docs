@@ -54,6 +54,15 @@ Release 2023.12.1 - December 21
 
 - Fix replaced - in allowed characters during object_id sanitizing :esphomepr:`5983` by :ghuser:`jesserockz`
 
+Release 2023.12.2 - December 22
+-------------------------------
+
+- ESP32-S3 and ESP-IDF don't play well with USB_CDC and need USB_SERIAL_JTAG :esphomepr:`5929` by :ghuser:`clydebarrow`
+- Update libtiff6 :esphomepr:`5985` by :ghuser:`cvandesande`
+- Override GPIOs 12 and 13 on the airm2m (LuatOS) board  :esphomepr:`5982` by :ghuser:`davidmonro`
+- Add workaround for crash in Arduino 2.0.9 when CDC is configured :esphomepr:`5987` by :ghuser:`kbx81`
+- web_server.py: return empty content when file doesn't exist :esphomepr:`5980` by :ghuser:`jessicah`
+
 Full list of changes
 --------------------
 
