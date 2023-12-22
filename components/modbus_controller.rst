@@ -332,87 +332,87 @@ Protocol decoding example
 .. code-block:: yaml
 
     sensors:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: array_rated_voltage
-        name: "array_rated_voltage"
-        address: 0x3000
-        unit_of_measurement: "V"
-        register_type: read
-        value_type: U_WORD
-        accuracy_decimals: 1
-        skip_updates: 60
-        filters:
-          - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: array_rated_voltage
+      name: "array_rated_voltage"
+      address: 0x3000
+      unit_of_measurement: "V"
+      register_type: read
+      value_type: U_WORD
+      accuracy_decimals: 1
+      skip_updates: 60
+      filters:
+        - multiply: 0.01
 
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: array_rated_current
-        name: "array_rated_current"
-        address: 0x3001
-        unit_of_measurement: "V"
-        register_type: read
-        value_type: U_WORD
-        accuracy_decimals: 2
-        filters:
-          - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: array_rated_current
+      name: "array_rated_current"
+      address: 0x3001
+      unit_of_measurement: "V"
+      register_type: read
+      value_type: U_WORD
+      accuracy_decimals: 2
+      filters:
+        - multiply: 0.01
 
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: array_rated_power
-        name: "array_rated_power"
-        address: 0x3002
-        unit_of_measurement: "W"
-        register_type: read
-        value_type: U_DWORD_R
-        accuracy_decimals: 1
-        filters:
-          - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: array_rated_power
+      name: "array_rated_power"
+      address: 0x3002
+      unit_of_measurement: "W"
+      register_type: read
+      value_type: U_DWORD_R
+      accuracy_decimals: 1
+      filters:
+        - multiply: 0.01
 
-      -platform: modbus_controller
-        modbus_controller_id: epever
-        id: battery_rated_voltage
-        name: "battery_rated_voltage"
-        address: 0x3004
-        unit_of_measurement: "V"
-        register_type: read
-        value_type: U_WORD
-        accuracy_decimals: 1
-        filters:
-          - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: battery_rated_voltage
+      name: "battery_rated_voltage"
+      address: 0x3004
+      unit_of_measurement: "V"
+      register_type: read
+      value_type: U_WORD
+      accuracy_decimals: 1
+      filters:
+        - multiply: 0.01
 
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: battery_rated_current
-        name: "battery_rated_current"
-        address: 0x3005
-        unit_of_measurement: "A"
-        register_type: read
-        value_type: U_WORD
-        accuracy_decimals: 1
-        filters:
-          - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: battery_rated_current
+      name: "battery_rated_current"
+      address: 0x3005
+      unit_of_measurement: "A"
+      register_type: read
+      value_type: U_WORD
+      accuracy_decimals: 1
+      filters:
+        - multiply: 0.01
 
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: battery_rated_power
-        name: "battery_rated_power"
-        address: 0x3006
-        unit_of_measurement: "W"
-        register_type: read
-        value_type: U_DWORD_R
-        accuracy_decimals: 1
-        filters:
-          - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: battery_rated_power
+      name: "battery_rated_power"
+      address: 0x3006
+      unit_of_measurement: "W"
+      register_type: read
+      value_type: U_DWORD_R
+      accuracy_decimals: 1
+      filters:
+        - multiply: 0.01
 
-      - platform: modbus_controller
-        modbus_controller_id: epever id: charging_mode
-        name: "charging_mode"
-        address: 0x3008
-        unit_of_measurement: ""
-        register_type: read
-        value_type: U_WORD
-        accuracy_decimals: 0
+    - platform: modbus_controller
+      modbus_controller_id: epever id: charging_mode
+      name: "charging_mode"
+      address: 0x3008
+      unit_of_measurement: ""
+      register_type: read
+      value_type: U_WORD
+      accuracy_decimals: 0
 
 
 To minimize the required transactions all registers with the same base address are read in one request.
