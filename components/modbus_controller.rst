@@ -78,43 +78,41 @@ Configuration variables:
       id: modbus1
 
     modbus_controller:
-    - id: epever
+    - id: modbus_device
       address: 0x1   ## address of the Modbus slave device on the bus
       modbus_id: modbus1
       setup_priority: -10
 
+    sensor:
+    - platform: modbus_controller
+      modbus_controller_id: modbus_device
+      name: "Battery Capacity"
+      register_type: holding
+      address: 0x9001    ## address of the register inside the Modbus slave device
+      unit_of_measurement: "AH"
+      value_type: U_WORD
+
     switch:
     - platform: modbus_controller
-      modbus_controller_id: epever
-      id: reset_to_fabric_default
+      modbus_controller_id: modbus_device
       name: "Reset to Factory Default"
       register_type: coil
       address: 0x15
       bitmask: 1
 
-    sensor:
-    - platform: modbus_controller
-      modbus_controller_id: epever
-      name: "Battery Capacity"
-      id: battery_capacity
-      register_type: holding
-      address: 0x9001
-      unit_of_measurement: "AH"
-      value_type: U_WORD
-
     text_sensor:
     - name: "rtc_clock"
       platform: modbus_controller
-      modbus_controller_id: epever
+      modbus_controller_id: modbus_device
       id: rtc_clock
       internal: true
       register_type: holding
-      address: 0x9013    ## address of the register inside the Modbus slave device
+      address: 0x9013
       register_count: 3
       raw_encode: HEXBYTES
       response_size: 6
 
-The configuration example above creates a ``modbus_controller`` hub talking to a Modbus device at address ``1`` with a baudrate of ``115200`` bps, implementing a switch, a sensor and a text sensor.
+The configuration example above creates a ``modbus_controller`` hub talking to a Modbus device at address ``1`` with a baudrate of ``115200`` bps, implementing a sensor, a switch and a text sensor.
 
 Check out the various Modbus components available at the bottom of the document in the :ref:`modbusseealso` section. They can be directly defined *(inline)* under the ``modbus_controller`` hub or as standalone components. Technically there is no difference between the *inline* and the standard definitions approach.
 
@@ -269,7 +267,7 @@ SDM-120 returns the values as floats using 32 bits in 2 registers.
 .. _modbus_register_count:
 
 Optimizing modbus communications
-------------------------------
+--------------------------------
 
 ``register_count`` can be used to skip a register in consecutive range.
 
