@@ -125,7 +125,7 @@ Technically there is no difference between the "inline" and the standard definit
         value_type: U_WORD
 
 
-
+Below you find a few general tips about using Modbus in more advanced scenarios. Applicable functionalities have links pointing here:
 
 .. _bitmasks:
 
@@ -212,61 +212,61 @@ Using ``custom_command``
 This example re-implements the command to read the registers 0x156 (Total active energy) and 0x158 Total (reactive energy) from a SDM-120.
 SDM-120 returns the values as floats using 32 bits in 2 registers.
 
-    .. code-block:: yaml
+.. code-block:: yaml
 
-        modbus:
-          send_wait_time: 200ms
-          uart_id: mod_uart
-          id: mod_bus
+    modbus:
+      send_wait_time: 200ms
+      uart_id: mod_uart
+      id: mod_bus
 
-        modbus_controller:
-          - id: sdm
-            address: 2
-            modbus_id: mod_bus
-            command_throttle: 100ms
-            setup_priority: -10
-            update_interval: 30s
-        sensors:
-          - platform: modbus_controller
-            modbus_controller_id: sdm
-            name: "Total active energy"
-            id: total_energy
-            #    address: 0x156
-            #    register_type: "read"
-            ## reimplement using custom_command
-            # 0x2 : modbus device address
-            # 0x4 : modbus function code
-            # 0x1 : high byte of modbus register address
-            # 0x56: low byte of modbus register address
-            # 0x00: high byte of total number of registers requested
-            # 0x02: low byte of total number of registers requested
-            custom_command: [ 0x2, 0x4, 0x1, 0x56,0x00, 0x02]
-            value_type: FP32
-            unit_of_measurement: kWh
-            accuracy_decimals: 1
+    modbus_controller:
+      - id: sdm
+        address: 2
+        modbus_id: mod_bus
+        command_throttle: 100ms
+        setup_priority: -10
+        update_interval: 30s
+    sensors:
+      - platform: modbus_controller
+        modbus_controller_id: sdm
+        name: "Total active energy"
+        id: total_energy
+        #    address: 0x156
+        #    register_type: "read"
+        ## reimplement using custom_command
+        # 0x2 : modbus device address
+        # 0x4 : modbus function code
+        # 0x1 : high byte of modbus register address
+        # 0x56: low byte of modbus register address
+        # 0x00: high byte of total number of registers requested
+        # 0x02: low byte of total number of registers requested
+        custom_command: [ 0x2, 0x4, 0x1, 0x56,0x00, 0x02]
+        value_type: FP32
+        unit_of_measurement: kWh
+        accuracy_decimals: 1
 
-          - platform: modbus_controller
-            modbus_controller_id: sdm
-            name: "Total reactive energy"
-            #   address: 0x158
-            #   register_type: "read"
-            custom_command: [0x2, 0x4, 0x1, 0x58, 0x00, 0x02]
-            ## the command returns an float value using 4 bytes
-            lambda: |-
-              ESP_LOGD("Modbus Sensor Lambda","Got new data" );
-              union {
-                float float_value;
-                uint32_t raw;
-              } raw_to_float;
-              if (data.size() < 4 ) {
-                ESP_LOGE("Modbus Sensor Lambda", "invalid data size %d",data.size());
-                return NAN;
-              }
-              raw_to_float.raw =   data[0] << 24 | data[1] << 16 | data[2] << 8 |  data[3];
-              ESP_LOGD("Modbus Sensor Lambda", "FP32 = 0x%08X => %f", raw_to_float.raw, raw_to_float.float_value);
-              return raw_to_float.float_value;
-            unit_of_measurement: kVArh
-            accuracy_decimals: 1
+      - platform: modbus_controller
+        modbus_controller_id: sdm
+        name: "Total reactive energy"
+        #   address: 0x158
+        #   register_type: "read"
+        custom_command: [0x2, 0x4, 0x1, 0x58, 0x00, 0x02]
+        ## the command returns an float value using 4 bytes
+        lambda: |-
+          ESP_LOGD("Modbus Sensor Lambda","Got new data" );
+          union {
+            float float_value;
+            uint32_t raw;
+          } raw_to_float;
+          if (data.size() < 4 ) {
+            ESP_LOGE("Modbus Sensor Lambda", "invalid data size %d",data.size());
+            return NAN;
+          }
+          raw_to_float.raw =   data[0] << 24 | data[1] << 16 | data[2] << 8 |  data[3];
+          ESP_LOGD("Modbus Sensor Lambda", "FP32 = 0x%08X => %f", raw_to_float.raw, raw_to_float.float_value);
+          return raw_to_float.float_value;
+        unit_of_measurement: kVArh
+        accuracy_decimals: 1
 
 .. _modbus_register_count:
 
