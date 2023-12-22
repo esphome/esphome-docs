@@ -67,15 +67,8 @@ Configuration variables:
   responds to a command, it'll be marked online again.
 
 
-Example
--------
-The following code creates a ``modbus_controller`` hub talking to a Modbus device at address ``1`` with ``115200`` bps
-
-Modbus sensors can be directly defined (inline) under the ``modbus_controller`` hub or as standalone components
-Technically there is no difference between the "inline" and the standard definitions approach.
-
 .. code-block:: yaml
-
+    # Example configuration entry
     uart:
       ...
 
@@ -120,6 +113,9 @@ Technically there is no difference between the "inline" and the standard definit
       unit_of_measurement: "AH"
       value_type: U_WORD
 
+The configuration example above creates a ``modbus_controller`` hub talking to a Modbus device at address ``1`` with a baudrate of ``115200`` bps .
+
+Modbus sensors can be directly defined (inline) under the ``modbus_controller`` hub or as standalone components. Technically there is no difference between the "inline" and the standard definitions approach.
 
 Below you find a few general tips about using Modbus in more advanced scenarios. Applicable functionalities have links pointing here:
 
@@ -328,8 +324,7 @@ Of course, you can delete the sensors your don’t care about. But then you have
 
 Because the option `register_count: 6` is used for the first sensor, *one* command *read multiple registers from 0 to 6* will be used but the values in between will be ignored.
 
-.. note:: *Calculation:* FP32 is a 32 bit value and uses 2 registers. Therefore, to skip the 2 FP32 registers the size of these 2 registers must be added to the default size for the first register.
-So we have 2 for address 0, 2 for address 2 and 2 for address 4 then ``register_count`` must be 6.
+.. note:: *Calculation:* FP32 is a 32 bit value and uses 2 registers. Therefore, to skip the 2 FP32 registers the size of these 2 registers must be added to the default size for the first register. So we have 2 for address 0, 2 for address 2 and 2 for address 4 thus ``register_count`` must be 6.
 
 
 Protocol decoding example
