@@ -116,7 +116,7 @@ The calibration assumes a display oriented in a way that you will be using it, i
 
 .. note::
 
-Do not set any calibration values nor ``transform`` settings.
+    Do not set any calibration values nor ``transform`` settings.
 
 .. code-block:: yaml
 
