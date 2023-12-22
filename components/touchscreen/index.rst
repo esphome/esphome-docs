@@ -69,6 +69,7 @@ Configuration variables:
     - **y_max** (*Optional*, int): The raw value corresponding to the bottom
       (or right if ``swap_xy`` is specified) edge of the touchscreen. Defaults to ``0``.
 
+
 - **on_touch** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the touchscreen is touched. See :ref:`touchscreen-on_touch`.
 - **on_update** (*Optional*, :ref:`Automation <automation>`): An automation to perform
@@ -94,7 +95,6 @@ The integer members for the touch positions below are in relation to the display
 
 - ``id`` is a number provided by the touchscreen to uniquely identify the touch on a multi-touch screen.
 - ``state`` indicates the state of the touch. This can be **1**, indicating it is an initial touch, or **2** indicating the touch position has changed/moved.
-
 
 .. _touchscreen-calibration:
 

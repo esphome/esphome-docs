@@ -72,7 +72,6 @@ Base Configuration:
 
 - **report_interval** (*Depricated*): This interval is removed in favor of the ``update_interval``.
 
-
 - All other options from :ref:`config-touchscreen`.
 
 

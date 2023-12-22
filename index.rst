@@ -250,6 +250,7 @@ Distance
 .. imgtable::
 
     A01NYUB, components/sensor/a01nyub, a01nyub.jpg, Acoustic distance
+    A02YYUW, components/sensor/a02yyuw, a02yyuw.jpg, Acoustic distance
     HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg, Acoustic distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
@@ -482,6 +483,8 @@ Often known as "tag" or "card" readers within the community.
 .. imgtable::
 
     PN532, components/binary_sensor/pn532, pn532.jpg
+    PN7150, components/binary_sensor/pn7150, pn7150.jpg
+    PN716X, components/binary_sensor/pn7160, pn716x.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
 
