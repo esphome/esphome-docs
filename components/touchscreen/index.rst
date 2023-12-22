@@ -139,7 +139,7 @@ the edge pixels. Repeat several times and note minimum and maximum x and y raw v
 
 .. warning::
 
-  As long the calibrate settings are not correctly set, the ``x`` and ``y`` coordinates are not calculated.
+    As long the calibrate settings are not correctly set, the ``x`` and ``y`` coordinates are not calculated.
 
 
 .. code-block:: none
