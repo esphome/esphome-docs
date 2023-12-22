@@ -73,7 +73,7 @@ Configuration variables:
   - ``return <anything>; and fill payload with data`` if the payload is added from the lambda then these 16 bit words will be sent
   - ``return {};`` if you don't want write the command to the device (or do it from the lambda).
 
-All other options from :ref:`Number <config-number>`.
+- All other options from :ref:`Number <config-number>`.
 
 Example:
 --------
