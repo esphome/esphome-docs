@@ -213,7 +213,7 @@ the filter chain.
 
 (**Required**, time, :ref:`templatable <config-templatable>`): When a signal is received, publish the state
 but wait for the received state to remain the same for specified time period before publishing any
-additional state changes. This filter complements the ``delay_on_off`` filter but publishes value changes at
+additional state changes. This filter complements the ``delayed_on_off`` filter but publishes value changes at
 the beginning of the delay period.
 When using a lambda call, you should return the delay value in milliseconds.
 **Useful for debouncing binary switches**.
