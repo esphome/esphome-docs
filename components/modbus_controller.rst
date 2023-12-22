@@ -68,6 +68,7 @@ Configuration variables:
 
 
 .. code-block:: yaml
+
     # Example configuration entry
     uart:
       ...
