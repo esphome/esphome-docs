@@ -46,7 +46,7 @@ Configuration variables:
   Must one of the following: ``OSR_256``, ``OSR_512``, ``OSR_1024``, ``OSR_2048``, ``OSR_4096``, ``OSR_8192``. Defaults to ``OSR_2048``.
   The configured resolution (OSR) impacts the pressure reading resolution (0.1-0.02mbar), time for each adc conversion (1-17ms),
   current draw per conversion (0.6-20uA). Note: these quoted values are per conversion and two(2) conversions are made for each update interval. 
-  Given the sensor's error band is typically +/- 2mbar, the component's default resolution should meet the requirements of most applications. 
+  Given the sensor's quoted absolute accuracy at 25°C is +/- 2mbar, the component's default resolution should meet the requirements of most applications. 
   For more details on resolution, refer to the `datasheet <https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FMS5637-02BA03%7FB1%7Fpdf%7FEnglish%7FENG_DS_MS5637-02BA03_B1.pdf>`__.
 
 
