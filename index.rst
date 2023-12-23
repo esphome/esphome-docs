@@ -184,6 +184,7 @@ Air Quality
     EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
     ENS160, components/sensor/ens160, ens160.jpg, CO2 & Air Quality
     GCJA5, components/sensor/gcja5, gcja5.svg, Particulate
+    GP2Y1010AU0F, components/sensor/gp2y1010au0f, gp2y1010au0f.png, Particulate
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MiCS-4514, components/sensor/mics_4514, mics_4514.jpg, Gas concentration
