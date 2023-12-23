@@ -7,7 +7,7 @@ Sharp GP2Y1010AU0F PM2.5 Sensor
 
 The ``gp2y1010au0f`` sensor platform allows you to use your Sharp GP2Y1010AU0F particulate matter sensor with ESPHome.
 
-It is a very cheap (read: inaccurate) optical (infrared LED and phototransistor) sensor suitable for detecting fine particulate matter like dust and smoke. There are many much better sensors on the market and `supported by ESPHome <https://esphome.io/search.html?q=Particulate>`__, but this is one of the most common and cheapest ones you will find.
+It is a very cheap (read: inaccurate) optical (infrared LED and phototransistor) sensor suitable for detecting fine particulate matter like dust and smoke. There are many much better sensors on the market and `supported by ESPHome </search.html?q=Particulate>`__, but this is one of the most common and cheapest ones you will find.
 
 While the official `datasheet <https://global.sharp/products/device/lineup/data/pdf/datasheet/gp2y1010au_e.pdf>`__ doesn't mention its sensing resolution (whether it can detect PM2.5 particle or not), some vendors (e.g., `Waveshare <https://www.waveshare.com/wiki/Dust_Sensor>`__) say it can detect particle larger than 0.8 μm in diameter. To make things easier, we'll assume it's capable of that and let the sensor use the PM2.5 device class, reporting in "µg/m³" with 0 accuracy decimals as default.
 
