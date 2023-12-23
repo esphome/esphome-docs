@@ -1,0 +1,77 @@
+MS5637 Barometric Pressure Sensor
+=================================
+
+.. seo::
+    :description: Instructions for setting up MS5637 Barometric Pressure sensor
+    :keywords: MS5637
+
+The ``ms5637`` sensor platform allows you to use MS5637
+(`datasheet <https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FMS5637-02BA03%7FB1%7Fpdf%7FEnglish%7FENG_DS_MS5637-02BA03_B1.pdf>`__) Barometric Pressure sensors with ESPHome. The :ref:`I²C <i2c>` is required to be set up in
+your configuration for this sensor to work. Note: MS5637 has I2C address of 0x76 which is hardware defined.
+
+.. figure:: images/ms5637.jpg
+    :align: center
+    :width: 50.0%
+
+    MS5637 Barometric Pressure Sensor
+
+.. code-block:: yaml
+
+    # Example minimal configuration entry 
+    # default update interval 60s
+    sensor:
+      - platform: ms5637
+        pressure:
+          name: "Barometric Pressure"
+
+Configuration variables:
+------------------------
+
+
+- **pressure** (*Required*): Configuration for the pressure sensor.
+
+  - **name** (**Required**, string): The name for the pressure sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+
+- **temperature** (*Optional*): Configuration for the temperature sensor.
+
+  - **name** (**Required**, string): The name for the temperature sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+
+- **resolution** (*Optional*, string): Configuration of sensor resolution/oversampling rate (OSR). 
+  Must one of the following: ``OSR_256``, ``OSR_512``, ``OSR_1024``, ``OSR_2048``, ``OSR_4096``, ``OSR_8192``. Defaults to ``OSR_2048``.
+  The configured resolution (OSR) impacts the pressure reading resolution (0.1-0.02mbar), time for each adc conversion (1-17ms),
+  current draw per conversion (0.6-20uA). Note: these quoted values are per conversion and two(2) conversions are made for each update interval. 
+  Given the sensor's error band is typically +/- 2mbar, the component's default resolution should meet the requirements of most applications. 
+  For more details on resolution, refer to the `datasheet <https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FMS5637-02BA03%7FB1%7Fpdf%7FEnglish%7FENG_DS_MS5637-02BA03_B1.pdf>`__.
+
+
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to read the sensor. Defaults to ``60s``.
+  
+
+Advanced Configuration
+----------------------
+
+.. code-block:: yaml
+
+    # Example advanced configuration entry
+    sensor:
+      - platform: ms5637
+        resolution: OSR_4096
+        pressure:
+          name: "MS5637 Pressure"
+        temperature:
+          name: "MS5637 Temperature"
+        update_interval: 30s
+      
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :doc:`ms5637`
+- :apiref:`ms5637/ms5637.h`
+- :ghedit:`Edit`
