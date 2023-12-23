@@ -25,7 +25,7 @@ required to be set up in your configuration for this sensor to work.
 
     # Example configuration entry I2C
     sensor:
-      - platform: bme280
+      - platform: bme280_i2c
         temperature:
           name: "BME280 Temperature"
           oversampling: 16x
@@ -39,7 +39,7 @@ required to be set up in your configuration for this sensor to work.
 
     # Example configuration entry SPI
     sensor:
-      - platform: bme280
+      - platform: bme280_spi
         temperature:
           name: "BME280 Temperature"
           oversampling: 16x
