@@ -151,6 +151,7 @@ Filters are processed in the order they are defined in your configuration.
       - throttle_average: 1s
       - heartbeat: 5s
       - debounce: 0.1s
+      - timeout: 1min
       - delta: 5.0
       - or:
         - throttle: 1s
@@ -183,6 +184,12 @@ Multiplies each value by a constant value.
 
 Calibrate your sensor values by using values you measured with an accurate "truth" source.
 
+Configuration variables:
+
+- **method** (*Optional*, string): The method for calculating the linear function(s).
+  One of ``least_squares`` or ``exact``. Defaults to ``least_squares``.
+- **datapoints** (**Required**): The list of datapoints.
+
 First, collect a bunch of values of what the sensor shows and what the real value should be.
 For temperature, this can for example be achieved by using an accurate thermometer. For other
 sensors like power sensor this can be done by connecting a known load and then writing down
@@ -197,14 +204,21 @@ the value the sensor shows.
         name: "DHT22 Temperature"
         filters:
           - calibrate_linear:
-              # Map 0.0 (from sensor) to 0.0 (true value)
-              - 0.0 -> 0.0
+             method: least_squares
+             datapoints:
+              # Map 0.0 (from sensor) to 1.0 (true value)
+              - 0.0 -> 1.0
               - 10.0 -> 12.1
 
-The arguments are a list of data points, each in the form ``MEASURED -> TRUTH``. ESPHome will
-then fit a linear equation to the values (using least squares). So you need to supply at least
-two values. If more than two values are given a linear solution will be calculated and may not
-represent each value exactly.
+The arguments are a list of data points, each in the form ``MEASURED -> TRUTH``. Depending on
+the ``method`` ESPHome will then either fit a linear equation to the values (using least squares)
+or connect the values exactly using multiple linear equations. You need to supply at least two
+values. When using ``least_squares`` and more than two values are given a linear solution will be
+calculated and may not represent each value exactly.
+
+.. figure:: images/sensor_filter_calibrate_linear.png
+    :align: center
+    :width: 50.0%
 
 .. _sensor-calibrate_polynomial:
 
@@ -245,10 +259,46 @@ degree with a least squares solver.
       filters:
         - filter_out: 85.0
 
+``clamp``
+*********
+
+Limits the value to the range between ``min_value`` and ``max_value``. By default, sensor values outside these bounds will be set to ``min_value`` or ``max_value``, respectively. If ``ignore_out_of_range`` is true, then sensor values outside those bounds will be ignored. If ``min_value`` is not set, there is no lower bound; if ``max_value`` is not set there is no upper bound.
+
+Configuration variables:
+
+- **min_value** (*Optional*, float): The lower bound of the range.
+- **max_value** (*Optional*, float): The upper bound of the range.
+- **ignore_out_of_range** (*Optional*, bool): If true, ignores all sensor values out of the range. Defaults to ``false``.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: wifi_signal
+      # ...
+      filters:
+        - clamp:
+            min_value: 10
+            max_value: 75
+            ignore_out_of_range: true
+
+
+
+``round``
+*********
+
+Rounds the value to the given decimal places.
+
+.. code-block:: yaml
+
+    - platform: ...
+      filters:
+        - round: 1 # will round to 1 decimal place
+
+
 ``quantile``
 ************
 
-A `simple moving quantile <https://en.wikipedia.org/wiki/Quantile>`__
+A `simple moving quantile <https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/quantile.htm>`__
 over the last few values. This can be used to filter outliers from the received sensor data. A large
 window size will make the filter slow to react to input changes.
 
@@ -398,7 +448,7 @@ Configuration variables:
 ******************************
 
 A simple `exponential moving average
-<https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/quantile.htm>`__ over the last few
+<https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average>`__ over the last few
 values. It can be used to have a short update interval on the sensor but only push
 out an average on a specific interval (thus increasing resolution).
 
@@ -415,7 +465,7 @@ Configuration variables:
 ``skip_initial``
 ****************
 
-A simple skip filter; `skip_initial: N` skips the first `N` sensor readings and passes on the
+A simple skip filter; ``skip_initial: N`` skips the first ``N`` sensor readings and passes on the
 rest. This can be used when the sensor needs a few readings to 'warm up'. After the initial
 readings have been skipped, this filter does nothing.
 
@@ -466,6 +516,23 @@ The last value of the sensor will be sent.
 So a value of ``10s`` will cause the filter to output values every 10s regardless
 of the input values.
 
+``timeout``
+************
+
+After the first value has been sent, if no subsequent value is published within the
+``specified time period``, send a value which defaults to ``NaN``.
+Especially useful when data is derived from some other communication
+channel, e.g. a serial port, which can potentially be interrupted.
+
+.. code-block:: yaml
+
+    # Example filters:
+    filters:
+      - timeout: 10s  # sent value will be NaN
+      - timeout:
+          timeout: 10s
+          value: 0
+
 ``debounce``
 ************
 
@@ -503,7 +570,7 @@ However, if the last value passed through was 100 only values greater than 120 o
 ``or``
 ******
 
-Pass forward a value with the first child filter that returns. Above example
+Pass forward a value with the first child filter that returns. Below example
 will only pass forward values that are *either* at least 1s old or are if the absolute
 difference is at least 5.0.
 
@@ -556,6 +623,8 @@ Fahrenheit.
     filters:
       - lambda: return x * (9.0/5.0) + 32.0;
     unit_of_measurement: "°F"
+
+.. _sensor-automations:
 
 Sensor Automation
 -----------------

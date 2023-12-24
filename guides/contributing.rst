@@ -17,9 +17,10 @@ a pull request.
 Contributing to ESPHome-Docs
 ----------------------------
 
-.. figure:: /images/logo-docs.svg
+.. image:: /images/logo-docs.svg
     :align: center
     :width: 60.0%
+    :class: dark-invert
 
 One of the areas of ESPHome that can always be improved is the documentation.
 If you see an issue somewhere, a spelling mistakes or if you want to share your awesome
@@ -340,6 +341,14 @@ This is only possible for ``pip`` installs.
     git checkout -b my-new-feature
     cd ..
 
+The environment is now ready for use, but you need to activate the Python virtual environment
+every time you are using it.
+
+.. code-block:: bash
+
+    # Activate venv
+    source venv/bin/activate
+
 Now you can open ESPHome in your IDE of choice (mine is CLion) with the PlatformIO
 addons (see PlatformIO docs for more info). Then develop the new feature with the
 guidelines below.
@@ -363,6 +372,10 @@ a fork of the repository that you can modify and create git branches on.
     # Clone your fork
     git clone https://github.com/<YOUR_GITHUB_USERNAME>/<REPO_NAME>.git
     # For example: git clone https://github.com/OttoWinter/esphome.git
+
+    # To continue you now need to enter the directory you created above
+    cd <REPO_NAME>
+    # For example: cd esphome
 
     # Add "upstream" remote
     git remote add upstream https://github.com/esphome/<REPO_NAME>.git
@@ -404,12 +417,15 @@ a "rebase". More info `here <https://developers.home-assistant.io/docs/en/develo
     git fetch upstream dev
     git rebase upstream/dev
 
+.. _contributing_to_esphome:
+
 Contributing to ESPHome
 -----------------------
 
-.. figure:: /images/logo-text.svg
+.. image:: /images/logo-text.svg
     :align: center
     :width: 60.0%
+    :class: dark-invert
 
 This is a guide to contributing to the ESPHome codebase. ESPHome uses two languages for its project:
 Python and C++.
@@ -435,18 +451,18 @@ like this:
     ├── codegen.py
     ├── config_validation.py
     ├── components
-    │   ├── __init__.py
-    │   ├── dht12
-    │   │   ├── __init__.py
-    │   │   ├── dht12.cpp
-    │   │   ├── dht12.h
-    │   │   ├── sensor.py
-    │   ├── restart
-    │   │   ├── __init__.py
-    │   │   ├── restart_switch.cpp
-    │   │   ├── restart_switch.h
-    │   │   ├── switch.py
-    │  ...
+    │   ├── __init__.py
+    │   ├── dht12
+    │   │   ├── __init__.py
+    │   │   ├── dht12.cpp
+    │   │   ├── dht12.h
+    │   │   ├── sensor.py
+    │   ├── restart
+    │   │   ├── __init__.py
+    │   │   ├── restart_switch.cpp
+    │   │   ├── restart_switch.h
+    │   │   ├── switch.py
+    │  ...
 
 As you can see, all components are in the "components" folder. Each component is in its own
 subfolder which contains the Python code (.py) and the C++ code (.h and .cpp).
@@ -602,7 +618,7 @@ loader. These are:
   create the necessary C++ source code.
 - ``DEPENDENCIES``: Mark the component to depend on other components. If the user hasn't explicitly
   added these components in their configuration, a validation error will be generated.
-- ``AUTO_LOAD``: Automatically load an integration if the user hasn't added it manually.
+- ``AUTO_LOAD``: Automatically load a component if the user hasn't added it manually.
 - ``MULTI_CONF``: Mark this component to accept an array of configurations. If this is an
   integer instead of a boolean, validation will only permit the given number of entries.
 - ``CONFLICTS_WITH``: Mark a list of components as conflicting with this integration. If the user
@@ -678,6 +694,27 @@ Standard for the esphome-core codebase:
         # Run lint only over changed files from powershell
         docker run --rm -v "$($current_dir):/esphome" -it ghcr.io/esphome/esphome-lint script/quicklint
 
+
+PRs are being drafted when changes are needed
+---------------------------------------------
+
+If there have been changes requested to your PR, our bot will automatically mark your PR as a draft.
+This means that the PR is not ready to be merged or further reviewed for the moment.
+
+Draft PRs tell other reviewers that look at the list of all PRs that this PR is currently in progress and doesn't require their attention yet.
+
+Once you have made the requested changes, you can mark the PR as ready for review again by clicking the "Ready for review button":
+
+.. figure:: images/pr-draft-ready.png
+    :align: center
+    :width: 100.0%
+    :alt: The ready for review button in the bottom of a PR in draft mode
+
+Before you click the "Ready for review" button, ensure you have addressed all requested changes,
+there are no merge conflicts, and that all our CI jobs and checks are passing successfully.
+
+Once you've clicked the "Ready for review" button, the PR will return to a normal state again,
+and our bot will automatically notify the reviewers who requested the changes that the PR is ready to go!
 
 
 

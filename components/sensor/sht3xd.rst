@@ -2,10 +2,10 @@ SHT3X-D Temperature+Humidity Sensor
 ===================================
 
 .. seo::
-    :description: Instructions for setting up SHT31-D temperature and humidity sensors
+    :description: Instructions for setting up SHT31-D/SHT3x temperature and humidity sensors
     :image: sht3xd.jpg
 
-The ``sht3xd`` sensor platform Temperature+Humidity sensor allows you to use your Sensirion SHT31-D
+The ``sht3xd`` sensor platform Temperature+Humidity sensor allows you to use your Sensirion SHT31-D/SHT3x
 (`datasheet <https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf>`__,
 `Adafruit`_ ) sensors with
 ESPHome. The :ref:`I²C Bus <i2c>` is
@@ -48,6 +48,10 @@ Configuration variables:
   Defaults to ``0x44``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
+- **heater_enabled** (*Optional*, bool): Turn on/off heater at boot.
+  This may help provide `more accurate readings in condensing conditions <https://forum.arduino.cc/t/atmospheric-sensors-in-condensing-conditions/412167>`_,
+  but can also increase temperature readings and decrease humidity readings as a side effect.
+  Defaults to ``false``.
 
 See Also
 --------

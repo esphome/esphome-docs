@@ -15,6 +15,10 @@ and can be put in different modes like ``HEAT``, ``COOL``, ``HEAT_COOL`` or ``OF
 
     Climate Device UI in Home Assistant.
 
+.. note::
+
+    Not all climate components support all possible features. Check the corresponding documentation page for details on what is supported.
+
 .. _config-climate:
 
 Base Climate Configuration
@@ -30,6 +34,15 @@ All climate platforms in ESPHome inherit from the climate configuration schema. 
           min_temperature: 18
           max_temperature: 25
           temperature_step: 0.1
+          min_humidity: 30%
+          max_humidity: 99%
+      - platform: ...
+        visual:
+          min_temperature: 18
+          max_temperature: 25
+          temperature_step:
+            target_temperature: 0.5
+            current_temperature: 0.1
 
 Configuration variables:
 
@@ -52,8 +65,13 @@ Configuration variables:
   - **temperature_step** (*Optional*, float): The granularity with which the target temperature
     can be controlled. Can be a single number, or split as below:
 
-    - **target_temperature** (**Required**, float)
-    - **current_temperature** (**Required**, float)
+    - **target_temperature** (**Required**, float): The granularity for target temperature
+    - **current_temperature** (**Required**, float): The granularity for current temperature
+
+  - **min_humidity** (*Optional*, percentage): The minimum humidity the climate device can reach.
+    Used to set the range of the frontend gauge.
+  - **max_humidity** (*Optional*, percentage): The maximum humidity the climate device can reach.
+    Used to set the range of the frontend gauge.
 
 Advanced options:
 
@@ -74,6 +92,8 @@ MQTT options:
   climate device action changes to.
 - **current_temperature_state_topic** (*Optional*, string): The topic to publish
   current temperature changes to.
+- **current_humidity_state_topic** (*Optional*, string): The topic to publish
+  current humidity changes to.
 - **fan_mode_state_topic** (*Optional*, string): The topic to publish
   fan mode changes to.
 - **fan_mode_command_topic** (*Optional*, string): The topic to receive
@@ -102,18 +122,11 @@ MQTT options:
   lower target temperature changes to.
 - **target_temperature_low_command_topic** (*Optional*, string): The topic to receive
   lower target temperature commands on.
+- **target_humidity_state_topic** (*Optional*, string): The topic to publish
+  target humidity changes to.
+- **target_humidity_command_topic** (*Optional*, string): The topic to receive
+  target humidity commands on.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
-
-.. code-block:: yaml
-
-    climate:
-      - platform: ...
-        visual:
-          min_temperature: 18
-          max_temperature: 25
-          temperature_step:
-            target_temperature: 0.5
-            current_temperature: 0.1
 
 Climate Automation
 ------------------
@@ -152,6 +165,8 @@ Configuration variables:
   lower target temperature of a climate device with a two-point target temperature.
 - **target_temperature_high** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
   higher target temperature of a climate device with a two-point target temperature.
+- **target_humidity** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
+  target humidity of a climate device.
 - **preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the preset
   of the climate device. One of ``ECO``, ``AWAY``, ``BOOST``, ``COMFORT``, ``HOME``, ``SLEEP``,
   ``ACTIVITY``.
@@ -181,12 +196,16 @@ advanced stuff.
       id(my_climate).mode
       // Current temperature, type: float (degrees)
       id(my_climate).current_temperature
+      // Current humidity, type: float (percentage)
+      id(my_climate).current_humidity
       // Target temperature, type: float (degrees)
       id(my_climate).target_temperature
       // Lower Target temperature, type: float (degrees)
       id(my_climate).target_temperature_low
       // High Target temperature, type: float (degrees)
       id(my_climate).target_temperature_high
+      // Target humidity, type: float (percentage)
+      id(my_climate).target_humidity
       // Fan mode, type: FanMode (enum)
       id(my_climate).fan_mode
       // Custom Fan mode, type: string
@@ -217,6 +236,7 @@ advanced stuff.
 
 This trigger is activated each time the state of the climate device is updated
 (for example, if the current temperature measurement or the mode set by the users changes).
+The ``Climate`` itself is available to automations as the reference ``x``.
 
 .. code-block:: yaml
 
@@ -224,7 +244,11 @@ This trigger is activated each time the state of the climate device is updated
       - platform: midea  # or any other platform
         # ...
         on_state:
-        - logger.log: "State updated!"
+          - logger.log: "State updated!"
+          - lambda: |-
+              if (x.mode != CLIMATE_MODE_OFF)
+                id(some_binary_sensor).publish_state(true);
+
 
 .. _climate-on_control_trigger:
 
@@ -235,15 +259,22 @@ This trigger is activated each time a *control* input of the climate device
 is updated via a ``ClimateCall`` (which includes changes coming in from Home
 Assistant).  That is, this trigger is activated for, for example, changes to
 the mode, *but not* on temperature measurements.  It will be invoked prior to
-the ``on_state`` trigger, if both are defined.
+the ``on_state`` trigger, if both are defined. The ``ClimateCall`` control
+object is available to automations as the reference ``x`` that can be changed.
 
 .. code-block:: yaml
 
     climate:
-      - platform: midea  # or any other platform
+      - platform: ...
         # ...
         on_control:
-        - logger.log: "Control input received; configuration updated!"
+          - logger.log: "Control input received; configuration updated!"
+          - lambda: |-
+              if (x.get_mode() != CLIMATE_MODE_OFF) {
+                  id(turnoff_script).stop();
+                  x.set_target_temperature(25.0f);
+              }
+
 
 See Also
 --------

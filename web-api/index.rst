@@ -24,6 +24,8 @@ While it's currently recommended to use ESPHome directly through Home Assistant,
 to integrate ESPHome with an external or self-built application you can use two available
 APIs: the real-time event source API and REST API.
 
+.. _api-event-source:
+
 Event Source API
 ~~~~~~~~~~~~~~~~
 
@@ -55,6 +57,8 @@ states so that the client can catch up with reality.
 
 The payloads of these state events are also the same as the payloads of the REST API GET calls.
 I would recommend just opening the network debug panel of your web browser to see what's sent.
+
+.. _api-rest:
 
 REST API
 --------
@@ -178,6 +182,7 @@ creating a POST request at ``/light/<id>/turn_on?brightness=128&transition=2`` w
 -  **flash**: Flash the color provided by the other properties for a duration in seconds.
 -  **transition**: Transition to the specified color values in this duration in seconds.
 -  **effect**: Set an effect for the light.
+-  ***color_temp***: Set the color temperature of the light, in mireds.
 
 ``turn_off`` optional URL parameters:
 
@@ -264,6 +269,22 @@ a GET request to ``/select/house_mode`` could yield this payload:
       "value": "party"
     }
 
+The detail parameter can be used to include available options in the response:
+
+- **detail**: Set to ``all`` to include a list of available options.
+
+For example GET ``/select/house_mode?detail=all`` could yield this payload:
+
+.. code-block:: json
+
+    {
+      "id": "select-house_mode",
+      "name": "House Mode",
+      "state": "party",
+      "value": "party",
+      "option": ["party","sleep","relax","home","away"]
+    }
+
 POST requests on the other hand allow setting the select, the available
 method is ``set``. The following parameter can be used:
 
@@ -297,3 +318,11 @@ method is ``set``. The following parameter can be used:
    minimum and maximum range of the number otherwise it will be ignored.
 
 For example POST ``/number/desired_delay/set?value=24`` will set the number to 24.
+
+See Also
+--------
+
+- :doc:`/components/web_server`
+- :doc:`/components/prometheus`
+- :doc:`/components/http_request`
+- :ghedit:`Edit`
