@@ -80,6 +80,11 @@ Release 2023.12.4 - December 25
 - dashboard: Fix file writes on Windows :esphomepr:`6013` by :ghuser:`bdraco`
 - Display: fix class inherence in Python script :esphomepr:`6009` by :ghuser:`nielsnl68`
 
+Release 2023.12.5 - December 25
+-------------------------------
+
+- Fix docker builds :esphomepr:`6012` by :ghuser:`bdraco`
+
 Full list of changes
 --------------------
 
