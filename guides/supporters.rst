@@ -629,7 +629,6 @@ Contributors
 - `jakehdk (@jakehdk) <https://github.com/jakehdk>`__
 - `Jake Shirley (@JakeShirley) <https://github.com/JakeShirley>`__
 - `jakub-medrzak (@jakub-medrzak) <https://github.com/jakub-medrzak>`__
-- `James Braid (@jamesbraid) <https://github.com/jamesbraid>`__
 - `James Hirka (@jameshirka) <https://github.com/jameshirka>`__
 - `James Lakin (@jamesorlakin) <https://github.com/jamesorlakin>`__
 - `Jason (@jamman9000) <https://github.com/jamman9000>`__
@@ -679,6 +678,7 @@ Contributors
 - `JonasEr (@JonasEr) <https://github.com/JonasEr>`__
 - `Jonas Niesner (@jonasniesner) <https://github.com/jonasniesner>`__
 - `Jonathan Adams (@jonathanadams) <https://github.com/jonathanadams>`__
+- `Jonathan Laliberte (@JonLaliberte) <https://github.com/JonLaliberte>`__
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__
 - `jonOfrie (@jonOfrie) <https://github.com/jonOfrie>`__
 - `Joris S (@Jorre05) <https://github.com/Jorre05>`__
@@ -702,6 +702,7 @@ Contributors
 - `Kaldek (@Kaldek) <https://github.com/Kaldek>`__
 - `Kamahat (@kamahat) <https://github.com/kamahat>`__
 - `Karl0ss (@karl0ss) <https://github.com/karl0ss>`__
+- `kartman85 (@kartman85) <https://github.com/kartman85>`__
 - `Kattni (@kattni) <https://github.com/kattni>`__
 - `Krzysztof Białek (@kbialek) <https://github.com/kbialek>`__
 - `Keilin Bickar (@kbickar) <https://github.com/kbickar>`__
@@ -750,6 +751,7 @@ Contributors
 - `Juraj Liso (@LiJu09) <https://github.com/LiJu09>`__
 - `Li Junru (@lijunru-hub) <https://github.com/lijunru-hub>`__
 - `lillborje71 (@lillborje71) <https://github.com/lillborje71>`__
+- `Caleb Pryor (@lilmansplace) <https://github.com/lilmansplace>`__
 - `Citric Lee (@limengdu) <https://github.com/limengdu>`__
 - `lingex (@lingex) <https://github.com/lingex>`__
 - `Markus (@Links2004) <https://github.com/Links2004>`__
@@ -1106,6 +1108,7 @@ Contributors
 - `signix (@signix) <https://github.com/signix>`__
 - `SiliconAvatar (@SiliconAvatar) <https://github.com/SiliconAvatar>`__
 - `Mark Lopez (@Silvenga) <https://github.com/Silvenga>`__
+- `Maximilian Ertl (@Sirs0ri) <https://github.com/Sirs0ri>`__
 - `Francisco J. Solis (@sisco0) <https://github.com/sisco0>`__
 - `Derek Hageman (@Sizurka) <https://github.com/Sizurka>`__
 - `Stephen Tierney (@sjtrny) <https://github.com/sjtrny>`__
@@ -1296,4 +1299,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated December 22, 2023.*
+*This page was last updated December 25, 2023.*
