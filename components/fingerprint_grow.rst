@@ -42,6 +42,8 @@ If available on your reader model, it's recommended to connect 3.3VT (touch indu
         ...
       on_finger_scan_unmatched:
         ...
+      on_finger_scan_invalid:
+        ...
       on_enrollment_scan:
         ...
       on_enrollment_done:
@@ -64,6 +66,7 @@ Base Configuration:
 - **new_password** (*Optional*, int): Sets a new password to use for authentication. See :ref:`fingerprint_grow-set_new_password` for more information.
 - **on_finger_scan_matched** (*Optional*, :ref:`Automation <automation>`): An action to be performed when an enrolled fingerprint is scanned. See :ref:`fingerprint_grow-on_finger_scan_matched`.
 - **on_finger_scan_unmatched** (*Optional*, :ref:`Automation <automation>`): An action to be performed when an unknown fingerprint is scanned. See :ref:`fingerprint_grow-on_finger_scan_unmatched`.
+- **on_finger_scan_invalid** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the scan of a fingerprint failed. See :ref:`fingerprint_grow-on_finger_scan_invalid`.
 - **on_enrollment_scan** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint is scanned during enrollment. See :ref:`fingerprint_grow-on_enrollment_scan`.
 - **on_enrollment_done** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint is enrolled. See :ref:`fingerprint_grow-on_enrollment_done`.
 - **on_enrollment_failed** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint enrollment failed. See :ref:`fingerprint_grow-on_enrollment_failed`.
@@ -143,6 +146,20 @@ The ``new_password:`` configuration option is meant to be compiled, flashed to t
     fingerprint_grow:
       password: 0x72AB96CD      # Update the existing password with the new one
 
+
+.. _fingerprint_grow-on_finger_scan_invalid:
+
+``on_finger_scan_invalid`` Trigger
+----------------------------------
+
+With this configuration option you can write complex automations whenever a scan fails, e.g. when the finger is not placed correctly on the reader. This is different from ``on_finger_scan_unmatched`` which is triggered when an unknown fingerprint is scanned. This option works best with the ``sensing_pin`` option defined.
+
+.. code-block:: yaml
+
+    on_finger_scan_invalid:
+      - text_sensor.template.publish:
+          id: fingerprint_state
+          state: "Invalid finger"
 
 .. _fingerprint_grow-on_finger_scan_matched:
 
@@ -420,6 +437,9 @@ Sample code
 
     fingerprint_grow:
       sensing_pin: GPIO12
+      on_finger_scan_invalid:
+        - homeassistant.event:
+            event: esphome.test_node_finger_scan_invalid
       on_finger_scan_matched:
         - homeassistant.event:
             event: esphome.test_node_finger_scan_matched
