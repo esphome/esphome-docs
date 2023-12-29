@@ -201,8 +201,29 @@ This :ref:`action <config-action>` manually starts fan-cleaning.
       then:
         - sen5x.start_fan_autoclean: sen54
 
+Sen5x Power Consumption
+-----------------------
 
+In full measurement mode the Sen5x series can draw ~60mA. In idle mode the sensor draws < 2mA. By default, the sensor is always running. For tighter control over power consumption, you can disable polling and manually control the sensor using the `start_measurement` and `stop_measurement` functions. First, change the `update_interval` for the sen5x sensor in your YAML file to `never` and add a script to start the measurement, wait 30 seconds for the fan to turn on and accumulate enough data to measure air quality, update the readings, and then shut down. This script can be called at your desired polling frequency using the `interval` component.
 
+.. code-block:: yaml
+
+    script:
+      - id: read_sensors
+        mode: single
+        then:
+          - lambda: |-
+              id(sen55).start_measurement();
+          - delay: 30s
+          - lambda: |-
+              id(sen55).update();
+              id(sen55).stop_measurement();
+
+    sensor:
+      - platform: sen5x
+        id: sen55
+        ...
+        update_interval: never
 
 See Also
 --------
