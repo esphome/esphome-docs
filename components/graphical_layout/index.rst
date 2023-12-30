@@ -1,0 +1,193 @@
+Graphical Layout
+================
+
+.. seo::
+    :description: A layout system for rendering screens in ESPHome
+    :image: folder-open.svg
+
+The ``graphical_layout`` in ESPHome lets you design simple layouts that should work
+with different sized text, images, etc.
+
+Overview
+--------
+
+The integration is intended to take some of the hassle out of laying out physical user interfaces (eg. on an LCD or eInk display)
+in ESPHome
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation
+- **layout** (:ref:`graphical_layout-layout_item`): The root layout item
+
+Rendering
+---------
+
+Once you've constructed your layout you need to render it to a display
+
+.. code-block:: yaml
+
+    graphical_layout:
+      id: example_layout
+      layout:
+        # Layout here...
+          
+
+    display:
+      - platform: ..
+        pages:
+          - id: page_with_layout
+            lambda: |-
+              // render_layout takes an (x, y) to start the layout at
+              it.render_layout(0, 0, id(example_layout));
+
+
+
+Margin vs Padding vs Content Area
+*********************************
+
+.. figure:: images/margin-vs-padding.png
+    :align: center
+    :width: 60.0%
+
+The way items are rendered relies on two important properties; their margin and their padding. Typically when laying out items 
+you don't want the items right next to each other as it would look too crowded. This is where an items margin comes in; this
+defines the space between one layout item and its neighbour.
+
+Next we have the border. This is an optional box drawn around the item. The padding defines the space between the border (even
+if it happens to be zero) and the actual content.
+
+It might be easier thinking about this "inside out" though. In the above image the piece of content has requested that it needs
+420 x 220 pixels of space. Next 20 pixels of padding are applied around this. Followed by a 2 pixel border. And then 20 pixels
+of margin. The total width of this item would be; 20 pixels for the left margin, 2 pixels for the left border, another 20 pixels
+for the left padding, then 420 pixels for the content, 20 pixels for the right padding, 2 pixels for the right border, and another
+20 pixels for the right margin. For a total of 504 pixels. If a second item was rendered to the right of this item its on screen
+area would start after these 504 pixels.
+
+.. code-block:: yaml
+
+    graphical_layout:
+      layout:
+        type: fixed_dimension_panel
+        width: 420
+        height: 220
+        padding: 20
+        margin: 20
+        border: 2
+        border_color: black
+
+
+.. _graphical_layout-layout_item:
+
+Layout Items
+------------
+
+All items that can be added to the layout derive from :apiref:`LayoutItem <graphical_layout/layout_item>` and have the following
+common generic-properties
+
+Configuration variables:
+
+- **margin** (*Optional*, int): Space between the layout item and any other layout items in pixels. Defaults to 0
+- **border** (*Optional*, int): Size of the border around the layout item in pixels. Defaults to 0
+- **border-color** (*Optional*, :ref:`config-color`): Colour of the border (when **border** > 0 pixels). Defaults to ``COLOR_ON``
+- **padding** (*Optional*, int): Space between the border and the actual content of the layout item in pixels. Defaults to 0
+
+Text Panel
+**********
+
+The Text Panel renders a single line of text to the display
+
+Configuration variables:
+
+- **font** (:ref:`font <display-fonts>`): Font to use for rendering
+- **foreground_color** (*Optional*, :ref:`config-color`): Foreground colour to render the text in. Defalts to COLOR_ON
+- **background_color** (*Optional*, :ref:`config-color`): Background colour to render for the label. Defaults to COLOR_OFF
+- **text_align** (*Optional*, :ref:`graphical_layout-text_align`): Alignment to render the text to the area. Defaults to TOP_LEFT. One of:
+- **text** (string, :ref:`templatable <config-templatable>`): The text to render
+
+.. code-block:: yaml
+
+    font:
+      - file: "gfonts://Roboto"
+        id: roboto
+        size: 20
+
+    graphical_layout:
+      layout:
+        type: text_panel
+        font: roboto
+        text: "Hello world!"
+
+Text Run Panel
+**************
+
+The Text Run Panel is suitable for rendering a block of text to the display and handles differing fonts and sizes. It
+will wrap at break characters as appropriate.
+
+Configuration variables:
+
+- **text_align** (*Optional*, :ref:`graphical_layout-text_align`): Alignment to render text within the panel. Defaults to TOP_LEFT
+- **max_width** (int): Maximum width to use when laying out the panel. Measured in pixels.
+- **min_width** (*Optional*, int): Minimum width to use when laying out the panel. Measured in pixels. Defaults to 0
+- **runs** (list of :ref:`graphical_layout-text_run`): A list of text and styles to render to the screen. Requires at least one run.
+
+.. _graphical_layout-text_run:
+
+Text Run
+********
+
+  - **font** (:ref:`display-fonts`): Font used to render the text run
+  - **foreground_color** (*Optional*, :ref:`config-color`): Foreground colour to render the text in. Defaults to COLOR_ON
+  - **background_color** (*Optional*, :ref:`config-color`): Background colour to render for the label. Defaults to COLOR_OFF
+  - **text** (string, :ref:`templatable <config-templatable>`): The text for this run
+
+.. code-block:: yaml
+
+    font:
+      - file: "gfonts://Robot"
+        id: roboto_normal
+        size: 20
+      - file: "gfonts://Robot"
+        id: roboto_big
+        size: 30
+
+    graphical_layout:
+      layout:
+        type: text_run_panel
+        max_width: 200
+        runs:
+          - font: roboto_normal
+            text: "Hello "
+          - font: roboto_big
+            text: World!
+
+
+
+Common Enumerations
+-------------------
+
+.. _graphical_layout-text_align:
+
+Text Align
+**********
+
+  - ``TOP_LEFT``
+  - ``TOP_CENTER``
+  - ``TOP_RIGHT``
+  - ``CENTER_LEFT``
+  - ``CENTER``
+  - ``CENTER_RIGHT``
+  - ``BASELINE_LEFT``
+  - ``BASELINE_CENTER``
+  - ``BASELINE_RIGHT``
+  - ``BOTTOM_LEFT``
+  - ``BOTTOM_CENTER``
+  - ``BOTTOM_RIGHT``
+
+See Also
+--------
+
+- :ref:`Display <display-engine>`
+- :ref:`display-fonts`
+- :ref:`display-pages`
+- :apiref:`graphical_layout/graphical_layout.h`
+- :ghedit:`Edit`
