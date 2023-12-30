@@ -133,7 +133,7 @@ Configuration variables:
 .. _graphical_layout-text_run:
 
 Text Run
-********
+^^^^^^^^
 
   - **font** (:ref:`display-fonts`): Font used to render the text run
   - **foreground_color** (*Optional*, :ref:`config-color`): Foreground colour to render the text in. Defaults to COLOR_ON
@@ -160,6 +160,196 @@ Text Run
           - font: roboto_big
             text: World!
 
+Fixed Dimension Panel
+*********************
+
+The Fixed Dimension Panel is useful when you want to fix the size of a section of the layout. It takes a single child item
+that will be constrained a maximum dimension of those provided.
+
+Configuration variables:
+
+- **width** (*Optional*, int): Width to constrain the item to in pixels. If not provided defaults to the underlying
+  display's width
+- **height** (*Optional*, int): Height to constrain the item to in pixels. If not provided defaults to the underlying
+  display's height
+- **child** (:ref:`graphical_layout-layout_item`): A Layout Item that will be constained by the fixed dimension panel
+
+.. code-block:: yaml
+
+    graphical_layout:
+      layout:
+        type: fixed_dimension_panel
+        width: 20
+        height: 20
+        child:
+          type: text_panel
+          font: roboto
+          text: This is a very long string that's definitely longer than 20 pixels but will be truncated
+
+Display Rendering Panel
+***********************
+
+The Display Rendering Panel can be used to perform arbitrary drawing within the confines of the layout system.
+
+Configuration variables:
+
+- **width** (int): Desired width of the panel in pixels
+- **height** (int): Desired height of the panel in pixels
+- **lambda** (:ref:`Action <config-lambda>`): Lambda that will perform the drawing. Like the
+  :ref:`Display Engine<display-engine>` this will receive a variable ``it`` which represents the engine object. In
+  addition the lambda will also receive a variable ``bounds`` which is the rectangle actually available for drawing
+
+.. code-block:: yaml
+
+    graphical_layout:
+      layout:
+        type: display_rendering_panel
+        width: 100
+        height: 100
+        lambda: |-
+          // Draws a box around the available space and a cross through it
+          it.rectangle(0, 0, bounds.w, bounds.h);
+          it.line(0, 0, bounds.w, bounds.h);
+          it.line(0, bounds.h, bounds.w, 0);
+
+.. note::
+
+    All of the coordinates you use in your lambda will be relative to the top-left of the space your panel is
+    rendering to. So even if your Display Rendering Panel is positioned at (100, 50) a call to 
+    ``it.draw_pixel_at(0, 0)`` would fill the pixel (100, 50) on the screen.
+
+Horizontal Stack Panel
+**********************
+
+The Horizontal Stack Panel renders a series of other :ref:`Layout Items<graphical_layout-layout_item>` from left to
+right. 
+
+Configuration variables:
+
+- **item_padding** (*Optional*, int): Number of pixels to leave between the Horizontal Stack Panel's internal padding
+  and each child item it renders
+- **child_align** (*Optional*, :ref:`graphical_layout-vertical_child_align`): Controls how child elements are rendered - 
+  vertically -  within the available space. Defaults to TOP.
+- **items** (list of :ref:`graphical_layout-layout_item`): A set of items to render
+
+.. code-block:: yaml
+
+    graphical_layout:
+      layout:
+        type: horizontal_stack_paenl
+        items:
+          - type: text_panel
+            font: roboto
+            text: Left Hand Side
+          - type: text_panel
+            font: roboto
+            text: Right Hand Side
+
+Vertical Stack Panel
+********************
+
+The Vertical Stack Panel renders a series of other :ref:`Layout Items<graphical_layout-layout_item>` from top to bottom
+
+Configuration variables
+
+- **item_padding** (*Optional*, int): Number of pixels to leave between the Horizontal Stack Panel's internal padding
+  and each child item it renders
+- **child_align** (*Optional*, :ref:`graphical_layout-horizontal_child_align`): Controls how child elements are rendered - 
+  horizontally -  within the available space. Defaults to LEFT.
+- **items** (list of :ref:`graphical_layout-layout_item`): A set of items to render
+
+.. code-block:: yaml
+
+    graphical_layout:
+      layout:
+        type: vertical_stack_paenl
+        items:
+          - type: text_panel
+            font: roboto
+            text: First line of text
+          - type: text_panel
+            font: roboto
+            text: Second line of text
+
+Examples
+--------
+
+Two Column Layout Free Flowing 
+******************************
+
+This will create two columns that will use as much horizontal width as they need
+
+.. code-block:: yaml
+
+    graphical_layout:
+      layout:
+        type: horizontal_stack_panel
+        items:
+          # Column 1
+          - type: vertical_stack_panel
+            items:
+              # Column 1 contents
+          # Column 2
+          - type: vertical_stack_panel
+            items:
+              # Column 2 contents
+
+Two Column With Single Fixed Column
+***********************************
+
+This will create a two column layout where first column has a fixed amount of space and the second column will
+grow as necessary.
+
+.. code-block:: yaml
+
+    graphical_layout:
+      layout:
+        type: horizontal_stack_panel
+        items:
+          # Column 1 - Fixed (100px)
+          - type: fixed_dimension_panel
+            width: 100
+            child:
+              # Column 1 contents, will never grow beyond 100px
+          # Column 2 - Variable Width
+          - type: vertical_stack_panel
+            items:
+              # Column 2 contents
+
+Header Bar
+**********
+
+This will provide a simple header item and leave the remainder of the display for controls, etc
+
+.. code-block:: yaml
+
+    graphical_layout:
+      layout:
+        type: vertical_stack_panel
+        child_align: STRETCH_TO_FIT_WIDTH
+        items:
+          # Heading
+          - type: text_panel
+            font: roboto
+            border: 1
+            border_color: black
+            padding: 2
+            margin: 2
+            text: Very Important Heading
+          # Contents
+          - type: horizontal_stack_panel
+            items:
+              # Main body
+
+Hints
+-----
+
+- Make use of the nested nature of the display to build the flexibility you require
+- You can add arbritary elements (images, QR codes, graphs, etc) through the use of the ``display_rendering_panel``
+- If you're having issues determining why your layout is rendering the way it is turning on the border for the items is an
+  easy way to visualise what's happening.
+- If your issue is around the ``text_run_panel`` you can set ``debug_outline_runs`` to ``true`` which will render outlines
+  around each laid out block of text.
 
 
 Common Enumerations
@@ -182,6 +372,26 @@ Text Align
   - ``BOTTOM_LEFT``
   - ``BOTTOM_CENTER``
   - ``BOTTOM_RIGHT``
+
+.. _graphical_layout-vertical_child_align:
+
+Vertical Child Align
+********************
+
+  - ``TOP``: Child items will all render at the top of the available space
+  - ``CENTER_VERTICAL``: Child items will all be rendered centered around the middle of the available height
+  - ``BOTTOM``: Child items will all be rendered at the bottom of the available space
+  - ``STRETCH_TO_FIT_HEIGHT``: Child items will be provided the entire available height and their original width
+
+.. _graphical_layout-horizontal_child_align:
+
+Horizontal Child Align
+**********************
+
+  - ``LEFT``: Child items will all render to the left of the available space
+  - ``CENTER_HORIZONTAL``: Child items will all be rendered centered around the middle of the available width
+  - ``RIGHT``: Child items will all render to the right of the available space
+  - ``STRETCH_TO_FIT_WIDTH``: Child items will be provided the entire available width and their original height
 
 See Also
 --------
