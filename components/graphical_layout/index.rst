@@ -50,7 +50,7 @@ Margin vs Padding vs Content Area
     :width: 60.0%
 
 The way items are rendered relies on two important properties; their margin and their padding. Typically when laying out items 
-you don't want the items right next to each other as it would look too crowded. This is where an items margin comes in; this
+you don't want the items right next to each other as it would look too crowded. This is where an item's margin comes in; this
 defines the space between one layout item and its neighbour.
 
 Next we have the border. This is an optional box drawn around the item. The padding defines the space between the border (even
@@ -123,6 +123,11 @@ Text Run Panel
 The Text Run Panel is suitable for rendering a block of text to the display and handles differing fonts and sizes. It
 will wrap at break characters as appropriate.
 
+.. note::
+
+    By default text will wrap at spaces, tabs, newlines, carriage returns, as well as ``=``, ``<``, ``>``, ``/``, ``&``, 
+    ``*``, ``+``, ``^``, ``|``, and ``\``
+
 Configuration variables:
 
 - **text_align** (*Optional*, :ref:`graphical_layout-text_align`): Alignment to render text within the panel. Defaults to TOP_LEFT
@@ -159,6 +164,11 @@ Text Run
             text: "Hello "
           - font: roboto_big
             text: World!
+.. note::
+
+    In the example above that the first run is ``"Hello "`` - a quoted string with a space at the end. Because of
+    the way yaml works if you do not quote a string ending in white space it'll be trimmed. Without the quote the above
+    example would render the text ``HelloWorld`` without any space between the portions of text.
 
 Fixed Dimension Panel
 *********************
