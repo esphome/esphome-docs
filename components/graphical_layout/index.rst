@@ -178,10 +178,10 @@ that will be constrained a maximum dimension of those provided.
 
 Configuration variables:
 
-- **width** (*Optional*, int): Width to constrain the item to in pixels. If not provided defaults to the underlying
-  display's width
-- **height** (*Optional*, int): Height to constrain the item to in pixels. If not provided defaults to the underlying
-  display's height
+- **width** (*Optional*, int or a :ref:`graphical_layout-fixed_dimension_panel_modes`): Width to constrain the item to in
+  pixels. If not provided defaults to the child's width
+- **height** (*Optional*, int or a :ref:`graphical_layout-fixed_dimension_panel_modes`): Height to constrain the item to in
+  pixels. If not provided defaults to the child's height
 - **child** (:ref:`graphical_layout-layout_item`): A Layout Item that will be constained by the fixed dimension panel
 
 .. code-block:: yaml
@@ -195,6 +195,15 @@ Configuration variables:
           type: text_panel
           font: roboto
           text: This is a very long string that's definitely longer than 20 pixels but will be truncated
+
+.. _graphical_layout-fixed_dimension_panel_modes:
+
+Calculated Dimension Modes
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- ``DISPLAY``: Uses the maximum value of the dimension that will fit on the display accounting for the panels margin,
+  border, and padding.
+- ``CHILD``: Uses the external dimension (inclusive of margin, border, and padding) of the child for the panel's dimension
 
 Display Rendering Panel
 ***********************
@@ -320,7 +329,7 @@ grow as necessary.
           - type: fixed_dimension_panel
             width: 100
             child:
-              # Column 1 contents, will never grow beyond 100px
+              # Column 1 contents, will never grow beyond 100px wide
           # Column 2 - Variable Width
           - type: vertical_stack_panel
             items:
