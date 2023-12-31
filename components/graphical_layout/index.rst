@@ -75,6 +75,10 @@ area would start after these 504 pixels.
         border: 2
         border_color: black
 
+.. note::
+
+    In practice each of padding, margin, and border can have different values for left, top, bottom, and right. See
+    :ref:`graphical_layout-dimension` for more information.
 
 .. _graphical_layout-layout_item:
 
@@ -86,10 +90,39 @@ common generic-properties
 
 Configuration variables:
 
-- **margin** (*Optional*, int): Space between the layout item and any other layout items in pixels. Defaults to 0
-- **border** (*Optional*, int): Size of the border around the layout item in pixels. Defaults to 0
+- **margin** (*Optional*, int or :ref:`graphical_layout-dimension`): Space between the layout item and any other layout items in
+  pixels. Defaults to 0.
+- **border** (*Optional*, int or :ref:`graphical_layout-dimension`): Size of the border around the layout item in pixels. Defaults
+  to 0
 - **border-color** (*Optional*, :ref:`config-color`): Colour of the border (when **border** > 0 pixels). Defaults to ``COLOR_ON``
-- **padding** (*Optional*, int): Space between the border and the actual content of the layout item in pixels. Defaults to 0
+- **padding** (*Optional*, int or :ref:`graphical_layout-dimension`): Space between the border and the actual content of the 
+  layout item in pixels. Defaults to 0
+
+.. _graphical_layout-dimension:
+
+Dimension
+*********
+
+- **left** (*Optional*, int): Value for the left. Defaults to 0
+- **top** (*Optional*, int): Value for the top. Defaults to 0
+- **right** (*Optional*, int): Value for the right. Defaults to 0
+- **bottom** (*Optional*, int): Value for the bottom. Defaults to 0
+
+When a single integer is specified instead of one or more of the following all dimension sides are set to the same value.
+The following two configurations are equal
+
+.. code-block:: yaml
+
+    padding: 5
+
+.. code-block:: yaml
+
+    padding:
+        left: 5
+        top: 5
+        right: 5
+        bottom: 5
+
 
 Text Panel
 **********
