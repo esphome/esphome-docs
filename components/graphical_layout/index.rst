@@ -235,7 +235,8 @@ Configuration variables:
 
     All of the coordinates you use in your lambda will be relative to the top-left of the space your panel is
     rendering to. So even if your Display Rendering Panel is positioned at (100, 50) a call to 
-    ``it.draw_pixel_at(0, 0)`` would fill the pixel (100, 50) on the screen.
+    ``it.draw_pixel_at(0, 0)`` would fill the pixel (100, 50) on the screen. See :ref:`local_coordinates` for more 
+    information
 
 Horizontal Stack Panel
 **********************
@@ -418,5 +419,6 @@ See Also
 - :ref:`Display <display-engine>`
 - :ref:`display-fonts`
 - :ref:`display-pages`
+- :ref:`local_coordinates`
 - :apiref:`graphical_layout/graphical_layout.h`
 - :ghedit:`Edit`

@@ -457,7 +457,47 @@ With ``get_clipping();`` you get a ``Rect`` object back with the latest set clip
 
 With ``is_clipping();`` tells you if clipping is activated.
 
+.. _local_coordinates:
 
+Local Coordinates
+*****************
+
+Typically when rendering everything is relative to (0, 0) - i.e the top left of the screen with respect to rotation. This is
+sometimes known as the *Global Coordinates*. However there are times when it is useful to redefine the meaning of (0, 0) for
+a section of code. This is sometimes known as *local Coordinates*. For example you may draw a rectangle to the display and
+wish your future drawing was relative to the inside of the rectangle; rather than having to remember to offset all your 
+drawing you can define the new local coordinates.
+
+- ``set_local_coordinate(x, y)``: Changes the local coordinates to be (x, y) relative to the global coordinates
+- ``set_local_coordinates_relative_to_current(x, y)``: Changes the local coordinates to be (x, y) relative to the current 
+  local coordinates (or the global coordinates if no local coordinates are in use)
+- ``pop_local_coordinates()``: Pops the current set of local coordinates returning to the previous local coordinate
+- ``get_local_coordinates()``: Returns the current local coordinates in the global coordinate system
+
+Like :ref:`clipping` you can nest multiple local coordinates as long as you pop them afterwards.
+
+.. code-block:: yaml
+
+  display:
+    - platform: ...
+      # ...
+      lambda: |-
+        // Without local coordinates to draw some text in a rectangle might require something like this
+        int x = 20;
+        int y = 20;
+        it.rectangle(x, y, 100, 100);
+        // 10 pixels from the top left of the rectangle
+        it.print(x + 10, y + 10, id(your_font), "Hello World");
+
+        // With a local coordinate system
+        it.rectangle(x, y, 100, 100);
+        it.set_local_coordinate(x, y);
+        it.print(10, 10, id(your_font), "Hello World");
+        it.pop_local_coordinates();
+
+.. note::
+
+  Local coordinates do not change the results of things like ``get_width()`` and ``get_height()``.
 
 .. _config-color:
 
