@@ -133,6 +133,15 @@ Configuration variables:
 - **text_align** (*Optional*, :ref:`graphical_layout-text_align`): Alignment to render text within the panel. Defaults to TOP_LEFT
 - **max_width** (int): Maximum width to use when laying out the panel. Measured in pixels.
 - **min_width** (*Optional*, int): Minimum width to use when laying out the panel. Measured in pixels. Defaults to 0
+- **can_wrap_at_character** (*Optional*, :ref:`Action <config-lambda>`): A lambda that determines if the provided character is suitable
+  for breaking the line. If not provided defaults to the set of characters in the note above.
+
+    - ``int offset``: Offset into the string of the current character. Useful to inspect previous/future character as part of
+      your determination. Eg. If you want to break only on `--` but not a single `-`.
+    - ``std::string string``: The entire portion of text currently being considered for breaking. This may be a subset of
+      a run if it has already been broken somewhere on the line
+    - ``char character``: Character being inspected (this is equivalent to ``args.string.at(offset)``)
+
 - **runs** (list of :ref:`graphical_layout-text_run`): A list of text and styles to render to the screen. Requires at least one run.
 
 .. _graphical_layout-text_run:
@@ -181,7 +190,8 @@ Configuration variables:
 - **width** (*Optional*, int or a :ref:`graphical_layout-fixed_dimension_panel_modes`): Width to constrain the item to in
   pixels. If not provided defaults to the child's width
 - **height** (*Optional*, int or a :ref:`graphical_layout-fixed_dimension_panel_modes`): Height to constrain the item to in
-  pixels. If not provided defaults to the child's height
+  pixels. If not provided defaults to the child's height. The lambda receives a single argument - ``args`` with the following
+  properties
 - **child** (:ref:`graphical_layout-layout_item`): A Layout Item that will be constained by the fixed dimension panel
 
 .. code-block:: yaml
