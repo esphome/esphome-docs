@@ -8,6 +8,10 @@ Graphical Layout
 The ``graphical_layout`` in ESPHome lets you design simple layouts that should work
 with different sized text, images, etc.
 
+.. figure:: /images/graphical_layout.png
+    :align: center
+    :width: 60.0%
+
 Overview
 --------
 
@@ -403,6 +407,96 @@ This will provide a simple header item and leave the remainder of the display fo
           - type: horizontal_stack_panel
             items:
               # Main body
+
+Climate Info Layout
+*******************
+
+.. figure:: /images/graphical_layout.png
+    :align: center
+    :width: 60.0%
+
+Similar to the two column examples but this one includes actual textual examples, derived form a sensor, and a :ref:`display-graphs`
+being rendered to the screen
+
+.. code-block:: yaml
+
+    substitutions:
+      graph_width: "98"
+      graph_height: "90"
+
+    graph:
+      id: climate_graph
+      width: ${graph_width}
+      height: ${graph_height}
+      duration: 60min
+      x_grid: 10min
+      traces:
+        - sensor: temperature
+          line_type: solid
+          line_thickness: 4
+
+    graphical_layout:
+      - id: climate_sample_layout
+        layout:
+        type: fixed_dimension_panel
+        width: display
+        height: display
+        child:
+          type: vertical_stack
+          child_align: stretch_to_fit_width
+          item_padding: 2
+          items:
+            # Row 1 - Header
+            - type: horizontal_stack
+              items:
+                - type: text_panel
+                  font: big_font
+                  text: Climate Info
+            # Row 2 Text + Graph
+            - type: horizontal_stack
+              items:
+                # Row 2 - Column 1 - Text
+                - type: text_run_panel
+                  max_width: 170
+                  border: 0
+                  margin: 4
+                  text_align: baseline_left
+                  runs:
+                    - font: text_font
+                      text: "The temperature in the "
+                    - font: bold_font
+                      text: !lambda |-
+                        return "study";
+                    - font: text_font
+                      text: " is "
+                    - font: bold_font
+                      text: !lambda |-
+                        char buffer[100];
+                        snprintf(buffer, 100, "%.1f°C", id(temperature).state);
+                        return buffer;
+                    - font: text_font
+                      text: " and "
+                    - font: bold_font
+                      text: !lambda |-
+                        char buffer[100];
+                        snprintf(buffer, 100, "%.1f%%", id(humidity).state);
+                        return buffer;
+                    - font: text_font
+                      text: " humidity. It is "
+                    - font: bold_font
+                      text: !lambda |-
+                        return id(thermal_comfort).state;
+                # Row 2 - Column 2 - Graph
+                - type: display_rendering_panel
+                  width: ${graph_width}
+                  height: ${graph_height}
+                  lambda: !lambda |-
+                    it.graph(0, 0, id(climate_graph));
+
+.. note::
+
+    The ``temperature``, ``humidity``, and ``thermal_comfort`` would need to be replaced with appropriate sensors from your
+    setup.
 
 Hints
 -----

@@ -848,7 +848,7 @@ Miscellaneous Components
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
     Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.jpg
-    Graphical Layout, components/graphical_layout/index, graphical_display_menu.jpg
+    Graphical Layout, components/graphical_layout/index, graphical_layout.png
     Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
     Wiegand Reader, components/wiegand, wiegand.jpg
     HTTP Request, components/http_request, connection.svg, dark-invert

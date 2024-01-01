@@ -478,26 +478,26 @@ Like :ref:`clipping` you can nest multiple local coordinates as long as you pop 
 
 .. code-block:: yaml
 
-  display:
-    - platform: ...
-      # ...
-      lambda: |-
-        // Without local coordinates to draw some text in a rectangle might require something like this
-        int x = 20;
-        int y = 20;
-        it.rectangle(x, y, 100, 100);
-        // 10 pixels from the top left of the rectangle
-        it.print(x + 10, y + 10, id(your_font), "Hello World");
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          // Without local coordinates to draw some text in a rectangle might require something like this
+          int x = 20;
+          int y = 20;
+          it.rectangle(x, y, 100, 100);
+          // 10 pixels from the top left of the rectangle
+          it.print(x + 10, y + 10, id(your_font), "Hello World");
 
-        // With a local coordinate system
-        it.rectangle(x, y, 100, 100);
-        it.set_local_coordinate(x, y);
-        it.print(10, 10, id(your_font), "Hello World");
-        it.pop_local_coordinates();
+          // With a local coordinate system
+          it.rectangle(x, y, 100, 100);
+          it.set_local_coordinate(x, y);
+          it.print(10, 10, id(your_font), "Hello World");
+          it.pop_local_coordinates();
 
 .. note::
 
-  Local coordinates do not change the results of things like ``get_width()`` and ``get_height()``.
+    Local coordinates do not change the results of things like ``get_width()`` and ``get_height()``.
 
 .. _config-color:
 
