@@ -96,10 +96,12 @@ Configuration variables:
 
     *IMPORTANT*: The logger interferes with the UART port that is used to communicate with the dimmer. Firmware updates might fail if the logger is not disabled. It is recommended to explicitly set:
 
+
     .. code-block:: yaml
     
         logger:
             baud_rate: 0
+
 
 - All other options from :ref:`Light <config-light>`.
 
