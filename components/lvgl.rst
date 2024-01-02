@@ -59,20 +59,20 @@ Configuration variables:
 - **display_id** (*Optional*, :ref:`config-id`): The ID of a display configuration where to render this entire *lvgl* configuration. If there's only one display configured, this item can be omitted.
 - **touchscreens** (*Optional*, list): IDs of touchscreens interacting with the *lvgl* widgets on the display.
 - **rotary_encoders** (*Optional*, list): IDs of rotary encoders interacting with the *lvgl* widgets on the display.
-- **color_depth** (**Required**, int8): The color deph at which the contents are generated. Valid values are 1 (monochrome), 8, 16 or 32.
-- **log_level** (*Optional*): Set the logger level specifically for the messages of the *lvgl* component.
+- **color_depth** (*Optional*, int8): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``8``.
+- **log_level** (*Optional*): Set the :doc:`/components/logger` level specifically for the messages of the *lvgl* component. Defaults to ``WARN``.
 - **byte_order**: The byte order of the data processed by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
-- ... (select the default styles from :ref:`<lvgl-styling>`)
+- ... (select the default styles from :ref:`Styling <lvgl-styling>`)
 - **style_definitions** (*Optional*, list): A list of style definitions to use with *lvgl* widgets:
     - **id** (*Optional*, :ref:`config-id`): Set the ID of this style definition.
-    - ... (select your styles from :ref:`<lvgl-styling>`)
+    - ... (select your styles from :ref:`Styling <lvgl-styling>`)
 - **theme** ???
 - **widgets** (*Optional*, list): A list of *lvgl* widgets to be drawn on the screen.
     - :ref:`Widgets <lvgl-widgets>` (**Required**): ``btn``, ``img``, ???
-    - ... (select your styles from :ref:`<lvgl-styling>`)
+    - ... (select your styles from :ref:`Styling <lvgl-styling>`)
     - **widgets** (*Optional*, list): A list of child *lvgl* widgets to be drawn as children of this widget. Configuration options are is the same as the parent widgets, and values aren inherited.
-    - **id** (*Optional*, :ref:`config-id`): Set the ID of this widget.
-    - ... (select your styles from :ref:`<lvgl-styling>`)
+        - **id** (*Optional*, :ref:`config-id`): Set the ID of this widget.
+        - ... (select your styles from :ref:`Styling <lvgl-styling>`)
 - **on_idle**: (*Optional*, :ref:`Action <config-action>`): An automation to perform when the display enters *idle* state.
 
 .. note::
