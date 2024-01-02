@@ -8,7 +8,7 @@ Graphical Layout
 The ``graphical_layout`` in ESPHome lets you design simple layouts that should work
 with different sized text, images, etc.
 
-.. figure:: /images/graphical_layout.png
+.. figure:: images/graphical_layout.png
     :align: center
     :width: 60.0%
 
@@ -435,7 +435,7 @@ This will provide a simple header item and leave the remainder of the display fo
 Climate Info Layout
 *******************
 
-.. figure:: /images/graphical_layout.png
+.. figure:: images/graphical_layout.png
     :align: center
     :width: 60.0%
 
