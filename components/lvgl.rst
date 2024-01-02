@@ -71,21 +71,21 @@ Component
 
 Configuration variables:
 
-- **display_id** (*Optional*, :ref:`config-id`): The ID of a display configuration where to render this entire *lvgl* configuration. If there's only one display configured, this item can be omitted.
-- **touchscreens** (*Optional*, list): IDs of touchscreens interacting with the *lvgl* widgets on the display.
-- **rotary_encoders** (*Optional*, list): IDs of rotary encoders interacting with the *lvgl* widgets on the display.
+- **display_id** (*Optional*, :ref:`config-id`): The ID of a display configuration where to render this entire LVGL configuration. If there's only one display configured, this item can be omitted.
+- **touchscreens** (*Optional*, list): IDs of touchscreens interacting with the LVGL widgets on the display.
+- **rotary_encoders** (*Optional*, list): IDs of rotary encoders interacting with the LVGL widgets on the display.
 - **color_depth** (*Optional*, int8): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``8``.
-- **log_level** (*Optional*): Set the :doc:`/components/logger` level specifically for the messages of the *lvgl* component. Defaults to ``WARN``.
-- **byte_order**: The byte order of the data processed by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
+- **log_level** (*Optional*): Set the :ref:`logger <logger>` level specifically for the messages of the LVGL component. Defaults to ``WARN``.
+- **byte_order**: The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
 - ... (select the default styles from :ref:`Styling <lvgl-styling>`)
-- **style_definitions** (*Optional*, list): A list of style definitions to use with *lvgl* widgets:
+- **style_definitions** (*Optional*, list): A list of style definitions to use with LVGL widgets:
     - **id** (*Optional*, :ref:`config-id`): Set the ID of this style definition.
     - ... (select your styles from :ref:`Styling <lvgl-styling>`)
 - **theme** ???
-- **widgets** (*Optional*, list): A list of *lvgl* widgets to be drawn on the screen.
+- **widgets** (*Optional*, list): A list of LVGL widgets to be drawn on the screen.
     - :ref:`Widgets <lvgl-widgets>` (**Required**): ``btn``, ``img``, ???
     - ... (select your styles from :ref:`Styling <lvgl-styling>`)
-    - **widgets** (*Optional*, list): A list of child *lvgl* widgets to be drawn as children of this widget. Configuration options are is the same as the parent widgets, and values aren inherited.
+    - **widgets** (*Optional*, list): A list of child LVGL widgets to be drawn as children of this widget. Configuration options are is the same as the parent widgets, and values aren inherited.
         - **id** (*Optional*, :ref:`config-id`): Set the ID of this widget.
         - ... (select your styles from :ref:`Styling <lvgl-styling>`)
 - **on_idle**: (*Optional*, :ref:`Action <config-action>`): An automation to perform when the display enters *idle* state.
@@ -93,8 +93,6 @@ Configuration variables:
 .. note::
 
     By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
-
-    When a parent object is deleted, all children will be deleted too.
 
 
 .. _lvgl-fonts:
