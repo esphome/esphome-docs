@@ -5,7 +5,7 @@ Total Daily Energy Sensor
     :description: Instructions for setting up sensors that track the total daily energy usage per day and accumulate the power usage.
     :image: sigma.svg
 
-The ``total_daily_energy`` sensor is a helper sensor that can use the energy value of
+The ``total_daily_energy`` sensor is a helper sensor that can use the power value of
 other sensors like the :doc:`HLW8012 <hlw8012>`, :doc:`CSE7766 <cse7766>`, :doc:`ATM90E32 <atm90e32>`, etc and integrate
 it over time.
 
@@ -17,8 +17,15 @@ daily energy usage in ``Wh`` or ``kWh``.
     # Example configuration entry
     sensor:
       - platform: total_daily_energy
-        name: "Total Daily Energy"
+        name: 'Total Daily Energy'
         power_id: my_power
+        unit_of_measurement: 'kWh'
+        state_class: total_increasing
+        device_class: energy
+        accuracy_decimals: 3
+        filters:
+          # Multiplication factor from W to kW is 0.001
+          - multiply: 0.001
 
       # The power sensor to convert, can be any power sensor
       - platform: hlw8012
@@ -28,8 +35,8 @@ daily energy usage in ``Wh`` or ``kWh``.
 
     # Enable time component to reset energy at midnight
     time:
-      - platform: sntp
-        id: my_time
+      - platform: homeassistant
+        id: homeassistant_time
 
 Configuration variables:
 ------------------------
@@ -70,6 +77,9 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`hlw8012`
 - :doc:`cse7766`
+- :doc:`/components/sensor/pulse_counter`
+- :doc:`/components/sensor/pulse_meter`
+- :doc:`/components/time/homeassistant`
 - :doc:`/cookbook/power_meter`
 - :apiref:`total_daily_energy/total_daily_energy.h`
 - :ghedit:`Edit`

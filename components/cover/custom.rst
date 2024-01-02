@@ -1,6 +1,16 @@
 Custom Cover
 ============
 
+.. warning::
+
+    Custom components are deprecated, not recommended for new configurations
+    and will be removed from ESPHome in a future release.
+    Please look at creating a real ESPHome component and "importing" it into your
+    configuration with :doc:`/components/external_components`.
+
+    You can find some basic documentation on creating your own components
+    at :ref:`contributing_to_esphome`.
+
 This integration can be used to create custom covers in ESPHome
 using the C++ (Arduino) API.
 
@@ -30,6 +40,7 @@ two methods:
         traits.set_is_assumed_state(false);
         traits.set_supports_position(true);
         traits.set_supports_tilt(false);
+        traits.set_supports_stop(true);
         return traits;
       }
       void control(const CoverCall &call) override {

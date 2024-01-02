@@ -98,7 +98,8 @@ Actions
 -------
 
 Now comes the actual automation block. With ``then``, you tell ESPHome what should happen when the press happens.
-Within this block, you can define several "actions". For example, ``switch.toggle`` and the line after that form an
+Within this block, you can define several "actions" that will be executed sequentially.
+For example, ``switch.toggle`` and the line after that form an
 action. Each action is separated by a dash and multiple actions can be executed in series by just adding another ``-``
 like so:
 
@@ -273,7 +274,8 @@ global variables can be used to store the state of a garage door.
       # Example for global string variable
       - id: my_global_string
         type: std::string
-        restore_value: no  # Strings cannot be saved/restored
+        restore_value: yes
+        max_restore_data_length: 24
         initial_value: '"Global value is"'
 
    # In an automation
@@ -287,7 +289,7 @@ global variables can be used to store the state of a garage door.
              id(my_global_int) += 10;
            }
 
-           ESP_LOGD(TAG, "%s: %d", id(my_global_string), id(my_global_int));
+           ESP_LOGD(TAG, "%s: %d", id(my_global_string).c_str(), id(my_global_int));
 
 Configuration variables:
 
@@ -298,6 +300,8 @@ Configuration variables:
 - **restore_value** (*Optional*, boolean): Whether to try to restore the state on boot up.
   Be careful: on the ESP8266, you only have a total of 96 bytes available for this! Defaults to ``no``.
   This will use storage in "RTC memory", so it won't survive a power-cycle unless you use the ``esp8266_restore_from_flash`` option to save to flash. See :doc:`esp8266_restore_from_flash </components/esphome>` for details.
+- **max_restore_data_length** (*Optional*, integer): Only applies to variables of type ``std::string``.  ESPHome will allocate enough space for this many characters,
+  plus single character of overhead. Strings longer than this will not be saved. The max value of this variable is 254 characters, and the default is 63 characters.
 - **initial_value** (*Optional*, string): The value with which to initialize this variable if the state
   can not be restored or if state restoration is not enabled. This needs to be wrapped in quotes! Defaults to
   the C++ default value for this type (for example ``0`` for integers).
@@ -320,7 +324,7 @@ if it fails to connect to the network without a reboot)
 All Triggers
 ------------
 
-- :ref:`api.services <api-services>`
+- :ref:`api.services <api-services>` / :ref:`api.on_client_connected <api-on_client_connected_trigger>` / :ref:`api.on_client_disconnected <api-on_client_disconnected_trigger>`
 - :ref:`sensor.on_value <sensor-on_value>` / :ref:`sensor.on_raw_value <sensor-on_raw_value>` / :ref:`sensor.on_value_range <sensor-on_value_range>`
 - :ref:`binary_sensor.on_press <binary_sensor-on_press>` / :ref:`binary_sensor.on_release <binary_sensor-on_release>` /
   :ref:`binary_sensor.on_state <binary_sensor-on_state>`
@@ -332,7 +336,8 @@ All Triggers
 - :ref:`time.on_time <time-on_time>` / - :ref:`time.on_time_sync <time-on_time_sync>`
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>` /
   :ref:`mqtt.on_connect / mqtt.on_disconnect <mqtt-on_connect_disconnect>`
-- :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
+- :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`pn532.on_tag_removed <pn532-on_tag_removed>` / :ref:`rc522.on_tag <rc522-on_tag>`
+  / :ref:`rc522.on_tag_removed <rc522-on_tag_removed>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
 - :ref:`interval.interval <interval>`
 - :ref:`switch.on_turn_on / switch.on_turn_off <switch-on_turn_on_off_trigger>`
 - :doc:`remote_receiver.on_* </components/remote_receiver>`
@@ -344,6 +349,7 @@ All Triggers
   :ref:`ota.on_state_change <ota-on_state_change>`
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
 - :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
+- :ref:`wifi.on_connect / wifi.on_disconnect <wifi-on_connect_disconnect>`
 
 All Actions
 -----------
@@ -352,6 +358,7 @@ All Actions
 - :ref:`lambda <lambda_action>`
 - :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_until <wait_until_action>`
 - :ref:`component.update <component-update_action>`
+- :ref:`component.suspend <component-suspend_action>` / :ref:`component.resume <component-resume_action>`
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`homeassistant.service <api-homeassistant_service_action>`
@@ -379,7 +386,8 @@ All Actions
   :ref:`sprinkler.pause <sprinkler-controller-action_pause>` /   :ref:`sprinkler.resume <sprinkler-controller-action_resume>` /
   :ref:`sprinkler.resume_or_start_full_cycle <sprinkler-controller-action_resume_or_start_full_cycle>` /   :ref:`sprinkler.queue_valve <sprinkler-controller-action_queue_valve>` /
   :ref:`sprinkler.clear_queued_valves <sprinkler-controller-action_clear_queued_valves>` /   :ref:`sprinkler.set_multiplier <sprinkler-controller-action_set_multiplier>` /
-  :ref:`sprinkler.set_repeat <sprinkler-controller-action_set_repeat>` /   :ref:`sprinkler.set_valve_run_duration <sprinkler-controller-action_set_valve_run_duration>`
+  :ref:`sprinkler.set_repeat <sprinkler-controller-action_set_repeat>` /   :ref:`sprinkler.set_divider <sprinkler-controller-action_set_divider>` /
+  :ref:`sprinkler.set_valve_run_duration <sprinkler-controller-action_set_valve_run_duration>`
 - :ref:`globals.set <globals-set_action>`
 - :ref:`remote_transmitter.transmit_* <remote_transmitter-transmit_action>`
 - :ref:`climate.control <climate-control_action>`
@@ -394,6 +402,7 @@ All Actions
 - :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
+- :ref:`pcf85063.read_time <pcf85063-read_time_action>` / :ref:`pcf85063.write_time <pcf85063-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
 - :ref:`pzemac.reset_energy <pzemac-reset_energy_action>`
 - :ref:`number.set <number-set_action>` / :ref:`number.to_min <number-to-min_action>` / :ref:`number.to_max <number-to-max_action>` / :ref:`number.decrement <number-decrement_action>` / :ref:`number.increment <number-increment_action>` / :ref:`number.operation <number-operation_action>`
@@ -408,7 +417,7 @@ All Conditions
 --------------
 
 - :ref:`lambda <lambda_condition>`
-- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`not <not_condition>`
+- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`xor <xor_condition>` / :ref:`not <not_condition>` 
 - :ref:`for <for_condition>`
 - :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` / :ref:`binary_sensor.is_off <binary_sensor-is_off_condition>`
 - :ref:`switch.is_on <switch-is_on_condition>` / :ref:`switch.is_off <switch-is_off_condition>`
@@ -494,10 +503,11 @@ and can be used to create conditional flow in actions.
 
 .. _and_condition:
 .. _or_condition:
+.. _xor_condition:
 .. _not_condition:
 
-``and`` / ``or`` / ``not`` Condition
-------------------------------------
+``and`` / ``or`` / ``xor`` / ``not`` Condition
+----------------------------------------------
 
 Check a combination of conditions
 
@@ -507,7 +517,7 @@ Check a combination of conditions
       then:
         - if:
             condition:
-              # Same syntax for and
+              # Same syntax for `and` as well as `xor` conditions
               or:
                 - binary_sensor.is_on: some_binary_sensor
                 - binary_sensor.is_on: other_binary_sensor
@@ -560,8 +570,8 @@ Configuration variables:
 ``while`` Action
 ----------------
 
-This action is similar to the :ref:`if <if_action>` Action. The ``while`` action executes
-a block until a given condition evaluates to false.
+This action is similar to the :ref:`if <if_action>` Action. The ``while`` action loops
+through a block as long as the given condition is true.
 
 .. code-block:: yaml
 
@@ -659,6 +669,64 @@ compile error.
         # The same as:
         - lambda: 'id(my_component).update();'
 
+.. _component-suspend_action:
+
+``component.suspend`` Action
+----------------------------
+
+Using this action you can manually call the ``stop_poller()`` method of a component.
+
+After this action the component will stop being refreshed.
+
+While the poller is suspendend, it's still possible to trigger on-demand updates by
+using :ref:`component.update <component-update_action>`
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.suspend: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).stop_poller();'
+
+.. _component-resume_action:
+
+``component.resume`` Action
+---------------------------
+
+Using this action you can manually call the ``start_poller()`` method of a component.
+
+After this action the component will refresh at the original update_interval rate
+
+This will allow the component to resume automatic update at the defined interval.
+
+This action also allows to change the update interval, calling it without suspend, 
+replace the poller directly.
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.resume: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).start_poller();'
+
+    # Change the poller interval
+    on_...:
+      then:
+        - component.resume: 
+            id: my_component
+            update_interval: 15s
+
+
 .. _globals-set_action:
 
 ``globals.set`` Action
@@ -712,8 +780,8 @@ Configuration variables:
 
 - **max_runs** (*Optional*, int): Allows limiting the maxiumun number of runs when using script
   modes ``queued`` and ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
-- **parameters** (*Optional*, :ref:`Script Parameters <script-parameters>`): A script can define one 
-  or more parameters that must be provided in order to execute. All parameters defined here are 
+- **parameters** (*Optional*, :ref:`Script Parameters <script-parameters>`): A script can define one
+  or more parameters that must be provided in order to execute. All parameters defined here are
   mandatory and must be given when calling the script.
 - **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
@@ -723,7 +791,7 @@ Configuration variables:
 ``Script Parameters``
 ---------------------
 
-Scripts can be defined with parameters. The arguments given when calling the script can be used within 
+Scripts can be defined with parameters. The arguments given when calling the script can be used within
 the script's lambda actions. To define the parameters, add the parameter names under `parameters:` key
 and specify the data type for that parameter.
 
@@ -765,7 +833,7 @@ script was already running.
     on_...:
       then:
         - script.execute: my_script
-        
+
         # Calling a non-parameterised script in a lambda
         - lambda: id(my_script).execute();
 
@@ -784,7 +852,7 @@ script was already running.
 
 This action allows you to stop a given script during execution. If the
 script is not running, it does nothing.
-This is useful right now if your want to stop a script that contains a
+This is useful if you want to stop a script that contains a
 ``delay`` action, ``wait_until`` action, or is inside a ``while`` loop, etc.
 You can also call this action from the script itself, and any subsequent action
 will not be executed.
@@ -806,7 +874,7 @@ will not be executed.
 
 or as lambda
 
-.. code-block:: yaml   
+.. code-block:: yaml
 
     lambda: 'id(my_script).stop();'
 
@@ -860,8 +928,8 @@ or as lambda
 
 .. code-block:: yaml
 
-    lambda: -|
-        if(id(my_script).is_running() {
+    lambda: |-
+        if (id(my_script).is_running()) {
             ESP_LOGI("main", "Script is running!");
         }
 
@@ -910,9 +978,14 @@ trigger, but this technique is more light-weight and user-friendly.
         then:
           - switch.toggle: relay_1
 
+
+If a startup delay is configured, the first execution of the actions will not occur before at least that time
+after boot.
+
 Configuration variables:
 
 - **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
+- **startup_delay** (*Optional*, :ref:`config-time`): An optional startup delay - defaults to zero.
 - **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
 

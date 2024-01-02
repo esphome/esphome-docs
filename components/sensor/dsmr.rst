@@ -117,6 +117,42 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
+- **electricity_sags_l1** (*Optional*): Number of voltage sags in phase L1.
+
+  - **name** (**Required**, string): The name for the electricity_sags_l1 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **electricity_sags_l2** (*Optional*): Number of voltage sags in phase L2.
+
+  - **name** (**Required**, string): The name for the electricity_sags_l2 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **electricity_sags_l3** (*Optional*): Number of voltage sags in phase L3.
+
+  - **name** (**Required**, string): The name for the electricity_sags_l3 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **electricity_swells_l1** (*Optional*): Number of voltage swells in phase L1.
+
+  - **name** (**Required**, string): The name for the electricity_swells_l1 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **electricity_swells_l2** (*Optional*): Number of voltage swells in phase L2.
+
+  - **name** (**Required**, string): The name for the electricity_swells_l2 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **electricity_swells_l3** (*Optional*): Number of voltage swells in phase L3.
+
+  - **name** (**Required**, string): The name for the electricity_swells_l3 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
 - **voltage_l1** (*Optional*): Voltage Phase 1.
 
   - **name** (**Required**, string): The name for the voltage_l1 sensor.
@@ -200,6 +236,24 @@ Belgium
 - **gas_delivered_be** (*Optional*): Gas Consumed Belgium.
 
   - **name** (**Required**, string): The name for the gas_delivered_be sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **active_energy_import_current_average_demand** (*Optional*): Current Average Quarterly Demand for Peak Tarrif Belgium.
+
+  - **name** (**Required**, string): The name for the active_energy_import_current_average_demand sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **active_energy_import_maximum_demand_running_month** (*Optional*): Current Month's Maximum Quarterly Demand for Peak Tarrif Belgium.
+
+  - **name** (**Required**, string): The name for the active_energy_import_maximum_demand_running_month sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **active_energy_import_maximum_demand_last_13_months** (*Optional*): 13 Month Maximum Quarterly Demand for Peak Tarrif Belgium.
+
+  - **name** (**Required**, string): The name for the active_energy_import_maximum_demand_last_13_months sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -364,6 +418,9 @@ Best results have been achieved by using an optocoupler circuit to handle the sw
 or a transistor-based circuit are not feasible options. Here's an example circuit design:
 
 .. figure:: images/dsmr-request-pin-circuit-example.png
+
+When using a type of MCU that provides 5V on the GPIO outputs instead of 3.3V, then use a 330 Ohm
+resistor instead of the 200 Ohm resistor.
 
 .. _sensor-dsmr-improving_reader_results:
 

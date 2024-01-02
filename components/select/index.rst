@@ -31,6 +31,12 @@ All selects in ESPHome have a name and an optional icon.
 Configuration variables:
 
 - **name** (**Required**, string): The name for the select.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the select to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the select in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
@@ -334,8 +340,8 @@ advanced stuff (see the full API Reference for more info).
       if (id(my_select).has_index(index)) {
         ESP_LOGI("main", "Select has index offset %d", index);
       }
-      
-      
+
+
 Example
 -------
 
@@ -347,16 +353,16 @@ Setting up three options and set component state to selected option value.
       - platform: template
         name: Mode
         id: mode
-        options: 
+        options:
          - "Option1"
          - "Option2"
          - "Option3"
-        set_action: 
+        initial_option: "Option1"
+        optimistic: true
+        set_action:
           - logger.log:
               format: "Chosen option: %s"
               args: ["x.c_str()"]
-          - lambda: |-
-              id(mode).state = x.c_str();
 
 
 See Also

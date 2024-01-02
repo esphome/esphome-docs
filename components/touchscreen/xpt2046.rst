@@ -56,7 +56,7 @@ Base Configuration:
   via SPI. This key is renamed from **irq_pin**
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. If ``interrupt_pin`` is specified the touch will be detected nearly instantaneously and this setting 
+  sensor. If ``interrupt_pin`` is specified the touch will be detected nearly instantaneously and this setting
   will be used only for the release detection. Defaults to ``50ms``.
 
 - **report_interval** (*Optional*, :ref:`config-time`): The interval to periodically
@@ -108,10 +108,10 @@ values nor ``swap_x_y``.
       on_touch:
         - lambda: |-
               ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
-                  id(my_touchscreen).x,
-                  id(my_touchscreen).y,
-                  id(my_touchscreen).x_raw,
-                  id(my_touchscreen).y_raw
+                  touch.x,
+                  touch.y,
+                  touch.x_raw,
+                  touch.y_raw
                   );
 
 Get a stylus or a similar object, run the project and touch the corners of the screen at
@@ -175,9 +175,9 @@ using a display lambda similar to the following.
     display:
       - platform: ili9341
         lambda: |-
-          it.fill(BLACK);
-          if (id(my_touchscreen).touched)
-            it.filled_circle(id(my_touchscreen).x, id(my_touchscreen).y, 10, RED);
+          auto touch = id(my_touchscreen)->get_touch();
+          if (touch) // or touch.has_value()
+            it.filled_circle(touch.value().x, touch.value().y, 10, RED);
 
 To be exact, the component does the following
 

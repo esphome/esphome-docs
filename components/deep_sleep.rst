@@ -30,6 +30,10 @@ even Over The Air updates.
       run_duration: 10s
       sleep_duration: 10min
 
+.. note::
+
+    Some ESP8266s have an onboard USB chip (e.g. D1 mini) on the chips' control line that is connected to the RST pin. This enables the flasher to reboot the ESP when required. This may interfere with deep sleep on some devices and prevent the ESP from waking when it's powered through its USB connector. Powering the ESP from a separate 3.3V source connected to the 3.3V pin and GND will solve this issue. In these cases, using a USB to TTL adapter will allow you to log ESP activity. 
+    
 Configuration variables:
 ------------------------
 
