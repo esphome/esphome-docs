@@ -83,7 +83,7 @@ Configuration variables:
     - **y** (**Required**, int16): Vertical position of the widget (anchored in the top left corner). Can be a negative value, and it's relative to the screen.
     - **w** (**Required**, int16): Width of the widget (anchored in the top left corner). 
     - **h** (**Required**, int16): Height of the widget (anchored in the top left corner). 
-    - **enabled** (*Optional*, boolean): Widget is touchable, if ``false``, a _disabled_ style is applied. Defaults to ``true``.
+    - **enabled** (*Optional*, boolean): Widget is touchable, if ``false``, a *disabled* style is applied. Defaults to ``true``.
     - **hidden** (*Optional*, boolean): Widget is hidden. Defaults to ``false``.
     - **opacity** (*Optional*, uint8): How much the the widget is opaque (0-255).
     - **click** (*Optional*, boolean): Widget is touch/clickable (also see ``enabled``). Defaults to ``true``.
@@ -93,7 +93,9 @@ Configuration variables:
 
 .. note::
 
-    By default, LVGL draws new widgets on top of old widgets, including their children. 
+    By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
+
+    When a parent object is deleted, all children will be deleted too.
 
 
 
@@ -122,39 +124,39 @@ The Base Object can be directly used as a simple, empty widget. It is nothing mo
 
 **Switch**: ``switch``
 
-  - **bg_color10** (*Optional*, :ref:`color <config-color>`): The ID of a color for indicator
-  - **bg_color20** (*Optional*, :ref:`color <config-color>`): The ID of a color for knob
-  - **radius20** (*Optional*, int16): Knob corner radius
+  - **bg_color10** (*Optional*, :ref:`color <config-color>`): The ID of a color for indicator.
+  - **bg_color20** (*Optional*, :ref:`color <config-color>`): The ID of a color for knob.
+  - **radius20** (*Optional*, int16): Knob corner radius.
 
 
 **Checkbox**: ``checkbox``
 
-  - **text** (*Optional*, string): The label of the checkbox. Defaults to "Checkbox"
+  - **text** (*Optional*, string): The label of the checkbox. Defaults to "Checkbox".
 
 
 **Progress Bar**: ``bar``
 
-  - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``
-  - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``
-  - **start_value** (*Optional*, int16): Minimal allowed value of the indicator. Defaults to ``0``
+  - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``.
+  - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``.
+  - **start_value** (*Optional*, int16): Minimal allowed value of the indicator. Defaults to ``0``.
 
 **Slider**: ``slider``
 
-  - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``
-  - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``
-  - **start_value** (*Optional*, int16): Minimal allowed value of the indicator. Defaults to ``0``
+  - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``.
+  - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``.
+  - **start_value** (*Optional*, int16): Minimal allowed value of the indicator. Defaults to ``0``.
 
 **Arc**: ``arc``
 
-  - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``
-  - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``
-  - **rotation** (*Optional*, int16): Offset to the 0 degree position. Defaults to ``0``
-  - **type** (*Optional*, 0-2): ``0`` = normal, ``1`` = symmetrical, ``2`` = reverse. Defaults to ``0``
-  - **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``
-  - **start_angle** (*Optional*, 0-360): start angle of the arc background (see note)
-  - **end_angle** (*Optional*, 0-360): end angle of the arc background (see note)
-  - **start_angle10** (*Optional*, 0-360): start angle of the arc indicator (see note)
-  - **end_angle10** (*Optional*, 0-360): end angle of the arc indicator (see note)
+  - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``.
+  - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``.
+  - **rotation** (*Optional*, int16): Offset to the 0 degree position. Defaults to ``0``.
+  - **type** (*Optional*, 0-2): ``0`` = normal, ``1`` = symmetrical, ``2`` = reverse. Defaults to ``0``.
+  - **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``.
+  - **start_angle** (*Optional*, 0-360): start angle of the arc background (see note).
+  - **end_angle** (*Optional*, 0-360): end angle of the arc background (see note).
+  - **start_angle10** (*Optional*, 0-360): start angle of the arc indicator (see note).
+  - **end_angle10** (*Optional*, 0-360): end angle of the arc indicator (see note).
 
   .. note::
 
@@ -166,8 +168,8 @@ The Base Object can be directly used as a simple, empty widget. It is nothing mo
   - **options** (*Optional*, string): List of items separated by ``\n``. Defaults to "" (empty).
   - **text** (*Optional*, string): *Read-only* The text of the selected item. Defaults to "" (empty).
   - **direction** (*Optional*, 0-3): Direction where the dropdown expands: ``0`` = down, ``1`` = up, ``2`` = left, ``3`` = right. *Note:* up and down are superseeded by the screen size.
-  - **show_selected** (*Optional*, boolean): Show the selected option or a static text. Defaults to ``true``
-  - **max_height** (*Optional*, int16): The maximum height of the open drop-down list. Defaults to 3/4 of screen height
+  - **show_selected** (*Optional*, boolean): Show the selected option or a static text. Defaults to ``true``.
+  - **max_height** (*Optional*, int16): The maximum height of the open drop-down list. Defaults to 3/4 of screen height.
 
 
 **Roller**: ``roller``
@@ -176,7 +178,7 @@ The Base Object can be directly used as a simple, empty widget. It is nothing mo
   - **text** (*Optional*, string): *Read-only* The text of the selected item. Defaults to "" (empty).
   - **rows** (*Optional*, int8): The number of rows that are visible. Use this property instead of ``h`` to set object height! Defaults to ``3``.
   - **mode** (*Optional*, 0-1): Roller mode: ``0`` = normal (finite), ``1`` = infinite. Defaults to ``0``.
-  - **align** (*Optional*, string): Text alignment: ``left``, ``center``, ``right``. Defaults to ``center``
+  - **align** (*Optional*, string): Text alignment: ``left``, ``center``, ``right``. Defaults to ``center``.
 
 
 **Line Meter**: ``linemeter``
@@ -184,7 +186,7 @@ The Base Object can be directly used as a simple, empty widget. It is nothing mo
   - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``.
   - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``.
   - **angle** (*Optional*, 0-360): Angle between start and end of the scale. Defaults to ``240``.
-  - **line_count** (*Optional*, uint16): Rick count of the scale. Defaults to ``31``.
+  - **line_count** (*Optional*, uint16): Tick count of the scale. Defaults to ``31``.
   - **rotation** (*Optional*, 0-360): Offset for the scale angles to rotate it. Defaults to ``0``.
   - **type** (*Optional*, 0-1): ``0`` = indicator lines are activated clock-wise, ``1`` = indicator lines are activated counter-clock-wise. Defaults to ``0``.
 
@@ -192,7 +194,7 @@ The Base Object can be directly used as a simple, empty widget. It is nothing mo
 
   - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``.
   - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``.
-  - **critical_value** (*Optional*, int16): Scale color will be changed to scale_end_color after this value. Defaults to ``80``.
+  - **critical_value** (*Optional*, int16): Scale color will be changed to ``scale_end_color`` after this value. Defaults to ``80``.
   - **scale_end_color**: (*Optional*, :ref:`color <config-color>`): The ID of a color for values above critical.
   - **label_count** (*Optional*, uint8): Number of labels (and major ticks) of the scale. Defaults to ``0``.
   - **line_count** (*Optional*, uint16): Number of minor ticks of the entire scale. Defaults to ``31``.
@@ -205,11 +207,11 @@ The Base Object can be directly used as a simple, empty widget. It is nothing mo
 
       To strip trailing zero's of major tick labels the ``format`` divider can be used to scale the values before printing:
       
-        - ``0`` : print the major tick value as is
-        - ``1`` : strip 1 zero, i.e. divide tick value by 10 before printing the major tick label
-        - ``2`` : strip 2 zeros, i.e. divide tick value by 100 before printing the major tick label
-        - ``3`` : strip 3 zeros, i.e. divide tick value by 1000 before printing the major tick label
-        - ``4`` : strip 4 zeros, i.e. divide tick value by 10000 before printing the major tick label
+        - ``0``: print the major tick value as is.
+        - ``1``: strip 1 zero, i.e. divide tick value by 10 before printing the major tick label.
+        - ``2``: strip 2 zeros, i.e. divide tick value by 100 before printing the major tick label.
+        - ``3``: strip 3 zeros, i.e. divide tick value by 1000 before printing the major tick label.
+        - ``4``: strip 4 zeros, i.e. divide tick value by 10000 before printing the major tick label.
 
       Only these values are allowed, arbitrary numbers are not supported.
 
