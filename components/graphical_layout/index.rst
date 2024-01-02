@@ -200,7 +200,15 @@ Text Run
   - **font** (:ref:`display-fonts`): Font used to render the text run
   - **foreground_color** (*Optional*, :ref:`config-color`): Foreground colour to render the text in. Defaults to COLOR_ON
   - **background_color** (*Optional*, :ref:`config-color`): Background colour to render for the label. Defaults to COLOR_OFF
-  - **text** (string, :ref:`templatable <config-templatable>`): The text for this run
+  - **text** (string, :ref:`templatable <config-templatable>`): The text to render
+  - **sensor** (*Optional*, :ref:`Sensor Id <config-sensor>`): ID of a Sensor used to populate the label
+  - **text_sensor** (*Optional*, :ref:`Text Sensor Id<config-text_sensor>`): ID of a Text Sensor used to populate the label
+  - **text_formatter** (*Optional*, :ref:`templatable <config-templatable>`): A lambda that takes a single argument ``it`` (a string) and
+    formats it appropriately. This could be used to place a unit of measurement after the value returned from a `sensor` for instance
+
+.. note::
+
+    One of ``text``, ``sensor``, or ``text_sensor`` must be provided
 
 .. code-block:: yaml
 
@@ -221,6 +229,11 @@ Text Run
             text: "Hello "
           - font: roboto_big
             text: World!
+          - font: roboto
+            sensor: temperature_sensor
+            text_formatter: !lambda |-
+              return it + "°C";
+
 .. note::
 
     In the example above that the first run is ``"Hello "`` - a quoted string with a space at the end. Because of
@@ -481,22 +494,19 @@ being rendered to the screen
                     - font: text_font
                       text: " is "
                     - font: bold_font
-                      text: !lambda |-
-                        char buffer[100];
-                        snprintf(buffer, 100, "%.1f°C", id(temperature).state);
-                        return buffer;
+                      sensor: temperature
+                      text_formatter: !lambda |-
+                        return it + "°C";
                     - font: text_font
                       text: " and "
                     - font: bold_font
-                      text: !lambda |-
-                        char buffer[100];
-                        snprintf(buffer, 100, "%.1f%%", id(humidity).state);
-                        return buffer;
+                      sensor: humidity
+                      text_formatter: !lambda |-
+                        return it + "%";
                     - font: text_font
                       text: " humidity. It is "
                     - font: bold_font
-                      text: !lambda |-
-                        return id(thermal_comfort).state;
+                      text_sensor: thermal_comfort
                 # Row 2 - Column 2 - Graph
                 - type: display_rendering_panel
                   width: ${graph_width}
