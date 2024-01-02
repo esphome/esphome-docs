@@ -656,6 +656,7 @@ Display Components
     ILI9488, components/display/ili9xxx, ili9488.svg
     Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
+    LVGL, components/lvgl, logo_lvgl.png
     MAX7219, components/display/max7219, max7219.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     Nextion, components/display/nextion, nextion.jpg
