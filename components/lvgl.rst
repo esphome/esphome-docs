@@ -56,46 +56,154 @@ Component
 
 Configuration variables:
 
-- **log_level** (*Optional*): Set the logger level specifically for the messages of the lvgl component.
+- **display_id** (*Optional*, :ref:`config-id`): The ID of a display configuration where to render this entire *lvgl* configuration. If there's only one display configured, this item can be omitted.
+- **touchscreens** (*Optional*, list): IDs of touchscreens interacting with the *lvgl* widgets on the display.
+- **rotary_encoders** (*Optional*, list): IDs of rotary encoders interacting with the *lvgl* widgets on the display.
 - **color_depth** (**Required**, int8): The color deph at which the contents are generated. Valid values are 1 (monochrome), 8, 16 or 32.
-- **bg_color** (*Optional*, :ref:`color <config-color>`): A basic background color, to draw contents on.
-- **text_font** (**Required**, :ref:`font <display-fonts>`): The ID of the font used to render textual contents by default on all *lvgl* widget.
-- **touchscreens** (*Optional*, list): IDs of touchscreens interacting with the *lvgl* widget on the screen.
-- **style_definitions** (*Optional*, list): A list of style definitions to use with *lvgl* widget:
+- **log_level** (*Optional*): Set the logger level specifically for the messages of the *lvgl* component.
+- **byte_order**: The byte order of the data processed by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
+- ... (select the default styles from :ref:`<lvgl-styling>`)
+- **style_definitions** (*Optional*, list): A list of style definitions to use with *lvgl* widgets:
     - **id** (*Optional*, :ref:`config-id`): Set the ID of this style definition.
-    - **line_color** (*Optional*, :ref:`color <config-color>`): The ID of a color you want to use for lines. If not specified, defaults to ???
-    - **line_width** (*Optional*, int16): The desired width of the line, in pixels. Defaults to ???
-    - **line_rounded** (*Optional*, boolean): Draw the end of the lines rounded. Defaults to ???
-    - **text_font** (*Optional*, :ref:`font <display-fonts>`):  The ID of the font used to override the render of textual contents on *lvgl* widget using this style. 
-    - **align** (*Optional*): The alignment of the text within the object. Possible values: ``left``, ``center``, ``right``. Defaults to ``center``.
-    - **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a color for text rendering.
-    - **bg_opa** (*Optional*): The opacity of the background of the widget. ???
-    - **radius** (*Optional*, uint16): The radius of the rounded corners of the object. 0 = no radius i.e. square corners; 65535 = pill shaped object (true circle if object has same width and height)
-    - **pad_all** (*Optional*, int16): Paddigng of all the edges of the widget. Default based on widget type.
-- **layout** (*Optional*): ???
-- **width** (*Optional*, percentage): Percentage of the screen width used by *lvgl*.
-- **height** (*Optional*, percentage): Percentage of the screen height used by *lvgl*.
+    - ... (select your styles from :ref:`<lvgl-styling>`)
+- **theme** ???
 - **widgets** (*Optional*, list): A list of *lvgl* widgets to be drawn on the screen.
     - :ref:`Widgets <lvgl-widgets>` (**Required**): ``btn``, ``img``, ???
-    - **widgets** (*Optional*, list): A list of *lvgl* widgets to be drawn as children of this widget. Configuration options are is the same as the parent widgets, and values aren inherited.
+    - ... (select your styles from :ref:`<lvgl-styling>`)
+    - **widgets** (*Optional*, list): A list of child *lvgl* widgets to be drawn as children of this widget. Configuration options are is the same as the parent widgets, and values aren inherited.
     - **id** (*Optional*, :ref:`config-id`): Set the ID of this widget.
-    - **x** (**Required**, int16): Horizontal position of the widget (anchored in the top left corner). Can be a negative value, and it's relative to the screen.
-    - **y** (**Required**, int16): Vertical position of the widget (anchored in the top left corner). Can be a negative value, and it's relative to the screen.
-    - **w** (**Required**, int16): Width of the widget (anchored in the top left corner). 
-    - **h** (**Required**, int16): Height of the widget (anchored in the top left corner). 
-    - **enabled** (*Optional*, boolean): Widget is touchable, if ``false``, a *disabled* style is applied. Defaults to ``true``.
-    - **hidden** (*Optional*, boolean): Widget is hidden. Defaults to ``false``.
-    - **opacity** (*Optional*, uint8): How much the the widget is opaque (0-255).
-    - **click** (*Optional*, boolean): Widget is touch/clickable (also see ``enabled``). Defaults to ``true``.
-    - **ext_click_h** (*Optional*, uint8): Extended horizontal clickable area on the left and right. Defaults to ``0``.
-    - **ext_click_v** (*Optional*, uint8): Extended vertical clickable area on the top and bottom. Defaults to ``0``.
-
+    - ... (select your styles from :ref:`<lvgl-styling>`)
+- **on_idle**: (*Optional*, :ref:`Action <config-action>`): An automation to perform when the display enters *idle* state.
 
 .. note::
 
     By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
 
     When a parent object is deleted, all children will be deleted too.
+
+
+.. _lvgl-fonts:
+
+Fonts
+-----
+
+LVGL internally uses fonts in a C array. The library offers by default the following ones preconverted:
+
+- ``montserrat_12_subpx``
+- ``montserrat_28_compressed``
+- ``dejavu_16_persian_hebrew``
+- ``simsun_16_cjk16``
+- ``unscii_8``
+- ``unscii_16``
+
+These may not contain all the glyphs corresponding to certain diacritic characters. You can generate your own set of glyphs in a C array using LVGL's `Online Font Converter <https://lvgl.io/tools/fontconverter/>`__ or use the tool `Offline <https://github.com/lvgl/lv_font_conv>`__.
+
+In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
+
+.. _lvgl-styling:
+
+Styling
+-------
+
+You can adjust the appearance of objects by changing the foreground, background and/or border color of each object. Some objects allow for more complex styling, effectively changing the appearance of their sub-components. 
+
+- **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to the parent or screen).
+- **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to the parent or screen).
+- **width** (*Optional*): Width of the widget - one of ``size_content``, a number (pixels) or a percentage.
+- **height** (*Optional*): Height of the widget - one of ``size_content``, a number (pixels) or a percentage.
+- **opa** (*Optional*, string or percentage): Opacity of the entire widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **opa_layered** (*Optional*, string or percentage): Opacity of the entire layer the widget is on. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **align** (*Optional*, string): Alignment of the contents of the widget. One of the values below:
+    - ``TOP_LEFT``
+    - ``TOP_MID``
+    - ``TOP_RIGHT``
+    - ``LEFT_MID``
+    - ``CENTER``
+    - ``RIGHT_MID``
+    - ``BOTTOM_LEFT``
+    - ``BOTTOM_MID``
+    - ``BOTTOM_RIGHT``
+    - ``OUT_LEFT_TOP``
+    - ``OUT_TOP_LEFT``
+    - ``OUT_TOP_MID``
+    - ``OUT_TOP_RIGHT``
+    - ``OUT_RIGHT_TOP``
+    - ``OUT_LEFT_MID``
+    - ``OUT_CENTER``
+    - ``OUT_RIGHT_MID``
+    - ``OUT_LEFT_BOTTOM``
+    - ``OUT_BOTTOM_LEFT``
+    - ``OUT_BOTTOM_MID``
+    - ``OUT_BOTTOM_RIGHT``
+    - ``OUT_RIGHT_BOTTOM``
+- **bg_color** (*Optional*, :ref:`color <config-color>`): The ID of a color for the background of the widget.
+- **bg_grad_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to make the background gradually fade to.
+- **bg_dither_mode** (*Optional*, string): Set ditherhing of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``.
+- **bg_grad_dir** (*Optional*, string): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``.
+- **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``0``.
+- **bg_grad_stop** (*Optional*, 0-255): Specify where the gradient should stop: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``255``.
+- **bg_img_opa** (*Optional*, string or percentage): Opacity of the background image of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **bg_img_recolor** (*Optional*, :ref:`color <config-color>`): The ID of a color to mix with every pixel of the image. 
+- **bg_img_recolor_opa** (*Optional*, string or percentage): Opacity of the recoloring. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **bg_opa** (*Optional*, string or percentage): Opacity of the background. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **border_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to draw borders of the widget.
+- **border_opa** (*Optional*, string or percentage): Opacity of the borders of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn.
+- **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be chosen):
+    - ``NONE``
+    - ``TOP``
+    - ``BOTTOM``
+    - ``LEFT``
+    - ``RIGHT``
+    - ``INTERNAL``
+- **border_width** (*Optional*, int16): Set the width of the border in pixels.
+- **radius** (*Optional*, uint16): The radius of the rounded corners of the object. 0 = no radius i.e. square corners; 65535 = pill shaped object (true circle if object has same width and height).
+- **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
+- **text_align** (*Optional*, string): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
+- **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to render the text in.
+- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
+- **text_font``: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array file of the font used to render the text.
+- **text_letter_space** (*Optional*, int16): Characher spacing of the text.
+- **text_line_space** (*Optional*, int16): Line spacing of the text.
+- **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **line_width** (*Optional*, int16): Set the width of the line in pixels.
+- **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
+- **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
+- **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
+- **line_color** (*Optional*, :ref:`color <config-color>`): The ID of a color for the line.
+- **outline_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to draw an outline around the widget.
+- **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself.
+- **outline_width** (*Optional*, int16): Set the width of the outline in pixels.
+- **pad_all** (*Optional*, int16): Set the padding in all directions, in pixels.
+- **pad_top** (*Optional*, int16): Set the padding on the top, in pixels.
+- **pad_bottom** (*Optional*, int16): Set the padding on the bottom, in pixels.
+- **pad_left** (*Optional*, int16): Set the padding on the left, in pixels.
+- **pad_right** (*Optional*, int16): Set the padding on the right, in pixels.
+- **pad_row** (*Optional*, int16): Set the padding between the rows of the children elements, in pixels.
+- **pad_column** (*Optional*, int16): Set the padding between the columns of the children elements, in pixels.
+- **shadow_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to create a drop shadow under the widget.
+- **shadow_ofs_x** (*Optional*, int16): Horrizontal offset of the shadow, in pixels
+- **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels
+- **shadow_opa** (*Optional*, string or percentage): Opacity of the shadow. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **shadow_spread** (*Optional*, int16): Spread of the shadow, in pixels.
+- **shadow_width** (*Optional*, int16): Width of the shadow, in pixels.
+- **transform_angle** (*Optional*, 0-360): Trannsformation angle of the widget (eg. rotation)
+- **transform_height** (*Optional*, int16 or percentage): Trannsformation height of the widget (eg. stretching)
+- **transform_pivot_x** (*Optional*, int16 or percentage): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
+- **transform_pivot_y** (*Optional*, int16 or percentage): Vertical anchor point of the transformation. Relative to the widget's top left corner.
+- **transform_zoom** (*Optional*, 0.1-10):  Trannsformation zoom of the widget (eg. resizing)
+- **translate_x** (*Optional*, int16 or percentage): Move of the object with this value in horizontal direction.
+- **translate_y** (*Optional*, int16 or percentage): Move of the object with this value in vertical direction.
+- **max_height** (*Optional*, int16 or percentage): Sets a maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
+- **min_height** (*Optional*, int16 or percentage): Sets a minimal height. Pixel and percentage values can be used. Percentage values are relative to the width of the parent's content area. Defaults to ``0``. 
+- **max_width** (*Optional*, int16 or percentage): Sets a maximal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
+- **min_width** (*Optional*, int16 or percentage): Sets a minimal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
+- **arc_opa** (*Optional*, string or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to use to draw the arcs.
+- **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
+- **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
+
 
 
 
@@ -233,4 +341,5 @@ See Also
 --------
 
 - `LVGL 8.3 docs <https://docs.lvgl.io/8.3/>`__
+- `LVGL Online Font Converter <https://lvgl.io/tools/fontconverter/>`__
 - :ghedit:`Edit`
