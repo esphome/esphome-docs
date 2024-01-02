@@ -120,7 +120,7 @@ In ESPHome you can also use a :ref:`font configured in the normal way<display-fo
 Styling
 -------
 
-You can adjust the appearance of objects by changing the foreground, background and/or border color of each object. Some objects allow for more complex styling, effectively changing the appearance of their sub-components. 
+You can adjust the appearance of objects by changing the foreground, background and/or border color, font of each object. Some objects allow for more complex styling, effectively changing the appearance of their sub-components. 
 
 - **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to the parent or screen).
 - **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to the parent or screen).
