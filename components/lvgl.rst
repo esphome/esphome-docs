@@ -7,7 +7,7 @@ LVGL
     :description: LVGL - ESPHome Displays showing contents created with Light and Versatile Graphics Library
 
 
-`LVGL <https://lvgl.io/>`__ (Light and Versatile Graphics Library) is a most free and open-source 
+`LVGL <https://lvgl.io/>`__ (Light and Versatile Graphics Library) is a free and open-source 
 embedded graphics library to create beautiful UIs for any MCU, MPU and display type. ESPHome supports
 `LVGL version 8.3.9 <https://docs.lvgl.io/8.3/>`__.
 
@@ -69,7 +69,7 @@ Configuration variables:
     - **text_font** (*Optional*, :ref:`font <display-fonts>`):  The ID of the font used to override the render of textual contents on *lvgl* widget using this style. 
     - **align** (*Optional*): The alignment of the text within the object. Possible values: ``left``, ``center``, ``right``. Defaults to ``center``.
     - **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a color for text rendering.
-    - **bg_opa**(*Optional*): The opacity of the background of the widget. ???
+    - **bg_opa** (*Optional*): The opacity of the background of the widget. ???
     - **radius** (*Optional*, uint16): The radius of the rounded corners of the object. 0 = no radius i.e. square corners; 65535 = pill shaped object (true circle if object has same width and height)
     - **pad_all** (*Optional*, int16): Paddigng of all the edges of the widget. Default based on widget type.
 - **layout** (*Optional*): ???
