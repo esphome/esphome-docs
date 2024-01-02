@@ -72,6 +72,19 @@ Release 2023.12.3 - December 22
 - Fix dashboard logs when api is disabled and using MQTT :esphomepr:`5992` by :ghuser:`bdraco`
 - Fix broken configs with non-existent components :esphomepr:`5993` by :ghuser:`jesserockz`
 
+Release 2023.12.4 - December 25
+-------------------------------
+
+- dashboard: Only ping when polling is active :esphomepr:`6001` by :ghuser:`bdraco`
+- tt21100: restore init read :esphomepr:`6008` by :ghuser:`nielsnl68`
+- dashboard: Fix file writes on Windows :esphomepr:`6013` by :ghuser:`bdraco`
+- Display: fix class inherence in Python script :esphomepr:`6009` by :ghuser:`nielsnl68`
+
+Release 2023.12.5 - December 25
+-------------------------------
+
+- Fix docker builds :esphomepr:`6012` by :ghuser:`bdraco`
+
 Full list of changes
 --------------------
 
