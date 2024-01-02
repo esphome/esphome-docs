@@ -45,8 +45,8 @@ Widgets integrate in ESPHome as components:
 +-------------+------------------------+ 
 
 
-Component
----------
+Main Component
+--------------
 
 .. code-block:: yaml
 
