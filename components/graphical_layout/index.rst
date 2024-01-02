@@ -140,6 +140,14 @@ Configuration variables:
 - **background_color** (*Optional*, :ref:`config-color`): Background colour to render for the label. Defaults to COLOR_OFF
 - **text_align** (*Optional*, :ref:`graphical_layout-text_align`): Alignment to render the text to the area. Defaults to TOP_LEFT. One of:
 - **text** (string, :ref:`templatable <config-templatable>`): The text to render
+- **sensor** (*Optional*, :ref:`Sensor Id <config-sensor>`): ID of a Sensor used to populate the label
+- **text_sensor** (*Optional*, :ref:`Text Sensor Id<config-text_sensor>`): ID of a Text Sensor used to populate the label
+- **text_formatter** (*Optional*, :ref:`templatable <config-templatable>`): A lambda that takes a single argument ``it`` (a string) and
+  formats it appropriately. This could be used to place a unit of measurement after the value returned from a `sensor` for instance
+
+.. note::
+
+    One of ``text``, ``sensor``, or ``text_sensor`` must be provided
 
 .. code-block:: yaml
 
@@ -153,6 +161,9 @@ Configuration variables:
         type: text_panel
         font: roboto
         text: "Hello world!"
+        text_formatter: !lambda |-
+          // Adds additional exclamation marks
+          return it + "!!!!";
 
 Text Run Panel
 **************
