@@ -14,6 +14,21 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 .. figure:: /images/logo_lvgl.png
     :align: center
 
+In order to be able to drive a display with LVGL under ESPHome you need an MCU from the ESP32 family. Although
+PSRAM is not a strict requirement, it is recommended.
+
+For interactivity, a capacitive touchscreen is highly prefered because it is more responsive over resistive touchscreens.
+
+Basics
+------
+
+In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called objects or widgets. See :ref:`lvgl-widgets` to see the full
+list of available widgets in ESPHome.
+
+Every object has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
+The child object moves with the parent and if the parent is deleted the children will be deleted too. Children can be visible only within
+their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A Screen is the "root" parent.
+You can have any number of screens.
 
 
 Component
