@@ -30,6 +30,20 @@ The child object moves with the parent and if the parent is deleted the children
 their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A Screen is the "root" parent.
 You can have any number of screens.
 
+Widgets integrate in ESPHome as components:
+
++-------------+------------------------+ 
+| LVGL Widget | ESPHome component type | 
++=============+========================+
+| Checkbox    | Binary Sensor          | 
++-------------+------------------------+ 
+| Button      | Binary Sensor          | 
++-------------+------------------------+ 
+| Slider      | Number                 | 
++-------------+------------------------+ 
+| Arc         | Number                 | 
++-------------+------------------------+ 
+
 
 Component
 ---------
@@ -72,8 +86,8 @@ Component
 Configuration variables:
 
 - **display_id** (*Optional*, :ref:`config-id`): The ID of a display configuration where to render this entire LVGL configuration. If there's only one display configured, this item can be omitted.
-- **touchscreens** (*Optional*, list): IDs of touchscreens interacting with the LVGL widgets on the display.
-- **rotary_encoders** (*Optional*, list): IDs of rotary encoders interacting with the LVGL widgets on the display.
+- **touchscreens** (*Optional*, list): IDs of touchscreens interacting with the LVGL widgets on the display. If there's only one touchscreen configured, this item can be omitted.
+- **rotary_encoders** (*Optional*, list): IDs of rotary encoders interacting with the LVGL widgets on the display. If there's only one rotary encoder configured, this item can be omitted.
 - **color_depth** (*Optional*, int8): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``8``.
 - **log_level** (*Optional*): Set the :ref:`logger <logger>` level specifically for the messages of the LVGL component. Defaults to ``WARN``.
 - **byte_order**: The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
