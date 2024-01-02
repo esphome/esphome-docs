@@ -132,7 +132,7 @@ To safe energy, the optical interface of the Kamstrup meter is not active by def
 To activate the interface, press a button on the device. The interface will now be
 available for a few minutes. To keep the interface alive, magnets must be placed 
 around the LED / photo diode. The image below shows the arrangement. The green 
-circles are the LED and photo diode, which must be places exactly on top of the 
+circles are the LED and photo diode, which must be placed exactly on top of the 
 optical interface window of the meter. The red circles indicate 6mm neodymium 
 magnets.
 
