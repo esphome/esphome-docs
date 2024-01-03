@@ -2,7 +2,7 @@ WK2132 SPI/I²C UART Expander
 ============================
 
 .. seo::
-    :description: Instructions for setting up WK2132 I²C Component in ESPHome.
+    :description: Instructions for setting up WK2132 SPI/I²C to UART Component in ESPHome.
     :image: wk2132.jpg
     :keywords: WK2132, UART, SPI, I²C
     
