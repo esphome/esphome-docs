@@ -10,8 +10,6 @@ All-in-one e-paper display ``Inkplate 6``, ``Inkplate 10`` and ``Inkplate 6 Plus
 The Inkplate 6, 10 and 6 Plus are powerful, Wi-Fi enabled ESP32 based six-inch e-paper displays -
 recycled from a Kindle e-reader. Its main feature is simplicity.
 
-Learn more at `Inkplate's website <https://inkplate.io/>`__
-
 .. figure:: images/inkplate6.jpg
     :align: center
     :width: 75.0%
