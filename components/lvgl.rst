@@ -106,7 +106,7 @@ Configuration variables:
 
 Widget states:
 
-Widgets always have a state:
+Widgets or their parts can have have states:
 
 - ``default``
 - ``checked``
