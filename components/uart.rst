@@ -30,12 +30,12 @@ In some cases only **TX** or **RX** exists as the device at the other end only a
     On the ESP32, this component uses the hardware UART units and is thus very accurate. On the ESP8266 however,
     ESPHome has to use a software implementation as there are no other hardware UART units available other than the
     ones used for logging. Therefore the UART data on the ESP8266 can have occasional data glitches especially with
-    higher baud rates..
+    higher baud rates. 
 
 .. note::
 
     From ESPHome 2021.8 the ``ESP8266SoftwareSerial`` UART ``write_byte`` function had the parity bit fixed to be correct
-    for the data being sent. This could cause unexpected issues if you are using the Software Serial and have devices that
+    for the data being sent. This could cause unexpected issues if you are using the Software UART and have devices that
     explicity check the parity. Most likely you will need to flip the ``parity`` flag in YAML.
 
 
@@ -65,7 +65,7 @@ Configuration variables:
 Hardware UARTs
 --------------
 
-Whenever possible, ESPHome will use the hardware UART unit on the processor for fast and accurate communication.
+Whenever possible, ESPHome will use the hardware UART unit on the ESP8266 for fast and accurate communication.
 When the hardware UARTs are all occupied, ESPHome will fall back to a software implementation that may not
 be accurate at higher baud rates.
 
@@ -74,11 +74,15 @@ be accurate at higher baud rates.
 logger and leave others available. If you have configured the logger to use a different hardware UART, the pins
 used for hardware sharing change accordingly.
 
-The ESP32 has three UARTs. Any pair of GPIO pins can be used, as long as they support the proper output/input modes.
+The ESP32 has three UARTs. ESP32 lite variant chips (ESP32-S3, ESP32-C3, ESP32-S2, etc) may have fewer UARTs (usually two). Any pair of GPIO pins can be used, as long as they support the proper output/input modes. 
 
 The ESP8266 has two UARTs; the second of which is TX-only. Only a limited set of pins can be used. ``UART0`` may
 use either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``, or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``. ``UART1`` must
 use ``tx_pin: GPIO2``. Any other combination of pins will result in use of a software UART.
+
+.. note::
+
+    The Software UART is only available on the ESP8266. It is not available on ESP32 and variants.
 
 .. _uart-write_action:
 
@@ -175,6 +179,84 @@ debugger log lines become too long, then you will notice that they end up trunca
 In that case, either make sure that the debugger outputs less data per log line (e.g. by setting the
 ``after.bytes`` option to a lower value) or increase the logger buffer size using the logger
 ``tx_buffer_size`` option.
+
+.. _uart-runtime_change:
+
+Changing at runtime
+-------------------
+
+There are scenarios where you might need to adjust UART parameters during runtime to enhance communication efficiency
+and adapt to varying operational conditions. ESPHome facilitates this through lambda calls.
+Below are the methods to read current settings and modify them dynamically:
+
+- **Reading Current Settings:** Access UART's current configuration using these read-only attributes:
+
+  .. code-block:: cpp
+
+      // RX buffer size
+      id(my_uart).get_rx_buffer_size();
+      // Stop bits
+      id(my_uart).get_stop_bits();
+      // Data bits
+      id(my_uart).get_data_bits();
+      // Parity
+      id(my_uart).get_parity();
+      // Baud rate
+      id(my_uart).get_baud_rate();
+
+- **Modifying Settings at Runtime:** You can change certain UART parameters during runtime.
+  After setting new values, invoke ``load_settings()`` (ESP32 only) to apply these changes:
+
+  .. code-block:: yaml
+
+      select:
+        - id: change_baud_rate
+          name: Baud rate
+          platform: template
+          options:
+            - "2400"
+            - "9600"
+            - "38400"
+            - "57600"
+            - "115200"
+            - "256000"
+            - "512000"
+            - "921600"
+          initial_option: "115200"
+          optimistic: true
+          restore_value: True
+          internal: false
+          entity_category: config
+          icon: mdi:swap-horizontal
+          set_action:
+            - lambda: |-
+                id(my_uart).flush();
+                uint32_t new_baud_rate = stoi(x);
+                ESP_LOGD("change_baud_rate", "Changing baud rate from %i to %i",id(my_uart).get_baud_rate(), new_baud_rate);
+                if (id(my_uart).get_baud_rate() != new_baud_rate) {
+                  id(my_uart).set_baud_rate(new_baud_rate);
+                  id(my_uart).load_settings();
+                }
+
+  Available methods for runtime changes:
+
+  .. code-block:: cpp
+
+      // Set TX/RX pins
+      id(my_uart).set_tx_pin(InternalGPIOPin *tx_pin);
+      id(my_uart).set_rx_pin(InternalGPIOPin *rx_pin);
+      // RX buffer size
+      id(my_uart).set_rx_buffer_size(size_t rx_buffer_size);
+      // Stop bits
+      id(my_uart).set_stop_bits(uint8_t stop_bits);
+      // Data bits
+      id(my_uart).set_data_bits(uint8_t data_bits);
+      // Parity
+      id(my_uart).set_parity(UARTParityOptions parity);
+      // Baud rate
+      id(my_uart).set_baud_rate(uint32_t baud_rate);
+
+This flexibility allows for dynamic adaptation to different communication requirements, enhancing the versatility of your ESPHome setup.
 
 See Also
 --------

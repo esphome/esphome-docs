@@ -20,7 +20,7 @@ ESPHome's command line interface always has the following format
 
     .. code-block:: console
 
-    esphome run livingroom.yaml kitchen.yaml
+        esphome run livingroom.yaml kitchen.yaml
 
 ``--help`` Option
 --------------------
@@ -239,4 +239,17 @@ The ``esphome logs <CONFIG>`` command validates the configuration and shows all 
 .. option:: --device SERIAL_PORT
 
     Manually specify a serial port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``.
+
+Using Bash or ZSH auto-completion
+---------------------------------
+
+ESPHome's command line interface provides the ability to use auto-completion features provided by Bash or ZSH.
+
+You can register ESPHome for auto-completion by adding the following to your ~/.bashrc file:
+
+.. code-block:: console
+
+    eval "$(register-python-argcomplete esphome)"
+
+For more information, see `argcomplete <https://kislyuk.github.io/argcomplete/>`__ documentation.
 

@@ -38,6 +38,8 @@ ESP heap memory (free space, maximum free block size and fragmentation level) an
           name: "Heap Max Block"
         loop_time:
           name: "Loop Time"
+        psram:
+          name: "Free PSRAM"
 
     # Logger must be at least debug (default)
     logger:
@@ -55,7 +57,7 @@ Configuration variables:
   - ESP32:
 
     - Chip model, cores, revision
-    - Chip features (BLE / BT / WiFi_BGN / EMB_FLASH / ...)
+    - Chip features (BLE / BT / WiFi_BGN / EMB_FLASH / EMB_PSRAM / ...)
     - ESP-IDF version
     - EFuse MAC
     - Reset reason
@@ -67,42 +69,25 @@ Configuration variables:
     - SDK, Core & Boot versions
     - Reset reason & information
 
-  Accepts these options:
+  Accepts all options from :ref:`Text Sensor <config-text_sensor>`.
 
-  - **name** (**Required**, string): The name of the sensor.
-  - All other options from :ref:`Text Sensor <config-text_sensor>`.
-
-- **reset_reason** (*Optional*): Reports the last reboot reason in a human-readable form.
-
-  Accepts these options:
-
-  - **name** (**Required**, string): The name of the sensor.
-  - All other options from :ref:`Text Sensor <config-text_sensor>`.
+- **reset_reason** (*Optional*): Reports the last reboot reason in a human-readable form. Accepts all options from :ref:`Text Sensor <config-text_sensor>`.
 
 Sensor
 -------
 Configuration variables:
 
-- **free** (*Optional*): Reports the free heap size in bytes.
-
-  - **name** (**Required**, string): The name of the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- **free** (*Optional*): Reports the free heap size in bytes. All options from :ref:`Sensor <config-sensor>`.
 
 - **fragmentation** (*Optional*): Reports the fragmentation metric of the heap 
   (0% is clean, more than ~50% is not harmless). Only available on ESP8266 with Arduino 2.5.2+.
+  All options from :ref:`Sensor <config-sensor>`.
+
+- **block** (*Optional*): Reports the largest contiguous free RAM block on the heap in bytes. All options from :ref:`Sensor <config-sensor>`.
   
-  - **name** (**Required**, string): The name of the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- **loop_time** (*Optional*): Reports the longest time between successive iterations of the main loop. All options from :ref:`Sensor <config-sensor>`.
 
-- **block** (*Optional*): Reports the largest contiguous free RAM block on the heap in bytes.
-
-  - **name** (**Required**, string): The name of the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-  
-- **loop_time** (*Optional*): Reports the longest time between successive iterations of the main loop.
-
-  - **name** (**Required**, string): The name of the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- **psram** (*Optional*): Reports the free PSRAM in bytes. Only available on ESP32. All options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
