@@ -68,17 +68,14 @@ Main Component
           line_color: color_blue
           line_width: 8
           line_rounded: true
-        - id: date_style
-          text_font: unscii_8
-          align: center
-          text_color: 0xFFFFFF
-          bg_opa: cover
-          radius: 4
-          pad_all: 2
       layout: grid
       width: 100%
       widgets:
-        - ...
+        - btn:
+            id: lv_button0
+            x: 5
+            y: 30
+
 
 
 Configuration variables:
