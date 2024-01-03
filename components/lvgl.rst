@@ -287,116 +287,28 @@ In addition to visual stilyng, each widget supports some flags to influence the 
 LVGL Widgets
 ------------
 
-**Base Object**: ``obj``
+**Arc**: ``arc:``
 
-The Base Object can be directly used as a simple, empty widget. It is nothing more then a (rounded) rectangle. You can use it as a background shape for other objects by putting its jsonl line before the object. It catches touches!
+The Arc consists of a background and a foreground arc. The foreground (indicator) can be touch-adjusted.
 
-**Text Label**: ``label``
+Specific configuration options:
 
-  - **text** (*Optional*, string): The text of the label. Use``\n`` for line break. Defaults to "Text".
-  - **mode** (*Optional*, string): The wrapping mode of long text labels: ``expand`` expands the object size to the text size; ``break`` keeps the object width, breaks the too long lines and expands the object height; ``dots`` keeps the size and writes dots at the end if the text is too long; ``scroll`` keeps the size and rolls the text back and forth; ``loop`` keeps the size and rolls the text circularly; ``crop`` keeps the size and crops the text out of it. Defaults to ``crop``.
-  - **align** (*Optional*, string): Text alignment: ``left``, ``center``, ``right``. Defaults to ``left``.
-
-
-**Button**: ``btn``
-
-  - **toggle** (*Optional*, boolean): When enabled, creates a toggle-on/toggle-off button. If false, creates a normal button. Defaults to ``false``.
-  - **text** (*Optional*, string): The text of the label. Defaults to "" (empty string).
-  - **mode** (*Optional*, string): The wrapping mode of long text button texts: ``expand`` expands the object size to the text size; ``break`` keeps the object width, breaks the too long lines and expands the object height; ``dots`` keeps the size and writes dots at the end if the text is too long; ``scroll`` keeps the size and rolls the text back and forth; ``loop`` keeps the size and rolls the text circularly; ``crop`` keeps the size and crops the text out of it. Defaults to ``expand``.
-  - **align** (*Optional*, string): Text alignment: ``left``, ``center``, ``right``. Defaults to ``left``.
-
-**Switch**: ``switch``
-
-  - **bg_color10** (*Optional*, :ref:`color <config-color>`): The ID of a color for indicator.
-  - **bg_color20** (*Optional*, :ref:`color <config-color>`): The ID of a color for knob.
-  - **radius20** (*Optional*, int16): Knob corner radius.
-
-
-**Checkbox**: ``checkbox``
-
-  - **text** (*Optional*, string): The label of the checkbox. Defaults to "Checkbox".
-
-
-**Progress Bar**: ``bar``
-
-  - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``.
-  - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``.
-  - **start_value** (*Optional*, int16): Minimal allowed value of the indicator. Defaults to ``0``.
-
-**Slider**: ``slider``
-
-  - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``.
-  - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``.
-  - **start_value** (*Optional*, int16): Minimal allowed value of the indicator. Defaults to ``0``.
-
-**Arc**: ``arc``
-
-  - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``.
-  - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``.
-  - **rotation** (*Optional*, int16): Offset to the 0 degree position. Defaults to ``0``.
-  - **type** (*Optional*, 0-2): ``0`` = normal, ``1`` = symmetrical, ``2`` = reverse. Defaults to ``0``.
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+  - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
+  - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
+  - **start_angle** (*Optional*, 0-360): start angle of the arc background (see note). Defaults to ``135``.
+  - **end_angle** (*Optional*, 0-360): end angle of the arc background (see note). Defaults to ``45``.
+  - **rotation** (*Optional*, int8): Offset to the 0 degree position. Defaults to ``0.0``.
   - **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``.
-  - **start_angle** (*Optional*, 0-360): start angle of the arc background (see note).
-  - **end_angle** (*Optional*, 0-360): end angle of the arc background (see note).
-  - **start_angle10** (*Optional*, 0-360): start angle of the arc indicator (see note).
-  - **end_angle10** (*Optional*, 0-360): end angle of the arc indicator (see note).
+  - **mode** (*Optional*, string): One of ``NORMAL``, ``REVERSE``, ``SYMMETRICAL``. Defaults to ``NORMAL``.
+  - **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
+  - **knob** (*Optional*, string): Add a knob to control the value:
+  - **indicator**
+  - any :ref:`Styling <lvgl-styling>` option to override styles inherited from parent
 
   .. note::
 
-      Zero degree is at the middle right (3 o'clock) of the object and the degrees are increasing in a clockwise direction. The angles should be in the [0-360] range. 
-
-
-**Dropdown List**: ``dropdown``
-
-  - **options** (*Optional*, string): List of items separated by ``\n``. Defaults to "" (empty).
-  - **text** (*Optional*, string): *Read-only* The text of the selected item. Defaults to "" (empty).
-  - **direction** (*Optional*, 0-3): Direction where the dropdown expands: ``0`` = down, ``1`` = up, ``2`` = left, ``3`` = right. *Note:* up and down are superseeded by the screen size.
-  - **show_selected** (*Optional*, boolean): Show the selected option or a static text. Defaults to ``true``.
-  - **max_height** (*Optional*, int16): The maximum height of the open drop-down list. Defaults to 3/4 of screen height.
-
-
-**Roller**: ``roller``
-
-  - **options** (*Optional*, string): List of items separated by ``\n``. Defaults to "" (empty).
-  - **text** (*Optional*, string): *Read-only* The text of the selected item. Defaults to "" (empty).
-  - **rows** (*Optional*, int8): The number of rows that are visible. Use this property instead of ``h`` to set object height! Defaults to ``3``.
-  - **mode** (*Optional*, 0-1): Roller mode: ``0`` = normal (finite), ``1`` = infinite. Defaults to ``0``.
-  - **align** (*Optional*, string): Text alignment: ``left``, ``center``, ``right``. Defaults to ``center``.
-
-
-**Line Meter**: ``linemeter``
-
-  - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``.
-  - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``.
-  - **angle** (*Optional*, 0-360): Angle between start and end of the scale. Defaults to ``240``.
-  - **line_count** (*Optional*, uint16): Tick count of the scale. Defaults to ``31``.
-  - **rotation** (*Optional*, 0-360): Offset for the scale angles to rotate it. Defaults to ``0``.
-  - **type** (*Optional*, 0-1): ``0`` = indicator lines are activated clock-wise, ``1`` = indicator lines are activated counter-clock-wise. Defaults to ``0``.
-
-**Gauge**: ``gauge``
-
-  - **min** (*Optional*, int16): Minimum value of the indicator. Defaults to ``0``.
-  - **max** (*Optional*, int16): Maximum value of the indicator. Defaults to ``100``.
-  - **critical_value** (*Optional*, int16): Scale color will be changed to ``scale_end_color`` after this value. Defaults to ``80``.
-  - **scale_end_color**: (*Optional*, :ref:`color <config-color>`): The ID of a color for values above critical.
-  - **label_count** (*Optional*, uint8): Number of labels (and major ticks) of the scale. Defaults to ``0``.
-  - **line_count** (*Optional*, uint16): Number of minor ticks of the entire scale. Defaults to ``31``.
-  - **angle** (*Optional*, 0-360): Angle between start and end of the scale. Defaults to ``240``.
-  - **rotation** (*Optional*, 0-360): Offset for the gauge's angles to rotate it. Defaults to ``0``.
-  - **scale** ???
-  - **format** (*Optional*, uint16): Divider for major tick values. Defaults to ``0``.
-
-  .. note::
-
-      To strip trailing zero's of major tick labels the ``format`` divider can be used to scale the values before printing:
-      
-        - ``0``: print the major tick value as is.
-        - ``1``: strip 1 zero, i.e. divide tick value by 10 before printing the major tick label.
-        - ``2``: strip 2 zeros, i.e. divide tick value by 100 before printing the major tick label.
-        - ``3``: strip 3 zeros, i.e. divide tick value by 1000 before printing the major tick label.
-        - ``4``: strip 4 zeros, i.e. divide tick value by 10000 before printing the major tick label.
-
-      Only these values are allowed, arbitrary numbers are not supported.
+      Zero degree is at the middle right (3 o'clock) of the object and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
 
 
 
