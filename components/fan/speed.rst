@@ -34,6 +34,7 @@ Configuration variables:
   to calculate the percentages for each speed. E.g. ``2`` means that you have 50% and 100% while ``100``
   will allow 1% increments in the output. Defaults to ``100``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **preset_modes** (*Optional*): A list of preset modes for this fan. Preset modes can be used in automations (i.e. `on_preset_set`).
 - All other options from :ref:`Fan Component <config-fan>`.
 
 See Also

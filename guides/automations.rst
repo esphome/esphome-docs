@@ -98,7 +98,8 @@ Actions
 -------
 
 Now comes the actual automation block. With ``then``, you tell ESPHome what should happen when the press happens.
-Within this block, you can define several "actions". For example, ``switch.toggle`` and the line after that form an
+Within this block, you can define several "actions" that will be executed sequentially.
+For example, ``switch.toggle`` and the line after that form an
 action. Each action is separated by a dash and multiple actions can be executed in series by just adding another ``-``
 like so:
 
@@ -323,7 +324,7 @@ if it fails to connect to the network without a reboot)
 All Triggers
 ------------
 
-- :ref:`api.services <api-services>`
+- :ref:`api.services <api-services>` / :ref:`api.on_client_connected <api-on_client_connected_trigger>` / :ref:`api.on_client_disconnected <api-on_client_disconnected_trigger>`
 - :ref:`sensor.on_value <sensor-on_value>` / :ref:`sensor.on_raw_value <sensor-on_raw_value>` / :ref:`sensor.on_value_range <sensor-on_value_range>`
 - :ref:`binary_sensor.on_press <binary_sensor-on_press>` / :ref:`binary_sensor.on_release <binary_sensor-on_release>` /
   :ref:`binary_sensor.on_state <binary_sensor-on_state>`
@@ -348,6 +349,7 @@ All Triggers
   :ref:`ota.on_state_change <ota-on_state_change>`
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
 - :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
+- :ref:`wifi.on_connect / wifi.on_disconnect <wifi-on_connect_disconnect>`
 
 All Actions
 -----------
@@ -568,8 +570,8 @@ Configuration variables:
 ``while`` Action
 ----------------
 
-This action is similar to the :ref:`if <if_action>` Action. The ``while`` action executes
-a block until a given condition evaluates to false.
+This action is similar to the :ref:`if <if_action>` Action. The ``while`` action loops
+through a block as long as the given condition is true.
 
 .. code-block:: yaml
 
@@ -850,7 +852,7 @@ script was already running.
 
 This action allows you to stop a given script during execution. If the
 script is not running, it does nothing.
-This is useful right now if your want to stop a script that contains a
+This is useful if you want to stop a script that contains a
 ``delay`` action, ``wait_until`` action, or is inside a ``while`` loop, etc.
 You can also call this action from the script itself, and any subsequent action
 will not be executed.
@@ -976,9 +978,14 @@ trigger, but this technique is more light-weight and user-friendly.
         then:
           - switch.toggle: relay_1
 
+
+If a startup delay is configured, the first execution of the actions will not occur before at least that time
+after boot.
+
 Configuration variables:
 
 - **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
+- **startup_delay** (*Optional*, :ref:`config-time`): An optional startup delay - defaults to zero.
 - **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
 

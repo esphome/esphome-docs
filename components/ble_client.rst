@@ -5,33 +5,31 @@ BLE Client
     :description: Configuration of the BLE client on ESP32.
     :image: bluetooth.svg
 
-The ``ble_client`` component enables connections to Bluetooth
-Low Energy devices in order to query and control them. This
-component does not expose any sensors or output components itself,
-but merely manages connections to them for use by other components.
+The ``ble_client`` component enables connections to Bluetooth Low Energy devices in order to query and
+control them. This component does not expose any sensors or output components itself, but merely manages
+connections to them for use by other components.
+
+.. warning::
+
+    The BLE software stack on the ESP32 consumes a significant amount of RAM on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. Memory-intensive components such as :doc:`/components/voice_assistant` and other
+    audio components are most likely to cause issues.
 
 .. note::
 
-    The BLE software stack on the ESP32 consumes a significant
-    amount of RAM on the device. As such, you may experience
-    frequent crashes due to out-of-memory if you enable many
-    other components.
+    A maximum of three devices is supported due to limitations in the ESP32 BLE stack. If you wish to
+    connect more devices, use additional ESP32 boards.
 
-    A maximum of three devices is supported due to limitations in the
-    ESP32 BLE stack. If you wish to connect more devices, use additional
-    ESP32 boards.
+    This component supports devices that require a 6 digit PIN code for authentication.
 
-    This component supports devices that require a 6 digit PIN code
-    for authentication.
-
-    Currently, devices connected with the client cannot be
-    supported by other components based on :doc:`/components/esp32_ble_tracker`
-    as they listen to advertisements which are only sent by devices
+    Currently, devices connected with the client cannot be supported by other components based on
+    :doc:`/components/esp32_ble_tracker` as they listen to advertisements which are only sent by devices
     without an active connection.
 
-Despite the last point above, the ``ble_client`` component requires
-the ``esp32_ble_tracker`` component in order to discover available
-client devices.
+Despite the last point above, the ``ble_client`` component requires the ``esp32_ble_tracker`` component in order
+to discover available client devices.
 
 .. code-block:: yaml
 
@@ -40,11 +38,13 @@ client devices.
     ble_client:
       - mac_address: FF:FF:20:00:0F:15
         id: itag_black
+        auto_connect: true
 
 Configuration variables:
 ------------------------
 
 - **mac_address** (**Required**, MAC Address): The MAC address of the BLE device to connect to.
+- **auto_connect** (*Optional*, boolean): If true the device will be automatically connected when found by the :doc:`/components/esp32_ble_tracker`. Defaults to true.
 - **id** (**Required**, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
 
 Automations:
@@ -155,6 +155,57 @@ This automation is triggered when a numeric comparison is requested by the BLE d
                 id: ble_itag
                 accept: True
 
+.. _ble_client-connect_action:
+
+``ble_client.connect`` Action
+-----------------------------
+
+This action is useful only for devices with ``auto_connect: false`` and allows a connection to be made from
+within an automation. Once connected other actions like ``ble_write`` can be used. This is useful where
+a BLE server needs only to be interacted with occasionally, and thus does not need a constant
+connection held.
+
+The following example updates the time of a Xiaomi MHO-C303 clock once per hour. Note that the BLE tracker must
+be stopped during the connect attempt, and restarted afterwards. This would not be necessary if the tracker had
+``continuous: false`` set. In this example scenario there is another BLE device that does require the scanner to be
+on, hence the stop and start of the scan during connect.
+
+.. code-block:: yaml
+
+    ble_client:
+      - id: ble_clock
+        mac_address: 17:75:BC:F2:94:4D
+        auto_connect: false
+      - id: other_device
+        mac_address: 0D:33:12:66:00:D4
+
+    interval:
+      - interval: 60min
+        then:
+          - esp32_ble_tracker.stop_scan:
+          - ble_client.connect: ble_clock
+          - ble_client.ble_write:
+              id: ble_clock
+              service_uuid: EBE0CCB0-7A0A-4B0C-8A1A-6FF2997DA3A6
+              characteristic_uuid: EBE0CCB7-7A0A-4B0C-8A1A-6FF2997DA3A6
+              value: !lambda |-
+                  uint32_t t = id(sntp_time).now().timestamp + ESPTime::timezone_offset();
+                  return {(uint8_t)t, (uint8_t)(t >> 8), (uint8_t)(t >> 16), (uint8_t)(t >> 24), 0};
+          - ble_client.disconnect: ble_clock
+          - esp32_ble_tracker.start_scan:
+
+Any actions after the ``connect`` action will proceed only after the connect succeeds. If the connect
+fails the subsequent actions in the automation block will *not* be executed. This should be considered
+if scanning has been stopped - another mechanism may be required to restart it.
+
+.. _ble_client-disconnect_action:
+
+``ble_client.disconnect`` Action
+--------------------------------
+
+This action disconnects a device that was connected with the ``ble_client.connect`` action.
+Execution of the automation block sequence resumes after the disconnect has completed.
+
 .. _ble_client-ble_write_action:
 
 ``ble_client.ble_write`` Action
@@ -163,6 +214,8 @@ This automation is triggered when a numeric comparison is requested by the BLE d
 This action triggers a write to a specified BLE characteristic. The write is attempted in
 a best-effort fashion and will only succeed if the ``ble_client``'s  connection has been
 established and the peripheral exposes the expected BLE service and characteristic.
+Execution of the automation block sequence resumes after the write has completed. A write failure will *not*
+stop execution of succeeding actions (this allows a disconnect to be executed, for example.)
 
 Example usage:
 
