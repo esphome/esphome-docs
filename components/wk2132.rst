@@ -172,7 +172,7 @@ Configuration variables:
     Defaults to ``1``.
 
 Performance considerations:
-***************************
+---------------------------
 
 Please be mindful that the communication between the Wk2132 device and the processor occurs on an external bus, 
 with a low default operating frequency. Therefore tasks such as checking the status of the chip's 
@@ -202,7 +202,7 @@ To mitigate this, it is strongly recommended to increase the bus frequency.
       frequency: 600kHz
 
 See Also
-********
+--------
 
 - :ref:`i2c`
 - :ref:`spi`
