@@ -51,12 +51,14 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - **address** (*Optional*, int): Manually specify the I²C address of
     the humidity sensor. Defaults to ``0x40``.
+  - **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <i2c>` if your
+    configuration uses multiple I²C buses. This should match the ``i2c_id`` documented below.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **address** (*Optional*, int): Manually specify the I²C address of
   the temperature & pressure sensor. Defaults to ``0x76``.
 - **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <i2c>` if your
-  configuration uses multiple I²C buses.
+  configuration uses multiple I²C buses. This should match the ``i2c_id`` inside of ``humidity``, documented above.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
@@ -65,7 +67,8 @@ I²C Addresses
 -------------
 The MS8607 digital sensor has two I²C addresses: one for temperature & pressure (``0x76``), and the other for
 humidity readings (``0x40``). They are attached to the same ``SCL``/``SDA`` pins on the package, so if you need to
-customize the ``i2c_id`` a single value is used for both addresses / all three sensors.
+customize the ``i2c_id``, you need to specify it at the top-level for temperature & humidity, and use the same value
+inside the humidity configuration block.
 
 See Also
 --------
