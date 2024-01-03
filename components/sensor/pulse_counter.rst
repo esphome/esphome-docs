@@ -52,6 +52,8 @@ Configuration variables
 
 - **total** (*Optional*): Report the total number of pulses.
 
+- **binary_sensor** (*Optional*): Allow use the input pin also as :ref:`Binary Sensor <config-binary_sensor>`
+
 - All other options from :ref:`Sensor <config-sensor>`.
 
 .. note::
