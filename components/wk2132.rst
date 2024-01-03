@@ -22,7 +22,6 @@ It can also be used with evaluation cards equipped with this chip, such as these
 
 .. figure:: images/DFR0627.jpg
   :align: center
-..   :width: 60.0%
 
 The WK2132 chip/module acts as an SPI/I²C to Dual UART converter, supporting data transmission rates 
 up to 1 Mbps. Each UART channel has two independent 256-byte FIFO hardware buffers for transmit and 
