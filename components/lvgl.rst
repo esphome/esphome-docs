@@ -23,11 +23,11 @@ Basics
 ------
 
 In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called objects or widgets. See :ref:`lvgl-widgets` to see the full
-list of available widgets in ESPHome.
+list of available LVGL widgets in ESPHome.
 
 Every object has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
 The child object moves with the parent and if the parent is deleted the children will be deleted too. Children can be visible only within
-their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A Screen is the "root" parent.
+their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A screen is the *root* parent.
 You can have any number of screens.
 
 Widgets integrate in ESPHome as components:
@@ -39,9 +39,9 @@ Widgets integrate in ESPHome as components:
 +-------------+------------------------+ 
 | Button      | Binary Sensor          | 
 +-------------+------------------------+ 
-| Slider      | Number                 | 
+| Slider      | Number, Sensor         | 
 +-------------+------------------------+ 
-| Arc         | Number                 | 
+| Arc         | Number, Sensor         | 
 +-------------+------------------------+ 
 
 
@@ -89,25 +89,44 @@ Configuration variables:
 - **touchscreens** (*Optional*, list): IDs of touchscreens interacting with the LVGL widgets on the display. If there's only one touchscreen configured, this item can be omitted.
 - **rotary_encoders** (*Optional*, list): IDs of rotary encoders interacting with the LVGL widgets on the display. If there's only one rotary encoder configured, this item can be omitted.
 - **color_depth** (*Optional*, int8): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``8``.
-- **log_level** (*Optional*): Set the :ref:`logger <logger>` level specifically for the messages of the LVGL component. Defaults to ``WARN``.
+- **log_level** (*Optional*): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE"``. Defaults to ``WARN``.
 - **byte_order**: The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
-- ... (select the default styles from :ref:`Styling <lvgl-styling>`)
+- ...select the *root* (default) styles from :ref:`Styling <lvgl-styling>`
 - **style_definitions** (*Optional*, list): A list of style definitions to use with LVGL widgets:
     - **id** (*Optional*, :ref:`config-id`): Set the ID of this style definition.
-    - ... (select your styles from :ref:`Styling <lvgl-styling>`)
+    - ...select your styles from :ref:`Styling <lvgl-styling>`
 - **theme** ???
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn on the screen.
     - :ref:`Widgets <lvgl-widgets>` (**Required**): ``btn``, ``img``, ???
-    - ... (select your styles from :ref:`Styling <lvgl-styling>`)
+    - ...select your styles from :ref:`Styling <lvgl-styling>`
     - **widgets** (*Optional*, list): A list of child LVGL widgets to be drawn as children of this widget. Configuration options are is the same as the parent widgets, and values aren inherited.
         - **id** (*Optional*, :ref:`config-id`): Set the ID of this widget.
-        - ... (select your styles from :ref:`Styling <lvgl-styling>`)
+        - ...select your styles from :ref:`Styling <lvgl-styling>`
 - **on_idle**: (*Optional*, :ref:`Action <config-action>`): An automation to perform when the display enters *idle* state.
 
 .. note::
 
     By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
 
+Widget states:
+
+Widgets always have a state:
+
+- ``default``
+- ``checked``
+- ``focused``
+- ``focus_key``
+- ``edited``
+- ``hovered``
+- ``pressed``
+- ``scrolled``
+- ``disabled``
+- ``user_1``
+- ``user_2``
+- ``user_3``
+- ``user_4``
+
+TODO: get and set the state with a lambda!
 
 .. _lvgl-fonts:
 
@@ -132,7 +151,7 @@ In ESPHome you can also use a :ref:`font configured in the normal way<display-fo
 Styling
 -------
 
-You can adjust the appearance of objects by changing the foreground, background and/or border color, font of each object. Some objects allow for more complex styling, effectively changing the appearance of their sub-components. 
+You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each object. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
 
 - **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to the parent or screen).
 - **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to the parent or screen).
@@ -189,7 +208,7 @@ You can adjust the appearance of objects by changing the foreground, background 
 - **text_align** (*Optional*, string): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
 - **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to render the text in.
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
-- **text_font``: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array file of the font used to render the text.
+- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array file of the font used to render the text.
 - **text_letter_space** (*Optional*, int16): Characher spacing of the text.
 - **text_line_space** (*Optional*, int16): Line spacing of the text.
 - **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
@@ -220,8 +239,8 @@ You can adjust the appearance of objects by changing the foreground, background 
 - **transform_pivot_x** (*Optional*, int16 or percentage): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
 - **transform_pivot_y** (*Optional*, int16 or percentage): Vertical anchor point of the transformation. Relative to the widget's top left corner.
 - **transform_zoom** (*Optional*, 0.1-10):  Trannsformation zoom of the widget (eg. resizing)
-- **translate_x** (*Optional*, int16 or percentage): Move of the object with this value in horizontal direction.
-- **translate_y** (*Optional*, int16 or percentage): Move of the object with this value in vertical direction.
+- **translate_x** (*Optional*, int16 or percentage): Move of the widget with this value in horizontal direction.
+- **translate_y** (*Optional*, int16 or percentage): Move of the widget with this value in vertical direction.
 - **max_height** (*Optional*, int16 or percentage): Sets a maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
 - **min_height** (*Optional*, int16 or percentage): Sets a minimal height. Pixel and percentage values can be used. Percentage values are relative to the width of the parent's content area. Defaults to ``0``. 
 - **max_width** (*Optional*, int16 or percentage): Sets a maximal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
@@ -231,8 +250,37 @@ You can adjust the appearance of objects by changing the foreground, background 
 - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
 - **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
 
+In addition to visual stilyng, each widget supports some flags to influence the behavior:
 
-
+- **hidden** (*Optional*, boolean): 
+- **clickable** (*Optional*, boolean): 
+- **click_focusable** (*Optional*, boolean): 
+- **checkable** (*Optional*, boolean): 
+- **scrollable** (*Optional*, boolean): 
+- **scroll_elastic** (*Optional*, boolean): 
+- **scroll_momentum** (*Optional*, boolean): 
+- **scroll_one** (*Optional*, boolean): 
+- **scroll_chain_hor** (*Optional*, boolean): 
+- **scroll_chain_ver** (*Optional*, boolean): 
+- **scroll_chain** (*Optional*, boolean): 
+- **scroll_on_focus** (*Optional*, boolean): 
+- **scroll_with_arrow** (*Optional*, boolean): 
+- **snappable** (*Optional*, boolean): 
+- **press_lock** (*Optional*, boolean): 
+- **event_bubble** (*Optional*, boolean): 
+- **gesture_bubble** (*Optional*, boolean): 
+- **adv_hittest** (*Optional*, boolean): 
+- **ignore_layout** (*Optional*, boolean): 
+- **floating** (*Optional*, boolean): 
+- **overflow_visible** (*Optional*, boolean): 
+- **layout_1** (*Optional*, boolean): 
+- **layout_2** (*Optional*, boolean): 
+- **widget_1** (*Optional*, boolean): 
+- **widget_2** (*Optional*, boolean): 
+- **user_1** (*Optional*, boolean): 
+- **user_2** (*Optional*, boolean): 
+- **user_3** (*Optional*, boolean): 
+- **user_4** (*Optional*, boolean): 
 
 .. _lvgl-widgets:
 
