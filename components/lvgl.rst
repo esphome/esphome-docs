@@ -17,7 +17,7 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 In order to be able to drive a display with LVGL under ESPHome you need an MCU from the ESP32 family. Although
 PSRAM is not a strict requirement, it is recommended.
 
-For interactivity, a capacitive touchscreen is highly prefered because it is more responsive over resistive touchscreens.
+For interactivity, a touchscreen (capacitive highly prefered) or a rotary encoder can be used.
 
 Basics
 ------
@@ -277,6 +277,8 @@ In addition to visual stilyng, each widget supports some flags to influence the 
 - **user_2** (*Optional*, boolean): 
 - **user_3** (*Optional*, boolean): 
 - **user_4** (*Optional*, boolean): 
+
+- **group** (*Optional*, int??): 
 
 .. _lvgl-widgets:
 
