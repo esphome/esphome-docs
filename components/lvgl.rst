@@ -22,13 +22,13 @@ For interactivity, a capacitive touchscreen is highly prefered because it is mor
 Basics
 ------
 
-In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called objects or widgets. See :ref:`lvgl-widgets` to see the full
+In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` to see the full
 list of available LVGL widgets in ESPHome.
 
-Every object has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
-The child object moves with the parent and if the parent is deleted the children will be deleted too. Children can be visible only within
-their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A screen is the *root* parent.
-You can have any number of screens.
+Although LVGL is a complex matrix of objects-parts-states-styles, in ESPHome this is simplified to a hierarchy.
+
+The widget is at the top level, and it allows main styling. It also has sub-parts, which can be styled separately. 
+Usually styles are inherited. The widget and the parts have states, and the different styling can be set for different states.
 
 Widgets integrate in ESPHome as components:
 
@@ -43,6 +43,12 @@ Widgets integrate in ESPHome as components:
 +-------------+------------------------+ 
 | Arc         | Number, Sensor         | 
 +-------------+------------------------+ 
+| ???         | TODO                   | 
++-------------+------------------------+ 
+
+Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
+The child object moves with the parent and if the parent is deleted the children will be deleted too. Children can be visible only within
+their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A screen is the *root* parent.
 
 
 Main Component
@@ -72,15 +78,7 @@ Main Component
       layout: grid
       width: 100%
       widgets:
-        - btn:
-            id: lv_button0
-            x: 5
-            y: 30
-            widgets:
-              - img:
-                  src: my_image0
-                  width: 96
-                  height: 96
+        - ...
 
 
 Configuration variables:
@@ -95,9 +93,10 @@ Configuration variables:
 - **style_definitions** (*Optional*, list): A list of style definitions to use with LVGL widgets:
     - **id** (*Optional*, :ref:`config-id`): Set the ID of this style definition.
     - ...select your styles from :ref:`Styling <lvgl-styling>`
-- **theme** ???
+- **theme**    TODO
+- **layout**    TODO
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn on the screen.
-    - :ref:`Widgets <lvgl-widgets>` (**Required**): ``btn``, ``img``, ???
+    - :ref:`Widgets <lvgl-widgets>` (**Required**): ``btn``, ``img``,    TODO
     - ...select your styles from :ref:`Styling <lvgl-styling>`
     - **widgets** (*Optional*, list): A list of child LVGL widgets to be drawn as children of this widget. Configuration options are is the same as the parent widgets, and values aren inherited.
         - **id** (*Optional*, :ref:`config-id`): Set the ID of this widget.
