@@ -11,11 +11,20 @@ engine. Fundamentally, there are these types of displays:
 - Text based displays like :doc:`7-Segment displays <max7219>` or
   :doc:`some LCD displays <lcd_display>`.
 - Displays like the :doc:`nextion` that have their own processors for rendering.
-- Binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper displays <waveshare_epaper>` or
-  :doc:`OLED displays <ssd1306>`.
+- Binary graphical displays which can toggle ON/OFF any pixel, like :doc:`E-Paper <waveshare_epaper>`,
+  :doc:`OLED <ssd1306>` or :doc:`TFT <ili9xxx>` displays.
 
-For the last type, ESPHome has a powerful rendering engine that can do
-many things like draw some basic shapes, print text with any font you want, or even show images.
+For graphical displays, there are two options: 
+- ESPHome's :ref:`own powerful rendering engine <display-engine>`
+- :ref:`LVGL <lvgl-main>` - Light and Versatile Graphics Library
+
+.. _display-engine:
+
+Display Rendering Engine
+------------------------
+
+ESPHome's own powerful rendering engine can do many things like draw some basic shapes, print text with any font
+you want, or even show images.
 
 To achieve all this flexibility displays tie in directly into ESPHome's :ref:`lambda system <config-lambda>`.
 So when you want to write some text or sensor values to the screen you will be writing in C++ code
@@ -24,19 +33,14 @@ using an API that is designed to
 - be simple and to be used without programming experience
 - but also be flexible enough to work with more complex tasks like displaying an analog clock.
 
+In this section we will be discussing how to use ESPHome's display rendering engine from ESPHome
+and some basic commands. Please note that this only applies to displays that can control each pixel
+individually.
+
 .. note::
 
     Display hardware is complex and sometimes doesn't behave as expected. If you're having trouble with your display,
     please see :ref:`troubleshooting` below.
-
-.. _display-engine:
-
-Display Rendering Engine
-------------------------
-
-In this section we will be discussing how to use ESPHome's display rendering engine from ESPHome
-and some basic commands. Please note that this only applies to displays that can control each pixel
-individually.
 
 So, first a few basics: When setting up a display platform in ESPHome there will be a configuration
 option called ``lambda:`` which will be called every time ESPHome wants to re-render the display.
