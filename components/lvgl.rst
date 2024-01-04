@@ -101,8 +101,8 @@ Configuration variables:
 - **style_definitions** (*Optional*, list): A list of style definitions to use with LVGL widgets:
     - **id** (*Optional*, :ref:`config-id`): Set the ID of this style definition.
     - ...select your styles from :ref:`Styling <lvgl-styling>`
-- **theme**    TODO
-- **layout**    TODO
+- **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
+- **layout** (*Optional*, string): LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each.
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn on the screen.
     - :ref:`Widgets <lvgl-widgets>` (**Required**): ``btn``, ``img``,    TODO
     - ...select your styles from :ref:`Styling <lvgl-styling>`
@@ -134,6 +134,39 @@ Widgets or their parts can have have states:
 - ``user_4``
 
 TODO: get and set the state with a lambda!
+
+
+.. _lvgl-theme:
+
+Theme
+-----
+
+You can configure a global theme for all the widgets at the top level. In the example below, all the ``arc``, ``slider``
+and ``btn`` widgets will use the styles and properties predefined here. 
+
+.. code-block:: yaml
+
+    lvgl:
+      theme:
+        arc:
+          scroll_on_focus: true
+          group: general
+        slider:
+          scroll_on_focus: true
+          group: general
+        btn:
+          scroll_on_focus: true
+          group: general
+          border_width: 2
+          outline_pad: 6
+          pressed:
+            border_color: 0xFF0000
+          checked:
+            border_color: 0xFFFF00
+          focused:
+            border_color: 0x00FF00
+
+Naturally, you can override these at the indivdual configuration level of each widget.
 
 .. _lvgl-fonts:
 
@@ -315,7 +348,8 @@ Specific configuration options:
   - **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
   - **knob** (*Optional*, string): Add a knob to control the value:
   - **indicator**
-  - any :ref:`Styling <lvgl-styling>` option to override styles inherited from parent
+  - any :ref:`Styling <lvgl-styling>` option to override styles inherited from parent.
+
 
   .. note::
 
@@ -324,11 +358,10 @@ Specific configuration options:
 
 
 
-
 .. _lvgl-onidle-act:
 
 ``lvgl.on_idle`` Trigger
-**************************
+------------------------
 
 This :ref:`trigger <automation>` is activated when lvgl enters in idle state after the specified ``timeout``.
 
@@ -349,7 +382,7 @@ This :ref:`trigger <automation>` is activated when lvgl enters in idle state aft
 .. _lvgl-paused-cond:
 
 ``lvgl.is_paused`` Condition
-****************************
+----------------------------
 
 This :ref:`condition <config-condition>` checks if LVGL is in paused state or not.
 
@@ -369,7 +402,7 @@ This :ref:`condition <config-condition>` checks if LVGL is in paused state or no
 .. _lvgl-idle-cond:
 
 ``lvgl.is_idle`` Condition
-**************************
+--------------------------
 
 This :ref:`condition <config-condition>` checks if LVGL is in idle state or not.
 
@@ -388,7 +421,7 @@ This :ref:`condition <config-condition>` checks if LVGL is in idle state or not.
 .. _lvgl-pause-act:
 
 ``lvgl.pause`` Action
-*********************
+---------------------
 
 This :ref:`action <config-action>` pauses the activity of LVGL, including rendering.
 
@@ -402,7 +435,7 @@ This :ref:`action <config-action>` pauses the activity of LVGL, including render
 .. _lvgl-resume-act:
 
 ``lvgl.resume`` Action
-**********************
+----------------------
 
 This :ref:`action <config-action>` resumes the activity of LVGL, including rendering.
 
