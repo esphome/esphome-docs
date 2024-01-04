@@ -18,7 +18,7 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 In order to be able to drive a display with LVGL under ESPHome you need an MCU from the ESP32 family. Although
 PSRAM is not a strict requirement, it is recommended.
 
-For interactivity, a touchscreen (capacitive highly prefered) or a rotary encoder can be used.
+For interactivity, a :ref:`Touchscreen <touchscreen-main>`(capacitive highly prefered) or a :doc:`/components/sensor/rotary_encoder` can be used.
 
 Basics
 ------
@@ -31,28 +31,31 @@ Although LVGL is a complex matrix of objects-parts-states-styles, in ESPHome thi
 The widget is at the top level, and it allows main styling. It also has sub-parts, which can be styled separately. 
 Usually styles are inherited. The widget and the parts have states, and the different styling can be set for different states.
 
-Widgets integrate in ESPHome as components:
+Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
+The child object moves with the parent and if the parent is deleted the children will be deleted too. Children can be visible only within
+their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A screen is the *root* parent.
+TODO - SCREEN/PAGE
+
+Widgets integrate in ESPHome also as components:
 
 +-------------+------------------------+ 
 | LVGL Widget | ESPHome component type | 
 +=============+========================+
-| Checkbox    | :doc:`/components/binary_sensor/lvgl`          | 
+| Checkbox    | Binary Sensor          | 
 +-------------+------------------------+ 
-| Button      | :doc:`/components/binary_sensor/lvgl`          | 
+| Button      | Binary Sensor          | 
 +-------------+------------------------+ 
-| Slider      | :doc:`/components/number/lvgl`, :doc:`/components/sensor/lvgl`         | 
+| Slider      | Sensor, Number         | 
 +-------------+------------------------+ 
-| Arc         | :doc:`/components/number/lvgl`, :doc:`/components/sensor/lvgl`         | 
+| Arc         | Sensor, Number         | 
 +-------------+------------------------+ 
 | ???         | TODO                   | 
 +-------------+------------------------+ 
 
+These are useful to perform :ref:`automations <automation>` triggered by actions performed at the screen. Check out the *See Also*
+section at the bottom of this document.
 
 
-
-Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
-The child object moves with the parent and if the parent is deleted the children will be deleted too. Children can be visible only within
-their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A screen is the *root* parent.
 
 
 Main Component
@@ -88,6 +91,7 @@ Configuration variables:
 - **touchscreens** (*Optional*, list): IDs of touchscreens interacting with the LVGL widgets on the display. If there's only one touchscreen configured, this item can be omitted.
 - **rotary_encoders** (*Optional*, list): IDs of rotary encoders interacting with the LVGL widgets on the display. If there's only one rotary encoder configured, this item can be omitted.
 - **color_depth** (*Optional*, int8): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``8``.
+- **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
 - **log_level** (*Optional*): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE"``. Defaults to ``WARN``.
 - **byte_order**: The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
 - ...select the *root* (default) styles from :ref:`Styling <lvgl-styling>`
@@ -148,8 +152,11 @@ In ESPHome you can also use a :ref:`font configured in the normal way<display-fo
 
 .. _lvgl-styling:
 
-Styling
--------
+Properties and Styling
+----------------------
+
+- **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`.
+
 
 You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each object. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
 
@@ -282,7 +289,6 @@ In addition to visual stilyng, each widget supports some flags to influence the 
 - **user_3** (*Optional*, boolean): 
 - **user_4** (*Optional*, boolean): 
 
-- **group** (*Optional*, int??): 
 
 .. _lvgl-widgets:
 
@@ -332,6 +338,8 @@ See Also
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/number/lvgl`
+- :doc:`/components/touchscreen`
+- :doc:`/components/sensor/rotary_encoder`
 - `LVGL 8.3 docs <https://docs.lvgl.io/8.3/>`__
 - `LVGL Online Font Converter <https://lvgl.io/tools/fontconverter/>`__
 - :ghedit:`Edit`

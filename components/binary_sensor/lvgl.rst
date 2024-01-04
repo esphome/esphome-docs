@@ -1,3 +1,5 @@
+.. _lvgl-bse:
+
 LVGL Binary Sensor
 ==================
 
