@@ -9,12 +9,13 @@ The ``display`` component houses ESPHome's powerful rendering and display
 engine. Fundamentally, there are these types of displays:
 
 - Text based displays like :doc:`7-Segment displays <max7219>` or
-  :doc:`some LCD displays <lcd_display>`.
-- Displays like the :doc:`nextion` that have their own processors for rendering.
-- Binary graphical displays which can toggle ON/OFF any pixel, like :doc:`E-Paper <waveshare_epaper>`,
+  :doc:`LCD displays <lcd_display>`.
+- Graphical serial displays like :doc:`nextion` that have their own processors for rendering.
+- Graphical binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper <waveshare_epaper>`,
   :doc:`OLED <ssd1306>` or :doc:`TFT <ili9xxx>` displays.
 
-For graphical displays, there are two options: 
+For graphical binary displays, there are two options: 
+
 - ESPHome's :ref:`own powerful rendering engine <display-engine>`
 - :ref:`LVGL <lvgl-main>` - Light and Versatile Graphics Library
 
@@ -1027,6 +1028,7 @@ See Also
 --------
 
 - :apiref:`display/display_buffer.h`
+- :ref:`LVGL <lvgl-main>`
 - :ghedit:`Edit`
 
 .. toctree::
