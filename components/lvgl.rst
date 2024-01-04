@@ -327,10 +327,10 @@ Specific configuration options:
 
 .. _lvgl-onidle-act:
 
-``switch.on_idle`` Trigger
+``lvgl.on_idle`` Trigger
 **************************
 
-This trigger is activated when lvgl enters in idle state after the specified ``timeout``.
+This :ref:`trigger <automation>` is activated when lvgl enters in idle state after the specified ``timeout``.
 
 - **timeout** (**Required**): :ref:`<config-time>` value after which LVGL should enter idle state.
 
@@ -351,7 +351,7 @@ This trigger is activated when lvgl enters in idle state after the specified ``t
 ``lvgl.is_paused`` Condition
 ****************************
 
-This :ref:`Condition <config-condition>` checks if LVGL is in paused state or not.
+This :ref:`condition <config-condition>` checks if LVGL is in paused state or not.
 
 .. code-block:: yaml
 
@@ -371,7 +371,7 @@ This :ref:`Condition <config-condition>` checks if LVGL is in paused state or no
 ``lvgl.is_idle`` Condition
 **************************
 
-This :ref:`Condition <config-condition>` checks if LVGL is in idle state or not.
+This :ref:`condition <config-condition>` checks if LVGL is in idle state or not.
 
 .. code-block:: yaml
 
@@ -390,7 +390,7 @@ This :ref:`Condition <config-condition>` checks if LVGL is in idle state or not.
 ``lvgl.pause`` Action
 *********************
 
-This action pauses the activity of LVGL, including rendering.
+This :ref:`action <config-action>` pauses the activity of LVGL, including rendering.
 
 .. code-block:: yaml
 
@@ -404,7 +404,7 @@ This action pauses the activity of LVGL, including rendering.
 ``lvgl.resume`` Action
 **********************
 
-This action resumes the activity of LVGL, including rendering.
+This :ref:`action <config-action>` resumes the activity of LVGL, including rendering.
 
 .. code-block:: yaml
 
