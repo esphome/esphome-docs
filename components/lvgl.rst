@@ -18,7 +18,7 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 In order to be able to drive a display with LVGL under ESPHome you need an MCU from the ESP32 family. Although
 PSRAM is not a strict requirement, it is recommended.
 
-For interactivity, a :ref:`Touchscreen <touchscreen-main>`(capacitive highly prefered) or a :doc:`/components/sensor/rotary_encoder` can be used.
+For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly prefered) or a :doc:`/components/sensor/rotary_encoder` can be used.
 
 Basics
 ------
@@ -322,8 +322,10 @@ Specific configuration options:
       Zero degree is at the middle right (3 o'clock) of the object and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
 
 
-.. _lvgl-onidle-act:
 
+
+
+.. _lvgl-onidle-act:
 
 ``switch.on_idle`` Trigger
 **************************
