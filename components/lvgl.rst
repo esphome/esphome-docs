@@ -5,6 +5,7 @@ LVGL
 
 .. seo::
     :description: LVGL - ESPHome Displays showing contents created with Light and Versatile Graphics Library
+    :image: /images/logo_lvgl.png
 
 
 `LVGL <https://lvgl.io/>`__ (Light and Versatile Graphics Library) is a free and open-source 

@@ -493,7 +493,8 @@ Touchscreen
 ***********
 .. imgtable::
 
-    Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
+    LVGL widget, components/binary_sensor/lvgl, logo_lvgl.png
+    Nextion, components/binary_sensor/nextion, nextion.jpg
     Touchscreen, components/touchscreen/index, touch.svg, dark-invert
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
     FT5X06, components/touchscreen/ft5x06, indicator.jpg
