@@ -332,7 +332,7 @@ Specific configuration options:
 
 This :ref:`trigger <automation>` is activated when lvgl enters in idle state after the specified ``timeout``.
 
-- **timeout** (**Required**): :ref:`<config-time>` value after which LVGL should enter idle state.
+- **timeout** (**Required**): :ref:`Time <config-time>` value after which LVGL should enter idle state.
 
 .. code-block:: yaml
 
