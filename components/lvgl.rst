@@ -186,15 +186,15 @@ And then you apply these selected styles to two labels, and only change very spe
 
 .. code-block:: yaml
 
-      widgets:
-        - label:
-            id: day_label
-            styles: date_style # apply the definiton here by the ID chosen above
-            y: -20
-        - label:
-            id: date_label
-            styles: date_style
-            y: +20
+    widgets:
+      - label:
+          id: day_label
+          styles: date_style # apply the definiton here by the ID chosen above
+          y: -20
+      - label:
+          id: date_label
+          styles: date_style
+          y: +20
 
 So the inheritance happens like this: locally specified styles override the style definitions, which override the theme, which overrides the top level styles.
 
