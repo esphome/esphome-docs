@@ -97,7 +97,6 @@ Configuration variables:
 - **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
 - **log_level** (*Optional*): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE"``. Defaults to ``WARN``.
 - **byte_order**: The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
-- ...select the *root* (default) styles from :ref:`Styling <lvgl-styling>`
 - **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **layout** (*Optional*, string): LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each.
@@ -107,104 +106,6 @@ Configuration variables:
 .. note::
 
     By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
-
-
-.. _lvgl-theme:
-
-Theming and Styling
--------------------
-
-The widgets support lots of :ref:`lvgl-styling` to customize their appearance and behavior.
-
-You can configure a global theme for all the widgets at the top level with the ``theme`` configuration option. In the example below, all the ``arc``, ``slider``
-and ``btn`` widgets will use the styles and properties predefined here. 
-
-.. code-block:: yaml
-
-    lvgl:
-      theme:
-        arc:
-          scroll_on_focus: true
-          group: general
-        slider:
-          scroll_on_focus: true
-          group: general
-        btn:
-          scroll_on_focus: true
-          group: general
-          border_width: 2
-          outline_pad: 6
-          pressed:
-            border_color: 0xFF0000
-          checked:
-            border_color: 0xFFFF00
-          focused:
-            border_color: 0x00FF00
-
-Naturally, you can override these at the indivdual configuration level of each widget. This can be done in batches, using ``style_definitions`` configuration option.
-In the example below, you defined ``date_style``:
-
-.. code-block:: yaml
-
-    lvgl:
-      style_definitions:
-        - id: date_style      # choose an ID for your definition
-          text_font: unscii_8
-          align: center
-          text_color: 0x000000
-          bg_opa: cover
-          radius: 4
-          pad_all: 2
-
-
-And then you apply these selected styles to two labels, and only change very specific stlye ``y`` locally:
-
-.. code-block:: yaml
-
-    widgets:
-      - label:
-          id: day_label
-          styles: date_style # apply the definiton here by the ID chosen above
-          y: -20
-      - label:
-          id: date_label
-          styles: date_style
-          y: +20
-
-Additionally, you can change the styles based on the state of the widgets or their parts. Widgets or their parts can have have states:
-
-  - ``default``
-  - ``disabled``
-  - ``hovered``
-  - ``pressed``
-  - ``checked``
-  - ``scrolled``
-  - ``focused``
-  - ``focus_key``
-  - ``edited``
-  - ``user_1``
-  - ``user_2``
-  - ``user_3``
-  - ``user_4``
-
-In the example below, you have an ``arc`` with some styles set here. Note how you change the ``arc_color`` of the ``indicator`` part, based on state changes:
-
-.. code-block:: yaml
-
-    - arc:
-        id: my_arc
-        value: 75
-        min_value: 1
-        max_value: 100
-        indicator:
-          arc_color: 0xF000FF
-          pressed:
-            arc_color: 0xFFFF00
-          focused:
-            arc_color: 0x808080
-
-
-So the inheritance happens like this: state based styles override the locally specified styles, which override the style definitions, which override the theme, which overrides the top level styles.
 
 
 .. _lvgl-styling:
@@ -344,23 +245,102 @@ In addition to visual stilyng, each widget supports some flags to influence the 
 - **user_4** (*Optional*, boolean): 
 
 
-.. _lvgl-fonts:
+.. _lvgl-theme:
 
-Fonts
------
+Theming and Styling
+-------------------
 
-LVGL internally uses fonts in a C array. The library offers by default the following ones preconverted:
+The widgets support lots of :ref:`lvgl-styling` to customize their appearance and behavior.
 
-- ``montserrat_12_subpx``
-- ``montserrat_28_compressed``
-- ``dejavu_16_persian_hebrew``
-- ``simsun_16_cjk16``
-- ``unscii_8``
-- ``unscii_16``
+You can configure a global theme for all the widgets at the top level with the ``theme`` configuration option. In the example below, all the ``arc``, ``slider``
+and ``btn`` widgets will use the styles and properties predefined here. 
 
-These may not contain all the glyphs corresponding to certain diacritic characters. You can generate your own set of glyphs in a C array using LVGL's `Online Font Converter <https://lvgl.io/tools/fontconverter/>`__ or use the tool `Offline <https://github.com/lvgl/lv_font_conv>`__.
+.. code-block:: yaml
 
-In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
+    lvgl:
+      theme:
+        arc:
+          scroll_on_focus: true
+          group: general
+        slider:
+          scroll_on_focus: true
+          group: general
+        btn:
+          scroll_on_focus: true
+          group: general
+          border_width: 2
+          outline_pad: 6
+          pressed:
+            border_color: 0xFF0000
+          checked:
+            border_color: 0xFFFF00
+          focused:
+            border_color: 0x00FF00
+
+Naturally, you can override these at the indivdual configuration level of each widget. This can be done in batches, using ``style_definitions`` configuration option.
+In the example below, you defined ``date_style``:
+
+.. code-block:: yaml
+
+    lvgl:
+      style_definitions:
+        - id: date_style      # choose an ID for your definition
+          text_font: unscii_8
+          align: center
+          text_color: 0x000000
+          bg_opa: cover
+          radius: 4
+          pad_all: 2
+
+
+And then you apply these selected styles to two labels, and only change very specific stlye ``y`` locally:
+
+.. code-block:: yaml
+
+    widgets:
+      - label:
+          id: day_label
+          styles: date_style # apply the definiton here by the ID chosen above
+          y: -20
+      - label:
+          id: date_label
+          styles: date_style
+          y: +20
+
+Additionally, you can change the styles based on the state of the widgets or their parts. Widgets or their parts can have have states:
+
+  - ``default``
+  - ``disabled``
+  - ``hovered``
+  - ``pressed``
+  - ``checked``
+  - ``scrolled``
+  - ``focused``
+  - ``focus_key``
+  - ``edited``
+  - ``user_1``
+  - ``user_2``
+  - ``user_3``
+  - ``user_4``
+
+In the example below, you have an ``arc`` with some styles set here. Note how you change the ``arc_color`` of the ``indicator`` part, based on state changes:
+
+.. code-block:: yaml
+
+    - arc:
+        id: my_arc
+        value: 75
+        min_value: 1
+        max_value: 100
+        indicator:
+          arc_color: 0xF000FF
+          pressed:
+            arc_color: 0xFFFF00
+          focused:
+            arc_color: 0x808080
+
+
+So the inheritance happens like this: state based styles override the locally specified styles, which override the style definitions, which override the theme, which overrides the top level styles.
 
 
 .. _lvgl-widgets:
@@ -422,6 +402,28 @@ Example:
             arc_color: 0xFFFF00
           focused:
             arc_color: 0x808080
+
+
+
+.. _lvgl-fonts:
+
+Fonts
+-----
+
+LVGL internally uses fonts in a C array. The library offers by default the following ones preconverted:
+
+- ``montserrat_12_subpx``
+- ``montserrat_28_compressed``
+- ``dejavu_16_persian_hebrew``
+- ``simsun_16_cjk16``
+- ``unscii_8``
+- ``unscii_16``
+
+These may not contain all the glyphs corresponding to certain diacritic characters. You can generate your own set of glyphs in a C array using LVGL's `Online Font Converter <https://lvgl.io/tools/fontconverter/>`__ or use the tool `Offline <https://github.com/lvgl/lv_font_conv>`__.
+
+In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
+
+
 
 
 .. _lvgl-onidle-act:
