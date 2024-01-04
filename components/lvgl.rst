@@ -98,9 +98,7 @@ Configuration variables:
 - **log_level** (*Optional*): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE"``. Defaults to ``WARN``.
 - **byte_order**: The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
 - ...select the *root* (default) styles from :ref:`Styling <lvgl-styling>`
-- **style_definitions** (*Optional*, list): A list of style definitions to use with LVGL widgets:
-    - **id** (*Optional*, :ref:`config-id`): Set the ID of this style definition.
-    - ...select your styles from :ref:`Styling <lvgl-styling>`
+- **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **layout** (*Optional*, string): LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each.
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn on the screen.
@@ -138,10 +136,12 @@ TODO: get and set the state with a lambda!
 
 .. _lvgl-theme:
 
-Theme
------
+Theming and Styling
+-------------------
 
-You can configure a global theme for all the widgets at the top level. In the example below, all the ``arc``, ``slider``
+The widgets support lots of :ref:`lvgl-styling` to customize their appearance and behavior.
+
+You can configure a global theme for all the widgets at the top level with the ``theme`` configuration option. In the example below, all the ``arc``, ``slider``
 and ``btn`` widgets will use the styles and properties predefined here. 
 
 .. code-block:: yaml
@@ -166,30 +166,43 @@ and ``btn`` widgets will use the styles and properties predefined here.
           focused:
             border_color: 0x00FF00
 
-Naturally, you can override these at the indivdual configuration level of each widget.
+Naturally, you can override these at the indivdual configuration level of each widget. This can be done in batches, using ``style_definitions`` configuration option.
+In the example below, you defined ``date_style``:
 
-.. _lvgl-fonts:
+.. code-block:: yaml
 
-Fonts
------
+    lvgl:
+      style_definitions:
+        - id: date_style      # choose an ID for your definition
+          text_font: unscii_8
+          align: center
+          text_color: 0x000000
+          bg_opa: cover
+          radius: 4
+          pad_all: 2
 
-LVGL internally uses fonts in a C array. The library offers by default the following ones preconverted:
 
-- ``montserrat_12_subpx``
-- ``montserrat_28_compressed``
-- ``dejavu_16_persian_hebrew``
-- ``simsun_16_cjk16``
-- ``unscii_8``
-- ``unscii_16``
+And then you apply these selected styles to two labels, and only change very specific stlye ``y`` locally:
 
-These may not contain all the glyphs corresponding to certain diacritic characters. You can generate your own set of glyphs in a C array using LVGL's `Online Font Converter <https://lvgl.io/tools/fontconverter/>`__ or use the tool `Offline <https://github.com/lvgl/lv_font_conv>`__.
+.. code-block:: yaml
 
-In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
+      widgets:
+        - label:
+            id: day_label
+            styles: date_style # apply the definiton here by the ID chosen above
+            y: -20
+        - label:
+            id: date_label
+            styles: date_style
+            y: +20
+
+So the inheritance happens like this: locally specified styles override the style definitions, which override the theme, which overrides the top level styles.
+
 
 .. _lvgl-styling:
 
-Properties and Styling
-----------------------
+Properties and Styles
+---------------------
 
 - **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused object which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
 
@@ -326,10 +339,29 @@ In addition to visual stilyng, each widget supports some flags to influence the 
 - **user_4** (*Optional*, boolean): 
 
 
+.. _lvgl-fonts:
+
+Fonts
+-----
+
+LVGL internally uses fonts in a C array. The library offers by default the following ones preconverted:
+
+- ``montserrat_12_subpx``
+- ``montserrat_28_compressed``
+- ``dejavu_16_persian_hebrew``
+- ``simsun_16_cjk16``
+- ``unscii_8``
+- ``unscii_16``
+
+These may not contain all the glyphs corresponding to certain diacritic characters. You can generate your own set of glyphs in a C array using LVGL's `Online Font Converter <https://lvgl.io/tools/fontconverter/>`__ or use the tool `Offline <https://github.com/lvgl/lv_font_conv>`__.
+
+In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
+
+
 .. _lvgl-widgets:
 
-LVGL Widgets
-------------
+Widgets
+-------
 
 **Arc**: ``arc:``
 
