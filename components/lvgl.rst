@@ -124,7 +124,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **height** (*Optional*): Height of the widget - one of ``size_content``, a number (pixels) or a percentage.
 - **opa** (*Optional*, string or percentage): Opacity of the entire widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
 - **opa_layered** (*Optional*, string or percentage): Opacity of the entire layer the widget is on. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **align** (*Optional*, string): Alignment of the contents of the widget. Check `LVGL <components/images/lvgl_align.png>`__ documentation to see how they act. One of the values below:
+- **align** (*Optional*, string): Alignment of the contents of the widget. Check `this image <images/lvgl_align.png>`__ to understand. One of the values below:
     - ``TOP_LEFT``
     - ``TOP_MID``
     - ``TOP_RIGHT``
