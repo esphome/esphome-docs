@@ -464,7 +464,7 @@ See Also
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/number/lvgl`
-- :doc:`/components/touchscreen`
+- :doc:`/components/touchscreen/index`
 - :doc:`/components/sensor/rotary_encoder`
 - `LVGL 8.3 docs <https://docs.lvgl.io/8.3/>`__
 - `LVGL Online Font Converter <https://lvgl.io/tools/fontconverter/>`__
