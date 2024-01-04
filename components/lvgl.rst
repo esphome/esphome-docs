@@ -36,16 +36,19 @@ Widgets integrate in ESPHome as components:
 +-------------+------------------------+ 
 | LVGL Widget | ESPHome component type | 
 +=============+========================+
-| Checkbox    | Binary Sensor          | 
+| Checkbox    | :doc:`/components/binary_sensor/lvgl`          | 
 +-------------+------------------------+ 
-| Button      | Binary Sensor          | 
+| Button      | :doc:`/components/binary_sensor/lvgl`          | 
 +-------------+------------------------+ 
-| Slider      | Number, Sensor         | 
+| Slider      | :doc:`/components/number/lvgl`, :doc:`/components/sensor/lvgl`         | 
 +-------------+------------------------+ 
-| Arc         | Number, Sensor         | 
+| Arc         | :doc:`/components/number/lvgl`, :doc:`/components/sensor/lvgl`         | 
 +-------------+------------------------+ 
 | ???         | TODO                   | 
 +-------------+------------------------+ 
+
+
+
 
 Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
 The child object moves with the parent and if the parent is deleted the children will be deleted too. Children can be visible only within
