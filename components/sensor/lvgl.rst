@@ -36,7 +36,7 @@ Example:
 
 See Also
 --------
-- :ref:`LVGL <lvgl-main>`
+- :ref:`LVGL Main component <lvgl-main>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/number/lvgl`
 - :ghedit:`Edit`
