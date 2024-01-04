@@ -89,7 +89,10 @@ Configuration variables:
 
 - **display_id** (*Optional*, :ref:`config-id`): The ID of a display configuration where to render this entire LVGL configuration. If there's only one display configured, this item can be omitted.
 - **touchscreens** (*Optional*, list): IDs of touchscreens interacting with the LVGL widgets on the display. If there's only one touchscreen configured, this item can be omitted.
-- **rotary_encoders** (*Optional*, list): IDs of rotary encoders interacting with the LVGL widgets on the display. If there's only one rotary encoder configured, this item can be omitted.
+- **rotary_encoders** (*Optional*, list): 
+    - **sensor:** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder` used to interact with the widgets.
+    - **binary_sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, usually used as a push button within the rotary encoder used to interact with the widgets.
+    - **group** (*Optional*, string): A name for a group of widgets whics will interact with the the rotary encoder. See :ref:`below <lvgl-styling>` for more information on groups.
 - **color_depth** (*Optional*, int8): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``8``.
 - **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
 - **log_level** (*Optional*): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE"``. Defaults to ``WARN``.
@@ -155,7 +158,7 @@ In ESPHome you can also use a :ref:`font configured in the normal way<display-fo
 Properties and Styling
 ----------------------
 
-- **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`.
+- **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused object which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
 
 
 You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each object. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
@@ -318,6 +321,94 @@ Specific configuration options:
 
       Zero degree is at the middle right (3 o'clock) of the object and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
 
+
+.. _lvgl-onidle-act:
+
+
+``switch.on_idle`` Trigger
+**************************
+
+This trigger is activated when lvgl enters in idle state after the specified ``timeout``.
+
+- **timeout** (**Required**): :ref:`<config-time>` value after which LVGL should enter idle state.
+
+.. code-block:: yaml
+
+    lvgl:
+        on_idle:
+          timeout: 30s
+          then:
+            - logger.log: "LVGL is idle"
+            - lvgl.pause:
+            - light.turn_off:
+                id: display_backlight
+
+
+.. _lvgl-paused-cond:
+
+``lvgl.is_paused`` Condition
+****************************
+
+This :ref:`Condition <config-condition>` checks if LVGL is in paused state or not.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      then:
+        - if:
+            condition: lvgl.is_paused
+            then:
+              - lvgl.resume:
+              - light.turn_on:
+                  id: display_backlight
+
+
+.. _lvgl-idle-cond:
+
+``lvgl.is_idle`` Condition
+**************************
+
+This :ref:`Condition <config-condition>` checks if LVGL is in idle state or not.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      then:
+        - if:
+            condition: lvgl.is_idle
+            then:
+              - light.turn_off:
+                  id: display_backlight
+
+
+.. _lvgl-pause-act:
+
+``lvgl.pause`` Action
+*********************
+
+This action pauses the activity of LVGL, including rendering.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - lvgl.pause
+
+
+.. _lvgl-resume-act:
+
+``lvgl.resume`` Action
+**********************
+
+This action resumes the activity of LVGL, including rendering.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - lvgl.resume
 
 
 
