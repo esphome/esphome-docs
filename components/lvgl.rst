@@ -115,23 +115,6 @@ Configuration variables:
 
 Widget states:
 
-Widgets or their parts can have have states:
-
-- ``default``
-- ``checked``
-- ``focused``
-- ``focus_key``
-- ``edited``
-- ``hovered``
-- ``pressed``
-- ``scrolled``
-- ``disabled``
-- ``user_1``
-- ``user_2``
-- ``user_3``
-- ``user_4``
-
-TODO: get and set the state with a lambda!
 
 
 .. _lvgl-theme:
@@ -196,7 +179,40 @@ And then you apply these selected styles to two labels, and only change very spe
           styles: date_style
           y: +20
 
-So the inheritance happens like this: locally specified styles override the style definitions, which override the theme, which overrides the top level styles.
+Additionally, you can change the styles based on the state of the widgets or their parts. Widgets or their parts can have have states:
+
+  - ``default``
+  - ``disabled``
+  - ``hovered``
+  - ``pressed``
+  - ``checked``
+  - ``scrolled``
+  - ``focused``
+  - ``focus_key``
+  - ``edited``
+  - ``user_1``
+  - ``user_2``
+  - ``user_3``
+  - ``user_4``
+
+In the example below, you have an ``arc`` with some styles set here. Note how you change the ``arc_color`` of the ``indicator`` part, based on state changes:
+
+.. code-block:: yaml
+
+    - arc:
+        id: my_arc
+        value: 75
+        min_value: 1
+        max_value: 100
+        indicator:
+          arc_color: 0xF000FF
+          pressed:
+            arc_color: 0xFFFF00
+          focused:
+            arc_color: 0x808080
+
+
+So the inheritance happens like this: state based styles override the locally specified styles, which override the style definitions, which override the theme, which overrides the top level styles.
 
 
 .. _lvgl-styling:
@@ -363,7 +379,16 @@ In ESPHome you can also use a :ref:`font configured in the normal way<display-fo
 Widgets
 -------
 
-**Arc**: ``arc:``
+Common properties
+*****************
+
+The properties below are common to all widgets.
+TODO
+
+
+
+``arc:``
+********
 
 The Arc consists of a background and a foreground arc. The foreground (indicator) can be touch-adjusted.
 
@@ -378,16 +403,33 @@ Specific configuration options:
   - **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``.
   - **mode** (*Optional*, string): One of ``NORMAL``, ``REVERSE``, ``SYMMETRICAL``. Defaults to ``NORMAL``.
   - **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
-  - **knob** (*Optional*, string): Add a knob to control the value:
-  - **indicator**
-  - any :ref:`Styling <lvgl-styling>` option to override styles inherited from parent.
-
+  - **knob** (*Optional*, list): Adds a knob *part* to control the value. Supports a list of styles and state-based styles to customize.
+  - **indicator** (*Optional*, list): Adds an indicator *part* to show the value. Supports a list of styles and state-based styles to customize.
+  - any :ref:`Styling <lvgl-styling>` and state-based option to override styles inherited from parent.
 
   .. note::
 
       Zero degree is at the middle right (3 o'clock) of the object and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
 
+Example:
 
+.. code-block:: yaml
+
+    # Example widget:
+    - arc:
+        group: general
+        scroll_on_focus: true
+        id: arc_value
+        value: 75
+        min_value: 1
+        max_value: 100
+        arc_color: 0xFF0000
+        indicator:
+          arc_color: 0xF000FF
+          pressed:
+            arc_color: 0xFFFF00
+          focused:
+            arc_color: 0x808080
 
 
 .. _lvgl-onidle-act:
