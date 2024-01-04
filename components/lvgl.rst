@@ -26,11 +26,6 @@ Basics
 In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` to see the full
 list of available LVGL widgets in ESPHome.
 
-Although LVGL is a complex matrix of objects-parts-states-styles, in ESPHome this is simplified to a hierarchy.
-
-The widget is at the top level, and it allows main styling. It also has sub-parts, which can be styled separately. 
-Usually styles are inherited. The widget and the parts have states, and the different styling can be set for different states.
-
 Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
 The child object moves with the parent and if the parent is deleted the children will be deleted too. Children can be visible only within
 their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A screen is the *root* parent.
@@ -55,11 +50,35 @@ Widgets integrate in ESPHome also as components:
 These are useful to perform :ref:`automations <automation>` triggered by actions performed at the screen. Check out the *See Also*
 section at the bottom of this document.
 
-
-
-
 Main Component
 --------------
+
+Although LVGL is a complex matrix of objects-parts-states-styles, in ESPHome this is simplified to a hierarchy.
+
+At the highest level of the LVGL object hierarchy is the display which represents the driver for a display device (physical display). A display can have one or more screens associated with it. Each screen contains a hierarchy of objects for graphical widgets representing a layout that covers the entire display.
+
+The widget is at the top level, and it allows main styling. It also has sub-parts, which can be styled separately. 
+Usually styles are inherited. The widget and the parts have states, and the different styling can be set for different states.
+
+Configuration variables:
+
+- **display_id** (*Optional*, :ref:`config-id`): The ID of a display configuration where to render this entire LVGL configuration. If there's only one display configured, this item can be omitted.
+- **touchscreens** (*Optional*, list): IDs of touchscreens interacting with the LVGL widgets on the display. If there's only one touchscreen configured, this item can be omitted.
+- **rotary_encoders** (*Optional*, list): 
+    - **sensor:** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder` used to interact with the widgets.
+    - **binary_sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, usually used as a push button within the rotary encoder used to interact with the widgets.
+    - **group** (*Optional*, string): A name for a group of widgets whics will interact with the the rotary encoder. See :ref:`below <lvgl-styling>` for more information on groups.
+- **color_depth** (*Optional*, int8): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``8``.
+- **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
+- **log_level** (*Optional*): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE"``. Defaults to ``WARN``.
+- **byte_order**: The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
+- **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
+- **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
+- **layout** (*Optional*, string): LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each.
+- **widgets** (*Optional*, list): A list of LVGL widgets to be drawn on the screen.
+- All other options from :ref:`lvgl-styling`.
+
+Example:
 
 .. code-block:: yaml
 
@@ -84,25 +103,6 @@ Main Component
             y: 30
 
 
-
-Configuration variables:
-
-- **display_id** (*Optional*, :ref:`config-id`): The ID of a display configuration where to render this entire LVGL configuration. If there's only one display configured, this item can be omitted.
-- **touchscreens** (*Optional*, list): IDs of touchscreens interacting with the LVGL widgets on the display. If there's only one touchscreen configured, this item can be omitted.
-- **rotary_encoders** (*Optional*, list): 
-    - **sensor:** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder` used to interact with the widgets.
-    - **binary_sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, usually used as a push button within the rotary encoder used to interact with the widgets.
-    - **group** (*Optional*, string): A name for a group of widgets whics will interact with the the rotary encoder. See :ref:`below <lvgl-styling>` for more information on groups.
-- **color_depth** (*Optional*, int8): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``8``.
-- **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
-- **log_level** (*Optional*): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE"``. Defaults to ``WARN``.
-- **byte_order**: The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
-- **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
-- **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
-- **layout** (*Optional*, string): LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each.
-- **widgets** (*Optional*, list): A list of LVGL widgets to be drawn on the screen.
-- All other options from :ref:`lvgl-styling`.
-
 .. note::
 
     By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
@@ -110,8 +110,8 @@ Configuration variables:
 
 .. _lvgl-styling:
 
-Properties and Styles
----------------------
+Style properties
+----------------
 
 - **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused object which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
 
@@ -124,7 +124,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **height** (*Optional*): Height of the widget - one of ``size_content``, a number (pixels) or a percentage.
 - **opa** (*Optional*, string or percentage): Opacity of the entire widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
 - **opa_layered** (*Optional*, string or percentage): Opacity of the entire layer the widget is on. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **align** (*Optional*, string): Alignment of the contents of the widget. One of the values below:
+- **align** (*Optional*, string): Alignment of the contents of the widget. Check `LVGL <components/images/lvgl_align.png>`__ documentation to see how they act. One of the values below:
     - ``TOP_LEFT``
     - ``TOP_MID``
     - ``TOP_RIGHT``
@@ -309,19 +309,19 @@ And then you apply these selected styles to two labels, and only change very spe
 
 Additionally, you can change the styles based on the state of the widgets or their parts. Widgets or their parts can have have states:
 
-  - ``default``
-  - ``disabled``
-  - ``hovered``
-  - ``pressed``
-  - ``checked``
-  - ``scrolled``
-  - ``focused``
-  - ``focus_key``
-  - ``edited``
-  - ``user_1``
-  - ``user_2``
-  - ``user_3``
-  - ``user_4``
+  - ``default``: Normal, released state
+  - ``disabled``: Disabled state
+  - ``hovered``: Hovered by mouse (not supported now)
+  - ``pressed``: Being pressed
+  - ``checked``: Toggled or checked state
+  - ``scrolled``: Being scrolled
+  - ``focused``: Focused via keypad or encoder or clicked via touchpad/mouse
+  - ``focus_key``: Focused via keypad or encoder but not via touchpad/mouse
+  - ``edited``: Edit by an encoder
+  - ``user_1``: Custom state
+  - ``user_2``: Custom state
+  - ``user_3``: Custom state
+  - ``user_4``: Custom state
 
 In the example below, you have an ``arc`` with some styles set here. Note how you change the ``arc_color`` of the ``indicator`` part, based on state changes:
 
@@ -375,8 +375,8 @@ Specific configuration options:
   - **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to use to draw the arcs.
   - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
   - **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
-  - **knob** (*Optional*, list): Adds a knob *part* to control the value. Supports a list of styles and state-based styles to customize.
-  - **indicator** (*Optional*, list): Adds an indicator *part* to show the value. Supports a list of styles and state-based styles to customize.
+  - **knob** (*Optional*, list): Adds a knob **part** to control the value. Supports a list of styles and state-based styles to customize.
+  - **indicator** (*Optional*, list): Adds an indicator **part** to show the value. Supports a list of styles and state-based styles to customize.
   - any :ref:`Styling <lvgl-styling>` and state-based option to override styles inherited from parent.
 
   .. note::
@@ -410,11 +410,16 @@ Example:
 ``bar``
 *******
 
-Descr
+The bar object has a background and an indicator on it. The width of the indicator is set according to the current value of the bar.
+
+Vertical bars can be created if the width of the object is smaller than its height.
+
+Not only the end, but also the start value of the bar can be set, which changes the start position of the indicator.
 
 Specific configuration options:
 
   - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+  - **indicator** (*Optional*, list): Adds an indicator **part**
 
 
 Example:
@@ -428,7 +433,7 @@ Example:
 ``btn``
 *******
 
-Descr
+Simple push or toggle button.
 
 Specific configuration options:
 
@@ -447,11 +452,12 @@ Example:
 ``btnmatrix``
 *************
 
-Descr
+The Button Matrix object is a lightweight way to display multiple buttons in rows and columns. Lightweight because the buttons are not actually created but just virtually drawn on the fly. This way, one button use only eight extra bytes of memory instead of the ~100-150 bytes a normal Button object plus the 100 or so bytes for the Label object.
 
 Specific configuration options:
 
   - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+  - **items** (*Optional*, list): Adds a items **part**
 
 
 Example:
@@ -466,7 +472,7 @@ Example:
 ``canvas``
 **********
 
-Descr
+A Canvas inherits from Image where the user can draw anything. Rectangles, texts, images, lines, arcs can be drawn here using lvgl's drawing engine. Additionally "effects" can be applied, such as rotation, zoom and blur.
 
 Specific configuration options:
 
@@ -485,11 +491,12 @@ Example:
 ``checkbox``
 ************
 
-Descr
+The Checkbox object is made from a "tick box" and a label. When the Checkbox is clicked the tick box is toggled.
 
 Specific configuration options:
 
   - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+  - **indicator** (*Optional*, list): Adds an indicator **part**
 
 
 Example:
@@ -504,11 +511,14 @@ Example:
 ``dropdown``
 ************
 
-Descr
+The drop-down list allows the user to select one value from a list.
+
+The drop-down list is closed by default and displays a single value or a predefined text. When activated (by click on the drop-down list), a list is drawn from which the user may select one option. When the user selects a new value, the list is deleted from the screen.
 
 Specific configuration options:
 
   - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+  - **indicator** (*Optional*, list): Adds an indicator **part**
 
 
 Example:
@@ -523,7 +533,7 @@ Example:
 ``img``
 *******
 
-Descr
+Images are the basic widgets to display images.
 
 Specific configuration options:
 
@@ -542,11 +552,13 @@ Example:
 ``label``
 *********
 
-Descr
+A label is the basic object type that is used to display text.
 
 Specific configuration options:
 
   - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+  - **scrollbar** (*Optional*, list): Adds a scrollbar **part**
+  - **selected** (*Optional*, list): Adds a selected **part**
 
 
 Example:
@@ -561,7 +573,7 @@ Example:
 ``line``
 ********
 
-Descr
+The Line object is capable of drawing straight lines between a set of points.
 
 Specific configuration options:
 
@@ -580,7 +592,27 @@ Example:
 ``meter``
 *********
 
-Descr
+The Meter widget can visualize data in very flexible ways. In can show arcs, needles, ticks lines and labels.
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+``obj``
+*******
+
+The Base Object can be directly used as a simple, empty widget. It is nothing more than a (rounded) rectangle.
+
+You can use it as a parent background shape for other objects. It catches touches!
 
 Specific configuration options:
 
@@ -596,14 +628,16 @@ Example:
 
 
 
+
 ``roller``
 **********
 
-Descr
+Roller allows you to simply select one option from a list by scrolling.
 
 Specific configuration options:
 
   - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+  - **selected** (*Optional*, list): Adds a selected **part**
 
 
 Example:
@@ -618,11 +652,13 @@ Example:
 ``slider``
 **********
 
-Descr
+The Slider object looks like a Bar supplemented with a knob. The knob can be dragged to set a value. Just like Bar, Slider can be vertical or horizontal.
 
 Specific configuration options:
 
   - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+  - **indicator** (*Optional*, list): Adds an indicator **part**
+  - **knob** (*Optional*, list): Adds a knob **part**
 
 
 Example:
@@ -637,11 +673,13 @@ Example:
 ``switch``
 **********
 
-Descr
+The Switch looks like a little slider and can be used to turn something on and off.
 
 Specific configuration options:
 
   - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+  - **indicator** (*Optional*, list): Adds an indicator **part**
+  - **knob** (*Optional*, list): Adds a knob **part**
 
 
 Example:
@@ -656,12 +694,15 @@ Example:
 ``table``
 *********
 
-Descr
+Tables, as usual, are built from rows, columns, and cells containing texts.
+
+The Table object is very lightweight because only the texts are stored. No real objects are created for cells but they are just drawn on the fly.
 
 Specific configuration options:
 
   - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-
+  - **items** (*Optional*, list): Adds a items **part**
+  
 
 Example:
 
@@ -675,12 +716,17 @@ Example:
 ``textarea``
 ************
 
-Descr
+The Text Area is a Base object with a Label and a cursor on it. Texts or characters can be added to it. Long lines are wrapped and when the text becomes long enough the Text area can be scrolled.
+
+One line mode and password modes are supported.
 
 Specific configuration options:
 
   - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-
+  - **scrollbar** (*Optional*, list): Adds a scrollbar **part**
+  - **selected** (*Optional*, list): Adds a selected **part**
+  - **cursor** (*Optional*, list): Adds a cursor **part**
+  - **textarea_placeholder** (*Optional*, list): Adds a textarea_placeholder **part**
 
 Example:
 
