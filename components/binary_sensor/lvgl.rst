@@ -11,6 +11,7 @@ and requires :ref:`LVGL <lvgl-main>` to be configured.
 Supported widgets are ``btn`` and ``checkbox``. A single binary sensor supports
 a single widget, thus you need to choose among which one's state you want to use.
 
+
 Configuration variables:
 ------------------------
 
@@ -18,8 +19,10 @@ Configuration variables:
 - **name** (**Required**, string): The name of the sensor.
 - **btn** (*Optional*): The ID of a button widget configured in LVGL.
 - **checkbox** (*Optional*): The ID of a checkbox widget configured in LVGL.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
-Example
+
+Example:
 
 .. code-block:: yaml
 
