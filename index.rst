@@ -752,6 +752,7 @@ Number Components
 .. imgtable::
 
     Number Core, components/number/index, folder-open.svg, dark-invert
+    LVGL widget Number, components/number/lvgl, logo_lvgl.png
     Modbus Number, components/number/modbus_controller, modbus.png
     Template Number, components/number/template, description.svg, dark-invert
     Tuya Number, components/number/tuya, tuya.png
