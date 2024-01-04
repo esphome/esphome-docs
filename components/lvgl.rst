@@ -355,10 +355,10 @@ TODO
 
 
 
-``arc:``
-********
+``arc``
+*******
 
-The Arc consists of a background and a foreground arc. The foreground (indicator) can be touch-adjusted.
+The Arc consists of a background and a foreground arc. The foreground (indicator) can be touch-adjusted with a knob.
 
 Specific configuration options:
 
@@ -402,6 +402,293 @@ Example:
             arc_color: 0xFFFF00
           focused:
             arc_color: 0x808080
+        knob:
+          focused:
+            bg_color: 0x808080
+
+
+``bar``
+*******
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+``btn``
+*******
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``btnmatrix``
+*************
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``canvas``
+**********
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``checkbox``
+************
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``dropdown``
+************
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``img``
+*******
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``label``
+*********
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``line``
+********
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``meter``
+*********
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``roller``
+**********
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``slider``
+**********
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``switch``
+**********
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``table``
+*********
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+``textarea``
+************
+
+Descr
+
+Specific configuration options:
+
+  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
 
 
 
