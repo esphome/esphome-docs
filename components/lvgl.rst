@@ -102,19 +102,11 @@ Configuration variables:
 - **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **layout** (*Optional*, string): LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each.
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn on the screen.
-    - :ref:`Widgets <lvgl-widgets>` (**Required**): ``btn``, ``img``,    TODO
-    - ...select your styles from :ref:`Styling <lvgl-styling>`
-    - **widgets** (*Optional*, list): A list of child LVGL widgets to be drawn as children of this widget. Configuration options are is the same as the parent widgets, and values aren inherited.
-        - **id** (*Optional*, :ref:`config-id`): Set the ID of this widget.
-        - ...select your styles from :ref:`Styling <lvgl-styling>`
-- **on_idle**: (*Optional*, :ref:`Action <config-action>`): An automation to perform when the display enters *idle* state.
+- All other options from :ref:`lvgl-styling`.
 
 .. note::
 
     By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
-
-Widget states:
-
 
 
 .. _lvgl-theme:
@@ -317,10 +309,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **min_height** (*Optional*, int16 or percentage): Sets a minimal height. Pixel and percentage values can be used. Percentage values are relative to the width of the parent's content area. Defaults to ``0``. 
 - **max_width** (*Optional*, int16 or percentage): Sets a maximal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
 - **min_width** (*Optional*, int16 or percentage): Sets a minimal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
-- **arc_opa** (*Optional*, string or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to use to draw the arcs.
-- **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
-- **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
+
 
 In addition to visual stilyng, each widget supports some flags to influence the behavior:
 
@@ -380,7 +369,6 @@ Widgets
 -------
 
 Common properties
-*****************
 
 The properties below are common to all widgets.
 TODO
@@ -403,6 +391,10 @@ Specific configuration options:
   - **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``.
   - **mode** (*Optional*, string): One of ``NORMAL``, ``REVERSE``, ``SYMMETRICAL``. Defaults to ``NORMAL``.
   - **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
+  - **arc_opa** (*Optional*, string or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+  - **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to use to draw the arcs.
+  - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
+  - **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
   - **knob** (*Optional*, list): Adds a knob *part* to control the value. Supports a list of styles and state-based styles to customize.
   - **indicator** (*Optional*, list): Adds an indicator *part* to show the value. Supports a list of styles and state-based styles to customize.
   - any :ref:`Styling <lvgl-styling>` and state-based option to override styles inherited from parent.
