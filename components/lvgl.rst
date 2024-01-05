@@ -356,7 +356,7 @@ Specific configuration options:
   - **end_angle** (*Optional*, 0-360): end angle of the arc background (see note). Defaults to ``45``.
   - **rotation** (*Optional*, int8): Offset to the 0 degree position. Defaults to ``0.0``.
   - **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``.
-  - **mode** (*Optional*, string): One of ``NORMAL``, ``REVERSE``, ``SYMMETRICAL``. ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
+  - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
   - **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
   - **arc_opa** (*Optional*, string or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
   - **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to use to draw the arcs.
@@ -757,7 +757,9 @@ In ESPHome you can also use a :ref:`font configured in the normal way<display-fo
 ``lvgl.on_idle`` Trigger
 ------------------------
 
-This :ref:`trigger <automation>` is activated when lvgl enters in idle state after the specified ``timeout``.
+LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter. 
+
+The ``on_idle`` :ref:`trigger <automation>` is activated when inactivity time becomes longer than the specified ``timeout``. 
 
 - **timeout** (**Required**): :ref:`Time <config-time>` value after which LVGL should enter idle state.
 
