@@ -162,6 +162,7 @@ Automations:
   when a stream starts.
 - **on_stream_stop** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a stream stops.
+- **on_image** (*Optional*, :ref:`Automation <automation>`): An automation called when image taken. Image is available as ``image`` variable of type :apistruct:`esp32_camera::CameraImageData`.
 
 Test Setting:
 
@@ -256,6 +257,25 @@ Configuration for M5Stack Timer Camera X/F
       # Image settings
       name: My Camera
       # ...
+
+Confguration for M5Stack M5CameraF New
+--------------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry as per https://docs.m5stack.com/en/unit/m5camera_f_new
+    esp32_camera:
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO22
+        scl: GPIO23
+      data_pins: [GPIO32, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO25
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+      reset_pin: GPIO15
 
 Configuration for Wrover Kit Boards
 -----------------------------------

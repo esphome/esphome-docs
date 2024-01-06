@@ -79,6 +79,8 @@ Automation triggers:
   when the fan is turned off. See :ref:`fan-on_turn_on_off_trigger`.
 - **on_speed_set** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the fan speed is set/changed. See :ref:`fan-on_speed_set_trigger`.
+- **on_preset_set** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the fan preset mode is set/changed. See :ref:`fan-on_preset_set_trigger`.
 
 .. _fan-toggle_action:
 
@@ -137,14 +139,22 @@ Configuration options:
 ``fan.cycle_speed`` Action
 --------------------------
 
-Increments through speed levels of the fan with the given ID when executed. If the fan's speed level is set to maximum when executed, turns fan off.
+Increments through speed levels of the fan with the given ID when executed. If the fan's speed level is set to maximum when executed, fan will cycle off unless ``off_speed_cycle`` is set to ``false``.
 
 .. code-block:: yaml
 
     on_...:
       then:
+        - fan.cycle_speed:
+            id: fan_1
+            off_speed_cycle: true
+        # Shorthand:
         - fan.cycle_speed: fan_1
 
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the fan.
+- **off_speed_cycle** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Determines if the fan will cycle off after cycling though its highest speed. Can be ``true`` or ``false``. If ``false`` fan will cycle to its lowest speed instead of turning off.  Defaults to ``true``.
 
 .. _fan-is_on_condition:
 .. _fan-is_off_condition:
@@ -198,6 +208,21 @@ This trigger is activated each time the fan speed is changed. It will fire when 
         on_speed_set:
         - logger.log: "Fan Speed was changed!"
 
+.. _fan-on_preset_set_trigger:
+
+``fan.on_preset_set`` Trigger
+-----------------------------
+
+This trigger is activated each time the fan preset mode is changed. It will fire when the preset mode is either set via API e.g. in Home Assistant or locally by an automation or a lambda function.
+
+.. code-block:: yaml
+
+    fan:
+      - platform: speed # or any other platform
+        # ...
+        on_preset_set:
+          - logger.log: "Fan preset mode was changed!"
+
 Lambda calls
 ------------
 
@@ -248,6 +273,17 @@ advanced stuff (see the full API Reference for more info).
         // Fan direction is reverse, do something else here
       }
 
+- ``preset_mode``: Retrieve the current preset mode of the fan.
+
+  .. code-block:: yaml
+
+      // Within lambda, get the fan preset mode and conditionally do something
+      if (id(my_fan).preset_mode == "auto") {
+        // Fan preset mode is "auto", do something here
+      } else {
+        // Fan preset mode is not "auto", do something else here
+      }
+
 - ``turn_off()``/``turn_on()``/``toggle()``: Manually turn the fan ON/OFF from code.
   Similar to the ``fan.turn_on``, ``fan.turn_off``, and ``fan.toggle`` actions,
   but can be used in complex lambda expressions.
@@ -263,6 +299,11 @@ advanced stuff (see the full API Reference for more info).
       call.set_speed(2);
       call.set_oscillating(true);
       call.set_direction(FanDirection::REVERSE);
+      call.perform();
+
+      // Set a preset mode
+      auto call = id(my_fan).turn_on();
+      call.set_preset_mode("auto");
       call.perform();
 
       // Toggle the fan on/off
