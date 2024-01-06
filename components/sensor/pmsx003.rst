@@ -88,7 +88,7 @@ Configuration variables:
 See Also
 --------
 
-- `espairqual hardware device <https://www.tindie.com/products/gcormier/espairqual/>`__
+- `espairqual hardware device <https://github.com/gcormier/espairqual>`__
 - :doc:`/components/sensor/sds011`
 - :ref:`sensor-filters`
 - :apiref:`pmsx003/pmsx003.h`

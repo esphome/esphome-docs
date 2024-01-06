@@ -57,7 +57,7 @@ Configuration variables:
 See Also
 --------
 
-- `espairqual hardware device <https://www.tindie.com/products/gcormier/espairqual/>`__
+- `espairqual hardware device <https://github.com/gcormier/espairqual>`__
 - :doc:`/components/sensor/gcja5`
 - :ref:`sensor-filters`
 - :apiref:`gcja5/gcja5.h`
