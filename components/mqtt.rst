@@ -60,10 +60,11 @@ Configuration variables:
   `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
   in discovery messages. Defaults to ``true``.
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
-  messages. Should not contain trailing slash. Defaults to
-  ``<APP_NAME>``.
+  messages. Should not contain trailing slash. Defaults to ``<APP_NAME>``. 
+  Use ``null`` to disable publishing or subscribing of any MQTT topic unless
+  it is explicitly configured.
 - **log_topic** (*Optional*, :ref:`mqtt-message`): The topic to send MQTT log
-  messages to.
+  messages to. Use ``null`` if you want to disable sending logs to MQTT.
 
   The ``log_topic`` has an additional configuration option:
 
@@ -83,7 +84,7 @@ Configuration variables:
 - **skip_cert_cn_check** (*Optional*, bool): Only with ``esp-idf``. Don't verify if the common name in the server certificate matches the value of ``broker``.
 - **idf_send_async** (*Optional*, bool): Only with ``esp-idf``. If true publishing the message happens from the internal mqtt task. The client only enqueues the message. Defaults to ``false``.
   The advantage of asyncronous publishing is that it doesn't block the esphome main thread. The disadvantage is a delay (up to 1-2 seconds) until the messages are actually sent out.
-  Set this to true if ypi send large amounts of of data over mqtt.
+  Set this to true if you send large amounts of of data over mqtt.
 - **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   MQTT connection exists. Can be disabled by setting this to ``0s``. Defaults to ``15min``.
 - **keepalive** (*Optional*, :ref:`config-time`): The time
@@ -149,7 +150,6 @@ discovery in your Home Assistant configuration with the following:
     # Example Home Assistant configuration.yaml entry
     mqtt:
       broker: ...
-      discovery: true
 
 And that should already be it 🎉 All devices defined through ESPHome should show up automatically
 in the entities section of Home Assistant.
@@ -172,7 +172,7 @@ With Docker:
 
 .. code-block:: bash
 
-    docker run --rm -v "${PWD}":/config -it esphome/esphome clean-mqtt configuration.yaml
+    docker run --rm -v "${PWD}":/config -it ghcr.io/esphome/esphome clean-mqtt configuration.yaml
 
 This will remove all retained messages with the topic
 ``<DISCOVERY_PREFIX>/+/NODE_NAME/#``. If you want to purge on another
@@ -308,7 +308,6 @@ Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 
     mqtt:
       broker: test.mymqtt.local
       port: 8883
-      discovery: true
       discovery_prefix: ${mqtt_prefix}/homeassistant
       log_topic: ${mqtt_prefix}/logs
       # Evaluate carefully skip_cert_cn_check
@@ -353,7 +352,6 @@ MQTT can have some overrides for specific options.
     name: "Component Name"
     # Optional variables:
     retain: true
-    discovery: true
     availability:
       topic: livingroom/status
       payload_available: online
@@ -376,9 +374,17 @@ Configuration variables:
 -  **state_topic** (*Optional*, string): The topic to publish state
    updates to. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/state``.
+   
+   ESPHome will always publish a manually configured state topic, even if 
+   the component is internal. Use ``null`` to disable publishing the 
+   component's state.
 -  **command_topic** (*Optional*, string): The topic to subscribe to for
    commands from the remote. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
+   
+   ESPHome will always subscribe to a manually configured command topic, 
+   even if the component is internal. Use ``null`` to disable subscribing 
+   to the component's command topic.
 -  **command_retain** (*Optional*, boolean): Whether MQTT command messages
    sent to the device should be retained or not. Default to ``false``.
 

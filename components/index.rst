@@ -23,5 +23,9 @@ Components
     lock/index
     display_menu/index
     media_player/index
+    microphone/index
+    speaker/index
     time/index
+    alarm_control_panel/index
+    text/index
     *

@@ -57,6 +57,7 @@ Blog Posts & Videos
 - `Little thermostat based on AZ-Touch hardware and esphome <https://github.com/ingbenna/AZ-Touch_esphome_thermostat/>`_ by ingbenna
 - `Converting a Carro Home DC Fan to ESPHome <https://1projectaweek.com/blog/2022/2/8/converting-a-carro-home-dc-fan-to-esp-home>`__ by `Bill Church <https://1projectaweek.com>`__
 - `Automated Coffee Bean Roaster <https://hackaday.io/project/186852-automated-coffee-bean-roaster>`__ by `brooksben11 <https://hackaday.io/brooksben11>`__
+- `Droplet Smart Irrigation System <https://github.com/PricelessToolkit/Droplet>`__ by `PricelessToolkit <https://github.com/PricelessToolkit>`__
 
 Custom Components & Code
 ------------------------
@@ -89,6 +90,9 @@ Custom Components & Code
 - `Winsen ZE08-CH2O (Formaldehyde sensor) custom component <https://gist.github.com/cretep/f96606dc6a4eae0d85993d6085959220>`__ by :ghuser:`cretep`
 - `ZclMqttBridge custom component <https://github.com/HyperReap/zcl_mqtt_bridge>`__ by :ghuser:`HyperReap`
 - `Custom esp32 media player and notifier <https://www.printables.com/model/327708-esphome-nodemcu-esp32-media-player>`__ by :ghuser:`rananna`
+- `Blauberg recuperator S22 controller replacement <https://github.com/Benas09/Blauberg_S22>`__ by :ghuser:`Benas09`
+- `Rheem Econet Water Heater and Furnace Controller <https://github.com/esphome-econet/esphome-econet>`__ by `ESPHome-econet <https://github.com/esphome-econet>`__
+- `Medisana BS440 (and propably more scales) <https://github.com/bwynants/weegschaal>`__ by `bwynants <https://github.com/bwynants>`__
 
 Sample Configurations
 ---------------------
@@ -121,3 +125,4 @@ Sample Configurations
 - `ESPHome Curtain/Cover/Shutter Switch from a noname Tuya switch <https://github.com/ludrao/esphome-shutterswitch>`__ by :ghuser:`ludrao`
 - `ESPHome Free your Thomson Guardian gate controller <https://github.com/ludrao/esphome-guardian>`__ by :ghuser:`ludrao`
 - `Ambient Light Sensor tcs34725 example <https://gist.github.com/RubenKelevra/0d70d6b4c8e4bc9aedc8682865731d65>`__ by :ghuser:`RubenKelevra`
+- `9 Valve Sprinkler Controller configuration <https://github.com/hwstar/9-Valve-Sprinkler-Controller>`__ by :ghuser:`hwstar`

@@ -5,8 +5,15 @@ ESP32 Bluetooth Low Energy Device
     :description: Instructions for setting up BLE binary sensors for the ESP32.
     :image: bluetooth.svg
 
-The ``ble_presence`` binary sensor platform lets you track the presence of a
-Bluetooth Low Energy device.
+The ``ble_presence`` binary sensor platform lets you track the presence of a Bluetooth Low Energy device.
+
+.. warning::
+
+    The BLE software stack on the ESP32 consumes a significant amount of RAM on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. Memory-intensive components such as :doc:`/components/voice_assistant` and other
+    audio components are most likely to cause issues.
 
 .. figure:: images/esp32_ble-ui.png
     :align: center
@@ -22,6 +29,7 @@ Bluetooth Low Energy device.
       - platform: ble_presence
         mac_address: AC:37:43:77:5F:4C
         name: "ESP32 BLE Tracker Google Home Mini"
+        min_rssi: -80dB
       # Presence based on BLE Service UUID
       - platform: ble_presence
         service_uuid: '11aa'
@@ -58,6 +66,7 @@ Configuration variables:
    to be tracked. Usually used to identify beacons within an iBeacon group.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation.
+-  **min_rssi** (*Optional*, int): at which minimum RSSI level would the component report the device be present.
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _esp32_ble_tracker-setting_up_devices:

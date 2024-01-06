@@ -5,6 +5,13 @@ NeoPixelBus Light
     :description: Instructions for setting up Neopixel addressable lights.
     :image: color_lens.svg
 
+.. warning::
+
+    NeoPixelBus does **not** work with ESP-IDF.
+
+    For clockless lights, you can use :doc:`esp32_rmt_led_strip`, and for SPI LEDs see :doc:`spi_led_strip`.
+
+
 The ``neopixelbus`` light platform allows you to create RGB lights
 in ESPHome for an individually addressable lights like NeoPixel or WS2812.
 
@@ -99,7 +106,7 @@ on the chipset, ESP platform and pin.
 
 Each of these has their own advantages/disadvantages regarding stability and speed. By default
 ESPHome will choose the best one that is available on the device. However, you can override this
-by manually supplying the method option.
+by manually supplying the ``method`` option.
 
 .. code-block:: yaml
 
@@ -127,7 +134,8 @@ settings vary by method:
   - **async** (*Optional*, boolean): Use an asynchronous transfer. Defaults to ``false``. If enabled,
     the logger must be disabled even if bus 1 is used.
 
-- **esp32_i2s**: The recommended method for ESP32. Available on all output pins. Additional options:
+- **esp32_i2s**: The recommended method for ESP32, but not available on the ESP32-S3 or ESP32-C3.
+  Available on all output pins. Additional options:
 
   - **bus** (*Optional*): The I2S bus to use. The ESP32 has bus 0 or 1 available, but the ESP32-S2 only bus 0.
     One of ``0``, ``1``, ``dynamic``.
@@ -135,7 +143,7 @@ settings vary by method:
 - **esp32_rmt**: An alternative method for ESP32 that uses the RMT peripheral to send data.
   Available on all output pins. Additional options:
 
-  - **channel** (*Optional*): The RMT channel to use. The ESP32 has channels 0-7, ESP32-S2 0-3 and ESP32-C3 0-1.
+  - **channel** (*Optional*): The RMT channel to use. The ESP32 has channels 0-7, ESP32-S2 0-3, ESP32-S3 0-3, and ESP32-C3 0-1.
     Defaults to 6 on ESP32, and 1 on other ESP32 variants.
 
 The following method is available only for two-wire chips (specify ``data_pin`` and ``clock_pin``):

@@ -6,10 +6,13 @@ Bluetooth Proxy
     :image: bluetooth.svg
 
 Home Assistant can expand its Bluetooth reach by communicating through the Bluetooth proxy component in ESPHome.
-The Individual device integrations in Home Assistant (such as BTHome) will receive the data from the Bluetooth
-Integration in Home Assistant which automatically aggregates all ESPHome bluetooth proxies with any USB Bluetooth
+The individual device integrations in Home Assistant (such as BTHome) will receive the data from the Bluetooth
+Integration in Home Assistant which automatically aggregates all ESPHome Bluetooth proxies with any USB Bluetooth
 Adapters you might have. This exceptional feature offers fault tolerant connection between the Bluetooth devices
 and Home Assistant.
+
+Note that while ths component is named ``bluetooth_proxy``, only BLE devices (and their Home Assistant integrations)
+are supported.
 
 If you're looking to create an ESPHome node that is just a Bluetooth Proxy, see
 our `Bluetooth Proxy installer <https://esphome.github.io/bluetooth-proxies/>`__ website.
@@ -61,13 +64,16 @@ To maximize the chances of catching advertisements of the sensors, you can set `
       scan_parameters:
         interval: 1100ms
         window: 1100ms
+.. note::
+
+    For WiFi-based proxies, changing the ``interval`` or ``window`` from their default values may result in an unstable WiFi connection. Using the default values for ``interval`` and ``window`` will usually resolve any instability.
 
 Avoid placing the ESP node in racks, close to routers/switches or other network equipment as EMI interference will degrade Bluetooth signal reception. For best results put as far away as possible, at least 3 meters distance from any other such equipment. Place your ESPHome devices close to the Bluetooth devices that you want to interact with for the best experience.
 
-Complete sample recommended configuration
------------------------------------------
+Complete sample recommended configuration for an ethernet-connected Bluetooth proxy
+-----------------------------------------------------------------------------------
 
-Below is a complete sample recommended configuration for a Bluetooth proxy. If you experience issues with your proxy, try reducing your configuration to be as similar to this as possible.
+Below is a complete sample recommended configuration for an ethernet-connected Bluetooth proxy. This configuration is not for a Wi-Fi based proxy. If you experience issues with your proxy, try reducing your configuration to be as similar to this as possible.
 
 This configuration is for an Olimex ESP32-PoE-ISO board with an Ethernet connection to the network. If you use a different board, you must change the ``board`` substitution to match your board.
 
