@@ -193,5 +193,6 @@ See Also
 
 - `Pylontech-Battery-Monitoring <https://github.com/irekzielinski/Pylontech-Battery-Monitoring>`__
 - `nodered-pylontech-console-reader <https://github.com/juanhaywood/nodered-pylontech-console-reader>`__
+- `MultiSIBControl <http://www.multisibcontrol.net/>`__
 - :ref:`uart`
 - :ghedit:`Edit`
