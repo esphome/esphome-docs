@@ -142,12 +142,16 @@ Configuration variables:
 - **text** (string, :ref:`templatable <config-templatable>`): The text to render
 - **sensor** (*Optional*, :ref:`Sensor Id <config-sensor>`): ID of a Sensor used to populate the label
 - **text_sensor** (*Optional*, :ref:`Text Sensor Id<config-text_sensor>`): ID of a Text Sensor used to populate the label
+- **time_id** (*Optional*, :ref:`Time<base_time_config>`): ID of a Time component used to populate the label
+- **use_utc_time** (*Optional*, boolean): If true the time component will use UTC time, defaults to false.
+- **time_format** (*Optional*, :ref:`templatable <config-templatable>`): A time format used to render the time. See :ref:`strftime`.
+  Defaults to %H:%M (24 hour time)
 - **text_formatter** (*Optional*, :ref:`templatable <config-templatable>`): A lambda that takes a single argument ``it`` (a string) and
   formats it appropriately. This could be used to place a unit of measurement after the value returned from a `sensor` for instance
 
 .. note::
 
-    One of ``text``, ``sensor``, or ``text_sensor`` must be provided
+    One of ``text``, ``sensor``, ``text_sensor``, or ``time_id`` must be provided
 
 .. code-block:: yaml
 
@@ -203,12 +207,16 @@ Text Run
   - **text** (string, :ref:`templatable <config-templatable>`): The text to render
   - **sensor** (*Optional*, :ref:`Sensor Id <config-sensor>`): ID of a Sensor used to populate the label
   - **text_sensor** (*Optional*, :ref:`Text Sensor Id<config-text_sensor>`): ID of a Text Sensor used to populate the label
+  - **time_id** (*Optional*, :ref:`Time<base_time_config>`): ID of a Time component used to populate the label
+  - **use_utc_time** (*Optional*, boolean): If true the time component will use UTC time, defaults to false.
+  - **time_format** (*Optional*, :ref:`templatable <config-templatable>`): A time format used to render the time. See :ref:`strftime`.
+    Defaults to %H:%M (24 hour time)
   - **text_formatter** (*Optional*, :ref:`templatable <config-templatable>`): A lambda that takes a single argument ``it`` (a string) and
     formats it appropriately. This could be used to place a unit of measurement after the value returned from a `sensor` for instance
 
 .. note::
 
-    One of ``text``, ``sensor``, or ``text_sensor`` must be provided
+    One of ``text``, ``sensor``, ``text_sensor``, or ``time_id`` must be provided
 
 .. code-block:: yaml
 
