@@ -128,6 +128,7 @@ Filters are processed in the order they are defined in your configuration.
       - offset: 2.0
       - multiply: 1.2
       - calibrate_linear:
+          datapoints:
           - 0.0 -> 0.0
           - 40.0 -> 45.0
           - 100.0 -> 102.5
