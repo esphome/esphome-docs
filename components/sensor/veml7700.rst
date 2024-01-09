@@ -39,7 +39,7 @@ The sensor has two photodiodes with different spectral response represented by t
 *ALS*, or *Ambient light* channel follows so-called human eye curve very well. *WHITE* channel offers a much higher responsivity 
 for a much wider wavelength spectrum, capturing quite a lot of near-infrared radiance.
 
-.. figure:: images/veml7700-spectral.jpg
+.. figure:: images/veml7700-spectral.png
     :align: center
     :width: 100.0%
 
