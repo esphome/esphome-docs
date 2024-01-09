@@ -181,17 +181,17 @@ in configuration.
 
 .. math::
 
-  \displaystyle \begin{array}{l}
-  lux & = & counts \times resolution(time, gain)\\
-  lux_{comp} & =& 6.0135e \times 10^{-13} \times lux^4 - 9.3924e \times 10^{-9}  \times  lux^3\\
-  & & + 8.1488e \times 10^{-5}  \times  lux^2 + 1.0023  \times  lux\\
-  \\
-  \text{Where:} & & \\
-  counts & - & \text{sensor readings, counts}\\
-  resolution & - & \text{sensor resolution for given integration time and gain, lx/counts}\\
-  lux & - & \text{calculated illumination, lx}\\
-  lux_{comp} & - & \text{compensated illumniation, lx}\\
-  \end{array}
+    \displaystyle \begin{array}{l}
+    lux & = & counts \times resolution(time, gain)\\
+    lux_{comp} & =& 6.0135e \times 10^{-13} \times lux^4 - 9.3924e \times 10^{-9}  \times  lux^3\\
+    & & + 8.1488e \times 10^{-5}  \times  lux^2 + 1.0023  \times  lux\\
+    \\
+    \text{Where:} & & \\
+    counts & - & \text{sensor readings, counts}\\
+    resolution & - & \text{sensor resolution for given integration time and gain, lx/counts}\\
+    lux & - & \text{calculated illumination, lx}\\
+    lux_{comp} & - & \text{compensated illumniation, lx}\\
+    \end{array}
 
 See Also
 --------
