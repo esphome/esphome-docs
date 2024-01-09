@@ -855,6 +855,26 @@ These :ref:`actions <config-action>` are shorthands for toggling the ``disabled`
 
 
 
+.. _lvgl-rfrsh-act:
+
+``lvgl.obj.invalidate`` Action
+------------------------------
+
+This :ref:`action <config-action>` redraws the entire screen, or optionally only a widget on it.
+
+- **obj_id** (*Optional*): The ID of a widget configured in LVGL, which you want to redraw.
+
+obj_id
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - lvgl.obj.invalidate:
+
+
+
+
 .. _lvgl-pause-act:
 
 ``lvgl.pause`` Action
@@ -881,6 +901,10 @@ This :ref:`action <config-action>` resumes the activity of LVGL, including rende
     on_...:
       then:
         - lvgl.resume
+
+
+
+
 
 
 .. _lvgl-idle-cond:
