@@ -429,7 +429,7 @@ Example:
 Simple push or toggle button.
 
 .. figure:: /components/images/lvgl_button.png
-    :align: left
+    :align: center
 
 Specific configuration options:
 
@@ -514,7 +514,7 @@ The drop-down list allows the user to select one value from a list.
 The drop-down list is closed by default and displays a single value or a predefined text. When activated (by click on the drop-down list), a list is drawn from which the user may select one option. When the user selects a new value, the list is deleted from the screen.
 
 .. figure:: /components/images/lvgl_dropdown.png
-    :align: left
+    :align: center
 
 Specific configuration options:
 
@@ -561,7 +561,7 @@ Example:
 A label is the basic object type that is used to display text.
 
 .. figure:: /components/images/lvgl_label.png
-    :align: left
+    :align: center
 
 Specific configuration options:
 
@@ -689,7 +689,7 @@ The ``slider`` can be also integrated as :doc:`/components/sensor/lvgl` and :doc
 The Switch looks like a little slider and can be used to turn something on and off.
 
 .. figure:: /components/images/lvgl_switch.png
-    :align: left
+    :align: center
 
 Specific configuration options:
 
