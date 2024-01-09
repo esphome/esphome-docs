@@ -20,8 +20,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the number.
 - **animated** (*Optional*, boolean): Wether to set the value of the widget with an animation. Defaults to ``true``.
-- **arc_id** (*Optional*): The ID of an arc widget configured in LVGL.
-- **slider_id** (*Optional*): The ID of a slider widget configured in LVGL.
+- **obj** (*Optional*): The ID of a widget configured in LVGL, which will reflect the state of the switch.
 - All other options from :ref:`Number <config-number>`.
 
 
@@ -31,8 +30,7 @@ Example:
 
     number:
       - platform: lvgl
-        slider_id: lv_slider
-        id: lvgl_slider_sensor
+        obj: slider_id
         name: LVGL Slider
 
 
@@ -42,4 +40,5 @@ See Also
 - :ref:`LVGL Main component <lvgl-main>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`
+- :doc:`/components/switch/lvgl`
 - :ghedit:`Edit`
