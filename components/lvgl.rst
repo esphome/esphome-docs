@@ -38,7 +38,7 @@ Widgets integrate in ESPHome also as components:
 +=============+========================+
 | Checkbox    | Binary Sensor          | 
 +-------------+------------------------+ 
-| Button      | Binary Sensor          | 
+| Button      | Binary Sensor, Button  | 
 +-------------+------------------------+ 
 | Slider      | Sensor, Number         | 
 +-------------+------------------------+ 
@@ -68,13 +68,22 @@ Configuration variables:
     - **sensor:** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder` used to interact with the widgets.
     - **binary_sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, usually used as a push button within the rotary encoder used to interact with the widgets.
     - **group** (*Optional*, string): A name for a group of widgets whics will interact with the the rotary encoder. See :ref:`below <lvgl-styling>` for more information on groups.
-- **color_depth** (*Optional*, int8): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``8``.
+- **color_depth** (*Optional*, int8): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
 - **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
 - **log_level** (*Optional*): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE"``. Defaults to ``WARN``.
 - **byte_order**: The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each. If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
+- **flex_flow** (*Optional*, string): In case of ``FLEX`` layout, choose one of the following options:
+    - ``ROW`` to place the children in a row without wrapping
+    - ``COLUMN`` to place the children in a column without wrapping
+    - ``ROW_WRAP`` to place the children in a row with wrapping
+    - ``COLUMN_WRAP`` to place the children in a column with wrapping
+    - ``ROW_REVERSE`` to place the children in a row without wrapping but in reversed order
+    - ``COLUMN_REVERSE`` to place the children in a column without wrapping but in reversed order
+    - ``ROW_WRAP_REVERSE`` to place the children in a row with wrapping but in reversed order
+    - ``COLUMN_WRAP_REVERSE`` to place the children in a column with wrapping but in reversed order
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn on the screen.
 - All other options from :ref:`lvgl-styling`.
 
@@ -112,9 +121,6 @@ Example:
 
 Style properties
 ----------------
-
-- **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused object which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
-
 
 You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each object. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
 
@@ -199,37 +205,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **min_width** (*Optional*, int16 or percentage): Sets a minimal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
 
 
-In addition to visual stilyng, each widget supports some flags to influence the behavior:
 
-- **hidden** (*Optional*, boolean): 
-- **clickable** (*Optional*, boolean): 
-- **click_focusable** (*Optional*, boolean): 
-- **checkable** (*Optional*, boolean): 
-- **scrollable** (*Optional*, boolean): 
-- **scroll_elastic** (*Optional*, boolean): 
-- **scroll_momentum** (*Optional*, boolean): 
-- **scroll_one** (*Optional*, boolean): 
-- **scroll_chain_hor** (*Optional*, boolean): 
-- **scroll_chain_ver** (*Optional*, boolean): 
-- **scroll_chain** (*Optional*, boolean): 
-- **scroll_on_focus** (*Optional*, boolean): 
-- **scroll_with_arrow** (*Optional*, boolean): 
-- **snappable** (*Optional*, boolean): 
-- **press_lock** (*Optional*, boolean): 
-- **event_bubble** (*Optional*, boolean): 
-- **gesture_bubble** (*Optional*, boolean): 
-- **adv_hittest** (*Optional*, boolean): 
-- **ignore_layout** (*Optional*, boolean): 
-- **floating** (*Optional*, boolean): 
-- **overflow_visible** (*Optional*, boolean): 
-- **layout_1** (*Optional*, boolean): 
-- **layout_2** (*Optional*, boolean): 
-- **widget_1** (*Optional*, boolean): 
-- **widget_2** (*Optional*, boolean): 
-- **user_1** (*Optional*, boolean): 
-- **user_2** (*Optional*, boolean): 
-- **user_3** (*Optional*, boolean): 
-- **user_4** (*Optional*, boolean): 
 
 
 .. _lvgl-theme:
@@ -294,21 +270,7 @@ And then you apply these selected styles to two labels, and only change very spe
           styles: date_style
           y: +20
 
-Additionally, you can change the styles based on the state of the widgets or their parts. Widgets or their parts can have have states:
-
-  - ``default``: Normal, released state
-  - ``disabled``: Disabled state
-  - ``hovered``: Hovered by mouse (not supported now)
-  - ``pressed``: Being pressed
-  - ``checked``: Toggled or checked state
-  - ``scrolled``: Being scrolled
-  - ``focused``: Focused via keypad or encoder or clicked via touchpad/mouse
-  - ``focus_key``: Focused via keypad or encoder but not via touchpad/mouse
-  - ``edited``: Edit by an encoder
-  - ``user_1``: Custom state
-  - ``user_2``: Custom state
-  - ``user_3``: Custom state
-  - ``user_4``: Custom state
+Additionally, you can change the styles based on the state of the widgets or their parts. 
 
 In the example below, you have an ``arc`` with some styles set here. Note how you change the ``arc_color`` of the ``indicator`` part, based on state changes:
 
@@ -336,10 +298,26 @@ Widgets
 -------
 
 Common properties
+*****************
 
 The properties below are common to all widgets.
-TODO
 
+- **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused object which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
+- **state** (*Optional*, string): Widgets or their (sub)parts can have have states, which support separate styling. These state styless inherit from theme, but can be locally overriden withing style definitions or locally set. The state itself can be can be changed by interacting with the widget itself, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.obj.update`` action.
+    - ``default``: Normal, released state
+    - ``disabled``: Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.obj.enable`` and ``lvgl.obj.disable``)
+    - ``pressed``: Being pressed
+    - ``checked``: Toggled or checked state
+    - ``scrolled``: Being scrolled
+    - ``focused``: Focused via keypad or encoder or clicked via touchpad/mouse
+    - ``focus_key``: Focused via keypad or encoder but not via touchpad/mouse
+    - ``edited``: Edit by an encoder
+    - ``user_1``: Custom state
+    - ``user_2``: Custom state
+    - ``user_3``: Custom state
+    - ``user_4``: Custom state
+
+In addition to visual stilyng, each widget supports :ref:`dynamically settable flags <lvgl-objupdflag-act>` to influence the behavior at runtime.
 
 
 ``arc``
@@ -752,66 +730,107 @@ In ESPHome you can also use a :ref:`font configured in the normal way<display-fo
 
 
 
-.. _lvgl-onidle-act:
-
-``lvgl.on_idle`` Trigger
-------------------------
-
-LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter. 
-
-The ``on_idle`` :ref:`trigger <automation>` is activated when inactivity time becomes longer than the specified ``timeout``. 
-
-- **timeout** (**Required**): :ref:`Time <config-time>` value after which LVGL should enter idle state.
-
-.. code-block:: yaml
-
-    lvgl:
-        on_idle:
-          timeout: 30s
-          then:
-            - logger.log: "LVGL is idle"
-            - lvgl.pause:
-            - light.turn_off:
-                id: display_backlight
 
 
-.. _lvgl-paused-cond:
-
-``lvgl.is_paused`` Condition
-----------------------------
-
-This :ref:`condition <config-condition>` checks if LVGL is in paused state or not.
-
-.. code-block:: yaml
-
-    # In some trigger:
-    on_...:
-      then:
-        - if:
-            condition: lvgl.is_paused
-            then:
-              - lvgl.resume:
-              - light.turn_on:
-                  id: display_backlight
 
 
-.. _lvgl-idle-cond:
 
-``lvgl.is_idle`` Condition
+
+
+.. _lvgl-objupd-act:
+
+``lvgl.obj.update`` Action
 --------------------------
 
-This :ref:`condition <config-condition>` checks if LVGL is in idle state or not.
+This powerful :ref:`action <config-action>` allows changing on the fly any property or flag of any widget.
 
 .. code-block:: yaml
 
-    # In some trigger:
     on_...:
       then:
-        - if:
-            condition: lvgl.is_idle
-            then:
-              - light.turn_off:
-                  id: display_backlight
+        - lvgl.obj.update:
+            id: btn_relay_1
+            state:
+              disabled: true
+
+
+
+.. _lvgl-objupdflag-act:
+
+In addition to visual stilyng, each widget supports some flags to influence the behavior:
+
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - lvgl.obj.update:
+            id: btn_relay_1
+            hidden: true
+
+
+    - **hidden** (*Optional*, boolean): make the object hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.obj.show`` and ``lvgl.obj.hide``
+    - **clickable** (*Optional*, boolean): make the object clickable by input devices
+    - **click_focusable** (*Optional*, boolean): add focused state to the object when clicked
+    - **checkable** (*Optional*, boolean): toggle checked state when the object is clicked
+    - **scrollable** (*Optional*, boolean): make the object scrollable
+    - **scroll_elastic** (*Optional*, boolean): allow scrolling inside but with slower speed
+    - **scroll_momentum** (*Optional*, boolean): make the object scroll further when "thrown"
+    - **scroll_one** (*Optional*, boolean): allow scrolling only one snappable children
+    - **scroll_chain_hor** (*Optional*, boolean): allow propagating the horizontal scroll to a parent
+    - **scroll_chain_ver** (*Optional*, boolean): allow propagating the vertical scroll to a parent
+    - **scroll_chain simple** (*Optional*, boolean): packaging for (``scroll_chain_hor** or ``scroll_chain_ver``)
+    - **scroll_on_focus** (*Optional*, boolean): automatically scroll object to make it visible when focused
+    - **scroll_with_arrow** (*Optional*, boolean): allow scrolling the focused object with arrow keys
+    - **snappable** (*Optional*, boolean): if scroll snap is enabled on the parent it can snap to this object
+    - **press_lock** (*Optional*, boolean): keep the object pressed even if the press slid from the object
+    - **event_bubble** (*Optional*, boolean): propagate the events to the parent too
+    - **gesture_bubble** (*Optional*, boolean): propagate the gestures to the parent
+    - **adv_hittest** (*Optional*, boolean): allow performing more accurate hit (click) test. E.g. Accounting for rounded corners
+    - **ignore_layout** (*Optional*, boolean): make the object positionable by the layouts
+    - **floating** (*Optional*, boolean): do not scroll the object when the parent scrolls and ignore layout
+    - **overflow_visible** (*Optional*, boolean): do not clip the children's content to the parent's boundary
+    - **layout_1** (*Optional*, boolean): custom flag, free to use by layouts
+    - **layout_2** (*Optional*, boolean): custom flag, free to use by layouts
+    - **widget_1** (*Optional*, boolean): custom flag, free to use by widget
+    - **widget_2** (*Optional*, boolean): custom flag, free to use by widget
+    - **user_1** (*Optional*, boolean): custom flag, free to use by user
+    - **user_2** (*Optional*, boolean): custom flag, free to use by user
+    - **user_3** (*Optional*, boolean): custom flag, free to use by user
+    - **user_4** (*Optional*, boolean): custom flag, free to use by user
+
+
+
+.. _lvgl-objupd-shorthands:
+
+``lvgl.obj.hide`` and ``lvgl.obj.show`` Actions
+-----------------------------------------------
+
+These :ref:`actions <config-action>` are shorthands for toggling the ``hidden`` flag of any widget:
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - lvgl.obj.hide: my_label_id
+        - delay: 0.5s
+        - lvgl.obj.show: my_label_id
+
+
+``lvgl.obj.disable`` and ``lvgl.obj.enable`` Actions
+----------------------------------------------------
+
+These :ref:`actions <config-action>` are shorthands for toggling the ``disabled`` state of any widget (which controls the appearance of the corresponding *disabled* style set of the theme):
+
+.. code-block:: yaml
+
+    - on_...:
+        then:
+          - lvgl.obj.disable: my_button_id
+    - on_...:
+        then:
+          - lvgl.obj.enable: my_button_id
+
 
 
 .. _lvgl-pause-act:
@@ -840,6 +859,68 @@ This :ref:`action <config-action>` resumes the activity of LVGL, including rende
     on_...:
       then:
         - lvgl.resume
+
+
+.. _lvgl-idle-cond:
+
+``lvgl.is_idle`` Condition
+--------------------------
+
+This :ref:`condition <config-condition>` checks if LVGL is in idle state or not.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      then:
+        - if:
+            condition: lvgl.is_idle
+            then:
+              - light.turn_off:
+                  id: display_backlight
+
+
+.. _lvgl-paused-cond:
+
+``lvgl.is_paused`` Condition
+----------------------------
+
+This :ref:`condition <config-condition>` checks if LVGL is in paused state or not.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      then:
+        - if:
+            condition: lvgl.is_paused
+            then:
+              - lvgl.resume:
+              - light.turn_on:
+                  id: display_backlight
+
+
+.. _lvgl-onidle-act:
+
+``lvgl.on_idle`` Trigger
+------------------------
+
+LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter. 
+
+The ``on_idle`` :ref:`trigger <automation>` is activated when inactivity time becomes longer than the specified ``timeout``. 
+
+- **timeout** (**Required**): :ref:`Time <config-time>` value after which LVGL should enter idle state.
+
+.. code-block:: yaml
+
+    lvgl:
+        on_idle:
+          timeout: 30s
+          then:
+            - logger.log: "LVGL is idle"
+            - lvgl.pause:
+            - light.turn_off:
+                id: display_backlight
 
 
 
