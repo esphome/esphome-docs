@@ -50,7 +50,7 @@ Widgets integrate in ESPHome also as components:
 | Roller      | Select                        | 
 +-------------+-------------------------------+ 
 
-These are useful to perform :ref:`automations <automation>` triggered by actions performed at the screen. Check out the :ref:`<lvgl-seealso>` section at the bottom of this document.
+These are useful to perform :ref:`automations <automation>` triggered by actions performed at the screen. Check out the :ref:`lvgl-seealso` section at the bottom of this document.
 
 
 Main Component
