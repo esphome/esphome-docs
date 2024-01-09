@@ -1,16 +1,16 @@
-.. _lvgl-swi:
+.. _lvgl-sel:
 
-LVGL Switch
+LVGL Select
 ===========
 
 .. seo::
-    :description: Instructions for setting up a LVGL widget switch.
+    :description: Instructions for setting up a LVGL widget select.
     :image: ../images/logo_lvgl.png
 
-The ``lvgl`` switch platform creates a switch from a LVGL widget
+The ``lvgl`` switch platform creates a select from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widgets are ``btn`` and ``checkbox``. A single switch supports
+Supported widgets are ``dropdown`` and ``roller``. A single select supports
 a single widget, thus you need to choose among which one's state you want to use.
 
 
@@ -18,8 +18,8 @@ Configuration variables:
 ------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (**Required**, string): The name of the switch.
-- **obj** (*Optional*): The ID of a widget configured in LVGL, which will reflect the state of the switch.
+- **name** (**Required**, string): The name of the select.
+- **obj** (*Optional*): The ID of a widget configured in LVGL, which will reflect the state of the select.
 - All other options from :ref:`Switch <config-switch>`.
 
 
@@ -27,16 +27,16 @@ Example:
 
 .. code-block:: yaml
 
-    switch:
+    select:
       - platform: lvgl
-        obj: checkbox_id
-        name: LVGL switch
+        obj: dropdown_id
+        name: LVGL Dropdown
 
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/binary_sensor/lvgl`
+- :doc:`/components/switch/lvgl`
 - :doc:`/components/number/lvgl`
-- :doc:`/components/select/lvgl`
 - :ghedit:`Edit`

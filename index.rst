@@ -615,6 +615,7 @@ Switch Components
     Modbus Switch, components/switch/modbus_controller, modbus.png
     BLE Client Switch, components/switch/ble_client, bluetooth.svg, dark-invert
     Nextion Switch, components/switch/nextion, nextion.jpg
+    LVGL widget, components/switch/lvgl, logo_lvgl.png
 
 Button Components
 -----------------

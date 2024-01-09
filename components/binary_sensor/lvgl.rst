@@ -38,4 +38,5 @@ See Also
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/number/lvgl`
 - :doc:`/components/switch/lvgl`
+- :doc:`/components/select/lvgl`
 - :ghedit:`Edit`

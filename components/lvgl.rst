@@ -29,26 +29,28 @@ list of available LVGL widgets in ESPHome.
 Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
 The child object moves with the parent and if the parent is deleted the children will be deleted too. Children can be visible only within
 their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A screen is the *root* parent.
+
 TODO - SCREEN/PAGE
 
 Widgets integrate in ESPHome also as components:
 
-+-------------+------------------------+ 
-| LVGL Widget | ESPHome component type | 
-+=============+========================+
-| Checkbox    | Binary Sensor          | 
-+-------------+------------------------+ 
-| Button      | Binary Sensor, Button  | 
-+-------------+------------------------+ 
-| Slider      | Sensor, Number         | 
-+-------------+------------------------+ 
-| Arc         | Sensor, Number         | 
-+-------------+------------------------+ 
-| ???         | TODO                   | 
-+-------------+------------------------+ 
++-------------+-------------------------------+ 
+| LVGL Widget | ESPHome component type        | 
++=============+===============================+
+| Checkbox    | Binary Sensor, Switch         | 
++-------------+-------------------------------+ 
+| Button      | Binary Sensor, Button, Switch | 
++-------------+-------------------------------+ 
+| Slider      | Sensor, Number                | 
++-------------+-------------------------------+ 
+| Arc         | Sensor, Number                | 
++-------------+-------------------------------+ 
+| Dropdown    | Select                        | 
++-------------+-------------------------------+ 
+| Roller      | Select                        | 
++-------------+-------------------------------+ 
 
-These are useful to perform :ref:`automations <automation>` triggered by actions performed at the screen. Check out the *See Also*
-section at the bottom of this document.
+These are useful to perform :ref:`automations <automation>` triggered by actions performed at the screen. Check out the *See Also* section at the bottom of this document.
 
 Main Component
 --------------
@@ -411,9 +413,7 @@ Specific configuration options:
 - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
 - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
 - **animated** (*Optional*, boolean): ``true`` , ``false`` . TODO
-- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, and additionally:
-    - **r_mod** (*Optional*): TODO in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the object based on its contents.
-
+- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
 
 Example:
 
@@ -500,7 +500,7 @@ Example:
     # Example widget:
     - 
 
-The ``checkbox`` can be also integrated as :doc:`/components/binary_sensor/lvgl`.
+The ``checkbox`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
 
 
 ``dropdown``
@@ -510,14 +510,16 @@ The drop-down list allows the user to select one value from a list.
 
 The drop-down list is closed by default and displays a single value or a predefined text. When activated (by click on the drop-down list), a list is drawn from which the user may select one option. When the user selects a new value, the list is deleted from the screen.
 
+
 Specific configuration options:
 
 - **selected** (*Optional*): 
 - **scrollbar**
 - **selected_index**
-- **dir**
+- **dir** ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
 - **dropdown_list**
 - **symbol** (*Optional*, enum): A symbol (typically an arrow) can be added to the dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. One of: ``AUDIO``, ``VIDEO``, ``LIST``, ``OK``, ``CLOSE``, ``POWER``, ``SETTINGS``, ``HOME``, ``DOWNLOAD``, ``DRIVE``, ``REFRESH``, ``MUTE``, ``VOLUME_MID``, ``VOLUME_MAX``, ``IMAGE``, ``TINT``, ``PREV``, ``PLAY``, ``PAUSE``, ``STOP``, ``NEXT``, ``EJECT``, ``LEFT``, ``RIGHT``, ``PLUS``, ``MINUS``, ``EYE_OPEN``, ``EYE_CLOSE``, ``WARNING``, ``SHUFFLE``, ``UP``, ``DOWN``, ``LOOP``, ``DIRECTORY``, ``UPLOAD``, ``CALL``, ``CUT``, ``COPY``, ``SAVE``, ``BARS``, ``ENVELOPE``, ``CHARGE``, ``PASTE``, ``BELL``, ``KEYBOARD``, ``GPS``, ``FILE``, ``WIFI``, ``BATTERY_FULL``, ``BATTERY_3``, ``BATTERY_2``, ``BATTERY_1``, ``BATTERY_EMPTY``, ``USB``, ``BLUETOOTH``, ``TRASH``, ``EDIT``, ``BACKSPACE``, ``SD_CARD``, ``NEW_LINE``
+
 
 Example:
 
@@ -526,6 +528,7 @@ Example:
     # Example widget:
     - 
 
+The ``dropdown`` can be also integrated as :doc:`/components/select/lvgl`.
 
 
 ``img``
@@ -596,7 +599,8 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 Specific configuration options:
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-
+- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, and additionally:
+    - **r_mod** (*Optional*): TODO in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the object based on its contents.
 
 Example:
 
@@ -646,6 +650,7 @@ Example:
     # Example widget:
     - 
 
+The ``roller`` can be also integrated as :doc:`/components/select/lvgl`.
 
 
 ``slider``
@@ -993,6 +998,7 @@ See Also
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/switch/lvgl`
 - :doc:`/components/number/lvgl`
+- :doc:`/components/select/lvgl`
 - :doc:`/components/touchscreen/index`
 - :doc:`/components/sensor/rotary_encoder`
 - `LVGL 8.3 docs <https://docs.lvgl.io/8.3/>`__

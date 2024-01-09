@@ -41,4 +41,5 @@ See Also
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/switch/lvgl`
+- :doc:`/components/select/lvgl`
 - :ghedit:`Edit`
