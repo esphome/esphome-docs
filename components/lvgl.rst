@@ -12,7 +12,7 @@ LVGL
 embedded graphics library to create beautiful UIs for any MCU, MPU and display type. ESPHome supports
 `LVGL version 8.3.9 <https://docs.lvgl.io/8.3/>`__.
 
-.. figure:: /images/logo_lvgl.png
+.. figure:: /components/images/lvgl_main_screenshot.png
     :align: center
 
 In order to be able to drive a display with LVGL under ESPHome you need an MCU from the ESP32 family. Although
@@ -87,7 +87,9 @@ Configuration variables:
     - ``ROW_WRAP_REVERSE`` to place the children in a row with wrapping but in reversed order
     - ``COLUMN_WRAP_REVERSE`` to place the children in a column with wrapping but in reversed order
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn on the screen.
+- **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen. Defaults to 1s.
 - All other options from :ref:`lvgl-styling`.
+
 
 Example:
 
@@ -563,6 +565,11 @@ Example:
 
     # Example widget:
     - 
+
+TODO
+      - lvgl.label.update:
+          id: day_label
+          text: !lambda |-
 
 
 
