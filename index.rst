@@ -361,6 +361,8 @@ Light
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
     TSL2591, components/sensor/tsl2591, tsl2591.jpg, Lux
+    VEML6030, components/sensor/veml7700, veml6030.jpg, Lux
+    VEML7700, components/sensor/veml7700, veml7700.jpg, Lux
 
 
 Magnetic
