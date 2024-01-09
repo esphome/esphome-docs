@@ -308,12 +308,13 @@ Common properties
 *****************
 
 The properties below are common to all widgets.
+
 - **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to top left of parent or screen). If layouts are used, or if specfiyng ``align``, can be omitted for automatic placement.
 - **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If layouts are used, or if specfiyng ``align``, can be omitted for automatic placement.
 - **width** (*Optional*): Width of the widget in pixels or a percentage, or ``size_content`` (see below).
 - **height** (*Optional*): Height of the widget in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the widget based on its contents (children objects, or eg. image size in case of ``img``.
 - **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused object which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
-- **state** (*Optional*, string): Widgets or their (sub)parts can have have states, which support separate styling. These state styless inherit from theme, but can be locally overriden withing style definitions or locally set. The state itself can be can be changed by interacting with the widget itself, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.obj.update`` action.
+- **state** (*Optional*, string): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overriden withing style definitions or locally set. The state itself can be can be changed by interacting with the widget itself, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.obj.update`` action. Can be one of:
     - ``default``: Normal, released state
     - ``disabled``: Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.obj.enable`` and ``lvgl.obj.disable``)
     - ``pressed``: Being pressed
@@ -337,26 +338,26 @@ The Arc consists of a background and a foreground arc. The foreground (indicator
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-  - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
-  - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
-  - **start_angle** (*Optional*, 0-360): start angle of the arc background (see note). Defaults to ``135``.
-  - **end_angle** (*Optional*, 0-360): end angle of the arc background (see note). Defaults to ``45``.
-  - **rotation** (*Optional*, int8): Offset to the 0 degree position. Defaults to ``0.0``.
-  - **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``.
-  - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
-  - **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
-  - **arc_opa** (*Optional*, string or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-  - **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to use to draw the arcs.
-  - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
-  - **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
-  - **knob** (*Optional*, list): Settings for the knob **part** to control the value. Supports a list of styles and state-based styles to customize.
-  - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
-  - any :ref:`Styling <lvgl-styling>` and state-based option to override styles inherited from parent.
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
+- **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
+- **start_angle** (*Optional*, 0-360): start angle of the arc background (see note). Defaults to ``135``.
+- **end_angle** (*Optional*, 0-360): end angle of the arc background (see note). Defaults to ``45``.
+- **rotation** (*Optional*, int8): Offset to the 0 degree position. Defaults to ``0.0``.
+- **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``.
+- **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
+- **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
+- **arc_opa** (*Optional*, string or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to use to draw the arcs.
+- **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
+- **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
+- **knob** (*Optional*, list): Settings for the knob **part** to control the value. Supports a list of styles and state-based styles to customize.
+- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
+- any :ref:`Styling <lvgl-styling>` and state-based option to override styles inherited from parent.
 
-  .. note::
+.. note::
 
-      Zero degree is at the middle right (3 o'clock) of the object and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
+    Zero degree is at the middle right (3 o'clock) of the object and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
 
 Example:
 
@@ -396,8 +397,8 @@ Not only the end, but also the start value of the bar can be set, which changes 
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-  - **indicator** (*Optional*, list): Settings for the indicator **part**
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **indicator** (*Optional*, list): Settings for the indicator **part**
 
 
 Example:
@@ -415,7 +416,7 @@ Simple push or toggle button.
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 
 
 Example:
@@ -435,8 +436,8 @@ The Button Matrix object is a lightweight way to display multiple buttons in row
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-  - **items** (*Optional*, list): Settings for the items **part**
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **items** (*Optional*, list): Settings for the items **part**
 
 
 Example:
@@ -455,7 +456,7 @@ A Canvas inherits from Image where the user can draw anything. Rectangles, texts
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 
 
 Example:
@@ -474,8 +475,8 @@ The Checkbox object is made from a "tick box" and a label. When the Checkbox is 
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-  - **indicator** (*Optional*, list): Settings for the indicator **part**
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **indicator** (*Optional*, list): Settings for the indicator **part**
 
 
 Example:
@@ -497,8 +498,8 @@ The drop-down list is closed by default and displays a single value or a predefi
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-  - **indicator** (*Optional*, list): Settings for the indicator **part**
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **indicator** (*Optional*, list): Settings for the indicator **part**
 
 
 Example:
@@ -517,7 +518,7 @@ Images are the basic widgets to display images.
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 
 
 Example:
@@ -536,9 +537,9 @@ A label is the basic object type that is used to display text.
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-  - **scrollbar** (*Optional*, list): Settings for the scrollbar **part**
-  - **selected** (*Optional*, list): Settings for the selected **part**
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **scrollbar** (*Optional*, list): Settings for the scrollbar **part**
+- **selected** (*Optional*, list): Settings for the selected **part**
 
 
 Example:
@@ -576,7 +577,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 
 
 Example:
@@ -596,7 +597,7 @@ You can use it as a parent background shape for other objects. It catches touche
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 
 
 Example:
@@ -616,8 +617,8 @@ Roller allows you to simply select one option from a list by scrolling.
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-  - **selected** (*Optional*, list): Settings for the selected **part**
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **selected** (*Optional*, list): Settings for the selected **part**
 
 
 Example:
@@ -636,9 +637,9 @@ The Slider object looks like a Bar supplemented with a knob. The knob can be dra
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-  - **indicator** (*Optional*, list): Settings for the indicator **part**
-  - **knob** (*Optional*, list): Settings for the knob **part**
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **indicator** (*Optional*, list): Settings for the indicator **part**
+- **knob** (*Optional*, list): Settings for the knob **part**
 
 
 Example:
@@ -658,9 +659,9 @@ The Switch looks like a little slider and can be used to turn something on and o
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-  - **indicator** (*Optional*, list): Settings for the indicator **part**
-  - **knob** (*Optional*, list): Settings for the knob **part**
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **indicator** (*Optional*, list): Settings for the indicator **part**
+- **knob** (*Optional*, list): Settings for the knob **part**
 
 
 Example:
@@ -681,9 +682,9 @@ The Table object is very lightweight because only the texts are stored. No real 
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-  - **items** (*Optional*, list): Settings for the items **part**
-  
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **items** (*Optional*, list): Settings for the items **part**
+
 
 Example:
 
@@ -703,11 +704,11 @@ One line mode and password modes are supported.
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-  - **scrollbar** (*Optional*, list): Settings for the scrollbar **part**
-  - **selected** (*Optional*, list): Settings for the selected **part**
-  - **cursor** (*Optional*, list): Settings for the cursor **part**
-  - **textarea_placeholder** (*Optional*, list): Settings for the textarea_placeholder **part**
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **scrollbar** (*Optional*, list): Settings for the scrollbar **part**
+- **selected** (*Optional*, list): Settings for the selected **part**
+- **cursor** (*Optional*, list): Settings for the cursor **part**
+- **textarea_placeholder** (*Optional*, list): Settings for the textarea_placeholder **part**
 
 Example:
 
@@ -723,6 +724,8 @@ Example:
 
 Fonts
 -----
+
+TODO
 
 LVGL internally uses fonts in a C array. The library offers by default the following ones preconverted:
 
