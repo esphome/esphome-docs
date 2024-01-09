@@ -117,96 +117,6 @@ Example:
     By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
 
 
-.. _lvgl-styling:
-
-Style properties
-----------------
-
-You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each object. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
-
-- **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to the parent or screen).
-- **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to the parent or screen).
-- **width** (*Optional*): Width of the widget - one of ``size_content``, a number (pixels) or a percentage.
-- **height** (*Optional*): Height of the widget - one of ``size_content``, a number (pixels) or a percentage.
-- **opa** (*Optional*, string or percentage): Opacity of the entire widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **opa_layered** (*Optional*, string or percentage): Opacity of the entire layer the widget is on. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **align** (*Optional*, string): Alignment of the contents of the widget. One of:
-    - ``TOP_LEFT``
-    - ``TOP_MID``
-    - ``TOP_RIGHT``
-    - ``LEFT_MID``
-    - ``CENTER``
-    - ``RIGHT_MID``
-    - ``BOTTOM_LEFT``
-    - ``BOTTOM_MID``
-    - ``BOTTOM_RIGHT``
-- **bg_color** (*Optional*, :ref:`color <config-color>`): The ID of a color for the background of the widget.
-- **bg_grad_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to make the background gradually fade to.
-- **bg_dither_mode** (*Optional*, string): Set ditherhing of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``.
-- **bg_grad_dir** (*Optional*, string): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``.
-- **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``0``.
-- **bg_grad_stop** (*Optional*, 0-255): Specify where the gradient should stop: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``255``.
-- **bg_img_opa** (*Optional*, string or percentage): Opacity of the background image of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **bg_img_recolor** (*Optional*, :ref:`color <config-color>`): The ID of a color to mix with every pixel of the image. 
-- **bg_img_recolor_opa** (*Optional*, string or percentage): Opacity of the recoloring. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **bg_opa** (*Optional*, string or percentage): Opacity of the background. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **border_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to draw borders of the widget.
-- **border_opa** (*Optional*, string or percentage): Opacity of the borders of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn.
-- **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be chosen):
-    - ``NONE``
-    - ``TOP``
-    - ``BOTTOM``
-    - ``LEFT``
-    - ``RIGHT``
-    - ``INTERNAL``
-- **border_width** (*Optional*, int16): Set the width of the border in pixels.
-- **radius** (*Optional*, uint16): The radius of the rounded corners of the object. 0 = no radius i.e. square corners; 65535 = pill shaped object (true circle if object has same width and height).
-- **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
-- **text_align** (*Optional*, string): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
-- **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to render the text in.
-- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
-- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array file of the font used to render the text.
-- **text_letter_space** (*Optional*, int16): Characher spacing of the text.
-- **text_line_space** (*Optional*, int16): Line spacing of the text.
-- **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **line_width** (*Optional*, int16): Set the width of the line in pixels.
-- **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
-- **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
-- **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
-- **line_color** (*Optional*, :ref:`color <config-color>`): The ID of a color for the line.
-- **outline_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to draw an outline around the widget.
-- **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself.
-- **outline_width** (*Optional*, int16): Set the width of the outline in pixels.
-- **pad_all** (*Optional*, int16): Set the padding in all directions, in pixels.
-- **pad_top** (*Optional*, int16): Set the padding on the top, in pixels.
-- **pad_bottom** (*Optional*, int16): Set the padding on the bottom, in pixels.
-- **pad_left** (*Optional*, int16): Set the padding on the left, in pixels.
-- **pad_right** (*Optional*, int16): Set the padding on the right, in pixels.
-- **pad_row** (*Optional*, int16): Set the padding between the rows of the children elements, in pixels.
-- **pad_column** (*Optional*, int16): Set the padding between the columns of the children elements, in pixels.
-- **shadow_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to create a drop shadow under the widget.
-- **shadow_ofs_x** (*Optional*, int16): Horrizontal offset of the shadow, in pixels
-- **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels
-- **shadow_opa** (*Optional*, string or percentage): Opacity of the shadow. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **shadow_spread** (*Optional*, int16): Spread of the shadow, in pixels.
-- **shadow_width** (*Optional*, int16): Width of the shadow, in pixels.
-- **transform_angle** (*Optional*, 0-360): Trannsformation angle of the widget (eg. rotation)
-- **transform_height** (*Optional*, int16 or percentage): Trannsformation height of the widget (eg. stretching)
-- **transform_pivot_x** (*Optional*, int16 or percentage): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
-- **transform_pivot_y** (*Optional*, int16 or percentage): Vertical anchor point of the transformation. Relative to the widget's top left corner.
-- **transform_zoom** (*Optional*, 0.1-10):  Trannsformation zoom of the widget (eg. resizing)
-- **translate_x** (*Optional*, int16 or percentage): Move of the widget with this value in horizontal direction.
-- **translate_y** (*Optional*, int16 or percentage): Move of the widget with this value in vertical direction.
-- **max_height** (*Optional*, int16 or percentage): Sets a maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
-- **min_height** (*Optional*, int16 or percentage): Sets a minimal height. Pixel and percentage values can be used. Percentage values are relative to the width of the parent's content area. Defaults to ``0``. 
-- **max_width** (*Optional*, int16 or percentage): Sets a maximal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
-- **min_width** (*Optional*, int16 or percentage): Sets a minimal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
-
-
-
-
 
 .. _lvgl-theme:
 
@@ -292,6 +202,103 @@ In the example below, you have an ``arc`` with some styles set here. Note how yo
 So the inheritance happens like this: state based styles override the locally specified styles, which override the style definitions, which override the theme, which overrides the top level styles.
 
 
+.. _lvgl-styling:
+
+Style properties
+----------------
+
+You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each object. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
+
+- **align** (*Optional*, string): Alignment of the of the widget `relative to the parent <https://docs.lvgl.io/8.3/widgets/obj.html?#alignment>`__. One of:
+    - ``TOP_LEFT``
+    - ``TOP_MID``
+    - ``TOP_RIGHT``
+    - ``LEFT_MID``
+    - ``CENTER``
+    - ``RIGHT_MID``
+    - ``BOTTOM_LEFT``
+    - ``BOTTOM_MID``
+    - ``BOTTOM_RIGHT``
+    - ``OUT_LEFT_TOP``
+    - ``OUT_TOP_LEFT``
+    - ``OUT_TOP_MID``
+    - ``OUT_TOP_RIGHT``
+    - ``OUT_RIGHT_TOP``
+    - ``OUT_LEFT_MID``
+    - ``OUT_CENTER``
+    - ``OUT_RIGHT_MID``
+    - ``OUT_LEFT_BOTTOM``
+    - ``OUT_BOTTOM_LEFT``
+    - ``OUT_BOTTOM_MID``
+    - ``OUT_BOTTOM_RIGHT``
+    - ``OUT_RIGHT_BOTTOM``
+- **bg_color** (*Optional*, :ref:`color <config-color>`): The ID of a color for the background of the widget.
+- **bg_grad_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to make the background gradually fade to.
+- **bg_dither_mode** (*Optional*, string): Set ditherhing of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``.
+- **bg_grad_dir** (*Optional*, string): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``.
+- **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``0``.
+- **bg_grad_stop** (*Optional*, 0-255): Specify where the gradient should stop: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``255``.
+- **bg_img_opa** (*Optional*, string or percentage): Opacity of the background image of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **bg_img_recolor** (*Optional*, :ref:`color <config-color>`): The ID of a color to mix with every pixel of the image. 
+- **bg_img_recolor_opa** (*Optional*, string or percentage): Opacity of the recoloring. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **bg_opa** (*Optional*, string or percentage): Opacity of the background. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **opa** (*Optional*, string or percentage): Opacity of the entire widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **opa_layered** (*Optional*, string or percentage): Opacity of the entire layer the widget is on. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **border_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to draw borders of the widget.
+- **border_opa** (*Optional*, string or percentage): Opacity of the borders of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn.
+- **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be chosen):
+    - ``NONE``
+    - ``TOP``
+    - ``BOTTOM``
+    - ``LEFT``
+    - ``RIGHT``
+    - ``INTERNAL``
+- **border_width** (*Optional*, int16): Set the width of the border in pixels.
+- **radius** (*Optional*, uint16): The radius of the rounded corners of the object. 0 = no radius i.e. square corners; 65535 = pill shaped object (true circle if object has same width and height).
+- **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
+- **text_align** (*Optional*, string): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
+- **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to render the text in.
+- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
+- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array file of the font used to render the text.
+- **text_letter_space** (*Optional*, int16): Characher spacing of the text.
+- **text_line_space** (*Optional*, int16): Line spacing of the text.
+- **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **line_width** (*Optional*, int16): Set the width of the line in pixels.
+- **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
+- **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
+- **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
+- **line_color** (*Optional*, :ref:`color <config-color>`): The ID of a color for the line.
+- **outline_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to draw an outline around the widget.
+- **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself.
+- **outline_width** (*Optional*, int16): Set the width of the outline in pixels.
+- **pad_all** (*Optional*, int16): Set the padding in all directions, in pixels.
+- **pad_top** (*Optional*, int16): Set the padding on the top, in pixels.
+- **pad_bottom** (*Optional*, int16): Set the padding on the bottom, in pixels.
+- **pad_left** (*Optional*, int16): Set the padding on the left, in pixels.
+- **pad_right** (*Optional*, int16): Set the padding on the right, in pixels.
+- **pad_row** (*Optional*, int16): Set the padding between the rows of the children elements, in pixels.
+- **pad_column** (*Optional*, int16): Set the padding between the columns of the children elements, in pixels.
+- **shadow_color** (*Optional*, :ref:`color <config-color>`): The ID of a color to create a drop shadow under the widget.
+- **shadow_ofs_x** (*Optional*, int16): Horrizontal offset of the shadow, in pixels
+- **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels
+- **shadow_opa** (*Optional*, string or percentage): Opacity of the shadow. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **shadow_spread** (*Optional*, int16): Spread of the shadow, in pixels.
+- **shadow_width** (*Optional*, int16): Width of the shadow, in pixels.
+- **transform_angle** (*Optional*, 0-360): Trannsformation angle of the widget (eg. rotation)
+- **transform_height** (*Optional*, int16 or percentage): Trannsformation height of the widget (eg. stretching)
+- **transform_pivot_x** (*Optional*, int16 or percentage): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
+- **transform_pivot_y** (*Optional*, int16 or percentage): Vertical anchor point of the transformation. Relative to the widget's top left corner.
+- **transform_zoom** (*Optional*, 0.1-10):  Trannsformation zoom of the widget (eg. resizing)
+- **translate_x** (*Optional*, int16 or percentage): Move of the widget with this value in horizontal direction.
+- **translate_y** (*Optional*, int16 or percentage): Move of the widget with this value in vertical direction.
+- **max_height** (*Optional*, int16 or percentage): Sets a maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
+- **min_height** (*Optional*, int16 or percentage): Sets a minimal height. Pixel and percentage values can be used. Percentage values are relative to the width of the parent's content area. Defaults to ``0``. 
+- **max_width** (*Optional*, int16 or percentage): Sets a maximal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
+- **min_width** (*Optional*, int16 or percentage): Sets a minimal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
+
+
 .. _lvgl-widgets:
 
 Widgets
@@ -301,7 +308,10 @@ Common properties
 *****************
 
 The properties below are common to all widgets.
-
+- **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to top left of parent or screen). If layouts are used, or if specfiyng ``align``, can be omitted for automatic placement.
+- **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If layouts are used, or if specfiyng ``align``, can be omitted for automatic placement.
+- **width** (*Optional*): Width of the widget in pixels or a percentage, or ``size_content`` (see below).
+- **height** (*Optional*): Height of the widget in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the widget based on its contents (children objects, or eg. image size in case of ``img``.
 - **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused object which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
 - **state** (*Optional*, string): Widgets or their (sub)parts can have have states, which support separate styling. These state styless inherit from theme, but can be locally overriden withing style definitions or locally set. The state itself can be can be changed by interacting with the widget itself, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.obj.update`` action.
     - ``default``: Normal, released state
@@ -731,73 +741,66 @@ In ESPHome you can also use a :ref:`font configured in the normal way<display-fo
 
 
 
-
-
-
-
-
-
 .. _lvgl-objupd-act:
 
 ``lvgl.obj.update`` Action
 --------------------------
 
-This powerful :ref:`action <config-action>` allows changing on the fly any property or flag of any widget.
+This powerful :ref:`action <config-action>` allows changing on the fly any :ref:`style property <lvgl-styling>` or :ref:`flag <lvgl-objupdflag-act>` of any widget.
 
 .. code-block:: yaml
 
     on_...:
       then:
         - lvgl.obj.update:
-            id: btn_relay_1
+            id: my_button_id
+            bg_color: 0xFF0000
             state:
               disabled: true
-
-
+ 
 
 .. _lvgl-objupdflag-act:
 
-In addition to visual stilyng, each widget supports some flags to influence the behavior:
-
+In addition to visual stilyng, each widget supports some boolean flags to influence the behavior:
 
 .. code-block:: yaml
 
     on_...:
       then:
         - lvgl.obj.update:
-            id: btn_relay_1
+            id: my_label_id
             hidden: true
 
 
-    - **hidden** (*Optional*, boolean): make the object hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.obj.show`` and ``lvgl.obj.hide``
-    - **clickable** (*Optional*, boolean): make the object clickable by input devices
-    - **click_focusable** (*Optional*, boolean): add focused state to the object when clicked
-    - **checkable** (*Optional*, boolean): toggle checked state when the object is clicked
-    - **scrollable** (*Optional*, boolean): make the object scrollable
-    - **scroll_elastic** (*Optional*, boolean): allow scrolling inside but with slower speed
-    - **scroll_momentum** (*Optional*, boolean): make the object scroll further when "thrown"
-    - **scroll_one** (*Optional*, boolean): allow scrolling only one snappable children
-    - **scroll_chain_hor** (*Optional*, boolean): allow propagating the horizontal scroll to a parent
-    - **scroll_chain_ver** (*Optional*, boolean): allow propagating the vertical scroll to a parent
-    - **scroll_chain simple** (*Optional*, boolean): packaging for (``scroll_chain_hor** or ``scroll_chain_ver``)
-    - **scroll_on_focus** (*Optional*, boolean): automatically scroll object to make it visible when focused
-    - **scroll_with_arrow** (*Optional*, boolean): allow scrolling the focused object with arrow keys
-    - **snappable** (*Optional*, boolean): if scroll snap is enabled on the parent it can snap to this object
-    - **press_lock** (*Optional*, boolean): keep the object pressed even if the press slid from the object
-    - **event_bubble** (*Optional*, boolean): propagate the events to the parent too
-    - **gesture_bubble** (*Optional*, boolean): propagate the gestures to the parent
-    - **adv_hittest** (*Optional*, boolean): allow performing more accurate hit (click) test. E.g. Accounting for rounded corners
-    - **ignore_layout** (*Optional*, boolean): make the object positionable by the layouts
-    - **floating** (*Optional*, boolean): do not scroll the object when the parent scrolls and ignore layout
-    - **overflow_visible** (*Optional*, boolean): do not clip the children's content to the parent's boundary
-    - **layout_1** (*Optional*, boolean): custom flag, free to use by layouts
-    - **layout_2** (*Optional*, boolean): custom flag, free to use by layouts
-    - **widget_1** (*Optional*, boolean): custom flag, free to use by widget
-    - **widget_2** (*Optional*, boolean): custom flag, free to use by widget
-    - **user_1** (*Optional*, boolean): custom flag, free to use by user
-    - **user_2** (*Optional*, boolean): custom flag, free to use by user
-    - **user_3** (*Optional*, boolean): custom flag, free to use by user
-    - **user_4** (*Optional*, boolean): custom flag, free to use by user
+- **hidden** (*Optional*, boolean): make the object hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.obj.show`` and ``lvgl.obj.hide``
+- **clickable** (*Optional*, boolean): make the object clickable by input devices
+- **click_focusable** (*Optional*, boolean): add focused state to the object when clicked
+- **checkable** (*Optional*, boolean): toggle checked state when the object is clicked
+- **scrollable** (*Optional*, boolean): make the object scrollable
+- **scroll_elastic** (*Optional*, boolean): allow scrolling inside but with slower speed
+- **scroll_momentum** (*Optional*, boolean): make the object scroll further when "thrown"
+- **scroll_one** (*Optional*, boolean): allow scrolling only one snappable children
+- **scroll_chain_hor** (*Optional*, boolean): allow propagating the horizontal scroll to a parent
+- **scroll_chain_ver** (*Optional*, boolean): allow propagating the vertical scroll to a parent
+- **scroll_chain simple** (*Optional*, boolean): packaging for (``scroll_chain_hor** or ``scroll_chain_ver``)
+- **scroll_on_focus** (*Optional*, boolean): automatically scroll object to make it visible when focused
+- **scroll_with_arrow** (*Optional*, boolean): allow scrolling the focused object with arrow keys
+- **snappable** (*Optional*, boolean): if scroll snap is enabled on the parent it can snap to this object
+- **press_lock** (*Optional*, boolean): keep the object pressed even if the press slid from the object
+- **event_bubble** (*Optional*, boolean): propagate the events to the parent too
+- **gesture_bubble** (*Optional*, boolean): propagate the gestures to the parent
+- **adv_hittest** (*Optional*, boolean): allow performing more accurate hit (click) test. E.g. Accounting for rounded corners
+- **ignore_layout** (*Optional*, boolean): make the object positionable by the layouts
+- **floating** (*Optional*, boolean): do not scroll the object when the parent scrolls and ignore layout
+- **overflow_visible** (*Optional*, boolean): do not clip the children's content to the parent's boundary
+- **layout_1** (*Optional*, boolean): custom flag, free to use by layouts
+- **layout_2** (*Optional*, boolean): custom flag, free to use by layouts
+- **widget_1** (*Optional*, boolean): custom flag, free to use by widget
+- **widget_2** (*Optional*, boolean): custom flag, free to use by widget
+- **user_1** (*Optional*, boolean): custom flag, free to use by user
+- **user_2** (*Optional*, boolean): custom flag, free to use by user
+- **user_3** (*Optional*, boolean): custom flag, free to use by user
+- **user_4** (*Optional*, boolean): custom flag, free to use by user
 
 
 
@@ -878,6 +881,7 @@ This :ref:`condition <config-condition>` checks if LVGL is in idle state or not.
             then:
               - light.turn_off:
                   id: display_backlight
+                  transition_length: 3s
 
 
 .. _lvgl-paused-cond:
@@ -898,6 +902,7 @@ This :ref:`condition <config-condition>` checks if LVGL is in paused state or no
               - lvgl.resume:
               - light.turn_on:
                   id: display_backlight
+                  transition_length: 150ms
 
 
 .. _lvgl-onidle-act:
