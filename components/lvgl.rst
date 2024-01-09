@@ -50,7 +50,8 @@ Widgets integrate in ESPHome also as components:
 | Roller      | Select                        | 
 +-------------+-------------------------------+ 
 
-These are useful to perform :ref:`automations <automation>` triggered by actions performed at the screen. Check out the *See Also* section at the bottom of this document.
+These are useful to perform :ref:`automations <automation>` triggered by actions performed at the screen. Check out the :ref:`<lvgl-seealso>` section at the bottom of this document.
+
 
 Main Component
 --------------
@@ -1001,6 +1002,8 @@ LVLG supports numeric properties only as integer values with variable minimums a
 - ``int16`` (signed) supports values ranging from -32768 to 32767.   
 - ``uint16`` (unsigned) supports values ranging from 0 to 65535.
 
+
+.. _lvgl-seealso:
 
 See Also
 --------
