@@ -566,10 +566,6 @@ Example:
     # Example widget:
     - 
 
-TODO
-      - lvgl.label.update:
-          id: day_label
-          text: !lambda |-
 
 
 
