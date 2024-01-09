@@ -438,7 +438,7 @@ Example:
     # Example widget:
     - 
 
-The ``btn`` can be also integrated as :doc:`/components/binary_sensor/lvgl`.
+The ``btn`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
 
 
 ``btnmatrix``
@@ -515,67 +515,7 @@ Specific configuration options:
 - **selected_index**
 - **dir**
 - **dropdown_list**
-- **symbol** (*Optional*, enum): A symbol (typically an arrow) can be added to the dropdown list. If the direction of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. One of: 
-    - ``AUDIO``
-    - ``VIDEO``
-    - ``LIST``
-    - ``OK``
-    - ``CLOSE``
-    - ``POWER``
-    - ``SETTINGS``
-    - ``HOME``
-    - ``DOWNLOAD``
-    - ``DRIVE``
-    - ``REFRESH``
-    - ``MUTE``
-    - ``VOLUME_MID``
-    - ``VOLUME_MAX``
-    - ``IMAGE``
-    - ``TINT``
-    - ``PREV``
-    - ``PLAY``
-    - ``PAUSE``
-    - ``STOP``
-    - ``NEXT``
-    - ``EJECT``
-    - ``LEFT``
-    - ``RIGHT``
-    - ``PLUS``
-    - ``MINUS``
-    - ``EYE_OPEN``
-    - ``EYE_CLOSE``
-    - ``WARNING``
-    - ``SHUFFLE``
-    - ``UP``
-    - ``DOWN``
-    - ``LOOP``
-    - ``DIRECTORY``
-    - ``UPLOAD``
-    - ``CALL``
-    - ``CUT``
-    - ``COPY``
-    - ``SAVE``
-    - ``BARS``
-    - ``ENVELOPE``
-    - ``CHARGE``
-    - ``PASTE``
-    - ``BELL``
-    - ``KEYBOARD``
-    - ``GPS``
-    - ``FILE``
-    - ``WIFI``
-    - ``BATTERY_FULL``
-    - ``BATTERY_3``
-    - ``BATTERY_2``
-    - ``BATTERY_1``
-    - ``BATTERY_EMPTY``
-    - ``USB``
-    - ``BLUETOOTH``
-    - ``TRASH``
-    - ``EDIT``
-    - ``BACKSPACE``
-    - ``SD_CARD``
-    - ``NEW_LINE``
+- **symbol** (*Optional*, enum): A symbol (typically an arrow) can be added to the dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. One of: ``AUDIO``, ``VIDEO``, ``LIST``, ``OK``, ``CLOSE``, ``POWER``, ``SETTINGS``, ``HOME``, ``DOWNLOAD``, ``DRIVE``, ``REFRESH``, ``MUTE``, ``VOLUME_MID``, ``VOLUME_MAX``, ``IMAGE``, ``TINT``, ``PREV``, ``PLAY``, ``PAUSE``, ``STOP``, ``NEXT``, ``EJECT``, ``LEFT``, ``RIGHT``, ``PLUS``, ``MINUS``, ``EYE_OPEN``, ``EYE_CLOSE``, ``WARNING``, ``SHUFFLE``, ``UP``, ``DOWN``, ``LOOP``, ``DIRECTORY``, ``UPLOAD``, ``CALL``, ``CUT``, ``COPY``, ``SAVE``, ``BARS``, ``ENVELOPE``, ``CHARGE``, ``PASTE``, ``BELL``, ``KEYBOARD``, ``GPS``, ``FILE``, ``WIFI``, ``BATTERY_FULL``, ``BATTERY_3``, ``BATTERY_2``, ``BATTERY_1``, ``BATTERY_EMPTY``, ``USB``, ``BLUETOOTH``, ``TRASH``, ``EDIT``, ``BACKSPACE``, ``SD_CARD``, ``NEW_LINE``
 
 Example:
 
@@ -738,6 +678,7 @@ Specific configuration options:
 - **indicator** (*Optional*, list): Settings for the indicator **part**
 - **knob** (*Optional*, list): Settings for the knob **part**
 
+The ``switch`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
 
 Example:
 
@@ -1023,6 +964,7 @@ See Also
 
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`
+- :doc:`/components/switch/lvgl`
 - :doc:`/components/number/lvgl`
 - :doc:`/components/touchscreen/index`
 - :doc:`/components/sensor/rotary_encoder`
