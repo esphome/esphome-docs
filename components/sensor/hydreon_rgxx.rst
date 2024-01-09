@@ -102,35 +102,37 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **force_units** (*Optional*, string): Only applies to RG-15. DIP switch 1 by default selects the unit but can be over-riden/forced 
-  by setting this option. Must be either ``mm`` or ``inch``.
+- **force_units** (*Optional*, string): Only applies to RG-15. Defaults to force units ``mm``.
+  The RG-15 DIP switch 1 selects the unit but can be over-riden/forced by setting this option.
+  Must be ``mm`` , ``inch`` or ``dip1``. Note: ``dip1`` effectively disables forcing units ie unit is set by DIP switch 1.
 
-- **force_resolution** (*Optional*, string): Only applies to RG-15. DIP switch 2 by default selects the resolution but can be over-riden/forced 
-  by setting this option. Must be ``low`` or ``high``.
+- **force_resolution** (*Optional*, string): Only applies to RG-15. Defaults to force resolution ``high``. 
+  The RG-15 DIP switch 2 selects resolution but can be over-riden/forced by setting this option. 
+  Must be ``low`` , ``high`` or ``dip2``. Note: ``dip2`` effectively disables forcing resolution ie resolution is set by DIP switch 2.
 
 
-- **acc** (*Optional*): Amount of rain since last message (see ``update_interval``), rain unit is set by DIP switch 1 or by **force_units**.
+- **acc** (*Optional*): Amount of rain since last message (see ``update_interval``), rain unit defaults to ``mm`` or can be set by **force_units**.
   Only applies to RG-15.
 
   - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **event_acc** (*Optional*): Amount of rain for this event (i.e. since it last stopped raining), rain unit is set by DIP switch 1 or by **force_units**.
+- **event_acc** (*Optional*): Amount of rain for this event (i.e. since it last stopped raining), rain unit defaults to ``mm`` or can be set by **force_units**.
   Only applies to RG-15.
 
   - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **total_acc** (*Optional*): Total amount of rain this sensor has ever measured, rain unit is set by DIP switch 1 or by **force_units**.
+- **total_acc** (*Optional*): Total amount of rain this sensor has ever measured, rain unit defaults to ``mm`` or can set by **force_units**.
   Only applies to RG-15.
 
   - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **r_int** (*Optional*): Current rain intensity in *rain unit*``/h``. rain unit is set by DIP switch 1 or by **force_units**.
+- **r_int** (*Optional*): Current rain intensity in ``rain unit/h``, rain unit defaults to ``mm`` or can be set by **force_units**.
   Only applies to RG-15.
 
   - **name** (**Required**, string): The name for the sensor.
