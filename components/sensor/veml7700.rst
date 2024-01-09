@@ -4,7 +4,7 @@ VEML7700 / VEML6030 Ambient Light Sensor
 .. seo::
     :description: Instructions for setting up VEML7700 / VEML6030 ambient light sensors in ESPHome.
     :image: veml7700.jpg
-    :keywords: VEML7700
+    :keywords: VEML7700, VEML6300
 
 The ``veml7700`` sensor platform allows you to use the Vishay VEML7700 and VEML6030 ambient light sensors with ESPHome.
 Communication with the device is over :ref:`I²C <i2c>`, which must be present in your configuration. VEML7700 and VEML6030 
@@ -32,7 +32,7 @@ The VEML 7700/6030 devices are available on breakout boards from a number of ven
     VEML sensors in Home Assistant UI.
 
 The sensor is a high accuracy ambient light digital 16-bit resolution sensor with dynamic range from 0 lux to about 120,000 lux.
-Wide range of measurements enabled by four configurable *gain* levels and 6 different *integration time* options.
+Wide range of measurements enabled by four configurable *gain* levels and six different *integration time* options.
 Higher values used for lower light conditions. 
 
 The sensor has two photodiodes with different spectral response represented by two channels: *ALS* channel and *WHITE* channel.
