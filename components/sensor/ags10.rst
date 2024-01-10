@@ -60,6 +60,7 @@ Actions:
 --------
 
 .. _sensor-AGS10SetZeroPointAction:
+
 ``ags10.set_zero_point`` Action
 -------------------------------
 
@@ -93,6 +94,7 @@ Configuration option:
 
 
 .. _sensor-AGS10NewI2cAddressAction:
+
 ``ags10.new_i2c_address`` Action
 --------------------------------
 
