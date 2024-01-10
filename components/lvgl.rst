@@ -742,7 +742,16 @@ Example:
 .. code-block:: yaml
 
     # Example widget:
-    - 
+    - roller:
+        x: 10
+        y: 10
+        id: roller_id
+        options:
+          - Violin
+          - Piano
+          - Bassoon
+          - Chello
+          - Drums
 
 The ``roller`` can be also integrated as :doc:`/components/select/lvgl`.
 
@@ -771,7 +780,14 @@ Example:
 .. code-block:: yaml
 
     # Example widget:
-    - 
+    - slider:
+        x: 10
+        y: 10
+        width: 220
+        id: slider_id
+        value: 75
+        min_value: 1
+        max_value: 100
 
 The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
 
