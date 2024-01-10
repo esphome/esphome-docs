@@ -218,28 +218,10 @@ Style properties
 You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each object. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
 
 - **align** (*Optional*, enum): Alignment of the of the widget `relative to the parent <https://docs.lvgl.io/8.3/widgets/obj.html?#alignment>`__. One of:
-    - ``TOP_LEFT``
-    - ``TOP_MID``
-    - ``TOP_RIGHT``
-    - ``LEFT_MID``
-    - ``CENTER``
-    - ``RIGHT_MID``
-    - ``BOTTOM_LEFT``
-    - ``BOTTOM_MID``
-    - ``BOTTOM_RIGHT``
-    - ``OUT_LEFT_TOP``
-    - ``OUT_TOP_LEFT``
-    - ``OUT_TOP_MID``
-    - ``OUT_TOP_RIGHT``
-    - ``OUT_RIGHT_TOP``
-    - ``OUT_LEFT_MID``
-    - ``OUT_CENTER``
-    - ``OUT_RIGHT_MID``
-    - ``OUT_LEFT_BOTTOM``
-    - ``OUT_BOTTOM_LEFT``
-    - ``OUT_BOTTOM_MID``
-    - ``OUT_BOTTOM_RIGHT``
-    - ``OUT_RIGHT_BOTTOM``
+
+.. figure:: /components/images/lvgl_align.png
+    :align: center
+
 - **anim_time** TODO !!
 - **bg_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background of the widget.
 - **bg_grad_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to make the background gradually fade to.
