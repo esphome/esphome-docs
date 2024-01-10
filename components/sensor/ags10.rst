@@ -1,5 +1,5 @@
 AGS10 Volatile Organic Compound (VOC) Sensor
-===========================================
+============================================
 
 .. seo::
     :description: Instructions for setting up AGS10 VOC sensors with ESPHome
@@ -61,7 +61,7 @@ Actions:
 
 .. _sensor-AGS10SetZeroPointAction:
 ``ags10.set_zero_point`` Action
------------------------------------
+-------------------------------
 
 Zero-point of AGS10 has been calibrated before leaving factory. User can re-calibrate the zero-point as
 needed.
@@ -94,7 +94,7 @@ Configuration option:
 
 .. _sensor-AGS10NewI2cAddressAction:
 ``ags10.new_i2c_address`` Action
----------------------------------
+--------------------------------
 
 I2C address of AGS10 can be modified, and it is possible to use multiple AGS10 sensors on one bus.
 After sending the command for address changing, the new address is saved and takes effect immediately even
