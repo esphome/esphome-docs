@@ -20,17 +20,17 @@ must be present in your device's configuration in order to use it.
 
 .. code-block:: yaml
 
-     # Example configuration entries
-     binary_sensor:
-       - platform: nfc
-         ndef_contains: pulse
-         name: "NFC 1 Tag"
-       - platform: nfc
-         tag_id: pulsed
-         name: "NFC 2 Tag"
-       - platform: nfc
-         uid: 74-10-37-94
-         name: "MFC Tag"
+    # Example configuration entries
+    binary_sensor:
+      - platform: nfc
+        ndef_contains: pulse
+        name: "NFC 1 Tag"
+      - platform: nfc
+        tag_id: pulsed
+        name: "NFC 2 Tag"
+      - platform: nfc
+        uid: 74-10-37-94
+        name: "MFC Tag"
 
 Configuration variables:
 ------------------------
