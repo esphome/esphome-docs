@@ -332,6 +332,9 @@ In addition to visual stilyng, each widget supports :ref:`dynamically settable f
 
 The Arc consists of a background and a foreground arc. The foreground (indicator) can be touch-adjusted with a knob.
 
+.. figure:: /components/images/lvgl_arc.png
+    :align: center
+
 Specific configuration options:
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
@@ -380,6 +383,9 @@ The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 *******
 
 The bar object has a background and an indicator on it. The width of the indicator is set according to the current value of the bar.
+
+.. figure:: /components/images/lvgl_bar.png
+    :align: center
 
 Vertical bars can be created if the width of the object is smaller than its height.
 
@@ -514,6 +520,9 @@ Example:
 ************
 
 The Checkbox object is made internally from a "tick box" and a label. When the Checkbox is clicked the tick box is ``checked`` state toggled.
+
+.. figure:: /components/images/lvgl_checkbox.png
+    :align: center
 
 Specific configuration options:
 
