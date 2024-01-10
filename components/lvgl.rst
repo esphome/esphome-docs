@@ -874,6 +874,9 @@ Example:
 
 The Base Object can be directly used as a simple, empty widget. It is nothing more than a (rounded) rectangle.
 
+.. figure:: /components/images/lvgl_baseobj.png
+    :align: center
+
 You can use it as a parent background shape for other objects. It catches touches!
 
 Specific configuration options:
