@@ -1,5 +1,5 @@
-VEML7700 / VEML6030 Ambient Light Sensor
-========================================
+VEML7700 and VEML6030 Ambient Light Sensors
+===========================================
 
 .. seo::
     :description: Instructions for setting up VEML7700 / VEML6030 ambient light sensors in ESPHome.
@@ -61,112 +61,10 @@ However, it gives quite high error in very bright direct sunlight (instead of 10
 
 This Wikipedia `article <https://en.wikipedia.org/wiki/Lux>`__ has a table of some lux values for comparison.
 
-Available data
---------------
+Automatic measurement mode
+--------------------------
 
-The implementation offers six sensors: two providing *lux* value, two - unitless data measurements directly from the device 
-and two - actual *gain* and *integration time* values used for the measurement (useful in automatic mode).
-
-- **ambient_light**: Illuminance value for *ALS* channel representing human eye, lx
-- **ambient_light_counts**: Raw 16 bit reading from *ALS* channel, counts
-- **full_spectrum**: Illuminance value for *WHITE* channel with wide spectrum, lx
-- **full_spectrum_counts**: Raw 16 bit reading from *WHITE* channel, counts
-- **actual_gain**: The actual gain value being used for values reported, multiplier
-- **actual_integration_time**: The actual integration time being used for values reported, ms
-
-
-Example configuration
----------------------
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    i2c:
-      # ...
-    sensor:
-      - platform: veml7700
-        name: "Greenhouse illuminance"
-        address: 0x10
-        ambient_light:
-          name: "Ambient light"
-        ambient_light_counts:
-          name: "Ambient light counts"
-        full_spectrum:
-          name: "Full spectrum"
-        full_spectrum_counts:
-          name: "Full spectrum counts"
-        actual_integration_time:
-          name: "Actual integration time"
-        actual_gain:
-          name: "Actual gain"
-
-
-Configuration variables:
-------------------------
-
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (*Optional*, string): A user-friendly name for this VEML device.
-- **address** (*Optional*, int): Manually specify the I²C address of the device.
-  Defaults to ``0x10``. VEML7700 only uses address ``0x10``. VEML6030 can be either
-  ``0x48`` or ``0x10`` (hardware configuration).
-- **auto_mode** (*Optional*, boolean): Automatic gain and integration time selection. Defaults to ``True``.
-- **integration_time** (*Optional*, :ref:`config-time`):
-  The amount of time the sensor is exposed. Valid values are ``25ms``, ``50ms``, ``100ms`` *(default)*,
-  ``200ms``, ``400ms``, ``800ms``. *Not used* when ``auto_mode: true``.
-- **gain** (*Optional*, string): The gain the device will use for the internal ADC. Valid values are 
-  ``1/8x`` *(default)*, ``1/4x``, ``1x``, ``2x``. Higher values are better in low-light conditions.
-  *Not used* when ``auto_mode: true``.
-- **lux_compensation** (*Optional*, boolean): Lux compensation formula is used as per manufacturer.
-  Defaults to ``True``.
-- **glass_attenuation_factor** (*Optional*): The attenuation factor of glass if it's behind some glass 
-  or plastic facia.  Default is ``1.0`` means ``100%`` transmissivity. ``2`` means ``50%`` transmissivity etc.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval for checking the sensors.
-  Defaults to ``60s``.
-
-
-- All other options for I²C devices described at :ref:`I²C Bus <i2c>`. 
-  The sensor supports bus modes "standard" and "fast": 10 kHz to 400 kHz.
-
-Sensors
-.......
-
-You can configure all or any subset of the sensors described earlier.
-Each configured sensor is reported separately on each ``update_interval``.
-
-- **ambient_light** (*Optional*): Illuminance for visible light ("ALS" channel), lx.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **ambient_light_counts** (*Optional*): The reading for visible light ("ALS" channel), counts.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **full_spectrum** (*Optional*): Illuminance for the full spectrum sensor ("WHITE" channel), counts.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **full_spectrum_couts** (*Optional*): The reading for the full spectrum sensor ("WHITE" channel), counts
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **actual_gain** (*Optional*): The value of gain used for reported values. Particularly useful when "auto_mode" is selected.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **actual_integration_time** (*Optional*): The value of gain used for reported values, ms. Particularly useful when "auto_mode" is selected.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-Automatic mode
---------------
-
-In automatic mode component starts from Gain 1/8 and 100 ms. 
+In automatic measurement mode the component starts from Gain 1/8 and 100 ms. 
 
 - If illuminance is higher than 46 lx (100 counts) it gradually reduces integration time to get good reading (best in range 100 - 10,000 counts). 
 - In case of low illuminance (less than 46 lx) it tries to gradually increase gain and only then increase integration time.
@@ -192,6 +90,107 @@ in configuration.
     lux & - & \text{calculated illumination, lx}\\
     lux_{comp} & - & \text{compensated illumniation, lx}\\
     \end{array}
+
+Available data
+--------------
+
+The implementation offers seven sensors: two providing *lux* value, two - unitless data measurements directly from the device 
+and two - actual *gain* and *integration time* values used for the measurement (useful in automatic mode), and one - fully 
+artificial, somewhat representing near-infrared part of spectre.
+
+- **ambient_light**: Illuminance value for *ALS* channel representing human eye, lx
+- **full_spectrum**: Illuminance value for *WHITE* channel with wide spectrum, lx
+- **infrared**: Calculated illuminance value (*WHITE* minus *ALS*) representing near-infrared spectre, lx
+- **ambient_light_counts**: Raw 16 bit reading from *ALS* channel, counts
+- **full_spectrum_counts**: Raw 16 bit reading from *WHITE* channel, counts
+- **actual_gain**: The actual gain value being used for values reported, multiplier
+- **actual_integration_time**: The actual integration time being used for values reported, ms
+
+Example configuration
+---------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    i2c:
+      # ...
+    sensor:
+      - platform: veml7700
+        name: "Greenhouse illuminance"
+        address: 0x10
+        update_interval: 60s
+        ambient_light:
+          name: "Ambient light"
+        full_spectrum:
+          name: "Full spectrum"
+        infrared:
+          name: "Calculated near-IR"
+
+
+Configuration variables:
+------------------------
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **name** (*Optional*, string): A user-friendly name for this VEML device.
+- **address** (*Optional*, int): Manually specify the I²C address of the device.
+  Defaults to ``0x10``. VEML7700 only uses address ``0x10``. VEML6030 can be either
+  ``0x48`` or ``0x10`` (hardware configuration).
+- **auto_mode** (*Optional*, boolean): Automatic gain and integration time selection. Defaults to ``True``.
+- **integration_time** (*Optional*, :ref:`config-time`):
+  The amount of time the sensor is exposed. Valid values are ``25ms``, ``50ms``, ``100ms`` *(default)*,
+  ``200ms``, ``400ms``, ``800ms``. *Ignored in automatic mode*.
+- **gain** (*Optional*, string): The gain the device will use for the internal ADC. Valid values are 
+  ``1/8x`` *(default)*, ``1/4x``, ``1x``, ``2x``. Higher values are better in low-light conditions.
+  *Ignored in automatic mode*.
+- **lux_compensation** (*Optional*, boolean): Lux compensation formula is used as per manufacturer.
+  Defaults to ``True``.
+- **glass_attenuation_factor** (*Optional*): The attenuation factor of glass if it's behind some glass 
+  or plastic facia.  Default is ``1.0`` means ``100%`` transmissivity. ``2`` means ``50%`` transmissivity etc.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval for checking the sensors.
+  Defaults to ``60s``.
+- All other options for I²C devices described at :ref:`I²C Bus <i2c>`. 
+  The sensor supports bus modes "standard" and "fast": 10 kHz to 400 kHz.
+
+Sensors
+.......
+
+You can configure all or any subset of the sensors described earlier.
+Each configured sensor is reported separately on each ``update_interval``.
+
+- **ambient_light** (*Optional*): Illuminance for visible light (*ALS channel*), lx.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **full_spectrum** (*Optional*): Illuminance for the full spectrum sensor (*WHITE channel*), lx.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **infrared** (*Optional*): Calculated illuminance for the Near-IR spectrum (*WHITE* minus *ALS*), lx.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **ambient_light_counts** (*Optional*): The reading for visible light (*ALS channel*), counts.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **full_spectrum_counts** (*Optional*): The reading for the full spectrum sensor (*WHITE channel*), counts.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **actual_gain** (*Optional*): The value of gain used for reported values. Particularly useful when "auto_mode" is selected.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **actual_integration_time** (*Optional*): The value of gain used for reported values, ms. Particularly useful when "auto_mode" is selected.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
