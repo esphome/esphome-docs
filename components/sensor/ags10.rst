@@ -14,7 +14,7 @@ required to be set up in your configuration for this sensor to work.
 
 .. warning::
 
-The sensor supports up to 15kHz operation, so you should specify up to ``frequency: 15kHz`` in your ``i2c`` configuration.
+    The sensor supports up to 15kHz operation, so you should specify up to ``frequency: 15kHz`` in your ``i2c`` configuration.
 
 
 .. _ASAIR: http://www.aosong.com/en/products-86.html
