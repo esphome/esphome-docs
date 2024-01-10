@@ -79,7 +79,7 @@ needed.
     on_...:
       - ags10.set_zero_point:
           id: ags10_1_id
-          mode: ``CURRENT_VALUE``
+          mode: CURRENT_VALUE
 
 Configuration option:
 
