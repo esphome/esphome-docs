@@ -592,6 +592,9 @@ The ``dropdown`` can be also integrated as :doc:`/components/select/lvgl`.
 
 Images are the basic widgets to display images. 
 
+.. figure:: /components/images/lvgl_image.png
+    :align: center
+
 Specific configuration options:
 
 - **src** (**Required**, :ref:`image <display-image>`):  The ID of an existing image configuration.
@@ -609,7 +612,8 @@ Example:
         y: 10
         src: cat_image
         id: img_id
-
+        radius: 11
+        clip_corner: true
 
 ``label``
 *********
@@ -670,6 +674,9 @@ Example:
 
 The LEDs are rectangle-like (or circle) object whose brightness can be adjusted. With lower brightness the colors of the LED become darker.
 
+.. figure:: /components/images/lvgl_led.png
+    :align: center
+
 Specific configuration options:
 
 - **color** (*Required*, list): TODO
@@ -717,6 +724,9 @@ Example:
 **********
 
 Roller allows you to simply select one option from a list by scrolling.
+
+.. figure:: /components/images/lvgl_roller.png
+    :align: center
 
 Specific configuration options:
 
