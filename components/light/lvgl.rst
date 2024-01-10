@@ -33,6 +33,11 @@ Example:
         led: led_id
         name: LVGL light
 
+.. note::
+
+    To have linear brightness control, set `gamma_correct` to `0`.
+
+
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
