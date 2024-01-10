@@ -483,6 +483,7 @@ Often known as "tag" or "card" readers within the community.
 
 .. imgtable::
 
+    NFC Tag, components/binary_sensor/nfc, nfc.png
     PN532, components/binary_sensor/pn532, pn532.jpg
     PN7150, components/binary_sensor/pn7150, pn7150.jpg
     PN716X, components/binary_sensor/pn7160, pn716x.jpg

@@ -25,6 +25,8 @@ only read/write mode is enabled; card/tag emulation is enabled only if the ``emu
 variable is defined (see below). Regardless, reader/writer (polling) mode and card/tag emulation mode may be
 independently enabled and disabled by using the corresponding :ref:`pn7150-actions` (see below).
 
+In addition, the :doc:`nfc` platform may be used to quickly and easily identify tags presented to the reader.
+
 .. code-block:: yaml
 
     pn7150_i2c:
