@@ -250,6 +250,7 @@ Distance
 .. imgtable::
 
     A01NYUB, components/sensor/a01nyub, a01nyub.jpg, Acoustic distance
+    A02YYUW, components/sensor/a02yyuw, a02yyuw.jpg, Acoustic distance
     HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg, Acoustic distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
@@ -367,6 +368,7 @@ Magnetic
 .. imgtable::
 
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg, ESP internal, dark-invert
+    AS5600, components/sensor/as5600, as5600.jpg, 12-Bit Magnetic Position Sensor
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg, 3-Axis magnetometer
     MMC5603, components/sensor/mmc5603, mmc5603.jpg, 3-Axis magnetometer
     MMC5983, components/sensor/mmc5983, mmc5983.jpg, 3-Axis magnetometer
@@ -482,6 +484,8 @@ Often known as "tag" or "card" readers within the community.
 .. imgtable::
 
     PN532, components/binary_sensor/pn532, pn532.jpg
+    PN7150, components/binary_sensor/pn7150, pn7150.jpg
+    PN716X, components/binary_sensor/pn7160, pn716x.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
 
@@ -492,6 +496,7 @@ Touchscreen
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Touchscreen, components/touchscreen/index, touch.svg, dark-invert
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
+    FT5X06, components/touchscreen/ft5x06, indicator.jpg
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
 
 Presence Detection
@@ -662,6 +667,7 @@ Display Components
     SSD1327, components/display/ssd1327, ssd1327.jpg
     SSD1331, components/display/ssd1331, ssd1331.jpg
     SSD1351, components/display/ssd1351, ssd1351.jpg
+    ST7567, components/display/st7567, st7567.jpg
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     ST7796, components/display/ili9xxx, st7796.svg
@@ -680,10 +686,10 @@ Touchscreen Components
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
-    GT911, components/touchscreen/gt911, esp32_s3_box_3.png
     XPT2046, components/touchscreen/xpt2046, xpt2046.jpg
-
-
+    GT911, components/touchscreen/gt911, esp32_s3_box_3.png
+    FT63X6, components/touchscreen/ft63x6, wt32-sc01.png
+    
 Cover Components
 ----------------
 
@@ -841,6 +847,7 @@ Miscellaneous Components
     Status LED, components/status_led, led-on.svg, dark-invert
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
+    Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.jpg
     Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
     Wiegand Reader, components/wiegand, wiegand.jpg
     HTTP Request, components/http_request, connection.svg, dark-invert
