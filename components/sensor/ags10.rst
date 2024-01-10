@@ -13,6 +13,7 @@ ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
 .. warning::
+
 The sensor supports up to 15kHz operation, so you should specify up to ``frequency: 15kHz`` in your ``i2c`` configuration.
 
 
