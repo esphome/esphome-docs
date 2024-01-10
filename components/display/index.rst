@@ -628,6 +628,9 @@ And then later in code:
     - Axis labels are currently not possible without manually placing them.
     - The grid and border color is set with it.graph(), while the traces are defined separately.
 
+
+.. _display-qrcode:
+
 QR Code Component
 *****************
 
@@ -663,6 +666,9 @@ To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
             lambda: |-
               // Draw the QR-code at position [x=50,y=0] with white color and a 2x scale
               it.qr_code(50, 0, id(homepage_qr), Color(255,255,255), 2);
+
+
+.. _display-image:
 
 Images
 ******

@@ -1,16 +1,16 @@
-.. _lvgl-swi:
+.. _lvgl-lgh:
 
-LVGL Switch
-===========
+LVGL Light
+==========
 
 .. seo::
-    :description: Instructions for setting up a LVGL widget switch.
+    :description: Instructions for setting up a LVGL widget light.
     :image: ../images/logo_lvgl.png
 
-The ``lvgl`` switch platform creates a switch from a LVGL widget
+The ``lvgl`` light platform creates a light from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widgets are ``btn`` and ``checkbox``. A single switch supports
+Supported widgets are ``led``. A single light supports
 a single widget, thus you need to choose among which one's state you want to use.
 
 
@@ -18,26 +18,27 @@ Configuration variables:
 ------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (**Required**, string): The name of the switch.
-- **obj** (**Required**): The ID of a widget configured in LVGL, which will reflect the state of the switch.
-- All other options from :ref:`Switch <config-switch>`.
+- **name** (**Required**, string): The name of the light.
+- **led** (**Required**): The ID of a ``led`` widget configured in LVGL, which will reflect the state of the light.
+- **output_id** (**Required**): TODO
+- All other options from :ref:`light <config-light>`.
 
 
 Example:
 
 .. code-block:: yaml
 
-    switch:
+    light:
       - platform: lvgl
-        obj: checkbox_id
-        name: LVGL switch
+        led: led_id
+        name: LVGL light
 
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/binary_sensor/lvgl`
+- :doc:`/components/switch/lvgl`
 - :doc:`/components/number/lvgl`
 - :doc:`/components/select/lvgl`
-- :doc:`/components/light/lvgl`
 - :ghedit:`Edit`

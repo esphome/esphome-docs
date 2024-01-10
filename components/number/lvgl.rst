@@ -20,7 +20,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the number.
 - **animated** (*Optional*, boolean): Wether to set the value of the widget with an animation. Defaults to ``true``.
-- **obj** (*Optional*): The ID of a widget configured in LVGL, which will reflect the state of the switch.
+- **obj** (**Required**): The ID of a widget configured in LVGL, which will reflect the state of the switch.
 - All other options from :ref:`Number <config-number>`.
 
 
@@ -42,4 +42,5 @@ See Also
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/switch/lvgl`
 - :doc:`/components/select/lvgl`
+- :doc:`/components/light/lvgl`
 - :ghedit:`Edit`

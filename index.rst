@@ -592,6 +592,7 @@ Light Components
 
     H-bridge Light, components/light/hbridge, brightness-medium.svg, dark-invert
     Sonoff D1 Dimmer, components/light/sonoff_d1, sonoff_d1.jpg
+    LVGL widget, components/light/lvgl, logo_lvgl.png
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.

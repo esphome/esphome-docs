@@ -30,7 +30,7 @@ Every widget has a parent object where it is created. For example, if a label is
 The child object moves with the parent and if the parent is deleted the children will be deleted too. Children can be visible only within
 their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A screen is the *root* parent.
 
-TODO - SCREEN/PAGE
+TODO - PAGE
 
 Widgets integrate in ESPHome also as components:
 
@@ -48,6 +48,8 @@ Widgets integrate in ESPHome also as components:
 | Dropdown    | Select                        | 
 +-------------+-------------------------------+ 
 | Roller      | Select                        | 
++-------------+-------------------------------+ 
+| LED         | Light                         | 
 +-------------+-------------------------------+ 
 
 These are useful to perform :ref:`automations <automation>` triggered by actions performed at the screen. Check out the :ref:`lvgl-seealso` section at the bottom of this document.
@@ -238,6 +240,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
     - ``OUT_BOTTOM_MID``
     - ``OUT_BOTTOM_RIGHT``
     - ``OUT_RIGHT_BOTTOM``
+- **anim_time** TODO !!
 - **bg_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background of the widget.
 - **bg_grad_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to make the background gradually fade to.
 - **bg_dither_mode** (*Optional*, enum): Set ditherhing of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``.
@@ -362,9 +365,13 @@ Specific configuration options:
 - **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to use to draw the arcs.
 - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
 - **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
-- **knob** (*Optional*, list): Settings for the knob **part** to control the value. Supports a list of styles and state-based styles to customize.
-- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
-- any :ref:`Styling <lvgl-styling>` and state-based option to override styles inherited from parent.
+- **knob** (*Optional*, list): Settings for the knob **part** to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws a handle on the end of the indicator using all background properties and padding values. With zero padding the knob size is the same as the indicator's width. Larger padding makes it larger, smaller padding makes it smaller.
+- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws another arc using the arc style properties. Its padding values are interpreted relative to the background arc.
+- any :ref:`Styling <lvgl-styling>` and state-based option to override styles inherited from parent. The arc's size and position will respect the padding style properties.
+
+
+If the ``adv_hittest`` flag is enabled the arc can be clicked through in the middle. Clicks are recognized only on the ring of the background arc.
+
 
 .. note::
 
@@ -376,25 +383,15 @@ Example:
 
     # Example widget:
     - arc:
-        group: general
-        scroll_on_focus: true
-        id: arc_value
+        x: 10
+        y: 10
+        id: arc_id
         value: 75
         min_value: 1
         max_value: 100
-        arc_color: 0xFF0000
-        indicator:
-          arc_color: 0xF000FF
-          pressed:
-            arc_color: 0xFFFF00
-          focused:
-            arc_color: 0x808080
-        knob:
-          focused:
-            bg_color: 0x808080
+        adjustable: true
 
-
-The ``arc`` can be also integrated as :doc:`/components/sensor/lvgl` and :doc:`/components/number/lvgl`.
+The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
 
 ``bar``
@@ -409,40 +406,75 @@ Not only the end, but also the start value of the bar can be set, which changes 
 Specific configuration options:
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- **indicator** (*Optional*, list): Settings for the indicator **part**
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
 - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
 - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
-- **animated** (*Optional*, boolean): ``true`` , ``false`` . TODO
-- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
+- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, all the typical background properties.
+- **animated** (*Optional*, boolean): To animate indicator when bar changes value. Defaults to ``true``.
+- Style options from :ref:`lvgl-styling`. The background of the bar and it uses the typical background style properties. Adding padding makes the indicator smaller or larger.
 
 Example:
 
 .. code-block:: yaml
 
     # Example widget:
-    - 
+    - bar:
+        x: 10
+        y: 100
+        id: bar_id
+        value: 75
+        min_value: 1
+        max_value: 100
+
+
+The ``bar`` can be also integrated as :doc:`/components/number/lvgl`.
 
 
 ``btn``
 *******
 
-Simple push or toggle button.
+Simple push or toggle button. 
 
 .. figure:: /components/images/lvgl_button.png
     :align: center
 
 Specific configuration options:
 
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-
+- **checkable** (*Optional*, boolean): A significant flag to make a toggle button (which remains pressed in ``checked`` state). Defaults to ``false``.
+- Style options from :ref:`lvgl-styling` for the background of the button. Uses the typical background style properties.
 
 Example:
 
 .. code-block:: yaml
 
     # Example widget:
-    - 
+    - btn:
+        x: 10
+        y: 10
+        width: 50
+        height: 30
+        id: btn_id
+
+
+To have a button with a text label on it, add a ``label`` widget as child to it:
+
+.. code-block:: yaml
+
+    # Example toggle button with text:
+    - btn:
+        x: 10
+        y: 10
+        width: 70
+        height: 30
+        id: btn_id
+        checkable: true
+        widgets:
+          - label:
+              align: center
+              text: "Light"
+
+
+A notable state is ``checked`` (boolean) which can have different styles applied.
 
 The ``btn`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
 
@@ -454,8 +486,8 @@ The Button Matrix object is a lightweight way to display multiple buttons in row
 
 Specific configuration options:
 
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- **items** (*Optional*, list): Settings for the items **part**
+- **items** (*Optional*, list): Settings for the items **part**, the buttons all use the text and typical background style properties except translations and transformations.
+- Style options from :ref:`lvgl-styling` for the background of the button matrix, uses the typical background style properties. ``pad_row`` and ``pad_column`` set the space between the buttons.
 
 
 Example:
@@ -464,7 +496,16 @@ Example:
 
     # Example widget:
     - 
-
+    - btnmatrix:
+        x: 10
+        y: 100
+        items:
+          rows:
+            - buttons:
+                text: "a"
+                text: "b"
+                  width: 50
+            - control: "\n"
 
 
 ``canvas``
@@ -475,6 +516,7 @@ A Canvas inherits from Image where the user can draw anything. Rectangles, texts
 Specific configuration options:
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- Style options from :ref:`lvgl-styling`.
 
 
 Example:
@@ -489,12 +531,12 @@ Example:
 ``checkbox``
 ************
 
-The Checkbox object is made from a "tick box" and a label. When the Checkbox is clicked the tick box is toggled.
+The Checkbox object is made internally from a "tick box" and a label. When the Checkbox is clicked the tick box is ``checked`` state toggled.
 
 Specific configuration options:
 
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- **indicator** (*Optional*, list): Settings for the indicator **part**
+- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The "tick box" is a square that uses all the typical background style properties. By default, its size is equal to the height of the main part's font. Padding properties make the tick box larger in the respective directions.
+- Style options from :ref:`lvgl-styling` for the background of the widget and it uses the text and all the typical background style properties. ``pad_column`` adjusts the spacing between the tickbox and the label.
 
 
 Example:
@@ -502,9 +544,14 @@ Example:
 .. code-block:: yaml
 
     # Example widget:
-    - 
+    - checkbox:
+        x: 10
+        y: 10
+        id: checkbox_id
+        text: Checkbox
 
-The ``checkbox`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
+The ``checkbox`` can be also integrated as a :doc:`/components/switch/lvgl`.
+
 
 
 ``dropdown``
@@ -517,14 +564,17 @@ The drop-down list is closed by default and displays a single value or a predefi
 .. figure:: /components/images/lvgl_dropdown.png
     :align: center
 
+The Dropdown widget is built internall from a *button* and a *list* (both not related to the actual widgets with the same name).
+
 Specific configuration options:
 
-- **selected** (*Optional*): 
-- **scrollbar**
-- **selected_index**
-- **dir** ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
-- **dropdown_list**
-- **symbol** (*Optional*, enum): A symbol (typically an arrow) can be added to the dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. One of: ``AUDIO``, ``VIDEO``, ``LIST``, ``OK``, ``CLOSE``, ``POWER``, ``SETTINGS``, ``HOME``, ``DOWNLOAD``, ``DRIVE``, ``REFRESH``, ``MUTE``, ``VOLUME_MID``, ``VOLUME_MAX``, ``IMAGE``, ``TINT``, ``PREV``, ``PLAY``, ``PAUSE``, ``STOP``, ``NEXT``, ``EJECT``, ``LEFT``, ``RIGHT``, ``PLUS``, ``MINUS``, ``EYE_OPEN``, ``EYE_CLOSE``, ``WARNING``, ``SHUFFLE``, ``UP``, ``DOWN``, ``LOOP``, ``DIRECTORY``, ``UPLOAD``, ``CALL``, ``CUT``, ``COPY``, ``SAVE``, ``BARS``, ``ENVELOPE``, ``CHARGE``, ``PASTE``, ``BELL``, ``KEYBOARD``, ``GPS``, ``FILE``, ``WIFI``, ``BATTERY_FULL``, ``BATTERY_3``, ``BATTERY_2``, ``BATTERY_1``, ``BATTERY_EMPTY``, ``USB``, ``BLUETOOTH``, ``TRASH``, ``EDIT``, ``BACKSPACE``, ``SD_CARD``, ``NEW_LINE``
+- **options** (*Required*, list): The list of available options in the drop-down.
+- **dir** (*Optional*, enum): Where the list part of the dropdown gets created relative to the button part. ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
+- **selected** (*Optional*, list): Settings for the selected **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Refers to the currently pressed, checked or pressed+checked option. Uses the typical background properties.
+- **scrollbar** (*Optional*, list): Settings for the scrollbar **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scrollbar background, border, shadow properties and width (for its own width) and right padding for the spacing on the right.
+- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, and is the parent of ``symbol``.
+- **symbol** (*Optional*, enum): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from the built-in ones.
+- Style options from :ref:`lvgl-styling` for the background of the button and the list. Uses the typical background properties and text properties for the text on it. ``max_height`` can be used to limit the height of the list.
 
 
 Example:
@@ -533,6 +583,15 @@ Example:
 
     # Example widget:
     - 
+    - dropdown:
+        x: 10
+        y: 60
+        width: 90
+        id: dropdown_id
+        options:
+          - Violin
+          - Piano
+          - Bassoon
 
 The ``dropdown`` can be also integrated as :doc:`/components/select/lvgl`.
 
@@ -540,11 +599,13 @@ The ``dropdown`` can be also integrated as :doc:`/components/select/lvgl`.
 ``img``
 *******
 
-Images are the basic widgets to display images.
+Images are the basic widgets to display images. 
 
 Specific configuration options:
 
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **src** (**Required**, :ref:`image <display-image>`):  The ID of an existing image configuration.
+- Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
+
 
 
 Example:
@@ -552,8 +613,11 @@ Example:
 .. code-block:: yaml
 
     # Example widget:
-    - 
-
+    - img:
+        x: 10
+        y: 10
+        src: cat_image
+        id: img_id
 
 
 ``label``
@@ -566,18 +630,27 @@ A label is the basic object type that is used to display text.
 
 Specific configuration options:
 
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- **scrollbar** (*Optional*, list): Settings for the scrollbar **part**
-- **selected** (*Optional*, list): Settings for the selected **part**
+- **text** (*Required*, string): The text to display. To display an empty string, specify ``''``-
+- **scrollbar** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scrollbar that is shown when the text is larger than the widget's size.
+- **selected** (*Optional*, list): Tells the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
+- Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties. The padding values can be used to add space between the text and the background.
 
+Newline characters are handled automatically by the label widget. You can use ``\n`` to make a line break. For example: ``line1\nline2\n\nline4``.
+
+It's possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #ff0000 red# word``. 
+
+By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size.
 
 Example:
 
 .. code-block:: yaml
 
     # Example widget:
-    - 
-
+    - label:
+        x: 15
+        y: 235
+        id: lbl_id
+        text: 'Wi-Fi signal:'
 
 
 
@@ -588,7 +661,29 @@ The Line object is capable of drawing straight lines between a set of points.
 
 Specific configuration options:
 
-  - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **points** (*Required*, list): TODO
+- Style options from :ref:`lvgl-styling`, all the typical background properties and line style properties.
+
+By default, the Line's width and height are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts on the line may not be visible.
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+``led``
+********
+
+The LEDs are rectangle-like (or circle) object whose brightness can be adjusted. With lower brightness the colors of the LED become darker.
+
+Specific configuration options:
+
+- **color** (*Required*, list): TODO
+- **brightness** (*Required*, list): TODO
+- Style options from :ref:`lvgl-styling`, using all the typical background style properties.
 
 
 Example:
@@ -598,6 +693,8 @@ Example:
     # Example widget:
     - 
 
+
+The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
 
 ``meter``
@@ -607,29 +704,13 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 
 Specific configuration options:
 
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+TODO !!!
+
+- **scales** (*Required*, list): TODO
+- **ticks** (*Required*, list): TODO
 - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, and additionally:
     - **r_mod** (*Optional*): TODO in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the object based on its contents.
-
-Example:
-
-.. code-block:: yaml
-
-    # Example widget:
-    - 
-
-
-``obj``
-*******
-
-The Base Object can be directly used as a simple, empty widget. It is nothing more than a (rounded) rectangle.
-
-You can use it as a parent background shape for other objects. It catches touches!
-
-Specific configuration options:
-
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-
+- Style options from :ref:`lvgl-styling`.
 
 Example:
 
@@ -648,8 +729,11 @@ Roller allows you to simply select one option from a list by scrolling.
 
 Specific configuration options:
 
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- **selected** (*Optional*, list): Settings for the selected **part**
+- **options** (*Required*, list): The list of available options in the roller.
+- **mode** (*Optional*, enum): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
+- **visible_rows** TODO
+- **selected** (*Optional*, list): Settings for the selected **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the text style properties to change the appearance of the text in the selected area.
+- Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and text style properties. ``text_line_space`` adjusts the space between the options. When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in ``anim_time`` milliseconds as specified in the style.
 
 
 Example:
@@ -670,9 +754,13 @@ The Slider object looks like a Bar supplemented with a knob. The knob can be dra
 Specific configuration options:
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- **indicator** (*Optional*, list): Settings for the indicator **part**
-- **knob** (*Optional*, list): Settings for the knob **part**
+- **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
+- **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
+- **knob** (*Optional*, list): Settings for the knob **part** to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. A rectangle (or circle) drawn at the current value. Also uses all the typical background properties to describe the knob. By default, the knob is square (with an optional corner radius) with side length equal to the smaller side of the slider. The knob can be made larger with the padding values. Padding values can be asymmetric too.
+- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The indicator that shows the current state of the slider. Also uses all the typical background style properties.
+- any :ref:`Styling <lvgl-styling>` and state-based option for the background of the slider. Uses all the typical background style properties. Padding makes the indicator smaller in the respective direction.
 
+Normally, the slider can be adjusted either by dragging the knob, or by clicking on the slider bar. In the latter case the knob moves to the point clicked and slider value changes accordingly. In some cases it is desirable to set the slider to react on dragging the knob only. This feature is enabled by enabling the ``adv_hittest`` flag.
 
 Example:
 
@@ -681,7 +769,7 @@ Example:
     # Example widget:
     - 
 
-The ``slider`` can be also integrated as :doc:`/components/sensor/lvgl` and :doc:`/components/number/lvgl`.
+The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
 
 
 ``switch``
@@ -694,19 +782,24 @@ The Switch looks like a little slider and can be used to turn something on and o
 
 Specific configuration options:
 
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- **indicator** (*Optional*, list): Settings for the indicator **part**
-- **knob** (*Optional*, list): Settings for the knob **part**
-
-The ``switch`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
+- **knob** (*Optional*, list): Settings for the knob **part** to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
+- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
+- Style options from :ref:`lvgl-styling`.
 
 Example:
 
 .. code-block:: yaml
 
     # Example widget:
-    - 
+    - switch:
+        x: 10
+        y: 10
+        id: switch_id
+        indicator:
+        knob
+        
 
+The ``switch`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
 
 
 ``table``
@@ -720,6 +813,7 @@ Specific configuration options:
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **items** (*Optional*, list): Settings for the items **part**
+- Style options from :ref:`lvgl-styling`.
 
 
 Example:
@@ -745,6 +839,7 @@ Specific configuration options:
 - **selected** (*Optional*, list): Settings for the selected **part**
 - **cursor** (*Optional*, list): Settings for the cursor **part**
 - **textarea_placeholder** (*Optional*, list): Settings for the textarea_placeholder **part**
+- Style options from :ref:`lvgl-styling`.
 
 Example:
 
@@ -753,6 +848,31 @@ Example:
     # Example widget:
     - 
 
+
+``obj``
+*******
+
+The Base Object can be directly used as a simple, empty widget. It is nothing more than a (rounded) rectangle.
+
+You can use it as a parent background shape for other objects. It catches touches!
+
+Specific configuration options:
+
+- Style options from :ref:`lvgl-styling`.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - obj:
+        x: 10
+        y: 10
+        width: 220
+        height: 300
+        widgets:
+          - ...
 
 
 
@@ -776,8 +896,10 @@ These may not contain all the glyphs corresponding to certain diacritic characte
 
 In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
 
+In addition to the built-in fonts, the following symbols are also available from the `FontAwesome <https://fontawesome.com/>`__ font. You can use them on supported widgets using the ``symbol`` configuration option:
 
-
+.. figure:: /components/images/lvgl_symbols.png
+    :align: center
 
 
 .. _lvgl-objupd-act:
@@ -1009,10 +1131,10 @@ See Also
 --------
 
 - :doc:`/components/binary_sensor/lvgl`
-- :doc:`/components/sensor/lvgl`
 - :doc:`/components/switch/lvgl`
 - :doc:`/components/number/lvgl`
 - :doc:`/components/select/lvgl`
+- :doc:`/components/light/lvgl`
 - :doc:`/components/touchscreen/index`
 - :doc:`/components/sensor/rotary_encoder`
 - `LVGL 8.3 docs <https://docs.lvgl.io/8.3/>`__

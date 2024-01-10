@@ -19,7 +19,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
-- **obj** (*Optional*): The ID of a widget configured in LVGL, which will reflect the state of the switch.
+- **obj** (**Required**): The ID of a widget configured in LVGL, which will reflect the state of the switch.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 
@@ -41,4 +41,5 @@ See Also
 - :doc:`/components/number/lvgl`
 - :doc:`/components/switch/lvgl`
 - :doc:`/components/select/lvgl`
+- :doc:`/components/light/lvgl`
 - :ghedit:`Edit`
