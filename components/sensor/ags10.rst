@@ -38,9 +38,9 @@ required to be set up in your configuration for this sensor to work.
     sensor:
       - platform: ags10
         tvoc:
-          name: "TVOC"
-          address: 0x1A
-          update_interval: 60s
+          name: TVOC
+        address: 0x1A
+        update_interval: 60s
 
 Configuration variables:
 ------------------------
