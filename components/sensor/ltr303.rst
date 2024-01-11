@@ -86,8 +86,8 @@ Available data
 This component offers 4 sensors:
 
 - ``ambient_light`` - Calculated ambient light illuminance, close to human eye spectral response, lx.
-- ``infrared`` - Raw 16 bit reading from ``CH1`` IR sensor, counts.
-- ``full_spectrum`` - Raw 16 bit reading from ``CH0`` Visible+IR sensor, counts.
+- ``infrared_counts`` - Raw 16 bit reading from ``CH1`` IR sensor, counts.
+- ``full_spectrum_counts`` - Raw 16 bit reading from ``CH0`` Visible+IR sensor, counts.
 - ``actual_gain`` - The actual gain value used by device to do measurement, multiplier.
 
 
@@ -107,8 +107,6 @@ Example configuration
         integration_time: 100ms
         ambient_light:
           name: "Ambient light"
-        actual_gain:
-          name: "Actual gain"
 
 Configuration variables:
 ------------------------
