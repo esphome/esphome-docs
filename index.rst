@@ -384,6 +384,7 @@ Miscellaneous
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     Duty Time, components/sensor/duty_time, timer-play-outline.svg, dark-invert
+    EEPROM I²C, components/external_eeprom, 24lc256_sm.jpg
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
