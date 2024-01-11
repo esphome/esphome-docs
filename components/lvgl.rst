@@ -96,7 +96,7 @@ Configuration variables:
 - All other options from :ref:`lvgl-styling` to be commonly apply to the widgets directly.
 - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the root display. Not possible if you configure ``pages``.
 - **pages** (*Optional*, list): A list of page IDs, where each page acts as a parent for widgets placed on it. Only of no ``widgets`` are configured at this level. Options for each page:
-    - **skip** (*Optional*, boolean): Option to skip this page when navigating between them with ``previous`` and ``next``.
+    - **skip** (*Optional*, boolean): Option to skip this page when navigating between them with :ref:`lvgl-pgnx-act`.
     - **layout** (*Optional*, string): Layout to be applied to this page. Same option as above.
     - **flex_flow** (*Optional*, string): Same option as above, for the ``FLEX`` layout on this page.
     - All other options from :ref:`lvgl-styling` to be applied to this page.
