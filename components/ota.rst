@@ -174,7 +174,7 @@ enum. These values are:
         then:
           - if:
               condition:
-                lambda: return state == ota::OTA_STARTED
+                lambda: return state == ota::OTA_STARTED;
               then:
                 - logger.log: "OTA start"
 
