@@ -356,6 +356,8 @@ Light
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
+    LTR329, components/sensor/ltr303, ltr329.jpg, Lux
+    LTR303, components/sensor/ltr303, ltr303.jpg, Lux
     LTR390, components/sensor/ltr390, ltr390.jpg, Lux & UV
     MAX44009, components/sensor/max44009, max44009.svg, Lux
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
