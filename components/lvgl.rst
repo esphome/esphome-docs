@@ -26,9 +26,11 @@ Basics
 In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` to see the full
 list of available LVGL widgets in ESPHome.
 
+Pages in ESPHome are implemented as LVGL screens, which are special objects which have no parent object. There is always one active screen on a display.
+
 Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
-The child object moves with the parent and if the parent is deleted the children will be deleted too. Children can be visible only within
-their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A screen is the *root* parent.
+The child object moves with the parent and if the parent is hidden the children will be hidden too. Children can be visible only within
+their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A page is the *root* parent.
 
 TODO - PAGE
 
@@ -60,10 +62,9 @@ Main Component
 
 Although LVGL is a complex matrix of objects-parts-states-styles, in ESPHome this is simplified to a hierarchy.
 
-At the highest level of the LVGL object hierarchy is the display which represents the driver for a display device (physical display). A display can have one or more screens associated with it. Each screen contains a hierarchy of objects for graphical widgets representing a layout that covers the entire display.
+At the highest level of the LVGL object hierarchy is the display which represents the driver for a display device (physical display). A display can have one or more pages associated with it. Each page contains a hierarchy of objects for graphical widgets representing a layout that covers the entire display.
 
-The widget is at the top level, and it allows main styling. It also has sub-parts, which can be styled separately. 
-Usually styles are inherited. The widget and the parts have states, and the different styling can be set for different states.
+The widget is at the top level, and it allows main styling. It also has sub-parts, which can be styled separately. Usually styles are inherited. The widget and the parts have states, and the different styling can be set for different states.
 
 Configuration variables:
 
@@ -77,6 +78,7 @@ Configuration variables:
     - **group** (*Optional*, string): A name for a group of widgets whics will interact with the the rotary encoder. See :ref:`below <lvgl-styling>` for more information on groups.
 - **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
 - **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
+- **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen. Defaults to 1s.
 - **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE"``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, enum): The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
@@ -91,9 +93,14 @@ Configuration variables:
     - ``COLUMN_REVERSE`` to place the children in a column without wrapping but in reversed order
     - ``ROW_WRAP_REVERSE`` to place the children in a row with wrapping but in reversed order
     - ``COLUMN_WRAP_REVERSE`` to place the children in a column with wrapping but in reversed order
-- **widgets** (*Optional*, list): A list of LVGL widgets to be drawn on the screen.
-- **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen. Defaults to 1s.
-- All other options from :ref:`lvgl-styling`.
+- All other options from :ref:`lvgl-styling` to be commonly apply to the widgets directly.
+- **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the root display. Not possible if you configure ``pages``.
+- **pages** (*Optional*, list): A list of page IDs, where each page acts as a parent for widgets placed on it. Only of no ``widgets`` are configured at this level. Options for each page:
+    - **skip** (*Optional*, boolean): Option to skip this page when navigating between them with ``previous`` and ``next``.
+    - **layout** (*Optional*, string): Layout to be applied to this page. Same option as above.
+    - **flex_flow** (*Optional*, string): Same option as above, for the ``FLEX`` layout on this page.
+    - All other options from :ref:`lvgl-styling` to be applied to this page.
+    - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
 
 
 Example:
@@ -103,23 +110,17 @@ Example:
     # Example configuration entry
     lvgl:
       log_level: WARN
-      color_depth: 16
-      bg_color: 0x000000
-      text_font: unscii_8
-      touchscreens: my_toucher
-      style_definitions:
-        - id: style_line
-          line_color: color_blue
-          line_width: 8
-          line_rounded: true
-      layout: grid
-      width: 100%
-      widgets:
-        - btn:
-            id: lv_button0
-            x: 5
-            y: 30
-
+      displays:
+        - display_id: tft_display
+      touchscreens:
+        - touchscreen_id: tft_touch
+      pages:
+        - id: main_page
+          widgets:
+            - label:
+                x: 10
+                y: 10
+                text: 'Hello World!'
 
 .. note::
 
@@ -496,24 +497,6 @@ Example:
             - control: "\n"
 
 
-``canvas``
-**********
-
-A Canvas inherits from Image where the user can draw anything. Rectangles, texts, images, lines, arcs can be drawn here using lvgl's drawing engine. Additionally "effects" can be applied, such as rotation, zoom and blur.
-
-Specific configuration options:
-
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- Style options from :ref:`lvgl-styling`.
-
-
-Example:
-
-.. code-block:: yaml
-
-    # Example widget:
-    - 
-
 
 
 ``checkbox``
@@ -869,6 +852,27 @@ Example:
     - 
 
 
+``canvas``
+**********
+
+A Canvas inherits from Image where the user can draw anything. Rectangles, texts, images, lines, arcs can be drawn here using lvgl's drawing engine. Additionally "effects" can be applied, such as rotation, zoom and blur.
+
+Specific configuration options:
+
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- Style options from :ref:`lvgl-styling`.
+
+
+Example:
+
+.. code-block:: yaml
+
+    # Example widget:
+    - 
+
+
+
+
 ``obj``
 *******
 
@@ -1027,7 +1031,7 @@ These :ref:`actions <config-action>` are shorthands for toggling the ``disabled`
 
 This :ref:`action <config-action>` redraws the entire screen, or optionally only a widget on it.
 
-- **obj_id** (*Optional*): The ID of a widget configured in LVGL, which you want to redraw.
+- **obj_id** (*Optional*): The ID of a widget configured in LVGL, which you want to redraw. Entire screen if omitted.
 
 obj_id
 
@@ -1069,6 +1073,54 @@ This :ref:`action <config-action>` resumes the activity of LVGL, including rende
 
 
 
+.. _lvgl-pgnx-act:
+
+``lvgl.page.next`` and ``lvgl.page.previous`` Actions
+-----------------------------------------------------
+
+This :ref:`action <config-action>` changes page to the next following in the configuration (except the ones with ``skip`` option enabled), wraps around at the end.
+
+- **animation** (*Optional*): The page change with one of these animations: ``NONE``, ``OVER_LEFT``, ``OVER_RIGHT``, ``OVER_TOP``, ``OVER_BOTTOM``, ``MOVE_LEFT``, ``MOVE_RIGHT``, ``MOVE_TOP``, ``MOVE_BOTTOM``, ``FADE_IN``, ``FADE_OUT``, ``OUT_LEFT``, ``OUT_RIGHT``, ``OUT_TOP``, ``OUT_BOTTOM``. Defaults to ``NONE`` if not specified.
+- **time** (*Optional*, :ref:`Time <config-time>`): Duration of the page change animation. Defaults to ``50ms``.
+
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - lvgl.page.next:
+            animation: OUT_LEFT
+            time: 300ms
+
+    on_...:
+      then:
+        - lvgl.page.previous:
+            animation: OUT_RIGHT
+            time: 300ms
+
+
+.. _lvgl-pgsh-act:
+
+``lvgl.page.show`` Action
+-----------------------------
+
+This :ref:`action <config-action>` shows a specific page (even the ones with ``skip`` option enabled).
+
+- **id** (*Optional*): The ID of the page to be shown.
+- **animation** (*Optional*): The page change with one of these animations: ``NONE``, ``OVER_LEFT``, ``OVER_RIGHT``, ``OVER_TOP``, ``OVER_BOTTOM``, ``MOVE_LEFT``, ``MOVE_RIGHT``, ``MOVE_TOP``, ``MOVE_BOTTOM``, ``FADE_IN``, ``FADE_OUT``, ``OUT_LEFT``, ``OUT_RIGHT``, ``OUT_TOP``, ``OUT_BOTTOM``. Defaults to ``NONE`` if not specified.
+- **time** (*Optional*, :ref:`Time <config-time>`): Duration of the page change animation. Defaults to ``50ms``.
+
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - lvgl.page.show:
+            id: secret_page
+
+    on_...:
+      then:
+        - lvgl.page.show: secret_page  # shorthand version
 
 
 
