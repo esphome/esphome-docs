@@ -10,7 +10,7 @@ LVGL Switch
 The ``lvgl`` switch platform creates a switch from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widgets are ``btn`` and ``checkbox``. A single switch supports
+Supported widgets are ``btn`` (with ``checkable`` option enabled) and ``checkbox``. A single switch supports
 a single widget, thus you need to choose among which one's state you want to use.
 
 

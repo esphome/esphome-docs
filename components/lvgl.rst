@@ -1106,7 +1106,7 @@ This :ref:`action <config-action>` changes page to the next following in the con
 
 This :ref:`action <config-action>` shows a specific page (even the ones with ``skip`` option enabled).
 
-- **id** (*Optional*): The ID of the page to be shown.
+- **id** (**Required**): The ID of the page to be shown.
 - **animation** (*Optional*): The page change with one of these animations: ``NONE``, ``OVER_LEFT``, ``OVER_RIGHT``, ``OVER_TOP``, ``OVER_BOTTOM``, ``MOVE_LEFT``, ``MOVE_RIGHT``, ``MOVE_TOP``, ``MOVE_BOTTOM``, ``FADE_IN``, ``FADE_OUT``, ``OUT_LEFT``, ``OUT_RIGHT``, ``OUT_TOP``, ``OUT_BOTTOM``. Defaults to ``NONE`` if not specified.
 - **time** (*Optional*, :ref:`Time <config-time>`): Duration of the page change animation. Defaults to ``50ms``.
 
