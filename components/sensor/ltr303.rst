@@ -11,11 +11,9 @@ with ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your configu
 Both devices are identical, except that LTR-303 comes with interrupt capabilities which are not supported 
 by this component.
 
-
 .. figure:: images/ltr303-full.jpg
     :align: center
     :width: 90.0%
- 
 
 Sensor platform provides a linear response over a wide dynamic range from 0.01 lux to 64k lux and is well suited 
 to applications under high ambient brightness. There are altogether six gain settings (1X, 2X, 4X, 8X, 48X and 96X)
@@ -43,17 +41,17 @@ Excerpt from the datasheet:
 
 .. code-block:: 
 
-  RATIO = CH1/(CH0+CH1)
-  IF (RATIO < 0.45)
-      ALS_LUX = (1.7743 * CH0 + 1.1059 * CH1) / ALS_GAIN / ALS_INT
-  ELSEIF (RATIO < 0.64 && RATIO >= 0.45)
-      ALS_LUX = (4.2785 * CH0 – 1.9548 * CH1) / ALS_GAIN / ALS_INT
-  ELSEIF (RATIO < 0.85 && RATIO >= 0.64)
-      ALS_LUX = (0.5926 * CH0 + 0.1185 * CH1) / ALS_GAIN / ALS_INT
-  ELSE
-      ALS_LUX = 0
-  END
-
+    RATIO = CH1/(CH0+CH1)
+    IF (RATIO < 0.45)
+        ALS_LUX = (1.7743 * CH0 + 1.1059 * CH1) / ALS_GAIN / ALS_INT
+    ELSEIF (RATIO < 0.64 && RATIO >= 0.45)
+        ALS_LUX = (4.2785 * CH0 – 1.9548 * CH1) / ALS_GAIN / ALS_INT
+    ELSEIF (RATIO < 0.85 && RATIO >= 0.64)
+        ALS_LUX = (0.5926 * CH0 + 0.1185 * CH1) / ALS_GAIN / ALS_INT
+    ELSE
+        ALS_LUX = 0
+    END
+  
 
 where:
 
