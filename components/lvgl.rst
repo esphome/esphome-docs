@@ -317,17 +317,14 @@ The properties below are common to all widgets.
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn as children of this widget. Same configuration option as at the main component.
 - **state** (*Optional*, string): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overriden withing style definitions or locally set. The state itself can be can be changed by interacting with the widget itself, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.obj.update`` action. Can be one of:
     - ``default``: Normal, released state
-    - ``disabled``: Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.obj.enable`` and ``lvgl.obj.disable``)
+    - ``disabled``: Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.enable`` and ``lvgl.widget.disable``)
     - ``pressed``: Being pressed
     - ``checked``: Toggled or checked state
     - ``scrolled``: Being scrolled
     - ``focused``: Focused via keypad or encoder or clicked via touchpad/mouse
     - ``focus_key``: Focused via keypad or encoder but not via touchpad/mouse
     - ``edited``: Edit by an encoder
-    - ``user_1``: Custom state
-    - ``user_2``: Custom state
-    - ``user_3``: Custom state
-    - ``user_4``: Custom state
+    - ``user_1``, ``user_2``, ``user_3``, ``user_4``: Custom states
 
 In addition to visual stilyng, each widget supports :ref:`dynamically settable flags <lvgl-objupdflag-act>` to influence the behavior at runtime.
 
@@ -570,8 +567,6 @@ Example:
 
 The ``checkbox`` can be also integrated as a :doc:`/components/switch/lvgl`.
 
-
-
 ``dropdown``
 ************
 
@@ -652,7 +647,7 @@ A label is the basic object type that is used to display text.
 
 Specific configuration options:
 
-- **text** or **symbol** (*Required*, string): The text to display. To display an empty string, specify ``''``-
+- **text** or **symbol** (*Required*, string): The text to display. To display an empty text string, specify ``''``
 - **scrollbar** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scrollbar that is shown when the text is larger than the widget's size.
 - **selected** (*Optional*, list): Tells the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
 - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties. The padding values can be used to add space between the text and the background.
@@ -673,8 +668,6 @@ Example:
         y: 235
         id: lbl_id
         text: 'Wi-Fi signal:'
-
-
 
 ``line``
 ********
@@ -762,7 +755,6 @@ Specific configuration options:
 - **visible_rows** TODO
 - **selected** (*Optional*, list): Settings for the selected **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the text style properties to change the appearance of the text in the selected area.
 - Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and text style properties. ``text_line_space`` adjusts the space between the options. When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in ``anim_time`` milliseconds as specified in the style.
-
 
 Example:
 
@@ -1004,7 +996,7 @@ In addition to visual stilyng, each widget supports some boolean flags to influe
             hidden: true
 
 
-- **hidden** (*Optional*, boolean): make the object hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.obj.show`` and ``lvgl.obj.hide``
+- **hidden** (*Optional*, boolean): make the object hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.show`` and ``lvgl.widget.hide``
 - **clickable** (*Optional*, boolean): make the object clickable by input devices
 - **click_focusable** (*Optional*, boolean): add focused state to the object when clicked
 - **checkable** (*Optional*, boolean): toggle checked state when the object is clicked
