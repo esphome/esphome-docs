@@ -187,7 +187,7 @@ Each configured sensor is reported separately on each ``update_interval``.
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **actual_integration_time** (*Optional*): The value of gain used for reported values, ms. Particularly useful when "auto_mode" is selected.
+- **actual_integration_time** (*Optional*): Integration time used for reported values, ms. Particularly useful when "auto_mode" is selected.
 
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
