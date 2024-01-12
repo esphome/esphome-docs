@@ -98,6 +98,7 @@ Configuration variables:
 
   - ``16 bits``
   - ``12 bits``
+
 -  **data_rate** (*Optional*, string): samples per second for this sensor. Defaults to ``ADS1115_860_SPS`` (860 samples per second in ADS1115).
 
   - ``ADS1115_8_SPS`` (8 samples per second in ADS1115 and 128 in ADS1015)
