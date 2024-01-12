@@ -68,7 +68,7 @@ The widget is at the top level, and it allows main styling. It also has sub-part
 
 Configuration variables:
 
-- **display_id** (**Required**, list): A list of displays where to render this entire LVGL configuration:
+- **displays** (**Required**, list): A list of displays where to render this entire LVGL configuration:
     - **display_id** (**Required**, :ref:`config-id`): The ID of a display configuration.
 - **touchscreens** (*Optional*, list): A list of touchscreens interacting with the LVGL widgets on the display. Can be omitted if there's at least a rotary encoder configured.
     - **touchscreen_id** (*Required*, :ref:`config-id`): ID of a touchscreen configuration-
