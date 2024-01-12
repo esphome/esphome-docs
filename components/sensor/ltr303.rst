@@ -15,6 +15,15 @@ by this component.
     :align: center
     :width: 90.0%
 
+    LTR-303 Ambient Light Sensor on a breakout board.
+
+.. figure:: images/ltr303-ui.png
+    :align: center
+    :width: 60.0%
+
+    LTR-303 Sensor in Home Assistant UI.
+
+
 Sensor platform provides a linear response over a wide dynamic range from 0.01 lux to 64k lux and is well suited 
 to applications under high ambient brightness. There are altogether six gain settings (1X, 2X, 4X, 8X, 48X and 96X)
 available for user to configure. Use higher gain for dimmer areas.
@@ -89,6 +98,7 @@ This component offers 4 sensors:
 - ``infrared_counts`` - Raw 16 bit reading from ``CH1`` IR sensor, counts.
 - ``full_spectrum_counts`` - Raw 16 bit reading from ``CH0`` Visible+IR sensor, counts.
 - ``actual_gain`` - The actual gain value used by device to do measurement, multiplier.
+- ``actual_integration_time`` - The actual integration time used by device to do measurement, ms.
 
 
 Example configuration
@@ -103,8 +113,6 @@ Example configuration
       - platform: ltr303
         address: 0x29
         update_interval: 60s
-        gain: 1x
-        integration_time: 100ms
         ambient_light:
           name: "Ambient light"
 
@@ -113,6 +121,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (*Optional*, string): A user-friendly name for this LTR device.
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Default is ``0x29``.
+- **auto_mode** (*Optional*, boolean): Automatic gain and integration time selection. Defaults to True.
 - **gain** (*Optional*, string): The gain the device will use. Higher values are better in low-light conditions.
   Valid values are ``1X`` *(default)*, ``2X``, ``4X``, ``8X``, ``48X``, ``96X``.
 - **integration_time** (*Optional*, :ref:`config-time`):
@@ -145,11 +154,15 @@ Each configured sensor is reported separately on each ``update_interval``.
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **actual_gain** (*Optional*, string): Gain value used to measure data, multiplier.
+- **actual_gain** (*Optional*, string): Gain value used to measure data, multiplier. Particularly useful when "auto_mode" is selected.
 
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
+- **actual_integration_time** (*Optional*): Integration time used to measure data, ms. Particularly useful when "auto_mode" is selected.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 
 See Also
