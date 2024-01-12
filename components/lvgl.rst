@@ -487,13 +487,13 @@ Specific configuration options:
         - **id** (*Optional*): An ID for a button
         - **text** or **symbol** (*Optional*): Text or symbol to display on the button.
         - **width** (*Optional*): Width relative to the other buttons in the same row. A value between ``1`` and ``15`` range, default ``1``. E.g. in a line with two buttons: btnA, width = 1 and btnB, width = 2, btnA will have 33 % width and btnB will have 66 % width. 
-        - **control** (*Optional*): Binary flags to control behavior of the buttons:
+        - **control** (*Optional*): Binary flags to control behavior of the buttons (all ``false`` by default):
             - ``HIDDEN``: Makes a button hidden (hidden buttons still take up space in the layout, they are just not visible or clickable).
             - ``NO_REPEAT``: Disable repeating when the button is long pressed.
             - ``DISABLED``: Applies *disabled* styles and properties to the button.
             - ``CHECKABLE``: Enable toggling of a button, ``checked`` state will be added/removed as the button is clicked.
             - ``CHECKED``: Make the button checked. It will use the styles of the ``checked`` state.
-            - ``CLICK_TRIG``: Controls when to happen the ``on_value`` trigger: if ``true`` on *click*, if ``false`` on *press*.
+            - ``CLICK_TRIG``: Controls how to :ref:`trigger <lvgl-event-trg>` ``on_value`` : if ``true`` on *click*, if ``false`` on *press*.
             - ``POPOVER``: Show the button label in a popover when pressing this key.
             - ``RECOLOR``: Enable recoloring of button texts with #. E.g. ``It's #ff0000 red#``
             - ``CUSTOM_1`` and ``CUSTOM_2``: Custom free to use flags
@@ -1243,6 +1243,7 @@ ESPHome implements as triggers the following LVGL events:
 - ``on_scroll``: The widget was scrolled.
 - ``on_focused``:  The widget is focused.
 - ``on_defocused``: The widget is unfocused.
+- ``on_value``: TODO!!
 
 These triggers can be applied directly to any widget in the lvgl configuration, given that the widget itself supports generating such events.
 
