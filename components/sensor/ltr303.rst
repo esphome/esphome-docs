@@ -92,7 +92,7 @@ This Wikipedia `article <https://en.wikipedia.org/wiki/Lux>`__ has a table of so
 Available data
 --------------
 
-This component offers 4 sensors:
+This component offers 5 sensors:
 
 - ``ambient_light`` - Calculated ambient light illuminance, close to human eye spectral response, lx.
 - ``infrared_counts`` - Raw 16 bit reading from ``CH1`` IR sensor, counts.
