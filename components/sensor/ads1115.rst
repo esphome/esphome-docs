@@ -98,6 +98,16 @@ Configuration variables:
 
   - ``16 bits``
   - ``12 bits``
+-  **data_rate** (*Optional*, string): samples per second for this sensor. Defaults to ``ADS1115_860_SPS`` (860 samples per second in ADS1115).
+
+  - ``ADS1115_8_SPS`` (8 samples per second in ADS1115 and 128 in ADS1015)
+  - ``ADS1115_16_SPS`` (16 samples per second in ADS1115 and 250 in ADS1015)
+  - ``ADS1115_32_SPS`` (32 samples per second in ADS1115 and 490 in ADS1015)
+  - ``ADS1115_64_SPS`` (64 samples per second in ADS1115 and 920 in ADS1015)
+  - ``ADS1115_128_SPS`` (128 samples per second in ADS1115 and 1600 in ADS1015)
+  - ``ADS1115_250_SPS`` (250 samples per second in ADS1115 and 2400 in ADS1015)
+  - ``ADS1115_475_SPS`` (475 samples per second in ADS1115 and 3300 in ADS1015)
+  - ``ADS1115_860_SPS`` (860 samples per second in ADS1115)
 
 
 Multiplexer and Gain
@@ -132,6 +142,9 @@ Additionally, the ADS1115 has a Programmable Gain Amplifier (PGA) that can help 
 The ADS1115 can be used with defaults settings.
 When using an ADS1015, the resolution has to be specified and should be defined to ``12_BITS``
 (or equivalent notations like ``12 BITS`` or ``12 bits``).
+
+In single shot mode, a lower samples per second value (specified by ``data_rate``) can block the CPU for up to 125 ms.
+Consider using ``continuous_mode`` in such cases.
 
 See Also
 --------
