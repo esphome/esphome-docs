@@ -1033,7 +1033,7 @@ In addition to visual stilyng, each widget supports some boolean flags to influe
 .. _lvgl-objupd-shorthands:
 
 ``lvgl.widget.hide`` and ``lvgl.widget.show`` Actions
------------------------------------------------
+-----------------------------------------------------
 
 These :ref:`actions <config-action>` are shorthands for toggling the ``hidden`` flag of any widget:
 
@@ -1047,7 +1047,7 @@ These :ref:`actions <config-action>` are shorthands for toggling the ``hidden`` 
 
 
 ``lvgl.widget.disable`` and ``lvgl.widget.enable`` Actions
-----------------------------------------------------
+----------------------------------------------------------
 
 These :ref:`actions <config-action>` are shorthands for toggling the ``disabled`` state of any widget (which controls the appearance of the corresponding *disabled* style set of the theme):
 
@@ -1138,7 +1138,7 @@ This :ref:`action <config-action>` changes page to the next following in the con
 .. _lvgl-pgsh-act:
 
 ``lvgl.page.show`` Action
------------------------------
+-------------------------
 
 This :ref:`action <config-action>` shows a specific page (even the ones with ``skip`` option enabled).
 
