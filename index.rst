@@ -848,6 +848,7 @@ Miscellaneous Components
     Remote Transmitter, components/remote_transmitter, remote.svg, dark-invert
     Status LED, components/status_led, led-on.svg, dark-invert
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
+    External I2C Epromm, components/external_eeprom, 24lc256_bg.jpg
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
     Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.jpg
     Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
