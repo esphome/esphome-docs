@@ -15,7 +15,7 @@ by this component.
     :align: center
     :width: 90.0%
 
-    LTR-303 Ambient Light Sensor on a breakout board.
+    LTR-329 and LTR-303 Ambient Light Sensors.
 
 .. figure:: images/ltr303-ui.png
     :align: center
