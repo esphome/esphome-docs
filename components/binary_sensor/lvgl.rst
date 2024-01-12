@@ -19,7 +19,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the binary sensor.
-- **obj** (**Required**): The ID of a button widget configured in LVGL.
+- **widget** (**Required**): The ID of a button widget configured in LVGL.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
@@ -29,7 +29,7 @@ Example:
 
     binary_sensor:
       - platform: lvgl
-        obj: checkbox_id
+        widget: checkbox_id
         name: LVGL checkbox
 
 See Also

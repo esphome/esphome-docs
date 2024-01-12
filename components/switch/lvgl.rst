@@ -19,7 +19,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the switch.
-- **obj** (**Required**): The ID of a widget configured in LVGL, which will reflect the state of the switch.
+- **widget** (**Required**): The ID of a widget configured in LVGL, which will reflect the state of the switch.
 - All other options from :ref:`Switch <config-switch>`.
 
 

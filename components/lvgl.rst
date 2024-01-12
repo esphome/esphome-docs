@@ -72,10 +72,14 @@ Configuration variables:
     - **display_id** (**Required**, :ref:`config-id`): The ID of a display configuration.
 - **touchscreens** (*Optional*, list): A list of touchscreens interacting with the LVGL widgets on the display. Can be omitted if there's at least a rotary encoder configured.
     - **touchscreen_id** (*Required*, :ref:`config-id`): ID of a touchscreen configuration-
+    - **long_press_time** (*Optional*, ms): Delay after which the ``on_long_pressed`` trigger will be called. Defaults to ``400ms``.
+    - **long_press_repeat_time** (*Optional*, ms): Repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` trigger will be called. Defaults to ``100ms``.
 - **rotary_encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display. Can be omitted if there's at least a touchscreen configured.
     - **sensor:** (*Required*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder` used to interact with the widgets.
     - **binary_sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, usually used as a push button within the rotary encoder used to interact with the widgets.
-    - **group** (*Optional*, string): A name for a group of widgets whics will interact with the the rotary encoder. See :ref:`below <lvgl-styling>` for more information on groups.
+    - **group** (*Optional*, string): A name for a group of widgets whics will interact with the the rotary encoder. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
+    - **long_press_time** (*Optional*, ms): Delay after which the ``on_long_pressed`` trigger will be called. Defaults to ``400ms``.
+    - **long_press_repeat_time** (*Optional*, ms): Repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` trigger will be called. Defaults to ``100ms``.
 - **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
 - **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen. Defaults to 1s.
@@ -473,8 +477,26 @@ The ``btn`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or a
 
 The Button Matrix object is a lightweight way to display multiple buttons in rows and columns. Lightweight because the buttons are not actually created but just virtually drawn on the fly. This way, one button use only eight extra bytes of memory instead of the ~100-150 bytes a normal Button object plus the 100 or so bytes for the Label object.
 
+.. figure:: /components/images/lvgl_btnmatrix.png
+    :align: center
+
 Specific configuration options:
 
+- **rows** (**Required**, list): A list for the button rows.
+    - **buttons** (**Required**, list): A list of buttons in a row
+        - **id** (*Optional*): An ID for a button
+        - **text** or **symbol** (*Optional*): Text or symbol to display on the button.
+        - **width** (*Optional*): Width relative to the other buttons in the same row. A value between ``1`` and ``15`` range, default ``1``. E.g. in a line with two buttons: btnA, width = 1 and btnB, width = 2, btnA will have 33 % width and btnB will have 66 % width. 
+        - **control** (*Optional*): Binary flags to control behavior of the buttons:
+            - ``HIDDEN``: Makes a button hidden (hidden buttons still take up space in the layout, they are just not visible or clickable).
+            - ``NO_REPEAT``: Disable repeating when the button is long pressed.
+            - ``DISABLED``: Applies *disabled* styles and properties to the button.
+            - ``CHECKABLE``: Enable toggling of a button, ``checked`` state will be added/removed as the button is clicked.
+            - ``CHECKED``: Make the button checked. It will use the styles of the ``checked`` state.
+            - ``CLICK_TRIG``: Controls when to happen the ``on_value`` trigger: if ``true`` on *click*, if ``false`` on *press*.
+            - ``POPOVER``: Show the button label in a popover when pressing this key.
+            - ``RECOLOR``: Enable recoloring of button texts with #. E.g. ``It's #ff0000 red#``
+            - ``CUSTOM_1`` and ``CUSTOM_2``: Custom free to use flags
 - **items** (*Optional*, list): Settings for the items **part**, the buttons all use the text and typical background style properties except translations and transformations.
 - Style options from :ref:`lvgl-styling` for the background of the button matrix, uses the typical background style properties. ``pad_row`` and ``pad_column`` set the space between the buttons.
 
@@ -484,17 +506,39 @@ Example:
 .. code-block:: yaml
 
     # Example widget:
-    - 
     - btnmatrix:
         x: 10
-        y: 100
+        y: 40
+        width: 220
         items:
-          rows:
-            - buttons:
-                text: "a"
-                text: "b"
-                  width: 50
-            - control: "\n"
+          pressed:
+            bg_color: 0xFFFF00
+        id: b_matrix
+        rows:
+          - buttons:
+            - id: button_1
+              symbol: PLAY
+              control:
+                checkable: true
+            - id: button_2
+              symbol: PAUSE
+              control:
+                checkable: true
+          - buttons:
+            - id: button_3
+              text: "A"
+              control:
+                popover: true
+            - id: button_4
+              text: "B"
+              control:
+                disabled: true
+          - buttons:
+            - id: button_5
+              text: "It's #ff0000 red#"
+              width: 2
+              control:
+                recolor: true
 
 
 
@@ -608,7 +652,7 @@ A label is the basic object type that is used to display text.
 
 Specific configuration options:
 
-- **text** (*Required*, string): The text to display. To display an empty string, specify ``''``-
+- **text** or **symbol** (*Required*, string): The text to display. To display an empty string, specify ``''``-
 - **scrollbar** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scrollbar that is shown when the text is larger than the widget's size.
 - **selected** (*Optional*, list): Tells the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
 - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties. The padding values can be used to add space between the text and the background.
@@ -1026,20 +1070,18 @@ These :ref:`actions <config-action>` are shorthands for toggling the ``disabled`
 
 .. _lvgl-rfrsh-act:
 
-``lvgl.obj.invalidate`` Action
+``lvgl.widget.redraw`` Action
 ------------------------------
 
 This :ref:`action <config-action>` redraws the entire screen, or optionally only a widget on it.
 
-- **obj_id** (*Optional*): The ID of a widget configured in LVGL, which you want to redraw. Entire screen if omitted.
-
-obj_id
+- **id** (*Optional*): The ID of a widget configured in LVGL, which you want to redraw. Entire screen if omitted.
 
 .. code-block:: yaml
 
     on_...:
       then:
-        - lvgl.obj.invalidate:
+        - lvgl.widget.redraw:
 
 
 
@@ -1186,6 +1228,40 @@ The ``on_idle`` :ref:`trigger <automation>` is activated when inactivity time be
             - lvgl.pause:
             - light.turn_off:
                 id: display_backlight
+
+
+
+.. _lvgl-event-act:
+
+Widget Event Triggers
+---------------------
+
+ESPHome implements as triggers the following LVGL events:
+
+- ``on_pressed``: A widget has been pressed.
+- ``on_short_clicked``: A widget was pressed for a short period of time, then released. Not called if scrolled.
+- ``on_long_pressed``: A widget has been pressed for at least the ``long_press_time`` specified in the input device configuration. Not called if scrolled.
+- ``on_long_pressed_repeat``: Called after ``long_press_time`` in every ``long_press_repeat_time`` ms. Not called if scrolled.
+- ``on_clicked``: Called on release if a widget did not scroll (regardless of long press).
+- ``on_released``: Called in every case when a widget has been released.
+- ``on_scroll_begin``: Scrolling of the widget begins.
+- ``on_scroll_end``:  Scrolling of the widget ends.
+- ``on_scroll``: A widget was scrolled.
+- ``on_focused``:  A widget is focused.
+- ``on_defocused``: A widget is unfocused.
+
+These triggers can be applied directly to any widget in the lvgl configuration, given that the widget itself support generating such events.
+
+.. code-block:: yaml
+
+    lvgl:
+      widgets:
+        btn:
+          ...
+          on_released:
+            then:
+              - light.turn_off:
+                  id: display_backlight
 
 
 
