@@ -262,23 +262,26 @@ Additonal configurations available for this platform.
 
 Configuration variables:
 
-- **set_fan_mode** (*Optional*, string): Fan modes. Default is ``3levels``
+- **set_fan_mode** (*Optional*, string): Select the fan modes desired or that are supported on your remote. Default is ``3levels``
 
-  Select the fan modes desired or that are supported on your remote.
-  - Options are ``3levels`` , ``4levels``, ``quiet_4levels``. 
+    - Options are ``3levels`` , ``4levels``, ``quiet_4levels``. 
   
   - ``3levels``, Low [fan speed 1], Medium [2], High [3]
   - ``4levels``, Low [1], Middle [2], Medium [3], High [4]
   - ``quiet_4levels``, Low [1], Middle [2], Medium [3], High [4], Quiet [5]
 
-- **set_supported_mode** (*Optional*, string): Default id ``heat_cool``
-
-  Select the operating modes desired or that are supposed by your unit.
-  - Options are ``cool``, ``heat``, ``heat_cool``, ``dry_heat_cool``, ``dry_fan_heat_cool``. Default is ``heat_cool``
+- **set_supported_mode** (*Optional*, string): Select the operating modes desired or that are supposed by your unit. Default id ``heat_cool``
+  
+  - Options are ``cool``, ``heat``, ``heat_cool``, ``dry_heat_cool``, ``dry_fan_heat_cool``.
 
   - ``fan`` above adds fan only mode, which is available on some units.  
-- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Default is ``middle``. Options are: ``left``, ``middle-left``, ``middle``, ``middle-right``, ``right``, ``auto``
-- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Default is ``middle``. Options are: ``down``, ``middle-down``, ``middle``, ``middle-up``, ``up``, ``auto``
+
+- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Default is ``middle``. 
+
+  - Options are: ``left``, ``middle-left``, ``middle``, ``middle-right``, ``right``, ``auto``
+- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Default is ``middle``. 
+
+  - Options are: ``down``, ``middle-down``, ``middle``, ``middle-up``, ``up``, ``auto``
 
 .. note::
 
