@@ -262,12 +262,13 @@ Additonal configurations available for this platform.
 
 Configuration variables:
 
-- **set_fan_speeds** (*Optional*): Used to set non-default fan speeds. When not used default is **low** = ``fan1``, **medium** = ``fan2``, **high** = ``fan3``
-
-  - **low** (*Required*, string)
-  - **medium** (*Required*, string)
-  - **high** (*Required*, string)
-  - Options are ``fan1``, ``fan2``, ``fan3``, ``fan4``, ``fan5``
+- **set_fan_mode** (*Optional*, string): Fan modes. Default is ``3levels``
+  - Options are ``3levels`` , ``4levels``, ``quiet_4levels``
+  - ``3levels``, Low [fan speed 1], Medium [2], High [3]
+  - ``4levels``, Low [1], Middle [2], Medium [3], High [4]
+  - ``quiet_4levels``, Low [1], Middle [2], Medium [3], High [4], Quiet [5]
+- **set_supported_mode** (*Optional*, string): ``cool``, ``heat``, ``heat_cool``, ``dry_heat_cool``, ``dry_fan_heat_cool``. Default is ``heat_cool``
+  - ``fan`` above adds fan only mode, which is available on some units.  
 - **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Default is ``middle``. Options are: ``left``, ``middle-left``, ``middle``, ``middle-right``, ``right``, ``auto``
 - **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Default is ``middle``. Options are: ``down``, ``middle-down``, ``middle``, ``middle-up``, ``up``, ``auto``
 
@@ -283,10 +284,8 @@ Configuration variables:
     climate:
       - platform: mitsubishi
         name: "Heatpump"
-        set_fan_speeds:
-          low: "fan2"
-          medium: "fan3"
-          high: "fan4"
+        set_fan_mode: "quiet_4levels"
+        set_supported_mode: "dry_fan_heat_cool"
         horizontal_default: "left"
         vertical_default: "down"
 
