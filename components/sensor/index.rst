@@ -262,12 +262,26 @@ degree with a least squares solver.
 ``clamp``
 *********
 
-Limits the value to the range between ``min_value`` and ``max_value``. Sensor values outside these bounds will be set to ``min_value`` or ``max_value``, respectively. If ``min_value`` is not set, there is no lower bound, if ``max_value`` is not set there is no upper bound.
+Limits the value to the range between ``min_value`` and ``max_value``. By default, sensor values outside these bounds will be set to ``min_value`` or ``max_value``, respectively. If ``ignore_out_of_range`` is true, then sensor values outside those bounds will be ignored. If ``min_value`` is not set, there is no lower bound; if ``max_value`` is not set there is no upper bound.
 
 Configuration variables:
 
 - **min_value** (*Optional*, float): The lower bound of the range.
 - **max_value** (*Optional*, float): The upper bound of the range.
+- **ignore_out_of_range** (*Optional*, bool): If true, ignores all sensor values out of the range. Defaults to ``false``.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: wifi_signal
+      # ...
+      filters:
+        - clamp:
+            min_value: 10
+            max_value: 75
+            ignore_out_of_range: true
+
+
 
 ``round``
 *********
@@ -284,7 +298,7 @@ Rounds the value to the given decimal places.
 ``quantile``
 ************
 
-A `simple moving quantile <https://en.wikipedia.org/wiki/Quantile>`__
+A `simple moving quantile <https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/quantile.htm>`__
 over the last few values. This can be used to filter outliers from the received sensor data. A large
 window size will make the filter slow to react to input changes.
 
@@ -434,7 +448,7 @@ Configuration variables:
 ******************************
 
 A simple `exponential moving average
-<https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/quantile.htm>`__ over the last few
+<https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average>`__ over the last few
 values. It can be used to have a short update interval on the sensor but only push
 out an average on a specific interval (thus increasing resolution).
 
@@ -556,7 +570,7 @@ However, if the last value passed through was 100 only values greater than 120 o
 ``or``
 ******
 
-Pass forward a value with the first child filter that returns. Above example
+Pass forward a value with the first child filter that returns. Below example
 will only pass forward values that are *either* at least 1s old or are if the absolute
 difference is at least 5.0.
 

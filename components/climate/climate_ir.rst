@@ -33,6 +33,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Fujitsu General                       | ``fujitsu_general`` | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`GREE<gree_ir>`                  | ``gree``            |                      |
++---------------------------------------+---------------------+----------------------+
 | Hitachi                               | ``hitachi_ac344``   | yes                  |
 |                                       | ``hitachi_ac424``   |                      |
 +---------------------------------------+---------------------+----------------------+
@@ -41,6 +43,8 @@ submit a feature request (see FAQ).
 | Midea                                 | ``midea_ir``        | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Mitsubishi<mitsubishi>`         | ``mitsubishi``      | yes                  |
++---------------------------------------+---------------------+----------------------+
+| Noblex                                | ``noblex``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | TCL112, Fuego                         | ``tcl112``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
@@ -51,6 +55,8 @@ submit a feature request (see FAQ).
 | Yashima                               | ``yashima``         |                      |
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Whynter<whynter>`               | ``whynter``         | yes                  |
++---------------------------------------+---------------------+----------------------+
+| :ref:`ZH/LT-01<zhlt01>`               | ``zhlt01``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
 
 This component requires that you have configured a :doc:`/components/remote_transmitter`.
@@ -358,6 +364,62 @@ Configuration variables:
         supports_heat: true
 
 
+.. _gree_ir:
+
+
+``gree`` Climate
+---------------------
+
+Additional configuration is available for this model.
+
+
+Configuration variables:
+
+- **model** (*Required*, string): GREE has a few different protocols depending on model. One of these will work for you.
+
+  - ``generic``
+  - ``yan``
+  - ``yaa``
+  - ``yac``
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: gree
+        name: "AC"
+        sensor: room_temperature
+        model: yan
+
+.. _zhlt01:
+
+
+``zhlt01`` Climate
+---------------------
+
+ZH/LT-01 is a remote control that is used with many locally branded split airconditioners. 
+Supported brands include: 
+
+- Eurom
+- Chigo
+- Tristar
+- Tecnomaster
+- Elgin
+- Geant
+- Tekno
+- Topair
+- Proma
+- Sumikura
+- JBS
+- Turbo Air
+- Nakatomy
+- Celestial Air
+- Ager
+- Blueway
+- Airlux
+
+No additional configuration is required for this model.
 
 See Also
 --------
