@@ -7,90 +7,136 @@ External EEPROM I²C Memory
 
 .. _24LC256_datasheet: https://ww1.microchip.com/downloads/en/devicedoc/21203m.pdf
 
-The ``fram`` and ``fram_pref`` components allow you to use an FRAM
-(Ferroelectric RAM, `Wikipedia <https://en.wikipedia.org/wiki/Ferroelectric_RAM>`__)
-non-volatile storage to save arbitrary data, states and preferences.
+The ``external_epprom`` components allow you to use an I2C EEPROM for 
+non-volatile storage to save arbitrary data.
 
-FRAM has over 10\ :sup:`10` write cycles and many years of data retention,
-but much lower capacity compared to flash memory.
+Typical serial EEPROM devices on the market range from 128 to 64 K bytes.
 
-Typical FRAM devices on the market range from 512B to 128KiB.
-
-Fujitsu MB85RC256V
-(`datasheet <MB85RC256V_datasheet_>`__,
-`Adafruit I²C Breakout <https://www.adafruit.com/product/1895>`__)
-has 32KiB.
+For instance Microchip 24LC256
+(`datasheet <24LC256_datasheet_>`__)
+has 32KB.
 
 
-.. _fram-comp-device:
+.. _eeprom-comp-device:
 
 Device
 ------
 
-First you need to set up :doc:`/components/i2c` then the FRAM device:
+First you need to set up :doc:`/components/i2c` then the Eeprom device:
 
 .. code-block:: yaml
-    fram:
-Adds an FRAM device on default address (``0x50``) on the default I²C Bus.
+   external_eeprom:
+  id: ext_eeprom_component_1
+  address: 0x57
+  ee_page_write_time: 5
+  ee_page_size: 32
+  ee_memory_size: 4096
+  i2c_buffer_size: 126
 
-This is enough for other components and if you connect only one device
-and you don't need it directly in lambdas.
-
-However, it's better to give it an ``id``:
-
-.. code-block:: yaml
-    fram:
-      id: fram_1
-You can also add multiple devices:
-
-.. code-block:: yaml
-    fram:
-      - id: fram_1
-      - id: fram_2
-        address: 0x52
-This will add a device with ``id``: ``fram_1`` on default address
-and another with ``id``: ``fram_2`` on address ``0x52``.
+- **id** (*Required*, :ref:`config-id`): ID for use in lambdas
+- **i2c_id** (*Optional*, :ref:`config-id`): I²C Bus ID need on ESP32 devices with multiple I2C ports configured
+- **address** (*Required*, int): I²C address, see :ref:`eeprom-types`, default: ``0x57``
+- **ee_page_write_time** (*Required*, int): See :ref:`eeprom-types`, default: ``5``
+- **ee_page_size** (*Required*, int): EEPROM page size, see :ref:`eeprom-types` for examples.
+- **ee_memory_size** (*Required*, int): EEPROM size, see :ref:`eeprom-types` for examples.
+- **i2c_buffer_size** (*Required*, int): Size of the I2C buffer, for ESP32 & ESP8266 this 128 - 2 bytes hence 126
 
 Full example:
 
 .. code-block:: yaml
-    i2c:
-      scl: 10
-      sda: 8
-      id: i2c_1
+  esphome:
+    name: "schedule-test"
+
+  esp32:
+    board: esp32dev
+    framework:
+      type: arduino
+
+  api:
+    password: !secret api_password
+
+  ota:
+    password: !secret ota_password
+
+  logger:
+    
+    # Enable fallback hotspot (captive portal) in case wifi connection fails
+    level: DEBUG
+    logs: 
+        api: DEBUG
+        homeassistant: DEBUG
+        nextion: DEBUG
+        api.service: DEBUG
+        sensor: DEBUG
+        scheduler: DEBUG
+        dallas: DEBUG
+        i2c: DEBUG
+        ext_eeprom: DEBUG
+
+  wifi:
+    ssid: !secret wifi_ssid
+    password: !secret wifi_password
+
+    # Enable fallback hotspot (captive portal) in case wifi connection fails
+    ap:
+      ssid: "Esphome-Web-C34484"
+      password: "hlVBVePNuBE3"
+
+  captive_portal:
+
+  time:
+    - platform: homeassistant
+      id: homeassistant_time
+
+  i2c:
+    sda: GPIO21
+    scl: GPIO22
+    scan: true 
+    id: bus_1   
   
-    fram:
-      id: fram_1
-      i2c_id: i2c_1
-      address: 0x50
-      type: FRAM
-      size: 2KiB
-- **id** (*Optional*, :ref:`config-id`): ID for use in lambdas
-- **i2c_id** (*Optional*, :ref:`config-id`): I²C Bus ID
-- **address** (*Optional*, int): I²C address, see :ref:`fram-types`, default: ``0x50``
-- **type** (*Optional*, string): See :ref:`fram-types`, default: ``FRAM``
-- **size** (*Optional*, string): FRAM size, see :ref:`fram-size`
-    - ``100`` - 100 bytes, ``1 KB`` - 1000 bytes, ``1 KiB`` - 1024 bytes
+  external_eeprom:
+    id: ext_eeprom_component_1
+    address: 0x57
+    ee_page_write_time: 5
+    ee_page_size: 32
+    ee_memory_size: 4096
+    i2c_buffer_size: 126
+    i2c_id: bus_1
 
 
-.. _fram-size:
+  switch:
+    - platform: template    
+      name: "Test EEPROM Switch"
+      id: "test_ee_switch"
+      turn_on_action:
+          - lambda: |-
+              ESP_LOGD("Eeprom", "Mem size in bytes: %d", ext_eeprom_component_1->get_memory_size());
+              uint8_t myValue1 = 42;
+              ext_eeprom_component_1->write8(5, myValue1);
+              uint8_t myRdValue1;
+              myRdValue1 = ext_eeprom_component_1->read8(5);
+              ESP_LOGD("Eeprom", "I read: %d",myRdValue1 );
+              int32_t myValue2 = -480;
+              ext_eeprom_component_1->write_object(10, myValue2); //(location, data)
+              int32_t myRead2;
+              ext_eeprom_component_1->read_object(10, myRead2); //location to read, thing to put data into
+              ESP_LOGD("Eeprom", "I read: %d",myRead2 );
+              float myValue3 = -7.35;
+              ext_eeprom_component_1->write_object(20, myValue3); //(location, data)
+              float myRead3;
+              ext_eeprom_component_1->read_object(20, myRead3); //location to read, thing to put data into
+              ESP_LOGD("Eeprom","I read: %f",myRead3);
+              std::string myString = "This is a test of a very long string This is a test of a very long string This is a test of a very long string This is a test of a very long string This is a test of a very long string This is a test of a very long string ";
+              ext_eeprom_component_1->write_string_to_eeprom(40, myString); //(location, data)
+              std::string myRead4;
+              ext_eeprom_component_1->read_string_from_eeprom(40, myRead4); //location to read, thing to put data into
+              ESP_LOGD("Eeprom","I read: %s",myRead4.c_str());
+              // ext_eeprom_component_1->dump_eeprom(0,96);
+             
+.. _eeprom-types:
 
-Size
-****
-
-Some devices do not have "Device ID" command and will not return their size.
-This will be shown in the logs with ``Size: 0KiB, set size in config!`` message.
-
-Use the **size** option to set it.
-
-``FRAM::clear()`` method and :ref:`fram-comp-pref` component (``fram_pref``)
-can not be used if size is unknown.
-
-
-.. _fram-types:
-
-Types and Addresses
-*******************
+Devive Types
+************
 
 The **type** option sets how I²C address and memory address
 are being sent to the device.
@@ -104,50 +150,48 @@ it handles addresses according to one of the types.
 
     * - Device
       - Size
-      - Type
-      - I²C address
-    * - MB85RC04
+      - Page Size
+    * - 24LC014
+      - 128 B
+      - 16
+    * - 24LC024
+      - 256 B
+      - 16
+    * - 24LC04
       - 512 B
-      - FRAM9
-      - ``0x50,0x52,0x54,0x56``
-    * - MB85RC16
-      - 2 KiB
-      - FRAM11
-      - ``0x50``
-    * - MB85RC64T
-      - 8 KiB
-      - FRAM
-      - ``0x50-0x57``
-    * - MB85RC128A
-      - 16 KiB
-      - FRAM
-      - ``0x50-0x57``
-    * - MB85RC256V
-      - 32 KiB
-      - FRAM
-      - ``0x50-0x57``
-    * - MB85RC512T
-      - 64 KiB
-      - FRAM
-      - ``0x50-0x57``
-    * - MB85RC1MT
-      - 128 KiB
-      - FRAM17
-      - ``0x50,0x52,0x54,0x56``
+      - 16
+    * - 24LC08
+      - 1 KB
+      - 16
+    * - 24LC16
+      - 2 KB
+      - 16
+    * - 24LC32
+      - 4 KB
+      - 32
+    * - 24LC64
+      - 8 KB
+      - 32
+    * - 24LC256
+      - 32 KB
+      - 64
+    * - 24LC512
+      - 64 KB
+      - 64
 
 Address can be selected by connecting the address pins to VCC (pull them high).
 Some devices have three pins (``A0,A1,A2``) some have two and some have none.
 
-Address is then the ``0x50`` + the sum of the pins pulled high.
+Address is then the ``0x57`` + the sum of the pins pulled high.
 
 - ``A0``: add ``0x01``
 - ``A1``: add ``0x02``
 - ``A2``: add ``0x04``
 
-So, if ``A0`` and ``A2`` are high, address will be ``0x50 + 0x01 + 0x04 = 0x55``
+So, if ``A0`` and ``A2`` are high, address will be ``0x57 + 0x01 + 0x04 = 0x5C``
 
 
-.. _fram-usage:
+.. _eeprom-usage:
 
 Usage
 *****
@@ -158,10 +202,10 @@ This component can be used from other components or lambdas:
     on_...:
       - lambda: |-
           // write 16 bit int at address 15
-          id(fram_1).write16(0x000A, 12345);
+          id(ext_eeprom_component_1).write16(0x000A, 12345);
           
           // read back that number
-          uint16_t = id(fram_1).read16(0x000A);
+          uint16_t = id(ext_eeprom_component_1).read16(0x000A);
 Methods:
 
 - ``void write8(uint32_t address, uint8_t value)``
@@ -178,167 +222,3 @@ Methods:
 - ``void read(uint32_t address, uint8_t *obj, uint32_t size)``
 
 
-More on Types and Addresses
-***************************
-
-The I²C address is 7 bit, before being sent to the device
-it will be shifted 1 bit to the left,
-and that is how you are going to see it in the datasheet.
-
-``0x50`` - ``0 1 0 1  0 0 0 0``, shifted ``1 0 1 0  0 0 0 0``
-
-For the devices above of type **FRAM** the shifted address
-is presented in the datasheet like this:
-
-``1 0 1 0  A2 A1 A0 R/W``
-
-``A0-A2`` are toggled by the address pins.
-May be labeled differently (like ``A8``, ``A16``)
-if your device uses them for memory address.
-
-``R/W`` is toggled by the bus and is not important here.
-
-The difference between types comes in those address bits (``A0-A2``)
-and the size of the memory address.
-
-Assuming base device address is ``0x50`` (``0101 0000``).
-
-Types:
-
-- **FRAM**: 16 bit memory address, up to 64KiB
-    Device address is sent as is.
-    Full range can be used ``0x50-0x57`` if ``A0-A2`` are exposed.
-    Up to 8 devices on the same bus.
-
-- **FRAM9**: 9 bit memory address, up to 512B
-    ``A0`` is used as the first bit of the memory address.
-    Available device address bits are ``A1`` and ``A2``.
-    Only even device addresses can be used ``0x50,0x52,0x54,0x56``.
-    Up to 4 devices on the same bus.
-    Odd adresses can not be used by another device on the bus.
-
-- **FRAM11**: 11 bit memory address, up to 2KiB
-    All three address bits are used for the memory address.
-    No address pins available, device is fixed to base address ``0x50``.
-    Only one device on the same bus.
-    ``0x51-0x57`` can not be used by another device on the bus.
-
-- **FRAM17**: 17 bit memory address, up to 128KiB
-    Same as **FRAM9**, 1 bit stolen from device address,
-    used together with the next 16 bits to form a 17 bit memory address.
-    Address pins ``A1,A2``, four even device addresses.
-
-
-.. _fram-comp-pref:
-
-Global Preferences
-------------------
-
-This component will replace the default storage (in flash) for persistent states
-and preferences of other components.
-
-This can be useful for sensors that need to save their state very often.
-Or if you change your config in a way that invalidates the preference storage.
-Like change the load order of components, or entity names.
-
-There are two ways to use the component.
-:ref:`fram-pref-pool` and :ref:`fram-pref-static`.
-You can have both, so some preferences are saved as static
-and the rest are in the pool.
-
-You can also define neither a pool nor static preferences.
-This will result in no preferences being saved anywhere,
-but they will be reported in logs, so you can see the requested size
-and set it for a static preference. 
-
-
-.. _fram-pref-pool:
-
-Storage Pool
-************
-
-The pool acts just like the default storage.
-Some component wants to save something and if there is enough space,
-it will be granted a chunk of it.
-
-.. code-block:: yaml
-    fram_pref:
-      fram_id: fram_1
-      pool_start: 1024
-      pool_size: 2KiB
-- **fram_id** (**Required** :ref:`config-id`) ID of the FRAM :ref:`fram-comp-device`
-- **pool_start** (*Optional*, int) Starting address, ex.: ``1024`` (``0x0400``)
-- **pool_size** (*Optional*, string) Size of the pool
-    - ``100`` - 100 bytes, ``1 KB`` - 1000 bytes, ``1 KiB`` - 1024 bytes
-
-If using a pool, you have to define both **pool_start** and **pool_size**.
-
-The storage pool will be cleared on reflash!
-Use :ref:`fram-pref-static` to keep selected preferences.
-
-
-.. _fram-pref-static:
-
-Static preferences
-******************
-
-This is the way... to save preferences that survive reflash, entity names change
-and even transfer the FRAM device to another ESP.
-
-.. code-block:: yaml
-    fram_pref:
-      static_prefs:
-        - key: sw1
-          lambda: |-
-            return id(switch_1).get_object_id_hash();
-          addr: 12
-          size: 3
-          persist_key: true
-        - key: wifi
-          lambda: |-
-            return fnv1_hash(App.get_compilation_time());
-- **key** (**Required** string) Unique key
-- **lambda** (**Required** :ref:`lambda <config-lambda>`) Lambda to return the ``hash``
-- **addr** (*Optional*, int) Starting address
-- **size** (*Optional*, string) Size
-    - ``100`` - 100 bytes, ``1 KB`` - 1000 bytes, ``1 KiB`` - 1024 bytes
-- **persist_key** (*Optional*, bool) Persist after ``hash`` change, default: ``false``
-
-The lamda must return the same hash as is being requested
-by the component's ``make_preference`` call.
-Search ESPHome source for ``make_preference`` and see how that component do it.
-Most (entities) use ``get_object_id_hash()`` as shown for the ``sw1`` preference above.
-
-If you do not define **addr** and **size**, the preference will not be saved,
-but will appear in the logs.
-
-Use **persist_key** option to keep a preference even if its hash changes.
-Beware, if the hash changes, the component may want its storage cleared.
-
-Use this if you are sure that keeping the preference is fine for that component.
-Like, nothing else changed in code but the name of your entity.
-
-To find out the size, do not define **addr** and **size** and look in the logs.
-You will see a line like this ``Pref: key: wifi, request size: 100``.
-If you don't see ``request size: 100``,
-a preference with hash returned by **lambda** was not requested.
-
-Logs
-****
-
-Sample logs:
-
-.. code-block:: text
-    [19:15:06][C][fram_pref:135]: FramPref:
-    [19:15:06][C][fram_pref:144]:   Pool: 2048 bytes (1024-3071)
-    [19:15:06][C][fram_pref:153]:   Pool: 4 bytes used
-    [19:15:06][C][fram_pref:190]:   Pref: key: sw1, persist_key, addr: 12-14, request size: 3
-    [19:15:06][W][fram_pref:176]:   Pref: key: wifi, request size: 100
-    [19:15:06][E][fram_pref:178]:   Pref: key: foo, addr: 4000-36767
-    [19:15:06][E][fram_pref:184]:   * Does not fit in FRAM (0-32767)!
-If ``key`` is numeric, like ``key: 2006088186``, the preference is in the pool and not static.
-
-If there is no ``addr: 12-14``, the preference is not saved.
-Meaning, **addr** and **size** were not defined and there is no pool defined
-or the pool has not enough space.
-Address ranges are inclusive, start address ``2`` with size ``3`` is range ``2-4``.
