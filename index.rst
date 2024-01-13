@@ -368,6 +368,7 @@ Magnetic
 .. imgtable::
 
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg, ESP internal, dark-invert
+    AS5600, components/sensor/as5600, as5600.jpg, 12-Bit Magnetic Position Sensor
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg, 3-Axis magnetometer
     MMC5603, components/sensor/mmc5603, mmc5603.jpg, 3-Axis magnetometer
     MMC5983, components/sensor/mmc5983, mmc5983.jpg, 3-Axis magnetometer
@@ -495,6 +496,7 @@ Touchscreen
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Touchscreen, components/touchscreen/index, touch.svg, dark-invert
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
+    FT5X06, components/touchscreen/ft5x06, indicator.jpg
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
 
 Presence Detection
@@ -665,6 +667,7 @@ Display Components
     SSD1327, components/display/ssd1327, ssd1327.jpg
     SSD1331, components/display/ssd1331, ssd1331.jpg
     SSD1351, components/display/ssd1351, ssd1351.jpg
+    ST7567, components/display/st7567, st7567.jpg
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     ST7796, components/display/ili9xxx, st7796.svg
