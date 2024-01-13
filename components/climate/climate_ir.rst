@@ -264,13 +264,13 @@ Configuration variables:
 
 - **set_fan_mode** (*Optional*, string): Select the fan modes desired or that are supported on your remote. Default is ``3levels``
 
-    - Options are ``3levels`` , ``4levels``, ``quiet_4levels``. 
+  - Options are ``3levels`` , ``4levels``, ``quiet_4levels``. 
   
   - ``3levels``, Low [fan speed 1], Medium [2], High [3]
   - ``4levels``, Low [1], Middle [2], Medium [3], High [4]
   - ``quiet_4levels``, Low [1], Middle [2], Medium [3], High [4], Quiet [5]
 
-- **set_supported_mode** (*Optional*, string): Select the operating modes desired or that are supposed by your unit. Default id ``heat_cool``
+- **set_supported_mode** (*Optional*, string): Select the operating modes desired or that are supposed by your unit. Default is ``heat_cool``
   
   - Options are ``cool``, ``heat``, ``heat_cool``, ``dry_heat_cool``, ``dry_fan_heat_cool``.
 
