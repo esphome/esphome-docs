@@ -263,6 +263,7 @@ Additonal configurations available for this platform.
 Configuration variables:
 
 - **set_fan_mode** (*Optional*, string): Fan modes. Default is ``3levels``
+
   Select the fan modes desired or that are supported on your remote.
   - Options are ``3levels`` , ``4levels``, ``quiet_4levels``. 
   
@@ -271,6 +272,7 @@ Configuration variables:
   - ``quiet_4levels``, Low [1], Middle [2], Medium [3], High [4], Quiet [5]
 
 - **set_supported_mode** (*Optional*, string): Default id ``heat_cool``
+
   Select the operating modes desired or that are supposed by your unit.
   - Options are ``cool``, ``heat``, ``heat_cool``, ``dry_heat_cool``, ``dry_fan_heat_cool``. Default is ``heat_cool``
 
