@@ -445,7 +445,7 @@ bytes of data getting lost.
     dsmr:
       max_telegram_length: 1700
 
-It's best when a hardware UART is used for reading the P1 data. Whether or not hardware UART is used can
+It's best when a hardware UART is used for reading the P1 data. On ESP8266, whether or not hardware UART is used can
 be checked in the config dump that you get when connecting to the API logger. Example logging output:
 
 .. code-block:: text
@@ -460,7 +460,7 @@ be checked in the config dump that you get when connecting to the API logger. Ex
     [02:38:37][C][uart.arduino_esp8266:106]:   Using hardware serial interface.
                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When using an ESP8266, then GPIO13 (e.g. pin D7 on a D1 Mini) can be used for hardware RX. However, to
+Unfortunately the ESP32 does not appear to produce such logging. On the ESP32 you would typically use GPIO16 to be able to use serial logging and DSMR simultaneously. On ESP8266 you would use GPIO13 (e.g. pin D7 on a D1 Mini) for hardware RX. However, to
 actually make it work, serial logging must be disabled to keep the hardware UART available for D7.
 
 .. code-block:: yaml
