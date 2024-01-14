@@ -116,7 +116,6 @@ Example configuration
       # ...
     sensor:
       - platform: veml7700
-        name: "Greenhouse illuminance"
         address: 0x10
         update_interval: 60s
         ambient_light:
@@ -131,7 +130,6 @@ Configuration variables:
 ------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (*Optional*, string): A user-friendly name for this VEML device.
 - **address** (*Optional*, int): Manually specify the I²C address of the device.
   Defaults to ``0x10``. VEML7700 only uses address ``0x10``. VEML6030 can be either
   ``0x48`` or ``0x10`` (hardware configuration).
