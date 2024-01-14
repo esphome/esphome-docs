@@ -23,15 +23,27 @@ Device
 ------
 
 First you need to set up :doc:`/components/i2c` then the Eeprom device:
+Example I2C configuration for ESP32. Yours will depend on which pins/bus you use
 
 .. code-block:: yaml
-   external_eeprom:
-  id: ext_eeprom_component_1
-  address: 0x57
-  ee_page_write_time: 5
-  ee_page_size: 32
-  ee_memory_size: 4096
-  i2c_buffer_size: 126
+
+  i2c:
+    sda: GPIO21
+    scl: GPIO22
+    scan: true 
+    id: bus_1  
+
+Now the Eeprom device
+
+.. code-block:: yaml
+
+  external_eeprom:
+    id: ext_eeprom_component_1
+    address: 0x57
+    ee_page_write_time: 5
+    ee_page_size: 32
+    ee_memory_size: 4096
+    i2c_buffer_size: 126
 
 - **id** (*Required*, :ref:`config-id`): ID for use in lambdas
 - **i2c_id** (*Optional*, :ref:`config-id`): I²C Bus ID need on ESP32 devices with multiple I2C ports configured
@@ -42,8 +54,10 @@ First you need to set up :doc:`/components/i2c` then the Eeprom device:
 - **i2c_buffer_size** (*Required*, int): Size of the I2C buffer, for ESP32 & ESP8266 this 128 - 2 bytes hence 126
 
 Full example:
+-------------
 
 .. code-block:: yaml
+
   esphome:
     name: "schedule-test"
 
@@ -199,6 +213,7 @@ Usage
 This component can be used from other components or lambdas:
 
 .. code-block:: yaml
+
     on_...:
       - lambda: |-
           // write 16 bit int at address 15
@@ -206,6 +221,7 @@ This component can be used from other components or lambdas:
           
           // read back that number
           uint16_t = id(ext_eeprom_component_1).read16(0x000A);
+
 Methods:
 
 - ``void write8(uint32_t address, uint8_t value)``
@@ -221,4 +237,7 @@ Methods:
 - ``double read_double(uint32_t address)``
 - ``void read(uint32_t address, uint8_t *obj, uint32_t size)``
 
+.. note::
 
+    It your responsibility to maintain a list of addresses used to store various values. 
+    Also you need to understand the size to the item being stored EG ``write32`` will use 4 bytes.
