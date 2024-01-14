@@ -552,6 +552,7 @@ Graph component with options for grids, border and line-types.
             color: my_red
           - sensor: my_outside_temperature
             line_type: SOLID
+            continuous: true
             line_thickness: 3
             color: my_blue
           - sensor: my_beer_temperature
@@ -580,6 +581,7 @@ Trace specific fields:
 - **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
 - **line_thickness** (*Optional*): Defaults to 3
 - **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
+- **continuous** (*Optional*): connects the individual points to make a continuous line.  Defaults to ``false``.
 - **color** (*Optional*): Sets the color of the sensor trace.
 
 And then later in code:
