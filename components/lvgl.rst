@@ -623,6 +623,8 @@ Specific configuration options:
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
 
+TODO !! supported image encodings
+
 
 Example:
 
@@ -967,7 +969,7 @@ In addition to the built-in fonts, the following symbols are also available from
 
 .. _lvgl-objupd-act:
 
-``lvgl.obj.update`` Action
+``lvgl.widget.update`` Action
 --------------------------
 
 This powerful :ref:`action <config-action>` allows changing on the fly any :ref:`style property <lvgl-styling>` or :ref:`flag <lvgl-objupdflag-act>` of any widget.
@@ -976,7 +978,7 @@ This powerful :ref:`action <config-action>` allows changing on the fly any :ref:
 
     on_...:
       then:
-        - lvgl.obj.update:
+        - lvgl.widget.update:
             id: my_button_id
             bg_color: 0xFF0000
             state:
@@ -991,7 +993,7 @@ In addition to visual stilyng, each widget supports some boolean flags to influe
 
     on_...:
       then:
-        - lvgl.obj.update:
+        - lvgl.widget.update:
             id: my_label_id
             hidden: true
 
@@ -1006,7 +1008,7 @@ In addition to visual stilyng, each widget supports some boolean flags to influe
 - **scroll_one** (*Optional*, boolean): allow scrolling only one snappable children
 - **scroll_chain_hor** (*Optional*, boolean): allow propagating the horizontal scroll to a parent
 - **scroll_chain_ver** (*Optional*, boolean): allow propagating the vertical scroll to a parent
-- **scroll_chain simple** (*Optional*, boolean): packaging for (``scroll_chain_hor** or ``scroll_chain_ver``)
+- **scroll_chain simple** (*Optional*, boolean): packaging for (``scroll_chain_hor | scroll_chain_ver``)
 - **scroll_on_focus** (*Optional*, boolean): automatically scroll object to make it visible when focused
 - **scroll_with_arrow** (*Optional*, boolean): allow scrolling the focused object with arrow keys
 - **snappable** (*Optional*, boolean): if scroll snap is enabled on the parent it can snap to this object
