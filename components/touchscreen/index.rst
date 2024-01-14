@@ -88,13 +88,13 @@ list (``on_update``) or as an ``optional`` (``on_touch``).
 
 The integer members for the touch positions below are in relation to the display width and height:
 
+- ``id`` is a number provided by the touchscreen to uniquely identify the touch on a multi-touch screen.
+- ``state`` indicates the state of the touch. This can be **1**, indicating it is an initial touch, or **2** indicating the touch position has changed/moved.
+
 - ``x`` and ``y`` are the current position.
 - ``x_last`` and ``y_last`` are the previous position.
 - ``x_first`` and ``y_first`` are the position of the touch when it was first detected.
 - ``x_raw`` and ``y_raw`` are for calibrating the touchscreen in relation of the display. This replaces the properties with the same name in the touchscreen classes.
-
-- ``id`` is a number provided by the touchscreen to uniquely identify the touch on a multi-touch screen.
-- ``state`` indicates the state of the touch. This can be **1**, indicating it is an initial touch, or **2** indicating the touch position has changed/moved.
 
 .. _touchscreen-calibration:
 
@@ -174,10 +174,15 @@ The inversion is performed by setting the ``mirror_x`` and/or ``mirror_y`` to tr
 
     touchscreen:
       platform: xpt2046
-      calibration_x_min: 3848
-      calibration_x_max: 281
-      calibration_y_min: 347
-      calibration_y_max: 3878
+      calibration:
+        x_min: 281
+        x_max: 3848
+        y_min: 347
+        y_max: 3878
+      transform:
+        mirror_x: false
+        mirror_y: false
+        swap_xy: false
 
 Compile, run and click on the edges again. The x and y should now match the coordinates
 of the display.
@@ -235,6 +240,25 @@ This trigger provides one argument named ``touches`` of type :apiref:`touchscree
 
 This trigger may be useful to detect gestures such as swiping across the display.
 
+For example you could do:
+
+
+.. code-block:: yaml
+
+    on_update:
+        - lambda: |-
+              for (auto touch: touches)  {
+                  if (touch.state <= 2) {
+                     ESP_LOGI("Touch points:", "id=%d x=%d, y=%d", touch.id, touch.x, touch.y);
+                  }
+              }
+
+Be aware that you need to check the state flag every time to see if the touch is still valid.
+
+- state value 0. means the touch is invalid as the touch is no longer detected.
+- state value 1 means is being the first time detected. 
+- state value 2 means the touch is still being detected but is moved on the screen.
+- state value 4 and higher means a touch release is detected.
 
 .. _touchscreen-on_release:
 
