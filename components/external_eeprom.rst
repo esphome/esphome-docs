@@ -149,15 +149,10 @@ Full example:
              
 .. _eeprom-types:
 
-Devive Types
-************
-
-The **type** option sets how I²C address and memory address
-are being sent to the device.
-
-If your device isn't in the list bellow,
-it may still be supported if
-it handles addresses according to one of the types.
+Devices
+*******
+The list below is non-exhustive list of type and sizes of serial Eeprom devices
+Please refer to the datasheet for your selected device for **Size**, **Page Size**, **Page Write Time**
 
 .. list-table::
     :header-rows: 1
@@ -165,33 +160,43 @@ it handles addresses according to one of the types.
     * - Device
       - Size
       - Page Size
+      - Page Write (ms)
     * - 24LC014
       - 128 B
       - 16
+      - 5
     * - 24LC024
       - 256 B
       - 16
+      - 5
     * - 24LC04
       - 512 B
       - 16
+      - 5
     * - 24LC08
       - 1 KB
       - 16
+      - 5
     * - 24LC16
       - 2 KB
       - 16
+      - 5
     * - 24LC32
       - 4 KB
       - 32
+      - 5
     * - 24LC64
       - 8 KB
       - 32
+      - 5
     * - 24LC256
       - 32 KB
       - 64
+      - 5
     * - 24LC512
       - 64 KB
       - 64
+      - 5
 
 Address can be selected by connecting the address pins to VCC (pull them high).
 Some devices have three pins (``A0,A1,A2``) some have two and some have none.
@@ -224,12 +229,36 @@ This component can be used from other components or lambdas:
 
 Methods:
 
-- ``void write8(uint32_t address, uint8_t value)``
-- ``void write16(uint32_t address, uint16_t value)``
-- ``void write32(uint32_t address, uint32_t value)``
-- ``void write_float(uint32_t address, float value)``
-- ``void write_double(uint32_t address, double value)``
-- ``void write(uint32_t address, uint8_t *obj, uint32_t size)``
+``void write8(uint32_t address, uint8_t value)``
+
+Writes a byte to a given location
+
+- **memaddr** is the location to write. 
+- **value** contains the byte to be written.
+
+*Note It will check first to see if location already has the value to protect write cycles*
+
+``void write16(uint32_t memaddr, uint16_t value)``
+
+Writes a 16 bit word to a given location
+
+- **memaddr** is the location to write. 
+- **value** contains the word to be written.
+
+*Note It will check first to see if location already has the value to protect write cycles*
+
+.. code-block:: c
+
+  /// @brief Writes a 32 bit word to a given location
+  /// @note It will check first to see if location already has the value to protect write cycles
+  /// @param memaddr is the location to write
+  /// @param value contains the word to be written
+  void ExtEepromComponent::write32(uint32_t memaddr, uint32_t value) {
+
+
+``void write_float(uint32_t address, float value)``
+``void write_double(uint32_t address, double value)``
+``void write(uint32_t address, uint8_t *obj, uint32_t size)``
 - ``uint8_t read8(uint32_t address)``
 - ``uint16_t read16(uint32_t address)``
 - ``uint32_t read32(uint32_t address)``
@@ -240,4 +269,5 @@ Methods:
 .. note::
 
     It your responsibility to maintain a list of addresses used to store various values. 
-    Also you need to understand the size to the item being stored EG ``write32`` will use 4 bytes.
+    Also you need to understand the size to the item being stored EG ``write32`` will use 4 bytes. Otherwise data will get over written.
+    **Special care is required with writing strings as the string can be upto 254 bytes.**
