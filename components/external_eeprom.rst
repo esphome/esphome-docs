@@ -27,23 +27,23 @@ Example I2C configuration for ESP32. Yours will depend on which pins/bus you use
 
 .. code-block:: yaml
 
-  i2c:
-    sda: GPIO21
-    scl: GPIO22
-    scan: true 
-    id: bus_1  
+    i2c:
+      sda: GPIO21
+      scl: GPIO22
+      scan: true 
+      id: bus_1  
 
 Now the Eeprom device
 
 .. code-block:: yaml
 
-  external_eeprom:
-    id: ext_eeprom_component_1
-    address: 0x57
-    ee_page_write_time: 5
-    ee_page_size: 32
-    ee_memory_size: 4096
-    i2c_buffer_size: 126
+    external_eeprom:
+      id: ext_eeprom_component_1
+      address: 0x57
+      ee_page_write_time: 5
+      ee_page_size: 32
+      ee_memory_size: 4096
+      i2c_buffer_size: 126
 
 - **id** (*Required*, :ref:`config-id`): ID for use in lambdas
 - **i2c_id** (*Optional*, :ref:`config-id`): I²C Bus ID need on ESP32 devices with multiple I2C ports configured
@@ -58,94 +58,94 @@ Full example:
 
 .. code-block:: yaml
 
-  esphome:
-    name: "schedule-test"
+    esphome:
+      name: "schedule-test"
 
-  esp32:
-    board: esp32dev
-    framework:
-      type: arduino
+    esp32:
+      board: esp32dev
+      framework:
+        type: arduino
 
-  api:
-    password: !secret api_password
+    api:
+      password: !secret api_password
 
-  ota:
-    password: !secret ota_password
+    ota:
+      password: !secret ota_password
 
-  logger:
+    logger:
+      
+      # Enable fallback hotspot (captive portal) in case wifi connection fails
+      level: DEBUG
+      logs: 
+          api: DEBUG
+          homeassistant: DEBUG
+          nextion: DEBUG
+          api.service: DEBUG
+          sensor: DEBUG
+          scheduler: DEBUG
+          dallas: DEBUG
+          i2c: DEBUG
+          ext_eeprom: DEBUG
+
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+
+      # Enable fallback hotspot (captive portal) in case wifi connection fails
+      ap:
+        ssid: "Esphome-Web-C34484"
+        password: "hlVBVePNuBE3"
+
+    captive_portal:
+
+    time:
+      - platform: homeassistant
+        id: homeassistant_time
+
+    i2c:
+      sda: GPIO21
+      scl: GPIO22
+      scan: true 
+      id: bus_1   
     
-    # Enable fallback hotspot (captive portal) in case wifi connection fails
-    level: DEBUG
-    logs: 
-        api: DEBUG
-        homeassistant: DEBUG
-        nextion: DEBUG
-        api.service: DEBUG
-        sensor: DEBUG
-        scheduler: DEBUG
-        dallas: DEBUG
-        i2c: DEBUG
-        ext_eeprom: DEBUG
-
-  wifi:
-    ssid: !secret wifi_ssid
-    password: !secret wifi_password
-
-    # Enable fallback hotspot (captive portal) in case wifi connection fails
-    ap:
-      ssid: "Esphome-Web-C34484"
-      password: "hlVBVePNuBE3"
-
-  captive_portal:
-
-  time:
-    - platform: homeassistant
-      id: homeassistant_time
-
-  i2c:
-    sda: GPIO21
-    scl: GPIO22
-    scan: true 
-    id: bus_1   
-  
-  external_eeprom:
-    id: ext_eeprom_component_1
-    address: 0x57
-    ee_page_write_time: 5
-    ee_page_size: 32
-    ee_memory_size: 4096
-    i2c_buffer_size: 126
-    i2c_id: bus_1
+    external_eeprom:
+      id: ext_eeprom_component_1
+      address: 0x57
+      ee_page_write_time: 5
+      ee_page_size: 32
+      ee_memory_size: 4096
+      i2c_buffer_size: 126
+      i2c_id: bus_1
 
 
-  switch:
-    - platform: template    
-      name: "Test EEPROM Switch"
-      id: "test_ee_switch"
-      turn_on_action:
-          - lambda: |-
-              ESP_LOGD("Eeprom", "Mem size in bytes: %d", ext_eeprom_component_1->get_memory_size());
-              uint8_t myValue1 = 42;
-              ext_eeprom_component_1->write8(5, myValue1);
-              uint8_t myRdValue1;
-              myRdValue1 = ext_eeprom_component_1->read8(5);
-              ESP_LOGD("Eeprom", "I read: %d",myRdValue1 );
-              int32_t myValue2 = -480;
-              ext_eeprom_component_1->write_object(10, myValue2); //(location, data)
-              int32_t myRead2;
-              ext_eeprom_component_1->read_object(10, myRead2); //location to read, thing to put data into
-              ESP_LOGD("Eeprom", "I read: %d",myRead2 );
-              float myValue3 = -7.35;
-              ext_eeprom_component_1->write_object(20, myValue3); //(location, data)
-              float myRead3;
-              ext_eeprom_component_1->read_object(20, myRead3); //location to read, thing to put data into
-              ESP_LOGD("Eeprom","I read: %f",myRead3);
-              std::string myString = "This is a test of a very long string This is a test of a very long string This is a test of a very long string This is a test of a very long string This is a test of a very long string This is a test of a very long string ";
-              ext_eeprom_component_1->write_string_to_eeprom(40, myString); //(location, data)
-              std::string myRead4;
-              ext_eeprom_component_1->read_string_from_eeprom(40, myRead4); //location to read, thing to put data into
-              ESP_LOGD("Eeprom","I read: %s",myRead4.c_str());
-              // ext_eeprom_component_1->dump_eeprom(0,96);
+    switch:
+      - platform: template    
+        name: "Test EEPROM Switch"
+        id: "test_ee_switch"
+        turn_on_action:
+            - lambda: |-
+                ESP_LOGD("Eeprom", "Mem size in bytes: %d", ext_eeprom_component_1->get_memory_size());
+                uint8_t myValue1 = 42;
+                ext_eeprom_component_1->write8(5, myValue1);
+                uint8_t myRdValue1;
+                myRdValue1 = ext_eeprom_component_1->read8(5);
+                ESP_LOGD("Eeprom", "I read: %d",myRdValue1 );
+                int32_t myValue2 = -480;
+                ext_eeprom_component_1->write_object(10, myValue2); //(location, data)
+                int32_t myRead2;
+                ext_eeprom_component_1->read_object(10, myRead2); //location to read, thing to put data into
+                ESP_LOGD("Eeprom", "I read: %d",myRead2 );
+                float myValue3 = -7.35;
+                ext_eeprom_component_1->write_object(20, myValue3); //(location, data)
+                float myRead3;
+                ext_eeprom_component_1->read_object(20, myRead3); //location to read, thing to put data into
+                ESP_LOGD("Eeprom","I read: %f",myRead3);
+                std::string myString = "This is a test of a very long string This is a test of a very long string This is a test of a very long string This is a test of a very long string This is a test of a very long string This is a test of a very long string ";
+                ext_eeprom_component_1->write_string_to_eeprom(40, myString); //(location, data)
+                std::string myRead4;
+                ext_eeprom_component_1->read_string_from_eeprom(40, myRead4); //location to read, thing to put data into
+                ESP_LOGD("Eeprom","I read: %s",myRead4.c_str());
+                // ext_eeprom_component_1->dump_eeprom(0,96);
              
 .. _eeprom-types:
 
