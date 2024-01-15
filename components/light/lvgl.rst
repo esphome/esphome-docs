@@ -35,7 +35,7 @@ Example:
 
 .. note::
 
-    To have linear brightness control, set `gamma_correct` to `0`.
+    To have linear brightness control, ``gamma_correct`` of the light is set by default to ``0``.
 
 
 See Also

@@ -29,7 +29,7 @@ Example:
 
     switch:
       - platform: lvgl
-        obj: checkbox_id
+        widget: checkbox_id
         name: LVGL switch
 
 See Also

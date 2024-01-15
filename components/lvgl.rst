@@ -305,8 +305,8 @@ Common properties
 
 The properties below are common to all widgets.
 
-- **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to top left of parent or screen). If layouts are used, or if specfiyng ``align``, can be omitted for automatic placement.
-- **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If layouts are used, or if specfiyng ``align``, can be omitted for automatic placement.
+- **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to top left of parent or screen). If layouts are used, or if specfiyng ``align``, it is used as an offset to the calculated position (can also be negative).
+- **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If layouts are used, or if specfiyng ``align``, it is used as an offset to the calculated position (can also be negative).
 - **width** (*Optional*): Width of the widget in pixels or a percentage, or ``size_content`` (see below).
 - **height** (*Optional*): Height of the widget in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the widget based on its contents (children objects, or eg. image size in case of ``img``.
 - **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused object which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
@@ -485,16 +485,17 @@ Specific configuration options:
         - **text** or **symbol** (*Optional*): Text or symbol to display on the button.
         - **width** (*Optional*): Width relative to the other buttons in the same row. A value between ``1`` and ``15`` range, default ``1``. E.g. in a line with two buttons: btnA, width = 1 and btnB, width = 2, btnA will have 33 % width and btnB will have 66 % width. 
         - **control** (*Optional*): Binary flags to control behavior of the buttons (all ``false`` by default):
-            - ``HIDDEN``: Makes a button hidden (hidden buttons still take up space in the layout, they are just not visible or clickable).
-            - ``NO_REPEAT``: Disable repeating when the button is long pressed.
-            - ``DISABLED``: Applies *disabled* styles and properties to the button.
-            - ``CHECKABLE``: Enable toggling of a button, ``checked`` state will be added/removed as the button is clicked.
-            - ``CHECKED``: Make the button checked. It will use the styles of the ``checked`` state.
-            - ``CLICK_TRIG``: Controls how to :ref:`trigger <lvgl-event-trg>` ``on_value`` : if ``true`` on *click*, if ``false`` on *press*.
-            - ``POPOVER``: Show the button label in a popover when pressing this key.
-            - ``RECOLOR``: Enable recoloring of button texts with #. E.g. ``It's #ff0000 red#``
-            - ``CUSTOM_1`` and ``CUSTOM_2``: Custom free to use flags
+            - **hidden** (*Optional*, boolean): makes a button hidden (hidden buttons still take up space in the layout, they are just not visible or clickable).
+            - **no_repeat** (*Optional*, boolean): Disable repeating when the button is long pressed.
+            - **disabled** (*Optional*, boolean): applies *disabled* styles and properties to the button.
+            - **checkable** (*Optional*, boolean): Enable toggling of a button, ``checked`` state will be added/removed as the button is clicked.
+            - **checked** (*Optional*, boolean): make the button checked. It will use the styles of the ``checked`` state.
+            - **click_trig** (*Optional*, boolean): Controls how to :ref:`trigger <lvgl-event-trg>` ``on_value`` : if ``true`` on *click*, if ``false`` on *press*.  TODO !!!
+            - **popover** (*Optional*, boolean): show the button label in a popover when pressing this key.
+            - **recolor** (*Optional*, boolean): Enable recoloring of button texts with #. E.g. ``It's #ff0000 red#``
+            - **custom_1** and **custom_2** (*Optional*, boolean): custom free to use flags
 - **items** (*Optional*, list): Settings for the items **part**, the buttons all use the text and typical background style properties except translations and transformations.
+- **one_checked** (*Optional*, boolean): Allow only one button to be checked at a time (aka. radio buttons). Defaults to ``false``.
 - Style options from :ref:`lvgl-styling` for the background of the button matrix, uses the typical background style properties. ``pad_row`` and ``pad_column`` set the space between the buttons.
 
 
@@ -650,15 +651,19 @@ A label is the basic object type that is used to display text.
 Specific configuration options:
 
 - **text** or **symbol** (*Required*, string): The text to display. To display an empty text string, specify ``''``
+- **recolor** (*Optional*, boolean): Enable recoloring of button texts with #. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #ff0000 red# word``. 
+- **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
+    - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped. (Default)
+    - ``DOT``: Replaces the last 3 characters from bottom right corner of the label with dots.
+    - ``SCROLL``: If the text is wider than the label scroll it horizontally back and forth. If it's higher, scroll vertically. Only one direction is scrolled and horizontal scrolling has higher precedence.
+    - ``SCROLL_CIRCULAR``: If the text is wider than the label scroll it horizontally continuously. If it's higher, scroll vertically. Only one direction is scrolled and horizontal scrolling has higher precedence.
+    - ``CLIP``: Simply clip the parts of the text outside the label.
 - **scrollbar** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scrollbar that is shown when the text is larger than the widget's size.
-- **selected** (*Optional*, list): Tells the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
+- **selected** (*Optional*, list): Settings for the the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
 - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties. The padding values can be used to add space between the text and the background.
 
 Newline characters are handled automatically by the label widget. You can use ``\n`` to make a line break. For example: ``line1\nline2\n\nline4``.
 
-It's possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #ff0000 red# word``. 
-
-By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size.
 
 Example:
 
@@ -666,10 +671,10 @@ Example:
 
     # Example widget:
     - label:
-        x: 15
-        y: 235
+        align: center
         id: lbl_id
-        text: 'Wi-Fi signal:'
+        recolor: true
+        text: 'Write a #ff0000 red# word'
 
 ``line``
 ********
@@ -970,7 +975,7 @@ In addition to the built-in fonts, the following symbols are also available from
 .. _lvgl-objupd-act:
 
 ``lvgl.widget.update`` Action
---------------------------
+-----------------------------
 
 This powerful :ref:`action <config-action>` allows changing on the fly any :ref:`style property <lvgl-styling>` or :ref:`flag <lvgl-objupdflag-act>` of any widget.
 
