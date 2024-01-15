@@ -151,7 +151,7 @@ Full example:
 
 Devices
 *******
-The list below is non-exhustive list of type and sizes of serial Eeprom devices
+The list below is non-exhaustive list of type and sizes of serial Eeprom devices
 Please refer to the datasheet for your selected device for **Size**, **Page Size**, **Page Write Time**
 
 .. list-table::
@@ -227,47 +227,57 @@ This component can be used from other components or lambdas:
           // read back that number
           uint16_t = id(ext_eeprom_component_1).read16(0x000A);
 
-Methods:
+Methods
+========
 
-``void write8(uint32_t address, uint8_t value)``
+Writing a single variable
+-------------------------
 
-Writes a byte to a given location
+- ``void write8(uint32_t address, uint8_t value)``
+- ``void write16(uint32_t memaddr, uint16_t value)``
+- ``void write_float(uint32_t address, float value)``
+- ``void write_double(uint32_t address, double value)``
 
-- **memaddr** is the location to write. 
-- **value** contains the byte to be written.
+Reading a single variable
+-------------------------
 
-*Note It will check first to see if location already has the value to protect write cycles*
-
-``void write16(uint32_t memaddr, uint16_t value)``
-
-Writes a 16 bit word to a given location
-
-- **memaddr** is the location to write. 
-- **value** contains the word to be written.
-
-*Note It will check first to see if location already has the value to protect write cycles*
-
-.. code-block:: c
-
-  /// @brief Writes a 32 bit word to a given location
-  /// @note It will check first to see if location already has the value to protect write cycles
-  /// @param memaddr is the location to write
-  /// @param value contains the word to be written
-  void ExtEepromComponent::write32(uint32_t memaddr, uint32_t value) {
-
-
-``void write_float(uint32_t address, float value)``
-``void write_double(uint32_t address, double value)``
-``void write(uint32_t address, uint8_t *obj, uint32_t size)``
 - ``uint8_t read8(uint32_t address)``
 - ``uint16_t read16(uint32_t address)``
 - ``uint32_t read32(uint32_t address)``
 - ``float read_float(uint32_t address)``
 - ``double read_double(uint32_t address)``
-- ``void read(uint32_t address, uint8_t *obj, uint32_t size)``
+
+Reading and Writing Objects
+---------------------------
+
+- ``void read_object(uint32_t address, uint8_t *obj, uint32_t size)``
+- ``void write_object(uint32_t address, uint8_t *obj, uint32_t size)``
+
+Reading and Writing Strings
+---------------------------
+String are limited 254 characters and are stored with an extra leading byte that includes the length.
+
+- ``uint32_t read_string_from_eeprom(uint32_t memaddr, std::string &str_to_read);``
+- ``uint32_t write_string_to_eeprom(uint32_t memaddr, std::string &str_to_write);``
+
+Both return the next available storage location
+
+Miscellaneous Methods
+---------------------
+
+- ``void dump_eeprom(uint32_t start_addr, uint16_t word_count);``
+- ``void erase(uint8_t value_to_write);``
+
+The dump_eeprom methods display the contents of EEPROM in hex to the debug log starting at ``start_addr`` and for length ``word_count``.
+The erase method erases the entire eeprom, the default value written to erase the eeprom is ``0x00``. This can be overridden by supplying ``value_to_write``.
+
+.. warning::
+
+    A call to the ``erase`` is **irreversible** so use carefully. You have been warned!
 
 .. note::
 
     It your responsibility to maintain a list of addresses used to store various values. 
     Also you need to understand the size to the item being stored EG ``write32`` will use 4 bytes. Otherwise data will get over written.
-    **Special care is required with writing strings as the string can be upto 254 bytes.**
+
+    **Special care is required with writing strings, as the string is varible length and can be upto 254 bytes long.**
