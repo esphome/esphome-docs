@@ -383,6 +383,11 @@ Example:
         max_value: 100
         adjustable: true
 
+    # Example action:
+    on_...:
+      then:
+        - lvgl.arc.update
+
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
 .. _lvgl-wgt-bar:
@@ -440,10 +445,6 @@ Simple push or toggle button.
 - **checkable** (*Optional*, boolean): A significant :ref:`flag <lvgl-objupdflag-act>` to make a toggle button (which remains pressed in ``checked`` state). Defaults to ``false``.
 - Style options from :ref:`lvgl-styling` for the background of the button. Uses the typical background style properties.
 
-**Specific actions:**
-
-``lvgl.button.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
-
 Example:
 
 .. code-block:: yaml
@@ -455,7 +456,6 @@ Example:
         width: 50
         height: 30
         id: btn_id
-
 
 To have a button with a text label on it, add a ``label`` widget as child to it:
 
@@ -495,6 +495,7 @@ The Button Matrix object is a lightweight way to display multiple buttons in row
         - **id** (*Optional*): An ID for a button
         - **text** or **symbol** (*Optional*): Text or built-in symbol to display on the button.
         - **width** (*Optional*): Width relative to the other buttons in the same row. A value between ``1`` and ``15`` range, default ``1``. E.g. in a line with two buttons: btnA, width = 1 and btnB, width = 2, btnA will have 33 % width and btnB will have 66 % width. 
+        - **selected** (*Optional*, boolean): Set the button as the most recently released or focused. Defaults to ``false``.
         - **control** (*Optional*): Binary flags to control behavior of the buttons (all ``false`` by default):
             - **hidden** (*Optional*, boolean): makes a button hidden (hidden buttons still take up space in the layout, they are just not visible or clickable).
             - **no_repeat** (*Optional*, boolean): Disable repeating when the button is long pressed.
@@ -507,7 +508,6 @@ The Button Matrix object is a lightweight way to display multiple buttons in row
             - **custom_1** and **custom_2** (*Optional*, boolean): custom free to use flags
 - **items** (*Optional*, list): Settings for the items **part**, the buttons all use the text and typical background style properties except translations and transformations.
 - **one_checked** (*Optional*, boolean): Allow only one button to be checked at a time (aka. radio buttons). Defaults to ``false``.
-- **selected** (*Optional*, boolean): To return the index of the most recently released or focused button. Defaults to ``false``.
 - Style options from :ref:`lvgl-styling` for the background of the button matrix, uses the typical background style properties. ``pad_row`` and ``pad_column`` set the space between the buttons.
 
 **Specific actions:**
@@ -593,6 +593,12 @@ Example:
         id: checkbox_id
         text: Checkbox
 
+    # Example action:
+    on_...:
+      then:
+        - lvgl.
+
+
 The ``checkbox`` can be also integrated as a :doc:`/components/switch/lvgl`.
 
 .. _lvgl-wgt-drp:
@@ -639,6 +645,12 @@ Example:
           - Piano
           - Bassoon
 
+    # Example action:
+    on_...:
+      then:
+        - lvgl.
+
+
 The ``dropdown`` can be also integrated as :doc:`/components/select/lvgl`.
 
 
@@ -675,6 +687,12 @@ Example:
         id: img_id
         radius: 11
         clip_corner: true
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.
+
 
 ``label``
 *********
@@ -715,6 +733,12 @@ Example:
         recolor: true
         text: '#FF0000 write# #00FF00 colored# #0000FF text#'
 
+    # Example action:
+    on_...:
+      then:
+        - lvgl.
+
+
 
 ``line``
 ********
@@ -738,6 +762,12 @@ Example:
 
     # Example widget:
     - 
+
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.
 
 
 .. _lvgl-wgt-led:
@@ -770,6 +800,12 @@ Example:
         align: CENTER
         color: 0xFF0000
         brightness: 70%
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.
+
 
 
 The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
@@ -840,6 +876,12 @@ Example:
           - Chello
           - Drums
 
+    # Example action:
+    on_...:
+      then:
+        - lvgl.
+
+
 The ``roller`` can be also integrated as :doc:`/components/select/lvgl`.
 
 .. _lvgl-wgt-sli:
@@ -880,6 +922,12 @@ Example:
         value: 75
         min_value: 1
         max_value: 100
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.
+
 
 The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
 
