@@ -358,7 +358,7 @@ Specific configuration options:
 - any :ref:`Styling <lvgl-styling>` and state-based option to override styles inherited from parent. The arc's size and position will respect the padding style properties.
 
 
-If the ``adv_hittest`` flag is enabled the arc can be clicked through in the middle. Clicks are recognized only on the ring of the background arc.
+If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can be clicked through in the middle. Clicks are recognized only on the ring of the background arc.
 
 
 .. note::
@@ -433,7 +433,7 @@ Simple push or toggle button.
 
 Specific configuration options:
 
-- **checkable** (*Optional*, boolean): A significant flag to make a toggle button (which remains pressed in ``checked`` state). Defaults to ``false``.
+- **checkable** (*Optional*, boolean): A significant :ref:`flag <lvgl-objupdflag-act>` to make a toggle button (which remains pressed in ``checked`` state). Defaults to ``false``.
 - Style options from :ref:`lvgl-styling` for the background of the button. Uses the typical background style properties.
 
 Example:
@@ -713,6 +713,7 @@ The LEDs are rectangle-like (or circle) object whose brightness can be adjusted.
     :align: center
 
 Specific configuration options:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background, border, and shadow of the widget.
 - **brightness** (*Optional*, percentage): The brightness of the LED color, where ``0`` corresponds to black, and ``100`` corresponds to the full brightness of the color specified above.
@@ -729,6 +730,10 @@ Example:
         color: 0xFF0000
         brightness: 70%
 
+Specific actions:
+^^^^^^^^^^^^^^^^^
+
+- **lvgl.led.update**
 
 The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
@@ -1051,7 +1056,7 @@ In addition to visual stilyng, each widget supports some boolean flags to influe
 ``lvgl.widget.hide`` and ``lvgl.widget.show`` Actions
 -----------------------------------------------------
 
-These :ref:`actions <config-action>` are shorthands for toggling the ``hidden`` flag of any widget:
+These :ref:`actions <config-action>` are shorthands for toggling the ``hidden`` :ref:`flag <lvgl-objupdflag-act>` of any widget:
 
 .. code-block:: yaml
 
