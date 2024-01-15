@@ -315,7 +315,7 @@ The properties below are common to all widgets.
 - **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. Same configuration option as at the main component.
 - **flex_flow** (*Optional*, string): Option for ``FLEX`` layout, similar configuration as at the main component.
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn as children of this widget. Same configuration option as at the main component.
-- **state** (*Optional*, string): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overriden withing style definitions or locally set. The state itself can be can be changed by interacting with the widget itself, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.obj.update`` action. Can be one of:
+- **state** (*Optional*, string): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overriden withing style definitions or locally set. The state itself can be can be changed by interacting with the widget itself, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.widget.update`` action. Can be one of:
     - ``default``: Normal, released state
     - ``disabled``: Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.enable`` and ``lvgl.widget.disable``)
     - ``pressed``: Being pressed
@@ -338,7 +338,7 @@ The Arc consists of a background and a foreground arc. The foreground (indicator
 .. figure:: /components/images/lvgl_arc.png
     :align: center
 
-Specific configuration options:
+Specific options:
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
@@ -395,7 +395,7 @@ Vertical bars can be created if the width of the object is smaller than its heig
 
 Not only the end, but also the start value of the bar can be set, which changes the start position of the indicator.
 
-Specific configuration options:
+Specific options:
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
@@ -431,7 +431,7 @@ Simple push or toggle button.
 .. figure:: /components/images/lvgl_button.png
     :align: center
 
-Specific configuration options:
+Specific options:
 
 - **checkable** (*Optional*, boolean): A significant :ref:`flag <lvgl-objupdflag-act>` to make a toggle button (which remains pressed in ``checked`` state). Defaults to ``false``.
 - Style options from :ref:`lvgl-styling` for the background of the button. Uses the typical background style properties.
@@ -480,7 +480,7 @@ The Button Matrix object is a lightweight way to display multiple buttons in row
 .. figure:: /components/images/lvgl_btnmatrix.png
     :align: center
 
-Specific configuration options:
+Specific options:
 
 - **rows** (**Required**, list): A list for the button rows:
     - **buttons** (**Required**, list): A list of buttons in a row:
@@ -552,7 +552,7 @@ The Checkbox object is made internally from a "tick box" and a label. When the C
 .. figure:: /components/images/lvgl_checkbox.png
     :align: center
 
-Specific configuration options:
+Specific options:
 
 - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The "tick box" is a square that uses all the typical background style properties. By default, its size is equal to the height of the main part's font. Padding properties make the tick box larger in the respective directions.
 - Style options from :ref:`lvgl-styling` for the background of the widget and it uses the text and all the typical background style properties. ``pad_column`` adjusts the spacing between the tickbox and the label.
@@ -585,7 +585,7 @@ The dropdown list is closed by default and displays a single value or a predefin
 
 The Dropdown widget is built internall from a *button* and a *list* (both not related to the actual widgets with the same name).
 
-Specific configuration options:
+Specific options:
 
 - **options** (*Required*, list): The list of available options in the drop-down.
 - **dir** (*Optional*, enum): Where the list part of the dropdown gets created relative to the button part. ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
@@ -623,7 +623,7 @@ Images are the basic widgets to display images.
 .. figure:: /components/images/lvgl_image.png
     :align: center
 
-Specific configuration options:
+Specific options:
 
 - **src** (**Required**, :ref:`image <display-image>`):  The ID of an existing image configuration.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
@@ -653,7 +653,7 @@ A label is the basic object type that is used to display text.
 .. figure:: /components/images/lvgl_label.png
     :align: center
 
-Specific configuration options:
+Specific options:
 
 - **text** or **symbol** (*Required*, string): The text to display. To display an empty text string, specify ``''``
 - **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
@@ -687,7 +687,7 @@ Example:
 
 The Line object is capable of drawing straight lines between a set of points.
 
-Specific configuration options:
+Specific options:
 
 - **points** (*Required*, list): TODO
 - Style options from :ref:`lvgl-styling`, all the typical background properties and line style properties.
@@ -712,12 +712,15 @@ The LEDs are rectangle-like (or circle) object whose brightness can be adjusted.
 .. figure:: /components/images/lvgl_led.png
     :align: center
 
-Specific configuration options:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Specific options:
 
 - **color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background, border, and shadow of the widget.
 - **brightness** (*Optional*, percentage): The brightness of the LED color, where ``0`` corresponds to black, and ``100`` corresponds to the full brightness of the color specified above.
 - Style options from :ref:`lvgl-styling`, using all the typical background style properties.
+
+Specific actions:
+
+``lvgl.led.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 Example:
 
@@ -730,10 +733,6 @@ Example:
         color: 0xFF0000
         brightness: 70%
 
-Specific actions:
-^^^^^^^^^^^^^^^^^
-
-- **lvgl.led.update**
 
 The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
@@ -747,7 +746,7 @@ The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
 The Meter widget can visualize data in very flexible ways. In can show arcs, needles, ticks lines and labels.
 
-Specific configuration options:
+Specific options:
 
 TODO !!!
 
@@ -775,7 +774,7 @@ Roller allows you to simply select one option from a list by scrolling.
 .. figure:: /components/images/lvgl_roller.png
     :align: center
 
-Specific configuration options:
+Specific options:
 
 - **options** (*Required*, list): The list of available options in the roller.
 - **mode** (*Optional*, enum): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
@@ -811,7 +810,7 @@ The Slider object looks like a Bar supplemented with a knob. The knob can be dra
 .. figure:: /components/images/lvgl_slider.png
     :align: center
 
-Specific configuration options:
+Specific options:
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
@@ -848,7 +847,7 @@ The Switch looks like a little slider and can be used to turn something on and o
 .. figure:: /components/images/lvgl_switch.png
     :align: center
 
-Specific configuration options:
+Specific options:
 
 - **knob** (*Optional*, list): Settings for the knob **part** to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
 - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
@@ -877,7 +876,7 @@ Tables, as usual, are built from rows, columns, and cells containing texts.
 
 The Table object is very lightweight because only the texts are stored. No real objects are created for cells but they are just drawn on the fly.
 
-Specific configuration options:
+Specific options:
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **items** (*Optional*, list): Settings for the items **part**
@@ -900,7 +899,7 @@ The Text Area is a Base object with a Label and a cursor on it. Texts or charact
 
 One line mode and password modes are supported.
 
-Specific configuration options:
+Specific options:
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **scrollbar** (*Optional*, list): Settings for the scrollbar **part**
@@ -922,7 +921,7 @@ Example:
 
 A Canvas inherits from Image where the user can draw anything. Rectangles, texts, images, lines, arcs can be drawn here using lvgl's drawing engine. Additionally "effects" can be applied, such as rotation, zoom and blur.
 
-Specific configuration options:
+Specific options:
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - Style options from :ref:`lvgl-styling`.
@@ -948,7 +947,7 @@ The Base Object can be directly used as a simple, empty widget. It is nothing mo
 
 You can use it as a parent background shape for other objects. It catches touches!
 
-Specific configuration options:
+Specific options:
 
 - Style options from :ref:`lvgl-styling`.
 
@@ -999,7 +998,7 @@ In addition to the built-in fonts, the following symbols are also available from
 ``lvgl.widget.update`` Action
 -----------------------------
 
-This powerful :ref:`action <config-action>` allows changing on the fly any :ref:`style property <lvgl-styling>` or :ref:`flag <lvgl-objupdflag-act>` of any widget.
+This powerful :ref:`action <config-action>` allows changing on the fly any common :ref:`style property <lvgl-styling>` or :ref:`flag <lvgl-objupdflag-act>` of any widget.
 
 .. code-block:: yaml
 
