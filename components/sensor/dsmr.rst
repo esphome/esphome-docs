@@ -438,12 +438,16 @@ bytes of data getting lost.
 
     # Example configuration
     uart:
-      pin: D7
+      rx_pin:
+        number: D7
+        inverted: true
       baud_rate: 115200
       rx_buffer_size: 1700
 
     dsmr:
       max_telegram_length: 1700
+
+If you have already implemented the signal inversion in your circuit you don't need to enable it here anymore.
 
 It's best when a hardware UART is used for reading the P1 data. Whether or not hardware UART is used can
 be checked in the config dump that you get when connecting to the API logger. Example logging output:
