@@ -671,7 +671,7 @@ Example:
 
     # Example widget:
     - label:
-        align: center
+        align: CENTER
         id: lbl_id
         recolor: true
         text: '#FF0000 write# #00FF00 colored# #0000FF text#'
@@ -713,16 +713,23 @@ Specific configuration options:
 - **brightness** (*Required*, list): TODO
 - Style options from :ref:`lvgl-styling`, using all the typical background style properties.
 
-
 Example:
 
 .. code-block:: yaml
 
     # Example widget:
-    - 
+    - led:
+        id: led_id
+        align: CENTER
+        color: 0xFF0000
+        brightness: 70%
 
 
 The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
+
+.. note::
+
+    ``color`` and ``brightness`` are overridden by the light component at startup.
 
 
 ``meter``

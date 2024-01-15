@@ -10,7 +10,7 @@ LVGL Light
 The ``lvgl`` light platform creates a light from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widgets are :ref:`<lvgl-wgt-led>`. A single light supports
+Supported widgets are :ref:`lvgl-wgt-led`. A single light supports
 a single widget, thus you need to choose among which one's state you want to use.
 
 
