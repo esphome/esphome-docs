@@ -10,9 +10,8 @@ LVGL Select
 The ``lvgl`` switch platform creates a select from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widgets are ``dropdown`` and ``roller``. A single select supports
+Supported widgets are :ref:`lvgl-wgt-drp` and :ref:`lvgl-wgt-rol`. A single select supports
 a single widget, thus you need to choose among which one's state you want to use.
-
 
 Configuration variables:
 ------------------------
@@ -21,7 +20,6 @@ Configuration variables:
 - **name** (**Required**, string): The name of the select.
 - **obj** (**Required**): The ID of a widget configured in LVGL, which will reflect the state of the select.
 - All other options from :ref:`Switch <config-switch>`.
-
 
 Example:
 
@@ -35,6 +33,8 @@ Example:
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
+- :ref:`Roller widget <lvgl-wgt-rol>`
+- :ref:`Dropdown widget <lvgl-wgt-drp>`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/switch/lvgl`

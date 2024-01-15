@@ -10,9 +10,8 @@ LVGL Binary Sensor
 The ``lvgl`` binary sensor platform creates a binary sensor from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widgets are ``btn`` and ``checkbox``. A single binary sensor supports
+Supported widget is :ref:`lvgl-wgt-btn`. A single binary sensor supports
 a single widget, thus you need to choose among which one's state you want to use.
-
 
 Configuration variables:
 ------------------------
@@ -22,19 +21,19 @@ Configuration variables:
 - **widget** (**Required**): The ID of a button widget configured in LVGL.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
-
 Example:
 
 .. code-block:: yaml
 
     binary_sensor:
       - platform: lvgl
-        widget: checkbox_id
-        name: LVGL checkbox
+        widget: btn_id
+        name: LVGL push button
 
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
+- :ref:`Button widget <lvgl-wgt-btn>`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/number/lvgl`
 - :doc:`/components/switch/lvgl`

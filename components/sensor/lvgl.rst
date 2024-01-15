@@ -3,6 +3,8 @@
 LVGL Sensor
 ===========
 
+????
+
 .. seo::
     :description: Instructions for setting up a LVGL widget sensor.
     :image: ../images/logo_lvgl.png

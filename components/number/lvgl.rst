@@ -10,7 +10,7 @@ LVGL Number
 The ``lvgl`` number platform creates a number component from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widgets are ``arc`` and ``slider``. A single number supports
+Supported widgets are :ref:`lvgl-wgt-arc`, :ref:`lvgl-wgt-bar` and :ref:`lvgl-wgt-sli`. A single number supports
 a single widget, thus you need to choose among which one's state you want to use.
 
 
@@ -34,10 +34,12 @@ Example:
         name: LVGL Slider
 
 
-
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
+- :ref:`Arc widget <lvgl-wgt-arc>`
+- :ref:`Bar widget <lvgl-wgt-bar>`
+- :ref:`Slider widget <lvgl-wgt-sli>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/switch/lvgl`

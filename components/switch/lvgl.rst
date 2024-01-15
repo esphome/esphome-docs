@@ -10,8 +10,8 @@ LVGL Switch
 The ``lvgl`` switch platform creates a switch from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widgets are ``btn`` (with ``checkable`` option enabled) and ``checkbox``. A single switch supports
-a single widget, thus you need to choose among which one's state you want to use.
+Supported widgets are :ref:`lvgl-wgt-btn` (with ``checkable`` option enabled), :ref:`lvgl-wgt-swi` and :ref:`lvgl-wgt-chk`
+. A single switch supports a single widget, thus you need to choose among which one's state you want to use.
 
 
 Configuration variables:
@@ -35,6 +35,9 @@ Example:
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
+- :ref:`Button widget <lvgl-wgt-btn>`
+- :ref:`Switch widget <lvgl-wgt-swi>`
+- :ref:`Checkbox widget <lvgl-wgt-chk>`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/number/lvgl`

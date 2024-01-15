@@ -41,7 +41,7 @@ Example:
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
-- :ref:`LVGL LED widget <lvgl-wgt-led>`
+- :ref:`LED widget <lvgl-wgt-led>`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/switch/lvgl`

@@ -328,6 +328,7 @@ The properties below are common to all widgets.
 
 In addition to visual stilyng, each widget supports :ref:`dynamically settable flags <lvgl-objupdflag-act>` to influence the behavior at runtime.
 
+.. _lvgl-wgt-arc:
 
 ``arc``
 *******
@@ -380,6 +381,7 @@ Example:
 
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
+.. _lvgl-wgt-bar:
 
 ``bar``
 *******
@@ -419,6 +421,7 @@ Example:
 
 The ``bar`` can be also integrated as :doc:`/components/number/lvgl`.
 
+.. _lvgl-wgt-btn:
 
 ``btn``
 *******
@@ -539,7 +542,7 @@ Example:
                 recolor: true
 
 
-
+.. _lvgl-wgt-chk:
 
 ``checkbox``
 ************
@@ -568,12 +571,14 @@ Example:
 
 The ``checkbox`` can be also integrated as a :doc:`/components/switch/lvgl`.
 
+.. _lvgl-wgt-drp:
+
 ``dropdown``
 ************
 
-The drop-down list allows the user to select one value from a list.
+The Dropdown widget allows the user to select one value from a list.
 
-The drop-down list is closed by default and displays a single value or a predefined text. When activated (by click on the drop-down list), a list is drawn from which the user may select one option. When the user selects a new value, the list is deleted from the screen.
+The dropdown list is closed by default and displays a single value or a predefined text. When activated (by click on the drop-down list), a list is drawn from which the user may select one option. When the user selects a new value, the list is deleted from the screen.
 
 .. figure:: /components/images/lvgl_dropdown.png
     :align: center
@@ -709,8 +714,8 @@ The LEDs are rectangle-like (or circle) object whose brightness can be adjusted.
 
 Specific configuration options:
 
-- **color** (*Required*, list): TODO
-- **brightness** (*Required*, list): TODO
+- **color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background, border, and shadow of the widget.
+- **brightness** (*Optional*, percentage): The brightness of the LED color, where ``0`` corresponds to black, and ``100`` corresponds to the full brightness of the color specified above.
 - Style options from :ref:`lvgl-styling`, using all the typical background style properties.
 
 Example:
@@ -729,7 +734,7 @@ The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
 .. note::
 
-    ``color`` and ``brightness`` are overridden by the light component at startup.
+    If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup.
 
 
 ``meter``
@@ -755,7 +760,7 @@ Example:
     - 
 
 
-
+.. _lvgl-wgt-rol:
 
 ``roller``
 **********
@@ -791,6 +796,7 @@ Example:
 
 The ``roller`` can be also integrated as :doc:`/components/select/lvgl`.
 
+.. _lvgl-wgt-sli:
 
 ``slider``
 **********
@@ -827,6 +833,7 @@ Example:
 
 The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
 
+.. _lvgl-wgt-swi:
 
 ``switch``
 **********
