@@ -34,7 +34,6 @@ See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
 - :ref:`Button widget <lvgl-wgt-btn>`
-- :doc:`/components/sensor/lvgl`
 - :doc:`/components/number/lvgl`
 - :doc:`/components/switch/lvgl`
 - :doc:`/components/select/lvgl`

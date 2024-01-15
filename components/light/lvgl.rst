@@ -42,7 +42,6 @@ See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
 - :ref:`LED widget <lvgl-wgt-led>`
-- :doc:`/components/sensor/lvgl`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/switch/lvgl`
 - :doc:`/components/number/lvgl`

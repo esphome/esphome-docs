@@ -41,7 +41,6 @@ See Also
 - :ref:`Bar widget <lvgl-wgt-bar>`
 - :ref:`Slider widget <lvgl-wgt-sli>`
 - :doc:`/components/binary_sensor/lvgl`
-- :doc:`/components/sensor/lvgl`
 - :doc:`/components/switch/lvgl`
 - :doc:`/components/select/lvgl`
 - :doc:`/components/light/lvgl`
