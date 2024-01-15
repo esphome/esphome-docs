@@ -1248,17 +1248,17 @@ Widget Event Triggers
 
 ESPHome implements as triggers the following LVGL events:
 
-- ``on_pressed``: The widget has been pressed.
-- ``on_short_clicked``: The widget was pressed for a short period of time, then released. Not called if scrolled.
-- ``on_long_pressed``: The widget has been pressed for at least the ``long_press_time`` specified in the input device configuration. Not called if scrolled.
-- ``on_long_pressed_repeat``: Called after ``long_press_time`` in every ``long_press_repeat_time`` ms. Not called if scrolled.
-- ``on_clicked``: Called on release if a widget did not scroll (regardless of long press).
-- ``on_released``: Called in every case when a widget has been released.
+- ``on_press``: The widget has been pressed.
+- ``on_short_click``: The widget was pressed for a short period of time, then released. Not called if scrolled.
+- ``on_long_press``: The widget has been pressed for at least the ``long_press_time`` specified in the input device configuration. Not called if scrolled.
+- ``on_long_press_repeat``: Called after ``long_press_time`` in every ``long_press_repeat_time`` ms. Not called if scrolled.
+- ``on_click``: Called on release if a widget did not scroll (regardless of long press).
+- ``on_release``: Called in every case when a widget has been released.
 - ``on_scroll_begin``: Scrolling of the widget begins.
 - ``on_scroll_end``:  Scrolling of the widget ends.
 - ``on_scroll``: The widget was scrolled.
-- ``on_focused``:  The widget is focused.
-- ``on_defocused``: The widget is unfocused.
+- ``on_focus``:  The widget is focused.
+- ``on_defocus``: The widget is unfocused.
 - ``on_value``: TODO!!
 
 These triggers can be applied directly to any widget in the lvgl configuration, given that the widget itself supports generating such events.
