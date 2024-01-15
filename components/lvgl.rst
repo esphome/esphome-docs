@@ -507,11 +507,12 @@ The Button Matrix object is a lightweight way to display multiple buttons in row
             - **custom_1** and **custom_2** (*Optional*, boolean): custom free to use flags
 - **items** (*Optional*, list): Settings for the items **part**, the buttons all use the text and typical background style properties except translations and transformations.
 - **one_checked** (*Optional*, boolean): Allow only one button to be checked at a time (aka. radio buttons). Defaults to ``false``.
+- **selected** (*Optional*, boolean): To return the index of the most recently released or focused button. Defaults to ``false``.
 - Style options from :ref:`lvgl-styling` for the background of the button matrix, uses the typical background style properties. ``pad_row`` and ``pad_column`` set the space between the buttons.
 
 **Specific actions:**
 
-``lvgl.button.update`` :ref:`action <config-action>` updates the button styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.button.update`` :ref:`action <config-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 Example:
 
@@ -552,6 +553,15 @@ Example:
               control:
                 recolor: true
 
+    # Example action:
+    on_...:
+      then:
+        - lvgl.button.update:
+            id: button_1
+            width: 1
+            selected: true
+            control:
+              checkable: false
 
 .. _lvgl-wgt-chk:
 
