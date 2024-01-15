@@ -308,7 +308,7 @@ The properties below are common to all widgets.
 - **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to top left of parent or screen). If layouts are used, or if specfiyng ``align``, it is used as an offset to the calculated position (can also be negative).
 - **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If layouts are used, or if specfiyng ``align``, it is used as an offset to the calculated position (can also be negative).
 - **width** (*Optional*): Width of the widget in pixels or a percentage, or ``size_content`` (see below).
-- **height** (*Optional*): Height of the widget in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the widget based on its contents (children objects, or eg. image size in case of ``img``.
+- **height** (*Optional*): Height of the widget in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the widget based on its contents (children objects, text size, image size etc.)
 - **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused object which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
 - **styles** (*Optional*, :ref:`config-id`): The ID of a *style definition* from the main component configuration to override the theme styles.
 - **theme** (*Optional*, list): A list of styles to apply to the widget and children. Same configuration option as at the main component.
@@ -651,7 +651,7 @@ A label is the basic object type that is used to display text.
 Specific configuration options:
 
 - **text** or **symbol** (*Required*, string): The text to display. To display an empty text string, specify ``''``
-- **recolor** (*Optional*, boolean): Enable recoloring of button texts with #. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #ff0000 red# word``. 
+- **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB `` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
 - **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
     - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped. (Default)
     - ``DOT``: Replaces the last 3 characters from bottom right corner of the label with dots.
@@ -662,7 +662,7 @@ Specific configuration options:
 - **selected** (*Optional*, list): Settings for the the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
 - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties. The padding values can be used to add space between the text and the background.
 
-Newline characters are handled automatically by the label widget. You can use ``\n`` to make a line break. For example: ``line1\nline2\n\nline4``.
+Newline characters are handled automatically by the label widget. You can use ``\n`` to make a line break. For example: ``line1\nline2\n\nline4``.  TODO
 
 
 Example:
@@ -674,7 +674,8 @@ Example:
         align: center
         id: lbl_id
         recolor: true
-        text: 'Write a #ff0000 red# word'
+        text: '#FF0000 write# #00FF00 colored# #0000FF text#'
+
 
 ``line``
 ********
@@ -695,6 +696,8 @@ Example:
     # Example widget:
     - 
 
+
+.. _lvgl-wgt-led:
 
 ``led``
 ********
