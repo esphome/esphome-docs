@@ -11,6 +11,15 @@ The ``touchscreen`` component contains the base code for most touchscreen driver
 available in ESPHome and is responsible for passing the touch events to
 ``binary_sensors`` with the ``touchscreen`` platform.
 
+.. warning::
+
+    As of version **2023.12** the way how the touchscreen component has changed a bit.
+    The following variables are now obsolite:
+    *  **rotation** is (temporary) removed in favor the *new* **transform:**
+    *  **size_x_y** is moved inside the **transform:** and renamed to **size_xy**
+    *  **report_interval** is removed in favor of using the **update_interval**
+    The display id is only just to calculate the touch position reletive to the displays *height* and *width*
+
 .. _config-touchscreen:
 
 Base Touchscreen Configuration
@@ -22,6 +31,14 @@ Base Touchscreen Configuration
     touchscreen:
       - platform: ...
         display: display1
+        transform:
+          mirror_x: false
+          mirror_y: false
+          swap_xy: false
+        calibration:
+          x_max: 240
+          y_max: 320
+
         on_touch:
           then:
             ...
@@ -34,7 +51,26 @@ Base Touchscreen Configuration
 
 Configuration variables:
 ************************
-- **display** (*Required*, :ref:`config-id`): The display to use this touchscreen with. This will be provided automatically if only one display is configured on the device.
+- **display** (*Required*, :ref:`config-id`): The display to use this touchscreen with.
+- **transform** (*Optional*): Transform the touchscreen presentation using hardware. All defaults are ``false``.
+
+    - **swap_xy** (*Optional*, boolean): If true, exchange the x and y axes.
+    - **mirror_x** (*Optional*, boolean): If true, mirror the x axis.
+    - **mirror_y** (*Optional*, boolean): If true, mirror the y axis.
+
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the touchscreen. Defaults to ``never``.
+- **calibration** (*Optional*): When the touchscreen is not given the right configuration settings. You can set them here.
+
+    - **x_min** (*Optional*, int): The raw value corresponding to the left
+      (or top if ``swap_xy`` is specified) edge of the touchscreen. See :ref:`touchscreen-calibration`
+      for the process to calibrate the touchscreen. Defaults to ``0``.
+    - **x_max** (*Optional*, int): The raw value corresponding to the right
+      (or bottom if ``swap_xy`` is specified) edge of the touchscreen. Defaults to ``0``.
+    - **y_min** (*Optional*, int): The raw value corresponding to the top
+      (or left if ``swap_xy`` is specified) edge of the touchscreen. Defaults to ``0``.
+    - **y_max** (*Optional*, int): The raw value corresponding to the bottom
+      (or right if ``swap_xy`` is specified) edge of the touchscreen. Defaults to ``0``.
+
 
 - **on_touch** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the touchscreen is touched. See :ref:`touchscreen-on_touch`.
@@ -54,13 +90,132 @@ list (``on_update``) or as an ``optional`` (``on_touch``).
 
 The integer members for the touch positions below are in relation to the display width and height:
 
+- ``id`` is a number provided by the touchscreen to uniquely identify the touch on a multi-touch screen.
+- ``state`` indicates the state of the touch. This can be **1**, indicating it is an initial touch, or **2** indicating the touch position has changed/moved.
+
 - ``x`` and ``y`` are the current position.
 - ``x_last`` and ``y_last`` are the previous position.
 - ``x_first`` and ``y_first`` are the position of the touch when it was first detected.
 - ``x_raw`` and ``y_raw`` are for calibrating the touchscreen in relation of the display. This replaces the properties with the same name in the touchscreen classes.
 
-- ``id`` is a number provided by the touchscreen to uniquely identify the touch on a multi-touch screen.
-- ``state`` indicates the state of the touch. This can be **1**, indicating it is an initial touch, or **2** indicating the touch position has changed/moved.
+.. _touchscreen-calibration:
+
+Calibration
+-----------
+
+For most of the touchscreen drivers the dimensions of the touchscreen are automatically set when the driver is setup.
+In some cases like for the **XPT2046** this can be different per used display panel.
+Then you can set the values using the **calibrate** values.
+
+To match the point of the touch to the display coordinates the touch screen has to be calibrated.
+The touchscreen component returns raw values in the 0 to 4095 range. Those raw values are available
+as the ``x_raw`` and ``y_raw`` member variables and for example write them out as in the example
+:ref:`touchscreen-on_touch`. The goal of the calibration is to identify the raw values corresponding
+to the edges of the screen.
+
+The calibration assumes a display oriented in a way that you will be using it, i.e. your
+:ref:`display-engine` component has to have the [0,0] logical coordinate at the top left.
+
+.. note::
+
+    Do not set any calibration values nor ``transform`` settings.
+
+.. code-block:: yaml
+
+    # Touchscreen
+    touchscreen:
+      platform: xpt2046
+      id: my_touchscreen
+      cs_pin: 17
+      on_touch:
+        - lambda: |-
+              ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
+                  touch.x,
+                  touch.y,
+                  touch.x_raw,
+                  touch.y_raw
+                  );
+
+Get a stylus or a similar object, run the project and touch the corners of the screen at
+the edge pixels. Repeat several times and note minimum and maximum x and y raw values.
+
+.. warning::
+
+    As long the calibrate settings are not correctly set, the ``x`` and ``y`` coordinates are not calculated.
+
+
+.. code-block:: none
+
+    ... top left ...
+    [21:07:48][I][cal:071]: x=217, y=34, x_raw=3718, y_raw=445
+    [21:07:49][I][cal:071]: x=222, y=32, x_raw=3804, y_raw=419
+    ... top right ...
+    [21:07:52][I][cal:071]: x=19, y=36, x_raw=334, y_raw=370
+    [21:07:52][I][cal:071]: x=22, y=35, x_raw=386, y_raw=347
+    ... bottom left ...
+    [21:08:00][I][cal:071]: x=224, y=299, x_raw=3836, y_raw=3835
+    [21:08:00][I][cal:071]: x=225, y=303, x_raw=3848, y_raw=3878
+    [21:08:01][I][cal:071]: x=223, y=299, x_raw=3807, y_raw=3829
+    ... bottom right ...
+    [21:08:11][I][cal:071]: x=16, y=299, x_raw=281, y_raw=3839
+    [21:08:12][I][cal:071]: x=19, y=302, x_raw=328, y_raw=3866
+    [21:08:13][I][cal:071]: x=20, y=296, x_raw=358, y_raw=3799
+
+That means that the minimum raw x is 281, maximum 3848, minimum y 347 and maximum 3878.
+
+Identify which raw value is the display's x direction and what the y one. In our case
+moving right decreases the x raw value and going down increases the y one so the axes
+match and we *don't* need to use ``swap_xy``. If the raw x is the display's y,
+use ``swap_xy = true``.
+
+If one of the coordinates goes in the "wrong" direction it needs to be inverted.
+The inversion is performed by setting the ``mirror_x`` and/or ``mirror_y`` to true.
+
+
+.. code-block:: yaml
+
+    touchscreen:
+      platform: xpt2046
+      calibration:
+        x_min: 281
+        x_max: 3848
+        y_min: 347
+        y_max: 3878
+      transform:
+        mirror_x: false
+        mirror_y: false
+        swap_xy: false
+
+Compile, run and click on the edges again. The x and y should now match the coordinates
+of the display.
+
+.. code-block:: none
+
+    [21:32:34][I][cal:071]: x=7, y=6, x_raw=3755, y_raw=407
+    [21:32:37][I][cal:071]: x=237, y=4, x_raw=313, y_raw=385
+    [21:32:43][I][cal:071]: x=239, y=318, x_raw=284, y_raw=3845
+    [21:33:05][I][cal:071]: x=2, y=313, x_raw=3821, y_raw=3793
+
+Note that the touch screen is not extremely precise and there might be nonlinearities
+or similar errors so don't expect a pixel-perfect precision. You can verify the touchpoint
+using a display lambda similar to the following.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ili9341
+        lambda: |-
+          auto touch = id(my_touchscreen)->get_touch();
+          if (touch) // or touch.has_value()
+            it.filled_circle(touch.value().x, touch.value().y, 10, RED);
+
+To be exact, the component does the following
+
+- reads the raw x and y and normalizes it using (non-inverted) min and max values
+- swaps x and y if needed
+- inverts if needed
+- scales to the display dimensions
+
 
 .. _touchscreen-on_touch:
 
@@ -87,6 +242,25 @@ This trigger provides one argument named ``touches`` of type :apiref:`touchscree
 
 This trigger may be useful to detect gestures such as swiping across the display.
 
+For example you could do:
+
+
+.. code-block:: yaml
+
+    on_update:
+        - lambda: |-
+              for (auto touch: touches)  {
+                  if (touch.state <= 2) {
+                     ESP_LOGI("Touch points:", "id=%d x=%d, y=%d", touch.id, touch.x, touch.y);
+                  }
+              }
+
+Be aware that you need to check the state flag every time to see if the touch is still valid.
+
+- state value 0. means the touch is invalid as the touch is no longer detected.
+- state value 1 means is being the first time detected. 
+- state value 2 means the touch is still being detected but is moved on the screen.
+- state value 4 and higher means a touch release is detected.
 
 .. _touchscreen-on_release:
 

@@ -4,10 +4,10 @@ AHT10 Temperature+Humidity Sensor
 .. seo::
     :description: Instructions for setting up AHT10 temperature and humidity sensors
     :image: aht10.jpg
-    :keywords: aht10 aht20 dht20
+    :keywords: aht10 aht20 dht20 aht30
 
 The ``aht10`` Temperature+Humidity sensor allows you to use your AHT10
-(`datasheet <http://www.aosong.com/userfiles/files/media/aht10%E8%A7%84%E6%A0%BC%E4%B9%A6v1_1%EF%BC%8820191015%EF%BC%89.pdf>`__) or AHT20 (`datasheet <https://cdn-learn.adafruit.com/assets/assets/000/091/676/original/AHT20-datasheet-2020-4-16.pdf?1591047915>`__) :ref:`I²C <i2c>`-based sensor with ESPHome.
+(`datasheet <http://www.aosong.com/userfiles/files/media/aht10%E8%A7%84%E6%A0%BC%E4%B9%A6v1_1%EF%BC%8820191015%EF%BC%89.pdf>`__), AHT20 (`datasheet <https://cdn-learn.adafruit.com/assets/assets/000/091/676/original/AHT20-datasheet-2020-4-16.pdf?1591047915>`__) or AHT30 (`datasheet <https://eleparts.co.kr/data/goods_attach/202306/good-pdf-12751003-1.pdf>`__) :ref:`I²C <i2c>`-based sensor with ESPHome.
 
 The DHT20 (`datasheet <https://cdn.sparkfun.com/assets/8/a/1/5/0/DHT20.pdf>`__) sensor has the packaging of the :doc:`dht` series, but has the AHT20 inside and is speaking :ref:`I²C <i2c>` as well.
 
@@ -43,7 +43,7 @@ Configuration variables:
 - **variant** (*Optional*, enum): Set the variant of the device in use. Defaults to ``AHT10``.
 
   - ``AHT10`` - For AHT10 devices.
-  - ``AHT20`` - For AHT20 devices.
+  - ``AHT20`` - For AHT20 and AHT30 devices.
 
 - **temperature** (**Required**): The information for the temperature sensor.
 
