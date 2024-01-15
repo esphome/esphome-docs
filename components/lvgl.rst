@@ -338,7 +338,7 @@ The Arc consists of a background and a foreground arc. The foreground (indicator
 .. figure:: /components/images/lvgl_arc.png
     :align: center
 
-Specific options:
+**Specific options:**
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
@@ -364,6 +364,10 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 .. note::
 
     Zero degree is at the middle right (3 o'clock) of the object and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
+
+**Specific actions:**
+
+``lvgl.arc.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 Example:
 
@@ -395,7 +399,7 @@ Vertical bars can be created if the width of the object is smaller than its heig
 
 Not only the end, but also the start value of the bar can be set, which changes the start position of the indicator.
 
-Specific options:
+**Specific options:**
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
@@ -431,10 +435,14 @@ Simple push or toggle button.
 .. figure:: /components/images/lvgl_button.png
     :align: center
 
-Specific options:
+**Specific options:**
 
 - **checkable** (*Optional*, boolean): A significant :ref:`flag <lvgl-objupdflag-act>` to make a toggle button (which remains pressed in ``checked`` state). Defaults to ``false``.
 - Style options from :ref:`lvgl-styling` for the background of the button. Uses the typical background style properties.
+
+**Specific actions:**
+
+``lvgl.button.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 Example:
 
@@ -480,12 +488,12 @@ The Button Matrix object is a lightweight way to display multiple buttons in row
 .. figure:: /components/images/lvgl_btnmatrix.png
     :align: center
 
-Specific options:
+**Specific options:**
 
 - **rows** (**Required**, list): A list for the button rows:
     - **buttons** (**Required**, list): A list of buttons in a row:
         - **id** (*Optional*): An ID for a button
-        - **text** or **symbol** (*Optional*): Text or symbol to display on the button.
+        - **text** or **symbol** (*Optional*): Text or built-in symbol to display on the button.
         - **width** (*Optional*): Width relative to the other buttons in the same row. A value between ``1`` and ``15`` range, default ``1``. E.g. in a line with two buttons: btnA, width = 1 and btnB, width = 2, btnA will have 33 % width and btnB will have 66 % width. 
         - **control** (*Optional*): Binary flags to control behavior of the buttons (all ``false`` by default):
             - **hidden** (*Optional*, boolean): makes a button hidden (hidden buttons still take up space in the layout, they are just not visible or clickable).
@@ -501,6 +509,9 @@ Specific options:
 - **one_checked** (*Optional*, boolean): Allow only one button to be checked at a time (aka. radio buttons). Defaults to ``false``.
 - Style options from :ref:`lvgl-styling` for the background of the button matrix, uses the typical background style properties. ``pad_row`` and ``pad_column`` set the space between the buttons.
 
+**Specific actions:**
+
+``lvgl.button.update`` :ref:`action <config-action>` updates the button styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 Example:
 
@@ -552,11 +563,14 @@ The Checkbox object is made internally from a "tick box" and a label. When the C
 .. figure:: /components/images/lvgl_checkbox.png
     :align: center
 
-Specific options:
+**Specific options:**
 
 - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The "tick box" is a square that uses all the typical background style properties. By default, its size is equal to the height of the main part's font. Padding properties make the tick box larger in the respective directions.
 - Style options from :ref:`lvgl-styling` for the background of the widget and it uses the text and all the typical background style properties. ``pad_column`` adjusts the spacing between the tickbox and the label.
 
+**Specific actions:**
+
+``lvgl.checkbox.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 Example:
 
@@ -585,7 +599,7 @@ The dropdown list is closed by default and displays a single value or a predefin
 
 The Dropdown widget is built internall from a *button* and a *list* (both not related to the actual widgets with the same name).
 
-Specific options:
+**Specific options:**
 
 - **options** (*Required*, list): The list of available options in the drop-down.
 - **dir** (*Optional*, enum): Where the list part of the dropdown gets created relative to the button part. ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
@@ -595,6 +609,9 @@ Specific options:
 - **symbol** (*Optional*, enum): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from the built-in ones.
 - Style options from :ref:`lvgl-styling` for the background of the button and the list. Uses the typical background properties and text properties for the text on it. ``max_height`` can be used to limit the height of the list.
 
+**Specific actions:**
+
+``lvgl.dropdown.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 Example:
 
@@ -623,7 +640,11 @@ Images are the basic widgets to display images.
 .. figure:: /components/images/lvgl_image.png
     :align: center
 
-Specific options:
+**Specific actions:**
+
+``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+
+**Specific options:**
 
 - **src** (**Required**, :ref:`image <display-image>`):  The ID of an existing image configuration.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
@@ -653,9 +674,9 @@ A label is the basic object type that is used to display text.
 .. figure:: /components/images/lvgl_label.png
     :align: center
 
-Specific options:
+**Specific options:**
 
-- **text** or **symbol** (*Required*, string): The text to display. To display an empty text string, specify ``''``
+- **text** or **symbol** (*Required*, string): The text or built-in symbol to display. To display an empty label, specify ``" "`` (space).
 - **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
 - **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
     - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped. (Default)
@@ -669,6 +690,9 @@ Specific options:
 
 Newline characters are handled automatically by the label widget. You can use ``\n`` to make a line break. For example: ``line1\nline2\n\nline4``.  TODO
 
+**Specific actions:**
+
+``lvgl.label.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 Example:
 
@@ -687,12 +711,16 @@ Example:
 
 The Line object is capable of drawing straight lines between a set of points.
 
-Specific options:
+**Specific options:**
 
 - **points** (*Required*, list): TODO
 - Style options from :ref:`lvgl-styling`, all the typical background properties and line style properties.
 
 By default, the Line's width and height are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts on the line may not be visible.
+
+**Specific actions:**
+
+``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the line indicator styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 Example:
 
@@ -712,13 +740,13 @@ The LEDs are rectangle-like (or circle) object whose brightness can be adjusted.
 .. figure:: /components/images/lvgl_led.png
     :align: center
 
-Specific options:
+**Specific options:**
 
 - **color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background, border, and shadow of the widget.
 - **brightness** (*Optional*, percentage): The brightness of the LED color, where ``0`` corresponds to black, and ``100`` corresponds to the full brightness of the color specified above.
 - Style options from :ref:`lvgl-styling`, using all the typical background style properties.
 
-Specific actions:
+**Specific actions:**
 
 ``lvgl.led.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
@@ -746,7 +774,7 @@ The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
 The Meter widget can visualize data in very flexible ways. In can show arcs, needles, ticks lines and labels.
 
-Specific options:
+**Specific options:**
 
 TODO !!!
 
@@ -774,13 +802,17 @@ Roller allows you to simply select one option from a list by scrolling.
 .. figure:: /components/images/lvgl_roller.png
     :align: center
 
-Specific options:
+**Specific options:**
 
 - **options** (*Required*, list): The list of available options in the roller.
 - **mode** (*Optional*, enum): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
 - **visible_rows** TODO
 - **selected** (*Optional*, list): Settings for the selected **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the text style properties to change the appearance of the text in the selected area.
 - Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and text style properties. ``text_line_space`` adjusts the space between the options. When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in ``anim_time`` milliseconds as specified in the style.
+
+**Specific actions:**
+
+``lvgl.roller.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 Example:
 
@@ -810,7 +842,7 @@ The Slider object looks like a Bar supplemented with a knob. The knob can be dra
 .. figure:: /components/images/lvgl_slider.png
     :align: center
 
-Specific options:
+**Specific options:**
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
@@ -820,6 +852,10 @@ Specific options:
 - any :ref:`Styling <lvgl-styling>` and state-based option for the background of the slider. Uses all the typical background style properties. Padding makes the indicator smaller in the respective direction.
 
 Normally, the slider can be adjusted either by dragging the knob, or by clicking on the slider bar. In the latter case the knob moves to the point clicked and slider value changes accordingly. In some cases it is desirable to set the slider to react on dragging the knob only. This feature is enabled by enabling the ``adv_hittest`` flag.
+
+**Specific actions:**
+
+``lvgl.slider.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 Example:
 
@@ -847,7 +883,7 @@ The Switch looks like a little slider and can be used to turn something on and o
 .. figure:: /components/images/lvgl_switch.png
     :align: center
 
-Specific options:
+**Specific options:**
 
 - **knob** (*Optional*, list): Settings for the knob **part** to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
 - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
@@ -876,7 +912,7 @@ Tables, as usual, are built from rows, columns, and cells containing texts.
 
 The Table object is very lightweight because only the texts are stored. No real objects are created for cells but they are just drawn on the fly.
 
-Specific options:
+**Specific options:**
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **items** (*Optional*, list): Settings for the items **part**
@@ -891,7 +927,6 @@ Example:
     - 
 
 
-
 ``textarea``
 ************
 
@@ -899,7 +934,7 @@ The Text Area is a Base object with a Label and a cursor on it. Texts or charact
 
 One line mode and password modes are supported.
 
-Specific options:
+**Specific options:**
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **scrollbar** (*Optional*, list): Settings for the scrollbar **part**
@@ -921,7 +956,7 @@ Example:
 
 A Canvas inherits from Image where the user can draw anything. Rectangles, texts, images, lines, arcs can be drawn here using lvgl's drawing engine. Additionally "effects" can be applied, such as rotation, zoom and blur.
 
-Specific options:
+**Specific options:**
 
 - **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - Style options from :ref:`lvgl-styling`.
@@ -947,7 +982,7 @@ The Base Object can be directly used as a simple, empty widget. It is nothing mo
 
 You can use it as a parent background shape for other objects. It catches touches!
 
-Specific options:
+**Specific options:**
 
 - Style options from :ref:`lvgl-styling`.
 
@@ -987,7 +1022,7 @@ These may not contain all the glyphs corresponding to certain diacritic characte
 
 In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
 
-In addition to the built-in fonts, the following symbols are also available from the `FontAwesome <https://fontawesome.com/>`__ font. You can use them on supported widgets using the ``symbol`` configuration option:
+In addition to the built-in fonts, the following built-in symbols are also available from the `FontAwesome <https://fontawesome.com/>`__ font. You can use them on supported widgets using the ``symbol`` configuration option:
 
 .. figure:: /components/images/lvgl_symbols.png
     :align: center
