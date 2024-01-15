@@ -95,6 +95,12 @@ and circles:
           // ... and the same thing filled again
           it.filled_circle(25, 25, 10);
 
+          // Triangles... Let's draw the outline of a triangle from the [x,y] coordinates of its three points
+          // [25,5], [5,25], [50,50]
+          it.triangle(25, 5, 5, 25, 50, 50);
+          // and a filled triangle !
+          it.filled_triangle(125, 5, 105, 25, 150, 50);
+
 All the above methods can optionally also be called with an argument at the end which specifies in which
 color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
 
