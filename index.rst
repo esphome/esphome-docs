@@ -390,7 +390,6 @@ Miscellaneous
     Integration, components/sensor/integration, sigma.svg, dark-invert
     Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
     Kalman Combinator, components/sensor/kalman_combinator, function.svg, dark-invert
-    LVGL widget, components/sensor/lvgl, logo_lvgl.png
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
