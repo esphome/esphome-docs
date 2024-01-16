@@ -107,7 +107,7 @@ Configuration variables:
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
 
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -369,7 +369,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 ``lvgl.arc.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -419,7 +419,7 @@ Not only the end, but also the start value of the bar can be set, which changes 
 - **animated** (*Optional*, boolean): To animate indicator when bar changes value. Defaults to ``true``.
 - Style options from :ref:`lvgl-styling`. The background of the bar and it uses the typical background style properties. Adding padding makes the indicator smaller or larger.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -450,7 +450,7 @@ Simple push or toggle button.
 - **checkable** (*Optional*, boolean): A significant :ref:`flag <lvgl-objupdflag-act>` to make a toggle button (which remains pressed in ``checked`` state). Defaults to ``false``.
 - Style options from :ref:`lvgl-styling` for the background of the button. Uses the typical background style properties.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -519,7 +519,7 @@ The Button Matrix object is a lightweight way to display multiple buttons in row
 
 ``lvgl.button.update`` :ref:`action <config-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -587,7 +587,7 @@ The Checkbox object is made internally from a "tick box" and a label. When the C
 
 ``lvgl.checkbox.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -638,7 +638,7 @@ The Dropdown widget is built internall from a *button* and a *list* (both not re
 
 ``lvgl.dropdown.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -683,7 +683,7 @@ TODO !! supported image encodings
 
 ``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -732,7 +732,7 @@ Newline characters are handled automatically by the label widget. You can use ``
 
 ``lvgl.label.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -769,7 +769,7 @@ By default, the Line's width and height are set to ``size_content``. This means 
 
 ``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the line indicator styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -803,7 +803,7 @@ The LEDs are rectangle-like (or circle) object whose brightness can be adjusted.
 
 ``lvgl.led.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -843,12 +843,45 @@ TODO !!!
     - **r_mod** (*Optional*): TODO in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the object based on its contents.
 - Style options from :ref:`lvgl-styling`.
 
+
+
+
+
+          - meter: # Gradient color  arc
+              height: 160
+              width: 160
+              align: center
+              bg_color: 0
+              scales:
+                angle_range: 360
+                rotation: 255
+                range_from: 0
+                range_to: 12
+                ticks:
+                  width: 35
+                  count: 13
+                  length: 8
+                indicators:
+                  - ticks:
+                      local: true
+                      start_value: 0
+                      end_value: 12
+                      color_start: 0xFF0000
+                      color_end: 0x0000FF
+          - meter:
+
+
+
+
+
+
+
 **Specific actions:**
 
 ``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the line indicator styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -887,7 +920,7 @@ Roller allows you to simply select one option from a list by scrolling.
 
 ``lvgl.roller.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -938,7 +971,7 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 ``lvgl.slider.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -980,7 +1013,7 @@ The Switch looks like a little slider and can be used to turn something on and o
 - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
 - Style options from :ref:`lvgl-styling`.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -1010,7 +1043,7 @@ The Table object is very lightweight because only the texts are stored. No real 
 - Style options from :ref:`lvgl-styling`.
 
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -1034,7 +1067,7 @@ One line mode and password modes are supported.
 - **textarea_placeholder** (*Optional*, list): Settings for the textarea_placeholder **part**
 - Style options from :ref:`lvgl-styling`.
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -1053,7 +1086,7 @@ A Canvas inherits from Image where the user can draw anything. Rectangles, texts
 - Style options from :ref:`lvgl-styling`.
 
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
@@ -1078,7 +1111,7 @@ You can use it as a parent background shape for other objects. It catches touche
 - Style options from :ref:`lvgl-styling`.
 
 
-Example:
+**Example:**
 
 .. code-block:: yaml
 
