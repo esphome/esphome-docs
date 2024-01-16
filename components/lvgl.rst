@@ -833,20 +833,42 @@ The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
 The Meter widget can visualize data in very flexible ways. In can show arcs, needles, ticks lines and labels.
 
+.. figure:: /components/images/lvgl_meter.png
+    :align: center
+
 **Specific options:**
 
-TODO !!!
-
-- **scales** (*Required*, list): TODO
-- **ticks** (*Required*, list): TODO
-- **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, and additionally:
-    - **r_mod** (*Optional*): TODO in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the widget based on its contents.
+- **scales** (**Required**, list): A list with (any number of) scales to be added to meter.  
+    - **range_from** (**Required**): The minimum value of the tick scale.
+    - **range_to** (**Required**): The maximum value of the tick scale.
+    - **angle_range** (**Required**): The angle between start and end of the tick scale.
+    - **rotation** (**Required**): The rotation angle offset of the tick scale.
+    - **ticks** (**Required**, list): A scale has minor and major ticks and labels on the major ticks. To add the minor ticks:
+        - **count** (**Required**): How many ticks to be on the scale
+        - **width** (**Required**): Tick line width in pixels
+        - **length** (**Required**): Tick line length in pixels
+        - **color** (**Required**): ID or hex code for the ticks :ref:`color <config-color>`
+        - **major** (*Optional*, list): If you want major ticks, value labels displayed too:
+            - **stride**: How many minor ticks to skip+1 when adding major ticks
+            - **width**: Tick line width in pixels
+            - **length**: Tick line length in pixels
+            - **color**: ID or hex code for the ticks :ref:`color <config-color>`
+            - **label_gap**: Label distance from the ticks with text proportionally to the values of the tick line.
+    - **indicators** (**Required**, list): A list with indicators to be added to the scale. Their ``value`` is interpreted in the range of the scale (see the *action* below):
+        - **line** (*Optional*): Add a needle line to a Scale. By default, the length of the line is the same as the scale's radius.
+            - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
+            - **width**: Needle line width in pixels.
+            - **color**: ID or hex code for the ticks :ref:`color <config-color>`.
+            - **r_mod**: Adjust the length of the needle with this amount (can be negative).
 - Style options from :ref:`lvgl-styling`.
 
+.. note::
+
+    Zero degree is at the middle right (3 o'clock) of the widget and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
 
 **Specific actions:**
 
-``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the line indicator styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the indicator needle ``value``, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 
 **Example:**
@@ -854,16 +876,37 @@ TODO !!!
 .. code-block:: yaml
 
     # Example widget:
-    - 
+    - meter:
+        align: center
+        scales:
+          - ticks:
+              width: 1
+              count: 81
+              length: 5
+              color: 0x000000
+              major:
+                stride: 10
+                width: 2
+                length: 8
+                color: 0xC0C0C0
+                label_gap: 8
+            range_from: -30
+            range_to: 50
+            angle_range: 240
+            rotation: 150
+            indicators:
+              - line:
+                  id: temperature_needle
+                  width: 2
+                  color: 0xFF0000
+                  r_mod: -4
 
     # Example action:
     on_...:
       then:
         - lvgl.indicator.line.update:
-            id: minute_hand
-            value: !lambda |-
-              return id(time_comp).now().minute;
-
+            id: temperature_needle
+            value: 3
 
 .. _lvgl-wgt-rol:
 
