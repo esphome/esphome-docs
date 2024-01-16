@@ -387,6 +387,11 @@ Example:
     on_...:
       then:
         - lvgl.arc.update
+            id: arc_id
+            knob:
+              bg_color: 0x00FF00
+            value: 55
+
 
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
@@ -596,8 +601,11 @@ Example:
     # Example action:
     on_...:
       then:
-        - lvgl.
-
+        - lvgl.checkbox.update:
+            id: checkbox_id
+            state:
+              checked: true
+            text: Checked
 
 The ``checkbox`` can be also integrated as a :doc:`/components/switch/lvgl`.
 
@@ -619,6 +627,7 @@ The Dropdown widget is built internall from a *button* and a *list* (both not re
 
 - **options** (*Required*, list): The list of available options in the drop-down.
 - **dir** (*Optional*, enum): Where the list part of the dropdown gets created relative to the button part. ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
+- **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
 - **selected** (*Optional*, list): Settings for the selected **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Refers to the currently pressed, checked or pressed+checked option. Uses the typical background properties.
 - **scrollbar** (*Optional*, list): Settings for the scrollbar **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scrollbar background, border, shadow properties and width (for its own width) and right padding for the spacing on the right.
 - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, and is the parent of ``symbol``.
@@ -648,8 +657,9 @@ Example:
     # Example action:
     on_...:
       then:
-        - lvgl.
-
+        - lvgl.dropdown.update:
+            id: dropdown_id
+            selected_index: 3
 
 The ``dropdown`` can be also integrated as :doc:`/components/select/lvgl`.
 
@@ -662,18 +672,16 @@ Images are the basic widgets to display images.
 .. figure:: /components/images/lvgl_image.png
     :align: center
 
-**Specific actions:**
-
-``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
-
 **Specific options:**
 
 - **src** (**Required**, :ref:`image <display-image>`):  The ID of an existing image configuration.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
-
 TODO !! supported image encodings
 
+**Specific actions:**
+
+``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 Example:
 
@@ -691,7 +699,9 @@ Example:
     # Example action:
     on_...:
       then:
-        - lvgl.
+        - lvgl.img.update:
+            id: img_id
+            src: dog_image
 
 
 ``label``
@@ -733,12 +743,15 @@ Example:
         recolor: true
         text: '#FF0000 write# #00FF00 colored# #0000FF text#'
 
-    # Example action:
+    # Example action (update label with a value from a sensor):
     on_...:
       then:
-        - lvgl.
-
-
+        - lvgl.label.update:
+            id: lbl_id
+            text: !lambda |-
+              static char buf[10];
+              snprintf(buf, 10, "%.0fdBm", id(wifi_signal_db).get_state());
+              return buf;
 
 ``line``
 ********
@@ -752,7 +765,7 @@ The Line object is capable of drawing straight lines between a set of points.
 
 By default, the Line's width and height are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts on the line may not be visible.
 
-**Specific actions:**
+**Specific actions:**  ???
 
 ``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the line indicator styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
@@ -830,12 +843,25 @@ TODO !!!
     - **r_mod** (*Optional*): TODO in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the object based on its contents.
 - Style options from :ref:`lvgl-styling`.
 
+**Specific actions:**
+
+``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the line indicator styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+
+
 Example:
 
 .. code-block:: yaml
 
     # Example widget:
     - 
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.indicator.line.update:
+            id: minute_hand
+            value: !lambda |-
+              return id(time_comp).now().minute;
 
 
 .. _lvgl-wgt-rol:
@@ -854,6 +880,7 @@ Roller allows you to simply select one option from a list by scrolling.
 - **mode** (*Optional*, enum): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
 - **visible_rows** TODO
 - **selected** (*Optional*, list): Settings for the selected **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the text style properties to change the appearance of the text in the selected area.
+- **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
 - Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and text style properties. ``text_line_space`` adjusts the space between the options. When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in ``anim_time`` milliseconds as specified in the style.
 
 **Specific actions:**
@@ -879,8 +906,9 @@ Example:
     # Example action:
     on_...:
       then:
-        - lvgl.
-
+        - lvgl.roller.update:
+            id: roller_id
+            selected_index: 5
 
 The ``roller`` can be also integrated as :doc:`/components/select/lvgl`.
 
@@ -901,6 +929,7 @@ The Slider object looks like a Bar supplemented with a knob. The knob can be dra
 - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
 - **knob** (*Optional*, list): Settings for the knob **part** to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. A rectangle (or circle) drawn at the current value. Also uses all the typical background properties to describe the knob. By default, the knob is square (with an optional corner radius) with side length equal to the smaller side of the slider. The knob can be made larger with the padding values. Padding values can be asymmetric too.
 - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The indicator that shows the current state of the slider. Also uses all the typical background style properties.
+- **animated** (*Optional*, boolean): To animate indicator when bar changes value. Defaults to ``true``.
 - any :ref:`Styling <lvgl-styling>` and state-based option for the background of the slider. Uses all the typical background style properties. Padding makes the indicator smaller in the respective direction.
 
 Normally, the slider can be adjusted either by dragging the knob, or by clicking on the slider bar. In the latter case the knob moves to the point clicked and slider value changes accordingly. In some cases it is desirable to set the slider to react on dragging the knob only. This feature is enabled by enabling the ``adv_hittest`` flag.
@@ -926,7 +955,11 @@ Example:
     # Example action:
     on_...:
       then:
-        - lvgl.
+        - lvgl.slider.update:
+            id: slider_id
+            knob:
+              bg_color: 0x00FF00
+            value: 55
 
 
 The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
