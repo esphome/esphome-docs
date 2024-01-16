@@ -42,8 +42,6 @@ Configuration variables:
   not be used with ``ndef_contains`` and/or ``uid``.
 - **uid** (*Optional*, string): The unique ID of the NFC tag. This is a hyphen-separated list of hexadecimal values.
   For example: ``74-10-37-94``. May not be used with ``ndef_contains`` and/or ``tag_id`` (above).
-- **name** (**Required**, string): The name of the binary sensor.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _nfc-setting_up_tags:
