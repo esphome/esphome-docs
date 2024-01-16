@@ -854,13 +854,15 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - **length**: Tick line length in pixels
             - **color**: ID or hex code for the ticks :ref:`color <config-color>`
             - **label_gap**: Label distance from the ticks with text proportionally to the values of the tick line.
+        - Style options from :ref:`lvgl-styling` for the tick lines a labels using the *line* and *text* style properties.
     - **indicators** (**Required**, list): A list with indicators to be added to the scale. Their ``value`` is interpreted in the range of the scale (see the *action* below):
         - **line** (*Optional*): Add a needle line to a Scale. By default, the length of the line is the same as the scale's radius.
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **width**: Needle line width in pixels.
             - **color**: ID or hex code for the ticks :ref:`color <config-color>`.
             - **r_mod**: Adjust the length of the needle with this amount (can be negative).
-- Style options from :ref:`lvgl-styling`.
+            - Style options from :ref:`lvgl-styling` for the needle line using the *line* style properties, as well as the background properties to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
+- Style options from :ref:`lvgl-styling` for the background of the meter, using the typical background properties.
 
 .. note::
 
@@ -870,6 +872,8 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 
 ``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the indicator needle ``value``, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
+
+The needle line using the line style properties, as well as the background properties to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
 
 **Example:**
 
