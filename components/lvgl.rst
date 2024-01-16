@@ -251,7 +251,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
     - ``RIGHT``
     - ``INTERNAL``
 - **border_width** (*Optional*, int16): Set the width of the border in pixels.
-- **radius** (*Optional*, uint16): The radius of the rounded corners of the object. 0 = no radius i.e. square corners; 65535 = pill shaped object (true circle if object has same width and height).
+- **radius** (*Optional*, uint16): The radius of the rounded corners of the object. 0 = no radius i.e. square corners; 65535 = pill shaped object (true circle if it has same width and height).
 - **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
 - **line_width** (*Optional*, int16): Set the width of the line in pixels.
 - **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
@@ -309,7 +309,7 @@ The properties below are common to all widgets.
 - **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If layouts are used, or if specfiyng ``align``, it is used as an offset to the calculated position (can also be negative).
 - **width** (*Optional*): Width of the widget in pixels or a percentage, or ``size_content`` (see below).
 - **height** (*Optional*): Height of the widget in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the widget based on its contents (children objects, text size, image size etc.)
-- **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused object which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
+- **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused widget which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
 - **styles** (*Optional*, :ref:`config-id`): The ID of a *style definition* from the main component configuration to override the theme styles.
 - **theme** (*Optional*, list): A list of styles to apply to the widget and children. Same configuration option as at the main component.
 - **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. Same configuration option as at the main component.
@@ -363,7 +363,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 .. note::
 
-    Zero degree is at the middle right (3 o'clock) of the object and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
+    Zero degree is at the middle right (3 o'clock) of the widget and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
 
 **Specific actions:**
 
@@ -400,12 +400,12 @@ The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 ``bar``
 *******
 
-The bar object has a background and an indicator on it. The width of the indicator is set according to the current value of the bar.
+The bar widget has a background and an indicator on it. The width of the indicator is set according to the current value of the bar.
 
 .. figure:: /components/images/lvgl_bar.png
     :align: center
 
-Vertical bars can be created if the width of the object is smaller than its height.
+Vertical bars can be created if the width is smaller than the height.
 
 Not only the end, but also the start value of the bar can be set, which changes the start position of the indicator.
 
@@ -488,7 +488,7 @@ The ``btn`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or a
 ``btnmatrix``
 *************
 
-The Button Matrix object is a lightweight way to display multiple buttons in rows and columns. Lightweight because the buttons are not actually created but just virtually drawn on the fly. This way, one button use only eight extra bytes of memory instead of the ~100-150 bytes a normal Button object plus the 100 or so bytes for the Label object.
+The Button Matrix widget is a lightweight way to display multiple buttons in rows and columns. Lightweight because the buttons are not actually created but just virtually drawn on the fly. This way, one button use only eight extra bytes of memory instead of the ~100-150 bytes a normal Button widget plus the 100 or so bytes for the Label widget.
 
 .. figure:: /components/images/lvgl_btnmatrix.png
     :align: center
@@ -573,7 +573,7 @@ The Button Matrix object is a lightweight way to display multiple buttons in row
 ``checkbox``
 ************
 
-The Checkbox object is made internally from a "tick box" and a label. When the Checkbox is clicked the tick box is ``checked`` state toggled.
+The Checkbox widget is made internally from a "tick box" and a label. When the Checkbox is clicked the tick box is ``checked`` state toggled.
 
 .. figure:: /components/images/lvgl_checkbox.png
     :align: center
@@ -707,7 +707,7 @@ TODO !! supported image encodings
 ``label``
 *********
 
-A label is the basic object type that is used to display text.
+A label is the basic widget type that is used to display text.
 
 .. figure:: /components/images/lvgl_label.png
     :align: center
@@ -756,7 +756,7 @@ Newline characters are handled automatically by the label widget. You can use ``
 ``line``
 ********
 
-The Line object is capable of drawing straight lines between a set of points.
+The Line widget is capable of drawing straight lines between a set of points.
 
 **Specific options:**
 
@@ -788,7 +788,7 @@ By default, the Line's width and height are set to ``size_content``. This means 
 ``led``
 ********
 
-The LEDs are rectangle-like (or circle) object whose brightness can be adjusted. With lower brightness the colors of the LED become darker.
+The LEDs are rectangle-like (or circle) widget whose brightness can be adjusted. With lower brightness the colors of the LED become darker.
 
 .. figure:: /components/images/lvgl_led.png
     :align: center
@@ -840,7 +840,7 @@ TODO !!!
 - **scales** (*Required*, list): TODO
 - **ticks** (*Required*, list): TODO
 - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, and additionally:
-    - **r_mod** (*Optional*): TODO in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the object based on its contents.
+    - **r_mod** (*Optional*): TODO in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the widget based on its contents.
 - Style options from :ref:`lvgl-styling`.
 
 
@@ -918,7 +918,7 @@ The ``roller`` can be also integrated as :doc:`/components/select/lvgl`.
 ``slider``
 **********
 
-The Slider object looks like a Bar supplemented with a knob. The knob can be dragged to set a value. Just like Bar, Slider can be vertical or horizontal.
+The Slider widget looks like a bar supplemented with a knob. The knob can be dragged to set a value. Just like Bar, Slider can be vertical or horizontal.
 
 .. figure:: /components/images/lvgl_slider.png
     :align: center
@@ -1002,7 +1002,7 @@ The ``switch`` can be also integrated as :doc:`/components/binary_sensor/lvgl` o
 
 Tables, as usual, are built from rows, columns, and cells containing texts.
 
-The Table object is very lightweight because only the texts are stored. No real objects are created for cells but they are just drawn on the fly.
+The Table widget is very lightweight because only the texts are stored. No real objects are created for cells but they are just drawn on the fly.
 
 **Specific options:**
 
@@ -1022,7 +1022,7 @@ The Table object is very lightweight because only the texts are stored. No real 
 ``textarea``
 ************
 
-The Text Area is a Base object with a Label and a cursor on it. Texts or characters can be added to it. Long lines are wrapped and when the text becomes long enough the Text area can be scrolled.
+The Text Area is a base widget with a label and a cursor on it. Texts or characters can be added to it. Long lines are wrapped and when the text becomes long enough the Text area can be scrolled.
 
 One line mode and password modes are supported.
 
@@ -1151,26 +1151,26 @@ In addition to visual stilyng, each widget supports some boolean flags to influe
             hidden: true
 
 
-- **hidden** (*Optional*, boolean): make the object hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.show`` and ``lvgl.widget.hide``
-- **clickable** (*Optional*, boolean): make the object clickable by input devices
-- **click_focusable** (*Optional*, boolean): add focused state to the object when clicked
-- **checkable** (*Optional*, boolean): toggle checked state when the object is clicked
-- **scrollable** (*Optional*, boolean): make the object scrollable
+- **hidden** (*Optional*, boolean): make the widget hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.show`` and ``lvgl.widget.hide``
+- **clickable** (*Optional*, boolean): make the widget clickable by input devices
+- **click_focusable** (*Optional*, boolean): add focused state to the widget when clicked
+- **checkable** (*Optional*, boolean): toggle checked state when the widget is clicked
+- **scrollable** (*Optional*, boolean): make the widget scrollable
 - **scroll_elastic** (*Optional*, boolean): allow scrolling inside but with slower speed
-- **scroll_momentum** (*Optional*, boolean): make the object scroll further when "thrown"
+- **scroll_momentum** (*Optional*, boolean): make the widget scroll further when "thrown"
 - **scroll_one** (*Optional*, boolean): allow scrolling only one snappable children
 - **scroll_chain_hor** (*Optional*, boolean): allow propagating the horizontal scroll to a parent
 - **scroll_chain_ver** (*Optional*, boolean): allow propagating the vertical scroll to a parent
 - **scroll_chain simple** (*Optional*, boolean): packaging for (``scroll_chain_hor | scroll_chain_ver``)
-- **scroll_on_focus** (*Optional*, boolean): automatically scroll object to make it visible when focused
-- **scroll_with_arrow** (*Optional*, boolean): allow scrolling the focused object with arrow keys
-- **snappable** (*Optional*, boolean): if scroll snap is enabled on the parent it can snap to this object
-- **press_lock** (*Optional*, boolean): keep the object pressed even if the press slid from the object
+- **scroll_on_focus** (*Optional*, boolean): automatically scroll widget to make it visible when focused
+- **scroll_with_arrow** (*Optional*, boolean): allow scrolling the focused widget with arrow keys
+- **snappable** (*Optional*, boolean): if scroll snap is enabled on the parent it can snap to this widget
+- **press_lock** (*Optional*, boolean): keep the widget pressed even if the press slid from the widget
 - **event_bubble** (*Optional*, boolean): propagate the events to the parent too
 - **gesture_bubble** (*Optional*, boolean): propagate the gestures to the parent
 - **adv_hittest** (*Optional*, boolean): allow performing more accurate hit (click) test. E.g. Accounting for rounded corners
-- **ignore_layout** (*Optional*, boolean): make the object positionable by the layouts
-- **floating** (*Optional*, boolean): do not scroll the object when the parent scrolls and ignore layout
+- **ignore_layout** (*Optional*, boolean): make the widget positionable by the layouts
+- **floating** (*Optional*, boolean): do not scroll the widget when the parent scrolls and ignore layout
 - **overflow_visible** (*Optional*, boolean): do not clip the children's content to the parent's boundary
 - **layout_1**, **layout_2** (*Optional*, boolean): custom flags, free to use by layouts
 - **widget_1**, **widget_2** (*Optional*, boolean): custom flags, free to use by widget
@@ -1347,6 +1347,39 @@ This :ref:`condition <config-condition>` checks if LVGL is in paused state or no
                   id: display_backlight
                   transition_length: 150ms
 
+.. _lvgl-event-trg:
+
+Widget Event Triggers
+---------------------
+
+ESPHome implements as triggers the following LVGL events:
+
+- ``on_press``: The widget has been pressed.
+- ``on_long_press``: The widget has been pressed for at least the ``long_press_time`` specified in the input device configuration. Not called if scrolled.
+- ``on_long_press_repeat``: Called after ``long_press_time`` in every ``long_press_repeat_time`` ms. Not called if scrolled.
+- ``on_short_click``: The widget was pressed for a short period of time, then released. Not called if scrolled or long pressed.
+- ``on_click``: Called on release if a widget did not scroll (regardless of long press).
+- ``on_release``: Called in every case when a widget has been released.
+- ``on_scroll_begin``: Scrolling of the widget begins.
+- ``on_scroll_end``:  Scrolling of the widget ends.
+- ``on_scroll``: The widget was scrolled.
+- ``on_focus``:  The widget is focused.
+- ``on_defocus``: The widget is unfocused.
+- ``on_value``: TODO!!
+
+These triggers can be applied directly to any widget in the lvgl configuration, given that the widget itself supports generating such events.
+
+.. code-block:: yaml
+
+    # Example triggers:
+    - btn:
+        ...
+        on_short_click:
+          then:
+            lvgl.page.show: main_page
+        on_long_press:
+          then:
+            light.toggle: display_backlight
 
 .. _lvgl-onidle-trg:
 
@@ -1370,47 +1403,10 @@ The ``on_idle`` :ref:`trigger <automation>` is activated when inactivity time be
             - light.turn_off:
                 id: display_backlight
 
-
-
-.. _lvgl-event-trg:
-
-Widget Event Triggers
----------------------
-
-ESPHome implements as triggers the following LVGL events:
-
-- ``on_press``: The widget has been pressed.
-- ``on_short_click``: The widget was pressed for a short period of time, then released. Not called if scrolled.
-- ``on_long_press``: The widget has been pressed for at least the ``long_press_time`` specified in the input device configuration. Not called if scrolled.
-- ``on_long_press_repeat``: Called after ``long_press_time`` in every ``long_press_repeat_time`` ms. Not called if scrolled.
-- ``on_click``: Called on release if a widget did not scroll (regardless of long press).
-- ``on_release``: Called in every case when a widget has been released.
-- ``on_scroll_begin``: Scrolling of the widget begins.
-- ``on_scroll_end``:  Scrolling of the widget ends.
-- ``on_scroll``: The widget was scrolled.
-- ``on_focus``:  The widget is focused.
-- ``on_defocus``: The widget is unfocused.
-- ``on_value``: TODO!!
-
-These triggers can be applied directly to any widget in the lvgl configuration, given that the widget itself supports generating such events.
-
-.. code-block:: yaml
-
-    lvgl:
-      widgets:
-        btn:
-          ...
-          on_released:
-            then:
-              - light.turn_off:
-                  id: display_backlight
-
-
-
 Data types
 ----------
 
-LVLG supports numeric properties only as integer values with variable minimums and maximums. Certain object properties also support negative values.
+LVLG supports numeric properties only as integer values with variable minimums and maximums. Certain widget properties also support negative values.
 
 - ``int8`` (signed) supports values ranging from -128 to 127.
 - ``uint8`` (unsigned) supports values ranging from 0 to 255.
