@@ -483,9 +483,10 @@ Often known as "tag" or "card" readers within the community.
 
 .. imgtable::
 
+    NFC Tag, components/binary_sensor/nfc, nfc.png
     PN532, components/binary_sensor/pn532, pn532.jpg
-    PN7150, components/binary_sensor/pn7150, pn7150.jpg
-    PN716X, components/binary_sensor/pn7160, pn716x.jpg
+    PN7150, components/pn7150, pn7150.jpg
+    PN716X, components/pn7160, pn716x.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
 
@@ -654,6 +655,8 @@ Display Components
     ILI9481, components/display/ili9xxx, ili9481.svg
     ILI9486, components/display/ili9xxx, ili9341.jpg
     ILI9488, components/display/ili9xxx, ili9488.svg
+    WSPICOLCD, components/display/ili9xxx, ili9488.svg
+    
     Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
@@ -667,6 +670,7 @@ Display Components
     SSD1327, components/display/ssd1327, ssd1327.jpg
     SSD1331, components/display/ssd1331, ssd1331.jpg
     SSD1351, components/display/ssd1351, ssd1351.jpg
+    ST7567, components/display/st7567, st7567.jpg
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     ST7796, components/display/ili9xxx, st7796.svg

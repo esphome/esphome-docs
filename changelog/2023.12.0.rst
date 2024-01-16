@@ -32,7 +32,9 @@ Pin Reuse validation
 
 There is a new validation performed on configurations to ensure that pins are not reused unintentionally.
 This is a common source of issues and generally a pin does not need to be reused across multiple components
-in a single configuration. The error can be bypassed by specifically adding another config item to all of the
+in a single configuration. Pins should only be reused in a very limited set of circumstances and seeing the
+error will generally mean that you need to reorganise your configuration to not reuse the pins.
+The error can be bypassed by specifically adding another config item to all of the
 duplicate pin definitions. See the :ref:`config-pin_schema` for details.
 
 Touchscreen internal changes
@@ -47,6 +49,41 @@ MCP3008 breaking changes
 The MCP3008 has has a restructure of the code and at the same time the default update interval has been changed to 60 seconds,
 the units, device class and state class default have also been set to sane defaults expected for a voltage sensor.
 
+Release 2023.12.1 - December 21
+-------------------------------
+
+- Fix replaced - in allowed characters during object_id sanitizing :esphomepr:`5983` by :ghuser:`jesserockz`
+
+Release 2023.12.2 - December 22
+-------------------------------
+
+- ESP32-S3 and ESP-IDF don't play well with USB_CDC and need USB_SERIAL_JTAG :esphomepr:`5929` by :ghuser:`clydebarrow`
+- Update libtiff6 :esphomepr:`5985` by :ghuser:`cvandesande`
+- Override GPIOs 12 and 13 on the airm2m (LuatOS) board  :esphomepr:`5982` by :ghuser:`davidmonro`
+- Add workaround for crash in Arduino 2.0.9 when CDC is configured :esphomepr:`5987` by :ghuser:`kbx81`
+- web_server.py: return empty content when file doesn't exist :esphomepr:`5980` by :ghuser:`jessicah`
+
+Release 2023.12.3 - December 22
+-------------------------------
+
+- Fix unexpected disconnects when outgoing buffer is full during keepalive :esphomepr:`5988` by :ghuser:`bdraco`
+- Regenerate api_pb2 after manual changes were added incorrectly in #5732 :esphomepr:`5990` by :ghuser:`jesserockz`
+- Improved sensor readings in htu21d component. :esphomepr:`5839` by :ghuser:`matzman666`
+- Fix dashboard logs when api is disabled and using MQTT :esphomepr:`5992` by :ghuser:`bdraco`
+- Fix broken configs with non-existent components :esphomepr:`5993` by :ghuser:`jesserockz`
+
+Release 2023.12.4 - December 25
+-------------------------------
+
+- dashboard: Only ping when polling is active :esphomepr:`6001` by :ghuser:`bdraco`
+- tt21100: restore init read :esphomepr:`6008` by :ghuser:`nielsnl68`
+- dashboard: Fix file writes on Windows :esphomepr:`6013` by :ghuser:`bdraco`
+- Display: fix class inherence in Python script :esphomepr:`6009` by :ghuser:`nielsnl68`
+
+Release 2023.12.5 - December 25
+-------------------------------
+
+- Fix docker builds :esphomepr:`6012` by :ghuser:`bdraco`
 
 Full list of changes
 --------------------

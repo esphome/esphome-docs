@@ -25,6 +25,12 @@ The TTGO T-Display module shown has the display attached to the module's board a
 cannot be changed. Other display modules have pin headers or other connectors which must be connected appropriately
 to an ESP module.
 
+.. warning::
+
+    This component has been made redundant since the ST7789V is now supported by the :ref:`ILI9XXX component <ili9xxx>`. It is recommended
+    that you use the ``ili9xxx`` component as it will be maintained, whereas this component may not be, or may be removed completely
+    in the future.
+
 .. note::
 
     Displays larger than the 135x240 pixel display on the TTGO T-Display shown require a significant amount of RAM
