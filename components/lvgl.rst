@@ -844,38 +844,6 @@ TODO !!!
 - Style options from :ref:`lvgl-styling`.
 
 
-
-
-
-          - meter: # Gradient color  arc
-              height: 160
-              width: 160
-              align: center
-              bg_color: 0
-              scales:
-                angle_range: 360
-                rotation: 255
-                range_from: 0
-                range_to: 12
-                ticks:
-                  width: 35
-                  count: 13
-                  length: 8
-                indicators:
-                  - ticks:
-                      local: true
-                      start_value: 0
-                      end_value: 12
-                      color_start: 0xFF0000
-                      color_end: 0x0000FF
-          - meter:
-
-
-
-
-
-
-
 **Specific actions:**
 
 ``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the line indicator styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
