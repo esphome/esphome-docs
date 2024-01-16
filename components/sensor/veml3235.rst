@@ -80,8 +80,7 @@ Configuration variables:
   current gains and integration time; when the lux measurement falls below this value, the ``gain``, ``digital_gain``
   and ``integration_time`` values will be reset and recalculated to avoid saturation and maximize resolution. The
   default value is ``20%``.
-- **name** (*Optional*, string): A user-friendly name for this VEML3235 device.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
