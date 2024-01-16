@@ -357,7 +357,7 @@ Setting up three options and set component state to selected option value.
          - "Option1"
          - "Option2"
          - "Option3"
-        initial_option: "OFF"
+        initial_option: "Option1"
         optimistic: true
         set_action:
           - logger.log:
