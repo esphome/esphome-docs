@@ -812,7 +812,7 @@ The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
 .. note::
 
-    If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup.
+    If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup, according to its ``restore_mode`` setting.
 
 
 ``meter``

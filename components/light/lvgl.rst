@@ -20,7 +20,6 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the light.
 - **led** (**Required**): The ID of a ``led`` widget configured in LVGL, which will reflect the state of the light.
-- **output_id** (**Required**): TODO
 - All other options from :ref:`light <config-light>`.
 
 
