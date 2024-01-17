@@ -726,7 +726,7 @@ A label is the basic widget type that is used to display text.
 
 **Specific options:**
 
-- **text** or **symbol** (*Required*, string): The text or built-in symbol to display. To display an empty label, specify ``" "`` (space).
+- **text** or **symbol** (**Required**, string): The text or built-in symbol to display. To display an empty label, specify ``" "`` (space).
 - **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
 - **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
     - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped. (Default)
@@ -923,6 +923,62 @@ The needle line using the line style properties, as well as the background prope
         - lvgl.indicator.line.update:
             id: temperature_needle
             value: 3
+
+
+.. _lvgl-wgt-msg:
+
+``msgboxes``
+************
+
+The Message boxes act as pop-ups. They are built from a background container, a title, an optional close button, a text and optional buttons.
+
+.. figure:: /components/images/lvgl_msgbox.png
+    :align: center
+
+The text will be broken into multiple lines automatically and the height will be set automatically to include the text and the buttons. The message box is modal (blocks clicks on the rest of the screen until closed).
+
+**Specific options:**
+
+- **msgboxes** (*Optional*, enum): A list of message boxes to use. This option has to be added to the top level of the LVGL component configuration.
+    - **close_button** (*Required*, boolean): Add a close button to the top right of the message box. 
+    - **title** (**Required**, string): A string to display at the top of the meessage box.
+    - **body** (*Required*, enum): The content of body of the message box:
+        - **text** (**Required**, string):  The string to be displayed in the body of the message box. Can be shorthanded if no further options are specified.
+        - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties.
+    - **buttons** (*Required*, enum): A list of buttons to show at the bottom of the message box:
+        - **text** or **symbol**  (**Required**, string):  The text or built-in symbol to display on the button.
+
+**Specific actions:**
+
+The configured message boxes are hidden by default. One can show them with ``lvgl.widget.show`` and ``lvgl.widget.hide``  :ref:`actions <lvgl-objupd-shorthands>`.
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    lvgl:
+      ...
+      msgboxes:
+        - id: message_box
+          close_button: true
+          title: Messagebox
+          body:
+            text: "This is a sample messagebox."
+            bg_color: 0x808080
+          buttons:
+            - id: msgbox_apply
+              text: "Apply"
+            - id: msgbox_close
+              symbol: close
+              on_click:
+                then:
+                  - lvgl.widget.hide: message_box
+
+.. note::
+
+    You can create your own more complex modal dialogs with a full-screen sized, half-opaque ``obj`` with any child widgets on it, and the ``hidden`` flag set to ``true`` by default. 
+
 
 .. _lvgl-wgt-rol:
 
