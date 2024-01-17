@@ -361,6 +361,7 @@ Light
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
     TSL2591, components/sensor/tsl2591, tsl2591.jpg, Lux
+    VEML3235, components/sensor/veml3235, veml3235.jpg, Lux
 
 
 Magnetic
@@ -483,9 +484,10 @@ Often known as "tag" or "card" readers within the community.
 
 .. imgtable::
 
+    NFC Tag, components/binary_sensor/nfc, nfc.png
     PN532, components/binary_sensor/pn532, pn532.jpg
-    PN7150, components/binary_sensor/pn7150, pn7150.jpg
-    PN716X, components/binary_sensor/pn7160, pn716x.jpg
+    PN7150, components/pn7150, pn7150.jpg
+    PN716X, components/pn7160, pn716x.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
 
@@ -654,6 +656,8 @@ Display Components
     ILI9481, components/display/ili9xxx, ili9481.svg
     ILI9486, components/display/ili9xxx, ili9341.jpg
     ILI9488, components/display/ili9xxx, ili9488.svg
+    WSPICOLCD, components/display/ili9xxx, ili9488.svg
+    
     Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
