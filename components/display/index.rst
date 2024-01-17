@@ -101,6 +101,12 @@ and circles:
           // and a filled triangle !
           it.filled_triangle(125, 5, 105, 25, 150, 50);
 
+          // Regular Polygons? Let's draw the outline of a flat-topped hexagon inscribed in a circle 
+          // centered on [x1=100,y1=100] with a radius of 50
+          it.regular_polygon(100,100,50,HEXAGON);
+          // and a filled pointy-topped octagon!
+          it.filled_regular_polygon(200,200,50,OCTAGON,VARIATION_POINTY_TOPPED);
+
 All the above methods can optionally also be called with an argument at the end which specifies in which
 color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
 
