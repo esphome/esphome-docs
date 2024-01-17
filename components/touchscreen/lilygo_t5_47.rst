@@ -24,6 +24,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually set the ID of this touchscreen.
 - **interrupt_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin.
   Must be ``GPIO13``.
+- **touch_timeout** (*Optional*, :ref:`config-time`): The time to automatically check if touch was released. Defaults to ``250ms``.
 
 - All other options from :ref:`config-touchscreen`.
 
