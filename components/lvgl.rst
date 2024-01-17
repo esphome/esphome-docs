@@ -977,7 +977,7 @@ The configured message boxes are hidden by default. One can show them with ``lvg
 
 .. note::
 
-    You can create your own more complex modal dialogs with a full-screen sized, half-opaque ``obj`` with any child widgets on it, and the ``hidden`` flag set to ``true`` by default. 
+    You can create your own more complex dialogs with a full-screen sized, half-opaque ``obj`` with any child widgets on it, and the ``hidden`` flag set to ``true`` by default. For non-modal dialogs, simply set the ``clickable`` flag to ``false`` on it.
 
 
 .. _lvgl-wgt-rol:
@@ -1266,10 +1266,10 @@ In addition to visual stilyng, each widget supports some boolean flags to influe
             hidden: true
 
 
-- **hidden** (*Optional*, boolean): make the widget hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.show`` and ``lvgl.widget.hide``
-- **clickable** (*Optional*, boolean): make the widget clickable by input devices
-- **click_focusable** (*Optional*, boolean): add focused state to the widget when clicked
+- **hidden** (*Optional*, boolean): make the widget hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.show`` and ``lvgl.widget.hide``. Defaults to ``false``.
 - **checkable** (*Optional*, boolean): toggle checked state when the widget is clicked
+- **clickable** (*Optional*, boolean): make the widget clickable by input devices. Defaults to ``true``. If ``false``, it will pass the click to the widgets behind it (clicking through).
+- **click_focusable** (*Optional*, boolean): add focused state to the widget when clicked
 - **scrollable** (*Optional*, boolean): make the widget scrollable
 - **scroll_elastic** (*Optional*, boolean): allow scrolling inside but with slower speed
 - **scroll_momentum** (*Optional*, boolean): make the widget scroll further when "thrown"
