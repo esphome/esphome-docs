@@ -83,7 +83,7 @@ Configuration variables:
 - **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
 - **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen. Defaults to ``1s``.
-- **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE"``. Defaults to ``WARN``.
+- **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, enum): The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
@@ -106,6 +106,12 @@ Configuration variables:
     - All other options from :ref:`lvgl-styling` to be applied to this page.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
 - **page_wrap** (*Optional*, boolean): Wrap pages around when navigating between them with :ref:`lvgl-pgnx-act`. ``true`` if not specified.
+- **top_layer** (*Optional*, list): A special kind of *Always on Top* page, which acts as a parent for widgets placed on it. It's shown above all the pages - useful for widgets which need to be always visible, regardless of the pages. Only of no ``widgets`` are configured at this level. Options:
+    - **layout** (*Optional*, string): Layout to be applied to this page. Same option as above.
+    - **flex_flow** (*Optional*, string): Same option as above, for the ``FLEX`` layout on this page.
+    - All other options from :ref:`lvgl-styling` to be applied to this page.
+    - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
+
 
 **Example:**
 
@@ -315,7 +321,7 @@ The properties below are common to all widgets.
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn as children of this widget. Same configuration option as at the main component.
 - **state** (*Optional*, enum): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overriden withing style definitions or locally set. Can be one of:
     - **default** (*Optional*, boolean): Normal, released state
-    - **disabled** (*Optional*, boolean): Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions **lvgl.widget.enable** and **lvgl.widget.disable**)
+    - **disabled** (*Optional*, boolean): Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.enable`` and ``lvgl.widget.disable``)
     - **pressed** (*Optional*, boolean): Being pressed
     - **checked** (*Optional*, boolean): Toggled or checked state
     - **scrolled** (*Optional*, boolean): Being scrolled
@@ -866,14 +872,14 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - **length**: Tick line length in pixels
             - **color**: ID or hex code for the ticks :ref:`color <config-color>`
             - **label_gap**: Label distance from the ticks with text proportionally to the values of the tick line.
-        - Style options from :ref:`lvgl-styling` for the tick lines a labels using the *line* and *text* style properties.
+        - Style options from :ref:`lvgl-styling` for the tick *lines* and *labels* using the *line* and *text* style properties.
     - **indicators** (**Required**, list): A list with indicators to be added to the scale. Their ``value`` is interpreted in the range of the scale (see the *action* below):
         - **line** (*Optional*): Add a needle line to a Scale. By default, the length of the line is the same as the scale's radius.
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **width**: Needle line width in pixels.
             - **color**: ID or hex code for the ticks :ref:`color <config-color>`.
             - **r_mod**: Adjust the length of the needle with this amount (can be negative).
-            - Style options from :ref:`lvgl-styling` for the needle line using the *line* style properties, as well as the background properties to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
+            - Style options from :ref:`lvgl-styling` for the *needle line* using the *line* style properties, as well as the background properties to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
 - Style options from :ref:`lvgl-styling` for the background of the meter, using the typical background properties.
 
 .. note::
@@ -940,12 +946,12 @@ The text will be broken into multiple lines automatically and the height will be
 **Specific options:**
 
 - **msgboxes** (*Optional*, enum): A list of message boxes to use. This option has to be added to the top level of the LVGL component configuration.
-    - **close_button** (*Required*, boolean): Add a close button to the top right of the message box. 
+    - **close_button** (**Required**, boolean): Controls the appearance of the close button to the top right of the message box. 
     - **title** (**Required**, string): A string to display at the top of the meessage box.
-    - **body** (*Required*, enum): The content of body of the message box:
+    - **body** (**Required**, enum): The content of body of the message box:
         - **text** (**Required**, string):  The string to be displayed in the body of the message box. Can be shorthanded if no further options are specified.
         - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties.
-    - **buttons** (*Required*, enum): A list of buttons to show at the bottom of the message box:
+    - **buttons** (**Required**, enum): A list of buttons to show at the bottom of the message box:
         - **text** or **symbol**  (**Required**, string):  The text or built-in symbol to display on the button.
 
 **Specific actions:**
