@@ -13,13 +13,17 @@ and requires :ref:`LVGL <lvgl-main>` to be configured.
 Supported widget is :ref:`lvgl-wgt-btn`. A single binary sensor supports
 a single widget, thus you need to choose among which one's state you want to use.
 
-Configuration variables:
-------------------------
+Configuration options:
+----------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the binary sensor.
-- **widget** (**Required**): The ID of a button widget configured in LVGL.
+- **widget** (**Required**): The ID of a ``btn`` widget configured in LVGL.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+
+.. note::
+
+    ``publish_initial_state`` ??
 
 Example:
 

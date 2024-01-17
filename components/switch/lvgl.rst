@@ -10,12 +10,11 @@ LVGL Switch
 The ``lvgl`` switch platform creates a switch from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widgets are :ref:`lvgl-wgt-btn` (with ``checkable`` option enabled), :ref:`lvgl-wgt-swi` and :ref:`lvgl-wgt-chk`
-. A single switch supports a single widget, thus you need to choose among which one's state you want to use.
+Supported widgets are :ref:`lvgl-wgt-btn` (with ``checkable`` option enabled), :ref:`lvgl-wgt-swi` and :ref:`lvgl-wgt-chk`. A single switch supports a single widget, thus you need to choose among which one's state you want to use, options are mutually exclusive.
 
 
-Configuration variables:
-------------------------
+Configuration options:
+----------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the switch.

@@ -14,8 +14,8 @@ Supported widgets are :ref:`lvgl-wgt-led`. A single light supports
 a single widget, thus you need to choose among which one's state you want to use.
 
 
-Configuration variables:
-------------------------
+Configuration options:
+----------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the light.

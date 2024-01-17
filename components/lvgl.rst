@@ -82,7 +82,7 @@ Configuration variables:
     - **long_press_repeat_time** (*Optional*, ms): Repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
 - **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
 - **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
-- **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen. Defaults to 1s.
+- **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen. Defaults to ``1s``.
 - **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE"``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, enum): The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
@@ -105,7 +105,7 @@ Configuration variables:
     - **flex_flow** (*Optional*, string): Same option as above, for the ``FLEX`` layout on this page.
     - All other options from :ref:`lvgl-styling` to be applied to this page.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
-
+- **page_wrap** (*Optional*, boolean): Wrap pages around when navigating between them with :ref:`lvgl-pgnx-act`. ``true`` if not specified.
 
 **Example:**
 
@@ -113,17 +113,15 @@ Configuration variables:
 
     # Example configuration entry
     lvgl:
-      log_level: WARN
       displays:
-        - display_id: tft_display
+        - display_id: my_display
       touchscreens:
-        - touchscreen_id: tft_touch
+        - touchscreen_id: my_touch
       pages:
         - id: main_page
           widgets:
             - label:
-                x: 10
-                y: 10
+                align: CENTER
                 text: 'Hello World!'
 
 .. note::
@@ -315,16 +313,30 @@ The properties below are common to all widgets.
 - **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. Same configuration option as at the main component.
 - **flex_flow** (*Optional*, string): Option for ``FLEX`` layout, similar configuration as at the main component.
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn as children of this widget. Same configuration option as at the main component.
-- **state** (*Optional*, string): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overriden withing style definitions or locally set. The state itself can be can be changed by interacting with the widget itself, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.widget.update`` action. Can be one of:
-    - ``default``: Normal, released state
-    - ``disabled``: Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.enable`` and ``lvgl.widget.disable``)
-    - ``pressed``: Being pressed
-    - ``checked``: Toggled or checked state
-    - ``scrolled``: Being scrolled
-    - ``focused``: Focused via keypad or encoder or clicked via touchpad/mouse
-    - ``focus_key``: Focused via keypad or encoder but not via touchpad/mouse
-    - ``edited``: Edit by an encoder
-    - ``user_1``, ``user_2``, ``user_3``, ``user_4``: Custom states
+- **state** (*Optional*, enum): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overriden withing style definitions or locally set. Can be one of:
+    - **default** (*Optional*, boolean): Normal, released state
+    - **disabled** (*Optional*, boolean): Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions **lvgl.widget.enable** and **lvgl.widget.disable**)
+    - **pressed** (*Optional*, boolean): Being pressed
+    - **checked** (*Optional*, boolean): Toggled or checked state
+    - **scrolled** (*Optional*, boolean): Being scrolled
+    - **focused** (*Optional*, boolean): Focused via keypad or encoder or clicked via touchpad/mouse
+    - **focus_key** (*Optional*, boolean): Focused via keypad or encoder but not via touchpad/mouse
+    - **edited** (*Optional*, boolean): Edit by an encoder
+    - **user_1**, **user_2**, **user_3**, **user_4** (*Optional*, boolean): Custom states
+
+By default, states are all ``false``. To apply styles to the states, you need to specify them one level above, for example:
+
+.. code-block:: yaml
+
+    - btn:
+        checkable: true
+        state:
+          checked: true # here you activate the state to be used at boot
+        checked:
+          bg_color: 0x00FF00 # here you apply styles to be used when in the respective state
+
+
+The state itself can be can be changed by interacting with the widget, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.widget.update`` action.
 
 In addition to visual stilyng, each widget supports :ref:`dynamically settable flags <lvgl-objupdflag-act>` to influence the behavior at runtime.
 
@@ -849,7 +861,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
         - **length** (**Required**): Tick line length in pixels
         - **color** (**Required**): ID or hex code for the ticks :ref:`color <config-color>`
         - **major** (*Optional*, list): If you want major ticks, value labels displayed too:
-            - **stride**: How many minor ticks to skip+1 when adding major ticks
+            - **stride**: How many minor ticks to skip when adding major ticks
             - **width**: Tick line width in pixels
             - **length**: Tick line length in pixels
             - **color**: ID or hex code for the ticks :ref:`color <config-color>`

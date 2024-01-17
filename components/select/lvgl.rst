@@ -11,15 +11,16 @@ The ``lvgl`` switch platform creates a select from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widgets are :ref:`lvgl-wgt-drp` and :ref:`lvgl-wgt-rol`. A single select supports
-a single widget, thus you need to choose among which one's state you want to use.
+a single widget, thus you need to choose among which one's state you want to use, options are mutually exclusive.
 
-Configuration variables:
-------------------------
+Configuration options:
+----------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the select.
-- **obj** (**Required**): The ID of a widget configured in LVGL, which will reflect the state of the select.
-- All other options from :ref:`Switch <config-switch>`.
+- **dropdown** (**Required**): The ID of a ``dropdown`` widget configured in LVGL, which will reflect the state of the select; or
+- **roller** (**Required**): The ID of a ``roller`` widget configured in LVGL, which will reflect the state of the select.
+- All other options from :ref:`Select <config-select>`.
 
 Example:
 
@@ -27,7 +28,7 @@ Example:
 
     select:
       - platform: lvgl
-        obj: dropdown_id
+        dropdown: dropdown_id
         name: LVGL Dropdown
 
 See Also
