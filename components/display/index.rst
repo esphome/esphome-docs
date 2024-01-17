@@ -95,6 +95,12 @@ and circles:
           // ... and the same thing filled again
           it.filled_circle(25, 25, 10);
 
+          // Triangles... Let's draw the outline of a triangle from the [x,y] coordinates of its three points
+          // [25,5], [5,25], [50,50]
+          it.triangle(25, 5, 5, 25, 50, 50);
+          // and a filled triangle !
+          it.filled_triangle(125, 5, 105, 25, 150, 50);
+
 All the above methods can optionally also be called with an argument at the end which specifies in which
 color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
 
@@ -184,7 +190,7 @@ Next, create a ``font:`` section in your configuration:
 
       - file: "fonts/tom-thumb.bdf"
         id: tomthumb
-        
+
       - file: 'gfonts://Material+Symbols+Outlined'
         id: icon_font_50
         size: 50
@@ -202,7 +208,7 @@ Configuration variables:
 
     **Google Fonts**:
 
-    Each Google Font will be downloaded once and cached for future use. This can also be used to download Material 
+    Each Google Font will be downloaded once and cached for future use. This can also be used to download Material
     Symbols or Icons as in the example above.
 
   - **family** (**Required**, string): The name of the Google Font family.
@@ -233,7 +239,7 @@ Configuration variables:
   here will be compiled into the binary. Adjust this if you need some special characters or want to
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
   be more than one character long if you for example want to use font ligatures. Defaults to
-  ``!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
+  ``!"%()+=,-_.:°/?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
 
 
 .. note::
@@ -242,7 +248,7 @@ Configuration variables:
     to translate the TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
     add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
     to install it using
-    ``pip install "pillow>4.0.0,<10.0.0"``.
+    ``pip install "pillow==10.1.0"``.
 
 .. _display-static_text:
 
@@ -407,10 +413,10 @@ You can display current time using a time component. Please see the example :ref
 Screen Clipping
 ***************
 
-Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show 
+Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show
 a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
 
-With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region 
+With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region
 you can stop the clipping process with ``end_clipping();`` . You can nest as many ``start_clipping();`` as you want as long
 you end them as many times as well.
 
@@ -420,7 +426,7 @@ you end them as many times as well.
       - platform: ...
         # ...
         id: my_binary_sensor
-    
+
     color:
       - name: my_red
         red: 100%
@@ -439,12 +445,12 @@ you end them as many times as well.
           it.printf(0, 0, id(my_font), id(my_red), "State: %s", id(my_binary_sensor).state ? "ON" : "OFF");
           it.end_clipping();
 
-After you started clipping you can manipulate the region with ``extend_clipping(left, top, right, bottom);`` 
+After you started clipping you can manipulate the region with ``extend_clipping(left, top, right, bottom);``
 and ``shrink_clipping(left, top, right, bottom);`` within previous set clipping region.
 
 With ``get_clipping();`` you get a ``Rect`` object back with the latest set clipping region.
 
-.. code-block:: cpp 
+.. code-block:: cpp
 
     class Rect {
         int16_t x;  ///< X/Left coordinate
@@ -552,6 +558,7 @@ Graph component with options for grids, border and line-types.
             color: my_red
           - sensor: my_outside_temperature
             line_type: SOLID
+            continuous: true
             line_thickness: 3
             color: my_blue
           - sensor: my_beer_temperature
@@ -580,6 +587,7 @@ Trace specific fields:
 - **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
 - **line_thickness** (*Optional*): Defaults to 3
 - **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
+- **continuous** (*Optional*): connects the individual points to make a continuous line.  Defaults to ``false``.
 - **color** (*Optional*): Sets the color of the sensor trace.
 
 And then later in code:
@@ -678,6 +686,13 @@ Use this component to store graphical images on the device, you can then draw th
         id: alert
         resize: 80x80
 
+.. code-block:: yaml
+
+    image:
+      - file: https://esphome.io/_images/logo.png
+        id: esphome_logo
+        resize: 200x162
+
 Configuration variables:
 
 - **file** (**Required**, string):
@@ -685,7 +700,8 @@ Configuration variables:
   - **Local files**: The path (relative to where the .yaml file is) of the image file.
   - **Material Design Icons**: Specify the `Material Design Icon <https://pictogrammers.com/library/mdi/>`_
     id in the format ``mdi:icon-name``, and that icon will automatically be downloaded and added to the configuration.
-  
+  - **Remote files**: The URL of the image file.
+
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
 - **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
@@ -971,7 +987,7 @@ Color Test Pattern
 ******************
 
 If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
-It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine 
+It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine
 the best way to help you, **a picture of the result of this script is very helpful.**
 
 Should you `create an issue <https://github.com/esphome/issues/issues>`__ in GitHub regarding your display, please
@@ -988,15 +1004,15 @@ be sure to **include a link to where you purchased it** so that we can validate 
           for(auto i = 0; i<256; i++) {
             it.horizontal_line(shift_x+  0,i+shift_y,50, my_red.fade_to_white(i));
             it.horizontal_line(shift_x+ 50,i+shift_y,50, my_red.fade_to_black(i));
-    
+
             it.horizontal_line(shift_x+105,i+shift_y,50, my_green.fade_to_white(i));
             it.horizontal_line(shift_x+155,i+shift_y,50, my_green.fade_to_black(i));
-    
+
             it.horizontal_line(shift_x+210,i+shift_y,50, my_blue.fade_to_white(i));
             it.horizontal_line(shift_x+260,i+shift_y,50, my_blue.fade_to_black(i));
           }
           it.rectangle(shift_x+ 0, 0+shift_y, shift_x+ 310, 256+shift_y, my_yellow);
-    
+
     color:
       - id: my_blue
         blue: 100%
