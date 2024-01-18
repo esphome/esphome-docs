@@ -9,7 +9,7 @@ AM2120 Temperature+Humidity Sensor
 The ``am2120`` Temperature+Humidity sensor allows you to use your AM2120
 (`datasheet <https://www.micros.com.pl/mediaserver/UPAM2120_0004.pdf>`__) I²C-based sensor with ESPHome.
 
-.. figure:: images/am2120-full.jpg
+.. figure:: images/am2120.jpg
     :align: center
     :width: 50.0%
 
