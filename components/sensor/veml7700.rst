@@ -8,8 +8,8 @@ VEML7700 and VEML6030 Ambient Light Sensors
 
 The ``veml7700`` sensor platform allows you to use the Vishay VEML7700 and VEML6030 ambient light sensors with ESPHome.
 Communication with the device is over :ref:`I²C <i2c>`, which must be present in your configuration. VEML7700 and VEML6030 
-are basically the same but in different packagings. Bigger VEML7700 has fixed address of ``0x10``, address of tiny VEML6030 
-can be selected - either ``0x10`` or ``0x48``.
+are basically the same but in different packages. The VEML7700 uses a fixed address of ``0x10``, while the smaller VEML6030 
+can be configured to use either ``0x10`` or ``0x48``.
 
 The VEML 7700/6030 devices are available on breakout boards from a number of vendors including `Adafruit`_, `SparkFun`_, 
 `DFRobot`_, and others.
@@ -32,12 +32,11 @@ The VEML 7700/6030 devices are available on breakout boards from a number of ven
     VEML sensors in Home Assistant UI.
 
 The sensor is a high accuracy ambient light digital 16-bit resolution sensor with dynamic range from 0 lux to about 120,000 lux.
-Wide range of measurements enabled by four configurable *gain* levels and six different *integration time* options.
-Higher values used for lower light conditions. 
+Its wide range of measurements is enabled by four configurable *gain* levels and six different *integration time* options.
+Higher gain values are typically used for lower light conditions. 
 
-The sensor has two photodiodes with different spectral response represented by two channels: *ALS* channel and *WHITE* channel.
-*ALS*, or *Ambient light* channel follows so-called human eye curve very well. *WHITE* channel offers a much higher responsivity 
-for a much wider wavelength spectrum, capturing quite a lot of near-infrared radiance.
+The sensor has two photodiodes with different spectral response represented by two channels: an *ALS* channel and a *WHITE* channel.
+The *ALS*, or *Ambient light* channel follows a so-called human eye curve very closely. The *WHITE* channel covers a much wider wavelength/spectrum, capturing quite a lot of near-infrared radiance.
 
 .. figure:: images/veml7700-spectral.png
     :align: center
@@ -46,8 +45,8 @@ for a much wider wavelength spectrum, capturing quite a lot of near-infrared rad
     ALS and WHITE channels spectral response
 
 
-Using Automatic measurement mode is advised: proper *gain* and *integration time* are selected by the component by doing several 
-measurements, as per recommendations by manufacturer.
+Using this component's automatic measurement mode is advised; in this mode, proper *gain* and *integration time* are automatically selected by the component after
+taking several  measurements. To do so, it follows a process recommended by the manufacturer.
 
 Should you desire to manually control those parameters - please note that:
 
@@ -56,7 +55,7 @@ Should you desire to manually control those parameters - please note that:
 - In the range of 0 lux - 1000 lux the sensor measurements are stricly linear for Gain 1/4 and 1/8, after 1000 lux it shows non-linearity. 
 
 
-Lux compensation formula is used to get better readings in bright conditions. 
+A lux compensation formula is used to get better readings in bright conditions. 
 However, it gives quite high error in very bright direct sunlight (instead of 100-120 kilolux it might give 150-200k+).
 
 This Wikipedia `article <https://en.wikipedia.org/wiki/Lux>`__ has a table of some lux values for comparison.
@@ -74,8 +73,8 @@ Please note, that in low light conditions measurement process might take several
 Lux compensation
 ----------------
 
-Lux compensation is done as per recommendation from the manufacturer, however it can be turned off setting ``lux_compensation: false``
-in configuration.
+Lux compensation is done as recommended by the manufacturer, however it can be turned off by
+setting ``lux_compensation: false`` in your device's configuration.
 
 .. math::
 
@@ -94,9 +93,11 @@ in configuration.
 Available data
 --------------
 
-The implementation offers seven sensors: two providing *lux* value, two - unitless data measurements directly from the device 
-and two - actual *gain* and *integration time* values used for the measurement (useful in automatic mode), and one - fully 
-artificial, somewhat representing near-infrared part of spectre.
+The implementation offers seven sensors:
+- Two providing *lux* value,
+- Two unitless data measurements directly from the device,
+- Two actual *gain* and *integration time* values used for the measurement (useful in automatic mode), and
+- One fully artificial, somewhat representing near-infrared part of spectrum.
 
 - **ambient_light**: Illuminance value for *ALS* channel representing human eye, lx
 - **full_spectrum**: Illuminance value for *WHITE* channel with wide spectrum, lx
@@ -129,10 +130,6 @@ Example configuration
 Configuration variables:
 ------------------------
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **address** (*Optional*, int): Manually specify the I²C address of the device.
-  Defaults to ``0x10``. VEML7700 only uses address ``0x10``. VEML6030 can be either
-  ``0x48`` or ``0x10`` (hardware configuration).
 - **auto_mode** (*Optional*, boolean): Automatic gain and integration time selection. Defaults to ``True``.
 - **integration_time** (*Optional*, :ref:`config-time`):
   The amount of time the sensor is exposed. Valid values are ``25ms``, ``50ms``, ``100ms`` *(default)*,
