@@ -39,6 +39,7 @@ Configuration variables:
   - **dish**: Decode and dump Dish infrared codes.
   - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **jvc**: Decode and dump JVC infrared codes.
+  - **keeloq**: Decode and dump KeeLoq RF codes.
   - **haier**: Decode and dump Haier infrared codes.
   - **lg**: Decode and dump LG infrared codes.
   - **magiquest**: Decode and dump MagiQuest wand infrared codes.
@@ -106,6 +107,9 @@ Automations:
   is passed to the automation for use in lambdas.
 - **on_jvc** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   JVC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::JVCData`
+  is passed to the automation for use in lambdas.
+- **on_keeloq** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  KeeLoq RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::KeeloqData`
   is passed to the automation for use in lambdas.
 - **on_haier** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Haier remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::HaierData`
@@ -265,6 +269,11 @@ Remote code selection (exactly one of these has to be included):
 - **jvc**: Trigger on a decoded JVC remote code with the given data.
 
   - **data** (**Required**, int): The JVC code to trigger on, see dumper output for more info.
+
+- **keeloq**: Trigger on a decoded KeeLoq RF remote code with the given data.
+
+  - **address** (**Required**, int): The 32-bit ID code to trigger on, see dumper output for more info.
+  - **command** (**Required**, int): The 8-bit switch/command to listen for. If omitted, will match on any command/button.
 
 - **haier**: Trigger on a Haier remote code with the given code.
 

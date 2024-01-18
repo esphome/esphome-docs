@@ -24,6 +24,7 @@ With this display driver you can control the following displays:
   - ST7789V
   - TFT 2.4
   - TFT 2.4R
+  - WSPICOLCD (waveshares Pico-ResTouch-LCD-3.5)
 
 More display drivers will come in the future.
 
@@ -63,7 +64,7 @@ Configuration variables:
 
 - **model** (**Required**): The model of the display. Options are:
 
-  - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R``, ``S3BOX``, ``S3BOX_LITE``, ``ST7789V``
+  - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R``, ``S3BOX``, ``S3BOX_LITE``, ``WSPICOLCD``
   - ``ILI9341``, ``ILI9342``, ``ILI9486``, ``ILI9488``, ``ILI9488_A`` (alternative gamma configuration for ILI9488)
   - ``ILI9481``, ``ILI9481-18`` (18 bit mode)
   - ``ST7789V``, ``ST7796``
@@ -95,6 +96,7 @@ Configuration variables:
 - **data_rate** (*Optional*): Set the data rate of the SPI interface to the display. One of ``80MHz``, ``40MHz`` (default), ``20MHz``, ``10MHz``, ``5MHz``, ``2MHz``, ``1MHz``, ``200kHz``, ``75kHz`` or ``1kHz``. If you have multiple ILI9xxx displays they must all use the same **data_rate**.
 - **spi_mode** (*Optional*): Set the mode for the SPI interface to the display. Default is ``MODE0`` but some displays require ``MODE3``.
 - **invert_colors** (*Optional*): With this boolean option you can invert the display colors. **Note** some of the displays have this option set automatically to true and can't be changed.
+- **18bit_mode** (*Optional*): With this boolean option you can manual enable or disable the 18 bit color mode.
 - **rotation** (*Optional*): Rotate the display presentation in software. Choose one of ``0°``, ``90°``, ``180°``, or ``270°``. This option cannot be used with ``transform``.
 - **transform** (*Optional*): Transform the display presentation using hardware. All defaults are ``false``. This option cannot be used with ``rotation``.
 
@@ -202,10 +204,11 @@ This config rotates the display into landscape mode using the driver chip.
     display:
       - platform: ili9xxx
         model: st7789v
-        height: 170
-        width: 320
-        offset_height: 35
-        offset_width: 0
+        dimensions:
+          height: 170
+          width: 320
+          offset_height: 35
+          offset_width: 0
         transform:
           swap_xy: true
           mirror_x: false
@@ -215,6 +218,22 @@ This config rotates the display into landscape mode using the driver chip.
         cs_pin: 10
         dc_pin: GPIO13
         reset_pin: GPIO9
+
+For Lilygo TTGO Boards if you move from the st7789v to this you need the following settings to make it work.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ili9xxx
+        model: st7789v
+        #TTGO TDisplay 135x240
+        dimensions:
+          height: 240
+          width: 135
+          offset_height: 40
+          offset_width: 52
+        # Required or the colors are all inverted, and Black screen is White
+        invert_colors: true
 
 See Also
 --------
