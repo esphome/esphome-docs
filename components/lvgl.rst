@@ -956,7 +956,7 @@ The text will be broken into multiple lines automatically and the height will be
 
 **Specific actions:**
 
-The configured message boxes are hidden by default. One can show them with ``lvgl.widget.show`` and ``lvgl.widget.hide``  :ref:`actions <lvgl-objupd-shorthands>`.
+The configured message boxes are hidden by default. One can show them with ``lvgl.widget.show`` and ``lvgl.widget.hide`` :ref:`actions <lvgl-objupd-shorthands>`.
 
 **Example:**
 
