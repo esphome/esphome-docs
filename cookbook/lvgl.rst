@@ -540,6 +540,72 @@ The script runs every minute to update the hand line positions and the label tex
                 static const char * const day_names[] = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
                 return day_names[id(time_comp).now().day_of_week-1];
 
+.. _lvgl-cook-idlescreen:
+
+Turn off screen when idle
+-------------------------
+
+LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Touching the screen counts as an activity and resets the inactivity counter.
+
+You need a full screen ``obj`` on the *top_layer*, above everything else, to catch the first touch before waking up the screen, to make sure you don't click onto something you don't see. With a template number you can make the timeout settable by the users.
+
+.. code-block:: yaml
+
+    lvgl:
+      ...
+      on_idle:
+        timeout: !lambda "return (id(display_timeout).state * 1000);"
+        then:
+          - logger.log: "LVGL is idle"
+          - light.turn_off: display_backlight
+          - lvgl.widget.show: blank_screen
+          - lvgl.pause:
+      top_layer:
+        widgets:
+          - ...  # put here all the visible widgets
+          - obj: # put as the last a fullscreen click-catcher object, hidden by default
+              id: blank_screen
+              hidden: true
+              x: 0
+              y: 0
+              width: 240
+              height: 320
+              bg_color: 0x000000
+              bg_opa: cover
+              radius: 0
+              pad_all: 0
+              border_width: 0
+              on_press:
+                - lvgl.widget.hide: blank_screen
+
+    touchscreen:
+      - platform: ...
+        on_touch:
+          - if:
+              condition: lvgl.is_paused
+              then:
+                - logger.log: "LVGL resuming"
+                - lvgl.resume:
+                - lvgl.widget.redraw:
+                - light.turn_on: display_backlight
+
+    light:
+      - platform: ...
+        id: display_backlight
+
+    number:
+      - platform: template
+        name: LVGL Screen timeout
+        optimistic: true
+        id: display_timeout
+        unit_of_measurement: "s"
+        initial_value: 45
+        restore_value: true
+        min_value: 10
+        max_value: 180
+        step: 5
+        mode: box
+
 
 See Also
 --------
