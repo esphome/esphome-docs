@@ -72,12 +72,12 @@ Advanced:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **compensation** (*Optional*): The block containing sensors used for compensation.
+- **compensation** (*Optional*): The block containing sensors used for compensation. Both values should be supplied in order to be able to generate the absolute humidity to be reported to the sensor.
 
   - **temperature_source** (*Optional*, :ref:`config-id`): Give an external temperature sensor ID
-    here. This can improve the sensor's internal calculations.
+    here. The data should be in Celcius. This can improve the sensor's internal calculations.
 
-  - **humidity_source** (*Optional*, :ref:`config-id`): Give an external humidity sensor ID
+  - **humidity_source** (*Optional*, :ref:`config-id`): Give an external relative humidity sensor ID
     here. This can improve the sensor's internal calculations.
 
 .. _sgp30-calibrating:
