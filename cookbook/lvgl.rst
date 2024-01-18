@@ -563,7 +563,7 @@ You need a full screen ``obj`` on the *top_layer*, above everything else, to cat
       top_layer:
         widgets:
           - ...  # put here all the visible widgets
-          - obj: # put as the last a fullscreen click-catcher object, hidden by default
+          - obj: # put as last a fullscreen click-catcher object, hidden by default
               id: blank_screen
               hidden: true
               x: 0
