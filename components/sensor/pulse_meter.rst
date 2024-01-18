@@ -94,7 +94,7 @@ trying to match.
           variables:
             new_total: int
           then:
-            - pulse_counter.set_total_pulses:
+            - pulse_meter.set_total_pulses:
                 id: sensor_pulse_meter
                 value: !lambda 'return new_total;'
 

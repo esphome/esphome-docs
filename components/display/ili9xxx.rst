@@ -202,10 +202,11 @@ This config rotates the display into landscape mode using the driver chip.
     display:
       - platform: ili9xxx
         model: st7789v
-        height: 170
-        width: 320
-        offset_height: 35
-        offset_width: 0
+        dimensions:
+          height: 170
+          width: 320
+          offset_height: 35
+          offset_width: 0
         transform:
           swap_xy: true
           mirror_x: false
@@ -215,6 +216,22 @@ This config rotates the display into landscape mode using the driver chip.
         cs_pin: 10
         dc_pin: GPIO13
         reset_pin: GPIO9
+
+For Lilygo TTGO Boards if you move from the st7789v to this you need the following settings to make it work.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ili9xxx
+        model: st7789v
+        #TTGO TDisplay 135x240
+        dimensions:
+          height: 240
+          width: 135
+          offset_height: 40
+          offset_width: 52
+        # Required or the colors are all inverted, and Black screen is White
+        invert_colors: true
 
 See Also
 --------
