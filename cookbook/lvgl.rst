@@ -107,7 +107,7 @@ Cover status and control
 
 To make a nice user interface for controlling covers you could use 3 buttons, which also display the state. 
 
-.. figure:: images/lvgl_cook_cover.jpg
+.. figure:: /cookbook/images/lvgl_cook_cover.jpg
     :align: center
 
 Just as above, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and wuth a text sensor we retrive the current movement state of it. We are particularly intersted in the moving (*opening* and *opening*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
@@ -233,7 +233,7 @@ Gradient styles for widgets
 
 Since LVGL uses inheritance to apply styles across the widgets, it's possible to apply them at the top level, and only make modifications on demand, if necessarry. 
 
-.. figure:: images/lvgl_cook_gradient_styles.jpg
+.. figure:: /cookbook/images/lvgl_cook_gradient_styles.jpg
     :align: center
 
 In this example we prepare a set of gradient styles in the *theme*, and make some modifications in a *style_definition* which can be applied in a batch to the desired widgets. Theme is applied automatically, the style definition is applied manually.
@@ -279,7 +279,7 @@ Page navigation footer
 
 If using multiple pages, a navigation bar can be useful at the bottom of the screen:
 
-.. figure:: images/lvgl_cook_pagenav.jpg
+.. figure:: /cookbook/images/lvgl_cook_pagenav.jpg
     :align: center
 
 To save from repeating the same widgets on each page, there's the *top_layer* which is the *Always on Top* transparent page above all the pages. Everything you put on this page will be on top of all the others. 
@@ -328,7 +328,7 @@ HA connection status icon
 
 The top layer is useful to show status icons visible on all pages:
 
-.. figure:: images/lvgl_cook_statico.jpg
+.. figure:: /cookbook/images/lvgl_cook_statico.jpg
     :align: center
 
 In the example below we only show the icon when connection with Home Assistant is established:
@@ -372,7 +372,7 @@ Title bar for each page
 
 Each page can have its own title bar
 
-.. figure:: images/lvgl_cook_titlebar.jpg
+.. figure:: /cookbook/images/lvgl_cook_titlebar.jpg
     :align: center
 
 To put a titlebar under the status icon, we need to add it to each page, also containing the label with a unique title:
