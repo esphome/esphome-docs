@@ -130,6 +130,8 @@ Configuration variables:
                 align: CENTER
                 text: 'Hello World!'
 
+See :ref:`lvgl-cook-navigator` in the Cookbook for an example how to easily implement a page navigation bar at the bottom of the screen.
+
 .. note::
 
     By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
@@ -218,6 +220,7 @@ In the example below, you have an ``arc`` with some styles set here. Note how yo
 
 So the inheritance happens like this: state based styles override the locally specified styles, which override the style definitions, which override the theme, which overrides the top level styles.
 
+See :ref:`lvgl-cook-theme` in the Cookbook for an example how to easily implement a gradient style for your widgets.
 
 .. _lvgl-styling:
 
@@ -345,6 +348,8 @@ By default, states are all ``false``. To apply styles to the states, you need to
 The state itself can be can be changed by interacting with the widget, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.widget.update`` action.
 
 In addition to visual stilyng, each widget supports :ref:`dynamically settable flags <lvgl-objupdflag-act>` to influence the behavior at runtime.
+
+See :ref:`lvgl-cook-cover` for an example how to play with styling and properties to show different states of a Home Assistant entity.
 
 .. _lvgl-wgt-arc:
 
@@ -502,6 +507,7 @@ A notable state is ``checked`` (boolean) which can have different styles applied
 
 The ``btn`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
 
+See :ref:`lvgl-cook-relay` for an example how to use a checkable button to act on a local component.
 
 ``btnmatrix``
 *************
@@ -930,6 +936,7 @@ The needle line using the line style properties, as well as the background prope
             id: temperature_needle
             value: 3
 
+See :ref:`lvgl-cook-clock` in the Cookbook for an example how to implement an analog clock which also shows the date.
 
 .. _lvgl-wgt-msg:
 
@@ -1117,6 +1124,7 @@ The Switch looks like a little slider and can be used to turn something on and o
 
 The ``switch`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
 
+See :ref:`lvgl-cook-binent` for an example how to use a switch to act on a Home Assistant service.
 
 ``table``
 *********
@@ -1376,7 +1384,6 @@ This :ref:`action <config-action>` resumes the activity of LVGL, including rende
         - lvgl.resume
 
 
-
 .. _lvgl-pgnx-act:
 
 ``lvgl.page.next`` and ``lvgl.page.previous`` Actions
@@ -1468,6 +1475,28 @@ This :ref:`condition <config-condition>` checks if LVGL is in paused state or no
                   id: display_backlight
                   transition_length: 150ms
 
+``lvgl.on_idle`` Trigger
+------------------------
+
+LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter. 
+
+The ``on_idle`` :ref:`trigger <automation>` is activated when inactivity time becomes longer than the specified ``timeout``. 
+
+- **timeout** (**Required**, :ref:`templatable <config-templatable>`, int): :ref:`Time <config-time>` value after which LVGL should enter idle state. 
+
+.. code-block:: yaml
+
+    lvgl:
+        on_idle:
+          timeout: 30s
+          then:
+            - logger.log: "LVGL is idle"
+            - lvgl.pause:
+            - light.turn_off:
+                id: display_backlight
+
+See :ref:`lvgl-cook-idlescreen` example how to implement screen saving with idle settings.
+
 .. _lvgl-event-trg:
 
 Widget Event Triggers
@@ -1503,26 +1532,6 @@ These triggers can be applied directly to any widget in the lvgl configuration, 
             light.toggle: display_backlight
 
 .. _lvgl-onidle-trg:
-
-``lvgl.on_idle`` Trigger
-------------------------
-
-LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter. 
-
-The ``on_idle`` :ref:`trigger <automation>` is activated when inactivity time becomes longer than the specified ``timeout``. 
-
-- **timeout** (**Required**, :ref:`templatable <config-templatable>`, int): :ref:`Time <config-time>` value after which LVGL should enter idle state. 
-
-.. code-block:: yaml
-
-    lvgl:
-        on_idle:
-          timeout: 30s
-          then:
-            - logger.log: "LVGL is idle"
-            - lvgl.pause:
-            - light.turn_off:
-                id: display_backlight
 
 Data types
 ----------
