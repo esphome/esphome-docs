@@ -323,6 +323,7 @@ For the navigation bar we can use a button matrix. Note how the *header_footer* 
                       then:
                         lvgl.page.next:
 
+For this example to work, use the theme and style options from :ref:`above <lvgl-cook-theme>`.
 
 .. _lvgl-cook-statico:
 
@@ -414,6 +415,7 @@ To put a titlebar behind the status icon, we need to add it to each page, also c
                       text_color: 0xFFFFFF
             ...
 
+For this example to work, use the theme and style options from :ref:`above <lvgl-cook-theme>`.
 
 .. _lvgl-cook-clock:
 

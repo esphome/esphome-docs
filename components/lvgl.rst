@@ -1545,9 +1545,9 @@ See Also
 - :doc:`/components/number/lvgl`
 - :doc:`/components/select/lvgl`
 - :doc:`/components/light/lvgl`
+- :doc:`/cookbook/lvgl`
 - :doc:`/components/touchscreen/index`
 - :doc:`/components/sensor/rotary_encoder`
-- :doc:`/cookbook/lvgl`
 - `LVGL 8.3 docs <https://docs.lvgl.io/8.3/>`__
 - `LVGL Online Font Converter <https://lvgl.io/tools/fontconverter/>`__
 - :ghedit:`Edit`
