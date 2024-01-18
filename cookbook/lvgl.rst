@@ -343,13 +343,13 @@ In the example below we only show the icon when connection with Home Assistant i
       on_client_connected:
         - if:
             condition:
-              lambda: 'return (0 == client_address.compare(std::string{"your.ha.static.ip"}));'
+              lambda: 'return (0 == client_info.find("Home Assistant "));' 
             then:
               - lvgl.widget.show: lbl_hastatus
       on_client_disconnected:
         - if:
             condition:
-              lambda: 'return (0 == client_address.compare(std::string{"your.ha.static.ip"}));'
+              lambda: 'return (0 == client_info.find("Home Assistant "));' 
             then:
               - lvgl.widget.hide: lbl_hastatus
 
