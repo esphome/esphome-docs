@@ -80,6 +80,23 @@ Release 2023.12.4 - December 25
 - dashboard: Fix file writes on Windows :esphomepr:`6013` by :ghuser:`bdraco`
 - Display: fix class inherence in Python script :esphomepr:`6009` by :ghuser:`nielsnl68`
 
+Release 2023.12.5 - December 25
+-------------------------------
+
+- Fix docker builds :esphomepr:`6012` by :ghuser:`bdraco`
+
+Release 2023.12.6 - January 15
+------------------------------
+
+- Fix device not requesting Home Assistant time at the update interval :esphomepr:`6022` by :ghuser:`bdraco`
+- fix compilation error for libretiny :esphomepr:`6064` by :ghuser:`tomaszduda23`
+- pylontech: Fix parsing error with US2000 :esphomepr:`6061` by :ghuser:`functionpointer`
+- Support full (>460 char) dumps of Pronto IR commands :esphomepr:`6040` by :ghuser:`rpaskowitz`
+- ESP32-C3 USB_CDC fixes :esphomepr:`6069` by :ghuser:`kbx81`
+- Improv Serial -- don't wait for incoming bytes :esphomepr:`6089` by :ghuser:`kbx81`
+- add STATE_CLASS_TOTAL_INCREASING to bl0940 and bl0942 :esphomepr:`6090` by :ghuser:`tomaszduda23`
+- Fallback to pure-python loader for better error when YAML loading fails :esphomepr:`6081` by :ghuser:`bdraco`
+
 Full list of changes
 --------------------
 
