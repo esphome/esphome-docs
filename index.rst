@@ -893,6 +893,7 @@ Miscellaneous Components
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg, dark-invert
     Improv via BLE, components/esp32_improv, improv.svg, dark-invert
     Improv via Serial, components/improv_serial, improv.svg, dark-invert
+    Smart Config, components/smartconfig, smartconfig.png
     Debug Component, components/debug, bug-report.svg, dark-invert
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg
