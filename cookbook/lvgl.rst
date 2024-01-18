@@ -11,7 +11,7 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
 .. note::
 
-    The examples below assume you've set up LVGL correctly with your display and input device, and you have the knowledge to set up various components in ESPHome.
+    The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen width of 240px, you have to adjust them to your screen in order to obtain expected results.
 
 .. _lvgl-cook-relay:
 
@@ -425,7 +425,7 @@ Using the meter widget, one can create an analog clock on the screen.
 .. figure:: images/lvgl_cook_clock.png
     :align: center
 
-To put a titlebar behind the status icon, we need to add it to each page, also containing the label with a unique title:
+The script runs every minute to update the hand line positions and the label texts.
 
 .. code-block:: yaml
 
