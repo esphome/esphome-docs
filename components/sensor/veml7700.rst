@@ -63,12 +63,14 @@ This Wikipedia `article <https://en.wikipedia.org/wiki/Lux>`__ has a table of so
 Automatic measurement mode
 --------------------------
 
-In automatic measurement mode the component starts from Gain 1/8 and 100 ms. 
+In automatic measurement mode the component starts from Gain 1/8 and 100 ms (*default*). 
 
 - If illuminance is higher than 46 lx (100 counts) it gradually reduces integration time to get good reading (best in range 100 - 10,000 counts). 
 - In case of low illuminance (less than 46 lx) it tries to gradually increase gain and only then increase integration time.
 
 Please note, that in low light conditions measurement process might take several seconds due to long exposure periods and sensor reconfigurations.
+
+Starting values can be overriden by setting ``gain`` and ``integration_time`` parameters. The gain value gets adjusted first if possible.
 
 Lux compensation
 ----------------
@@ -133,10 +135,10 @@ Configuration variables:
 - **auto_mode** (*Optional*, boolean): Automatic gain and integration time selection. Defaults to ``True``.
 - **integration_time** (*Optional*, :ref:`config-time`):
   The amount of time the sensor is exposed. Valid values are ``25ms``, ``50ms``, ``100ms`` *(default)*,
-  ``200ms``, ``400ms``, ``800ms``. *Ignored in automatic mode*.
+  ``200ms``, ``400ms``, ``800ms``. *In automatic mode it sets starting value*.
 - **gain** (*Optional*, string): The gain the device will use for the internal ADC. Valid values are 
   ``1/8x`` *(default)*, ``1/4x``, ``1x``, ``2x``. Higher values are better in low-light conditions.
-  *Ignored in automatic mode*.
+  *In automatic mode it sets starting gain value*.
 - **lux_compensation** (*Optional*, boolean): Lux compensation formula is used as per manufacturer.
   Defaults to ``True``.
 - **glass_attenuation_factor** (*Optional*): The attenuation factor of glass if it's behind some glass 
