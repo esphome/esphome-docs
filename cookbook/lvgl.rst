@@ -110,7 +110,7 @@ To make a nice user interface for controlling covers you could use 3 buttons, wh
 .. figure:: images/lvgl_cook_covers.jpg
     :align: center
 
-Just as above, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and wuth a text sensor we retrive the current movement state of it. We are particularly intersted in the moving (*opening* and *opening*) states, because during these we'd like to change the label on the middle to show **STOP**. Otherwise, this button label will show the percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
+Just as above, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and wuth a text sensor we retrive the current movement state of it. We are particularly intersted in the moving (*opening* and *opening*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
 
 .. code-block:: yaml
 

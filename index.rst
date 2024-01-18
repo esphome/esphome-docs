@@ -942,6 +942,7 @@ Cookbook
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
     Share data directly between ESPHome nodes, cookbook/http_request_sensor, connection.svg, dark-invert
+    LVGL: Tips and Tricks, cookbook/lvgl, logo_lvgl.png
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
