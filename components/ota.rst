@@ -55,7 +55,7 @@ Configuration variables:
 -  **on_state_change** (*Optional*, :ref:`Automation<automation>`): An action to be
    performed when an OTA update state change happens. See :ref:`ota-on_state_change`.
 -  **version** (*Optional*, int): Version of OTA protocol to use. Version 2 is more stable.
-   To downgrate to legacy ESPHome, the device should be updated with OTA version 1 first.
+   To downgrade to legacy ESPHome, the device should be updated with OTA version 1 first.
    Defaults to ``1``.
 
 .. note::
