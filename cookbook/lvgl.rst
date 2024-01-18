@@ -18,7 +18,7 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 Toggle local light
 ------------------
 
-If you have a display with GPIO outputs usable with local relays, you can simply create a wall switch for your light.
+If you have a display some local lights configured, you can simply create a wall switch for it.
 
 .. code-block:: yaml
 
@@ -40,7 +40,6 @@ If you have a display with GPIO outputs usable with local relays, you can simply
                     id: light_btn
                     state:
                       checked: false
-
     lvgl:
         ...
         pages:
@@ -112,7 +111,7 @@ To make a nice user interface for controlling covers you could use 3 buttons, wh
 .. figure:: images/lvgl_cook_cover.png
     :align: center
 
-Just as above, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and wuth a text sensor we retrive the current movement state of it. We are particularly intersted in the moving (*opening* and *opening*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
+Just as in the previous example, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and wuth a text sensor we retrive the current movement state of it. We are particularly intersted in the moving (*opening* and *opening*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
 
 .. code-block:: yaml
 
@@ -238,7 +237,7 @@ Since LVGL uses inheritance to apply styles across the widgets, it's possible to
 .. figure:: images/lvgl_cook_gradient_styles.png
     :align: center
 
-In this example we prepare a set of gradient styles in the *theme*, and make some modifications in a *style_definition* which can be applied in a batch to the desired widgets. Theme is applied automatically, the style definition is applied manually.
+In this example we prepare a set of gradient styles in the *theme*, and make some modifications in a *style_definition* which can be applied in a batch to the desired widgets. Theme is applied automatically, the style definition is applied manually (read further to see how).
 
 .. code-block:: yaml
 
@@ -286,7 +285,7 @@ If using multiple pages, a navigation bar can be useful at the bottom of the scr
 
 To save from repeating the same widgets on each page, there's the *top_layer* which is the *Always on Top* transparent page above all the pages. Everything you put on this page will be on top of all the others. 
 
-For the navigation bar we use a button matrix. Note how the *header_footer* style definition is being applied to the widget and its children objects, and how a few more styles are configured to the main widget:
+For the navigation bar we use a button matrix. Note how the *header_footer* style definition is being applied to the widget and its children objects, and how a few more styles are configured manually at the main widget:
 
 .. code-block:: yaml
 
