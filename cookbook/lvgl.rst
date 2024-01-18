@@ -11,7 +11,7 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
 .. note::
 
-    The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen width of 240px, you have to adjust them to your screen in order to obtain expected results.
+    The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen width of *240x320px*, you have to adjust them to your screen in order to obtain expected results.
 
 .. _lvgl-cook-relay:
 
@@ -419,10 +419,10 @@ For this example to work, use the theme and style options from :ref:`above <lvgl
 
 .. _lvgl-cook-clock:
 
-Analog clock with meter
------------------------
+An analog clock
+---------------
 
-Using the meter widget, one can create an analog clock on the screen.
+Using the meter and label widgets, we can create an analog clock which shows the date too.
 
 .. figure:: images/lvgl_cook_clock.png
     :align: center
@@ -545,9 +545,7 @@ The script runs every minute to update the hand line positions and the label tex
 Turn off screen when idle
 -------------------------
 
-LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Touching the screen counts as an activity and resets the inactivity counter.
-
-You need a full screen ``obj`` on the *top_layer*, above everything else, to catch the first touch before waking up the screen, to make sure you don't click onto something you don't see. With a template number you can make the timeout settable by the users.
+LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Touching the screen counts as an activity and resets the inactivity counter (it's important to use the ``on_release`` trigger). With a template number you can make the timeout settable by the users.
 
 .. code-block:: yaml
 
@@ -558,29 +556,11 @@ You need a full screen ``obj`` on the *top_layer*, above everything else, to cat
         then:
           - logger.log: "LVGL is idle"
           - light.turn_off: display_backlight
-          - lvgl.widget.show: blank_screen
           - lvgl.pause:
-      top_layer:
-        widgets:
-          - ...  # put here all the visible widgets
-          - obj: # put as last a fullscreen click-catcher object, hidden by default
-              id: blank_screen
-              hidden: true
-              x: 0
-              y: 0
-              width: 240
-              height: 320
-              bg_color: 0x000000
-              bg_opa: cover
-              radius: 0
-              pad_all: 0
-              border_width: 0
-              on_press:
-                - lvgl.widget.hide: blank_screen
 
     touchscreen:
       - platform: ...
-        on_touch:
+        on_release:
           - if:
               condition: lvgl.is_paused
               then:
