@@ -18,7 +18,7 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 Toggle local light
 ------------------
 
-If you have a display some local lights configured, you can simply create a wall switch for it.
+If you have a display device with a local light configured, you can simply create a wall switch for it.
 
 .. code-block:: yaml
 
@@ -111,7 +111,7 @@ To make a nice user interface for controlling covers you could use 3 buttons, wh
 .. figure:: images/lvgl_cook_cover.png
     :align: center
 
-Just as in the previous example, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and wuth a text sensor we retrive the current movement state of it. We are particularly intersted in the moving (*opening* and *opening*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
+Just as in the previous example, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and with a text sensor we retrive the current movement state of it. We are particularly interested in the moving (*opening* and *opening*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
 
 .. code-block:: yaml
 
@@ -227,9 +227,11 @@ Just as in the previous example, we need to get the states of the cover first. W
                           data:
                             entity_id: cover.myroom
 
-.. _lvgl-cook-gradient:
+Notable here is the way the label is updated with a sensor numeric value using ``snprintf``.
 
-Gradient styles for widgets
+.. _lvgl-cook-theme:
+
+Theme and style definitions
 ---------------------------
 
 Since LVGL uses inheritance to apply styles across the widgets, it's possible to apply them at the top level, and only make modifications on demand, if necessarry. 
@@ -285,7 +287,7 @@ If using multiple pages, a navigation bar can be useful at the bottom of the scr
 
 To save from repeating the same widgets on each page, there's the *top_layer* which is the *Always on Top* transparent page above all the pages. Everything you put on this page will be on top of all the others. 
 
-For the navigation bar we use a button matrix. Note how the *header_footer* style definition is being applied to the widget and its children objects, and how a few more styles are configured manually at the main widget:
+For the navigation bar we can use a button matrix. Note how the *header_footer* style definition is being applied to the widget and its children objects, and how a few more styles are configured manually at the main widget:
 
 .. code-block:: yaml
 
@@ -371,12 +373,12 @@ Two notable things here, the widget starts *hidden* at boot, and it's only shown
 Title bar for each page
 -----------------------
 
-Each page can have its own title bar
+Each page can have its own title bar:
 
 .. figure:: images/lvgl_cook_titlebar.png
     :align: center
 
-To put a titlebar under the status icon, we need to add it to each page, also containing the label with a unique title:
+To put a titlebar behind the status icon, we need to add it to each page, also containing the label with a unique title:
 
 .. code-block:: yaml
 
@@ -411,6 +413,130 @@ To put a titlebar under the status icon, we need to add it to each page, also co
                       text_align: center
                       text_color: 0xFFFFFF
             ...
+
+
+.. _lvgl-cook-clock:
+
+Analog clock with meter
+-----------------------
+
+Using the meter widget, one can create an analog clock on the screen.
+
+.. figure:: images/lvgl_cook_clock.png
+    :align: center
+
+To put a titlebar behind the status icon, we need to add it to each page, also containing the label with a unique title:
+
+.. code-block:: yaml
+
+    lvgl:
+      ...
+      pages:
+        - id: main_page
+          widgets:
+            - obj: # Clock container
+                height: size_content
+                width: 240
+                align: CENTER
+                pad_all: 0
+                border_width: 0
+                bg_color: 0xFFFFFF
+                widgets:
+                  - meter: # Clock face
+                      height: 220
+                      width: 220
+                      align: center
+                      bg_opa: TRANSP
+                      text_color: 0x000000
+                      scales:
+                        - ticks: # minutes scale
+                            width: 1
+                            count: 61
+                            length: 10
+                            color: 0x000000
+                          range_from: 0
+                          range_to: 60
+                          angle_range: 360
+                          rotation: 270
+                          indicators:
+                            - line:
+                                id: minute_hand
+                                width: 3
+                                color: 0xa6a6a6
+                                r_mod: -4
+                                value: 0
+                        - ticks: # hours scale
+                            width: 1
+                            count: 12
+                            length: 1
+                            major:
+                              stride: 1
+                              width: 4
+                              length: 8
+                              color: 0xC0C0C0
+                              label_gap: 12
+                          angle_range: 330
+                          rotation: 300
+                          range_from: 1
+                          range_to: 12
+                        - indicators:
+                            - line:
+                                id: hour_hand
+                                width: 5
+                                color: 0xa6a6a6
+                                r_mod: -30
+                                value: 0
+                          angle_range: 360
+                          rotation: 270
+                          range_from: 0
+                          range_to: 720
+                  - label:
+                      styles: date_style
+                      id: day_label
+                      y: -30
+                  - label:
+                      id: date_label
+                      styles: date_style
+                      y: +30
+
+    time:
+      - platform: homeassistant
+        id: time_comp
+
+    interval:
+      - interval: 1min
+        then:
+          if:
+            condition:
+              time.has_time:
+            then:
+              - script.execute: time_update
+
+    script:
+      - id: time_update
+        then:
+          - lvgl.indicator.line.update:
+              id: minute_hand
+              value: !lambda |-
+                return id(time_comp).now().minute;
+          - lvgl.indicator.line.update:
+              id: hour_hand
+              value: !lambda |-
+                auto now = id(time_comp).now();
+                return std::fmod(now.hour, 12) * 60 + now.minute;
+          - lvgl.label.update:
+              id: date_label
+              text: !lambda |-
+                static const char * const mon_names[] = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+                static char date_buf[8];
+                auto now = id(time_comp).now();
+                snprintf(date_buf, sizeof(date_buf), "%s %2d", mon_names[now.month-1], now.day_of_month);
+                return date_buf;
+          - lvgl.label.update:
+              id: day_label
+              text: !lambda |-
+                static const char * const day_names[] = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
+                return day_names[id(time_comp).now().day_of_week-1];
 
 
 See Also
