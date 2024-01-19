@@ -46,8 +46,6 @@ On the bus side, you need 120 Ohm termination resistors at the ends of the bus c
             level: <level>
             baud_rate: 0
 
-
-
 Configuration variables:
 ------------------------
 
@@ -66,6 +64,12 @@ Configuration variables:
   slaves, this avoids waiting for timeouts allowing to read other slaves in the same bus. When the slave
   responds to a command, it'll be marked online again.
 
+Example
+-------
+The following code creates a ``modbus_controller`` hub talking to a ModBUS device at address ``1`` with ``115200`` bps
+
+ModBUS sensors can be directly defined (inline) under the ``modbus_controller`` hub or as standalone components
+Technically there is no difference between the "inline" and the standard definitions approach.
 
 .. code-block:: yaml
 
