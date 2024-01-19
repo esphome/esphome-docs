@@ -160,6 +160,7 @@ Contributors
 - `Ben-Schwabe (@Ben-Schwabe) <https://github.com/Ben-Schwabe>`__
 - `Benas09 (@Benas09) <https://github.com/Benas09>`__
 - `Ben Hoff (@benhoff) <https://github.com/benhoff>`__
+- `Benoît Leforestier (@Benichou34) <https://github.com/Benichou34>`__
 - `Benjamin Aigner (@benjaminaigner) <https://github.com/benjaminaigner>`__
 - `benniju (@benniju) <https://github.com/benniju>`__
 - `Benno Pütz (@bennop) <https://github.com/bennop>`__
@@ -625,9 +626,7 @@ Contributors
 - `Marc J (@InvncibiltyCloak) <https://github.com/InvncibiltyCloak>`__
 - `IoT-devices LLC (@iotdevicesdev) <https://github.com/iotdevicesdev>`__
 - `irtimaled (@irtimaled) <https://github.com/irtimaled>`__
-- `Ingo Theiss (@itn3rd77) <https://github.com/itn3rd77>`__
 - `itpeters (@itpeters) <https://github.com/itpeters>`__
-- `Ivan Shvedunov (@ivan4th) <https://github.com/ivan4th>`__
 - `Ivan Kravets (@ivankravets) <https://github.com/ivankravets>`__
 - `Ivan Lisenkov (@ivlis) <https://github.com/ivlis>`__
 - `J0RD4N300 (@J0RD4N300) <https://github.com/J0RD4N300>`__
@@ -1314,4 +1313,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated January 17, 2024.*
+*This page was last updated January 19, 2024.*
