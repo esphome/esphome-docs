@@ -26,7 +26,7 @@ See `How is this RS485 module working? <https://electronics.stackexchange.com/qu
 
 The transceiver connects to the UART of the MCU. For ESP32, pin ``16`` to ``TXD`` and pin ``17`` to ``RXD`` are the default ones but any other pins can be used as well. ``3.3V`` to ``VCC`` and naturally ``GND`` to ``GND``.
 
-On the bus side, you need 120 Ohm termination resistors at the ends of the bus cable as per Modbus standard. Some transceivers have this already solderes onboard, and some slave devices may have them preinstalled with a jumper or a dip switch.
+On the bus side, you need 120 Ohm termination resistors at the ends of the bus cable as per Modbus standard. Some transceivers have this already soldered onboard, while some slave devices may have them available via a jumper or a DIP switch.
 
 .. note::
 
