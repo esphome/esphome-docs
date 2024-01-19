@@ -34,7 +34,7 @@ Configuration variables:
   Lambda to be evaluated every update interval to get the new value of the sensor. Parameters:
 
   - **x** (bool): The parsed float value of the modbus data
-  - **data** (std::vector<uint8_t): vector containing the complete raw modbus response bytes for this sensor
+  - **data** (std::vector<uint8_t>): vector containing the complete raw modbus response bytes for this sensor
   - **item** (const pointer to a ModbusBinarySensor object):  The sensor object itself.
 
   Possible return values for the lambda:
