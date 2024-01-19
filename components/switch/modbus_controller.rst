@@ -44,7 +44,7 @@ Configuration variables:
   - ``return {};`` in the case the lambda handles the sending of the value itself.
 
 - **custom_command** (*Optional*, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_command`` is used ``address`` and ``register_type`` can't be used.
-  custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
+  Custom data must contain all required bytes including the modbus device address. The CRC is automatically calculated and appended to the command.
   See :ref:`modbus_custom_command` how to use ``custom_command``
  - **offset** (*Optional*, int): Offset from start address in bytes (only required for uncommon response encodings). If more than one register is written in a command, this value is used to find the start of this datapoint relative to the start address. The component calculates the size of the range based on offset and size of the value type. The value for offset depends on the register type. For holding input registers, the offset is in bytes. For coil and discrete input resisters, the LSB of the first data byte contains the coil addressed in the request. The other coils follow toward the high-order end of this byte and from low order to high order in subsequent bytes. For registers, the offset is the position of the relevant bit. To get the value of the coil register, 2 can be retrieved using ``address: 2`` / ``offset: 0`` or ``address: 0`` / ``offset 2``.
 - **restore_mode** (*Optional*): See :ref:`Switch <config-switch>`, since this configuration variable is inherited. The default value for this setting is ``DISABLED`` (recommended).
