@@ -9,6 +9,27 @@ The ``tuya`` climate platform creates a climate device from a tuya component.
 
 Tuya climate requires a :doc:`/components/tuya` to be configured.
 
+.. code-block:: text
+
+    [22:03:11][C][tuya:023]: Tuya:
+    [22:03:11][C][tuya:032]:   Datapoint 1: switch (value: ON)
+    [22:03:11][C][tuya:032]:   Datapoint 2: switch (value: OFF)
+    [22:03:11][C][tuya:034]:   Datapoint 3: int value (value: 20)
+    [22:03:11][C][tuya:034]:   Datapoint 4: int value (value: 19)
+    [22:03:11][C][tuya:034]:   Datapoint 5: int value (value: 0)
+    [22:03:11][C][tuya:036]:   Datapoint 7: enum (value: 1)
+    [22:03:11][C][tuya:046]:   Product: '{"p":"ynjanlglr4qa6dxf","v":"1.0.0","m":0}'
+
+On this controller, the data points are:
+
+- 1 represents the climate on/off state.
+- 2 represents the child lock switch. (use the :doc:`/components/switch/tuya` component to control this)
+- 3 represents the target temperature.
+- 4 represents the current temperature.
+- 5 represents the timer but is not yet available to be used in ESPHome.
+- 7 represents the eco mode switch.
+
+Based on this, you can create the climate device as follows:
 
 .. code-block:: yaml
 
@@ -16,12 +37,8 @@ Tuya climate requires a :doc:`/components/tuya` to be configured.
       - platform: tuya
         name: "My Climate Device"
         switch_datapoint: 1
-        active_state:
-          datapoint: 4
-          cooling_value: 0
-          heating_value: 1
-          drying_value: 2
-          fanonly_value: 3
+        target_temperature_datapoint: 3
+        current_temperature_datapoint: 4
         preset:
           eco:
             datapoint: 8
