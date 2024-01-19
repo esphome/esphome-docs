@@ -16,7 +16,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the sensor.
 - **register_type** (**Required**): type of the modbus register.
 
-    - ``coil``: Read Coils - Reads the ON/OFF status of discrete coils in the device with *Function Code 1 (01hex)*.
+    - ``coil``: Read Coils - Reads the ON/OFF status of discrete coils in the device with **Function Code 1** ``0x01``.
     - ``discrete_input``: Reads the ON/OFF status of discrete inputs in the device with *Function 02(02hex)*.
     - ``holding``: Read Holding Registers - Read the binary contents of holding registers in the device with *Function 03 (03hex)*.
     - ``read``: Read Input Registers - Read the binary contents of input registers in the device with *Function 04 (04hex)*
