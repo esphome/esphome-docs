@@ -509,6 +509,8 @@ The ``btn`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or a
 
 See :ref:`lvgl-cook-relay` for an example how to use a checkable button to act on a local component.
 
+.. _lvgl-wgt-bmx:
+
 ``btnmatrix``
 *************
 
@@ -591,6 +593,11 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
             selected: true
             control:
               checkable: false
+
+.. note::
+
+    The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations.
+
 
 .. _lvgl-wgt-chk:
 
