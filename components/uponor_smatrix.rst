@@ -24,15 +24,10 @@ Getting started
 ---------------
 
 The controller and the thermostats have unique addresses used for communication that are not displayed anywhere but can only be found when scanning the bus.
-Start with a basic configuration that just contains the UART and Uponor hub components. Make sure that the UART pins are configured according to your wiring.
+Start with a basic configuration that just contains the UART and Uponor hub components. Make sure that the UART pins are configured according to your wiring and the baud rate is set to 19200.
 
 .. code-block:: yaml
 
-    uart:
-      baud_rate: 19200
-      tx_pin: GPIO17
-      rx_pin: GPIO16
-    
     uponor_smatrix:
 
 When you upload this configuration to your ESPHome device and connect it to the Uponor Smatrix bus, it will print a list of detected addresses to the log output.
@@ -48,7 +43,7 @@ When you upload this configuration to your ESPHome device and connect it to the 
     [00:00:00][C][uponor_smatrix:033]:     0xDE4A
     [00:00:00][C][uponor_smatrix:033]:     0xDE13
 
-You can then add climate or sensor components for the detected devices. Optionally, you can also statically add the detected system address to your configuration.
+With that you can then add ``climate`` or ``sensor`` components for the detected devices. Optionally, you can also statically add the detected system address to your ``uponor_smatrix`` configuration.
 
 .. code-block:: yaml
 
@@ -58,34 +53,28 @@ You can then add climate or sensor components for the detected devices. Optional
     climate:
       - platform: uponor_smatrix
         address: 0xDE13
-        name: "Thermostat Living Room"
+        name: Thermostat Living Room
 
 
 Controller/Hub component
 ------------------------
 
 The main ``uponor_smatrix`` component is responsible for the communication with the controller and thermostats and distributes data to the climate and sensor components described below.
+
 It is also able to synchronize the date and time of the thermostats with a time source in case your system has thermostats that can be programmed with a time schedule.
 
 .. code-block:: yaml
 
-    time:
-    - platform: homeassistant
-      id: ha_time
-  
-    uart:
-      baud_rate: 19200
-      tx_pin: GPIO17
-      rx_pin: GPIO16
-    
     uponor_smatrix:
-      time_id: ha_time
+      address: 0x110B
+      uart_id: my_uart
+      time_id: my_time
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want to use multiple UART buses.
 - **address** (*Optional*, int): The 16 bit system/controller address. This will be automatically detected from the bus if not specified. See :ref:`uponor-gettingstarted` on how to find the address.
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want to use multiple UART buses.
 - **time_id** (*Optional*, :ref:`config-id`): Specify the ID of the :doc:`Time Component <time/index>` to use as the time source if you want ESPHome to automatically synchronize the date and time of the thermostats.
 - **time_device_address** (*Optional*, int): The 16 bit device address of the thermostat that keeps the system time. This will be automatically detected from the bus if not specified.
   It needs to be the device address of the first thermostat that was paired to the controller, and the one where you can manually change the date and time via the buttons on the thermostat.
@@ -103,8 +92,7 @@ Climate component
     climate:
       - platform: uponor_smatrix
         address: 0xDE13
-        uponor_smatrix_id: my_uponor_smatrix
-        name: "Thermostat Living Room"
+        name: Thermostat Living Room
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -122,11 +110,11 @@ Sensor component
       - platform: uponor_smatrix
         address: 0xDE13
         humidity:
-          name: "Humidity Living Room"
+          name: Humidity Living Room
         temperature:
-          name: "Temperature Living Room"
+          name: Temperature Living Room
         external_temperature:
-          name: "Floor Temperature Living Room"
+          name: Floor Temperature Living Room
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
