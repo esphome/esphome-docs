@@ -28,7 +28,7 @@ Configuration variables:
 - **response_size** (*Optional*, int): Size of the response for the register in bytes. Defaults to register_count*2.
 - **force_new_range** (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting ``force_new_range: true`` enforces the start of a new range at that address.
 - **custom_command** (*Optional*, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_command`` is used ``address`` and ``register_type`` can't be used.
-  custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
+  Custom data must contain all required bytes including the modbus device address. The CRC is automatically calculated and appended to the command.
   See :ref:`modbus_custom_command` how to use ``custom_command``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the sensor. Parameters:
