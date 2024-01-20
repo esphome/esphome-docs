@@ -33,7 +33,7 @@ Configuration variables:
   required for uncommon response encodings or to
   :ref:`optimize modbus communications<modbus_register_count>`. Overrides the defaults determined
   by ``value_type``.
-- **skip_updates** (*Optional*, int): By default all sensors of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle. Note: The modbus_controller groups components by address ranges to reduce number of transactions. All components with the starting same address will be updated in one request. ``skip_updates`` applies for *all* components in the same range.
+- **skip_updates** (*Optional*, int): By default, all sensors of a modbus_controller are updated together. For data points that don't change very frequently, updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle. Note: The modbus_controller groups components by address ranges to reduce number of transactions. All components with the same starting address will be updated in one request. ``skip_updates`` applies for *all* components in the same range.
 - **register_count** (*Optional*, int): Number of consecutive registers  this data point spans or to skip in a single read command. Default is 1. See :ref:`modbus_register_count` for more details.
 - **force_new_range** (*Optional*, boolean): If possible sensors with sequential addresses are
   grouped together and requested in one range. Setting this to ``true`` enforces the start of a new
