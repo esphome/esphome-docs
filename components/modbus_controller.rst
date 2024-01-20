@@ -311,7 +311,7 @@ An example is an SDM meter, with interesting data in register addresses 0, 2, 4 
 The configuration above will generate *one* modbus command *read multiple registers from 0 to 6*.
 
 Maybe you don’t care about the data in register addresses 2 and 4, which are voltage values for Phase 2 and Phase 3 (or you have a SDM-120).
-Of course, you can delete the sensors your don’t care about. But then you have a gap in the addresses. If you remove the registers at address 2 and 4 then *two* commands will be generated *read register 0* and *read register 6*. To avoid the generation of multiple commands and reduce the amount of uart communication ``register_count`` can be used to fill the gaps:
+Of course, you can delete the sensors your don’t care about, but then you'd have a gap in the addresses. If you remove the registers at address 2 and 4, *two* commands will be generated -- *read register 0* and *read register 6*. To avoid generating multiple commands and thus reduce activity on the bus, ``register_count`` can be used to fill the gaps:
 
 .. code-block:: yaml
 
