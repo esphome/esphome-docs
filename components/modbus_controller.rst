@@ -505,7 +505,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
 
 .. note::
 
-    Write support is only implemented for switches and selects.
+    Write support is only implemented for switches and selects; however, the C++ code provides the required API to write to a Modbus device.
     However the C++ code provides the required API to write to a Modbus device.
 
     These methods can be called from a lambda.
