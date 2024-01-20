@@ -963,6 +963,7 @@ earlier, create a new template switch that sends the RF code when triggered:
     switch:
       - platform: template
         name: RF Power Button
+        optimistic: true
         turn_on_action:
           - remote_transmitter.transmit_rc_switch_raw:
               code: '100010000000000010111110'
