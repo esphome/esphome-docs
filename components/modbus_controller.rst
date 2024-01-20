@@ -275,7 +275,7 @@ Optimizing modbus communications
 
 ``register_count`` is an option only required for uncommon response encodings or to optimizie modbus communications.
 
-It describes the number of registers this data point spans. Overrides the defaults determined by ``value_type``. If no value for ``register_count`` is provided, it is calculated based on the register type. The default size for 1 register is 16 bits (1 Word). Some devices are not adhering to this convention and have registers larger than 16 bits. In this case ``register_count`` and  ``response_size`` must be set. For example, if your modbus device uses 1 registers for a FP32 value instead the default of two set ``register_count: 1`` and ``response_size: 4``.
+It describes the number of registers this data point spans, overriding the defaults determined by ``value_type``. If no value for ``register_count`` is provided, it is calculated based on the register type. The default size for one register is 16 bits (one word). Some devices are not adhering to this convention and have registers larger than 16 bits. In this case, ``register_count`` and  ``response_size`` must be set. For example, if your Modbus device uses one register for a FP32 value (instead of the default of two), set ``register_count: 1`` and ``response_size: 4``.
 
 ``register_count`` can also be used to skip a number of registers in consecutive range.
 
