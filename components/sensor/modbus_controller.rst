@@ -17,7 +17,7 @@ Configuration variables:
 
     - ``coil``: Coils are 1-bit registers (ON/OFF values) that are used to control discrete outputs. They may be read and/or written. Modbus *Function Code 1 (Read Coil Status)* will be used.
     - ``discrete_input``: discrete input register (read only coil) are similar to coils but can only be read. Modbus *Function Code 2 (Read Input Status)* will be used.
-    - ``holding``: Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access. Modbus *Function Code 3 (Read Holding Registers)* will be used.
+    - ``holding``: Holding Registers - Holding registers are the most universal 16-bit register. They may be read and/or written. Modbus *Function Code 3 (Read Holding Registers)* will be used.
     - ``read``: Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus *Function Code 4 (Read Input Registers)* will be used.
 
 - **address** (**Required**, int): start address of the first register in a range (can be decimal or hexadecimal).
