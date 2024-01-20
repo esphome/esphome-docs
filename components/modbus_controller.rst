@@ -54,7 +54,7 @@ Configuration variables:
 - **address** (**Required**, :ref:`config-id`): The Modbus address of the slave device
 
 - **command_throttle** (*Optional*, :ref:`config-time`): minimum time in between 2 requests to the device. Default is ``0ms``.
-  Some Modbus slave devices limit the rate of requests from the master, the interval between sending requests can be altered.
+  Some Modbus slave devices limit the rate of requests from the master, so this allows the interval between requests to be altered.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
   Defaults to 60 seconds.
