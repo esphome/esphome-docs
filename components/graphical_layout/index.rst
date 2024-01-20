@@ -195,6 +195,8 @@ Configuration variables:
     - ``char character``: Character being inspected (this is equivalent to ``args.string.at(offset)``)
 
 - **runs** (list of :ref:`graphical_layout-text_run`): A list of text and styles to render to the screen. Requires at least one run.
+- **draw_partial_lines** (*Optional*, boolean): When a text overflows the available space controls if partial lines of text will be
+  rendered. If false a line of text whose height cannot fit in the available height will not be rendered. Defaults to false.
 
 .. _graphical_layout-text_run:
 
