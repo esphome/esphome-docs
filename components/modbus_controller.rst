@@ -329,7 +329,7 @@ Of course, you can delete the sensors your don’t care about, but then you'd ha
       register_type: "read"
       value_type: FP32
 
-Because the option `register_count: 6` is used for the first sensor, *one* command *read multiple registers from 0 to 6* will be used but the values in between will be ignored.
+Because the option ``register_count: 6`` is used for the first sensor, *one* command *read multiple registers from 0 to 6* will be used but the values in between will be ignored.
 
 .. note:: *Calculation:* FP32 is a 32 bit value and uses 2 registers. Therefore, to skip the 2 FP32 registers the size of these 2 registers must be added to the default size for the first register. So we have 2 for address 0, 2 for address 2 and 2 for address 4 thus ``register_count`` must be 6.
 
