@@ -34,7 +34,7 @@ On the bus side, you need 120 Ohm termination resistors at the ends of the bus c
 
     For hardware serial only a limited set of pins can be used. Either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``  or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``.
 
-    The disadvantage of using the hardware uart is that you can't use serial logging because the serial logs would be sent to the Modbus device and cause errors.
+    The disadvantage of using the hardware UART is that you can't use serial logging because the serial logs would be sent to the Modbus device(s) instead, causing errors.
 
     Serial logging can be disabled by setting ``baud_rate: 0``.
 
