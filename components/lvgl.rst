@@ -241,14 +241,14 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **bg_grad_dir** (*Optional*, enum): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``.
 - **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``0``.
 - **bg_grad_stop** (*Optional*, 0-255): Specify where the gradient should stop: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``255``.
-- **bg_img_opa** (*Optional*, enum or percentage): Opacity of the background image of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **bg_opa** (*Optional*, enum or percentage): Opacity of the background. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **opa** (*Optional*, enum or percentage): Opacity of the entire widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **opa_layered** (*Optional*, enum or percentage): Opacity of the entire layer the widget is on. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **bg_img_opa** (*Optional*, enum or percentage): Opacity of the background image of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **bg_img_recolor** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to mix with every pixel of the image. 
-- **bg_img_recolor_opa** (*Optional*, enum or percentage): Opacity of the recoloring. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **bg_opa** (*Optional*, enum or percentage): Opacity of the background. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **opa** (*Optional*, enum or percentage): Opacity of the entire widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
-- **opa_layered** (*Optional*, enum or percentage): Opacity of the entire layer the widget is on. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **bg_img_recolor_opa** (*Optional*, enum or percentage): Opacity of the recoloring. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **border_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to draw borders of the widget.
-- **border_opa** (*Optional*, enum or percentage): Opacity of the borders of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **border_opa** (*Optional*, enum or percentage): Opacity of the borders of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn.
 - **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be chosen):
     - ``NONE``
@@ -266,7 +266,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
 - **line_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the line.
 - **outline_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to draw an outline around the widget.
-- **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself.
 - **outline_width** (*Optional*, int16): Set the width of the outline in pixels.
 - **pad_all** (*Optional*, int16): Set the padding in all directions, in pixels.
@@ -279,7 +279,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **shadow_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to create a drop shadow under the widget.
 - **shadow_ofs_x** (*Optional*, int16): Horrizontal offset of the shadow, in pixels
 - **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels
-- **shadow_opa** (*Optional*, string or percentage): Opacity of the shadow. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **shadow_opa** (*Optional*, string or percentage): Opacity of the shadow. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **shadow_spread** (*Optional*, int16): Spread of the shadow, in pixels.
 - **shadow_width** (*Optional*, int16): Width of the shadow, in pixels.
 - **transform_angle** (*Optional*, 0-360): Trannsformation angle of the widget (eg. rotation)
@@ -289,17 +289,17 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **transform_zoom** (*Optional*, 0.1-10):  Trannsformation zoom of the widget (eg. resizing)
 - **translate_x** (*Optional*, int16 or percentage): Move of the widget with this value in horizontal direction.
 - **translate_y** (*Optional*, int16 or percentage): Move of the widget with this value in vertical direction.
-- **max_height** (*Optional*, int16 or percentage): Sets a maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
-- **min_height** (*Optional*, int16 or percentage): Sets a minimal height. Pixel and percentage values can be used. Percentage values are relative to the width of the parent's content area. Defaults to ``0``. 
-- **max_width** (*Optional*, int16 or percentage): Sets a maximal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
-- **min_width** (*Optional*, int16 or percentage): Sets a minimal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0``.
+- **max_height** (*Optional*, int16 or percentage): Sets a maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
+- **min_height** (*Optional*, int16 or percentage): Sets a minimal height. Pixel and percentage values can be used. Percentage values are relative to the width of the parent's content area. Defaults to ``0%``. 
+- **max_width** (*Optional*, int16 or percentage): Sets a maximal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
+- **min_width** (*Optional*, int16 or percentage): Sets a minimal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
 - **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
 - **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to render the text in.
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
 - **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array file of the font used to render the text.
 - **text_letter_space** (*Optional*, int16): Characher spacing of the text.
 - **text_line_space** (*Optional*, int16): Line spacing of the text.
-- **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 
 
 .. _lvgl-widgets:
@@ -347,9 +347,36 @@ By default, states are all ``false``. To apply styles to the states, you need to
 
 The state itself can be can be changed by interacting with the widget, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.widget.update`` action.
 
-In addition to visual stilyng, each widget supports :ref:`dynamically settable flags <lvgl-objupdflag-act>` to influence the behavior at runtime.
+See :ref:`lvgl-cook-cover` for a cookbook example how to play with styling and properties to show different states of a Home Assistant entity.
 
-See :ref:`lvgl-cook-cover` for an example how to play with styling and properties to show different states of a Home Assistant entity.
+.. _lvgl-objupdflag-act:
+
+In addition to visual stilyng, each widget supports some boolean flags to influence the behavior:
+
+- **hidden** (*Optional*, boolean): make the widget hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.show`` and ``lvgl.widget.hide``. Defaults to ``false``.
+- **checkable** (*Optional*, boolean): toggle checked state when the widget is clicked
+- **clickable** (*Optional*, boolean): make the widget clickable by input devices. Defaults to ``true``. If ``false``, it will pass the click to the widgets behind it (clicking through).
+- **click_focusable** (*Optional*, boolean): add focused state to the widget when clicked
+- **scrollable** (*Optional*, boolean): make the widget scrollable
+- **scroll_elastic** (*Optional*, boolean): allow scrolling inside but with slower speed
+- **scroll_momentum** (*Optional*, boolean): make the widget scroll further when "thrown"
+- **scroll_one** (*Optional*, boolean): allow scrolling only one snappable children
+- **scroll_chain_hor** (*Optional*, boolean): allow propagating the horizontal scroll to a parent
+- **scroll_chain_ver** (*Optional*, boolean): allow propagating the vertical scroll to a parent
+- **scroll_chain simple** (*Optional*, boolean): packaging for (``scroll_chain_hor | scroll_chain_ver``)
+- **scroll_on_focus** (*Optional*, boolean): automatically scroll widget to make it visible when focused
+- **scroll_with_arrow** (*Optional*, boolean): allow scrolling the focused widget with arrow keys
+- **snappable** (*Optional*, boolean): if scroll snap is enabled on the parent it can snap to this widget
+- **press_lock** (*Optional*, boolean): keep the widget pressed even if the press slid from the widget
+- **event_bubble** (*Optional*, boolean): propagate the events to the parent too
+- **gesture_bubble** (*Optional*, boolean): propagate the gestures to the parent
+- **adv_hittest** (*Optional*, boolean): allow performing more accurate hit (click) test. E.g. Accounting for rounded corners
+- **ignore_layout** (*Optional*, boolean): make the widget positionable by the layouts
+- **floating** (*Optional*, boolean): do not scroll the widget when the parent scrolls and ignore layout
+- **overflow_visible** (*Optional*, boolean): do not clip the children's content to the parent's boundary
+- **layout_1**, **layout_2** (*Optional*, boolean): custom flags, free to use by layouts
+- **widget_1**, **widget_2** (*Optional*, boolean): custom flags, free to use by widget
+- **user_1**, **user_2**, **user_3**, **user_4** (*Optional*, boolean): custom flags, free to use by user
 
 .. _lvgl-wgt-arc:
 
@@ -372,7 +399,7 @@ The Arc consists of a background and a foreground arc. The foreground (indicator
 - **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``.
 - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
 - **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
-- **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0`` and ``100`` for percentage.
+- **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to use to draw the arcs.
 - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
 - **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
@@ -827,7 +854,7 @@ The LEDs are rectangle-like (or circle) widget whose brightness can be adjusted.
 **Specific options:**
 
 - **color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background, border, and shadow of the widget.
-- **brightness** (*Optional*, percentage): The brightness of the LED color, where ``0`` corresponds to black, and ``100`` corresponds to the full brightness of the color specified above.
+- **brightness** (*Optional*, percentage): The brightness of the LED color, where ``0%`` corresponds to black, and ``100%`` corresponds to the full brightness of the color specified above.
 - Style options from :ref:`lvgl-styling`, using all the typical background style properties.
 
 **Specific actions:**
@@ -1265,6 +1292,7 @@ This powerful :ref:`action <config-action>` allows changing on the fly any commo
 
 .. code-block:: yaml
 
+    # Example for updating styles (in states):
     on_...:
       then:
         - lvgl.widget.update:
@@ -1273,45 +1301,12 @@ This powerful :ref:`action <config-action>` allows changing on the fly any commo
             state:
               disabled: true
  
-
-.. _lvgl-objupdflag-act:
-
-In addition to visual stilyng, each widget supports some boolean flags to influence the behavior:
-
-.. code-block:: yaml
-
+    # Example for updating flag:
     on_...:
       then:
         - lvgl.widget.update:
             id: my_label_id
             hidden: true
-
-
-- **hidden** (*Optional*, boolean): make the widget hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.show`` and ``lvgl.widget.hide``. Defaults to ``false``.
-- **checkable** (*Optional*, boolean): toggle checked state when the widget is clicked
-- **clickable** (*Optional*, boolean): make the widget clickable by input devices. Defaults to ``true``. If ``false``, it will pass the click to the widgets behind it (clicking through).
-- **click_focusable** (*Optional*, boolean): add focused state to the widget when clicked
-- **scrollable** (*Optional*, boolean): make the widget scrollable
-- **scroll_elastic** (*Optional*, boolean): allow scrolling inside but with slower speed
-- **scroll_momentum** (*Optional*, boolean): make the widget scroll further when "thrown"
-- **scroll_one** (*Optional*, boolean): allow scrolling only one snappable children
-- **scroll_chain_hor** (*Optional*, boolean): allow propagating the horizontal scroll to a parent
-- **scroll_chain_ver** (*Optional*, boolean): allow propagating the vertical scroll to a parent
-- **scroll_chain simple** (*Optional*, boolean): packaging for (``scroll_chain_hor | scroll_chain_ver``)
-- **scroll_on_focus** (*Optional*, boolean): automatically scroll widget to make it visible when focused
-- **scroll_with_arrow** (*Optional*, boolean): allow scrolling the focused widget with arrow keys
-- **snappable** (*Optional*, boolean): if scroll snap is enabled on the parent it can snap to this widget
-- **press_lock** (*Optional*, boolean): keep the widget pressed even if the press slid from the widget
-- **event_bubble** (*Optional*, boolean): propagate the events to the parent too
-- **gesture_bubble** (*Optional*, boolean): propagate the gestures to the parent
-- **adv_hittest** (*Optional*, boolean): allow performing more accurate hit (click) test. E.g. Accounting for rounded corners
-- **ignore_layout** (*Optional*, boolean): make the widget positionable by the layouts
-- **floating** (*Optional*, boolean): do not scroll the widget when the parent scrolls and ignore layout
-- **overflow_visible** (*Optional*, boolean): do not clip the children's content to the parent's boundary
-- **layout_1**, **layout_2** (*Optional*, boolean): custom flags, free to use by layouts
-- **widget_1**, **widget_2** (*Optional*, boolean): custom flags, free to use by widget
-- **user_1**, **user_2**, **user_3**, **user_4** (*Optional*, boolean): custom flags, free to use by user
-
 
 .. _lvgl-objupd-shorthands:
 
