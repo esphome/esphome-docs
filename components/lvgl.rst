@@ -322,7 +322,7 @@ The properties below are common to all widgets.
 - **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. Same configuration option as at the main component.
 - **flex_flow** (*Optional*, string): Option for ``FLEX`` layout, similar configuration as at the main component.
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn as children of this widget. Same configuration option as at the main component.
-- **state** (*Optional*, enum): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overriden withing style definitions or locally set. Can be one of:
+- **state** (*Optional*, enum): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overriden within style definitions or locally set. Can be one of:
     - **default** (*Optional*, boolean): Normal, released state
     - **disabled** (*Optional*, boolean): Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.enable`` and ``lvgl.widget.disable``)
     - **pressed** (*Optional*, boolean): Being pressed
