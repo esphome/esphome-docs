@@ -231,6 +231,12 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
+- **water_delivered** (*Optional*): Water Consumed.
+
+  - **name** (**Required**, string): The name for the water_delivered sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
 Belgium
 
 - **gas_delivered_be** (*Optional*): Gas Consumed Belgium.
