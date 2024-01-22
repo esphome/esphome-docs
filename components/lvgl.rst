@@ -493,7 +493,7 @@ Not only the end, but also the start value of the bar can be set, which changes 
 - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
 - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, all the typical background properties.
 - **animated** (*Optional*, boolean): To animate indicator when bar changes value. Defaults to ``true``.
-- Style options from :ref:`lvgl-styling`. The background of the bar and it uses the typical background style properties. Adding padding makes the indicator smaller or larger.
+- Style options from :ref:`lvgl-styling`. The background of the bar and it uses the typical background style properties. Adding padding will make the indicator smaller or larger.
 
 **Example:**
 
