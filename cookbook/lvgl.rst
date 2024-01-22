@@ -15,7 +15,7 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
 .. _lvgl-cook-relay:
 
-Toggle local light
+Local light switch
 ------------------
 
 If you have a display device with a local light configured, you can simply create a wall switch for it.
@@ -32,6 +32,48 @@ If you have a display device with a local light configured, you can simply creat
                 light.is_on: room_light
               then:
                 - lvgl.widget.update:
+                    id: light_switch
+                    state:
+                      checked: true
+              else:
+                - lvgl.widget.update:
+                    id: light_switch
+                    state:
+                      checked: false
+    lvgl:
+        ...
+        pages:
+          - id: main_page
+            widgets:
+              - switch:
+                  align: center
+                  id: light_switch
+                  on_click:
+                    - homeassistant.service:
+                        service: light.toggle
+                        data: 
+                          entity_id: light.remote_light
+
+.. _lvgl-cook-binent:
+
+Remote light switch
+-------------------
+
+If you'd like to control a remote light, which appears as an entity in Home Assistant, first you need to import the light state into ESPHome, and then control it using a service call:
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: homeassistant
+        id: remote_light
+        entity_id: light.remote_light
+        on_state:
+          then:
+            if:
+              condition:
+                lambda: return x;
+              then:
+                - lvgl.widget.update:
                     id: light_btn
                     state:
                       checked: true
@@ -40,6 +82,7 @@ If you have a display device with a local light configured, you can simply creat
                     id: light_btn
                     state:
                       checked: false
+
     lvgl:
         ...
         pages:
@@ -58,60 +101,17 @@ If you have a display device with a local light configured, you can simply creat
                   on_click:
                     light.toggle: room_light
 
-.. _lvgl-cook-binent:
-
-Toggle remote light
--------------------
-
-If you'd like to control a remote light, which appears as an entity in Home Assistant, first you need to import the light state into ESPHome, and then control it using a service call:
-
-.. code-block:: yaml
-
-    binary_sensor:
-      - platform: homeassistant
-        id: remote_light
-        entity_id: light.remote_light
-        on_state:
-          then:
-            if:
-              condition:
-                lambda: return x;
-              then:
-                - lvgl.widget.update:
-                    id: light_switch
-                    state:
-                      checked: true
-              else:
-                - lvgl.widget.update:
-                    id: light_switch
-                    state:
-                      checked: false
-
-    lvgl:
-        ...
-        pages:
-          - id: main_page
-            widgets:
-              - switch:
-                  align: center
-                  id: light_switch
-                  on_click:
-                    - homeassistant.service:
-                        service: light.toggle
-                        data: 
-                          entity_id: light.remote_light
-
 .. _lvgl-cook-cover:
 
 Cover status and control
 ------------------------
 
-To make a nice user interface for controlling covers you could use 3 buttons, which also display the state. 
+To make a nice user interface for controlling Home Assistant covers you could use 3 buttons, which also display the state. 
 
 .. figure:: images/lvgl_cook_cover.png
     :align: center
 
-Just as in the previous example, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and with a text sensor we retrive the current movement state of it. We are particularly interested in the moving (*opening* and *opening*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
+Just as in the previous example, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and with a text sensor we retrive the current movement state of it. We are particularly interested in the moving (*opening* and *closing*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
 
 .. code-block:: yaml
 
@@ -248,7 +248,7 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
       theme:
         btn:
           bg_color: 0x2F8CD8
-          bg_grad_color: 0x005782 #0x006699
+          bg_grad_color: 0x005782
           bg_grad_dir: VER
           bg_opa: cover
           border_color: 0x0077b3
@@ -264,7 +264,7 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
       style_definitions:
         - id: header_footer
           bg_color: 0x2F8CD8
-          bg_grad_color: 0x005782 #0x004466
+          bg_grad_color: 0x005782
           bg_grad_dir: VER
           bg_opa: cover
           border_width: 0
@@ -274,6 +274,10 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
           pad_column: 0
           border_color: 0x0077b3
           text_color: 0xFFFFFF
+          width: 100%
+          height: 30
+
+Note that style definitions can contain common properties too, like positioning and sizing.
 
 .. _lvgl-cook-navigator:
 
@@ -296,8 +300,6 @@ For the navigation bar we can use a button matrix. Note how the *header_footer* 
       top_layer:
         widgets:
           - btnmatrix:
-              width: 100%
-              height: 30px
               align: bottom_mid
               styles: header_footer
               pad_all: 0
@@ -390,8 +392,6 @@ To put a titlebar behind the status icon, we need to add it to each page, also c
           widgets:
             - obj:
                 align: TOP_MID
-                width: 240
-                height: 30
                 styles: header_footer
                 widgets:
                   - label:
@@ -404,8 +404,6 @@ To put a titlebar behind the status icon, we need to add it to each page, also c
           widgets:
             - obj:
                 align: TOP_MID
-                width: 240
-                height: 30
                 styles: header_footer
                 widgets:
                   - label:
