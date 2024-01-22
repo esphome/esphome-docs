@@ -101,6 +101,82 @@ If you'd like to control a remote light, which appears as an entity in Home Assi
                   on_click:
                     light.toggle: room_light
 
+.. _lvgl-cook-thermometer:
+
+Thermometer
+-----------
+
+A thermometer with a gauge acomplished with ``meter`` widget and numeric display using ``label``:
+
+.. figure:: images/lvgl_cook_thermometer.png
+    :align: center
+
+With a numeric sensor we retrieve the desired temperature sensor value from Home Assistant, and with it we update the needle indicator, and the text label respectively.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: homeassistant
+        id: outdoor_temperature
+        entity_id: sensor.outdoor_temperature
+        on_value:
+          - lvgl.indicator.line.update:
+              id: temperature_needle
+              value: !lambda return id(outdoor_temperature).state; 
+          - lvgl.label.update:
+              id: temperature_text
+              text: !lambda |-
+                static char buf[10];
+                snprintf(buf, 10, "%.2f%°C", id(outdoor_temperature).state);
+                return buf;
+
+    lvgl:
+        ...
+        pages:
+          - id: main_page
+            widgets:
+              - meter:
+                  align: CENTER
+                  height: 180
+                  width: 180
+                  scales:
+                    - ticks:
+                        width: 2
+                        count: 51
+                        length: 10
+                        color: 0x000000
+                        major:
+                          stride: 5
+                          width: 4
+                          length: 10
+                          color: 0x404040
+                          label_gap: 13
+                      range_from: -10
+                      range_to: 40
+                      angle_range: 240
+                      rotation: 150
+                      indicators:
+                        - line:
+                            id: temperature_needle
+                            width: 2
+                            color: 0xFF0000
+                            r_mod: -4
+                        - ticks:
+                            start_value: -10
+                            end_value: 40
+                            color_start: 0x0000bd
+                            color_end: 0xbd0000
+                  widgets:
+                    - label:
+                        text: "°C"
+                        id: temperature_text
+                        align: CENTER
+                        y: 45
+                    - label:
+                        text: "Outdoor"
+                        align: CENTER
+                        y: 65
+
 .. _lvgl-cook-cover:
 
 Cover status and control
@@ -111,7 +187,7 @@ To make a nice user interface for controlling Home Assistant covers you could us
 .. figure:: images/lvgl_cook_cover.png
     :align: center
 
-Just as in the previous example, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and with a text sensor we retrive the current movement state of it. We are particularly interested in the moving (*opening* and *closing*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
+Just as in the previous examples, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and with a text sensor we retrive the current movement state of it. We are particularly interested in the moving (*opening* and *closing*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
 
 .. code-block:: yaml
 
