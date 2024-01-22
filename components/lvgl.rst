@@ -227,6 +227,20 @@ See :ref:`lvgl-cook-theme` in the Cookbook for an example how to easily implemen
 Style properties
 ----------------
 
+LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing>`__. An object's "box" is built from the following parts:
+
+.. figure:: /components/images/lvgl_boxmodel.png
+    :align: center
+
+- **bounding box**: the width/height of the elements.
+- **border width**: the width of the border.
+- **padding**: space between the sides of the object and its children.
+- **content**: the content area which is the size of the bounding box reduced by the border width and padding.
+
+The border is drawn inside the bounding box. Inside the border LVGL keeps a "padding margin" when placing an object's children.
+
+The outline is drawn outside the bounding box.
+
 You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each object. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
 
 - **align** (*Optional*, enum): Alignment of the of the widget `relative to the parent <https://docs.lvgl.io/8.3/widgets/obj.html?#alignment>`__. One of:
@@ -289,10 +303,6 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **transform_zoom** (*Optional*, 0.1-10):  Trannsformation zoom of the widget (eg. resizing)
 - **translate_x** (*Optional*, int16 or percentage): Move of the widget with this value in horizontal direction.
 - **translate_y** (*Optional*, int16 or percentage): Move of the widget with this value in vertical direction.
-- **max_height** (*Optional*, int16 or percentage): Sets a maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
-- **min_height** (*Optional*, int16 or percentage): Sets a minimal height. Pixel and percentage values can be used. Percentage values are relative to the width of the parent's content area. Defaults to ``0%``. 
-- **max_width** (*Optional*, int16 or percentage): Sets a maximal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
-- **min_width** (*Optional*, int16 or percentage): Sets a minimal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
 - **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
 - **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to render the text in.
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
@@ -314,8 +324,24 @@ The properties below are common to all widgets.
 
 - **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to top left of parent or screen). If layouts are used, or if specfiyng ``align``, it is used as an offset to the calculated position (can also be negative).
 - **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If layouts are used, or if specfiyng ``align``, it is used as an offset to the calculated position (can also be negative).
-- **width** (*Optional*): Width of the widget in pixels or a percentage, or ``size_content`` (see below).
-- **height** (*Optional*): Height of the widget in pixels or a percentage, or ``size_content``. Use ``size_content`` to automatically size the widget based on its contents (children objects, text size, image size etc.)
+
+.. note::
+
+    By default, the ``x`` and ``y`` coordinates are measured from the *top left corner* of the parent's content area. Important: content area starts *after the padding* thus if the parent has a non-zero padding value, position will be shifted with that. Percentage values are calculated from the parent's content area size. 
+
+- **width** (*Optional*): Width of the widget in pixels or a percentage, or ``size_content`` (see note below).
+- **height** (*Optional*): Height of the widget in pixels or a percentage, or ``size_content`` (see note below).
+
+.. note::
+
+    The size settings support a special value: ``size_content``. It means the object's size in the respective direction will be set to the size of its children. Note that only children on the right and bottom sides will be considered and children on the top and left remain cropped. This limitation makes the behavior more predictable. Objects with ``hidden`` or ``floating`` flags will be ignored by the ``size_content`` calculation.
+    
+    Similarly to CSS, LVGL also supports ``min_width``, ``max_width``, ``min_height`` and ``max_height``. These are limits preventing an object's size from becoming smaller/larger than these values. They are especially useful if the size is set by percentage or ``size_content``.
+
+- **min_width** (*Optional*, int16 or percentage): Sets a minimal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
+- **max_width** (*Optional*, int16 or percentage): Sets a maximal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
+- **min_height** (*Optional*, int16 or percentage): Sets a minimal height. Pixel and percentage values can be used. Percentage values are relative to the width of the parent's content area. Defaults to ``0%``. 
+- **max_height** (*Optional*, int16 or percentage): Sets a maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
 - **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused widget which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
 - **styles** (*Optional*, :ref:`config-id`): The ID of a *style definition* from the main component configuration to override the theme styles.
 - **theme** (*Optional*, list): A list of styles to apply to the widget and children. Same configuration option as at the main component.
