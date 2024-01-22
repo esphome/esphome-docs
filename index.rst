@@ -496,7 +496,7 @@ Touchscreen
 ***********
 .. imgtable::
 
-    LVGL widget, components/binary_sensor/lvgl, logo_lvgl.png
+    LVGL Widget, components/binary_sensor/lvgl, logo_lvgl.png
     Nextion, components/binary_sensor/nextion, nextion.jpg
     Touchscreen, components/touchscreen/index, touch.svg, dark-invert
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
@@ -594,7 +594,7 @@ Light Components
 
     H-bridge Light, components/light/hbridge, brightness-medium.svg, dark-invert
     Sonoff D1 Dimmer, components/light/sonoff_d1, sonoff_d1.jpg
-    LVGL widget, components/light/lvgl, logo_lvgl.png
+    LVGL Widget, components/light/lvgl, logo_lvgl.png
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.
@@ -618,7 +618,7 @@ Switch Components
     Modbus Switch, components/switch/modbus_controller, modbus.png
     BLE Client Switch, components/switch/ble_client, bluetooth.svg, dark-invert
     Nextion Switch, components/switch/nextion, nextion.jpg
-    LVGL widget, components/switch/lvgl, logo_lvgl.png
+    LVGL Widget, components/switch/lvgl, logo_lvgl.png
 
 Button Components
 -----------------
@@ -664,7 +664,7 @@ Display Components
     
     Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
-    LVGL, components/lvgl, logo_lvgl.png
+    LVGL Graphics, components/lvgl, logo_lvgl.png
     MAX7219, components/display/max7219, max7219.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     Nextion, components/display/nextion, nextion.jpg
@@ -759,7 +759,7 @@ Number Components
 .. imgtable::
 
     Number Core, components/number/index, folder-open.svg, dark-invert
-    LVGL widget Number, components/number/lvgl, logo_lvgl.png
+    LVGL Widget Number, components/number/lvgl, logo_lvgl.png
     Modbus Number, components/number/modbus_controller, modbus.png
     Template Number, components/number/template, description.svg, dark-invert
     Tuya Number, components/number/tuya, tuya.png
@@ -942,7 +942,7 @@ Cookbook
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
     Share data directly between ESPHome nodes, cookbook/http_request_sensor, connection.svg, dark-invert
-    LVGL Display: Tips and Tricks, cookbook/lvgl, logo_lvgl.png
+    LVGL Graphics: Tips and Tricks, cookbook/lvgl, logo_lvgl.png
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
