@@ -111,14 +111,13 @@ A thermometer with a gauge acomplished with ``meter`` widget and numeric display
 .. figure:: images/lvgl_cook_thermometer.png
     :align: center
 
-With a numeric sensor we retrieve the desired temperature sensor value from Home Assistant, and with it we update the needle indicator, and the text label respectively.
+Whenever a new value comes from the sensor, we update the needle indicator, and the text label respectively.
 
 .. code-block:: yaml
 
     sensor:
-      - platform: homeassistant
+      - platform: ...
         id: outdoor_temperature
-        entity_id: sensor.outdoor_temperature
         on_value:
           - lvgl.indicator.line.update:
               id: temperature_needle
@@ -176,6 +175,8 @@ With a numeric sensor we retrieve the desired temperature sensor value from Home
                         text: "Outdoor"
                         align: CENTER
                         y: 65
+
+Notable here is the way the label is updated with a sensor numeric value using `snprintf <https://cplusplus.com/reference/cstdio/snprintf/>`__.
 
 .. _lvgl-cook-cover:
 
@@ -302,8 +303,6 @@ Just as in the previous examples, we need to get the states of the cover first. 
                           service: cover.close
                           data:
                             entity_id: cover.myroom
-
-Notable here is the way the label is updated with a sensor numeric value using ``snprintf``.
 
 .. _lvgl-cook-theme:
 
