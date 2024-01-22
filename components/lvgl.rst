@@ -15,10 +15,11 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 .. figure:: /components/images/lvgl_main_screenshot.png
     :align: center
 
-In order to be able to drive a display with LVGL under ESPHome you need an MCU from the ESP32 family. Although
-PSRAM is not a strict requirement, it is recommended.
+In order to be able to drive a display with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended.
 
 For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly prefered) or a :doc:`/components/sensor/rotary_encoder` can be used.
+
+Check out a few detailed examples :ref:`in the Cookbook <lvgl-cook>` to see a couple ways to integrate LVGL through ESPHome with your environment.
 
 Basics
 ------
