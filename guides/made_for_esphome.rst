@@ -7,23 +7,38 @@ Made for ESPHome
     :description: Information about the Made for ESPHome program
     :image: /_static/made-for-esphome-black-on-white.png
 
-ESPHome has a great and active community that loves creating and sharing projects.
-You can apply for your project to get the Made for ESPHome stamp of approval.
-This ensures that your project is powered by ESPHome and guarantees a
-minimum level of customizability to users.
+ESPHome has a wonderful and active community that loves creating and sharing projects.
+You can apply for your project to get the ``Made for ESPHome`` stamp of approval.
+This ensures that your project is powered by ESPHome and guarantees a minimum level of customizability to users.
 
 Requirements
 ------------
 
-Your product has to match the following requirements:
- - Your project is powered by ESPHome
- - Your project is powered by an ESP32
- - Your ESPHome configuration is open source
- - Users should be able to apply updates if your project sells ready-made devices
- - Your project supports adoption via the ``dashboard_import`` feature of ESPHome
-   (see :doc:`Sharing </guides/creators>`)
- - Your product name cannot contain **ESPHome** except in the case of *ending with* **for ESPHome**
- - Your configuration utilises ``esp32_improv`` and ``improv_serial`` (if a USB connection is available) for easy end-user provisioning.
+There are a number of requirements your project must meet. These may vary based on its design. They are:
+
+For project which utilize Wi-Fi
+*******************************
+
+Wi-Fi is quite common but requires configuration of the SSID and passphrase.
+As such, for easy end-user provisioning, your configuration must include:
+
+- ``esp32_improv`` as described in :doc:`/components/esp32_improv`
+- ``improv_serial`` as described in :doc:`/components/improv_serial`, if a USB connection is available (recommended)
+
+Note that these are **not** required for project that only provide a physical/wired Ethernet port for connectivity.
+
+For all projects
+****************
+
+- Your project is powered by ESPHome (runs ESPHome as its firmware)
+- Your project is powered by an ESP32 or *supported* ESP32 variant such as the S2, S3, C3, etc.
+- Your ESPHome configuration is open source, available for end users to modify/update
+- Users should be able to apply updates if your project sells ready-made devices
+- Your project supports adoption via the ``dashboard_import`` feature of ESPHome (see :doc:`Sharing </guides/creators>`). In particular:
+    - There are **no** references to secrets or passwords
+    - Network configuration must assume defaults (no static IPs or DNS configured)
+    - All configuration is contained within a single YAML file
+- Your product name cannot contain **ESPHome** except in the case of *ending with* **for ESPHome**
 
 When your project matches all requirements of the Made for ESPHome program,
 you can apply for permission to carry the logo by emailing esphome@nabucasa.com
