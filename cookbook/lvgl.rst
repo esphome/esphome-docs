@@ -102,17 +102,64 @@ If you'd like to control a remote light, which appears as an entity in Home Assi
                         data: 
                           entity_id: light.remote_light
 
+.. _lvgl-cook-bright:
+
+Light brightness slider
+-----------------------
+
+You can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the  the brightness of a dimmable light.
+
+.. figure:: images/lvgl_cook_volume.png
+    :align: center
+
+We can use a sensor to retrieve the current brightness of a light, which is stored in Home Assistant as an attribute of the entity, as an integer value between ``0`` (min) and ``255`` (max). It's conveninent to set the slider's ``min_value`` and ``max_value`` accordingly.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: homeassistant
+        id: light_brightness
+        entity_id: light.your_room_dimmer
+        attribute: brightness
+        on_value:
+          - lvgl.slider.update: 
+              id: slider_dimmer
+              value: !lambda return x; 
+
+    lvgl:
+        ...
+        pages:
+          - id: main_page
+            widgets:
+              - slider:
+                  id: slider_dimmer
+                  x: 20
+                  y: 50
+                  width: 30
+                  height: 220
+                  pad_all: 8
+                  min_value: 0
+                  max_value: 255
+                  on_value:
+                    - homeassistant.service:
+                        service: light.turn_on
+                        data:
+                          entity_id: light.your_room_dimmer
+                          brightness: !lambda return int(x);
+
+Note that Home Assistant expects an integer at the ``brightness`` parameter of the ``light.turn_on`` service call, and since ESPHome uses floats, ``x`` needs to be converted accordingly.
+
 .. _lvgl-cook-volume:
 
 Media player volume slider
 --------------------------
 
-You can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the volume level of a media player, or the brightness of a dimmable light.
+Similarly, you can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the volume level of a media player.
 
 .. figure:: images/lvgl_cook_volume.png
     :align: center
 
-We can use a sensor to retrieve the current volume level of the media player, which is stored in Home Assistant as an attribute of the entity, and is a float value between ``0`` (min) and ``1`` (max). Since LVGL only handles integers, it's conveninent to set the slider's possible values to be between ``0`` and ``100``. Thus a conversion is needed back and forth, meaning that when we read the value from Home Assistant we have to multiply it by ``100``, and when we set the volume through the service call, we have to divide it by ``100``:
+With a sensor we retrieve the current volume level of the media player, which is stored in Home Assistant as an attribute of the entity, and is a float value between ``0`` (min) and ``1`` (max). Since LVGL only handles integers, it's conveninent to set the slider's possible values to be between ``0`` and ``100``. Thus a conversion is needed back and forth, meaning that when we read the value from Home Assistant we have to multiply it by ``100``, and when we set the volume through the service call, we have to divide it by ``100``:
 
 .. code-block:: yaml
 
@@ -133,7 +180,7 @@ We can use a sensor to retrieve the current volume level of the media player, wh
             widgets:
               - slider:
                   id: slider_media_player
-                  x: 20
+                  x: 60
                   y: 50
                   width: 30
                   height: 220
@@ -145,10 +192,8 @@ We can use a sensor to retrieve the current volume level of the media player, wh
                     - homeassistant.service:
                         service: media_player.volume_set
                         data:
-                          entity_id: media_player.hang_ebedlo
+                          entity_id: media_player.your_room
                           volume_level: !lambda return (x / 100);
-
-In case of a dimmable light you use the ``brightness`` attribute of the light entity, which is an integer between  ``0`` and ``255``. This doesn't need conversion, you can set the slider's ``min_value`` and ``max_value`` directly to these, and just use ``return x;`` in the lambdas.
 
 .. _lvgl-cook-thermometer:
 
