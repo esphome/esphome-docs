@@ -112,7 +112,7 @@ You can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to co
 .. figure:: images/lvgl_cook_volume.png
     :align: center
 
-We can use a sensor to retrieve the current volume level of the media player, which is stored in Home Assistant as an attribute of the entity, and is a float value between ``0`` (min) and ``1`` (max). Since LVGL only handles integers, it's conveninent to set the slider's possible values to be between ``0`` and ``100``. Thus a conversion is needed back and forth, meaning that when we read the value from Home Assistant we have to multiply it by ``100``, and when we set the volume through the service call, we have to divide the value by ``100``:
+We can use a sensor to retrieve the current volume level of the media player, which is stored in Home Assistant as an attribute of the entity, and is a float value between ``0`` (min) and ``1`` (max). Since LVGL only handles integers, it's conveninent to set the slider's possible values to be between ``0`` and ``100``. Thus a conversion is needed back and forth, meaning that when we read the value from Home Assistant we have to multiply it by ``100``, and when we set the volume through the service call, we have to divide it by ``100``:
 
 .. code-block:: yaml
 
@@ -147,6 +147,8 @@ We can use a sensor to retrieve the current volume level of the media player, wh
                         data:
                           entity_id: media_player.hang_ebedlo
                           volume_level: !lambda return (x / 100);
+
+In case of a dimmable light you use the ``brightness`` attribute of the light entity, which is an integer between  ``0`` and ``255``. This doesn't need conversion, you can set the slider's ``min_value`` and ``max_value`` directly to these, and just use ``return x;`` in the lambdas.
 
 .. _lvgl-cook-thermometer:
 
@@ -546,12 +548,6 @@ To display a boot screen which disappears automatically after a few moments or o
 
 .. code-block:: yaml
 
-    esphome:
-      ...
-      on_boot:
-        - delay: 5s
-        - lvgl.widget.hide: boot_screen
-
     image:
       - file: https://esphome.io/_static/apple-touch-icon.png
         id: boot_logo
@@ -579,6 +575,12 @@ To display a boot screen which disappears automatically after a few moments or o
                     src: boot_logo
               on_press:
                 - lvgl.widget.hide: boot_screen
+
+    esphome:
+      ...
+      on_boot:
+        - delay: 5s
+        - lvgl.widget.hide: boot_screen
 
 .. _lvgl-cook-clock:
 
