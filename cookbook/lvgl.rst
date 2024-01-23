@@ -541,7 +541,7 @@ For this example to work, use the theme and style options from :ref:`above <lvgl
 
 .. _lvgl-cook-btlg:
 
-ESPHome Boot Logo
+ESPHome boot bogo
 -----------------
 
 To display a boot screen which disappears automatically after a few moments or on touch of the screen you can use the *top layer*. The trick is to put the full screen widget as the last item of the widgets list, so it draws on top of all the others. To make it automatically disappear afer boot, you use ESPHome's ``on_boot`` trigger:
