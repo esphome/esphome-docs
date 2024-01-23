@@ -147,7 +147,7 @@ We can use a sensor to retrieve the current brightness of a light, which is stor
                           entity_id: light.your_room_dimmer
                           brightness: !lambda return int(x);
 
-Note that Home Assistant expects an integer at the ``brightness`` parameter of the ``light.turn_on`` service call, and since ESPHome uses floats, ``x`` needs to be converted accordingly.
+Note that Home Assistant expects an integer at the ``brightness`` parameter of the ``light.turn_on`` service call, and since ESPHome uses floats, ``x`` needs to be converted.
 
 .. _lvgl-cook-volume:
 
@@ -194,6 +194,8 @@ With a sensor we retrieve the current volume level of the media player, which is
                         data:
                           entity_id: media_player.your_room
                           volume_level: !lambda return (x / 100);
+
+Nothe the ``adv_hittest`` option, which ensures that accidental touches to the screen won't cause sudden volume changes (more details in the :ref:`slider doc <lvgl-wgt-sli>`).
 
 .. _lvgl-cook-thermometer:
 
