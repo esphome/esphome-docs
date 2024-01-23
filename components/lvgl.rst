@@ -728,7 +728,6 @@ The Dropdown widget is built internall from a *button* and a *list* (both not re
 .. code-block:: yaml
 
     # Example widget:
-    - 
     - dropdown:
         x: 10
         y: 60
