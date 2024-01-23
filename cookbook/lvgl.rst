@@ -453,8 +453,8 @@ For this example to work, use the theme and style options from :ref:`above <lvgl
 
 .. _lvgl-cook-statico:
 
-HA connection status icon
--------------------------
+API connection status icon
+--------------------------
 
 The top layer is useful to show status icons visible on all pages:
 
@@ -548,9 +548,16 @@ To display a boot screen which disappears automatically after a few moments or o
 
 .. code-block:: yaml
 
+    esphome:
+      ...
+      on_boot:
+        - delay: 5s
+        - lvgl.widget.hide: boot_screen
+
     image:
-      - file: https://esphome.io/_static/apple-touch-icon.png
+      - file: https://esphome.io/_images/logo.png
         id: boot_logo
+        resize: 200x200
         type: RGB565
 
     lvgl:
@@ -575,12 +582,6 @@ To display a boot screen which disappears automatically after a few moments or o
                     src: boot_logo
               on_press:
                 - lvgl.widget.hide: boot_screen
-
-    esphome:
-      ...
-      on_boot:
-        - delay: 5s
-        - lvgl.widget.hide: boot_screen
 
 .. _lvgl-cook-clock:
 
