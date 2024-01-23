@@ -31,14 +31,12 @@ Pages in ESPHome are implemented as LVGL screens, which are special objects whic
 
 Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
 The child object moves with the parent and if the parent is hidden the children will be hidden too. Children can be visible only within
-their parent's bounding area. In other words, the parts of the children outside the parent are clipped. A page is the *root* parent.
-
-TODO - PAGE
+their parent's bounding area. In other words, the parts of the children outside the parent are clipped.
 
 Widgets integrate in ESPHome also as components:
 
 +-------------+-------------------------------+ 
-| LVGL Widget | ESPHome component type        | 
+| LVGL Widget | ESPHome component             | 
 +=============+===============================+
 | Checkbox    | Binary Sensor, Switch         | 
 +-------------+-------------------------------+ 
@@ -561,7 +559,7 @@ A notable state is ``checked`` (boolean) which can have different styles applied
 
 The ``btn`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
 
-See :ref:`lvgl-cook-relay` for an example how to use a checkable button to act on a local component.
+See :ref:`lvgl-cook-binent` for an example how to use a checkable button to act on a Home Assistant service.
 
 .. _lvgl-wgt-bmx:
 
@@ -1184,7 +1182,7 @@ The Switch looks like a little slider and can be used to turn something on and o
 
 The ``switch`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
 
-See :ref:`lvgl-cook-binent` for an example how to use a switch to act on a Home Assistant service.
+See :ref:`lvgl-cook-relay` for an example how to use a switch to act on a local component.
 
 ``table``
 *********

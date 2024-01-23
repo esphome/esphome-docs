@@ -49,10 +49,8 @@ If you have a display device with a local light configured, you can simply creat
                   align: center
                   id: light_switch
                   on_click:
-                    - homeassistant.service:
-                        service: light.toggle
-                        data: 
-                          entity_id: light.remote_light
+                    light.toggle: room_light
+
 
 .. _lvgl-cook-binent:
 
@@ -97,9 +95,58 @@ If you'd like to control a remote light, which appears as an entity in Home Assi
                   widgets:
                     - label:
                         align: center
-                        text: 'Room light'
+                        text: 'Remote light'
                   on_click:
-                    light.toggle: room_light
+                    - homeassistant.service:
+                        service: light.toggle
+                        data: 
+                          entity_id: light.remote_light
+
+.. _lvgl-cook-volume:
+
+Media player volume slider
+--------------------------
+
+You can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the volume level of a media player, or the brightness of a dimmable light.
+
+.. figure:: images/lvgl_cook_volume.png
+    :align: center
+
+We can use a sensor to retrieve the current volume level of the media player, which is stored in Home Assistant as an attribute of the entity, and is a float value between ``0`` (min) and ``1`` (max). Since LVGL only handles integers, it's conveninent to set the slider's possible values to be between ``0`` and ``100``. Thus a conversion is needed back and forth, meaning that when we read the value from Home Assistant we have to multiply it by ``100``, and when we set the volume through the service call, we have to divide the value by ``100``:
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: homeassistant
+        id: media_player_volume
+        entity_id: media_player.your_room
+        attribute: volume_level
+        on_value:
+          - lvgl.slider.update: 
+              id: slider_media_player
+              value: !lambda return (x * 100); 
+
+    lvgl:
+        ...
+        pages:
+          - id: main_page
+            widgets:
+              - slider:
+                  id: slider_media_player
+                  x: 20
+                  y: 50
+                  width: 30
+                  height: 220
+                  pad_all: 8
+                  min_value: 0
+                  max_value: 100
+                  adv_hittest: true
+                  on_value:
+                    - homeassistant.service:
+                        service: media_player.volume_set
+                        data:
+                          entity_id: media_player.hang_ebedlo
+                          volume_level: !lambda return (x / 100);
 
 .. _lvgl-cook-thermometer:
 
@@ -121,12 +168,12 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
         on_value:
           - lvgl.indicator.line.update:
               id: temperature_needle
-              value: !lambda return id(outdoor_temperature).state; 
+              value: !lambda return x; 
           - lvgl.label.update:
               id: temperature_text
               text: !lambda |-
                 static char buf[10];
-                snprintf(buf, 10, "%.2f%°C", id(outdoor_temperature).state);
+                snprintf(buf, 10, "%.2f%°C", x);
                 return buf;
 
     lvgl:
@@ -489,6 +536,49 @@ To put a titlebar behind the status icon, we need to add it to each page, also c
             ...
 
 For this example to work, use the theme and style options from :ref:`above <lvgl-cook-theme>`.
+
+.. _lvgl-cook-btlg:
+
+ESPHome Boot Logo
+-----------------
+
+To display a boot screen which disappears automatically after a few moments or on touch of the screen you can use the *top layer*. The trick is to put the full screen widget as the last item of the widgets list, so it draws on top of all the others. To make it automatically disappear afer boot, you use ESPHome's ``on_boot`` trigger:
+
+.. code-block:: yaml
+
+    esphome:
+      ...
+      on_boot:
+        - delay: 5s
+        - lvgl.widget.hide: boot_screen
+
+    image:
+      - file: https://esphome.io/_static/apple-touch-icon.png
+        id: boot_logo
+        type: RGB565
+
+    lvgl:
+      ...
+      top_layer:
+        widgets:
+          ... # make sure it's the last one in this list:
+          - obj:
+              id: boot_screen
+              x: 0
+              y: 0
+              width: 100%
+              height: 100%
+              bg_color: 0xFFFFFF
+              bg_opa: cover
+              radius: 0
+              pad_all: 0
+              border_width: 0
+              widgets:
+                - img:
+                    align: center
+                    src: boot_logo
+              on_press:
+                - lvgl.widget.hide: boot_screen
 
 .. _lvgl-cook-clock:
 
