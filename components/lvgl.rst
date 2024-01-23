@@ -470,6 +470,8 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
+See :ref:`lvgl-cook-bright` or  :ref:`lvgl-cook-volume` for an example how to use a slider to control entities in Home Assistant.
+
 .. _lvgl-wgt-bar:
 
 ``bar``
@@ -1150,6 +1152,8 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 
 The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
+
+See :ref:`lvgl-cook-bright` or  :ref:`lvgl-cook-volume` for an example how to use a slider to control entities in Home Assistant.
 
 .. _lvgl-wgt-swi:
 
