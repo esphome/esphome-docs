@@ -50,7 +50,7 @@ If no ``secondary_address`` is set, the M-Bus Component starts to discover the c
 
 .. note::
 
-   You have to set the ``logger level`` to at least ``DEBUG`` to see the detected slave addresses.
+    You have to set the ``logger level`` to at least ``DEBUG`` to see the detected slave addresses.
 
 If the ``secondary_address`` is set, the M-Bus Components start the readout loop.
 
@@ -59,7 +59,7 @@ Example
 The following code creates a ``mbus`` master and a sensor defintion the read out the first data frame.
 
 .. code-block:: yaml
-    
+
     logger:
       tx_buffer_size: 1024
       level: DEBUG
@@ -87,6 +87,7 @@ The following code creates a ``mbus`` master and a sensor defintion the read out
       icon: "mdi:flash"
       state_class: measurement
       unit_of_measurement: "Wh"
+
 
 Log Example for slave discovery
 -------------------------------
