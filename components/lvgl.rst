@@ -300,7 +300,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
 - **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to render the text in.
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
-- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array name of the font used to render the text.
+- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array name of the font used to render the text or symbol.
 - **text_letter_space** (*Optional*, int16): Characher spacing of the text.
 - **text_line_space** (*Optional*, int16): Line spacing of the text.
 - **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
@@ -447,6 +447,10 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 ``lvgl.arc.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
+**Specific triggers:**
+
+``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply. 
+
 **Example:**
 
 .. code-block:: yaml
@@ -457,7 +461,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
         y: 10
         id: arc_id
         value: 75
-        min_value: 1
+        min_value: 0
         max_value: 100
         adjustable: true
 
@@ -470,6 +474,13 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
               bg_color: 0x00FF00
             value: 55
 
+    # Example trigger:
+    - arc:
+        ...
+        on_value:
+          - logger.log:
+              format: "Arc value is: %.0f"
+              args: [ 'x' ]
 
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
@@ -581,7 +592,7 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
 - **rows** (**Required**, list): A list for the button rows:
     - **buttons** (**Required**, list): A list of buttons in a row:
         - **id** (*Optional*): An ID for a button
-        - **text** or **symbol** (*Optional*): Text or built-in symbol to display on the button.
+        - **text** or **symbol** (*Optional*): Text or built-in :ref:`symbol <lvgl-fonts>` to display on the button.
         - **width** (*Optional*): Width relative to the other buttons in the same row. A value between ``1`` and ``15`` range, default ``1``. E.g. in a line with two buttons: btnA, width = 1 and btnB, width = 2, btnA will have 33 % width and btnB will have 66 % width. 
         - **selected** (*Optional*, boolean): Set the button as the most recently released or focused. Defaults to ``false``.
         - **control** (*Optional*): Binary flags to control behavior of the buttons (all ``false`` by default):
@@ -801,7 +812,7 @@ A label is the basic widget type that is used to display text.
 
 **Specific options:**
 
-- **text** or **symbol** (**Required**, string): The text or built-in symbol to display. To display an empty label, specify ``" "`` (space).
+- **text** or **symbol** (**Required**, string): The text or built-in :ref:`symbol <lvgl-fonts>` to display. To display an empty label, specify ``" "`` (space).
 - **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
 - **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
     - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped. (Default)
@@ -1022,7 +1033,7 @@ The text will be broken into multiple lines automatically and the height will be
         - **text** (**Required**, string):  The string to be displayed in the body of the message box. Can be shorthanded if no further options are specified.
         - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties.
     - **buttons** (**Required**, enum): A list of buttons to show at the bottom of the message box:
-        - **text** or **symbol**  (**Required**, string):  The text or built-in symbol to display on the button.
+        - **text** or **symbol**  (**Required**, string):  The text or built-in :ref:`symbol <lvgl-fonts>` to display on the button.
 
 **Specific actions:**
 
@@ -1130,6 +1141,10 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 ``lvgl.slider.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
+**Specific triggers:**
+
+``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply. 
+
 **Example:**
 
 .. code-block:: yaml
@@ -1141,7 +1156,7 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
         width: 220
         id: slider_id
         value: 75
-        min_value: 1
+        min_value: 0
         max_value: 100
 
     # Example action:
@@ -1153,6 +1168,13 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
               bg_color: 0x00FF00
             value: 55
 
+    # Example trigger:
+    - slider:
+        ...
+        on_value:
+          - logger.log:
+              format: "Slider value is: %.0f"
+              args: [ 'x' ]
 
 The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
 
@@ -1563,7 +1585,7 @@ See :ref:`lvgl-cook-idlescreen` example how to implement screen saving with idle
 Widget Event Triggers
 ---------------------
 
-ESPHome implements as triggers the following LVGL events:
+ESPHome implements as universal triggers the following LVGL events:
 
 - ``on_press``: The widget has been pressed.
 - ``on_long_press``: The widget has been pressed for at least the ``long_press_time`` specified in the input device configuration. Not called if scrolled.
@@ -1576,7 +1598,6 @@ ESPHome implements as triggers the following LVGL events:
 - ``on_scroll``: The widget was scrolled.
 - ``on_focus``:  The widget is focused.
 - ``on_defocus``: The widget is unfocused.
-- ``on_value``: TODO!!
 
 These triggers can be applied directly to any widget in the lvgl configuration, given that the widget itself supports generating such events.
 
