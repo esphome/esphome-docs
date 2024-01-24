@@ -1323,7 +1323,7 @@ LVGL internally stores fonts rendered in a C array. The library offers by defaul
 - ``montserrat_10``: 10px font
 - ``montserrat_12``: 12px font
 - ``montserrat_12_subpx``: 12px font
-- ``montserrat_14``: 14px font
+- ``montserrat_14``: 14px font (**default**)
 - ``montserrat_16``: 16px font
 - ``montserrat_18``: 18px font
 - ``montserrat_20``: 20px font
