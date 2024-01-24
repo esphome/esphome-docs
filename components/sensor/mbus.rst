@@ -12,7 +12,6 @@ You can access registers from your slave M-Bus device as sensors and present the
 
 .. figure:: /images/mbus.png
     :align: center
-    :width: 25%
 
 This is a partial porting of the `libmbus <https://github.com/rscada/libmbus/tree/master>`__ Library. 
 More details about the M-Bus Protocol can be found here: `M-Bus specification <https://m-bus.com/documentation>`__
@@ -23,7 +22,7 @@ Hardware setup
 M-Bus do not worke with TTL Level. 
 You need an TTL to M-Bus Master module:
 
-.. figure:: /images/mbus_master_module.jpg
+.. figure:: /components/sensor/images/mbus_master_module.jpg
     :align: center
     :width: 50%
 
@@ -50,6 +49,7 @@ Operation Modes:
 If no ``secondary_address`` is set, the M-Bus Component starts to discover the connected Slaves in the M-Bus Network and prints the detected slave addresses to the log.
 
 .. note::
+
    You have to set the ``logger level`` to at least ``DEBUG`` to see the detected slave addresses.
 
 If the ``secondary_address`` is set, the M-Bus Components start the readout loop.
@@ -92,15 +92,15 @@ Log Example for slave discovery
 -------------------------------
 .. code-block:: text
 
-     1 [D][mbus:115]: Found a device on secondary address 0x0025426642042002.
-     2 [D][mbus_frame:259]:  Variable Data:
-     3 [D][mbus_frame:260]:   Header:
-     4 [D][mbus_frame:264]:    id = 66.42.25.00 (0x00254266)
-     5 [D][mbus_frame:267]:    manufacturer = ABB
-     6 [D][mbus_frame:268]:    version = 0x20
-     7 [D][mbus_frame:270]:    medium = Electricity
-     8 [D][mbus_frame:271]:    access no = 0x9B
-     9 [D][mbus_frame:272]:    status = 0x20
+    01 [D][mbus:115]: Found a device on secondary address 0x0025426642042002.
+    02 [D][mbus_frame:259]:  Variable Data:
+    03 [D][mbus_frame:260]:   Header:
+    04 [D][mbus_frame:264]:    id = 66.42.25.00 (0x00254266)
+    05 [D][mbus_frame:267]:    manufacturer = ABB
+    06 [D][mbus_frame:268]:    version = 0x20
+    07 [D][mbus_frame:270]:    medium = Electricity
+    08 [D][mbus_frame:271]:    access no = 0x9B
+    09 [D][mbus_frame:272]:    status = 0x20
     10 [D][mbus_frame:273]:    signature = 00.00
     11 [D][mbus_frame:274]:   Records:
     12 [D][mbus_frame:286]:    DIF: 0x0E DIFE:  VIF: 0x84 VIFE: 00 Data: 37.38.00.00.00.00 (6). (ID: 0, Function: Instantaneous value, Unit: Energy (10^1 Wh), Tariff: 255, Type: BCD_48, 3837.000000)
