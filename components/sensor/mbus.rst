@@ -88,8 +88,8 @@ The following code creates a ``mbus`` master and a sensor defintion the read out
       state_class: measurement
       unit_of_measurement: "Wh"
 
-Log Example for slave discover
-------------------------------
+Log Example for slave discovery
+-------------------------------
 .. code-block:: text
 
      1 [D][mbus:115]: Found a device on secondary address 0x0025426642042002.
