@@ -242,7 +242,12 @@ The outline is drawn outside the bounding box.
 
 You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each object. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
 
-- **align** (*Optional*, enum): Alignment of the of the widget `relative to the parent <https://docs.lvgl.io/8.3/widgets/obj.html?#alignment>`__. One of:
+- **align** (*Optional*, enum): Alignment of the of the widget relative to the parent. A child widget is clipped to its parent boundaries. One of the values *not* starting with ``OUT_`` (see picture below).
+- **align_to** (*Optional*, enum): Alignment of the of the widget relative to another widget on the same level:
+    - **id** (**Required**): The ID of a widget *to* which you want to align.
+    - **align** (*Required*, enum): Desired alignment (one of the values starting with ``OUT_``).
+    - **x** (*Optional*, int16 or percentage): Horizontal offset position.
+    - **y** (*Optional*, int16 or percentage): Vertical offset position.
 
 .. figure:: /components/images/lvgl_align.png
     :align: center
