@@ -226,7 +226,7 @@ See :ref:`lvgl-cook-theme` in the Cookbook for an example how to easily implemen
 Style properties
 ----------------
 
-LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing>`__. An object's "box" is built from the following parts:
+LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing>`__. An object's *box* is built from the following parts:
 
 .. figure:: /components/images/lvgl_boxmodel.png
     :align: center
@@ -236,21 +236,11 @@ LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/W
 - **padding**: space between the sides of the object and its children.
 - **content**: the content area which is the size of the bounding box reduced by the border width and padding.
 
-The border is drawn inside the bounding box. Inside the border LVGL keeps a "padding margin" when placing an object's children.
+The border is drawn inside the bounding box. Padding sets the space on the inner sides of the border. It means *I don't want my children too close to my sides, so keep this space*. 
 
 The outline is drawn outside the bounding box.
 
 You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each object. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
-
-- **align** (*Optional*, enum): Alignment of the of the widget relative to the parent. A child widget is clipped to its parent boundaries. One of the values *not* starting with ``OUT_`` (see picture below).
-- **align_to** (*Optional*, enum): Alignment of the of the widget relative to another widget on the same level:
-    - **id** (**Required**): The ID of a widget *to* which you want to align.
-    - **align** (*Required*, enum): Desired alignment (one of the values starting with ``OUT_``).
-    - **x** (*Optional*, int16 or percentage): Horizontal offset position.
-    - **y** (*Optional*, int16 or percentage): Vertical offset position.
-
-.. figure:: /components/images/lvgl_align.png
-    :align: center
 
 - **anim_time** TODO !!
 - **bg_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background of the widget.
@@ -342,10 +332,17 @@ The properties below are common to all widgets.
     
     Similarly to CSS, LVGL also supports ``min_width``, ``max_width``, ``min_height`` and ``max_height``. These are limits preventing an object's size from becoming smaller/larger than these values. They are especially useful if the size is set by percentage or ``size_content``.
 
-- **min_width** (*Optional*, int16 or percentage): Sets a minimal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
-- **max_width** (*Optional*, int16 or percentage): Sets a maximal width. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
-- **min_height** (*Optional*, int16 or percentage): Sets a minimal height. Pixel and percentage values can be used. Percentage values are relative to the width of the parent's content area. Defaults to ``0%``. 
-- **max_height** (*Optional*, int16 or percentage): Sets a maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
+- **min_width**, **max_width**, **min_height**, **max_height** (*Optional*, int16 or percentage): Sets a minimal/maximal width or a minimal/maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
+- **align** (*Optional*, enum): Alignment of the of the widget relative to the parent. A child widget is clipped to its parent boundaries. One of the values *not* starting with ``OUT_`` (see picture below).
+- **align_to** (*Optional*, list): Alignment of the of the widget relative to another widget on the same level:
+    - **id** (**Required**): The ID of a widget *to* which you want to align.
+    - **align** (**Required**, enum): Desired alignment (one of the values starting with ``OUT_``).
+    - **x** (*Optional*, int16 or percentage): Horizontal offset position. Default ``0``.
+    - **y** (*Optional*, int16 or percentage): Vertical offset position. Default ``0``.
+
+.. figure:: /components/images/lvgl_align.png
+    :align: center
+
 - **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused widget which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
 - **styles** (*Optional*, :ref:`config-id`): The ID of a *style definition* from the main component configuration to override the theme styles.
 - **theme** (*Optional*, list): A list of styles to apply to the widget and children. Same configuration option as at the main component.

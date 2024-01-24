@@ -54,7 +54,7 @@ If you have a display device with a local light configured, you can simply creat
 
 .. _lvgl-cook-binent:
 
-Remote light switch
+Remote light button
 -------------------
 
 If you'd like to control a remote light, which appears as an entity in Home Assistant, first you need to import the light state into ESPHome, and then control it using a service call:
@@ -67,19 +67,10 @@ If you'd like to control a remote light, which appears as an entity in Home Assi
         entity_id: light.remote_light
         on_state:
           then:
-            if:
-              condition:
-                lambda: return x;
-              then:
-                - lvgl.widget.update:
-                    id: light_btn
-                    state:
-                      checked: true
-              else:
-                - lvgl.widget.update:
-                    id: light_btn
-                    state:
-                      checked: false
+            lvgl.widget.update:
+              id: light_btn
+              state:
+                checked: !lambda return x;
 
     lvgl:
         ...
