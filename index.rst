@@ -277,6 +277,11 @@ Electricity
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
     INA219, components/sensor/ina219, ina219.jpg, DC Current
     INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
+    INA228, components/sensor/ina2xx, ina228.jpg, DC Voltage & Current & Power & Charge
+    INA229, components/sensor/ina2xx, ina2xx.jpg, DC Voltage & Current & Power & Charge
+    INA237, components/sensor/ina2xx, ina2xx.jpg, DC Voltage & Current & Power
+    INA238, components/sensor/ina2xx, ina2xx.jpg, DC Voltage & Current & Power
+    INA239, components/sensor/ina2xx, ina2xx.jpg, DC Voltage & Current & Power
     INA260, components/sensor/ina260, ina260.jpg, DC Current & Power
     INA3221, components/sensor/ina3221, ina3221.jpg, 3-Ch DC current
     MAX9611, components/sensor/max9611, max9611.jpg, +60VDC Voltage & Current & Power & Temperature
