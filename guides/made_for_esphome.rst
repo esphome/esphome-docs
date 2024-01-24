@@ -16,8 +16,8 @@ Requirements
 
 There are a number of requirements your project must meet. These may vary based on its design. They are:
 
-For project which utilize Wi-Fi
-*******************************
+For projects which utilize Wi-Fi
+********************************
 
 Wi-Fi is quite common but requires configuration of the SSID and passphrase.
 As such, for easy end-user provisioning, your configuration must include:
@@ -25,7 +25,7 @@ As such, for easy end-user provisioning, your configuration must include:
 - ``esp32_improv`` as described in :doc:`/components/esp32_improv`
 - ``improv_serial`` as described in :doc:`/components/improv_serial`, if a USB connection is available (recommended)
 
-Note that these are **not** required for project that only provide a physical/wired Ethernet port for connectivity.
+Note that these are **not** required for projects that only provide a physical/wired Ethernet port for connectivity.
 
 For all projects
 ****************
