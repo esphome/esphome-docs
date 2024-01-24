@@ -1297,29 +1297,29 @@ TODO
 
 LVGL internally stores fonts rendered in a C array. The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ font, and symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
 
-- ``montserrat_8``
-- ``montserrat_10``
-- ``montserrat_12``
-- ``montserrat_12_subpx``
-- ``montserrat_14``
-- ``montserrat_16``
-- ``montserrat_18``
-- ``montserrat_20``
-- ``montserrat_22``
-- ``montserrat_24``
-- ``montserrat_26``
-- ``montserrat_28``
-- ``montserrat_28_compressed``
-- ``montserrat_30``
-- ``montserrat_32``
-- ``montserrat_34``
-- ``montserrat_36``
-- ``montserrat_38``
-- ``montserrat_40``
-- ``montserrat_42``
-- ``montserrat_44``
-- ``montserrat_46``
-- ``montserrat_48``
+- ``montserrat_8``: 8px font
+- ``montserrat_10``: 10px font
+- ``montserrat_12``: 12px font
+- ``montserrat_12_subpx``: 12px font
+- ``montserrat_14``: 14px font
+- ``montserrat_16``: 16px font
+- ``montserrat_18``: 18px font
+- ``montserrat_20``: 20px font
+- ``montserrat_22``: 22px font
+- ``montserrat_24``: 24px font
+- ``montserrat_26``: 26px font
+- ``montserrat_28``: 28px font
+- ``montserrat_28_compressed``: 28px font
+- ``montserrat_30``: 30px font
+- ``montserrat_32``: 32px font
+- ``montserrat_34``: 34px font
+- ``montserrat_36``: 36px font
+- ``montserrat_38``: 38px font
+- ``montserrat_40``: 40px font
+- ``montserrat_42``: 42px font
+- ``montserrat_44``: 44px font
+- ``montserrat_46``: 46px font
+- ``montserrat_48``: 48px font
 
 You can display the embedded symbols easily on supported widgets using the ``symbol`` configuration option:
 
@@ -1328,13 +1328,13 @@ You can display the embedded symbols easily on supported widgets using the ``sym
 
 .. note::
 
-    The ``text_font`` parameter influences the size of the symbol, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes
+    The ``text_font`` parameter influences the size of ``symbol``, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes.
 
 In addition to the above, the following special fonts are available from LVGL as built-in:
 
 - ``unscii_8``: 8 px pixel perfect font with only ASCII characters
 - ``unscii_16``: 16 px pixel perfect font with only ASCII characters
-- ``simsun_16_cjk``: 16 px font with normal range + 1000 most common CJK radicals
+- ``simsun_16_cjk``: 16 px font with normal range + 1000 most common `CJK Radicals <https://en.wikipedia.org/wiki/CJK_Radicals_Supplement>`__
 - ``dejavu_16_persian_hebrew``: 16 px font with normal range + Hebrew, Arabic, Persian letters and all their forms
 
 TODO !! You can generate your own set of glyphs in a C array using LVGL's `Online Font Converter <https://lvgl.io/tools/fontconverter/>`__ or use the tool `Offline <https://github.com/lvgl/lv_font_conv>`__.
