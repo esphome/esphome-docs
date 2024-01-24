@@ -110,11 +110,11 @@ We can use a sensor to retrieve the current brightness of a light, which is stor
     sensor:
       - platform: homeassistant
         id: light_brightness
-        entity_id: light.your_room_dimmer
+        entity_id: light.your_dimmer
         attribute: brightness
         on_value:
           - lvgl.slider.update: 
-              id: slider_dimmer
+              id: dimmer_slider
               value: !lambda return x; 
 
     lvgl:
@@ -123,7 +123,7 @@ We can use a sensor to retrieve the current brightness of a light, which is stor
           - id: main_page
             widgets:
               - slider:
-                  id: slider_dimmer
+                  id: dimmer_slider
                   x: 20
                   y: 50
                   width: 30
@@ -135,17 +135,19 @@ We can use a sensor to retrieve the current brightness of a light, which is stor
                     - homeassistant.service:
                         service: light.turn_on
                         data:
-                          entity_id: light.your_room_dimmer
+                          entity_id: light.your_dimmer
                           brightness: !lambda return int(x);
 
 Note that Home Assistant expects an integer at the ``brightness`` parameter of the ``light.turn_on`` service call, and since ESPHome uses floats, ``x`` needs to be converted.
+
+This is applicable to service calls like ``fan.set_percentage``, ``valve.set_valve_position`` too, only difference is that ``max_value`` has to be ``100``.
 
 .. _lvgl-cook-volume:
 
 Media player volume slider
 --------------------------
 
-Similarly, you can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the volume level of a media player.
+Similarly, you can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the volume level of a media player, which uses float values.
 
 .. figure:: images/lvgl_cook_volume.png
     :align: center

@@ -360,7 +360,8 @@ The properties below are common to all widgets.
     - **edited** (*Optional*, boolean): Edit by an encoder
     - **user_1**, **user_2**, **user_3**, **user_4** (*Optional*, boolean): Custom states
 
-By default, states are all ``false``. To apply styles to the states, you need to specify them one level above, for example:
+By default, states are all ``false``, and they are templatable.
+To apply styles to the states, you need to specify them one level above, for example:
 
 .. code-block:: yaml
 
