@@ -300,7 +300,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
 - **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to render the text in.
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
-- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array file of the font used to render the text.
+- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array name of the font used to render the text.
 - **text_letter_space** (*Optional*, int16): Characher spacing of the text.
 - **text_line_space** (*Optional*, int16): Line spacing of the text.
 - **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
@@ -1295,23 +1295,51 @@ Fonts
 
 TODO
 
-LVGL internally uses fonts in a C array. The library offers by default the following ones preconverted:
+LVGL internally stores fonts rendered in a C array. The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ font, and symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
 
+- ``montserrat_8``
+- ``montserrat_10``
+- ``montserrat_12``
 - ``montserrat_12_subpx``
+- ``montserrat_14``
+- ``montserrat_16``
+- ``montserrat_18``
+- ``montserrat_20``
+- ``montserrat_22``
+- ``montserrat_24``
+- ``montserrat_26``
+- ``montserrat_28``
 - ``montserrat_28_compressed``
-- ``dejavu_16_persian_hebrew``
-- ``simsun_16_cjk16``
-- ``unscii_8``
-- ``unscii_16``
+- ``montserrat_30``
+- ``montserrat_32``
+- ``montserrat_34``
+- ``montserrat_36``
+- ``montserrat_38``
+- ``montserrat_40``
+- ``montserrat_42``
+- ``montserrat_44``
+- ``montserrat_46``
+- ``montserrat_48``
 
-These may not contain all the glyphs corresponding to certain diacritic characters. You can generate your own set of glyphs in a C array using LVGL's `Online Font Converter <https://lvgl.io/tools/fontconverter/>`__ or use the tool `Offline <https://github.com/lvgl/lv_font_conv>`__.
-
-In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
-
-In addition to the built-in fonts, the following built-in symbols are also available from the `FontAwesome <https://fontawesome.com/>`__ font. You can use them on supported widgets using the ``symbol`` configuration option:
+You can display the embedded symbols easily on supported widgets using the ``symbol`` configuration option:
 
 .. figure:: /components/images/lvgl_symbols.png
     :align: center
+
+.. note::
+
+    The ``text_font`` parameter influences the size of the symbol, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes
+
+In addition to the above, the following special fonts are available from LVGL as built-in:
+
+- ``unscii_8``: 8 px pixel perfect font with only ASCII characters
+- ``unscii_16``: 16 px pixel perfect font with only ASCII characters
+- ``simsun_16_cjk``: 16 px font with normal range + 1000 most common CJK radicals
+- ``dejavu_16_persian_hebrew``: 16 px font with normal range + Hebrew, Arabic, Persian letters and all their forms
+
+TODO !! You can generate your own set of glyphs in a C array using LVGL's `Online Font Converter <https://lvgl.io/tools/fontconverter/>`__ or use the tool `Offline <https://github.com/lvgl/lv_font_conv>`__.
+
+In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
 
 
 .. _lvgl-objupd-act:
