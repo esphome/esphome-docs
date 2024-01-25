@@ -9,13 +9,14 @@ LVGL
 
 
 `LVGL <https://lvgl.io/>`__ (Light and Versatile Graphics Library) is a free and open-source 
-embedded graphics library to create beautiful UIs for any MCU, MPU and display type. ESPHome supports
-`LVGL version 8.3.9 <https://docs.lvgl.io/8.3/>`__.
+embedded graphics library to create beautiful UIs for any MCU, MPU and display type. ESPHome supports `LVGL version 8.3.9 <https://docs.lvgl.io/8.3/>`__.
 
 .. figure:: /components/images/lvgl_main_screenshot.png
     :align: center
 
 In order to be able to drive a display with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended.
+
+TODO !! Display requirement/recommendation/spec, monochrome supported?
 
 For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly prefered) or a :doc:`/components/sensor/rotary_encoder` can be used.
 
@@ -24,14 +25,12 @@ Check out a few detailed examples :ref:`in the Cookbook <lvgl-cook>` to see a co
 Basics
 ------
 
-In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` to see the full
-list of available LVGL widgets in ESPHome.
+In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` to see the full list of available LVGL widgets in ESPHome.
 
-Pages in ESPHome are implemented as LVGL screens, which are special objects which have no parent object. There is always one active screen on a display.
+Pages in ESPHome are implemented as LVGL screens, which are special objects which have no parent object. There is always one active page on a display.
 
 Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
-The child object moves with the parent and if the parent is hidden the children will be hidden too. Children can be visible only within
-their parent's bounding area. In other words, the parts of the children outside the parent are clipped.
+The child object moves with the parent and if the parent is hidden the children will be hidden too. Children can be visible only within their parent's bounding area. In other words, the parts of the children outside the parent are clipped.
 
 Widgets integrate in ESPHome also as components:
 
@@ -54,7 +53,6 @@ Widgets integrate in ESPHome also as components:
 +-------------+-------------------------------+ 
 
 These are useful to perform :ref:`automations <automation>` triggered by actions performed at the screen. Check out the :ref:`lvgl-seealso` section at the bottom of this document.
-
 
 Main Component
 --------------
@@ -1465,7 +1463,7 @@ This :ref:`action <config-action>` resumes the activity of LVGL, including rende
 .. _lvgl-pgnx-act:
 
 ``lvgl.page.next``, ``lvgl.page.previous``
-*****************************************
+******************************************
 
 This :ref:`action <config-action>` changes page to the next following in the configuration (except the ones with ``skip`` option enabled), wraps around at the end.
 
