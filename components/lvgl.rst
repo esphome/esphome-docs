@@ -224,7 +224,7 @@ See :ref:`lvgl-cook-theme` in the Cookbook for an example how to easily implemen
 .. _lvgl-styling:
 
 Style properties
-----------------
+****************
 
 LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing>`__. An object's *box* is built from the following parts:
 
@@ -305,6 +305,55 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **text_line_space** (*Optional*, int16): Line spacing of the text.
 - **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 
+
+.. _lvgl-fonts:
+
+Fonts
+-----
+
+LVGL internally stores fonts rendered in a C array. The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ font, and symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
+
+- ``montserrat_8``: 8px font
+- ``montserrat_10``: 10px font
+- ``montserrat_12``: 12px font
+- ``montserrat_14``: 14px font (**default**)
+- ``montserrat_16``: 16px font
+- ``montserrat_18``: 18px font
+- ``montserrat_20``: 20px font
+- ``montserrat_22``: 22px font
+- ``montserrat_24``: 24px font
+- ``montserrat_26``: 26px font
+- ``montserrat_28``: 28px font
+- ``montserrat_30``: 30px font
+- ``montserrat_32``: 32px font
+- ``montserrat_34``: 34px font
+- ``montserrat_36``: 36px font
+- ``montserrat_38``: 38px font
+- ``montserrat_40``: 40px font
+- ``montserrat_42``: 42px font
+- ``montserrat_44``: 44px font
+- ``montserrat_46``: 46px font
+- ``montserrat_48``: 48px font
+
+You can display the embedded symbols easily on supported widgets using the ``symbol`` configuration option:
+
+.. figure:: /components/images/lvgl_symbols.png
+    :align: center
+
+.. note::
+
+    The ``text_font`` parameter influences the size of ``symbol``, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes.
+
+In addition to the above, the following special fonts are available from LVGL as built-in:
+
+- ``unscii_8``: 8 px pixel perfect font with only ASCII characters
+- ``unscii_16``: 16 px pixel perfect font with only ASCII characters
+- ``simsun_16_cjk``: 16 px font with normal range + 1000 most common `CJK Radicals <https://en.wikipedia.org/wiki/CJK_Radicals_Supplement>`__
+- ``dejavu_16_persian_hebrew``: 16 px font with normal range + Hebrew, Arabic, Persian letters and all their forms
+
+TODO !! You can generate your own set of glyphs in a C array using LVGL's `Online Font Converter <https://lvgl.io/tools/fontconverter/>`__ or use the tool `Offline <https://github.com/lvgl/lv_font_conv>`__.
+
+In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
 
 .. _lvgl-widgets:
 
@@ -1308,61 +1357,10 @@ You can use it as a parent background shape for other objects. It catches touche
         widgets:
           - ...
 
-
-
-.. _lvgl-fonts:
-
-Fonts
------
-
-TODO
-
-LVGL internally stores fonts rendered in a C array. The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ font, and symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
-
-- ``montserrat_8``: 8px font
-- ``montserrat_10``: 10px font
-- ``montserrat_12``: 12px font
-- ``montserrat_14``: 14px font (**default**)
-- ``montserrat_16``: 16px font
-- ``montserrat_18``: 18px font
-- ``montserrat_20``: 20px font
-- ``montserrat_22``: 22px font
-- ``montserrat_24``: 24px font
-- ``montserrat_26``: 26px font
-- ``montserrat_28``: 28px font
-- ``montserrat_30``: 30px font
-- ``montserrat_32``: 32px font
-- ``montserrat_34``: 34px font
-- ``montserrat_36``: 36px font
-- ``montserrat_38``: 38px font
-- ``montserrat_40``: 40px font
-- ``montserrat_42``: 42px font
-- ``montserrat_44``: 44px font
-- ``montserrat_46``: 46px font
-- ``montserrat_48``: 48px font
-
-You can display the embedded symbols easily on supported widgets using the ``symbol`` configuration option:
-
-.. figure:: /components/images/lvgl_symbols.png
-    :align: center
-
-.. note::
-
-    The ``text_font`` parameter influences the size of ``symbol``, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes.
-
-In addition to the above, the following special fonts are available from LVGL as built-in:
-
-- ``unscii_8``: 8 px pixel perfect font with only ASCII characters
-- ``unscii_16``: 16 px pixel perfect font with only ASCII characters
-- ``simsun_16_cjk``: 16 px font with normal range + 1000 most common `CJK Radicals <https://en.wikipedia.org/wiki/CJK_Radicals_Supplement>`__
-- ``dejavu_16_persian_hebrew``: 16 px font with normal range + Hebrew, Arabic, Persian letters and all their forms
-
-TODO !! You can generate your own set of glyphs in a C array using LVGL's `Online Font Converter <https://lvgl.io/tools/fontconverter/>`__ or use the tool `Offline <https://github.com/lvgl/lv_font_conv>`__.
-
-In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
-
 Actions
 -------
+
+Specific actions are available for cetrain widgets, they are described above in their respective section. Some universal actions are available for all the widgets or for LVGL itself:
 
 .. _lvgl-objupd-act:
 
@@ -1391,7 +1389,7 @@ This powerful :ref:`action <config-action>` allows changing on the fly any commo
 
 .. _lvgl-objupd-shorthands:
 
-``lvgl.widget.hide``, ``lvgl.widget.show``
+``lvgl.widget.hide`` ``lvgl.widget.show``
 ******************************************
 
 These :ref:`actions <config-action>` are shorthands for toggling the ``hidden`` :ref:`flag <lvgl-objupdflag-act>` of any widget:
@@ -1405,7 +1403,7 @@ These :ref:`actions <config-action>` are shorthands for toggling the ``hidden`` 
         - lvgl.widget.show: my_label_id
 
 
-``lvgl.widget.disable``, ``lvgl.widget.enable``
+``lvgl.widget.disable`` ``lvgl.widget.enable``
 ***********************************************
 
 These :ref:`actions <config-action>` are shorthands for toggling the ``disabled`` state of any widget (which controls the appearance of the corresponding *disabled* style set of the theme):
@@ -1469,8 +1467,8 @@ This :ref:`action <config-action>` resumes the activity of LVGL, including rende
 
 .. _lvgl-pgnx-act:
 
-``lvgl.page.next``, ``lvgl.page.previous``
-******************************************
+``lvgl.page.next`` ``lvgl.page.previous``
+*****************************************
 
 This :ref:`action <config-action>` changes page to the next following in the configuration (except the ones with ``skip`` option enabled), wraps around at the end.
 
@@ -1562,6 +1560,8 @@ This :ref:`condition <config-condition>` checks if LVGL is in paused state or no
 
 Triggers
 --------
+
+Specific triggers like ``on_value`` are available for cetrain widgets, they are described above in their respective section. Some universal triggers are available for all the widgets or for LVGL itself:
 
 .. _lvgl-event-trg:
 
