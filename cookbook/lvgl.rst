@@ -277,7 +277,7 @@ To make a nice user interface for controlling Home Assistant covers you could us
 .. figure:: images/lvgl_cook_cover.png
     :align: center
 
-Just as in the previous examples, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and with a text sensor we retrive the current movement state of it. We are particularly interested in the moving (*opening* and *closing*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
+Just as in the previous examples, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and with a text sensor we retrive the current movement state of it. We are particularly interested in the moving (*opening* and *closing*) states, because during these we'd like to change the label on the middle to show the *STOP* symbol. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
 
 .. code-block:: yaml
 
@@ -294,7 +294,7 @@ Just as in the previous examples, we need to get the states of the cover first. 
               then:
                 - lvgl.widget.update:
                     id: cov_up_myroom
-                    text_opa: 50%
+                    text_opa: 60%
               else:
                 - lvgl.widget.update:
                     id: cov_up_myroom
@@ -306,7 +306,7 @@ Just as in the previous examples, we need to get the states of the cover first. 
               then:
                 - lvgl.widget.update:
                     id: cov_down_myroom
-                    text_opa: 50%
+                    text_opa: 60%
               else:
                 - lvgl.widget.update:
                     id: cov_down_myroom
@@ -324,7 +324,7 @@ Just as in the previous examples, we need to get the states of the cover first. 
               then:
                 - lvgl.label.update:
                     id: cov_stop_myroom
-                    text: "STOP"
+                    symbol: "STOP"
               else:
                 - lvgl.label.update:
                     id: cov_stop_myroom
