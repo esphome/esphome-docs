@@ -309,7 +309,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 .. _lvgl-fonts:
 
 Fonts
------
+*****
 
 LVGL internally stores fonts rendered in a C array. The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ font, and symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
 
@@ -1367,7 +1367,7 @@ Specific actions are available for cetrain widgets, they are described above in 
 ``lvgl.widget.update``
 **********************
 
-This powerful :ref:`action <config-action>` allows changing on the fly any common :ref:`style property <lvgl-styling>` or :ref:`flag <lvgl-objupdflag-act>` of any widget.
+This powerful :ref:`action <config-action>` allows changing on the fly any common :ref:`style property <lvgl-styling>`, state (templatable) or :ref:`flag <lvgl-objupdflag-act>` of any widget.
 
 .. code-block:: yaml
 
@@ -1387,9 +1387,11 @@ This powerful :ref:`action <config-action>` allows changing on the fly any commo
             id: my_label_id
             hidden: true
 
+Check out in the Cookbook :ref:`lvgl-cook-binent` for an example how to use a template to update the state.
+
 .. _lvgl-objupd-shorthands:
 
-``lvgl.widget.hide`` ``lvgl.widget.show``
+``lvgl.widget.hide``, ``lvgl.widget.show``
 ******************************************
 
 These :ref:`actions <config-action>` are shorthands for toggling the ``hidden`` :ref:`flag <lvgl-objupdflag-act>` of any widget:
@@ -1402,8 +1404,7 @@ These :ref:`actions <config-action>` are shorthands for toggling the ``hidden`` 
         - delay: 0.5s
         - lvgl.widget.show: my_label_id
 
-
-``lvgl.widget.disable`` ``lvgl.widget.enable``
+``lvgl.widget.disable``, ``lvgl.widget.enable``
 ***********************************************
 
 These :ref:`actions <config-action>` are shorthands for toggling the ``disabled`` state of any widget (which controls the appearance of the corresponding *disabled* style set of the theme):
@@ -1416,8 +1417,6 @@ These :ref:`actions <config-action>` are shorthands for toggling the ``disabled`
     - on_...:
         then:
           - lvgl.widget.enable: my_button_id
-
-
 
 .. _lvgl-rfrsh-act:
 
@@ -1433,8 +1432,6 @@ This :ref:`action <config-action>` redraws the entire screen, or optionally only
     on_...:
       then:
         - lvgl.widget.redraw:
-
-
 
 
 .. _lvgl-pause-act:
@@ -1467,7 +1464,7 @@ This :ref:`action <config-action>` resumes the activity of LVGL, including rende
 
 .. _lvgl-pgnx-act:
 
-``lvgl.page.next`` ``lvgl.page.previous``
+``lvgl.page.next``, ``lvgl.page.previous``
 *****************************************
 
 This :ref:`action <config-action>` changes page to the next following in the configuration (except the ones with ``skip`` option enabled), wraps around at the end.
