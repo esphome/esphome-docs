@@ -1322,7 +1322,6 @@ LVGL internally stores fonts rendered in a C array. The library offers by defaul
 - ``montserrat_8``: 8px font
 - ``montserrat_10``: 10px font
 - ``montserrat_12``: 12px font
-- ``montserrat_12_subpx``: 12px font
 - ``montserrat_14``: 14px font (**default**)
 - ``montserrat_16``: 16px font
 - ``montserrat_18``: 18px font
@@ -1331,7 +1330,6 @@ LVGL internally stores fonts rendered in a C array. The library offers by defaul
 - ``montserrat_24``: 24px font
 - ``montserrat_26``: 26px font
 - ``montserrat_28``: 28px font
-- ``montserrat_28_compressed``: 28px font
 - ``montserrat_30``: 30px font
 - ``montserrat_32``: 32px font
 - ``montserrat_34``: 34px font
@@ -1363,11 +1361,13 @@ TODO !! You can generate your own set of glyphs in a C array using LVGL's `Onlin
 
 In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
 
+Actions
+-------
 
 .. _lvgl-objupd-act:
 
-``lvgl.widget.update`` Action
------------------------------
+``lvgl.widget.update``
+**********************
 
 This powerful :ref:`action <config-action>` allows changing on the fly any common :ref:`style property <lvgl-styling>` or :ref:`flag <lvgl-objupdflag-act>` of any widget.
 
@@ -1391,8 +1391,8 @@ This powerful :ref:`action <config-action>` allows changing on the fly any commo
 
 .. _lvgl-objupd-shorthands:
 
-``lvgl.widget.hide`` and ``lvgl.widget.show`` Actions
------------------------------------------------------
+``lvgl.widget.hide``, ``lvgl.widget.show``
+******************************************
 
 These :ref:`actions <config-action>` are shorthands for toggling the ``hidden`` :ref:`flag <lvgl-objupdflag-act>` of any widget:
 
@@ -1405,8 +1405,8 @@ These :ref:`actions <config-action>` are shorthands for toggling the ``hidden`` 
         - lvgl.widget.show: my_label_id
 
 
-``lvgl.widget.disable`` and ``lvgl.widget.enable`` Actions
-----------------------------------------------------------
+``lvgl.widget.disable``, ``lvgl.widget.enable``
+***********************************************
 
 These :ref:`actions <config-action>` are shorthands for toggling the ``disabled`` state of any widget (which controls the appearance of the corresponding *disabled* style set of the theme):
 
@@ -1423,8 +1423,8 @@ These :ref:`actions <config-action>` are shorthands for toggling the ``disabled`
 
 .. _lvgl-rfrsh-act:
 
-``lvgl.widget.redraw`` Action
-------------------------------
+``lvgl.widget.redraw``
+**********************
 
 This :ref:`action <config-action>` redraws the entire screen, or optionally only a widget on it.
 
@@ -1441,8 +1441,8 @@ This :ref:`action <config-action>` redraws the entire screen, or optionally only
 
 .. _lvgl-pause-act:
 
-``lvgl.pause`` Action
----------------------
+``lvgl.pause``
+**************
 
 This :ref:`action <config-action>` pauses the activity of LVGL, including rendering.
 
@@ -1455,8 +1455,8 @@ This :ref:`action <config-action>` pauses the activity of LVGL, including render
 
 .. _lvgl-resume-act:
 
-``lvgl.resume`` Action
-----------------------
+``lvgl.resume``
+***************
 
 This :ref:`action <config-action>` resumes the activity of LVGL, including rendering.
 
@@ -1469,8 +1469,8 @@ This :ref:`action <config-action>` resumes the activity of LVGL, including rende
 
 .. _lvgl-pgnx-act:
 
-``lvgl.page.next`` and ``lvgl.page.previous`` Actions
------------------------------------------------------
+``lvgl.page.next``, ``lvgl.page.previous``
+******************************************
 
 This :ref:`action <config-action>` changes page to the next following in the configuration (except the ones with ``skip`` option enabled), wraps around at the end.
 
@@ -1495,8 +1495,8 @@ This :ref:`action <config-action>` changes page to the next following in the con
 
 .. _lvgl-pgsh-act:
 
-``lvgl.page.show`` Action
--------------------------
+``lvgl.page.show``
+******************
 
 This :ref:`action <config-action>` shows a specific page (even the ones with ``skip`` option enabled).
 
@@ -1517,11 +1517,13 @@ This :ref:`action <config-action>` shows a specific page (even the ones with ``s
         - lvgl.page.show: secret_page  # shorthand version
 
 
+Conditions
+----------
 
 .. _lvgl-idle-cond:
 
-``lvgl.is_idle`` Condition
---------------------------
+``lvgl.is_idle``
+****************
 
 This :ref:`condition <config-condition>` checks if LVGL is in idle state or not.
 
@@ -1540,8 +1542,8 @@ This :ref:`condition <config-condition>` checks if LVGL is in idle state or not.
 
 .. _lvgl-paused-cond:
 
-``lvgl.is_paused`` Condition
-----------------------------
+``lvgl.is_paused``
+******************
 
 This :ref:`condition <config-condition>` checks if LVGL is in paused state or not.
 
@@ -1558,32 +1560,13 @@ This :ref:`condition <config-condition>` checks if LVGL is in paused state or no
                   id: display_backlight
                   transition_length: 150ms
 
-``lvgl.on_idle`` Trigger
-------------------------
-
-LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter. 
-
-The ``on_idle`` :ref:`trigger <automation>` is activated when inactivity time becomes longer than the specified ``timeout``. 
-
-- **timeout** (**Required**, :ref:`templatable <config-templatable>`, int): :ref:`Time <config-time>` value after which LVGL should enter idle state. 
-
-.. code-block:: yaml
-
-    lvgl:
-        on_idle:
-          timeout: 30s
-          then:
-            - logger.log: "LVGL is idle"
-            - lvgl.pause:
-            - light.turn_off:
-                id: display_backlight
-
-See :ref:`lvgl-cook-idlescreen` example how to implement screen saving with idle settings.
+Triggers
+--------
 
 .. _lvgl-event-trg:
 
-Widget Event Triggers
----------------------
+Widget Events
+*************
 
 ESPHome implements as universal triggers the following LVGL events:
 
@@ -1615,16 +1598,27 @@ These triggers can be applied directly to any widget in the lvgl configuration, 
 
 .. _lvgl-onidle-trg:
 
-Data types
-----------
+``lvgl.on_idle``
+****************
 
-LVLG supports numeric properties only as integer values with variable minimums and maximums. Certain widget properties also support negative values.
+LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter. 
 
-- ``int8`` (signed) supports values ranging from -128 to 127.
-- ``uint8`` (unsigned) supports values ranging from 0 to 255.
-- ``int16`` (signed) supports values ranging from -32768 to 32767.   
-- ``uint16`` (unsigned) supports values ranging from 0 to 65535.
+The ``on_idle`` :ref:`trigger <automation>` is activated when inactivity time becomes longer than the specified ``timeout``. 
 
+- **timeout** (**Required**, :ref:`templatable <config-templatable>`, int): :ref:`Time <config-time>` value after which LVGL should enter idle state. 
+
+.. code-block:: yaml
+
+    lvgl:
+        on_idle:
+          timeout: 30s
+          then:
+            - logger.log: "LVGL is idle"
+            - lvgl.pause:
+            - light.turn_off:
+                id: display_backlight
+
+See :ref:`lvgl-cook-idlescreen` example how to implement screen saving with idle settings.
 
 .. _lvgl-seealso:
 
