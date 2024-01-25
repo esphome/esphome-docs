@@ -119,7 +119,6 @@ Example configuration
 Configuration variables:
 ------------------------
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (*Optional*, string): A user-friendly name for this LTR device.
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Default is ``0x29``.
 - **auto_mode** (*Optional*, boolean): Automatic gain and integration time selection. Defaults to True.
 - **gain** (*Optional*, string): The gain the device will use. Higher values are better in low-light conditions.
