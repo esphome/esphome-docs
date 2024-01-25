@@ -142,6 +142,10 @@ Note that Home Assistant expects an integer at the ``brightness`` parameter of t
 
 This is applicable to service calls like ``fan.set_percentage``, ``valve.set_valve_position`` too, only difference is that ``max_value`` has to be ``100``.
 
+.. note::
+
+    Keep in mind that the ``on_value`` is triggered *continuously* by the slider while it's being dragged. This can affect performance and have negative effects on the actions to be performed. For example, you shouldn't use this trigger to set the target temperature of a heatpump via Modbus, or set the position of motorized covers, because it will likely cause malfunctions.
+
 .. _lvgl-cook-volume:
 
 Media player volume slider

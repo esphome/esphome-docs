@@ -529,9 +529,13 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
               format: "Arc value is: %.0f"
               args: [ 'x' ]
 
+.. note::
+
+    The ``on_value`` is sent while the arc is being dragged or changed with keys. The event is sent *continuously* while the arc is being dragged, this can affect performance and have negative effects on the actions to be performed.
+
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
-See :ref:`lvgl-cook-bright` or  :ref:`lvgl-cook-volume` for an example how to use a slider to control entities in Home Assistant.
+See :ref:`lvgl-cook-bright` or  :ref:`lvgl-cook-volume` for an example how to use a slider or an arc to control entities in Home Assistant.
 
 .. _lvgl-wgt-bar:
 
@@ -1222,6 +1226,10 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
           - logger.log:
               format: "Slider value is: %.0f"
               args: [ 'x' ]
+
+.. note::
+
+    The ``on_value`` is sent while the slider is being dragged or changed with keys. The event is sent *continuously* while the slider is being dragged, this can affect performance and have negative effects on the actions to be performed.
 
 The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
 
