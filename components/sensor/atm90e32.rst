@@ -8,7 +8,7 @@ ATM90E32 Power Sensor
 
 The ``atm90e32`` sensor platform allows you to use your ATM90E32 voltage/current and power sensors
 (`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/Atmel-46003-SE-M90E32AS-Datasheet.pdf>`__) with
-ESPHome. This sensor is commonly found in CircuitSetup 2 and 6 channel energy meters.
+ESPHome. This sensor is commonly found in CircuitSetup 2 and 6 channel energy meters and the `Gelidus Research <https://www.gelidus.ca/>`__ 2 channel power meter.
 
 Communication with the device is done via an :ref:`SPI bus <spi>`, so you need to have an ``spi:`` entry in your configuration
 with both ``mosi_pin`` and ``miso_pin`` set.
@@ -50,6 +50,12 @@ Configuration variables:
     :ref:`Sensor <config-sensor>`.
   - **power_factor** (*Optional*): Use the power factor value on this phase. All options from
     :ref:`Sensor <config-sensor>`.
+  - **phash_angle** (*Optional*): Use the phase angle value on this phase in degrees. All options from
+    :ref:`Sensor <config-sensor>`.
+  - **peak_current** (*Optional*): Use the peak current value on this phase in amperes. All options from
+    :ref:`Sensor <config-sensor>`.
+  - **harmonic_power** (*Optional*): Use the harmonic power value on this phase. All options from
+    :ref:`Sensor <config-sensor>`.
   - **gain_voltage** (*Optional*, int): Voltage gain to scale the low voltage AC power pack to household mains feed.
     Defaults to ``7305``.
   - **gain_ct** (*Optional*, int): CT clamp calibration for this phase.
@@ -62,6 +68,8 @@ Configuration variables:
 - **phase_b** (*Optional*): The configuration options for the 2nd phase. Same options as 1st phase.
 - **phase_c** (*Optional*): The configuration options for the 3rd phase. Same options as 1st phase.
 - **frequency** (*Optional*): Use the frequenycy value calculated by the meter. All options from
+  :ref:`Sensor <config-sensor>`.
+- **peak_current_signed** (*Optional*): Control the peak current output as signed or absolute. All options from
   :ref:`Sensor <config-sensor>`.
 - **chip_temperature** (*Optional*): Use the chip temperature value. All options from
   :ref:`Sensor <config-sensor>`.
@@ -127,7 +135,7 @@ repeated for each one.
 
 Here are common current calibration values for the **Split Single Phase Energy Meter** when **gain_pga** is set to ``4X``:
    - 200A/100mA SCT-024: 12597
-   
+
 Here are common current calibration values for the **Split Single Phase Energy Meter** when **gain_pga** is set to ``2X``:
    - 20A/25mA SCT-006: 10170
    - 100A/50mA SCT-013-000: 25498
@@ -191,9 +199,8 @@ same polarity; getting this backwards will be just like having it on the wrong p
 Note that the current measurement is the RMS value so is always positive. They only way to determine directon is to
 look at the power factor. If there are only largly resistive loads and no power sources, (PF almost 1), it is simpler
 to just create a template sensor that computes power from Irms*Vrms and ignore all these details. On the other
-hand, one might be surprised how reactive some loads are and the CirciuitSetup designs are able to 
+hand, one might be surprised how reactive some loads are and the CirciuitSetup designs are able to
 handle these situations well.
-
 
 Additional Examples
 -------------------
@@ -457,6 +464,60 @@ Additional Examples
           - multiply: 0.001
         unit_of_measurement: kWh
 
+Harmonic Power
+--------------
+
+Harmonic power in AC systems refers to deviations from the ideal sinusoidal waveform, caused by multiples of the
+fundamental frequency. It results from non-linear loads and can lead to issues like voltage distortion, equipment
+overheating, and misoperation of protective devices. The ATM90E32 can output advanced harmonic power measurements
+providing important analysis data for monitoring power anomalies on the bus.
+
+**Harmonic Power Example:**
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: atm90e32
+        phase_a:
+          harmonic_power:
+            name: ${disp_name} CT1 Harmonic Power
+
+Phase Angle
+-----------
+
+Phase angle in AC systems represents the angular displacement of a sinusoidal waveform from a reference point.
+It's a measure of timing difference between voltage and current. Phase angle is crucial for power factor assessment
+and efficient power transfer. This advanced measurement function is available with an ATM90E32.
+
+**Phase Angle Example:**
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: atm90e32
+        phase_a:
+          phase_angle:
+            name: ${disp_name} L1 Phase Angle
+
+Peak Current
+------------
+
+Peak current in AC systems refers to the maximum value of the alternating current waveform. It signifies the highest
+magnitude reached during each cycle of the sinusoidal waveform. Peak current is relevant for sizing components and
+assessing the capacity of electrical equipment in the system. This advanced measurement is avaiable from the ATM90E32.
+Peak current can be displayed in signed or unsigned format using a bolean parameter which spans all phases.
+The default is false which is unsigned.
+
+**Peak Current Example:**
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: atm90e32
+        phase_a:
+          peak_current:
+            name: ${disp_name} CT1 Peak Current
+      peak_current_signed: True
 
 See Also
 --------
