@@ -104,7 +104,7 @@ Configuration variables:
 
 Sensors
 -------
-The component offers seven sensors. You can configure all or any subset of the sensors. Each configured sensor 
+The component offers nine sensors. You can configure all or any subset of the sensors. Each configured sensor 
 is reported  separately on each update_interval. The ``name`` option is required for each sensor configured. 
 All other options from :ref:`Sensor <config-sensor>`.
 
@@ -113,8 +113,10 @@ All other options from :ref:`Sensor <config-sensor>`.
 - **temperature** (*Optional*): Internal die temperature measurement, °C
 - **current** (*Optional*): Calculated current output, A
 - **power** (*Optional*): Calculated power output, W
-- **energy** (*Optional*): Calculated energy output, Joules (*INA228/229 only*)
-- **charge** (*Optional*): Calculated charge output, Coulombs (*INA228/229 only*)
+- **energy** (*Optional*): Calculated energy output, Wh (*INA228/229 only*)
+- **energy_joules** (*Optional*): Calculated energy output, Joules (*INA228/229 only*)
+- **charge** (*Optional*): Calculated charge output, Ah (*INA228/229 only*)
+- **charge_coulombs** (*Optional*): Calculated charge output, Coulombs (*INA228/229 only*)
 
 Lambda calls
 ------------
