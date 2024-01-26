@@ -531,7 +531,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 .. note::
 
-    The ``on_value`` is sent while the arc is being dragged or changed with keys. The event is sent *continuously* while the arc is being dragged, this can affect performance and have negative effects on the actions to be performed.
+    The ``on_value`` trigger is sent while the arc is being dragged or changed with keys. The event is sent *continuously* while the arc is being dragged, this can affect performance and have negative effects on the actions to be performed.
 
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
@@ -1229,7 +1229,7 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 .. note::
 
-    The ``on_value`` is sent while the slider is being dragged or changed with keys. The event is sent *continuously* while the slider is being dragged, this can affect performance and have negative effects on the actions to be performed.
+    The ``on_value`` trigger is sent while the slider is being dragged or changed with keys. The event is sent *continuously* while the slider is being dragged, this can affect performance and have negative effects on the actions to be performed.
 
 The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
 
