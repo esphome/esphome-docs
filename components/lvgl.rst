@@ -591,7 +591,7 @@ Simple push or toggle button.
         height: 30
         id: btn_id
 
-To have a button with a text label on it, add a ``label`` widget as child to it:
+To have a button with a text label on it, add a :ref:`lvgl-wgt-lbl` widget as child to it:
 
 .. code-block:: yaml
 
