@@ -698,6 +698,7 @@ Cover Components
     Endstop Cover, components/cover/endstop, electric-switch.svg, dark-invert
     Current-Based Cover, components/cover/current_based, flash.svg, dark-invert
     Time-Based Cover, components/cover/time_based, timer.svg, dark-invert
+    Time-Based Cover with Tilt Function, components/cover/time_based_tilt, timer.svg
     Custom Cover, components/cover/custom, language-cpp.svg, dark-invert
     AM43 Cover, components/cover/am43, am43.jpg
     Tuya Cover, components/cover/tuya, tuya.png
