@@ -20,6 +20,9 @@ Local light switch
 
 If you have a display device with a local light configured, you can simply create a wall switch for it.
 
+.. figure:: /components/images/lvgl_switch.png
+    :align: center
+
 .. code-block:: yaml
 
     light:
@@ -56,6 +59,9 @@ If you have a display device with a local light configured, you can simply creat
 
 Remote light button
 -------------------
+
+.. figure:: images/lvgl_cook_remligbut.png
+    :align: center
 
 If you'd like to control a remote light, which appears as an entity in Home Assistant, first you need to import the light state into ESPHome, and then control it using a service call:
 
