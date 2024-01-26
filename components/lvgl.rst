@@ -266,11 +266,6 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **border_width** (*Optional*, int16): Set the width of the border in pixels.
 - **radius** (*Optional*, uint16): The radius of the rounded corners of the object. 0 = no radius i.e. square corners; 65535 = pill shaped object (true circle if it has same width and height).
 - **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
-- **line_width** (*Optional*, int16): Set the width of the line in pixels.
-- **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
-- **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
-- **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
-- **line_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the line.
 - **outline_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to draw an outline around the widget.
 - **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself.
@@ -295,14 +290,6 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **transform_zoom** (*Optional*, 0.1-10):  Trannsformation zoom of the widget (eg. resizing)
 - **translate_x** (*Optional*, int16 or percentage): Move of the widget with this value in horizontal direction.
 - **translate_y** (*Optional*, int16 or percentage): Move of the widget with this value in vertical direction.
-- **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
-- **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to render the text in.
-- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
-- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array name of the font used to render the text or symbol.
-- **text_letter_space** (*Optional*, int16): Characher spacing of the text.
-- **text_line_space** (*Optional*, int16): Line spacing of the text.
-- **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-
 
 .. _lvgl-fonts:
 
@@ -782,7 +769,7 @@ The Dropdown widget is built internall from a *button* and a *list* (both not re
 - **scrollbar** (*Optional*, list): Settings for the scrollbar **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scrollbar background, border, shadow properties and width (for its own width) and right padding for the spacing on the right.
 - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, and is the parent of ``symbol``.
 - **symbol** (*Optional*, enum): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from the built-in ones.
-- Style options from :ref:`lvgl-styling` for the background of the button and the list. Uses the typical background properties and text properties for the text on it. ``max_height`` can be used to limit the height of the list.
+- Style options from :ref:`lvgl-styling` for the background of the button and the list. Uses the typical background properties and :ref:`lvgl-wgt-lbl` text properties for the text on it. ``max_height`` can be used to limit the height of the list.
 
 **Specific actions:**
 
@@ -852,6 +839,7 @@ TODO !! supported image encodings
             id: img_id
             src: dog_image
 
+.. _lvgl-wgt-lbl:
 
 ``label``
 *********
@@ -864,6 +852,13 @@ A label is the basic widget type that is used to display text.
 **Specific options:**
 
 - **text** or **symbol** (**Required**, string): The text or built-in :ref:`symbol <lvgl-fonts>` to display. To display an empty label, specify ``" "`` (space).
+- **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
+- **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to render the text in.
+- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
+- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array name of the font used to render the text or symbol.
+- **text_letter_space** (*Optional*, int16): Characher spacing of the text.
+- **text_line_space** (*Optional*, int16): Line spacing of the text.
+- **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
 - **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
     - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped. (Default)
@@ -875,7 +870,7 @@ A label is the basic widget type that is used to display text.
 - **selected** (*Optional*, list): Settings for the the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
 - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties. The padding values can be used to add space between the text and the background.
 
-Newline characters are handled automatically by the label widget. You can use ``\n`` to make a line break. For example: ``line1\nline2\n\nline4``.  TODO
+TODO Newline characters are handled automatically by the label widget. You can use ``\n`` to make a line break. For example: ``line1\nline2\n\nline4``.  
 
 **Specific actions:**
 
@@ -902,35 +897,45 @@ Newline characters are handled automatically by the label widget. You can use ``
               snprintf(buf, 10, "%.0fdBm", id(wifi_signal_db).get_state());
               return buf;
 
+.. _lvgl-wgt-lin:
+
 ``line``
 ********
 
 The Line widget is capable of drawing straight lines between a set of points.
 
+.. figure:: /components/images/lvgl_line.png
+    :align: center
+
 **Specific options:**
 
-- **points** (*Required*, list): TODO
+- **points** (*Required*, list): A list of ``x, y`` integer pairs for point coordinates (origin from top left of parent)
+- **line_width** (*Optional*, int16): Set the width of the line in pixels.
+- **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
+- **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
+- **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
+- **line_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the line.
 - Style options from :ref:`lvgl-styling`, all the typical background properties and line style properties.
 
-By default, the Line's width and height are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts on the line may not be visible.
+TODO invert_y ???
 
-**Specific actions:**  ???
-
-``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the line indicator styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+By default, the Line's width and height are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts of the line may not be visible.
 
 **Example:**
 
 .. code-block:: yaml
 
     # Example widget:
-    - 
-
-
-    # Example action:
-    on_...:
-      then:
-        - lvgl.
-
+    - line:
+        points:
+          - 5, 5
+          - 70, 70
+          - 120, 10
+          - 180, 60
+          - 230, 15
+        line_width: 8
+        line_color: 0x0000FF
+        line_rounded: true
 
 .. _lvgl-wgt-led:
 
@@ -1003,14 +1008,14 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - **length**: Tick line length in pixels
             - **color**: ID or hex code for the ticks :ref:`color <config-color>`
             - **label_gap**: Label distance from the ticks with text proportionally to the values of the tick line.
-        - Style options from :ref:`lvgl-styling` for the tick *lines* and *labels* using the *line* and *text* style properties.
+        - Style options from :ref:`lvgl-styling` for the tick *lines* and *labels* using the :ref:`lvgl-wgt-lin` and :ref:`lvgl-wgt-lbl` text style properties.
     - **indicators** (**Required**, list): A list with indicators to be added to the scale. Their ``value`` is interpreted in the range of the scale (see the *action* below):
         - **line** (*Optional*): Add a needle line to a Scale. By default, the length of the line is the same as the scale's radius.
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **width**: Needle line width in pixels.
             - **color**: ID or hex code for the ticks :ref:`color <config-color>`.
             - **r_mod**: Adjust the length of the needle with this amount (can be negative).
-            - Style options from :ref:`lvgl-styling` for the *needle line* using the *line* style properties, as well as the background properties to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
+            - Style options for the *needle line* using the :ref:`lvgl-wgt-lin` style properties, as well as the background properties from :ref:`lvgl-styling` to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
 - Style options from :ref:`lvgl-styling` for the background of the meter, using the typical background properties.
 
 .. note::
@@ -1133,9 +1138,9 @@ Roller allows you to simply select one option from a list by scrolling.
 - **options** (*Required*, list): The list of available options in the roller.
 - **mode** (*Optional*, enum): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
 - **visible_rows** TODO
-- **selected** (*Optional*, list): Settings for the selected **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the text style properties to change the appearance of the text in the selected area.
+- **selected** (*Optional*, list): Settings for the selected **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the :ref:`lvgl-wgt-lbl` text style properties to change the appearance of the text in the selected area.
 - **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
-- Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and text style properties. ``text_line_space`` adjusts the space between the options. When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in ``anim_time`` milliseconds as specified in the style.
+- Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and :ref:`lvgl-wgt-lbl` style properties. ``text_line_space`` adjusts the space between the options. When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in ``anim_time`` milliseconds as specified in the style.
 
 **Specific actions:**
 
