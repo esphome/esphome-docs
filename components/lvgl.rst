@@ -522,7 +522,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
-See :ref:`lvgl-cook-bright` or  :ref:`lvgl-cook-volume` for an example how to use a slider or an arc to control entities in Home Assistant.
+See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use a slider (or an arc) to control entities in Home Assistant.
 
 .. _lvgl-wgt-bar:
 
@@ -1063,7 +1063,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             id: temperature_needle
             value: 3
 
-See :ref:`lvgl-cook-clock` in the Cookbook for an example how to implement an analog clock which also shows the date.
+See :ref:`lvgl-cook-thermometer` and :ref:`lvgl-cook-clock` in the Cookbook for examples how to effectively use this widget.
 
 .. _lvgl-wgt-msg:
 
@@ -1235,7 +1235,7 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
 
-See :ref:`lvgl-cook-bright` or  :ref:`lvgl-cook-volume` for an example how to use a slider to control entities in Home Assistant.
+See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use a slider to control entities in Home Assistant.
 
 .. _lvgl-wgt-swi:
 
