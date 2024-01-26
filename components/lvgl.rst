@@ -897,46 +897,6 @@ TODO Newline characters are handled automatically by the label widget. You can u
               snprintf(buf, 10, "%.0fdBm", id(wifi_signal_db).get_state());
               return buf;
 
-.. _lvgl-wgt-lin:
-
-``line``
-********
-
-The Line widget is capable of drawing straight lines between a set of points.
-
-.. figure:: /components/images/lvgl_line.png
-    :align: center
-
-**Specific options:**
-
-- **points** (*Required*, list): A list of ``x, y`` integer pairs for point coordinates (origin from top left of parent)
-- **line_width** (*Optional*, int16): Set the width of the line in pixels.
-- **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
-- **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
-- **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
-- **line_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the line.
-- Style options from :ref:`lvgl-styling`, all the typical background properties and line style properties.
-
-TODO invert_y ???
-
-By default, the Line's width and height are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts of the line may not be visible.
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - line:
-        points:
-          - 5, 5
-          - 70, 70
-          - 120, 10
-          - 180, 60
-          - 230, 15
-        line_width: 8
-        line_color: 0x0000FF
-        line_rounded: true
-
 .. _lvgl-wgt-led:
 
 ``led``
@@ -982,6 +942,46 @@ The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
     If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup, according to its ``restore_mode`` setting.
 
 
+.. _lvgl-wgt-lin:
+
+``line``
+********
+
+The Line widget is capable of drawing straight lines between a set of points.
+
+.. figure:: /components/images/lvgl_line.png
+    :align: center
+
+**Specific options:**
+
+- **points** (*Required*, list): A list of ``x, y`` integer pairs for point coordinates (origin from top left of parent)
+- **line_width** (*Optional*, int16): Set the width of the line in pixels.
+- **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
+- **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
+- **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
+- **line_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the line.
+- Style options from :ref:`lvgl-styling`, all the typical background properties and line style properties.
+
+TODO invert_y ???
+
+By default, the Line widget width and height dimensions are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts of the line may not be visible.
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - line:
+        points:
+          - 5, 5
+          - 70, 70
+          - 120, 10
+          - 180, 60
+          - 230, 15
+        line_width: 8
+        line_color: 0x0000FF
+        line_rounded: true
+
 ``meter``
 *********
 
@@ -1025,9 +1025,6 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 **Specific actions:**
 
 ``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the indicator needle ``value``, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
-
-
-The needle line using the line style properties, as well as the background properties to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
 
 **Example:**
 
