@@ -11,7 +11,7 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
 .. note::
 
-    The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen width of *240x320px*, you have to adjust them to your screen in order to obtain expected results.
+    The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen width of ``240x320px``, you have to adjust them to your screen in order to obtain expected results.
 
 .. _lvgl-cook-relay:
 
