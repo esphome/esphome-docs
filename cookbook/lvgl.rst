@@ -756,6 +756,145 @@ The script runs every minute to update the hand line positions and the label tex
                 static const char * const day_names[] = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
                 return day_names[id(time_comp).now().day_of_week-1];
 
+
+.. _lvgl-cook-keypad:
+
+A numeric input keypad
+----------------------
+
+The btnmatrix widget can work together with the :ref:`key_collector` to collect the button presses as key press sequences. It sends the ``text`` of the buttons to the key collector.
+
+.. figure:: images/lvgl_cook_keypad.png
+    :align: center
+
+If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change color accordingly:
+
+.. code-block:: yaml
+
+    lvgl:
+      ...
+      pages:
+        - id: main_page
+          widgets:
+            - led:
+                id: lvgl_led
+                x: 30
+                y: 47
+                color: 0xFF0000
+                brightness: 70%
+            - obj:
+                width: 140
+                height: 25
+                align_to:
+                  id: lvgl_led
+                  align: OUT_RIGHT_MID
+                  x: 17
+                border_width: 1
+                border_color: 0
+                border_opa: 50%
+                pad_all: 0
+                bg_opa: 80%
+                bg_color: 0xFFFFFF
+                shadow_color: 0
+                shadow_opa: 50%
+                shadow_width: 10
+                shadow_spread: 3
+                radius: 5
+                widgets:
+                  - label:
+                      id: keypad_label
+                      align: CENTER
+                      text: "* delete, # enter"
+                      text_align: center
+            - btnmatrix:
+                x: 20
+                y: 85
+                width: 200
+                height: 190
+                items:
+                  pressed:
+                    bg_color: 0xFFFF00
+                id: lvgl_keypad
+                rows:
+                  - buttons:
+                      - text: 1
+                        control:
+                          no_repeat: true
+                      - text: 2
+                        control:
+                          no_repeat: true
+                      - text: 3
+                        control:
+                          no_repeat: true
+                  - buttons:
+                      - text: 4
+                        control:
+                          no_repeat: true
+                      - text: 5
+                        control:
+                          no_repeat: true
+                      - text: 6
+                        control:
+                          no_repeat: true
+                  - buttons:
+                      - text: 7
+                        control:
+                          no_repeat: true
+                      - text: 8
+                        control:
+                          no_repeat: true
+                      - text: 9
+                        control:
+                          no_repeat: true
+                  - buttons:
+                      - text: '*'
+                        control:
+                          no_repeat: true
+                      - text: 0
+                        control:
+                          no_repeat: true
+                      - text: '#'
+                        control:
+                          no_repeat: true
+
+key_collector:
+  - id: pincode_reader
+    source_id: lvgl_keypad
+    min_length: 4
+    max_length: 4
+    end_keys: "#"
+    end_key_required: true
+    back_keys: "*"
+    allowed_keys: "0123456789*#"
+    timeout: 5s
+    on_progress:
+      - if:
+          condition:
+            lambda: return (0 != x.compare(std::string{""}));
+          then:
+            - lvgl.label.update:
+                id: keypad_label
+                text: !lambda 'return x.c_str();'
+          else:
+            - lvgl.label.update:
+                id: keypad_label
+                text: "Please enter code"
+    on_result:
+      - if:
+          condition:
+            lambda: return (0 == x.compare(std::string{"1234"}));
+          then:
+            - lvgl.led.update:
+                id: lvgl_led
+                color: 0x00FF00
+          else:
+            - lvgl.led.update:
+                id: lvgl_led
+                color: 0xFF0000
+
+See :ref:`key_collector` documentation for more details on how to use it in automations.
+
+
 .. _lvgl-cook-idlescreen:
 
 Turn off screen when idle
@@ -809,5 +948,6 @@ See Also
 - :ref:`lvgl-main`
 - :ref:`config-lambda`
 - :ref:`automation`
+- :ref:`key_collector`
 
 - :ghedit:`Edit`
