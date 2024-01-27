@@ -702,7 +702,7 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
 
 .. note::
 
-    The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations.
+    The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations. Check out  :ref:`lvgl-cook-keypad` for an example.
 
 
 .. _lvgl-wgt-chk:
