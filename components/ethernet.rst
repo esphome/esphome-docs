@@ -98,6 +98,9 @@ Configuration examples
       phy_addr: 0
       power_pin: GPIO12
 
+.. note::
+
+    Olimex ESP-POE-ISO WROVER needs `clk_mode: GPIO17_OUT`
 
 **Olimex ESP32-EVB**:
 
