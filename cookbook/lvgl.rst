@@ -81,7 +81,7 @@ If you'd like to control a remote light, which appears as an entity in Home Assi
     lvgl:
         ...
         pages:
-          - id: main_page
+          - id: room_page
             widgets:
               - btn:
                   id: light_btn
@@ -126,7 +126,7 @@ We can use a sensor to retrieve the current brightness of a light, which is stor
     lvgl:
         ...
         pages:
-          - id: main_page
+          - id: room_page
             widgets:
               - slider:
                   id: dimmer_slider
@@ -179,7 +179,7 @@ With a sensor we retrieve the current volume level of the media player, which is
     lvgl:
         ...
         pages:
-          - id: main_page
+          - id: mediaplayer_page
             widgets:
               - slider:
                   id: slider_media_player
@@ -231,7 +231,7 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
     lvgl:
         ...
         pages:
-          - id: main_page
+          - id: meter_page
             widgets:
               - meter:
                   align: CENTER
@@ -346,7 +346,7 @@ Just as in the previous examples, we need to get the states of the cover first. 
     lvgl:
         ...
         pages:
-          - id: main_page
+          - id: room_page
             widgets:
               - label:
                   x: 10
@@ -650,7 +650,7 @@ The script runs every minute to update the hand line positions and the label tex
     lvgl:
       ...
       pages:
-        - id: main_page
+        - id: clock_page
           widgets:
             - obj: # Clock container
                 height: size_content
@@ -774,7 +774,7 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
     lvgl:
       ...
       pages:
-        - id: main_page
+        - id: keypad_page
           widgets:
             - led:
                 id: lvgl_led
@@ -802,11 +802,12 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                 radius: 5
                 widgets:
                   - label:
-                      id: keypad_label
+                      id: lvgl_label
                       align: CENTER
                       text: "* delete, # enter"
                       text_align: center
             - btnmatrix:
+                id: lvgl_keypad
                 x: 20
                 y: 85
                 width: 200
@@ -814,7 +815,6 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                 items:
                   pressed:
                     bg_color: 0xFFFF00
-                id: lvgl_keypad
                 rows:
                   - buttons:
                       - text: 1
@@ -872,11 +872,11 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                 lambda: return (0 != x.compare(std::string{""}));
               then:
                 - lvgl.label.update:
-                    id: keypad_label
+                    id: lvgl_label
                     text: !lambda 'return x.c_str();'
               else:
                 - lvgl.label.update:
-                    id: keypad_label
+                    id: lvgl_label
                     text: "Please enter code"
         on_result:
           - if:
