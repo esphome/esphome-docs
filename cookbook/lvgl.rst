@@ -857,43 +857,42 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                         control:
                           no_repeat: true
 
-key_collector:
-  - id: pincode_reader
-    source_id: lvgl_keypad
-    min_length: 4
-    max_length: 4
-    end_keys: "#"
-    end_key_required: true
-    back_keys: "*"
-    allowed_keys: "0123456789*#"
-    timeout: 5s
-    on_progress:
-      - if:
-          condition:
-            lambda: return (0 != x.compare(std::string{""}));
-          then:
-            - lvgl.label.update:
-                id: keypad_label
-                text: !lambda 'return x.c_str();'
-          else:
-            - lvgl.label.update:
-                id: keypad_label
-                text: "Please enter code"
-    on_result:
-      - if:
-          condition:
-            lambda: return (0 == x.compare(std::string{"1234"}));
-          then:
-            - lvgl.led.update:
-                id: lvgl_led
-                color: 0x00FF00
-          else:
-            - lvgl.led.update:
-                id: lvgl_led
-                color: 0xFF0000
+    key_collector:
+      - id: pincode_reader
+        source_id: lvgl_keypad
+        min_length: 4
+        max_length: 4
+        end_keys: "#"
+        end_key_required: true
+        back_keys: "*"
+        allowed_keys: "0123456789*#"
+        timeout: 5s
+        on_progress:
+          - if:
+              condition:
+                lambda: return (0 != x.compare(std::string{""}));
+              then:
+                - lvgl.label.update:
+                    id: keypad_label
+                    text: !lambda 'return x.c_str();'
+              else:
+                - lvgl.label.update:
+                    id: keypad_label
+                    text: "Please enter code"
+        on_result:
+          - if:
+              condition:
+                lambda: return (0 == x.compare(std::string{"1234"}));
+              then:
+                - lvgl.led.update:
+                    id: lvgl_led
+                    color: 0x00FF00
+              else:
+                - lvgl.led.update:
+                    id: lvgl_led
+                    color: 0xFF0000
 
 See :ref:`key_collector` documentation for more details on how to use it in automations.
-
 
 .. _lvgl-cook-idlescreen:
 
