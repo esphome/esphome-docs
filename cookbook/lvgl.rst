@@ -858,8 +858,7 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                           no_repeat: true
 
     key_collector:
-      - id: pincode_reader
-        source_id: lvgl_keypad
+      - source_id: lvgl_keypad
         min_length: 4
         max_length: 4
         end_keys: "#"
@@ -892,7 +891,7 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                     id: lvgl_led
                     color: 0xFF0000
 
-See :ref:`key_collector` documentation for more details on how to use it in automations.
+A few notable things in this example: usage of ``align_to`` to align the text display to the led vertically; usage of a base object ``obj`` as a parent for the label, in order to center the label in the middle of it and emphasize it with shadows independently of the label's dimensions; changing the background color of the buttons in ``pressed`` state. 
 
 .. _lvgl-cook-idlescreen:
 
