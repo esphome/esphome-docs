@@ -98,6 +98,20 @@ Release 2023.11.4 - November 24
 - Allow images to be downloaded from URLs :esphomepr:`5214` by :ghuser:`landonr`
 
 
+Release 2023.11.5 - November 28
+-------------------------------
+
+- Voice Assistant improvements :esphomepr:`5827` by :ghuser:`jesserockz`
+- Fix missing include in remote_base :esphomepr:`5843` by :ghuser:`jesserockz`
+- Add 'voice_assistant.connected' condition :esphomepr:`5845` by :ghuser:`jesserockz`
+
+
+Release 2023.11.6 - November 28
+-------------------------------
+
+- Fix write_speaker without speaker in config :esphomepr:`5847` by :ghuser:`jesserockz`
+
+
 Full list of changes
 --------------------
 
