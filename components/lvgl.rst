@@ -479,7 +479,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 **Specific actions:**
 
-``lvgl.arc.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.arc.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Specific triggers:**
 
@@ -649,7 +649,7 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
 
 **Specific actions:**
 
-``lvgl.button.update`` :ref:`action <config-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.button.update`` :ref:`action <config-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -722,7 +722,7 @@ The Checkbox widget is made internally from a "tick box" and a label. When the C
 
 **Specific actions:**
 
-``lvgl.checkbox.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.checkbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -773,7 +773,7 @@ The Dropdown widget is built internall from a *button* and a *list* (both not re
 
 **Specific actions:**
 
-``lvgl.dropdown.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.dropdown.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -817,7 +817,7 @@ TODO !! supported image encodings
 
 **Specific actions:**
 
-``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -874,7 +874,7 @@ TODO Newline characters are handled automatically by the label widget. You can u
 
 **Specific actions:**
 
-``lvgl.label.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.label.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -902,7 +902,7 @@ TODO Newline characters are handled automatically by the label widget. You can u
 ``led``
 ********
 
-The LEDs are rectangle-like (or circle) widget whose brightness can be adjusted. With lower brightness the colors of the LED become darker.
+The Led widgets are rectangle-like (or circle) widget whose brightness can be adjusted. With lower brightness the colors become darker.
 
 .. figure:: /components/images/lvgl_led.png
     :align: center
@@ -915,7 +915,7 @@ The LEDs are rectangle-like (or circle) widget whose brightness can be adjusted.
 
 **Specific actions:**
 
-``lvgl.led.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.led.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -931,9 +931,9 @@ The LEDs are rectangle-like (or circle) widget whose brightness can be adjusted.
     # Example action:
     on_...:
       then:
-        - lvgl.
-
-
+        - lvgl.led.update:
+            id: lvgl_led
+            color: 0x00FF00
 
 The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
@@ -941,6 +941,7 @@ The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
     If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup, according to its ``restore_mode`` setting.
 
+Check out :ref:`lvgl-cook-keypad` for an example how to change the led styling properties from an automation.
 
 .. _lvgl-wgt-lin:
 
@@ -1024,7 +1025,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 
 **Specific actions:**
 
-``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the indicator needle ``value``, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the indicator needle ``value``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -1141,7 +1142,7 @@ Roller allows you to simply select one option from a list by scrolling.
 
 **Specific actions:**
 
-``lvgl.roller.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.roller.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -1192,7 +1193,7 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 **Specific actions:**
 
-``lvgl.slider.update`` :ref:`action <config-action>` updates the widget styles and properties specified in the specific options above, similarly to way :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.slider.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Specific triggers:**
 
