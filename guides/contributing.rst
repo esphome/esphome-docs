@@ -695,6 +695,27 @@ Standard for the esphome-core codebase:
         docker run --rm -v "$($current_dir):/esphome" -it ghcr.io/esphome/esphome-lint script/quicklint
 
 
+PRs are being drafted when changes are needed
+---------------------------------------------
+
+If there have been changes requested to your PR, our bot will automatically mark your PR as a draft.
+This means that the PR is not ready to be merged or further reviewed for the moment.
+
+Draft PRs tell other reviewers that look at the list of all PRs that this PR is currently in progress and doesn't require their attention yet.
+
+Once you have made the requested changes, you can mark the PR as ready for review again by clicking the "Ready for review button":
+
+.. figure:: images/pr-draft-ready.png
+    :align: center
+    :width: 100.0%
+    :alt: The ready for review button in the bottom of a PR in draft mode
+
+Before you click the "Ready for review" button, ensure you have addressed all requested changes,
+there are no merge conflicts, and that all our CI jobs and checks are passing successfully.
+
+Once you've clicked the "Ready for review" button, the PR will return to a normal state again,
+and our bot will automatically notify the reviewers who requested the changes that the PR is ready to go!
+
 
 
 See Also
