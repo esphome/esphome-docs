@@ -262,24 +262,22 @@ Additonal configurations available for this platform.
 
 Configuration variables:
 
-- **set_fan_mode** (*Optional*, string): Select the fan modes desired or that are supported on your remote. Default is ``3levels``
+- **set_fan_mode** (*Optional*, string): Select the fan modes desired or that are supported on your remote. Defaults to ``3levels``
 
-  - Options are ``3levels`` , ``4levels``, ``quiet_4levels``. 
+  - Options are: ``3levels`` , ``4levels``, ``quiet_4levels``. 
   
-  - ``3levels``, Low [fan speed 1], Medium [2], High [3]
-  - ``4levels``, Low [1], Middle [2], Medium [3], High [4]
-  - ``quiet_4levels``, Low [1], Middle [2], Medium [3], High [4], Quiet [5]
+    - ``3levels``; Low [fan speed 1], Medium [2], High [3]
+    - ``4levels``; Low [1], Middle [2], Medium [3], High [4]
+    - ``quiet_4levels``; Low [1], Middle [2], Medium [3], High [4], Quiet [5]
 
-- **set_supported_mode** (*Optional*, string): Select the operating modes desired or that are supposed by your unit. Default is ``heat_cool``
-  
-  - Options are ``cool``, ``heat``, ``heat_cool``, ``dry_heat_cool``, ``dry_fan_heat_cool``.
+  In addition to climate_ir supports_heat and supports_cool
+- **supports_dry** (*Optional*, boolean): Enables setting dry mode for this unit. Defaults to ``false``.
+- **supports_fan_only** (*Optional*, boolean): Enables setting fan only mode for this unit. Confirm that mode is supported on your remote. Defaults to ``false``.
 
-  - ``fan`` above adds fan only mode, which is available on some units.  
-
-- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Default is ``middle``. 
+- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to ``middle``. 
 
   - Options are: ``left``, ``middle-left``, ``middle``, ``middle-right``, ``right``, ``auto``
-- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Default is ``middle``. 
+- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Defaults to ``middle``. 
 
   - Options are: ``down``, ``middle-down``, ``middle``, ``middle-up``, ``up``, ``auto``
 
@@ -294,7 +292,8 @@ Configuration variables:
       - platform: mitsubishi
         name: "Heatpump"
         set_fan_mode: "quiet_4levels"
-        set_supported_mode: "dry_fan_heat_cool"
+        supports_dry: "true"
+        supports_fan_only: "true"
         horizontal_default: "left"
         vertical_default: "down"
 
