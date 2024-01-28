@@ -215,10 +215,12 @@ Text Run
     Defaults to %H:%M (24 hour time)
   - **text_formatter** (*Optional*, :ref:`templatable <config-templatable>`): A lambda that takes a single argument ``it`` (a string) and
     formats it appropriately. This could be used to place a unit of measurement after the value returned from a `sensor` for instance
+  - **paragraph_break** (*Optional*, int): Number of new lines to force into the text layout. Can be used to force a new paragraph. Must 
+    be greater than 1.
 
 .. note::
 
-    One of ``text``, ``sensor``, ``text_sensor``, or ``time_id`` must be provided
+    One of ``text``, ``sensor``, ``text_sensor``, ``time_id``, or ``paragraph_break`` must be provided
 
 .. code-block:: yaml
 
