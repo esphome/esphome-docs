@@ -799,6 +799,7 @@ The Dropdown widget is built internall from a *button* and a *list* (both not re
 
 The ``dropdown`` can be also integrated as :doc:`/components/select/lvgl`.
 
+.. _lvgl-wgt-img:
 
 ``img``
 *******
@@ -982,6 +983,8 @@ By default, the Line widget width and height dimensions are set to ``size_conten
         line_width: 8
         line_color: 0x0000FF
         line_rounded: true
+
+.. _lvgl-wgt-mtr:
 
 ``meter``
 *********
@@ -1271,6 +1274,8 @@ The ``switch`` can be also integrated as :doc:`/components/binary_sensor/lvgl` o
 
 See :ref:`lvgl-cook-relay` for an example how to use a switch to act on a local component.
 
+.. _lvgl-wgt-tbl:
+
 ``table``
 *********
 
@@ -1292,6 +1297,7 @@ The Table widget is very lightweight because only the texts are stored. No real 
     # Example widget:
     - 
 
+.. _lvgl-wgt-txt:
 
 ``textarea``
 ************
@@ -1317,26 +1323,7 @@ One line mode and password modes are supported.
     - 
 
 
-``canvas``
-**********
-
-A Canvas inherits from Image where the user can draw anything. Rectangles, texts, images, lines, arcs can be drawn here using lvgl's drawing engine. Additionally "effects" can be applied, such as rotation, zoom and blur.
-
-**Specific options:**
-
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- Style options from :ref:`lvgl-styling`.
-
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - 
-
-
-
+.. _lvgl-wgt-obj:
 
 ``obj``
 *******

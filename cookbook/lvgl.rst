@@ -18,7 +18,7 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 Local light switch
 ------------------
 
-If you have a display device with a local light configured, you can simply create a wall switch for it.
+If you have a display device with a local light configured, you can simply create a :ref:`lvgl-wgt-swi` for it.
 
 .. figure:: /components/images/lvgl_switch.png
     :align: center
@@ -63,7 +63,7 @@ Remote light button
 .. figure:: images/lvgl_cook_remligbut.png
     :align: center
 
-If you'd like to control a remote light, which appears as an entity in Home Assistant, first you need to import the light state into ESPHome, and then control it using a service call:
+If you'd like to control a remote light which appears as an entity in Home Assistant from a toggle (checkable) :ref:`lvgl-wgt-btn`, first you need to import the light state into ESPHome, and then control it using a service call:
 
 .. code-block:: yaml
 
@@ -205,7 +205,7 @@ Nothe the ``adv_hittest`` option, which ensures that accidental touches to the s
 Thermometer
 -----------
 
-A thermometer with a gauge acomplished with ``meter`` widget and numeric display using ``label``:
+A thermometer with a gauge acomplished with :ref:`lvgl-wgt-mtr` widget and numeric display using :ref:`lvgl-wgt-lbl`:
 
 .. figure:: images/lvgl_cook_thermometer.png
     :align: center
@@ -594,7 +594,7 @@ For this example to work, use the theme and style options from :ref:`above <lvgl
 ESPHome boot bogo
 -----------------
 
-To display a boot screen which disappears automatically after a few moments or on touch of the screen you can use the *top layer*. The trick is to put the full screen widget as the last item of the widgets list, so it draws on top of all the others. To make it automatically disappear afer boot, you use ESPHome's ``on_boot`` trigger:
+To display a boot image which disappears automatically after a few moments or on touch of the screen you can use the *top layer*. The trick is to put a base :ref:`lvgl-wgt-obj` full screen and child :ref:`lvgl-wgt-img` widget in its middle as the last item of the widgets list, so they draw on top of all the others. To make it automatically disappear afer boot, you use ESPHome's ``on_boot`` trigger:
 
 .. code-block:: yaml
 
@@ -638,12 +638,12 @@ To display a boot screen which disappears automatically after a few moments or o
 An analog clock
 ---------------
 
-Using the meter and label widgets, we can create an analog clock which shows the date too.
+Using the :ref:`lvgl-wgt-mtr` and :ref:`lvgl-wgt-lbl` widgets, we can create an analog clock which shows the date too.
 
 .. figure:: images/lvgl_cook_clock.png
     :align: center
 
-The script runs every minute to update the hand line positions and the label texts.
+The script runs every minute to update the hand line positions and the texts.
 
 .. code-block:: yaml
 
@@ -762,7 +762,7 @@ The script runs every minute to update the hand line positions and the label tex
 A numeric input keypad
 ----------------------
 
-The btnmatrix widget can work together with the :ref:`key_collector` to collect the button presses as key press sequences. It sends the ``text`` of the buttons to the key collector.
+The :ref:`lvgl-wgt-bmx` widget can work together with the :ref:`key_collector` to collect the button presses as key press sequences. It sends the ``text`` of the buttons to the key collector.
 
 .. figure:: images/lvgl_cook_keypad.png
     :align: center
@@ -891,14 +891,14 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                     id: lvgl_led
                     color: 0xFF0000
 
-A few notable things in this example: usage of ``align_to`` to align the text display to the led vertically; usage of a base object ``obj`` as a parent for the label, in order to center the label in the middle of it and emphasize it with shadows independently of the label's dimensions; changing the background color of the buttons in ``pressed`` state. 
+A few notable things in this example: usage of ``align_to`` to align the text display to the led vertically; usage of a base object ``obj`` as a parent for the label (in order to center the label in the middle of it and emphasize it with shadows independently of the label's dimensions); changing the background color of the buttons in ``pressed`` state. 
 
 .. _lvgl-cook-idlescreen:
 
 Turn off screen when idle
 -------------------------
 
-LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Touching the screen counts as an activity and resets the inactivity counter (it's important to use the ``on_release`` trigger). With a template number you can make the timeout settable by the users.
+LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be used to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Touching the screen counts as an activity and resets the inactivity counter (it's important to use the ``on_release`` trigger). With a template number you can make the timeout settable by the users.
 
 .. code-block:: yaml
 
