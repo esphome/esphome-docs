@@ -68,6 +68,9 @@ Configuration variables:
 - **rgb_current** (*Optional*, current): The current used for the RGB channel.
   Defaults to ``20mA``.
   Can be one of ``10mA``, ``15mA``, ``20mA``, ``25mA``, ``30mA``, ``35mA``, ``40mA``, ``45mA``.
+- **separate_modes** (*Optional*, bool): Use separate RGB/CW modes instead of writing all 5 values as RGB.
+  Defaults to ``true``, keep it at ``true`` if your SM2135 chip variant does not support simultaneous CW and RGB modes (e.g. SM2135E).
+  Set this to ``false`` when your SM2135 chip variant supports having CW and RGB leds on at the same time (e.g. SM2135EH/SM2135EJ).
 
 .. _sm2135-output:
 
