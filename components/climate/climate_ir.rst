@@ -275,6 +275,7 @@ The following are available in addition to climate_ir supports_heat and supports
 - **supports_dry** (*Optional*, boolean): Enables setting dry mode for this unit. Defaults to ``false``.
 - **supports_fan_only** (*Optional*, boolean): Enables setting fan only mode for this unit. Confirm that mode is supported on your remote. Defaults to ``false``.
 
+
 - **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to ``middle``. 
 
   - Options are: ``left``, ``middle-left``, ``middle``, ``middle-right``, ``right``, ``auto``
