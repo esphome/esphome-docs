@@ -21,7 +21,7 @@ After validating the sensor is working, we can proceed and add some formulas.
 .. code-block:: yaml
 
     sensor:
-      - platform: bme280
+      - platform: bme280_i2c
         temperature:
           name: "BME280 Temperature"
           id: bme280_temperature
