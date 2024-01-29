@@ -296,7 +296,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 Fonts
 *****
 
-LVGL internally stores fonts rendered in a C array. The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ font, and symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
+LVGL internally stores fonts rendered in a C array. The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
 
 - ``montserrat_8``: 8px font
 - ``montserrat_10``: 10px font
