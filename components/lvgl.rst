@@ -893,6 +893,7 @@ TODO Newline characters are handled automatically by the label widget. You can u
     - label:
         align: TOP_MID
         id: lbl_symbol
+        text_font: montserrat_28
         symbol: SETTINGS #same result as text: "\uF013"
 
     # Example action (update label with a value from a sensor):
