@@ -762,7 +762,7 @@ The script runs every minute to update the hand line positions and the texts.
 A numeric input keypad
 ----------------------
 
-The :ref:`lvgl-wgt-bmx` widget can work together with the :ref:`key_collector` to collect the button presses as key press sequences. It sends the ``text`` of the buttons to the key collector.
+The :ref:`lvgl-wgt-bmx` widget can work together with the :ref:`key_collector` to collect the button presses as key press sequences. It sends the ``text`` of the buttons (or ``key_code`` where configured) to the key collector.
 
 .. figure:: images/lvgl_cook_keypad.png
     :align: center
@@ -804,7 +804,7 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                   - label:
                       id: lvgl_label
                       align: CENTER
-                      text: "* delete, # enter"
+                      text: "Enter code and \uF00C"
                       text_align: center
             - btnmatrix:
                 id: lvgl_keypad
@@ -879,7 +879,7 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
               else:
                 - lvgl.label.update:
                     id: lvgl_label
-                    text: "Please enter code"
+                    text: "Enter code and \uF00C"
         on_result:
           - if:
               condition:
@@ -893,7 +893,7 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                     id: lvgl_led
                     color: 0xFF0000
 
-A few notable things in this example: usage of a base object ``obj`` as a parent for the label (in order to center the label in the middle of it and emphasize it with shadows independently of the label's dimensions); usage of ``align_to`` to align it to the led vertically; changing the background color of the buttons in ``pressed`` state; using the ``key_code`` configuration option to send a different character to ``key_collector`` instead of the displayed symbol.
+A few notable things in this example: usage of a base object ``obj`` as a parent for the label (in order to center the label in the middle of it and emphasize it with shadows independently of the label's dimensions); usage of ``align_to`` to align it to the led vertically; changing the background color of the buttons in ``pressed`` state; using the ``key_code`` configuration option to send a different character to ``key_collector`` instead of the displayed symbol; display a symbol within the text by its unicode codepoint address in the :ref:` font <lvgl-fonts>`.
 
 .. _lvgl-cook-idlescreen:
 

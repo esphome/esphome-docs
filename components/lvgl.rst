@@ -320,14 +320,14 @@ LVGL internally stores fonts rendered in a C array. The library offers by defaul
 - ``montserrat_46``: 46px font
 - ``montserrat_48``: 48px font
 
-You can display the embedded symbols easily on supported widgets using the ``symbol`` configuration option:
+You can display the embedded symbols among the text by their codepoint address (the hexadecimal value in grey below, preceeded by ``\u``, eg. ``\uF00C``) or more easily on supported widgets using the ``symbol`` configuration option:
 
 .. figure:: /components/images/lvgl_symbols.png
     :align: center
 
 .. note::
 
-    The ``text_font`` parameter influences the size of ``symbol``, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes.
+    The ``text_font`` parameter influences the size of ``symbol`` configuration option, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes.
 
 In addition to the above, the following special fonts are available from LVGL as built-in:
 
@@ -631,9 +631,9 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
     - **buttons** (**Required**, list): A list of buttons in a row:
         - **id** (*Optional*): An ID for a button
         - **text** or **symbol** (*Optional*): Text or built-in :ref:`symbol <lvgl-fonts>` to display on the button.
+        - **key_code** (*Optional*, string): One character be sent as the key code to a :ref:`key_collector` instead of ``text`` when the button is pressed.
         - **width** (*Optional*): Width relative to the other buttons in the same row. A value between ``1`` and ``15`` range, default ``1`` (eg. in a line with two buttons: one ``width: 1`` and another one ``width: 2``, the first will be ``33%`` wide while the second will be ``66%`` wide). 
         - **selected** (*Optional*, boolean): Set the button as the most recently released or focused. Defaults to ``false``.
-        - **key_code** (*Optional*, string): One character be sent as the key code to a :ref:`key_collector` instead of ``text`` when the button is pressed.
         - **control** (*Optional*): Binary flags to control behavior of the buttons (all ``false`` by default):
             - **hidden** (*Optional*, boolean): makes a button hidden (hidden buttons still take up space in the layout, they are just not visible or clickable).
             - **no_repeat** (*Optional*, boolean): Disable repeating when the button is long pressed.
@@ -944,7 +944,7 @@ The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
     If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup, according to its ``restore_mode`` setting.
 
-Check out :ref:`lvgl-cook-keypad` for an example how to change the led styling properties from an automation.
+Check out :ref:`lvgl-cook-keypad` in the Cookbook for an example how to change the led styling properties from an automation.
 
 .. _lvgl-wgt-lin:
 
