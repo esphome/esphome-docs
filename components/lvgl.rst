@@ -320,14 +320,14 @@ LVGL internally stores fonts rendered in a C array. The library offers by defaul
 - ``montserrat_46``: 46px font
 - ``montserrat_48``: 48px font
 
-You can display the embedded symbols among the text by their codepoint address (the hexadecimal value in grey below, preceeded by ``\u``, eg. ``\uF00C``) or more easily on supported widgets using the ``symbol`` configuration option:
+You can display the embedded symbols among the text by their codepoint address (the hexadecimal value in grey below, preceeded by ``\u``, eg. ``\uF00C``) or more easily on supported widgets using the ``symbol`` configuration option with the following constants (see :ref:`lvgl-wgt-lbl` example):
 
 .. figure:: /components/images/lvgl_symbols.png
     :align: center
 
 .. note::
 
-    The ``text_font`` parameter influences the size of ``symbol`` configuration option, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes.
+    The ``text_font`` parameter affects the size of ``symbol``, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes.
 
 In addition to the above, the following special fonts are available from LVGL as built-in:
 
