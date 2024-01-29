@@ -643,6 +643,8 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
             - **popover** (*Optional*, boolean): show the button label in a popover when pressing this key.
             - **recolor** (*Optional*, boolean): Enable recoloring of button texts with #. E.g. ``It's #ff0000 red#``
             - **custom_1** and **custom_2** (*Optional*, boolean): custom free to use flags
+        - **key_code** (*Optional*, string): one character be sent as the key code to a :ref:`key_collector` instead of ``text`` when the button is pressed.
+collector instead of the button text, if present.
 - **items** (*Optional*, list): Settings for the items **part**, the buttons all use the text and typical background style properties except translations and transformations.
 - **one_checked** (*Optional*, boolean): Allow only one button to be checked at a time (aka. radio buttons). Defaults to ``false``.
 - Style options from :ref:`lvgl-styling` for the background of the button matrix, uses the typical background style properties. ``pad_row`` and ``pad_column`` set the space between the buttons.

@@ -847,13 +847,15 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                         control:
                           no_repeat: true
                   - buttons:
-                      - text: '*'
+                      - symbol: BACKSPACE
+                        key_code: "*"
                         control:
                           no_repeat: true
                       - text: 0
                         control:
                           no_repeat: true
-                      - text: '#'
+                      - symbol: OK
+                        key_code: "#"
                         control:
                           no_repeat: true
 
@@ -891,7 +893,7 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                     id: lvgl_led
                     color: 0xFF0000
 
-A few notable things in this example: usage of ``align_to`` to align the text display to the led vertically; usage of a base object ``obj`` as a parent for the label (in order to center the label in the middle of it and emphasize it with shadows independently of the label's dimensions); changing the background color of the buttons in ``pressed`` state. 
+A few notable things in this example: usage of a base object ``obj`` as a parent for the label (in order to center the label in the middle of it and emphasize it with shadows independently of the label's dimensions); usage of ``align_to`` to align it to the led vertically; changing the background color of the buttons in ``pressed`` state; using the ``key_code`` configuration option to send a different character to ``key_collector`` instead of the displayed symbol.
 
 .. _lvgl-cook-idlescreen:
 
