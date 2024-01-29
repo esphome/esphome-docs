@@ -854,7 +854,7 @@ A label is the basic widget type that is used to display text.
 
 **Specific options:**
 
-- **text** or **symbol** (**Required**, string): The text or built-in :ref:`symbol <lvgl-fonts>` to display. To display an empty label, specify ``" "`` (space).
+- **text** or **symbol** (**Required**, string): The text or built-in :ref:`symbol <lvgl-fonts>` to display. To display an empty label, specify ``""``.
 - **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
 - **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to render the text in.
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
@@ -888,7 +888,12 @@ TODO Newline characters are handled automatically by the label widget. You can u
         align: CENTER
         id: lbl_id
         recolor: true
-        text: '#FF0000 write# #00FF00 colored# #0000FF text#'
+        text: "#FF0000 write# #00FF00 colored# #0000FF text#"
+
+    - label:
+        align: TOP_MID
+        id: lbl_symbol
+        symbol: SETTINGS #same result as text: "\uF013"
 
     # Example action (update label with a value from a sensor):
     on_...:
