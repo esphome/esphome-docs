@@ -893,7 +893,7 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                     id: lvgl_led
                     color: 0xFF0000
 
-A few notable things in this example: usage of a base object ``obj`` as a parent for the label (in order to center the label in the middle of it and emphasize it with shadows independently of the label's dimensions); usage of ``align_to`` to align it to the led vertically; changing the background color of the buttons in ``pressed`` state; using the ``key_code`` configuration option to send a different character to ``key_collector`` instead of the displayed symbol; display a symbol within the text by its unicode codepoint address in the :ref:`font <lvgl-fonts>`.
+A few notable things in this example: usage of a base object ``obj`` as a parent for the label (in order to center the label in the middle of it and emphasize it with shadows independently of the label's dimensions); usage of ``align_to`` to align it to the led vertically; changing the background color of the buttons in ``pressed`` state; using the ``key_code`` configuration option to send a different character to ``key_collector`` instead of the displayed symbol; display a symbol within the text by its codepoint unicode address in the :ref:`font <lvgl-fonts>`.
 
 .. _lvgl-cook-idlescreen:
 
