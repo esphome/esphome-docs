@@ -14,6 +14,7 @@ Here's a comparison of the two sensors; both are set to an update interval of 10
 .. figure:: /images/pulse-counter_vs_pulse-meter.png
     :align: center
     :width: 50.0%
+Please note that it is not possible to use both of these two sensors on the same pin.
 
 .. code-block:: yaml
 
