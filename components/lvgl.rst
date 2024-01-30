@@ -640,7 +640,7 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
             - **disabled** (*Optional*, boolean): applies *disabled* styles and properties to the button.
             - **checkable** (*Optional*, boolean): Enable toggling of a button, ``checked`` state will be added/removed as the button is clicked.
             - **checked** (*Optional*, boolean): make the button checked. It will use the styles of the ``checked`` state.
-            - **click_trig** (*Optional*, boolean): Controls how to :ref:`trigger <lvgl-event-trg>` ``on_value`` : if ``true`` on *click*, if ``false`` on *press*.  TODO !!!
+            - **click_trig** (*Optional*, boolean): Controls how to :ref:`trigger <lvgl-event-trg>` ``on_value`` : if ``true`` on *click*, if ``false`` on *press*.
             - **popover** (*Optional*, boolean): show the button label in a popover when pressing this key.
             - **recolor** (*Optional*, boolean): Enable recoloring of button texts with #. E.g. ``It's #ff0000 red#``
             - **custom_1** and **custom_2** (*Optional*, boolean): custom free to use flags
