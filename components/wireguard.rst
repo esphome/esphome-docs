@@ -47,7 +47,8 @@ adding the following to your configuration:
       peer_endpoint: wg.server.example
       peer_public_key: EeFfGgHh...=
 
-      # Optional netmask (this is the default if omitted)
+      # Optional netmask (this is the default, no outgoing traffic 
+      # will pass through the tunnel if omitted)
       netmask: 255.255.255.255
 
       # Optional endpoint port (WireGuard default if omitted)
