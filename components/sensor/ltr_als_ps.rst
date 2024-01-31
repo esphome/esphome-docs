@@ -162,9 +162,9 @@ Configuration variables:
   Defaults to ``65535``, which implies it will never be triggered.
 - **ps_low_threshold** (*Optional*, int): The threshold for the proximity sensor to trigger on object getting further away. 
   Defaults to ``0``, which implies it will never be triggered.
-- **on_ps_high_threshold** (*Optional*, :ref:`config-actions`): Actions to perform when the proximity sensor is triggered
+- **on_ps_high_threshold** (*Optional*): Actions to perform when the proximity sensor is triggered
   on object getting closer.
-- **on_ps_low_threshold** (*Optional*, :ref:`config-actions`): Actions to perform when the proximity sensor is triggered
+- **on_ps_low_threshold** (*Optional*): Actions to perform when the proximity sensor is triggered
   on object getting further away.
 
 Sensors
