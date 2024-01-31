@@ -71,6 +71,7 @@ If you'd like to control a remote light which appears as an entity in Home Assis
       - platform: homeassistant
         id: remote_light
         entity_id: light.remote_light
+        publish_initial_state: true
         on_state:
           then:
             lvgl.widget.update:
