@@ -169,7 +169,7 @@ Configuration variables:
 
 Sensors
 .......
-This component offers five sensors for ALS-enabled devices one sensor for PS-enabled devices.
+This component offers five sensors for ALS-enabled devices and one sensor for PS-enabled devices.
 You can configure all or any subset of the sensors. Each configured sensor is reported separately 
 on each ``update_interval``. **name** option is required for the sensor. All other options from 
 :ref:`Sensor <config-sensor>`.
