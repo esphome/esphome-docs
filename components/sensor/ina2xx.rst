@@ -130,6 +130,16 @@ The component exposes one function to reset INA228/INA229 energy and charge accu
       // Within lambda, reset counters.
       id(my_charge_sensor).reset_energy_counters();
 
+To simplify the use of this function, you can use the following example to add a button to reset the counters.
+
+  .. code-block:: yaml
+
+      button:
+        - platform: template
+          name: "Reset counters"
+          on_press:
+            - lambda: "id(my_change_sensor).reset_energy_counters();"
+
 
 See Also
 --------
