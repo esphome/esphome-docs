@@ -332,7 +332,7 @@ You can display the embedded symbols among the text by their codepoint address (
 
 .. note::
 
-    The ``text_font`` parameter affects the size of ``symbol``, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes. If you set `text_font`` on a widget to a custom ESPHome font, these symbols will likely not display correctly.
+    The ``text_font`` parameter affects the size of ``symbol``, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes. If you set ``text_font`` on a widget to a custom ESPHome font, these symbols will likely not display correctly.
 
 In addition to the above, the following special fonts are available from LVGL as built-in:
 

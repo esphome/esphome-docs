@@ -203,7 +203,7 @@ Next, create a ``font:`` section in your configuration:
         size: 50
         glyphs: ["\U0000e425"] # mdi-timer
 
-      - file: 'custom/RobotoCondensed-Regular.ttf'
+      - file: 'fonts/RobotoCondensed-Regular.ttf'
         id: roboto_special_28
         size: 28
         bpp: 4
@@ -213,12 +213,7 @@ Next, create a ``font:`` section in your configuration:
           "\u0020", #space
           "\u0021", #!
           "\u0022", #"
-          "\u0025", #%
           "\u0027", #'
-          "\u002C", #,
-          "\u003A", #:
-          "\u003D", #=
-          "\u003F", #?
           ]
 
       - file: "fonts/RobotoCondensed-Regular.ttf"
@@ -230,6 +225,8 @@ Next, create a ``font:`` section in your configuration:
             glyphs:
               - "\uF001" # music
               - "\uF004" # heart
+              - "\uF0EB" # lightbulb
+              - "\uF5C5" # pool
 
     display:
       # ...
@@ -276,8 +273,8 @@ Configuration variables:
   ``!"%()+=,-_.:°/?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
 - **extras** (*Optional*, enum):A list of font glyph configurations you'd like to include within this
   font, from other TrueType files (eg. icons from other font, but at the same size as the main font):
-  - **file** (**Required**): The path of the font file with the extra glyphs.
-  - **glyphs** (**Required**, list): A list of glyphs you want to include.
+      - **file** (**Required**): The path of the font file with the extra glyphs.
+      - **glyphs** (**Required**, list): A list of glyphs you want to include.
 
 .. note::
 
@@ -289,8 +286,8 @@ Configuration variables:
     TrueType font files offer icons at codepoints far from what's reachable on a standard keyboard, for these it's needed 
     to specify the unicode codepoint of the glyph as a hex address escaped with ``\u`` or ``\U``. 
     
-    Code points up to `0xFFFF` are encoded like ``\uE6E8``. Lowercase ``\u`` and exactly 4 hexadecimal digits. 
-    Code points above `0xFFFF` are encoded like ``\U0001F5E9``. Capital ``\U`` and exactly 8 hexadecimal digits.
+    Code points up to ``0xFFFF`` are encoded like ``\uE6E8``. Lowercase ``\u`` and exactly 4 hexadecimal digits. 
+    Code points above ``0xFFFF`` are encoded like ``\U0001F5E9``. Capital ``\U`` and exactly 8 hexadecimal digits.
     
     The ``extras`` section only supports TrueType files, ``size`` and ``bpp`` will be the same as one level above. This
     will allow printing icons alongside the characters in the same string, like ``I \uF004 You \uF001``.
@@ -350,7 +347,6 @@ And you can also specify a background color for the text, using an optional para
         # ...
         lambda: |-
           // Syntax is always: it.print(<x>, <y>, <font>, [color=COLOR_ON], [align=TextAlign::TOP_LEFT], <text>, [color=COLOR_OFF]);
-          it.print(0, 0, id(my_font), COLOR_ON, "Left aligned");
           it.print(it.get_width()/2, it.get_height()/4 + 25, id(my_font_with_icons_20), display::COLOR_ON, TextAlign::CENTER, "I \uF004 You \uF001", COLOR_OFF);
 
 .. _display-printf:
