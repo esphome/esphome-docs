@@ -252,15 +252,15 @@ Configuration variables:
   - **family** (**Required**, string): The name of the Google Font family.
   - **italic** (*Optional*, boolean): Whether the font should be italic.
   - **weight** (*Optional*, enum): The weight of the font. Can be either the text name or the integer value:
-    - **thin**: 100
-    - **extra-light**: 200
-    - **light**: 300
-    - **regular**: 400 (**default**)
-    - **medium**: 500
-    - **semi-bold**: 600
-    - **bold**: 700
-    - **extra-bold**: 800
-    - **black**: 900
+      - **thin**: 100
+      - **extra-light**: 200
+      - **light**: 300
+      - **regular**: 400 (**default**)
+      - **medium**: 500
+      - **semi-bold**: 600
+      - **bold**: 700
+      - **extra-bold**: 800
+      - **black**: 900
 
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
   in your display code.
