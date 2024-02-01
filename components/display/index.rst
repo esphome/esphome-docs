@@ -169,19 +169,24 @@ at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Porta
 actually not having to worry about the licensing of font files :)
 
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
-a ``.ttf``, ``.pcf``, or ``.bdf`` file from somewhere on the internet and place it, for example,
+a ``.ttf``, ``.otf``, ``.woff``, ``.pcf``, or ``.bdf`` file from somewhere on the internet and place it, for example,
 inside a ``fonts`` folder next to your configuration file.
 
 Next, create a ``font:`` section in your configuration:
 
 .. code-block:: yaml
 
+    # Various ways to configure fonts
     font:
       - file: "fonts/Comic Sans MS.ttf"
         id: my_font
         size: 20
+        bpp: 2
 
-      # gfonts://family[@weight]
+      - file: "fonts/tom-thumb.bdf"
+        id: tomthumb
+
+        # gfonts://family[@weight]
       - file: "gfonts://Roboto"
         id: roboto
         size: 20
@@ -193,13 +198,38 @@ Next, create a ``font:`` section in your configuration:
         id: font2
         size: 16
 
-      - file: "fonts/tom-thumb.bdf"
-        id: tomthumb
-
-      - file: 'gfonts://Material+Symbols+Outlined'
+      - file: "gfonts://Material+Symbols+Outlined"
         id: icon_font_50
         size: 50
         glyphs: ["\U0000e425"] # mdi-timer
+
+      - file: 'custom/RobotoCondensed-Regular.ttf'
+        id: roboto_special_28
+        size: 28
+        bpp: 4
+        glyphs: [
+          a,A,á,Á,e,E,é,É,
+          (,),+,-,_,.,°,•,µ,
+          "\u0020", #space
+          "\u0021", #!
+          "\u0022", #"
+          "\u0025", #%
+          "\u0027", #'
+          "\u002C", #,
+          "\u003A", #:
+          "\u003D", #=
+          "\u003F", #?
+          ]
+
+      - file: "fonts/RobotoCondensed-Regular.ttf"
+        id: my_font_with_icons_20
+        size: 20
+        bpp: 4
+        extras:
+          - file: "fonts/FontAwesome5-Solid+Brands+Regular.woff.ttf"
+            glyphs:
+              - "\uF001" # music
+              - "\uF004" # heart
 
     display:
       # ...
@@ -207,18 +237,21 @@ Next, create a ``font:`` section in your configuration:
 Configuration variables:
 
 - **file** (**Required**): The path (relative to where the .yaml file is) of the font
-  file. You can use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
+  file. You can also use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
+  - **type** (**Required**, string): Can be ``local`` or ``gfonts``.
 
-  - **type** (**Required**, string): Can be ``gfonts`` or ``local``.
+  **Local Fonts**:
 
-    **Google Fonts**:
+  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType or bitmap font file.
+
+  **Google Fonts**:
 
     Each Google Font will be downloaded once and cached for future use. This can also be used to download Material
     Symbols or Icons as in the example above.
 
   - **family** (**Required**, string): The name of the Google Font family.
+  - **italic** (*Optional*, boolean): Whether the font should be italic.
   - **weight** (*Optional*, enum): The weight of the font. Can be either the text name or the integer value:
-
     - **thin**: 100
     - **extra-light**: 200
     - **light**: 300
@@ -229,31 +262,38 @@ Configuration variables:
     - **extra-bold**: 800
     - **black**: 900
 
-  - **italic** (*Optional*, boolean): Whether the font should be italic.
-
-    **Local Fonts**:
-
-  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType or bitmap font file.
-
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
   in your display code.
 - **size** (*Optional*, int): The size of the font in pt (not pixel!).
   If you want to use the same font in different sizes, create two font objects. Note: *size* is ignored
   by bitmap fonts. Defaults to ``20``.
+- **bpp** (*Optional*, int): The bit depth of the rendered font from TTF, for anti-aliasing. Can be ``1``,``2``,
+  ``4``,``8``. Defaults to ``1``.
 - **glyphs** (*Optional*, list): A list of characters you plan to use. Only the characters you specify
   here will be compiled into the binary. Adjust this if you need some special characters or want to
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
-  be more than one character long if you for example want to use font ligatures. Defaults to
+  be more than one character long if you for example want to use font ligatures. You can also specify glyphs by their codepoint (see below). Defaults to
   ``!"%()+=,-_.:°/?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
-
+- **extras** (*Optional*, enum):A list of font glyph configurations you'd like to include within this
+  font, from other TrueType files (eg. icons from other font, but at the same size as the main font):
+  - **file** (**Required**): The path of the font file with the extra glyphs.
+  - **glyphs** (**Required**, list): A list of glyphs you want to include.
 
 .. note::
 
     To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
     to translate the TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
     add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
-    to install it using
-    ``pip install "pillow==10.1.0"``.
+    to install it using ``pip install "pillow==10.1.0"``.
+    
+    TrueType font files offer icons at codepoints far from what's reachable on a standard keyboard, for these it's needed 
+    to specify the unicode codepoint of the glyph as a hex address escaped with ``\u`` or ``\U``. 
+    
+    Code points up to `0xFFFF` are encoded like ``\uE6E8``. Lowercase ``\u`` and exactly 4 hexadecimal digits. 
+    Code points above `0xFFFF` are encoded like ``\U0001F5E9``. Capital ``\U`` and exactly 8 hexadecimal digits.
+    
+    The ``extras`` section only supports TrueType files, ``size`` and ``bpp`` will be the same as one level above. This
+    will allow printing icons alongside the characters in the same string, like ``I \uF004 You \uF001``.
 
 .. _display-static_text:
 
@@ -301,6 +341,17 @@ As with basic shapes, you can also specify a color for the text:
           // Syntax is always: it.print(<x>, <y>, <font>, [color=COLOR_ON], [align=TextAlign::TOP_LEFT], <text>);
           it.print(0, 0, id(my_font), COLOR_ON, "Left aligned");
 
+And you can also specify a background color for the text, using an optional parameter after the text:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          // Syntax is always: it.print(<x>, <y>, <font>, [color=COLOR_ON], [align=TextAlign::TOP_LEFT], <text>, [color=COLOR_OFF]);
+          it.print(0, 0, id(my_font), COLOR_ON, "Left aligned");
+          it.print(it.get_width()/2, it.get_height()/4 + 25, id(my_font_with_icons_20), display::COLOR_ON, TextAlign::CENTER, "I \uF004 You \uF001", COLOR_OFF);
 
 .. _display-printf:
 

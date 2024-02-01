@@ -297,7 +297,11 @@ You can adjust the appearance of widgets by changing the foreground, background 
 Fonts
 *****
 
-LVGL internally stores fonts rendered in a C array. The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
+In ESPHome LVGL offers two font choices: the internal fonts offered by the library or :ref:`fonts configured in the normal way<display-fonts>`.
+
+**Built-in fonts**
+
+The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
 
 - ``montserrat_8``: 8px font
 - ``montserrat_10``: 10px font
@@ -328,18 +332,21 @@ You can display the embedded symbols among the text by their codepoint address (
 
 .. note::
 
-    The ``text_font`` parameter affects the size of ``symbol``, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes.
+    The ``text_font`` parameter affects the size of ``symbol``, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes. If you set `text_font`` on a widget to a custom ESPHome font, these symbols will likely not display correctly.
 
 In addition to the above, the following special fonts are available from LVGL as built-in:
 
-- ``unscii_8``: 8 px pixel perfect font with only ASCII characters
-- ``unscii_16``: 16 px pixel perfect font with only ASCII characters
-- ``simsun_16_cjk``: 16 px font with normal range + 1000 most common `CJK Radicals <https://en.wikipedia.org/wiki/CJK_Radicals_Supplement>`__
-- ``dejavu_16_persian_hebrew``: 16 px font with normal range + Hebrew, Arabic, Persian letters and all their forms
+- ``unscii_8``: 8 px pixel perfect font with only ASCII characters.
+- ``unscii_16``: 16 px pixel perfect font with only ASCII characters.
+- ``simsun_16_cjk``: 16 px font with normal range + 1000 most common `CJK Radicals <https://en.wikipedia.org/wiki/CJK_Radicals_Supplement>`__.
+- ``dejavu_16_persian_hebrew``: 16 px font with normal range + Hebrew, Arabic, Persian letters and all their forms.
 
-TODO !! You can generate your own set of glyphs in a C array using LVGL's `Online Font Converter <https://lvgl.io/tools/fontconverter/>`__ or use the tool `Offline <https://github.com/lvgl/lv_font_conv>`__.
+**ESPHome fonts**
 
-In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary.
+In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary. This has the advantage that you can define custom sets of glyphs of any size, with icons or diacritic characters for any language from any TrueType font.
+
+
+
 
 .. _lvgl-widgets:
 
@@ -1633,6 +1640,7 @@ See Also
 - :doc:`/components/select/lvgl`
 - :doc:`/components/light/lvgl`
 - :doc:`/cookbook/lvgl`
+- :doc:`/components/display/index`
 - :doc:`/components/touchscreen/index`
 - :doc:`/components/sensor/rotary_encoder`
 - `LVGL 8.3 docs <https://docs.lvgl.io/8.3/>`__
