@@ -18,10 +18,10 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 Local light switch
 ------------------
 
-If you have a display device with a local light configured, you can simply create a :ref:`lvgl-wgt-swi` for it.
-
 .. figure:: /components/images/lvgl_switch.png
     :align: left
+
+If you have a display device with a local light configured, you can simply create a :ref:`lvgl-wgt-swi` for it.
 
 .. code-block:: yaml
 
@@ -105,10 +105,10 @@ If you'd like to control a remote light which appears as an entity in Home Assis
 Light brightness slider
 -----------------------
 
-You can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the  the brightness of a dimmable light.
-
 .. figure:: images/lvgl_cook_volume.png
     :align: left
+
+You can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the  the brightness of a dimmable light.
 
 We can use a sensor to retrieve the current brightness of a light, which is stored in Home Assistant as an attribute of the entity, as an integer value between ``0`` (min) and ``255`` (max). It's conveninent to set the slider's ``min_value`` and ``max_value`` accordingly.
 
@@ -158,10 +158,10 @@ This is applicable to service calls like ``fan.set_percentage``, ``valve.set_val
 Media player volume slider
 --------------------------
 
-Similarly, you can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the volume level of a media player, which uses float values.
-
 .. figure:: images/lvgl_cook_volume.png
     :align: right
+
+Similarly, you can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the volume level of a media player, which uses float values.
 
 With a sensor we retrieve the current volume level of the media player, which is stored in Home Assistant as an attribute of the entity, and is a float value between ``0`` (min) and ``1`` (max). Since LVGL only handles integers, it's conveninent to set the slider's possible values to be between ``0`` and ``100``. Thus a conversion is needed back and forth, meaning that when we read the value from Home Assistant we have to multiply it by ``100``, and when we set the volume through the service call, we have to divide it by ``100``:
 
