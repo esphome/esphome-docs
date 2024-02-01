@@ -273,10 +273,9 @@ Configuration variables:
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
   be more than one character long if you for example want to use font ligatures. You can also specify glyphs by their codepoint (see below). Defaults to
   ``!"%()+=,-_.:°/?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
-- **extras** (*Optional*, enum):A list of font glyph configurations you'd like to include within this
-  font, from other TrueType files (eg. icons from other font, but at the same size as the main font):
-    - **file** (**Required**): The path of the font file with the extra glyphs.
-    - **glyphs** (**Required**, list): A list of glyphs you want to include.
+- **extras** (*Optional*, enum):A list of font glyph configurations you'd like to include within this font, from other TrueType files (eg. icons from other font, but at the same size as the main font):
+  - **file** (**Required**): The path of the font file with the extra glyphs.
+  - **glyphs** (**Required**, list): A list of glyphs you want to include.
 
 .. note::
 
