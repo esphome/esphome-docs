@@ -299,7 +299,7 @@ Fonts
 
 In ESPHome LVGL offers two font choices: the internal fonts offered by the library or :ref:`fonts configured in the normal way<display-fonts>`.
 
-**Built-in fonts**
+**Internal fonts**
 
 The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
 

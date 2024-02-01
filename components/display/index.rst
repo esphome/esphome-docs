@@ -237,6 +237,7 @@ Configuration variables:
 
 - **file** (**Required**): The path (relative to where the .yaml file is) of the font
   file. You can also use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
+
   - **type** (**Required**, string): Can be ``local`` or ``gfonts``.
 
   **Local Fonts**:
@@ -266,14 +267,14 @@ Configuration variables:
 - **size** (*Optional*, int): The size of the font in pt (not pixel!).
   If you want to use the same font in different sizes, create two font objects. Note: *size* is ignored
   by bitmap fonts. Defaults to ``20``.
-- **bpp** (*Optional*, int): The bit depth of the rendered font from TTF, for anti-aliasing. Can be ``1``,``2``,
-  ``4``,``8``. Defaults to ``1``.
+- **bpp** (*Optional*, int): The bit depth of the rendered font from TrueType, for anti-aliasing. Can be ``1``,``2``,``4``,``8``. Defaults to ``1``.
 - **glyphs** (*Optional*, list): A list of characters you plan to use. Only the characters you specify
   here will be compiled into the binary. Adjust this if you need some special characters or want to
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
   be more than one character long if you for example want to use font ligatures. You can also specify glyphs by their codepoint (see below). Defaults to
   ``!"%()+=,-_.:°/?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
 - **extras** (*Optional*, enum):A list of font glyph configurations you'd like to include within this font, from other TrueType files (eg. icons from other font, but at the same size as the main font):
+
   - **file** (**Required**): The path of the font file with the extra glyphs.
   - **glyphs** (**Required**, list): A list of glyphs you want to include.
 
@@ -292,6 +293,8 @@ Configuration variables:
     
     The ``extras`` section only supports TrueType files, ``size`` and ``bpp`` will be the same as one level above. This
     will allow printing icons alongside the characters in the same string, like ``I \uF004 You \uF001``.
+    
+    Many font sizes with multiple glyphs at high bit depths will increase the binary size considerably. Make your choices carefully.
 
 .. _display-static_text:
 
