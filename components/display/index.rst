@@ -276,7 +276,7 @@ Configuration variables:
 - **extras** (*Optional*, enum):A list of font glyph configurations you'd like to include within this font, from other TrueType files (eg. icons from other font, but at the same size as the main font):
 
   - **file** (**Required**): The path of the font file with the extra glyphs.
-  - **glyphs** (**Required**, list): A list of glyphs you want to include.
+  - **glyphs** (**Required**, list): A list of glyphs you want to include. Can't repeat the same glyph if it was declared in the level above.
 
 .. note::
 
@@ -291,8 +291,8 @@ Configuration variables:
     Code points up to ``0xFFFF`` are encoded like ``\uE6E8``. Lowercase ``\u`` and exactly 4 hexadecimal digits. 
     Code points above ``0xFFFF`` are encoded like ``\U0001F5E9``. Capital ``\U`` and exactly 8 hexadecimal digits.
     
-    The ``extras`` section only supports TrueType files, ``size`` and ``bpp`` will be the same as one level above. This
-    will allow printing icons alongside the characters in the same string, like ``I \uF004 You \uF001``.
+    The ``extras`` section only supports TrueType files, ``size`` and ``bpp`` will be the same as the above level. This will allow 
+    printing icons alongside the characters in the same string, like ``I \uF004 You \uF001``. 
     
     Many font sizes with multiple glyphs at high bit depths will increase the binary size considerably. Make your choices carefully.
 
