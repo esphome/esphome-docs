@@ -23,7 +23,7 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
       - platform: ltr390
         uv_index:
           name: "UV Index"
-        uv_index:
+        uv:
           name: "UV Sensor Counts"
         light:
           name: "Light"
