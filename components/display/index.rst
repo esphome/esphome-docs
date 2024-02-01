@@ -168,6 +168,8 @@ specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf
 at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Portable_Compiled_Format>`_ and `BDF <https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`_ bitmap fonts! Granted the reason for it is
 actually not having to worry about the licensing of font files :)
 
+These fonts can be also used in :ref:`LVGL <lvgl-main>`.
+
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
 a ``.ttf``, ``.otf``, ``.woff``, ``.pcf``, or ``.bdf`` file from somewhere on the internet and place it, for example,
 inside a ``fonts`` folder next to your configuration file.
@@ -273,8 +275,8 @@ Configuration variables:
   ``!"%()+=,-_.:°/?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
 - **extras** (*Optional*, enum):A list of font glyph configurations you'd like to include within this
   font, from other TrueType files (eg. icons from other font, but at the same size as the main font):
-      - **file** (**Required**): The path of the font file with the extra glyphs.
-      - **glyphs** (**Required**, list): A list of glyphs you want to include.
+    - **file** (**Required**): The path of the font file with the extra glyphs.
+    - **glyphs** (**Required**, list): A list of glyphs you want to include.
 
 .. note::
 
