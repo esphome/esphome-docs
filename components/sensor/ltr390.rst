@@ -21,11 +21,14 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 
     sensor:
       - platform: ltr390
-        uv:
+        uv_index:
           name: "UV Index"
+        uv_index:
+          name: "UV Sensor Counts"
         light:
           name: "Light"
-
+        ambient_light:
+          name: "Light Sensor Counts"
 Configuration variables:
 ------------------------
 
@@ -83,7 +86,7 @@ Gain
 Resolution
 ----------
 
-.. list-table:: Resolution
+.. list-table::
     :widths: 25 25 10
     :header-rows: 1
 
