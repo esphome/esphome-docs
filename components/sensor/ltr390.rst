@@ -31,6 +31,7 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
           name: "Light"
         ambient_light:
           name: "Light Sensor Counts"
+
 Configuration variables:
 ------------------------
 
