@@ -75,7 +75,7 @@ Use ``ina2xx_i2c`` or ``ina2xx_spi`` components for :ref:`I²C <i2c>` or :ref:`S
       miso_pin: D2
         
     sensor:
-      - platform: ina2xx_i2c
+      - platform: ina2xx_spi
         cs_pin: D3
         shunt_resistance: 0.001130 ohm
         max_current: 40 A
