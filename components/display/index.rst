@@ -162,11 +162,7 @@ You can view the full API documentation for the rendering engine in the "API Ref
 Fonts
 *****
 
-The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome.
-Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very
-specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf``) font file
-at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Portable_Compiled_Format>`_ and `BDF <https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`_ bitmap fonts! Granted the reason for it is
-actually not having to worry about the licensing of font files :)
+The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome. You have the option to use **any** OpenType/TrueType (``.ttf``, ``.otf``, ``.woff``) font file at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Portable_Compiled_Format>`_ and `BDF <https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`_ bitmap fonts! 
 
 These fonts can be also used in :ref:`LVGL <lvgl-main>`.
 
@@ -190,22 +186,22 @@ Next, create a ``font:`` section in your configuration:
 
         # gfonts://family[@weight]
       - file: "gfonts://Roboto"
-        id: roboto
+        id: roboto_20
         size: 20
 
       - file:
           type: gfonts
           family: Roboto
           weight: 900
-        id: font2
+        id: roboto_16
         size: 16
 
       - file: "gfonts://Material+Symbols+Outlined"
-        id: icon_font_50
+        id: icons_50
         size: 50
         glyphs: ["\U0000e425"] # mdi-timer
 
-      - file: 'fonts/RobotoCondensed-Regular.ttf'
+      - file: "fonts/RobotoCondensed-Regular.ttf"
         id: roboto_special_28
         size: 28
         bpp: 4
@@ -219,30 +215,29 @@ Next, create a ``font:`` section in your configuration:
           ]
 
       - file: "fonts/RobotoCondensed-Regular.ttf"
-        id: my_font_with_icons_20
+        id: my_font_with_icons
         size: 20
         bpp: 4
         extras:
-          - file: "fonts/FontAwesome5-Solid+Brands+Regular.woff.ttf"
-            glyphs:
-              - "\uF001" # music
-              - "\uF004" # heart
-              - "\uF0EB" # lightbulb
-              - "\uF5C5" # pool
+          - file: "fonts/materialdesignicons-webfont.ttf"
+            glyphs: [
+              "\U000F02D1", # mdi-heart
+              "\U000F05D4", # mdi-airplane-landing
+              ]
 
     display:
       # ...
 
 Configuration variables:
 
-- **file** (**Required**): The path (relative to where the .yaml file is) of the font
+- **file** (**Required**, string): The path (relative to where the .yaml file is) of the font
   file. You can also use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
 
   - **type** (**Required**, string): Can be ``local`` or ``gfonts``.
 
   **Local Fonts**:
 
-  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType or bitmap font file.
+  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the OpenType/TrueType or bitmap font file.
 
   **Google Fonts**:
 
@@ -267,34 +262,31 @@ Configuration variables:
 - **size** (*Optional*, int): The size of the font in pt (not pixel!).
   If you want to use the same font in different sizes, create two font objects. Note: *size* is ignored
   by bitmap fonts. Defaults to ``20``.
-- **bpp** (*Optional*, int): The bit depth of the rendered font from TrueType, for anti-aliasing. Can be ``1``,``2``,``4``,``8``. Defaults to ``1``.
+- **bpp** (*Optional*, int): The bit depth of the rendered font from OpenType/TrueType, for anti-aliasing. Can be ``1``, ``2``, ``4``, ``8``. Defaults to ``1``.
 - **glyphs** (*Optional*, list): A list of characters you plan to use. Only the characters you specify
   here will be compiled into the binary. Adjust this if you need some special characters or want to
-  reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
-  be more than one character long if you for example want to use font ligatures. You can also specify glyphs by their codepoint (see below). Defaults to
-  ``!"%()+=,-_.:°/?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
-- **extras** (*Optional*, enum):A list of font glyph configurations you'd like to include within this font, from other TrueType files (eg. icons from other font, but at the same size as the main font):
+  reduce the size of the binary if you don't plan to use some glyphs. You can also specify glyphs by their codepoint (see below). Defaults to ``!"%()+=,-_.:°/?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
+- **extras** (*Optional*, enum): A list of font glyph configurations you'd like to include within this font, from other OpenType/TrueType files (eg. icons from other font, but at the same size as the main font):
 
-  - **file** (**Required**): The path of the font file with the extra glyphs.
-  - **glyphs** (**Required**, list): A list of glyphs you want to include. Can't repeat the same glyph if it was declared in the level above.
+  - **file** (**Required**, string): The path of the font file with the extra glyphs.
+  - **glyphs** (**Required**, list): A list of glyphs you want to include. Can't repeat the same glyph codepoint if it was declared in the level above.
 
 .. note::
 
-    To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
-    to translate the TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
-    add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
-    to install it using ``pip install "pillow==10.1.0"``.
-    
-    TrueType font files offer icons at codepoints far from what's reachable on a standard keyboard, for these it's needed 
+    OpenType/TrueType font files offer icons at codepoints far from what's reachable on a standard keyboard, for these it's needed 
     to specify the unicode codepoint of the glyph as a hex address escaped with ``\u`` or ``\U``. 
     
     Code points up to ``0xFFFF`` are encoded like ``\uE6E8``. Lowercase ``\u`` and exactly 4 hexadecimal digits. 
     Code points above ``0xFFFF`` are encoded like ``\U0001F5E9``. Capital ``\U`` and exactly 8 hexadecimal digits.
     
-    The ``extras`` section only supports TrueType files, ``size`` and ``bpp`` will be the same as the above level. This will allow 
-    printing icons alongside the characters in the same string, like ``I \uF004 You \uF001``. 
+    The ``extras`` section only supports OpenType/TrueType files, ``size`` and ``bpp`` will be the same as the above level. This will allow printing icons alongside the characters in the same string, like ``I \uF004 You \uF001``. 
     
     Many font sizes with multiple glyphs at high bit depths will increase the binary size considerably. Make your choices carefully.
+
+    To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
+    to translate the OpenType/TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
+    add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
+    to install it using ``pip install "pillow==10.1.0"``.
 
 .. _display-static_text:
 
@@ -342,7 +334,7 @@ As with basic shapes, you can also specify a color for the text:
           // Syntax is always: it.print(<x>, <y>, <font>, [color=COLOR_ON], [align=TextAlign::TOP_LEFT], <text>);
           it.print(0, 0, id(my_font), COLOR_ON, "Left aligned");
 
-And you can also specify a background color for the text, using an optional parameter after the text:
+In case of fonts rendered at higher bit depths, the background color has to be specified after the text in order for antialiasing to work:
 
 .. code-block:: yaml
 
@@ -350,8 +342,8 @@ And you can also specify a background color for the text, using an optional para
       - platform: ...
         # ...
         lambda: |-
-          // Syntax is always: it.print(<x>, <y>, <font>, [color=COLOR_ON], [align=TextAlign::TOP_LEFT], <text>, [color=COLOR_OFF]);
-          it.print(it.get_width()/2, it.get_height()/4 + 25, id(my_font_with_icons_20), display::COLOR_ON, TextAlign::CENTER, "I \uF004 You \uF001", COLOR_OFF);
+          // Syntax is always: it.print(<x>, <y>, <font>, [color=COLOR_ON], [align], <text>, [color=COLOR_OFF]);
+          it.print(0, 0, id(my_font_with_icons), COLOR_ON, TextAlign::CENTER, "Just\U000f05d4here. Already\U000F02D1this.", COLOR_OFF);
 
 .. _display-printf:
 
