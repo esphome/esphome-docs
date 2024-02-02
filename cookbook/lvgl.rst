@@ -13,6 +13,54 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
     The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen width of ``240x320px``, you have to adjust them to your screen in order to obtain expected results.
 
+
+.. _lvgl-cook-icons:
+
+MDI icons in text
+-----------------
+
+ESPHome's :ref:`font renderer <lvgl-fonts>` allows you to use any OpenType/TrueType font file for your texts. This is very flexiblle because you can prepare various sets of fonts at different sizes with a different number of glyphs which is extremely convenient when we're talking about flash space.
+
+One example is when you'd like some MDI icons to be used in line with the text (similarly how LVGL's internal fonts and symbols coexist). You can use a font of your choice, choose the symbols you want and mix them in a single sized set with icons from MDI.
+
+In the example below we use the default set of glyphs from RobotoCondensed-Regular, and append some extra symbols to it from MDI. Then we display these inline with the text by escaping their codepoints:
+
+.. code-block:: yaml
+
+    font:
+      - file: "fonts/RobotoCondensed-Regular.ttf"
+        id: roboto_icons_42
+        size: 42
+        bpp: 4
+        extras:
+          - file: "fonts/materialdesignicons-webfont.ttf"
+            glyphs: [
+              "\U000F02D1", # mdi-heart
+              "\U000F05D4", # mdi-airplane-landing
+              ]
+
+    lvgl:
+        ...
+        pages:
+          - id: main_page
+            widgets:
+              - label:
+                  text: "Just\U000f05d4here. Already\U000F02D1this."
+                  align: CENTER
+                  text_align: center
+                  text_font: roboto_icons_42
+
+
+.. note::
+
+    Follow these steps to choose your MDI icons:
+    
+    - To lookup your icons, use the `Pictogrammers <https://pictogrammers.com/library/mdi/>`_ site. Click on the desired icon, and note down / copy the codepoint of it (it's the hexadecimal number near the download options).
+    - To get the TrueType font with all the icons in it, head on to the `Pictogrammers GitHub repository <https://github.com/Pictogrammers/pictogrammers.github.io/tree/main/%40mdi/font/>`_ and from a recent version folder, download the ``materialdesignicons-webfont.ttf`` file and place it in your ESPHome config directory under a folder named ``fonts`` (to match the example above).
+    - To use the desired icon, prepend the copied codepoint with ``\U000``. The unicode character escape sequence has to start with capital ``\U`` and have exactly 8 hexadecimal digits.
+    - To translate the escape sequence into the real glyph, make sure you enclose your strings in double quotes.    
+
+
 .. _lvgl-cook-relay:
 
 Local light switch
