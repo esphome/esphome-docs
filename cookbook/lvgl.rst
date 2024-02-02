@@ -14,53 +14,6 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
     The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen width of ``240x320px``, you have to adjust them to your screen in order to obtain expected results.
 
 
-.. _lvgl-cook-icons:
-
-MDI icons in text
------------------
-
-ESPHome's :ref:`font renderer <lvgl-fonts>` allows you to use any OpenType/TrueType font file for your texts. This is very flexiblle because you can prepare various sets of fonts at different sizes with a different number of glyphs which is extremely convenient when we're talking about flash space.
-
-One example is when you'd like some MDI icons to be used in line with the text (similarly how LVGL's internal fonts and symbols coexist). You can use a font of your choice, choose the symbols you want and mix them in a single sized set with icons from MDI.
-
-In the example below we use the default set of glyphs from RobotoCondensed-Regular, and append some extra symbols to it from MDI. Then we display these inline with the text by escaping their codepoints:
-
-.. code-block:: yaml
-
-    font:
-      - file: "fonts/RobotoCondensed-Regular.ttf"
-        id: roboto_icons_42
-        size: 42
-        bpp: 4
-        extras:
-          - file: "fonts/materialdesignicons-webfont.ttf"
-            glyphs: [
-              "\U000F02D1", # mdi-heart
-              "\U000F05D4", # mdi-airplane-landing
-              ]
-
-    lvgl:
-        ...
-        pages:
-          - id: main_page
-            widgets:
-              - label:
-                  text: "Just\U000f05d4here. Already\U000F02D1this."
-                  align: CENTER
-                  text_align: center
-                  text_font: roboto_icons_42
-
-
-.. note::
-
-    Follow these steps to choose your MDI icons:
-    
-    - To lookup your icons, use the `Pictogrammers <https://pictogrammers.com/library/mdi/>`_ site. Click on the desired icon, and note down / copy the codepoint of it (it's the hexadecimal number near the download options).
-    - To get the TrueType font with all the icons in it, head on to the `Pictogrammers GitHub repository <https://github.com/Pictogrammers/pictogrammers.github.io/tree/main/%40mdi/font/>`_ and from a recent version folder, download the ``materialdesignicons-webfont.ttf`` file and place it in your ESPHome config directory under a folder named ``fonts`` (to match the example above).
-    - To use the desired icon, prepend the copied codepoint with ``\U000``. The unicode character escape sequence has to start with capital ``\U`` and have exactly 8 hexadecimal digits.
-    - To translate the escape sequence into the real glyph, make sure you enclose your strings in double quotes.    
-
-
 .. _lvgl-cook-relay:
 
 Local light switch
@@ -469,6 +422,8 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
     lvgl:
       ...
       theme:
+        label:
+          text_font: my_font # set all your labels to use your custom defined font
         btn:
           bg_color: 0x2F8CD8
           bg_grad_color: 0x005782
@@ -477,13 +432,68 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
           border_color: 0x0077b3
           border_width: 1
           text_color: 0xFFFFFF
-          pressed:
+          pressed: # set some btn colors to be different in pressed state
             bg_color: 0x006699
             bg_grad_color: 0x00334d
+          checked: # set some btn colors to be different in checked state
+            bg_color: 0x1d5f96
+            bg_grad_color: 0x03324A
+            text_color: 0xfff300
+        btnmatrix:
+          bg_opa: transp
+          border_color: 0x0077b3
+          border_width: 0
+          text_color: 0xFFFFFF
+          pad_all: 0
+          items: # set all your btnmatrix buttins to use your custom defined styles and font
+            bg_color: 0x2F8CD8
+            bg_grad_color: 0x005782
+            bg_grad_dir: VER
+            bg_opa: cover
+            border_color: 0x0077b3
+            border_width: 1
+            text_color: 0xFFFFFF
+            text_font: my_font 
+            pressed:
+              bg_color: 0x006699
+              bg_grad_color: 0x00334d
+            checked:
+              bg_color: 0x1d5f96
+              bg_grad_color: 0x03324A
+              text_color: 0x005580
+        switch:
+          bg_color: 0xC0C0C0
+          bg_grad_color: 0xb0b0b0
+          bg_grad_dir: VER
+          bg_opa: cover
           checked:
             bg_color: 0x1d5f96
             bg_grad_color: 0x03324A
-            text_color: 0x005580
+            bg_grad_dir: VER
+            bg_opa: cover
+          knob:
+            bg_color: 0xFFFFFF
+            bg_grad_color: 0xC0C0C0
+            bg_grad_dir: VER
+            bg_opa: cover
+        slider:
+          border_width: 1
+          border_opa: 15%
+          bg_color: 0xcccaca
+          bg_opa: 15%
+          indicator:
+            bg_color: 0x1d5f96
+            bg_grad_color: 0x03324A
+            bg_grad_dir: VER
+            bg_opa: cover
+          knob:
+            bg_color: 0x2F8CD8
+            bg_grad_color: 0x005782
+            bg_grad_dir: VER
+            bg_opa: cover
+            border_color: 0x0077b3
+            border_width: 1
+            text_color: 0xFFFFFF
       style_definitions:
         - id: header_footer
           bg_color: 0x2F8CD8
@@ -533,7 +543,7 @@ For the navigation bar we can use a button matrix. Note how the *header_footer* 
               rows:
                 - buttons:
                   - id: top_prev
-                    symbol: left
+                    symbol: left # symbol only works when text_font is one of the internal fonts
                     on_press:
                       then:
                         lvgl.page.previous:
@@ -681,6 +691,139 @@ To display a boot image which disappears automatically after a few moments or on
                     src: boot_logo
               on_press:
                 - lvgl.widget.hide: boot_screen
+
+.. _lvgl-cook-icontext:
+
+MDI icons in text
+-----------------
+
+ESPHome's :ref:`font renderer <lvgl-fonts>` allows you to use any OpenType/TrueType font file for your texts. This is very flexiblle because you can prepare various sets of fonts at different sizes with a different number of glyphs which is extremely convenient when we're talking about flash space.
+
+One example is when you'd like some MDI icons to be used in line with the text (similarly how LVGL's internal fonts and symbols coexist). You can use a font of your choice, choose the symbols you want and mix them in a single sized set with icons from MDI.
+
+.. figure:: images/lvgl_cook_font_roboto_mdi.png
+    :align: center
+
+In the example below we use the default set of glyphs from RobotoCondensed-Regular, and append some extra symbols to it from MDI. Then we display these inline with the text by escaping their codepoints:
+
+.. code-block:: yaml
+
+    font:
+      - file: "fonts/RobotoCondensed-Regular.ttf"
+        id: roboto_icons_42
+        size: 42
+        bpp: 4
+        extras:
+          - file: "fonts/materialdesignicons-webfont.ttf"
+            glyphs: [
+              "\U000F02D1", # mdi-heart
+              "\U000F05D4", # mdi-airplane-landing
+              ]
+
+    lvgl:
+        ...
+        pages:
+          - id: main_page
+            widgets:
+              - label:
+                  text: "Just\U000f05d4here. Already\U000F02D1this."
+                  align: CENTER
+                  text_align: center
+                  text_font: roboto_icons_42
+
+
+.. note::
+
+    Follow these steps to choose your MDI icons:
+    
+    - To lookup your icons, use the `Pictogrammers <https://pictogrammers.com/library/mdi/>`_ site. Click on the desired icon, and note down / copy the codepoint of it (it's the hexadecimal number near the download options).
+    - To get the TrueType font with all the icons in it, head on to the `Pictogrammers GitHub repository <https://github.com/Pictogrammers/pictogrammers.github.io/tree/main/%40mdi/font/>`_ and from a recent version folder, download the ``materialdesignicons-webfont.ttf`` file and place it in your ESPHome config directory under a folder named ``fonts`` (to match the example above).
+    - To use the desired icon, prepend the copied codepoint with ``\U000``. The unicode character escape sequence has to start with capital ``\U`` and have exactly 8 hexadecimal digits.
+    - To translate the escape sequence into the real glyph, make sure you enclose your strings in double quotes.    
+
+
+.. _lvgl-cook-iconbatt:
+
+Battery status icon
+-------------------
+
+.. figure:: images/lvgl_cook_font_batt.png
+    :align: left
+
+Another example for using MDI icons is to display battery percentage in 10 steps. We need to have a font containing the glyphs corresponding to the different battery percentage levels, and we need a sensor to import the battery status from Home Assistant into a numeric value. We use a :ref:`lambda <config-lambda>` to return the codepoint of the corresponding glyph based on the sensor value:
+
+.. code-block:: yaml
+
+    font:
+      - file: "fonts/materialdesignicons-webfont.ttf"
+        id: battery_icons_20
+        size: 20
+        bpp: 4
+        glyphs: [
+          "\U000F007A", # mdi-battery-10
+          "\U000F007B", # mdi-battery-20
+          "\U000F007C", # mdi-battery-30
+          "\U000F007D", # mdi-battery-40
+          "\U000F007E", # mdi-battery-50
+          "\U000F007F", # mdi-battery-60
+          "\U000F0080", # mdi-battery-70
+          "\U000F0081", # mdi-battery-80
+          "\U000F0082", # mdi-battery-90
+          "\U000F0079", # mdi-battery (full)
+          "\U000F008E", # mdi-battery-outline
+          "\U000F0091", # mdi-battery-unknown
+          ]
+
+    sensor:
+      - platform: homeassistant
+        id: sns_battery_percentage
+        entity_id: sensor.device_battery
+        on_value:
+          - lvgl.label.update:
+              id: lbl_battery_status
+              text: !lambda |-
+                static char buf[10];
+                std::string icon;
+                if (x == 100.0) {
+                    icon = "\U000F0079"; // mdi-battery (full)
+                } else if (x > 90) {
+                    icon = "\U000F0082"; // mdi-battery-90
+                } else if (x > 80) {
+                    icon = "\U000F0081"; // mdi-battery-80
+                } else if (x > 70) {
+                    icon = "\U000F0080"; // mdi-battery-70
+                } else if (x > 60) {
+                    icon = "\U000F007F"; // mdi-battery-60
+                } else if (x > 50) {
+                    icon = "\U000F007E"; // mdi-battery-50
+                } else if (x > 40) {
+                    icon = "\U000F007D"; // mdi-battery-40
+                } else if (x > 30) {
+                    icon = "\U000F007C"; // mdi-battery-30
+                } else if (x > 20) {
+                    icon = "\U000F007B"; // mdi-battery-20
+                } else if (x > 10) {
+                    icon = "\U000F007A"; // mdi-battery-10
+                } else if (x > 0) {
+                    icon = "\U000F008E"; // mdi-battery-outline
+                } else {
+                    icon = "\U000F0091"; // mdi-battery-unknown
+                }
+                snprintf(buf, sizeof(buf), "%s", icon.c_str());
+                return buf;
+
+    lvgl:
+        ...
+        pages:
+          - id: battery_page
+            widgets:
+              - label:
+                  id: lbl_battery_status
+                  align: TOP_RIGHT
+                  y: 40
+                  x: -10
+                  text_font: roboto_icons_20
+                  text: "\U000F0091" # mdi-battery-unknown
 
 .. _lvgl-cook-clock:
 
