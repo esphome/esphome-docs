@@ -822,8 +822,8 @@ Another example for using MDI icons is to display battery percentage in 10 steps
                   align: TOP_RIGHT
                   y: 40
                   x: -10
-                  text_font: roboto_icons_20
-                  text: "\U000F0091" # mdi-battery-unknown
+                  text_font: battery_icons_20
+                  text: "\U000F0091" # start with mdi-battery-unknown
 
 .. _lvgl-cook-clock:
 
