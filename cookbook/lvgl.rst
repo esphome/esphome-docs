@@ -64,7 +64,7 @@ Remote light button
 .. figure:: images/lvgl_cook_remligbut.png
     :align: right
 
-If you'd like to control a remote light which appears as an entity in Home Assistant from a toggle (checkable) :ref:`lvgl-wgt-btn`, first you need to import the light state into ESPHome, and then control it using a service call:
+If you'd like to control a remote light which appears as an entity in Home Assistant from a checkable (toggle) :ref:`lvgl-wgt-btn`, first you need to import the light state into ESPHome, and then control it using a service call:
 
 .. code-block:: yaml
 
@@ -741,6 +741,78 @@ In the example below we use the default set of glyphs from RobotoCondensed-Regul
     - To use the desired icon, prepend the copied codepoint with ``\U000``. The unicode character escape sequence has to start with capital ``\U`` and have exactly 8 hexadecimal digits.
     - To translate the escape sequence into the real glyph, make sure you enclose your strings in double quotes.    
 
+
+.. _lvgl-cook-iconstat:
+
+Toggle state icon button
+------------------------
+
+.. figure:: images/lvgl_cook_font_binstat.png
+    :align: left
+
+A good example for using icons is for showing a different icon on a checkable (toggle) button based on the state of the switch or light it is linked to. To put an icon on a button you use a :ref:`lvgl-wgt-lbl` widget as the child of the :ref:`lvgl-wgt-btn`. The coloring can alredy be different thanks to the :ref:`lvgl-cook-theme` where you can set a different color for the ``checked`` state.
+
+If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like this:
+
+.. code-block:: yaml
+
+    font:
+      - file: "custom/materialdesignicons-webfont.ttf"
+        id: mdi_42
+        size: 42
+        bpp: 4
+        glyphs: [
+          "\U000F0335", # mdi-lightbulb
+          "\U000F0336", # mdi-lightbulb-outline
+          ]
+
+    binary_sensor:
+      - platform: homeassistant
+        id: remote_light
+        entity_id: light.remote_light
+        publish_initial_state: true
+        on_press:
+          then:
+            - lvgl.widget.update:
+                id: btn_lightbulb
+                state:
+                  checked: true
+            - lvgl.label.update:
+                id: lbl_lightbulb
+                text: "\U000F0335" # mdi-lightbulb
+        on_release:
+          then:
+            - lvgl.widget.update:
+                id: btn_lightbulb
+                state:
+                  checked: false
+            - lvgl.label.update:
+                id: lbl_lightbulb
+                text: "\U000F0336" # mdi-lightbulb-outline
+
+    lvgl:
+        ...
+        pages:
+          - id: room_page
+            widgets:
+              - btn:
+                  x: 110
+                  y: 40
+                  width: 90
+                  height: 50
+                  checkable: true
+                  id: btn_lightbulb
+                  widgets:
+                    - label:
+                        id: lbl_lightbulb
+                        align: center
+                        text_font: mdi_42
+                        text: "\U000F0336" # mdi-lightbulb-outline
+                  on_short_click:
+                    - homeassistant.service:
+                        service: light.toggle
+                        data: 
+                          entity_id: light.remote_light
 
 .. _lvgl-cook-iconbatt:
 
