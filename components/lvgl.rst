@@ -345,8 +345,7 @@ In addition to the above, the following special fonts are available from LVGL as
 
 In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary. This has the advantage that you can define custom sets of glyphs of any size, with icons or diacritic characters for any language from any TrueType font.
 
-Check out :ref:`lvgl-cook-icontext` and :ref:`lvgl-cook-iconbatt` in the Cookbook for examples how to play with texts and icons using various TrueType/OpenType fonts.
-
+Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-cook-iconbatt` in the Cookbook for examples how to play with texts and icons using various TrueType/OpenType fonts.
 
 .. _lvgl-widgets:
 
