@@ -293,7 +293,7 @@ Configuration variables:
 Drawing Static Text
 *******************
 
-In your display code, you can render static text by referencing the font and just entering your string:
+In your display code, you can render static text by referencing the font and just entering your string enclosed in double quotes:
 
 .. code-block:: yaml
 
