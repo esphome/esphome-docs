@@ -95,6 +95,11 @@ Configuration variables:
   calibrate the sensor. No default value.
 - **adc_range** (*Optional*, ``0`` or ``1``): Selects the range for differential input across shunt
   resistor. ``0`` for ±163.84 mV, ``1`` for ±40.96 mV range. Defaults to ``0``.
+- **adc_time** (*Optional*, time usec): The time in microseconds to perform a single ADC conversion. 
+  Defaults to ``4120 us``. Valid values are ``50 us``, ``84 us``, ``150 us``, ``280 us``, ``540 us``, 
+  ``1052 us``, ``2074 us``, ``4120 us``.
+- **adc_averaging** (*Optional*, integer): Selects ADC sample averaging count. Defaults to ``128``. 
+  Valid values are ``1``, ``4``, ``16``, ``64``, ``128``, ``256``, ``512``, ``1024``.
 - **temperature_coefficient** (*Optional*, integer from ``0`` to ``16383``): Temperature coefficient (ppm/°C) of the 
   shunt for temperature compensation correction. Only applicable to INA228 and INA229 devices. Zero value means 
   no compensation is done. Defaults to ``0``.
