@@ -5,6 +5,7 @@ LVGL: Tips and Tricks
 
 .. seo::
     :description: Recipes for common use cases of LVGL Displays with ESPHome
+    :image: /images/lvgl.png
 
 Here are a couple recipes for various interesting things you can do with :ref:`lvgl-main` in ESPHome.
 
