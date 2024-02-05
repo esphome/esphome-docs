@@ -5,7 +5,7 @@ LVGL Light
 
 .. seo::
     :description: Instructions for setting up a LVGL widget light.
-    :image: ../images/logo_lvgl.png
+    :image: ../images/lvgl_c_lig.png
 
 The ``lvgl`` light platform creates a light from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.

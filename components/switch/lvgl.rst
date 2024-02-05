@@ -5,7 +5,7 @@ LVGL Switch
 
 .. seo::
     :description: Instructions for setting up a LVGL widget switch.
-    :image: ../images/logo_lvgl.png
+    :image: ../images/lvgl_c_swi.png
 
 The ``lvgl`` switch platform creates a switch from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.

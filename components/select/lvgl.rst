@@ -5,7 +5,7 @@ LVGL Select
 
 .. seo::
     :description: Instructions for setting up a LVGL widget select.
-    :image: ../images/logo_lvgl.png
+    :image: ../images/lvgl_c_sel.png
 
 The ``lvgl`` switch platform creates a select from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
