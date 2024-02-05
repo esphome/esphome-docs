@@ -135,11 +135,7 @@ See Also
 --------
 
 - :apiref:`display/display_buffer.h`
-- :ref:`LVGL <lvgl-main>`
+- :ref:`display-engine`
+- :ref:`lvgl-main`
 - :ghedit:`Edit`
 
-.. toctree::
-    :maxdepth: 1
-    :glob:
-
-    *
