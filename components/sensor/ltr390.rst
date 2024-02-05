@@ -68,9 +68,11 @@ where:
 Note that for UVI calculations it is recommended to use the defaults of ``X18`` gain and a resolution of 20 bits since
 the datasheet only provides the sensor counts per UVI (sensitivity) for this configuration. When using different
 configurations, the counts per UVI are scaled as follows:
+
 .. math::
 
     \text{sensitivity} = 2300 \times \frac{\text{gain}}{18} \times \frac{\text{int}}{400}
+
 where :math:`2300` is the sensor count per UVI at the default configuration.
 
 Gain
