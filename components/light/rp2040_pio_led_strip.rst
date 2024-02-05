@@ -42,6 +42,8 @@ Configuration variables
 
 - **is_rgbw** (*Optional*, boolean): Set to ``true`` if the strip is RGBW. Defaults to ``false``.
 
+- All other options from :ref:`Light <config-light>`.
+
 
 
 Manual Timings
