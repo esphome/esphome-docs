@@ -217,6 +217,8 @@ Remote code selection (exactly one of these has to be included):
     for more info.
   - **destination_address** (**Required**, int): The destination address to trigger on, see
     :ref:`remote_transmitter-transmit_abbwelcome` for more info.
+  - **three_byte_address** (**Optional**, boolean): The length of the source and destination address. ``false`` means two bytes
+    and ``true`` means three bytes. Defaults to ``false``.
   - **retransmission** (**Optional**, boolean): ``true`` if the message was re-transmitted. Defaults to ``false``.
   - **message_type** (**Required**, int): The message type to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
     for more info.
