@@ -51,7 +51,7 @@ Lux and UVI Formulas
 
 .. math::
 
-    \text{lux} = \frac{0.6 \times \text{als}}{\text{gain} \times \text{int}} \times \text{wfac}
+    \text{lux} = \frac{0.6 \times \text{als}}{\text{gain} \times \frac{\text{int}}{100} } \times \text{wfac}
 
 .. math::
 
@@ -59,19 +59,19 @@ Lux and UVI Formulas
 
 where:
 
-- ``als`` and ``uv`` are the sensor values
-- ``gain`` is the amount of gain, see the table below for details
-- ``int`` is the integration time in 100s of ms and is tied to the resolution, see the table below for details
+- ``als`` and ``uv`` are the sensor values.
+- ``gain`` is the sensor gain, see the table below for details.
+- ``int`` is the integration time in ms and is tied to the resolution, see the table below for details.
 - ``sensitivity`` is the sensor's count per UVI. See note below for details.
-- ``wfac`` is the window correction factor
+- ``wfac`` is the window correction factor.
 
-Note that for UVI calculations it is recommended to use the defaults of ``X18`` gain and a resolution of 20 bits since
+For UV Index sensing it is recommended to use the defaults of ``X18`` gain and a resolution of 20 bits since
 the datasheet only provides the sensor counts per UVI (sensitivity) for this configuration. When using different
 configurations, the counts per UVI are scaled as follows:
 
 .. math::
 
-    \text{sensitivity} = 2300 \times \frac{\text{gain}}{18} \times \frac{\text{int}}{400}
+    \text{sensitivity} = 2300 \times \frac{\text{gain}}{18} \times \frac{\text{int}}{4}
 
 where :math:`2300` is the sensor count per UVI at the default configuration.
 
@@ -106,27 +106,21 @@ Resolution
     * - Configuration value
       - Resolution (bits)
       - Integration Time (ms)
-      - int
     * - 16
       - 16
       - 25
-      - 0.25
     * - 17
       - 17
       - 50
-      - 0.5
     * - 18
       - 18
       - 100
-      - 1
     * - 19
       - 19
       - 200
-      - 2
     * - 20
       - 20
       - 400
-      - 4
 
 See Also
 --------
