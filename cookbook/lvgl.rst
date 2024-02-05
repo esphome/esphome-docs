@@ -13,6 +13,37 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
     The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen width of ``240x320px``, you have to adjust them to your screen in order to obtain expected results.
 
+.. _lvgl-cook-outbin:
+
+Local GPIO switch
+-----------------
+
+.. figure:: /components/images/lvgl_switch.png
+    :align: right
+
+The easiest way to integrate a LVGL :ref:`lvgl-wgt-swi` widget and a GPIO output on your display board is with the :ref:`lvgl-swi` component. This will create a Switch, which will toggle your GPIO directly:
+
+.. code-block:: yaml
+
+    output:
+      - id: output_display_light
+        platform: gpio
+        pin: GPIO14 # choose yours
+
+    switch:
+      - platform: lvgl
+        name: Display lights
+        widget: light_switch
+        output_id: output_display_light
+
+    lvgl:
+        ...
+        pages:
+          - id: main_page
+            widgets:
+              - switch:
+                  align: center
+                  id: light_switch
 
 .. _lvgl-cook-relay:
 
@@ -22,7 +53,7 @@ Local light switch
 .. figure:: /components/images/lvgl_switch.png
     :align: left
 
-If you have a display device with a local light configured, you can simply create a :ref:`lvgl-wgt-swi` for it.
+In case your local light implements as a different platform than GPIO, you can use :ref:`automations <automation>` to link together triggers and states with the :ref:`lvgl-wgt-swi` widget: 
 
 .. code-block:: yaml
 

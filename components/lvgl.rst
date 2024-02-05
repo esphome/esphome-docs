@@ -1283,9 +1283,6 @@ The Switch looks like a little slider and can be used to turn something on and o
         x: 10
         y: 10
         id: switch_id
-        indicator:
-        knob
-        
 
 The ``switch`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
 

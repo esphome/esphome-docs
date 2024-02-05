@@ -19,8 +19,8 @@ Configuration options:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the switch.
 - **widget** (**Required**): The ID of a widget configured in LVGL, which will reflect the state of the switch.
+- **output_id** (*Optional*, :ref:`config-id`): The ID of a binary output to drive in sync with the state of the switch widget.
 - All other options from :ref:`Switch <config-switch>`.
-
 
 Example:
 
@@ -30,6 +30,8 @@ Example:
       - platform: lvgl
         widget: checkbox_id
         name: LVGL switch
+
+Check out :ref:`lvgl-cook-outbin` in the Cookbook for an example how to set up a LVGL Switch component to interact directly with a GPIO.
 
 See Also
 --------
@@ -41,4 +43,5 @@ See Also
 - :doc:`/components/number/lvgl`
 - :doc:`/components/select/lvgl`
 - :doc:`/components/light/lvgl`
+- :doc:`/components/output/index`
 - :ghedit:`Edit`
