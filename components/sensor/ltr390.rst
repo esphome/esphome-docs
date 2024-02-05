@@ -62,8 +62,10 @@ where:
 - ``als`` and ``uv`` are the sensor values
 - ``gain`` is the amount of gain, see the table below for details
 - ``int`` is the integration time in 100s of ms and is tied to the resolution, see the table below for details
-- ``sensitivity`` has the value ``2300`` and is the sensor's count per UVI
+- ``sensitivity`` is given by $2300 \times \frac{\text{gain}}{18} \times \frac{int}{400}$, where $2300$ is the sensor's count per UVI at ``X18`` gain and an integration time of 400ms.
 - ``wfac`` is the window correction factor
+
+
 
 Gain
 ----
