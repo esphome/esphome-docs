@@ -1,0 +1,380 @@
+DS3232 Time source
+==================
+
+.. warning::
+
+  Support of extended functionality of DS3232 is experimental. Use with care and report bugs.
+
+DS3232 crystal is RTC with extended capabilities comparing to DS1307. It has two integrated hardware alarms, temperature sensor and 235 bytes of non-volatile memory accessible to end user.
+Despite DS1307 crystal it works on 3.3V power supply without additional converter to 5V level. 
+
+You first need to set up the :doc:`I2C </components/i2c>` component.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    time:
+      - platform: ds3232
+        id: ds3232_time
+        temperature:
+          # All sensor configuration possible here
+          name: "Chip Temperature"
+        use_heartbeat: false
+        interrupt_pin: GPIO07
+        reset_pin: GPIO08
+
+
+Configuration variables
+-----------------------
+- **address** (*Optional*, int): Manually specify the I²C address of the RTC. Defaults to ``0x68``.
+
+- **use_heartbeat** (*Optional*, bool): Specifies behavior of ``INT`` pin of DS3232 crystal. If set to ``true`` then this pin will generate 1 Hz stable square wave signal. All alarms will be ignored though. If set to ``false`` then this pin will act as interrupt pin when alarm is triggered by time. Defaults to ``true``.
+
+- **interrupt_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to ``INT`` output pin of DS3232 crystal. This pin should be pulled up either by internal or external resistor. Only pins with integrated pull-up possible.
+
+- **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to ``RST`` IO pin of DS3232 crystal.
+
+- **temperature** (*Optional*): The information for the integrated DS3232 crystal temperature sensor.
+
+  - **name** (**Required**, string): The name for the temperature sensor.
+
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **first_alarm** (*Optional*, :ref:`Setting alarms <setting_alarms>`): The first hardware alarm settings.
+
+- **second_alarm** (*Optional*, :ref:`Setting alarms <setting_alarms>`): The second hardware alarm settings.
+
+- **persistent_storage** (*Optional*, List of :ref:`persistent variables <persistent_storage>`): Configuration of persistent storage in crystal NVRAM. 
+
+- **on_heartbeat** (*Optional*, :ref:`Automation <automation>`): Actions to be performed on stable 1Hz signal from crystal. This event will be fired only if *use_heartbeat* is set to ``true`` and *interrupt_pin* is defined and properly connected.
+
+- **on_first_alarm** (*Optional*, :ref:`Automation <automation>`): Actions to be performed when the first alarm fires. This event will be fired only if *use_heartbeat* is set to ``false`` and *interrupt_pin* is defined and properly connected.
+
+- **on_second_alarm** (*Optional*, :ref:`Automation <automation>`): Actions to be performed when the second alarm fires. This event will be fired only if *use_heartbeat* is set to ``false`` and *interrupt_pin* is defined and properly connected.
+
+- **on_power_change** (*Optional*, :ref:`Automation <automation>`): Actions to be performed when power supply changed from online to battery or vice versa. This event will be fired only if *reset_pin* is defined and properly connected. The new power state is passed to event in  ``ds3232::DS3232PowerState power_state`` variable.
+
+- All other options from :ref:`base_time_config`
+
+.. _setting_alarms:
+
+Setting Alarms
+--------------
+
+  DS3232 crystal supports two integrated alarms. You can set it either in configuration file or by lambda or by actions.
+  The first alarm has second-based precision, the second one - minute-based precision. This means that you can set the first
+  alarm to fire on particular second while the second one will fire always on `00` second of specified minute even if you specify seconds value.
+
+.. code-block:: yaml
+
+      # Example configuration entry
+      first_alarm:
+        mode: match_day_of_week_and_time
+        time_pattern: "Monday 12:35:05"
+      second_alarm:
+        mode: match_time
+        time:
+          hour: 23
+          minute: 15
+        active: false
+
+Alarm Configuration variables
+*****************************
+
+- **mode** (*Optional*, :ref:`Alarm modes <alarm_modes>`): Set the mode of alarm.
+
+- **active** (*Optional*, bool): Determines whether this alarm is active (if set to ``true``) or not (if set to ``false``). Defaults to ``true``.
+
+- **time** (*Optional*): The information of alarm firing time. This variable is exclusive with *time_pattern* option.
+
+  - **day_of_month** (*Optional*, int): Specifies day of month to fire an alarm. Value should be within range from ``1`` to ``31``. This variable is exclusive with *day_of_week* variable. Defaults to ``1``.
+
+  - **day_of_week** (*Optional*, int): Specifies day of week to fire an alarm. Use ``1`` for Sunday, ``2`` for Monday and so on. This variable is exclusive with *day_of_month* variable. Defaults to ``1``.
+  
+  - **hour** (*Optional*, int): Specifies hour to fire an alarm. Allowed range is from ``0`` to ``23``. Defaults to ``0``.
+  
+  - **minute** (*Optional*, int): Specifies minute to fire an alarm. Allowed range is from ``0`` to ``59``. Defaults to ``0``.
+
+  - **second** (*Optional*, int): Specifies second to fire an alarm. Allowed range is from ``0`` to ``59``. Defaults to ``0``.
+
+- **time_pattern** (*Optional*, string): As alternative to *time* variable you can specify alarm firing time as string in the following format ``[Weekday]|[Day] Hour|*:Minute|*:Second|*``
+
+  Both *Weekday* or *Day* are optional; instead of *hour*, *minute* or *second* you can pass * (asterisk) which means *use default*.
+  Supported *weekday* values are: *Mon* or *Monday*, *Tue* or *Tuesday*, *Wed* or *Wednesday*, *Thu* or *Thursday*, *Fri* or *Friday*, *Sat* or *Saturday*, *Sun* or *Sunday*.
+  Other options have same requirements as their counterparts in *time* variable.
+  
+  Some examples for better understanding:
+
+=============================  ===============================================
+Pattern                        Value
+=============================  ===============================================
+``Mon *:*:*``                   Every monday on 00:00:00
+``2 23:00:*``                   Every second day of month on 23:00 (11:00 PM)
+``14:15:*``                     Every day on 14:15 (2:15 PM)
+``*:*:30``                      Every minute on the 30th second
+=============================  ===============================================
+
+.. _alarm_modes:
+
+Alarm Modes
+***********
+
+  Integrated alarms support following modes:
+
+  - **EVERY_TIME**: The first alarm fires every second, the second alarm fires every minute on the 00th second.
+  - **MATCH_SECONDS**: The seconds value of current time should match alarm. In this mode alarm fires every minute on the specified second. This mode on the second alarm behave like *EVERY_TIME* mode.
+  - **MATCH_MINUTES_SECONDS**: Alarm will fire every hour on the specified minute and second.
+  - **MATCH_TIME**: Alarm fires every day on the specified time.
+  - **MATCH_DATE_AND_TIME**: Alarm fires every month on the specified day and the specified time.
+  - **MATCH_DAY_OF_WEEK_AND_TIME**: Alarm fires every week on the specified weekday and the specified time.
+
+.. _persistent_storage:
+
+Usage of integrated NVRAM
+-------------------------
+
+  DS3232 crystal has integrated NVRAM with size of 235 bytes. 
+
+  Four bytes (registers from 0x14 to 0x17) are reserved for service information of this library, i.e. special values that
+  indicates that NVRAM is initialized, has specific version. 
+  
+  Remaining 231 bytes could be used to store some numerical or boolean data, i.e. settings.
+  All variables that should be stored in NVRAM need to be defined
+  in *persistent_storage* configuration variable.
+
+Variable definition
+*******************
+
+.. code-block:: yaml
+
+      # Example of variable definition
+      persistent_storage:
+        - id: variable_one
+          register: 0x16
+          type: int32
+          initial_value: '23'
+        - id: double_var
+          register: 0x20
+          type: double
+          initial_value: '3.02'
+
+- **id** (**Required**, :ref:`config-id`): Variable identifier to use in lambda and actions.
+- **register** (**Required**, hex): Start register to store variable in NVRAM. Available registers are in range from ``0x16`` to ``0xFF``.
+- **type** (**Required**, string): Variable type. In current version only numeric types are supported: *uint[8,16,32,64]* , *int[8,16,32,64]*, *bool*, *float*, *double*.
+- **initial_value** (*Optional*, string): The value with which to initialize this variable if the state can not be restored or if state restoration is not enabled. This needs to be wrapped in quotes! Defaults to the C++ default value for this type (for example ``0`` for integers).
+
+
+Accessing persistent variables in lambdas
+*****************************************
+
+In current release you could set / get value of persistent variable by using ``value()`` method.
+
+.. code-block:: c
+
+  //Get value
+  auto int = id(int_variable_id)->value();
+
+  //Set value
+  id(int_variable_id)->value() = 10;
+
+.. warning::
+
+  Though memory mapping of variable into NVRAM registers is validated on compile time, there is a chance of overlapping of memory ranges. 
+  Please test variables memory allocation before usage.
+
+.. _ds3232_nvram_set:
+
+``ds3232_nvram.set`` Action
+***************************
+
+Use this action to set value to persistent variable.
+
+.. code-block:: yaml
+
+      on_...:
+        - ds3232_nvram.set:
+            id: variable_id
+            value: '10'
+
+        # In case if you want to use lambda to set value
+        - ds3232_nvram.set:
+            id: other_var_id
+            value: !lambda |-
+              return 2.3 / 15.3;
+
+.. _ds3232_ds3232.erase_memory:
+
+``ds3232.erase_memory`` Action
+******************************
+
+Use this action to erase (i.e. set to zeroes) whole NVRAM memory except service area.
+
+.. code-block:: yaml
+
+    on_...:
+      - ds3232.erase_memory
+
+      # in case you need to specify the DS3232 id
+      - ds3232.erase_memory:
+          id: ds3232_time
+            
+
+.. _ds3232_ds3232.factory_reset:
+
+``ds3232.factory_reset`` Action
+*******************************
+
+Use this action to set predefined variables in NVRAM to their initial values.
+
+.. code-block:: yaml
+
+    on_...:
+      - ds3232.factory_reset
+
+      # in case you need to specify the DS3232 id
+      - ds3232.factory_reset:
+          id: ds3232_time
+
+
+.. _ds3232_automations:
+
+Automations
+-----------
+
+.. _ds3232_write_time_action:
+
+``ds3232.write_time`` Action
+****************************
+
+This :ref:`Action <config-action>` triggers a synchronization of the current system time to the RTC hardware.
+
+.. note::
+
+    The DS3232 component will *not* write the RTC clock if not triggered *explicitly* by this action.
+
+.. code-block:: yaml
+
+    on_...:
+      - ds3232.write_time
+
+      # in case you need to specify the DS3232 id
+      - ds3232.write_time:
+          id: ds3232_time
+
+
+.. _ds3232_read_time_action:
+
+``ds3232.read_time`` Action
+***************************
+
+This :ref:`Action <config-action>` triggers a synchronization of the current system time from the RTC hardware.
+
+.. note::
+
+    The DS3232 component will automatically read the RTC clock every 15 minutes by default and synchronize the
+    system clock when a valid timestamp was read from the RTC. (The ``update_interval`` can be changed.)
+    This action can be used to trigger *additional* synchronizations.
+
+.. code-block:: yaml
+
+    on_...:
+      - ds3232.read_time
+
+      # in case you need to specify the DS3232 id
+      - ds3232.read_time:
+          id: ds3232_time
+
+
+.. _ds3232_enable_heartbeat:
+
+``ds3232.enable_heartbeat`` Action
+**********************************
+
+This action sets *use_heartbeat* state to ``true``. 
+It will deactivate alarms, *on_first_alarm* and *on_second_alarm* events.
+It will activate stable 1Hz oscillation on INT pin of DS3232 crystal.
+If *interrupt_pin* is defined and connected then *on_heartbeat* event will be triggered every second.
+
+.. code-block:: yaml
+
+    on_...:
+      - ds3232.enable_heartbeat
+
+      # in case you need to specify the DS3232 id
+      - ds3232.enable_heartbeat:
+          id: ds3232_time
+
+.. _ds3232_enable_alarms:
+
+``ds3232.enable_alarms`` Action
+*******************************
+
+This action sets *use_heartbeat* state to ``false``.
+It will deactivate stable 1Hz oscillation, *on_heartbeat* event.
+It will activate alarm events on INT pin of DS3232 crystal.
+If *interrupt_pin* is defined and connected then *on_first_alarm* and *on_second_alarm* events will be triggered on alarm.
+
+.. code-block:: yaml
+
+    on_...:
+      - ds3232.enable_alarms
+
+      # in case you need to specify the DS3232 id
+      - ds3232.enable_alarms:
+          id: ds3232_time
+
+.. _ds3232_is_heartbeat_enabled:
+
+``ds3232.is_heartbeat_enabled`` Condition
+*****************************************
+
+Use this condition to check *use_heartbeat* mode of DS3232 crystal.
+
+.. code-block:: yaml
+    
+    condition:
+      ds3232.is_heartbeat_enabled: ds3232_chip_id
+
+.. _ds3232_set_first_alarm:
+
+``ds3232.set_alarm_one`` Action
+*******************************
+
+Use this action to set the first hardware alarm. 
+
+.. code-block:: yaml
+
+    on_...:
+      - ds3232.set_alarm_one:
+          id: ds3232_ref
+          mode: every_time
+
+.. _ds3232_set_second_alarm:
+
+``ds3232.set_alarm_two`` Action
+*******************************
+
+Use this action to set the second hardware alarm. 
+
+.. code-block:: yaml
+
+    on_...:
+      - ds3232.set_alarm_two:
+          id: ds3232_ref
+          mode: match_date_and_time
+          time_pattern: "30 11:45:00"
+
+See Also
+--------
+- :ref:`base_time_config`
+- `Datasheet <https://www.analog.com/media/en/technical-documentation/data-sheets/ds3232m.pdf>`__
+- :apiref:`ds3232/ds3232.h`
+- :ghedit:`Edit`
+
+
+
+
+
+
