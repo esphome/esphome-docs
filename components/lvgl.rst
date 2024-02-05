@@ -1,7 +1,7 @@
 .. _lvgl-main:
 
-LVGL
-====
+LVGL Graphics
+=============
 
 .. seo::
     :description: LVGL - ESPHome Displays showing contents created with Light and Versatile Graphics Library
@@ -825,7 +825,7 @@ Images are the basic widgets to display images.
 - **src** (**Required**, :ref:`image <display-image>`):  The ID of an existing image configuration.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
-TODO !! supported image encodings
+Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
 
 **Specific actions:**
 
