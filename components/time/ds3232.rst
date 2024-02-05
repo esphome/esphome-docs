@@ -3,7 +3,7 @@ DS3232 Time source
 
 .. warning::
 
-  Support of extended functionality of DS3232 is experimental. Use with care and report bugs.
+    Support of extended functionality of DS3232 is experimental. Use with care and report bugs.
 
 DS3232 crystal is RTC with extended capabilities comparing to DS1307. It has two integrated hardware alarms, temperature sensor and 235 bytes of non-volatile memory accessible to end user.
 Despite DS1307 crystal it works on 3.3V power supply without additional converter to 5V level. 
@@ -69,16 +69,16 @@ Setting Alarms
 
 .. code-block:: yaml
 
-      # Example configuration entry
-      first_alarm:
-        mode: match_day_of_week_and_time
-        time_pattern: "Monday 12:35:05"
-      second_alarm:
-        mode: match_time
-        time:
-          hour: 23
-          minute: 15
-        active: false
+    # Example configuration entry
+    first_alarm:
+      mode: match_day_of_week_and_time
+      time_pattern: "Monday 12:35:05"
+    second_alarm:
+      mode: match_time
+      time:
+        hour: 23
+        minute: 15
+      active: false
 
 Alarm Configuration variables
 *****************************
@@ -149,16 +149,16 @@ Variable definition
 
 .. code-block:: yaml
 
-      # Example of variable definition
-      persistent_storage:
-        - id: variable_one
-          register: 0x16
-          type: int32
-          initial_value: '23'
-        - id: double_var
-          register: 0x20
-          type: double
-          initial_value: '3.02'
+    # Example of variable definition
+    persistent_storage:
+      - id: variable_one
+        register: 0x16
+        type: int32
+        initial_value: '23'
+      - id: double_var
+        register: 0x20
+        type: double
+        initial_value: '3.02'
 
 - **id** (**Required**, :ref:`config-id`): Variable identifier to use in lambda and actions.
 - **register** (**Required**, hex): Start register to store variable in NVRAM. Available registers are in range from ``0x16`` to ``0xFF``.
@@ -173,16 +173,16 @@ In current release you could set / get value of persistent variable by using ``v
 
 .. code-block:: c
 
-  //Get value
-  auto int = id(int_variable_id)->value();
+    //Get value
+    auto int = id(int_variable_id)->value();
 
-  //Set value
-  id(int_variable_id)->value() = 10;
+    //Set value
+    id(int_variable_id)->value() = 10;
 
 .. warning::
 
-  Though memory mapping of variable into NVRAM registers is validated on compile time, there is a chance of overlapping of memory ranges. 
-  Please test variables memory allocation before usage.
+    Though memory mapping of variable into NVRAM registers is validated on compile time, there is a chance of overlapping of memory ranges. 
+    Please test variables memory allocation before usage.
 
 .. _ds3232_nvram_set:
 
@@ -193,16 +193,16 @@ Use this action to set value to persistent variable.
 
 .. code-block:: yaml
 
-      on_...:
-        - ds3232_nvram.set:
-            id: variable_id
-            value: '10'
+    on_...:
+      - ds3232_nvram.set:
+          id: variable_id
+          value: '10'
 
-        # In case if you want to use lambda to set value
-        - ds3232_nvram.set:
-            id: other_var_id
-            value: !lambda |-
-              return 2.3 / 15.3;
+      # In case if you want to use lambda to set value
+      - ds3232_nvram.set:
+          id: other_var_id
+          value: !lambda |-
+            return 2.3 / 15.3;
 
 .. _ds3232_ds3232.erase_memory:
 
@@ -333,7 +333,7 @@ If *interrupt_pin* is defined and connected then *on_first_alarm* and *on_second
 Use this condition to check *use_heartbeat* mode of DS3232 crystal.
 
 .. code-block:: yaml
-    
+
     condition:
       ds3232.is_heartbeat_enabled: ds3232_chip_id
 
