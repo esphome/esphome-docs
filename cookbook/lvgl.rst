@@ -289,7 +289,7 @@ To make a nice user interface for controlling Home Assistant covers you could us
 .. figure:: images/lvgl_cook_cover.png
     :align: center
 
-Just as in the previous examples, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and with a text sensor we retrive the current movement state of it. We are particularly interested in the moving (*opening* and *closing*) states, because during these we'd like to change the label on the middle to show the *STOP* symbol. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
+Just as in the previous examples, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and with a text sensor we retrive the current movement state of it. We are particularly interested in the moving (*opening* and *closing*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
 
 .. code-block:: yaml
 
@@ -336,7 +336,7 @@ Just as in the previous examples, we need to get the states of the cover first. 
               then:
                 - lvgl.label.update:
                     id: cov_stop_myroom
-                    symbol: "STOP"
+                    text: "STOP"
               else:
                 - lvgl.label.update:
                     id: cov_stop_myroom
@@ -365,7 +365,7 @@ Just as in the previous examples, we need to get the states of the cover first. 
                     - label:
                         id: cov_up_myroom
                         align: center
-                        symbol: UP
+                        text: "\uF077"
                   on_press:
                     then:
                       - homeassistant.service:
@@ -397,7 +397,7 @@ Just as in the previous examples, we need to get the states of the cover first. 
                     - label:
                         id: cov_down_myroom
                         align: center
-                        symbol: DOWN
+                        text: "\uF078"
                   on_press:
                     then:
                       - homeassistant.service:
@@ -543,22 +543,22 @@ For the navigation bar we can use a button matrix. Note how the *header_footer* 
               rows:
                 - buttons:
                   - id: top_prev
-                    symbol: left # symbol only works when text_font is one of the internal fonts
+                    text: "\uF053"
                     on_press:
                       then:
                         lvgl.page.previous:
                   - id: top_home
-                    symbol: home
+                    text: "\uF015"
                     on_press:
                       then:
                         lvgl.page.show: main_page
                   - id: top_next
-                    symbol: right
+                    text: "\uF054"
                     on_press:
                       then:
                         lvgl.page.next:
 
-For this example to work, use the theme and style options from :ref:`above <lvgl-cook-theme>`.
+For this example to look correctly, use the theme and style options from :ref:`above <lvgl-cook-theme>` amd LVGL's built-in fonts.
 
 .. _lvgl-cook-statico:
 
@@ -593,7 +593,7 @@ In the example below we only show the icon when connection with Home Assistant i
       top_layer:
         widgets:
           - label:
-              symbol: WIFI
+              text: "\uF1EB"
               id: lbl_hastatus
               hidden: true
               align: top_right
@@ -1111,14 +1111,14 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                         control:
                           no_repeat: true
                   - buttons:
-                      - symbol: BACKSPACE
+                      - text: "\uF55A"
                         key_code: "*"
                         control:
                           no_repeat: true
                       - text: 0
                         control:
                           no_repeat: true
-                      - symbol: OK
+                      - text: "\uF00C"
                         key_code: "#"
                         control:
                           no_repeat: true
@@ -1157,7 +1157,7 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                     id: lvgl_led
                     color: 0xFF0000
 
-A few notable things in this example: usage of a base object ``obj`` as a parent for the label (in order to center the label in the middle of it and emphasize it with shadows independently of the label's dimensions); usage of ``align_to`` to align it to the led vertically; changing the background color of the buttons in ``pressed`` state; using the ``key_code`` configuration option to send a different character to ``key_collector`` instead of the displayed symbol; display a symbol within the text by its codepoint unicode address in the :ref:`font <lvgl-fonts>`.
+A few notable things in this example: usage of a base object ``obj`` as a parent for the label (in order to center the label in the middle of it and emphasize it with shadows independently of the label's dimensions); usage of ``align_to`` to align it to the led vertically; changing the background color of the buttons in ``pressed`` state; using the ``key_code`` configuration option to send a different character to ``key_collector`` instead of the displayed symbol.
 
 .. _lvgl-cook-idlescreen:
 

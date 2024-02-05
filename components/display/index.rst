@@ -162,8 +162,6 @@ You can view the full API documentation for the rendering engine in the "API Ref
 Drawing Static Text
 *******************
 
-**Fonts**
-
 To be able to display text, you need to prepare some fonts. ESPHome's :ref:`font renderer <display-fonts>` allows you to use OpenType/TrueType/Bitmap fonts for your texts. This is very flexiblle because you can prepare various sets of fonts at different sizes with a different number of glyphs which is extremely convenient when we're talking about flash space.
 
 In your display code, you can render static text by referencing the font and just entering your string enclosed in double quotes:
