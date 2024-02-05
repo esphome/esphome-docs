@@ -82,7 +82,7 @@ Configuration variables:
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen. Defaults to ``1s``.
 - **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, enum): The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
-- **default_font**  (*Optional*, enum): The C array name of the internal :ref:`font <lvgl-fonts>` used by default to render the text or symbol. Defaults to ``montserrat_14`` if not specified.
+- **default_font**  (*Optional*, enum): The C array name of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to ``montserrat_14`` if not specified.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each. If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
@@ -301,7 +301,7 @@ In ESPHome LVGL offers two font choices: the internal fonts offered by the libra
 
 **Internal fonts**
 
-The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
+The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and 60 symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
 
 - ``montserrat_8``: 8px font
 - ``montserrat_10``: 10px font
@@ -325,14 +325,16 @@ The library offers by default the  ASCII characters (``0x20-0x7F``) the degree s
 - ``montserrat_46``: 46px font
 - ``montserrat_48``: 48px font
 
-You can display the embedded symbols among the text by their codepoint address (the hexadecimal value in grey below, preceeded by ``\u``, eg. ``\uF00C``) or more easily on supported widgets using the ``symbol`` configuration option with the following constants (see :ref:`lvgl-wgt-lbl` example):
+You can display the embedded symbols among the text by their codepoint address preceeded by ``\u``, eg. ``\uF00C``:
 
 .. figure:: /components/images/lvgl_symbols.png
     :align: center
 
 .. note::
 
-    The ``text_font`` parameter affects the size of ``symbol``, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes. If you set ``text_font`` on a widget to a custom ESPHome font, these symbols will likely not display correctly.
+    The ``text_font`` parameter affects the size of symbols, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes. If you set ``text_font`` on a widget to a custom ESPHome font, these symbols will likely not display, unles you include them manually from a FontAwesome OpenType file.
+    
+    For escape sequences to work, you have to put them in strings enclosed in double quotes.
 
 In addition to the above, the following special fonts are available from LVGL as built-in:
 
@@ -343,7 +345,7 @@ In addition to the above, the following special fonts are available from LVGL as
 
 **ESPHome fonts**
 
-In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary. This has the advantage that you can define custom sets of glyphs of any size, with icons or diacritic characters for any language from any TrueType font.
+In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary. This has the advantage that you can define custom sets of glyphs of any size, with icons or diacritic characters of your choice, for any language, from any TrueType/OpenType font.
 
 Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-cook-iconbatt` in the Cookbook for examples how to play with texts and icons using various TrueType/OpenType fonts.
 
@@ -637,7 +639,7 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
 - **rows** (**Required**, list): A list for the button rows:
     - **buttons** (**Required**, list): A list of buttons in a row:
         - **id** (*Optional*): An ID for a button
-        - **text** or **symbol** (*Optional*): Text or built-in :ref:`symbol <lvgl-fonts>` to display on the button.
+        - **text** (*Optional*): Text or built-in :ref:`symbol <lvgl-fonts>` to display on the button.
         - **key_code** (*Optional*, string): One character be sent as the key code to a :ref:`key_collector` instead of ``text`` when the button is pressed.
         - **width** (*Optional*): Width relative to the other buttons in the same row. A value between ``1`` and ``15`` range, default ``1`` (eg. in a line with two buttons: one ``width: 1`` and another one ``width: 2``, the first will be ``33%`` wide while the second will be ``66%`` wide). 
         - **selected** (*Optional*, boolean): Set the button as the most recently released or focused. Defaults to ``false``.
@@ -676,11 +678,11 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
         rows:
           - buttons:
             - id: button_1
-              symbol: PLAY
+              text: "\uF04B"
               control:
                 checkable: true
             - id: button_2
-              symbol: PAUSE
+              text: "\uF04C"
               control:
                 checkable: true
           - buttons:
@@ -777,7 +779,7 @@ The Dropdown widget is built internall from a *button* and a *list* (both not re
 - **selected** (*Optional*, list): Settings for the selected **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Refers to the currently pressed, checked or pressed+checked option. Uses the typical background properties.
 - **scrollbar** (*Optional*, list): Settings for the scrollbar **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scrollbar background, border, shadow properties and width (for its own width) and right padding for the spacing on the right.
 - **indicator** (*Optional*, list): Settings for the indicator **part** to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, and is the parent of ``symbol``.
-- **symbol** (*Optional*, enum): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from the built-in ones.
+- **symbol** (*Optional*, enum): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from the built-in ones or from your own customized font.
 - Style options from :ref:`lvgl-styling` for the background of the button and the list. Uses the typical background properties and :ref:`lvgl-wgt-lbl` text properties for the text on it. ``max_height`` can be used to limit the height of the list.
 
 **Specific actions:**
@@ -861,7 +863,7 @@ A label is the basic widget type that is used to display text.
 
 **Specific options:**
 
-- **text** or **symbol** (**Required**, string): The text or built-in :ref:`symbol <lvgl-fonts>` to display. To display an empty label, specify ``""``.
+- **text** (**Required**, string): The text or built-in :ref:`symbol <lvgl-fonts>` to display. To display an empty label, specify ``""``.
 - **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
 - **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to render the text in.
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
@@ -901,7 +903,7 @@ Newline escape sequences are handled automatically by the label widget. You can 
         align: TOP_MID
         id: lbl_symbol
         text_font: montserrat_28
-        symbol: SETTINGS #same result as text: "\uF013"
+        text: "\uF013"
 
     # Example action (update label with a value from a sensor):
     on_...:
@@ -1105,7 +1107,7 @@ The text will be broken into multiple lines automatically and the height will be
         - **text** (**Required**, string):  The string to be displayed in the body of the message box. Can be shorthanded if no further options are specified.
         - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties.
     - **buttons** (**Required**, enum): A list of buttons to show at the bottom of the message box:
-        - **text** or **symbol**  (**Required**, string):  The text or built-in :ref:`symbol <lvgl-fonts>` to display on the button.
+        - **text** (**Required**, string):  The text or built-in :ref:`symbol <lvgl-fonts>` to display on the button.
 
 **Specific actions:**
 
@@ -1129,7 +1131,7 @@ The configured message boxes are hidden by default. One can show them with ``lvg
             - id: msgbox_apply
               text: "Apply"
             - id: msgbox_close
-              symbol: close
+              text: "\uF00D"
               on_click:
                 then:
                   - lvgl.widget.hide: message_box
