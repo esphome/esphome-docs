@@ -697,7 +697,7 @@ To display a boot image which disappears automatically after a few moments or on
 MDI icons in text
 -----------------
 
-ESPHome's :ref:`font renderer <lvgl-fonts>` allows you to use any OpenType/TrueType font file for your texts. This is very flexiblle because you can prepare various sets of fonts at different sizes with a different number of glyphs which is extremely convenient when we're talking about flash space.
+ESPHome's :ref:`font renderer <display-fonts>` allows you to use any OpenType/TrueType font file for your texts. This is very flexiblle because you can prepare various sets of fonts at different sizes with a different number of glyphs which is extremely convenient when we're talking about flash space.
 
 One example is when you'd like some MDI icons to be used in line with the text (similarly how LVGL's internal fonts and symbols coexist). You can use a font of your choice, choose the symbols you want and mix them in a single sized set with icons from MDI.
 
