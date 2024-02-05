@@ -9,7 +9,7 @@ Font Renderer Component
 
 ESPHome's graphical rendering engine also has a powerful font drawer which integrates seamlessly into the system. You have the option to use **any** OpenType/TrueType (``.ttf``, ``.otf``, ``.woff``) font file at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Portable_Compiled_Format>`_ and `BDF <https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`_ bitmap fonts. 
 
-These fonts can be used in ESPHome's :ref:`own rendering engine <display-engine>` or in the :ref:`LVGL <lvgl-main>`  component.
+These fonts can be used in ESPHome's :ref:`own rendering engine <display-engine>` or in the :ref:`LVGL Graphics <lvgl-main>` component.
 
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab a ``.ttf``, ``.otf``, ``.woff``, ``.pcf``, or ``.bdf`` file from somewhere on the internet and place it, for example, inside a ``fonts`` folder next to your configuration file.
 
@@ -71,7 +71,8 @@ Next, create a ``font:`` section in your configuration:
     display:
       # ...
 
-Configuration variables:
+Configuration options:
+----------------------
 
 - **file** (**Required**, string): The path (relative to where the .yaml file is) of the font
   file. You can also use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
@@ -139,5 +140,7 @@ See Also
 - :apiref:`display/display_buffer.h`
 - :ref:`display-engine`
 - :ref:`lvgl-main`
+- `MDI cheatsheet <https://pictogrammers.com/library/mdi/>`_
+- `MDI font repository <https://github.com/Pictogrammers/pictogrammers.github.io/tree/main/%40mdi/font/>`_
 - :ghedit:`Edit`
 
