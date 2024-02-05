@@ -83,7 +83,10 @@ Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 
 ``remote_transmitter.transmit_abbwelcome`` Action
 *************************************************
 
-This :ref:`action <config-action>` sends a ABB-Welcome message to the intercom bus.
+This :ref:`action <config-action>` sends a ABB-Welcome message to the intercom bus. The
+message type, addresses, address length and data can vary a lot between ABB-Welcome
+systems. Please refer to the received messages while performing actions like ringing a
+doorbell or opening a door.
 
 .. code-block:: yaml
 
@@ -91,39 +94,28 @@ This :ref:`action <config-action>` sends a ABB-Welcome message to the intercom b
       - remote_transmitter.transmit_abbwelcome:
           source_address: 0x1001 # your indoor station address
           destination_address: 0x4001 # door address
-          message_type: 0x0d # unlock door
-          data: [0xab, 0xcd, 0xef]  # door opener secret code, see receiver dump
+          message_type: 0x0d # unlock door, on some systems 0x0e is used instead
+          data: [0xab, 0xcd, 0xef]  # message data, see receiver dump
 
 Configuration variables:
 
 - **source_address** (**Required**, int):The source address to send the command from,
-  see dumper output for more info. The highest 4 bits indicate the device type.
+  see received messages for more info. For indoor stations the last byte of the address
+  represents the apartment number set by the dials on the back of the indoor station and is
+  transmitted in hexadecimal format.
 - **destination_address** (**Required**, int): The destination address to send the command to,
-  see dumper output for more info. The highest 4 bits indicate the device type.
-
-  - ``0x1...`` Indoor station
-  - ``0x2...`` Outdoor station
-  - ``0x3...`` Gateway
-  - ``0x4...`` Door opener
-  - ...
-
-- **retransmission** (**Optional**, boolean): ``true`` if the message will be re-transmitted. Defaults to ``false``.
+  see received messages for more info.
+- **three_byte_address** (**Required**, int): The destination address to send the command to,
+  see received messages for more info.
+- **three_byte_address** (**Optional**, boolean): The length of the source and destination address. ``false``
+  means two bytes and ``true`` means three bytes. Please check the received messages to see which address length
+  is used by your system. For example, ``[XXXX > XXXX]`` appears in the receiver log for two byte addresses and
+  ``[XXXXXX > XXXXXX]`` for three byte addresses. Defaults to ``false``.
+- **retransmission** (**Optional**, boolean): Should only be ``true`` if this message has been transmitted
+  before with the same ``message_id``. Typically, messages are transmitted up to three times with a 1 second
+  interval if no reply is received. Defaults to ``false``.
 - **message_type** (**Required**, int): The message type, see dumper output for more info.
   The highest bit indicates a reply.
-
-  - ``0x01`` / ``0x81`` Doorbell Outdoor
-  - ``0x02`` / ``0x82`` End Call
-  - ``0x03`` / ``0x83`` Accept Call
-  - ``0x04`` / ``0x84`` Manual Video
-  - ``0x09`` / ``0x89`` Light
-  - ``0x0a`` / ``0x8a`` Start Call
-  - ``0x0d`` / ``0x8d`` Door
-  - ``0x11`` / ``0x91`` Doorbell Indoor
-  - ``0x12`` / ``0x92`` Ping
-  - ``0x16`` / ``0x96`` Push To Talk
-  - ...
-
-
 - **message_id** (**Optional**, int): The message ID, see dumper output for more info.
   Defaults to a randomly generated ID if this message is not a reply or retransmission.
 - **data** (**Optional**, 0-7 bytes list): The code to send.
@@ -132,29 +124,8 @@ Configuration variables:
 .. note::
 
     ABB-Welcome messages are sent over the two-wire bus of your intercom system.
-    A custom receiver / transmitter circuit is required. For this example circuit the
-    RX and TX pins should not be inverted. Use at your own risk!
-
-    .. figure:: images/abbwelcome_circuit.png
-
-    Recommended config for this circuit:
-
-    .. code-block:: yaml
-
-        remote_transmitter:
-          pin: GPIO26
-          carrier_duty_percent: 100%
-
-        remote_receiver:
-          pin: GPIO25
-          filter: 8us
-          tolerance: 26us
-          idle: 1500us
-          buffer_size: 15kB
-          memory_blocks: 6
-          clock_divider: 160
-
-    ABB-Welcome IP devices are not compatible.
+    A custom receiver and transmitter circuit is required.
+    `More info <https://github.com/Mat931/esp32-doorbell-bus-interface>`__
 
 .. _remote_transmitter-transmit_aeha:
 
