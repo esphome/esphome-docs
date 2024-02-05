@@ -542,17 +542,17 @@ For the navigation bar we can use a button matrix. Note how the *header_footer* 
                 styles: header_footer
               rows:
                 - buttons:
-                  - id: top_prev
+                  - id: page_prev
                     text: "\uF053"
                     on_press:
                       then:
                         lvgl.page.previous:
-                  - id: top_home
+                  - id: page_home
                     text: "\uF015"
                     on_press:
                       then:
                         lvgl.page.show: main_page
-                  - id: top_next
+                  - id: page_next
                     text: "\uF054"
                     on_press:
                       then:
