@@ -40,7 +40,7 @@ Configuration variables:
 - **light** (*Optional*): Lux of ambient light (lx). All options from :ref:`Sensor <config-sensor>`.
 - **ambient_light** (*Optional*): Sensor counts for the Ambient light sensor (#). All options from :ref:`Sensor <config-sensor>`.
 - **gain** (*Optional*, string): Adjusts the sensitivity of the sensor. A larger value means higher sensitivity. Default is ``"X18"``, see table below for options.
-- **resolution** (*Optional*, int): ADC resolution. Higher resolutions require longer sensor integration times. Default is ``20``, see table below for options. 
+- **resolution** (*Optional*, int): ADC resolution. Higher resolutions require longer sensor integration times. Default is ``20``, see table below for options.
 - **window_correction_factor** (*Optional*, float): Window correction factor. Use larger values when using under tinted windows. Default is ``1.0``, must be ``>= 1.0``.
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Default is ``0x53``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
@@ -65,9 +65,10 @@ where:
 - ``sensitivity`` is the sensor's count per UVI. See note below for details.
 - ``wfac`` is the window correction factor.
 
-For UV Index sensing it is recommended to use the defaults of ``X18`` gain and a resolution of 20 bits since
-the datasheet only provides the sensor counts per UVI (sensitivity) for this configuration. When using different
-configurations, the counts per UVI are scaled as follows:
+It is recommended to use the defaults of ``X18`` gain and resolution of 20 bits when UV Index sensing is required since
+the data sheet only provides accurate conversion formula for this combination. The UVI value is linearly scaled from
+this reference point when using other combinations of gain and resolution, which may be slightly inaccurate. The scaling
+formula is:
 
 .. math::
 
