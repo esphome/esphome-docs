@@ -24,19 +24,20 @@ With this display driver you can control the following displays:
   - ST7789V
   - TFT 2.4
   - TFT 2.4R
-  - WSPICOLCD (waveshares Pico-ResTouch-LCD-3.5)
+  - WAVESHARE_RES_3_5 (Waveshare Pico-ResTouch-LCD-3.5)
 
 More display drivers will come in the future.
 
 Usage
 -----
-This component is the successor of the ILI9341 component allowing to control more display drivers and use 16bit colors when enough free ram.
+This component is the successor of the ILI9341 component supporting more display driver chips from the ILI and related
+families.
 
 The ``ILI9xxx`` display platform allows you to use
 ILI9341 (`datasheet <https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf>`__,
 `Aliexpress <https://www.aliexpress.com/af/Ili9341.html>`__) and other
-displays from the same chip family with ESPHome. As this is a somewhat higher resolution display and may require pins
-beyond the typical SPI connections, it is better suited for use with the ESP32.
+displays from the same chip family with ESPHome. As this is a somewhat higher resolution display and requires additional pins
+beyond the basic SPI connections, and a reasonable amount of RAM, it is not well suited for the ESP8266.
 
 **Note:** use of 16 bit colors requires double the amount of RAM as 8 bit, and may need PSRAM to be available.
 

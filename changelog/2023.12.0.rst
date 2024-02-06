@@ -97,6 +97,13 @@ Release 2023.12.6 - January 15
 - add STATE_CLASS_TOTAL_INCREASING to bl0940 and bl0942 :esphomepr:`6090` by :ghuser:`tomaszduda23`
 - Fallback to pure-python loader for better error when YAML loading fails :esphomepr:`6081` by :ghuser:`bdraco`
 
+Release 2023.12.7 - January 17
+------------------------------
+
+- Fix RMT timing clock base :esphomepr:`6101` by :ghuser:`majkrzak`
+- Create RingBuffer for VoiceAssistant :esphomepr:`6102` by :ghuser:`jesserockz`
+- Inkplate6: Fix crash with initial set of greyscale :esphomepr:`6038` by :ghuser:`clydebarrow`
+
 Full list of changes
 --------------------
 
