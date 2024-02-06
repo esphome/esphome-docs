@@ -72,7 +72,7 @@ formula is:
 
 .. math::
 
-    \text{sensitivity} = 2300 \times \frac{\text{gain}}{18} \times \frac{\text{int}}{4}
+    \text{sensitivity} = 2300 \times \frac{\text{gain}}{18} \times \frac{\text{int}}{400}
 
 where :math:`2300` is the sensor count per UVI at the default configuration.
 
