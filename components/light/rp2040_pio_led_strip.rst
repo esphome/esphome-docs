@@ -45,7 +45,6 @@ Configuration variables
 - All other options from :ref:`Light <config-light>`.
 
 
-
 Manual Timings
 **************
 
