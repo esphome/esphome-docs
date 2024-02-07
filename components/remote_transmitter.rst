@@ -251,6 +251,33 @@ Configuration variables:
 
 - **data** (**Required**, int): The JVC code to send, see dumper output for more info.
 
+.. _remote_transmitter-transmit_keeloq:
+
+``remote_transmitter.transmit_keeloq`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends KeeLoq RF remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_keeloq:
+          address: '0x57ffe7b'
+          command: '0x02'
+          code: '0xd19ef0a9'
+          repeat:
+            times: 3
+            wait_time: 15ms  
+
+Configuration variables:
+
+- **address** (**Required**, int): The 32-bit address to send, see dumper output for more info.
+- **command** (**Required**, int): The 4 bit command/button code to send, see dumper output for more info.
+- **code** (**Optional**, int): The 32 bit encrypted field to send. Defaults to all zeros.
+- **level** (**Optional**, boolean): Low battery level status bit. Defaults to false.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+- A repeat **wait_time** of 15ms as shown replicates the repetition of an HCS301.
+
 .. _remote_transmitter-transmit_haier:
 
 ``remote_transmitter.transmit_haier`` Action
@@ -936,6 +963,7 @@ earlier, create a new template switch that sends the RF code when triggered:
     switch:
       - platform: template
         name: RF Power Button
+        optimistic: true
         turn_on_action:
           - remote_transmitter.transmit_rc_switch_raw:
               code: '100010000000000010111110'
