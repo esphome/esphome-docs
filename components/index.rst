@@ -11,7 +11,7 @@ Components
     fan/index
     light/index
     number/index
-    dateime/index
+    datetime/index
     output/index
     select/index
     sensor/index
