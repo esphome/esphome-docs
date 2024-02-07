@@ -777,18 +777,19 @@ The dropdown list is closed by default and displays a single value or a predefin
 .. figure:: /components/images/lvgl_dropdown.png
     :align: center
 
-The Dropdown widget is built internall from a *button* and a *list* (both not related to the actual widgets with the same name).
+The Dropdown widget is built internally from a *button* part and a *list* part (both not related to the actual widgets with the same name).
 
 **Specific options:**
 
 - **options** (*Required*, list): The list of available options in the drop-down.
 - **dir** (*Optional*, enum): Where the list part of the dropdown gets created relative to the button part. ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
 - **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
-- **selected** (*Optional*, list): Settings for the selected *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Refers to the currently pressed, checked or pressed+checked option. Uses the typical background properties.
-- **scrollbar** (*Optional*, list): Settings for the scrollbar *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scrollbar background, border, shadow properties and width (for its own width) and right padding for the spacing on the right.
-- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, and is the parent of ``symbol``.
 - **symbol** (*Optional*, enum): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from the built-in ones or from your own customized font.
-- Style options from :ref:`lvgl-styling` for the background of the button and the list. Uses the typical background properties and :ref:`lvgl-wgt-lbl` text properties for the text on it. ``max_height`` can be used to limit the height of the list.
+- **indicator** (*Optional*, list): Settings for the the parent of ``symbol``. Supports a list of :ref:`styles <lvgl-styling>` to customize.
+- **dropdown_list** (*Optional*, list): Settings for the dropdown_list *part*, the list with items. Supports a list of :ref:`styles <lvgl-styling>` to customize. Notable are ``text_line_space`` and ``pad_all`` for spacing of list items, and ``text_font`` to separately change the font in the list.
+- **selected** (*Optional*, list): Settings for the selected item in the list. Supports a list of :ref:`styles <lvgl-styling>` to customize.
+- **scrollbar** (*Optional*, list): Settings for the scrollbar *part*. Supports a list of :ref:`styles <lvgl-styling>` to customize. The scrollbar background, border, shadow properties and width (for its own width) and right padding for the spacing on the right.
+- Style options from :ref:`lvgl-styling` for the background of the button and the list. Uses the typical background properties and :ref:`lvgl-wgt-lbl` text properties for the text on it. ``max_height`` can be used to limit the height of the list. ``text_font`` to set the font of the button part, including the symbol.
 
 **Specific actions:**
 
@@ -800,14 +801,21 @@ The Dropdown widget is built internall from a *button* and a *list* (both not re
 
     # Example widget:
     - dropdown:
-        x: 10
-        y: 60
-        width: 90
         id: dropdown_id
+        width: 90
+        align: center
         options:
           - Violin
           - Piano
           - Bassoon
+        selected_index: 2
+        dir: top
+        symbol: ${arrow_down}
+        indicator:
+          text_font: helv20
+        dropdown_list:
+          bg_color: color_blue
+          text_color: 0x800000
 
     # Example action:
     on_...:
