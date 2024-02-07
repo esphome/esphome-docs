@@ -35,7 +35,7 @@ Configuration variables:
       you want the binary sensor to use that name, you can set ``name: None``.
 
 - **device_class** (*Optional*, string): The device class for the
-  sensor. See https://developers.home-assistant.io/docs/core/entity/binary-sensor/#available-device-classes
+  sensor. See https://www.home-assistant.io/integrations/binary_sensor/#device-class
   for a list of available options.
 - **icon** (*Optional*, icon): Manually set the icon to use for the binary sensor in the frontend.
 - **filters** (*Optional*, list): A list of filters to apply on the binary sensor values such as
