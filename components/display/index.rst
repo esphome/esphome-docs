@@ -9,10 +9,10 @@ The ``display`` component houses ESPHome's powerful rendering and display
 engine. Fundamentally, there are these types of displays:
 
 - Text based displays like :doc:`7-Segment displays <max7219>` or
-  :doc:`some LCD displays <lcd_display>`.
-- Displays like the :doc:`nextion` that have their own processors for rendering.
-- Binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper displays <waveshare_epaper>` or
-  :doc:`OLED displays <ssd1306>`.
+  :doc:`LCD displays <lcd_display>`.
+- Graphical serial displays like :doc:`nextion` that have their own processors for rendering.
+- Graphical binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper <waveshare_epaper>`,
+  :doc:`OLED <ssd1306>` or :doc:`TFT <ili9xxx>` displays.
 
 For the last type, ESPHome has a powerful rendering engine that can do
 many things like draw some basic shapes, print text with any font you want, or even show images.
@@ -24,11 +24,6 @@ using an API that is designed to
 - be simple and to be used without programming experience
 - but also be flexible enough to work with more complex tasks like displaying an analog clock.
 
-.. note::
-
-    Display hardware is complex and sometimes doesn't behave as expected. If you're having trouble with your display,
-    please see :ref:`troubleshooting` below.
-
 .. _display-engine:
 
 Display Rendering Engine
@@ -37,6 +32,11 @@ Display Rendering Engine
 In this section we will be discussing how to use ESPHome's display rendering engine from ESPHome
 and some basic commands. Please note that this only applies to displays that can control each pixel
 individually.
+
+.. note::
+
+    Display hardware is complex and sometimes doesn't behave as expected. If you're having trouble with your display,
+    please see :ref:`troubleshooting` below.
 
 So, first a few basics: When setting up a display platform in ESPHome there will be a configuration
 option called ``lambda:`` which will be called every time ESPHome wants to re-render the display.
@@ -72,7 +72,7 @@ x always represents the horizontal axis (width) and y the vertical axis (height)
 the rendering engine is always first specify the ``x`` coordinate and then the ``y`` coordinate.
 
 Basic Shapes
-************
+------------
 
 Now that you know a bit more about ESPHome's coordinate system, let's draw some basic shapes like lines, rectangles
 and circles:
@@ -152,110 +152,14 @@ Additionally, you have access to two helper methods which will fetch the width a
 
 You can view the full API documentation for the rendering engine in the "API Reference" in the See Also section.
 
-.. _display-fonts:
-
-Fonts
-*****
-
-The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome.
-Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very
-specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf``) font file
-at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Portable_Compiled_Format>`_ and `BDF <https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`_ bitmap fonts! Granted the reason for it is
-actually not having to worry about the licensing of font files :)
-
-To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
-a ``.ttf``, ``.pcf``, or ``.bdf`` file from somewhere on the internet and place it, for example,
-inside a ``fonts`` folder next to your configuration file.
-
-Next, create a ``font:`` section in your configuration:
-
-.. code-block:: yaml
-
-    font:
-      - file: "fonts/Comic Sans MS.ttf"
-        id: my_font
-        size: 20
-
-      # gfonts://family[@weight]
-      - file: "gfonts://Roboto"
-        id: roboto
-        size: 20
-
-      - file:
-          type: gfonts
-          family: Roboto
-          weight: 900
-        id: font2
-        size: 16
-
-      - file: "fonts/tom-thumb.bdf"
-        id: tomthumb
-
-      - file: 'gfonts://Material+Symbols+Outlined'
-        id: icon_font_50
-        size: 50
-        glyphs: ["\U0000e425"] # mdi-timer
-
-    display:
-      # ...
-
-Configuration variables:
-
-- **file** (**Required**): The path (relative to where the .yaml file is) of the font
-  file. You can use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
-
-  - **type** (**Required**, string): Can be ``gfonts`` or ``local``.
-
-    **Google Fonts**:
-
-    Each Google Font will be downloaded once and cached for future use. This can also be used to download Material
-    Symbols or Icons as in the example above.
-
-  - **family** (**Required**, string): The name of the Google Font family.
-  - **weight** (*Optional*, enum): The weight of the font. Can be either the text name or the integer value:
-
-    - **thin**: 100
-    - **extra-light**: 200
-    - **light**: 300
-    - **regular**: 400 (**default**)
-    - **medium**: 500
-    - **semi-bold**: 600
-    - **bold**: 700
-    - **extra-bold**: 800
-    - **black**: 900
-
-  - **italic** (*Optional*, boolean): Whether the font should be italic.
-
-    **Local Fonts**:
-
-  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType or bitmap font file.
-
-- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
-  in your display code.
-- **size** (*Optional*, int): The size of the font in pt (not pixel!).
-  If you want to use the same font in different sizes, create two font objects. Note: *size* is ignored
-  by bitmap fonts. Defaults to ``20``.
-- **glyphs** (*Optional*, list): A list of characters you plan to use. Only the characters you specify
-  here will be compiled into the binary. Adjust this if you need some special characters or want to
-  reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
-  be more than one character long if you for example want to use font ligatures. Defaults to
-  ``!"%()+=,-_.:°/?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
-
-
-.. note::
-
-    To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
-    to translate the TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
-    add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
-    to install it using
-    ``pip install "pillow==10.1.0"``.
-
 .. _display-static_text:
 
 Drawing Static Text
-*******************
+-------------------
 
-In your display code, you can render static text by referencing the font and just entering your string:
+To be able to display text, you need to prepare some fonts. ESPHome's :ref:`font renderer <display-fonts>` allows you to use OpenType/TrueType/Bitmap fonts for your texts. This is very flexiblle because you can prepare various sets of fonts at different sizes with a different number of glyphs which is extremely convenient when we're talking about flash space.
+
+In your display code, you can render static text by referencing the font and just entering your string enclosed in double quotes:
 
 .. code-block:: yaml
 
@@ -296,11 +200,21 @@ As with basic shapes, you can also specify a color for the text:
           // Syntax is always: it.print(<x>, <y>, <font>, [color=COLOR_ON], [align=TextAlign::TOP_LEFT], <text>);
           it.print(0, 0, id(my_font), COLOR_ON, "Left aligned");
 
+In case of fonts rendered at higher bit depths, the background color has to be specified after the text in order for antialiasing to work:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          // Syntax is always: it.print(<x>, <y>, <font>, [color=COLOR_ON], [align], <text>, [color=COLOR_OFF]);
+          it.print(0, 0, id(my_font_with_icons), COLOR_ON, TextAlign::CENTER, "Just\U000f05d4here. Already\U000F02D1this.", COLOR_OFF);
 
 .. _display-printf:
 
 Formatted Text
-**************
+--------------
 
 Static text by itself is not too impressive. What we really want is to display *dynamic* content like sensor values
 on the display!. That's where ``printf`` comes in. ``printf`` is a formatting engine from the C era and ESPHome
@@ -350,7 +264,7 @@ Another interesting format string is ``%7.2f``, which would become the right-jus
 - ``.2`` - round the decimal number to ``2`` digits after the decimal point.
 - ``f`` - specifier: f(loat).
 
-You can even have as many format strings as you want in a single printf call. Just make sure the put the
+You can even have as many formatted items as you want in a single printf call. Just make sure the put the
 arguments after the format string in the right order.
 
 .. code-block:: yaml
@@ -371,6 +285,19 @@ To display a text string from a ``text_sensor``, append ``.c_str()`` to the end 
         # ...
         lambda: |-
           it.printf(0, 0, id(my_font), "Text to follow: %s", id(template_text).state.c_str());
+
+
+When using anti-aliased fonts you will probably need to specify the color to draw the characters, and the background
+color to mix in for anti-aliasing. This requires the full version of `printf`, e.g.:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+            it.printf(10, 100, id(roboto), Color(0x123456), COLOR_OFF, display::TextAlign::BASELINE, "%f", id(heap_free).state);
+
 
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
 *could* of course just check the state with an ``if`` statement as the first few lines in the example below, but if
@@ -404,14 +331,14 @@ use any string you pass it, like ``"ON"`` or ``"OFF"``.
 .. _display-strftime:
 
 Displaying Time
-***************
+---------------
 
 You can display current time using a time component. Please see the example :ref:`here <strftime>`.
 
 .. _clipping:
 
 Screen Clipping
-***************
+---------------
 
 Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show
 a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
@@ -463,12 +390,10 @@ With ``get_clipping();`` you get a ``Rect`` object back with the latest set clip
 
 With ``is_clipping();`` tells you if clipping is activated.
 
-
-
 .. _config-color:
 
 Color
-*****
+-----
 
 When using RGB-capable displays in ESPHome you may wish to use custom colors.
 A ``color`` component exists for just this purpose:
@@ -518,7 +443,7 @@ RGB displays use red, green, and blue, while grayscale displays may use white.
 .. _display-graphs:
 
 Graph Component
-***************
+---------------
 
 You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in
 memory at the time the sensor updates and will be lost when the device reboots.
@@ -631,8 +556,11 @@ And then later in code:
     - Axis labels are currently not possible without manually placing them.
     - The grid and border color is set with it.graph(), while the traces are defined separately.
 
+
+.. _display-qrcode:
+
 QR Code Component
-*****************
+-----------------
 
 Use this component to generate a QR-code containing a string on the device, which can then be drawn on compatible displays.
 
@@ -667,8 +595,11 @@ To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
               // Draw the QR-code at position [x=50,y=0] with white color and a 2x scale
               it.qr_code(50, 0, id(homepage_qr), Color(255,255,255), 2);
 
+
+.. _display-image:
+
 Images
-******
+------
 
 Use this component to store graphical images on the device, you can then draw the images on compatible displays.
 
@@ -783,7 +714,7 @@ You can also use this to invert images in two colors display, use ``COLOR_OFF`` 
 as the additional parameters.
 
 Animation
-*********
+---------
 
 Allows to use animated images on displays. Animation inherits all options from the image component.
 It adds additional lambda methods: ``next_frame()``, ``prev_frame()`` and ``set_frame()`` to change the shown picture of a gif.
@@ -984,7 +915,7 @@ Troubleshooting
 ---------------
 
 Color Test Pattern
-******************
+------------------
 
 If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
 It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine
@@ -1031,6 +962,7 @@ See Also
 --------
 
 - :apiref:`display/display_buffer.h`
+- :ref:`Fonts <display-fonts>`
 - :ghedit:`Edit`
 
 .. toctree::
