@@ -848,8 +848,7 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
 
     # Example widget:
     - img:
-        x: 10
-        y: 10
+        align: CENTER
         src: cat_image
         id: img_id
         radius: 11
