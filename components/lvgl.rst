@@ -1269,7 +1269,7 @@ See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use 
 .. _lvgl-wgt-spi:
 
 ``spinner``
-**********
+***********
 
 The Spinner widget looks like a bar supplemented with a knob. The knob can be dragged to set a value. Just like Bar, Slider can be vertical or horizontal.
 
