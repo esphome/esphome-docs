@@ -803,26 +803,21 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
     - dropdown:
         id: dropdown_id
         width: 90
-        align: center
+        align: CENTER
         options:
           - Violin
           - Piano
           - Bassoon
+          - Chello
+          - Drums
         selected_index: 2
-        dir: top
-        symbol: ${arrow_down}
-        indicator:
-          text_font: helv20
-        dropdown_list:
-          bg_color: color_blue
-          text_color: 0x800000
 
     # Example action:
     on_...:
       then:
         - lvgl.dropdown.update:
             id: dropdown_id
-            selected_index: 3
+            selected_index: 5
 
 The ``dropdown`` can be also integrated as :doc:`/components/select/lvgl`.
 
@@ -1186,8 +1181,7 @@ Roller allows you to simply select one option from a list by scrolling.
 
     # Example widget:
     - roller:
-        x: 10
-        y: 10
+        align: CENTER
         id: roller_id
         options:
           - Violin
