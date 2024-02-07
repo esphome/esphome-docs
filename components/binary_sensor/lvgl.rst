@@ -18,7 +18,7 @@ Configuration options:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the binary sensor.
-- **widget** (**Required**): The ID of a ``btn`` widget configured in LVGL.
+- **widget** (**Required**): The ID of a supported widget configured in LVGL, which will reflect the state of the binary sensor.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. note::

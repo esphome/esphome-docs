@@ -18,8 +18,7 @@ Configuration options:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the select.
-- **dropdown** (**Required**): The ID of a ``dropdown`` widget configured in LVGL, which will reflect the state of the select; or
-- **roller** (**Required**): The ID of a ``roller`` widget configured in LVGL, which will reflect the state of the select.
+- **widget** (**Required**): The ID of a supported widget configured in LVGL, which will reflect the state of the select.
 - All other options from :ref:`Select <config-select>`.
 
 Example:

@@ -18,7 +18,7 @@ Configuration options:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the switch.
-- **widget** (**Required**): The ID of a widget configured in LVGL, which will reflect the state of the switch.
+- **widget** (**Required**): The ID of a supported widget configured in LVGL, which will reflect the state of the switch.
 - **output_id** (*Optional*, :ref:`config-id`): The ID of a **binary** output to drive in sync with the state of the switch widget.
 - All other options from :ref:`Switch <config-switch>`.
 

@@ -20,9 +20,7 @@ Configuration options:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the number.
 - **animated** (*Optional*, boolean): Wether to set the value of the widget with an animation. Defaults to ``true``.
-- **arc** (**Required**): The ID of an ``arc`` widget configured in LVGL, which will reflect the state of the number; or
-- **bar** (**Required**): The ID of a ``bar`` widget configured in LVGL, which will reflect the state of the number; or
-- **slider** (**Required**): The ID of a ``slider`` widget configured in LVGL, which will reflect the state of the number.
+- **widget** (**Required**): The ID of a supported widget configured in LVGL, which will reflect the state of the number.
 - All other options from :ref:`Number <config-number>`.
 
 
