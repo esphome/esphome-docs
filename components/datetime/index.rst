@@ -36,7 +36,7 @@ Configuration variables:
       If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
       you want the datetime to use that name, you can set ``name: None``.
 
-- **time_id** (*Optional*, :ref:`Time Component <_base_time_config>`)
+- **time_id** (*Optional*, :ref:`Time Component <base_time_config>`)
 - **on_time** (*Optional*, :ref:`Automation <automation>`)
 
   .. note::
