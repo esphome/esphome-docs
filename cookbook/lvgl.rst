@@ -1237,6 +1237,48 @@ LVGL has a notion of screen inactivity, i.e. how long did the user not interact 
         mode: box
 
 
+.. _lvgl-cook-antiburn:
+
+Prevent burn-in of LCD
+----------------------
+
+You can use this to protect and prolonge the lifetime of the LCD screens, thus being more green and generating less hazardous waste.
+
+Wall mounted LCD screens' main problem is that they display the same picture 99.999% of the time. Even if somebody turns off backlight during the night or dark periods, the LCD screen keeps showing the same picture, seen by nobody. There are high chances that this will lead to screen picture burn-in after a few years of operation.
+
+One way to mitigate this is to *train* the pixels periodically with completely different other content. ``show_snow`` option during LVGL paused state was developed in this scope, to  display random coloured pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel.
+
+In the example below pixel traning is done every night between 1:30 and 2:30, and can be stopped by touching the screen.
+
+.. code-block:: yaml
+
+    time:
+      - platform: ...
+        on_time:
+          - hours: 1
+            minutes: 30
+            seconds: 0
+            then:
+              - lvgl.pause:
+                  show_snow: true
+        on_time:
+          - hours: 2
+            minutes: 30
+            seconds: 0
+            then:
+              - lvgl.resume:
+
+    touchscreen:
+      - platform: ...
+        on_release:
+          then:
+            - if:
+                condition: lvgl.is_paused
+                then:
+                  - lvgl.resume:
+
+For best results, combine it with the previous example by turning off the backlight, so the users don't actually notice this.
+
 See Also
 --------
 
@@ -1244,5 +1286,7 @@ See Also
 - :ref:`config-lambda`
 - :ref:`automation`
 - :ref:`key_collector`
+- `What is Image Sticking, Image Burn-in, an After Image, or a Ghost Image on an LCD? <https://www.philips.ca/c-f/XC000007486/what-is-image-sticking,-image-burn-in,-an-after-image,-or-a-ghost-image-on-an-lcd>`__
+- `Image persistence <https://en.wikipedia.org/wiki/Image_persistence>`__
 
 - :ghedit:`Edit`

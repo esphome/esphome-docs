@@ -1503,11 +1503,14 @@ This :ref:`action <config-action>` redraws the entire screen, or optionally only
 
 This :ref:`action <config-action>` pauses the activity of LVGL, including rendering.
 
+- **show_snow** (*Optional*, boolean): During paused, display random coloured pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel. See :ref:`lvgl-cook-antiburn` for an example how to use this.
+
 .. code-block:: yaml
 
     on_...:
       then:
-        - lvgl.pause
+        - lvgl.pause:
+            show_snow: true
 
 
 .. _lvgl-resume-act:
@@ -1521,7 +1524,7 @@ This :ref:`action <config-action>` resumes the activity of LVGL, including rende
 
     on_...:
       then:
-        - lvgl.resume
+        - lvgl.resume:
 
 
 .. _lvgl-pgnx-act:
