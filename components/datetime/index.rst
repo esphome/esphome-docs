@@ -1,5 +1,5 @@
-Number Component
-================
+Datetime Component
+==================
 
 .. seo::
     :description: Instructions for setting up datetime components in ESPHome.
@@ -15,7 +15,7 @@ represents a date and time, only date or only a time which can be set by the use
 .. _config-datetime:
 
 Base Datetime Configuration
--------------------------
+---------------------------
 
 All datetime in ESPHome have a name and an optional icon.
 
@@ -57,9 +57,6 @@ Configuration variables:
 - **mode** (*Optional*, string): Defines how the datetime should be displayed in the frontend.
   Only ``"auto"`` supported at the moment
   Defaults to ``"auto"``.
-- **device_class** (*Optional*, string): The device class for the datime.
-  See https://developers.home-assistant.io/docs/core/entity/number/#available-device-classes
-  for a list of available options.
 
 Automations:
 
@@ -74,7 +71,7 @@ MQTT Options:
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Datetime Automation
------------------
+-------------------
 
 You can access the most recent state as a string of the datetime in :ref:`lambdas <config-lambda>` using
 ``id(datetime_id).state``. 
@@ -104,10 +101,10 @@ you can get the value as a ESPTime object from the trigger with ``x``.
 
 Configuration variables: See :ref:`Automation <automation>`.
 
-.. _number-on_time:
+.. _datetime-on_time:
 
 ``on_time``
-******************
+***********
 
 This automation is triggered when the stored date/time matches the current date/time of the 
 specified ``time_id`` component.
@@ -118,7 +115,7 @@ on the first second of the specified minute.
 
 .. code-block:: yaml
 
-    number:
+    datetime:
       - platform: template
         # ...
         on_time:
@@ -129,8 +126,8 @@ Configuration variables: See :ref:`Automation <automation>`.
 
 .. _datetime-has_date_condition:
 
-``number.has_date`` Condition
-*****************************
+``datetime.has_date`` Condition
+*******************************
 
 This condition passes if the state of the given dateime has a date set.
 
@@ -140,15 +137,15 @@ This condition passes if the state of the given dateime has a date set.
     on_...:
       if:
         condition:
-          number.has_date:
+          ndatetime.has_date:
             id: my_datetime
         then:
           - script.execute: my_script
 
 .. _datetime-has_time_condition:
 
-``number.has_date`` Condition
-*****************************
+``datetime.has_date`` Condition
+*******************************
 
 This condition passes if the state of the given dateime has a time set.
 
@@ -158,7 +155,7 @@ This condition passes if the state of the given dateime has a time set.
     on_...:
       if:
         condition:
-          number.has_time:
+          datetime.has_time:
             id: my_datetime
         then:
           - script.execute: my_script
@@ -166,14 +163,14 @@ This condition passes if the state of the given dateime has a time set.
 .. _datetime-set_action:
 
 ``datetime.set`` Action
-*********************
+***********************
 
 This is an :ref:`Action <config-action>` for setting a datetime state.
 
 .. code-block:: yaml
 
     - datetime.set:
-        id: my_number
+        id: my_datetime
         value: "2023-12-04 15:35"
 
 Configuration variables:

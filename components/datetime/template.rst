@@ -1,5 +1,5 @@
 Template Datetime
-===============
+=================
 
 .. seo::
     :description: Instructions for setting up template datetime with ESPHome.
@@ -43,7 +43,7 @@ Configuration variables:
 - All other options from :ref:`Datetime <config-datetime>`.
 
 ``datetime.set`` Action
----------------------
+-----------------------
 
 You can also set the datetime for the template datetime from elsewhere in your YAML file
 with the :ref:`datetime-set_action`.
