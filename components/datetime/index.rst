@@ -180,7 +180,7 @@ Only a time, inlcuing seconds: ``"15:35:10"``
 
 Configuration variables:
 
-- **id** (**Required**, :ref:`config-id`): The ID of the number to set.
+- **id** (**Required**, :ref:`config-id`): The ID of the datetime to set.
 - **value** (**Required**, string, :ref:`templatable <config-templatable>`):
   The value to set the datetime to.
 
@@ -199,7 +199,7 @@ advanced stuff (see the full API Reference for more info).
   .. code-block:: cpp
 
       // Within lambda, set the datetime to 2024-02-25 10:20
-      auto call = id(my_number).make_call();
+      auto call = id(my_datetime).make_call();
       call.set_value("2024-02-25 10:20");
       call.perform();
 
