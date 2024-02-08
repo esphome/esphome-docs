@@ -37,7 +37,13 @@ Configuration variables:
   Cannot be used with ``lambda``. Defaults to ``false``.
 - **initial_value** (*Optional*, string): The value to set the state to on setup if not
   restored with ``restore_value``.
-  Valid formats are '%Y-%m-%d %H:%M:%S' - '%Y-%m-%d %H:%M' - '%H:%M:%S' - '%H:%M'
+
+  The string needs to follow one of these formats
+``'%Y-%m-%d %H:%M:%S' - '%Y-%m-%d %H:%M' - '%H:%M:%S' - '%H:%M'``
+An example to set a date and time would be: ``"2023-12-04 15:35"`` 
+Only a Date: ``"2023-12-04"`` 
+Only a time, inlcuing seconds: ``"15:35:10"``
+
   Cannot be used with ``lambda``. Defaults to ``"00:00:00"``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Datetime <config-datetime>`.
