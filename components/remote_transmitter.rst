@@ -111,7 +111,7 @@ This :ref:`action <config-action>` sends a Byron Doorbell RF protocol code to a 
     on_...:
       - remote_transmitter.transmit_byronsx:
           address: '0x4f'
-          command: '0x2'      
+          command: '0x2'
 
 Configuration variables:
 
@@ -225,7 +225,7 @@ This :ref:`action <config-action>` sends a Draton Digistat RF remote code to a r
       - remote_transmitter.transmit_drayton:
           address: '0x6180'
           channel: '0x12'
-          command: '0x02'      
+          command: '0x02'
 
 Configuration variables:
 
@@ -250,6 +250,33 @@ This :ref:`action <config-action>` sends a JVC infrared remote code to a remote 
 Configuration variables:
 
 - **data** (**Required**, int): The JVC code to send, see dumper output for more info.
+
+.. _remote_transmitter-transmit_keeloq:
+
+``remote_transmitter.transmit_keeloq`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends KeeLoq RF remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_keeloq:
+          address: '0x57ffe7b'
+          command: '0x02'
+          code: '0xd19ef0a9'
+          repeat:
+            times: 3
+            wait_time: 15ms  
+
+Configuration variables:
+
+- **address** (**Required**, int): The 32-bit address to send, see dumper output for more info.
+- **command** (**Required**, int): The 4 bit command/button code to send, see dumper output for more info.
+- **code** (**Optional**, int): The 32 bit encrypted field to send. Defaults to all zeros.
+- **level** (**Optional**, boolean): Low battery level status bit. Defaults to false.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+- A repeat **wait_time** of 15ms as shown replicates the repetition of an HCS301.
 
 .. _remote_transmitter-transmit_haier:
 
@@ -352,11 +379,13 @@ This :ref:`action <config-action>` sends an NEC infrared remote code to a remote
       - remote_transmitter.transmit_nec:
           address: 0x1234
           command: 0x78AB
+          command_repeats: 1
 
 Configuration variables:
 
 - **address** (**Required**, int): The 16-bit address to send, see dumper output for more details.
 - **command** (**Required**, int): The 16-bit NEC command to send.
+- **command_repeats** (*Optional*, int): The number of times the command bytes are sent in one transmission. Defaults to `1`.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_nexa`` Action
@@ -934,11 +963,12 @@ earlier, create a new template switch that sends the RF code when triggered:
     switch:
       - platform: template
         name: RF Power Button
+        optimistic: true
         turn_on_action:
           - remote_transmitter.transmit_rc_switch_raw:
               code: '100010000000000010111110'
               protocol: 2
-              repeat: 
+              repeat:
                 times: 10
                 wait_time: 0s
 
@@ -958,9 +988,9 @@ in the frontend. Click on it and you should see the remote signal being transmit
 
 .. note::
 
-    Some devices require that the transmitted code be repeated for the signal to be picked up 
-    as valid. Also the interval between repetitions can be important. Check that the pace of 
-    repetition logs are consistent between the remote controller and the transmitter node. 
+    Some devices require that the transmitted code be repeated for the signal to be picked up
+    as valid. Also the interval between repetitions can be important. Check that the pace of
+    repetition logs are consistent between the remote controller and the transmitter node.
     You can adjust the ``repeat:`` settings accordingly.
 
 
