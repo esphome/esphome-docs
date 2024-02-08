@@ -109,7 +109,7 @@ Configuration variables: See :ref:`Automation <automation>`.
 This automation is triggered when the stored date/time matches the current date/time of the 
 specified ``time_id`` component.
 If only a date is provided, the automation will trigger once on the specified date
-at 00:00:01.
+at a time of ``00:00:01``.
 The same applies if the provided time does not include seconds. So it will trigger once
 on the first second of the specified minute.
 
@@ -144,7 +144,7 @@ This condition passes if the state of the given dateime has a date set.
 
 .. _datetime-has_time_condition:
 
-``datetime.has_date`` Condition
+``datetime.has_time`` Condition
 *******************************
 
 This condition passes if the state of the given dateime has a time set.
@@ -166,6 +166,11 @@ This condition passes if the state of the given dateime has a time set.
 ***********************
 
 This is an :ref:`Action <config-action>` for setting a datetime state.
+The string provided to set the datetime state needs to follow one of these formats
+``'%Y-%m-%d %H:%M:%S' - '%Y-%m-%d %H:%M' - '%H:%M:%S' - '%H:%M'``
+An example to set a date and time would be: ``2023-12-04 15:35``
+Only a Date: ``2023-12-04``
+Only a time, inlcuing seconds: ``15:35:10``
 
 .. code-block:: yaml
 
