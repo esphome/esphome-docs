@@ -498,7 +498,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply. 
+``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
 
 **Example:**
 
@@ -533,7 +533,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 .. note::
 
-    The ``on_value`` trigger is sent while the arc is being dragged or changed with keys. The event is sent *continuously* while the arc is being dragged, this can affect performance and have negative effects on the actions to be performed.
+    The ``on_value`` trigger is sent while the arc knob is being dragged or changed with keys. The event is sent *continuously* while the knob is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
@@ -1232,7 +1232,7 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply. 
+``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
 
 **Example:**
 
@@ -1267,7 +1267,7 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 .. note::
 
-    The ``on_value`` trigger is sent while the slider is being dragged or changed with keys. The event is sent *continuously* while the slider is being dragged, this can affect performance and have negative effects on the actions to be performed.
+    The ``on_value`` trigger is sent while the slider is being dragged or changed with keys. The event is sent *continuously* while the slider is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
 The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
 
@@ -1651,7 +1651,7 @@ ESPHome implements as universal triggers the following interaction events genera
 - ``on_focus``:  The widget is focused.
 - ``on_defocus``: The widget is unfocused.
 
-These triggers can be applied directly to any widget in the lvgl configuration, given that the widget itself supports generating such events.
+These triggers can be applied directly to any widget in the lvgl configuration, given that the widget itself supports generating such events. For the widgets having a value, the triggers return the current value in variable ``x``.
 
 .. code-block:: yaml
 

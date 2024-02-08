@@ -183,7 +183,7 @@ This is applicable to service calls like ``fan.set_percentage``, ``valve.set_val
 
 .. note::
 
-    Keep in mind that ``on_value`` is triggered *continuously* by the slider while it's being dragged. This can affect performance and have negative effects on the actions to be performed. For example, you shouldn't use this trigger to set the target temperature of a heatpump via Modbus, or set the position of motorized covers, because it will likely cause malfunctions.
+    Keep in mind that ``on_value`` is triggered *continuously* by the slider while it's being dragged. This can affect performance and have negative effects on the actions to be performed. For example, you shouldn't use this trigger to set the target temperature of a heatpump via Modbus, or set the position of motorized covers, because it will likely cause malfunctions. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
 .. _lvgl-cook-volume:
 
