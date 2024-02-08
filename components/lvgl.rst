@@ -376,6 +376,12 @@ The properties below are common to all widgets.
     Similarly to CSS, LVGL also supports ``min_width``, ``max_width``, ``min_height`` and ``max_height``. These are limits preventing an object's size from becoming smaller/larger than these values. They are especially useful if the size is set by percentage or ``size_content``.
 
 - **min_width**, **max_width**, **min_height**, **max_height** (*Optional*, int16 or percentage): Sets a minimal/maximal width or a minimal/maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
+- **scrollbar_mode** (*Optional*, string): If an object is outside its parent content area (the size without padding), the parent becomes scrollable. The object can either be scrolled horizontally or vertically in one stroke. Scrollbars can appear depending on the setting:
+    - ``"OFF"``: Never show the scrollbars (use the double quotes!).
+    - ``"ON"``: Always show the scrollbars (use the double quotes!).
+    - ``"ACTIVE"``: Show scroll bars while an object is being scrolled.
+    - ``"AUTO"``: Show scroll bars when the content is large enough to be scrolled (default).
+
 - **align** (*Optional*, enum): Alignment of the of the widget relative to the parent. A child widget is clipped to its parent boundaries. One of the values *not* starting with ``OUT_`` (see picture below).
 - **align_to** (*Optional*, list): Alignment of the of the widget relative to another widget on the same level:
     - **id** (**Required**): The ID of a widget *to* which you want to align.
