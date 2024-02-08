@@ -238,12 +238,12 @@ Nothe the ``adv_hittest`` option, which ensures that accidental touches to the s
 Thermometer
 -----------
 
-A thermometer with a gauge acomplished with :ref:`lvgl-wgt-mtr` widget and numeric display using :ref:`lvgl-wgt-lbl`:
+A thermometer with a gauge acomplished with :ref:`lvgl-wgt-mtr` widget and a numeric display with :ref:`lvgl-wgt-lbl`:
 
 .. figure:: images/lvgl_cook_thermometer.png
     :align: center
 
-Whenever a new value comes from the sensor, we update the needle indicator, and the text label respectively.
+Whenever a new value comes from the sensor, we update the needle indicator, and the text label respectively. Since LVGL only handles integer values on the :ref:`lvgl-wgt-mtr` scale, but we want a float precision scale we use the same approach as in the examples above to multiply the needle values by ``10``. We use two scales on top of each other: one to set the needle in the multiplied interval, and one to show the labels in the original interval.
 
 .. code-block:: yaml
 
@@ -253,14 +253,13 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
         on_value:
           - lvgl.indicator.line.update:
               id: temperature_needle
-              value: !lambda return x; 
+              value: !lambda return x * 10; 
           - lvgl.label.update:
               id: temperature_text
               text: !lambda |-
                 static char buf[10];
-                snprintf(buf, 10, "%.2f%°C", x);
+                snprintf(buf, 10, "%.1f°C", x);
                 return buf;
-
     lvgl:
         ...
         pages:
@@ -271,19 +270,8 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
                   height: 180
                   width: 180
                   scales:
-                    - ticks:
-                        width: 2
-                        count: 51
-                        length: 10
-                        color: 0x000000
-                        major:
-                          stride: 5
-                          width: 4
-                          length: 10
-                          color: 0x404040
-                          label_gap: 13
-                      range_from: -10
-                      range_to: 40
+                    - range_from: -100 # scale for the needle value
+                      range_to: 400
                       angle_range: 240
                       rotation: 150
                       indicators:
@@ -297,16 +285,33 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
                             end_value: 40
                             color_start: 0x0000bd
                             color_end: 0xbd0000
+                    - range_from: -10 # scale for the value labels
+                      range_to: 40
+                      angle_range: 240
+                      rotation: 150
+                      ticks:
+                        width: 2
+                        count: 51
+                        length: 10
+                        color: 0x000000
+                        major:
+                          stride: 5
+                          width: 4
+                          length: 10
+                          color: 0x404040
+                          label_gap: 13
                   widgets:
                     - label:
-                        text: "°C"
                         id: temperature_text
+                        text: "-.-°C"
                         align: CENTER
                         y: 45
+                        text_align: center
                     - label:
                         text: "Outdoor"
                         align: CENTER
                         y: 65
+                        text_align: center
 
 Notable here is the way the label is updated with a sensor numeric value using `snprintf <https://cplusplus.com/reference/cstdio/snprintf/>`__.
 
