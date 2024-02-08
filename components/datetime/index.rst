@@ -168,9 +168,9 @@ This condition passes if the state of the given dateime has a time set.
 This is an :ref:`Action <config-action>` for setting a datetime state.
 The string provided to set the datetime state needs to follow one of these formats
 ``'%Y-%m-%d %H:%M:%S' - '%Y-%m-%d %H:%M' - '%H:%M:%S' - '%H:%M'``
-An example to set a date and time would be: ``2023-12-04 15:35``
-Only a Date: ``2023-12-04``
-Only a time, inlcuing seconds: ``15:35:10``
+An example to set a date and time would be: ``"2023-12-04 15:35"``
+Only a Date: ``"2023-12-04"``
+Only a time, inlcuing seconds: ``"15:35:10"``
 
 .. code-block:: yaml
 
