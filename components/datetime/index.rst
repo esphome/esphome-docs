@@ -208,7 +208,7 @@ advanced stuff (see the full API Reference for more info).
 
 - ``.state``: Retrieve the current value of the datetime. Is ``""`` if no value has been read or set.
 - ``.state_as_time``: Retrieve the current value of the datetime as a ``ESPTime`` objekt. 
-  Is ``.is_valid()`` will return ``false`` if no value has been read or set.
+  ``state_as_time.is_valid()`` will return ``false`` if no value has been read or set.
 
   .. code-block:: cpp
 
