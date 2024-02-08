@@ -786,7 +786,7 @@ Toggle state icon button
 .. figure:: images/lvgl_cook_font_binstat.png
     :align: left
 
-A good example for using icons is for showing a different icon on a checkable (toggle) button based on the state of the switch or light it is linked to. To put an icon on a button you use a :ref:`lvgl-wgt-lbl` widget as the child of the :ref:`lvgl-wgt-btn`. The coloring can alredy be different thanks to the :ref:`lvgl-cook-theme` where you can set a different color for the ``checked`` state.
+A good example for using icons is for showing a different icon on a checkable (toggle) button based on the state of the switch or light it is linked to. To put an icon on a button you use a :ref:`lvgl-wgt-lbl` widget as the child of the :ref:`lvgl-wgt-btn`. The coloring can alredy be different thanks to the :ref:`lvgl-cook-theme` where you can set a different color for the ``checked`` state. Additionally, by using a ``text_sensor`` to import the state from Home Assistant, we can not only track the ``on`` state, but also the ``unavailable`` or ``unknown`` to apply *disabled styles* for these cases.
 
 If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like this:
 
@@ -802,29 +802,29 @@ If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like t
           "\U000F0336", # mdi-lightbulb-outline
           ]
 
-    binary_sensor:
+    text_sensor:
       - platform: homeassistant
-        id: remote_light
+        id: ts_remote_light
         entity_id: light.remote_light
-        publish_initial_state: true
-        on_press:
+        on_value:
           then:
             - lvgl.widget.update:
                 id: btn_lightbulb
                 state:
-                  checked: true
+                  checked: !lambda return (0 == x.compare(std::string{"on"}));
+                  disabled: !lambda return ((0 == x.compare(std::string{"unavailable"})) or (0 == x.compare(std::string{"unknown"})));
             - lvgl.label.update:
                 id: lbl_lightbulb
-                text: "\U000F0335" # mdi-lightbulb
-        on_release:
-          then:
-            - lvgl.widget.update:
-                id: btn_lightbulb
-                state:
-                  checked: false
-            - lvgl.label.update:
-                id: lbl_lightbulb
-                text: "\U000F0336" # mdi-lightbulb-outline
+                text: !lambda |-
+                  static char buf[5];
+                  std::string icon;
+                  if (0 == x.compare(std::string{"on"})) {
+                      icon = "\U000F0335";
+                  } else {
+                      icon = "\U000F0336";
+                  }
+                  snprintf(buf, sizeof(buf), "%s", icon.c_str());
+                  return buf;
 
     lvgl:
         ...
