@@ -816,7 +816,7 @@ If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like t
             - lvgl.label.update:
                 id: lbl_lightbulb
                 text: !lambda |-
-                  static char buf[5];
+                  static char buf[10];
                   std::string icon;
                   if (0 == x.compare(std::string{"on"})) {
                       icon = "\U000F0335";
