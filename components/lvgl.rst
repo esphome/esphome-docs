@@ -1694,12 +1694,12 @@ See :ref:`lvgl-cook-idlescreen` example how to implement screen saving with idle
 See Also
 --------
 
+- :doc:`LVGL examples in the Cookbook </cookbook/lvgl>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/switch/lvgl`
 - :doc:`/components/number/lvgl`
 - :doc:`/components/select/lvgl`
 - :doc:`/components/light/lvgl`
-- :doc:`/cookbook/lvgl`
 - :doc:`/components/display/index`
 - :doc:`/components/touchscreen/index`
 - :doc:`/components/sensor/rotary_encoder`
