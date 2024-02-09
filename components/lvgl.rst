@@ -1592,7 +1592,9 @@ Conditions
 ``lvgl.is_idle``
 ****************
 
-This :ref:`condition <config-condition>` checks if LVGL is in idle state or not.
+This :ref:`condition <config-condition>` checks if since the last touch event, the amount of time specified here has passed or not.
+
+- **timeout** (**Required**, :ref:`templatable <config-templatable>`, int): :ref:`Time <config-time>` to check against the time that has elapsed since the last touch event.
 
 .. code-block:: yaml
 
@@ -1601,6 +1603,7 @@ This :ref:`condition <config-condition>` checks if LVGL is in idle state or not.
       then:
         - if:
             condition: lvgl.is_idle
+              timeout: 5s
             then:
               - light.turn_off:
                   id: display_backlight
@@ -1674,7 +1677,7 @@ LVGL has a notion of screen inactivity, i.e. how long did the user not interact 
 
 The ``on_idle`` :ref:`trigger <automation>` is activated when inactivity time becomes longer than the specified ``timeout``. 
 
-- **timeout** (**Required**, :ref:`templatable <config-templatable>`, int): :ref:`Time <config-time>` value after which LVGL should enter idle state. 
+- **timeout** (**Required**, :ref:`templatable <config-templatable>`, int): :ref:`Time <config-time>` that has elapsed since the last touch event, after which you want your actions to be performed.
 
 .. code-block:: yaml
 
