@@ -83,8 +83,8 @@ With Nextion displays, a dedicated chip on the display itself does the whole ren
 send *instructions* to the display to tell it *how* to render something and *what* to render.
 
 First, you need to use the `Nextion Editor <https://nextion.tech/nextion-editor/>`__ to
-create a display file and insert it using the SD card slot. Then, in the rendering ``lambda``, you can use the various API calls
-to populate data on the display:
+create a display file and transfer it using the ``upload_tft`` call or insert it using the SD card slot.
+Then, in the rendering ``lambda``, you can use the various API calls to populate data on the display:
 
 .. code-block:: yaml
 
@@ -291,16 +291,20 @@ The following arguments will be available:
 Uploading A TFT File
 --------------------
 This will download the file from the tft_url and will transfer it over the UART to the Nextion.
-Once completed both the ESP and Nextion will reboot. During the upload process esphome will be 
-unresponsive and no logging will take place. This uses the same protocol as the Nextion editor and
-only updates the changes of the TFT file. If HTTPS/SSL is enabled it will be about 1kB/sec.
+During the upload process esphome will be unresponsive and limited logging will take place.
+This uses the same protocol as the Nextion editor and only updates the changes of the TFT file.
+
+.. note::
+
+    The upload engine uses insecure connections over HTTPS. You can host the file in a local web server
+    to avoid transferring insecure over the public Internet.
 
 .. warning::
 
     If :ref:`uart-hardware_uarts` are not available then inconsistent results WILL occur. Lowering the speed to 9600 baud may help.
 
 
-To host the TFT file you can use Home Assistant itself or any other web server. HTTPS, while always recommended on any network, will greatly reduce the upload speed.
+To host the TFT file you can use Home Assistant itself or any other web server.
 
 Home Assistant
 **************
@@ -310,24 +314,6 @@ directory. You can create a subdirectory for those files as well.
 For example if the file is located
 under your configuration directory ``www/tft/default.tft`` the URL to access it will be
 ``http(s)://your_home_assistant_url:port/local/tft/default.tft``
-
-NGINX
-*****
-
-`NGINX <https://www.nginx.com/>`__
-
-The below NGINX example configuration will serve files out of the /var/www/nextion directory.
-
-.. code-block:: nginx
-
-    server {
-      listen 80;    
-      access_log  /var/log/nginx/nextion_access.log;    
-      error_log  /var/log/nginx/nextion_error.log;
-      root /var/www/nextion;
-    }
-
-
 
 Components
 ----------
