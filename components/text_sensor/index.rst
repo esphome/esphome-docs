@@ -34,7 +34,7 @@ Configuration variables:
 - **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
 - **device_class** (*Optional*, string): The device class for the
   sensor. Only the ``timestamp`` and ``date`` device classes are supported.
-  for a list of available options. Set to ``""`` to remove the default device class of a sensor.
+  Set to ``""`` to remove the default device class of a sensor.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
