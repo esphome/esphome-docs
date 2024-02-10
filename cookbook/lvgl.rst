@@ -1253,25 +1253,50 @@ Wall mounted LCD screens' main problem is that they display the same picture 99.
 
 One way to mitigate this is to *train* the pixels periodically with completely different other content. ``show_snow`` option during LVGL paused state was developed in this scope, to  display random coloured pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel.
 
-In the example below pixel traning is done every night between 1:30 and 2:30, and can be stopped by touching the screen.
+In the example below pixel traning is done foru times for a half an hour every night, can also be stopped by touching the screen.
 
 .. code-block:: yaml
 
     time:
       - platform: ...
         on_time:
-          - hours: 1
-            minutes: 30
+          - hours: 2,3,4,5
+            minutes: 5
             seconds: 0
             then:
-              - lvgl.pause:
-                  show_snow: true
-        on_time:
-          - hours: 2
-            minutes: 30
+              - switch.turn_on: switch_antiburn
+          - hours: 2,3,4,5
+            minutes: 35
             seconds: 0
             then:
-              - lvgl.resume:
+              - switch.turn_off: switch_antiburn
+
+    switch:
+      - platform: template
+        name: Antiburn
+        id: switch_antiburn
+        icon: mdi:television-shimmer
+        optimistic: true
+        entity_category: "config"
+        turn_on_action:
+          - logger.log: "Starting Antiburn"
+          - if:
+              condition: lvgl.is_paused
+              then:
+                - lvgl.resume:
+                - lvgl.widget.redraw:
+                - delay: 1s
+          - lvgl.pause:
+              show_snow: true
+        turn_off_action:
+          - logger.log: "Stoping Antiburn"
+          - if:
+              condition: lvgl.is_paused
+              then:
+                - lvgl.resume:
+                - lvgl.widget.redraw:
+                - delay: 1s
+                - lvgl.pause:
 
     touchscreen:
       - platform: ...
@@ -1282,7 +1307,7 @@ In the example below pixel traning is done every night between 1:30 and 2:30, an
                 then:
                   - lvgl.resume:
 
-For best results, combine it with the previous example by turning off the backlight, so the users don't actually notice this.
+You can combine it with the previous example to turn off the backlight, so the users don't actually notice this.
 
 See Also
 --------
