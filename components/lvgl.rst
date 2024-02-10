@@ -1668,6 +1668,15 @@ These triggers can be applied directly to any widget in the lvgl configuration, 
           then:
             light.toggle: display_backlight
 
+    - slider:
+        ...
+        on_release:
+          then:
+            - light.turn_on:
+                id: display_backlight
+                transition_length: 0ms
+                brightness: !lambda return int(x);
+
 .. _lvgl-onidle-trg:
 
 ``lvgl.on_idle``
