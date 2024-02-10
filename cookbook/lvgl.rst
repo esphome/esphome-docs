@@ -1306,6 +1306,7 @@ In the example below pixel traning is done four times for a half an hour every n
                 condition: lvgl.is_paused
                 then:
                   - lvgl.resume:
+                  - lvgl.widget.redraw:
 
 You can combine it with the previous example to turn off the backlight, so the users don't actually notice this.
 
