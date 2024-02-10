@@ -1675,7 +1675,7 @@ These triggers can be applied directly to any widget in the lvgl configuration, 
             - light.turn_on:
                 id: display_backlight
                 transition_length: 0ms
-                brightness: !lambda return int(x);
+                brightness: !lambda return x / 100;
 
 .. _lvgl-onidle-trg:
 
