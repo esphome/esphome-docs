@@ -1626,9 +1626,6 @@ This :ref:`condition <config-condition>` checks if LVGL is in paused state or no
             condition: lvgl.is_paused
             then:
               - lvgl.resume:
-              - light.turn_on:
-                  id: display_backlight
-                  transition_length: 150ms
 
 Triggers
 --------
