@@ -1675,20 +1675,23 @@ These triggers can be applied directly to any widget in the lvgl configuration, 
 
 LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter. 
 
-The ``on_idle`` :ref:`trigger <automation>` is activated when inactivity time becomes longer than the specified ``timeout``. 
+The ``on_idle`` :ref:`triggers <automation>` are activated when inactivity time becomes longer than the specified ``timeout``. You can configure any desired number of timeouts with different actions.
 
 - **timeout** (**Required**, :ref:`templatable <config-templatable>`, int): :ref:`Time <config-time>` that has elapsed since the last touch event, after which you want your actions to be performed.
 
 .. code-block:: yaml
 
     lvgl:
-        on_idle:
-          timeout: 30s
+      ...
+      on_idle:
+        - timeout: 30s
           then:
-            - logger.log: "LVGL is idle"
+            - lvgl.page.show: main_page
+        - timeout: 60s
+          then:
+            - light.turn_off: display_backlight
             - lvgl.pause:
-            - light.turn_off:
-                id: display_backlight
+
 
 See :ref:`lvgl-cook-idlescreen` example how to implement screen saving with idle settings.
 
