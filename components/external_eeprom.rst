@@ -145,7 +145,7 @@ Full example:
 
 Devices
 *******
-The list below lists of type and sizes of serial Eeprom devices supported. Please use the **EEPROM_TYPE** to cofigure your device
+The list below lists of type and sizes of serial Eeprom devices supported. Please use the **EEPROM_TYPE** to configure your device.
 
 
 .. list-table::
