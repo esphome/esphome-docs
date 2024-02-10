@@ -1253,7 +1253,7 @@ Wall mounted LCD screens' main problem is that they display the same picture 99.
 
 One way to mitigate this is to *train* the pixels periodically with completely different other content. ``show_snow`` option during LVGL paused state was developed in this scope, to  display random coloured pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel.
 
-In the example below pixel traning is done foru times for a half an hour every night, can also be stopped by touching the screen.
+In the example below pixel traning is done four times for a half an hour every night, can also be stopped by touching the screen.
 
 .. code-block:: yaml
 
