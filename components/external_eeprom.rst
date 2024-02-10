@@ -145,8 +145,8 @@ Full example:
 
 Devices
 *******
-The list below is non-exhaustive list of type and sizes of serial Eeprom devices
-Please refer to the datasheet for your selected device for **Size**, **Page Size**, **Page Write Time**
+The list below lists of type and sizes of serial Eeprom devices supported. Please use the **EEPROM_TYPE** to cofigure your device
+
 
 .. list-table::
     :header-rows: 1
@@ -259,6 +259,7 @@ Writing a single variable
 
 - ``void write8(uint32_t address, uint8_t value)``
 - ``void write16(uint32_t memaddr, uint16_t value)``
+- ``void write32(uint32_t memaddr, uint32_t value)``
 - ``void write_float(uint32_t address, float value)``
 - ``void write_double(uint32_t address, double value)``
 
@@ -304,4 +305,4 @@ The erase method erases the entire eeprom, the default value written to erase th
     It your responsibility to maintain a list of addresses used to store various values. 
     Also you need to understand the size to the item being stored EG ``write32`` will use 4 bytes. Otherwise data will get over written.
 
-    **Special care is required with writing strings, as the string is varible length and can be upto 254 bytes long.**
+    **Special care is required with writing strings, as strings are varible length and can be upto 254 bytes long.**
