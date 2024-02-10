@@ -170,7 +170,7 @@ We can use a sensor to retrieve the current brightness of a light, which is stor
                   pad_all: 8
                   min_value: 0
                   max_value: 255
-                  on_value:
+                  on_release:
                     - homeassistant.service:
                         service: light.turn_on
                         data:
@@ -180,10 +180,6 @@ We can use a sensor to retrieve the current brightness of a light, which is stor
 Note that Home Assistant expects an integer at the ``brightness`` parameter of the ``light.turn_on`` service call, and since ESPHome uses floats, ``x`` needs to be converted.
 
 This is applicable to service calls like ``fan.set_percentage``, ``valve.set_valve_position`` too, only difference is that ``max_value`` has to be ``100``.
-
-.. note::
-
-    Keep in mind that ``on_value`` is triggered *continuously* by the slider while it's being dragged. This can affect performance and have negative effects on the actions to be performed. For example, you shouldn't use this trigger to set the target temperature of a heatpump via Modbus, or set the position of motorized covers, because it will likely cause malfunctions. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
 .. _lvgl-cook-volume:
 
@@ -231,7 +227,11 @@ With a sensor we retrieve the current volume level of the media player, which is
                           entity_id: media_player.your_room
                           volume_level: !lambda return (x / 100);
 
-Nothe the ``adv_hittest`` option, which ensures that accidental touches to the screen won't cause sudden volume changes (more details in the :ref:`slider doc <lvgl-wgt-sli>`).
+The ``adv_hittest`` option ensures that accidental touches to the screen won't cause sudden volume changes (more details in the :ref:`slider doc <lvgl-wgt-sli>`).
+
+.. note::
+
+    Keep in mind that ``on_value`` is triggered *continuously* by the slider while it's being dragged. This can affect performance and have negative effects on the actions to be performed. For example, you shouldn't use this trigger to set the target temperature of a heatpump via Modbus, or set the position of motorized covers, because it will likely cause malfunctions. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
 .. _lvgl-cook-thermometer:
 
