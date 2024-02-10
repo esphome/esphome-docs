@@ -40,18 +40,14 @@ Now the Eeprom device
     external_eeprom:
       id: ext_eeprom_component_1
       address: 0x57
-      ee_page_write_time: 5
-      ee_page_size: 32
-      ee_memory_size: 4096
-      i2c_buffer_size: 126
+      ee_memory_type: 24XX32
+      i2c_buffer_size: 128
 
 - **id** (*Required*, :ref:`config-id`): ID for use in lambdas
 - **i2c_id** (*Optional*, :ref:`config-id`): I²C Bus ID need on ESP32 devices with multiple I2C ports configured
 - **address** (*Required*, int): I²C address, see :ref:`eeprom-types`, default: ``0x57``
-- **ee_page_write_time** (*Required*, int): See :ref:`eeprom-types`, default: ``5``
-- **ee_page_size** (*Required*, int): EEPROM page size, see :ref:`eeprom-types` for examples.
-- **ee_memory_size** (*Required*, int): EEPROM size, see :ref:`eeprom-types` for examples.
-- **i2c_buffer_size** (*Required*, int): Size of the I2C buffer, for ESP32 & ESP8266 this 128 - 2 bytes hence 126
+- **ee_memory_type** (*Required*, eeprom_types): See :ref:`eeprom-types`
+- **i2c_buffer_size** (*Required*, int): Size of the I2C buffer, for ESP32 & ESP8266 this is 128
 
 Full example:
 -------------
@@ -111,10 +107,8 @@ Full example:
     external_eeprom:
       id: ext_eeprom_component_1
       address: 0x57
-      ee_page_write_time: 5
-      ee_page_size: 32
-      ee_memory_size: 4096
-      i2c_buffer_size: 126
+      ee_memory_type: 24XX32
+      i2c_buffer_size: 128
       i2c_id: bus_1
 
 
@@ -158,44 +152,74 @@ Please refer to the datasheet for your selected device for **Size**, **Page Size
     :header-rows: 1
 
     * - Device
+      - EEPROM_TYPE
       - Size
       - Page Size
       - Page Write (ms)
-    * - 24LC014
-      - 128 B
-      - 16
+    * - 24LC00
+      - 24XX00
+      - 16 B
+      - 1
       - 5
-    * - 24LC024
+    * - 24LC01
+      - 24XX01
+      - 128 B
+      - 8
+      - 5
+    * - 24LC02
+      - 24XX02
       - 256 B
-      - 16
+      - 8
       - 5
     * - 24LC04
+      - 24XX04
       - 512 B
       - 16
       - 5
     * - 24LC08
+      - 24XX08
       - 1 KB
       - 16
       - 5
     * - 24LC16
+      - 24XX16
       - 2 KB
       - 16
       - 5
     * - 24LC32
+      - 24XX32
       - 4 KB
       - 32
       - 5
     * - 24LC64
+      - 24XX64
       - 8 KB
       - 32
       - 5
+    * - 24LC128
+      - 24XX128
+      - 16 KB
+      - 64
+      - 5
     * - 24LC256
+      - 24XX256
       - 32 KB
       - 64
       - 5
     * - 24LC512
+      - 24XX512
       - 64 KB
-      - 64
+      - 128
+      - 5
+    * - 24LC1025
+      - 24XX1025
+      - 128 KB
+      - 128
+      - 5
+    * - 24LC2048
+      - 24XX2048
+      - 256 KB
+      - 128
       - 5
 
 Address can be selected by connecting the address pins to VCC (pull them high).
@@ -225,7 +249,7 @@ This component can be used from other components or lambdas:
           id(ext_eeprom_component_1).write16(0x000A, 12345);
           
           // read back that number
-          uint16_t = id(ext_eeprom_component_1).read16(0x000A);
+          uint16_t value_read = id(ext_eeprom_component_1).read16(0x000A);
 
 Methods
 ========
