@@ -27,20 +27,11 @@ required to be set up in your configuration for this sensor to work.
 
 .. code-block:: yaml
 
-    # I²C Bus configuration
-    i2c:
-      sda: GPIO21
-      scl: GPIO22
-      scan: true
-      frequency: 15kHz
-
     # Example configuration entry
     sensor:
       - platform: ags10
         tvoc:
           name: TVOC
-        address: 0x1A
-        update_interval: 60s
 
 Configuration variables:
 ------------------------
