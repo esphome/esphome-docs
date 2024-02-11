@@ -318,6 +318,7 @@ Environmental
     HTE501, components/sensor/hte501, HTE501.png, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
     Honeywell ABP2 I2C, components/sensor/honeywellabp2_i2c, honeywellabp.jpg, Pressure & Temperature
+    Honeywell HIH I2C, components/sensor/honeywell_hih_i2c, honeywellhih.jpg, Temperature & Humidity
     HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
     Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
@@ -362,6 +363,7 @@ Light
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
     TSL2591, components/sensor/tsl2591, tsl2591.jpg, Lux
+    VEML3235, components/sensor/veml3235, veml3235.jpg, Lux
 
 
 Magnetic
@@ -384,13 +386,13 @@ Miscellaneous
     AS3935, components/sensor/as3935, as3935.jpg, Storm lightning
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
+    Combination, components/sensor/combination, function.svg, dark-invert    
     Duty Time, components/sensor/duty_time, timer-play-outline.svg, dark-invert
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Integration, components/sensor/integration, sigma.svg, dark-invert
     Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
-    Kalman Combinator, components/sensor/kalman_combinator, function.svg, dark-invert
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
@@ -484,9 +486,10 @@ Often known as "tag" or "card" readers within the community.
 
 .. imgtable::
 
+    NFC Tag, components/binary_sensor/nfc, nfc.png
     PN532, components/binary_sensor/pn532, pn532.jpg
-    PN7150, components/binary_sensor/pn7150, pn7150.jpg
-    PN716X, components/binary_sensor/pn7160, pn716x.jpg
+    PN7150, components/pn7150, pn7150.jpg
+    PN716X, components/pn7160, pn716x.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
 
@@ -655,6 +658,8 @@ Display Components
     ILI9481, components/display/ili9xxx, ili9481.svg
     ILI9486, components/display/ili9xxx, ili9341.jpg
     ILI9488, components/display/ili9xxx, ili9488.svg
+    WSPICOLCD, components/display/ili9xxx, ili9488.svg
+    
     Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
