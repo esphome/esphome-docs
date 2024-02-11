@@ -112,8 +112,8 @@ Configuration variables:
 - **temperature** (*Optional*): Temperature. All options from :ref:`Sensor <config-sensor>`.
 - **temperature_low** (*Optional*): Historic minimum temperature. All options from :ref:`Sensor <config-sensor>`.
 - **temperature_high** (*Optional*): Historic maximum temperature. All options from :ref:`Sensor <config-sensor>`.
-- **voltage_low** (*Optional*): Historic minimum voltage. All options from :ref:`Sensor <config-sensor>`.
-- **voltage_high** (*Optional*): Historic maximum voltage. All options from :ref:`Sensor <config-sensor>`.
+- **voltage_low** (*Optional*): Voltage of the lowest cell. All options from :ref:`Sensor <config-sensor>`.
+- **voltage_high** (*Optional*): Voltage of the highest cell. All options from :ref:`Sensor <config-sensor>`.
 - **mos_temperature** (*Optional*): Temperature of the mosfets. All options from :ref:`Sensor <config-sensor>`.
 
 Text Sensor
