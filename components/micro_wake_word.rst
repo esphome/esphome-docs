@@ -24,8 +24,7 @@ Configuration variables:
 ------------------------
 
 - **model** (**Required**, string): The model to use. This can be one of:
-  - A simple name of a model that exists in the official `ESPHome Models repository <https://github.com/esphome/micro-wake-word-models>`__.
-    e.g. ``hey_jarvis``.
+  - A simple name of a model that exists in the official `ESPHome Models repository <https://github.com/esphome/micro-wake-word-models>`__. e.g. ``hey_jarvis``.
   - A github shorthand URL to a model JSON file.
     e.g. ``github://esphome/micro-wake-word-models/models/hey_jarvis.json@main``.
   - A full URL to a model JSON file.
