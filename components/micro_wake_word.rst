@@ -30,7 +30,7 @@ Configuration variables:
   - A simple name of a model that exists in the official `ESPHome Models repository <https://github.com/esphome/micro-wake-word-models>`__.
     e.g. ``okay_nabu``.
   - A github shorthand URL to a model JSON file.
-    e.g. ``github://esphome/micro-wake-word-models/models/hey_jarvis.json@main``.
+    e.g. ``github://esphome/micro-wake-word-models/models/okay_nabu.json@main``.
   - A full URL to a model JSON file.
     e.g. ``https://github.com/esphome/micro-wake-word-models/raw/main/models/okay_nabu.json``.
 
@@ -50,10 +50,10 @@ Model JSON
 
     {
       "type": "micro",
-      "wake_word": "hey jarvis",
+      "wake_word": "okay nabu",
       "author": "Kevin Ahrendt",
       "website": "https://www.kevinahrendt.com/",
-      "model": "./hey_jarvis.tflite",
+      "model": "./okay_nabu.tflite",
       "version": 1,
       "micro": {
         "probability_cutoff": 0.5,
