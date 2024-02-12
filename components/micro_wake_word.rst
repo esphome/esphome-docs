@@ -14,9 +14,11 @@ The ``micro_wake_word`` component requires an **ESP32-S3** to function.
 
 .. code-block:: yaml
 
+    # Shorthand name
     micro_wake_word:
       model: okay_nabu
 
+    # Github shorthand URL
     micro_wake_word:
       model: github://esphome/micro-wake-word-models/models/okay_nabu.json
 
