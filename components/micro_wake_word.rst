@@ -24,11 +24,14 @@ Configuration variables:
 ------------------------
 
 - **model** (**Required**, string): The model to use. This can be one of:
-  - A simple name of a model that exists in the official `ESPHome Models repository <https://github.com/esphome/micro-wake-word-models>`__. e.g. ``hey_jarvis``.
+
+  - A simple name of a model that exists in the official `ESPHome Models repository <https://github.com/esphome/micro-wake-word-models>`__.
+    e.g. ``hey_jarvis``.
   - A github shorthand URL to a model JSON file.
     e.g. ``github://esphome/micro-wake-word-models/models/hey_jarvis.json@main``.
   - A full URL to a model JSON file.
     e.g. ``https://github.com/esphome/micro-wake-word-models/raw/main/models/hey_jarvis.json``.
+
 - **on_wake_word_detected** (Optional, Automation): An automation to perform when the wake word is detected.
 
 The below two options are provided by the JSON file, but can be overridden in YAML.
@@ -64,6 +67,7 @@ The model JSON file contains the following fields:
 - **model** (string): The relative or absolute path or URL to the TFLite trained model file.
 - **version** (int): The version of the JSON schema. Currently only version ``1`` exists.
 - **micro** (object): The microWakeWord specific configuration.
+
   - **probability_cutoff** (float): The probability cutoff for the wake word detection.
     If the probability of the wake word is below this value, the wake word is not detected.
   - **sliding_window_average_size** (int): The size of the sliding window average for the wake word detection.
