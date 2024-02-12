@@ -15,10 +15,10 @@ The ``micro_wake_word`` component requires an **ESP32-S3** to function.
 .. code-block:: yaml
 
     micro_wake_word:
-      model: hey_jarvis
+      model: okay_nabu
 
     micro_wake_word:
-      model: github://esphome/micro-wake-word-models/models/hey_jarvis.json
+      model: github://esphome/micro-wake-word-models/models/okay_nabu.json
 
 Configuration variables:
 ------------------------
@@ -26,11 +26,11 @@ Configuration variables:
 - **model** (**Required**, string): The model to use. This can be one of:
 
   - A simple name of a model that exists in the official `ESPHome Models repository <https://github.com/esphome/micro-wake-word-models>`__.
-    e.g. ``hey_jarvis``.
+    e.g. ``okay_nabu``.
   - A github shorthand URL to a model JSON file.
     e.g. ``github://esphome/micro-wake-word-models/models/hey_jarvis.json@main``.
   - A full URL to a model JSON file.
-    e.g. ``https://github.com/esphome/micro-wake-word-models/raw/main/models/hey_jarvis.json``.
+    e.g. ``https://github.com/esphome/micro-wake-word-models/raw/main/models/okay_nabu.json``.
 
 - **on_wake_word_detected** (Optional, Automation): An automation to perform when the wake word is detected.
 
@@ -38,7 +38,8 @@ The below two options are provided by the JSON file, but can be overridden in YA
 
 - **probability_cutoff** (float): The probability cutoff for the wake word detection.
   If the probability of the wake word is below this value, the wake word is not detected.
-- **sliding_window_average_size** (int): The size of the sliding window average for the wake word detection.
+  A larger value reduces the number of false accepts but increases the number of false rejections.
+- **sliding_window_average_size** (int): The size of the sliding window average for the wake word detection. A small value lowers latency but may increase the number of false accepts.
 
 Model JSON
 ----------
@@ -92,7 +93,7 @@ Example usage
 .. code-block:: yaml
 
     micro_wake_word:
-      model: hey_jarvis
+      model: okay_nabu
       on_wake_word_detected:
         then:
           - voice_assistant.start:
