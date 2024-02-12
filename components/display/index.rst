@@ -95,6 +95,12 @@ and circles:
           // ... and the same thing filled again
           it.filled_circle(25, 25, 10);
 
+          // Triangles... Let's draw the outline of a triangle from the [x,y] coordinates of its three points
+          // [25,5], [5,25], [50,50]
+          it.triangle(25, 5, 5, 25, 50, 50);
+          // and a filled triangle !
+          it.filled_triangle(125, 5, 105, 25, 150, 50);
+
 All the above methods can optionally also be called with an argument at the end which specifies in which
 color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
 
@@ -233,7 +239,7 @@ Configuration variables:
   here will be compiled into the binary. Adjust this if you need some special characters or want to
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
   be more than one character long if you for example want to use font ligatures. Defaults to
-  ``!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
+  ``!"%()+=,-_.:°/?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
 
 
 .. note::
@@ -552,6 +558,7 @@ Graph component with options for grids, border and line-types.
             color: my_red
           - sensor: my_outside_temperature
             line_type: SOLID
+            continuous: true
             line_thickness: 3
             color: my_blue
           - sensor: my_beer_temperature
@@ -580,6 +587,7 @@ Trace specific fields:
 - **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
 - **line_thickness** (*Optional*): Defaults to 3
 - **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
+- **continuous** (*Optional*): connects the individual points to make a continuous line.  Defaults to ``false``.
 - **color** (*Optional*): Sets the color of the sensor trace.
 
 And then later in code:
