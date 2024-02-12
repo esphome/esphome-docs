@@ -88,11 +88,11 @@ Example usage
 
 .. code-block:: yaml
 
-      micro_wake_word:
-        model: hey_jarvis
-        on_wake_word_detected:
-          then:
-            - voice_assistant.start:
+    micro_wake_word:
+      model: hey_jarvis
+      on_wake_word_detected:
+        then:
+          - voice_assistant.start:
 
 
 See Also
