@@ -55,7 +55,7 @@ Configuration variables:
   for a list of available options. Requires Home Assistant Core 2021.12 or newer.
   Defaults to ``"auto"``.
 - **device_class** (*Optional*, string): The device class for the number.
-  See https://developers.home-assistant.io/docs/core/entity/number/#available-device-classes
+  See https://www.home-assistant.io/integrations/number/#device-class
   for a list of available options.
 
 Automations:
