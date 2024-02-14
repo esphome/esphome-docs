@@ -23,6 +23,8 @@ The SPI bus usually consists of 4 wires:
 - **MISO** (also SDI - Serial Data In): Is used to receive data. All devices on the bus share this line.
 
 In some cases one of **MOSI** or **MISO** do not exist as the receiving device only accepts data or sends data.
+It is also possible to configure a quad SPI interface using 4 output data lines. This is required only for
+use with certain components.
 
 To set up SPI devices in ESPHome, you first need to place a top-level SPI component which defines the pins to
 use for the functions described above. The **CS** pins are individually managed by the other components that
@@ -37,7 +39,7 @@ This component also accepts a list of controllers if you want to implement multi
       mosi_pin: GPIO13
       miso_pin: GPIO12
 
-    # Example configuration entry - two controllers
+    # Example configuration entry - three controllers, one using quad SPI
     spi:
       - id: spi_bus0
         clk_pin: GPIO18
@@ -49,6 +51,13 @@ This component also accepts a list of controllers if you want to implement multi
         mosi_pin: GPIO27
         miso_pin: GPIO26
         interface: any
+      - id: quad_spi_bus
+        clk_pin: GPIO47
+        data_pins:
+          - 40
+          - 41
+          - 42
+          - 43
 
 Configuration variables:
 ------------------------
@@ -60,8 +69,11 @@ Configuration variables:
 - **interface** (*Optional*): Controls which hardware or software SPI implementation should be used.
   Value may be one of ``any`` (default), ``software``, ``hardware``, ``spi``, ``spi2`` or ``spi3``, depending on
   the particular chip. See discussion below.
-- **force_sw** (*Optional*, **Deprecated**, boolean): Whether software implementation should be used even if a hardware
-  controller is available. Default is ``false``.
+- **data_pins** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Must be a list of exactly 4 pins to be used
+  for the quad SPI output data lines.
+
+At least one of ``mosi_pin``, ``miso_pin`` and ``data_pins`` must be specified.
+
 
 Interface selection:
 --------------------
