@@ -106,7 +106,7 @@ and circles:
           it.regular_polygon(100, 100, 50, EDGES_HEXAGON);
           // and a filled flat-topped octagon!
           it.filled_regular_polygon(200, 200, 50, EDGES_OCTAGON, VARIATION_FLAT_TOP);
-          // Need to rotate the polygon, or retrieve its coordinates? Check the API!
+          // Need to rotate the polygon, or retrieve the coordinates of its vertices? Check the API!
 
 All the above methods can optionally also be called with an argument at the end which specifies in which
 color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
