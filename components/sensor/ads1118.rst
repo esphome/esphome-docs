@@ -16,9 +16,9 @@ The ``ads1118`` domain creates a global hub so that you can later create
 individual sensors using the :ref:`ADS1118 Sensor Platform <ads1118-sensor>`.
 It uses the :ref:`SPI Bus <spi>` for communication.
 
-.. figure:: images/ads1118.jpg
+.. figure:: images/ads1118-full.jpg
     :align: center
-    :width: 50.0%
+    :width: 60.0%
 
     ADS1118 16-Bit ADC.
 
@@ -84,7 +84,7 @@ Multiplexer and Gain
 
 .. note::
 
-    As per (`datasheet <https://www.ti.com/lit/ds/symlink/ads1118.pdf>`__, `Adafruit`_) Section 7.3 Note 2:
+    As per (`datasheet <https://www.ti.com/lit/ds/symlink/ads1118.pdf>`__) Section 7.3 Note 2:
     "No more than VDD + 0.3V must be applied to the analog inputs of the device."
     This means if you power the device with 3.3V, take care not to supply the 4 AIN pins with more than 3.6V.
 
@@ -115,5 +115,4 @@ See Also
 - :doc:`adc`
 - :doc:`ads1115`
 - :apiref:`ads1118/ads1118.h`
-- `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - :ghedit:`Edit`
