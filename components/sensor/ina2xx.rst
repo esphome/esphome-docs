@@ -113,11 +113,11 @@ The component offers nine sensors. You can configure all or any subset of the se
 is reported  separately on each update_interval. The ``name`` option is required for each sensor configured. 
 All other options from :ref:`Sensor <config-sensor>`.
 
+- **current** (*Optional*): Calculated current output, A
+- **power** (*Optional*): Calculated power output, always positive, W
 - **shunt_voltage** (*Optional*): Differential voltage measured across the shunt, mV
 - **bus_voltage** (*Optional*): Bus voltage output, V
 - **temperature** (*Optional*): Internal die temperature measurement, °C
-- **current** (*Optional*): Calculated current output, A
-- **power** (*Optional*): Calculated power output, W
 - **energy** (*Optional*): Calculated energy output, Wh (*INA228/229 only*)
 - **energy_joules** (*Optional*): Calculated energy output, Joules (*INA228/229 only*)
 - **charge** (*Optional*): Calculated charge output, Ah (*INA228/229 only*)
