@@ -205,7 +205,7 @@ Below are the methods to read current settings and modify them dynamically:
       id(my_uart).get_baud_rate();
 
 - **Modifying Settings at Runtime:** You can change certain UART parameters during runtime.
-  After setting new values, invoke ``load_settings()`` (ESP32 only) to apply these changes:
+  After setting new values, invoke ``load_settings()`` (ESP only) to apply these changes:
 
   .. code-block:: yaml
 

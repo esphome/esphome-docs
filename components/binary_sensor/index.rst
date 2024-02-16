@@ -208,6 +208,16 @@ Specify any :ref:`lambda <config-lambda>` for more complex filters. The input va
 the binary sensor is ``x`` and you can return ``true`` for ON, ``false`` for OFF, and ``{}`` to stop
 the filter chain.
 
+``settle``
+**********
+
+(**Required**, time, :ref:`templatable <config-templatable>`): When a signal is received, publish the state
+but wait for the received state to remain the same for specified time period before publishing any
+additional state changes. This filter complements the ``delayed_on_off`` filter but publishes value changes at
+the beginning of the delay period.
+When using a lambda call, you should return the delay value in milliseconds.
+**Useful for debouncing binary switches**.
+
 Binary Sensor Automation
 ------------------------
 
