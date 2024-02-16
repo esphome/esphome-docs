@@ -52,7 +52,7 @@ Use ``ina2xx_i2c`` or ``ina2xx_spi`` components for :ref:`I²C <i2c>` or :ref:`S
         
     sensor:
       - platform: ina2xx_i2c
-        id: my_change_sensor
+        id: my_charge_sensor
         address: 0x40
         shunt_resistance: 0.010 ohm
         max_current: 10 A
