@@ -436,7 +436,7 @@ The selected b-VOC gasses are as follows:
 IAQ Accuracy and Calibration
 ----------------------------
 
-The BSEC software automatically calibrates automatically in the background to provide consistent IAQ performance. The
+The BSEC software automatically calibrates in the background to provide consistent IAQ performance. The
 calibration process considers the recent measurement history so that a value of 50 corresponds to a “typical good”
 level and a value of 200 to a “typical polluted” level. The IAQ Accuracy sensor will give one of the following values:
 
