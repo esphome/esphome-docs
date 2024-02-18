@@ -16,10 +16,10 @@ that interfaces to a micro-controller through SPI or I²C bus.
 
 The ESPHome ``WeiKai`` component supports the following WeiKai chips:
 `WK2168-IQPG <https://jlcpcb.com/partdetail/WEIKAI-WK2168IQPG/C401041>`__
-`WK2132-ISSG <https://jlcpcb.com/partdetail/Weikai-WK2132ISSG/C401039>`__
-`WK2124-ISSG <https://jlcpcb.com/partdetail/Weikai-WK2124ISSG/C86332>`__
-`WK2204-IQNG <https://jlcpcb.com/partdetail/Weikai-WK2204IQNG/C401040>`__
-`WK2212-IQNG <https://jlcpcb.com/partdetail/Weikai-WK2212IQNG/C2987671>`__ \ :raw-html-m2r:`<br>`
+`WK2132-ISSG <https://jlcpcb.com/partdetail/WeiKai-WK2132ISSG/C401039>`__
+`WK2124-ISSG <https://jlcpcb.com/partdetail/WeiKai-WK2124ISSG/C86332>`__
+`WK2204-IQNG <https://jlcpcb.com/partdetail/WeiKai-WK2204IQNG/C401040>`__
+`WK2212-IQNG <https://jlcpcb.com/partdetail/WeiKai-WK2212IQNG/C2987671>`__ \ :raw-html-m2r:`<br>`
 It can also be used with evaluation board equipped with these chips, such as:
 - `WK2168 Chip Development Board <https://fr.aliexpress.com/item/1005002198759633.html>`__
 - `WK2132 Chip Development Board <https://www.aliexpress.com/item/1005002018579265.html>`__
@@ -114,7 +114,7 @@ you have to use ``wk2204_spi`` as the two chips are similar.
 Configuration variables:
 ************************
 
-- **id** (**Required**, :ref:`config-id`): The id to use for this WK2312 component.
+- **id** (**Required**, :ref:`config-id`): The id to use for this WeiKai component.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
@@ -139,12 +139,12 @@ Connecting via an I²C bus
 -------------------------
 
 The ``wk2132_i2c`` ``wk2212_i2c`` ``wk2204_i2c`` ``wk2168_i2c`` components allows you 
-to connect the Weika chip with ESPHome via an :ref:`I²C <i2c>` bus. 
-Up to four Weikai chips can be connected to an I²C controller board, effectively expanding the 
+to connect the WeiKai chip with ESPHome via an :ref:`I²C <i2c>` bus. 
+Up to four WeiKai chips can be connected to an I²C controller board, effectively expanding the 
 available hardware serial ports. The base addresses of these boards are defined by the 
 positions of two switches, A0 and A1, on the board.
 
-..  list-table:: Weikai address selection
+..  list-table:: WeiKai address selection
     :header-rows: 1
     :width: 350px
     :align: center
@@ -181,7 +181,7 @@ support (an error message will be generated in this case).
 
     wk2168_i2c:
       - address: 0x70
-        id: bridge_0
+        id: wk2168_bridge_i2c
         uart:
           - uart_id: i2c_uart_0
             channel: 0
@@ -200,7 +200,7 @@ support (an error message will be generated in this case).
 Configuration variables:
 ************************
 
-- **id** (**Required**, :ref:`config-id`): The id to use for this WK2312 component.
+- **id** (**Required**, :ref:`config-id`): The id to use for this WeiKai component.
 - **address** (*Optional*): The I²C address of this component. Defaults to ``0x10``.
 - **i2c_id** (*Optional*): The I²C Bus ID. Defaults to the default i²c bus.
 - **crystal** (*Optional*): The frequency in Hz of the crystal connected to the chip.
@@ -220,7 +220,7 @@ Using the GPIO pins
 -------------------
 
 For the ``WK2212``, and ``WK2168`` it is possible to use the chip I/O pins as any of the other GPIO pins.
-For example:
+For example for a wk2168_spi chip:
 
 .. code-block:: yaml
 
@@ -229,12 +229,12 @@ For example:
       - platform: gpio
         name: "pin 0"
         pin:
-          wk2168_spi: wk_bridge
+          wk2168_spi: wk2168_bridge_spi
           number: 0
       - platform: gpio
         name: "pin 1"
         pin:
-          wk2168_spi: wk_bridge
+          wk2168_spi: wk2168_bridge_spi
           number: 1
           mode:
             input: true
@@ -245,14 +245,14 @@ For example:
       - platform: gpio
         name: "pin 2"
         pin:
-          wk2168_spi: wk_bridge
+          wk2168_spi: wk2168_bridge_spi
           number: 2
           mode:
             output: true
       - platform: gpio
         name: "pin 3"
         pin:
-          wk2168_spi: wk_bridge
+          wk2168_spi: wk2168_bridge_spi
           number: 3
           mode:
             output: true
@@ -261,8 +261,8 @@ For example:
 Pin configuration variables:
 ****************************
 
-- **wkxxxx_xxx** (**Required**, :ref:`config-id`): An id for the ``wkxxxx_xxx`` component of the pin. For
-  example ``wk2212_i2c: bridge1``
+- **wkxxxx_xxx** (**Required**, :ref:`config-id`): The id of the ``wkxxxx_xxx`` component for the pin. For
+  example ``wk2212_i2c: wk2168_bridge_spi``
 - **number** (**Required**): The pin number (``0`` to ``7``)
 - **inverted** (*Optional*): If all read and written values should be treated as inverted. Defaults to ``false``.
 - **mode** (*Optional*): A pin mode to set for the pin at. One of ``INPUT`` or ``OUTPUT``. Default to ``INPUT``
@@ -276,7 +276,7 @@ Bus speed
 Please be aware that the communication between the WeiKai chips and the processor occurs on an external bus, 
 with a relatively low operating frequency. Therefore tasks such as checking the status of the chip's 
 registers or transferring bytes from the internal FIFOs to the processor may take time. \ :raw-html-m2r:`<br>`
-To improve this situation, it is strongly recommended to increase the bus frequency. 
+To improve this situation, it is strongly recommended to increase the default bus frequency. 
 
 - With a SPI bus this can be done on the WeiKai component by specifying `data_rate`. For example:
 
@@ -288,7 +288,7 @@ To improve this situation, it is strongly recommended to increase the bus freque
         cs_pin: 5
         data_rate: 4MHz
 
-- With an I²C bus this needs to be done on the `i2c` declaration and therefore it will
+- With an I²C bus this needs to be done on the `i2c` declaration and therefore this frequency will
   apply to all components connected to this bus.
 
 .. code-block:: yaml
@@ -304,7 +304,7 @@ Maximum Baud rate
 *****************
 
 The maximum baud_rate is proportional to the crystal frequency. The following table
-gives the maximum baud_rate at different system clock:
+gives the maximum baud_rate at usual system clock:
 
 ..  list-table:: maximum baud rate
     :header-rows: 1
@@ -313,16 +313,19 @@ gives the maximum baud_rate at different system clock:
 
     * - Clock
       - Max Bd
-    * - 14745600 Hz
-      - 921600 Bd
-    * - 11059200 Hz
-      - 691200 Bd
-    * - 7372800 Hz
-      - 460800 Bd
-    * - 3686400 Hz
-      - 230400 Bd
-    * - 1843200 Hz
-      - 115200 Bd
+    * - 14,745,600 Hz
+      - 921,600 Bd
+    * - 11,059,200 Hz
+      - 691,200 Bd
+    * - 7,372,800 Hz
+      - 460,800 Bd
+    * - 3,686,400 Hz
+      - 230,400 Bd
+    * - 1,843,200 Hz
+      - 115,200 Bd
+
+If you try to use a baud  rate superior to the maximum baud_rate an error will be displayed in the
+log file and the baud rate will automatically be decreased.
 
 See Also
 --------
