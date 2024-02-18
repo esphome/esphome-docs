@@ -5,7 +5,7 @@ Smart Config
     :description: Instructions for setting up Wifi via SmartConfig in ESPHome.
     :image: smartconfig.png
 
-The SmartConfig is a provisioning technology developed by TI to connect a new Wi-Fi device to a Wi-Fi network. It uses a mobile application to broadcast the network credentials from a smartphone, or a tablet, to an un-provisioned Wi-Fi device
+The SmartConfig is a provisioning technology developed by TI to connect a new Wi-Fi device to a Wi-Fi network. It uses a mobile application to broadcast the network credentials from a smartphone, or a tablet, to an un-provisioned Wi-Fi device. For example, you can use `Esptouch <https://play.google.com/store/apps/details?id=com.dparts.esptouch&hl=vi&gl=US>`__ mobile app on Android/iOS.
 The `smartconfig` component in ESPHome implements the smartconfig standard for configuring Wi-Fi on an ESP32/ESP8266 device.
 
 .. code-block:: yaml
