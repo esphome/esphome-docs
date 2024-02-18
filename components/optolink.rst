@@ -37,12 +37,12 @@ Platform configuration
     optolink:
       protocol: P300
 
-Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration variables
+~~~~~~~~~~~~~~~~~~~~~~~
 - **protocol** (**Required**, string): The protocol for communication (``KW`` or ``P300``; ``GWG`` is not supported). See `this page <https://github.com/openv/openv/wiki/Geräte>`__ 
 - **rx_pin** (*Optional*, :ref:`Pin <config-pin>`, only ESP32): Receive pin (RX)
 - **tx_pin** (*Optional*, :ref:`Pin <config-pin>`, only ESP32): Transmit pin (TX)
-- **logger** (*Optional*, boolean): more detailled log output (:doc:`/components/logger` needed). See *Troubleshooting*. Defaults to 'false'.
+- **logger** (*Optional*, boolean): More detailled log output (:doc:`/components/logger` needed). See *Troubleshooting*. Defaults to 'false'.
 
 .. warning::
 
@@ -76,8 +76,8 @@ Sensors
         unit_of_measurement: °C
         device_class: temperature
 
-Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration variables
+~~~~~~~~~~~~~~~~~~~~~~~
 - **address** (**Required**, hexadecimal): Address of datapoint
 - **bytes** (**Required**, int): Number of bytes of datapoint
 - **div_ratio** (*Optional*, int): Value factor of datapoint. Defaults to '1'.
@@ -93,8 +93,8 @@ Binary Sensors
         name: Disturbance
         address: 0x0A82
 
-Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration variables
+~~~~~~~~~~~~~~~~~~~~~~~
 - **address** (**Required**, hexadecimal): Address of datapoint
 - All other options from :doc:`/components/binary_sensor/index`
 
@@ -130,50 +130,59 @@ Text Sensors
         mode: DAY_SCHEDULE
         day_of_week: MONDAY
         address: 0x2000
+        bytes: 56
       - platform: optolink
-        name: Warm water schedule Monday
+        name: Warm water schedule Sunday
         mode: DAY_SCHEDULE_SYNCHRONIZED
-        day_of_week: MONDAY
-        entity_id: input_text.schaltzeiten_warmwasser_werktag
+        day_of_week: SUNDAY
+        entity_id: input_text.weekend_schedule_water_heating
         address: 0x2100
+        bytes: 56
 
-Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration variables
+~~~~~~~~~~~~~~~~~~~~~~~
+- **mode** (**Required**, string): See table below
 - **address** (hexadecimal): Address of datapoint
 - **bytes** (int): Number of bytes of datapoint
-- **mode** (**Required**, string): see table below
-- **day_of_week** (string): Day of week (see *Schedule plans*)
+- **day_of_week** (string): Day of the week (see *Schedule plans*)
 - **entity_id** (string): Name of Home Assistant helper entity containing schedule plan (see *Schedule plans*)
 - All other options from :doc:`/components/text_sensor/index`
 
 Explanation of ``mode``:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 ============================= ============ ============ =============== ============= ===========================================================================================
-``mode``                      ``address``  ``bytes``    ``day_of_week`` ``entity_id``    text sensor shows 
+``mode``                      ``address``  ``bytes``    ``day_of_week`` ``entity_id`` text sensor shows 
                               **Required** **Required** **Required**    **Required** 
 ============================= ============ ============ =============== ============= ===========================================================================================
 ``RAW``                       yes          yes                                        the bytes read as raw characters
 ``MAP``                       yes          yes                                        the bytes treated as a numerical value that can be mapped (see :doc:`/components/text_sensor/index`)
 ``DEVICE_INFO``                                                                       information of your Vitotronic controlling unit  
 ``STATE_INFO``                                                                        internal state of component initialization (see *Troubleshooting*)
-``DAY_SCHEDULE``              yes                       yes                           schedule plan with On/Off time pairs
-``DAY_SCHEDULE_SYNCHRONIZED`` yes                       yes             yes           schedule plan with On/Off time pairs
+``DAY_SCHEDULE``              yes          yes          yes                           schedule plan with On/Off time pairs
+``DAY_SCHEDULE_SYNCHRONIZED`` yes          yes          yes             yes           schedule plan with On/Off time pairs
 ============================= ============ ============ =============== ============= ===========================================================================================
 
 Schedule plans
 ~~~~~~~~~~~~~~~
-The mode ``DAY_SCHEDULE`` can be used to read the 56-byte weekly schedule plan with On/Off time pair, for example to swith heating or warm water.
-Each day of week can have up to four time pairs to switch supply on and off. The hour values are represented in 24h format, the minute values are multiples of ``10``.
-For example the value ``5:20 9:00 16:00 21:30`` means 'switch on at 5:20 and off at 9:00 and switch again on at 16:00 and off at 21:30'.
+The mode ``DAY_SCHEDULE`` can be used to read daily schedule plans with On/Off time pairs, for example, to turn on or off heating or warm water.
+Each day of the week can have up to four time pairs. The hour values are represented in 24h format, the minute values are multiples of ``10``.
+For example, the following value means 'turn on for the time between 5:20 and 9:00 and between 16:00 and 21:30':
 
-The mode ``DAY_SCHEDULE_SYNCHRONIZED`` can be used to **write** the schedule plan to the Viessmann unit.
-The schedule plan is read from a Home Assistant help entity of type ``Text``. 
-To validate the correct syntax of the schedule plan use a maximal length of ``48`` and the regular expression 
 
-``(((([0-1]?[0-9]|2[0-3]):[0-5]0)( |$)){2})*`` 
+.. code-block:: 
 
-to ensure a correct input.
-An incorrect value for the schedule plan is not written to the Viessmann unit and a log entry is written. 
+    5:20 9:00 16:00 21:30
+
+.. note::
+
+  Currently only schedule plans configured by 56-byte datapoints are supported. Refer to the documentation of your Viessmann unit for suitable datapoints.
+
+The mode ``DAY_SCHEDULE_SYNCHRONIZED`` can be used to **write** a schedule plan back to the Viessmann unit.
+The schedule plan is read from a Home Assistant Helper of type ``Input Text``. For more information about creating a Helper of type ``Input Text``, see `<https://www.home-assistant.io/integrations/input_text/>`__ .
+
+To validate the correct syntax of the schedule plan, use a maximum length of ``48`` characters and the regular expression ``(((([0-1]?[0-9]|2[0-3]):[0-5]0)( |$)){2})*`` to ensure correct input in Home Assistant's user interface.
+
+Incorrect schedule plans are not transferred to the Viessmann unit, instead a log entry is written to the ESPHome ``logger`` component. 
 
 
 Numbers
@@ -194,8 +203,8 @@ Numbers
         icon: "mdi:home-thermometer"
         device_class: temperature
 
-Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration variables
+~~~~~~~~~~~~~~~~~~~~~~~
 - **address** (**Required**, hexadecimal): Address of datapoint
 - **bytes** (**Required**, int): Number of bytes of datapoint
 - **div_ratio** (**Required**, int): Value factor of datapoint. Defaults to '1'.
@@ -215,8 +224,8 @@ Switches
         address: 0x2302
         icon: mdi:sprout-outline
 
-Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration variables
+~~~~~~~~~~~~~~~~~~~~~~~
 - **address** (**Required**, hexadecimal): Address of datapoint
 - All other options from :doc:`/components/switch/index`
 
@@ -235,8 +244,8 @@ Selects
           - "1 -> Only hot water"
           - "2 -> Heating and hot water"
 
-Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration variables
+~~~~~~~~~~~~~~~~~~~~~~~
 - **address** (**Required**, hexadecimal): Address of datapoint
 - **bytes** (**Required**, int): Number of bytes of datapoint
 - **div_ratio** (*Optional*, int): Value factor of datapoint. Defaults to '1'.
