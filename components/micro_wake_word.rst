@@ -38,7 +38,7 @@ Configuration variables:
 
 The below two options are provided by the JSON file, but can be overridden in YAML.
 
-- **probability_cutoff** (*Optional*, float): The probability cutoff for the wake word detection.
+- **probability_cutoff** (*Optional*, percentage): The probability cutoff for the wake word detection.
   If the probability of the wake word is below this value, the wake word is not detected.
   A larger value reduces the number of false accepts but increases the number of false rejections.
 - **sliding_window_average_size** (*Optional*, int): The size of the sliding window average for the wake word detection. A small value lowers latency but may increase the number of false accepts.
