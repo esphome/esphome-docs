@@ -71,6 +71,11 @@ When a **display** is specified the menu will create a :ref:`page <display-pages
 of the display when invoked. This is useful when you may want to use the display for other purposes but show a menu in response to user
 interaction.
 
+.. note::
+
+    Pop Up Mode requires that your display makes use of :ref:`pages <display-pages>`. If you are using a drawing lambda, without pages, it will not
+    behave as expected. Instead you will have to use Advanced Mode
+
 Advanced Drawing Mode
 *********************
 
@@ -100,7 +105,37 @@ larger user interface (for example rendering a sensor graph and a control menu n
             // Arguments: it.menu(x, y, menu, width, height);
             it.menu(half_display_width, 0, id(my_menu), half_display_width, display_height);
 
+Emulating Pop Up Mode
+*********************
 
+If you wish to emulate Pop Up Mode the following sample will emulate the same behaviour. This can
+be useful if you're using a display without :ref:`pages <display-pages>` or if you have other
+requirements that requires control over how and where the menu is rendered.
+
+.. code-block:: yaml
+
+    graphical_display_menu:
+      id: my_menu
+      items:
+        # ... other items here ...
+
+        # An exit menu item (or some other mechanism) that calls display_menu.hide
+        - type: command
+          on_value:
+            then:
+              - display_menu.hide: my_menu
+
+    display:
+      - platform: ..
+        lambda: |-
+          const auto width = it.get_width();
+          const auto height = it.get_height();
+
+          if (id(my_menu).is_active()) {
+            it.menu(0, 0, id(my_menu), width, height);
+          } else {
+            it.print(0, 0, id(font), "Menu is hidden, other drawing would go here here");
+          }
 
 Controlling Menu Item Rendering
 -------------------------------
