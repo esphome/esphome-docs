@@ -75,6 +75,9 @@ The model JSON file contains the following fields that are all **required**:
     If the probability of the wake word is below this value, the wake word is not detected.
   - **sliding_window_average_size** (int): The size of the sliding window average for the wake word detection.
 
+The following **optional** fields can be added to the JSON file:
+
+- **minimum_esphome_version** (version): The minimum ESPHome version required to use this model.
 
 Automations
 -----------
