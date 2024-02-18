@@ -148,8 +148,8 @@ Configuration variables
 - **entity_id** (string): Name of Home Assistant helper entity containing schedule plan (see *Schedule plans*)
 - All other options from :doc:`/components/text_sensor/index`
 
-Explanation of ``mode``:
-~~~~~~~~~~~~~~~~~~~~~~~~
+Explanation of ``mode``
+~~~~~~~~~~~~~~~~~~~~~~~
 ============================= ============ ============ =============== ============= ===========================================================================================
 ``mode``                      ``address``  ``bytes``    ``day_of_week`` ``entity_id`` text sensor shows 
                               **Required** **Required** **Required**    **Required** 
@@ -175,7 +175,7 @@ For example, the following value means 'turn on for the time between 5:20 and 9:
 
 .. note::
 
-  Currently only schedule plans configured by 56-byte datapoints are supported. Refer to the documentation of your Viessmann unit for suitable datapoints.
+    Currently only schedule plans configured by 56-byte datapoints are supported. Refer to the documentation of your Viessmann unit for suitable datapoints.
 
 The mode ``DAY_SCHEDULE_SYNCHRONIZED`` can be used to **write** a schedule plan back to the Viessmann unit.
 The schedule plan is read from a Home Assistant Helper of type ``Input Text``. For more information about creating a Helper of type ``Input Text``, see `<https://www.home-assistant.io/integrations/input_text/>`__ .
@@ -260,14 +260,14 @@ Configuration variables
 
     .. code-block:: yaml
 
-      - platform: optolink
-        name: outdoor temperature
-        address: 0x5525
-        bytes: 2
-        div_ratio: 10
-        unit_of_measurement: °C
-        device_class: temperature
-        update_interval: 120s
+        - platform: optolink
+          name: outdoor temperature
+          address: 0x5525
+          bytes: 2
+          div_ratio: 10
+          unit_of_measurement: °C
+          device_class: temperature
+          update_interval: 120s
 
 Troubleshooting
 ---------------
