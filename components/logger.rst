@@ -242,16 +242,16 @@ Printing arguments to a script:
 
 .. code-block:: yaml
 
-  script:
-    - id: format
-      parameters:
-        offset: int
-        message: string
-      then:
-      - logger.log: "Format called"
-      - logger.log:
-          format: "The offset is %d and the message is %s"
-          args: [ 'offset', 'message.c_str()' ]
+    script:
+      - id: format
+        parameters:
+          offset: int
+          message: string
+        then:
+        - logger.log: "Format called"
+        - logger.log:
+            format: "The offset is %d and the message is %s"
+            args: [ 'offset', 'message.c_str()' ]
 
 Configuration options:
 
