@@ -92,7 +92,7 @@ The following table lists possible gain and integration time combinations:
  =========== ======== ======== ======== ========
      1X          ✓       ✓        
     200X                 ✓       ✓        ✓
- ========== ======== ======== ======== ========
+ =========== ======== ======== ======== ========
 
 
 Proximity sensing
