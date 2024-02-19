@@ -238,6 +238,21 @@ In the ``format`` option, you can use ``printf``-style formatting (see :ref:`dis
             format: "The temperature sensor reports value %.1f and humidity %.1f"
             args: [ 'id(temperature_sensor).state', 'id(humidity_sensor).state' ]
 
+Printing arguments to a script:
+
+.. code-block:: yaml
+
+  script:
+    - id: format
+      parameters:
+        offset: int
+        message: string
+      then:
+      - logger.log: "Format called"
+      - logger.log:
+          format: "The offset is %d and the message is %s"
+          args: [ 'offset', 'message.c_str()' ]
+
 Configuration options:
 
 -  **format** (**Required**, string): The format for the message in :ref:`printf-style <display-printf>`.
