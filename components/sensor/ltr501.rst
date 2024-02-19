@@ -85,15 +85,14 @@ The table lists gain values and corresponding illuminance range:
 This Wikipedia `article <https://en.wikipedia.org/wiki/Lux>`__ has a table of some lux values for comparison.
 
 
-Possible gain and integration time combinations
------------------------------------------------
+The following table lists possible gain and integration time combinations:
 
-==== ======== ======== ======== ======== 
-       50 ms   100 ms   200 ms   400 ms 
-==== ======== ======== ======== ========
-1X      ✓       ✓        
-200X            ✓       ✓        ✓
-==== ======== ======== ======== ========
+ =========== ======== ======== ======== ======== 
+  Gain/Time    50 ms   100 ms   200 ms   400 ms 
+ =========== ======== ======== ======== ========
+     1X          ✓       ✓        
+    200X                 ✓       ✓        ✓
+ ========== ======== ======== ======== ========
 
 
 Proximity sensing
