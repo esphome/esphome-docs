@@ -38,7 +38,7 @@ Configuration variables:
 
 The below two options are provided by the JSON file, but can be overridden in YAML.
 
-- **probability_cutoff** (*Optional*, float): The probability cutoff for the wake word detection.
+- **probability_cutoff** (*Optional*, percentage): The probability cutoff for the wake word detection.
   If the probability of the wake word is below this value, the wake word is not detected.
   A larger value reduces the number of false accepts but increases the number of false rejections.
 - **sliding_window_average_size** (*Optional*, int): The size of the sliding window average for the wake word detection. A small value lowers latency but may increase the number of false accepts.
@@ -61,7 +61,7 @@ Model JSON
       }
     }
 
-The model JSON file contains the following fields that are all **required**:
+The model JSON file contains the following fields that are all **required** unless otherwise specified:
 
 - **type** (string): The type of the model. This should always be ``micro``.
 - **wake_word** (string): The wake word that the model is trained to detect.
@@ -74,6 +74,7 @@ The model JSON file contains the following fields that are all **required**:
   - **probability_cutoff** (float): The probability cutoff for the wake word detection.
     If the probability of the wake word is below this value, the wake word is not detected.
   - **sliding_window_average_size** (int): The size of the sliding window average for the wake word detection.
+  - **minimum_esphome_version** (*Optional* version): The minimum ESPHome version required to use this model.
 
 
 Automations

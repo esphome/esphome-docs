@@ -41,6 +41,16 @@ Breaking Changes
 - convert cse7766 to non-polling :esphomepr:`6095` by :ghuser:`ssieb` (breaking-change)
 - Add combination sensor and remove absorbed kalman_combinator component :esphomepr:`5438` by :ghuser:`kahrendt` (new-integration) (breaking-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- AUTO_LOAD ``sensor`` for ``shelly_dimmer`` :esphomepr:`6223` by :ghuser:`kbx81`
+- Add more debugging logs to microWakeWord :esphomepr:`6238` by :ghuser:`kahrendt`
+- Fix to RF receiver for Drayton Digistat heating controller :esphomepr:`6235` by :ghuser:`marshn`
+- WRGB Use correct multiplier :esphomepr:`6237` by :ghuser:`mhetzi`
+- Add optional minimum esphome version to microWakeWord manifest :esphomepr:`6240` by :ghuser:`jesserockz`
+- Fix xl9535 pin reads :esphomepr:`6242` by :ghuser:`jesserockz`
+
 All changes
 ^^^^^^^^^^^
 
