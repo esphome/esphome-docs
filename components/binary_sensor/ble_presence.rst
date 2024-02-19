@@ -66,7 +66,7 @@ Configuration variables:
    to be tracked. Usually used to identify beacons within an iBeacon group.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation.
--  **min_rssi** (*Optional*, int): at which minimum RSSI level would the component report the device be precent
+-  **min_rssi** (*Optional*, int): at which minimum RSSI level would the component report the device be present.
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _esp32_ble_tracker-setting_up_devices:

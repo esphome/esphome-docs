@@ -49,6 +49,9 @@ Configuration variables
   16ms will limit the light to a refresh rate of about 60Hz. Defaults to sending commands as quickly as
   changes are made to the lights.
 
+- All other options from :ref:`Light <config-light>`.
+
+
 Manual Timings
 **************
 
