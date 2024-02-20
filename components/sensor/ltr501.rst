@@ -87,12 +87,12 @@ This Wikipedia `article <https://en.wikipedia.org/wiki/Lux>`__ has a table of so
 
 The following table lists possible gain and integration time combinations:
 
- =========== ======== ======== ======== ======== 
-  Gain/Time    50 ms   100 ms   200 ms   400 ms 
- =========== ======== ======== ======== ========
-     1X          ✓       ✓        
-    200X                 ✓       ✓        ✓
- =========== ======== ======== ======== ========
+ ================== ======== ======== ======== ======== 
+  Gain \ Int.time     50 ms   100 ms   200 ms   400 ms 
+ ================== ======== ======== ======== ========
+        ``1X``          ✓       ✓        
+       ``200X``                 ✓        ✓        ✓
+ ================== ======== ======== ======== ========
 
 
 Proximity sensing
@@ -134,7 +134,7 @@ Example configuration
 Configuration variables:
 ------------------------
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Default is ``0x2``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Default is ``0x23``.
 - **type** (*Optional*, string): The type of the sensor. Valid values are ``ALS_PS`` *(default)* for 
   integrated sensors, ``ALS`` for ambient light only or ``PS`` for proximity only devices.
 - **auto_mode** (*Optional*, boolean): Automatic gain and integration time selection. Defaults to True.
