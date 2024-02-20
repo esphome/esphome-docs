@@ -1,13 +1,11 @@
-Lite-On Ambient Light & Proximity Sensors
-==================================================
+Lite-On Ambient Light & Proximity Sensors 
+=========================================
 
 .. seo::
     :description: Instructions for setting up LTR301, LTR501, LTR558 ambient light sensors/proximity sensors with ESPHome.
     :image: ltr501.jpg
     :keywords: LTR-301, LTR-501, LTR-558
 
-The ``ltr501`` sensor platform allows you to use family of several LiteOn ambient light and proximity sensors
-with ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/ltr501-full.jpg
     :align: center
@@ -16,16 +14,18 @@ with ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your configu
     LTR-501 on a breadboard from Olimex
 
 
-Family of ALS and PS sensors
-----------------------------
+The ``ltr501`` sensor platform allows you to use family of several LiteOn ambient light and proximity sensors
+with ESPHome.
 
 The supported family of sensors includes:
 
 - Ambient Light Sensor **LTR-301ALS**
-- Integrated Ambient Light and Proximity Sensors **LTR-501ALS**, **LTR-558ALS**
+- Integrated Ambient Light and Proximity Sensors **LTR-501ALS** and **LTR-558ALS**
 
-The sensors are very similar and share the same datasheet. I²C address is ``0x23``. 
 The LTR-501 device is available on breakout board from `Olimex`_.
+
+The sensors are very similar and share the same datasheet. The :ref:`I²C Bus <i2c>` is required to be set up in your 
+configuration for this sensor to work. I²C address is ``0x23``. 
 
 Proximity sensors are the same sort of sensors that you find in phones and tablets to disable the screen when you hold
 the device up to your ear. They might be useful for automated turning on or off of displays and control panels. 
@@ -44,7 +44,7 @@ Devices consists of two photodiodes: *CH0* diode that is sensitive to both visib
 
 
 Ambient light illuminance calculation
--------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Excerpt from the datasheet:
 
@@ -70,14 +70,14 @@ where:
 
 
 ALS Gain levels
----------------
+^^^^^^^^^^^^^^^
 
 The table lists gain values and corresponding illuminance range:
 
  ========= ================================
   Gain      Illuminance range
  ========= ================================
-  ``1X``    1 lux to 64k lux (default)
+  ``1X``    2 lux to 64k lux (default)
   ``200X``  0.01 lux to 320 lux
  ========= ================================
 
@@ -131,8 +131,8 @@ Example configuration
           name: "Proximity counts"
         
 
-Configuration variables:
-------------------------
+Configuration variables
+-----------------------
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Default is ``0x23``.
 - **type** (*Optional*, string): The type of the sensor. Valid values are ``ALS_PS`` *(default)* for 
