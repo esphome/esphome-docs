@@ -21,8 +21,6 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 
     sensor:
       - platform: ltr390
-        gain: "X18"
-        resolution: 20
         uv_index:
           name: "UV Index"
         uv:
