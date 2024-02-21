@@ -17,8 +17,7 @@ and works with this integration.
 
 As the communication with the CSE7766 done using UART, you need
 to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the CSE7766.
-Additionally, you need to set the baud rate to 4800.  The device sends multiple updates per second, so you
-will probably want some sort of averaging or throttle filter on the sensors.
+Additionally, you need to set the baud rate to 4800.
 
 .. code-block:: yaml
 
@@ -35,12 +34,8 @@ will probably want some sort of averaging or throttle filter on the sensors.
       - platform: cse7766
         current:
           name: "Sonoff Pow R2 Current"
-          filters:
-            - throttle_average: 60s
         voltage:
           name: "Sonoff Pow R2 Voltage"
-          filters:
-            - throttle: 60s
         power:
           name: "Sonoff Pow R2 Power"
         energy:
@@ -60,6 +55,8 @@ Configuration variables:
   All options from :ref:`Sensor <config-sensor>`.
 - **energy** (*Optional*): Use the total energy value of the sensor in Wh.
   All options from :ref:`Sensor <config-sensor>`.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``60s``.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
