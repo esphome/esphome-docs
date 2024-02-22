@@ -262,7 +262,6 @@ Electricity
 ***********
 .. imgtable::
 
-    ADE7880, components/sensor/ade7880, ade7880.svg, Voltage & Current & Power
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E26, components/sensor/atm90e26, atm90e26.jpg, Voltage & Current & Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
@@ -832,9 +831,11 @@ Home Assistant Companion Components
 
     Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg, dark-invert
     Voice Assistant, components/voice_assistant, voice-assistant.svg, dark-invert
+    micro Wake Word, components/micro_wake_word, voice-assistant.svg, dark-invert
     Sensor, components/sensor/homeassistant, home-assistant.svg, dark-invert
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
     Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg, dark-invert
+
 
 Alarm Control Panel Components
 ------------------------------
