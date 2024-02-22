@@ -6,8 +6,6 @@ Lite-On Ambient Light & Proximity Sensors
     :image: ltr303.jpg
     :keywords: LTR-329, LTR-303, LTR-553, LTR-556, LTR-559, LTR-659
 
-The ``ltr_als_ps`` sensor platform allows you to use family of several LiteOn ambient light and proximity sensors
-with ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/ltr303-full.jpg
     :align: center
@@ -21,8 +19,8 @@ with ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your configu
 
     LTR-303 Sensor in Home Assistant UI.
 
-Family of ALS and PS sensors
-----------------------------
+The ``ltr_als_ps`` sensor platform allows you to use family of several LiteOn ambient light and proximity sensors
+with ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 The family of sensors includes:
 
@@ -126,16 +124,14 @@ Example configuration
         address: 0x23
         update_interval: 60s
         type: ALS_PS  # or ALS or PS
-        ambient_light:
-          name: "Ambient light"
+        ambient_light: "Ambient light"
         # PS only section
         ps_cooldown: 5 s
         ps_high_threshold: 500
         on_ps_high_threshold:
           then:
             - .... # do something - light up the screen for example
-        ps_counts:
-          name: "Proximity counts"
+        ps_counts: "Proximity counts"
         
 
 Configuration variables:
@@ -172,7 +168,8 @@ Sensors
 This component offers five sensors for ALS-enabled devices and one sensor for PS-enabled devices.
 You can configure all or any subset of the sensors. Each configured sensor is reported separately 
 on each ``update_interval``. **name** option is required for the sensor. All other options from 
-:ref:`Sensor <config-sensor>`.
+:ref:`Sensor <config-sensor>`. If you don’t need to configure any other sensor options, you can use 
+the simplified syntax for the sensor: ``ambient_light: "Ambient light"``, for example.
 
 - **ambient_light** (*Optional*): Illuminance of ambient light, close to human eye spectre, lx.
 - **infrared_counts** (*Optional*): Sensor counts from the IR-sensitive sensor (*CH1*), counts.
