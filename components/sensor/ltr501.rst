@@ -13,6 +13,11 @@ Lite-On Ambient Light & Proximity Sensors
 
     LTR-501 on a breadboard from Olimex
 
+.. figure:: images/ltr501-ui.png
+    :align: center
+    :width: 60.0%
+
+    LTR-501 Sensor in Home Assistant UI.
 
 The ``ltr501`` sensor platform allows you to use family of several LiteOn ambient light and proximity sensors
 with ESPHome.
