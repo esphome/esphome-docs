@@ -262,6 +262,7 @@ Electricity
 ***********
 .. imgtable::
 
+    ADE7880, components/sensor/ade7880, ade7880.svg, Voltage & Current & Power
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E26, components/sensor/atm90e26, atm90e26.jpg, Voltage & Current & Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
@@ -751,6 +752,7 @@ Climate Components
     Anova Cooker, components/climate/anova, anova.png
     BedJet Climate System, components/climate/bedjet, bedjet.png
     Haier Climate, components/climate/haier, haier.svg
+    Uponor Smatrix Base Pulse Underfloor Heating, components/uponor_smatrix, uponor.svg
 
 Number Components
 -----------------
