@@ -56,7 +56,7 @@ Devices consists of two photodiodes: *CH0* diode that is sensitive to both visib
     CH0 and CH1 channels typical spectral response
 
 Ambient light illuminance calculation
--------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Excerpt from the datasheet:
 
@@ -82,7 +82,7 @@ where:
 
 
 ALS Gain levels
----------------
+^^^^^^^^^^^^^^^
 
 The table lists gain values and corresponding illuminance range:
 
@@ -164,7 +164,7 @@ Configuration variables:
   on object getting further away.
 
 Sensors
-.......
+^^^^^^^
 This component offers five sensors for ALS-enabled devices and one sensor for PS-enabled devices.
 You can configure all or any subset of the sensors. Each configured sensor is reported separately 
 on each ``update_interval``. **name** option is required for the sensor. All other options from 
