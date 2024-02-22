@@ -152,9 +152,9 @@ The following example creates a typical digital clock with the ``:`` colon flash
           static int i = 0;
           i++;
           if ((i % 2) == 0)
-            it.strftime("%H.%M", id(homeassistant_time).now());
+            it.strftime("%H:%M", id(homeassistant_time).now());
           else
-            it.strftime("%H%M", id(homeassistant_time).now());
+            it.strftime("%H %M", id(homeassistant_time).now());
 
 Connect multiple displays
 -------------------------
