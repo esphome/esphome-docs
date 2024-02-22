@@ -29,7 +29,7 @@ The VEML 7700/6030 devices are available on breakout boards from a number of ven
     :align: center
     :width: 60.0%
 
-    VEML sensors in Home Assistant UI.
+    VEML sensor in Home Assistant UI.
 
 The sensor is a high accuracy ambient light digital 16-bit resolution sensor with dynamic range from 0 lux to about 120,000 lux.
 Its wide range of measurements is enabled by four configurable *gain* levels and six different *integration time* options.
@@ -121,12 +121,12 @@ Example configuration
       - platform: veml7700
         address: 0x10
         update_interval: 60s
-        ambient_light:
-          name: "Ambient light"
-        full_spectrum:
-          name: "Full spectrum"
-        infrared:
-          name: "Calculated near-IR"
+        
+        # short variant of sensor definition:
+        ambient_light: "Ambient light"
+        # longer variant of sensor definition:
+        actual_gain: 
+          name: "Actual gain"
 
 
 Configuration variables:
@@ -152,42 +152,19 @@ Sensors
 .......
 
 You can configure all or any subset of the sensors described earlier.
-Each configured sensor is reported separately on each ``update_interval``.
+Each configured sensor is reported separately on each ``update_interval``. **name** (**Required**, string) is required for 
+every sensor. All other options from :ref:`Sensor <config-sensor>`. 
+
+However, if you don't need any other options, you can just use shorthands like this: ``ambient_light: Ambient light``.
 
 - **ambient_light** (*Optional*): Illuminance for visible light (*ALS channel*), lx.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
 - **full_spectrum** (*Optional*): Illuminance for the full spectrum sensor (*WHITE channel*), lx.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
 - **infrared** (*Optional*): Calculated illuminance for the Near-IR spectrum (*WHITE* minus *ALS*), lx.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
 - **ambient_light_counts** (*Optional*): The reading for visible light (*ALS channel*), counts.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
 - **full_spectrum_counts** (*Optional*): The reading for the full spectrum sensor (*WHITE channel*), counts.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
 - **actual_gain** (*Optional*): The value of gain used for reported values. Particularly useful when "auto_mode" is selected.
-
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
 - **actual_integration_time** (*Optional*): Integration time used for reported values, ms. Particularly useful when "auto_mode" is selected.
 
-  - **name** (**Required**, string): The name for the sensor.
-  - All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
