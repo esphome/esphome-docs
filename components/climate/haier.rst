@@ -74,8 +74,6 @@ This component requires a :ref:`uart` to be setup.
         wifi_signal: true
         beeper: true
         display: true
-        outdoor_temperature:
-          name: Haier AC outdoor temperature
         visual:
           min_temperature: 16 °C
           max_temperature: 30 °C
@@ -125,11 +123,6 @@ Configuration variables:
 - **control_method** (*Optional*, list): (supported only by hOn) Defines control method (should be supported by AC). Supported values: MONITOR_ONLY - no control, just monitor status, SET_GROUP_PARAMETERS - set all AC parameters with one command (default method), SET_SINGLE_PARAMETER - set each parameter individually (this method is supported by some new ceiling ACs like AD71S2SM3FA)
 - **display** (*Optional*, boolean): Can be used to set the AC display off.
 - **beeper** (*Optional*, boolean): Can be used to disable beeping on commands from AC. Supported only by hOn protocol.
-- **outdoor_temperature** (*Optional*): Temperature sensor for outdoor temperature. Supported only by hOn protocol.
-
-  - **name** (**Required**, string): The name of the sensor.
-  - **id** (*Optional*, :ref:`config-id`): ID of the sensor, can be used for code generation
-  - All other options from :ref:`Sensor <config-sensor>`.
 - **supported_modes** (*Optional*, list): Can be used to disable some of AC modes. Possible values: 'OFF', HEAT_COOL, COOL, HEAT, DRY, FAN_ONLY
 - **supported_swing_modes** (*Optional*, list): Can be used to disable some swing modes if your AC does not support it. Possible values: 'OFF', VERTICAL, HORIZONTAL, BOTH
 - **supported_presets** (*Optional*, list): Can be used to disable some presets. Possible values for smartair2 are: AWAY, BOOST, COMFORT. Possible values for hOn are: AWAY, ECO, BOOST, SLEEP. AWAY preset can be enabled only in HEAT mode, it is disabled by default
@@ -327,6 +320,8 @@ See Also
 --------
 
 - `haier-esphome <https://github.com/paveldn/haier-esphome>`__
+- :doc:`Haier Climate Sensors </components/sensor/haier>`
+- :doc:`Haier Climate Binary Sensors </components/binary_sensor/haier>`
 - :doc:`/components/climate/index`
 - :apiref:`haier/climate/haier.h`
 - :ghedit:`Edit`
