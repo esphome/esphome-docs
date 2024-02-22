@@ -58,12 +58,9 @@ Use ``ina2xx_i2c`` or ``ina2xx_spi`` components for :ref:`I²C <i2c>` or :ref:`S
         max_current: 10 A
         adc_range: 0
         update_interval: 60s
-        current:
-          name: "INA2xx Current"
-        bus_voltage:
-          name: "INA2xx Bus Voltage"
-        charge:
-          name: "INA2xx Charge"
+        current: "INA2xx Current"
+        bus_voltage: "INA2xx Bus Voltage"
+        charge: "INA2xx Charge"
 
 
 .. code-block:: yaml
@@ -81,10 +78,8 @@ Use ``ina2xx_i2c`` or ``ina2xx_spi`` components for :ref:`I²C <i2c>` or :ref:`S
         max_current: 40 A
         adc_range: 0
         temperature_coefficient: 50
-        current:
-          name: "INA2xx Current"
-        power:
-          name: "INA2xx Power"
+        current: "INA2xx Current"
+        power: "INA2xx Power"
 
          
 Configuration variables:
@@ -111,7 +106,8 @@ Sensors
 -------
 The component offers nine sensors. You can configure all or any subset of the sensors. Each configured sensor 
 is reported  separately on each update_interval. The ``name`` option is required for each sensor configured. 
-All other options from :ref:`Sensor <config-sensor>`.
+All other options from :ref:`Sensor <config-sensor>`. Shorthand notation can be used for the sensors like this:
+``current: "Current"``.
 
 - **current** (*Optional*): Calculated current output, A
 - **power** (*Optional*): Calculated power output, always positive, W
