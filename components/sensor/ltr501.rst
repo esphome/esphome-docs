@@ -36,11 +36,17 @@ Ambient light sensing
 ---------------------
 
 Sensor platform provides a linear response over a wide dynamic range from 0.01 lux to 64k lux and is well suited 
-to applications under high ambient brightness. There are two gain settings (1X, 200X) available for user to configure. 
+to applications under high ambient brightness. There are two gain settings (1X, 150X) available for user to configure. 
 Use higher gain for dimmer areas.
 
 Devices consists of two photodiodes: *CH0* diode that is sensitive to both visible and infrared light and 
 *CH1* diode that is sensitive only to infrared light.
+
+**Note**: Important to note, that these sensors do not have internal data checking and do not provide any errors if 
+data is not reliable. Sensor can be easily saturated if gain is too high or integration time is too long. In this
+case readings can be very strange. It's recommended to use automatic mode with starting gain of 1X (default) and starting
+integration time of 100ms (default) or even 50ms (if sensor is in very bright environment). Automatic mode with starting 
+gain of 150X is not recommended, use it only if you are sure brightness will never exceed 200-300 lx.
 
 
 Ambient light illuminance calculation
@@ -78,7 +84,7 @@ The table lists gain values and corresponding illuminance range:
   Gain      Illuminance range
  ========= ================================
   ``1X``    2 lux to 64k lux (default)
-  ``200X``  0.01 lux to 320 lux
+  ``150X``  0.01 lux to 320 lux
  ========= ================================
 
 
@@ -88,10 +94,10 @@ This Wikipedia `article <https://en.wikipedia.org/wiki/Lux>`__ has a table of so
 The following table lists possible gain and integration time combinations:
 
  ================== ======== =============== ======== ======== 
-  Gain \ Int.time     50 ms       100 ms      200 ms   400 ms 
+  Gain / Int.time     50 ms       100 ms      200 ms   400 ms 
  ================== ======== =============== ======== ========
         ``1X``          ✓       ✓ (default)        
-       ``200X``                 ✓                ✓        ✓
+       ``150X``                 ✓                ✓        ✓
  ================== ======== =============== ======== ========
 
 
@@ -119,8 +125,7 @@ Example configuration
         address: 0x23
         update_interval: 60s
         type: ALS_PS  # .. or ALS or PS
-        ambient_light:
-          name: "Ambient light"
+        ambient_light: "Ambient light"
         # PS only section
         ps_cooldown: 5 s
         ps_high_threshold: 500
@@ -139,7 +144,7 @@ Configuration variables
   integrated sensors, ``ALS`` for ambient light only or ``PS`` for proximity only devices.
 - **auto_mode** (*Optional*, boolean): Automatic gain and integration time selection. Defaults to True.
 - **gain** (*Optional*, string): The gain the device will use. Higher values are better in low-light conditions.
-  Valid values are ``1X`` *(default)*, ``200X``.
+  Valid values are ``1X`` *(default)*, ``150X``.
 - **integration_time** (*Optional*, :ref:`config-time`):
   The amount of time sensors are exposed. Longer means more accurate values.
   Valid values are: ``50ms``, ``100ms`` *(default)*, ``200ms``, ``400ms``.
@@ -165,7 +170,8 @@ Sensors
 This component offers five sensors for ALS-enabled devices and one sensor for PS-enabled devices.
 You can configure all or any subset of the sensors. Each configured sensor is reported separately 
 on each ``update_interval``. **name** option is required for the sensor. All other options from 
-:ref:`Sensor <config-sensor>`.
+:ref:`Sensor <config-sensor>`. If you don't need to configure any other sensor options, you can 
+use the simplified syntax for the sensor: ``ambient_light: "Ambient light"``, for example.
 
 - **ambient_light** (*Optional*): Illuminance of ambient light, close to human eye spectre, lx.
 - **infrared_counts** (*Optional*): Sensor counts from the IR-sensitive sensor (*CH1*), counts.
