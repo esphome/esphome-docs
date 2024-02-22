@@ -19,8 +19,6 @@ The ``am2315c`` Temperature+Humidity sensor allows you to use your AM2315C
     :align: center
     :width: 80.0%
 
-.. note::
-
 .. code-block:: yaml
 
     # Example configuration entry
