@@ -1,5 +1,5 @@
 AM2315C Temperature+Humidity Sensor
-==================================
+===================================
 
 .. seo::
     :description: Instructions for setting up AM2315C temperature and humidity sensors
