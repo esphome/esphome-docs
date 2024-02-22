@@ -298,6 +298,7 @@ Environmental
     Absolute Humidity, components/sensor/absolute_humidity, water-drop.svg, dark-invert
     AHT10 / AHT20 / AHT21 / DHT20, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Temperature & Humidity & Pressure
+    AM2315C, components/sensor/am2315c, am2315c.jpg, Temperature & Humidity
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
     BME280, components/sensor/bme280, bme280.jpg, Temperature & Humidity & Pressure
     BME680, components/sensor/bme680, bme680.jpg, Temperature & Humidity & Pressure & Gas
@@ -386,7 +387,7 @@ Miscellaneous
     AS3935, components/sensor/as3935, as3935.jpg, Storm lightning
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
-    Combination, components/sensor/combination, function.svg, dark-invert    
+    Combination, components/sensor/combination, function.svg, dark-invert
     Duty Time, components/sensor/duty_time, timer-play-outline.svg, dark-invert
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
@@ -659,7 +660,7 @@ Display Components
     ILI9486, components/display/ili9xxx, ili9341.jpg
     ILI9488, components/display/ili9xxx, ili9488.svg
     WSPICOLCD, components/display/ili9xxx, ili9488.svg
-    
+
     Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
@@ -695,7 +696,7 @@ Touchscreen Components
     XPT2046, components/touchscreen/xpt2046, xpt2046.jpg
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
     FT63X6, components/touchscreen/ft63x6, wt32-sc01.png
-    
+
 Cover Components
 ----------------
 
