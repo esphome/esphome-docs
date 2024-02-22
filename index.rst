@@ -749,6 +749,7 @@ Climate Components
     Anova Cooker, components/climate/anova, anova.png
     BedJet Climate System, components/climate/bedjet, bedjet.png
     Haier Climate, components/climate/haier, haier.svg
+    Uponor Smatrix Base Pulse Underfloor Heating, components/uponor_smatrix, uponor.svg
 
 Number Components
 -----------------
