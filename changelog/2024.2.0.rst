@@ -18,6 +18,40 @@ ESPHome 2024.2.0 - 21st February 2024
     Honeywell HIH I2C, components/sensor/honeywell_hih_i2c, honeywellhih.jpg
     Combination, components/sensor/combination, function.svg, dark-invert
 
+micro Wake Word
+---------------
+
+ESPHome implements an on-device wake word detection framework from `microWakeWord <https://github.com/kahrendt/microWakeWord>`__.
+See the :doc:`component documentation </components/micro_wake_word>` for details on how to use it.
+
+Check out the live stream replay below for more details about how it works and came to be.
+
+.. raw:: html
+
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NQIv3nsu7dE"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+    </iframe>
+
+
+BME280 changes
+--------------
+
+:ghuser:`apbodrov` has added support for the BME280 sensor over SPI. This change is a breaking change for any existing configurations using
+the BME280 over I2C as the platform name has been changed from ``bme280`` to ``bme280_i2c``. There are no other configuration changes required
+to continue using the BME280 over I2C. See the :doc:`component documentation </components/sensor/bme280>` for the latest configuration variables.
+
+
+CSE7766 changes
+---------------
+
+:ghuser:`ssieb` has changed the CSE7766 sensor from appearing to be a polling component.
+It has a high update rate, so if you don't want to send a lot of data to HA, you can
+add the :ref:`throttle_average <sensor-filters>` filter
+with the time period you were using for the update interval (the default is 60s) to each
+sensor.  The example in the sensor doc page has been updated to show this.
+
 
 Full list of changes
 --------------------
