@@ -72,6 +72,52 @@ Release 2023.12.3 - December 22
 - Fix dashboard logs when api is disabled and using MQTT :esphomepr:`5992` by :ghuser:`bdraco`
 - Fix broken configs with non-existent components :esphomepr:`5993` by :ghuser:`jesserockz`
 
+Release 2023.12.4 - December 25
+-------------------------------
+
+- dashboard: Only ping when polling is active :esphomepr:`6001` by :ghuser:`bdraco`
+- tt21100: restore init read :esphomepr:`6008` by :ghuser:`nielsnl68`
+- dashboard: Fix file writes on Windows :esphomepr:`6013` by :ghuser:`bdraco`
+- Display: fix class inherence in Python script :esphomepr:`6009` by :ghuser:`nielsnl68`
+
+Release 2023.12.5 - December 25
+-------------------------------
+
+- Fix docker builds :esphomepr:`6012` by :ghuser:`bdraco`
+
+Release 2023.12.6 - January 15
+------------------------------
+
+- Fix device not requesting Home Assistant time at the update interval :esphomepr:`6022` by :ghuser:`bdraco`
+- fix compilation error for libretiny :esphomepr:`6064` by :ghuser:`tomaszduda23`
+- pylontech: Fix parsing error with US2000 :esphomepr:`6061` by :ghuser:`functionpointer`
+- Support full (>460 char) dumps of Pronto IR commands :esphomepr:`6040` by :ghuser:`rpaskowitz`
+- ESP32-C3 USB_CDC fixes :esphomepr:`6069` by :ghuser:`kbx81`
+- Improv Serial -- don't wait for incoming bytes :esphomepr:`6089` by :ghuser:`kbx81`
+- add STATE_CLASS_TOTAL_INCREASING to bl0940 and bl0942 :esphomepr:`6090` by :ghuser:`tomaszduda23`
+- Fallback to pure-python loader for better error when YAML loading fails :esphomepr:`6081` by :ghuser:`bdraco`
+
+Release 2023.12.7 - January 17
+------------------------------
+
+- Fix RMT timing clock base :esphomepr:`6101` by :ghuser:`majkrzak`
+- Create RingBuffer for VoiceAssistant :esphomepr:`6102` by :ghuser:`jesserockz`
+- Inkplate6: Fix crash with initial set of greyscale :esphomepr:`6038` by :ghuser:`clydebarrow`
+
+Release 2023.12.8 - January 19
+------------------------------
+
+- Let show_*_page actions depend on "Display" :esphomepr:`6092` by :ghuser:`guillempages`
+- Fix some Voice Assistant bugs :esphomepr:`6121` by :ghuser:`jesserockz`
+
+Release 2023.12.9 - January 22
+------------------------------
+
+- fix sen5x negative temperature :esphomepr:`6082` by :ghuser:`ssieb`
+- negative values for all DHT22 variants :esphomepr:`6074` by :ghuser:`ssieb`
+- fix negative temperature for pmsx003 :esphomepr:`6083` by :ghuser:`ssieb`
+- fix: negative temperatures on PMS5003T sensors :esphomepr:`6100` by :ghuser:`aschmitz`
+
 Full list of changes
 --------------------
 
