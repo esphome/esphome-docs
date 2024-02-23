@@ -23,9 +23,9 @@ supports speed settings.
 Configuration variables:
 ------------------------
 
-- **output** (**Required**, :ref:`config-id`): The id of the
+- **output** (*Optional*, :ref:`config-id`): The id of the
   :ref:`float output <output>` to use for this fan.
-- **name** (**Required**, string): The name for this fan.
+- **name** (*Optional*, string): The name for this fan.
 - **oscillation_output** (*Optional*, :ref:`config-id`): The id of the
   :ref:`output <output>` to use for the oscillation state of this fan. Default is empty.
 - **direction_output** (*Optional*, :ref:`config-id`): The id of the
