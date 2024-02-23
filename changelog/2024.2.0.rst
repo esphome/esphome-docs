@@ -25,6 +25,7 @@ ESPHome implements an on-device wake word detection framework from `microWakeWor
 See the :doc:`component documentation </components/micro_wake_word>` for details on how to use it.
 
 Check out the live stream replay below for more details about how it works and came to be.
+
 .. raw:: html
 
     <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NQIv3nsu7dE"
