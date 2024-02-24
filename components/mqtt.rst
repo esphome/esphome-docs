@@ -61,6 +61,9 @@ Configuration variables:
   in discovery messages. Defaults to ``true``.
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
   messages. Should not contain trailing slash. Defaults to ``<APP_NAME>``. 
+  If core configuration option ``name_add_mac_suffix`` is enabled, then
+  the last 3 bytes of MAC address will be appended to the topic prefix resulting in 
+  ``<APP_NAME>-aabbcc``.
   Use ``null`` to disable publishing or subscribing of any MQTT topic unless
   it is explicitly configured.
 - **log_topic** (*Optional*, :ref:`mqtt-message`): The topic to send MQTT log
@@ -208,6 +211,21 @@ configuration. That way, you can use your existing wildcards like
 ``home/+/#`` together with ESPHome. All other features of ESPHome
 (like availability) should still work correctly.
 
+
+.. _mqtt-placeholder:
+
+``<topic_prefix>`` Placeholder
+------------------------------
+
+The ``<topic_prefix>`` placeholder can be used in the configuration to refer to the actual
+``topic_prefix`` value in topic names. This is useful when you use custom ``topic_prefix`` 
+and especially useful when you want to use the ``name_add_mac_suffix`` option in the core 
+configuration. 
+``<topic_prefix>`` placeholder can be used in any custom topics like availability, last will,
+birth, shutdown, log, state and command topics, as well as in the ``on_message`` and 
+``on_json_message`` triggers and in the ``mqtt.publish`` actions.
+
+
 .. _mqtt-last_will_birth:
 
 Last Will And Birth Messages
@@ -229,17 +247,18 @@ broker to send a message ``<TOPIC_PREFIX>/status`` with payload
 ``offline`` if the connection drops.
 
 You can change these messages by overriding the ``birth_message`` and
-``will_message`` with the following options.
+``will_message`` with the following options. You may hardcode the topic name,
+or you may use ``<topic_prefix>`` placeholder.
 
 .. code-block:: yaml
 
     mqtt:
       # ...
       birth_message:
-        topic: myavailability/topic
+        topic: <topic_prefix>/myavailability/topic
         payload: online
       will_message:
-        topic: myavailability/topic
+        topic: <topic_prefix>/myavailability/topic
         payload: offline
 
 - **birth_message** (*Optional*, :ref:`mqtt-message`)
@@ -429,11 +448,19 @@ template, the message payload is available under the name ``x`` inside that lamb
         qos: 0
         then:
           - switch.turn_on: some_switch
+      on_message:
+        topic: <topic_prefix>/some/topic
+        qos: 0
+        then:
+          - switch.turn_on: yet_another_switch
 
 Configuration variables:
 
 - **topic** (**Required**, string): The MQTT topic to subscribe to and listen for MQTT
   messages on. Every time a message with **this exact topic** is received, the automation will trigger.
+  ``<topic_prefix>`` placeholder will be replaced by the actual topic prefix, which can be either fixed 
+  or dynamically generated containing last 3 bytes of MAC address. (See core configuration option 
+  ``name_add_mac_suffix``).
 
 - **qos** (*Optional*, int): The MQTT Quality of Service to subscribe to the topic with. Defaults
   to 0.
@@ -449,10 +476,10 @@ Configuration variables:
 
         mqtt:
           on_message:
-             - topic: some/topic
+             - topic: some/fixed/topic
                then:
                  - # ...
-             - topic: some/other/topic
+             - topic: <topic_prefix>/sub/topic
                then:
                  - # ...
 
@@ -516,6 +543,9 @@ Configuration variables:
 
 - **topic** (**Required**, string): The MQTT topic to subscribe to and listen for MQTT
   messages on. Every time a message with **this exact topic** is received, the automation will trigger.
+  ``<topic_prefix>`` placeholder will be replaced by the actual topic prefix, which can be either fixed 
+  or dynamically generated containing last 3 bytes of MAC address. (See core configuration option 
+  ``name_add_mac_suffix``).
 
 - **qos** (*Optional*, int): The MQTT Quality of Service to subscribe to the topic with. Defaults
   to 0.
