@@ -6,7 +6,8 @@ Modbus Controller
     :image: modbus.png
 
 
-The ``modbus_controller`` component creates a RS485 connection to either
+The ``modbus_controller`` component creates a RS485 connection to either:
+
 - control a Modbus server (slave) device, letting your ESPHome node to act as a Modbus client (master). You can access the coils, inputs, holding, read registers from your devices as sensors, switches, selects, numbers or various other ESPHome components and present them to your favorite Home Automation system. You can even write them as binary or float ouptputs from ESPHome.
 - let your ESPHome node act as a Modbus server, allowing a ModBUS client to read data (like sensor values) from your ESPHome node.
 
