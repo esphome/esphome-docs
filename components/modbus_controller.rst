@@ -2,12 +2,13 @@ Modbus Controller
 =================
 
 .. seo::
-    :description: Instructions for setting up the ModBUS Controller component.
+    :description: Instructions for setting up the Modbus Controller component.
     :image: modbus.png
 
-The ``modbus_controller`` component creates a RS485 connection to either:
- - control a ModBUS server device, letting your ESPHome node act as a ModBUS client. You can access the coils and registers from your server ModBUS device as sensors, switches or various other ESPHome components and present them to your favorite Home Automation system. Or:
- - let your ESPHome node act as a Modbus server, allowing a ModBUS client to read data (like sensor values) from your ESPHome node.
+
+The ``modbus_controller`` component creates a RS485 connection to either
+- control a Modbus server (slave) device, letting your ESPHome node to act as a Modbus client (master). You can access the coils, inputs, holding, read registers from your devices as sensors, switches, selects, numbers or various other ESPHome components and present them to your favorite Home Automation system. You can even write them as binary or float ouptputs from ESPHome.
+- let your ESPHome node act as a Modbus server, allowing a ModBUS client to read data (like sensor values) from your ESPHome node.
 
 To choose the role, set the ``role`` attribute of the :doc:`/components/modbus` upon which this ``modbus_controller`` component relies. ``client`` is the default.
 
@@ -27,7 +28,7 @@ See `How is this RS485 module working? <https://electronics.stackexchange.com/qu
 
 The transceiver connects to the UART of the MCU. For ESP32, pin ``16`` to ``TXD`` and pin ``17`` to ``RXD`` are the default ones but any other pins can be used as well. ``3.3V`` to ``VCC`` and naturally ``GND`` to ``GND``.
 
-On the bus side, you need 120 Ohm termination resistors at the ends of the bus cable as per ModBUS standard. Some transceivers have this already soldered onboard, and some slave devices may have them preinstalled with a jumper or a dip switch.
+On the bus side, you need 120 Ohm termination resistors at the ends of the bus cable as per Modbus standard. Some transceivers have this already soldered onboard, while some slave devices may have them available via a jumper or a DIP switch.
 
 .. note::
 
@@ -35,7 +36,7 @@ On the bus side, you need 120 Ohm termination resistors at the ends of the bus c
 
     For hardware serial only a limited set of pins can be used. Either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``  or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``.
 
-    The disadvantage of using the hardware uart is that you can't use serial logging because the serial logs would be sent to the ModBUS device and cause errors.
+    The disadvantage of using the hardware UART is that you can't use serial logging because the serial logs would be sent to the Modbus device(s) instead, causing errors.
 
     Serial logging can be disabled by setting ``baud_rate: 0``.
 
@@ -47,17 +48,15 @@ On the bus side, you need 120 Ohm termination resistors at the ends of the bus c
             level: <level>
             baud_rate: 0
 
-
-
 Configuration variables:
 ------------------------
 
 - **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the ``modbus`` hub.
 
-- **address** (**Required**, :ref:`config-id`): The ModBUS address of the device
+- **address** (**Required**, :ref:`config-id`): The Modbus address of the slave device
 
 - **command_throttle** (*Optional*, :ref:`config-time`): minimum time in between 2 requests to the device. Default is ``0ms``.
-  Some ModBUS slave devices limit the rate of requests from the master, the interval between sending requests can be altered.
+  Some Modbus slave devices limit the rate of requests from the master, so this allows the interval between requests to be altered.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
   Defaults to 60 seconds.
@@ -92,63 +91,62 @@ Configuration variables:
 
 Example Client
 --------------
-The following code creates a ``modbus_controller`` hub talking to a ModBUS device at address ``1`` with ``115200`` bps.
+
+The following code creates a ``modbus_controller`` hub talking to a ModBUS device at address ``1`` with ``115200`` bps
 
 ModBUS sensors can be directly defined (inline) under the ``modbus_controller`` hub or as standalone components
 Technically there is no difference between the "inline" and the standard definitions approach.
 
 .. code-block:: yaml
 
+    # Example configuration entry
     uart:
-      id: mod_bus
-      tx_pin: 17
-      rx_pin: 16
-      baud_rate: 115200
-      stop_bits: 1
+      ...
 
     modbus:
       flow_control_pin: 5
       id: modbus1
 
     modbus_controller:
-      - id: epever
-        address: 0x1   ## address of the ModBUS slave device on the bus
-        modbus_id: modbus1
-        setup_priority: -10
-
-    text_sensor:
-      - name: "rtc_clock"
-        platform: modbus_controller
-        modbus_controller_id: epever
-        id: rtc_clock
-        internal: true
-        register_type: holding
-        address: 0x9013    ## address of the register inside the ModBUS slave device
-        register_count: 3
-        raw_encode: HEXBYTES
-        response_size: 6
-
-    switch:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: reset_to_fabric_default
-        name: "Reset to Factory Default"
-        register_type: coil
-        address: 0x15
-        bitmask: 1
+    - id: modbus_device
+      address: 0x1   ## address of the Modbus slave device on the bus
+      modbus_id: modbus1
+      setup_priority: -10
 
     sensor:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        name: "Battery Capacity"
-        id: battery_capacity
-        register_type: holding
-        address: 0x9001
-        unit_of_measurement: "AH"
-        value_type: U_WORD
+    - platform: modbus_controller
+      modbus_controller_id: modbus_device
+      name: "Battery Capacity"
+      register_type: holding
+      address: 0x9001    ## address of the register inside the Modbus slave device
+      unit_of_measurement: "AH"
+      value_type: U_WORD
+
+    switch:
+    - platform: modbus_controller
+      modbus_controller_id: modbus_device
+      name: "Reset to Factory Default"
+      register_type: coil
+      address: 0x15
+      bitmask: 1
+
+    text_sensor:
+    - name: "rtc_clock"
+      platform: modbus_controller
+      modbus_controller_id: modbus_device
+      id: rtc_clock
+      internal: true
+      register_type: holding
+      address: 0x9013
+      register_count: 3
+      raw_encode: HEXBYTES
+      response_size: 6
+
+The configuration example above creates a ``modbus_controller`` hub talking to a Modbus device at address ``1`` with a baudrate of ``115200`` bps, implementing a sensor, a switch and a text sensor.
 
 Example Server
 --------------
+
 The following code allows a ModBUS client to read a sensor value from your ESPHome node, that the node itself read from a ModBUS server.
 
 .. code-block:: yaml
@@ -196,6 +194,12 @@ The following code allows a ModBUS client to read a sensor value from your ESPHo
           - multiply: 0.1
     
 
+Check out the various Modbus components available at the bottom of the document in the :ref:`modbusseealso` section. They can be directly defined *(inline)* under the ``modbus_controller`` hub or as standalone components. Technically there is no difference between the *inline* and the standard definitions approach.
+
+Below you find a few general tips about using Modbus in more advanced scenarios. Applicable component functionalities have links pointing here:
+
+.. _bitmasks:
+
 Bitmasks
 --------
 
@@ -237,7 +241,7 @@ Some devices use decimal values in read registers to show multiple binary states
 | bit 15     | Binary Sensor 15 | 32768     | 8000      |
 +------------+------------------+-----------+-----------+ 
 
-For example, when reading register ``15``, a decimal value of ``12288`` is the sum of ``4096`` + ``8192``, meaning the corresponding bits ``12`` and ``13`` are ``1``, the other bits are ``0``. 
+In the example below, register ``15``, holds several binary values. It stores the decimal value ``12288``, which is the sum of ``4096`` + ``8192``, meaning the corresponding bits ``12`` and ``13`` are ``1``, the other bits are ``0``. 
 
 To gather some of these bits as binary sensors in ESPHome, use ``bitmask``:
 
@@ -245,38 +249,165 @@ To gather some of these bits as binary sensors in ESPHome, use ``bitmask``:
 
     binary_sensor:
     - platform: modbus_controller
-      modbus_controller_id: ventilation_system
+      modbus_controller_id: modbus1
       name: Alarm bit0
-      entity_category: diagnostic
-      device_class: problem
       register_type: read
       address: 15
       bitmask: 0x1
     - platform: modbus_controller
-      modbus_controller_id: ventilation_system
+      modbus_controller_id: modbus1
       name: Alarm bit1
-      entity_category: diagnostic
-      device_class: problem
       register_type: read
       address: 15
       bitmask: 0x2
     - platform: modbus_controller
-      modbus_controller_id: ventilation_system
+      modbus_controller_id: modbus1
       name: Alarm bit10
-      entity_category: diagnostic
-      device_class: problem
       register_type: read
       address: 15
       bitmask: 0x400
     - platform: modbus_controller
-      modbus_controller_id: ventilation_system
+      modbus_controller_id: modbus1
       name: Alarm bit15
-      entity_category: diagnostic
-      device_class: problem
       register_type: read
       address: 15
       bitmask: 0x8000
 
+
+.. _modbus_custom_command:
+
+Using ``custom_command``
+------------------------
+
+``custom_command`` can be used to create an arbitrary modbus command. Combined with a lambda any response can be handled.
+This example re-implements the command to read the registers 0x156 (Total active energy) and 0x158 Total (reactive energy) from a SDM-120.
+SDM-120 returns the values as floats using 32 bits in 2 registers.
+
+.. code-block:: yaml
+
+    uart:
+      id: mod_uart
+      ...
+
+    modbus:
+      send_wait_time: 200ms
+      uart_id: mod_uart
+      id: mod_bus
+
+    modbus_controller:
+    - id: sdm
+      address: 2
+      modbus_id: mod_bus
+      command_throttle: 100ms
+      setup_priority: -10
+      update_interval: 30s
+
+    sensors:
+    - platform: modbus_controller
+      modbus_controller_id: sdm
+      name: "Total active energy"
+      id: total_energy
+      #    address: 0x156
+      #    register_type: "read"
+      ## reimplement using custom_command
+      # 0x2 : modbus device address
+      # 0x4 : modbus function code
+      # 0x1 : high byte of modbus register address
+      # 0x56: low byte of modbus register address
+      # 0x00: high byte of total number of registers requested
+      # 0x02: low byte of total number of registers requested
+      custom_command: [ 0x2, 0x4, 0x1, 0x56,0x00, 0x02]
+      value_type: FP32
+      unit_of_measurement: kWh
+      accuracy_decimals: 1
+
+    - platform: modbus_controller
+      modbus_controller_id: sdm
+      name: "Total reactive energy"
+      #   address: 0x158
+      #   register_type: "read"
+      custom_command: [0x2, 0x4, 0x1, 0x58, 0x00, 0x02]
+      ## the command returns an float value using 4 bytes
+      lambda: |-
+          ESP_LOGD("Modbus Sensor Lambda","Got new data" );
+          union {
+            float float_value;
+            uint32_t raw;
+          } raw_to_float;
+          if (data.size() < 4 ) {
+            ESP_LOGE("Modbus Sensor Lambda", "invalid data size %d",data.size());
+            return NAN;
+          }
+          raw_to_float.raw =   data[0] << 24 | data[1] << 16 | data[2] << 8 |  data[3];
+          ESP_LOGD("Modbus Sensor Lambda", "FP32 = 0x%08X => %f", raw_to_float.raw, raw_to_float.float_value);
+          return raw_to_float.float_value;
+        unit_of_measurement: kVArh
+        accuracy_decimals: 1
+
+.. _modbus_register_count:
+
+Optimizing modbus communications
+--------------------------------
+
+``register_count`` is an option only required for uncommon response encodings or to optimizie modbus communications.
+
+It describes the number of registers this data point spans, overriding the defaults determined by ``value_type``. If no value for ``register_count`` is provided, it is calculated based on the register type. The default size for one register is 16 bits (one word). Some devices are not adhering to this convention and have registers larger than 16 bits. In this case, ``register_count`` and  ``response_size`` must be set. For example, if your Modbus device uses one register for a FP32 value (instead of the default of two), set ``register_count: 1`` and ``response_size: 4``.
+
+``register_count`` can also be used to skip a number of registers in consecutive range.
+
+An example is an SDM meter, with interesting data in register addresses 0, 2, 4 and 6:
+
+.. code-block:: yaml
+
+    - platform: modbus_controller
+      name: "Voltage Phase 1"
+      address: 0
+      register_type: "read"
+      value_type: FP32
+
+    - platform: modbus_controller
+      name: "Voltage Phase 2"
+      address: 2
+      register_type: "read"
+      value_type: FP32
+
+    - platform: modbus_controller
+      name: "Voltage Phase 3"
+      address: 4
+      register_type: "read"
+      value_type: FP32
+
+    - platform: modbus_controller
+      name: "Current Phase 1"
+      address: 6
+      register_type: "read"
+      value_type: FP32
+      accuracy_decimals: 1
+
+The configuration above will generate *one* modbus command *read multiple registers from 0 to 6*.
+
+Maybe you don’t care about the data in register addresses 2 and 4, which are voltage values for Phase 2 and Phase 3 (or you have a SDM-120).
+Of course, you can delete the sensors your don’t care about, but then you'd have a gap in the addresses. If you remove the registers at address 2 and 4, *two* commands will be generated -- *read register 0* and *read register 6*. To avoid generating multiple commands and thus reduce activity on the bus, ``register_count`` can be used to fill the gaps:
+
+.. code-block:: yaml
+
+    - platform: modbus_controller
+      name: "Voltage Phase 1"
+      address: 0
+      unit_of_measurement: "V"
+      register_type: "read"
+      value_type: FP32
+      register_count: 6
+
+    - platform: modbus_controller
+      name: "Current Phase 1"
+      address: 6
+      register_type: "read"
+      value_type: FP32
+
+Because the option ``register_count: 6`` is used for the first sensor, *one* command *read multiple registers from 0 to 6* will be used but the values in between will be ignored.
+
+.. note:: *Calculation:* FP32 is a 32 bit value and uses 2 registers. Therefore, to skip the 2 FP32 registers the size of these 2 registers must be added to the default size for the first register. So we have 2 for address 0, 2 for address 2 and 2 for address 4 thus ``register_count`` must be 6.
 
 
 Protocol decoding example
@@ -285,87 +416,87 @@ Protocol decoding example
 .. code-block:: yaml
 
     sensors:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: array_rated_voltage
-        name: "array_rated_voltage"
-        address: 0x3000
-        unit_of_measurement: "V"
-        register_type: read
-        value_type: U_WORD
-        accuracy_decimals: 1
-        skip_updates: 60
-        filters:
-          - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: array_rated_voltage
+      name: "array_rated_voltage"
+      address: 0x3000
+      unit_of_measurement: "V"
+      register_type: read
+      value_type: U_WORD
+      accuracy_decimals: 1
+      skip_updates: 60
+      filters:
+        - multiply: 0.01
 
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: array_rated_current
-        name: "array_rated_current"
-        address: 0x3001
-        unit_of_measurement: "V"
-        register_type: read
-        value_type: U_WORD
-        accuracy_decimals: 2
-        filters:
-          - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: array_rated_current
+      name: "array_rated_current"
+      address: 0x3001
+      unit_of_measurement: "V"
+      register_type: read
+      value_type: U_WORD
+      accuracy_decimals: 2
+      filters:
+        - multiply: 0.01
 
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: array_rated_power
-        name: "array_rated_power"
-        address: 0x3002
-        unit_of_measurement: "W"
-        register_type: read
-        value_type: U_DWORD_R
-        accuracy_decimals: 1
-        filters:
-          - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: array_rated_power
+      name: "array_rated_power"
+      address: 0x3002
+      unit_of_measurement: "W"
+      register_type: read
+      value_type: U_DWORD_R
+      accuracy_decimals: 1
+      filters:
+        - multiply: 0.01
 
-      -platform: modbus_controller
-        modbus_controller_id: epever
-        id: battery_rated_voltage
-        name: "battery_rated_voltage"
-        address: 0x3004
-        unit_of_measurement: "V"
-        register_type: read
-        value_type: U_WORD
-        accuracy_decimals: 1
-        filters:
-          - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: battery_rated_voltage
+      name: "battery_rated_voltage"
+      address: 0x3004
+      unit_of_measurement: "V"
+      register_type: read
+      value_type: U_WORD
+      accuracy_decimals: 1
+      filters:
+        - multiply: 0.01
 
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: battery_rated_current
-        name: "battery_rated_current"
-        address: 0x3005
-        unit_of_measurement: "A"
-        register_type: read
-        value_type: U_WORD
-        accuracy_decimals: 1
-        filters:
-          - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: battery_rated_current
+      name: "battery_rated_current"
+      address: 0x3005
+      unit_of_measurement: "A"
+      register_type: read
+      value_type: U_WORD
+      accuracy_decimals: 1
+      filters:
+        - multiply: 0.01
 
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: battery_rated_power
-        name: "battery_rated_power"
-        address: 0x3006
-        unit_of_measurement: "W"
-        register_type: read
-        value_type: U_DWORD_R
-        accuracy_decimals: 1
-        filters:
-          - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: battery_rated_power
+      name: "battery_rated_power"
+      address: 0x3006
+      unit_of_measurement: "W"
+      register_type: read
+      value_type: U_DWORD_R
+      accuracy_decimals: 1
+      filters:
+        - multiply: 0.01
 
-      - platform: modbus_controller
-        modbus_controller_id: epever id: charging_mode
-        name: "charging_mode"
-        address: 0x3008
-        unit_of_measurement: ""
-        register_type: read
-        value_type: U_WORD
-        accuracy_decimals: 0
+    - platform: modbus_controller
+      modbus_controller_id: epever id: charging_mode
+      name: "charging_mode"
+      address: 0x3008
+      unit_of_measurement: ""
+      register_type: read
+      value_type: U_WORD
+      accuracy_decimals: 0
 
 
 To minimize the required transactions all registers with the same base address are read in one request.
@@ -450,8 +581,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
 
 .. note::
 
-    Write support is only implemented for switches and selects.
-    However the C++ code provides the required API to write to a ModBUS device.
+    Write support is only implemented for switches and selects; however, the C++ code provides the required API to write to a Modbus device.
 
     These methods can be called from a lambda.
 
@@ -484,7 +614,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
                     // create the payload
                     std::vector<uint16_t> rtc_data = {uint16_t((minutes << 8) | seconds), uint16_t((day << 8) | hour),
                                                       uint16_t((year << 8) | month)};
-                    // Create a ModBUS command item with the time information as the payload
+                    // Create a Modbus command item with the time information as the payload
                     esphome::modbus_controller::ModbusCommandItem set_rtc_command =
                         esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x9013, 3, rtc_data);
                     // Submit the command to the send queue
@@ -588,17 +718,20 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
             filters:
               - multiply: 0.01
 
+.. _modbusseealso:
 
 See Also
 --------
 
 - :doc:`/components/modbus`
+- :doc:`/components/sensor/modbus_controller`
 - :doc:`/components/binary_sensor/modbus_controller`
-- :doc:`/components/text_sensor/modbus_controller`
+- :doc:`/components/output/modbus_controller`
 - :doc:`/components/switch/modbus_controller`
 - :doc:`/components/number/modbus_controller`
-- :doc:`/components/output/modbus_controller`
-- `ModBUS RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
+- :doc:`/components/select/modbus_controller`
+- :doc:`/components/text_sensor/modbus_controller`
+- `Modbus RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
 - `EPEVER MPPT Solar Charge Controller (Tracer-AN Series) <https://devices.esphome.io/devices/epever_mptt_tracer_an>`__
 - `Genvex, Nibe, Alpha-Innotec heat recovery ventilation <https://devices.esphome.io/devices/Genvex-Nibe-AlphaInnotec-heat-recovery-ventilation>`__
 - :ghedit:`Edit`
