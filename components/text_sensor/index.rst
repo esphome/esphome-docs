@@ -35,6 +35,7 @@ Configuration variables:
 - **device_class** (*Optional*, string): The device class for the
   sensor. Only the ``timestamp`` and ``date`` device classes are supported.
   Set to ``""`` to remove the default device class of a sensor.
+  Requires Home Assistant 2024.3 or newer.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
