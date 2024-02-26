@@ -10,7 +10,7 @@ This repository/library allows you to create a custom wake word for your ESPHome
 
 The training process is described on the `microWakeWord GitHub repository <https://github.com/kahrendt/microWakeWord>`__.
 
-The ``micro_wake_word`` component requires an **ESP32-S3 - with PSRAM** to function.
+The ``micro_wake_word`` component requires an **ESP32-S3 with PSRAM** to function.
 
 .. code-block:: yaml
 
