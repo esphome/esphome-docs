@@ -17,7 +17,7 @@ This guide can be applied to any sensor measuring temperature and pressure at th
 
 The first step is to connect the sensor as described :doc:`here </components/sensor/bme280>`.
 After validating the sensor is working, we can proceed and add some formulas.
-In the example below change - platform: bme280 to the relevant one for your installation (_i2c or _spi)
+In the example below, modify ``platform: bme280`` as appropriate for your hardware (either ``bme280_i2c`` or ``bme280_spi``). See :doc:`/components/sensor/bme280` for specific details.
 
 .. code-block:: yaml
 
