@@ -32,12 +32,12 @@ The tone generator needs a PWM capable output to work with, currently only the
     output:
       - platform: ...
         id: rtttl_out
-        gain: 60%
         ...
 
     rtttl:
       output: rtttl_out
       id: my_rtttl
+      gain: 60%
 
 Overview Using the I2S speaker
 ------------------------------
@@ -50,12 +50,12 @@ The tone generator can instead be used with a :doc:`Speaker </components/speaker
     speaker:
       - platform: ...
         id: my_speaker
-        gain: 0.8
         ...
 
     rtttl:
       speaker: my_speaker
       id: my_rtttl
+      gain: 0.8
 
 Configuration variables:
 ------------------------
