@@ -508,6 +508,7 @@ Presence Detection
 .. imgtable::
 
     DFRobot mmWave Radar, components/dfrobot_sen0395, dfrobot_sen0395.jpg
+    AT581X, components/at581x, at581x.png
     LD2410, components/sensor/ld2410, ld2410.jpg
     LD2420, components/sensor/ld2420, ld2420.jpg
 
