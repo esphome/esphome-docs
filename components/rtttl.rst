@@ -32,6 +32,7 @@ The tone generator needs a PWM capable output to work with, currently only the
     output:
       - platform: ...
         id: rtttl_out
+        gain: 60%
         ...
 
     rtttl:
@@ -49,6 +50,7 @@ The tone generator can instead be used with a :doc:`Speaker </components/speaker
     speaker:
       - platform: ...
         id: my_speaker
+        gain: 0.8
         ...
 
     rtttl:
@@ -62,6 +64,7 @@ Configuration variables:
   this buzzer.
 - **speaker** (**Exclusive**, :ref:`config-id`): The id of the :ref:`speaker <i2s_audio>` to play the song on.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **gain** (*Optional*, Percentage): With this value you can set the volume of the sound.
 - **on_finished_playback** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when playback is finished.
 
