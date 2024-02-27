@@ -166,6 +166,10 @@ html_sidebars = {
     ]
 }
 
+html_additional_pages = {
+  'search': 'search.html', # relative to the docs/_templates directory
+}
+
 
 # -- Options for HTMLHelp output ------------------------------------------
 
