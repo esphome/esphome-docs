@@ -64,6 +64,8 @@ Configuration:
   (voice response) playback starts. Requires ``speaker`` to be configured.
 - **on_tts_stream_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when audio stream
   (voice response) playback ends. Requires ``speaker`` to be configured.
+- **on_idle** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the voice assistant is idle (no other actions/states are in progress).
 - **on_error** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the voice assistant has encountered an error. The error code and message are available to
   automations as the variables ``code`` and ``message``.
