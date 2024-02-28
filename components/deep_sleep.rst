@@ -23,7 +23,7 @@ to wake up on any RTC pin (``GPIO0``, ``GPIO2``, ``GPIO4``, ``GPIO12``, ``GPIO13
 While in deep sleep mode, the node will not do any work and not respond to any network traffic,
 even Over The Air updates. If the device's entities are appearing as **Unavailable** while your device is actively
 sleeping, this component was likely added after the device was added to Home Assistant. To prevent this behavior,
-you can remove and re-add the device within ESPHome.
+you can remove and re-add the device in Home Assistant.
 
 .. code-block:: yaml
 
