@@ -232,8 +232,8 @@ Transmit a message using the button component
 
 By default the transmitter is in receive mode, it is important to surround the transmission with ``cc1101.begin_tx`` and ``cc1101.end_tx``.
 
-Example pinout for a tested boards
-----------------------------------
+Example pinout for a few tested boards
+--------------------------------------
 
 +--------------+------+------+------+------+------+------+------+------+------+
 |BOARD         | MISO | MOST | SCK  | CSN  | GDO0 | GDO2 | SDA  | SCL  |      |
