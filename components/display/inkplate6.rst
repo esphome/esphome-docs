@@ -282,7 +282,7 @@ Inkplate 6 Plus Touchscreen
 ***************************
 
 The Inkplate 6 Plus has a built in touchscreen supported by ESPHome. Note you need to enable pin 12 on the mcp23017 to enable the touchscreen
-Below is a config example with touchscreen power swtich:
+Below is a config example with touchscreen power switch:
 
 .. code-block:: yaml
 
