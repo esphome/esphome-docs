@@ -558,21 +558,17 @@ Contributors
 - `Granville Barker (@granvillebarker) <https://github.com/granvillebarker>`__
 - `Antoine GRÉA (@grea09) <https://github.com/grea09>`__
 - `Greg Arnold (@GregJArnold) <https://github.com/GregJArnold>`__
-- `Greg MacLellan (@gregmac) <https://github.com/gregmac>`__
 - `Gil Peeters (@grillp) <https://github.com/grillp>`__
-- `Guillaume Rischard (@grischard) <https://github.com/grischard>`__
 - `George (@grob6000) <https://github.com/grob6000>`__
 - `groovejumper (@groovejumper) <https://github.com/groovejumper>`__
 - `gsexton (@gsexton) <https://github.com/gsexton>`__
 - `Gabriel Sieben (@gsieben) <https://github.com/gsieben>`__
-- `Guillaume DELVIT (@guiguid) <https://github.com/guiguid>`__
 - `guillempages (@guillempages) <https://github.com/guillempages>`__
 - `Fabian Pflug (@gumulka) <https://github.com/gumulka>`__
 - `Guyohms (@Guyohms) <https://github.com/Guyohms>`__
 - `Gilles van den Hoven (@gvdhoven) <https://github.com/gvdhoven>`__
 - `h0jeZvgoxFepBQ2C (@h0jeZvgoxFepBQ2C) <https://github.com/h0jeZvgoxFepBQ2C>`__
 - `h3ndrik (@h3ndrik) <https://github.com/h3ndrik>`__
-- `H3 (@H3wastooshort) <https://github.com/H3wastooshort>`__
 - `Andi (@h4de5) <https://github.com/h4de5>`__
 - `haade (@haade-administrator) <https://github.com/haade-administrator>`__
 - `Peter van Dijk (@Habbie) <https://github.com/Habbie>`__
@@ -583,7 +579,6 @@ Contributors
 - `Gavin Mogan (@halkeye) <https://github.com/halkeye>`__
 - `Charles (@hallard) <https://github.com/hallard>`__
 - `Aniket (@HandyHat) <https://github.com/HandyHat>`__
-- `Harrison Jones (@harrisonhjones) <https://github.com/harrisonhjones>`__
 - `Charles Thompson (@haryadoon) <https://github.com/haryadoon>`__
 - `Ha Thach (@hathach) <https://github.com/hathach>`__
 - `Cong Hoang Nguyen (@HcNguyen111) <https://github.com/HcNguyen111>`__
@@ -593,13 +588,10 @@ Contributors
 - `Jimmy Hedman (@HeMan) <https://github.com/HeMan>`__
 - `Hemi03 (@Hemi03) <https://github.com/Hemi03>`__
 - `HengYongChao (@HengYongChao) <https://github.com/HengYongChao>`__
-- `HepoH3 (@HepoH3) <https://github.com/HepoH3>`__
 - `Hermann Kraus (@herm) <https://github.com/herm>`__
 - `Herr Frei (@herrfrei) <https://github.com/herrfrei>`__
 - `highground88 (@highground88) <https://github.com/highground88>`__
 - `hindenbugbite (@hindenbugbite) <https://github.com/hindenbugbite>`__
-- `Henrik Fransson (@hmfhmf) <https://github.com/hmfhmf>`__
-- `Hamish Moffatt (@hmoffatt) <https://github.com/hmoffatt>`__
 - `Hobby Components (@HobbyComponents) <https://github.com/HobbyComponents>`__
 - `Hopperpop (@Hopperpop) <https://github.com/Hopperpop>`__
 - `Ilia Sotnikov (@hostcc) <https://github.com/hostcc>`__
@@ -653,6 +645,7 @@ Contributors
 - `Jason-nz (@Jason-nz) <https://github.com/Jason-nz>`__
 - `Jason2866 (@Jason2866) <https://github.com/Jason2866>`__
 - `Jas Strong (@jasstrong) <https://github.com/jasstrong>`__
+- `Alex Boyd (@javawizard) <https://github.com/javawizard>`__
 - `Jay Greco (@jaygreco) <https://github.com/jaygreco>`__
 - `Jay Newstrom (@JayNewstrom) <https://github.com/JayNewstrom>`__
 - `Jeff (@jazzmonger) <https://github.com/jazzmonger>`__
@@ -1241,6 +1234,7 @@ Contributors
 - `tomlut (@tomlut) <https://github.com/tomlut>`__
 - `tomle (@tomole444) <https://github.com/tomole444>`__
 - `Tom Price (@tomtom5152) <https://github.com/tomtom5152>`__
+- `Anthony Bourguignon (@Toniob) <https://github.com/Toniob>`__
 - `David Kiliani (@torfbolt) <https://github.com/torfbolt>`__
 - `Aleksandra M (@tort32) <https://github.com/tort32>`__
 - `tracestep (@tracestep) <https://github.com/tracestep>`__
@@ -1329,4 +1323,4 @@ Contributors
 - `Zsolt Zsiros (@ZsZs73) <https://github.com/ZsZs73>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated February 21, 2024.*
+*This page was last updated February 26, 2024.*

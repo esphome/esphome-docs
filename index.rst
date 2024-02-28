@@ -951,7 +951,6 @@ If you'd like to share configurations for specific devices, please contribute to
     web-api/index
     components/index
     cookbook/index
-    devices/index
     guides/index
     changelog/index
     custom/index
