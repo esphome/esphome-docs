@@ -709,6 +709,7 @@ Cover Components
     Time-Based Cover, components/cover/time_based, timer.svg, dark-invert
     Custom Cover, components/cover/custom, language-cpp.svg, dark-invert
     AM43 Cover, components/cover/am43, am43.jpg
+    Tormatic/Novoferm Cover, components/cover/tormatic, tormatic.png
     Tuya Cover, components/cover/tuya, tuya.png
     HE60R Cover, components/cover/he60r, he60r.jpg
 
