@@ -334,5 +334,5 @@ See Also
 - :ref:`spi`
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
-- :apiref:`wk_base/wk_base.h`
+- :apiref:`weika/weika.h`
 - :ghedit:`Edit`
