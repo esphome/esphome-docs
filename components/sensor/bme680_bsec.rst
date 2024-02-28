@@ -10,8 +10,8 @@ Component/Hub
 -------------
 
 The ``bme680_bsec`` sensor platform allows you to use your BME680
-(`datasheet <https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf>`__,
-`Adafruit`_) temperature, pressure and humidity and gas sensors with ESPHome via the Bosch Sensortec Environmental Cluster (BSEC)
+(`datasheet <https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme680-ds001.pdf>`__,
+`Adafruit`_, `Pimoroni`_) temperature, pressure and humidity and gas sensors with ESPHome via the Bosch Sensortec Environmental Cluster (BSEC)
 software library. The use of Bosch's proprietary algorithms provide an Index for Air Quality (IAQ) measurement derived from the
 gas resistance sensor's response to specific Volatile Organic Compounds (VOC). The BSEC software also provides estimated values
 for CO₂ and Breath Volatile Organic Compounds (b-VOC) using a correlation between VOC and CO₂ in a human's exhaled breath.
@@ -33,6 +33,8 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
 .. _BSEC license agreement: https://www.bosch-sensortec.com/media/boschsensortec/downloads/bsec/2017-07-17_clickthrough_license_terms_environmentalib_sw_clean.pdf
 
 .. _Adafruit: https://www.adafruit.com/product/3660
+
+.. _Pimoroni: https://shop.pimoroni.com/products/bme680-breakout
 
 .. code-block:: yaml
 
@@ -100,6 +102,9 @@ Configuration variables:
 
 - **iaq_mode** (*Optional*, string): IAQ calculation mode. Default is ``static`` for static applications (e.g. fixed indoor devices).
   Can be ``mobile`` for mobile applications (e.g. carry-on devices).
+
+- **supply_voltage** (*Optional*, string): Supply voltage of the sensor. Default is ``3.3V``.
+  Can be set to ``1.8V`` if your sensor is 1.8V-powered (e.g. the Pimoroni PIM357 BME680 Breakout module).
 
 - **sample_rate** (*Optional*, string): Sample rate. Default is ``lp`` for low power consumption, sampling every 3 seconds.
   Can be ``ulp`` for ultra-low power, sampling every 5 minutes.
@@ -230,6 +235,14 @@ For each sensor, all other options from :ref:`Sensor <config-sensor>` and :ref:`
         # - mobile (for on a person or other moveable devices)
         # Default: static
         iaq_mode: static
+
+        # Supply voltage
+        # --------------------
+        # Available options:
+        # - 3.3V
+        # - 1.8V
+        # Default: 3.3V
+        supply_voltage: 3.3V
 
         # Sample rate
         # -----------
@@ -423,7 +436,7 @@ The selected b-VOC gasses are as follows:
 IAQ Accuracy and Calibration
 ----------------------------
 
-The BSEC software automatically calibrates automatically in the background to provide consistent IAQ performance. The
+The BSEC software automatically calibrates in the background to provide consistent IAQ performance. The
 calibration process considers the recent measurement history so that a value of 50 corresponds to a “typical good”
 level and a value of 200 to a “typical polluted” level. The IAQ Accuracy sensor will give one of the following values:
 

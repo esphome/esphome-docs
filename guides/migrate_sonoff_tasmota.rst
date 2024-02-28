@@ -42,7 +42,7 @@ From your configuration files folder, run
 
 :: 
 
-  esphome <MY_DEVICE>.yaml compile
+  esphome compile <MY_DEVICE>.yaml
   
 replacing ``<MY_DEVICE>.yaml`` with your configuration file and navigate to the ``<MY_DEVICE>/.pioenvs/<MY_DEVICE>/`` folder. 
 
