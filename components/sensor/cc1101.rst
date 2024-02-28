@@ -255,6 +255,6 @@ SDA/SCL is not needed of course, they are just there as suggestions in case you 
 See Also
 --------
 
-- :doc:`remote_transmitter`
-- :doc:`remote_receiver`
+- :doc:`/components/remote_transmitter`
+- :doc:`/components/remote_receiver`
 - :ghedit:`Edit`
