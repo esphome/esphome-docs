@@ -456,7 +456,7 @@ Why do entities show as Unavailable during deep sleep?
 
 The :doc:`Deep Sleep </components/deep_sleep>` component needs to be present within the config when the device
 is first added to Home Assistant. To prevent entities from appearing as Unavailable, you can remove and re-add the
-device within ESPHome.
+device in Home Assistant.
 
 See Also
 --------
