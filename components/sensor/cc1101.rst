@@ -7,10 +7,162 @@ CC1101 Low-Power Sub-1 GHz RF Transceiver
     :keywords: cc1101
 
 The ``CC1101 RF Tranceiver`` (`datasheet <https://www.ti.com/lit/ds/symlink/cc1101.pdf>`__) can be used together 
-with the ``remote_transmitter`` (`docs <https://esphome.io/components/remote_transmitter.html>`__) and 
-``remote_receiver`` (`docs <https://esphome.io/components/remote_receiver.html>`__) components to communicate over 
-free to use frequencies like 433.92 or 868 MHz.
+with the ``remote_transmitter`` and ``remote_receiver`` components to communicate over free to use frequencies 
+like 433.92 or 868 MHz. 
+
+Tested frameworks are Arduino and esp-idf but it might work with others.
 
 .. figure:: images/cc1101.jpg
     :align: center
     :width: 50.0%
+
+    CC1101 boards.
+
+Example configuration for ESP8266
+---------------------------------
+
+ESP8266 can use a single gdo0 pin for tx and rx. During transmission, interrupts are disabled and the pin direction is reversed. This does not work with the ESP32.
+
+.. code-block:: yaml
+
+    spi:
+      clk_pin: D5
+      miso_pin: D6
+      mosi_pin: D7
+    
+    sensor:
+      - platform: cc1101
+        id: transceiver
+        cs_pin: D8
+        gdo0: D1
+        bandwidth: 200
+        frequency: 433920
+        rssi:
+          name: "RSSI"
+        lqi:
+          name: "LQI"
+
+    remote_transmitter:
+      - pin: D1
+        carrier_duty_percent: 100%
+
+    remote_receiver:
+      pin: D1
+      dump:
+        - rc_switch
+      tolerance: 50%
+      buffer_size: 2kb
+      filter: 250us
+      idle: 4ms
+
+Example configuration for ESP32
+-------------------------------
+
+Example based on a generic nodemcu-32s board.
+
+.. code-block:: yaml
+
+    spi:
+      clk_pin: GPIO18
+      miso_pin: GPIO19
+      mosi_pin: GPIO23
+    
+    sensor:
+      - platform: cc1101
+        id: transceiver
+        cs_pin: GPIO5
+        gdo0: GPIO32
+        gdo2: GPIO33
+        bandwidth: 200
+        frequency: 433920
+        rssi:
+          name: "RSSI"
+        lqi:
+          name: "LQI"
+
+    remote_transmitter:
+      - pin: GPIO32
+        carrier_duty_percent: 100%
+
+    remote_receiver:
+      pin: GPIO33
+      dump:
+        - rc_switch
+      tolerance: 50%
+      buffer_size: 2kb
+      filter: 250us
+      idle: 4ms
+
+Configuration variables:
+------------------------
+
+- **gdo0** (**Required**, :ref:`config-pin`): This is the transmit pin. And also receive pin for ESP8266.
+- **gdo2** (**Optional**, :ref:`config-pin`): This is the receive pin. Optional because it is required for ESP8266.
+- **bandwidth** (*Optional*, int): Defaults to 200 KHz.
+- **frequency** (*Optional*, int): Defaults to 433920 KHz.
+- **rssi** (*Optional*): RSSI sensor. Value in dBm. The RSSI value is an estimate of the signal power level in the chosen channel. See datasheet 17.3 for further information.
+- **lqi** (*Optional*): Link Quality Indicator sensor. The Link Quality Indicator is a metric of the current quality of the received signal. See datasheet 17.6 for further information.
+
+Detect a magnetic window sensor
+-------------------------------
+
+.. code-block:: yaml
+
+  binary_sensor:
+    - platform: remote_receiver
+      name: "Window"
+      rc_switch_raw:
+        code: '110111110001111011100110'
+      filters:
+        - delayed_off: 1000ms
+
+Transmit a message using the button component
+---------------------------------------------
+
+.. code-block:: yaml
+
+  button:
+    - platform: template
+      name: "Gate"
+      on_press:
+        - cc1101.begin_tx: transceiver
+        - remote_transmitter.transmit_rc_switch_raw:
+            code: '0111000110010011110110010100011111110001001011110111'
+            protocol:
+              pulse_length: 434
+              sync: [1,6]
+              zero: [1,2]
+              one: [2,1]
+              inverted: true
+            repeat:
+              times: 10
+        - cc1101.end_tx: transceiver
+
+By default the transmitter is in receive mode, it is important to surround the transmission with ``cc1101.begin_tx`` and ``cc1101.end_tx``.
+
+Example pinout for a tested boards
+----------------------------------
+
++--------------+------+------+------+------+------+------+------+------+------+
+|BOARD         | MISO | MOST | SCK  | CSN  | GDO0 | GDO2 | SDA  | SCL  |      |
++--------------+------+------+------+------+------+------+------+------+------+
+|nodemcu-32s   |  19  |  23  |  18  |  5   |  32  |  33  |      |      |      |
++--------------+------+------+------+------+------+------+------+------+------+
+|lolin_s2_mini |  37  |  35  |  36  |  34  |  8   |  9   |      |      |      |
++--------------+------+------+------+------+------+------+------+------+------+
+|c3 supermini  |  5   |  7   |  6   |  10  |  3   |  4   |  0   |  1   | [1]_ |
++--------------+------+------+------+------+------+------+------+------+------+
+|d1_mini       |  12  |  13  |  14  |  15  |  5   |      |  4   |  TX  | [2]_ |
++--------------+------+------+------+------+------+------+------+------+------+
+
+SDA/SCL is not needed of course, they are just there as suggestions in case you also need I2C on such a low pin count board.
+
+.. [1] add one dummy transmitter (`<https://github.com/esphome/issues/issues/2934>`__)
+.. [2] still possible to use i2c with TX
+
+See Also
+--------
+
+- :doc:`remote_transmitter`
+- :doc:`remote_receiver`
+- :ghedit:`Edit`
