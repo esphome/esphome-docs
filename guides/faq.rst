@@ -361,7 +361,7 @@ And a docker compose file looks like this:
 .. _docker-reference-notes:
 .. note::
 
-    By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature to work you need to enable host networking mode. 
+    By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature to work you need to enable host networking mode.
 
     On MacOS the networking mode ("-net=host" option) doesn't work as expected. You have to use
     another way to launch the dashboard with a port mapping option and use alternative to mDNS
@@ -450,6 +450,13 @@ flash your device, the code from the Pull Request will be used for the component
 Note that this only works for Pull Requests that only change files within components. If any files outside
 ``esphome/components/`` are added or changed, this method unfortunately doesn't work. Those Pull Requests are labeled
 with the "core" label on GitHub.
+
+Why do entities show as Unavailable during deep sleep?
+------------------------------------------------------
+
+The :doc:`Deep Sleep </components/deep_sleep>` component needs to be present within the config when the device
+is first added to Home Assistant. To prevent entities from appearing as Unavailable, you can remove and re-add the
+device within ESPHome.
 
 See Also
 --------
