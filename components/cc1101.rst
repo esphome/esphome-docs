@@ -161,7 +161,8 @@ Alternatively these modified remote components can directly set ``rmt_channel``.
 Configuration variables:
 ------------------------
 
-- **gdo0** (**Optional**, :ref:`config-pin`): This is the bidirectional pin for ESP8266.
+- **cs_pin** (**Required**, :ref:`config-pin`): SPI Chip Select.
+- **gdo0** (*Optional*, :ref:`config-pin`): This is the bidirectional pin for ESP8266.
 - **bandwidth** (*Optional*, int): Defaults to 200 KHz.
 - **frequency** (*Optional*, int): Defaults to 433920 KHz.
 - **rssi** (*Optional*): RSSI sensor. Value in dBm. The RSSI value is an estimate of the signal power level in the chosen channel. See datasheet 17.3 for further information.
