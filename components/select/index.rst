@@ -70,7 +70,7 @@ For more information on using lambdas with select, see :ref:`select-lambda_calls
 ``on_value``
 ************
 
-This automation will be triggered when a new value is published. In :ref:`Lambdas <config-lambda>`
+This automation will be triggered when a new value is set/published. Even if the value is the same as before. In :ref:`Lambdas <config-lambda>`
 you can get the value from the trigger with ``x`` and the index offset of the selected value with ``i``.
 
 .. code-block:: yaml
