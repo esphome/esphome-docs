@@ -462,7 +462,7 @@ with 10 seconds timeframes.
     
     captive_portal:
     
-    switch:
+    button:
       - platform: factory_reset
         id: factory_reset_switch
         name: "ESPHome: Factory reset"
