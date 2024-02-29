@@ -36,19 +36,18 @@ Example configuration for ESP8266
       miso_pin: D6
       mosi_pin: D7
     
-    sensor:
-      - platform: cc1101
-        id: transceiver
-        cs_pin: D8
-        gdo0:
-          number: D1
-          allow_other_uses: true
-        bandwidth: 200
-        frequency: 433920
-        rssi:
-          name: "RSSI"
-        lqi:
-          name: "LQI"
+    cc1101:
+      id: transceiver
+      cs_pin: D8
+      gdo0:
+        number: D1
+        allow_other_uses: true
+      bandwidth: 200
+      frequency: 433920
+      rssi:
+        name: "RSSI"
+      lqi:
+        name: "LQI"
 
     remote_transmitter:
       pin:
@@ -79,16 +78,15 @@ Based on a generic nodemcu-32s board.
       miso_pin: GPIO19
       mosi_pin: GPIO23
     
-    sensor:
-      - platform: cc1101
-        id: transceiver
-        cs_pin: GPIO5
-        bandwidth: 200
-        frequency: 433920
-        rssi:
-          name: "RSSI"
-        lqi:
-          name: "LQI"
+    cc1101:
+      id: transceiver
+      cs_pin: GPIO5
+      bandwidth: 200
+      frequency: 433920
+      rssi:
+        name: "RSSI"
+      lqi:
+        name: "LQI"
 
     remote_transmitter:
       pin: GPIO32  # GDO0
@@ -117,12 +115,11 @@ Basically, the receiver has to be pushed to the third channel by adding a dummy 
       miso_pin: GPIO5
       mosi_pin: GPIO7
 
-    sensor:
-      - platform: cc1101
-        id: transceiver
-        cs_pin: GPIO10
-        bandwidth: 200
-        frequency: 433920
+    cc1101:
+      id: transceiver
+      cs_pin: GPIO10
+      bandwidth: 200
+      frequency: 433920
 
     remote_transmitter:
       - pin: GPIO8
