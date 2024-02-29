@@ -28,7 +28,7 @@ Additional sensors for Haier Climate device. **These sensors are supported only 
         name: Haier AC
         uart_id: ac_port
     
-    sensor:
+    binary_sensor:
       - platform: haier
         haier_id: haier_ac
         compressor_status:
