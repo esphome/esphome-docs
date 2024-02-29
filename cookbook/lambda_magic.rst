@@ -464,7 +464,7 @@ with 10 seconds timeframes.
     
     button:
       - platform: factory_reset
-        id: factory_reset_switch
+        id: factory_reset_button
         name: "ESPHome: Factory reset"
 
 
