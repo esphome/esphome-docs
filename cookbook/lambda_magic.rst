@@ -441,7 +441,7 @@ with 10 seconds timeframes.
                     id(fast_boot) = 0;
                     fast_boot->loop();
                     global_preferences->sync();
-                - switch.turn_on: factory_reset_switch
+                - button.press: factory_reset_button
           - lambda: |-
               if(id(fast_boot) > 0)
                 ESP_LOGD("Fast Boot Factory Reset", "Quick reboot %d/%d, do it %d more times to factory reset", id(fast_boot), ${factory_reset_boot_count_trigger}, ${factory_reset_boot_count_trigger} - id(fast_boot));
