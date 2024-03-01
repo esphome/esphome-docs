@@ -33,7 +33,7 @@ Configuration variables:
 - **enable_time** (*Optional*, :ref:`config-time`): The time
   that the power supply needs for startup. The output component will
   wait for this period of time after turning on the PSU and before
-  switching the output on. Defaults to ``20ms``.
+  switching the output on. Defaults to ``20ms``. Maximum of less than ``5s``.
 - **keep_on_time** (*Optional*, :ref:`config-time`): The time the
   power supply should be kept enabled after the last output that used
   it has been switch off. Defaults to ``10s``.
