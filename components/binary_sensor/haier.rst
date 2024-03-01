@@ -49,10 +49,7 @@ Configuration variables:
 
 - **haier_id** (**Required**, :ref:`config-id`): The id of haier climate component
 - **compressor_status** (*Optional*): A binary sensor that indicates Haier climate compressor activity.
-
-  - **name** (**Required**, string): The name of the sensor.
-  - **id** (*Optional*, :ref:`config-id`): ID of the sensor, can be used for code generation
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **defrost_status** (*Optional*): A binary sensor that indicates defrost procedure activity.
 
   - **name** (**Required**, string): The name of the sensor.
