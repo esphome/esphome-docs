@@ -49,36 +49,20 @@ Configuration variables:
 
 - **haier_id** (**Required**, :ref:`config-id`): The id of haier climate component
 - **compressor_status** (*Optional*): A binary sensor that indicates Haier climate compressor activity.
-  All options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
 - **defrost_status** (*Optional*): A binary sensor that indicates defrost procedure activity.
-
-  - **name** (**Required**, string): The name of the sensor.
-  - **id** (*Optional*, :ref:`config-id`): ID of the sensor, can be used for code generation
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
 - **four_way_valve_status** (*Optional*): A binary sensor that indicates four way valve status.
-
-  - **name** (**Required**, string): The name of the sensor.
-  - **id** (*Optional*, :ref:`config-id`): ID of the sensor, can be used for code generation
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
 - **indoor_electric_heating_status** (*Optional*): A binary sensor that indicates electrical heating system activity.
-
-  - **name** (**Required**, string): The name of the sensor.
-  - **id** (*Optional*, :ref:`config-id`): ID of the sensor, can be used for code generation.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
 - **indoor_fan_status** (*Optional*): A binary sensor that indicates indoor fan activity. 
-
-  - **name** (**Required**, string): The name of the sensor.
-  - **id** (*Optional*, :ref:`config-id`): ID of the sensor, can be used for code generation
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
 - **outdoor_fan_status** (*Optional*): A binary sensor that indicates outdoor fan activity. 
-
-  - **name** (**Required**, string): The name of the sensor.
-  - **id** (*Optional*, :ref:`config-id`): ID of the sensor, can be used for code generation
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 See Also
 --------
 
 - :doc:`Haier Climate </components/climate/haier>`
-- :ref:`sensor-filters`
 - :ghedit:`Edit`
