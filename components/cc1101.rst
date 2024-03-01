@@ -190,7 +190,8 @@ Transmit a message using the button component
       - platform: template
         name: "Gate"
         on_press:
-          - remote_transmitter.transmit_cc1101:
+          # - cc1101.begin_tx: transceiver
+          - remote_transmitter.transmit_rc_switch_raw_cc1101:
               code: '0111000110010011110110010100011111110001001011110111'
               protocol:
                 pulse_length: 434
@@ -200,8 +201,9 @@ Transmit a message using the button component
                 inverted: true
               repeat:
                 times: 10
+          # - cc1101.end_tx: transceiver
 
-By default the transmitter is in receive mode, it is important to surround the transmission with ``cc1101.begin_tx`` and ``cc1101.end_tx``.
+Transfers, except transmit_rc_switch_raw_cc1101, must be surrounded with ``cc1101.begin_tx`` and ``cc1101.end_tx``.
 
 Example pinout for a few tested boards
 --------------------------------------
