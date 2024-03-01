@@ -645,6 +645,7 @@ Fan Components
     H-bridge Fan, components/fan/hbridge, fan.svg, dark-invert
     Speed Fan, components/fan/speed, fan.svg, dark-invert
     Tuya Fan, components/fan/tuya, tuya.png
+    Template Fan, components/fan/template, description.svg, dark-invert
 
 Display Components
 ------------------
