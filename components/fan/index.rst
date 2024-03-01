@@ -184,9 +184,9 @@ This :ref:`condition <config-condition>` passes if the given fan is on or off.
 .. _fan-on_state_trigger:
 
 ``fan.on_state`` Trigger
-----------------------------
+------------------------
 
-This trigger is activated each time the fan speed is changed. It will fire when the speed is either set via API e.g. in Home Assistant or locally by an automation or a lambda function.
+This trigger is activated each time the fan state is changed. It will fire when the state is either set via API e.g. in Home Assistant or locally by an automation or a lambda function.
 A pointer to the ``Fan`` is available as a variable called ``x``.
 
 .. code-block:: yaml
@@ -196,7 +196,7 @@ A pointer to the ``Fan`` is available as a variable called ``x``.
         # ...
         on_state:
         - logger.log:
-            format: "Fan Speed is %d!"
+            format: "Fan State changed!  Fan Speed is %d!"
             args: [ x->speed ]
 
 .. _fan-on_turn_on_off_trigger:
@@ -220,7 +220,7 @@ if a command to turn the fan on or off already matches the current state.
 .. _fan-on_direction_set_trigger:
 
 ``fan.on_direction_set`` Trigger
-----------------------------
+--------------------------------
 
 This trigger is activated each time the fan direction is changed. It will fire when the direction is either set via API e.g. in Home Assistant or locally by an automation or a lambda function.
 The new direction is available as a variable called ``x``.  (``0`` is FORWARD, ``1`` is REVERSE)
@@ -232,13 +232,13 @@ The new direction is available as a variable called ``x``.  (``0`` is FORWARD, `
         # ...
         on_direction_set:
         - logger.log:
-            format: "Fan Direction was changed to %d!"
-            args: [ x ]
+            format: "Fan Direction was changed to %s!"
+            args: [ x == 0 ? "FORWARD" : "REVERSE" ]
 
 .. _fan-on_oscillating_set_trigger:
 
 ``fan.on_oscillating_set`` Trigger
-----------------------------
+----------------------------------
 
 This trigger is activated each time the fan oscillating state is changed. It will fire when the state is either set via API e.g. in Home Assistant or locally by an automation or a lambda function.
 The new oscillating state is available as a variable called ``x``.
