@@ -104,6 +104,20 @@ Release 2023.12.7 - January 17
 - Create RingBuffer for VoiceAssistant :esphomepr:`6102` by :ghuser:`jesserockz`
 - Inkplate6: Fix crash with initial set of greyscale :esphomepr:`6038` by :ghuser:`clydebarrow`
 
+Release 2023.12.8 - January 19
+------------------------------
+
+- Let show_*_page actions depend on "Display" :esphomepr:`6092` by :ghuser:`guillempages`
+- Fix some Voice Assistant bugs :esphomepr:`6121` by :ghuser:`jesserockz`
+
+Release 2023.12.9 - January 22
+------------------------------
+
+- fix sen5x negative temperature :esphomepr:`6082` by :ghuser:`ssieb`
+- negative values for all DHT22 variants :esphomepr:`6074` by :ghuser:`ssieb`
+- fix negative temperature for pmsx003 :esphomepr:`6083` by :ghuser:`ssieb`
+- fix: negative temperatures on PMS5003T sensors :esphomepr:`6100` by :ghuser:`aschmitz`
+
 Full list of changes
 --------------------
 

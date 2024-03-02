@@ -91,8 +91,11 @@ Configuration variables:
   - ``2.13inv3`` - 2.13in V3 display (Pico e-Paper 2.13v3)
   - ``2.70in`` - currently not working with the HAT Rev 2.1 version
   - ``2.70inv2``
+  - ``2.70in-b`` - Black/White/Red
+  - ``2.70in-bv2`` - Black/White/Red
   - ``2.90in``
   - ``2.90inv2``
+  - ``2.90inv2-r2`` - 2.9in V2 dislplay, but with different initialization and full/partial display refresh management than ``2.90inv2`` 
   - ``2.90in-b`` - B/W rendering only
   - ``2.90in-bV3`` - B/W rendering only
   - ``4.20in``

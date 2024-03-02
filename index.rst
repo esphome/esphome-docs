@@ -262,6 +262,7 @@ Electricity
 ***********
 .. imgtable::
 
+    ADE7880, components/sensor/ade7880, ade7880.svg, Voltage & Current & Power
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E26, components/sensor/atm90e26, atm90e26.jpg, Voltage & Current & Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
@@ -385,7 +386,7 @@ Miscellaneous
     AS3935, components/sensor/as3935, as3935.jpg, Storm lightning
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
-    Combination, components/sensor/combination, function.svg, dark-invert    
+    Combination, components/sensor/combination, function.svg, dark-invert
     Duty Time, components/sensor/duty_time, timer-play-outline.svg, dark-invert
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
@@ -658,7 +659,7 @@ Display Components
     ILI9486, components/display/ili9xxx, ili9341.jpg
     ILI9488, components/display/ili9xxx, ili9488.svg
     WSPICOLCD, components/display/ili9xxx, ili9488.svg
-    
+
     Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
@@ -696,7 +697,7 @@ Touchscreen Components
     XPT2046, components/touchscreen/xpt2046, xpt2046.jpg
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
     FT63X6, components/touchscreen/ft63x6, wt32-sc01.png
-    
+
 Cover Components
 ----------------
 
@@ -750,6 +751,7 @@ Climate Components
     Anova Cooker, components/climate/anova, anova.png
     BedJet Climate System, components/climate/bedjet, bedjet.png
     Haier Climate, components/climate/haier, haier.svg
+    Uponor Smatrix Base Pulse Underfloor Heating, components/uponor_smatrix, uponor.svg
 
 Number Components
 -----------------
@@ -832,9 +834,11 @@ Home Assistant Companion Components
 
     Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg, dark-invert
     Voice Assistant, components/voice_assistant, voice-assistant.svg, dark-invert
+    micro Wake Word, components/micro_wake_word, voice-assistant.svg, dark-invert
     Sensor, components/sensor/homeassistant, home-assistant.svg, dark-invert
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
     Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg, dark-invert
+
 
 Alarm Control Panel Components
 ------------------------------
