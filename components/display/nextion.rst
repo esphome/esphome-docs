@@ -6,8 +6,7 @@ Nextion TFT LCD Display
     :image: nextion.jpg
 
 The ``nextion`` display platform allows you to use Nextion LCD displays (`datasheet <https://nextion.itead.cc/resources/datasheets/>`__,
-`iTead <https://www.itead.cc/display/nextion.html>`__)
-with ESPHome.
+`iTead <https://www.itead.cc/display/nextion.html>`__) with ESPHome.
 
 .. figure:: images/nextion-full.jpg
     :align: center
@@ -15,23 +14,27 @@ with ESPHome.
 
     Nextion LCD Display.
 
-As the communication with the Nextion LCD display is done using UART, you need to have an :ref:`UART bus <uart>`
-in your configuration with ``rx_pin`` both the ``tx_pin`` set to the respective pins on the display.
-The Nextion uses a baud rate of 9600 by default. It may be configured to use a faster speed by adding (for
-example) 
+As communication with Nextion displays is done via a serial interface, you need to have a :ref:`UART bus <uart>` in
+your ESPHome device's configuration with both the ``rx_pin`` and ``tx_pin`` defined. Both lines must also be physically
+connected to the respective pins on the Nextion display itself.
+
+.. warning::
+
+    :ref:`uart-hardware_uarts` are **highly** recommended when using Nextion displays. Use of software serial (software
+    UARTs) is known to cause problems with Nextion communication, especially at speeds greater than 9600 baud.
+
+Nextion uses a baud rate of 9600 by default. **When** :ref:`uart-hardware_uarts` **are available,** higher speeds may
+be configured. To configure a higher speed, in the `Nextion Editor <https://nextion.tech/nextion-editor/>`__, look for
+lines in ``program.s`` similar to those shown below and modify them as follows:
 
 .. code-block:: c++
 
     baud=115200   // Sets the baud rate to 115200
     bkcmd=0       // Tells the Nextion to not send responses on commands. This is the current default but can be set just in case
 
- 
-  
-to the ``program.s`` source file (in the Nextion Editor) before the ``page`` line.
-This permits faster communication with the Nextion display and it is highly recommended when using :ref:`uart-hardware_uarts`. Without a hardware uart make sure to set the baud rate to 9600.
+...and be sure to update your :ref:`UART bus <uart>` in your ESPHome device's configuration to match the new speed!
 
-
-The below example configures a UART for the Nextion display to use
+As an example, the following YAML configures a UART for use with a Nextion display:
 
 .. code-block:: yaml
 
@@ -79,12 +82,18 @@ Configuration variables:
 Rendering Lambda
 ----------------
 
-With Nextion displays, a dedicated chip on the display itself does the whole rendering. ESPHome can only
-send *instructions* to the display to tell it *how* to render something and *what* to render.
+Nextion displays have a dedicated processor on the display itself to handle all rendering. ESPHome only sends
+*instructions* to the display to update variables in or UI elements on the display.
 
-First, you need to use the `Nextion Editor <https://nextion.tech/nextion-editor/>`__ to
-create a display file and transfer it using the ``upload_tft`` call or insert it using the SD card slot.
-Then, in the rendering ``lambda``, you can use the various API calls to populate data on the display:
+First, you need to use the `Nextion Editor <https://nextion.tech/nextion-editor/>`__ to create a "TFT" file for your
+display. Once created, you'll transfer the TFT file to your Nextion display by either:
+
+- a direct serial connection between the Nextion display and your PC,
+- an SD card, or...
+- the ``upload_tft`` action in ESPHome
+
+Once the TFT file has been transferred to the Nextion display, you can use various API calls within ESPHome lambdas
+to populate data on the display. For example:
 
 .. code-block:: yaml
 
@@ -104,7 +113,8 @@ Then, in the rendering ``lambda``, you can use the various API calls to populate
 
 .. note::
 
-    Although you can use the rendering lambda most, if not all, updates to the Nextion can be handled by the individual Nextion components. **See Below**
+    Although the ``display`` rendering lambda is most commonly used, updates to the Nextion can be performed by
+    :ref:`other Nextion components <nextion_see_also>`, as well.
 
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
 :ref:`display-strftime` for an introduction into the ``strftime`` time formatting.
@@ -290,24 +300,23 @@ The following arguments will be available:
 
 Uploading A TFT File
 --------------------
-This will download the file from the tft_url and will transfer it over the UART to the Nextion.
-During the upload process esphome will be unresponsive and limited logging will take place.
-This uses the same protocol as the Nextion editor and only updates the changes of the TFT file.
+
+ESPHome can download a file from ``tft_url`` and transfer it to the Nextion via its serial interface. Note that, during
+the upload process, ESPHome will be unresponsive and only limited logging will take place.
+
+ESPHome uses the same protocol as the `Nextion Editor <https://nextion.tech/nextion-editor/>`__ and only transfers
+required portions of the TFT file so as to minimize the time required to update the Nextion display.
 
 .. note::
 
     The upload engine uses insecure connections over HTTPS. You can host the file in a local web server
-    to avoid transferring insecure over the public Internet.
+    to avoid insecure transfers over the public Internet.
 
-.. warning::
-
-    If :ref:`uart-hardware_uarts` are not available then inconsistent results WILL occur. Lowering the speed to 9600 baud may help.
-
-
-To host the TFT file you can use Home Assistant itself or any other web server.
+Any modern web server--including Home Assistant itself--can host the TFT file.
 
 Home Assistant
 **************
+
 To host the TFT file from Home Assistant, create a www directory if it doesn't exist in your config 
 directory. You can create a subdirectory for those files as well.
 
@@ -317,6 +326,7 @@ under your configuration directory ``www/tft/default.tft`` the URL to access it 
 
 Components
 ----------
+
 This library supports a few different components allowing communication back and forth from HA <-> MCU <-> Nextion.
 
 .. note::
@@ -343,6 +353,8 @@ With the exception of the :doc:`../binary_sensor/nextion` that has the ``page_id
 
 
 Note that the first one requires a custom protocol to be included in the Nextion display's code/configuration. See the individual components for more detail.
+
+.. _nextion_see_also:
 
 See Also
 --------
