@@ -18,11 +18,13 @@ Tested frameworks are Arduino and esp-idf but it might work with others.
 
     CC1101 boards.
 
-On ESP8266, you can use a single pin instead of GD0O and GD02 (gdo0 is an optional parameter). If assigned,
+On ESP8266, you can use a single pin instead of GD0O and GD02 (gdo0_pin is an optional parameter). If assigned,
 the pin direction will be reversed for the transfers.
 
 On ESP32, this will not work, you must connect two separate pins. remote_transmitter to GDO0, remote_receiver to GDO2.
 If only trasmitting works, they are probably switched.
+
+The ESP8266 can also work with two separate pins, of course. If no gdo0_pin is given, that's the default mode.
 
 Example configuration for ESP8266
 ---------------------------------
@@ -37,15 +39,11 @@ Example configuration for ESP8266
     cc1101:
       id: transceiver
       cs_pin: D8
-      gdo0:
+      gdo0_pin:
         number: D1
         allow_other_uses: true
       bandwidth: 200
       frequency: 433920
-      rssi:
-        name: "RSSI"
-      lqi:
-        name: "LQI"
 
     remote_transmitter:
       pin:
@@ -81,10 +79,6 @@ Based on a generic nodemcu-32s board.
       cs_pin: GPIO5
       bandwidth: 200
       frequency: 433920
-      rssi:
-        name: "RSSI"
-      lqi:
-        name: "LQI"
 
     remote_transmitter:
       pin: GPIO32  # GDO0
@@ -157,16 +151,72 @@ Alternatively these modified remote components can directly set ``rmt_channel``.
       filter: 250us
       idle: 4ms
 
+Sensors for RSSI and LQI. dBm and a raw number.
+
+.. code-block:: yaml
+
+    cc1101:
+      id: transceiver
+      cs_pin: GPIO5
+      bandwidth: 200
+      frequency: 433920
+      rssi:
+        name: "RSSI"
+      lqi:
+        name: "LQI"
+
+The CC1101 also has a temperature sensor. It is possible to use it on the ESP32, but because the temperature is reported on the GDO0 pin as an analog signal, it also has to be connected to an ADC capable input pin (ESP8266 does not have such). The ADC pin is an input pin, when gdo0_adc_id is set, transmission will not work. Currently there is no solution to this. To restore transmission a new firmware without gdo0_adc_id has to be flushed and the device must be reset.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: adc
+        pin:
+          number: GPIO32
+          allow_other_uses: true
+        name: "ADC"
+        id: gdo0_adc
+        update_interval: 10s
+
+    cc1101:
+      id: transceiver
+      cs_pin: GPIO5
+      gdo0_pin:
+        number: GPIO32
+        allow_other_uses: true
+      gdo0_adc_id: gdo0_adc
+      bandwidth: 200
+      frequency: 433920
+      temperature:
+        name: "Temperature"
+
+    remote_transmitter:
+      pin:
+        number: GPIO32 # This is GDO0
+        allow_other_uses: true
+      carrier_duty_percent: 100%
+
+    remote_receiver:
+      pin: GPIO33 # This is GDO2
+      dump:
+        - rc_switch
+      # Settings to optimize recognition of RF devices
+      tolerance: 50%
+      buffer_size: 2kb
+      filter: 250us
+      idle: 4ms
 
 Configuration variables:
 ------------------------
 
 - **cs_pin** (**Required**, :ref:`config-pin`): SPI Chip Select.
-- **gdo0** (*Optional*, :ref:`config-pin`): This is the bidirectional pin for ESP8266.
+- **gdo0_pin** (*Optional*, :ref:`config-pin`): This is the bidirectional pin for ESP8266.
+- **gdo0_adc_id** (*Optional*, string): ADC id to be used by the temperature sensor.
 - **bandwidth** (*Optional*, int): Defaults to 200 KHz.
 - **frequency** (*Optional*, int): Defaults to 433920 KHz.
 - **rssi** (*Optional*): RSSI sensor. Value in dBm. The RSSI value is an estimate of the signal power level in the chosen channel. See datasheet 17.3 for further information.
 - **lqi** (*Optional*): Link Quality Indicator sensor. The Link Quality Indicator is a metric of the current quality of the received signal. See datasheet 17.6 for further information.
+- **temperature** (*Optional*): Integrated temperature sensor.
 
 Detect a magnetic window sensor
 -------------------------------
@@ -208,17 +258,19 @@ Transfers, except transmit_rc_switch_raw_cc1101, must be surrounded with ``cc110
 Example pinout for a few tested boards
 --------------------------------------
 
-+--------------+------+------+------+------+------+------+------+------+-----------+
-|BOARD         | MISO | MOSI | SCK  | CSN  | GDO0 | GDO2 | SDA  | SCL  |           |
-+--------------+------+------+------+------+------+------+------+------+-----------+
-|nodemcu-32s   |  19  |  23  |  18  |  5   |  32  |  33  |      |      |           |
-+--------------+------+------+------+------+------+------+------+------+-----------+
-|lolin_s2_mini |  37  |  35  |  36  |  34  |  8   |  9   |      |      |           |
-+--------------+------+------+------+------+------+------+------+------+-----------+
-|c3 supermini  |  5   |  7   |  6   |  10  |  3   |  4   |  0   |  1   | [1]_ [2]_ |
-+--------------+------+------+------+------+------+------+------+------+-----------+
-|d1_mini       |  12  |  13  |  14  |  15  |  5   |      |  4   |  TX  | [3]_      |
-+--------------+------+------+------+------+------+------+------+------+-----------+
++-----------------+------+------+------+------+------+------+------+------+-----------+
+|BOARD            | MISO | MOSI | SCK  | CSN  | GDO0 | GDO2 | SDA  | SCL  |           |
++-----------------+------+------+------+------+------+------+------+------+-----------+
+|nodemcu-32s      |  19  |  23  |  18  |  5   |  32  |  33  |      |      |           |
++-----------------+------+------+------+------+------+------+------+------+-----------+
+|lolin_s2_mini    |  37  |  35  |  36  |  34  |  8   |  9   |      |      |           |
++-----------------+------+------+------+------+------+------+------+------+-----------+
+|c3 supermini     |  5   |  7   |  6   |  10  |  3   |  4   |  0   |  1   | [1]_ [2]_ |
++-----------------+------+------+------+------+------+------+------+------+-----------+
+|d1_mini          |  12  |  13  |  14  |  15  |  5   |      |  4   |  TX  | [3]_      |
++-----------------+------+------+------+------+------+------+------+------+-----------+
+|d1_mini (no i2c) |  12  |  13  |  14  |  15  |  5   |  4   |      |      |           |
++-----------------+------+------+------+------+------+------+------+------+-----------+
 
 SDA/SCL is not needed of course, they are just there as suggestions in case you also need I2C on such a low pin count board.
 
