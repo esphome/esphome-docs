@@ -94,6 +94,15 @@ Configuration variables:
     
     There is no action required by the user to flash the STM32. There is no way to revert to stock firmware on the STM32 at the time of writing.
 
+    *IMPORTANT*: The logger interferes with the UART port that is used to communicate with the dimmer. Firmware updates might fail if the logger is not disabled. It is recommended to explicitly set:
+
+
+    .. code-block:: yaml
+    
+        logger:
+            baud_rate: 0
+
+
 - All other options from :ref:`Light <config-light>`.
 
 
