@@ -5,8 +5,9 @@ OTA HTTP Update Component
     :description: Instructions for setting up Over-The-Air (OTA) updates for ESPs to download firmwares remotely by HTTP.
     :image: system-update.svg
 
-With the OTA HTTP (Over The Air HTTP) update component your device can download a firmware by HTTP and flash it.
-As the device is in client mode, it can be on a foreign network, or behind a firewall. It is primary useful with mqtt only devices.
+With the OTA (Over The Air) HTTP update component, your devices can install updated firmware on their own. This is achieved by configuring a URL from which the device will download the binary file and then triggering an action which causes the (new) firmware to be written to the device's flash memory. Once complete, the device is rebooted, invoking the new firmware.
+
+As the device is in client mode, it can be on a foreign network or behind a firewall. This mechanism is primarily useful with either standalone or MQTT-only devices.
 
 .. code-block:: yaml
 
