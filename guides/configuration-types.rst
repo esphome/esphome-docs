@@ -207,6 +207,30 @@ Two substitution passes are performed allowing compound replacements.
     something:
       test: ${bar_${foo}_value}
 
+Additionally since version 2024.3.0, substitutions can be of any type besides strings, the only
+requirements are that non-string values must not be interpolated or be used as keys.
+
+.. code-block:: yaml
+    substitutions:
+      devicename: livingroom
+      upper_devicename: Livingroom
+      pin_schema:
+        number: D8
+        inverted: True
+
+    esphome:
+      name: $devicename
+      # ...
+
+    binary_sensor:
+    - platform: gpio
+      # interpolation allowed since ${upper_devicename} contains a string
+      name: ${upper_devicename} Binary input
+      # interpolation not allowed, but not needed since pin does not contain
+      # any other text than "$pin_schema"
+      pin: $pin_schema
+      # ...
+
 .. _YAML-insertion-operator:
 
 YAML insertion operator
