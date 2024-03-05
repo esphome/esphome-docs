@@ -66,6 +66,14 @@ Release 2024.2.1 - February 26
 - fix throttle average nan handling :esphomepr:`6275` by :ghuser:`ssieb`
 - Fix thermostat supplemental actions :esphomepr:`6282` by :ghuser:`kbx81`
 
+Release 2024.2.2 - March 6
+--------------------------
+
+- CSE7766: Fix energy calculation :esphomepr:`6286` by :ghuser:`puuu`
+- handling with the negative temperature in the sensor tmp102 :esphomepr:`6316` by :ghuser:`FlyingFeng2021`
+- fix tmp102 negative calculation :esphomepr:`6320` by :ghuser:`ssieb`
+- auto load output for now :esphomepr:`6309` by :ghuser:`ssieb`
+- Add wake word phrase to voice assistant start command :esphomepr:`6290` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------
