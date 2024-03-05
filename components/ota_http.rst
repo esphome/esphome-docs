@@ -38,8 +38,12 @@ Configuration variables:
 
 .. note::
 
-    The file ``firmware.bin`` can be found at ```.esphome/build/xxxx/.pioenvs/xxx/firmware.bin`` if esphome CLI is used, 
-    or downloaded as ``Legacy format`` from the esphome HA addon. ota_http currently **Doesn't works** with ``firmware-factory.bin`` or ``Modern format``.
+    The file ``firmware.bin`` can be obtained from either:
+
+     - ESPHome CLI: the directory ``.esphome/build/xxxx/.pioenvs/xxx/firmware.bin``
+     - ESPHome dashboard (HA add-on): download in "Legacy format"
+
+     Note that ``ota_http`` currently does *not** work with ``firmware-factory.bin`` or "Modern format".
 
  .. _ota_http-flash_action:
 
