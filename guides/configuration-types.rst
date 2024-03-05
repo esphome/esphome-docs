@@ -211,6 +211,7 @@ Additionally since version 2024.3.0, substitutions can be of any type besides st
 requirements are that non-string values must not be interpolated or be used as keys.
 
 .. code-block:: yaml
+
     substitutions:
       devicename: livingroom
       upper_devicename: Livingroom
