@@ -62,7 +62,7 @@ This action triggers the device to download and install updated firmware from th
             url: !lambda return id(text_sensor).state;
         - logger.log: "This message should be not displayed(reboot)"
 
-Configuration options:
+Configuration variables:
 
 -  **url** (**Required**, string, :ref:`templatable <config-templatable>`):
     The url of the firwmare. Basic auth is allowed with **https://user:password@example.com/firmware.bin**. 
