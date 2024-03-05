@@ -27,16 +27,13 @@ As the device is in client mode, it can be on a foreign network or behind a fire
 Configuration variables:
 ------------------------
 
+- **esp8266_disable_ssl_support** (*Optional*, boolean): Whether to include SSL support. **Only available on ESP8266.**
+  Defaults to ``no``. See :ref:`esphome-esp8266_disable_ssl_support` for more information.
 -  **safe_mode** (*Optional*, boolean, string): Flash at boot time. Defaults to ``fallback``.
-    Valid value:
+    Valid values:
         - ``no``: Never attempt to flash at boot time.
         - ``yes``: Always flash at boot time.
-        - ``fallback``: Retry at boot time if ota fail.
-
-ESP8266 Options:
-
-- **esp8266_disable_ssl_support** (*Optional*, boolean): Whether to include SSL support on ESP8266s.
-  Defaults to ``no``. See :ref:`esphome-esp8266_disable_ssl_support` for more info
+        - ``fallback``: Retry at boot time if OTA fails.
 
 
 .. note::
