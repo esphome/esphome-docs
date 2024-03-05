@@ -13,8 +13,6 @@ As the device is in client mode, it can be on a foreign network or behind a fire
 
     # Example configuration entry
     ota_http:
-        esp8266_disable_ssl_support: no # by default. 
-        safe_mode: fallback # by default
 
     button:
       - platform: template
