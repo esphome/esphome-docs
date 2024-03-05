@@ -46,7 +46,7 @@ Configuration variables:
 ``ota_http.flash`` Action
 -------------------------
 
-Flash the device with a remote http firmware using this :ref:`action <config-action>` in automations.
+This action triggers the device to download and install updated firmware from the configured URL. As it's an ESPHome :ref:`action <config-action>`, it may be used in any automation(s).
 
 .. code-block:: yaml
 
