@@ -68,8 +68,8 @@ Configuration variables:
     The URL of the firmware. Basic auth is supported with **https://user:password@example.com/firmware.bin**. 
     `username` and `password` must be `url-encoded <https://en.wikipedia.org/wiki/Percent-encoding>`_  if they include special characters.
 -  **verify_ssl** (*Optional*, boolean, :ref:`templatable <config-templatable>`): 
-    If the ssl certficiate must be verified or not. Must be explicitly set to ``false`` if using **https**. 
-    See :ref:`http_request-get_action` for more infos.
+    Specifies whether the SSL certificate must be verified. Must be explicitly set to ``false`` if using **https**. 
+    See :ref:`http_request-get_action` for more information.
 
 
 See Also
