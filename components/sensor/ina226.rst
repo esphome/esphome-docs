@@ -45,8 +45,11 @@ Configuration variables:
   Defaults to ``0.1 ohm``.
 - **max_current** (*Optional*, float): The maximum current you are expecting. ESPHome will use this to
   configure the sensor optimally. Defaults to ``3.2A``.
-- **adc_time** (*Optional*, :ref:`config-time`): The time in microseconds to perform a single ADC conversion. 
+- **adc_time_voltage** (*Optional*, :ref:`config-time`): The time in microseconds to perform a single ADC conversion for the Bus Voltage.
   Defaults to ``1100us``. Valid values are ``140us``, ``204us``, ``332us``, ``588us``, ``1100us``, ``2116us``, 
+  ``4156us``, ``8244us``.
+- **adc_time_current** (*Optional*, :ref:`config-time`): The time in microseconds to perform a single ADC conversion for the Shunt Voltage.
+  Defaults to ``1100us``. Valid values are ``140us``, ``204us``, ``332us``, ``588us``, ``1100us``, ``2116us``,
   ``4156us``, ``8244us``.
 - **adc_averaging** (*Optional*, integer): Selects ADC sample averaging count. Defaults to ``4``. Valid values are 
   ``1``, ``4``, ``16``, ``64``, ``128``, ``256``, ``512``, ``1024``.
