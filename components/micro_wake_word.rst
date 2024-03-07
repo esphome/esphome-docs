@@ -10,7 +10,7 @@ This repository/library allows you to create a custom wake word for your ESPHome
 
 The training process is described on the `microWakeWord GitHub repository <https://github.com/kahrendt/microWakeWord>`__.
 
-The ``micro_wake_word`` component requires an **ESP32-S3** to function.
+The ``micro_wake_word`` component requires an **ESP32-S3 with PSRAM** to function.
 
 .. code-block:: yaml
 
@@ -35,6 +35,7 @@ Configuration variables:
     e.g. ``https://github.com/esphome/micro-wake-word-models/raw/main/models/okay_nabu.json``.
 
 - **on_wake_word_detected** (*Optional*, Automation): An automation to perform when the wake word is detected.
+  The ``wake_word`` phrase from the model manifest is provided as a ``std::string`` to any actions in this automation.
 
 The below two options are provided by the JSON file, but can be overridden in YAML.
 
@@ -100,6 +101,7 @@ Example usage
       on_wake_word_detected:
         then:
           - voice_assistant.start:
+              wake_word: !lambda return wake_word;
 
 
 See Also
