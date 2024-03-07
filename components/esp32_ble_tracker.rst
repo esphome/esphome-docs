@@ -264,6 +264,29 @@ Stops the bluetooth scanning. It can be started again with the above start scan 
     on_...:
       - esp32_ble_tracker.stop_scan:
 
+Use on single-core chips
+------------------------
+
+On dual-core devices the WiFi component runs on core 1, while this component runs on core 0.
+When using this component on single core chips such as the ESP32-C3 both WiFi and ``ble_tracker`` must run on
+the same core, and this has been known to cause issues when connecting to WiFi. A work-around for this is to
+enable the tracker only while the native API is connected. The following config will achieve this:
+
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+      scan_parameters:
+        continuous: false
+
+    api:
+      encryption:
+        key: !secret encryption_key
+      on_client_connected:
+        - esp32_ble_tracker.start_scan:
+           continuous: true
+      on_client_disconnected:
+        - esp32_ble_tracker.stop_scan:
+
 See Also
 --------
 
