@@ -5,12 +5,12 @@ Datetime Component
     :description: Instructions for setting up datetime components in ESPHome.
     :image: folder-open.svg
 
-ESPHome has support for components to create a datetime entity. A datetime entity 
-represents a date and time, only date or only a time which can be set by the user/frontend.
+ESPHome has support for components to create a datetime entity. A datetime entity
+currently represents a date that can be set by the user/frontend.
 
 .. note::
 
-    Not implemented in Home Assistant Core yet
+    Requires Home Assistant 2024.4 or newer.
 
 .. _config-datetime:
 
@@ -22,10 +22,10 @@ All datetime in ESPHome have a name and an optional icon.
 .. code-block:: yaml
 
     # Example datetime configuration
-    name: Time to switch light on
+    name: Date to check
 
     # Optional variables:
-    icon: "mdi:lightbulb-on"
+    icon: "mdi:calendar-alert"
 
 Configuration variables:
 
@@ -35,13 +35,6 @@ Configuration variables:
 
       If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
       you want the datetime to use that name, you can set ``name: None``.
-
-- **time_id** (*Optional*, :ref:`Time Component <base_time_config>`)
-- **on_time** (*Optional*, :ref:`Automation <automation>`)
-
-  .. note::
-
-      If you add an ``on_time`` automation you need to specify a valid ``time id``.
 
 - **icon** (*Optional*, icon): Manually set the icon to use for the datetime in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
@@ -54,17 +47,6 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Requires Home Assistant 2021.11 or newer.
   Set to ``""`` to remove the default entity category.
-- **mode** (*Optional*, string): Defines how the datetime should be displayed in the frontend.
-  Only ``"auto"`` supported at the moment
-  Defaults to ``"auto"``.
-
-Automations:
-
-- **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when a new value is published. See :ref:`datetime-on_value`.
-- **on_time** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when the date/time value matches the date/time from the specified ``time_id`` component.
-  See :ref:`datetime-on_time`
 
 MQTT Options:
 
@@ -74,7 +56,7 @@ Datetime Automation
 -------------------
 
 You can access the most recent state as a string of the datetime in :ref:`lambdas <config-lambda>` using
-``id(datetime_id).state``. 
+``id(datetime_id).state``.
 You can also access it as a ``ESPTime`` object by ``id(datetime_id).state_as_time``
 
 .. _datetime-on_value:
@@ -94,94 +76,47 @@ you can get the value as a ESPTime object from the trigger with ``x``.
           then:
             - lambda: |-
                 if(x.hour >= 12) {
-                  ESP_LOGD("main", "Picked time is greater than 12");
+                  ESP_LOGD("main", "Updated hour is later or equal to 12");
                 } else {
-                  ESP_LOGD("main", "Picked time is smaler than 12");
+                  ESP_LOGD("main", "Updated hour is earlier than 12");
                 }
 
 Configuration variables: See :ref:`Automation <automation>`.
 
-.. _datetime-on_time:
+.. _datetime-date_set_action:
 
-``on_time``
-***********
+``datetime.date.set`` Action
+****************************
 
-This automation is triggered when the stored date/time matches the current date/time of the 
-specified ``time_id`` component.
-If only a date is provided, the automation will trigger once on the specified date
-at a time of ``00:00:01``.
-The same applies if the provided time does not include seconds. So it will trigger once
-on the first second of the specified minute.
+This is an :ref:`Action <config-action>` for setting a datetime date state.
+The ``date`` provided can be in one of 3 formats:
 
 .. code-block:: yaml
 
-    datetime:
-      - platform: template
-        # ...
-        on_time:
-          - switch.turn_on:
-              id: my_switch
+    # String date
+    - datetime.date.set:
+        id: my_date
+        date: "2023-12-04"
 
-Configuration variables: See :ref:`Automation <automation>`.
+    # Individual date parts
+    - datetime.date.set:
+        id: my_date
+        date:
+          year: 2023
+          month: 12
+          day: 4
 
-.. _datetime-has_date_condition:
-
-``datetime.has_date`` Condition
-*******************************
-
-This condition passes if the state of the given dateime has a date set.
-
-.. code-block:: yaml
-
-    # in a trigger:
-    on_...:
-      if:
-        condition:
-          ndatetime.has_date:
-            id: my_datetime
-        then:
-          - script.execute: my_script
-
-.. _datetime-has_time_condition:
-
-``datetime.has_time`` Condition
-*******************************
-
-This condition passes if the state of the given dateime has a time set.
-
-.. code-block:: yaml
-
-    # in a trigger:
-    on_...:
-      if:
-        condition:
-          datetime.has_time:
-            id: my_datetime
-        then:
-          - script.execute: my_script
-
-.. _datetime-set_action:
-
-``datetime.set`` Action
-***********************
-
-This is an :ref:`Action <config-action>` for setting a datetime state.
-The string provided to set the datetime state needs to follow one of these formats
-``'%Y-%m-%d %H:%M:%S' - '%Y-%m-%d %H:%M' - '%H:%M:%S' - '%H:%M'``
-An example to set a date and time would be: ``"2023-12-04 15:35"``
-Only a Date: ``"2023-12-04"``
-Only a time, inlcuing seconds: ``"15:35:10"``
-
-.. code-block:: yaml
-
-    - datetime.set:
-        id: my_datetime
-        value: "2023-12-04 15:35"
+    # Using a lambda
+    - datetime.date.set:
+        id: my_date
+        date: !lambda |-
+          // Return an ESPTime struct
+          return {.day_of_month: 4, .month: 12, .year: 2023};
 
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the datetime to set.
-- **value** (**Required**, string, :ref:`templatable <config-templatable>`):
+- **date** (**Required**, string, date parts, :ref:`templatable <config-templatable>`):
   The value to set the datetime to.
 
 
@@ -198,28 +133,30 @@ advanced stuff (see the full API Reference for more info).
 
   .. code-block:: cpp
 
-      // Within lambda, set the datetime to 2024-02-25 10:20
-      auto call = id(my_datetime).make_call();
-      call.set_value("2024-02-25 10:20");
+      // Within lambda, set the date to 2024-02-25
+      auto call = id(my_date).make_call();
+      call.set_date("2024-02-25");
       call.perform();
 
   Check the API reference for information on the methods that are available for
-  the ``DatetimeCall`` object.
+  the ``DateCall`` object.
 
-- ``.state``: Retrieve the current value of the datetime. Is ``""`` if no value has been read or set.
-- ``.state_as_time``: Retrieve the current value of the datetime as a ``ESPTime`` objekt. 
-  ``state_as_time.is_valid()`` will return ``false`` if no value has been read or set.
+- ``.year``: Retrieve the current year of the ``date``. It will be ``0`` if no value has been set.
+- ``.month``: Retrieve the current month of the ``date``. It will be ``0`` if no value has been set.
+- ``.day``: Retrieve the current day of the ``date``. It will be ``0`` if no value has been set.
+- ``.state_as_esptime()``: Retrieve the current value of the datetime as a :apistruct:`ESPTime` object.
 
   .. code-block:: cpp
 
       // For example, create a custom log message when a value is received:
-      ESP_LOGI("main", "Value of my datetime: %s", id(my_datetime).state);
+      ESP_LOGI("main", "Value of my datetime: %04d-%02d-%02d", id(my_date).year, id(my_date).month, id(my_date).day);
 
 See Also
 --------
 
-- :apiref:`Datetime <datetime/datetime.h>`
-- :apiref:`DatetimeCall <datetime/datetime_call.h>`
+- :apiref:`DateTimeBase <datetime/datetime_base.h>`
+- :apiref:`DateEntity <datetime/date_entity.h>`
+- :apiref:`DateCall <datetime/date_entity.h>`
 - :ghedit:`Edit`
 
 .. toctree::

@@ -13,8 +13,9 @@ using :ref:`lambdas <config-lambda>`.
     # Example configuration entry
     datetime:
       - platform: template
-        id: my_datetime
-        name: Pick a Datetime
+        id: my_date
+        type: date
+        name: Pick a Date
         optimistic: yes
         initial_value: "2024-01-30"
         restore_value: true
@@ -22,7 +23,7 @@ using :ref:`lambdas <config-lambda>`.
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the datetime.
+- **type** (*Required*, enum): The type of the datetime. Can only be ``date``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the current value of the datetime.
 - **set_action** (*Optional*, :ref:`Action <config-action>`): The action that should
@@ -36,25 +37,23 @@ Configuration variables:
 - **restore_value** (*Optional*, boolean): Saves and loads the state to RTC/Flash.
   Cannot be used with ``lambda``. Defaults to ``false``.
 - **initial_value** (*Optional*, string): The value to set the state to on setup if not
-  restored with ``restore_value``.
-  The string needs to follow one of these formats 
-  ``'%Y-%m-%d %H:%M:%S' - '%Y-%m-%d %H:%M' - '%H:%M:%S' - '%H:%M'``
-  An example to set a date and time would be: ``"2023-12-04 15:35"``. 
-  Only a Date: ``"2023-12-04"``. 
-  Only a time, inlcuing seconds: ``"15:35:10"``.
-  Cannot be used with ``lambda``. Defaults to ``"00:00:00"``.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+  restored with ``restore_value``. Can be one of:
+
+  - A string in the format ``%Y-%m-%d``, eg: ``"2023-12-04"``.
+  - An object including ``year``, ``month``, ``day``.
+
+  .. code-block:: yaml
+
+      initial_value:
+        year: 2023
+        month: 12
+        day: 4
+
 - All other options from :ref:`Datetime <config-datetime>`.
-
-``datetime.set`` Action
------------------------
-
-You can also set the datetime for the template datetime from elsewhere in your YAML file
-with the :ref:`datetime-set_action`.
 
 See Also
 --------
 
 - :ref:`automation`
-- :apiref:`template/datetime/template_datetime.h`
+- :apiref:`template/datetime/template_date.h`
 - :ghedit:`Edit`
