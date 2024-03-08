@@ -104,7 +104,7 @@ Configuration variables:
    - **pullup** (*Optional*, boolean): Activate internal pullup resistors on the pin.
    - **pulldown** (*Optional*, boolean): Activate internal pulldown resistors on the pin.
    - **open_drain** (*Optional*, boolean): Set the pin to open-drain (as opposed to push-pull).
-     The active pin state will then result in a high-impedance state.
+     The active pin state will then result in a low-impedance state.
 
    For compatibility some shorthand modes can also be used.
 
