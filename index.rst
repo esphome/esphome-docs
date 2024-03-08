@@ -329,6 +329,7 @@ Environmental
     MLX90614, components/sensor/mlx90614, mlx90614.jpg, Temperature
     MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
+    MS8607, components/sensor/ms8607, ms8607.jpg, Temperature & Humidity & Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
     PMWCS3, components/sensor/pmwcs3, pmwcs3.jpg, Soil moisture & Temperature
     QMP6988, components/sensor/qmp6988, qmp6988_env3.png, Temperature & Pressure
@@ -954,7 +955,6 @@ If you'd like to share configurations for specific devices, please contribute to
     web-api/index
     components/index
     cookbook/index
-    devices/index
     guides/index
     changelog/index
     custom/index
