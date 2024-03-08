@@ -53,6 +53,7 @@ Configuration variables:
 - **baud_rate** (**Required**, int): The baud rate of the UART bus.
 - **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective. Use the full pin schema and set ``inverted: true`` to invert logic levels.
 - **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective. Use the full pin schema and set ``inverted: true`` to invert logic levels.
+- **tx_buffer_size** (*Optional*, int): The size of the buffer used for transmitting UART messages. Enabling this will change code behaviour, only use this if your integration indicates it is safe to do so. Defaults to ``0``.
 - **rx_buffer_size** (*Optional*, int): The size of the buffer used for receiving UART messages. Increase if you use an integration that needs to read big payloads from UART. Defaults to ``256``.
 - **data_bits** (*Optional*, int): The number of data bits used on the UART bus. Options: 5 to 8. Defaults to 8.
 - **parity** (*Optional*): The parity used on the UART bus. Options: ``NONE``, ``EVEN``, ``ODD``. Defaults to ``NONE``.
