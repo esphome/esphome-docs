@@ -7,8 +7,9 @@ Waveshare E-Paper Display
 
 The ``waveshare_epaper`` display platform allows you to use
 some E-Paper displays sold by `Waveshare <https://www.waveshare.com/product/displays/e-paper.htm>`__
-with ESPHome. The 2.13" `TTGO module <https://github.com/lewisxhe/TTGO-EPaper-Series>`__ with an ESP32 on the board 
-is supported as well. Depending on your specific revision of the board you might need to try out the ``-b73`` or ``-b1`` 
+with ESPHome. The 2.13" `TTGO module <https://github.com/lewisxhe/TTGO-EPaper-Series>`__ and the
+`Waveshare Cloud Module <https://www.waveshare.com/wiki/2.13inch_e-Paper_Cloud_Module>`__ with an ESP32
+on the board are supported as well. Depending on your specific revision of the TTGO board you might need to try out the ``-b73`` or ``-b1`` 
 version (see below).
 The 1.54" `Good Display gdew0154m09 <https://www.good-display.com/product/206.html>`__ 
 as used in the `M5Stack Core Ink <https://shop.m5stack.com/products/m5stack-esp32-core-ink-development-kit1-54-elnk-display>`__
@@ -88,6 +89,7 @@ Configuration variables:
   - ``2.13in-ttgo-b74`` - T5_V2.3.1 with B74 display tested
   - ``2.13in-ttgo-b1`` - T5_V2.3 with B1 display tested
   - ``2.13in-ttgo-dke`` - T5_V2.3 with DKE group display (DEPG0213BN) tested
+  - ``2.13inv2`` - 2.13in V2 display (Pico e-Paper 2.13v2 and Cloud Module)
   - ``2.13inv3`` - 2.13in V3 display (Pico e-Paper 2.13v3)
   - ``2.70in`` - currently not working with the HAT Rev 2.1 version
   - ``2.70inv2``
@@ -95,7 +97,6 @@ Configuration variables:
   - ``2.70in-bv2`` - Black/White/Red
   - ``2.90in``
   - ``2.90inv2``
-  - ``2.90inv2-r2`` - 2.9in V2 dislplay, but with different initialization and full/partial display refresh management than ``2.90inv2`` 
   - ``2.90in-b`` - B/W rendering only
   - ``2.90in-bV3`` - B/W rendering only
   - ``4.20in``
@@ -120,13 +121,13 @@ Configuration variables:
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
   Make sure you pull this pin high (by connecting it to 3.3V with a resistor) if not connected to a GPIO pin.
-  The B74 display variant requires the reset pin.
+  The 2.13" B74 and V2 display variants require the reset pin.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
   by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
 - **full_update_every** (*Optional*, int): E-Paper displays have two modes of switching to the next image: A partial
   update that only changes the pixels that have changed and a full update mode that first clears the entire display
   and then re-draws the image. The former is much quicker and nicer, but every so often a full update needs to happen
-  because artifacts accumulate. On the ``1.54in``, ``1.54inv2``, ``2.13in``, ``2.90in`` and ``2.90inv2`` models you have the option to switch only
+  because artifacts accumulate. On the ``1.54in``, ``1.54inv2``, ``2.13in``, ``2.13inv2``, ``2.90in`` and ``2.90inv2`` models, you have the option to only
   do a full-redraw every x-th time using this option. Defaults to ``30`` on the described models and a full update for
   all other models.
 - **reset_duration** (*Optional*, :ref:`config-time`): Duration for the display reset operation. Defaults to ``200ms``.
