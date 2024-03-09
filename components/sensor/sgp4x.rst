@@ -87,13 +87,13 @@ Example With Compensation
     # Example configuration entry
     sensor:
     - platform: sgp4x
-        voc:
-          name: "VOC Index"
-        nox:
-          name: "NOx Index"
-        compensation:
-          humidity_source: dht1_hum
-          temperature_source: dht1_temp
+      voc:
+        name: "VOC Index"
+      nox:
+        name: "NOx Index"
+      compensation:
+        humidity_source: dht1_hum
+        temperature_source: dht1_temp
 
 See Also
 --------
