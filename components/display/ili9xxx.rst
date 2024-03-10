@@ -103,7 +103,7 @@ Configuration variables:
    - **mirror_x** (*Optional*, boolean): If true, mirror the x axis.
    - **mirror_y** (*Optional*, boolean): If true, mirror the y axis.
 
-**Note:** The rotation option will do a software based rotation. It is better to use the **transform** to rotate the display in hardware. Use one of the following combinations:
+**Note:** The ``rotation`` variable will do a software based rotation. It is better to use the **transform** to rotate the display in hardware. Use one of the following combinations:
     - 90 degrees - use ``swap_xy`` with ``mirror_x``
     - 180 degrees - use ``mirror_x`` with ``mirror_y``
     - 270 degrees - use ``swap_xy`` with ``mirror_y``
