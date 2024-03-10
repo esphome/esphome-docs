@@ -111,7 +111,7 @@ Configuration variables:
 With 90 and 270 rotations you will also need to swap the **dimensions** ''height'' and ''width'' (see example below.
 
 
-For modify the SPI setting see :ref:`SPI bus <spi#generic-spi-device-component>` . The default **data_rate** is set to ``40MHz`` and the **spi_mode** mode is ``MODE0`` but some displays require ``MODE3`` (*).
+For modify the SPI setting see :ref:`SPI bus <generic-spi-device-component>` . The default **data_rate** is set to ``40MHz`` and the **spi_mode** mode is ``MODE0`` but some displays require ``MODE3`` (*).
 
 **Note:** the default **data_rate** is set to an optimal speed using half-duplex mode (= ''MISO'' not defined) or  
 using the IOMUX pins.
