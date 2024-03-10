@@ -179,6 +179,7 @@ Air Quality
 ***********
 .. imgtable::
 
+    AGS10, components/sensor/ags10, ags10.jpg, Volatile Organic Compound Sensor
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Radon, CO2, Volatile organics
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
     EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
@@ -214,6 +215,7 @@ Analogue
     ADC, components/sensor/adc, flash.svg, ESP internal, dark-invert
     ADC128S102, components/sensor/adc128s102, adc128s102.png , 8-channel ADC
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
+    ADS1118, components/sensor/ads1118, ads1118.jpg, 4-channel ADC
     CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
     MCP3204 / MCP3208, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
@@ -328,6 +330,7 @@ Environmental
     MLX90614, components/sensor/mlx90614, mlx90614.jpg, Temperature
     MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
+    MS8607, components/sensor/ms8607, ms8607.jpg, Temperature & Humidity & Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
     PMWCS3, components/sensor/pmwcs3, pmwcs3.jpg, Soil moisture & Temperature
     QMP6988, components/sensor/qmp6988, qmp6988_env3.png, Temperature & Pressure
@@ -846,6 +849,14 @@ Alarm Control Panel Components
     Alarm Control Panel Core, components/alarm_control_panel/index, alarm-panel.svg, dark-invert
     Template Alarm Control Panel, components/alarm_control_panel/template, description.svg, dark-invert
 
+Datetime Components
+-------------------
+
+.. imgtable::
+
+    Datetime Core, components/datetime/index, clock-outline.svg, dark-invert
+    Template Datetime, components/datetime/template, description.svg, dark-invert
+
 Miscellaneous Components
 ------------------------
 
@@ -953,7 +964,6 @@ If you'd like to share configurations for specific devices, please contribute to
     web-api/index
     components/index
     cookbook/index
-    devices/index
     guides/index
     changelog/index
     custom/index
