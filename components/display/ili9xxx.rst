@@ -120,7 +120,7 @@ using the IOMUX pins.
 Configuration examples
 **********************
 
-To use hardware rotation, use both **dimensions** and **transform**, e.g. this config will turn a landscape display with
+To use hardware rotation, use both ``dimensions`` and ``transform``, e.g. this config will turn a landscape display with
 height 320 and width 480 into portrait. Note that the dimensions are those of the final display.
 
 .. code-block:: yaml
