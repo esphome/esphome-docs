@@ -163,68 +163,30 @@ These will be collected and sent to the display via SPI during initialisation.
         init_sequence:
           - 1 # select canned init sequence number 1
           - [ 0xE0, 0x1F ]  # Set sunlight readable enhancement
-    # Note that the data pins are arranged here in big-endian format.
         data_pins:
-          - 7         #g3
-          - 6         #g4
-          - 5         #g5
-          - 4         #r1
-          - number: 3 #r2
-            ignore_strapping_warning: true
-          - 2         #r3
-          - 1         #r4
-          - number: 0 #r5
-            ignore_strapping_warning: true
-
-          - 15        #b1
-          - 14        #b2
-          - 13        #b3
-          - 12        #b4
-          - 11        #b5
-          - 10        #g0
-          - 9         #g1
-          - 8         #g2
+          red:
+            - 4         #r1
+            - 3         #r2
+            - 2         #r3
+            - 1         #r4
+            - 0         #r5
+          green:
+            - 10        #g0
+            - 9         #g1
+            - 8         #g2
+            - 7         #g3
+            - 6         #g4
+            - 5         #g5
+          blue:
+            - 15        #b1
+            - 14        #b2
+            - 13        #b3
+            - 12        #b4
+            - 11        #b5
         lambda: |-
           it.fill(COLOR_BLACK);
           it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_LEFT, "Hello World!");
 
-    # Makerfabs 4" display
-    display:
-      - platform: st7701s
-        auto_clear_enabled: false
-        update_interval: 5s
-        color_order: RGB
-        dimensions:
-          width: 480
-          height: 480
-        invert_colors: true
-        cs_pin: 1
-        de_pin:
-          number: 45
-          ignore_strapping_warning: true
-        hsync_pin: 5
-        vsync_pin: 4
-        pclk_pin: 21
-        init_sequence: 1
-        data_pins:
-          - 47
-          - 48
-          - number: 3
-            ignore_strapping_warning: true
-          - 39
-          - 40
-          - 41
-          - 42
-          - 2
-          - 6
-          - 7
-          - 15
-          - 16
-          - 8
-          - number: 0
-            ignore_strapping_warning: true
-          - 9
-          - 14
 
 See Also
 --------

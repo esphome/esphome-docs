@@ -137,30 +137,35 @@ requirements for the display.
         vsync_front_porch: 4
         vsync_pulse_width: 4
         data_pins:
-          - 48        #g5
-          - 47        #g6
-          - 21        #g7
-          - 1         #r3
-          - 2         #r4
-          - 42        #r5
-          - 41        #r6
-          - 40        #r7
-          - 14        #b3
-          - 38        #b4
-          - 18        #b5
-          - 17        #b6
-          - 10        #b7
-          - 39        #g2
-          - number: 0         #g3
-            ignore_strapping_warning: true
-          - number: 45         #g4
-            ignore_strapping_warning: true
+          red:
+            - 1         #r3
+            - 2         #r4
+            - 42        #r5
+            - 41        #r6
+            - 40        #r7
+          blue:
+            - 14        #b3
+            - 38        #b4
+            - 18        #b5
+            - 17        #b6
+            - 10        #b7
+          green:
+            - 39        #g2
+            - 0         #g3
+            - 45        #g4
+            - 48        #g5
+            - 47        #g6
+            - 21        #g7
 
 
     # Makerfabs 4.3" 800x480 display
     display:
       - platform: rpi_dpi_rgb
+        update_interval: never
+        auto_clear_enabled: false
+        id: rpi_display
         color_order: RGB
+        rotation: 90
         dimensions:
           width: 800
           height: 480
@@ -170,25 +175,25 @@ requirements for the display.
         vsync_pin: 41
         pclk_pin: 42
         data_pins:
-          - 15        #g3
-          - 16        #g4
-          - 4         #g5
-          - number: 45        #r1
-            ignore_strapping_warning: true
-          - 48        #r2
-          - 47        #r3
-          - 21        #r4
-          - 14        #r5
-          - 8         #b1
-          - number: 3         #b2
-            ignore_strapping_warning: true
-          - number: 46        #b3
-            ignore_strapping_warning: true
-          - 9         #b4
-          - 1         #b5
-          - 5         #g0
-          - 6         #g1
-          - 7         #g2
+          red:
+            - 45        #r1
+            - 48        #r2
+            - 47        #r3
+            - 21        #r4
+            - 14        #r5
+          green:
+            - 5         #g0
+            - 6         #g1
+            - 7         #g2
+            - 15        #g3
+            - 16        #g4
+            - 4         #g5
+          blue:
+            - 8         #b1
+            - 3         #b2
+            - 46        #b3
+            - 9         #b4
+            - 1         #b5
 
 
 
