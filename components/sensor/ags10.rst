@@ -37,13 +37,15 @@ Configuration variables:
 ------------------------
 
 - **tvoc** (**Required**): The information for the total Volatile Organic Compounds sensor.
-  All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **address** (*Optional*, int): Manually specify the I²C address of
   the sensor. Defaults to ``0x1A``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
-- **version** (*Optional*, int): The firmware version of the sensor.
-- **resistance** (*Optional*, int): The initial value of the sensor resistance.
+- **version** (*Optional*): The firmware version of the sensor.
+  All options from :ref:`Sensor <config-sensor>`.
+- **resistance** (*Optional*): The initial value of the sensor resistance.
+  All options from :ref:`Sensor <config-sensor>`.
 
 Actions:
 --------
