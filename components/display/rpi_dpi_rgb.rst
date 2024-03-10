@@ -43,28 +43,36 @@ ESP-IDF. PSRAM is a requirement due to the size of the display buffer.
         hsync_pin: REPLACE_ME
         vsync_pin: REPLACE_ME
         pclk_pin: REPLACE_ME
+
         data_pins:
-          - XX        #g3
-          - XX        #g4
-          - XX        #g5
-          - XX        #r1
-          - XX        #r2
-          - XX        #r3
-          - XX        #r4
-          - XX        #r5
-          - XX        #b1
-          - XX        #b2
-          - XX        #b3
-          - XX        #b4
-          - XX        #b5
-          - XX        #g0
-          - XX        #g1
-          - XX        #g2
+          red:
+            - XX        #r1
+            - XX        #r2
+            - XX        #r3
+            - XX        #r4
+            - XX        #r5
+          green:
+            - XX        #g0
+            - XX        #g1
+            - XX        #g2
+            - XX        #g3
+            - XX        #g4
+            - XX        #g5
+          blue:
+            - XX        #b1
+            - XX        #b2
+            - XX        #b3
+            - XX        #b4
+            - XX        #b5
 
 Configuration variables:
 ************************
 
-- **data_pins** (**Required**,  :ref:`Pin Schema <config-pin_schema>`): A list of exactly 16 GPIO pins used for the databus.
+- **data_pins** (**Required**) A list of pins used for the databus. Specified in 3 groups:
+
+    - **red**: (**Required**, :ref:`Pin Schema <config-pin_schema>`) Exactly 5 pin numbers for the red databits, listed from least to most significant bit.
+    - **green**: (**Required**, :ref:`Pin Schema <config-pin_schema>`) Exactly 6 pin numbers for the green databits, listed from least to most significant bit.
+    - **blue**: (**Required**, :ref:`Pin Schema <config-pin_schema>`) Exactly 5 pin numbers for the blue databits, listed from least to most significant bit.
 - **de_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DE pin
 - **pclk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The PCLK pin.
 - **hsync_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Horizontal sync pin.
