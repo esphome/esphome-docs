@@ -94,8 +94,6 @@ Configuration variables:
     - **offset_width** (*Optional*, int): Specify an offset for the x-direction of the display, typically used when an LCD is smaller than the maximum supported by the driver chip. Default is 0
     - **offset_height** (*Optional*, int): Specify an offset for the y-direction of the display. Default is 0.
 
-- **data_rate** (*Optional*): Set the data rate of the SPI interface to the display. One of ``80MHz``, ``40MHz`` (default), ``20MHz``, ``10MHz``, ``5MHz``, ``2MHz``, ``1MHz``, ``200kHz``, ``75kHz`` or ``1kHz``. If you have multiple ILI9xxx displays they must all use the same **data_rate**.
-- **spi_mode** (*Optional*): Set the mode for the SPI interface to the display. Default is ``MODE0`` but some displays require ``MODE3``.
 - **invert_colors** (*Optional*): With this boolean option you can invert the display colors. **Note** some of the displays have this option set automatically to true and can't be changed.
 - **18bit_mode** (*Optional*): With this boolean option you can manual enable or disable the 18 bit color mode.
 - **rotation** (*Optional*): Rotate the display presentation in software. Choose one of ``0°``, ``90°``, ``180°``, or ``270°``. This option cannot be used with ``transform``.
@@ -105,13 +103,17 @@ Configuration variables:
    - **mirror_x** (*Optional*, boolean): If true, mirror the x axis.
    - **mirror_y** (*Optional*, boolean): If true, mirror the y axis.
 
-
-**Note:** To rotate the display in hardware use one of the following combinations - with 90 and 270 rotations you
-will also need to use `dimensions:` to swap the height and width (see example below.)
-
+**Note:** The ``rotation`` variable will do a software based rotation. It is better to use the **transform** to rotate the display in hardware. Use one of the following combinations:
     - 90 degrees - use ``swap_xy`` with ``mirror_x``
     - 180 degrees - use ``mirror_x`` with ``mirror_y``
     - 270 degrees - use ``swap_xy`` with ``mirror_y``
+
+With 90 and 270 rotations you will also need to swap the **dimensions** ''height'' and ''width'' (see example below.
+
+
+To modify the SPI setting see :ref:`SPI bus <spi>` . The default **data_rate** is set to ``40MHz`` and the **spi_mode** mode is ``MODE0`` but some displays require ``MODE3`` (*).
+
+**Note:** The maximum achievable data rate will depend on the chip type (e.g. ESP32 vs ESP32-S3) the pins used (on ESP32 using the default SPI pins allows higher rates) and the connection type (on-board connections will support higher rates than long cables or DuPont wires.) If in doubt, start with a low speed and test higher rates to find what works. A MISO pin should preferably not be specified, as this will limit the maximum rate in some circumstances, and is not required if the SPI bus is used only for the display.
 
 
 Configuration examples
@@ -128,8 +130,6 @@ height 320 and width 480 into portrait. Note that the dimensions are those of th
     dimensions:
       height: 480
       width: 320
-
-
 
 
 To utilize the color capabilities of this display module, you'll likely want to add a ``color:`` section to your
