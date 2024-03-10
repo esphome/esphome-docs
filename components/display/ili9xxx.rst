@@ -107,6 +107,7 @@ Configuration variables:
     - 90 degrees - use ``swap_xy`` with ``mirror_x``
     - 180 degrees - use ``mirror_x`` with ``mirror_y``
     - 270 degrees - use ``swap_xy`` with ``mirror_y``
+
 With 90 and 270 rotations you will also need to swap the **dimensions** ''height'' and ''width'' (see example below.
 
 
