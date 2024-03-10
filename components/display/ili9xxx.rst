@@ -94,7 +94,7 @@ Configuration variables:
     - **offset_width** (*Optional*, int): Specify an offset for the x-direction of the display, typically used when an LCD is smaller than the maximum supported by the driver chip. Default is 0
     - **offset_height** (*Optional*, int): Specify an offset for the y-direction of the display. Default is 0.
 
-- **data_rate** (*Optional*): Set the data rate of the SPI interface to the display. One of ``80MHz``, ``40MHz`` (default), ``20MHz``, ``10MHz``, ``5MHz``, ``2MHz``, ``1MHz``, ``200kHz``, ``75kHz`` or ``1kHz``. If you have multiple ILI9xxx displays they must all use the same **data_rate**.
+- **data_rate** (*Optional*): Set the data rate of the SPI interface to the display. One of ``80MHz``, ``40MHz``, ``20MHz`` (default), ``10MHz``, ``5MHz``, ``2MHz``, ``1MHz``, ``200kHz``, ``75kHz`` or ``1kHz``. If you have multiple ILI9xxx displays they must all use the same **data_rate**.
 - **spi_mode** (*Optional*): Set the mode for the SPI interface to the display. Default is ``MODE0`` but some displays require ``MODE3``.
 - **invert_colors** (*Optional*): With this boolean option you can invert the display colors. **Note** some of the displays have this option set automatically to true and can't be changed.
 - **18bit_mode** (*Optional*): With this boolean option you can manual enable or disable the 18 bit color mode.
