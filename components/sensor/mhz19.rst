@@ -71,6 +71,8 @@ Configuration variables:
   Set this value to ``true`` to enable ABC on boot.
   Doesn't send calibration command if not set (default sensor logic will be used).
 
+- **detection_range** (*Optional*, 2000, 5000, 10000): MH-Z19 can be configured to detect different ranges: 0-2000ppm, 0-5000ppm or 0-10000ppm. Sensors will come from factory with one of these values set, which can be changed with this parameter. The default is to not change the setting, so the previously set range is used.
+
 .. figure:: images/mhz19-pins.jpg
     :align: center
     :width: 80.0%
