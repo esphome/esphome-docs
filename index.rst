@@ -847,6 +847,14 @@ Alarm Control Panel Components
     Alarm Control Panel Core, components/alarm_control_panel/index, alarm-panel.svg, dark-invert
     Template Alarm Control Panel, components/alarm_control_panel/template, description.svg, dark-invert
 
+Datetime Components
+-------------------
+
+.. imgtable::
+
+    Datetime Core, components/datetime/index, clock-outline.svg, dark-invert
+    Template Datetime, components/datetime/template, description.svg, dark-invert
+
 Miscellaneous Components
 ------------------------
 
