@@ -43,7 +43,7 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 - **version** (*Optional*, int): The firmware version of the sensor.
-- **resistance** (*Optional*, int): The initial value of the sesor resistance.
+- **resistance** (*Optional*, int): The initial value of the sensor resistance.
 
 Actions:
 --------
