@@ -699,6 +699,7 @@ Touchscreen Components
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
     XPT2046, components/touchscreen/xpt2046, xpt2046.jpg
+    CST226, components/touchscreen/cst226, t4-s3.jpg
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
     FT63X6, components/touchscreen/ft63x6, wt32-sc01.png
 
