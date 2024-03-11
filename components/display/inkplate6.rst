@@ -10,7 +10,7 @@ All-in-one e-paper display ``Inkplate 6``, ``Inkplate 10`` and ``Inkplate 6 Plus
 The Inkplate 6, 10 and 6 Plus are powerful, Wi-Fi enabled ESP32 based six-inch e-paper displays -
 recycled from a Kindle e-reader. Its main feature is simplicity.
 
-Learn more at `Inkplate's website <https://inkplate.io/>`__
+Learn more at `Inkplate's documentation website <https://inkplate.readthedocs.io/en/stable/>`__
 
 .. figure:: images/inkplate6.jpg
     :align: center
@@ -282,7 +282,7 @@ Inkplate 6 Plus Touchscreen
 ***************************
 
 The Inkplate 6 Plus has a built in touchscreen supported by ESPHome. Note you need to enable pin 12 on the mcp23017 to enable the touchscreen
-Below is a config example with touchscreen power swtich:
+Below is a config example with touchscreen power switch:
 
 .. code-block:: yaml
 

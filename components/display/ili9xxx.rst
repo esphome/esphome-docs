@@ -10,6 +10,7 @@ ILI9xxx TFT LCD Series
 Models
 ------
 With this display driver you can control the following displays:
+  - GC9A01A
   - ILI9341
   - ILI9342
   - ILI9481
@@ -69,6 +70,7 @@ Configuration variables:
   - ``ILI9341``, ``ILI9342``, ``ILI9486``, ``ILI9488``, ``ILI9488_A`` (alternative gamma configuration for ILI9488)
   - ``ILI9481``, ``ILI9481-18`` (18 bit mode)
   - ``ST7789V``, ``ST7796``
+  - ``GC9A01A``
 
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
@@ -106,7 +108,8 @@ Configuration variables:
    - **mirror_y** (*Optional*, boolean): If true, mirror the y axis.
 
 
-**Note:** To rotate the display in hardware use one of the following combinations:
+**Note:** To rotate the display in hardware use one of the following combinations - with 90 and 270 rotations you
+will also need to use `dimensions:` to swap the height and width (see example below.)
 
     - 90 degrees - use ``swap_xy`` with ``mirror_x``
     - 180 degrees - use ``mirror_x`` with ``mirror_y``
@@ -115,6 +118,21 @@ Configuration variables:
 
 Configuration examples
 **********************
+
+To use hardware rotation, use both ``dimensions`` and ``transform``, e.g. this config will turn a landscape display with
+height 320 and width 480 into portrait. Note that the dimensions are those of the final display.
+
+.. code-block:: yaml
+
+    transform:
+      swap_xy: true
+      mirror_x: true
+    dimensions:
+      height: 480
+      width: 320
+
+
+
 
 To utilize the color capabilities of this display module, you'll likely want to add a ``color:`` section to your
 YAML configuration; please see :ref:`color <config-color>` for more detail on this configuration section.
