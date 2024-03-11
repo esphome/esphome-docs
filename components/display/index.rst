@@ -95,6 +95,19 @@ and circles:
           // ... and the same thing filled again
           it.filled_circle(25, 25, 10);
 
+          // Triangles... Let's draw the outline of a triangle from the [x,y] coordinates of its three points
+          // [25,5], [5,25], [50,50]
+          it.triangle(25, 5, 5, 25, 50, 50);
+          // and a filled triangle !
+          it.filled_triangle(125, 5, 105, 25, 150, 50);
+
+          // Regular Polygons? Let's draw the outline of a pointy-topped hexagon inscribed in a circle 
+          // centered on [x1=100,y1=100] with a radius of 50
+          it.regular_polygon(100, 100, 50, EDGES_HEXAGON);
+          // and a filled flat-topped octagon!
+          it.filled_regular_polygon(200, 200, 50, EDGES_OCTAGON, VARIATION_FLAT_TOP);
+          // Need to rotate the polygon, or retrieve the coordinates of its vertices? Check the API!
+
 All the above methods can optionally also be called with an argument at the end which specifies in which
 color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
 
@@ -552,6 +565,7 @@ Graph component with options for grids, border and line-types.
             color: my_red
           - sensor: my_outside_temperature
             line_type: SOLID
+            continuous: true
             line_thickness: 3
             color: my_blue
           - sensor: my_beer_temperature
@@ -580,6 +594,7 @@ Trace specific fields:
 - **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
 - **line_thickness** (*Optional*): Defaults to 3
 - **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
+- **continuous** (*Optional*): connects the individual points to make a continuous line.  Defaults to ``false``.
 - **color** (*Optional*): Sets the color of the sensor trace.
 
 And then later in code:
