@@ -10,6 +10,7 @@ ILI9xxx TFT LCD Series
 Models
 ------
 With this display driver you can control the following displays:
+  - GCA901A
   - ILI9341
   - ILI9342
   - ILI9481
@@ -69,6 +70,7 @@ Configuration variables:
   - ``ILI9341``, ``ILI9342``, ``ILI9486``, ``ILI9488``, ``ILI9488_A`` (alternative gamma configuration for ILI9488)
   - ``ILI9481``, ``ILI9481-18`` (18 bit mode)
   - ``ST7789V``, ``ST7796``
+  - ``GCA901A``
 
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
