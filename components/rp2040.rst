@@ -10,6 +10,9 @@ This component contains platform-specific options for the RP2040 platform.
 .. note::
 
     Support for all aspects of ESPHome on the RP2040 is still in development.
+    
+    The RP2040 platform in ESPHome supports only the original model of Raspberry Pi Pico W board, which has the Cypress CYW43455 chip providing wireless connectivity. It can be identified by a metalic shield encapsulating the radio circuitry. Pico W boards having an ESP8285 as the radio module (labelled as ``RP2040 Pico W-2023`` or similar), are not currently supported.
+
     Please search for or create an `issue <https://github.com/esphome/issues/issues/new?assignees=&labels=&template=bug_report.yml>`__ if you encounter an unknown problem.
 
 .. code-block:: yaml
