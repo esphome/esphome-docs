@@ -71,7 +71,7 @@ Next, create a ``font:`` section in your configuration:
     display:
       # ...
 
-Configuration options:
+Configuration variables:
 ----------------------
 
 - **file** (**Required**, string): The path (relative to where the .yaml file is) of the font
