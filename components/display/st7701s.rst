@@ -132,11 +132,14 @@ init commands, each consisting of a command byte followed by zero or more data b
 
 These will be collected and sent to the display via SPI during initialisation.
 
-# Example configurations
+Example configurations
+----------------------
+
+Seeed Sensecap Indicator
+************************
 
 .. code-block:: yaml
 
-    # Seeed Sensecap Indicator configuration.
     display:
       - platform: st7701s
         auto_clear_enabled: false
