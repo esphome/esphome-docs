@@ -300,6 +300,7 @@ Environmental
     Absolute Humidity, components/sensor/absolute_humidity, water-drop.svg, dark-invert
     AHT10 / AHT20 / AHT21 / DHT20, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Temperature & Humidity & Pressure
+    AM2315C, components/sensor/am2315c, am2315c.jpg, Temperature & Humidity
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
     BME280, components/sensor/bme280, bme280.jpg, Temperature & Humidity & Pressure
     BME680, components/sensor/bme680, bme680.jpg, Temperature & Humidity & Pressure & Gas
@@ -655,6 +656,7 @@ Display Components
 .. imgtable::
 
     Display Core, components/display/index, folder-open.svg, dark-invert
+    Font Renderer, components/display/fonts, format-font.svg, dark-invert
     Addressable Light, components/display/addressable_light, addressable_light.jpg
     ILI9xxx, components/display/ili9xxx, ili9341.jpg
     ILI9341, components/display/ili9xxx, ili9341.svg
@@ -671,6 +673,7 @@ Display Components
     Nextion, components/display/nextion, nextion.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
     PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
+    RPI_DPI_RGB, components/display/rpi_dpi_rgb, waveshare_touch-s3.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1322, components/display/ssd1322, ssd1322.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
@@ -679,6 +682,7 @@ Display Components
     SSD1351, components/display/ssd1351, ssd1351.jpg
     ST7567, components/display/st7567, st7567.jpg
     ST7735, components/display/st7735, st7735.jpg
+    ST7701S, components/display/st7701s, indicator.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     ST7796, components/display/ili9xxx, st7796.svg
     ST7920, components/display/st7920, st7920.jpg
@@ -698,6 +702,7 @@ Touchscreen Components
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
     XPT2046, components/touchscreen/xpt2046, xpt2046.jpg
+    CST226, components/touchscreen/cst226, t4-s3.jpg
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
     FT63X6, components/touchscreen/ft63x6, wt32-sc01.png
 

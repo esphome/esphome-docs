@@ -38,6 +38,7 @@ The ``ble_presence`` binary sensor platform lets you track the presence of a Blu
       - platform: ble_presence
         service_uuid: '11aa'
         name: "ESP32 BLE Tracker Test Service 16 bit"
+        timeout: 45s
       # Presence based on iBeacon UUID
       - platform: ble_presence
         ibeacon_uuid: '68586f1e-89c2-11eb-8dcd-0242ac130003'
@@ -74,6 +75,8 @@ Configuration variables:
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation.
 -  **min_rssi** (*Optional*, int): at which minimum RSSI level would the component report the device be present.
+-  **timeout** (*Optional*, :ref:`config-time`): The delay after last detecting the device before publishing not present state.
+   The default is 5 minutes.
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _esp32_ble_tracker-setting_up_devices:
