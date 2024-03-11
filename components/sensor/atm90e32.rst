@@ -69,8 +69,7 @@ Configuration variables:
 - **phase_c** (*Optional*): The configuration options for the 3rd phase. Same options as 1st phase.
 - **frequency** (*Optional*): Use the frequenycy value calculated by the meter. All options from
   :ref:`Sensor <config-sensor>`.
-- **peak_current_signed** (*Optional*): Control the peak current output as signed or absolute. All options from
-  :ref:`Sensor <config-sensor>`.
+- **peak_current_signed** (*Optional*, boolean): Control the peak current output as signed or absolute. Defaults to ``false``.
 - **chip_temperature** (*Optional*): Use the chip temperature value. All options from
   :ref:`Sensor <config-sensor>`.
 - **gain_pga** (*Optional*, string): The gain for the CT clamp, ``2X`` for 100A, ``4X`` for 100A - 200A. One of ``1X``, ``2X``, ``4X``.
