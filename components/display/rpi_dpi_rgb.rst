@@ -162,7 +162,11 @@ Waveshare ESP32-S3 Touch 4.3
             - 21        #g7
 
 
-    # Makerfabs 4.3" 800x480 display
+Makerfabs 4.3" 800x480 display
+******************************
+
+.. code-block:: yaml
+
     display:
       - platform: rpi_dpi_rgb
         update_interval: never
