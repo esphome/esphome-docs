@@ -50,7 +50,7 @@ Configuration variables:
     :ref:`Sensor <config-sensor>`.
   - **power_factor** (*Optional*): Use the power factor value on this phase. All options from
     :ref:`Sensor <config-sensor>`.
-  - **phash_angle** (*Optional*): Use the phase angle value on this phase in degrees. All options from
+  - **phase_angle** (*Optional*): Use the phase angle value on this phase in degrees. All options from
     :ref:`Sensor <config-sensor>`.
   - **peak_current** (*Optional*): Use the peak current value on this phase in amperes. All options from
     :ref:`Sensor <config-sensor>`.
