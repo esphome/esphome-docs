@@ -300,6 +300,7 @@ Environmental
     Absolute Humidity, components/sensor/absolute_humidity, water-drop.svg, dark-invert
     AHT10 / AHT20 / AHT21 / DHT20, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Temperature & Humidity & Pressure
+    AM2315C, components/sensor/am2315c, am2315c.jpg, Temperature & Humidity
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
     BME280, components/sensor/bme280, bme280.jpg, Temperature & Humidity & Pressure
     BME680, components/sensor/bme680, bme680.jpg, Temperature & Humidity & Pressure & Gas
@@ -655,6 +656,7 @@ Display Components
 .. imgtable::
 
     Display Core, components/display/index, folder-open.svg, dark-invert
+    Font Renderer, components/display/fonts, format-font.svg, dark-invert
     Addressable Light, components/display/addressable_light, addressable_light.jpg
     ILI9xxx, components/display/ili9xxx, ili9341.jpg
     ILI9341, components/display/ili9xxx, ili9341.svg
@@ -698,6 +700,7 @@ Touchscreen Components
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
     XPT2046, components/touchscreen/xpt2046, xpt2046.jpg
+    CST226, components/touchscreen/cst226, t4-s3.jpg
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
     FT63X6, components/touchscreen/ft63x6, wt32-sc01.png
 
