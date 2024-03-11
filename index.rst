@@ -693,6 +693,7 @@ Touchscreen Components
 .. imgtable::
 
     Touchscreen Core, components/touchscreen/index, folder-open.svg, dark-invert
+    CST816, components/touchscreen/cst816, cst816.jpg
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
