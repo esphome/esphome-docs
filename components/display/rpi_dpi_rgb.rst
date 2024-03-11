@@ -108,7 +108,8 @@ The horizontal and vertical ``pulse_width``, ``front_porch`` and ``back_porch`` 
 changing for a specific display. Refer to the manufacturer's sample code for suitable values. These specify timing
 requirements for the display.
 
-# Example configurations
+Example configurations
+----------------------
 
 
 Waveshare ESP32-S3 Touch 4.3
