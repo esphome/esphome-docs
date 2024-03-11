@@ -281,6 +281,14 @@ advanced stuff (see the full API Reference for more info).
       auto state = id(my_select).state.c_str();
       ESP_LOGI("main", "Option of my select: %s", state);
 
+  .. code-block:: yaml
+
+      # Check if a specific option is selected
+      - if:
+          condition:
+            - lambda: 'return id(my_select).state == "my_option_value";'
+
+
 - ``.size()``: Retrieve the number of options in the select.
 
   .. code-block:: cpp

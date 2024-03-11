@@ -10,7 +10,7 @@ This repository/library allows you to create a custom wake word for your ESPHome
 
 The training process is described on the `microWakeWord GitHub repository <https://github.com/kahrendt/microWakeWord>`__.
 
-The ``micro_wake_word`` component requires an **ESP32-S3** to function.
+The ``micro_wake_word`` component requires an **ESP32-S3 with PSRAM** to function.
 
 .. code-block:: yaml
 
@@ -35,10 +35,11 @@ Configuration variables:
     e.g. ``https://github.com/esphome/micro-wake-word-models/raw/main/models/okay_nabu.json``.
 
 - **on_wake_word_detected** (*Optional*, Automation): An automation to perform when the wake word is detected.
+  The ``wake_word`` phrase from the model manifest is provided as a ``std::string`` to any actions in this automation.
 
 The below two options are provided by the JSON file, but can be overridden in YAML.
 
-- **probability_cutoff** (*Optional*, float): The probability cutoff for the wake word detection.
+- **probability_cutoff** (*Optional*, percentage): The probability cutoff for the wake word detection.
   If the probability of the wake word is below this value, the wake word is not detected.
   A larger value reduces the number of false accepts but increases the number of false rejections.
 - **sliding_window_average_size** (*Optional*, int): The size of the sliding window average for the wake word detection. A small value lowers latency but may increase the number of false accepts.
@@ -61,7 +62,7 @@ Model JSON
       }
     }
 
-The model JSON file contains the following fields that are all **required**:
+The model JSON file contains the following fields that are all **required** unless otherwise specified:
 
 - **type** (string): The type of the model. This should always be ``micro``.
 - **wake_word** (string): The wake word that the model is trained to detect.
@@ -74,6 +75,7 @@ The model JSON file contains the following fields that are all **required**:
   - **probability_cutoff** (float): The probability cutoff for the wake word detection.
     If the probability of the wake word is below this value, the wake word is not detected.
   - **sliding_window_average_size** (int): The size of the sliding window average for the wake word detection.
+  - **minimum_esphome_version** (*Optional* version): The minimum ESPHome version required to use this model.
 
 
 Automations
@@ -99,6 +101,7 @@ Example usage
       on_wake_word_detected:
         then:
           - voice_assistant.start:
+              wake_word: !lambda return wake_word;
 
 
 See Also

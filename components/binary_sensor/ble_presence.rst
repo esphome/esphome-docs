@@ -30,6 +30,10 @@ The ``ble_presence`` binary sensor platform lets you track the presence of a Blu
         mac_address: AC:37:43:77:5F:4C
         name: "ESP32 BLE Tracker Google Home Mini"
         min_rssi: -80dB
+      # Presence based on Identity Resolving Key (IRK)
+      - platform: ble_presence
+        irk: 1234567890abcdef1234567890abcdef
+        name: "ESP32 BLE Tracker iPhone"
       # Presence based on BLE Service UUID
       - platform: ble_presence
         service_uuid: '11aa'
@@ -51,14 +55,17 @@ Configuration variables:
 
 -  **name** (**Required**, string): The name of the binary sensor.
 -  **mac_address** (*Optional*, MAC Address): The MAC address to track for this
-   binary sensor. Note that exactly one of ``mac_address``, ``service_uuid`` or ``ibeacon_uuid``
+   binary sensor. Note that exactly one of ``mac_address``, ``irk``, ``service_uuid`` or ``ibeacon_uuid``
+   must be present.
+-  **irk** (*Optional*, 16 byte hex string): The Identity Resolving Key (IRK) to track for this
+   binary sensor. Note that exactly one of ``mac_address``, ``irk``, ``service_uuid`` or ``ibeacon_uuid``
    must be present.
 -  **service_uuid** (*Optional*, string): 16 bit, 32 bit, or 128 bit BLE Service UUID
    which can be tracked if the device randomizes the MAC address. Note that exactly one of
-   ``mac_address``, ``service_uuid`` or ``ibeacon_uuid`` must be present.
+   ``mac_address``, ``irk``, ``service_uuid`` or ``ibeacon_uuid`` must be present.
 -  **ibeacon_uuid** (*Optional*, string): The `universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`__
    to identify the beacon that needs to be tracked. Note that exactly one of ``mac_address``,
-   ``service_uuid`` or ``ibeacon_uuid`` must be present.
+   ``irk``, ``service_uuid`` or ``ibeacon_uuid`` must be present.
 -  **ibeacon_major** (*Optional*, int): The iBeacon major identifier of the beacon that needs
    to be tracked. Usually used to group beacons, for example for grouping all beacons in the
    same building.
@@ -105,8 +112,15 @@ iBeacon major and minor identifiers, BLE manufacturer data, RSSI and other data 
 debugging purposes. Note that this is useful only during set-up and a less verbose log level
 should be specified afterwards.
 
-Please note that devices that show a ``RANDOM`` address type in the logs cannot be used for
-MAC address based tracking, since their MAC-address periodically changes. Instead you can:
+Please note that devices that show a ``RANDOM`` address type in the logs probably use a privacy
+feature called Resolvable Private Addresses to avoid BLE tracking. Since their MAC-address periodically
+changes, they can't be tracked by the MAC address. However, if you know the devices "Identity Resolving
+Key" (IRK), you can check if the generated private MAC address belongs to the device with the IRK.
+
+There is no support to obtain the key with ESPHome. For now you will have to use one of the options
+described in the ESPresense project: https://espresense.com/beacons
+
+Alternatively you can:
 
 -  Create a BLE beacon, set a unique 16 bit, 32 bit or 128 bit Service UUID and track your device
    based on that. Make sure you don't pick a `GATT Service UUID
