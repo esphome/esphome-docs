@@ -110,9 +110,12 @@ requirements for the display.
 
 # Example configurations
 
+
+Waveshare ESP32-S3 Touch 4.3
+****************************
+
 .. code-block:: yaml
 
-    # Waveshare ESP32-S3 Touch 4.3 config
     display:
       - platform: rpi_dpi_rgb
         auto_clear_enabled: false
