@@ -36,22 +36,23 @@ ESP-IDF. PSRAM is a requirement due to the size of the display buffer. A :ref:`q
 
 .. code-block:: yaml
 
-      # Example minimal configuration entry
-      display:
-        - platform: qspi_amoled
-          model: RM690B0
-          data_rate: 80MHz
-          spi_mode: mode0
-          dimensions:
-            width: 450
-            height: 600
-            offset_width: 16
-          color_order: rgb
-          invert_colors: false
-          brightness: 255
-          cs_pin: 11
-          reset_pin: 13
-          enable_pin: 9
+    # Example minimal configuration entry
+
+    display:
+      - platform: qspi_amoled
+        model: RM690B0
+        data_rate: 80MHz
+        spi_mode: mode0
+        dimensions:
+          width: 450
+          height: 600
+          offset_width: 16
+        color_order: rgb
+        invert_colors: false
+        brightness: 255
+        cs_pin: 11
+        reset_pin: 13
+        enable_pin: 9
 
 
 Configuration variables:
