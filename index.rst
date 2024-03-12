@@ -368,6 +368,8 @@ Light
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
     TSL2591, components/sensor/tsl2591, tsl2591.jpg, Lux
     VEML3235, components/sensor/veml3235, veml3235.jpg, Lux
+    VEML6030, components/sensor/veml7700, veml6030.jpg, Lux
+    VEML7700, components/sensor/veml7700, veml7700.jpg, Lux
 
 
 Magnetic
