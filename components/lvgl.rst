@@ -68,15 +68,15 @@ Configuration variables:
 - **displays** (**Required**, list): A list of displays where to render this entire LVGL configuration:
     - **display_id** (**Required**, :ref:`config-id`): The ID of a display configuration.
 - **touchscreens** (*Optional*, list): A list of touchscreens interacting with the LVGL widgets on the display. Can be omitted if there's at least a rotary encoder configured.
-    - **touchscreen_id** (*Required*, :ref:`config-id`): ID of a touchscreen configuration-
-    - **long_press_time** (*Optional*, ms): Delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
-    - **long_press_repeat_time** (*Optional*, ms): Repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
+    - **touchscreen_id** (**Required**, :ref:`config-id`): ID of a touchscreen configuration-
+    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): Delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
+    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): Repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
 - **rotary_encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display. Can be omitted if there's at least a touchscreen configured.
-    - **sensor:** (*Required*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder` used to interact with the widgets.
+    - **sensor:** (**Required**, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder` used to interact with the widgets.
     - **binary_sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, usually used as a push button within the rotary encoder used to interact with the widgets.
     - **group** (*Optional*, string): A name for a group of widgets whics will interact with the the rotary encoder. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
-    - **long_press_time** (*Optional*, ms): Delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
-    - **long_press_repeat_time** (*Optional*, ms): Repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
+    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): Delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
+    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): Repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
 - **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
 - **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen. Defaults to ``1s``.
@@ -762,7 +762,7 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
 
 **Specific options:**
 
-- **options** (*Required*, list): The list of available options in the drop-down.
+- **options** (**Required**, list): The list of available options in the drop-down.
 - **dir** (*Optional*, enum): Where the list part of the dropdown gets created relative to the button part. ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
 - **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
 - **symbol** (*Optional*, enum): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from the built-in ones or from your own customized font.
@@ -814,7 +814,7 @@ Roller allows you to simply select one option from a list by scrolling.
 
 **Specific options:**
 
-- **options** (*Required*, list): The list of available options in the roller.
+- **options** (**Required**, list): The list of available options in the roller.
 - **mode** (*Optional*, enum): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
 - **visible_rows** TODO
 - **selected** (*Optional*, list): Settings for the selected *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the :ref:`lvgl-wgt-lbl` text style properties to change the appearance of the text in the selected area.
@@ -866,7 +866,7 @@ Not only the end, but also the start value of the bar can be set, which changes 
 
 **Specific options:**
 
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **value** (**Required**, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
 - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
 - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
@@ -902,7 +902,7 @@ The Slider widget looks like a bar supplemented with a knob. The knob can be dra
 
 **Specific options:**
 
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **value** (**Required**, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
 - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
 - **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. A rectangle (or circle) drawn at the current value. Also uses all the typical background properties to describe the knob. By default, the knob is square (with an optional corner radius) with side length equal to the smaller side of the slider. The knob can be made larger with the padding values. Padding values can be asymmetric too.
@@ -971,7 +971,7 @@ The Arc consists of a background and a foreground arc. The foreground (indicator
 
 **Specific options:**
 
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **value** (**Required**, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
 - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
 - **start_angle** (*Optional*, 0-360): start angle of the arc background (see note). Defaults to ``135``.
@@ -1179,7 +1179,7 @@ The animation image is similar to the normal ``img`` object. The main difference
 - **src** (**Required**, list of :ref:`images <display-image>`): A list of IDs of existing image configurations to be loaded as frames of the animation.
 - **auto_start** (*Optional*, boolean): Start the animation playback automatically. Defaults to ``true``.
 - **repeat_count** (*Optional*, int16 or *forever*): How many times to repeat the playback. Defaults to ``forever``.
-- **duration** (*Required*, :ref:`Time <config-time>`): Duration of one image frame.
+- **duration** (**Required**, :ref:`Time <config-time>`): Duration of one image frame.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
 Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
@@ -1230,7 +1230,7 @@ The Line widget is capable of drawing straight lines between a set of points.
 
 **Specific options:**
 
-- **points** (*Required*, list): A list of ``x, y`` integer pairs for point coordinates (origin from top left of parent)
+- **points** (**Required**, list): A list of ``x, y`` integer pairs for point coordinates (origin from top left of parent)
 - **line_width** (*Optional*, int16): Set the width of the line in pixels.
 - **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
 - **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
@@ -1317,8 +1317,8 @@ The Spinner widget is a spinning arc over a ring.
 
 **Specific options:**
 
-- **spin_time** (*Required*, :ref:`Time <config-time>`): Duration of one cycle of the spin.
-- **arc_length** (*Required*, 0-360): Length of the spinning arc in degrees.
+- **spin_time** (**Required**, :ref:`Time <config-time>`): Duration of one cycle of the spin.
+- **arc_length** (**Required**, 0-360): Length of the spinning arc in degrees.
 - **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to use to draw the arcs.
 - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
