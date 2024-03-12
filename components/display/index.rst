@@ -77,7 +77,7 @@ x always represents the horizontal axis (width) and y the vertical axis (height)
 the rendering engine is always first specify the ``x`` coordinate and then the ``y`` coordinate.
 
 Basic Shapes
-************
+------------
 
 Now that you know a bit more about ESPHome's coordinate system, let's draw some basic shapes like lines, rectangles
 and circles:
@@ -105,6 +105,13 @@ and circles:
           it.triangle(25, 5, 5, 25, 50, 50);
           // and a filled triangle !
           it.filled_triangle(125, 5, 105, 25, 150, 50);
+
+          // Regular Polygons? Let's draw the outline of a pointy-topped hexagon inscribed in a circle 
+          // centered on [x1=100,y1=100] with a radius of 50
+          it.regular_polygon(100, 100, 50, EDGES_HEXAGON);
+          // and a filled flat-topped octagon!
+          it.filled_regular_polygon(200, 200, 50, EDGES_OCTAGON, VARIATION_FLAT_TOP);
+          // Need to rotate the polygon, or retrieve the coordinates of its vertices? Check the API!
 
 All the above methods can optionally also be called with an argument at the end which specifies in which
 color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
@@ -160,7 +167,7 @@ You can view the full API documentation for the rendering engine in the "API Ref
 .. _display-static_text:
 
 Drawing Static Text
-*******************
+-------------------
 
 To be able to display text, you need to prepare some fonts. ESPHome's :ref:`font renderer <display-fonts>` allows you to use OpenType/TrueType/Bitmap fonts for your texts. This is very flexiblle because you can prepare various sets of fonts at different sizes with a different number of glyphs which is extremely convenient when we're talking about flash space.
 
@@ -219,7 +226,7 @@ In case of fonts rendered at higher bit depths, the background color has to be s
 .. _display-printf:
 
 Formatted Text
-**************
+--------------
 
 Static text by itself is not too impressive. What we really want is to display *dynamic* content like sensor values
 on the display!. That's where ``printf`` comes in. ``printf`` is a formatting engine from the C era and ESPHome
@@ -269,7 +276,7 @@ Another interesting format string is ``%7.2f``, which would become the right-jus
 - ``.2`` - round the decimal number to ``2`` digits after the decimal point.
 - ``f`` - specifier: f(loat).
 
-You can even have as many format strings as you want in a single printf call. Just make sure the put the
+You can even have as many formatted items as you want in a single printf call. Just make sure the put the
 arguments after the format string in the right order.
 
 .. code-block:: yaml
@@ -290,6 +297,19 @@ To display a text string from a ``text_sensor``, append ``.c_str()`` to the end 
         # ...
         lambda: |-
           it.printf(0, 0, id(my_font), "Text to follow: %s", id(template_text).state.c_str());
+
+
+When using anti-aliased fonts you will probably need to specify the color to draw the characters, and the background
+color to mix in for anti-aliasing. This requires the full version of `printf`, e.g.:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+            it.printf(10, 100, id(roboto), Color(0x123456), COLOR_OFF, display::TextAlign::BASELINE, "%f", id(heap_free).state);
+
 
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
 *could* of course just check the state with an ``if`` statement as the first few lines in the example below, but if
@@ -323,14 +343,14 @@ use any string you pass it, like ``"ON"`` or ``"OFF"``.
 .. _display-strftime:
 
 Displaying Time
-***************
+---------------
 
 You can display current time using a time component. Please see the example :ref:`here <strftime>`.
 
 .. _clipping:
 
 Screen Clipping
-***************
+---------------
 
 Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show
 a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
@@ -385,7 +405,7 @@ With ``is_clipping();`` tells you if clipping is activated.
 .. _config-color:
 
 Color
-*****
+-----
 
 When using RGB-capable displays in ESPHome you may wish to use custom colors.
 A ``color`` component exists for just this purpose:
@@ -435,7 +455,7 @@ RGB displays use red, green, and blue, while grayscale displays may use white.
 .. _display-graphs:
 
 Graph Component
-***************
+---------------
 
 You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in
 memory at the time the sensor updates and will be lost when the device reboots.
@@ -552,7 +572,7 @@ And then later in code:
 .. _display-qrcode:
 
 QR Code Component
-*****************
+-----------------
 
 Use this component to generate a QR-code containing a string on the device, which can then be drawn on compatible displays.
 
@@ -591,7 +611,7 @@ To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
 .. _display-image:
 
 Images
-******
+------
 
 Use this component to store graphical images on the device, you can then draw the images on compatible displays.
 
@@ -706,7 +726,7 @@ You can also use this to invert images in two colors display, use ``COLOR_OFF`` 
 as the additional parameters.
 
 Animation
-*********
+---------
 
 Allows to use animated images on displays. Animation inherits all options from the image component.
 It adds additional lambda methods: ``next_frame()``, ``prev_frame()`` and ``set_frame()`` to change the shown picture of a gif.
@@ -907,7 +927,7 @@ Troubleshooting
 ---------------
 
 Color Test Pattern
-******************
+------------------
 
 If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
 It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine
@@ -955,6 +975,7 @@ See Also
 
 - :apiref:`display/display_buffer.h`
 - :ref:`LVGL <lvgl-main>`
+- :ref:`Fonts <display-fonts>`
 - :ghedit:`Edit`
 
 .. toctree::
