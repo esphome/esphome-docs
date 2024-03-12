@@ -44,7 +44,7 @@ Configuration variables:
 Binary Sensor
 -------------
 
-The ``seeed_mr24hpc1`` binary sensor allows you to use your :doc:`seeed_mr24hpc1` to perform different measurements.
+The ``seeed_mr24hpc1`` binary sensor allows you to perform different measurements.
 
 .. code-block:: yaml
 
@@ -62,7 +62,7 @@ Configuration variables:
 Sensor
 ------
 
-The ``seeed_mr24hpc1`` sensor allows you to use your :doc:`seeed_mr24hpc1` to perform different measurements.
+The ``seeed_mr24hpc1`` sensor allows you to perform different measurements.
 
 .. code-block:: yaml
 
@@ -125,20 +125,20 @@ Configuration variables:
 Switch
 ------
 
-The ``seeed_mr24hpc1`` switch allows you to control your :doc:`seeed_mr24hpc1`.
+The ``seeed_mr24hpc1`` switch allows you to control your device.
 
 .. code-block:: yaml
 
     switch:
       - platform: seeed_mr24hpc1
-        underly_open_function:
+        underlying_open_function:
           name: Underlying Open Function Info Output Switch
 
 
 Configuration variables:
 ************************
 
-- **underly_open_function** (*Optional*): Enable/disable **underlying open function**. When this switch is off, it indicates that it is currently in **standard mode**.
+- **underlying_open_function** (*Optional*): Enable/disable **underlying open function**. When this switch is off, it indicates that it is currently in **standard mode**.
   Defaults to off (standard mode). Turning on this feature allows you to observe more information about the environment and is recommended to use it
   again in complex environments where the basic functionality is not sufficient. When this function is turned on, the stationary/motion and approach/away judgement of
   the basic function will be disabled. Notice this requires more resources and is not recommended to be enabled when not necessary.
@@ -148,7 +148,7 @@ Configuration variables:
 Number
 ------
 
-The ``seeed_mr24hpc1`` number allows you to control the configuration of your :doc:`seeed_mr24hpc1`.
+The ``seeed_mr24hpc1`` number allows you to control the configuration.
 
 .. code-block:: yaml
 
@@ -226,7 +226,7 @@ Configuration variables:
 Button
 ------
 
-The ``seeed_mr24hpc1`` button allows you to perfrom actions on your :doc:`seeed_mr24hpc1`.
+The ``seeed_mr24hpc1`` button allows you to perform actions.
 
 .. code-block:: yaml
 
@@ -249,7 +249,7 @@ Configuration variables:
 Text Sensor
 -----------
 
-The ``seeed_mr24hpc1`` text sensor allows you to get information about your :doc:`seeed_mr24hpc1`.
+The ``seeed_mr24hpc1`` text sensor allows you to get information about your device.
 
 .. code-block:: yaml
 
@@ -296,7 +296,7 @@ Configuration variables:
 Select
 -----------
 
-The ``seeed_mr24hpc1`` select allows you to control your :doc:`seeed_mr24hpc1`.
+The ``seeed_mr24hpc1`` select allows you to control the configuration.
 
 .. code-block:: yaml
 
@@ -348,7 +348,7 @@ Configuration variables:
   All options from :ref:`Select <config-select>`.
 
 Home Assistant Card
-*******************
+-------------------
 
 For a more intuitive view of the sensor data, you can use the customised card below.
 
@@ -450,5 +450,5 @@ See Also
 - `Product Detail Page for Seeed Studio 24GHz mmWave Sensor - Human Static Presence Module Lite <https://www.seeedstudio.com/24GHz-mmWave-Sensor-Human-Static-Presence-Module-Lite-p-5524.html>`_
 - `Product Detail Page for Seeed Studio mmWave Human Detection Sensor Kit <https://www.seeedstudio.com/mmWave-Human-Detection-Sensor-Kit-p-5773.html>`_
 - `Source of inspiration for implementation <https://github.com/limengdu/mmwave-kit-external-components/>`_
-- :apiref:`seeed_mr24hpc1/mr24hpc1.h`
+- :apiref:`seeed_mr24hpc1/seeed_mr24hpc1.h`
 - :ghedit:`Edit`
