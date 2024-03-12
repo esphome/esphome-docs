@@ -63,7 +63,7 @@ Configuration variables:
 - **disable_crc** (*Optional*, boolean): Ignores a bad CRC if set to ``true``. Defaults to ``false``
 
 Hardware TX buffer and flow control
-------------------------
+-----------------------------------
 
 On ESP32 it is possible to use hardware TX buffer to improve performance.
 When enabled, use the hardware controlled ``flow_control_pin`` of the UART component instead of the software controlled version of the modbus component.
