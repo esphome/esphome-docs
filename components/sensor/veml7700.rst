@@ -115,8 +115,6 @@ Example configuration
 .. code-block:: yaml
 
     # Example configuration entry
-    i2c:
-      # ...
     sensor:
       - platform: veml7700
         address: 0x10
