@@ -81,6 +81,8 @@ Configuration variables:
   for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`.
   for more information.
 - **certificate_authority** (*Optional*, string): Only with ``esp-idf``. CA certificate in PEM format. See :ref:`mqtt-tls-idf` for more information
+- **client_certificate** (*Optional*, string): Only on ``esp32``. Client certificate in PEM format.
+- **client_certificate_key** (*Optional*, string): Only on ``esp32``. Client private key in PEM format.
 - **skip_cert_cn_check** (*Optional*, bool): Only with ``esp-idf``. Don't verify if the common name in the server certificate matches the value of ``broker``.
 - **idf_send_async** (*Optional*, bool): Only with ``esp-idf``. If true publishing the message happens from the internal mqtt task. The client only enqueues the message. Defaults to ``false``.
   The advantage of asyncronous publishing is that it doesn't block the esphome main thread. The disadvantage is a delay (up to 1-2 seconds) until the messages are actually sent out.
@@ -351,6 +353,7 @@ MQTT can have some overrides for specific options.
 
     name: "Component Name"
     # Optional variables:
+    qos: 1
     retain: true
     availability:
       topic: livingroom/status
@@ -364,6 +367,7 @@ Configuration variables:
 
 -  **name** (**Required**, string): The name to use for the MQTT
    Component.
+-  **qos** (*Optional*, int): The [Quality of Service](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/) level for publishing. Defaults to 0.
 -  **retain** (*Optional*, boolean): If all MQTT state messages should
    be retained. Defaults to ``true``.
 -  **discovery** (*Optional*, boolean): Manually enable/disable

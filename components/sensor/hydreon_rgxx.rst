@@ -68,6 +68,7 @@ Device FAQ: `<https://rainsensors.com/support/rg-9-rg-15-faq/>`__
     sensor:
       - platform: hydreon_rgxx
         model: "RG_15"
+        resolution: high
         update_interval: 60s
         acc:
           name: "rain"
@@ -100,6 +101,9 @@ Configuration variables:
   - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
+
+- **resolution** (*Optional*, string): Specify rain sensor resolution. Must be either ``low`` or ``high``. Default resolution is ``high``.
+  Only applies to RG-15.
 
 - **acc** (*Optional*): Amount of rain since last message (see ``update_interval``), in ``mm``. Only on RG-15.
 
