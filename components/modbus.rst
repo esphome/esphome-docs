@@ -62,6 +62,29 @@ Configuration variables:
   
 - **disable_crc** (*Optional*, boolean): Ignores a bad CRC if set to ``true``. Defaults to ``false``
 
+Hardware TX buffer and flow control
+------------------------
+
+On ESP32 it is possible to use hardware TX buffer to improve performance.
+When enabled, use the hardware controlled ``flow_control_pin`` of the UART component instead of the software controlled version of the modbus component.
+
+.. code-block:: yaml
+
+    # Example configuration entry for ESP32 with flow control 
+    uart:
+        ...
+        flow_control_pin: GPIO10
+        tx_buffer_size: 128
+
+    modbus:
+        # Don't use `flow_control_pin` here
+
+.. note::
+
+    Without hardware TX buffer, the timer for ``send_wait_time`` starts after a request has been completely transmitted.
+    With TX buffer enabled it starts at the beginning of the request.
+    As a result, it may be necessary to adjust this setting, especially at low baud rates.
+
 
 See Also
 --------
