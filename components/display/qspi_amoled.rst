@@ -36,22 +36,22 @@ ESP-IDF. PSRAM is a requirement due to the size of the display buffer. A :ref:`q
 
 .. code-block:: yaml
 
-        # Example minimal configuration entry
-        display:
-          - platform: qspi_amoled
-            model: RM690B0
-            data_rate: 80MHz
-            spi_mode: mode0
-            dimensions:
-              width: 450
-              height: 600
-              offset_width: 16
-            color_order: rgb
-            invert_colors: false
-            brightness: 255
-            cs_pin: 11
-            reset_pin: 13
-            enable_pin: 9
+      # Example minimal configuration entry
+      display:
+        - platform: qspi_amoled
+          model: RM690B0
+          data_rate: 80MHz
+          spi_mode: mode0
+          dimensions:
+            width: 450
+            height: 600
+            offset_width: 16
+          color_order: rgb
+          invert_colors: false
+          brightness: 255
+          cs_pin: 11
+          reset_pin: 13
+          enable_pin: 9
 
 
 Configuration variables:
@@ -97,7 +97,6 @@ Lilygo T4-S3
 
 .. code-block:: yaml
 
-
     spi:
       id: quad_spi
       type: quad
@@ -141,40 +140,40 @@ Lilygo T-Display S3 AMOLED
 
 .. code-block:: yaml
 
-  spi:
-    id: quad_spi
-    clk_pin: 47
-    data_pins:
-      - 18
-      - 7
-      - 48
-      - 5
-
-  i2c:
-    sda: 3
-    scl: 2
-
-  touchscreen:
-    - platform: cst816
-      id: my_touchscreen
-      interrupt_pin:
-        number: 21
-
-  display:
-    - platform: qspi_amoled
-      model: RM67162
-      id: main_lcd
-      dimensions:
-        height: 240
-        width: 536
-      transform:
-        mirror_x: true
-        swap_xy: true
-      color_order: rgb
-      brightness: 255
-      cs_pin: 6
-      reset_pin: 17
-      enable_pin: 38
+    spi:
+      id: quad_spi
+      clk_pin: 47
+      data_pins:
+        - 18
+        - 7
+        - 48
+        - 5
+  
+    i2c:
+      sda: 3
+      scl: 2
+  
+    touchscreen:
+      - platform: cst816
+        id: my_touchscreen
+        interrupt_pin:
+          number: 21
+  
+    display:
+      - platform: qspi_amoled
+        model: RM67162
+        id: main_lcd
+        dimensions:
+          height: 240
+          width: 536
+        transform:
+          mirror_x: true
+          swap_xy: true
+        color_order: rgb
+        brightness: 255
+        cs_pin: 6
+        reset_pin: 17
+        enable_pin: 38
 
 
 See Also
