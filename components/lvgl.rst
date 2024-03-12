@@ -110,7 +110,6 @@ Configuration variables:
     - All other options from :ref:`lvgl-styling` to be applied to this page.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
 
-
 **Example:**
 
 .. code-block:: yaml
@@ -133,8 +132,6 @@ See :ref:`lvgl-cook-navigator` in the Cookbook for an example how to easily impl
 .. note::
 
     By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
-
-
 
 .. _lvgl-theme:
 
@@ -455,129 +452,73 @@ In addition to visual stilyng, each widget supports some boolean flags to influe
 - **widget_1**, **widget_2** (*Optional*, boolean): custom flags, free to use by widget
 - **user_1**, **user_2**, **user_3**, **user_4** (*Optional*, boolean): custom flags, free to use by user
 
-.. _lvgl-wgt-arc:
+.. _lvgl-wgt-lbl:
 
-``arc``
-*******
+``label``
+*********
 
-The Arc consists of a background and a foreground arc. The foreground (indicator) can be touch-adjusted with a knob.
+A label is the basic widget type that is used to display text.
 
-.. figure:: /components/images/lvgl_arc.png
+.. figure:: /components/images/lvgl_label.png
     :align: center
 
 **Specific options:**
 
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
-- **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
-- **start_angle** (*Optional*, 0-360): start angle of the arc background (see note). Defaults to ``135``.
-- **end_angle** (*Optional*, 0-360): end angle of the arc background (see note). Defaults to ``45``.
-- **rotation** (*Optional*, int8): Offset to the 0 degree position. Defaults to ``0.0``.
-- **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``.
-- **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
-- **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
-- **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to use to draw the arcs.
-- **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
-- **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
-- **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws a handle on the end of the indicator using all background properties and padding values. With zero padding the knob size is the same as the indicator's width. Larger padding makes it larger, smaller padding makes it smaller.
-- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws *another arc using the arc style* properties. Its padding values are interpreted relative to the background arc.
-- any :ref:`Styling <lvgl-styling>` and state-based option to override styles inherited from parent. The arc's size and position will respect the padding style properties.
+- **text** (**Required**, string): The text or built-in :ref:`symbol <lvgl-fonts>` to display. To display an empty label, specify ``""``.
+- **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
+- **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to render the text in.
+- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
+- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array name of the font used to render the text or symbol.
+- **text_letter_space** (*Optional*, int16): Characher spacing of the text.
+- **text_line_space** (*Optional*, int16): Line spacing of the text.
+- **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
+- **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
+    - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped. (Default)
+    - ``DOT``: Replaces the last 3 characters from bottom right corner of the label with dots.
+    - ``SCROLL``: If the text is wider than the label scroll it horizontally back and forth. If it's higher, scroll vertically. Only one direction is scrolled and horizontal scrolling has higher precedence.
+    - ``SCROLL_CIRCULAR``: If the text is wider than the label scroll it horizontally continuously. If it's higher, scroll vertically. Only one direction is scrolled and horizontal scrolling has higher precedence.
+    - ``CLIP``: Simply clip the parts of the text outside the label.
+- **scrollbar** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scrollbar that is shown when the text is larger than the widget's size.
+- **selected** (*Optional*, list): Settings for the the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
+- Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties. The padding values can be used to add space between the text and the background.
 
-
-If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can be clicked through in the middle. Clicks are recognized only on the ring of the background arc.
-
-
-.. note::
-
-    Zero degree is at the middle right (3 o'clock) of the widget and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
+Newline escape sequences are handled automatically by the label widget. You can use ``\n`` to make a line break. For example: ``"line1\nline2\n\nline4"``. **Note**: For escape sequences like newline to be translated, enclose the string in double quotes.
 
 **Specific actions:**
 
-``lvgl.arc.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.label.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. 
 
-**Specific triggers:**
-
-``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
+- **text** (**Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
+    -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
+    -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the
+       format message.
 
 **Example:**
 
 .. code-block:: yaml
 
     # Example widget:
-    - arc:
-        x: 10
-        y: 10
-        id: arc_id
-        value: 75
-        min_value: 0
-        max_value: 100
-        adjustable: true
+    - label:
+        align: CENTER
+        id: lbl_id
+        recolor: true
+        text: "#FF0000 write# #00FF00 colored# #0000FF text#"
 
-    # Example action:
+    - label:
+        align: TOP_MID
+        id: lbl_symbol
+        text_font: montserrat_28
+        text: "\uF013"
+
+    # Example action (update label with a value from a sensor):
     on_...:
       then:
-        - lvgl.arc.update
-            id: arc_id
-            knob:
-              bg_color: 0x00FF00
-            value: 55
-
-    # Example trigger:
-    - arc:
-        ...
-        on_value:
-          - logger.log:
-              format: "Arc value is: %.0f"
-              args: [ 'x' ]
-
-.. note::
-
-    The ``on_value`` trigger is sent while the arc knob is being dragged or changed with keys. The event is sent *continuously* while the knob is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
-
-The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
-
-See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use a slider (or an arc) to control entities in Home Assistant.
-
-.. _lvgl-wgt-bar:
-
-``bar``
-*******
-
-The bar widget has a background and an indicator on it. The width of the indicator is set according to the current value of the bar.
-
-.. figure:: /components/images/lvgl_bar.png
-    :align: center
-
-Vertical bars can be created if the width is smaller than the height.
-
-Not only the end, but also the start value of the bar can be set, which changes the start position of the indicator.
-
-**Specific options:**
-
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
-- **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
-- **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
-- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, all the typical background properties.
-- **animated** (*Optional*, boolean): To animate indicator when bar changes value. Defaults to ``true``.
-- Style options from :ref:`lvgl-styling`. The background of the bar and it uses the typical background style properties. Adding padding will make the indicator smaller or larger.
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - bar:
-        x: 10
-        y: 100
-        id: bar_id
-        value: 75
-        min_value: 1
-        max_value: 100
-
-
-The ``bar`` can be also integrated as :doc:`/components/number/lvgl`.
+        - lvgl.label.update:
+            id: lbl_id
+            text:
+              format: "%.0fdBm"
+              args: [ 'id(wifi_signal_db).get_state()' ]
 
 .. _lvgl-wgt-btn:
 
@@ -729,6 +670,35 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
 
     The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations. Check out  :ref:`lvgl-cook-keypad` for an example.
 
+.. _lvgl-wgt-swi:
+
+``switch``
+**********
+
+The Switch looks like a little slider and can be used to turn something on and off.
+
+.. figure:: /components/images/lvgl_switch.png
+    :align: center
+
+**Specific options:**
+
+- **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
+- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
+- Style options from :ref:`lvgl-styling`.
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - switch:
+        x: 10
+        y: 10
+        id: switch_id
+
+The ``switch`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
+
+See :ref:`lvgl-cook-relay` for an example how to use a switch to act on a local component.
 
 .. _lvgl-wgt-chk:
 
@@ -749,7 +719,7 @@ The Checkbox widget is made internally from a "tick box" and a label. When the C
 
 ``lvgl.checkbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
-- **text** (*Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
+- **text** (**Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
     -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
     -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the
        format message.
@@ -832,199 +802,244 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
 
 The ``dropdown`` can be also integrated as :doc:`/components/select/lvgl`.
 
-.. _lvgl-wgt-img:
+.. _lvgl-wgt-rol:
 
-``img``
+``roller``
+**********
+
+Roller allows you to simply select one option from a list by scrolling.
+
+.. figure:: /components/images/lvgl_roller.png
+    :align: center
+
+**Specific options:**
+
+- **options** (*Required*, list): The list of available options in the roller.
+- **mode** (*Optional*, enum): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
+- **visible_rows** TODO
+- **selected** (*Optional*, list): Settings for the selected *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the :ref:`lvgl-wgt-lbl` text style properties to change the appearance of the text in the selected area.
+- **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
+- Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and :ref:`lvgl-wgt-lbl` style properties. ``text_line_space`` adjusts the space between the options. When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in ``anim_time`` milliseconds as specified in the style.
+
+**Specific actions:**
+
+``lvgl.roller.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - roller:
+        align: CENTER
+        id: roller_id
+        options:
+          - Violin
+          - Piano
+          - Bassoon
+          - Chello
+          - Drums
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.roller.update:
+            id: roller_id
+            selected_index: 5
+
+The ``roller`` can be also integrated as :doc:`/components/select/lvgl`.
+
+
+.. _lvgl-wgt-bar:
+
+``bar``
 *******
 
-Images are the basic widgets to display images. 
+The bar widget has a background and an indicator on it. The width of the indicator is set according to the current value of the bar.
 
-.. figure:: /components/images/lvgl_image.png
+.. figure:: /components/images/lvgl_bar.png
     :align: center
+
+Vertical bars can be created if the width is smaller than the height.
+
+Not only the end, but also the start value of the bar can be set, which changes the start position of the indicator.
 
 **Specific options:**
 
-- **src** (**Required**, :ref:`image <display-image>`):  The ID of an existing image configuration.
-- Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
-
-Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
-
-**Specific actions:**
-
-``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
+- **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
+- **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
+- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, all the typical background properties.
+- **animated** (*Optional*, boolean): To animate indicator when bar changes value. Defaults to ``true``.
+- Style options from :ref:`lvgl-styling`. The background of the bar and it uses the typical background style properties. Adding padding will make the indicator smaller or larger.
 
 **Example:**
 
 .. code-block:: yaml
 
     # Example widget:
-    - img:
-        align: CENTER
-        src: cat_image
-        id: img_id
-        radius: 11
-        clip_corner: true
+    - bar:
+        x: 10
+        y: 100
+        id: bar_id
+        value: 75
+        min_value: 1
+        max_value: 100
+
+
+The ``bar`` can be also integrated as :doc:`/components/number/lvgl`.
+
+.. _lvgl-wgt-sli:
+
+``slider``
+**********
+
+The Slider widget looks like a bar supplemented with a knob. The knob can be dragged to set a value. Just like Bar, Slider can be vertical or horizontal.
+
+.. figure:: /components/images/lvgl_slider.png
+    :align: center
+
+**Specific options:**
+
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
+- **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
+- **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. A rectangle (or circle) drawn at the current value. Also uses all the typical background properties to describe the knob. By default, the knob is square (with an optional corner radius) with side length equal to the smaller side of the slider. The knob can be made larger with the padding values. Padding values can be asymmetric too.
+- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The indicator that shows the current state of the slider. Also uses all the typical background style properties.
+- **animated** (*Optional*, boolean): To animate indicator when bar changes value. Defaults to ``true``.
+- any :ref:`Styling <lvgl-styling>` and state-based option for the background of the slider. Uses all the typical background style properties. Padding makes the indicator smaller in the respective direction.
+
+Normally, the slider can be adjusted either by dragging the knob, or by clicking on the slider bar. In the latter case the knob moves to the point clicked and slider value changes accordingly. In some cases it is desirable to set the slider to react on dragging the knob only. This feature is enabled by enabling the ``adv_hittest`` flag.
+
+**Specific actions:**
+
+``lvgl.slider.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+
+**Specific triggers:**
+
+``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - slider:
+        x: 10
+        y: 10
+        width: 220
+        id: slider_id
+        value: 75
+        min_value: 0
+        max_value: 100
 
     # Example action:
     on_...:
       then:
-        - lvgl.img.update:
-            id: img_id
-            src: dog_image
+        - lvgl.slider.update:
+            id: slider_id
+            knob:
+              bg_color: 0x00FF00
+            value: 55
 
-.. _lvgl-wgt-lbl:
-
-``label``
-*********
-
-A label is the basic widget type that is used to display text.
-
-.. figure:: /components/images/lvgl_label.png
-    :align: center
-
-**Specific options:**
-
-- **text** (**Required**, string): The text or built-in :ref:`symbol <lvgl-fonts>` to display. To display an empty label, specify ``""``.
-- **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
-- **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to render the text in.
-- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
-- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array name of the font used to render the text or symbol.
-- **text_letter_space** (*Optional*, int16): Characher spacing of the text.
-- **text_line_space** (*Optional*, int16): Line spacing of the text.
-- **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
-- **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
-    - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped. (Default)
-    - ``DOT``: Replaces the last 3 characters from bottom right corner of the label with dots.
-    - ``SCROLL``: If the text is wider than the label scroll it horizontally back and forth. If it's higher, scroll vertically. Only one direction is scrolled and horizontal scrolling has higher precedence.
-    - ``SCROLL_CIRCULAR``: If the text is wider than the label scroll it horizontally continuously. If it's higher, scroll vertically. Only one direction is scrolled and horizontal scrolling has higher precedence.
-    - ``CLIP``: Simply clip the parts of the text outside the label.
-- **scrollbar** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scrollbar that is shown when the text is larger than the widget's size.
-- **selected** (*Optional*, list): Settings for the the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
-- Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties. The padding values can be used to add space between the text and the background.
-
-Newline escape sequences are handled automatically by the label widget. You can use ``\n`` to make a line break. For example: ``"line1\nline2\n\nline4"``. **Note**: For escape sequences like newline to be translated, enclose the string in double quotes.
-
-**Specific actions:**
-
-``lvgl.label.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. 
-
-- **text** (*Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
-    -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
-    -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the
-       format message.
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - label:
-        align: CENTER
-        id: lbl_id
-        recolor: true
-        text: "#FF0000 write# #00FF00 colored# #0000FF text#"
-
-    - label:
-        align: TOP_MID
-        id: lbl_symbol
-        text_font: montserrat_28
-        text: "\uF013"
-
-    # Example action (update label with a value from a sensor):
-    on_...:
-      then:
-        - lvgl.label.update:
-            id: lbl_id
-            text:
-              format: "%.0fdBm"
-              args: [ 'id(wifi_signal_db).get_state()' ]
-
-.. _lvgl-wgt-led:
-
-``led``
-********
-
-The Led widgets are rectangle-like (or circle) widget whose brightness can be adjusted. With lower brightness the colors become darker.
-
-.. figure:: /components/images/lvgl_led.png
-    :align: center
-
-**Specific options:**
-
-- **color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background, border, and shadow of the widget.
-- **brightness** (*Optional*, percentage): The brightness of the LED color, where ``0%`` corresponds to black, and ``100%`` corresponds to the full brightness of the color specified above.
-- Style options from :ref:`lvgl-styling`, using all the typical background style properties.
-
-**Specific actions:**
-
-``lvgl.led.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - led:
-        id: led_id
-        align: CENTER
-        color: 0xFF0000
-        brightness: 70%
-
-    # Example action:
-    on_...:
-      then:
-        - lvgl.led.update:
-            id: lvgl_led
-            color: 0x00FF00
-
-The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
+    # Example trigger:
+    - slider:
+        ...
+        on_value:
+          - logger.log:
+              format: "Slider value is: %.0f"
+              args: [ 'x' ]
 
 .. note::
 
-    If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup, according to its ``restore_mode`` setting.
+    The ``on_value`` trigger is sent while the slider is being dragged or changed with keys. The event is sent *continuously* while the slider is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
-Check out :ref:`lvgl-cook-keypad` in the Cookbook for an example how to change the led styling properties from an automation.
+The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
 
-.. _lvgl-wgt-lin:
+See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use a slider to control entities in Home Assistant.
 
-``line``
-********
+.. _lvgl-wgt-arc:
 
-The Line widget is capable of drawing straight lines between a set of points.
+``arc``
+*******
 
-.. figure:: /components/images/lvgl_line.png
+The Arc consists of a background and a foreground arc. The foreground (indicator) can be touch-adjusted with a knob.
+
+.. figure:: /components/images/lvgl_arc.png
     :align: center
 
 **Specific options:**
 
-- **points** (*Required*, list): A list of ``x, y`` integer pairs for point coordinates (origin from top left of parent)
-- **line_width** (*Optional*, int16): Set the width of the line in pixels.
-- **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
-- **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
-- **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
-- **line_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the line.
-- Style options from :ref:`lvgl-styling`, all the typical background properties and line style properties.
+- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
+- **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
+- **start_angle** (*Optional*, 0-360): start angle of the arc background (see note). Defaults to ``135``.
+- **end_angle** (*Optional*, 0-360): end angle of the arc background (see note). Defaults to ``45``.
+- **rotation** (*Optional*, int8): Offset to the 0 degree position. Defaults to ``0.0``.
+- **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``.
+- **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
+- **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
+- **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to use to draw the arcs.
+- **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
+- **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
+- **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws a handle on the end of the indicator using all background properties and padding values. With zero padding the knob size is the same as the indicator's width. Larger padding makes it larger, smaller padding makes it smaller.
+- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws *another arc using the arc style* properties. Its padding values are interpreted relative to the background arc.
+- any :ref:`Styling <lvgl-styling>` and state-based option to override styles inherited from parent. The arc's size and position will respect the padding style properties.
 
-TODO invert_y ???
+If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can be clicked through in the middle. Clicks are recognized only on the ring of the background arc.
 
-By default, the Line widget width and height dimensions are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts of the line may not be visible.
+.. note::
+
+    Zero degree is at the middle right (3 o'clock) of the widget and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
+
+**Specific actions:**
+
+``lvgl.arc.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+
+**Specific triggers:**
+
+``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
 
 **Example:**
 
 .. code-block:: yaml
 
     # Example widget:
-    - line:
-        points:
-          - 5, 5
-          - 70, 70
-          - 120, 10
-          - 180, 60
-          - 230, 15
-        line_width: 8
-        line_color: 0x0000FF
-        line_rounded: true
+    - arc:
+        x: 10
+        y: 10
+        id: arc_id
+        value: 75
+        min_value: 0
+        max_value: 100
+        adjustable: true
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.arc.update
+            id: arc_id
+            knob:
+              bg_color: 0x00FF00
+            value: 55
+
+    # Example trigger:
+    - arc:
+        ...
+        on_value:
+          - logger.log:
+              format: "Arc value is: %.0f"
+              args: [ 'x' ]
+
+.. note::
+
+    The ``on_value`` trigger is sent while the arc knob is being dragged or changed with keys. The event is sent *continuously* while the knob is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
+
+The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
+
+See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use a slider (or an arc) to control entities in Home Assistant.
 
 .. _lvgl-wgt-mtr:
 
@@ -1111,6 +1126,206 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 
 See :ref:`lvgl-cook-thermometer` and :ref:`lvgl-cook-clock` in the Cookbook for examples how to effectively use this widget.
 
+.. _lvgl-wgt-img:
+
+``img``
+*******
+
+Images are the basic widgets to display images. 
+
+.. figure:: /components/images/lvgl_image.png
+    :align: center
+
+**Specific options:**
+
+- **src** (**Required**, :ref:`image <display-image>`):  The ID of an existing image configuration.
+- Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
+
+Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
+
+**Specific actions:**
+
+``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - img:
+        align: CENTER
+        src: cat_image
+        id: img_id
+        radius: 11
+        clip_corner: true
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.img.update:
+            id: img_id
+            src: dog_image
+
+.. _lvgl-wgt-lin:
+
+``line``
+********
+
+The Line widget is capable of drawing straight lines between a set of points.
+
+.. figure:: /components/images/lvgl_line.png
+    :align: center
+
+**Specific options:**
+
+- **points** (*Required*, list): A list of ``x, y`` integer pairs for point coordinates (origin from top left of parent)
+- **line_width** (*Optional*, int16): Set the width of the line in pixels.
+- **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
+- **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
+- **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
+- **line_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the line.
+- Style options from :ref:`lvgl-styling`, all the typical background properties and line style properties.
+
+TODO invert_y ???
+
+By default, the Line widget width and height dimensions are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts of the line may not be visible.
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - line:
+        points:
+          - 5, 5
+          - 70, 70
+          - 120, 10
+          - 180, 60
+          - 230, 15
+        line_width: 8
+        line_color: 0x0000FF
+        line_rounded: true
+
+
+.. _lvgl-wgt-led:
+
+``led``
+********
+
+The Led widgets are rectangle-like (or circle) widget whose brightness can be adjusted. With lower brightness the colors become darker.
+
+.. figure:: /components/images/lvgl_led.png
+    :align: center
+
+**Specific options:**
+
+- **color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background, border, and shadow of the widget.
+- **brightness** (*Optional*, percentage): The brightness of the LED color, where ``0%`` corresponds to black, and ``100%`` corresponds to the full brightness of the color specified above.
+- Style options from :ref:`lvgl-styling`, using all the typical background style properties.
+
+**Specific actions:**
+
+``lvgl.led.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - led:
+        id: led_id
+        align: CENTER
+        color: 0xFF0000
+        brightness: 70%
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.led.update:
+            id: lvgl_led
+            color: 0x00FF00
+
+The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
+
+.. note::
+
+    If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup, according to its ``restore_mode`` setting.
+
+Check out :ref:`lvgl-cook-keypad` in the Cookbook for an example how to change the led styling properties from an automation.
+
+.. _lvgl-wgt-spi:
+
+``spinner``
+***********
+
+The Spinner widget is a spinning arc over a ring.
+
+.. figure:: /components/images/lvgl_spinner.png
+    :align: center
+
+**Specific options:**
+
+- **spin_time** (*Required*, :ref:`Time <config-time>`): Duration of one cycle of the spin.
+- **arc_length** (*Required*, 0-360): Length of the spinning arc in degrees.
+- **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to use to draw the arcs.
+- **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
+- **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
+- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws *another arc using the arc style* properties. Its padding values are interpreted relative to the background arc.
+
+**Specific actions:**
+
+``lvgl.spinner.update`` :ref:`action <config-action>` updates the widget styles and properties for the *indicator* part (anything other than the properties that apply commonly to all objects), just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - spinner:
+        align: center
+        spin_time: 2s
+        arc_length: 60deg
+        id: spinner_id
+        indicator:
+          arc_color: 0xd4d4d4
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.spinner.update:
+            id: spinner_id
+            arc_color: 0x31de70
+
+.. _lvgl-wgt-obj:
+
+``obj``
+*******
+
+The Base Object can be directly used as a simple, empty widget. It is nothing more than a (rounded) rectangle.
+
+.. figure:: /components/images/lvgl_baseobj.png
+    :align: center
+
+You can use it as a parent background shape for other objects. It catches touches!
+
+**Specific options:**
+
+- Style options from :ref:`lvgl-styling`.
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - obj:
+        x: 10
+        y: 10
+        width: 220
+        height: 300
+        widgets:
+          - ...
+
 .. _lvgl-wgt-msg:
 
 ``msgboxes``
@@ -1164,276 +1379,6 @@ The configured message boxes are hidden by default. One can show them with ``lvg
 .. note::
 
     You can create your own more complex dialogs with a full-screen sized, half-opaque ``obj`` with any child widgets on it, and the ``hidden`` flag set to ``true`` by default. For non-modal dialogs, simply set the ``clickable`` flag to ``false`` on it.
-
-
-.. _lvgl-wgt-rol:
-
-``roller``
-**********
-
-Roller allows you to simply select one option from a list by scrolling.
-
-.. figure:: /components/images/lvgl_roller.png
-    :align: center
-
-**Specific options:**
-
-- **options** (*Required*, list): The list of available options in the roller.
-- **mode** (*Optional*, enum): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
-- **visible_rows** TODO
-- **selected** (*Optional*, list): Settings for the selected *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the :ref:`lvgl-wgt-lbl` text style properties to change the appearance of the text in the selected area.
-- **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
-- Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and :ref:`lvgl-wgt-lbl` style properties. ``text_line_space`` adjusts the space between the options. When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in ``anim_time`` milliseconds as specified in the style.
-
-**Specific actions:**
-
-``lvgl.roller.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - roller:
-        align: CENTER
-        id: roller_id
-        options:
-          - Violin
-          - Piano
-          - Bassoon
-          - Chello
-          - Drums
-
-    # Example action:
-    on_...:
-      then:
-        - lvgl.roller.update:
-            id: roller_id
-            selected_index: 5
-
-The ``roller`` can be also integrated as :doc:`/components/select/lvgl`.
-
-.. _lvgl-wgt-sli:
-
-``slider``
-**********
-
-The Slider widget looks like a bar supplemented with a knob. The knob can be dragged to set a value. Just like Bar, Slider can be vertical or horizontal.
-
-.. figure:: /components/images/lvgl_slider.png
-    :align: center
-
-**Specific options:**
-
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
-- **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
-- **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. A rectangle (or circle) drawn at the current value. Also uses all the typical background properties to describe the knob. By default, the knob is square (with an optional corner radius) with side length equal to the smaller side of the slider. The knob can be made larger with the padding values. Padding values can be asymmetric too.
-- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The indicator that shows the current state of the slider. Also uses all the typical background style properties.
-- **animated** (*Optional*, boolean): To animate indicator when bar changes value. Defaults to ``true``.
-- any :ref:`Styling <lvgl-styling>` and state-based option for the background of the slider. Uses all the typical background style properties. Padding makes the indicator smaller in the respective direction.
-
-Normally, the slider can be adjusted either by dragging the knob, or by clicking on the slider bar. In the latter case the knob moves to the point clicked and slider value changes accordingly. In some cases it is desirable to set the slider to react on dragging the knob only. This feature is enabled by enabling the ``adv_hittest`` flag.
-
-**Specific actions:**
-
-``lvgl.slider.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
-
-**Specific triggers:**
-
-``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - slider:
-        x: 10
-        y: 10
-        width: 220
-        id: slider_id
-        value: 75
-        min_value: 0
-        max_value: 100
-
-    # Example action:
-    on_...:
-      then:
-        - lvgl.slider.update:
-            id: slider_id
-            knob:
-              bg_color: 0x00FF00
-            value: 55
-
-    # Example trigger:
-    - slider:
-        ...
-        on_value:
-          - logger.log:
-              format: "Slider value is: %.0f"
-              args: [ 'x' ]
-
-.. note::
-
-    The ``on_value`` trigger is sent while the slider is being dragged or changed with keys. The event is sent *continuously* while the slider is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
-
-The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
-
-See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use a slider to control entities in Home Assistant.
-
-.. _lvgl-wgt-spi:
-
-``spinner``
-***********
-
-The Spinner widget is a spinning arc over a ring.
-
-.. figure:: /components/images/lvgl_spinner.png
-    :align: center
-
-**Specific options:**
-
-- **spin_time** (*Required*, :ref:`Time <config-time>`): Duration of one cycle of the spin.
-- **arc_length** (*Required*, 0-360): Length of the spinning arc in degrees.
-- **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **arc_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to use to draw the arcs.
-- **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
-- **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
-- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws *another arc using the arc style* properties. Its padding values are interpreted relative to the background arc.
-
-**Specific actions:**
-
-``lvgl.spinner.update`` :ref:`action <config-action>` updates the widget styles and properties for the *indicator* part (anything other than the properties that apply commonly to all objects), just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - spinner:
-        align: center
-        spin_time: 2s
-        arc_length: 60deg
-        id: spinner_id
-        indicator:
-          arc_color: 0xd4d4d4
-
-    # Example action:
-    on_...:
-      then:
-        - lvgl.spinner.update:
-            id: spinner_id
-            arc_color: 0x31de70
-
-.. _lvgl-wgt-swi:
-
-``switch``
-**********
-
-The Switch looks like a little slider and can be used to turn something on and off.
-
-.. figure:: /components/images/lvgl_switch.png
-    :align: center
-
-**Specific options:**
-
-- **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
-- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
-- Style options from :ref:`lvgl-styling`.
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - switch:
-        x: 10
-        y: 10
-        id: switch_id
-
-The ``switch`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
-
-See :ref:`lvgl-cook-relay` for an example how to use a switch to act on a local component.
-
-.. _lvgl-wgt-tbl:
-
-``table``
-*********
-
-Tables, as usual, are built from rows, columns, and cells containing texts.
-
-The Table widget is very lightweight because only the texts are stored. No real objects are created for cells but they are just drawn on the fly.
-
-**Specific options:**
-
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- **items** (*Optional*, list): Settings for the items *part*
-- Style options from :ref:`lvgl-styling`.
-
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - 
-
-.. _lvgl-wgt-txt:
-
-``textarea``
-************
-
-The Text Area is a base widget with a label and a cursor on it. Texts or characters can be added to it. Long lines are wrapped and when the text becomes long enough the Text area can be scrolled.
-
-One line mode and password modes are supported.
-
-**Specific options:**
-
-- **value** (*Required*, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
-- **scrollbar** (*Optional*, list): Settings for the scrollbar *part*
-- **selected** (*Optional*, list): Settings for the selected *part*
-- **cursor** (*Optional*, list): Settings for the cursor *part*
-- **textarea_placeholder** (*Optional*, list): Settings for the textarea_placeholder *part*
-- Style options from :ref:`lvgl-styling`.
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - 
-
-
-.. _lvgl-wgt-obj:
-
-``obj``
-*******
-
-The Base Object can be directly used as a simple, empty widget. It is nothing more than a (rounded) rectangle.
-
-.. figure:: /components/images/lvgl_baseobj.png
-    :align: center
-
-You can use it as a parent background shape for other objects. It catches touches!
-
-**Specific options:**
-
-- Style options from :ref:`lvgl-styling`.
-
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - obj:
-        x: 10
-        y: 10
-        width: 220
-        height: 300
-        widgets:
-          - ...
 
 Actions
 -------
