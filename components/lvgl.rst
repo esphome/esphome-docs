@@ -9,7 +9,7 @@ LVGL Graphics
 
 
 `LVGL <https://lvgl.io/>`__ (Light and Versatile Graphics Library) is a free and open-source 
-embedded graphics library to create beautiful UIs for any MCU, MPU and display type. ESPHome supports `LVGL version 8.3.9 <https://docs.lvgl.io/8.3/>`__.
+embedded graphics library to create beautiful UIs for any MCU, MPU and display type. ESPHome supports `LVGL version 8.3.11 <https://docs.lvgl.io/8.3/>`__.
 
 .. figure:: /components/images/lvgl_main_screenshot.png
     :align: center
@@ -749,6 +749,11 @@ The Checkbox widget is made internally from a "tick box" and a label. When the C
 
 ``lvgl.checkbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
+- **text** (*Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
+    -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
+    -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the
+       format message.
+
 **Example:**
 
 .. code-block:: yaml
@@ -902,7 +907,12 @@ Newline escape sequences are handled automatically by the label widget. You can 
 
 **Specific actions:**
 
-``lvgl.label.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.label.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. 
+
+- **text** (*Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
+    -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
+    -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the
+       format message.
 
 **Example:**
 
@@ -926,10 +936,9 @@ Newline escape sequences are handled automatically by the label widget. You can 
       then:
         - lvgl.label.update:
             id: lbl_id
-            text: !lambda |-
-              static char buf[10];
-              snprintf(buf, 10, "%.0fdBm", id(wifi_signal_db).get_state());
-              return buf;
+            text:
+              format: "%.0fdBm"
+              args: [ 'id(wifi_signal_db).get_state()' ]
 
 .. _lvgl-wgt-led:
 

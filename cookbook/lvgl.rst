@@ -256,10 +256,9 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
               value: !lambda return x * 10; 
           - lvgl.label.update:
               id: temperature_text
-              text: !lambda |-
-                static char buf[10];
-                snprintf(buf, 10, "%.1f°C", x);
-                return buf;
+              text:
+                format: "%.1f°C"
+                args: [ 'x' ]
     lvgl:
         ...
         pages:
@@ -312,8 +311,6 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
                         align: CENTER
                         y: 65
                         text_align: center
-
-Notable here is the way the label is updated with a sensor numeric value using `snprintf <https://cplusplus.com/reference/cstdio/snprintf/>`__.
 
 .. _lvgl-cook-cover:
 
@@ -376,10 +373,9 @@ Just as in the previous examples, we need to get the states of the cover first. 
               else:
                 - lvgl.label.update:
                     id: cov_stop_myroom
-                    text: !lambda |-
-                      static char buf[10];
-                      snprintf(buf, 10, "%.0f%%", id(cover_myroom_pos).get_state());
-                      return buf;
+                    text:
+                      format: "%.0f%%"
+                      args: [ 'id(cover_myroom_pos).get_state()' ]
 
     lvgl:
         ...
