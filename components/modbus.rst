@@ -72,9 +72,9 @@ When enabled, use the hardware controlled ``flow_control_pin`` of the UART compo
 
     # Example configuration entry for ESP32 with flow control 
     uart:
-        ...
         flow_control_pin: GPIO10
         tx_buffer_size: 128
+        ...
 
     modbus:
         # Don't use `flow_control_pin` here
