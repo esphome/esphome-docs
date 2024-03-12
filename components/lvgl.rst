@@ -1176,7 +1176,7 @@ The animation image is similar to the normal ``img`` object. The main difference
 
 **Specific options:**
 
-- **src** (**Required**, list of :ref:`image <display-image>`): A list of IDs of existing image configurations to be loaded as frames of the animation.
+- **src** (**Required**, list of :ref:`images <display-image>`): A list of IDs of existing image configurations to be loaded as frames of the animation.
 - **auto_start** (*Optional*, boolean): Start the animation playback automatically. Defaults to ``true``.
 - **repeat_count** (*Optional*, int16 or *forever*): How many times to repeat the playback. Defaults to ``forever``.
 - **duration** (*Required*, :ref:`Time <config-time>`): Duration of one image frame.
