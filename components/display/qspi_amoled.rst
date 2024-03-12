@@ -19,7 +19,7 @@ This driver has been tested with the following displays:
 Usage
 -----
 This component requires an ESP32 and the use of
-ESP-IDF. PSRAM is a requirement due to the size of the display buffer. A quad SPI bus interface must be configured.
+ESP-IDF. PSRAM is a requirement due to the size of the display buffer. A :ref:`quad SPI bus <spi>` interface must be configured.
 
 .. figure:: images/t4-s3.jpg
     :align: center
@@ -36,30 +36,22 @@ ESP-IDF. PSRAM is a requirement due to the size of the display buffer. A quad SP
 
 .. code-block:: yaml
 
-
-    # Example minimal configuration entry
-
-    spi:
-      id: quad_spi
-      type: quad
-      clk_pin: 15
-      data_pins: [14, 10, 16, 12]
-
-    display:
-      - platform: qspi_amoled
-        model: RM690B0
-        data_rate: 80MHz
-        spi_mode: mode0
-        dimensions:
-          width: 450
-          height: 600
-          offset_width: 16
-        color_order: rgb
-        invert_colors: false
-        brightness: 255
-        cs_pin: 11
-        reset_pin: 13
-        enable_pin: 9
+        # Example minimal configuration entry
+        display:
+          - platform: qspi_amoled
+            model: RM690B0
+            data_rate: 80MHz
+            spi_mode: mode0
+            dimensions:
+              width: 450
+              height: 600
+              offset_width: 16
+            color_order: rgb
+            invert_colors: false
+            brightness: 255
+            cs_pin: 11
+            reset_pin: 13
+            enable_pin: 9
 
 
 Configuration variables:
