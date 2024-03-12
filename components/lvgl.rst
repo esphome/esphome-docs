@@ -1172,7 +1172,7 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
 ``animimg``
 ***********
 
-The animation image is similar to the normal ``img`` object. The main difference is that instead of one source image, you set an array of multiple source images. You can also specify a duration and a repeat count.
+The animation image is similar to the normal ``img`` object. The main difference is that instead of one source image, you set a list of multiple source images. You can also specify a duration and a repeat count.
 
 **Specific options:**
 
