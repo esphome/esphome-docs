@@ -1145,7 +1145,7 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
 
 **Specific actions:**
 
-``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. Updating the ``src`` option changes the image at runtime.
 
 **Example:**
 
@@ -1165,6 +1165,58 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
         - lvgl.img.update:
             id: img_id
             src: dog_image
+
+
+.. _lvgl-wgt-aim:
+
+``animimg``
+***********
+
+The animation image is similar to the normal ``img`` object. The main difference is that instead of one source image, you set an array of multiple source images. You can also specify a duration and a repeat count.
+
+**Specific options:**
+
+- **src** (**Required**, list of :ref:`image <display-image>`): A list of IDs of existing image configurations to be loaded as frames of the animation.
+- **auto_start** (*Optional*, boolean): Start the animation playback automatically. Defaults to ``true``.
+- **repeat_count** (*Optional*, int16 or *forever*): How many times to repeat the playback. Defaults to ``forever``.
+- **duration** (*Required*, :ref:`Time <config-time>`): Duration of one image frame.
+- Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
+
+Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
+
+**Specific actions:**
+
+``lvgl.animimg.start`` :ref:`action <config-action>` starts the animation playback if it was displayed with ``auto_start`` false or after ``repeat_count`` expired.
+
+``lvgl.animimg.update`` :ref:`action <config-action>` updates ``repeat_count`` and ``duration``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. 
+
+.. note::
+
+    ``repeat_count`` and ``duration`` updates take place only at the next start of the animation. For example to stop an animation lasting ``forever``, just call the ``lvgl.animimg.update`` action with ``duration: 0ms``, and then call ``lvgl.animimg.start`` to activate the new animation parameter. 
+    
+    ``src`` and ``auto_start`` cannot be updated at runtime.
+    
+    If the widget is configured with ``auto_start: true``, its initial dimensions and position will not be valid to be used with relative alignment (don't use ``align_to`` to align other widgets relative to this widget).
+
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - animimg:
+        align: CENTER
+        id: anim_id
+        src: [ cat_image, dog_image ]
+        duration: 300ms
+
+    # Example actions:
+    on_...:
+      then:
+        - lvgl.animimg.update:
+            id: anim_id
+            duration: 0ms
+        - lvgl.animimg.start: anim_id
 
 .. _lvgl-wgt-lin:
 
