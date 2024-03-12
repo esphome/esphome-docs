@@ -14,8 +14,18 @@ engine. Fundamentally, there are these types of displays:
 - Graphical binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper <waveshare_epaper>`,
   :doc:`OLED <ssd1306>` or :doc:`TFT <ili9xxx>` displays.
 
-For the last type, ESPHome has a powerful rendering engine that can do
-many things like draw some basic shapes, print text with any font you want, or even show images.
+For graphical binary displays, there are two options: 
+
+- ESPHome's :ref:`own powerful rendering engine <display-engine>`
+- :ref:`LVGL <lvgl-main>` - Light and Versatile Graphics Library
+
+.. _display-engine:
+
+Display Rendering Engine
+------------------------
+
+ESPHome's own powerful rendering engine can do many things like draw some basic shapes, print text with any font
+you want, or even show images.
 
 To achieve all this flexibility displays tie in directly into ESPHome's :ref:`lambda system <config-lambda>`.
 So when you want to write some text or sensor values to the screen you will be writing in C++ code
@@ -23,11 +33,6 @@ using an API that is designed to
 
 - be simple and to be used without programming experience
 - but also be flexible enough to work with more complex tasks like displaying an analog clock.
-
-.. _display-engine:
-
-Display Rendering Engine
-------------------------
 
 In this section we will be discussing how to use ESPHome's display rendering engine from ESPHome
 and some basic commands. Please note that this only applies to displays that can control each pixel
@@ -969,6 +974,7 @@ See Also
 --------
 
 - :apiref:`display/display_buffer.h`
+- :ref:`LVGL <lvgl-main>`
 - :ref:`Fonts <display-fonts>`
 - :ghedit:`Edit`
 
