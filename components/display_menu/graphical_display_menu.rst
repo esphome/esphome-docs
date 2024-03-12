@@ -34,7 +34,7 @@ engine such as :doc:`E-Paper displays </components/display/waveshare_epaper>` or
       display: my_display_component
       on_redraw:
         then:
-          component.update: my_dispay_component
+          component.update: my_display_component
       active: false
       mode: rotary
       items:
@@ -194,7 +194,7 @@ The below example is a more complete example showing how you might use a rotary 
       display: my_display_component
       on_redraw:
         then:
-          component.update: my_dispay_component
+          component.update: my_display_component
       active: false
       mode: rotary
       items:
