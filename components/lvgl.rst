@@ -70,21 +70,21 @@ Configuration variables:
 - **displays** (**Required**, list): A list of displays where to render this entire LVGL configuration:
     - **display_id** (**Required**, :ref:`config-id`): The ID of a display configuration.
 - **touchscreens** (*Optional*, list): A list of touchscreens interacting with the LVGL widgets on the display. Can be omitted if there's at least a rotary encoder configured.
-    - **touchscreen_id** (**Required**, :ref:`config-id`): ID of a touchscreen configuration-
-    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): Delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
-    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): Repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
+    - **touchscreen_id** (**Required**, :ref:`config-id`): ID of a touchscreen configuration related to a dsisplay.
+    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
+    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
 - **rotary_encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display. Can be omitted if there's at least a touchscreen configured.
     - **sensor:** (**Required**, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder` used to interact with the widgets.
     - **binary_sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, usually used as a push button within the rotary encoder used to interact with the widgets.
     - **group** (*Optional*, string): A name for a group of widgets whics will interact with the the rotary encoder. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
-    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): Delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
-    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): Repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
+    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
+    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
 - **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
 - **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
-- **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen. Defaults to ``1s``.
+- **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen if necessarry. Defaults to ``1s``.
 - **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
-- **byte_order** (*Optional*, enum): The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, will default to ``big_endian``.
-- **default_font**  (*Optional*, enum): The C array name of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to ``montserrat_14`` if not specified.
+- **byte_order** (*Optional*, enum): The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, defaults to ``big_endian``.
+- **default_font**  (*Optional*, enum): The C array name of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each. If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
