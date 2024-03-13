@@ -36,6 +36,7 @@ ESPHome 2024.3.0 - 20th March 2024
     Emmeti, components/climate/climate_ir, air-conditioner-ir.svg, dark-invert
     Uponor Smatrix, components/uponor_smatrix, uponor.svg
     Kamstrup KMP, components/sensor/kamstrup_kmp, kamstrup_kmp.jpg
+    Template Fan, components/fan/template, description.svg, dark-invert
 
 
 Notes to be written...
@@ -63,6 +64,7 @@ New Components
 - feat: Add HTU31D Support :esphomepr:`5805` by :ghuser:`betterengineering` (new-integration)
 - Emmeti infrared climate support :esphomepr:`5197` by :ghuser:`E440QF` (new-integration)
 - Added Kamstrup Multical 40x component :esphomepr:`4200` by :ghuser:`cfeenstra1024` (new-integration)
+- add template fan :esphomepr:`6310` by :ghuser:`ssieb` (breaking-change)
 
 Breaking Changes
 ^^^^^^^^^^^^^^^^
