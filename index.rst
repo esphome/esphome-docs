@@ -282,6 +282,7 @@ Electricity
     INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
     INA260, components/sensor/ina260, ina260.jpg, DC Current & Power
     INA3221, components/sensor/ina3221, ina3221.jpg, 3-Ch DC current
+    Kamstrup KMP, components/sensor/kamstrup_kmp, kamstrup_kmp.jpg, District Heating Meter
     MAX9611, components/sensor/max9611, max9611.jpg, +60VDC Voltage & Current & Power & Temperature
     PZEM AC, components/sensor/pzemac, pzem-ac.jpg, Voltage & Current & Power
     PZEM DC, components/sensor/pzemdc, pzem-dc.jpg, Voltage & Current & Power
@@ -323,6 +324,7 @@ Environmental
     Honeywell ABP2 I2C, components/sensor/honeywellabp2_i2c, honeywellabp.jpg, Pressure & Temperature
     Honeywell HIH I2C, components/sensor/honeywell_hih_i2c, honeywellhih.jpg, Temperature & Humidity
     HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
+    HTU31D, components/sensor/htu31d, htu31d.jpg, Temperature & Humidity
     Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
     Internal Temperature, components/sensor/internal_temperature, thermometer.svg, Temperature, dark-invert
@@ -677,6 +679,7 @@ Display Components
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     Nextion, components/display/nextion, nextion.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
+    Quad SPI AMOLED, components/display/qspi_amoled, t4-s3.jpg
     PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
     RPI_DPI_RGB, components/display/rpi_dpi_rgb, waveshare_touch-s3.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
