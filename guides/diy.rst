@@ -126,3 +126,5 @@ Sample Configurations
 - `ESPHome Free your Thomson Guardian gate controller <https://github.com/ludrao/esphome-guardian>`__ by :ghuser:`ludrao`
 - `Ambient Light Sensor tcs34725 example <https://gist.github.com/RubenKelevra/0d70d6b4c8e4bc9aedc8682865731d65>`__ by :ghuser:`RubenKelevra`
 - `9 Valve Sprinkler Controller configuration <https://github.com/hwstar/9-Valve-Sprinkler-Controller>`__ by :ghuser:`hwstar`
+- `ESPHome IKEA VINDRIKTNING <https://github.com/DzurisHome/ESPHome-IKEA-VINDRIKTNING>`__ by :ghuser:`DzurisHome`
+- `ESPHome Refoss 11 <https://github.com/DzurisHome/ESPHome-Refoss-P11>`__ by :ghuser:`DzurisHome`
