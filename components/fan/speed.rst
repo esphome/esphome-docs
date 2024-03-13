@@ -24,8 +24,8 @@ Configuration variables:
 ------------------------
 
 - **name** (*Optional*, string): The name for this fan.
-- **output** (*Optional*, :ref:`config-id`): The id of the
-  :ref:`float output <output>` to use for this fan.
+- **output** (*Optional*, :ref:`config-id`): The id of the :ref:`float output <output>` to use for this fan.
+  (This is a temporary change until a template fan is available.)
 - **oscillation_output** (*Optional*, :ref:`config-id`): The id of the
   :ref:`output <output>` to use for the oscillation state of this fan. Default is empty.
 - **direction_output** (*Optional*, :ref:`config-id`): The id of the
