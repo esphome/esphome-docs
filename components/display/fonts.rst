@@ -7,12 +7,15 @@ Font Renderer Component
     :description: Instructions for setting up fonts in ESPHome.
     :image: format-font.svg
 
-ESPHome's graphical rendering engine also has a powerful font drawer which integrates seamlessly into the system. You have the option to use **any** OpenType/TrueType (``.ttf``, ``.otf``, ``.woff``) font file at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Portable_Compiled_Format>`_ and `BDF <https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`_ bitmap fonts. 
+ESPHome's graphical rendering engine also has a powerful font drawer which integrates seamlessly into the system. You have the option to use **any** OpenType/TrueType (``.ttf``, ``.otf``, ``.woff``) font file at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Portable_Compiled_Format>`_ and `BDF <https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`_ bitmap fonts.
 
 
 These fonts can be used in ESPHome's :ref:`own rendering engine <display-engine>` or in the :ref:`LVGL Graphics <lvgl-main>` component.
 
-To use fonts you first have to define a font object in your ESPHome configuration file. Just grab a ``.ttf``, ``.otf``, ``.woff``, ``.pcf``, or ``.bdf`` file from somewhere on the internet and place it, for example, inside a ``fonts`` folder next to your configuration file.
+To use fonts you can either
+ - Just grab a ``.ttf``, ``.otf``, ``.woff``, ``.pcf``, or ``.bdf`` file from somewhere on the internet and place it, for example, inside a ``fonts`` folder next to your configuration file.
+ - Use the ``gfonts://`` short form to use Google Fonts directly.
+ - Load a font from a URL directly on build.
 
 Next, create a ``font:`` section in your configuration:
 
@@ -69,6 +72,15 @@ Next, create a ``font:`` section in your configuration:
               "\U000F05D4", # mdi-airplane-landing
               ]
 
+      - file: "https://github.com/IdreesInc/Monocraft/releases/download/v3.0/Monocraft.ttf"
+        id: web_font
+        size: 20
+      - file:
+          url: "https://github.com/IdreesInc/Monocraft/releases/download/v3.0/Monocraft.ttf"
+          type: web
+        id: web_font2
+        size: 24
+
     display:
       # ...
 
@@ -79,7 +91,7 @@ Configuration options:
 - **file** (**Required**, string): The path (relative to where the .yaml file is) of the font
   file. You can also use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
 
-  - **type** (**Required**, string): Can be ``local`` or ``gfonts``.
+  - **type** (**Required**, string): Can be ``local``, ``gfonts`` or ``web``.
 
   **Local Fonts**:
 
@@ -103,6 +115,10 @@ Configuration options:
       - **extra-bold**: 800
       - **black**: 900
 
+  **Web Fonts**:
+
+  - **url** (**Required**, string): The URL of the TrueType or bitmap font file.
+
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
   in your display code.
 - **size** (*Optional*, int): The size of the font in pt (not pixel!).
@@ -119,14 +135,14 @@ Configuration options:
 
 .. note::
 
-    OpenType/TrueType font files offer icons at codepoints far from what's reachable on a standard keyboard, for these it's needed 
-    to specify the unicode codepoint of the glyph as a hex address escaped with ``\u`` or ``\U``. 
-    
-    - Code points up to ``0xFFFF`` are encoded like ``\uE6E8``. Lowercase ``\u`` and exactly 4 hexadecimal digits. 
+    OpenType/TrueType font files offer icons at codepoints far from what's reachable on a standard keyboard, for these it's needed
+    to specify the unicode codepoint of the glyph as a hex address escaped with ``\u`` or ``\U``.
+
+    - Code points up to ``0xFFFF`` are encoded like ``\uE6E8``. Lowercase ``\u`` and exactly 4 hexadecimal digits.
     - Code points above ``0xFFFF`` are encoded like ``\U0001F5E9``. Capital ``\U`` and exactly 8 hexadecimal digits.
-    
-    The ``extras`` section only supports OpenType/TrueType files, ``size`` and ``bpp`` will be the same as the above level. This will allow printing icons alongside the characters in the same string, like ``I \uF004 You \uF001``. 
-    
+
+    The ``extras`` section only supports OpenType/TrueType files, ``size`` and ``bpp`` will be the same as the above level. This will allow printing icons alongside the characters in the same string, like ``I \uF004 You \uF001``.
+
     Many font sizes with multiple glyphs at high bit depths will increase the binary size considerably. Make your choices carefully.
 
 
@@ -145,4 +161,3 @@ See Also
 - `MDI cheatsheet <https://pictogrammers.com/library/mdi/>`_
 - `MDI font repository <https://github.com/Pictogrammers/pictogrammers.github.io/tree/main/%40mdi/font/>`_
 - :ghedit:`Edit`
-
