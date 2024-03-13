@@ -16,7 +16,7 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 
 In order to be able to drive a display with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended.
 
-TODO !! Display requirement/recommendation/spec, monochrome supported?
+The display itself should have ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set. It should be configured with an :ref:`config-id` which will be referenced in the main LGVL component configuration.
 
 For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly prefered) or a :doc:`/components/sensor/rotary_encoder` can be used.
 
@@ -27,12 +27,12 @@ Basics
 
 In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` to see the full list of available LVGL widgets in ESPHome.
 
-Pages in ESPHome are implemented as LVGL screens, which are special objects which have no parent object. There is always one active page on a display.
-
 Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
 The child object moves with the parent and if the parent is hidden the children will be hidden too. Children can be visible only within their parent's bounding area. In other words, the parts of the children outside the parent are clipped.
 
-Widgets integrate in ESPHome also as components:
+Pages in ESPHome are implemented as LVGL screens, which are special objects which have no parent object. There is always one active page on a display.
+
+Some widgets integrate in ESPHome also as components:
 
 +-------------+-------------------------------+ 
 | LVGL Widget | ESPHome component             | 
@@ -52,7 +52,7 @@ Widgets integrate in ESPHome also as components:
 | LED         | Light                         | 
 +-------------+-------------------------------+ 
 
-These are useful to perform :ref:`automations <automation>` triggered by actions performed at the screen. Check out the :ref:`lvgl-seealso` section at the bottom of this document.
+These are useful to make :ref:`automations <automation>` triggered by actions performed at the screen. Check out the :ref:`lvgl-seealso` section at the bottom of this document.
 
 Main Component
 --------------
@@ -61,7 +61,9 @@ Although LVGL is a complex matrix of objects-parts-states-styles, in ESPHome thi
 
 At the highest level of the LVGL object hierarchy is the display which represents the driver for a display device (physical display). A display can have one or more pages associated with it. Each page contains a hierarchy of objects for graphical widgets representing a layout that covers the entire display.
 
-The widget is at the top level, and it allows main styling. It also has sub-parts, which can be styled separately. Usually styles are inherited. The widget and the parts have states, and the different styling can be set for different states.
+The widget is at the next level, and it allows main styling. It can have sub-parts, which may be styled separately. Usually styles are inherited, but this depends on widget specifics or functionality. The widget and the parts have states, and the different styling can be set for different states.
+
+By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
 
 Configuration variables:
 
@@ -128,10 +130,6 @@ Configuration variables:
                 text: 'Hello World!'
 
 See :ref:`lvgl-cook-navigator` in the Cookbook for an example how to easily implement a page navigation bar at the bottom of the screen.
-
-.. note::
-
-    By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
 
 .. _lvgl-theme:
 
@@ -211,7 +209,6 @@ In the example below, you have an ``arc`` with some styles set here. Note how yo
             arc_color: 0xFFFF00
           focused:
             arc_color: 0x808080
-
 
 So the inheritance happens like this: state based styles override the locally specified styles, which override the style definitions, which override the theme, which overrides the top level styles.
 
@@ -1237,8 +1234,6 @@ The Line widget is capable of drawing straight lines between a set of points.
 - **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
 - **line_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the line.
 - Style options from :ref:`lvgl-styling`, all the typical background properties and line style properties.
-
-TODO invert_y ???
 
 By default, the Line widget width and height dimensions are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts of the line may not be visible.
 
