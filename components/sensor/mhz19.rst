@@ -71,6 +71,8 @@ Configuration variables:
   Set this value to ``true`` to enable ABC on boot.
   Doesn't send calibration command if not set (default sensor logic will be used).
 
+- **warmup_time** (*Optional*, Time): The sensor has a warmup time and before that, it returns bougus readings (eg: 500ppm, 505ppm...). This setting discards readings until the warmup time happened (``NAN`` is returned). The datasheet says preheating takes 1min, but empirical tests have shown it often takes more, so the 75s default should be enough to accomodate for that.
+
 .. figure:: images/mhz19-pins.jpg
     :align: center
     :width: 80.0%

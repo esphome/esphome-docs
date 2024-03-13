@@ -8,7 +8,7 @@ MMC5983 Magnetometer
     :image: mmc5983.jpg
     :keywords: MMC5983
 
-The ``mmc5983`` integration allows you to use your MMC5603 triple-axis magnetometer
+The ``mmc5983`` integration allows you to use your MMC5983 triple-axis magnetometer
 (`datasheet`_, `SparkFun`_) with ESPHome.
 
 The :ref:`I²C Bus <i2c>` is required to be set up for this sensor to work. The device supports 400kHz
