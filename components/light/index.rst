@@ -708,6 +708,7 @@ the strip and shifts them forward every ``add_led_interval``.
                   num_leds: 1
               add_led_interval: 100ms
               reverse: false
+              gradient: false
 
 Configuration variables:
 
@@ -720,7 +721,8 @@ Configuration variables:
   - **blue** (*Optional*, percentage): The percentage the blue color channel should be on. Defaults to ``100%``.
   - **random** (*Optional*, boolean): If set to ``true``, will overwrite the RGB colors by a new, randomly-chosen
     color each time. Defaults to ``false``.
-  - **num_leds** (*Optional*, int): The number of leds of this type to have before moving on to the next color.
+  - **num_leds** (**Required**, positive int): The number of LEDs of this type to have before transitioning to the next color. If ``gradient`` is true, this will be the number of LEDs over which the color transition will occur.
+  - **gradient** (*Optional*, boolean): If ``true`` the current color will transition with a gradient over ``num_leds`` to the next color. Defaults to ``false``.
 
 - **add_led_interval** (*Optional*, :ref:`config-time`): The interval with which to shift in new leds at the
   beginning of the strip. Defaults to ``100ms``.
@@ -1090,10 +1092,14 @@ It is also possible to use LedFx_ to control the lights. Please use the connecti
         effects:
           - wled:
               # port: 21324
+              # blank_on_start: True
+              # sync_group_mask: 0
 
 Configuration variables:
 
 - **port** (*Optional*, int): The port to run the UDP server on. Defaults to ``21324``.
+- **blank_on_start** (*Optional*, boolean): Whether or not to blank all LEDs when effect starts. Deaults to ``True``.
+- **sync_group_mask** (*Optional*, int): Used with WLED Notifier. The Sync Group mask value that specifies which WLED Sync Groups to listen to. Defaults to ``0`` (All Sync Groups). Sync Groups 1, 2, 3, 4, 5, 6, 7, 8 use masks 1, 2, 4, 8, 16, 32, 64, 128. Combine mask values to listen to multiple Sync Groups.
 
 .. note::
 

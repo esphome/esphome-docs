@@ -419,6 +419,9 @@ or a transistor-based circuit are not feasible options. Here's an example circui
 
 .. figure:: images/dsmr-request-pin-circuit-example.png
 
+When using a type of MCU that provides 5V on the GPIO outputs instead of 3.3V, then use a 330 Ohm
+resistor instead of the 200 Ohm resistor.
+
 .. _sensor-dsmr-improving_reader_results:
 
 Improving reader results
