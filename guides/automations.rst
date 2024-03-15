@@ -350,6 +350,7 @@ All Triggers
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
 - :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
 - :ref:`wifi.on_connect / wifi.on_disconnect <wifi-on_connect_disconnect>`
+- :ref:`sensor.statistics.on_update <statistics-on_update_trigger>`
 
 All Actions
 -----------
@@ -411,6 +412,8 @@ All Actions
   / :ref:`media_player.volume_up <media_player-volume_up>` / :ref:`media_player.volume_down <media_player-volume_down>` / :ref:`media_player.volume_set <media_player-volume_set>`
 - :ref:`ble_client.ble_write <ble_client-ble_write_action>`
 - :ref:`wireguard.disable <wireguard-actions>` / :ref:`wireguard.enable <wireguard-actions>`
+- :ref:`sensor.statistics.force_publish <statistics-force_publish_action>`
+- :ref:`sensor.statistics.reset <statistics-reset_action>`
 
 .. _config-condition:
 
@@ -446,6 +449,7 @@ All Lambda Calls
 - :ref:`Text Sensor <text_sensor-lambda_calls>`
 - :ref:`Stepper <stepper-lambda_calls>`
 - :ref:`Number <number-lambda_calls>`
+- :ref:`Statistics <statistics-lambdas_calls>`
 
 .. _delay_action:
 
