@@ -56,7 +56,7 @@ ESPHome is now prepared for the future! The future that is the old IPv6 that is.
 Dualstack is added and it could now have up to 5 ip addresses of any type, and communication with Home assistant,
 MQTT and NTP works with IPv6. ESPHome still depends on IPv4, but the crystal ball shows sign of IPv6-only networks.
 
-If you are building an :ref:`components/external_components` or you use
+If you are building an :doc:`components/external_components` or you use
 ``network::get_ip_address()``, ``wifi::global_wifi_component->get_ip_addresses()`` or ``ethernet::global_eth_component->get_ip_addresses()``,
 these functions have been renamed to ``::get_ip_addresses()`` respectively and now return a list of all IP addresses.
 
