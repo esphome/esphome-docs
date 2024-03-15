@@ -42,27 +42,15 @@ Some widgets integrate in ESPHome also as components:
       - ESPHome component
 
     * - ``btn``
-      - :doc:`/components/binary_sensor/lvgl`, :doc:`/components/switch/lvgl`
+      - :doc:`Binary Sensor </components/binary_sensor/lvgl>`, :doc:`/components/switch/lvgl`
 
-    * - ``switch``
+    * - ``switch``, ``checkbox``
       - :doc:`/components/switch/lvgl`
 
-    * - ``checkbox``
-      - :doc:`/components/switch/lvgl`
-
-    * - ``slider``
+    * - ``slider``, ``arc``, ``spinbox``
       - :doc:`/components/number/lvgl`
 
-    * - ``arc``
-      - :doc:`/components/number/lvgl`
-
-    * - ``spinbox``
-      - :doc:`/components/number/lvgl`
-
-    * - ``dropdown``
-      - :doc:`/components/select/lvgl`
-
-    * - ``roller``
+    * - ``dropdown``,  ``roller``
       - :doc:`/components/select/lvgl`
 
     * - ``led``
