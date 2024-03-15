@@ -35,8 +35,8 @@ Pages in ESPHome are implemented as LVGL screens, which are special objects whic
 Some widgets integrate in ESPHome also as components:
 
 .. list-table
-   :widths: 60 250
    :header-rows: 1
+   :widths: 1 2
 
    * - LVGL Widget
      - ESPHome component
