@@ -36,25 +36,25 @@ Some widgets integrate in ESPHome also as components:
 
 .. list-table::
     :header-rows: 1
-    :widths: 2 3
+    :widths: 1 1
 
     * - LVGL Widget
       - ESPHome component
 
     * - ``btn``
-      - :doc:`Binary Sensor </components/binary_sensor/lvgl>`, :doc:`/components/switch/lvgl`
+      - :doc:`Binary Sensor </components/binary_sensor/lvgl>`, :doc:`Switch </components/switch/lvgl>`
 
     * - ``switch``, ``checkbox``
-      - :doc:`/components/switch/lvgl`
+      - :doc:`Switch </components/switch/lvgl>`
 
     * - ``slider``, ``arc``, ``spinbox``
-      - :doc:`/components/number/lvgl`
+      - :doc:`Number </components/number/lvgl>`
 
     * - ``dropdown``,  ``roller``
-      - :doc:`/components/select/lvgl`
+      - :doc:`Select </components/select/lvgl>`
 
     * - ``led``
-      - :doc:`/components/light/lvgl`
+      - :doc:`Light </components/light/lvgl>`
 
 
 These are useful to make :ref:`automations <automation>` triggered by actions performed at the screen.
