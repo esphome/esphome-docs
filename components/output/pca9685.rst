@@ -58,7 +58,7 @@ Configuration variables:
 
 -  **frequency** (*Optional*, float): The frequency to let the
    component drive all PWM outputs at. Must be in range from 24Hz to
-   1525.88Hz. Default ``1000Hz``.
+   1525.88Hz. Servo motors often need 50Hz. Default ``1000Hz``.
 -  **external_clock_input** (*Optional*, bool): Enable external clock input. PRE_SCALE register will by set to 3. Default to ``false``.
 -  **address** (*Optional*, int): The I²C address of the driver.
    Defaults to ``0x40``.
@@ -123,6 +123,24 @@ This output can be used for different PWM functions. E.g. output for light, fan 
       - platform: monochromatic 
         name: 'main light' 
         output: pwm01
+
+Most servo motors need 50Hz. This is an example for common servos (e.g. MG995, SG90). See also (`Servo Component <https://esphome.io/components/servo.html>`__)
+
+.. code-block:: yaml
+
+    pca9685:
+      - id: servoboard
+        frequency: 50
+
+    output:
+      - platform: pca9685
+        channel: 0
+        id: servo_output1
+        
+    servo:
+      - id: servo1
+        output: servo_output1
+
 
 See Also
 --------
