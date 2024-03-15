@@ -40,6 +40,7 @@ Configuration variables:
    - ``3232`` for the ESP32
    - ``8266`` for the ESP8266
    - ``2040`` for the RP2040
+   - ``8892`` for Beken chips
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 -  **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when in
    safe mode. Defaults to ``5min``.
