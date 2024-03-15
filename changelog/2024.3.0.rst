@@ -42,6 +42,25 @@ ESPHome 2024.3.0 - 20th March 2024
 Notes to be written...
 
 
+Dates
+-----
+
+ESPHome now has support for ``date`` entities that can be set from the frontend (like Home Assistant) for you to check against and execute
+automations in the future.
+
+
+IPv6
+----
+
+ESPHome is now prepared for the future! The future that is the old IPv6 that is.
+Dualstack is added and it could now have up to 5 ip addresses of any type, and communication with Home assistant,
+MQTT and NTP works with IPv6. ESPHome still depends on IPv4, but the crystal ball shows sign of IPv6-only networks.
+
+If you are building an :doc:`/components/external_components` or you use
+``network::get_ip_address()``, ``wifi::global_wifi_component->get_ip_addresses()`` or ``ethernet::global_eth_component->get_ip_addresses()``,
+these functions have been renamed to ``::get_ip_addresses()`` respectively and now return a list of all IP addresses.
+
+
 Full list of changes
 --------------------
 
@@ -73,6 +92,14 @@ Breaking Changes
 - Touchscreen component and driver fixes :esphomepr:`5997` by :ghuser:`nielsnl68` (breaking-change)
 - Additional sensors and binary sensors support for Haier Climate :esphomepr:`6257` by :ghuser:`paveldn` (breaking-change)
 - add template fan :esphomepr:`6310` by :ghuser:`ssieb` (breaking-change)
+
+Beta Changes
+^^^^^^^^^^^^
+
+- SPI: Revert clk_pin to standard output pin schema :esphomepr:`6368` by :ghuser:`clydebarrow`
+- Allow actions in web_server to be executed via GET method :esphomepr:`5938` by :ghuser:`afarago`
+- fix servo restore :esphomepr:`6370` by :ghuser:`ssieb`
+- Don't try to get IPv6 addresses when disabled :esphomepr:`6366` by :ghuser:`HeMan`
 
 All changes
 ^^^^^^^^^^^
@@ -175,6 +202,10 @@ All changes
 - Emmeti infrared climate support :esphomepr:`5197` by :ghuser:`E440QF` (new-integration)
 - Added Kamstrup Multical 40x component :esphomepr:`4200` by :ghuser:`cfeenstra1024` (new-integration)
 - add possibility to provide different conversion times for Bus Voltage… :esphomepr:`6327` by :ghuser:`kev300`
+- SPI: Revert clk_pin to standard output pin schema :esphomepr:`6368` by :ghuser:`clydebarrow`
+- Allow actions in web_server to be executed via GET method :esphomepr:`5938` by :ghuser:`afarago`
+- fix servo restore :esphomepr:`6370` by :ghuser:`ssieb`
+- Don't try to get IPv6 addresses when disabled :esphomepr:`6366` by :ghuser:`HeMan`
 
 
 Past Changelogs
