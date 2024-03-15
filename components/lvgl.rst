@@ -34,23 +34,27 @@ Pages in ESPHome are implemented as LVGL screens, which are special objects whic
 
 Some widgets integrate in ESPHome also as components:
 
-+-------------+-------------------------------+ 
-| LVGL Widget | ESPHome component             | 
-+=============+===============================+
-| Checkbox    | Binary Sensor, Switch         | 
-+-------------+-------------------------------+ 
-| Button      | Binary Sensor, Button, Switch | 
-+-------------+-------------------------------+ 
-| Slider      | Sensor, Number                | 
-+-------------+-------------------------------+ 
-| Arc         | Sensor, Number                | 
-+-------------+-------------------------------+ 
-| Dropdown    | Select                        | 
-+-------------+-------------------------------+ 
-| Roller      | Select                        | 
-+-------------+-------------------------------+ 
-| LED         | Light                         | 
-+-------------+-------------------------------+ 
+.. list-table Widgets as Components
+   :widths: 60 250
+   :header-rows: 1
+
+   * - LVGL Widget
+     - ESPHome component
+   * - Checkbox
+     - Binary Sensor, Switch
+   * - Button
+     - Binary Sensor, Button, Switch
+   * - Slider
+     - Sensor, Number
+   * - Arc
+     - Sensor, Number
+   * - Dropdown
+     - Select
+   * - Roller
+     - Select
+   * - LED
+     - Light
+
 
 These are useful to make :ref:`automations <automation>` triggered by actions performed at the screen. Check out the :ref:`lvgl-seealso` section at the bottom of this document.
 
