@@ -85,6 +85,10 @@ and circles:
         lambda: |-
           // Draw a line from [0,0] to [100,50]
           it.line(0, 0, 100, 50);
+          // Draw an angled line from [0,0] at 45° with a length of 30
+          it.lineAtAngle(0, 0, 45, 30);
+          // Draw an angled line from [0,0] at 30° with a start radius of 10 and stop radius of 20
+          it.lineAtAngle(0, 0, 30, 10, 20);
           // Draw the outline of a rectangle with the top left at [50,60], a width of 30 and a height of 42
           it.rectangle(50, 60, 30, 42);
           // Draw the same rectangle, but this time filled.
