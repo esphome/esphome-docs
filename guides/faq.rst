@@ -354,6 +354,7 @@ And a docker compose file looks like this:
           # if needed, add esp device(s) as in command line examples above
           - /dev/ttyUSB0:/dev/ttyUSB0
           - /dev/ttyACM0:/dev/ttyACM0
+        # Not supported on Docker Desktop for Mac and Docker Desktop for Windows
         network_mode: host
         restart: always
 
@@ -363,8 +364,9 @@ And a docker compose file looks like this:
 
     By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature to work you need to enable host networking mode.
 
-    On MacOS the networking mode ("-net=host" option) doesn't work as expected. You have to use
-    another way to launch the dashboard with a port mapping option and use alternative to mDNS
+    The `host networking driver <https://docs.docker.com/network/drivers/host/>`_ is not supported on Docker Desktop for Mac and Docker Desktop for Windows.
+
+    You have to use another way to launch the dashboard with a port mapping option and use alternative to mDNS
     to have the online/offline stat (see below)
 
     mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
