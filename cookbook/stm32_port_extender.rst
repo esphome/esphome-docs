@@ -79,20 +79,20 @@ in the example below two binary sensors are declared on pin 11 and 12, that corr
 Then declare the ESPHome reference of the binary sensor in the same order as declared in the lambda:
 
 .. code-block:: yaml
- 
+
     - platform: custom
-    lambda: |-
-      return {stm32_port_expander_binary_sensor(stm32_port_expander_1, 11),
-              stm32_port_expander_binary_sensor(stm32_port_expander_1, 12)};
-    binary_sensors:
-      - id: binary_sensor_pin_11
-        name: Binary Sensor Pin 11
-        filters:
-          - invert:
-      - id: binary_sensor_pin_12
-        name: Binary Sensor Pin 12
-        filters:
-          - invert:
+      lambda: |-
+        return {stm32_port_expander_binary_sensor(stm32_port_expander_1, 11),
+                stm32_port_expander_binary_sensor(stm32_port_expander_1, 12)};
+      binary_sensors:
+        - id: binary_sensor_pin_11
+          name: Binary Sensor Pin 11
+          filters:
+            - invert:
+        - id: binary_sensor_pin_12
+          name: Binary Sensor Pin 12
+          filters:
+            - invert:
 
 The listed ``binary_sensors`` supports all options from :ref:`Binary Sensor <config-binary_sensor>` like
 automations and filters.
@@ -163,6 +163,7 @@ output pin and it is used to set the temperature treshold when epander must go i
         - id: float_output_pin_28
           min_power: 0.25
           max_power: 0.60
+          
     light:
       - id: dimmerized_light_1
         platform: monochromatic
