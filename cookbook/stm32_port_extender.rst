@@ -79,6 +79,7 @@ in the example below two binary sensors are declared on pin 11 and 12, that corr
 Then declare the ESPHome reference of the binary sensor in the same order as declared in the lambda:
 
 .. code-block:: yaml
+ 
     - platform: custom
     lambda: |-
       return {stm32_port_expander_binary_sensor(stm32_port_expander_1, 11),
@@ -105,17 +106,17 @@ Then declare the ESPHome reference of the sensor in the same order as declared i
 
 .. code-block:: yaml
 
-  - platform: custom
-    lambda: |-
-      return {stm32_port_expander_analog_sensor(stm32_port_expander_1, 0)};
-    sensors:
-      - id: analog_sensor_pin_0
-        name: Dimmer module temperature
-        filters:
-          - throttle: 10s
-        unit_of_measurement: "°C"
-        device_class : temperature
-        state_class: measurement
+    - platform: custom
+      lambda: |-
+        return {stm32_port_expander_analog_sensor(stm32_port_expander_1, 0)};
+      sensors:
+        - id: analog_sensor_pin_0
+          name: Dimmer module temperature
+          filters:
+            - throttle: 10s
+          unit_of_measurement: "°C"
+          device_class : temperature
+          state_class: measurement
 
 The listed ``sensors`` supports all options from :ref:`Sensor <config-sensor>` like
 automations and filters.
@@ -133,15 +134,15 @@ in the example below two outputs are declared on pin ``1`` and ``28``.
 
 .. code-block:: yaml
 
-  - platform: custom
-    type: float
-    lambda: |-
-      return {stm32_port_expander_binary_output(stm32_port_expander_1, 29),
-              stm32_port_expander_binary_output(stm32_port_expander_1, 30)};
-    outputs:
-      - id: binary_output_pin_29
-        inverted: true
-      - id: binary_output_pin_30
+    - platform: custom
+      type: float
+      lambda: |-
+        return {stm32_port_expander_binary_output(stm32_port_expander_1, 29),
+                stm32_port_expander_binary_output(stm32_port_expander_1, 30)};
+      outputs:
+        - id: binary_output_pin_29
+          inverted: true
+        - id: binary_output_pin_30
 
 Float Output
 ------
@@ -152,27 +153,27 @@ output pin and it is used to set the temperature treshold when epander must go i
 
 .. code-block:: yaml
 
-  - platform: custom
-    type: float
-    lambda: |-
-      return {stm32_port_expander_float_output(stm32_port_expander_1, 1),
-              stm32_port_expander_float_output(stm32_port_expander_1, 28)};
-    outputs:
-      - id: float_output_pin_1
-      - id: float_output_pin_28
-        min_power: 0.25
-        max_power: 0.60
-  light:
-    - id: dimmerized_light_1
-      platform: monochromatic
-      output: float_output_pin_1
-      name: Dimmerized Light Pin 1
-      gamma_correct: 0
-    - id: dimmerized_light_28
-      platform: monochromatic
-      output: float_output_pin_28
-      name: Dimmer module temperature limit
-      gamma_correct: 0 
+    - platform: custom
+      type: float
+      lambda: |-
+        return {stm32_port_expander_float_output(stm32_port_expander_1, 1),
+                stm32_port_expander_float_output(stm32_port_expander_1, 28)};
+      outputs:
+        - id: float_output_pin_1
+        - id: float_output_pin_28
+          min_power: 0.25
+          max_power: 0.60
+    light:
+      - id: dimmerized_light_1
+        platform: monochromatic
+        output: float_output_pin_1
+        name: Dimmerized Light Pin 1
+        gamma_correct: 0
+      - id: dimmerized_light_28
+        platform: monochromatic
+        output: float_output_pin_28
+        name: Dimmer module temperature limit
+        gamma_correct: 0 
 
 See Also
 --------
