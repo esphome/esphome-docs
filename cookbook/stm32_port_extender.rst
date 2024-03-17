@@ -22,12 +22,14 @@ Currently it is supported:
     - writing digital outputs (0/1)
     - writing analog outputs (0/255)
 
-The STM32 project can be retrieved from `here <https://github.com/eugenscobich/stm32-port-expander>`__
-. You will need STM32CubeIDE to change and build it. 
+The STM32 project can be retrieved from `here <https://github.com/eugenscobich/stm32-port-expander>`__.
+You will need STM32CubeIDE to change and build it. 
 The project if made to extand 10 ports for AC dimmable output, 15 digiat inputs, 2 analog outputs and one anolog input to configure temperature treshhold.
 
 You need to download `stm32_port_expander.h <https://github.com/eugenscobich/stm32-port-expander/blob/main/esp_home/stm32_port_expander.h>`__
 and include the stm32_port_expander.h in the ESPHome configuration.
+
+Schematics and PCB can be found `here <https://oshwlab.com/eugenscobich/esphome-8-channel-dimmer>`__.
 
 .. code-block:: yaml
 
