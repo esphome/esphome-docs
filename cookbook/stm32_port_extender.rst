@@ -127,7 +127,7 @@ automations and filters.
     to not flood the network.
 
 Binary Output
-------
+-------------
 
 To setup outputs, create a custom platform as below, list in braces all the outputs you want,
 in the example below two outputs are declared on pin ``1`` and ``28``.
@@ -145,7 +145,7 @@ in the example below two outputs are declared on pin ``1`` and ``28``.
         - id: binary_output_pin_30
 
 Float Output
-------
+------------
 
 To setup outputs, create a custom platform as below, list in braces all the outputs you want,
 in the example below two outputs are declared on pin ``1`` and ``28``. ``28`` is not an real 
@@ -163,7 +163,7 @@ output pin and it is used to set the temperature treshold when epander must go i
         - id: float_output_pin_28
           min_power: 0.25
           max_power: 0.60
-          
+
     light:
       - id: dimmerized_light_1
         platform: monochromatic
