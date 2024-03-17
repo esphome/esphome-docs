@@ -79,6 +79,7 @@ in the example below two binary sensors are declared on pin 11 and 12, that corr
 Then declare the ESPHome reference of the binary sensor in the same order as declared in the lambda:
 
 .. code-block:: yaml
+ 
     - platform: custom
     lambda: |-
       return {stm32_port_expander_binary_sensor(stm32_port_expander_1, 11),
