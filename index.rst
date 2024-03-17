@@ -937,6 +937,7 @@ Cookbook
     Non-Invasive Power Meter, cookbook/power_meter, power_meter.jpg
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
+    STM32 Port Extender, cookbook/stm32_port_extender, stm32_logo.svg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
     Share data directly between ESPHome nodes, cookbook/http_request_sensor, connection.svg, dark-invert
 
