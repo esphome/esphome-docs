@@ -1217,6 +1217,9 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
 
 The animation image is similar to the normal ``img`` object. The main difference is that instead of one source image, you set a list of multiple source images. You can also specify a duration and a repeat count.
 
+.. figure:: /components/images/lvgl_animimg.gif
+    :align: center
+
 **Specific options:**
 
 - **src** (**Required**, list of :ref:`images <display-image>`): A list of IDs of existing image configurations to be loaded as frames of the animation.
@@ -1243,8 +1246,8 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
     - animimg:
         align: CENTER
         id: anim_id
-        src: [ cat_image, dog_image ]
-        duration: 300ms
+        src: [ batt_lo, batt_mi, batt_hi ]
+        duration: 150ms
 
     # Example actions:
     on_...:
@@ -1252,7 +1255,7 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
         - lvgl.animimg.update:
             id: anim_id
             repeat_count: 100
-            duration: 200ms
+            duration: 75ms
 
 .. _lvgl-wgt-lin:
 
