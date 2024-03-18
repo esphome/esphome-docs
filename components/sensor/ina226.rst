@@ -67,6 +67,11 @@ Configuration variables:
   - **current** (**Required**, :ref:`config-time`) ADC conversion time for Shunt Voltage (Current measurement)
 - **adc_averaging** (*Optional*, integer): Selects ADC sample averaging count. Defaults to ``4``. Valid values are
   ``1``, ``4``, ``16``, ``64``, ``128``, ``256``, ``512``, ``1024``.
+- **operating_mode** (*Optional*): The operating mode of the sensor. Can be either ``continuous`` or ``low_power``.
+  Defaults to ``continuous``, where the sensor continuously measures parameters and updates its registers. 
+  When data is needed by the component - it is already available. In ``low_power`` mode, the sensor will only measure 
+  when requested (it takes a while) and then go back to sleep. This mode is useful when the sensor is powered from 
+  a battery and you want to save power.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 
 
