@@ -240,7 +240,6 @@ The outline is drawn outside the bounding box.
 
 You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each object. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
 
-- **anim_time** TODO !!
 - **bg_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background of the widget.
 - **bg_grad_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to make the background gradually fade to.
 - **bg_dither_mode** (*Optional*, enum): Set ditherhing of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``.
@@ -818,10 +817,11 @@ Roller allows you to simply select one option from a list by scrolling.
 
 - **options** (**Required**, list): The list of available options in the roller.
 - **mode** (*Optional*, enum): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
-- **visible_rows** TODO
+- **visible_row_count** (*Optional*, int8): The number of visible rows.
 - **selected** (*Optional*, list): Settings for the selected *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the :ref:`lvgl-wgt-lbl` text style properties to change the appearance of the text in the selected area.
 - **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
-- Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and :ref:`lvgl-wgt-lbl` style properties. ``text_line_space`` adjusts the space between the options. When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in ``anim_time`` milliseconds as specified in the style.
+- **anim_time** (*Optional*, :ref:`Time <config-time>`): When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in ``anim_time`` milliseconds as specified in the style.
+- Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and :ref:`lvgl-wgt-lbl` style properties. ``text_line_space`` adjusts the space between the options. 
 
 **Specific actions:**
 
@@ -868,12 +868,13 @@ Not only the end, but also the start value of the bar can be set, which changes 
 
 **Specific options:**
 
-- **value** (**Required**, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **value** (**Required**, int8): Actual value of the indicator at start, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
 - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
 - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
 - **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, all the typical background properties.
 - **animated** (*Optional*, boolean): To animate indicator when bar changes value. Defaults to ``true``.
+- **anim_time** (*Optional*, :ref:`Time <config-time>`): Sets the animation time if the value is set with ``animated: true``.
 - Style options from :ref:`lvgl-styling`. The background of the bar and it uses the typical background style properties. Adding padding will make the indicator smaller or larger.
 
 **Example:**
@@ -904,12 +905,13 @@ The Slider widget looks like a bar supplemented with a knob. The knob can be dra
 
 **Specific options:**
 
-- **value** (**Required**, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **value** (**Required**, int8): Actual value of the indicator at start, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
 - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
 - **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. A rectangle (or circle) drawn at the current value. Also uses all the typical background properties to describe the knob. By default, the knob is square (with an optional corner radius) with side length equal to the smaller side of the slider. The knob can be made larger with the padding values. Padding values can be asymmetric too.
 - **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The indicator that shows the current state of the slider. Also uses all the typical background style properties.
 - **animated** (*Optional*, boolean): To animate indicator when bar changes value. Defaults to ``true``.
+- **anim_time** (*Optional*, :ref:`Time <config-time>`): Sets the animation time if the value is set with ``animated: true``.
 - any :ref:`Styling <lvgl-styling>` and state-based option for the background of the slider. Uses all the typical background style properties. Padding makes the indicator smaller in the respective direction.
 
 Normally, the slider can be adjusted either by dragging the knob, or by clicking on the slider bar. In the latter case the knob moves to the point clicked and slider value changes accordingly. In some cases it is desirable to set the slider to react on dragging the knob only. This feature is enabled by enabling the ``adv_hittest`` flag.
@@ -973,7 +975,7 @@ The Arc consists of a background and a foreground arc. The foreground (indicator
 
 **Specific options:**
 
-- **value** (**Required**, int8): Actual value of the indicator, in ``0``-``100`` range. Defaults to ``0``.
+- **value** (**Required**, int8): Actual value of the indicator at start, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
 - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
 - **start_angle** (*Optional*, 0-360): start angle of the arc background (see note). Defaults to ``135``.
@@ -1042,6 +1044,45 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
 See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use a slider (or an arc) to control entities in Home Assistant.
+
+
+.. _lvgl-wgt-spb:
+
+``spinbox``
+***********
+
+The Spinbox contains a number (as text) which can be increased or decreased with two buttons or physical keys.
+
+**Specific options:**
+
+- **value** (*Optional*, float): Actual value to be shown by the spinbox at start.
+- **range_from** (**Required**, float): The maximum value allowded to set the spinbox to.
+- **range_to** (**Required**, float): The minimum value allowded to set the spinbox to.
+- **step** (*Optional*, int8): ???? sets which digits to change on increment/decrement. Only multiples of ten can be set, and not for example 3.
+- **digits** (*Optional*, int8): The number of digits excluding the decimal separator and the sign. 
+- **decimal_places** (*Optional*, int8): The number of digits after the decimal point. If ``0``, no decimal point is displayed.
+- **rollover** (*Optional*, boolean): While increasing or decreasing the value, if either the minimum or maximum value is reached with this option enabled, the value will change to the other limit. If disabled, the value will remain at the minimum or maximum value. Defaults to ``false``.
+- **anim_time** (*Optional*, :ref:`Time <config-time>`): Sets the cursor's blink time.
+
+**Specific actions:**
+
+``lvgl.spinbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+
+**Specific triggers:**
+
+``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - spinbox:
+        x: 10
+        y: 10
+
+
+The ``spinbox`` can be also integrated as :doc:`/components/number/lvgl`.
 
 .. _lvgl-wgt-mtr:
 

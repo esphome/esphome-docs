@@ -21,10 +21,6 @@ Configuration options:
 - **widget** (**Required**): The ID of a supported widget configured in LVGL, which will reflect the state of the binary sensor.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
-.. note::
-
-    ``publish_initial_state`` ??
-
 Example:
 
 .. code-block:: yaml
