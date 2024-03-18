@@ -11,7 +11,7 @@ The ``lvgl`` switch platform creates a select from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widgets are :ref:`lvgl-wgt-drp` and :ref:`lvgl-wgt-rol`. A single select supports
-a single widget, thus you need to choose among which one's state you want to use, options are mutually exclusive.
+a single widget, thus you need to choose among which one's state you want to use.
 
 Configuration options:
 ----------------------
@@ -27,7 +27,7 @@ Example:
 
     select:
       - platform: lvgl
-        dropdown: dropdown_id
+        widget: dropdown_id
         name: LVGL Dropdown
 
 See Also

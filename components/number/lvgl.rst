@@ -10,7 +10,7 @@ LVGL Number
 The ``lvgl`` number platform creates a number component from a LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widgets are :ref:`lvgl-wgt-arc`, :ref:`lvgl-wgt-bar`, :ref:`lvgl-wgt-sli` and :ref:`lvgl-wgt-spb` A single number supports a single widget, thus you need to choose among which one's state you want to use, options are mutually exclusive.
+Supported widgets are :ref:`lvgl-wgt-arc`, :ref:`lvgl-wgt-bar`, :ref:`lvgl-wgt-sli` and :ref:`lvgl-wgt-spb`. A single number supports a single widget, thus you need to choose among which one's state you want to use.
 
 Configuration options:
 ----------------------
