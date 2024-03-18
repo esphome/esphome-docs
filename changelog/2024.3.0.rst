@@ -100,6 +100,14 @@ Beta Changes
 - Allow actions in web_server to be executed via GET method :esphomepr:`5938` by :ghuser:`afarago`
 - fix servo restore :esphomepr:`6370` by :ghuser:`ssieb`
 - Don't try to get IPv6 addresses when disabled :esphomepr:`6366` by :ghuser:`HeMan`
+- Use AQI device class :esphomepr:`6376` by :ghuser:`fgsch`
+- Fix list-components when PR is not targeting dev :esphomepr:`6375` by :ghuser:`jesserockz`
+- allow negative ppm for sensair :esphomepr:`6385` by :ghuser:`ssieb`
+- microWakeWord - add new ops and small improvements :esphomepr:`6360` by :ghuser:`kahrendt`
+- Fix compilation for uponor_smatrix without time component :esphomepr:`6389` by :ghuser:`kroimon`
+- Shows component operation time in ``ms`` :esphomepr:`6388` by :ghuser:`edwardtfn`
+- IPv6 can't be enabled for libretiny :esphomepr:`6387` by :ghuser:`HeMan`
+- Replace name and friendly name in full adopted configs :esphomepr:`4456` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -206,7 +214,14 @@ All changes
 - Allow actions in web_server to be executed via GET method :esphomepr:`5938` by :ghuser:`afarago`
 - fix servo restore :esphomepr:`6370` by :ghuser:`ssieb`
 - Don't try to get IPv6 addresses when disabled :esphomepr:`6366` by :ghuser:`HeMan`
-
+- Use AQI device class :esphomepr:`6376` by :ghuser:`fgsch`
+- Fix list-components when PR is not targeting dev :esphomepr:`6375` by :ghuser:`jesserockz`
+- allow negative ppm for sensair :esphomepr:`6385` by :ghuser:`ssieb`
+- microWakeWord - add new ops and small improvements :esphomepr:`6360` by :ghuser:`kahrendt`
+- Fix compilation for uponor_smatrix without time component :esphomepr:`6389` by :ghuser:`kroimon`
+- Shows component operation time in ``ms`` :esphomepr:`6388` by :ghuser:`edwardtfn`
+- IPv6 can't be enabled for libretiny :esphomepr:`6387` by :ghuser:`HeMan`
+- Replace name and friendly name in full adopted configs :esphomepr:`4456` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
