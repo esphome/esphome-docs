@@ -128,4 +128,4 @@ Sample Configurations
 - `9 Valve Sprinkler Controller configuration <https://github.com/hwstar/9-Valve-Sprinkler-Controller>`__ by :ghuser:`hwstar`
 - `FishFeeder <https://github.com/ColoMAX/fishfeeder>`__ by :ghuser:`ColoMAX`
 - `ESPHome IKEA VINDRIKTNING <https://github.com/DzurisHome/ESPHome-IKEA-VINDRIKTNING>`__ by :ghuser:`DzurisHome`
-- `ESPHome Refoss 11 <https://github.com/DzurisHome/ESPHome-Refoss-P11>`__ by :ghuser:`DzurisHome`
+- `ESPHome Refoss P11 <https://github.com/DzurisHome/ESPHome-Refoss-P11>`__ by :ghuser:`DzurisHome`
