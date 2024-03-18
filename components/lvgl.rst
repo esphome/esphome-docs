@@ -1220,7 +1220,7 @@ The animation image is similar to the normal ``img`` object. The main difference
 **Specific options:**
 
 - **src** (**Required**, list of :ref:`images <display-image>`): A list of IDs of existing image configurations to be loaded as frames of the animation.
-- **auto_start** (*Optional*, boolean): Start the animation playback automatically. Defaults to ``true``.
+- **auto_start** (*Optional*, boolean): Start the animation playback automatically at boot and when updating the widget. Defaults to ``true``.
 - **repeat_count** (*Optional*, int16 or *forever*): How many times to repeat the playback. Defaults to ``forever``.
 - **duration** (**Required**, :ref:`Time <config-time>`): Duration of one image frame.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
@@ -1231,16 +1231,9 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
 
 ``lvgl.animimg.start`` :ref:`action <config-action>` starts the animation playback if it was displayed with ``auto_start`` false or after ``repeat_count`` expired.
 
-``lvgl.animimg.update`` :ref:`action <config-action>` updates ``repeat_count`` and ``duration``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. 
+``lvgl.animimg.stop`` :ref:`action <config-action>` stops the animation playback.
 
-.. note::
-
-    ``repeat_count`` and ``duration`` updates take place only at the next start of the animation. For example to stop an animation lasting ``forever``, just call the ``lvgl.animimg.update`` action with ``duration: 0ms``, and then call ``lvgl.animimg.start`` to activate the new animation parameter. 
-    
-    ``src`` and ``auto_start`` cannot be updated at runtime.
-    
-    If the widget is configured with ``auto_start: true``, its initial dimensions and position will not be valid to be used with relative alignment (don't use ``align_to`` to align other widgets relative to this widget).
-
+``lvgl.animimg.update`` :ref:`action <config-action>` can be used to change ``repeat_count`` and ``duration``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` and ``auto_start`` cannot be updated at runtime.
 
 **Example:**
 
@@ -1258,8 +1251,8 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
       then:
         - lvgl.animimg.update:
             id: anim_id
-            duration: 0ms
-        - lvgl.animimg.start: anim_id
+            repeat_count: 100
+            duration: 200ms
 
 .. _lvgl-wgt-lin:
 
