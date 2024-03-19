@@ -324,5 +324,4 @@ spares I/Os.
 See Also
 --------
 
-- :doc:`/devices/nodemcu_esp8266`
 - :ghedit:`Edit`

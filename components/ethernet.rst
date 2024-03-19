@@ -98,6 +98,10 @@ Configuration examples
       phy_addr: 0
       power_pin: GPIO12
 
+.. note::
+
+    WROVER version of Olimex POE cards change CLK to ping GPIO0, configuration must be `clk_mode: GPIO0_OUT`.
+
 
 **Olimex ESP32-EVB**:
 
