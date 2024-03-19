@@ -56,7 +56,7 @@ ESPHome is now prepared for the future! The future that is the old IPv6 that is.
 Dualstack is added and it could now have up to 5 ip addresses of any type, and communication with Home assistant,
 MQTT and NTP works with IPv6. ESPHome still depends on IPv4, but the crystal ball shows sign of IPv6-only networks.
 
-If you are building an :doc:`/components/external_components` or you use
+If you are b uilding an :doc:`/components/external_components` or you use
 ``network::get_ip_address()``, ``wifi::global_wifi_component->get_ip_addresses()`` or ``ethernet::global_eth_component->get_ip_addresses()``,
 these functions have been renamed to ``::get_ip_addresses()`` respectively and now return a list of all IP addresses.
 
@@ -108,6 +108,11 @@ Beta Changes
 - Shows component operation time in ``ms`` :esphomepr:`6388` by :ghuser:`edwardtfn`
 - IPv6 can't be enabled for libretiny :esphomepr:`6387` by :ghuser:`HeMan`
 - Replace name and friendly name in full adopted configs :esphomepr:`4456` by :ghuser:`jesserockz`
+- Fix bug in ``remote_base`` conditional :esphomepr:`6281` by :ghuser:`swoboda1337`
+- Fix sending packets to uponor_smatrix devices :esphomepr:`6392` by :ghuser:`kroimon`
+- Fix wrong initialization of vectors in ade7953_i2c :esphomepr:`6393` by :ghuser:`kroimon`
+- ld2420: Firmware v1.5.4+ bug workaround :esphomepr:`6168` by :ghuser:`descipher`
+- Require xsrf/csrf when using a password :esphomepr:`6396` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -222,6 +227,11 @@ All changes
 - Shows component operation time in ``ms`` :esphomepr:`6388` by :ghuser:`edwardtfn`
 - IPv6 can't be enabled for libretiny :esphomepr:`6387` by :ghuser:`HeMan`
 - Replace name and friendly name in full adopted configs :esphomepr:`4456` by :ghuser:`jesserockz`
+- Fix bug in ``remote_base`` conditional :esphomepr:`6281` by :ghuser:`swoboda1337`
+- Fix sending packets to uponor_smatrix devices :esphomepr:`6392` by :ghuser:`kroimon`
+- Fix wrong initialization of vectors in ade7953_i2c :esphomepr:`6393` by :ghuser:`kroimon`
+- ld2420: Firmware v1.5.4+ bug workaround :esphomepr:`6168` by :ghuser:`descipher`
+- Require xsrf/csrf when using a password :esphomepr:`6396` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
