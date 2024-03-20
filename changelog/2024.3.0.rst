@@ -39,14 +39,13 @@ ESPHome 2024.3.0 - 20th March 2024
     Template Fan, components/fan/template, description.svg, dark-invert
 
 
-Notes to be written...
-
-
 Dates
 -----
 
 ESPHome now has support for ``date`` entities that can be set from the frontend (like Home Assistant) for you to check against and execute
 automations in the future.
+
+ESPHome Dates require Home Assistant 2024.4 or later.
 
 
 IPv6
@@ -56,8 +55,8 @@ ESPHome is now prepared for the future! The future that is the old IPv6 that is.
 Dualstack is added and it could now have up to 5 ip addresses of any type, and communication with Home assistant,
 MQTT and NTP works with IPv6. ESPHome still depends on IPv4, but the crystal ball shows sign of IPv6-only networks.
 
-If you are b uilding an :doc:`/components/external_components` or you use
-``network::get_ip_address()``, ``wifi::global_wifi_component->get_ip_addresses()`` or ``ethernet::global_eth_component->get_ip_addresses()``,
+If you are building an :doc:`/components/external_components` or you use
+``network::get_ip_address()``, ``wifi::global_wifi_component->get_ip_address()`` or ``ethernet::global_eth_component->get_ip_address()``,
 these functions have been renamed to ``::get_ip_addresses()`` respectively and now return a list of all IP addresses.
 
 
@@ -83,15 +82,20 @@ New Components
 - feat: Add HTU31D Support :esphomepr:`5805` by :ghuser:`betterengineering` (new-integration)
 - Emmeti infrared climate support :esphomepr:`5197` by :ghuser:`E440QF` (new-integration)
 - Added Kamstrup Multical 40x component :esphomepr:`4200` by :ghuser:`cfeenstra1024` (new-integration)
-- add template fan :esphomepr:`6310` by :ghuser:`ssieb` (breaking-change)
+
+New Platforms
+^^^^^^^^^^^^^
+
+- Additional sensors and binary sensors support for Haier Climate :esphomepr:`6257` by :ghuser:`paveldn` (breaking-change) (new-platform)
+- add template fan :esphomepr:`6310` by :ghuser:`ssieb` (breaking-change) (new-platform)
 
 Breaking Changes
 ^^^^^^^^^^^^^^^^
 
 - LTR390 - Multiple bugfixes :esphomepr:`6161` by :ghuser:`sjtrny` (breaking-change)
 - Touchscreen component and driver fixes :esphomepr:`5997` by :ghuser:`nielsnl68` (breaking-change)
-- Additional sensors and binary sensors support for Haier Climate :esphomepr:`6257` by :ghuser:`paveldn` (breaking-change)
-- add template fan :esphomepr:`6310` by :ghuser:`ssieb` (breaking-change)
+- Additional sensors and binary sensors support for Haier Climate :esphomepr:`6257` by :ghuser:`paveldn` (breaking-change) (new-platform)
+- add template fan :esphomepr:`6310` by :ghuser:`ssieb` (breaking-change) (new-platform)
 
 Beta Changes
 ^^^^^^^^^^^^
@@ -163,7 +167,7 @@ All changes
 - x9c: fix off by 1 error :esphomepr:`6318` by :ghuser:`andynumber2`
 - Support for MS8607 PHT (Pressure Humidity Temperature) sensor :esphomepr:`3307` by :ghuser:`e28eta` (new-integration)
 - Separate logger implementations for each hardware platform into different files :esphomepr:`6167` by :ghuser:`tomaszduda23`
-- Additional sensors and binary sensors support for Haier Climate :esphomepr:`6257` by :ghuser:`paveldn` (breaking-change)
+- Additional sensors and binary sensors support for Haier Climate :esphomepr:`6257` by :ghuser:`paveldn` (breaking-change) (new-platform)
 - Add toggle command to cover web_server endpoint :esphomepr:`6319` by :ghuser:`heythisisnate`
 - Improv: support connecting to hidden networks :esphomepr:`6322` by :ghuser:`jesserockz`
 - Update mDNS for IDF >= 5.0 :esphomepr:`6328` by :ghuser:`HeMan`
@@ -180,7 +184,7 @@ All changes
 - Bump actions/cache from 4.0.0 to 4.0.1 :esphomepr:`6306` by :ghuser:`dependabot[bot]`
 - Bump docker/build-push-action from 5.0.0 to 5.2.0 in /.github/actions/build-image :esphomepr:`6347` by :ghuser:`dependabot[bot]`
 - fix: modbus_textsensor response is too long in some cases :esphomepr:`6333` by :ghuser:`NewoPL`
-- add template fan :esphomepr:`6310` by :ghuser:`ssieb` (breaking-change)
+- add template fan :esphomepr:`6310` by :ghuser:`ssieb` (breaking-change) (new-platform)
 - dump config after logging CDC port is opened by host :esphomepr:`6169` by :ghuser:`tomaszduda23`
 - Add IRK support to allow tracking of devices with random MAC addresses :esphomepr:`6335` by :ghuser:`chbmuc`
 - [Fingerprint_grow] Implements Sleep Mode feature :esphomepr:`6116` by :ghuser:`alexborro`
