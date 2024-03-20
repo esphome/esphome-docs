@@ -113,6 +113,9 @@ Beta Changes
 - Fix wrong initialization of vectors in ade7953_i2c :esphomepr:`6393` by :ghuser:`kroimon`
 - ld2420: Firmware v1.5.4+ bug workaround :esphomepr:`6168` by :ghuser:`descipher`
 - Require xsrf/csrf when using a password :esphomepr:`6396` by :ghuser:`jesserockz`
+- AHT10: Use state machine to avoid blocking delay :esphomepr:`6401` by :ghuser:`clydebarrow`
+- Show component warnings and errors in the log; :esphomepr:`6400` by :ghuser:`clydebarrow`
+- web_server support for v3 :esphomepr:`6203` by :ghuser:`RFDarter`
 
 All changes
 ^^^^^^^^^^^
@@ -232,6 +235,9 @@ All changes
 - Fix wrong initialization of vectors in ade7953_i2c :esphomepr:`6393` by :ghuser:`kroimon`
 - ld2420: Firmware v1.5.4+ bug workaround :esphomepr:`6168` by :ghuser:`descipher`
 - Require xsrf/csrf when using a password :esphomepr:`6396` by :ghuser:`jesserockz`
+- AHT10: Use state machine to avoid blocking delay :esphomepr:`6401` by :ghuser:`clydebarrow`
+- Show component warnings and errors in the log; :esphomepr:`6400` by :ghuser:`clydebarrow`
+- web_server support for v3 :esphomepr:`6203` by :ghuser:`RFDarter`
 
 Past Changelogs
 ---------------
