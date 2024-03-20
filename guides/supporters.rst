@@ -284,7 +284,6 @@ Contributors
 - `Colin Leroy-Mira (@colinleroy) <https://github.com/colinleroy>`__
 - `ColoMAX (@ColoMAX) <https://github.com/ColoMAX>`__
 - `Max (@coltoncat) <https://github.com/coltoncat>`__
-- `Conclusio (@Conclusio) <https://github.com/Conclusio>`__
 - `Conor Burns (@Conor-Burns) <https://github.com/Conor-Burns>`__
 - `Cooper Dale (@Cooper-Dale) <https://github.com/Cooper-Dale>`__
 - `copercini (@copercini) <https://github.com/copercini>`__
@@ -1337,4 +1336,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated March 19, 2024.*
+*This page was last updated March 20, 2024.*
