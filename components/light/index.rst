@@ -54,6 +54,9 @@ Configuration variables:
     - ``RESTORE_AND_ON`` - Attempt to restore state but initialize the light as ON.
     - ``ALWAYS_OFF`` (Default) - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
+    - ``LIGHT_ALWAYS_ON_WARM_WHITE`` - On with the warmest white the bulb supports or 2200K.
+    - ``LIGHT_ALWAYS_ON_BRIGHT_WHITE`` - On with the color temperature of approximately 3200K.
+    - ``LIGHT_ALWAYS_ON_COOL_WHITE`` - On with the coolest white the bulb supports or 6500K.
 
 - **on_turn_on** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the light is turned on. See :ref:`light-on_turn_on_off_trigger`.
