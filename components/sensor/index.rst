@@ -50,7 +50,7 @@ Configuration variables:
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
 - **device_class** (*Optional*, string): The device class for the
-  sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-device-classes
+  sensor. See https://www.home-assistant.io/integrations/sensor/#device-class
   for a list of available options. Set to ``""`` to remove the default device class of a sensor.
 - **state_class** (*Optional*, string): The state class for the
   sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
@@ -570,7 +570,7 @@ However, if the last value passed through was 100 only values greater than 120 o
 ``or``
 ******
 
-Pass forward a value with the first child filter that returns. Above example
+Pass forward a value with the first child filter that returns. Below example
 will only pass forward values that are *either* at least 1s old or are if the absolute
 difference is at least 5.0.
 

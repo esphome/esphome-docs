@@ -70,7 +70,7 @@ For more information on using lambdas with select, see :ref:`select-lambda_calls
 ``on_value``
 ************
 
-This automation will be triggered when a new value is published. In :ref:`Lambdas <config-lambda>`
+This automation will be triggered whenever a value is set/published, even if the value is the same as before. In :ref:`Lambdas <config-lambda>`
 you can get the value from the trigger with ``x`` and the index offset of the selected value with ``i``.
 
 .. code-block:: yaml
@@ -281,6 +281,14 @@ advanced stuff (see the full API Reference for more info).
       auto state = id(my_select).state.c_str();
       ESP_LOGI("main", "Option of my select: %s", state);
 
+  .. code-block:: yaml
+
+      # Check if a specific option is selected
+      - if:
+          condition:
+            - lambda: 'return id(my_select).state == "my_option_value";'
+
+
 - ``.size()``: Retrieve the number of options in the select.
 
   .. code-block:: cpp
@@ -357,7 +365,7 @@ Setting up three options and set component state to selected option value.
          - "Option1"
          - "Option2"
          - "Option3"
-        initial_option: "OFF"
+        initial_option: "Option1"
         optimistic: true
         set_action:
           - logger.log:

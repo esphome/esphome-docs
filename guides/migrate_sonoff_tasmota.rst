@@ -8,6 +8,11 @@ Migrating from Tasmota
 Migrating from previous Tasmota setups is very easy. You just need to have
 ESPHome create a binary for you and then upload that in the Tasmota web interface.
 
+Incompatible versions
+---------------------
+WARNING! Migrating via OTA on ESP32, from Tasmota v12 (with boot partition) and up is currently not possible! Trying it could soft-brick your device!
+
+
 Getting the Binary
 ------------------
 
@@ -37,7 +42,7 @@ From your configuration files folder, run
 
 :: 
 
-  esphome <MY_DEVICE>.yaml compile
+  esphome compile <MY_DEVICE>.yaml
   
 replacing ``<MY_DEVICE>.yaml`` with your configuration file and navigate to the ``<MY_DEVICE>/.pioenvs/<MY_DEVICE>/`` folder. 
 
