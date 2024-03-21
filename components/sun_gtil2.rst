@@ -40,11 +40,6 @@ need to set the ``baud_rate`` to 9600.
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      - id: control_to_display
-        rx_pin: GPIO16
-        baud_rate: 9600
-
     sun_gtil2:
       uart_id: control_to_display
     
