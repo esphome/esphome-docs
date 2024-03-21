@@ -2,7 +2,7 @@ SHT3X-D Temperature+Humidity Sensor
 ===================================
 
 .. seo::
-    :description: Instructions for setting up SHT31-D/SHT3x temperature and humidity sensors
+    :description: Instructions for setting up SHT31-D/SHT3x and SHT85 temperature and humidity sensors
     :image: sht3xd.jpg
 
 The ``sht3xd`` sensor platform Temperature+Humidity sensor allows you to use your Sensirion SHT31-D/SHT3x
@@ -46,7 +46,7 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
-  Defaults to ``0x44``. For sht3xd, an alternate address can be ``0x45`` while SHT85 supports only address ``0x44``
+  Defaults to ``0x44``. For SHT3x, an alternate address can be ``0x45`` while SHT85 supports only address ``0x44``
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 - **heater_enabled** (*Optional*, bool): Turn on/off heater at boot.
