@@ -20,13 +20,13 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
         type: arduino
 
     i2c:
-      sda: GPIO18
-      scl: GPIO19
+      sda: REPLACE_ME
+      scl: REPLACE_ME
       scan: false
 
     output:
       - platform: ledc
-        pin: GPIO23
+        pin: REPLACE_ME
         id: screen_led
 
     light:
@@ -38,7 +38,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
 
     touchscreen:
       - platform: ft63x6
-        interrupt_pin: GPIO39
+        interrupt_pin: REPLACE_ME
         on_touch:
           - logger.log:
               format: Touch %d at (%d, %d)

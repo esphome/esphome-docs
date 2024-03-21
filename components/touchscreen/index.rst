@@ -124,7 +124,7 @@ The calibration assumes a display oriented in a way that you will be using it, i
     touchscreen:
       platform: xpt2046
       id: my_touchscreen
-      cs_pin: 17
+      cs_pin: REPLACE_ME
       on_touch:
         - lambda: |-
               ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
