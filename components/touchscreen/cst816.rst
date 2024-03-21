@@ -66,13 +66,13 @@ Sample config for the T-Display S3 AMOLED
 .. code-block:: yaml
 
     i2c:
-      sda: 3
-      scl: 2
+      sda: GPIO3
+      scl: GPIO2
 
     touchscreen:
       - platform: cst816
         id: my_touchscreen
-        interrupt_pin: 21
+        interrupt_pin: GPIO21
 
 See Also
 --------
