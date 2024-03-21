@@ -32,8 +32,8 @@ Base Touchscreen Configuration
     touchscreen:
       platform: tt21100
       id: my_touchscreen
-      interrupt_pin: REPLACE_ME
-      reset_pin: REPLACE_ME
+      interrupt_pin: REPLACEME
+      reset_pin: REPLACEME
 
 Configuration variables:
 ************************

@@ -28,8 +28,7 @@ Base Touchscreen Configuration
     touchscreen:
       platform: cst816
       id: my_touchscreen
-      interrupt_pin: REPLACE_ME
-      reset_pin: REPLACE_ME
+      interrupt_pin: REPLACEME
 
 Configuration variables:
 ************************
