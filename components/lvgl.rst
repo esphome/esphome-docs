@@ -374,7 +374,7 @@ The properties below are common to all widgets.
     Similarly to CSS, LVGL also supports ``min_width``, ``max_width``, ``min_height`` and ``max_height``. These are limits preventing an object's size from becoming smaller/larger than these values. They are especially useful if the size is set by percentage or ``size_content``.
 
 - **min_width**, **max_width**, **min_height**, **max_height** (*Optional*, int16 or percentage): Sets a minimal/maximal width or a minimal/maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
-- **scrollbar_mode** (*Optional*, string): If an object is outside its parent content area (the size without padding), the parent becomes scrollable. The object can either be scrolled horizontally or vertically in one stroke. Scrollbars can appear depending on the setting:
+- **scrollbar_mode** (*Optional*, string): If an object is outside its parent content area (the size without padding), the parent can become scrollable (see the ``scrollable`` :ref:`flag <lvgl-objupdflag-act>`). The object can either be scrolled horizontally or vertically in one stroke. Scrollbars can appear depending on the setting:
     - ``"OFF"``: Never show the scrollbars (use the double quotes!).
     - ``"ON"``: Always show the scrollbars (use the double quotes!).
     - ``"ACTIVE"``: Show scroll bars while an object is being scrolled.
@@ -397,15 +397,15 @@ The properties below are common to all widgets.
 - **flex_flow** (*Optional*, string): Option for ``FLEX`` layout, similar configuration as at the main component.
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn as children of this widget. Same configuration option as at the main component.
 - **state** (*Optional*, enum): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overriden within style definitions or locally set. Can be one of:
-    - **default** (*Optional*, boolean): Normal, released state
-    - **disabled** (*Optional*, boolean): Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.enable`` and ``lvgl.widget.disable``)
-    - **pressed** (*Optional*, boolean): Being pressed
-    - **checked** (*Optional*, boolean): Toggled or checked state
-    - **scrolled** (*Optional*, boolean): Being scrolled
-    - **focused** (*Optional*, boolean): Focused via keypad or encoder or clicked via touchpad/mouse
-    - **focus_key** (*Optional*, boolean): Focused via keypad or encoder but not via touchpad/mouse
-    - **edited** (*Optional*, boolean): Edit by an encoder
-    - **user_1**, **user_2**, **user_3**, **user_4** (*Optional*, boolean): Custom states
+    - **default** (*Optional*, boolean): Normal, released state.
+    - **disabled** (*Optional*, boolean): Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.enable`` and ``lvgl.widget.disable``).
+    - **pressed** (*Optional*, boolean): Being pressed.
+    - **checked** (*Optional*, boolean): Toggled or checked state.
+    - **scrolled** (*Optional*, boolean): Being scrolled.
+    - **focused** (*Optional*, boolean): Focused via keypad or encoder or clicked via touchpad/mouse.
+    - **focus_key** (*Optional*, boolean): Focused via keypad or encoder but not via touchpad/mouse.
+    - **edited** (*Optional*, boolean): Edit by an encoder.
+    - **user_1**, **user_2**, **user_3**, **user_4** (*Optional*, boolean): Custom states.
 
 By default, states are all ``false``, and they are templatable.
 To apply styles to the states, you need to specify them one level above, for example:
@@ -429,29 +429,29 @@ See :ref:`lvgl-cook-cover` for a cookbook example how to play with styling and p
 In addition to visual stilyng, each widget supports some boolean flags to influence the behavior:
 
 - **hidden** (*Optional*, boolean): make the widget hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.show`` and ``lvgl.widget.hide``. Defaults to ``false``.
-- **checkable** (*Optional*, boolean): toggle checked state when the widget is clicked
+- **checkable** (*Optional*, boolean): toggle checked state when the widget is clicked.
 - **clickable** (*Optional*, boolean): make the widget clickable by input devices. Defaults to ``true``. If ``false``, it will pass the click to the widgets behind it (clicking through).
-- **click_focusable** (*Optional*, boolean): add focused state to the widget when clicked
-- **scrollable** (*Optional*, boolean): make the widget scrollable
-- **scroll_elastic** (*Optional*, boolean): allow scrolling inside but with slower speed
-- **scroll_momentum** (*Optional*, boolean): make the widget scroll further when "thrown"
-- **scroll_one** (*Optional*, boolean): allow scrolling only one snappable children
-- **scroll_chain_hor** (*Optional*, boolean): allow propagating the horizontal scroll to a parent
-- **scroll_chain_ver** (*Optional*, boolean): allow propagating the vertical scroll to a parent
-- **scroll_chain simple** (*Optional*, boolean): packaging for (``scroll_chain_hor | scroll_chain_ver``)
-- **scroll_on_focus** (*Optional*, boolean): automatically scroll widget to make it visible when focused
-- **scroll_with_arrow** (*Optional*, boolean): allow scrolling the focused widget with arrow keys
-- **snappable** (*Optional*, boolean): if scroll snap is enabled on the parent it can snap to this widget
-- **press_lock** (*Optional*, boolean): keep the widget pressed even if the press slid from the widget
-- **event_bubble** (*Optional*, boolean): propagate the events to the parent too
-- **gesture_bubble** (*Optional*, boolean): propagate the gestures to the parent
-- **adv_hittest** (*Optional*, boolean): allow performing more accurate hit (click) test. E.g. Accounting for rounded corners
-- **ignore_layout** (*Optional*, boolean): make the widget positionable by the layouts
-- **floating** (*Optional*, boolean): do not scroll the widget when the parent scrolls and ignore layout
-- **overflow_visible** (*Optional*, boolean): do not clip the children's content to the parent's boundary
-- **layout_1**, **layout_2** (*Optional*, boolean): custom flags, free to use by layouts
-- **widget_1**, **widget_2** (*Optional*, boolean): custom flags, free to use by widget
-- **user_1**, **user_2**, **user_3**, **user_4** (*Optional*, boolean): custom flags, free to use by user
+- **scrollable** (*Optional*, boolean): the widget can become scrollable. Defaults to ``true``.
+- **scroll_elastic** (*Optional*, boolean): allow scrolling inside but with slower speed.
+- **scroll_momentum** (*Optional*, boolean): make the widget scroll further when "thrown".
+- **scroll_one** (*Optional*, boolean): allow scrolling only one snappable children.
+- **scroll_chain_hor** (*Optional*, boolean): allow propagating the horizontal scroll to a parent.
+- **scroll_chain_ver** (*Optional*, boolean): allow propagating the vertical scroll to a parent.
+- **scroll_chain simple** (*Optional*, boolean): packaging for (``scroll_chain_hor | scroll_chain_ver``).
+- **scroll_on_focus** (*Optional*, boolean): automatically scroll widget to make it visible when focused.
+- **scroll_with_arrow** (*Optional*, boolean): allow scrolling the focused widget with arrow keys.
+- **click_focusable** (*Optional*, boolean): add focused state to the widget when clicked.
+- **snappable** (*Optional*, boolean): if scroll snap is enabled on the parent it can snap to this widget.
+- **press_lock** (*Optional*, boolean): keep the widget pressed even if the press slid from the widget.
+- **event_bubble** (*Optional*, boolean): propagate the events to the parent too.
+- **gesture_bubble** (*Optional*, boolean): propagate the gestures to the parent.
+- **adv_hittest** (*Optional*, boolean): allow performing more accurate hit (click) test. E.g. Accounting for rounded corners.
+- **ignore_layout** (*Optional*, boolean): make the widget positionable by the layouts.
+- **floating** (*Optional*, boolean): do not scroll the widget when the parent scrolls and ignore layout.
+- **overflow_visible** (*Optional*, boolean): do not clip the children's content to the parent's boundary.
+- **layout_1**, **layout_2** (*Optional*, boolean): custom flags, free to use by layouts.
+- **widget_1**, **widget_2** (*Optional*, boolean): custom flags, free to use by widget.
+- **user_1**, **user_2**, **user_3**, **user_4** (*Optional*, boolean): custom flags, free to use by user.
 
 .. _lvgl-wgt-lbl:
 
