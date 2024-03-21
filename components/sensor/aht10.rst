@@ -37,6 +37,16 @@ The DHT20 (`datasheet <https://cdn.sparkfun.com/assets/8/a/1/5/0/DHT20.pdf>`__) 
           name: "Living Room Humidity"
         update_interval: 60s
 
+You also need to set up the :ref:`I²C Bus <i2c>` 
+
+.. code-block:: yaml
+
+    i2c:
+      sda: 21
+      scl: 22
+      scan: true
+      id: bus_a    
+
 Configuration variables:
 ------------------------
 
