@@ -60,17 +60,17 @@ Base Configuration:
 - **threshold** (*Optional*, int): The value to detect the touch or release. Defaults to ``400``.
 
 
-- **calibration_x_min** (*Depricated*): This value is moved to the ``calibration`` values
+- **calibration_x_min** (*Deprecated*): This value is moved to the ``calibration`` values
 
-- **calibration_x_max** (*Depricated*): This value is moved to the ``calibration`` values.
+- **calibration_x_max** (*Deprecated*): This value is moved to the ``calibration`` values.
 
-- **calibration_y_min** (*Depricated*): This value is moved to the ``calibration`` values.
+- **calibration_y_min** (*Deprecated*): This value is moved to the ``calibration`` values.
 
-- **calibration_y_max** (*Depricated*): This value is moved to the ``calibration`` values.
+- **calibration_y_max** (*Deprecated*): This value is moved to the ``calibration`` values.
 
-- **swap_x_y** (*Depricated*): This value is moved to the ``transform`` values as ``swap_xy`` see :ref:`config-touchscreen`.
+- **swap_x_y** (*Deprecated*): This value is moved to the ``transform`` values as ``swap_xy`` see :ref:`config-touchscreen`.
 
-- **report_interval** (*Depricated*): This interval is removed in favor of the ``update_interval``.
+- **report_interval** (*Deprecated*): This interval is removed in favor of the ``update_interval``.
 
 - All other options from :ref:`config-touchscreen`.
 
