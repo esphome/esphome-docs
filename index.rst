@@ -179,6 +179,7 @@ Air Quality
 ***********
 .. imgtable::
 
+    AGS10, components/sensor/ags10, ags10.jpg, Volatile Organic Compound Sensor
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Radon, CO2, Volatile organics
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
     EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
@@ -214,6 +215,7 @@ Analogue
     ADC, components/sensor/adc, flash.svg, ESP internal, dark-invert
     ADC128S102, components/sensor/adc128s102, adc128s102.png , 8-channel ADC
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
+    ADS1118, components/sensor/ads1118, ads1118.jpg, 4-channel ADC
     CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
     MCP3204 / MCP3208, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
@@ -262,6 +264,7 @@ Electricity
 ***********
 .. imgtable::
 
+    ADE7880, components/sensor/ade7880, ade7880.svg, Voltage & Current & Power
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E26, components/sensor/atm90e26, atm90e26.jpg, Voltage & Current & Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
@@ -279,6 +282,7 @@ Electricity
     INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
     INA260, components/sensor/ina260, ina260.jpg, DC Current & Power
     INA3221, components/sensor/ina3221, ina3221.jpg, 3-Ch DC current
+    Kamstrup KMP, components/sensor/kamstrup_kmp, kamstrup_kmp.jpg, District Heating Meter
     MAX9611, components/sensor/max9611, max9611.jpg, +60VDC Voltage & Current & Power & Temperature
     PZEM AC, components/sensor/pzemac, pzem-ac.jpg, Voltage & Current & Power
     PZEM DC, components/sensor/pzemdc, pzem-dc.jpg, Voltage & Current & Power
@@ -297,6 +301,7 @@ Environmental
     Absolute Humidity, components/sensor/absolute_humidity, water-drop.svg, dark-invert
     AHT10 / AHT20 / AHT21 / DHT20, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Temperature & Humidity & Pressure
+    AM2315C, components/sensor/am2315c, am2315c.jpg, Temperature & Humidity
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
     BME280, components/sensor/bme280, bme280.jpg, Temperature & Humidity & Pressure
     BME680, components/sensor/bme680, bme680.jpg, Temperature & Humidity & Pressure & Gas
@@ -319,6 +324,7 @@ Environmental
     Honeywell ABP2 I2C, components/sensor/honeywellabp2_i2c, honeywellabp.jpg, Pressure & Temperature
     Honeywell HIH I2C, components/sensor/honeywell_hih_i2c, honeywellhih.jpg, Temperature & Humidity
     HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
+    HTU31D, components/sensor/htu31d, htu31d.jpg, Temperature & Humidity
     Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
     Internal Temperature, components/sensor/internal_temperature, thermometer.svg, Temperature, dark-invert
@@ -327,6 +333,7 @@ Environmental
     MLX90614, components/sensor/mlx90614, mlx90614.jpg, Temperature
     MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
+    MS8607, components/sensor/ms8607, ms8607.jpg, Temperature & Humidity & Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
     PMWCS3, components/sensor/pmwcs3, pmwcs3.jpg, Soil moisture & Temperature
     QMP6988, components/sensor/qmp6988, qmp6988_env3.png, Temperature & Pressure
@@ -363,6 +370,8 @@ Light
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
     TSL2591, components/sensor/tsl2591, tsl2591.jpg, Lux
     VEML3235, components/sensor/veml3235, veml3235.jpg, Lux
+    VEML6030, components/sensor/veml7700, veml6030.jpg, Lux
+    VEML7700, components/sensor/veml7700, veml7700.jpg, Lux
 
 
 Magnetic
@@ -385,7 +394,7 @@ Miscellaneous
     AS3935, components/sensor/as3935, as3935.jpg, Storm lightning
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
-    Combination, components/sensor/combination, function.svg, dark-invert    
+    Combination, components/sensor/combination, function.svg, dark-invert
     Duty Time, components/sensor/duty_time, timer-play-outline.svg, dark-invert
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
@@ -415,6 +424,7 @@ Motion
     BMI160, components/sensor/bmi160, bmi160.jpg, Accelerometer & Gyroscope
     LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
     LD2420, components/sensor/ld2420, ld2420.jpg, Motion & Presence
+    Seeed Studio MR24HPC1 mmWave, components/seeed_mr24hpc1, seeed-mr24hpc1.jpg, Motion & Presence
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
     MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
@@ -509,6 +519,7 @@ Presence Detection
     DFRobot mmWave Radar, components/dfrobot_sen0395, dfrobot_sen0395.jpg
     LD2410, components/sensor/ld2410, ld2410.jpg
     LD2420, components/sensor/ld2420, ld2420.jpg
+    Seeed Studio MR24HPC1 mmWave, components/seeed_mr24hpc1, seeed-mr24hpc1.jpg
 
 Miscellaneous
 *************
@@ -643,6 +654,7 @@ Fan Components
     H-bridge Fan, components/fan/hbridge, fan.svg, dark-invert
     Speed Fan, components/fan/speed, fan.svg, dark-invert
     Tuya Fan, components/fan/tuya, tuya.png
+    Template Fan, components/fan/template, description.svg, dark-invert
 
 Display Components
 ------------------
@@ -650,6 +662,7 @@ Display Components
 .. imgtable::
 
     Display Core, components/display/index, folder-open.svg, dark-invert
+    Font Renderer, components/display/fonts, format-font.svg, dark-invert
     Addressable Light, components/display/addressable_light, addressable_light.jpg
     ILI9xxx, components/display/ili9xxx, ili9341.jpg
     ILI9341, components/display/ili9xxx, ili9341.svg
@@ -658,14 +671,16 @@ Display Components
     ILI9486, components/display/ili9xxx, ili9341.jpg
     ILI9488, components/display/ili9xxx, ili9488.svg
     WSPICOLCD, components/display/ili9xxx, ili9488.svg
-    
+
     Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     Nextion, components/display/nextion, nextion.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
+    Quad SPI AMOLED, components/display/qspi_amoled, t4-s3.jpg
     PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
+    RPI_DPI_RGB, components/display/rpi_dpi_rgb, waveshare_touch-s3.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1322, components/display/ssd1322, ssd1322.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
@@ -674,6 +689,7 @@ Display Components
     SSD1351, components/display/ssd1351, ssd1351.jpg
     ST7567, components/display/st7567, st7567.jpg
     ST7735, components/display/st7735, st7735.jpg
+    ST7701S, components/display/st7701s, indicator.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     ST7796, components/display/ili9xxx, st7796.svg
     ST7920, components/display/st7920, st7920.jpg
@@ -688,13 +704,15 @@ Touchscreen Components
 .. imgtable::
 
     Touchscreen Core, components/touchscreen/index, folder-open.svg, dark-invert
+    CST816, components/touchscreen/cst816, cst816.jpg
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
     XPT2046, components/touchscreen/xpt2046, xpt2046.jpg
+    CST226, components/touchscreen/cst226, t4-s3.jpg
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
     FT63X6, components/touchscreen/ft63x6, wt32-sc01.png
-    
+
 Cover Components
 ----------------
 
@@ -748,6 +766,7 @@ Climate Components
     Anova Cooker, components/climate/anova, anova.png
     BedJet Climate System, components/climate/bedjet, bedjet.png
     Haier Climate, components/climate/haier, haier.svg
+    Uponor Smatrix Base Pulse Underfloor Heating, components/uponor_smatrix, uponor.svg
 
 Number Components
 -----------------
@@ -830,9 +849,11 @@ Home Assistant Companion Components
 
     Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg, dark-invert
     Voice Assistant, components/voice_assistant, voice-assistant.svg, dark-invert
+    micro Wake Word, components/micro_wake_word, voice-assistant.svg, dark-invert
     Sensor, components/sensor/homeassistant, home-assistant.svg, dark-invert
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
     Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg, dark-invert
+
 
 Alarm Control Panel Components
 ------------------------------
@@ -841,6 +862,14 @@ Alarm Control Panel Components
 
     Alarm Control Panel Core, components/alarm_control_panel/index, alarm-panel.svg, dark-invert
     Template Alarm Control Panel, components/alarm_control_panel/template, description.svg, dark-invert
+
+Datetime Components
+-------------------
+
+.. imgtable::
+
+    Datetime Core, components/datetime/index, clock-outline.svg, dark-invert
+    Template Datetime, components/datetime/template, description.svg, dark-invert
 
 Miscellaneous Components
 ------------------------
@@ -904,6 +933,7 @@ Miscellaneous Components
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg, dark-invert
     SML, components/sml, sml.svg
+    SUN-GTIL2 inverter, components/sun_gtil2, sun_1000g2.png
     Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     WireGuard, components/wireguard, wireguard_custom_logo.svg
@@ -949,7 +979,6 @@ If you'd like to share configurations for specific devices, please contribute to
     web-api/index
     components/index
     cookbook/index
-    devices/index
     guides/index
     changelog/index
     custom/index

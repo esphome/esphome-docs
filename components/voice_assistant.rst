@@ -64,6 +64,8 @@ Configuration:
   (voice response) playback starts. Requires ``speaker`` to be configured.
 - **on_tts_stream_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when audio stream
   (voice response) playback ends. Requires ``speaker`` to be configured.
+- **on_idle** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the voice assistant is idle (no other actions/states are in progress).
 - **on_error** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the voice assistant has encountered an error. The error code and message are available to
   automations as the variables ``code`` and ``message``.
@@ -95,6 +97,8 @@ Listens for one voice command then stops.
 Configuration variables:
 
 - **silence_detection** (*Optional*, boolean): Enable silence detection. Defaults to ``true``.
+- **wake_word** (*Optional*, string): The wake word that was used to trigger the voice assistant
+  when using on-device wake word such as :doc:`/components/micro_wake_word`.
 
 Call ``voice_assistant.stop`` to signal the end of the voice command if ``silence_detection`` is set to ``false``.
 

@@ -14,7 +14,7 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
 
 .. code-block:: yaml
 
-    # Example configuration entry
+    # Example configuration entry for RMII chips
     ethernet:
       type: LAN8720
       mdc_pin: GPIO23
@@ -28,6 +28,18 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
         gateway: 10.0.0.1
         subnet: 255.255.255.0
 
+.. code-block:: yaml
+
+    # Example configuration entry for SPI chips
+    ethernet:
+      type: W5500
+      clk_pin: GPIO19
+      mosi_pin: GPIO21
+      miso_pin: GPIO23
+      cs_pin: GPIO18
+      interrupt_pin: GPIO36
+      reset_pin: GPIO22
+
 Configuration variables:
 ------------------------
 
@@ -35,13 +47,17 @@ Configuration variables:
 
   Supported chipsets are:
 
-  - ``LAN8720``
-  - ``RTL8201``
-  - ``DP83848``
-  - ``IP101``
-  - ``JL1101``
-  - ``KSZ8081``
-  - ``KSZ8081RNA``
+  - ``LAN8720`` (RMII)
+  - ``RTL8201`` (RMII)
+  - ``DP83848`` (RMII)
+  - ``IP101`` (RMII)
+  - ``JL1101`` (RMII)
+  - ``KSZ8081`` (RMII)
+  - ``KSZ8081RNA`` (RMII)
+  - ``W5500`` (SPI)
+
+RMII configuration variables:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **mdc_pin** (**Required**, :ref:`config-pin`): The MDC pin of the board.
   Usually this is ``GPIO23``.
@@ -58,6 +74,24 @@ Configuration variables:
 - **phy_addr** (*Optional*, int): The PHY addr type of the Ethernet controller. Defaults to 0.
 - **power_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin controlling the
   power/reset status of the Ethernet controller. Leave unspecified for no power pin (default).
+
+SPI configuration variables:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **clk_pin** (**Required**, :ref:`config-pin`): The SPI clock pin.
+- **mosi_pin** (**Required**, :ref:`config-pin`): The SPI MOSI pin.
+- **miso_pin** (**Required**, :ref:`config-pin`): The SPI MISO pin.
+- **cs_pin** (**Required**, :ref:`config-pin`): The SPI chip select pin.
+- **interrupt_pin** (*Optional*, :ref:`config-pin`): The interrupt pin.
+- **reset_pin** (*Optional*, :ref:`config-pin`): The reset pin.
+- **clock_speed** (*Optional*, float): The SPI clock speed.
+  Any frequency between `8Mhz` and `80Mhz` is allowed, but the nearest integer division
+  of `80Mhz` is used, i.e. `16Mhz` (`80Mhz` / 5) is used when `15Mhz` is configured.
+  Default: `26.67Mhz`.
+
+Advanced common configuration variables:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 - **manual_ip** (*Optional*): Manually configure the static IP of the node.
 
   - **static_ip** (**Required**, IPv4 address): The static IP of your node.
@@ -83,6 +117,10 @@ Configuration variables:
     clock signal that will not travel reliably over these types of connections. For more
     information and wiring details refer to the link in the *See also* section.
 
+.. note::
+
+    SPI based chips do *not* use :doc:`spi`. This means that SPI pins can't be shared with other devices.
+
 Configuration examples
 ----------------------
 
@@ -97,6 +135,10 @@ Configuration examples
       clk_mode: GPIO17_OUT
       phy_addr: 0
       power_pin: GPIO12
+
+.. note::
+
+    WROVER version of Olimex POE cards change CLK to ping GPIO0, configuration must be `clk_mode: GPIO0_OUT`.
 
 
 **Olimex ESP32-EVB**:

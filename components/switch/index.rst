@@ -65,7 +65,7 @@ Configuration variables:
   for a list of available options. Requires Home Assistant 2021.11 or newer.
   Set to ``""`` to remove the default entity category.
 - **device_class** (*Optional*, string): The device class for the switch.
-  See https://developers.home-assistant.io/docs/core/entity/switch/#available-device-classes
+  See https://www.home-assistant.io/integrations/switch/#device-class
   for a list of available options. Requires Home Assistant 2022.3 or newer.
 - If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
