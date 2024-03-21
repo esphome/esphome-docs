@@ -49,7 +49,9 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 - **heater_enabled** (*Optional*, bool): Turn on/off heater at boot.
-  Defaults to ``true``.
+  This may help provide `more accurate readings in condensing conditions <https://forum.arduino.cc/t/atmospheric-sensors-in-condensing-conditions/412167>`_,
+  but can also increase temperature readings and decrease humidity readings as a side effect.
+  Defaults to ``false``.
 
 See Also
 --------

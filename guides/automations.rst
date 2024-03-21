@@ -98,7 +98,8 @@ Actions
 -------
 
 Now comes the actual automation block. With ``then``, you tell ESPHome what should happen when the press happens.
-Within this block, you can define several "actions". For example, ``switch.toggle`` and the line after that form an
+Within this block, you can define several "actions" that will be executed sequentially.
+For example, ``switch.toggle`` and the line after that form an
 action. Each action is separated by a dash and multiple actions can be executed in series by just adding another ``-``
 like so:
 
@@ -323,7 +324,7 @@ if it fails to connect to the network without a reboot)
 All Triggers
 ------------
 
-- :ref:`api.services <api-services>`
+- :ref:`api.services <api-services>` / :ref:`api.on_client_connected <api-on_client_connected_trigger>` / :ref:`api.on_client_disconnected <api-on_client_disconnected_trigger>`
 - :ref:`sensor.on_value <sensor-on_value>` / :ref:`sensor.on_raw_value <sensor-on_raw_value>` / :ref:`sensor.on_value_range <sensor-on_value_range>`
 - :ref:`binary_sensor.on_press <binary_sensor-on_press>` / :ref:`binary_sensor.on_release <binary_sensor-on_release>` /
   :ref:`binary_sensor.on_state <binary_sensor-on_state>`
@@ -348,6 +349,7 @@ All Triggers
   :ref:`ota.on_state_change <ota-on_state_change>`
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
 - :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
+- :ref:`wifi.on_connect / wifi.on_disconnect <wifi-on_connect_disconnect>`
 
 All Actions
 -----------
@@ -356,6 +358,7 @@ All Actions
 - :ref:`lambda <lambda_action>`
 - :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_until <wait_until_action>`
 - :ref:`component.update <component-update_action>`
+- :ref:`component.suspend <component-suspend_action>` / :ref:`component.resume <component-resume_action>`
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`homeassistant.service <api-homeassistant_service_action>`
@@ -407,6 +410,7 @@ All Actions
 - :ref:`media_player.play <media_player-play>` / :ref:`media_player.pause <media_player-pause>` / :ref:`media_player.stop <media_player-stop>` / :ref:`media_player.toggle <media_player-toggle>`
   / :ref:`media_player.volume_up <media_player-volume_up>` / :ref:`media_player.volume_down <media_player-volume_down>` / :ref:`media_player.volume_set <media_player-volume_set>`
 - :ref:`ble_client.ble_write <ble_client-ble_write_action>`
+- :ref:`wireguard.disable <wireguard-actions>` / :ref:`wireguard.enable <wireguard-actions>`
 
 .. _config-condition:
 
@@ -414,7 +418,7 @@ All Conditions
 --------------
 
 - :ref:`lambda <lambda_condition>`
-- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`not <not_condition>`
+- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`xor <xor_condition>` / :ref:`not <not_condition>` 
 - :ref:`for <for_condition>`
 - :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` / :ref:`binary_sensor.is_off <binary_sensor-is_off_condition>`
 - :ref:`switch.is_on <switch-is_on_condition>` / :ref:`switch.is_off <switch-is_off_condition>`
@@ -429,6 +433,7 @@ All Conditions
 - :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
 - :ref:`number.in_range <number-in_range_condition>`
 - :ref:`fan.is_on <fan-is_on_condition>` / :ref:`fan.is_off <fan-is_off_condition>`
+- :ref:`wireguard.enabled <wireguard-conditions>` / :ref:`wireguard.peer_online <wireguard-conditions>`
 
 All Lambda Calls
 ----------------
@@ -500,10 +505,11 @@ and can be used to create conditional flow in actions.
 
 .. _and_condition:
 .. _or_condition:
+.. _xor_condition:
 .. _not_condition:
 
-``and`` / ``or`` / ``not`` Condition
-------------------------------------
+``and`` / ``or`` / ``xor`` / ``not`` Condition
+----------------------------------------------
 
 Check a combination of conditions
 
@@ -513,7 +519,7 @@ Check a combination of conditions
       then:
         - if:
             condition:
-              # Same syntax for and
+              # Same syntax for `and` as well as `xor` conditions
               or:
                 - binary_sensor.is_on: some_binary_sensor
                 - binary_sensor.is_on: other_binary_sensor
@@ -566,8 +572,8 @@ Configuration variables:
 ``while`` Action
 ----------------
 
-This action is similar to the :ref:`if <if_action>` Action. The ``while`` action executes
-a block until a given condition evaluates to false.
+This action is similar to the :ref:`if <if_action>` Action. The ``while`` action loops
+through a block as long as the given condition is true.
 
 .. code-block:: yaml
 
@@ -664,6 +670,64 @@ compile error.
 
         # The same as:
         - lambda: 'id(my_component).update();'
+
+.. _component-suspend_action:
+
+``component.suspend`` Action
+----------------------------
+
+Using this action you can manually call the ``stop_poller()`` method of a component.
+
+After this action the component will stop being refreshed.
+
+While the poller is suspendend, it's still possible to trigger on-demand updates by
+using :ref:`component.update <component-update_action>`
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.suspend: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).stop_poller();'
+
+.. _component-resume_action:
+
+``component.resume`` Action
+---------------------------
+
+Using this action you can manually call the ``start_poller()`` method of a component.
+
+After this action the component will refresh at the original update_interval rate
+
+This will allow the component to resume automatic update at the defined interval.
+
+This action also allows to change the update interval, calling it without suspend, 
+replace the poller directly.
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.resume: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).start_poller();'
+
+    # Change the poller interval
+    on_...:
+      then:
+        - component.resume: 
+            id: my_component
+            update_interval: 15s
+
 
 .. _globals-set_action:
 
@@ -790,7 +854,7 @@ script was already running.
 
 This action allows you to stop a given script during execution. If the
 script is not running, it does nothing.
-This is useful right now if your want to stop a script that contains a
+This is useful if you want to stop a script that contains a
 ``delay`` action, ``wait_until`` action, or is inside a ``while`` loop, etc.
 You can also call this action from the script itself, and any subsequent action
 will not be executed.
@@ -916,9 +980,14 @@ trigger, but this technique is more light-weight and user-friendly.
         then:
           - switch.toggle: relay_1
 
+
+If a startup delay is configured, the first execution of the actions will not occur before at least that time
+after boot.
+
 Configuration variables:
 
 - **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
+- **startup_delay** (*Optional*, :ref:`config-time`): An optional startup delay - defaults to zero.
 - **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
 

@@ -201,6 +201,14 @@ CUSTOM_DOCS = {
     "components/alarm_control_panel/index": {
         "Base Alarm Control Panel Configuration": "template.alarm_control_panel.schemas.CONFIG_SCHEMA",
     },
+    "components/vbus": {
+        "custom VBus sensors": "vbus.platform.sensor.schemas.CONFIG_SCHEMA.types.custom",
+        "custom VBus binary sensors": "vbus.platform.binary_sensor.schemas.CONFIG_SCHEMA.types.custom",
+    },
+    "components/spi": {
+        "Generic SPI device component:": "spi_device.schemas.CONFIG_SCHEMA"
+    },
+    "components/libretiny": {"LibreTiny Platform": "bk72xx.schemas.CONFIG_SCHEMA"},
 }
 
 REQUIRED_OPTIONAL_TYPE_REGEX = r"(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s"

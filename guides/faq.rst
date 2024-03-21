@@ -361,7 +361,7 @@ And a docker compose file looks like this:
 .. _docker-reference-notes:
 .. note::
 
-    By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature to work you need to enable host networking mode. 
+    By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature to work you need to enable host networking mode.
 
     On MacOS the networking mode ("-net=host" option) doesn't work as expected. You have to use
     another way to launch the dashboard with a port mapping option and use alternative to mDNS
@@ -409,6 +409,8 @@ The top level ``name:`` field in your .yaml file defines the node name(/hostname
 
 Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
 
+.. _strapping-warnings:
+
 Why am I getting a warning about strapping pins?
 --------------------------------------------------
 
@@ -418,6 +420,13 @@ While the use of them in software is not a problem, if there's something attache
 It's recommended to avoid them unless you have a pressing need to use them and you have reviewed the expected boot voltage levels of these pins from the ESP datasheet.
 
 Some development boards connect GPIO 0 to a button, often labeled "boot". Holding this button while the ESP is turning on will cause it to go into bootloader mode. Once the ESP is fully booted up, this button can be used as a normal input safely.
+
+Strapping pins should be safe to use as outputs if they are *only* connected to other devices that have hi-impedance inputs
+with no pull-up or pull-down resistors. Note that I2C clock and data lines *do* have pull-up resistors and are not
+safe on strapping pins.
+
+If you are absolutely sure that your use of strapping pins is safe, and want to suppress the warning, you can
+add ``ignore_strapping_warning: true`` to the relevant pin configurations.
 
 How can I test a Pull Request?
 ------------------------------
@@ -441,6 +450,13 @@ flash your device, the code from the Pull Request will be used for the component
 Note that this only works for Pull Requests that only change files within components. If any files outside
 ``esphome/components/`` are added or changed, this method unfortunately doesn't work. Those Pull Requests are labeled
 with the "core" label on GitHub.
+
+Why do entities show as Unavailable during deep sleep?
+------------------------------------------------------
+
+The :doc:`Deep Sleep </components/deep_sleep>` component needs to be present within the config when the device
+is first added to Home Assistant. To prevent entities from appearing as Unavailable, you can remove and re-add the
+device in Home Assistant.
 
 See Also
 --------

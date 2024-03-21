@@ -22,7 +22,9 @@ The SPI bus usually consists of 4 wires:
   All devices on the bus share this line.
 - **MISO** (also SDI - Serial Data In): Is used to receive data. All devices on the bus share this line.
 
-In some cases one of **MOSI** or **MISO** do not exist as the receiving device only accepts data or sends data.
+In some cases one of **MOSI** or **MISO** does not exist as the receiving device only accepts data or sends data.
+It is also possible to configure a quad SPI interface using 4 output data lines. This is required only for
+use with certain components.
 
 To set up SPI devices in ESPHome, you first need to place a top-level SPI component which defines the pins to
 use for the functions described above. The **CS** pins are individually managed by the other components that
@@ -37,7 +39,7 @@ This component also accepts a list of controllers if you want to implement multi
       mosi_pin: GPIO13
       miso_pin: GPIO12
 
-    # Example configuration entry - two controllers
+    # Example configuration entry - three controllers, one using quad SPI
     spi:
       - id: spi_bus0
         clk_pin: GPIO18
@@ -49,19 +51,35 @@ This component also accepts a list of controllers if you want to implement multi
         mosi_pin: GPIO27
         miso_pin: GPIO26
         interface: any
+      - id: quad_spi_bus
+        type: quad
+        clk_pin: GPIO47
+        data_pins:
+          - 40
+          - 41
+          - 42
+          - 43
 
 Configuration variables:
 ------------------------
 
+- **type** (*Optional*): Choose between ``single`` for standard 1 bit bus SPI (the default) or ``quad`` for quad SPI.
 - **clk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for the clock line of the SPI bus.
-- **mosi_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the MOSI line of the SPI bus.
-- **miso_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the MISO line of the SPI bus.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this SPI hub if you need multiple SPI hubs.
 - **interface** (*Optional*): Controls which hardware or software SPI implementation should be used.
   Value may be one of ``any`` (default), ``software``, ``hardware``, ``spi``, ``spi2`` or ``spi3``, depending on
-  the particular chip. See discussion below.
-- **force_sw** (*Optional*, **Deprecated**, boolean): Whether software implementation should be used even if a hardware
-  controller is available. Default is ``false``.
+  the type and the particular chip used. See discussion below.
+
+For the conventional ``single`` bit bus at least one of ``miso_pin`` or ``mosi_pin`` is required.
+
+- **mosi_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the MOSI line of the SPI bus.
+- **miso_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the MISO line of the SPI bus.
+
+For ``quad`` type instead specify ``data_pins``:
+
+- **data_pins** (*Required*, :ref:`Pin Schema <config-pin_schema>`): Must be a list of exactly 4 pins to be used
+  for the quad SPI output data lines.
+
 
 Interface selection:
 --------------------
@@ -84,6 +102,8 @@ to drive a display for example.
 While the ESP32 supports the reassignment of the default SPI pins to most other GPIO pins, using the dedicated SPI pins
 can improve performance and stability for certain ESP/device combinations.
 ESP8266 has a more limited selection of pins that can be used; check the datasheet for more information.
+
+Quad mode requires a hardware interface, so ``software`` and ``any`` are not permitted values.
 
 Generic SPI device component:
 -----------------------------
