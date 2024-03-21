@@ -37,6 +37,7 @@ Configuration variables:
   - **coolix**: Decode and dump Coolix infrared codes.
   - **dish**: Decode and dump Dish infrared codes.
   - **drayton**: Decode and dump Drayton Digistat RF codes.
+  - **hob2hood**: Decode and dump AEG Hob2Hood infrared codes.
   - **jvc**: Decode and dump JVC infrared codes.
   - **keeloq**: Decode and dump KeeLoq RF codes.
   - **haier**: Decode and dump Haier infrared codes.
@@ -100,6 +101,9 @@ Automations:
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
 - **on_drayton** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Drayton Digistat RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DraytonData`
+  is passed to the automation for use in lambdas.
+- **on_hob2hood** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Hob2Hood remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::Hob2HoodData`
   is passed to the automation for use in lambdas.
 - **on_jvc** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   JVC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::JVCData`
@@ -248,6 +252,18 @@ Remote code selection (exactly one of these has to be included):
   - **address** (**Required**, int): The 16-bit ID code to trigger on, see dumper output for more info.
   - **channel** (**Required**, int): The 7-bit switch/channel to listen for.
   - **command** (**Required**, int): The 5-bit command to listen for.
+
+- **hob2hood**: Trigger on a decoded Hob2Hood remote code with the given data.
+
+  - **command** (**Required**, enum): The Hob2Hood command to trigger on.
+
+    - ``light_off``
+    - ``light_on``
+    - ``fan_off``
+    - ``fan_low``
+    - ``fan_medium``
+    - ``fan_high``
+    - ``fan_max``
 
 - **jvc**: Trigger on a decoded JVC remote code with the given data.
 
