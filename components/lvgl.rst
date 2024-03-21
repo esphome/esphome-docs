@@ -426,12 +426,12 @@ See :ref:`lvgl-cook-cover` for a cookbook example how to play with styling and p
 
 .. _lvgl-objupdflag-act:
 
-In addition to visual stilyng, each widget supports some boolean flags to influence the behavior:
+In addition to visual stilyng, each widget supports some boolean **flags** to influence the behavior:
 
 - **hidden** (*Optional*, boolean): make the widget hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.show`` and ``lvgl.widget.hide``. Defaults to ``false``.
 - **checkable** (*Optional*, boolean): toggle checked state when the widget is clicked.
 - **clickable** (*Optional*, boolean): make the widget clickable by input devices. Defaults to ``true``. If ``false``, it will pass the click to the widgets behind it (clicking through).
-- **scrollable** (*Optional*, boolean): the widget can become scrollable. Defaults to ``true``.
+- **scrollable** (*Optional*, boolean): the widget can become scrollable. Defaults to ``true`` (also see the ``scrollbar_mode`` property).
 - **scroll_elastic** (*Optional*, boolean): allow scrolling inside but with slower speed.
 - **scroll_momentum** (*Optional*, boolean): make the widget scroll further when "thrown".
 - **scroll_one** (*Optional*, boolean): allow scrolling only one snappable children.
