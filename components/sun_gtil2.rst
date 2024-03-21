@@ -37,12 +37,31 @@ As the data is read from the inverter using UART, you need to have an :ref:`UART
 configuration with the ``rx_pin`` connected to the TX pin of the inverter's controller board. Additionally, you
 need to set the ``baud_rate`` to 9600.
 
+
+
+The inverter will report new measurements approximately every 1.3 seconds.
+
+Component/Hub
+-------------
+
 .. code-block:: yaml
 
     # Example configuration entry
     sun_gtil2:
       uart_id: control_to_display
-    
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **id** (**Required**, :ref:`config-id`): The id to use for this component.
+- **uart_id** (*Optional*): The UART Bus ID for receiving messages sent from the inverter's controller to the display.
+
+Sensor
+------
+
+.. code-block:: yaml
+
+    # Example configuration entry
     sensor:
       - platform: sun_gtil2
         temperature:
@@ -69,23 +88,11 @@ need to set the ``baud_rate`` to 9600.
         limiter_power:
           id: gtil_limiter_power
           internal: True
-    
-    text_sensor:
-      - platform: sun_gtil2
-        state:
-          id: gtil_state
-          name: "State"
-        serial_number:
-          id: gtil_serial_number
-          internal: True
-
-The inverter will report new measurements approximately every 1.3 seconds.
 
 Configuration variables:
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
-  to use multiple UART buses.
+- **sun_gtil2_id** (*Optional*): Manually specify the ID of the sun_gtil2 instance if there are multiple.
 
 - **temperature** (*Optional*): The temperature of your inverter's heatsink.
   All options from :ref:`Sensor <config-sensor>`.
@@ -104,6 +111,26 @@ Configuration variables:
 
 - **limiter_power** (*Optional*): The power measured by the inverter's "Internal" limiter.
   All options from :ref:`Sensor <config-sensor>`.
+
+Text Sensor
+-----------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    text_sensor:
+      - platform: sun_gtil2
+        state:
+          id: gtil_state
+          name: "State"
+        serial_number:
+          id: gtil_serial_number
+          internal: True
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **sun_gtil2_id** (*Optional*): Manually specify the ID of the sun_gtil2 instance if there are multiple.
 
 - **state** (*Optional*): The inverter's state.
   All options from :ref:`Text Sensor <config-text_sensor>`.
