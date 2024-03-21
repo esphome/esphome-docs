@@ -52,27 +52,27 @@ Configuration variables:
 - **supports_heat** (*Optional*, boolean): Specifies if the device has a heating mode. Defaults to ``true``.
 - **supports_cool** (*Optional*, boolean): Specifies if the device has a cooling mode. Defaults to ``false``.
 - **switch_datapoint** (**Required**, int): The datapoint id number of the climate switch (device on/off).
-- **active_state** (*Optional*): Information for the Active State Configuration.
+- **active_state** (*Optional*): Configuration for the Active State Configuration.
 
     - **datapoint** (**Required**, int): The datapoint id number of the active state - :ref:`see below <active_state_detection>`.
     - **heating_value** (*Optional*, int): The active state datapoint value the device reports when heating. Defaults to ``1`` - :ref:`see below <active_state_detection>`.
     - **cooling_value** (*Optional*, int): The active state datapoint value the device reports when cooling - :ref:`see below <active_state_detection>`.
     - **drying_value** (*Optional*, int): The active state datapoint value the device reports when in drying mode.
     - **fanonly_value** (*Optional*, int): The active state datapoint value the device reports when in Fan Only mode.
-- **preset** (*Optional*): Information for presets.
+- **preset** (*Optional*): Configuration for presets.
 
-    - **eco** (*Optional*): Config block for Eco preset.
+    - **eco** (*Optional*): Configuration for Eco preset.
 
         - **datapoint** (**Required**, int): The datapoint id number of the Eco action.
         - **temperature** (*Optional*, int): Temperature setpoint for Eco preset.
-    - **sleep** (*Optional*): Config block for Sleep preset
+    - **sleep** (*Optional*): Configuration for Sleep preset
 
         - **datapoint** (**Required**, int): The Datapoint id number of the Sleep Action
-- **swing_mode** (*Optional*): Information for the Swing (Oscillation) modes.
+- **swing_mode** (*Optional*): Configuration for the swing (oscillation) modes.
 
     - **vertical_datapoint** (*Optional*, int): The datapoint id number of the vertical swing action.
     - **horizontal_datapoint** (*Optional*, int): The datapoint id number of the horizontal swing action.
-- **fan_mode** (*Optional*): Information for Fan Mode / Fan Speeds.
+- **fan_mode** (*Optional*): Configuration for fan modes/fan speeds.
 
     - **datapoint** (**Required**, int): The datapoint id number of the Fan value state.
     - **auto_value** (*Optional*, int): The datapoint value the device reports when the fan is on ``auto`` speed.
