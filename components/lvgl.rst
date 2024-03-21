@@ -1753,7 +1753,7 @@ See :ref:`lvgl-cook-idlescreen` example how to implement screen saving with idle
 See Also
 --------
 
-- :doc:`LVGL examples in the Cookbook </cookbook/lvgl>`
+- :doc:`Examples in the Cookbook </cookbook/lvgl>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/switch/lvgl`
 - :doc:`/components/number/lvgl`
@@ -1763,5 +1763,4 @@ See Also
 - :doc:`/components/touchscreen/index`
 - :doc:`/components/sensor/rotary_encoder`
 - `LVGL 8.3 docs <https://docs.lvgl.io/8.3/>`__
-- `LVGL Online Font Converter <https://lvgl.io/tools/fontconverter/>`__
 - :ghedit:`Edit`
