@@ -94,6 +94,7 @@ doorbell or opening a door.
       - remote_transmitter.transmit_abbwelcome:
           source_address: 0x1001 # your indoor station address
           destination_address: 0x4001 # door address
+          three_byte_address: false # address length of your system
           message_type: 0x0d # unlock door, on some systems 0x0e is used instead
           data: [0xab, 0xcd, 0xef]  # message data, see receiver dump
 
