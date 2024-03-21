@@ -140,20 +140,23 @@ Core Components
     Core, components/esphome, cloud-circle.svg, dark-invert
     PSRAM, components/psram, psram.svg
     WiFi, components/wifi, network-wifi.svg, dark-invert
-    Network, components/network, network-wifi.svg, dark-invert
 
+    Network, components/network, network-wifi.svg, dark-invert
     I²C Bus, components/i2c, i2c.svg
     SPI Bus, components/spi, spi.svg
+
     UART Bus, components/uart, uart.svg
     CAN Bus, components/canbus, canbus.svg
-
     MQTT, components/mqtt, mqtt.png
-    OTA Updates, components/ota, system-update.svg, dark-invert
-    Logger, components/logger, file-document-box.svg, dark-invert
-    Web Server, components/web_server, http.svg, dark-invert
 
+    OTA Updates, components/ota, system-update.svg, dark-invert
+    OTA via HTTP Updates, components/ota_http, system-update.svg, dark-invert
+    Logger, components/logger, file-document-box.svg, dark-invert
+
+    Web Server, components/web_server, http.svg, dark-invert
     Native API, components/api, server-network.svg, dark-invert
     Power Supply, components/power_supply, power.svg, dark-invert
+
     Deep Sleep, components/deep_sleep, hotel.svg, dark-invert
     External Components, components/external_components, external_components.svg, dark-invert
 
