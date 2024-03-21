@@ -28,9 +28,9 @@ Basics
 In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` to see the full list of available LVGL widgets in ESPHome.
 
 Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
-The child object moves with the parent and if the parent is hidden the children will be hidden too. Children can be visible only within their parent's bounding area. In other words, the parts of the children outside the parent are clipped.
+The child widget moves with the parent and if the parent is hidden the children will be hidden too. Children can be visible only within their parent's bounding area. In other words, the parts of the children outside the parent are clipped.
 
-Pages in ESPHome are implemented as LVGL screens, which are special objects which have no parent object. There is always one active page on a display.
+Pages in ESPHome are implemented as LVGL screens, which are special objects which have no parent. There is always one active page on a display.
 
 Some widgets integrate in ESPHome also as components:
 
@@ -197,7 +197,7 @@ And then you apply these selected styles to two labels, and only change very spe
           styles: date_style
           y: +20
 
-Additionally, you can change the styles based on the state of the widgets or their parts. 
+Additionally, you can change the styles based on the state of the widgets or their parts. If you want to set a property for all states (e.g. red background color) just set it for the default state, at the root of the widget. If the widget can't find a property for its current state it will fall back to the default state's property.
 
 In the example below, you have an ``arc`` with some styles set here. Note how you change the ``arc_color`` of the ``indicator`` part, based on state changes:
 
@@ -217,6 +217,10 @@ In the example below, you have an ``arc`` with some styles set here. Note how yo
 
 So the inheritance happens like this: state based styles override the locally specified styles, which override the style definitions, which override the theme, which overrides the top level styles.
 
+The precedence (value) of states is quite intuitive, and it's something the user would expect naturally. E.g. if a widget is focused the user will still want to see if it's pressed, therefore the pressed state has a higher precedence. If the focused state had a higher precedence it would overwrite the pressed color.
+
+Some properties (e.g. text color) can be inherited from a parent(s) if it's not specified in the widget.
+
 See :ref:`lvgl-cook-theme` in the Cookbook for an example how to easily implement a gradient style for your widgets.
 
 .. _lvgl-styling:
@@ -224,21 +228,21 @@ See :ref:`lvgl-cook-theme` in the Cookbook for an example how to easily implemen
 Style properties
 ****************
 
-LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing>`__. An object's *box* is built from the following parts:
+LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing>`__. A widget's *box* is built from the following parts:
 
 .. figure:: /components/images/lvgl_boxmodel.png
     :align: center
 
 - **bounding box**: the width/height of the elements.
 - **border width**: the width of the border.
-- **padding**: space between the sides of the object and its children.
+- **padding**: space between the sides of the widget and its children.
 - **content**: the content area which is the size of the bounding box reduced by the border width and padding.
 
 The border is drawn inside the bounding box. Padding sets the space on the inner sides of the border. It means *I don't want my children too close to my sides, so keep this space*. 
 
 The outline is drawn outside the bounding box.
 
-You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each object. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
+You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each of them. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
 
 - **bg_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background of the widget.
 - **bg_grad_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to make the background gradually fade to.
@@ -263,7 +267,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
     - ``RIGHT``
     - ``INTERNAL``
 - **border_width** (*Optional*, int16): Set the width of the border in pixels.
-- **radius** (*Optional*, uint16): The radius of the rounded corners of the object. 0 = no radius i.e. square corners; 65535 = pill shaped object (true circle if it has same width and height).
+- **radius** (*Optional*, uint16): The radius of the rounded corners of the widget. 0 = no radius i.e. square corners; 65535 = pill shaped widget (true circle if it has same width and height).
 - **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
 - **outline_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to draw an outline around the widget.
 - **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
@@ -369,15 +373,15 @@ The properties below are common to all widgets.
 
 .. note::
 
-    The size settings support a special value: ``size_content``. It means the object's size in the respective direction will be set to the size of its children. Note that only children on the right and bottom sides will be considered and children on the top and left remain cropped. This limitation makes the behavior more predictable. Objects with ``hidden`` or ``floating`` flags will be ignored by the ``size_content`` calculation.
+    The size settings support a special value: ``size_content``. It means the widget's size in the respective direction will be set to the size of its children. Note that only children on the right and bottom sides will be considered and children on the top and left remain cropped. This limitation makes the behavior more predictable. Widgets with ``hidden`` or ``floating`` flags will be ignored by the ``size_content`` calculation.
     
-    Similarly to CSS, LVGL also supports ``min_width``, ``max_width``, ``min_height`` and ``max_height``. These are limits preventing an object's size from becoming smaller/larger than these values. They are especially useful if the size is set by percentage or ``size_content``.
+    Similarly to CSS, LVGL also supports ``min_width``, ``max_width``, ``min_height`` and ``max_height``. These are limits preventing a widget's size from becoming smaller/larger than these values. They are especially useful if the size is set by percentage or ``size_content``.
 
 - **min_width**, **max_width**, **min_height**, **max_height** (*Optional*, int16 or percentage): Sets a minimal/maximal width or a minimal/maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
-- **scrollbar_mode** (*Optional*, string): If an object is outside its parent content area (the size without padding), the parent can become scrollable (see the ``scrollable`` :ref:`flag <lvgl-objupdflag-act>`). The object can either be scrolled horizontally or vertically in one stroke. Scrollbars can appear depending on the setting:
+- **scrollbar_mode** (*Optional*, string): If a child widget is outside its parent content area (the size without padding), the parent can become scrollable (see the ``scrollable`` :ref:`flag <lvgl-objupdflag-act>`). The widget can either be scrolled horizontally or vertically in one stroke. Scrollbars can appear depending on the setting:
     - ``"OFF"``: Never show the scrollbars (use the double quotes!).
     - ``"ON"``: Always show the scrollbars (use the double quotes!).
-    - ``"ACTIVE"``: Show scroll bars while an object is being scrolled.
+    - ``"ACTIVE"``: Show scroll bars while a widget is being scrolled.
     - ``"AUTO"``: Show scroll bars when the content is large enough to be scrolled (default).
 
 - **align** (*Optional*, enum): Alignment of the of the widget relative to the parent. A child widget is clipped to its parent boundaries. One of the values *not* starting with ``OUT_`` (see picture below).
@@ -1215,7 +1219,7 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
 ``animimg``
 ***********
 
-The animation image is similar to the normal ``img`` object. The main difference is that instead of one source image, you set a list of multiple source images. You can also specify a duration and a repeat count.
+The animation image is similar to the normal ``img`` widget. The main difference is that instead of one source image, you set a list of multiple source images. You can also specify a duration and a repeat count.
 
 .. figure:: /components/images/lvgl_animimg.gif
     :align: center
@@ -1364,7 +1368,7 @@ The Spinner widget is a spinning arc over a ring.
 
 **Specific actions:**
 
-``lvgl.spinner.update`` :ref:`action <config-action>` updates the widget styles and properties for the *indicator* part (anything other than the properties that apply commonly to all objects), just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.spinner.update`` :ref:`action <config-action>` updates the widget styles and properties for the *indicator* part (anything other than the properties that apply commonly to all widgets), just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -1391,12 +1395,12 @@ The Spinner widget is a spinning arc over a ring.
 ``obj``
 *******
 
-The Base Object can be directly used as a simple, empty widget. It is nothing more than a (rounded) rectangle.
+The Base Object is just a simple, empty widget. By default, it's nothing more than a rounded rectangle:
 
 .. figure:: /components/images/lvgl_baseobj.png
     :align: center
 
-You can use it as a parent background shape for other objects. It catches touches!
+You can use it as a parent for other widgets, like background shape. By default, it catches touches.
 
 **Specific options:**
 
