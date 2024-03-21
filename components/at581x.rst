@@ -36,15 +36,13 @@ a :doc:`/components/i2c` component (and its requisite GPIO pins) is required in 
     binary_sensor:
       - platform: at581x
         at581x_id: "Radar"
-        has_target:
-          name: "Radar motion"
+        name: "Radar motion"
 
     switch:
       # Switch to turn on/off RF emission
       - platform: at581x
         at581x_id: "Radar"
-        rf_power:
-          name: "Enable Radar"
+        name: "Enable Radar"
 
 .. _at581x-component:
 
@@ -96,15 +94,13 @@ to create individual binary sensors for each presence sensor.
 
     binary_sensor:
       - platform: at581x
-        has_target:
-          name: "Human in front"
+        name: "Human in front"
 
 Configuration variables:
 ************************
 
 - **at581x_id** (*Optional*, :ref:`config-id`): The ID of the AT581x component defined above.
   Required when multiple instances of the ``at581x`` component are defined.
-- **has_target** (*Optional*): If present, a *motion* binary sensor with the given name will be created
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _at581x-switch:
@@ -119,15 +115,13 @@ Switch
     switch:
       - platform: at581x
         at581x_id: Radar
-        rf_power:
-          name: "Enable Radar"
+        name: "Enable Radar"
 
 Configuration variables:
 ************************
 
 - **at581x_id** (*Optional*, :ref:`config-id`): The ID of the AT581x component defined above.
   Required when multiple instances of the ``at581x`` component are defined.
-- **rf_power** (*Optional*): If present, a *RF* switch with the given name will be created
 - All other options from :ref:`Switch <config-switch>`.
 
 .. _at581x-actions:
@@ -142,7 +136,8 @@ Actions
 
 .. warning::
 
-    Each change to the configuration of the radar resets it, whatever the state of the factory reset option.
+    The hardware frontend reset option is only required to reset the frontend in case it is struck, before sending the 
+    new configuration. However, a frontend reset is always performed after changing the settings. 
 
 The radar has several settings which can be changed. These settings are not saved in non-volatile memory
 and need to be set on each boot.
@@ -171,15 +166,15 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the sensor on which settings should be
   changed. If only one radar is defined, this is optional.
-- **hw_frontend_reset** (*Optional*, boolean): If set to true, a factory reset of the sensor will be performed (before
-  changing other options if present). Ignored if not set or set to ``false``. Upon applying the settings a sensor reset
+- **hw_frontend_reset** (*Optional*, boolean): If set to true, a reset of the analog frontend will be performed before
+  changing other options. Ignored if not set or set to ``false``. Upon applying the settings a frontend reset
   will be performed anyway, this is only useful if the sensor is not answering or locked up.
 - **frequency** (*Optional*, int): Any of the possible frequencies (5696, 5715, 5730, 5748, 5765, 5784, 5800, 5819, 5836, 5851, 5869, 5888) in MHz.
 - **sensing_distance** (*Optional*, int): A unitless number, in range 0-1023, specifying the maximum distance to detect motion
-- **poweron_selfcheck_time** (*Optional*, int): The delay in ms to perform self check and calibration on power on. Recommanded not to change this
-- **protect_time** (*Optional*, int): The delay in ms after an end-of-trigger event where the detection will not trigger anymore. Max 65535ms
-- **trigger_base** (*Optional*, int): The delay in ms while a detection must be active to change the state of the sensor. Max 65535ms
-- **trigger_keep** (*Optional*, int): The delay in ms that the output will stay high after a detection event. This is usually what you want to change.
+- **poweron_selfcheck_time** (*Optional*, int): The delay to perform self check and calibration on power on. Recommanded not to change this
+- **protect_time** (*Optional*, int): The delay after an end-of-trigger event where the detection will not trigger anymore. Max 65535ms
+- **trigger_base** (*Optional*, int): The delay while a detection must be active to change the state of the sensor. Max 65535ms
+- **trigger_keep** (*Optional*, int): The delay that the output will stay high after a detection event. This is usually what you want to change.
 - **stage_gain** (*Optional*, int): The analog gain to use for threshold test. Any value in range 0-12, with 12 being the lowest gain and 0 the highest
 - **power_consumption** (*Optional*, int): Any of the possible power profile (48, 56, 63, 70, 77, 91, 105, 115, 40, 44, 47, 51, 54, 61, 68, 78) in µA
 
