@@ -14,27 +14,6 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
 .. code-block:: yaml
 
     # Example configuration entry
-    esp32:
-      board: m5stack-core2
-      framework:
-        type: arduino
-
-    i2c:
-      sda: GPIOXX
-      scl: GPIOXX
-      scan: false
-
-    output:
-      - platform: ledc
-        pin: GPIOXX
-        id: screen_led
-
-    light:
-      - platform: monochromatic
-        output: screen_led
-        default_transition_length: 0.2s
-        name: 'Backlight'
-        restore_mode: ALWAYS_ON
 
     touchscreen:
       - platform: ft63x6
