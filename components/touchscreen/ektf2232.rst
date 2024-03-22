@@ -15,8 +15,8 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
     # Example configuration entry
     touchscreen:
       - platform: ektf2232
-        interrupt_pin: REPLACEME
-        rts_pin: REPLACEME
+        interrupt_pin: GPIOXX
+        rts_pin: GPIOXX
 
 
 Configuration variables:

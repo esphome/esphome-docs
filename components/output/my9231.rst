@@ -104,7 +104,7 @@ complete configuration for a Sonoff B1 looks like:
 .. code-block:: yaml
 
     esphome:
-      name: REPLACEME
+      name: GPIOXX
 
     esp8266:
       board: esp01_1m
@@ -145,7 +145,7 @@ complete configuration for a Sonoff B1 looks like:
 
     light:
       - platform: rgbww
-        name: REPLACEME
+        name: GPIOXX
         red: output_red
         green: output_green
         blue: output_blue
@@ -159,7 +159,7 @@ And here is a complete configuration for the AiThinker AiLight:
 .. code-block:: yaml
 
     esphome:
-      name: REPLACEME
+      name: GPIOXX
 
     esp8266:
       board: esp01_1m
@@ -197,7 +197,7 @@ And here is a complete configuration for the AiThinker AiLight:
 
     light:
       - platform: rgbw
-        name: REPLACEME
+        name: GPIOXX
         red: output_red
         green: output_green
         blue: output_blue
