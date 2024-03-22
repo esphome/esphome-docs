@@ -12,7 +12,7 @@ LVGL Graphics
 embedded graphics library to create beautiful UIs for any MCU, MPU and display type. ESPHome supports `LVGL version 8.3.11 <https://docs.lvgl.io/8.3/>`__.
 
 .. figure:: /components/images/lvgl_main_screenshot.png
-    :align: center
+    :align: left
 
 In order to be able to drive a display with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended.
 
