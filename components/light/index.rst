@@ -55,6 +55,12 @@ Configuration variables:
     - ``ALWAYS_OFF`` (Default) - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
+  .. note::
+
+    If you want a custom power-on state, for example a specific color or effect, edit the
+    ``on_boot`` automation script and set the restore mode to ``ALWAYS_OFF`` to let the
+    script set the state.
+
 - **on_turn_on** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the light is turned on. See :ref:`light-on_turn_on_off_trigger`.
 - **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
