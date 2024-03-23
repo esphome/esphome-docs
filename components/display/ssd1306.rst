@@ -34,8 +34,8 @@ improve reliability.
 
     # Example configuration entry
     i2c:
-      sda: D1
-      scl: D2
+      scl: D1
+      sda: D2
 
     display:
       - platform: ssd1306_i2c
