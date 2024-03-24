@@ -72,6 +72,24 @@ a 4.0 A device is showing a value of 0.1333 in the logs. Now go into your config
 
 Recompile and upload, now your CT clamp sensor is calibrated!
 
+Using GPIO pins
+---------------
+
+If you try to use an ESP32 and hook the sensor up to a normal GPIO wire, you won't get any readings. This is because the ESP32 has an internal voltage divider.
+To counteract this, you must add some `attenuation` and a `multiply` filter. After that, you can use the sensor just like on an analog pin.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: adc
+        pin: GPIO35 # or any other Analog to Digital Converter (ADC) capable pin
+        name: "Measured Current"
+        update_interval: 60s
+        attenuation: 11dB
+        filters:
+          - multiply: 2.0
+
 See Also
 --------
 
