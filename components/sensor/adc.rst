@@ -35,6 +35,7 @@ Configuration variables:
 - **attenuation** (*Optional*): Only on ESP32. Specify the ADC
   attenuation to use. See :ref:`adc-esp32_attenuation`. Defaults to ``0db``.
 - **raw** (*Optional*): Allows to read the raw ADC output without any conversion or calibration. See :ref:`adc-raw`. Defaults to ``false``.
+- **samples** (*Optional*): The amount of ADC readings to take per sensor update. On the ESP32 this value is ignored if ``attenuation`` is set to ``auto``. Defaults to ``1``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -199,6 +200,7 @@ on GPIO34.
       accuracy_decimals: 2
       update_interval: 60s
       attenuation: 11dB
+      samples: 10
       filters:
         - multiply: 2.0  # The voltage divider requires us to multiply by 2
 
