@@ -1210,7 +1210,7 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
       then:
         - lvgl.img.update:
             id: img_id
-            src: dog_image
+            src: cat_image_bowtie
 
 
 .. _lvgl-wgt-aim:
@@ -1249,8 +1249,8 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
     - animimg:
         align: CENTER
         id: anim_id
-        src: [ batt_lo, batt_mi, batt_hi ]
-        duration: 150ms
+        src: [ cat_image, cat_image_bowtie ]
+        duration: 600ms
 
     # Example actions:
     on_...:
