@@ -31,11 +31,10 @@ a :doc:`/components/i2c` component (and its requisite GPIO pins) is required in 
     at581x:
       id: "Radar"
       i2c_id: bus_a
-      detection_pin: 21
 
     binary_sensor:
-      - platform: at581x
-        at581x_id: "Radar"
+      - platform: gpio
+        pin: GPIO21
         name: "Radar motion"
 
     switch:
@@ -63,11 +62,9 @@ Multiple instances of this component may be defined if multiple :doc:`/component
       - id: mmWave_1
         i2c_id: bus_a
         address: 0x28
-        detection_pin: 21
       - id: mmWave_2
         i2c_id: bus_a
         address: 0x29
-        detection_pin: 22
       ...
 
 Configuration variables:
@@ -77,31 +74,25 @@ Configuration variables:
   to define multiple instances of this component.
 - **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`/components/i2c` if you want
   to use multiple I2C buses.
-- **detection_pin** (*Optional*, :ref:`config-pin`): Manually specify the input pin that's connected to the radar output.
 
 .. _at581x-binary_sensor:
 
 Binary Sensor
 -------------
 
-The state of the radar detection is available via its GPIO pin. However, a virtual binary sensor with a *motion* type can be
-set up so it's listed as a motion detection sensor instead of a basic binary sensor.
-
-First, setup a :ref:`at581x-component` and then use its binary sensor platform
-to create individual binary sensors for each presence sensor.
+The state of the radar detection is available via its GPIO pin. It's required to use a GPIO binary sensor to monitor the motion status
 
 .. code-block:: yaml
 
     binary_sensor:
-      - platform: at581x
+      - platform: gpio
         name: "Human in front"
+        pin: GPIO21
 
 Configuration variables:
 ************************
 
-- **at581x_id** (*Optional*, :ref:`config-id`): The ID of the AT581x component defined above.
-  Required when multiple instances of the ``at581x`` component are defined.
-- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+- Refer to other options from :ref:`Binary Sensor <config-binary_sensor>` and :doc:`GPIO Binary Sensor </components/binary_sensor/gpio>`.
 
 .. _at581x-switch:
 
@@ -198,5 +189,6 @@ See Also
 --------
 - :ref:`I2C bus <i2c>`
 - :ref:`Binary Sensor <config-binary_sensor>`
+- :doc:`GPIO Binary Sensor </components/binary_sensor/gpio>`
 - :ref:`config-id`
 - :ghedit:`Edit`
