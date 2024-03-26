@@ -1349,7 +1349,7 @@ Check out :ref:`lvgl-cook-keypad` in the Cookbook for an example how to change t
 
 The Spinner widget is a spinning arc over a ring.
 
-.. figure:: /components/images/lvgl_spinner.png
+.. figure:: /components/images/lvgl_spinner.gif
     :align: center
 
 **Specific options:**
