@@ -102,14 +102,22 @@ Configuration variables:
       and `password` must be `URL-encoded <https://en.wikipedia.org/wiki/Percent-encoding>`_  if they include
       special characters.
 
-    - On macOS and most Linux distributions, the `MD5sum <https://en.wikipedia.org/wiki/Md5sum>`_ of the firmware file
-      can quickly be obtained and saved to a file with the following command:
-      
-      ``md5 -q firmware.bin > firmware.md5``
+    - the `MD5sum <https://en.wikipedia.org/wiki/Md5sum>`_ of the firmware file is an ascii file of 32 lowercase 
+      hexadecimal characters. it can be obtained and saved to a file with the following command:
+
+      - On macOS and most Linux distributions:
+
+        ``md5 -q firmware.bin > firmware.md5``
+
+      - On Windows/powershell:
+
+        ``(Get-FileHash -Path firmware.bin -Algorithm md5).Hash.ToLower() | Out-File -FilePath firmware.md5 -Encoding ASCII``
 
       This will generate the MD5 hash of the ``firmware.bin`` file and write the resulting hash value to the
       ``firmware.md5`` file. The ``md5_url`` configuration variable should point to this file on the web server.
       It is used by the OTA updating mechanism to ensure the integrity of the (new) firmware as it is installed.
+
+
 
 
 See Also
