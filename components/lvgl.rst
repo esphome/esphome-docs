@@ -237,9 +237,7 @@ LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/W
 - **padding**: space between the sides of the widget and its children.
 - **content**: the content area which is the size of the bounding box reduced by the border width and padding.
 
-The border is drawn inside the bounding box. Padding sets the space on the inner sides of the border. It means *I don't want my children too close to my sides, so keep this space*. 
-
-The outline is drawn outside the bounding box.
+The border is drawn inside the bounding box. Padding sets the space on the inner sides of the border. It means *I don't want my children too close to my sides, so keep this space*. The outline is drawn outside the bounding box.
 
 You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each of them. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
 
@@ -1211,7 +1209,6 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
         - lvgl.img.update:
             id: img_id
             src: cat_image_bowtie
-
 
 .. _lvgl-wgt-aim:
 
