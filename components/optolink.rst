@@ -15,7 +15,7 @@ Using a simple DIY adapter cable you can read parameters of the heating componen
 
     Viessmann® Optolink connection with adapter cable.
 
-Once configured, you can add further :doc:`Sensors</components/sensor/index>`, :doc:`Binary Sensors</components/binary_sensor/index>` and :doc:`Text Sensors</components/text_sensor/index>` to monitor parameters of the heating component. Moreover, you can add :doc:`Switches</components/switch/index>`, :doc:`Numbers</components/number/index>` and :doc:`Selects</components/select/index>` to control the heating component.
+Once configured, you can add further :doc:`Sensors</components/sensor/index>`, :doc:`Binary Sensors</components/binary_sensor/index>` and :doc:`Text Sensors</components/text_sensor/index>` to monitor parameters of the heating component. Moreover, you can add :doc:`Switches</components/switch/index>`, :doc:`Numbers</components/number/index>`, :doc:`Texts</components/text/index>` and :doc:`Selects</components/select/index>` to control the heating component.
 
 .. note::
 
@@ -54,7 +54,7 @@ Configuration variables
         logger:
           hardware_uart: UART1
 
-    Or deactivate the logging to UART0 with a baudrate value of 0.
+    Or deactivate the logging to UART0 with a baudrate value of 0. Even if you deactivate logging on UART0, the log outputs can be seen on the local computer via the `esphome` command line utility. 
 
     .. code-block:: yaml
 
@@ -108,63 +108,54 @@ Text Sensors
         name: Error history 1
         address: 0x7590
         bytes: 9
-        mode: RAW
+        type: RAW
       - platform: optolink
         name: Heating operation mode
         address: 0x2323
         bytes: 1
-        mode: MAP
+        type: MAP
         filters:
           map:
             - "0 -> Off"
             - "1 -> Only hot water"
             - "2 -> Heating and hot water"
       - platform: optolink
-        mode: DEVICE_INFO
+        type: DEVICE_INFO
         name: Device Info
       - platform: optolink
-        mode: STATE_INFO
+        type: STATE_INFO
         name: Component state
       - platform: optolink
         name: Heating schedule Monday
-        mode: DAY_SCHEDULE
+        type: DAY_SCHEDULE
         day_of_week: MONDAY
         address: 0x2000
-        bytes: 56
-      - platform: optolink
-        name: Warm water schedule Sunday
-        mode: DAY_SCHEDULE_SYNCHRONIZED
-        day_of_week: SUNDAY
-        entity_id: input_text.weekend_schedule_water_heating
-        address: 0x2100
         bytes: 56
 
 Configuration variables
 ~~~~~~~~~~~~~~~~~~~~~~~
-- **mode** (**Required**, string): See table below
+- **type** (**Required**, string): Type of text sensor (see table below)
 - **address** (hexadecimal): Address of datapoint
 - **bytes** (int): Number of bytes of datapoint
-- **day_of_week** (string): Day of the week (see *Schedule plans*)
-- **entity_id** (string): Name of Home Assistant helper entity containing schedule plan (see *Schedule plans*)
+- **day_of_week** (string): Day of the week (only required for `type` DAY_SCHEDULE; see *Schedule plans*)
 - All other options from :doc:`/components/text_sensor/index`
 
-Explanation of ``mode``
+Explanation of ``type``
 ~~~~~~~~~~~~~~~~~~~~~~~
-============================= ============ ============ =============== ============= ===========================================================================================
-``mode``                      ``address``  ``bytes``    ``day_of_week`` ``entity_id`` text sensor shows 
-                              **Required** **Required** **Required**    **Required** 
-============================= ============ ============ =============== ============= ===========================================================================================
-``RAW``                       yes          yes                                        the bytes read as raw characters
-``MAP``                       yes          yes                                        the bytes treated as a numerical value that can be mapped (see :doc:`/components/text_sensor/index`)
-``DEVICE_INFO``                                                                       information of your Vitotronic controlling unit  
-``STATE_INFO``                                                                        internal state of component initialization (see *Troubleshooting*)
-``DAY_SCHEDULE``              yes          yes          yes                           schedule plan with On/Off time pairs
-``DAY_SCHEDULE_SYNCHRONIZED`` yes          yes          yes             yes           schedule plan with On/Off time pairs
-============================= ============ ============ =============== ============= ===========================================================================================
+============================= ============ ============ =============== ===========================================================================================
+``mode``                      ``address``  ``bytes``    ``day_of_week`` text sensor shows 
+                              **Required** **Required** **Required**    
+============================= ============ ============ =============== ===========================================================================================
+``RAW``                       yes          yes                          the bytes read as raw characters
+``MAP``                       yes          yes                          the bytes treated as a numerical value that can be mapped (see :doc:`/components/text_sensor/index`)
+``DEVICE_INFO``                                                         information of your Vitotronic controlling unit  
+``STATE_INFO``                                                          internal state of component initialization (see *Troubleshooting*)
+``DAY_SCHEDULE``              yes          yes          yes             schedule plan with On/Off time pairs
+============================= ============ ============ =============== ===========================================================================================
 
 Schedule plans
 ~~~~~~~~~~~~~~~
-The mode ``DAY_SCHEDULE`` can be used to read daily schedule plans with On/Off time pairs, for example, to turn on or off heating or warm water.
+The type ``DAY_SCHEDULE`` can be used to read daily schedule plans with On/Off time pairs. These time pairs are used for example, to turn on or off heating or warm water.
 Each day of the week can have up to four time pairs. The hour values are represented in 24h format, the minute values are multiples of ``10``.
 For example, the following value means 'turn on for the time between 5:20 and 9:00 and between 16:00 and 21:30':
 
@@ -177,13 +168,31 @@ For example, the following value means 'turn on for the time between 5:20 and 9:
 
     Currently only schedule plans configured by 56-byte datapoints are supported. Refer to the documentation of your Viessmann unit for suitable datapoints.
 
-The mode ``DAY_SCHEDULE_SYNCHRONIZED`` can be used to **write** a schedule plan back to the Viessmann unit.
-The schedule plan is read from a Home Assistant Helper of type ``Input Text``. For more information about creating a Helper of type ``Input Text``, see `<https://www.home-assistant.io/integrations/input_text/>`__ .
 
-To validate the correct syntax of the schedule plan, use a maximum length of ``48`` characters and the regular expression ``(((([0-1]?[0-9]|2[0-3]):[0-5]0)( |$)){2})*`` to ensure correct input in Home Assistant's user interface.
+Texts
+*****
 
-Incorrect schedule plans are not transferred to the Viessmann unit, instead a log entry is written to the ESPHome ``logger`` component. 
+In contrast to a `text_sensor` of type `DAY_SCHEDULE` a `text` of this type allows you to not only read the schedule plan but also to modify it.
 
+.. code-block:: yaml
+
+    # Example configuration entry
+    text:
+      - platform: optolink
+        name: Warm water schedule Monday
+        address: 0x2100
+        bytes: 56
+        type: DAY_SCHEDULE
+        day_of_week: MONDAY
+        icon: mdi:shower
+
+Configuration variables
+~~~~~~~~~~~~~~~~~~~~~~~
+- **type** (**Required**, string): Type of text (currently only `DAY_SCHEDULE`)
+- **address** (**Required**, hexadecimal): Address of datapoint
+- **bytes** (**Required**, int): Number of bytes of datapoint (currently only `56`)
+- **day_of_week** (string): Day of the week (see *Schedule plans* in section `text_sensor`)
+- All other options from :doc:`/components/text/index`
 
 Numbers
 *******
@@ -250,11 +259,15 @@ Configuration variables
 - **bytes** (**Required**, int): Number of bytes of datapoint
 - **div_ratio** (*Optional*, int): Value factor of datapoint. Defaults to '1'.
 - **map** (**Required**, map): Mapping of numerical value to human readable value.
-- All other options from :doc:`/components/switch/index`
+- All other options from :doc:`/components/select/index`
+
+Troubleshooting
+---------------
+If you encounter problems, here are some hints.
 
 .. warning::
 
-    The optical interface has a limited throughput, getting a response from the Viessmann controller takes a fragment of a second and is sequentially processed. Keep that in mind when defining sensors / control entities and define an appropriate value of ``update_interval`` for each of them. Otherwise the default update interval of 10 seconds will be use which can lead to unprocessed read and write requests.
+    The optical interface has a limited throughput, getting a response from the Viessmann controller takes a fragment of a second and is sequentially processed. Keep that in mind when defining sensors/components and define an appropriate value of ``update_interval`` for each of them. Otherwise the default update interval of 10 seconds will be used which can lead to unprocessed read and write requests.
     
     Example config:
 
@@ -269,17 +282,13 @@ Configuration variables
           device_class: temperature
           update_interval: 120s
 
-Troubleshooting
----------------
-If you encounter problems, here are some hints.
-
 IR-LED
 ******
 The IR LED is working in a frequency band outside of your eye's perception. To see the LED sending signals watch the LED through your smartphones camera. This way the IR light is visible and you can check if the LED is working.
 
 Too many sensors
 ****************
-If you configure a large number of ``sensors``, ``numbers``, ``switches`` or ``selects`` you could run out of memory, especially on ESP8266 controllers. Try to avoid unnecesary components like the :doc:`/components/web_server`. The :doc:`/components/debug`, which unfortunately is itself a component with significant memory footprint, can help to check free memory.
+If you configure a large number of datapoints you could run out of memory, especially on ESP8266 controllers. Try to avoid unnecesary components like the :doc:`/components/web_server`. The :doc:`/components/debug`, which is unfortunately itself a component with significant memory footprint, can help to check free memory.
 
 Logging of communication
 ************************
@@ -287,7 +296,7 @@ If you configure the ``optolink`` platform with ``logger: true``, the communicat
 
 Internal component state
 ************************
-If something went wrong while initializing the component, it tries to write information to ``state`` Text sensor. See *Configuration*.
+If something went wrong while initializing the component, it tries to write information to a `text_sensor` of type `STATE_INFO`. See *Text Sensors*.
 
 See Also
 --------
