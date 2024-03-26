@@ -58,10 +58,6 @@ Advanced options:
 
   - **name** (**Required**, string): Name of the project
   - **version** (**Required**, string): Version of the project
-  - **on_update** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the device firmware is updated.
-    This compares the above ``version`` field with the ``version`` that was in the previous firmware
-    as long as the ``name`` matches.
-    The ``version`` is stored in flash memory when the firmware is first run for future comparisons.
 - **min_version** (*Optional*, string): The minimum ESPHome version required to compile this configuration.
   See :ref:`esphome-min_version`.
 - **compile_process_limit** (*Optional*, int): The maximum number of simultaneous compile processes to run.
@@ -86,6 +82,8 @@ Automations:
   right before the node shuts down. See :ref:`esphome-on_shutdown`.
 - **on_loop** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   on each ``loop()`` iteration. See :ref:`esphome-on_loop`.
+- **on_update** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
+  when the device firmware is updated. See :ref:`esphome-on_update`.
 
 .. _esphome-on_boot:
 
@@ -164,6 +162,24 @@ This automation will be triggered on every ``loop()`` iteration (usually around 
     esphome:
       # ...
       on_loop:
+        then:
+          # do something
+
+.. _esphome-on_update:
+
+``on_update``
+-------------
+
+This automation will be triggered if the hash of the project ``version`` stored in the devices flash
+has changed with this firmware as long as the ``name`` matches. Due to size constraints, only a hash
+of the previous version is stored, which is available to the automation if, for example, you need to
+update default settings with a specific version upgrade.
+
+.. code-block:: yaml
+
+    esphome:
+      # ...
+      on_update:
         then:
           # do something
 
