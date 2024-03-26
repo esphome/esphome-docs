@@ -56,7 +56,7 @@ Configuration variables:
     - **mirror_x** (*Optional*, boolean): If true, mirror the x axis.
     - **mirror_y** (*Optional*, boolean): If true, mirror the y axis.
 
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the touchscreen. Defaults to ``never``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the touchscreen. Defaults to ``never``. **NOTE:** You should set this to ``50ms`` when you dont have set the **interupt_pin**.
 - **calibration** (*Optional*): When the touchscreen is not given the right configuration settings. You can set them here.
 
     - **x_min** (*Optional*, int): The raw value corresponding to the left

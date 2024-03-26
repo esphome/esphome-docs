@@ -9,11 +9,13 @@ The pulse meter sensor allows you to count the number and frequency of pulses on
 for the :doc:`pulse counter integration </components/sensor/pulse_counter>`.
 Rather than counting pulses over a fixed time interval, the pulse meter sensor measures the time between pulses. The precise manner in which this is done depends on the ``internal_filter_mode`` option. This leads to a higher resolution, especially for low pulse rates, as the pulse counter sensor is limited by the number of pulses within a time interval.
 
-Here's a comparison of the two sensors; both are set to an update interval of 10 seconds (using the ``update_interval`` and the ``throttle_average`` option respectively):
+Here's a comparison of the two sensors.  The pulse meter is the smoother line.  Both are set to an update interval of 10 seconds (using the ``update_interval`` and the ``throttle_average`` option respectively):
 
 .. figure:: /images/pulse-counter_vs_pulse-meter.png
     :align: center
     :width: 50.0%
+
+Please note that it is not possible to use both of these two sensors on the same pin at the same time.
 
 .. code-block:: yaml
 
