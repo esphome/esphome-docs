@@ -45,7 +45,7 @@ a :doc:`/components/i2c` component (and its requisite GPIO pins) is required in 
 
 .. _at581x-component:
 
-Hub Component
+Component/Hub
 -------------
 
 You need to have the hub component (``at581x:`` entry) defined to be able to change the sensor's
