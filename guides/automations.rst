@@ -330,7 +330,7 @@ All Triggers
   :ref:`binary_sensor.on_state <binary_sensor-on_state>`
 - :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` /
   :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
-- :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>`
+- :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>` / :ref:`esphome.on_update <esphome-on_update>`
 - :ref:`light.on_turn_on / light.on_turn_off <light-on_turn_on_off_trigger>`
 - :ref:`logger.on_message <logger-on_message>`
 - :ref:`time.on_time <time-on_time>` / - :ref:`time.on_time_sync <time-on_time_sync>`
