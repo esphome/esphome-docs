@@ -23,7 +23,7 @@ that uses the Kamstrup Meter Protocol for communication.
 This component can be used to request measurements from the meter using
 the optical interface.
 
-A :ref:`UART bus <uart>` is required to communicate with the meter. The baudrate
+A :ref:`UART bus <uart>` is required to communicate with the meter.
 
 Configuration
 -------------
@@ -92,8 +92,7 @@ Hardware
 
 The Kamstrup meter uses an optical interface, just above the display. The required
 optical transceiver can be made using the schematic below. Connect the RX and TX
-lines to the pins configured under the uart section in the config file. In the
-configuration example above, this would be GPIO pin 13 and 15 respectively.
+lines to the pins configured under the uart section in the config file.
 
 .. figure:: images/kamstrup_kmp_sch.svg
     :scale: 200%
