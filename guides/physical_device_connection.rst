@@ -1,5 +1,3 @@
-.. _esphome-physically-connect:
-
 Physically Connecting to your Device
 ====================================
 
@@ -38,6 +36,8 @@ In case you use an external serial programmer connected to RX and TX of the ESP,
 on CH340 as it's the most reliable and the cheapest one to use for flashing. Programmers based on
 CP2102 or PL2303 are compatible with many devices, but using an external 3.3V supply might be
 necessary for them. 
+
+.. _esphome-phy-con-drv:
 
 Plug in the board or the serial programmer into a free USB port and check if it has been properly detected
 by your computer. The firmware programming tools use a serial interface to communicate with your device. 

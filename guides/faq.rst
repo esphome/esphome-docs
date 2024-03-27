@@ -78,11 +78,7 @@ Tips for using ESPHome
 I can't get flashing over USB to work.
 --------------------------------------
 
-
-
-ESPHome depends on the operating system the tool is running on to recognize the ESP. This can sometimes
-fail. Common causes are that you did not install the drivers (see note above) or you are trying to upload
-from a Docker container and did not mount the ESP device into your container using ``--device=/dev/ttyUSB0``.
+ESPHome depends on the operating system the tool is running on to recognize the ESP. This can sometimes fail. Common causes are that you may not have the drivers installed (see :ref:`here <esphome-phy-con-drv>`) or you are trying to upload from a Docker container and did not mount the ESP device into your container using ``--device=/dev/ttyUSB0``.
 
 First, you need to get the firmware file to flash. For the Home Assistant add-on based
 installs you can use the ``Manual download`` method (click ``Install`` in the overflow icon with the three dots
