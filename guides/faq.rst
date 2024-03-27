@@ -99,7 +99,8 @@ Erase flash:
 
     esptool.py --port /dev/ttyUSB0 erase_flash
 
-Program flash with your firmware b
+Program flash with your firmware binary:
+
 .. code-block:: bash
 
     esptool.py --port /dev/ttyUSB0 write_flash 0x0 your_node_firmware.bin
