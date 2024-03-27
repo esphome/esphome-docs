@@ -231,11 +231,6 @@ Configuration variables:
 
 The Daikin ARC remotes are used by the japanese model of Daikin.
 
-
-Configuration variables:
-
-- **use_fahrenheit** (*Optional*, boolean): U.S. models of the Daikin BRC remote send the temperature in Fahrenheit, if your remote shows Fahrenheit and can not be changed to Celsius then set this to true. Defaults to ``false``.
-
 .. code-block:: yaml
 
     # Example configuration entry
@@ -243,7 +238,6 @@ Configuration variables:
       - platform: daikin_arc
         name: "AC"
         sensor: room_temperature
-        use_fahrenheit: true
 
 .. _daikin_brc:
 
