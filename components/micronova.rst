@@ -55,7 +55,7 @@ Component/Hub
 .. code-block:: yaml
 
     micronova:
-      enable_rx_pin: REPLACEME
+      enable_rx_pin: GPIOXX
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
