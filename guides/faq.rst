@@ -73,48 +73,91 @@ Tips for using ESPHome
 .. |include| replace:: ``!include``
 .. _include: https://www.home-assistant.io/docs/configuration/splitting_configuration/
 
-.. _esphome-flasher:
+.. _esphome-esptool:
 
 I can't get flashing over USB to work.
 --------------------------------------
 
-ESPHome depends on the operating system the tool is running on to recognize
-the ESP. This can sometimes fail. Common causes are that you did not install
-the drivers (see note below) or you are trying to upload from a Docker container
-and did not mount the ESP device into your container using ``--device=/dev/ttyUSB0``.
+Some boards have onboard USB connectors, usually provide the serial programmer along with the
+ESP chip. Some ESPs have the programmer embedded in the MCU, but some devices completely lack
+the programmer, connecting an external serial programmer to RX and TX is needed in such cases.
 
-Starting with ESPHome 1.9.0, the ESPHome suite provides
-`esphome-flasher <https://github.com/esphome/esphome-flasher>`__, a tool to flash ESPs over USB.
+In case you use an external serial programmer connected to RX and TX of the ESP, choose one based
+on CH340 as it's the most reliable and the cheapest one to use for flashing. Programmers based on
+CP2102 or PL2303 are compatible with many devices, but using an external 3.3V supply might be
+necessary for them. 
+
+Plug in the board or the serial programmer into a free USB port and check if it has been properly detected
+by your computer. The firmware programming tools use a serial interface to communicate with your device. 
+On Windows these interfaces are named ``COM1``, ``COM2``, etc. and on Linux they are named ``/dev/ttyUSB0``,
+``/dev/ttyACM1``, etc. 
+
+If it's not showing up as a serial port, you might not have the required drivers
+installed. ESPs and programmers usually ship with one of these UART chips:
+
+* CH34x: `driver <https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers>`__
+* CP2102: `driver <https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers>`__
+* PL2303: `driver <https://www.prolific.com.tw/US/ShowProduct.aspx?p_id=225&pcid=41>`__
+
+The power supplied to the device is one of the most important elements for both flashing
+the device and for stable operation. You must ensure that the device receives sufficient
+power (current AND appropriate voltage level) to properly flash the firmware on the device.
+When using an external 3.3V supply, ensure the ground (GND) of both are connected together,
+this ensures a common ground. A PC power supply can be a good source for 3.3V DC power.
+
+.. note::
+
+    Some adapters can be switched between 3.3V and 5V for the data pins, but still provide 5V on the power pin which will irreparably destroy your device. You **MUST** make sure the data (RX and TX) and VCC pins are set for 3.3V.
+
+ESPHome depends on the operating system the tool is running on to recognize the ESP. This can sometimes
+fail. Common causes are that you did not install the drivers (see note above) or you are trying to upload
+from a Docker container and did not mount the ESP device into your container using ``--device=/dev/ttyUSB0``.
 
 First, you need to get the firmware file to flash. For the Home Assistant add-on based
 installs you can use the ``Manual download`` method (click ``Install`` in the overflow icon with the three dots
-and then select ``Manual download``). For command line based installs you can access the
+and then select ``Manual download``). For direct esphome command line based installs you can access the
 file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
-Then, install esphome-flasher by going to the `releases page <https://github.com/esphome/esphome-flasher/releases>`__
-and downloading one of the pre-compiled binaries. Open up the application and select the serial port
-you want to flash to (on windows you can use the "device manager" to check if it's the right one).
+ESP needs to be put into programming mode or flash mode before the firmware can be uploaded. This is
+done by connecting ``GPIO0`` pin to ``GND`` while the chip is booting. 
 
-.. figure:: images/esphomeflasher-ui.png
-    :align: center
-    :width: 80%
+To put the ESP into programming mode:
 
-Select the firmware binary and finally press "Flash ESP".
+* Disconnect the USB connection of your board or serial programmer from the computer (to power off your ESP)
+* Bridge ``GPIO0`` and ``GND`` (by pressing the on-board button or connection with a wire)
+* Connect the board or serial programmer to your computer (ensuring ESP powers up)
+* After a few seconds disconnect ``GPIO0`` from ``GND`` (release button or remove the wire connection). On devices that do not provide the ``GPIO0`` connected button, it may be easier to leave the wired bridge in place throughout the entire flashing process (erase & upload). Doing so will not create any problems. After the firmware is uploaded successfully, remove the bridge. This allows the device to boot normally.
+
+You may need to power-cycle the ESP between erasing and uploading the firmware, this can be done by disconnecting and reconnecting, of course with ``GPIO0`` and ``GND`` still connected.
+
+To flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use `esptool <https://docs.espressif.com/projects/esptool/>`__ packaged with your distro or install it yourself with command (in case of Linux): 
+
+.. code-block:: bash
+
+    pip install esptool
+
+Before using esptool, make sure you know which serial port your programming adapter is connected to. In Linux use the ``dmesg`` command afer you plug the device into the USB port to see the name of the newly detected serial port.
+
+Erase flash:
+
+.. code-block:: bash
+
+    esptool.py --port /dev/ttyUSB0 erase_flash
+
+Program flash with your firmware binary:
+
+.. code-block:: bash
+
+    esptool.py --port /dev/ttyUSB0 write_flash 0x0 your_node_firmware.bin
 
 .. note::
 
-    If the serial port is not showing up, you might not have the required drivers installed.
-    ESPs usually ship with one of these two UART chips:
+    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, check if the device name of the port has changed while you were re-plugging it too fast (eg. changed from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``). It also might be a sign that ESP is defect or cannot be programmed. Also double check the UART wires are connected correctly if flashing using an external programmer (RX of programmer to TX of the ESP and vice-versa). For some devices you need to keep ``GPIO0`` and ``GND`` connected until flashing has begun.
+    
+    If you're in an RF noisy environment or your UART wires are a bit long, flashing can fail during transfer. Don't worry, an ESP won't brick just because of that. Put it again in programming mode and flash with a reduced baudrate for safer transfers:
+    
+    ``esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash 0x0 your_node_firmware.bin``
 
-     * CP2102 (square chip): `driver <https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers>`__
-     * CH341: `driver <https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers>`__
-
-.. note::
-
-    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, that might
-    be a sign that the ESP is defect or cannot be programmed. Please double check the UART wires
-    are connected correctly if flashing using a USB to UART bridge. For some devices you need to
-    keep pressing the BOOT button until flashing has begun (ie. Geekcreit DOIT ESP32 DEVKIT V1).
 
 Help! Something's not working!!
 -------------------------------
