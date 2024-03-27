@@ -7,7 +7,7 @@ It is possible to create sound clips to include in your build to use with i2s sp
 
 - Using `Audacity<https://github.com/audacity/audacity>`, convert audio to WAV, mono, 16kHz, Unsigned 8bit PCM
 
-.. image:: /images/save_as_wav.png
+.. image:: /guides/images/save_as_wav.png
     :alt: Audacity export dialog
     :height: 200
 
