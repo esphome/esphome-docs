@@ -52,7 +52,7 @@ jobs:
               repo: context.repo.repo,
               event: 'REQUEST_CHANGES',
               body: "Please target your PR to the 'current' branch and rebase."
-            }
+            });
 
       - if: success()
         name: Dismiss review
