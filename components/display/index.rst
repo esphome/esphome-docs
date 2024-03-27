@@ -606,6 +606,12 @@ To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
               // Draw the QR-code at position [x=50,y=0] with white color and a 2x scale
               it.qr_code(50, 0, id(homepage_qr), Color(255,255,255), 2);
 
+              // Draw the QR-code in the center of the screen with white color and a 2x scale
+              auto size = id(homepage_qr).get_size() * 2; // Multiply by scale
+              auto x = (it.get_width() / 2) - (size / 2);
+              auto y = (it.get_height() / 2) - (size / 2);
+              it.qr_code(x, y, id(homepage_qr), Color(255,255,255), 2);
+
 
 .. _display-image:
 
