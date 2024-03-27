@@ -30,6 +30,7 @@ Configuration variables:
 - **dump** (*Optional*, list): Decode and dump these remote codes in the logs (at log.level=DEBUG).
   Set to ``all`` to dump all available codecs:
 
+  - **abbwelcome**: Decode and dump ABB-Welcome codes. Messages are sent via copper wires. See :ref:`remote_transmitter-transmit_abbwelcome`
   - **aeha**: Decode and dump AEHA infrared codes.
   - **byronsx**: Decode and dump Byron SX doorbell RF codes.
   - **canalsat**: Decode and dump CanalSat infrared codes.
@@ -79,6 +80,9 @@ Configuration variables:
 Automations:
 ------------
 
+- **on_abbwelcome** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  ABB-Welcome code has been decoded. A variable ``x`` of type :apiclass:`remote_base::ABBWelcomeData`
+  is passed to the automation for use in lambdas.
 - **on_aeha** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   AEHA remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::AEHAData`
   is passed to the automation for use in lambdas.
@@ -206,6 +210,21 @@ Configuration variables:
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Remote code selection (exactly one of these has to be included):
+
+- **abbwelcome**: Trigger on a decoded ABB-Welcome code with the given data.
+
+  - **source_address** (**Required**, int): The source address to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
+    for more info.
+  - **destination_address** (**Required**, int): The destination address to trigger on, see
+    :ref:`remote_transmitter-transmit_abbwelcome` for more info.
+  - **three_byte_address** (**Optional**, boolean): The length of the source and destination address. ``false`` means two bytes
+    and ``true`` means three bytes. Defaults to ``false``.
+  - **retransmission** (**Optional**, boolean): ``true`` if the message was re-transmitted. Defaults to ``false``.
+  - **message_type** (**Required**, int): The message type to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
+    for more info.
+  - **message_id** (**Optional**, int): The random message ID to trigger on, see dumper output for more info. Defaults to any ID.
+  - **data** (**Optional**, 0-7 bytes list): The code to listen for. Usually you only need to copy this directly from the
+    dumper output. Defaults to ``[]``
 
 - **aeha**: Trigger on a decoded AEHA remote code with the given data.
 
