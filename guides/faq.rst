@@ -85,7 +85,7 @@ installs you can use the ``Manual download`` method (click ``Install`` in the ov
 and then select ``Manual download``). For direct esphome command line based installs you can access the
 file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
-To flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use `esptool <https://docs.espressif.com/projects/esptool/>`__ packaged with your distro or install it yourself with command (in case of Linux): 
+To flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use *esptool* `from the GitHub repository <https://github.com/espressif/esptool/releases>`__, package from your distro or install it yourself with command (in case of Linux for example): 
 
 .. code-block:: bash
 
@@ -99,8 +99,7 @@ Erase flash:
 
     esptool.py --port /dev/ttyUSB0 erase_flash
 
-Program flash with your firmware binary:
-
+Program flash with your firmware b
 .. code-block:: bash
 
     esptool.py --port /dev/ttyUSB0 write_flash 0x0 your_node_firmware.bin
