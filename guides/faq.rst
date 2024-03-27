@@ -128,7 +128,7 @@ To put the ESP into programming mode:
 * Connect the board or serial programmer to your computer (ensuring ESP powers up)
 * After a few seconds disconnect ``GPIO0`` from ``GND`` (release button or remove the wire connection). On devices that do not provide the ``GPIO0`` connected button, it may be easier to leave the wired bridge in place throughout the entire flashing process (erase & upload). Doing so will not create any problems. After the firmware is uploaded successfully, remove the bridge. This allows the device to boot normally.
 
-You may need to power-cycle the ESP between erasing and uploading the firmware, this can be done by disconnecting and reconnecting, of course with ``GPIO0`` and ``GND`` still connected.
+You may need to power-cycle the ESP between erasing and uploading the firmware, this can be done by disconnecting and reconnecting, of course with ``GPIO0`` and ``GND`` still connected to each other.
 
 To flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use `esptool <https://docs.espressif.com/projects/esptool/>`__ packaged with your distro or install it yourself with command (in case of Linux): 
 
@@ -152,7 +152,7 @@ Program flash with your firmware binary:
 
 .. note::
 
-    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, check if the device name of the port has changed while you were re-plugging it too fast (eg. changed from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``). It also might be a sign that ESP is defect or cannot be programmed. Also double check the UART wires are connected correctly if flashing using an external programmer (RX of programmer to TX of the ESP and vice-versa). For some devices you need to keep ``GPIO0`` and ``GND`` connected until flashing has begun.
+    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, check if the device name of the port has changed while you were re-plugging it too fast (eg. changed from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``). Also double check the UART wires are connected correctly if flashing using an external programmer (RX of programmer to TX of the ESP and vice-versa). For some devices you need to keep ``GPIO0`` and ``GND`` connected until flashing has begun. It also might be a sign that ESP is defect or cannot be programmed. 
     
     If you're in an RF noisy environment or your UART wires are a bit long, flashing can fail during transfer. Don't worry, an ESP won't brick just because of that. Put it again in programming mode and flash with a reduced baudrate for safer transfers:
     

@@ -30,7 +30,7 @@ awesome things with DIY hardware!
 
 The features I'm particularly excited about are:
 
-* :ref:`esphomeflasher <esphome-flasher>` - Experiencing problems flashing esphomelib firmwares using esphomeyaml?
+* ``esphomeflasher`` - Experiencing problems flashing esphomelib firmwares using esphomeyaml?
   No problem, esphomeflasher is a tool designed to make that super easy. Just let esphomeyaml generate the binary and flash
   from your PC.
 * :doc:`Over-the-Air Updates </components/ota>` have been completely re-written to make them a lot more
