@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Add wrong-base-branch label
+        id: add-wrong-base-branch-label
         uses: actions/github-script@v7.0.1
         if: contains(github.event.pull_request.labels.*.name, 'current') && contains(github.event.pull_request.labels.*.name, 'has-parent')
         with:
@@ -22,7 +23,7 @@ jobs:
             });
 
       - name: Has wrong-base-branch label
-        if: contains(github.event.pull_request.labels.*.name, 'wrong-base-branch')
+        if: contains(github.event.pull_request.labels.*.name, 'wrong-base-branch') || steps.add-wrong-base-branch-label.outcome == 'success'
         uses: actions/github-script@v7.0.1
         with:
           script: core.setFailed('This PR has the wrong-base-branch label');
