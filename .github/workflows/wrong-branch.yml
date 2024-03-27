@@ -22,6 +22,25 @@ jobs:
               labels: ['wrong-base-branch']
             });
 
+      - name: Remove wrong-base-branch label
+        id: remove-wrong-base-branch-label
+        uses: actions/github-script@v7.0.1
+        if: |
+          contains(github.event.pull_request.labels.*.name, 'wrong-base-branch') &&
+            (
+              (contains(github.event.pull_request.labels.*.name, 'current') && !contains(github.event.pull_request.labels.*.name, 'has-parent'))
+              ||
+              (contains(github.event.pull_request.labels.*.name, 'next') && contains(github.event.pull_request.labels.*.name, 'has-parent'))
+            )
+        with:
+          script: |
+            await github.rest.issues.removeLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              name: 'wrong-base-branch'
+            });
+
       - name: Has wrong-base-branch label
         if: contains(github.event.pull_request.labels.*.name, 'wrong-base-branch') || steps.add-wrong-base-branch-label.outcome == 'success'
         uses: actions/github-script@v7.0.1
