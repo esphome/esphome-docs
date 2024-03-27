@@ -58,7 +58,7 @@ Blog Posts & Videos
 - `Converting a Carro Home DC Fan to ESPHome <https://1projectaweek.com/blog/2022/2/8/converting-a-carro-home-dc-fan-to-esp-home>`__ by `Bill Church <https://1projectaweek.com>`__
 - `Automated Coffee Bean Roaster <https://hackaday.io/project/186852-automated-coffee-bean-roaster>`__ by `brooksben11 <https://hackaday.io/brooksben11>`__
 - `Droplet Smart Irrigation System <https://github.com/PricelessToolkit/Droplet>`__ by `PricelessToolkit <https://github.com/PricelessToolkit>`__
-- 'An ESPHome-based 360-degree Servo Robot <https://github.com/philpownall/ESPHome-Servo-Robot>__ by ghuser:`philpownall`
+- 'An ESPHome-based 360-degree Servo Robot <https://github.com/philpownall/ESPHome-Servo-Robot>__ by :ghuser:`philpownall`
 
 Custom Components & Code
 ------------------------
