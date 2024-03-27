@@ -144,6 +144,10 @@ to your docker command to map a local USB device. Docker on Mac will not be able
 
     docker run --rm --privileged -v "${PWD}":/config --device=/dev/ttyUSB0 -it ghcr.io/esphome/esphome run livingroom.yaml
 
+.. note::
+
+    Alternatively, you can flash the binary using :ref:`esptool <esphome-esptool>`.
+
 Now when you go to the Home Assistant "Integrations" screen (under "Configuration" panel), you
 should see the ESPHome device show up in the discovered section (although this can take up to 5 minutes).
 Alternatively, you can manually add the device by clicking "CONFIGURE" on the ESPHome integration

@@ -78,36 +78,7 @@ Tips for using ESPHome
 I can't get flashing over USB to work.
 --------------------------------------
 
-Some boards have onboard USB connectors, usually provide the serial programmer along with the
-ESP chip. Some ESPs have the programmer embedded in the MCU, but some devices completely lack
-the programmer, connecting an external serial programmer to RX and TX is needed in such cases.
 
-In case you use an external serial programmer connected to RX and TX of the ESP, choose one based
-on CH340 as it's the most reliable and the cheapest one to use for flashing. Programmers based on
-CP2102 or PL2303 are compatible with many devices, but using an external 3.3V supply might be
-necessary for them. 
-
-Plug in the board or the serial programmer into a free USB port and check if it has been properly detected
-by your computer. The firmware programming tools use a serial interface to communicate with your device. 
-On Windows these interfaces are named ``COM1``, ``COM2``, etc. and on Linux they are named ``/dev/ttyUSB0``,
-``/dev/ttyACM1``, etc. 
-
-If it's not showing up as a serial port, you might not have the required drivers
-installed. ESPs and programmers usually ship with one of these UART chips:
-
-* CH34x: `driver <https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers>`__
-* CP2102: `driver <https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers>`__
-* PL2303: `driver <https://www.prolific.com.tw/US/ShowProduct.aspx?p_id=225&pcid=41>`__
-
-The power supplied to the device is one of the most important elements for both flashing
-the device and for stable operation. You must ensure that the device receives sufficient
-power (current AND appropriate voltage level) to properly flash the firmware on the device.
-When using an external 3.3V supply, ensure the ground (GND) of both are connected together,
-this ensures a common ground. A PC power supply can be a good source for 3.3V DC power.
-
-.. note::
-
-    Some adapters can be switched between 3.3V and 5V for the data pins, but still provide 5V on the power pin which will irreparably destroy your device. You **MUST** make sure the data (RX and TX) and VCC pins are set for 3.3V.
 
 ESPHome depends on the operating system the tool is running on to recognize the ESP. This can sometimes
 fail. Common causes are that you did not install the drivers (see note above) or you are trying to upload
@@ -117,18 +88,6 @@ First, you need to get the firmware file to flash. For the Home Assistant add-on
 installs you can use the ``Manual download`` method (click ``Install`` in the overflow icon with the three dots
 and then select ``Manual download``). For direct esphome command line based installs you can access the
 file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
-
-ESP needs to be put into programming mode or flash mode before the firmware can be uploaded. This is
-done by connecting ``GPIO0`` pin to ``GND`` while the chip is booting. 
-
-To put the ESP into programming mode:
-
-* Disconnect the USB connection of your board or serial programmer from the computer (to power off your ESP)
-* Bridge ``GPIO0`` and ``GND`` (by pressing the on-board button or connection with a wire)
-* Connect the board or serial programmer to your computer (ensuring ESP powers up)
-* After a few seconds disconnect ``GPIO0`` from ``GND`` (release button or remove the wire connection). On devices that do not provide the ``GPIO0`` connected button, it may be easier to leave the wired bridge in place throughout the entire flashing process (erase & upload). Doing so will not create any problems. After the firmware is uploaded successfully, remove the bridge. This allows the device to boot normally.
-
-You may need to power-cycle the ESP between erasing and uploading the firmware, this can be done by disconnecting and reconnecting, of course with ``GPIO0`` and ``GND`` still connected to each other.
 
 To flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use `esptool <https://docs.espressif.com/projects/esptool/>`__ packaged with your distro or install it yourself with command (in case of Linux): 
 
