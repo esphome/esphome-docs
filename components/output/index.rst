@@ -98,7 +98,7 @@ This action turns the output with the given ID off when executed.
 ***************************
 
 This action sets the float output to the given level when executed. Note: This only
-works with floating point outputs like :doc:`/components/output/esp8266_pwm`, :doc:`/components/output/ledc`, :doc:`/components/output/sigma_delta`, :doc:`/components/output/slow_pwm`.
+works with floating point outputs like :doc:`/components/output/esp8266_pwm`, :doc:`/components/output/ledc`, :doc:`/components/output/sigma_delta_output`, :doc:`/components/output/slow_pwm`.
 
 .. code-block:: yaml
 

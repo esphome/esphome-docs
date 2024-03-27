@@ -7,7 +7,7 @@ MH-Z19 CO_2 and Temperature Sensor
     :keywords: mh-z19
 
 The ``mhz19`` sensor platform allows you to use MH-Z19 CO_2 and temperature sensors
-(`refspace`_) with ESPHome.
+(`Revspace`_) with ESPHome.
 The CO_2 measurement also works with the MH-Z16 and MH-Z14 sensors.
 
 .. figure:: images/mhz19-full.jpg
@@ -16,7 +16,7 @@ The CO_2 measurement also works with the MH-Z16 and MH-Z14 sensors.
 
     MH-Z19 CO_2 and Temperature Sensor.
 
-.. _refspace: https://revspace.nl/MHZ19
+.. _Revspace: https://revspace.nl/MHZ19
 
 As the communication with the MH-Z19 is done using UART, you need
 to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the TX pin of the
@@ -70,6 +70,8 @@ Configuration variables:
   Set this value to ``false`` to disable ABC on boot (it's better if you use sensor indoor).
   Set this value to ``true`` to enable ABC on boot.
   Doesn't send calibration command if not set (default sensor logic will be used).
+
+- **warmup_time** (*Optional*, Time): The sensor has a warmup time and before that, it returns bougus readings (eg: 500ppm, 505ppm...). This setting discards readings until the warmup time happened (``NAN`` is returned). The datasheet says preheating takes 1min, but empirical tests have shown it often takes more, so the 75s default should be enough to accomodate for that.
 
 .. figure:: images/mhz19-pins.jpg
     :align: center

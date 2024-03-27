@@ -4,27 +4,35 @@ Mopeka Pro Check BLE Sensor
 .. seo::
     :description: Instructions for setting up Mopeka Pro Check or Lippert Propane Tank bluetooth-based sensors in ESPHome.
     :image: mopeka_pro_check.jpg
-    :keywords: Mopeka, Mopeka Pro Check, Mopeka Pro Plus, Lippert, Lippert Propane, Lippert Propane Sensor, Lippert Propane Tank Sensor, BLE, Bluetooth
+    :keywords: Mopeka, Mopeka Pro Check, Mopeka Pro Plus, Mopeka Pro Universal, Lippert, Lippert Propane, Lippert Propane Sensor, Lippert Propane Tank Sensor, BLE, Bluetooth
 
 The ``mopeka_pro_check`` sensor platform lets you track the output of Mopeka Pro
-Check LP, Mopeka Pro Plus, or Lippert Propane Tank Sensors,   Bluetooth Low
+Check LP, Mopeka Pro Plus, Mopeka Pro Universal or Lippert Propane Tank Sensors,   Bluetooth Low
 Energy devices using the :doc:`/components/esp32_ble_tracker`. This component
 will track the tank level, distance, temperature, and battery percentage of a 
-Mopeka Pro Check LP or Mopeka Pro Plus Residential BLE device every time the 
-sensor sends out a BLE broadcast.
+device every time the sensor sends out a BLE broadcast.
 
 .. warning::
 
     This sensor component only supports the following sensors:
       + Mopeka Pro Check devices
       + Mopeka Pro Plus devices
+      + Mopeka Pro Check Universal Sensor
       + Lippert Propane Tank Sensor, part number 2021130655
+
+    Sensors are calibrated for propane only.
       
     See :doc:`/components/sensor/mopeka_std_check` for original Mopeka Check sensors support.
 
+.. figure:: images/mopeka_pro_check.jpg
+    :align: center
 
-(images/mopeka_pro_check.jpg)
-(images/mopeka_pro_check_lippert.jpg)
+    Mopeka Pro Check LP over BLE.
+
+.. figure:: images/mopeka_pro_check_lippert.jpg
+    :align: center
+
+    Lippert™ Propane Tank Sensor 
 
 The original Mopeka Check sensors are not supported.
 
@@ -105,13 +113,16 @@ Currently supported Tank types are:
 - ``20LB_V`` - 20 LB vertical tank
 - ``30LB_V`` - 30 LB vertical tank
 - ``40LB_V`` - 40 LB vertical tank
+- ``EUROPE_6KG`` - 6kg vertical tank
+- ``EUROPE_11KG`` - 11kg vertical tank
+- ``EUROPE_14KG`` - 14kg vertical tank
 - ``CUSTOM`` - Allows you to define your own full and empty points
 
 Setting Up Devices
 ------------------
 
-To set up Mopeka Pro Check / Mopeka Pro Plus / Lippert Propane Tank Sensor devices you first need to find their MAC Address so that
-ESPHome can identify them. So first, create a simple configuration with the ``esp32_ble_tracker``
+To set up the sensor devices you first need to find the MAC Address so that
+ESPHome can identify it. First, create a simple configuration with the ``esp32_ble_tracker``
 and the ``mopeka_ble`` component like so:
 
 .. code-block:: yaml
@@ -120,8 +131,7 @@ and the ``mopeka_ble`` component like so:
 
     mopeka_ble:
 
-After uploading, the ESP32 will immediately try to scan for BLE devices.  For Mopeka Pro
-Check / Pro Plus / Lippert devices you must press and hold the green sync button for it to be identified.
+After uploading, the ESP32 will immediately try to scan for BLE devices.  Press and hold the sync button for it to be identified.
 Or alternativly set the configuration flag ``show_sensors_without_sync: true`` to see all devices.
 For all sensors found the ``mopeka_ble`` component will print a message like this one:
 
@@ -143,6 +153,6 @@ See Also
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/index`
 - :apiref:`mopeka_pro_check/mopeka_pro_check.h`
-- `Mopeka  <https://mopeka.com/product/mopeka-check-pro-lp-sensor/>`__
+- `Mopeka  <https://www.mopekaiot.com/shop>`
 - `Lippert <https://store.lci1.com/lippert-propane-tank-sensor-2021130655>`__
 - :ghedit:`Edit`

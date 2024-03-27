@@ -72,7 +72,7 @@ It is possible to access the state value inside Lambdas:
                 - output.turn_off: button_off
 
 
-Complete example from the cookbook: :doc:`Sonoff Dual Light Switch</cookbook/sonoff-dual-light-switch>`.
+Complete example: `Sonoff Dual Light Switch <https://devices.esphome.io/devices/Sonoff-Dual-DIY-light>`__.
 
 See Also
 --------

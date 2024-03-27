@@ -26,6 +26,12 @@ Base Media Player Configuration
 Configuration variables:
 
 - **name** (**Required**, string): The name of the media player.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the media player to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the
   media player in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will

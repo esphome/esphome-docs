@@ -31,7 +31,11 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Delonghi<delonghi_ir>`          | ``delonghi``        | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| Emmeti                                | ``emmeti``          | yes                  |
++---------------------------------------+---------------------+----------------------+
 | Fujitsu General                       | ``fujitsu_general`` | yes                  |
++---------------------------------------+---------------------+----------------------+
+| :ref:`GREE<gree_ir>`                  | ``gree``            |                      |
 +---------------------------------------+---------------------+----------------------+
 | Hitachi                               | ``hitachi_ac344``   | yes                  |
 |                                       | ``hitachi_ac424``   |                      |
@@ -40,7 +44,9 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Midea                                 | ``midea_ir``        | yes                  |
 +---------------------------------------+---------------------+----------------------+
-| Mitsubishi                            | ``mitsubishi``      |                      |
+| :ref:`Mitsubishi<mitsubishi>`         | ``mitsubishi``      | yes                  |
++---------------------------------------+---------------------+----------------------+
+| Noblex                                | ``noblex``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | TCL112, Fuego                         | ``tcl112``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
@@ -51,6 +57,8 @@ submit a feature request (see FAQ).
 | Yashima                               | ``yashima``         |                      |
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Whynter<whynter>`               | ``whynter``         | yes                  |
++---------------------------------------+---------------------+----------------------+
+| :ref:`ZH/LT-01<zhlt01>`               | ``zhlt01``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
 
 This component requires that you have configured a :doc:`/components/remote_transmitter`.
@@ -104,7 +112,7 @@ This platform utilises the library's generic one-size-fits-all API, which might 
 
 Additional configuration must be specified for this platform:
 
-- **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: ``aux``, ``ballu``, ``carrier_mca``, ``carrier_nqv``, ``daikin_arc417``, ``daikin_arc480``, ``daikin``, ``electroluxyal``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeya``, ``greeyac``, ``greeyan``, ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``, ``mitsubishi_fd``, ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``, ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``, ``mitsubishi_heavy_kj``, ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``, ``panasonic_ckp``, ``panasonic_dke``, ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``samsung_aqv``, ``samsung_fjm``, ``sharp``, ``toshiba_daiseikai``, ``toshiba``, ``zhlt01``
+- **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: ``aux``, ``ballu``, ``carrier_mca``, ``carrier_nqv``, ``daikin_arc417``, ``daikin_arc480``, ``daikin``, ``electroluxyal``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeya``, ``greeyac``, ``greeyan``, ``greeyt``, ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``, ``mitsubishi_fd``, ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``, ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``, ``mitsubishi_heavy_kj``, ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``, ``panasonic_ckp``, ``panasonic_dke``, ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``samsung_aqv``, ``samsung_fjm``, ``sharp``, ``toshiba_daiseikai``, ``toshiba``, ``zhlt01``
 - **horizontal_default** (**Required**, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Options are: ``left``, ``mleft``, ``middle``, ``mright``, ``right``, ``auto``
 - **vertical_default** (**Required**, string): What to default to when the AC unit's vertical direction is *not* set to swing. Options are: ``down``, ``mdown``, ``middle``, ``mup``, ``up``, ``auto``
 - **max_temperature** (**Required**, float): The maximum temperature that the AC unit supports being set to.
@@ -247,6 +255,48 @@ Known working with:
 
 - Delonghi PAC WE 120HP
 
+.. _mitsubishi:
+
+``mitsubishi`` Climate
+------------------------
+
+Additonal configurations available for this platform.
+
+Configuration variables:
+
+- **set_fan_mode** (*Optional*, string): Select the fan modes desired or that are supported on your remote. Defaults to ``3levels``
+
+  - Options are: ``3levels`` , ``4levels``, ``quiet_4levels``. 
+  
+    - ``3levels``; Low [fan speed 1], Medium [2], High [3]
+    - ``4levels``; Low [1], Middle [2], Medium [3], High [4]
+    - ``quiet_4levels``; Low [1], Middle [2], Medium [3], High [4], Quiet [5]
+
+- **supports_dry** (*Optional*, boolean): Enables setting dry mode for this unit. Defaults to ``false``.
+- **supports_fan_only** (*Optional*, boolean): Enables setting fan only mode for this unit. Confirm that mode is supported on your remote. Defaults to ``false``.
+
+- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to ``middle``. 
+
+  - Options are: ``left``, ``middle-left``, ``middle``, ``middle-right``, ``right``, ``auto``
+- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Defaults to ``middle``. 
+
+  - Options are: ``down``, ``middle-down``, ``middle``, ``middle-up``, ``up``, ``auto``
+
+.. note::
+
+    - This climate IR component is also known to work with some Stiebel Eltron Units. It has been tested with Stiebel Eltron IR-Remote ``KM07F`` and unit ``ACW 25 i``
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: mitsubishi
+        name: "Heatpump"
+        set_fan_mode: "quiet_4levels"
+        supports_dry: "true"
+        supports_fan_only: "true"
+        horizontal_default: "left"
+        vertical_default: "down"
 
 .. _toshiba:
 
@@ -278,7 +328,7 @@ Configuration variables:
       ``update_interval`` must be less than seven minutes or the ``RAC-PT1411HWRU`` will revert to using its own
       internal temperature sensor; a value of 30 seconds seems to work well. See :doc:`/components/sensor/index`
       for more information.
-    
+
     - This climate IR component is also known to work with Midea model MAP14HS1TBL and may work with other similar
       models, as well. (Midea acquired Toshiba's product line and re-branded it.)
 
@@ -322,6 +372,62 @@ Configuration variables:
         supports_heat: true
 
 
+.. _gree_ir:
+
+
+``gree`` Climate
+---------------------
+
+Additional configuration is available for this model.
+
+
+Configuration variables:
+
+- **model** (*Required*, string): GREE has a few different protocols depending on model. One of these will work for you.
+
+  - ``generic``
+  - ``yan``
+  - ``yaa``
+  - ``yac``
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: gree
+        name: "AC"
+        sensor: room_temperature
+        model: yan
+
+.. _zhlt01:
+
+
+``zhlt01`` Climate
+---------------------
+
+ZH/LT-01 is a remote control that is used with many locally branded split airconditioners. 
+Supported brands include: 
+
+- Eurom
+- Chigo
+- Tristar
+- Tecnomaster
+- Elgin
+- Geant
+- Tekno
+- Topair
+- Proma
+- Sumikura
+- JBS
+- Turbo Air
+- Nakatomy
+- Celestial Air
+- Ager
+- Blueway
+- Airlux
+
+No additional configuration is required for this model.
 
 See Also
 --------

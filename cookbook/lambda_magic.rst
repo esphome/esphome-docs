@@ -105,7 +105,7 @@ Custom UART Text Sensor
 -----------------------
 
 Lots of devices communicate using the UART protocol. If you want to read 
-lines from uart to a Text Sensor you can do so using this code example.
+lines from uart to a Text Sensor you can do so using this code example. 
 
 With this you can use automations or lambda to set switch or sensor states.
 
@@ -185,6 +185,8 @@ And in YAML:
         return {my_custom_sensor};
       text_sensors:
         id: "uart_readline"
+
+For more details see :doc:`/custom/uart` and :doc:`/components/uart`.
 
 .. _lambda_magic_uart_switch:
 
@@ -295,12 +297,113 @@ will still look like they operate simultaneously.
           - script.execute: rf_transmitter_queue
         open_duration: 27s
 
+.. _lambda_magic_1button_coover:
+
+One Button Cover Control
+------------------------
+
+The configuration below shows how with a single button you can control the motion of a motorized cover
+by cycling between: open->stop->close->stop->...
+
+In this example a :doc:`/components/cover/time_based` is used with the GPIO configuration of a Sonoff Dual R2. 
+
+.. note::
+
+    Controlling the cover to quickly (sending new open/close commands within a minute of previous commands)
+    might cause unexpected behaviour (eg: cover stopping halfway). This is because the delayed relay off
+    feature is implemented using asynchronous automations. So every time an open/close command is sent a
+    delayed relay off command is added and old ones are not removed.
+
+.. code-block:: yaml
+
+    esp8266:
+      board: esp01_1m
+
+    binary_sensor:
+    - platform: gpio
+      pin:
+        number: GPIO10
+        inverted: true
+      id: button
+      on_press:
+        then:
+          # logic for cycling through movements: open->stop->close->stop->...
+          - lambda: |
+              if (id(my_cover).current_operation == COVER_OPERATION_IDLE) {
+                // Cover is idle, check current state and either open or close cover.
+                if (id(my_cover).is_fully_closed()) {
+                  id(my_cover).open();
+                } else {
+                  id(my_cover).close();
+                }
+              } else {
+                // Cover is opening/closing. Stop it.
+                id(my_cover).stop();
+              }
+
+    switch:
+    - platform: gpio
+      pin: GPIO12
+      interlock: &interlock [open_cover, close_cover]
+      id: open_cover
+    - platform: gpio
+      pin: GPIO5
+      interlock: *interlock
+      id: close_cover
+
+    cover:
+    - platform: time_based
+      name: "Cover"
+      id: my_cover
+      open_action:
+        - switch.turn_on: open_cover
+      open_duration: 60s
+      close_action:
+        - switch.turn_on: close_cover
+      close_duration: 60s
+      stop_action:
+        - switch.turn_off: open_cover
+        - switch.turn_off: close_cover
+
+Update numeric values from text input
+-------------------------------------
+
+Sometimes it may be more confortable to use a :doc:`/components/text/template` to change some numeric values from the user interface.
+ESPHome has some nice `helper functions <https://github.com/esphome/esphome/blob/dev/esphome/core/helpers.h>`__ among which
+theres's one to convert text to numbers.
+
+In the example below we have a text input and a template sensor which can be updated from the text input field. What the lambda
+does, is to parse and convert the text string to a number - which only succeedes if the entered string contains characters
+represesenting a float number (such as digits, ``-`` and ``.``). If the entered string contains any other characters, the lambda
+will return ``NaN``, which corresponds to ``unknown`` sensor state.
+
+.. code-block:: yaml
+
+    text:
+      - platform: template
+        name: "Number type in"
+        optimistic: true
+        min_length: 0
+        max_length: 16
+        mode: text
+        on_value:
+          then:
+            - sensor.template.publish:
+                id: num_from_text
+                state: !lambda |-
+                  auto n = parse_number<float>(x);
+                  return n.has_value() ? n.value() : NAN;
+
+    sensor:
+      - platform: template
+        id: num_from_text
+        name: "Number from text"
+
+
 See Also
 --------
 
 - :ref:`config-lambda`
 - :ref:`automation`
-- :doc:`/components/uart`
-- :doc:`/custom/uart`
 
 - :ghedit:`Edit`

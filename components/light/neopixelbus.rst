@@ -5,8 +5,15 @@ NeoPixelBus Light
     :description: Instructions for setting up Neopixel addressable lights.
     :image: color_lens.svg
 
+.. warning::
+
+    NeoPixelBus does **not** work with ESP-IDF.
+
+    For clockless lights, you can use :doc:`esp32_rmt_led_strip`, and for SPI LEDs see :doc:`spi_led_strip`.
+
+
 The ``neopixelbus`` light platform allows you to create RGB lights
-in ESPHome for an individually addressable lights like NeoPixel or WS2812.
+in ESPHome for individually addressable lights like NeoPixel or WS2812.
 
 It is very similar to the :doc:`fastled` platform.
 In fact, most addressable lights are supported through both light platforms. The
@@ -99,7 +106,7 @@ on the chipset, ESP platform and pin.
 
 Each of these has their own advantages/disadvantages regarding stability and speed. By default
 ESPHome will choose the best one that is available on the device. However, you can override this
-by manually supplying the method option.
+by manually supplying the ``method`` option.
 
 .. code-block:: yaml
 

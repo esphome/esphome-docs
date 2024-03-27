@@ -31,11 +31,15 @@ Configuration variables:
   Set to ``all`` to dump all available codecs:
 
   - **aeha**: Decode and dump AEHA infrared codes.
+  - **byronsx**: Decode and dump Byron SX doorbell RF codes.
   - **canalsat**: Decode and dump CanalSat infrared codes.
   - **canalsatld**: Decode and dump CanalSatLD infrared codes.
   - **coolix**: Decode and dump Coolix infrared codes.
   - **dish**: Decode and dump Dish infrared codes.
+  - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **jvc**: Decode and dump JVC infrared codes.
+  - **keeloq**: Decode and dump KeeLoq RF codes.
+  - **haier**: Decode and dump Haier infrared codes.
   - **lg**: Decode and dump LG infrared codes.
   - **magiquest**: Decode and dump MagiQuest wand infrared codes.
   - **midea**: Decode and dump Midea infrared codes.
@@ -78,6 +82,9 @@ Automations:
 - **on_aeha** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   AEHA remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::AEHAData`
   is passed to the automation for use in lambdas.
+- **on_byronsx** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Byron SX doorbell RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ByronSXData`
+  is passed to the automation for use in lambdas.
 - **on_canalsat** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   CanalSat remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::CanalSatData`
   is passed to the automation for use in lambdas.
@@ -91,8 +98,17 @@ Automations:
   dish network remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DishData`
   is passed to the automation for use in lambdas.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
+- **on_drayton** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Drayton Digistat RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DraytonData`
+  is passed to the automation for use in lambdas.
 - **on_jvc** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   JVC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::JVCData`
+  is passed to the automation for use in lambdas.
+- **on_keeloq** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  KeeLoq RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::KeeloqData`
+  is passed to the automation for use in lambdas.
+- **on_haier** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Haier remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::HaierData`
   is passed to the automation for use in lambdas.
 - **on_lg** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   LG remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::LGData`
@@ -197,21 +213,29 @@ Remote code selection (exactly one of these has to be included):
   - **data** (**Required**, 3-35 bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_aeha`
     for more info. Usually you only need to copy this directly from the dumper output.
 
+- **byronsx**: Trigger on a decoded Byron SX Doorbell RF remote code with the given data.
+
+  - **address** (**Required**, int): The 8-bit ID code to trigger on, see dumper output for more info.
+  - **command** (**Optional**, int): The 4-bit command to listen for. If omitted, will match on any command.
+
 - **canalsat**: Trigger on a decoded CanalSat remote code with the given data.
 
   - **device** (**Required**, int): The device to trigger on, see dumper output for more info.
-  - **address** (**Optional**, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
+  - **address** (*Optional*, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
   - **command** (**Required**, int): The command to listen for.
 
 - **canalsatld**: Trigger on a decoded CanalSatLD remote code with the given data.
 
   - **device** (**Required**, int): The device to trigger on, see dumper output for more info.
-  - **address** (**Optional**, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
+  - **address** (*Optional*, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
   - **command** (**Required**, int): The command to listen for.
 
-- **coolix**: Trigger on a decoded Coolix remote code with the given data.
+- **coolix**: Trigger on a decoded Coolix remote code with the given data. It is possible to directly specify a 24-bit code,
+  it will be checked for a match to at least one of the two received packets. The main configuration scheme is below.
 
-  - **data** (**Required**, int): The 24-bit Coolix code to trigger on, see dumper output for more info.
+  - **first** (**Required**, uint32_t): The first 24-bit Coolix code to trigger on, see dumper output for more info.
+  - **second** (*Optional*, uint32_t): The second 24-bit Coolix code to trigger on, see dumper output for more info.
+    If not set, trigger on on only single non-strict packet, specified by the ``first`` parameter.
 
 - **dish**: Trigger on a decoded Dish Network remote code with the given data.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
@@ -219,9 +243,25 @@ Remote code selection (exactly one of these has to be included):
   - **address** (*Optional*, int): The number of the receiver to target, between 1 and 16 inclusive. Defaults to ``1``.
   - **command** (**Required**, int): The Dish command to listen for, between 0 and 63 inclusive.
 
+- **drayton**: Trigger on a decoded Drayton Digistat RF remote code with the given data.
+
+  - **address** (**Required**, int): The 16-bit ID code to trigger on, see dumper output for more info.
+  - **channel** (**Required**, int): The 7-bit switch/channel to listen for.
+  - **command** (**Required**, int): The 5-bit command to listen for.
+
 - **jvc**: Trigger on a decoded JVC remote code with the given data.
 
   - **data** (**Required**, int): The JVC code to trigger on, see dumper output for more info.
+
+- **keeloq**: Trigger on a decoded KeeLoq RF remote code with the given data.
+
+  - **address** (**Required**, int): The 32-bit ID code to trigger on, see dumper output for more info.
+  - **command** (**Required**, int): The 8-bit switch/command to listen for. If omitted, will match on any command/button.
+
+- **haier**: Trigger on a Haier remote code with the given code.
+
+  - **code** (**Required**, 13-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_haier`
+    for more info. Usually you only need to copy this directly from the dumper output.
 
 - **lg**: Trigger on a decoded LG remote code with the given data.
 

@@ -91,7 +91,7 @@ evaluates if the automation should run.
               - light.turn_on: my_light
 
           # Cron syntax, trigger every 5 minutes
-          - cron: '* /5 * * * *'
+          - cron: '00 /5 * * * *'
             then:
               - switch.toggle: my_switch
 

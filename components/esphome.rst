@@ -15,6 +15,7 @@ where you specify the **name** of the node.
     esphome:
         name: livingroom
         comment: Living room ESP32 controller
+        area: Living Room
 
     esp32:
         board: nodemcu-32s
@@ -32,13 +33,16 @@ Configuration variables:
 - **friendly_name** (*Optional*, string): This is the name sent to the frontend. It is used
   by Home Assistant as the integration name, device name, and is automatically prefixed to entities
   where necessary.
+- **area** (*Optional*, string): This is the area sent to the frontend. It is used
+  by Home Assistant as the area / zone which the node belongs to.
 
 Advanced options:
 
 - **build_path** (*Optional*, string): Customize where ESPHome will store the build files
   for your node. By default, ESPHome puts the PlatformIO project it uses to build the
-  firmware in the ``.esphome/build/<NODE>`` directory, but you can customize this
-  behavior using this option.
+  firmware in the ``.esphome/build/<NODE>`` (or into path from ``ESPHOME_BUILD_PATH`` environment variable if specified) directory,
+  but you can customize this behavior using this option. Official docker image automatically use `/build` folder
+  as default one in case it is mounted to it.
 - **platformio_options** (*Optional*, mapping): Additional options to pass over to PlatformIO in the
   platformio.ini file. See :ref:`esphome-platformio_options`.
 - **includes** (*Optional*, list of files): A list of C/C++ files to include in the main (auto-generated) sketch file
@@ -54,6 +58,10 @@ Advanced options:
 
   - **name** (**Required**, string): Name of the project
   - **version** (**Required**, string): Version of the project
+  - **on_update** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the device firmware is updated.
+    This compares the above ``version`` field with the ``version`` that was in the previous firmware
+    as long as the ``name`` matches.
+    The ``version`` is stored in flash memory when the firmware is first run for future comparisons.
 - **min_version** (*Optional*, string): The minimum ESPHome version required to compile this configuration.
   See :ref:`esphome-min_version`.
 - **compile_process_limit** (*Optional*, int): The maximum number of simultaneous compile processes to run.
@@ -321,15 +329,15 @@ The same procedure can be done for changing the static IP of a device.
 Adding the MAC address as a suffix to the device name
 -----------------------------------------------------
 
-Using ``name_add_mac_suffix`` allows :doc:`creators </guides/creators>` to 
-provision multiple devices at the factory with a single firmware and still 
+Using ``name_add_mac_suffix`` allows :doc:`creators </guides/creators>` to
+provision multiple devices at the factory with a single firmware and still
 have unique identification for customer installs.
 
 .. note::
 
-    End users will need to create an individual YAML config file if they want to OTA update the 
+    End users will need to create an individual YAML config file if they want to OTA update the
     devices in the future.  Creators can facilitate this process by providing ``dashboard_import`` URL
-    for end users.  This allows them to easily update their devices as new features are made available 
+    for end users.  This allows them to easily update their devices as new features are made available
     upstream.
 
 

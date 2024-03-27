@@ -14,10 +14,18 @@ The ``binary`` fan platform lets you represent any binary :ref:`output` as a fan
 .. code-block:: yaml
 
     # Example configuration entry
+    output:
+      - id: fan_output
+        platform: gpio
+        pin: GPIO16
+        
     fan:
       - platform: binary
-        output: my_output_1
+        output: fan_output
         name: "Living Room Fan"
+        
+        
+        
 
 Configuration variables:
 ------------------------

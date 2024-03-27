@@ -6,7 +6,7 @@ Lock Component
     :image: folder-open.svg
 
 The ``lock`` domain includes all platforms that should function like a lock
-with lock/unlock actions. 
+with lock/unlock actions.
 
 .. note::
 
@@ -26,6 +26,12 @@ Base Lock Configuration
 Configuration variables:
 
 - **name** (**Required**, string): The name of the lock.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the lock to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the
   lock in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will

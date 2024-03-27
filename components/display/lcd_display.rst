@@ -90,10 +90,10 @@ faster refresh, especially in conjunction with an :ref:`LCD Menu <lcd_menu>`.
       - platform: lcd_gpio
         dimensions: 20x4
         data_pins:
-          - D0
-          - D1
-          - D2
-          - D3
+          - GPIO32
+          - GPIO33
+          - GPIO5
+          - GPIO17
         enable_pin: D4
         rs_pin: D5
         lambda: |-

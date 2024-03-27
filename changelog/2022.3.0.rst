@@ -10,9 +10,9 @@ ESPHome 2022.3.0 - 16th March 2022
 .. imgtable::
     :columns: 4
 
-    Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg
+    Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg, dark-invert
     MAX44009, components/sensor/max44009, max44009.svg
-    Copy, components/copy, content-copy.svg
+    Copy, components/copy, content-copy.svg, dark-invert
     MPU6886, components/sensor/mpu6886, mpu6886.jpg
     MCP4728, components/output/mcp4728, mcp4728.jpg
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg

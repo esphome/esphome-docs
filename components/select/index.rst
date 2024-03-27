@@ -31,6 +31,12 @@ All selects in ESPHome have a name and an optional icon.
 Configuration variables:
 
 - **name** (**Required**, string): The name for the select.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the select to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the select in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
@@ -64,7 +70,7 @@ For more information on using lambdas with select, see :ref:`select-lambda_calls
 ``on_value``
 ************
 
-This automation will be triggered when a new value is published. In :ref:`Lambdas <config-lambda>`
+This automation will be triggered whenever a value is set/published, even if the value is the same as before. In :ref:`Lambdas <config-lambda>`
 you can get the value from the trigger with ``x`` and the index offset of the selected value with ``i``.
 
 .. code-block:: yaml
@@ -275,6 +281,14 @@ advanced stuff (see the full API Reference for more info).
       auto state = id(my_select).state.c_str();
       ESP_LOGI("main", "Option of my select: %s", state);
 
+  .. code-block:: yaml
+
+      # Check if a specific option is selected
+      - if:
+          condition:
+            - lambda: 'return id(my_select).state == "my_option_value";'
+
+
 - ``.size()``: Retrieve the number of options in the select.
 
   .. code-block:: cpp
@@ -334,8 +348,8 @@ advanced stuff (see the full API Reference for more info).
       if (id(my_select).has_index(index)) {
         ESP_LOGI("main", "Select has index offset %d", index);
       }
-      
-      
+
+
 Example
 -------
 
@@ -347,13 +361,13 @@ Setting up three options and set component state to selected option value.
       - platform: template
         name: Mode
         id: mode
-        options: 
+        options:
          - "Option1"
          - "Option2"
          - "Option3"
-        initial_option: "OFF"
+        initial_option: "Option1"
         optimistic: true
-        set_action: 
+        set_action:
           - logger.log:
               format: "Chosen option: %s"
               args: ["x.c_str()"]
