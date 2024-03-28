@@ -81,17 +81,15 @@ I can't get flashing over USB to work.
 ESPHome depends on the operating system the tool is running on to recognize the ESP. This can sometimes fail. Common causes are that you may not have the drivers installed (see :ref:`here <esphome-phy-con-drv>`) or you are trying to upload from a Docker container and did not mount the ESP device into your container using ``--device=/dev/ttyUSB0``.
 
 First, you need to get the firmware file to flash. For the Home Assistant add-on based
-installs you can use the ``Manual download`` method (click ``Install`` in the overflow icon with the three dots
+installs you can use the ``Manual download`` method of the Dashboard (click ``Install`` in the overflow icon with the three dots
 and then select ``Manual download``). For direct esphome command line based installs you can access the
 file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
-To flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use *esptool* `from the GitHub repository <https://github.com/espressif/esptool/releases>`__, package from your distro or install it yourself with command (in case of Linux for example): 
+To flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use:
+- `ESPHome Web <https://web.esphome.io/>`__ web-based installer, which requires a browser that supports WebSerial, like Google Chrome or Microsoft Edge. Connect the board to your computer, make sure it's detected as a :ref:`serial port <esphome-phy-con-drv>`)and press **Connect**. Give the requested permission in the browser and in the popup box that appears, select the serial device which connects to your ESP. Then press **Install**, and browse for the binary file you downloaded from the Dashboard in the step above.
+- *esptool* `from the GitHub repository <https://github.com/espressif/esptool/releases>`__, package from your distro or install it yourself with ``pip install esptool`` (in case of Linux). 
 
-.. code-block:: bash
-
-    pip install esptool
-
-Before using esptool, make sure you know which serial port your programming adapter is connected to. In Linux use the ``dmesg`` command afer you plug the device into the USB port to see the name of the newly detected serial port.
+Before using esptool, make sure you know which serial port your programming adapter is connected to. In Linux use the ``dmesg`` command afer you plug the device into the USB port to see the name of the newly detected serial port. In Windows check the Device Manager to see if a new serial port appears when you plug it in.
 
 Erase flash:
 
