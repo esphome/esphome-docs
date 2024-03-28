@@ -60,6 +60,21 @@ If you are building an :doc:`/components/external_components` or you use
 these functions have been renamed to ``::get_ip_addresses()`` respectively and now return a list of all IP addresses.
 
 
+Release 2024.3.1 - March 27
+---------------------------
+
+- AHT10: Fix bug :esphomepr:`6409` by :ghuser:`clydebarrow`
+- microWakeWord: Fix model path joining :esphomepr:`6426` by :ghuser:`ebw44`
+- Don't compile strptime unless its required :esphomepr:`6424` by :ghuser:`gabest11`
+- Fix editor live validation :esphomepr:`6431` by :ghuser:`bdraco`
+
+
+Thank you for your support
+--------------------------
+
+We would like to thank all Home Assistant Cloud subscribers for their support. It allows `Nabu Casa <https://nabucasa.com/>`__ to
+employ two developers to maintain and further develop the ESPHome project.
+
 Full list of changes
 --------------------
 
