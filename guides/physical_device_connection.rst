@@ -77,6 +77,8 @@ this ensures a common ground. A PC power supply can be a good source for ``3.3V`
 ESP needs to be put into programming mode or flash mode before the firmware can be uploaded. This is
 done by connecting ``GPIO0`` pin to ``GND`` while the chip is booting. 
 
+.. _esphome-phy-con-prg:
+
 To put the ESP into programming mode:
 
 * Disconnect the USB connection of your board or serial programmer from the computer (to power off your ESP)

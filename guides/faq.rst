@@ -85,7 +85,9 @@ installs you can use the ``Manual download`` method of the Dashboard (click ``In
 and then select ``Manual download``). For direct esphome command line based installs you can access the
 file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
-To flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use:
+Second, you need to put the ESP in :ref:`programming mode <esphome-phy-con-prg>` while connecting it to your computer.
+
+Third, to flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use:
 
 - `ESPHome Web <https://web.esphome.io/>`__ web-based installer, which requires a browser that supports WebSerial, like Google Chrome or Microsoft Edge. Connect the board to your computer, make sure it's detected as a :ref:`serial port <esphome-phy-con-drv>`, and press **Connect**. Give the requested permission in the browser and in the popup box that appears, select the serial device which connects to your ESP. Then press **Install**, and browse for the binary file you downloaded from the Dashboard in the step above. Note that the file will be processed locally, it won't be uploaded to any cloud service.
 - *esptool* `from the GitHub repository <https://github.com/espressif/esptool/releases>`__, package from your distro or install it yourself with ``pip install esptool`` (in case of Linux). 
@@ -106,7 +108,7 @@ Program flash with your firmware binary:
 
 .. note::
 
-    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, check if the device name of the port has changed while you were re-plugging it too fast (eg. changed from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``). Also double check the UART wires are connected correctly if flashing using an external programmer (RX of programmer to TX of the ESP and vice-versa). For some devices you need to keep ``GPIO0`` and ``GND`` connected until flashing has begun. It also might be a sign that ESP is defect or cannot be programmed. 
+    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, check if the device name of the port has changed while you were re-plugging it too fast (eg. changed from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``). Also double check the UART wires are connected correctly if flashing using an external programmer (RX of programmer to TX of the ESP and vice-versa). For some devices you need to keep ``GPIO0`` and ``GND`` connected at least until flashing has begun. It also might be a sign that ESP is defect or cannot be programmed. 
     
     If you're in an RF noisy environment or your UART wires are a bit long, flashing can fail during transfer. Don't worry, an ESP won't brick just because of that. Put it again in programming mode and flash with a reduced baudrate for safer transfers:
     
