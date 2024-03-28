@@ -73,8 +73,6 @@ Tips for using ESPHome
 .. |include| replace:: ``!include``
 .. _include: https://www.home-assistant.io/docs/configuration/splitting_configuration/
 
-.. _esphome-esptool:
-
 I can't get flashing over USB to work.
 --------------------------------------
 
@@ -86,6 +84,8 @@ and then select ``Manual download``). For direct esphome command line based inst
 file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
 Second, you need to put the ESP in :ref:`programming mode <esphome-phy-con-prg>` while connecting it to your computer.
+
+.. _esphome-esptool:
 
 Third, to flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use:
 

@@ -151,7 +151,7 @@ to your docker command to map a local USB device. Docker on Mac will not be able
 
 Now when you go to the Home Assistant **Integrations** screen (under **Configuration** panel), you
 should see the ESPHome device show up in the discovered section (although this can take up to 5 minutes).
-Alternatively, you can manually add the device by clicking "CONFIGURE" on the ESPHome integration
+Alternatively, you can manually add the device by clicking **CONFIGURE** on the ESPHome integration
 and entering ``<NODE_NAME>.local`` as the host.
 
 .. figure:: /components/switch/images/gpio-ui.png
