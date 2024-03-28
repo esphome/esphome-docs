@@ -108,7 +108,13 @@ Program flash with your firmware binary:
 
 .. note::
 
-    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, check if the device name of the port has changed while you were re-plugging it too fast (eg. changed from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``). Also double check the UART wires are connected correctly if flashing using an external programmer (RX of programmer to TX of the ESP and vice-versa). For some devices you need to keep ``GPIO0`` and ``GND`` connected at least until flashing has begun. It also might be a sign that ESP is defect or cannot be programmed. 
+    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, check for these: 
+
+    - the device name of the port has changed while you were re-plugging it too fast (eg. changed from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``). 
+    - double check the UART wires are connected correctly if flashing using an external programmer (RX of programmer to TX of the ESP and vice-versa).
+    - for some devices you need to keep ``GPIO0`` and ``GND`` connected at least until flashing has begun.
+    - for some devices you need to power-cycle in programming mode after erasing flash, they don't auto-reset.
+    - it also might be a sign that ESP is defect or cannot be programmed. 
     
     If you're in an RF noisy environment or your UART wires are a bit long, flashing can fail during transfer. Don't worry, an ESP won't brick just because of that. Put it again in programming mode and flash with a reduced baudrate for safer transfers:
     
