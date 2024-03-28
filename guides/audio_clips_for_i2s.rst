@@ -1,9 +1,9 @@
 .. audio_clips_for_i2s:
 
-CREATE AUDIO CLIP FILES FOR USE WITH I2S SPEAKERS
+Create audio clip files for use with I²S Speakers
 =================================================
 
-It is possible to create sound clips to include in your build to use with i2s speakers. No need for a media player component!  
+It is possible to create sound clips to include in your build to use with I²S speakers. No need for a media player component!  
 
 - Using `Audacity <https://github.com/audacity/audacity>`__, convert audio to WAV, mono, 16kHz, Unsigned 8bit PCM
 
@@ -48,3 +48,11 @@ Now you can define using the audio clip using the following:
 Enjoy!
 
 HowTo by [NUT].
+
+See also
+--------
+
+- :doc:`microphone/i2s_audio`
+- :doc:`media_player/i2s_audio`
+- :doc:`speaker/i2s_audio`
+- :ghedit:`Edit`
