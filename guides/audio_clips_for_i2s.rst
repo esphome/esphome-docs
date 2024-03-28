@@ -5,13 +5,13 @@ CREATE AUDIO CLIP FILES FOR USE WITH I2S SPEAKERS
 
 It is possible to create sound clips to include in your build to use with i2s speakers. No need for a media player component!  
 
-- Using `Audacity<https://github.com/audacity/audacity>`, convert audio to WAV, mono, 16kHz, Unsigned 8bit PCM
+- Using `Audacity <https://github.com/audacity/audacity>`__, convert audio to WAV, mono, 16kHz, Unsigned 8bit PCM
 
 .. image:: /guides/images/save_as_wav.png
     :alt: Audacity export dialog
     :height: 200
 
-- Convert again, this time with `SOX<https://github.com/chirlu/sox>`.
+- Convert again, this time with `SOX <https://github.com/chirlu/sox>`__.
 
 .. code-block:: console
 
@@ -24,7 +24,10 @@ It is possible to create sound clips to include in your build to use with i2s sp
     xxd -i startup_again.raw startup.c
 
 - The resulting file needs a modification in the start line:
-  Open in an editor and change ``unsigned char startup_again_raw[] = {…[SNIP]…}`` to ``std::vector<unsigned char> startup_raw = {…[SNIP]…}``
+  Open in an editor and change
+  ``unsigned char startup_again_raw[] = {…[SNIP]…}``
+  to
+  ``std::vector<unsigned char> startup_raw = {…[SNIP]…}``.
 
 Now you can rename the file to startup.h, put it inside the esphome configuration directory and put it in a include in your device config like this:
 
