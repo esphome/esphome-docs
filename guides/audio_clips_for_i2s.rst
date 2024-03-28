@@ -52,6 +52,6 @@ HowTo by [NUT].
 See also
 --------
 
-- :doc:`speaker/index`
-- :doc:`speaker/i2s_audio`
+- :doc:`/components/speaker/index`
+- :doc:`/components/speaker/i2s_audio`
 - :ghedit:`Edit`
