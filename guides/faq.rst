@@ -76,6 +76,8 @@ Tips for using ESPHome
 I can't get flashing over USB to work.
 --------------------------------------
 
+.. _esphome-esptool:
+
 ESPHome depends on the operating system the tool is running on to recognize the ESP. This can sometimes fail. Common causes are that you may not have the drivers installed (see :ref:`here <esphome-phy-con-drv>`) or you are trying to upload from a Docker container and did not mount the ESP device into your container using ``--device=/dev/ttyUSB0``.
 
 First, you need to get the firmware file to flash. For the Home Assistant add-on based
@@ -85,7 +87,6 @@ file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
 Second, you need to put the ESP in :ref:`programming mode <esphome-phy-con-prg>` while connecting it to your computer.
 
-.. _esphome-esptool:
 
 Third, to flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use:
 
