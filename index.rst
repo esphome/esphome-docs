@@ -937,6 +937,7 @@ Miscellaneous Components
     SUN-GTIL2 inverter, components/sun_gtil2, sun_1000g2.png
     Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
+    Viessmann Optolink, components/optolink, optolink.jpg
     WireGuard, components/wireguard, wireguard_custom_logo.svg
     Demo, components/demo, description.svg, dark-invert
     Copy, components/copy, content-copy.svg, dark-invert
