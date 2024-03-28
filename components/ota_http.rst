@@ -42,6 +42,9 @@ Configuration variables:
         - ``no``: Never attempt to flash at boot time.
         - ``yes``: Always flash at boot time.
         - ``fallback``: Retry at boot time if OTA fails.
+- **watchdog_timeout** (*Optional*, :ref:`config-time`): Change the watchdog timeout during flash operation.
+  Can be useful on slow certificate validation, or if the http server is behind a slow proxy.
+  **Only available on ESP32 and RP2040**.
 
 .. warning::
 
