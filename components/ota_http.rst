@@ -45,7 +45,7 @@ Configuration variables:
 - **watchdog_timeout** (*Optional*, :ref:`config-time`): Change the watchdog timeout during flash operation.
   Can be useful on slow certificate validation, or if the http server is behind a slow proxy.
   **Only available on ESP32 and RP2040**.
-- **max_url_lenght** (*Optional*, int): Maxixum url lenght. Can be lowered to save memory. Defaults to ``240``
+- **max_url_length** (*Optional*, int): Maxixum url length. Can be lowered to save memory. Defaults to ``240``.
 
 .. warning::
 
