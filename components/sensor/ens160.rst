@@ -31,6 +31,7 @@ required to be set up in your configuration for this sensor to work.
         tvoc:
           name: "ENS160 Total Volatile Organic Compounds"
         aqi:
+          id: ens160_air_quality_index
           name: "ENS160 Air Quality Index"
         update_interval: 60s  
         address: 0x53
