@@ -644,6 +644,13 @@ Button Components
     Wake-on-LAN, components/button/wake_on_lan, power_settings.svg, dark-invert
     UART Button, components/button/uart, uart.svg
 
+Event Components
+-----------------
+
+.. imgtable::
+
+    Event Core, components/event/index, folder-open.svg, dark-invert
+    Template Event, components/event/template, description.svg, dark-invert
 
 Fan Components
 --------------
