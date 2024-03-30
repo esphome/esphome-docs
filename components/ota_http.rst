@@ -16,8 +16,13 @@ is primarily useful with either standalone or MQTT-only devices.
 .. code-block:: yaml
 
     # Example configuration entry
+
+    esphome:
+      name: mydevice
+
     ota_http:
 
+    # OTA updade trigerred by a button
     button:
       - platform: template
         name: "Firmware update"
@@ -28,11 +33,25 @@ is primarily useful with either standalone or MQTT-only devices.
                 url: http://example.com/firmware.bin
             - logger.log: "This message should be not displayed because the device reboots"
 
+    # Automatic update if remote firmware has changed
+    # (Do not set 'force_update: true', because the device will reboot at each interval)
+    interval:
+      - interval: 1d
+        then:
+          - if:
+              condition:
+                wifi.connected:
+              then:
+                - ota_http.flash:
+                    # files on the server are named 'firmware-mydevice.bin' and 'firmware-mydevice.md5'
+                    url: !lambda return ("http://example.com/firmware-" + App.get_name() + ".bin").c_str();
+                    md5_url: !lambda return ("http://exemple.com/firmware-" + App.get_name() + ".md5").c_str();
+                - logger.log: "This message might be not displayed if the OTA was already installed"
+
+
 Configuration variables:
 ------------------------
 
-- **esp8266_disable_ssl_support** (*Optional*, boolean): Disables SSL support on the ESP8266 when set to ``true``.
-  **Only available on ESP8266.** Defaults to ``false``. See :ref:`esphome-esp8266_disable_ssl_support` for more information.
 - **exclude_certificate_bundle** (*Optional*, boolean): When set to ``true``, the default ESP x509 certificate bundle
   is excluded from the build. This certificate bundle includes the complete list of root certificates from Mozilla's
   NSS root certificate store. Defaults to ``false``.
@@ -46,6 +65,10 @@ Configuration variables:
   Can be useful on slow certificate validation, or if the http server is behind a slow proxy.
   **Only available on ESP32 and RP2040**.
 - **max_url_length** (*Optional*, int): Maxixum url length. Can be lowered to save memory. Defaults to ``240``.
+- **force_update** (*Optional*, boolean): Force flash if the remote firmware is the same as the currently 
+  installed one. Defaults to ``false``.
+- **esp8266_disable_ssl_support** (*Optional*, boolean): Disables SSL support on the ESP8266 when set to ``true``.
+  **Only available on ESP8266.** Defaults to ``false``. See :ref:`esphome-esp8266_disable_ssl_support` for more information.
 
 .. warning::
 
