@@ -70,12 +70,26 @@ By default, the QMC5883L sensor measures each value 512 times when requesting a 
 configure this amount. The result is the sensor will take the adverage of the x samples.
 Oversampling affects the output data rate and thus the update interval. Possible sampling values:
 
-| Oversampling | Output date rate | interval_rate |
-| ------------------ | ---------- | ------------ |
-| ``512x`` (default) | ``10 Hz``  | ``>= 100ms`` |
-| ``256x``           | ``50 Hz``  | ``>= 20ms``  |
-| ``128x``           | ``100 Hz`` | ``>= 10ms``  |
-| ``64x``            | ``200 Hz`` | ``>= 5ms``   |
+.. list-table::
+    :widths: 25 25 25
+    :header-rows: 1
+
+    * - Oversampling:
+      - Output date rate:
+      - interval_rate:
+
+    * - ``512x`` (default)
+      - ``10 Hz``
+      - ``>= 100ms``
+    * - ``256x``
+      - ``50 Hz``
+      - ``>= 20ms``
+    * - ``128x``
+      - ``100 Hz``
+      - ``>= 10ms``
+    * - ``64x``
+      - ``200 Hz``
+      -  ``>= 5ms``
 
 See Also
 --------
