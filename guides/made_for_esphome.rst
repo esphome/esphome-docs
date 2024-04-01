@@ -38,7 +38,7 @@ For all projects
     - There are **no** references to secrets or passwords
     - Network configuration must assume defaults (no static IPs or DNS configured)
     - All configuration is contained within a single YAML file
-- Your product name cannot contain **ESPHome** except in the case of *ending with* **for ESPHome**
+- Your product name cannot contain "**ESPHome**" except in the case of *ending with* "**for ESPHome**"
 
 When your project matches all requirements of the Made for ESPHome program,
 you can apply for permission to carry the logo by emailing esphome@nabucasa.com
