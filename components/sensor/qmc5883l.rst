@@ -50,7 +50,7 @@ Configuration variables:
 - **heading** (*Optional*): The heading of the sensor in degrees. All options from
   :ref:`Sensor <config-sensor>`.
 - **range** (*Optional*): The range parameter for the sensor.
-- **oversampling** (*Optional*): The oversampling parameter for the sensor.
+- **oversampling** (*Optional*): The oversampling parameter for the sensor. See Oversampling Options below.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
@@ -67,12 +67,15 @@ Oversampling Options
 --------------------
 
 By default, the QMC5883L sensor measures each value 512 times when requesting a new value. You can, however,
-configure this amount. The result is the sensor will take the adverage of the x samples. Possible sampling values:
+configure this amount. The result is the sensor will take the adverage of the x samples.
+Oversampling affects the output data rate and thus the update interval. Possible sampling values:
 
--  ``512x`` (default)
--  ``256x``
--  ``128x``
--  ``64x``
+| Oversampling | Output date rate | interval_rate |
+| ------------------ | ---------- | ------------ |
+| ``512x`` (default) | ``10 Hz``  | ``>= 100ms`` |
+| ``256x``           | ``50 Hz``  | ``>= 20ms``  |
+| ``128x``           | ``100 Hz`` | ``>= 10ms``  |
+| ``64x``            | ``200 Hz`` | ``>= 5ms``   |
 
 See Also
 --------
