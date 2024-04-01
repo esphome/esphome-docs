@@ -76,7 +76,7 @@ Oversampling affects the output data rate and thus the update interval. Possible
 
     * - Oversampling:
       - Output date rate:
-      - interval_rate:
+      - Interval rate:
 
     * - ``512x`` (default)
       - ``10 Hz``
