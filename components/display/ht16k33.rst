@@ -111,6 +111,7 @@ commands have been added to the basic display set.
 This is roughly the code used to display the HT16K33 pictured in the image.
 
 .. _display-ht16k33_colors:
+
 Colors
 ******
 
