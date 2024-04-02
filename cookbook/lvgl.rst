@@ -985,7 +985,7 @@ To have an animation illustrating a battery charging, you can use :ref:`lvgl-wgt
                   align: TOP_RIGHT
                   y: 41
                   x: -10
-                  id: batt_charging
+                  id: ani_battery_charging
                   src: [ 
                     batt_empty, 
                     batt_10, 
@@ -1003,7 +1003,23 @@ To have an animation illustrating a battery charging, you can use :ref:`lvgl-wgt
 
 .. tip::
 
-    You can use both battery examples above placed on top of each other, and switch their ``hidden`` flag depending if the charger is connected or not. Use ``x``, ``y``, ``align`` for precise widget positioning.
+    You can use both battery examples above placed on top of each other, and switch their ``hidden`` flag depending if the charger is connected or not:
+
+    .. code-block:: yaml
+
+        binary_sensor:
+          - platform: ...
+            id: charger_connected
+            on_press:
+              then:
+                - lvgl.widget.show: ani_battery_charging
+                - lvgl.widget.hide: lbl_battery_status
+            on_release:
+              then:
+                - lvgl.widget.show: lbl_battery_status
+                - lvgl.widget.hide: ani_battery_charging
+
+    Use ``x``, ``y``, ``align`` widget properties for precise positioning.
 
 .. _lvgl-cook-clock:
 
