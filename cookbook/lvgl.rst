@@ -764,7 +764,7 @@ In the example below we use the default set of glyphs from RobotoCondensed-Regul
                   text_font: roboto_icons_42
 
 
-.. note::
+.. tip::
 
     Follow these steps to choose your MDI icons:
     
@@ -1003,7 +1003,7 @@ To have an animation illustrating a battery charging, you can use :ref:`lvgl-wgt
 
 .. tip::
 
-   You can use both battery examples above placed on top of each other, and switch their ``hidden`` flag based on if the charger is connected or not.
+    You can use both battery examples above placed on top of each other, and switch their ``hidden`` flag depending if the charger is connected or not. Use ``x``, ``y``, ``align`` for precise widget positioning.
 
 .. _lvgl-cook-clock:
 

@@ -668,7 +668,7 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
             items:
               bg_color: 0xf0f0f0
 
-.. note::
+.. tip::
 
     The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations. Check out  :ref:`lvgl-cook-keypad` for an example.
 
@@ -1257,6 +1257,8 @@ Currently ``RGB565`` type images are supported, with transparency using the opti
             repeat_count: 100
             duration: 300ms
 
+See :ref:`lvgl-cook-animbatt` in the Cookbook for a more detailed example.
+
 .. _lvgl-wgt-lin:
 
 ``line``
@@ -1465,7 +1467,7 @@ The configured message boxes are hidden by default. One can show them with ``lvg
                 then:
                   - lvgl.widget.hide: message_box
 
-.. note::
+.. tip::
 
     You can create your own more complex dialogs with a full-screen sized, half-opaque ``obj`` with any child widgets on it, and the ``hidden`` flag set to ``true`` by default. For non-modal dialogs, simply set the ``clickable`` flag to ``false`` on it.
 
