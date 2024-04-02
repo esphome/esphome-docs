@@ -28,7 +28,7 @@ The sensor goes back to sleep after transmitting data.
 
     AJ-SR04M Ultrasonic Distance Sensor.
 
-.. figure:: images/ultrasonic_uart-mode_change.png
+.. figure:: images/ultrasonic_uart-mode_change.jpg
     :align: center
     :width: 80.0%
 
