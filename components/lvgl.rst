@@ -1224,8 +1224,8 @@ The animation image is similar to the normal ``img`` widget. The main difference
 
 - **src** (**Required**, list of :ref:`images <display-image>`): A list of IDs of existing image configurations to be loaded as frames of the animation.
 - **auto_start** (*Optional*, boolean): Start the animation playback automatically at boot and when updating the widget. Defaults to ``true``.
+- **duration** (**Required**, :ref:`Time <config-time>`): Total duration of a playback cycle (frames are displayed equally in time).
 - **repeat_count** (*Optional*, int16 or *forever*): How many times to repeat the playback. Defaults to ``forever``.
-- **duration** (**Required**, :ref:`Time <config-time>`): Total duration of an animation cycle (frames are displayed equally in time).
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
 Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
