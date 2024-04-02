@@ -67,7 +67,7 @@ Oversampling Options
 --------------------
 
 By default, the QMC5883L sensor measures each value 512 times when requesting a new value. You can, however,
-configure this amount. The result is the sensor will take the adverage of the x samples.
+configure this amount. The result is the sensor will take the average of the x samples.
 Oversampling affects the output data rate and thus the update interval. Possible sampling values:
 
 .. list-table::
