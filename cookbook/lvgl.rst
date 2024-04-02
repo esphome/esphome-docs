@@ -929,6 +929,82 @@ Another example for using MDI icons is to display battery percentage in 10 steps
                   text_font: battery_icons_20
                   text: "\U000F0091" # start with mdi-battery-unknown
 
+.. _lvgl-cook-animbatt:
+
+Battery charging animation
+--------------------------
+
+.. figure:: images/lvgl_cook_animimg_batt.gif
+    :align: left
+
+To have an animation illustrating a battery charging, you can use :ref:`lvgl-wgt-aim` with a set of :ref:`images rendered from MDI <display-image>` showing battery levels:
+
+.. code-block:: yaml
+
+    image:
+      - file: mdi:battery-10
+        id: batt_10
+        resize: 20x20
+      - file: mdi:battery-20
+        id: batt_20
+        resize: 20x20
+      - file: mdi:battery-30
+        id: batt_30
+        resize: 20x20
+      - file: mdi:battery-40
+        id: batt_40
+        resize: 20x20
+      - file: mdi:battery-50
+        id: batt_50
+        resize: 20x20
+      - file: mdi:battery-60
+        id: batt_60
+        resize: 20x20
+      - file: mdi:battery-70
+        id: batt_70
+        resize: 20x20
+      - file: mdi:battery-80
+        id: batt_80
+        resize: 20x20
+      - file: mdi:battery-90
+        id: batt_90
+        resize: 20x20
+      - file: mdi:battery
+        id: batt_full
+        resize: 20x20
+      - file: mdi:battery-outline
+        id: batt_empty
+        resize: 20x20
+
+    lvgl:
+        ...
+        pages:
+          - id: battery_page
+            widgets:
+              - animimg:
+                  align: TOP_RIGHT
+                  y: 41
+                  x: -10
+                  id: batt_charging
+                  src: [ 
+                    batt_empty, 
+                    batt_10, 
+                    batt_20, 
+                    batt_30, 
+                    batt_40, 
+                    batt_50, 
+                    batt_60, 
+                    batt_70, 
+                    batt_80, 
+                    batt_90, 
+                    batt_full
+                    ]
+                  duration: 2200ms
+
+.. tip::
+
+   You can use both battery examples above placed on top of each other, and switch their ``hidden`` flag based on if the charger is connected or not.
+
 .. _lvgl-cook-clock:
 
 An analog clock
