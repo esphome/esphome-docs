@@ -1024,7 +1024,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
     # Example action:
     on_...:
       then:
-        - lvgl.arc.update
+        - lvgl.arc.update:
             id: arc_id
             knob:
               bg_color: 0x00FF00
@@ -1331,7 +1331,7 @@ The Led widgets are rectangle-like (or circle) widget whose brightness can be ad
     on_...:
       then:
         - lvgl.led.update:
-            id: lvgl_led
+            id: led_id
             color: 0x00FF00
 
 The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
