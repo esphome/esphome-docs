@@ -36,14 +36,14 @@ Protocol
 
 .. list-table:: **Protocol**
   :header-rows: 1
-  :widths: 30 10
+  :widths: 30 10 10
 
   * - Description
     - Length
     - Raw Data
   * - Protocol Header : 0x02
     - 1 byte
-    - -
+    - \-
   * - Data Length : 0x09 or 0x0A
     - 1 byte
     - **Y**
@@ -55,14 +55,15 @@ Protocol
     - **Y**
   * - XOR Check 
     - 1 byte
-    - -
+    - \-
   * - Data end : 0x03
     - 1 byte
-    - -
+    - \-
 
 Most readers will support a limited subset of types, but the following are the possible card types:
 
 .. list-table:: **Card types**
+  :header-rows: 1
   :widths: 10 20
 
   * - Type
