@@ -1,0 +1,46 @@
+cst226 Touch Screen Controller
+===============================
+
+.. seo::
+    :description: Instructions for setting up cst226 touch screen controller with ESPHome
+    :image: t4-s3.jpg
+    :keywords: cst226, T4-S3
+
+The ``cst226`` touchscreen platform allows using the touch screen controllers based on the cst226 chip with ESPHome.
+The :ref:`I²C <i2c>` is required to be set up in your configuration for this touchscreen to work.
+
+This controller is used in the Lilygo T4-S3 AMOLED Display.
+
+
+.. figure:: images/t4-s3.jpg
+    :align: center
+    :width: 50.0%
+
+    cst226 touchscreen on Lilygo T4-S3 AMOLED Display
+
+Base Touchscreen Configuration
+------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    touchscreen:
+      platform: cst226
+      id: my_touchscreen
+      interrupt_pin: GPIO3
+
+Configuration variables:
+************************
+
+- **id** (*Optional*, :ref:`config-id`): Manually set the ID of this touchscreen.
+- **interrupt_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin.
+- **rotation** (*Optional*): Set the rotation of the touchscreen. By default this will be set to match the display associated with the touchscreen, but this allows more control. Choices are ``0``, ``90``, ``180`` and ``270``.
+
+- All other options from :ref:`Touchscreen <config-touchscreen>`.
+
+
+See Also
+--------
+
+- :apiref:`cst226/touchscreen/cst226_touchscreen.h`
+- :ghedit:`Edit`

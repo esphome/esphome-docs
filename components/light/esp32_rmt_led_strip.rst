@@ -44,10 +44,14 @@ Configuration variables
     - ``BRG``
 
 - **is_rgbw** (*Optional*, boolean): Set to ``true`` if the strip is RGBW. Defaults to ``false``.
+- **is_wrgb** (*Optional*, boolean): Set to ``true`` if the strip is WRGB. Defaults to ``false``.
 - **max_refresh_rate** (*Optional*, :ref:`config-time`):
   A time interval used to limit the number of commands a light can handle per second. For example
   16ms will limit the light to a refresh rate of about 60Hz. Defaults to sending commands as quickly as
   changes are made to the lights.
+
+- All other options from :ref:`Light <config-light>`.
+
 
 Manual Timings
 **************
