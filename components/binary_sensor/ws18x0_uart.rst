@@ -40,18 +40,25 @@ Protocol
 
   * - Description
     - Length
+    - Raw Data
   * - Protocol Header : 0x02
     - 1 byte
+    - -
   * - Data Length : 0x09 or 0x0A
     - 1 byte
+    - **Y**
   * - Card Type (see below)
     - 1 byte
+    - **Y**
   * - Card Data
     - 4-5 bytes
+    - **Y**
   * - XOR Check 
     - 1 byte
+    - -
   * - Data end : 0x03
     - 1 byte
+    - -
 
 Most readers will support a limited subset of types, but the following are the possible card types:
 
@@ -87,7 +94,8 @@ Most readers will support a limited subset of types, but the following are the p
 
 See :ref:`ws18x0_uart-setting_up_tags` for information on how to setup individual binary sensors for this component.
 
-Only the last four bytes of the card data are used in generating the card ID. There is access to the full card type / card ID data, see :ref:`ws18x0-raw_data`.
+Only the last four bytes of the card data are used in generating the card ID. There is access to the full data 
+length / card type / card ID data, see :ref:`ws18x0-raw_data`.
 
 UART Comms
 ----------
@@ -157,7 +165,7 @@ Raw Data
 
 The tag data is delivered in a 32-bit unsigned integer. This tag reader also reads the tag type, and 
 in some versions has an extra byte of information for the tag ID. The full information returned is
-5 or 6 bytes and is unique to each tag. This fits into a ``uint64_t``, and can be examined with the 
+6 or 7 bytes and is unique to each tag. This fits into a ``uint64_t``, and can be examined with the 
 following code:
 
 .. code-block:: yaml
