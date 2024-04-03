@@ -3,7 +3,7 @@ ws1850 UART Tag Reader
 
 .. seo::
     :description: Instructions for setting up UART tag readers that use the wx18x0 chips.
-    :image: ws18x0_side.png
+    :image: ws18x0_side.jpg
     :keywords: ws1830, ws1850, NFC, RFID
 
 .. _ws18x0_uart-component:
@@ -15,7 +15,7 @@ The ``ws18x0_uart`` component allows you to use various RFID readers that connec
 with ESPHome. This component establishes a connection to the readers via :ref:`UART <uart>` and translates the received data. 
 Using the :ref:`ws18x0 binary sensors <ws18x0-tag>` you can then create individual binary sensors that track when a tag is detected.
 
-.. figure:: images/ws18x0_uart.png
+.. figure:: images/ws18x0_uart.jpg
     :align: center
     :width: 60.0%
 
@@ -35,8 +35,8 @@ Protocol
 --------
 
 .. list-table:: **Protocol**
-  :header-rows: 1
-  :widths: 30 10 10
+    :header-rows: 1
+    :widths: 30 10 10
 
     * - Description
       - Length
@@ -63,8 +63,8 @@ Protocol
 Most readers will support a limited subset of types, but the following are the possible card types:
 
 .. list-table:: **Card types**
-  :header-rows: 1
-  :widths: 10 20
+    :header-rows: 1
+    :widths: 10 20
 
     * - Type
       - Description
