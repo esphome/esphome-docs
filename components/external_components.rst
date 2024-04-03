@@ -43,7 +43,7 @@ Configuration variables:
   git options:
 
   - **url** (**Required**, url): HTTP git repository url. See :ref:`external-components_git`.
-  - **ref** (*Optional*, string): Git ref (branch or tag). If not specified the default branch is used.
+  - **ref** (*Optional*, string): Git ref (branch, tag, or commit hash). If not specified the default branch is used.
   - **username** (*Optional*, string): Username for the Git server, if one is required
   - **password** (*Optional*, string): Password for the Git server, if one is required
 
@@ -163,7 +163,7 @@ HTTP git repositories in general are supported with this configuration:
       source:
         type: git
         url: http://repository_url/
-        ref: branch_or_tag
+        ref: branch_tag_commit
 
 The source field accepts a short hand **github://** resource:
 
