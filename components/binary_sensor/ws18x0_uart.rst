@@ -38,27 +38,27 @@ Protocol
   :header-rows: 1
   :widths: 30 10 10
 
-  * - Description
-    - Length
-    - Raw Data
-  * - Protocol Header : 0x02
-    - 1 byte
-    - \-
-  * - Data Length : 0x09 or 0x0A
-    - 1 byte
-    - **Y**
-  * - Card Type (see below)
-    - 1 byte
-    - **Y**
-  * - Card Data
-    - 4-5 bytes
-    - **Y**
-  * - XOR Check 
-    - 1 byte
-    - \-
-  * - Data end : 0x03
-    - 1 byte
-    - \-
+    * - Description
+      - Length
+      - Raw Data
+    * - Protocol Header : 0x02
+      - 1 byte
+      - \-
+    * - Data Length : 0x09 or 0x0A
+      - 1 byte
+      - **Y**
+    * - Card Type (see below)
+      - 1 byte
+      - **Y**
+    * - Card Data
+      - 4-5 bytes
+      - **Y**
+    * - XOR Check 
+      - 1 byte
+      - \-
+    * - Data end : 0x03
+      - 1 byte
+      - \-
 
 Most readers will support a limited subset of types, but the following are the possible card types:
 
@@ -66,37 +66,37 @@ Most readers will support a limited subset of types, but the following are the p
   :header-rows: 1
   :widths: 10 20
 
-  * - Type
-    - Description
-  * - 0x02
-    - EM4100
-  * - 0x01
-    - Mifare 1K
-  * - 0x03
-    - Mifare 4K
-  * - 0x10
-    - HID card
-  * - 0x11
-    - T5567
-  * - 0x20
-    - ID card
-  * - 0x21
-    - ISO14443B
-  * - 0x22
-    - FELICA
-  * - 0x30
-    - 15693 Tag
-  * - 0x50
-    - CPU card
-  * - 0x51
-    - Sector information
-  * - 0xFF
-    - Keyboard data
+    * - Type
+      - Description
+    * - 0x02
+      - EM4100
+    * - 0x01
+      - Mifare 1K
+    * - 0x03
+      - Mifare 4K
+    * - 0x10
+      - HID card
+    * - 0x11
+      - T5567
+    * - 0x20
+      - ID card
+    * - 0x21
+      - ISO14443B
+    * - 0x22
+      - FELICA
+    * - 0x30
+      - 15693 Tag
+    * - 0x50
+      - CPU card
+    * - 0x51
+      - Sector information
+    * - 0xFF
+      - Keyboard data
 
 See :ref:`ws18x0_uart-setting_up_tags` for information on how to setup individual binary sensors for this component.
 
 Only the last four bytes of the card data are used in generating the card ID. There is access to the full data 
-length / card type / card ID data, see :ref:`ws18x0-raw_data`.
+length / card type / card ID data, see :ref:`ws18x0-raw`.
 
 UART Comms
 ----------
