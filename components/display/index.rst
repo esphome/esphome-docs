@@ -457,13 +457,8 @@ memory at the time the sensor updates and will be lost when the device reboots.
 
 Examples:
 
-.. figure:: images/graph_screen.png
+.. figure:: images/graph.png
     :align: center
-    :width: 60.0%
-
-.. figure:: images/graph_dualtrace.png
-    :align: center
-    :width: 60.0%
 
 Graph component with options for grids, border and line-types.
 
