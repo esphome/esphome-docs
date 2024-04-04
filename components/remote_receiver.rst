@@ -56,6 +56,7 @@ Configuration variables:
   - **samsung36**: Decode and dump Samsung36 infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
   - **toshiba_ac**: Decode and dump Toshiba AC infrared codes.
+  - **mirage**: Decode and dump Mirage infrared codes.
 
 - **tolerance** (*Optional*, int): The percentage that the remote signal lengths can deviate in the
   decoding process. Defaults to ``25%``.
@@ -157,6 +158,9 @@ Automations:
   is passed to the automation for use in lambdas.
 - **on_toshiba_ac** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Toshiba AC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ToshibaAcData`
+  is passed to the automation for use in lambdas.
+- **on_mirage** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Mirage remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::MirageData`
   is passed to the automation for use in lambdas.
 
 .. code-block:: yaml
@@ -374,6 +378,11 @@ Remote code selection (exactly one of these has to be included):
 
   - **rc_code_1** (**Required**, int): The remote control code to trigger on, see dumper output for more details.
   - **rc_code_2** (*Optional*, int): The second part of the remote control code to trigger on, see dumper output for more details.
+
+- **mirage**: Trigger on a Mirage remote code with the given code.
+
+  - **code** (**Required**, 14-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_mirage`
+    for more info. Usually you only need to copy this directly from the dumper output.
 
 .. note::
 

@@ -267,7 +267,7 @@ This :ref:`action <config-action>` sends KeeLoq RF remote code to a remote trans
           code: '0xd19ef0a9'
           repeat:
             times: 3
-            wait_time: 15ms  
+            wait_time: 15ms
 
 Configuration variables:
 
@@ -787,6 +787,23 @@ Configuration variables:
 
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+.. _remote_transmitter-transmit_mirage:
+
+``remote_transmitter.transmit_mirage`` Action
+********************************************
+
+This :ref:`action <config-action>` sends a 112-bit Mirage code to a remote transmitter. 8-bits of checksum added automatically.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_mirage:
+          code: [0x56, 0x77, 0x00, 0x00, 0x22, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+
+Configuration variables:
+
+- **code** (**Required**, list): The 14 byte Mirage code to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 Lambda calls
 ************
