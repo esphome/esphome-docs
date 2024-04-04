@@ -45,6 +45,9 @@ this behavior by setting ``auto_clear_enabled: false``.
 In the lambda, you can write code like in any :ref:`lambda <config-lambda>` in ESPHome. Display
 lambdas are additionally passed a variable called ``it`` which represents the rendering engine object.
 
+.. figure:: images/display_rendering_line.png
+    :align: center
+
 .. code-block:: yaml
 
     display:
@@ -55,9 +58,6 @@ lambdas are additionally passed a variable called ``it`` which represents the re
 
           // For example, draw a line from [x=0,y=0] to [x=50,y=50]
           it.line(0, 0, 50, 50);
-
-.. figure:: images/display_rendering_line.png
-    :align: center
 
 .. note::
 
@@ -77,8 +77,10 @@ the rendering engine is always first specify the ``x`` coordinate and then the `
 Basic Shapes
 ------------
 
-Now that you know a bit more about ESPHome's coordinate system, let's draw some basic shapes like lines, rectangles
-and circles:
+Now that you know a bit more about ESPHome's coordinate system, let's draw some basic shapes like lines, rectangles, circles or even polygons:
+
+.. figure:: images/display_rendering_shapes.png
+    :align: center
 
 .. code-block:: yaml
 
@@ -111,10 +113,6 @@ and circles:
           it.regular_polygon(170, 45, 40, EDGES_OCTAGON, VARIATION_FLAT_TOP);
           // Need to rotate the polygon, or retrieve the coordinates of its vertices? Check the API!
 
-
-.. figure:: images/display_rendering_shapes.png
-    :align: center
-
 All the above methods can optionally also be called with an argument at the end which specifies in which
 color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
 
@@ -124,18 +122,18 @@ color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color 
       - platform: ...
         # ...
         lambda: |-
-          // Turn the whole display on.
+          // Turn the whole display on
           it.fill(COLOR_ON);
-          // Turn the whole display off.
+          // Turn the whole display off
           it.fill(COLOR_OFF);
 
           // Turn a single pixel off at [50,60]
           it.draw_pixel_at(50, 60, COLOR_OFF);
 
-          // Turn off a whole display portion.
-          it.rectangle(50, 50, 30, 42, COLOR_OFF);
-
 For color displays (e.g. TFT displays), you can use the Color class.
+
+.. figure:: images/display_rendering_colors.png
+    :align: center
 
 .. code-block:: yaml
 
@@ -143,14 +141,16 @@ For color displays (e.g. TFT displays), you can use the Color class.
       - platform: ...
         # ...
         lambda: |-
+          auto black = Color(0, 0, 0);
           auto red = Color(255, 0, 0);
           auto green = Color(0, 255, 0);
           auto blue = Color(0, 0, 255);
           auto white = Color(255, 255, 255);
-          it.rectangle(20, 50, 30, 30, white);
-          it.rectangle(25, 55, 30, 30, red);
-          it.rectangle(30, 60, 30, 30, green);
-          it.rectangle(35, 65, 30, 30, blue);
+          it.filled_circle(20, 32, 15, black);
+          it.filled_circle(40, 32, 15, red);
+          it.filled_circle(60, 32, 15, green);
+          it.filled_circle(80, 32, 15, blue);
+          it.filled_circle(100, 32, 15, white);
 
 Additionally, you have access to two helper methods which will fetch the width and height of the display:
 
@@ -163,6 +163,8 @@ Additionally, you have access to two helper methods which will fetch the width a
           // Draw a circle in the middle of the display
           it.filled_circle(it.get_width() / 2, it.get_height() / 2, 20);
 
+          // Turn off bottom half of the screen
+          it.filled_rectangle(0, it.get_height()/2, it.get_width(), it.get_height()/2, COLOR_OFF);
 
 You can view the full API documentation for the rendering engine in the "API Reference" in the See Also section.
 
