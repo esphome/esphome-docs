@@ -56,6 +56,9 @@ lambdas are additionally passed a variable called ``it`` which represents the re
           // For example, draw a line from [x=0,y=0] to [x=50,y=50]
           it.line(0, 0, 50, 50);
 
+.. figure:: images/display_rendering_line.png
+    :align: center
+
 .. note::
 
     Lambdas are essentially just a lightly modified version of C++. So don't forget to end each line
@@ -85,28 +88,32 @@ and circles:
         lambda: |-
           // Draw a line from [0,0] to [100,50]
           it.line(0, 0, 100, 50);
-          // Draw the outline of a rectangle with the top left at [50,60], a width of 30 and a height of 42
-          it.rectangle(50, 60, 30, 42);
-          // Draw the same rectangle, but this time filled.
-          it.filled_rectangle(50, 60, 30, 42);
+          // Draw the outline of a rectangle with the top left at [5,20], a width of 30 and a height of 42
+          it.rectangle(5, 20, 30, 42);
+          // Draw the same rectangle a few pixels apart, but this time filled
+          it.filled_rectangle(40, 40, 30, 42);
 
-          // Circles! Let's draw one with the center at [25,25] and a radius of 10
-          it.circle(25, 25, 10);
+          // Circles! Let's draw one with the center at [20,40] and a radius of 10
+          it.circle(20, 40, 10);
           // ... and the same thing filled again
-          it.filled_circle(25, 25, 10);
+          it.filled_circle(20, 75, 10);
 
           // Triangles... Let's draw the outline of a triangle from the [x,y] coordinates of its three points
-          // [25,5], [5,25], [50,50]
-          it.triangle(25, 5, 5, 25, 50, 50);
+          // [25,5], [100,5], [80,25]
+          it.triangle(25, 5, 100, 5, 80, 25);
           // and a filled triangle !
-          it.filled_triangle(125, 5, 105, 25, 150, 50);
+          it.filled_triangle(115, 5, 95, 25, 125, 70);
 
-          // Regular Polygons? Let's draw the outline of a pointy-topped hexagon inscribed in a circle 
-          // centered on [x1=100,y1=100] with a radius of 50
-          it.regular_polygon(100, 100, 50, EDGES_HEXAGON);
-          // and a filled flat-topped octagon!
-          it.filled_regular_polygon(200, 200, 50, EDGES_OCTAGON, VARIATION_FLAT_TOP);
+          // Regular Polygons? Let's draw a filled, pointy-topped hexagon inscribed in a circle 
+          // centered on [170,45] with a radius of 20
+          it.filled_regular_polygon(170, 45, 20, EDGES_HEXAGON);
+          // and the outline of flat-topped octagon around it!
+          it.regular_polygon(170, 45, 40, EDGES_OCTAGON, VARIATION_FLAT_TOP);
           // Need to rotate the polygon, or retrieve the coordinates of its vertices? Check the API!
+
+
+.. figure:: images/display_rendering_shapes.png
+    :align: center
 
 All the above methods can optionally also be called with an argument at the end which specifies in which
 color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
@@ -457,7 +464,7 @@ memory at the time the sensor updates and will be lost when the device reboots.
 
 Examples:
 
-.. figure:: images/graph.png
+.. figure:: images/display_rendering_graph.png
     :align: center
 
 Graph component with options for grids, border and line-types.
