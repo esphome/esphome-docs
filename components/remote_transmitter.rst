@@ -790,7 +790,7 @@ Configuration variables:
 .. _remote_transmitter-transmit_mirage:
 
 ``remote_transmitter.transmit_mirage`` Action
-********************************************
+*********************************************
 
 This :ref:`action <config-action>` sends a 112-bit Mirage code to a remote transmitter. 8-bits of checksum added automatically.
 
