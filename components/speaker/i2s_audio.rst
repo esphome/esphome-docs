@@ -32,13 +32,14 @@ Configuration variables:
 - **dac_type** (**Required**, enum):
 
   - ``external``: Use an external DAC, for example the NS4168, or UDA1334A.
-  - ``internal``: Use the internal DAC
+  - ``internal``: Use the internal DAC.
 
 External DAC
 ************
 
 - **i2s_dout_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I²S DOUT (Data Out) signal.
 - **mode** (*Optional*, string): The mode of the I²S bus. Can be ``mono`` or ``stereo``. Defaults to ``mono``.
+- **bits_per_sample** (*Optional*, enum): The bit depth of the audio samples. One of ``16bit`` or ``32bit``. Note that if set to ``32bit``, the 16 bit audio samples are automatically scaled. Defaults to ``16bit``.
 - **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this speaker.
 
 For best results, keep the wires as short as possible.
