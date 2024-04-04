@@ -227,6 +227,10 @@ In case of fonts rendered at higher bit depths, the background color has to be s
           // Syntax is always: it.print(<x>, <y>, <font>, [color=COLOR_ON], [align], <text>, [color=COLOR_OFF]);
           it.print(0, 0, id(my_font_with_icons), COLOR_ON, TextAlign::CENTER, "Just\U000f05d4here. Already\U000F02D1this.", COLOR_OFF);
 
+
+.. figure:: images/display_rendering_text.png
+    :align: center
+
 .. _display-printf:
 
 Formatted Text
