@@ -136,6 +136,23 @@ V2 embeds the css within the js file so is not required, however you could inclu
 
 Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
 
+.. _config-webserver-sorting:
+
+Entity sorting
+--------------
+
+``web_server`` version 3 supports the sorting of the entitys.
+You can set a ``web_server_sorting_weight`` on each entity.
+Smaller numbers will be displayed first, defaults to 50.
+Example ``sensor`` configuration
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: template
+        name: "My Sensor"
+        web_server_sorting_weight: -99
+
 
 See Also
 --------

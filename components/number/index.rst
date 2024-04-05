@@ -69,6 +69,10 @@ MQTT Options:
 
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
+Webserver Options:
+
+- All other options from :ref:`Webserver Component <config-webserver-sorting>`.
+
 Number Automation
 -----------------
 
