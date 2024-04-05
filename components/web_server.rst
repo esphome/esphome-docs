@@ -10,15 +10,24 @@ The ``web_server`` component creates a simple web server on the node that can be
 through any browser and a simple :ref:`api-rest`. Please note that enabling this component
 will take up *a lot* of memory and may decrease stability, especially on ESP8266.
 
-    Web server version 1
+**Web server version 1**
+------------------------
+
 .. figure:: /components/images/web_server.png
     :align: center
     :width: 86.0%
 
     
 
-    Web server version 2
+**Web server version 2**
+------------------------
 .. figure:: /components/images/web_server-v2.png
+    :align: center
+    :width: 86.0%
+
+**Web server version 3**
+------------------------
+.. figure:: /components/images/web_server-v3.png
     :align: center
     :width: 86.0%
 
