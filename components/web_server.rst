@@ -10,20 +10,19 @@ The ``web_server`` component creates a simple web server on the node that can be
 through any browser and a simple :ref:`api-rest`. Please note that enabling this component
 will take up *a lot* of memory and may decrease stability, especially on ESP8266.
 
+    Web server version 1
 .. figure:: /components/images/web_server.png
     :align: center
     :width: 86.0%
 
-    Web server version 1
+    
 
-
+    Web server version 2
 .. figure:: /components/images/web_server-v2.png
     :align: center
     :width: 86.0%
 
-    Web server version 2
-
-
+    
 To navigate to the web server in your browser, either use the IP address of the node or
 use ``<node_name>.local/`` (note the trailing forward slash) via mDNS.
 
@@ -64,7 +63,7 @@ Configuration variables:
 - **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Defaults to ``true``. Cannot be used with the ``esp-idf`` framework.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **local** (*Optional*, boolean): Include supporting javascript locally allowing it to work without internet access. Defaults to ``false``.
-- **version** (*Optional*, string): ``1`` or ``2``. Version 1 displays as a table. Version 2 uses web components and has more functionality. Defaults to ``2``.
+- **version** (*Optional*, string): ``1``, ``2`` or ``3``. Version 1 displays as a table. Version 2 uses web components and has more functionality. Version 3 uses HA-Styling and has even more functionality. Defaults to ``2``.
 
 To conserve flash size, the CSS and JS files used on the root page to show a simple user
 interface are hosted by esphome.io. If you want to use your own service, use the
