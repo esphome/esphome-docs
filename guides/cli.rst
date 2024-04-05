@@ -20,7 +20,7 @@ ESPHome's command line interface always has the following format
 
     .. code-block:: console
 
-    esphome run livingroom.yaml kitchen.yaml
+        esphome run livingroom.yaml kitchen.yaml
 
 ``--help`` Option
 --------------------

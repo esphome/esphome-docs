@@ -98,7 +98,8 @@ Actions
 -------
 
 Now comes the actual automation block. With ``then``, you tell ESPHome what should happen when the press happens.
-Within this block, you can define several "actions". For example, ``switch.toggle`` and the line after that form an
+Within this block, you can define several "actions" that will be executed sequentially.
+For example, ``switch.toggle`` and the line after that form an
 action. Each action is separated by a dash and multiple actions can be executed in series by just adding another ``-``
 like so:
 
@@ -409,6 +410,7 @@ All Actions
 - :ref:`media_player.play <media_player-play>` / :ref:`media_player.pause <media_player-pause>` / :ref:`media_player.stop <media_player-stop>` / :ref:`media_player.toggle <media_player-toggle>`
   / :ref:`media_player.volume_up <media_player-volume_up>` / :ref:`media_player.volume_down <media_player-volume_down>` / :ref:`media_player.volume_set <media_player-volume_set>`
 - :ref:`ble_client.ble_write <ble_client-ble_write_action>`
+- :ref:`wireguard.disable <wireguard-actions>` / :ref:`wireguard.enable <wireguard-actions>`
 
 .. _config-condition:
 
@@ -431,6 +433,7 @@ All Conditions
 - :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
 - :ref:`number.in_range <number-in_range_condition>`
 - :ref:`fan.is_on <fan-is_on_condition>` / :ref:`fan.is_off <fan-is_off_condition>`
+- :ref:`wireguard.enabled <wireguard-conditions>` / :ref:`wireguard.peer_online <wireguard-conditions>`
 
 All Lambda Calls
 ----------------
@@ -977,9 +980,14 @@ trigger, but this technique is more light-weight and user-friendly.
         then:
           - switch.toggle: relay_1
 
+
+If a startup delay is configured, the first execution of the actions will not occur before at least that time
+after boot.
+
 Configuration variables:
 
 - **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
+- **startup_delay** (*Optional*, :ref:`config-time`): An optional startup delay - defaults to zero.
 - **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
 
