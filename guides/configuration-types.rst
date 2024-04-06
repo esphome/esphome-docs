@@ -90,6 +90,10 @@ Configuration variables:
 -  **number** (**Required**, pin): The pin number.
 -  **inverted** (*Optional*, boolean): If all read and written values
    should be treated as inverted. Defaults to ``false``.
+-  **allow_other_uses** (*Optional*, boolean): If the pin is also specified elsewhere in the configuration.
+   By default multiple uses of the same pin will be flagged as an error. This option will suppress the error and is
+   intended for rare cases where a pin is shared between multiple components. Defaults to ``false``.
+
 -  **mode** (*Optional*, string or mapping): Configures the pin to behave in different
    modes like input or output. The default value depends on the context.
    Accepts either a shorthand string or a mapping where each feature can be individually
@@ -468,6 +472,8 @@ variables can be provided to them.  This means that packages can be
 used as `templates`, allowing complex or repetitive configurations to
 be stored in a package file and then incorporated into the
 configuration more than once.
+Additionally packages could contain a ``defaults`` block which provides
+subsitutions for variables not provided by the ``!include`` block.
 
 As an example, if the configuration needed to support three garage
 doors using the ``gpio`` switch platform and the ``time_based`` cover
@@ -498,11 +504,17 @@ platform, it could be constructed like this:
           door_location: right
           open_switch_gpio: 15
           close_switch_gpio: 18
+          open_duration: "1min"
+          close_duration: "50s"
 
 
 .. code-block:: yaml
 
     # In garage-door.yaml
+    defaults:
+      open_duration: "2.1min"
+      close_duration: "2min"
+
     switch:
       - id: open_${door_location}_door_switch
         name: ${door_name} Garage Door Open Switch
@@ -520,11 +532,11 @@ platform, it could be constructed like this:
 
         open_action:
           - switch.turn_on: open_${door_location}_door_switch
-        open_duration: 2.1min
+        open_duration: ${open_duration}
 
         close_action:
           - switch.turn_on: close_${door_location}_door_switch
-        close_duration: 2min
+        close_duration: ${close_duration}
 
         stop_action:
           - switch.turn_off: open_${door_location}_door_switch
@@ -545,6 +557,28 @@ For example to set a specific update interval on a common uptime sensor that is 
     - id: !extend uptime_sensor
       update_interval: 10s
 
+Remove
+------
+
+To remove existing entries from included configurations ``!remove [config_id]`` can be used, where ``config_id`` is the ID of the entry to modify.
+For example to remove a common uptime sensor that is shared between configurations:
+
+.. code-block:: yaml
+
+    packages:
+      common: !include common.yaml
+
+    sensor:
+      - id: !remove uptime_sensor
+
+To remove captive portal for a specific device:
+
+.. code-block:: yaml
+
+    packages:
+      common: !include common.yaml
+
+    captive_portal: !remove
 
 See Also
 --------

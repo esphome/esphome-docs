@@ -57,7 +57,7 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Set to ``""`` to remove the default entity category.
 - **device_class** (*Optional*, string): The device class for the button.
-  See https://developers.home-assistant.io/docs/core/entity/button/#available-device-classes
+  See https://www.home-assistant.io/integrations/button/#device-class
   for a list of available options.
 
 Automations:

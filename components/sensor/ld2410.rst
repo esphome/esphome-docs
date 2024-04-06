@@ -326,7 +326,7 @@ Configuration variables:
 Button
 ------
 
-The ``ld2410`` button allows you to perfrom actions on your :doc:`ld2410`.
+The ``ld2410`` button allows you to perform actions on your :doc:`ld2410`.
 
 .. code-block:: yaml
 
