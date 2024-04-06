@@ -93,6 +93,7 @@ Custom Components & Code
 - `Blauberg recuperator S22 controller replacement <https://github.com/Benas09/Blauberg_S22>`__ by :ghuser:`Benas09`
 - `Rheem Econet Water Heater and Furnace Controller <https://github.com/esphome-econet/esphome-econet>`__ by `ESPHome-econet <https://github.com/esphome-econet>`__
 - `Medisana BS440 (and propably more scales) <https://github.com/bwynants/weegschaal>`__ by `bwynants <https://github.com/bwynants>`__
+- `ARG IR Remote Climate <https://github.com/Velesey/esphome_arg_ir>`__ by `velesey <https://github.com/Velesey>`__
 
 Sample Configurations
 ---------------------
