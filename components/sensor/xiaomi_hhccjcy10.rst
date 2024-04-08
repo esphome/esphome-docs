@@ -1,5 +1,5 @@
-HHCCJCY10 xiaomi BLE (Pink version)
-===================================
+HHCCJCY10 Xiaomi MiFlora (Pink version)
+=======================================
 
 
 .. seo::
