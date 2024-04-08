@@ -258,7 +258,7 @@ Distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
     VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg, IR optical distance
     Zio Ultrasonic Sensor, components/sensor/zio_ultrasonic, zio_ultrasonic.jpg, Acoustic distance
-
+    JSN-SR04T, components/sensor/jsn_sr04t, jsn-sr04t-v3.jpg, Acoustic distance
 
 Electricity
 ***********
@@ -517,6 +517,7 @@ Presence Detection
 .. imgtable::
 
     DFRobot mmWave Radar, components/dfrobot_sen0395, dfrobot_sen0395.jpg
+    AT581X, components/at581x, at581x.png
     LD2410, components/sensor/ld2410, ld2410.jpg
     LD2420, components/sensor/ld2420, ld2420.jpg
     Seeed Studio MR24HPC1 mmWave, components/seeed_mr24hpc1, seeed-mr24hpc1.jpg
@@ -933,6 +934,7 @@ Miscellaneous Components
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg, dark-invert
     SML, components/sml, sml.svg
+    SUN-GTIL2 inverter, components/sun_gtil2, sun_1000g2.png
     Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     WireGuard, components/wireguard, wireguard_custom_logo.svg
