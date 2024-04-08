@@ -43,6 +43,17 @@ Configuration variables:
 -  **carrier_duty_percent** (*Optional*, int): How much of the time the remote is on. For example, infrared
    protocols modulate the signal using a carrier signal. Set this to ``50%`` if you're working with IR LEDs and to
    ``100%`` if working with other things like 433MHz transmitters.
+- **rmt_channel** (*Optional*, int): The RMT channel to use. Only on **esp32**.
+  The following ESP32 variants have these channels available:
+
+  .. csv-table::
+      :header: "ESP32 Variant", "Channels"
+
+      "ESP32", "0, 1, 2, 3, 4, 5, 6, 7"
+      "ESP32-S2", "0, 1, 2, 3"
+      "ESP32-S3", "0, 1, 2, 3"
+      "ESP32-C3", "0, 1"
+
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation. Use this if you have multiple remote transmitters.
 
@@ -267,7 +278,7 @@ This :ref:`action <config-action>` sends KeeLoq RF remote code to a remote trans
           code: '0xd19ef0a9'
           repeat:
             times: 3
-            wait_time: 15ms  
+            wait_time: 15ms
 
 Configuration variables:
 
