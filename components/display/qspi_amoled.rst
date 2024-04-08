@@ -143,6 +143,7 @@ Lilygo T-Display S3 AMOLED
 
     spi:
       id: quad_spi
+      type: quad
       clk_pin: 47
       data_pins:
         - 18
