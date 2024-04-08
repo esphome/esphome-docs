@@ -232,6 +232,7 @@ Bluetooth Low Energy (BLE)
     Mopeka Standard Check LP, components/sensor/mopeka_std_check, mopeka_std_check.jpg, tank level
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
+    HHCCJCY10 (MiFlora Pink), components/sensor/xiaomi_hhccjcy10, xiaomi_hhccjcy10.jpg, Soil moisture & Temperature & Light
     Alpha3, components/sensor/alpha3, alpha3.jpg
 
 
@@ -314,6 +315,7 @@ Environmental
     ENS160, components/sensor/ens160, ens160.jpg, CO2 & Air Quality
     ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
+    HHCCJCY10 (MiFlora Pink), components/sensor/xiaomi_hhccjcy10, xiaomi_hhccjcy10.jpg, Soil moisture & Temperature & Light
     HTE501, components/sensor/hte501, HTE501.png, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
     Honeywell ABP2 I2C, components/sensor/honeywellabp2_i2c, honeywellabp.jpg, Pressure & Temperature
@@ -385,7 +387,7 @@ Miscellaneous
     AS3935, components/sensor/as3935, as3935.jpg, Storm lightning
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
-    Combination, components/sensor/combination, function.svg, dark-invert    
+    Combination, components/sensor/combination, function.svg, dark-invert
     Duty Time, components/sensor/duty_time, timer-play-outline.svg, dark-invert
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
@@ -658,7 +660,7 @@ Display Components
     ILI9486, components/display/ili9xxx, ili9341.jpg
     ILI9488, components/display/ili9xxx, ili9488.svg
     WSPICOLCD, components/display/ili9xxx, ili9488.svg
-    
+
     Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
@@ -694,7 +696,7 @@ Touchscreen Components
     XPT2046, components/touchscreen/xpt2046, xpt2046.jpg
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
     FT63X6, components/touchscreen/ft63x6, wt32-sc01.png
-    
+
 Cover Components
 ----------------
 
