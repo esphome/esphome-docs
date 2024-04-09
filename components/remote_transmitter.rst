@@ -78,6 +78,56 @@ Configuration variables:
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
+.. _remote_transmitter-transmit_abbwelcome:
+
+``remote_transmitter.transmit_abbwelcome`` Action
+*************************************************
+
+This :ref:`action <config-action>` sends a ABB-Welcome message to the intercom bus. The
+message type, addresses, address length and data can vary a lot between ABB-Welcome
+systems. Please refer to the received messages while performing actions like ringing a
+doorbell or opening a door.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_abbwelcome:
+          source_address: 0x1001 # your indoor station address
+          destination_address: 0x4001 # door address
+          three_byte_address: false # address length of your system
+          message_type: 0x0d # unlock door, on some systems 0x0e is used instead
+          data: [0xab, 0xcd, 0xef]  # message data, see receiver dump
+
+Configuration variables:
+
+- **source_address** (**Required**, int):The source address to send the command from,
+  see received messages for more info. For indoor stations the last byte of the address
+  represents the apartment number set by the dials on the back of the indoor station and is
+  transmitted in hexadecimal format.
+- **destination_address** (**Required**, int): The destination address to send the command to,
+  see received messages for more info.
+- **three_byte_address** (**Required**, int): The destination address to send the command to,
+  see received messages for more info.
+- **three_byte_address** (**Optional**, boolean): The length of the source and destination address. ``false``
+  means two bytes and ``true`` means three bytes. Please check the received messages to see which address length
+  is used by your system. For example, ``[XXXX > XXXX]`` appears in the receiver log for two byte addresses and
+  ``[XXXXXX > XXXXXX]`` for three byte addresses. Defaults to ``false``.
+- **retransmission** (**Optional**, boolean): Should only be ``true`` if this message has been transmitted
+  before with the same ``message_id``. Typically, messages are transmitted up to three times with a 1 second
+  interval if no reply is received. Defaults to ``false``.
+- **message_type** (**Required**, int): The message type, see dumper output for more info.
+  The highest bit indicates a reply.
+- **message_id** (**Optional**, int): The message ID, see dumper output for more info.
+  Defaults to a randomly generated ID if this message is not a reply or retransmission.
+- **data** (**Optional**, 0-7 bytes list): The code to send.
+  Usually you only need to copy this directly from the dumper output. Defaults to ``[]``
+
+.. note::
+
+    ABB-Welcome messages are sent over the two-wire bus of your intercom system.
+    A custom receiver and transmitter circuit is required.
+    `More info <https://github.com/Mat931/esp32-doorbell-bus-interface>`__
+
 .. _remote_transmitter-transmit_aeha:
 
 ``remote_transmitter.transmit_aeha`` Action
