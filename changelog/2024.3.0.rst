@@ -11,7 +11,7 @@ ESPHome 2024.3.0 - 20th March 2024
     :columns: 5
 
     Datetime Core, components/datetime/index, clock-outline.svg, dark-invert
-    Template Datetime, components/datetime/template, description.svg, dark-invert
+    Template Datetime Date, components/datetime/template, description.svg, dark-invert
 
     AM2315C, components/sensor/am2315c, am2315c.jpg
     HTU31D, components/sensor/htu31d, htu31d.jpg,
