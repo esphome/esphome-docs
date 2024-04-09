@@ -37,6 +37,7 @@ Configuration variables:
   - **canalsatld**: Decode and dump CanalSatLD infrared codes.
   - **coolix**: Decode and dump Coolix infrared codes.
   - **dish**: Decode and dump Dish infrared codes.
+  - **dooya**: Decode and dump Dooya RF codes.
   - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **jvc**: Decode and dump JVC infrared codes.
   - **keeloq**: Decode and dump KeeLoq RF codes.
@@ -113,6 +114,9 @@ Automations:
   dish network remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DishData`
   is passed to the automation for use in lambdas.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
+- **on_dooya** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Dooya RF remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DooyaData`
+  is passed to the automation for use in lambdas.
 - **on_drayton** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Drayton Digistat RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DraytonData`
   is passed to the automation for use in lambdas.
@@ -272,6 +276,13 @@ Remote code selection (exactly one of these has to be included):
 
   - **address** (*Optional*, int): The number of the receiver to target, between 1 and 16 inclusive. Defaults to ``1``.
   - **command** (**Required**, int): The Dish command to listen for, between 0 and 63 inclusive.
+
+- **dooya**: Trigger on a decoded Dooya RF remote code with the given data.
+
+  - **id** (**Required**, int): The 24-bit ID code to trigger on.
+  - **channel** (**Required**, int): The 8-bit channel to listen for.
+  - **button** (**Required**, int): The 4-bit button to listen for.
+  - **check** (**Required**, int): The 4-bit check to listen for. Includes an indication that a button is being held down.
 
 - **drayton**: Trigger on a decoded Drayton Digistat RF remote code with the given data.
 
@@ -464,3 +475,4 @@ See Also
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote/remote_receiver.h`
 - :ghedit:`Edit`
+

@@ -273,6 +273,30 @@ Configuration variables:
 
 You can find a list of commands in the `LIRC project <https://sourceforge.net/p/lirc-remotes/code/ci/master/tree/remotes/dishnet/Dish_Network.lircd.conf>`__.
 
+.. _remote_transmitter-transmit_dooya:
+
+``remote_transmitter.transmit_dooya`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends a Dooya RF remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_dooya:
+          id: 0x001612E5
+          channel: 142
+          button: 12
+          check: 3
+
+Configuration variables:
+
+- **id** (**Required**, int): The 24-bit ID to send. Each remote has a unique one.
+- **channel** (**Required**, int): The 8-bit channel to send, between 0 and 255 inclusive.
+- **button** (**Required**, int): The 4-bit button to send, between 0 and 15 inclusive. 
+- **check** (**Required**, int): The 4-bit check to send. Includes an indication that a button is being held down. See dumper output for more info.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 .. _remote_transmitter-transmit_drayton:
 
 ``remote_transmitter.transmit_drayton`` Action
