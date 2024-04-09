@@ -234,6 +234,7 @@ Bluetooth Low Energy (BLE)
     Mopeka Standard Check LP, components/sensor/mopeka_std_check, mopeka_std_check.jpg, tank level
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
+    HHCCJCY10 (MiFlora Pink), components/sensor/xiaomi_hhccjcy10, xiaomi_hhccjcy10.jpg, Soil moisture & Temperature & Light
     Alpha3, components/sensor/alpha3, alpha3.jpg
 
 
@@ -319,6 +320,7 @@ Environmental
     ENS160, components/sensor/ens160, ens160.jpg, CO2 & Air Quality
     ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
+    HHCCJCY10 (MiFlora Pink), components/sensor/xiaomi_hhccjcy10, xiaomi_hhccjcy10.jpg, Soil moisture & Temperature & Light
     HTE501, components/sensor/hte501, HTE501.png, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
     Honeywell ABP2 I2C, components/sensor/honeywellabp2_i2c, honeywellabp.jpg, Pressure & Temperature
