@@ -60,7 +60,7 @@ The features provided by the different WeiKai chips are described in the followi
       - 4
       - 8
 
-As you can see most of the components can interface either through un I²C bus or an SPI bus,
+As you can see most of the components can interface either through an I²C bus or a SPI bus,
 they provide either 2 or 4 serial channels, and some provide 8 input/output pins.
 
 Each UART channel has two independent 256-byte FIFO hardware buffers to transmit and 
@@ -85,29 +85,27 @@ the number of hardware serial ports available. Each WeiKai chip needs to be sele
 with a individual CS.
 
 Here is an example of configuration entry for a wk2168_spi component. For the other components
-just replace the name of the component and do not use more channels that the chip can
-support (an error message will be generated in this case). Note that for the ``WK2124-ISSG`` chip
-you have to use ``wk2204_spi`` as the two chips are similar.
+in the list just replace the name of the component and make sure you do not use more channels that the chip 
+can support (an error message will be generated otherwise). Note that for the ``WK2124-ISSG`` chip
+you need to use ``wk2204_spi`` as the two chips are similar.
 
 .. code-block:: yaml
-
-    spi:
 
     wk2168_spi:
       - id: wk2168_bridge_spi
         cs_pin: 5
         uart:
-          - uart_id: spi_uart_0
+          - id: spi_uart_0
             channel: 0
             baud_rate: 128200
             parity: even
-          - uart_id: spi_uart_1
+          - id: spi_uart_1
             channel: 1
             baud_rate: 19200
-          - uart_id: spi_uart_2
+          - id: spi_uart_2
             channel: 2
             baud_rate: 9600
-          - uart_id: spi_uart_3
+          - id: spi_uart_3
             channel: 3
             baud_rate: 19200
 
@@ -126,7 +124,7 @@ Configuration variables:
   The default value is 14745600 Hz.
 - **uart** (**Required**): The UART channels.
 
-  - **uart_id** (**Required**, :ref:`config-id`): The id to use for this UART channel.
+  - **id** (**Required**, :ref:`config-id`): The id to use for this UART channel.
   - **channel** (**Required**): Unique channel number of this virtual UART. 
     Options: ``0`` to ``1`` or ``0`` to ``3`` depending on the model.
   - **baud_rate** (**Required**): The baud rate of the UART channel.
@@ -183,17 +181,17 @@ support (an error message will be generated in this case).
       - address: 0x70
         id: wk2168_bridge_i2c
         uart:
-          - uart_id: i2c_uart_0
+          - id: i2c_uart_0
             channel: 0
             baud_rate: 9600
             parity: even
-          - uart_id: i2c_uart_1
+          - id: i2c_uart_1
             channel: 1
             baud_rate: 19200
-          - uart_id: i2c_uart_2
+          - id: i2c_uart_2
             channel: 2
             baud_rate: 9600
-          - uart_id: i2c_uart_3
+          - id: i2c_uart_3
             channel: 3
             baud_rate: 19200
 
@@ -207,7 +205,7 @@ Configuration variables:
   The default value is 14745600 Hz.
 - **uart** (*Required*): The UART channels.
 
-  - **uart_id** (**Required**, :ref:`config-id`): The id to use for this UART channel.
+  - **id** (**Required**, :ref:`config-id`): The id to use for this UART channel.
   - **channel** (**Required**): Unique channel number of this virtual UART. 
     Options: ``0`` to ``1`` or ``0`` to ``3`` depending on the model.
   - **baud_rate** (**Required**): The baud rate of the UART channel.
@@ -227,12 +225,14 @@ For example for a wk2168_spi chip:
     # individual binary_sensor inputs
     binary_sensor:
       - platform: gpio
-        name: "pin 0"
+        name: "pin_0"
         pin:
           wk2168_spi: wk2168_bridge_spi
           number: 0
+          mode:
+            input: true
       - platform: gpio
-        name: "pin 1"
+        name: "pin_1"
         pin:
           wk2168_spi: wk2168_bridge_spi
           number: 1
@@ -243,14 +243,14 @@ For example for a wk2168_spi chip:
     # Individual binary outputs
     switch:
       - platform: gpio
-        name: "pin 2"
+        name: "pin_2"
         pin:
           wk2168_spi: wk2168_bridge_spi
           number: 2
           mode:
             output: true
       - platform: gpio
-        name: "pin 3"
+        name: "pin_3"
         pin:
           wk2168_spi: wk2168_bridge_spi
           number: 3
