@@ -85,6 +85,10 @@ and circles:
         lambda: |-
           // Draw a line from [0,0] to [100,50]
           it.line(0, 0, 100, 50);
+          // Draw an angled line from [0,0] at 45° with a length of 30
+          it.line_at_angle(0, 0, 45, 30);
+          // Draw an angled line from [0,0] at 30° with a start radius of 10 and stop radius of 20
+          it.line_at_angle(0, 0, 30, 10, 20);
           // Draw the outline of a rectangle with the top left at [50,60], a width of 30 and a height of 42
           it.rectangle(50, 60, 30, 42);
           // Draw the same rectangle, but this time filled.
@@ -601,6 +605,12 @@ To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
             lambda: |-
               // Draw the QR-code at position [x=50,y=0] with white color and a 2x scale
               it.qr_code(50, 0, id(homepage_qr), Color(255,255,255), 2);
+
+              // Draw the QR-code in the center of the screen with white color and a 2x scale
+              auto size = id(homepage_qr).get_size() * 2; // Multiply by scale
+              auto x = (it.get_width() / 2) - (size / 2);
+              auto y = (it.get_height() / 2) - (size / 2);
+              it.qr_code(x, y, id(homepage_qr), Color(255,255,255), 2);
 
 
 .. _display-image:
