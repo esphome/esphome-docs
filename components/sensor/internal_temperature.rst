@@ -2,12 +2,12 @@ Internal Temperature Sensor
 ===========================
 
 .. seo::
-    :description: Instructions for setting up the integrated temperature sensor of the ESP32 and RP2040.
+    :description: Instructions for setting up the integrated temperature sensor of the ESP32, RP2040 and BK72XX.
     :image: thermometer.svg
     :keywords: esp32, rp2040, cpu, internal, temperature
 
 The ``internal_temperature`` sensor platform allows you to use the integrated
-temperature sensor of the ESP32 and RP2040 chip.
+temperature sensor of the ESP32, RP2040 and BK72XX chip.
 
 .. note::
 
