@@ -228,6 +228,7 @@ Contributors
 - `bwynants (@bwynants) <https://github.com/bwynants>`__
 - `c0ffeeca7 (@c0ffeeca7) <https://github.com/c0ffeeca7>`__
 - `Captain Haddock (@ca-haddock) <https://github.com/ca-haddock>`__
+- `Caleb Gabbie (@calebgab) <https://github.com/calebgab>`__
 - `Cal Howard (@calhoward) <https://github.com/calhoward>`__
 - `callacomp (@callacomp) <https://github.com/callacomp>`__
 - `Callum Gare (@callumgare) <https://github.com/callumgare>`__
@@ -467,12 +468,14 @@ Contributors
 - `Eric Hiller (@erichiller) <https://github.com/erichiller>`__
 - `Ernst Klamer (@Ernst79) <https://github.com/Ernst79>`__
 - `Eduardo Roldan (@eroldan) <https://github.com/eroldan>`__
+- `ervede (@ervede) <https://github.com/ervede>`__
 - `escoand (@escoand) <https://github.com/escoand>`__
 - `Eric Severance (@esev) <https://github.com/esev>`__
 - `esphomebot (@esphomebot) <https://github.com/esphomebot>`__
 - `espressif2022 (@espressif2022) <https://github.com/espressif2022>`__
 - `Daniel Dunn (@EternityForest) <https://github.com/EternityForest>`__
 - `EtienneMD (@EtienneMD) <https://github.com/EtienneMD>`__
+- `etzisim (@etzisim) <https://github.com/etzisim>`__
 - `Evan Coleman (@evandcoleman) <https://github.com/evandcoleman>`__
 - `Clemens Kirchgatterer (@everslick) <https://github.com/everslick>`__
 - `Everything Smart Home (@EverythingSmartHome) <https://github.com/EverythingSmartHome>`__
@@ -630,6 +633,7 @@ Contributors
 - `Fredrik Gustafsson (@jagheterfredrik) <https://github.com/jagheterfredrik>`__
 - `jakehdk (@jakehdk) <https://github.com/jakehdk>`__
 - `Jake Shirley (@JakeShirley) <https://github.com/JakeShirley>`__
+- `Jonathan Kollasch (@jakllsch) <https://github.com/jakllsch>`__
 - `jakub-medrzak (@jakub-medrzak) <https://github.com/jakub-medrzak>`__
 - `James Hirka (@jameshirka) <https://github.com/jameshirka>`__
 - `James Lakin (@jamesorlakin) <https://github.com/jamesorlakin>`__
@@ -855,6 +859,7 @@ Contributors
 - `Michal Fapso (@michalfapso) <https://github.com/michalfapso>`__
 - `Michał (@michau-krakow) <https://github.com/michau-krakow>`__
 - `Michel Munzert (@michelde) <https://github.com/michelde>`__
+- `michlann (@michlann) <https://github.com/michlann>`__
 - `micw (@micw) <https://github.com/micw>`__
 - `Pauline Middelink (@middelink) <https://github.com/middelink>`__
 - `Joel Midstjärna (@midstar) <https://github.com/midstar>`__
@@ -879,6 +884,7 @@ Contributors
 - `Moriah Morgan (@moriahmorgan) <https://github.com/moriahmorgan>`__
 - `moritzj29 (@moritzj29) <https://github.com/moritzj29>`__
 - `Chris Laplante (@mostthingsweb) <https://github.com/mostthingsweb>`__
+- `Michael P. Flaga (@mpflaga) <https://github.com/mpflaga>`__
 - `MrEditor97 (@mreditor97) <https://github.com/mreditor97>`__
 - `Mariusz Kryński (@mrk-its) <https://github.com/mrk-its>`__
 - `Michael Davidson (@MrMDavidson) <https://github.com/MrMDavidson>`__
@@ -1030,6 +1036,7 @@ Contributors
 - `Pascal Vizeli (@pvizeli) <https://github.com/pvizeli>`__
 - `Alex (@pxe-la) <https://github.com/pxe-la>`__
 - `[pʲɵs] (@pyos) <https://github.com/pyos>`__
+- `Peter Zich (@pzich) <https://github.com/pzich>`__
 - `Qc (@qc24) <https://github.com/qc24>`__
 - `Quinn Casey (@qcasey) <https://github.com/qcasey>`__
 - `qianh-wan (@qianh-wan) <https://github.com/qianh-wan>`__
@@ -1115,6 +1122,7 @@ Contributors
 - `scamiv (@scamiv) <https://github.com/scamiv>`__
 - `Nils Schulte (@Schnilz) <https://github.com/Schnilz>`__
 - `Wolle (@schreibfaul1) <https://github.com/schreibfaul1>`__
+- `Scobber (@Scobber) <https://github.com/Scobber>`__
 - `Ville Skyttä (@scop) <https://github.com/scop>`__
 - `Dan (@ScrewLooseDan) <https://github.com/ScrewLooseDan>`__
 - `Sean True (@seantrue) <https://github.com/seantrue>`__
@@ -1336,4 +1344,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated April 4, 2024.*
+*This page was last updated April 10, 2024.*
