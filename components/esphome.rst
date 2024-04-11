@@ -186,6 +186,7 @@ You can view a full list of PlatformIO options here: https://docs.platformio.org
       platformio_options:
         upload_speed: 115200
         board_build.f_flash: 80000000L
+        board_build.flash_mode: dio     # Avoids boot-loop on S3
 
 .. _esphome-includes:
 
