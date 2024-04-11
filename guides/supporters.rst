@@ -433,6 +433,7 @@ Contributors
 - `Ettore Beltrame (@E440QF) <https://github.com/E440QF>`__
 - `Earle F. Philhower, III (@earlephilhower) <https://github.com/earlephilhower>`__
 - `Ermanno Baschiera (@ebaschiera) <https://github.com/ebaschiera>`__
+- `ebw44 (@ebw44) <https://github.com/ebw44>`__
 - `Robert Resch (@edenhaus) <https://github.com/edenhaus>`__
 - `Niclas Larsson (@edge90) <https://github.com/edge90>`__
 - `EdJoPaTo (@EdJoPaTo) <https://github.com/EdJoPaTo>`__
@@ -531,6 +532,7 @@ Contributors
 - `Aljaž Srebrnič (@g5pw) <https://github.com/g5pw>`__
 - `Alex Hermann (@gaaf) <https://github.com/gaaf>`__
 - `Gabe Cook (@gabe565) <https://github.com/gabe565>`__
+- `Gábor Poczkodi (@gabest11) <https://github.com/gabest11>`__
 - `gazoodle (@gazoodle) <https://github.com/gazoodle>`__
 - `gcopeland (@gcopeland) <https://github.com/gcopeland>`__
 - `Greg Cormier (@gcormier) <https://github.com/gcormier>`__
@@ -1344,4 +1346,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated April 10, 2024.*
+*This page was last updated April 12, 2024.*
