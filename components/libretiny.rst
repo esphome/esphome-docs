@@ -8,8 +8,8 @@ LibreTiny Platform
 This component contains platform-specific options for the `LibreTiny <https://docs.libretiny.eu/>`__ platform.
 It provides support for the following microcontrollers, commonly used in Tuya devices, amongst others:
 
-- **BK72xx**: BK7231T, BK7231N
-- **RTL87xx**: RTL8710BN, RTL8710BX
+- **BK72xx**: BK7231T, BK7231N, BK7231Q, BK7252
+- **RTL87xx**: RTL8710BN, RTL8710BX, RTL8720CF
 
 Since different microcontrollers are supported, you need to include the appropriate ESPHome component,
 depending on which processor your device has.
@@ -50,7 +50,7 @@ Configuration variables:
   - :ref:`Advanced options <advanced-options>`
 
 - **family** (*Optional*, string): The family of LibreTiny-supported microcontrollers that is used on this board.
-  One of ``bk7231n``, ``bk7231t``, ``rtl8710b``, ``rtl8720c``, ``bk7251``, ``bk7231q``.
+  One of ``bk7231n``, ``bk7231t``, ``bk7231q``, ``bk7252``, ``rtl8710bn``, ``rtl8710bx``, ``rtl8720cf``.
   Defaults to the variant that is detected from the board, if a board that's unknown to ESPHome is used,
   this option is mandatory. **It's recommended not to include this option**.
 
