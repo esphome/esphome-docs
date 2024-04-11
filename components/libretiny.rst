@@ -49,7 +49,7 @@ Configuration variables:
 
   - :ref:`Advanced options <advanced-options>`
 
-- **family** (*Optional*, string): The family of LibreTiny-supported microcontrollers that is used on this board.
+- **variant** (*Optional*, string): The specific LibreTiny-supported microcontroller that is used on this board.
   One of ``bk7231n``, ``bk7231t``, ``bk7231q``, ``bk7252``, ``rtl8710bn``, ``rtl8710bx``, ``rtl8720cf``.
   Defaults to the variant that is detected from the board, if a board that's unknown to ESPHome is used,
   this option is mandatory. **It's recommended not to include this option**.
