@@ -20,6 +20,24 @@ ESPHome 2024.4.0 - 17th April 2024
     TLC5971, components/output/tlc5971, tlc5971.jpg
     Dooya, components/remote_transmitter, remote.svg
 
+
+Time Entities
+-------------
+
+ESPHome now has support for ``time`` entities that can be set from the frontend (like Home Assistant). THis allows you to set a timer to execute future automations on device.
+
+ESPHome Dates require Home Assistant 2024.4 or later.
+
+
+Voice Assistant Audio
+---------------------
+
+This release adds support for sending and receiving audio to/from voice assistants via the API. Currently ESPHome sends and receives the Voice Assistant audio bytes
+via a UDP socket which can be unreliable and insecure. Beginning with Home Assistant 2024.5, both sides will automatically recognise that they both support API Audio and will
+use that route instead. This is more reliable because the ESPHome API uses a TCP socket, so packet order and delivery is guaranteed, and if you use API Encryption,
+your audio will also be encrypted in transit.
+
+
 Full list of changes
 --------------------
 
@@ -38,6 +56,13 @@ Breaking Changes
 
 - Add support for new modes in Tuya Climate :esphomepr:`5159` by :ghuser:`moriahmorgan` (breaking-change)
 - IPv6 string representation follows RFC5952 :esphomepr:`6449` by :ghuser:`HeMan` (breaking-change)
+
+Beta Changes
+^^^^^^^^^^^^
+
+- Add dooya remote transmitter test :esphomepr:`6508` by :ghuser:`jesserockz`
+- ads1115: remove auto-load and split sensor into platform folder :esphomepr:`5981` by :ghuser:`jesserockz` (new-platform)
+- Bump esphome-dashboard to 20240412.0 :esphomepr:`6517` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -127,6 +152,9 @@ All changes
 - Add Dooya protocol to remote_base :esphomepr:`6488` by :ghuser:`bukureckid`
 - Only give error for connected sensors at startup :esphomepr:`6474` by :ghuser:`leejoow`
 - Webserver float to string fix :esphomepr:`6507` by :ghuser:`RFDarter`
+- Add dooya remote transmitter test :esphomepr:`6508` by :ghuser:`jesserockz`
+- ads1115: remove auto-load and split sensor into platform folder :esphomepr:`5981` by :ghuser:`jesserockz` (new-platform)
+- Bump esphome-dashboard to 20240412.0 :esphomepr:`6517` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
