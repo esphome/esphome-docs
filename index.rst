@@ -598,6 +598,7 @@ Light Components
     RP2040 PIO, components/light/rp2040_pio_led_strip, color_lens.svg, dark-invert
     FastLED Light, components/light/fastled, color_lens.svg, dark-invert
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg, dark-invert
+    Beken SPI, components/light/beken_spi_led_strip, color_lens.svg, dark-invert
     Light Partition, components/light/partition, color_lens.svg, dark-invert
     SPI LED Strips, components/light/spi_led_strip, apa102.jpg
 
