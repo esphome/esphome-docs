@@ -19,22 +19,26 @@ Configuration variables:
 - **board** (**Required**, string): The PlatformIO board ID that should
   be used. Choose the appropriate board from
   `this list <https://registry.platformio.org/packages/platforms/platformio/espressif32/boards>`__ (the icon next to the name
-  can be used to copy the board ID). *This only affects pin aliases, flash size and some internal settings*, if unsure
-  choose a generic board from Espressif such as ``esp32dev``.
-- **framework** (*Optional*): Options for the underlying framework used by ESPHome.
-  See :ref:`esp32-arduino_framework` and :ref:`esp32-espidf_framework`.
-- **flash_size** (*Optional*, string): The amount of flash memory available on the ESP32 board/module. One of ``2MB``,
+  can be used to copy the board ID).
+  If your board is not specifically supported by Platformio, choose a generic board from Espressif such as ``esp32dev``.
+  This option sets pin aliases (for some boards),  ``variant`` and ``flash_size``. The latter two can be
+  overridden by specific selections as below.
+- **framework** (*Optional*): Chooses the underlying framework used by ESPHome. One of ``arduino`` (default) or ``esp-idf``.
+  See :ref:`esp32-arduino_framework` and :ref:`esp32-espidf_framework`. Some ESPHome components may work with only one
+  of these frameworks.
+- **flash_size** (*Optional*, string): The flash memory available on the ESP32 board/module. One of ``2MB``,
   ``4MB``, ``8MB``, ``16MB`` or ``32MB``. Defaults to ``4MB``. **Warning: specifying a size larger than that available
-  on your board will cause the ESP32 to fail to boot.**
+  will cause the ESP32 to fail to boot.**
 - **partitions** (*Optional*, filename): The name of (optionally including the path to) the file containing the
   partitioning scheme to be used. When not specified, partitions are automatically generated based on ``flash_size``.
 - **variant** (*Optional*, string): The variant of the ESP32 that is used on this board. One of ``esp32``,
   ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``. Defaults to the variant that is detected from the board; if
-  a board that's unknown to ESPHome is used, this option is mandatory.
+  a board that's unknown to ESPHome is used, this option is mandatory, otherwise it should be avoided in favor of
+  correctly setting ``board``.
 
 .. note::
 
-    Support for ESP32 variants such as the S2, S3 and C3 is still in development and there could be issues.
+    Support for ESP32 variants (especially H2 and C3) is a work in progress and may not be fully functional.
 
 GPIO Pin Numbering
 ------------------
