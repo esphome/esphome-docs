@@ -943,6 +943,7 @@ Miscellaneous Components
     WireGuard, components/wireguard, wireguard_custom_logo.svg
     Demo, components/demo, description.svg, dark-invert
     Copy, components/copy, content-copy.svg, dark-invert
+    FRAM I²C, components/fram, fram_i2c.jpg
 
 Additional Custom Components
 ----------------------------
