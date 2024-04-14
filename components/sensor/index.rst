@@ -603,7 +603,7 @@ To prevent values from being published, return ``{}``:
 .. code-block:: yaml
 
     filters:
-      - lambda: !lambda |-
+      - lambda: |-
           if (x < 10) return {};
           return x-10;
 
