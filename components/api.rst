@@ -120,6 +120,10 @@ Configuration variables:
 When using the native API with Home Assistant, you can create Home Assistant service
 calls straight from ESPHome :ref:`Automations <automation>`.
 
+.. note::
+
+    Home Assistant by default will not allow an ESPHome device to call services. You must explicitly allow this in Home Assistant on a per configuration entry using the `Configure` options flow.
+
 .. code-block:: yaml
 
     # In some trigger
