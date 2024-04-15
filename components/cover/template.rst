@@ -70,7 +70,7 @@ Configuration variables:
 - **position_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests the cover be set to a specific
   position. The desired position is available in the lambda in the ``pos`` variable.
-  Requires has_position to be set to ``true``.
+  Useless if `has_position` is not set to ``true``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 
