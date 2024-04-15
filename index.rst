@@ -146,6 +146,7 @@ Core Components
     SPI Bus, components/spi, spi.svg
     UART Bus, components/uart, uart.svg
     CAN Bus, components/canbus, canbus.svg
+    I80 Bus, components/i80, i80.svg
 
     MQTT, components/mqtt, mqtt.png
     OTA Updates, components/ota, system-update.svg, dark-invert

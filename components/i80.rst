@@ -1,0 +1,59 @@
+.. _i80:
+
+I80 Bus
+=======
+
+.. seo::
+    :description: Instructions for setting up i80 bus components in ESPHome
+    :image: i80.svg
+    :keywords: I80, I8080
+
+The i80 bus is an 8 bit parallel bus with write and or read control signals, originally used in the Intel i8080
+microcontroller, hence the name. It is now commonly used to interface LCD display controller chips to an MCU, and this
+is currently the only application in ESPHome.
+
+The i80 bus requires 8 data lines, plus a number of control signals:
+
+- **WR**: Is used to tell the receiving device when to read data. All devices on the bus can
+  share this line.
+- **CS** (chip select): Is used to tell the receiving device when it should listen for data. Each device has
+  an individual CS line and is not specified in the i80 configuration. If the i80 bus has a single device, its CS pin
+  may sometimes be connected to ground to tell it that it is always selected.
+- **RD**: Is used to tell the receiving device when to send data. All devices on the bus can
+  share this line. This component does not support reading from the bus, but if the bus has a RD line connected to the MCU, then
+  it should be specified in the config so that it can be driven to a false state.
+- **DC**: For display controllers, this signal differentiates between command and data bytes (typically high for data.)
+  This signal is shared between multiple devices.
+
+To set up i80 devices in ESPHome, you first need to place a top-level i80 component which defines the pins to
+use for the functions described above. The **CS** pins are individually specified by the other components that
+reference the ``i80`` component.
+Multiple i80 buses may be configured in the same configuration file. This component is currently available only
+for ESP-IDF.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    i80:
+      dc_pin: 7
+      wr_pin: 8
+      rd_pin: 9
+      data_pins:  [39, 40, 41, 42, 45, 46, 47, 48]
+
+Configuration variables:
+------------------------
+
+- **wr_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for the WR line of the bus.
+- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for the DC line of the bus.
+- **rd_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the RD line of the bus.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this i80 hub if you need multiple i80 hubs.
+- **data_pins** (*Required*, :ref:`Pin Schema <config-pin_schema>`): Must be a list of exactly 8 pins to be used
+  for the output data lines.
+
+
+See Also
+--------
+
+- :ref:`ili9xxx`
+- :apiref:`i80/i80.h`
+- :ghedit:`Edit`

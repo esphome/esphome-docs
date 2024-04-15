@@ -1,3 +1,6 @@
+.. _ili9xxx:
+
+
 ILI9xxx TFT LCD Series
 ======================
 
@@ -5,7 +8,6 @@ ILI9xxx TFT LCD Series
     :description: Instructions for setting up ILI9xxx like TFT LCD display drivers.
     :image: ili9341.jpg
 
-.. _ili9xxx:
 
 Models
 ------
@@ -27,7 +29,6 @@ With this display driver you can control the following displays:
   - TFT 2.4R
   - WAVESHARE_RES_3_5 (Waveshare Pico-ResTouch-LCD-3.5)
 
-More display drivers will come in the future.
 
 Usage
 -----
@@ -40,7 +41,7 @@ ILI9341 (`datasheet <https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf>`__,
 displays from the same chip family with ESPHome. As this is a somewhat higher resolution display and requires additional pins
 beyond the basic SPI connections, and a reasonable amount of RAM, it is not well suited for the ESP8266.
 
-**Note:** use of 16 bit colors requires double the amount of RAM as 8 bit, and may need PSRAM to be available.
+**Note:** use of 16 bit colors requires twice as much RAM as 8 bit, and may need PSRAM to be available.
 
 .. figure:: images/ili9341-full.jpg
     :align: center
@@ -64,6 +65,8 @@ beyond the basic SPI connections, and a reasonable amount of RAM, it is not well
 Configuration variables:
 ************************
 
+- **bus_type** (**Required**): The type of bus used to interface the display. The default is ``spi``, and the other
+  possible choice is ``i80``. See :ref:`SPI bus <spi>` and :ref:`i80 bus <i80>`.
 - **model** (**Required**): The model of the display. Options are:
 
   - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R``, ``S3BOX``, ``S3BOX_LITE``, ``WSPICOLCD``
@@ -72,7 +75,8 @@ Configuration variables:
   - ``ST7789V``, ``ST7796``
   - ``GC9A01A``
 
-- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin. Required for SPI bus, but for i80 bus this
+  must be set in the bus configuration, not the display.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
@@ -113,7 +117,8 @@ Configuration variables:
 With 90 and 270 rotations you will also need to swap the **dimensions** ''height'' and ''width'' (see example below.
 
 
-To modify the SPI setting see :ref:`SPI bus <spi>` . The default **data_rate** is set to ``40MHz`` and the **spi_mode** mode is ``MODE0`` but some displays require ``MODE3`` (*).
+To modify the SPI setting see :ref:`SPI bus <spi>` . The default **data_rate** is set to ``40MHz`` and the **spi_mode** mode is ``MODE0`` but some displays
+require ``MODE3`` (*).
 
 **Note:** The maximum achievable data rate will depend on the chip type (e.g. ESP32 vs ESP32-S3) the pins used (on ESP32 using the default SPI pins allows higher rates) and the connection type (on-board connections will support higher rates than long cables or DuPont wires.) If in doubt, start with a low speed and test higher rates to find what works. A MISO pin should preferably not be specified, as this will limit the maximum rate in some circumstances, and is not required if the SPI bus is used only for the display.
 
@@ -258,5 +263,7 @@ See Also
 --------
 
 - :doc:`index`
+- :ref:`spi`
+- :ref:`i80`
 - :apiref:`ili9xxx/ili9xxx_display.h`
 - :ghedit:`Edit`
