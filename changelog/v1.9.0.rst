@@ -30,7 +30,7 @@ awesome things with DIY hardware!
 
 The features I'm particularly excited about are:
 
-* :ref:`esphomeflasher <esphome-flasher>` - Experiencing problems flashing esphomelib firmwares using esphomeyaml?
+* ``esphomeflasher`` - Experiencing problems flashing esphomelib firmwares using esphomeyaml?
   No problem, esphomeflasher is a tool designed to make that super easy. Just let esphomeyaml generate the binary and flash
   from your PC.
 * :doc:`Over-the-Air Updates </components/ota>` have been completely re-written to make them a lot more
@@ -76,7 +76,7 @@ New Features
 
 - esphomelib now has a new tool: `esphomeflasher <https://github.com/esphome/esphome-flasher>`__ to simplify
   flashing on Windows/MacOS machines **without having to install esphomeyaml**. So if esphomeyaml for some reason
-  can't find your USB port, you now can use the esphomeflasher app. See :ref:`esphome-flasher`.
+  can't find your USB port, you now can use the esphomeflasher app. See ``esphomeflasher``.
 
 - ESP8266s now save the states of lights/switches/... internally and restores them on boot.
   Additionally, esphomelib can now operate in fully offline mode if your WiFi network goes down
