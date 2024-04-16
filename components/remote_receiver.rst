@@ -76,7 +76,7 @@ Configuration variables:
       "ESP32-C3", "2, 3"
 
 - **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. The maximum
-  number of blocks shared by all receivers and transmitters is ``8``. Defaults to ``3``.
+  number of blocks shared by all receivers and transmitters depends on the ESP32 variant. Defaults to ``3``.
 - **filter** (*Optional*, :ref:`config-time`): Filter any pulses that are shorter than this. Useful for removing
   glitches from noisy signals. Allowed values are in range ``0`` to ``4294967295us``. Defaults to ``50us``.
 - **idle** (*Optional*, :ref:`config-time`): The amount of time that a signal should remain stable (i.e. not
