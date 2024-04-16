@@ -50,7 +50,7 @@ Configuration variables:
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
 - **device_class** (*Optional*, string): The device class for the
-  sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-device-classes
+  sensor. See https://www.home-assistant.io/integrations/sensor/#device-class
   for a list of available options. Set to ``""`` to remove the default device class of a sensor.
 - **state_class** (*Optional*, string): The state class for the
   sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
@@ -603,7 +603,7 @@ To prevent values from being published, return ``{}``:
 .. code-block:: yaml
 
     filters:
-      - lambda: !lambda |-
+      - lambda: |-
           if (x < 10) return {};
           return x-10;
 

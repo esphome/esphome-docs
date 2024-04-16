@@ -11,7 +11,7 @@ Integration in Home Assistant which automatically aggregates all ESPHome Bluetoo
 Adapters you might have. This exceptional feature offers fault tolerant connection between the Bluetooth devices
 and Home Assistant.
 
-Note that while ths component is named ``bluetooth_proxy``, only BLE devices (and their Home Assistant integrations)
+Note that while this component is named ``bluetooth_proxy``, only BLE devices (and their Home Assistant integrations)
 are supported.
 
 If you're looking to create an ESPHome node that is just a Bluetooth Proxy, see
