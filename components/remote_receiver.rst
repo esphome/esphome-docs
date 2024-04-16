@@ -59,9 +59,13 @@ Configuration variables:
   - **sony**: Decode and dump Sony infrared codes.
   - **toshiba_ac**: Decode and dump Toshiba AC infrared codes.
 
-- **tolerance** (*Optional*, int or :ref:`config-time`): The percentage or time that the remote signal lengths can
-  deviate in the decoding process. Allowed values are in range ``0`` to ``100%`` or ``0`` to ``4294967295us``. Defaults to
-  ``25%``.
+- **tolerance** (*Optional*, int, :ref:`config-time` or mapping): The percentage or time that the remote signal lengths can
+  deviate in the decoding process.  Defaults to ``25%``.
+
+  - **type** (**Required**, enum): Set the type of the tolerance. Can be ``percentage`` or ``time``.
+  - **value** (**Required**, int or :ref:`config-time`): The percentage or time value. Allowed values are in range ``0`` to
+    ``100%`` or ``0`` to ``4294967295us``.
+
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kB``
   on the ESP32 and ``1kB`` on the ESP8266.
 - **rmt_channel** (*Optional*, int): The RMT channel to use. Only on **esp32**.
