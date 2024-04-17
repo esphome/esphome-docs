@@ -237,12 +237,112 @@ The ``adv_hittest`` option ensures that accidental touches to the screen won't c
 
     Keep in mind that ``on_value`` is triggered *continuously* by the slider while it's being dragged. This can affect performance and have negative effects on the actions to be performed. For example, you shouldn't use this trigger to set the target temperature of a heatpump via Modbus, or set the position of motorized covers, because it will likely cause malfunctions. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
+.. _lvgl-cook-gauge:
+
+Semicircle gauge
+----------------
+
+A gauge similar to what Home Assistant shows in the Energy Dashboard can acomplished with :ref:`lvgl-wgt-mtr` widget and :ref:`lvgl-wgt-lbl`:
+
+.. figure:: images/lvgl_cook_gauge.png
+    :align: center
+
+The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widgets as children. We place a :ref:`lvgl-wgt-mtr` in the middle, which is made from an indicator ``line`` and two ``arc``s. We use another, smaller :ref:`lvgl-wgt-obj` on top of it, to hide the indicator central parts, and place some :ref:`lvgl-wgt-lbl` widgets to show numeric information:
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: ...
+        id: values_between_-10_and_10
+        on_value:
+          - lvgl.indicator.line.update:
+              id: needle
+              value: !lambda return x;
+          - lvgl.label.update:
+              id: val_text
+              text:
+                format: "%.0f"
+                args: [ 'x' ]
+    lvgl:
+        ...
+        pages:
+          - id: gauge_page
+            widgets:
+              - obj:
+                  height: 240 
+                  width: 240
+                  align: CENTER
+                  bg_opa: TRANSP
+                  border_width: 0
+                  outline_width: 0
+                  shadow_width: 0
+                  pad_all: 4
+                  widgets:
+                    - meter: # Gradient color arc
+                        height: 100%
+                        width: 100%
+                        border_width: 0
+                        outline_width: 0
+                        align: center
+                        scales:
+                          angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
+                          range_to: 10
+                          range_from: -10
+                          ticks:
+                            count: 0
+                          indicators:
+                            - line:
+                                id: needle
+                                width: 8
+                                r_mod: 12 # sets line length by this much difference from the scale default radius
+                                value: -2
+                            - arc:
+                                color: 0xFF3000
+                                r_mod: 10 # radius difference from the scale default radius
+                                width: 32
+                                start_value: -10
+                                end_value: 0
+                            - arc:
+                                color: 0x00FF00
+                                r_mod: 10 # radius difference from the scale default radius
+                                width: 32
+                                start_value: 0
+                                end_value: 10
+       
+                    - obj: # to erase middle part of meter indicator line
+                        height: 146
+                        width: 146
+                        align: center
+                        border_width: 0
+                        outline_width: 0
+                        shadow_width: 0
+                        pad_all: 0
+                        radius: 73
+                    - label: # lower range indicator
+                        text_font: montserrat_18
+                        align: center
+                        y: 8
+                        x: -90
+                        text: "-10"
+                    - label: # higher range indicator
+                        text_font: montserrat_18
+                        align: center
+                        y: 8
+                        x: 90
+                        text: "+10"
+                    - label: # gauge numeric indicator
+                        id: val_text
+                        text_font: montserrat_48
+                        align: center
+                        y: -5
+                        text: "0"
+
 .. _lvgl-cook-thermometer:
 
 Thermometer
 -----------
 
-A thermometer with a gauge acomplished with :ref:`lvgl-wgt-mtr` widget and a numeric display with :ref:`lvgl-wgt-lbl`:
+A thermometer with a precise gauge also made from a :ref:`lvgl-wgt-mtr` widget and a numeric display using :ref:`lvgl-wgt-lbl`:
 
 .. figure:: images/lvgl_cook_thermometer.png
     :align: center
