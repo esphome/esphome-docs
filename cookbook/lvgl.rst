@@ -13,6 +13,10 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
     The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen width of ``240x320px``, you have to adjust them to your screen in order to obtain expected results.
 
+.. note::
+
+    Many examples below call services in Home Assistant, but by default these are not allowed out of the box. For an ESPHome device to call services, you must explicitly enable this setting in Home Assistant for each device,  either during adoption of it, or using the `Configure` option in the devices list of the integration.
+
 .. _lvgl-cook-outbin:
 
 Local GPIO switch
@@ -311,6 +315,76 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
                         align: CENTER
                         y: 65
                         text_align: center
+
+.. _lvgl-cook-climate:
+
+Climate control
+---------------
+
+:ref:`lvgl-wgt-spb` is the ideal widget to control a thermostat:
+
+.. figure:: images/lvgl_cook_climate.png
+    :align: center
+
+First we import from Home Assistant the current target temperature of the climate component, and we update the value of the spinbox with it whenever it changes. We use two buttons labelled with minus and plus to control the spinbox, and whenever we change its value, we just simply call a Home Assistant service to set the new target temperature of the climate.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: homeassistant
+        id: room_thermostat
+        entity_id: climate.room_thermostat
+        attribute: temperature
+        on_value:
+          - lvgl.spinbox.update:
+              id: spinbox_id
+              value: !lambda return x; 
+
+    lvgl:
+        ...
+        pages:
+          - id: meter_page
+            widgets:
+              - obj:
+                  align: BOTTOM_MID
+                  y: -50
+                  layout: flex
+                  flex_flow: row
+                  width: size_content
+                  height: size_content
+                  widgets:
+                    - btn:
+                        id: spin_down
+                        on_click:
+                          - lvgl.spinbox.decrement: spinbox_id
+                        widgets:
+                          - label:
+                               text: "-"
+                    - spinbox:
+                        id: spinbox_id
+                        align: center
+                        text_align: center
+                        width: 50
+                        range_from: 15
+                        range_to: 35
+                        step: 0.5
+                        rollover: false
+                        digits: 3
+                        decimal_places: 1
+                        on_value:
+                          then:
+                            - homeassistant.service:
+                                service: climate.set_temperature
+                                data:
+                                  temperature: !lambda return x;
+                                  entity_id: climate.room_thermostat
+                    - btn:
+                        id: spin_up
+                        on_click:
+                          - lvgl.spinbox.increment: spinbox_id
+                        widgets:
+                          - label:
+                              text: "+"
 
 .. _lvgl-cook-cover:
 

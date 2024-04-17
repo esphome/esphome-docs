@@ -1062,7 +1062,10 @@ See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use 
 ``spinbox``
 ***********
 
-The Spinbox contains a numeric value (as text) which can be increased or decreased through actions. You could use some plus or minus buttons to call them as required.
+The Spinbox contains a numeric value (as text) which can be increased or decreased through actions. You can use for example buttons labelled with plus and minus to call them as required.
+
+.. figure:: /components/images/lvgl_spinbox.png
+    :align: center
 
 **Specific options:**
 
@@ -1124,6 +1127,8 @@ The Spinbox contains a numeric value (as text) which can be increased or decreas
                 args: [ x ]
 
 The ``spinbox`` can be also integrated as :doc:`/components/number/lvgl`.
+
+See :ref:`lvgl-cook-climate` for an example how to implement a thermostat control using the spinbox.
 
 .. _lvgl-wgt-mtr:
 
