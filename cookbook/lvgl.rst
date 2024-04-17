@@ -299,13 +299,13 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
                             - arc:
                                 color: 0xFF3000
                                 r_mod: 10 # radius difference from the scale default radius
-                                width: 32
+                                width: 31
                                 start_value: -10
                                 end_value: 0
                             - arc:
                                 color: 0x00FF00
                                 r_mod: 10 # radius difference from the scale default radius
-                                width: 32
+                                width: 31
                                 start_value: 0
                                 end_value: 10
        
