@@ -312,12 +312,18 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
                     - obj: # to erase middle part of meter indicator line
                         height: 146
                         width: 146
+                        radius: 73
                         align: center
                         border_width: 0
                         outline_width: 0
                         shadow_width: 0
                         pad_all: 0
-                        radius: 73
+                    - label: # gauge numeric indicator
+                        id: val_text
+                        text_font: montserrat_48
+                        align: center
+                        y: -5
+                        text: "0"
                     - label: # lower range indicator
                         text_font: montserrat_18
                         align: center
@@ -330,12 +336,10 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
                         y: 8
                         x: 90
                         text: "+10"
-                    - label: # gauge numeric indicator
-                        id: val_text
-                        text_font: montserrat_48
-                        align: center
-                        y: -5
-                        text: "0"
+
+.. tip::
+
+    The ``obj`` used to hide middle part of meter indicator line has ``radius`` equal to half of the ``width`` and ``height``. This results in a circle - which is actually a square with extralarge rounded corners. 
 
 .. _lvgl-cook-thermometer:
 
