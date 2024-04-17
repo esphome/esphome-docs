@@ -1062,7 +1062,7 @@ See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use 
 ``spinbox``
 ***********
 
-The Spinbox contains a number (as text) which can be increased or decreased with two buttons or physical keys.
+The Spinbox contains a numeric value (as text) which can be increased or decreased through actions. You could use some plus or minus buttons to call them as required.
 
 **Specific options:**
 
@@ -1074,6 +1074,10 @@ The Spinbox contains a number (as text) which can be increased or decreased with
 - **decimal_places** (*Optional*, 0..6): The number of digits after the decimal point. If ``0``, no decimal point is displayed. Defaults to ``0``.
 - **rollover** (*Optional*, boolean): While increasing or decreasing the value, if either the minimum or maximum value is reached with this option enabled, the value will change to the other limit. If disabled, the value will remain at the minimum or maximum value. Defaults to ``false``.
 - **anim_time** (*Optional*, :ref:`Time <config-time>`): Sets the cursor's blink time.
+
+.. note::
+
+    The sign characer will only be shown if ``range_from`` is negative.
 
 **Specific actions:**
 
