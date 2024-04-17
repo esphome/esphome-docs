@@ -343,7 +343,7 @@ First we import from Home Assistant the current target temperature of the climat
     lvgl:
         ...
         pages:
-          - id: meter_page
+          - id: thermostat_control
             widgets:
               - obj:
                   align: BOTTOM_MID
