@@ -242,7 +242,7 @@ The ``adv_hittest`` option ensures that accidental touches to the screen won't c
 Semicircle gauge
 ----------------
 
-A gauge similar to what Home Assistant shows in the Energy Dashboard can acomplished with :ref:`lvgl-wgt-mtr` widget and :ref:`lvgl-wgt-lbl`:
+A gauge similar to what Home Assistant shows in the Energy Dashboard can acomplished with :ref:`lvgl-wgt-mtr` and :ref:`lvgl-wgt-lbl` widgets:
 
 .. figure:: images/lvgl_cook_gauge.png
     :align: center
@@ -256,7 +256,7 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
         id: values_between_-10_and_10
         on_value:
           - lvgl.indicator.line.update:
-              id: needle
+              id: val_needle
               value: !lambda return x;
           - lvgl.label.update:
               id: val_text
@@ -292,7 +292,7 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
                             count: 0
                           indicators:
                             - line:
-                                id: needle
+                                id: val_needle
                                 width: 8
                                 r_mod: 12 # sets line length by this much difference from the scale default radius
                                 value: -2

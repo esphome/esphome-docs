@@ -1070,8 +1070,8 @@ The Spinbox contains a numeric value (as text) which can be increased or decreas
 **Specific options:**
 
 - **value** (**Required**, float): Actual value to be shown by the spinbox at start. 
-- **range_from** (*Optional*, float): The maximum value allowded to set the spinbox to. Defaults to ``0``.
-- **range_to** (*Optional*, float): The minimum value allowded to set the spinbox to. Defaults to ``100``.
+- **range_from** (*Optional*, float): The minimum value allowded to set the spinbox to. Defaults to ``0``.
+- **range_to** (*Optional*, float): The maximum value allowded to set the spinbox to. Defaults to ``100``.
 - **step** (*Optional*, float): The granularity with which the value can be set. Defaults to ``1.0``.
 - **digits** (*Optional*, 1..10): The number of digits (excluding the decimal separator and the sign characters).  Defaults to ``4``.
 - **decimal_places** (*Optional*, 0..6): The number of digits after the decimal point. If ``0``, no decimal point is displayed. Defaults to ``0``.
