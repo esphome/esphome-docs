@@ -339,7 +339,7 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
 
 .. tip::
 
-    The ``obj`` used to hide middle part of meter indicator line has ``radius`` equal to half of the ``width`` and ``height``. This results in a circle - which is actually a square with extralarge rounded corners. 
+    The ``obj`` used to hide the middle part of meter indicator line has ``radius`` equal to half of the ``width`` and ``height``. This results in a circle - which is actually a square with extralarge rounded corners. 
 
 .. _lvgl-cook-thermometer:
 

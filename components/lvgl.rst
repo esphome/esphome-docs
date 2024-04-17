@@ -1080,7 +1080,7 @@ The Spinbox contains a numeric value (as text) which can be increased or decreas
 
 .. note::
 
-    The sign characer will only be shown if ``range_from`` is negative.
+    The sign characer will only be shown if there are negatives in range.
 
 **Specific actions:**
 
