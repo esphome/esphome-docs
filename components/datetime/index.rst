@@ -83,6 +83,9 @@ you can get the value as a ESPTime object from the trigger with ``x``.
 
 Configuration variables: See :ref:`Automation <automation>`.
 
+Date Automation
+---------------
+
 .. _datetime-date_set_action:
 
 ``datetime.date.set`` Action
@@ -151,12 +154,85 @@ advanced stuff (see the full API Reference for more info).
       // For example, create a custom log message when a value is received:
       ESP_LOGI("main", "Value of my datetime: %04d-%02d-%02d", id(my_date).year, id(my_date).month, id(my_date).day);
 
+Time Automation
+---------------
+
+.. _datetime-time_set_action:
+
+``datetime.time.set`` Action
+****************************
+
+This is an :ref:`Action <config-action>` for setting a datetime time state.
+The ``time`` provided can be in one of 3 formats:
+
+.. code-block:: yaml
+
+    # String time
+    - datetime.time.set:
+        id: my_time
+        time: "12:34:56"
+
+    # Individual time parts
+    - datetime.time.set:
+        id: my_time
+        time:
+          hour: 12
+          minute: 34
+          second: 56
+
+    # Using a lambda
+    - datetime.time.set:
+        id: my_time
+        time: !lambda |-
+          // Return an ESPTime struct
+          return {.second: 56, .minute: 34, .hour: 12};
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the datetime to set.
+- **time** (**Required**, string, time parts, :ref:`templatable <config-templatable>`):
+  The value to set the datetime to.
+
+
+.. _datetime-time-lambda_calls:
+
+lambda calls
+************
+
+From :ref:`lambdas <config-lambda>`, you can call several methods on all datetimes to do some
+advanced stuff (see the full API Reference for more info).
+
+- ``.make_call()``: Make a call for updating the datetime value.
+
+  .. code-block:: cpp
+
+      // Within lambda, set the time to 12:34:56
+      auto call = id(my_time).make_call();
+      call.set_date("12:34:56");
+      call.perform();
+
+  Check the API reference for information on the methods that are available for
+  the ``TimeCall`` object.
+
+- ``.hour``: Retrieve the current hour of the ``time``. It will be ``0`` if no value has been set.
+- ``.minute``: Retrieve the current minute of the ``time``. It will be ``0`` if no value has been set.
+- ``.second``: Retrieve the current second of the ``time``. It will be ``0`` if no value has been set.
+- ``.state_as_esptime()``: Retrieve the current value of the datetime as a :apistruct:`ESPTime` object.
+
+  .. code-block:: cpp
+
+      // For example, create a custom log message when a value is received:
+      ESP_LOGI("main", "Value of my datetime: %0d:%02d:%02d", id(my_time).hour, id(my_time).minute, id(my_time).second);
+
+
 See Also
 --------
 
 - :apiref:`DateTimeBase <datetime/datetime_base.h>`
 - :apiref:`DateEntity <datetime/date_entity.h>`
 - :apiref:`DateCall <datetime/date_entity.h>`
+- :apiref:`TimeeEntity <datetime/time_entity.h>`
+- :apiref:`TimeCall <datetime/time_entity.h>`
 - :ghedit:`Edit`
 
 .. toctree::
