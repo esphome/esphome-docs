@@ -878,6 +878,10 @@ Not only the end, but also the start value of the bar can be set, which changes 
 - **anim_time** (*Optional*, :ref:`Time <config-time>`): Sets the animation time if the value is set with ``animated: true``.
 - Style options from :ref:`lvgl-styling`. The background of the bar and it uses the typical background style properties. Adding padding will make the indicator smaller or larger.
 
+**Specific actions:**
+
+``lvgl.bar.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+
 **Example:**
 
 .. code-block:: yaml
@@ -891,6 +895,12 @@ Not only the end, but also the start value of the bar can be set, which changes 
         min_value: 1
         max_value: 100
 
+    # Example action:
+    on_...:
+      then:
+        - lvgl.bar.update:
+            id: bar_id
+            value: 55
 
 The ``bar`` can be also integrated as :doc:`/components/number/lvgl`.
 
