@@ -247,7 +247,7 @@ A gauge similar to what Home Assistant shows in the Energy Dashboard can acompli
 .. figure:: images/lvgl_cook_gauge.png
     :align: center
 
-The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widgets as children. We place a :ref:`lvgl-wgt-mtr` in the middle, which is made from an indicator ``line`` and two ``arc``s. We use another, smaller :ref:`lvgl-wgt-obj` on top of it, to hide the indicator central parts, and place some :ref:`lvgl-wgt-lbl` widgets to show numeric information:
+The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widgets as children. We place a :ref:`lvgl-wgt-mtr` in the middle, which is made from an indicator ``line`` and two ``arc`` widgets. We use another, smaller :ref:`lvgl-wgt-obj` on top of it, to hide the indicator central parts, and place some :ref:`lvgl-wgt-lbl` widgets to show numeric information:
 
 .. code-block:: yaml
 
