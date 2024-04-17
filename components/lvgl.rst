@@ -1213,7 +1213,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             id: temperature_needle
             value: 3
 
-See :ref:`lvgl-cook-thermometer` and :ref:`lvgl-cook-clock` in the Cookbook for examples how to effectively use this widget.
+See :ref:`lvgl-cook-gauge`, :ref:`lvgl-cook-thermometer` and :ref:`lvgl-cook-clock` in the Cookbook for examples how to effectively use this widget.
 
 .. _lvgl-wgt-img:
 
