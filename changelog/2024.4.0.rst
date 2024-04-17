@@ -158,6 +158,9 @@ All changes
 - Add dooya remote transmitter test :esphomepr:`6508` by :ghuser:`jesserockz`
 - ads1115: remove auto-load and split sensor into platform folder :esphomepr:`5981` by :ghuser:`jesserockz` (new-platform)
 - Bump esphome-dashboard to 20240412.0 :esphomepr:`6517` by :ghuser:`jesserockz`
+- Fix missing ifdefs in voice assistant :esphomepr:`6520` by :ghuser:`jesserockz`
+- Fix project version longer than 30 characters breaking compilation :esphomepr:`6535` by :ghuser:`jesserockz`
+- Fix no-release bug on ft6x36 :esphomepr:`6527` by :ghuser:`clydebarrow`
 
 Past Changelogs
 ---------------
