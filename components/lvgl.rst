@@ -1066,18 +1066,21 @@ The Spinbox contains a number (as text) which can be increased or decreased with
 
 **Specific options:**
 
-- **value** (*Optional*, float): Actual value to be shown by the spinbox at start.
-- **range_from** (**Required**, float): The maximum value allowded to set the spinbox to.
-- **range_to** (**Required**, float): The minimum value allowded to set the spinbox to.
-- **step** (*Optional*, int8): ???? sets which digits to change on increment/decrement. Only multiples of ten can be set, and not for example 3.
-- **digits** (*Optional*, int8): The number of digits excluding the decimal separator and the sign. 
-- **decimal_places** (*Optional*, int8): The number of digits after the decimal point. If ``0``, no decimal point is displayed.
+- **value** (**Required**, float): Actual value to be shown by the spinbox at start. 
+- **range_from** (*Optional*, float): The maximum value allowded to set the spinbox to. Defaults to ``0``.
+- **range_to** (*Optional*, float): The minimum value allowded to set the spinbox to. Defaults to ``100``.
+- **step** (*Optional*, float): The granularity with which the value can be set. Defaults to ``1.0``.
+- **digits** (*Optional*, 1..10): The number of digits (excluding the decimal separator and the sign characters).  Defaults to ``4``.
+- **decimal_places** (*Optional*, 0..6): The number of digits after the decimal point. If ``0``, no decimal point is displayed. Defaults to ``0``.
 - **rollover** (*Optional*, boolean): While increasing or decreasing the value, if either the minimum or maximum value is reached with this option enabled, the value will change to the other limit. If disabled, the value will remain at the minimum or maximum value. Defaults to ``false``.
 - **anim_time** (*Optional*, :ref:`Time <config-time>`): Sets the cursor's blink time.
 
 **Specific actions:**
 
 ``lvgl.spinbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+
+``lvgl.spinbox.decrement`` :ref:`action <config-action>` decreases the value by one ``step`` configured above.
+``lvgl.spinbox.increment`` :ref:`action <config-action>` increases the value by one ``step`` configured above.
 
 **Specific triggers:**
 
@@ -1089,9 +1092,32 @@ The Spinbox contains a number (as text) which can be increased or decreased with
 
     # Example widget:
     - spinbox:
-        x: 10
-        y: 10
+        id: spinbox_id
+        text_align: center
+        range_from: -10
+        range_to: 40
+        step: 0.5
+        digits: 3
+        decimal_places: 1
 
+    # Example actions:
+    on_...:
+      then:
+        - lvgl.spinbox.decrement: spinbox_id
+    on_...:
+      then:
+        - lvgl.spinbox.update:
+            id: spinbox_id
+            value: 25.5
+
+    # Example trigger:
+    - spinbox:
+        ...
+        on_value:
+          then:
+            - logger.log:
+                format: "Spinbox value is %f"
+                args: [ x ]
 
 The ``spinbox`` can be also integrated as :doc:`/components/number/lvgl`.
 
