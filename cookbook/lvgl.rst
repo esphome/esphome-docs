@@ -11,11 +11,11 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
 .. note::
 
-    The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen width of ``240x320px``, you have to adjust them to your screen in order to obtain expected results.
+    Many examples below call services in Home Assistant, but by default these are not allowed out of the box. For an ESPHome device to call services, you must explicitly enable this setting in Home Assistant for each device,  either during adoption of it, or using the `Configure` option in the devices list of the integration.
 
 .. note::
 
-    Many examples below call services in Home Assistant, but by default these are not allowed out of the box. For an ESPHome device to call services, you must explicitly enable this setting in Home Assistant for each device,  either during adoption of it, or using the `Configure` option in the devices list of the integration.
+    The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen width of ``240x320px``, you have to adjust them to your screen in order to obtain expected results.
 
 .. _lvgl-cook-outbin:
 
@@ -274,15 +274,12 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
                   align: CENTER
                   bg_opa: TRANSP
                   border_width: 0
-                  outline_width: 0
-                  shadow_width: 0
                   pad_all: 4
                   widgets:
-                    - meter: # Gradient color arc
+                    - meter:
                         height: 100%
                         width: 100%
                         border_width: 0
-                        outline_width: 0
                         align: center
                         scales:
                           angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
@@ -296,27 +293,24 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
                                 width: 8
                                 r_mod: 12 # sets line length by this much difference from the scale default radius
                                 value: -2
-                            - arc:
+                            - arc: # first half of the scale background
                                 color: 0xFF3000
                                 r_mod: 10 # radius difference from the scale default radius
                                 width: 31
                                 start_value: -10
                                 end_value: 0
-                            - arc:
+                            - arc: # second half of the scale background
                                 color: 0x00FF00
-                                r_mod: 10 # radius difference from the scale default radius
+                                r_mod: 10
                                 width: 31
                                 start_value: 0
                                 end_value: 10
-       
                     - obj: # to erase middle part of meter indicator line
                         height: 146
                         width: 146
                         radius: 73
                         align: center
                         border_width: 0
-                        outline_width: 0
-                        shadow_width: 0
                         pad_all: 0
                     - label: # gauge numeric indicator
                         id: val_text
