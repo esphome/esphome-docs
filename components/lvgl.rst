@@ -1143,29 +1143,29 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 **Specific options:**
 
 - **scales** (**Required**, list): A list with (any number of) scales to be added to meter.  
-    - **range_from** (**Required**): The minimum value of the tick scale.
-    - **range_to** (**Required**): The maximum value of the tick scale.
-    - **angle_range** (**Required**): The angle between start and end of the tick scale.
-    - **rotation** (*Optional*): The rotation angle offset of the tick scale.
+    - **range_from** (**Required**): The minimum value of the tick scale. Defaults to ``0``.
+    - **range_to** (**Required**): The maximum value of the tick scale. Defaults to ``100``.
+    - **angle_range** (**Required**): The angle between start and end of the tick scale. Defaults to ``270``.
+    - **rotation** (*Optional*): The rotation angle offset of the tick scale. 
     - **ticks** (**Required**, list): A scale can have minor and major ticks and labels on the major ticks. To add the minor ticks:
-        - **count** (**Required**): How many ticks to be on the scale
-        - **width** (*Optional*): Tick line width in pixels. Required if ``count`` is greater than ``0``
-        - **length** (*Optional*): Tick line length in pixels. Required if ``count`` is greater than ``0``
-        - **color** (*Optional*): ID or hex code for the ticks :ref:`color <config-color>`. Required if ``count`` is greater than ``0``
-        - **major** (*Optional*, list): If you want major ticks, value labels displayed too:
-            - **stride**: How many minor ticks to skip when adding major ticks
-            - **width**: Tick line width in pixels
-            - **length**: Tick line length in pixels
-            - **color**: ID or hex code for the ticks :ref:`color <config-color>`
-            - **label_gap**: Label distance from the ticks with text proportionally to the values of the tick line.
+        - **count** (**Required**): How many ticks to be on the scale. Defaults to ``12``.
+        - **width** (*Optional*): Tick line width in pixels. Required if ``count`` is greater than ``0``. Defaults to ``2``.
+        - **length** (*Optional*): Tick line length in pixels. Required if ``count`` is greater than ``0``. Defaults to ``10``.
+        - **color** (*Optional*): ID or hex code for the ticks :ref:`color <config-color>`. Required if ``count`` is greater than ``0``. Defaults to ``0x808080``.
+        - **major** (*Optional*, list): If you want major ticks and value labels displayed:
+            - **stride**: How many minor ticks to skip when adding major ticks. Defaults to ``3``.
+            - **width**: Tick line width in pixels. Defaults to ``5``.
+            - **length**: Tick line length in pixels or percentage. Defaults to ``15%``.
+            - **color**: ID or hex code for the ticks :ref:`color <config-color>`. Defaults to ``0``.
+            - **label_gap**: Label distance from the ticks with text proportionally to the values of the tick line. Defaults to ``4``.
         - Style options from :ref:`lvgl-styling` for the tick *lines* and *labels* using the :ref:`lvgl-wgt-lin` and :ref:`lvgl-wgt-lbl` text style properties.
     - **indicators** (**Required**, list): A list with indicators to be added to the scale. Their ``value`` is interpreted in the range of the scale (see the *action* below):
         - **arc** (*Optional*): Add a background arc the scale (you can add multiple). 
             - **start_value**: The value in the scale range to start drawing the arc from.
             - **end_value**: The value in the scale range to end drawing the arc to.
-            - **width**: Arc width in pixels.
-            - **color**: ID or hex code for the arc :ref:`color <config-color>`.
-            - **r_mod**: Adjust the position of the arc from the scale radius with this amount (can be negative).
+            - **width**: Arc width in pixels. Defaults to ``4``.
+            - **color**: ID or hex code for the arc :ref:`color <config-color>`. Defaults to ``0``.
+            - **r_mod**: Adjust the position of the arc from the scale radius with this amount (can be negative). Defaults to ``0``.
             - Style options for the *arc* using the :ref:`lvgl-wgt-arc` style properties.
         - **ticks** (**Optional**): Add an indicator that modifies the ticks lines specified above.
             - **start_value**: The value in the scale range to modify the ticks from.
@@ -1176,9 +1176,9 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - **width_mod**: ??? modifies the ``width`` of the tick lines.
         - **line** (*Optional*): Add a needle line to the meter (you can add multiple). By default, the length of the line is the same as the scale's radius.
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
-            - **width**: Needle line width in pixels.
-            - **color**: ID or hex code for the needle line :ref:`color <config-color>`.
-            - **r_mod**: Adjust the length of the needle from the scale radius with this amount (can be negative).
+            - **width**: Needle line width in pixels. Defaults to ``4``.
+            - **color**: ID or hex code for the needle line :ref:`color <config-color>`. Defaults to ``0``.
+            - **r_mod**: Adjust the length of the needle from the scale radius with this amount (can be negative). Defaults to ``0``.
             - **value**: The value in the scale range to show at start. Can be updated at runtime with ``lvgl.indicator.line.update`` :ref:`action <config-action>` (see below).
             - Style options for the *needle line* using the :ref:`lvgl-wgt-lin` style properties, as well as the background properties from :ref:`lvgl-styling` to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
         - **img** (*Optional*): Add a rotating needle image to the meter (you can add multiple). 
