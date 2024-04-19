@@ -8,6 +8,10 @@ QESAN BLE Remote
 The ``qesan_ble_remote`` component allows you to receive button presses from BLE remotes that are often used
 for tuya lamps.
 
+.. figure:: images/qesan_ble_remote.png
+    :align: center
+    :width: 50.0%
+
 This component requires the ``esp32_ble_tracker`` component.
 
 To find the address and button codes of your remote, configure the component without specifying any address.
