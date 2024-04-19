@@ -1,9 +1,9 @@
-Ultrasonic Distance Sensor
-==========================
+AJ-SR04M Ultrasonic Distance Sensor
+===================================
 
 .. seo::
     :description: Instructions for setting up ultrasonic distance measurement sensors in ESPHome.
-    :image: ultrasonic_uart-1024x768.jpg
+    :image: aj_sr04m-1024x768.jpg
     :keywords: ultrasonic, aj-sr04m
 
 The ultrasonic distance sensor allows you to use simple ultrasonic
@@ -22,13 +22,13 @@ When the trigger command(0x55) is received RX pin, the sensor wakes up,
 performs distance calculation and outputs the distance over the TX line.
 The sensor goes back to sleep after transmitting data.
 
-.. figure:: images/ultrasonic_uart-1024x768.jpg
+.. figure:: images/aj_sr04m-1024x768.jpg
     :align: center
     :width: 50.0%
 
     AJ-SR04M Ultrasonic Distance Sensor.
 
-.. figure:: images/ultrasonic_uart-mode_change.jpg
+.. figure:: images/aj_sr04m-mode_change.jpg
     :align: center
     :width: 80.0%
 
@@ -45,7 +45,7 @@ To use the sensor, first set up an :ref:`uart` with a baud rate of 9600 and conn
       stop_bits: 1
     
     sensor:
-      - platform: ultrasonic_uart
+      - platform: aj_sr04m
         name: "Distance"
         update_interval: 2s
 
@@ -68,5 +68,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :ref:`uart`
-- :apiref:`ultrasonic_uart/ultrasonic_sensor.h`
+- :apiref:`aj_sr04m/aj_sr04m.h`
 - :ghedit:`Edit`
