@@ -11,7 +11,7 @@ The ``MPL115A2`` sensor platform allows you to use your MPL115A2 atmospheric pre
 `Adafruit`_)  temperature and pressure sensors with ESPHome. The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
-.. figure:: images/mpl115a2-full.jpg
+.. figure:: images/mpl115a2.jpg
     :align: center
     :width: 50.0%
 
