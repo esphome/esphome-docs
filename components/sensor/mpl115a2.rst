@@ -3,7 +3,7 @@ MPL115A2 Barometric Pressure/Altitude/Temperature Sensor
 
 .. seo::
     :description: Instructions for setting up MPL115A2 atmospheric pressure sensors.
-    :image: MPL115A2.jpg
+    :image: mpl115a2.jpg
     :keywords: MPL115A2
 
 The ``MPL115A2`` sensor platform allows you to use your MPL115A2 atmospheric pressure sensors
