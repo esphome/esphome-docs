@@ -15,7 +15,7 @@ required to be set up in your configuration for this sensor to work.
     :align: center
     :width: 50.0%
 
-    MPL115A2 Barometric Pressure/Altitude/Temperature Sensor
+    MPL115A2 Barometric Pressure/Temperature Sensor
 
 .. _Adafruit: https://www.adafruit.com/product/992
 
