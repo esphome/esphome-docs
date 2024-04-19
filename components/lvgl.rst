@@ -1172,7 +1172,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - **end_value**: The value in the scale range to modify the ticks to.
             - **color_start**: ID or hex code for the gradient start :ref:`color <config-color>` of the ticks.
             - **color_end**: ID or hex code for the gradient end :ref:`color <config-color>` of the ticks.
-            - **local**: If ``true`` the ticks' color will be faded from ``color_start`` to ``color_end`` in the start and end values specified here. If ``false``, ``color_start`` and ``color_end`` will be mapped to the start and end value of the entire scale (and only a *slice* of that color gradient will be visible in the indicator's start and end value range). Defaults to ``false``.
+            - **local**: If ``true`` the ticks' color will be faded from ``color_start`` to ``color_end`` in the start and end values specified above. If ``false``, ``color_start`` and ``color_end`` will be mapped to the entire scale range (and only a *slice* of that color gradient will be visible in the indicator's start and end value range). Defaults to ``false``.
             - **width**: Modifies the ``width`` of the tick lines.
         - **line** (*Optional*): Add a needle line to the scale (you can add multiple). By default, the length of the line is the same as the scale's radius.
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
