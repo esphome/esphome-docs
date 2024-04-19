@@ -938,6 +938,7 @@ Miscellaneous Components
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg, dark-invert
     SML, components/sml, sml.svg
     SUN-GTIL2 inverter, components/sun_gtil2, sun_1000g2.png
+    QESAN BLE Remote, components/qesan_ble_remote, qesan_ble_remote.png
     Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     WireGuard, components/wireguard, wireguard_custom_logo.svg
