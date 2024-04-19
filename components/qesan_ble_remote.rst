@@ -12,7 +12,16 @@ for tuya lamps.
     :align: center
     :width: 50.0%
 
-This component requires the ``esp32_ble_tracker`` component.
+This component requires the ``esp32_ble_tracker`` component. This configuration is more reliable than the
+default for receiving button presses:
+
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+      scan_parameters:
+        interval: 100ms
+        window: 20ms
+        active: false
 
 To find the address and button codes of your remote, configure the component without specifying any address.
 When pressing buttons on the remote the codes will appear in the ESPHome log.
