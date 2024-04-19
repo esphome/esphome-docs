@@ -1159,7 +1159,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - **color**: ID or hex code for the ticks :ref:`color <config-color>`. Defaults to ``0``.
             - **label_gap**: Label distance from the ticks with text proportionally to the values of the tick line. Defaults to ``4``.
         - Style options from :ref:`lvgl-styling` for the tick *lines* and *labels* using the :ref:`lvgl-wgt-lin` and :ref:`lvgl-wgt-lbl` text style properties.
-    - **indicators** (**Required**, list): A list with indicators to be added to the scale. Their ``value`` is interpreted in the range of the scale (see the *action* below):
+    - **indicators** (**Required**, list): A list with indicators to be added to the scale. Their values are interpreted in the range of the scale:
         - **arc** (*Optional*): Add a background arc the scale (you can add multiple). 
             - **start_value**: The value in the scale range to start drawing the arc from.
             - **end_value**: The value in the scale range to end drawing the arc to.
@@ -1167,7 +1167,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - **color**: ID or hex code for the arc :ref:`color <config-color>`. Defaults to ``0``.
             - **r_mod**: Adjust the position of the arc from the scale radius with this amount (can be negative). Defaults to ``0``.
             - Style options for the *arc* using the :ref:`lvgl-wgt-arc` style properties.
-        - **tick_style** (**Optional**): Add an indicator that modifies tick styles (you can add multiple).
+        - **tick_style** (**Optional**): Add tick style modifications (you can add multiple).
             - **start_value**: The value in the scale range to modify the ticks from.
             - **end_value**: The value in the scale range to modify the ticks to.
             - **color_start**: ID or hex code for the gradient start :ref:`color <config-color>` of the ticks.
