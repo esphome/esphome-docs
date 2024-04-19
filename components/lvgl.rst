@@ -1167,21 +1167,21 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - **color**: ID or hex code for the arc :ref:`color <config-color>`. Defaults to ``0``.
             - **r_mod**: Adjust the position of the arc from the scale radius with this amount (can be negative). Defaults to ``0``.
             - Style options for the *arc* using the :ref:`lvgl-wgt-arc` style properties.
-        - **ticks** (**Optional**): Add an indicator that modifies the ticks lines specified above.
+        - **tick_style** (**Optional**): Add an indicator that modifies tick styles (you can add multiple).
             - **start_value**: The value in the scale range to modify the ticks from.
             - **end_value**: The value in the scale range to modify the ticks to.
             - **color_start**: ID or hex code for the gradient start :ref:`color <config-color>` of the ticks.
             - **color_end**: ID or hex code for the gradient end :ref:`color <config-color>` of the ticks.
-            - **local**: If ``true`` the ticks' color will be faded from ``color_start`` to ``color_end`` in the indicator's start and end value range. If ``false``, ``color_start`` and ``color_end`` will be mapped to the start and end value of the entire scale (and only a *slice* of that color gradient will be visible in the indicator's start and end value range). Defaults to ``false``.
-            - **width_mod**: ??? modifies the ``width`` of the tick lines.
-        - **line** (*Optional*): Add a needle line to the meter (you can add multiple). By default, the length of the line is the same as the scale's radius.
+            - **local**: If ``true`` the ticks' color will be faded from ``color_start`` to ``color_end`` in the start and end values specified here. If ``false``, ``color_start`` and ``color_end`` will be mapped to the start and end value of the entire scale (and only a *slice* of that color gradient will be visible in the indicator's start and end value range). Defaults to ``false``.
+            - **width**: Modifies the ``width`` of the tick lines.
+        - **line** (*Optional*): Add a needle line to the scale (you can add multiple). By default, the length of the line is the same as the scale's radius.
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **width**: Needle line width in pixels. Defaults to ``4``.
             - **color**: ID or hex code for the needle line :ref:`color <config-color>`. Defaults to ``0``.
             - **r_mod**: Adjust the length of the needle from the scale radius with this amount (can be negative). Defaults to ``0``.
             - **value**: The value in the scale range to show at start. Can be updated at runtime with ``lvgl.indicator.line.update`` :ref:`action <config-action>` (see below).
             - Style options for the *needle line* using the :ref:`lvgl-wgt-lin` style properties, as well as the background properties from :ref:`lvgl-styling` to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
-        - **img** (*Optional*): Add a rotating needle image to the meter (you can add multiple). 
+        - **img** (*Optional*): Add a rotating needle image to the scale (you can add multiple). 
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **src**:  The ID of an existing image configuration, represennting a needle pointing to the right like ``-o--->``.
             - **pivot_x**: Horizontal position of the pivot point of rotation relative to the top left corner of the image. Defaults to ``50%`` (center of image).
@@ -1195,8 +1195,8 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 
 **Specific actions:**
 
-``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the indicator needle ``value``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
-``lvgl.indicator.img.update`` :ref:`action <config-action>` updates the indicator needle ``value``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the indicator line needle ``value``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.indicator.img.update`` :ref:`action <config-action>` updates the indicator image needle ``value``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
