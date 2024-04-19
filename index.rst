@@ -333,6 +333,7 @@ Environmental
     MCP9808, components/sensor/mcp9808, mcp9808.jpg, Temperature
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MLX90614, components/sensor/mlx90614, mlx90614.jpg, Temperature
+    MPL115A2, components/sensor/mpl115a2, mpl115a2.jpg, Temperature & Pressure
     MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     MS8607, components/sensor/ms8607, ms8607.jpg, Temperature & Humidity & Pressure
