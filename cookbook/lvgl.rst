@@ -255,7 +255,7 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
       - platform: ...
         id: values_between_-10_and_10
         on_value:
-          - lvgl.indicator.line.update:
+          - lvgl.indicator.update:
               id: val_needle
               value: !lambda return x;
           - lvgl.label.update:
@@ -353,7 +353,7 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
       - platform: ...
         id: outdoor_temperature
         on_value:
-          - lvgl.indicator.line.update:
+          - lvgl.indicator.update:
               id: temperature_needle
               value: !lambda return x * 10; 
           - lvgl.label.update:
@@ -1293,11 +1293,11 @@ The script runs every minute to update the hand line positions and the texts.
     script:
       - id: time_update
         then:
-          - lvgl.indicator.line.update:
+          - lvgl.indicator.update:
               id: minute_hand
               value: !lambda |-
                 return id(time_comp).now().minute;
-          - lvgl.indicator.line.update:
+          - lvgl.indicator.update:
               id: hour_hand
               value: !lambda |-
                 auto now = id(time_comp).now();

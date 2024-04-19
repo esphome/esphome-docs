@@ -1179,14 +1179,14 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - **width**: Needle line width in pixels. Defaults to ``4``.
             - **color**: ID or hex code for the needle line :ref:`color <config-color>`. Defaults to ``0``.
             - **r_mod**: Adjust the length of the needle from the scale radius with this amount (can be negative). Defaults to ``0``.
-            - **value**: The value in the scale range to show at start. Can be updated at runtime with ``lvgl.indicator.line.update`` :ref:`action <config-action>` (see below).
+            - **value**: The value in the scale range to show at start.
             - Style options for the *needle line* using the :ref:`lvgl-wgt-lin` style properties, as well as the background properties from :ref:`lvgl-styling` to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
         - **img** (*Optional*): Add a rotating needle image to the scale (you can add multiple). 
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
-            - **src**:  The ID of an existing image configuration, represennting a needle pointing to the right like ``-o--->``.
+            - **src**:  The ID of an existing image configuration, represennting a needle pointing to the right like ``-o--->``. Cannot be updated at runtime with ``lvgl.indicator.update``.
             - **pivot_x**: Horizontal position of the pivot point of rotation relative to the top left corner of the image. Defaults to ``50%`` (center of image).
             - **pivot_y**: Vertical position of the pivot point of rotation relative to the top left corner of the image.. Defaults to ``50%`` (center of image).
-            - **value**: The value in the scale range to show at start. Can be updated at runtime with ``lvgl.indicator.img.update`` :ref:`action <config-action>` (see below).
+            - **value**: The value in the scale range to show at start.
 - Style options from :ref:`lvgl-styling` for the background of the meter, using the typical background properties.
 
 .. note::
@@ -1195,8 +1195,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 
 **Specific actions:**
 
-``lvgl.indicator.line.update`` :ref:`action <config-action>` updates the indicator line needle ``value``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
-``lvgl.indicator.img.update`` :ref:`action <config-action>` updates the indicator image needle ``value``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.indicator.update`` :ref:`action <config-action>` updates indicator options, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -1231,7 +1230,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
     # Example action:
     on_...:
       then:
-        - lvgl.indicator.line.update:
+        - lvgl.indicator.update:
             id: temperature_needle
             value: 3
 
