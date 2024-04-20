@@ -92,4 +92,6 @@ Platforms
 See Also
 --------
 
+- :doc:`/guides/audio_clips_for_i2s`
+- :doc:`/components/speaker/i2s_audio`
 - :ghedit:`Edit`
