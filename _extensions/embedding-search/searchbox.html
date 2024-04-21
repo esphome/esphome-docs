@@ -1,0 +1,19 @@
+{%- if pagename != "search" and builder != "singlehtml" %}
+<div id="searchbox" style="display: none" role="search">
+  <form class="search" action="{{ pathto('search') }}" method="get">
+    <input
+      type="text"
+      name="q"
+      aria-labelledby="searchlabel"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      placeholder="Search"
+    />
+    <input type="submit" value="{{ _('Go') }}" />
+  </form>
+  <div class="output"></div>
+</div>
+<script type="module" src="{{ pathto('_static/searchbox.js', 1) }}"></script>
+{%- endif %}
