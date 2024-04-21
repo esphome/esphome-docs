@@ -231,7 +231,7 @@ See Also
 - :apiref:`DateTimeBase <datetime/datetime_base.h>`
 - :apiref:`DateEntity <datetime/date_entity.h>`
 - :apiref:`DateCall <datetime/date_entity.h>`
-- :apiref:`TimeEntity <datetime/time_entity.h>`
+- :apiref:`TimeeEntity <datetime/time_entity.h>`
 - :apiref:`TimeCall <datetime/time_entity.h>`
 - :ghedit:`Edit`
 
