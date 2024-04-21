@@ -7,6 +7,7 @@ const tokenize = (value) => {
     .replace(/[?!;@#$%&]/g, " $& ")
     .replace(/[\]\[\(\)\{\}<>]/g, " $& ")
     .replace(/('s|'m|'d|'ll|'re|'ve|n't) /gi, " $1 ")
+    .replace(/\, /g, " , ")
     .replace(/\. /g, " . ")
     .replace(/['’] /g, " ' ")
     .replace(/["“”]/g, " '' ");
@@ -26,6 +27,7 @@ const tokenize = (value) => {
     .replaceAll("rgbct", "rgb temperature brightness")
     .replaceAll("cannot", "can not")
     .replaceAll("addressable", "addressed");
+  value = value.replace(/[-+]?[.\d]*[\d]+[:,.\d]*/g, " <number> ");
   return value.replace(/\s+/g, " ").trim().split(" ");
 };
 const embed = (tokens) => {
