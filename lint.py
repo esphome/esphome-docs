@@ -320,7 +320,7 @@ def lint_newline(fname):
     return "File contains Windows newline. Please set your editor to Unix newline mode."
 
 
-@lint_content_check(exclude=["*.svg", "runtime.txt", "_static/*"])
+@lint_content_check(exclude=["*.svg", "runtime.txt", "_extensions/embedding-search/glove-25d-reduced.txt", "_static/*"])
 def lint_end_newline(fname, content):
     if content and not content.endswith("\n"):
         return "File does not end with a newline, please add an empty line at the end of the file."
