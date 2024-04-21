@@ -13,7 +13,7 @@ using :ref:`lambdas <config-lambda>`.
     datetime:
       # Example Date
       - platform: template
-        id: my_date
+        id: my_datetime_date
         type: date
         name: Pick a Date
         optimistic: yes
@@ -22,7 +22,7 @@ using :ref:`lambdas <config-lambda>`.
 
       # Example Time
       - platform: template
-        id: my_time
+        id: my_datetime_time
         type: time
         name: Pick a Time
         optimistic: yes
