@@ -19,7 +19,7 @@ def build_finished(app: Sphinx, exception):
         tokens = tokenize(title)
         embedding = embed(tokens)
         if embedding:
-            embedding_collection.append({ "page": f"{page}.html", "title": title, "embedding": embedding})
+            embedding_collection.append({ "page": f"/{page}.html", "title": title, "embedding": embedding})
     dump(embedding_collection, open(join(app.builder.outdir, "embedding-index.json"), "w"))
 
     output_path = join(app.builder.outdir, "_static")
