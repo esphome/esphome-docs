@@ -15,6 +15,7 @@ const tokenize = (value) => {
     .replaceAll("esp8266", "esp 8266")
     .replaceAll("dht22", "dht 22")
     .replaceAll("dht11", "dht 11")
+    .replaceAll("b-parasite", "b parasite")
     .replaceAll("nfc/rfid", "nfc rfid")
     .replaceAll("fastled", "fast led")
     .replaceAll("neopixelbus", "neopixel bus")
@@ -61,14 +62,10 @@ let embeddings = [];
   const data = await r.text();
   for (const x of data.split("\n")) {
     const [w, idf, ...values] = x.split(" ");
-    try {
-      glove[w] = {
-        idf: parseFloat(idf),
-        values: values.map((x) => parseFloat(x)),
-      };
-    } catch (e) {
-      console.log("wtf", e, x, w, idf, values);
-    }
+    glove[w] = {
+      idf: parseFloat(idf),
+      values: values.map((x) => parseFloat(x)),
+    };
   }
 })();
 (async () => {

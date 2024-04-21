@@ -14,7 +14,7 @@ def tokenize(string):
     string = re.sub(r"\. ", " . ", string)
     string = re.sub(r"['’] ", " ' ", string)
     string = re.sub(r"[\"“”] ", " '' ", string)
-    string = string.replace("esp32", "esp 32").replace("esp8266", "esp 8266").replace("dht22", "dht 22").replace("dht11", "dht 11").replace("nfc/rfid", "nfc rfid").replace("fastled", "fast led").replace("neopixelbus", "neopixel bus").replace("neopixel", "neo pixel").replace("h-bridge", "h bridge").replace("rgbw", "rgb white").replace("rgbww", "rgb cold warm").replace("rgbct", "rgb temperature brightness").replace("cannot", "can not").replace("addressable", "addressed")
+    string = string.replace("esp32", "esp 32").replace("esp8266", "esp 8266").replace("dht22", "dht 22").replace("dht11", "dht 11").replace("b-parasite", "b parasite").replace("nfc/rfid", "nfc rfid").replace("fastled", "fast led").replace("neopixelbus", "neopixel bus").replace("neopixel", "neo pixel").replace("h-bridge", "h bridge").replace("rgbw", "rgb white").replace("rgbww", "rgb cold warm").replace("rgbct", "rgb temperature brightness").replace("cannot", "can not").replace("addressable", "addressed")
     string = re.sub(r"\s+", " ", string)
     return string.strip().split(" ")
 
