@@ -583,6 +583,7 @@ Configuration variables:
   - **cold_white** (*Optional*, percentage): The cold white channel of the light, if applicable. Defaults to ``100%``.
   - **warm_white** (*Optional*, percentage): The warm white channel of the light, if applicable. Defaults to ``100%``.
   - **duration** (**Required**, :ref:`config-time`): The duration this color should be active.
+  - **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``0s``.
 
 See `light.turn_on <light-turn_on_action>` for more information on the various color fields.
 
