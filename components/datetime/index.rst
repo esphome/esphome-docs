@@ -98,12 +98,12 @@ The ``date`` provided can be in one of 3 formats:
 
     # String date
     - datetime.date.set:
-        id: my_date
+        id: my_datetime_date
         date: "2023-12-04"
 
     # Individual date parts
     - datetime.date.set:
-        id: my_date
+        id: my_datetime_date
         date:
           year: 2023
           month: 12
@@ -111,7 +111,7 @@ The ``date`` provided can be in one of 3 formats:
 
     # Using a lambda
     - datetime.date.set:
-        id: my_date
+        id: my_datetime_date
         date: !lambda |-
           // Return an ESPTime struct
           return {.day_of_month: 4, .month: 12, .year: 2023};
@@ -169,12 +169,12 @@ The ``time`` provided can be in one of 3 formats:
 
     # String time
     - datetime.time.set:
-        id: my_time
+        id: my_datetime_time
         time: "12:34:56"
 
     # Individual time parts
     - datetime.time.set:
-        id: my_time
+        id: my_datetime_time
         time:
           hour: 12
           minute: 34
