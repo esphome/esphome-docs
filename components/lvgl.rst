@@ -24,10 +24,12 @@ Check out a few detailed examples :ref:`in the Cookbook <lvgl-cook>` to see a co
 Basics
 ------
 
-In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` to see the full list of available LVGL widgets in ESPHome.
+In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` to see the full list of available LVGL widgets in ESPHome. Not all of them are implemented, just the most commonly used ones.
 
 Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
-The child widget moves with the parent and if the parent is hidden the children will be hidden too. Children can be visible only within their parent's bounding area. In other words, the parts of the children outside the parent are clipped.
+The child widget moves with the parent and if the parent is hidden the children will be hidden too. Children can be visible only within their parent's bounding area. In other words, the areas of the children outside the parent are clipped.
+
+Some more complex widgets are internally made up from the simpler ones, these are known as parts - which can have separate properties from the main widget.
 
 Pages in ESPHome are implemented as LVGL screens, which are special objects which have no parent. There is always one active page on a display.
 
