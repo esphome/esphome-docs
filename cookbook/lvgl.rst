@@ -1204,9 +1204,9 @@ Using the :ref:`lvgl-wgt-mtr` and :ref:`lvgl-wgt-lbl` widgets, we can create an 
 .. figure:: images/lvgl_cook_clock.png
     :align: center
 
-The :ref:`lvgl-wgt-mtr` has three scales: one for minutes ticks and hand, ranged between ``0`` and ``60``; one for the hour ticks and the labels as majors, ranged between ``1`` and ``12``; and a higher resolution scale for the hour hand, ranged between ``1`` and ``720``, to be able to position naturally the hour hand in between the hours. The second scale doesn't have an indicator, while the third scale doesn't have ticks nor labels.
+The :ref:`lvgl-wgt-mtr` has three scales: one for minutes ticks and hand, ranged between ``0`` and ``60``; one for the hour ticks and the labels as majors, ranged between ``1`` and ``12``; and a higher resolution scale for the hour hand, ranged between ``0`` and ``720``, to be able to naturally position the hand in between the hours. The second scale doesn't have an indicator, while the third scale doesn't have ticks nor labels.
 
-The script runs every minute to update the hand line positions and the texts.
+The script runs at the beginning of every minute to update the hand line positions and the texts.
 
 .. code-block:: yaml
 
@@ -1286,13 +1286,11 @@ The script runs every minute to update the hand line positions and the texts.
     time:
       - platform: homeassistant
         id: time_comp
-
-    interval:
-      - interval: 1min
-        then:
-          if:
-            condition:
-              time.has_time:
+        on_time_sync:
+          - script.execute: time_update
+        on_time:
+          - minutes: '*'
+            seconds: 0
             then:
               - script.execute: time_update
 
