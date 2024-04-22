@@ -28,7 +28,7 @@ const tokenize = (value) => {
   return value.replace(/\s+/g, " ").trim().split(" ");
 };
 const embed = (tokens) => {
-  let output = Array.from({ length: 25 }, () => 0);
+  let output = Array.from({ length: 50 }, () => 0);
   let total = 0;
   for (let token of tokens) {
     if (!glove[token]) {
@@ -57,7 +57,7 @@ const cosine = (a, b) => {
 let glove = {};
 let embeddings = [];
 (async () => {
-  const r = await fetch("/_static/glove-25d-reduced.txt");
+  const r = await fetch("/_static/glove-50d-reduced.txt");
   const data = await r.text();
   for (const x of data.split("\n")) {
     const [w, idf, ...values] = x.split(" ");

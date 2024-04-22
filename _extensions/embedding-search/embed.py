@@ -1,7 +1,7 @@
 from os.path import join, dirname
 import re
 
-embedding_path = join(dirname(__file__), "glove-25d-reduced.txt")
+embedding_path = join(dirname(__file__), "glove-50d-reduced.txt")
 
 embeddings = {}
 for line in open(embedding_path, "r"):
@@ -21,7 +21,7 @@ def tokenize(string):
     return string.strip().split(" ")
 
 def embed(tokens):
-    output = [0] * 25
+    output = [0] * 50
     total = 0
     for token in tokens:
         if token not in embeddings:

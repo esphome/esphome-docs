@@ -23,7 +23,7 @@ def build_finished(app: Sphinx, exception):
     dump(embedding_collection, open(join(app.builder.outdir, "embedding-index.json"), "w"))
 
     output_path = join(app.builder.outdir, "_static")
-    copy_asset_file(join(dirname(__file__), "glove-25d-reduced.txt"), output_path)
+    copy_asset_file(join(dirname(__file__), "glove-50d-reduced.txt"), output_path)
     copy_asset_file(join(dirname(__file__), "searchbox.js"), output_path)
 
 def setup(app):
