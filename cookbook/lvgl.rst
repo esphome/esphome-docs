@@ -1228,6 +1228,7 @@ The script runs every minute to update the hand line positions and the texts.
                       width: 220
                       align: center
                       bg_opa: TRANSP
+                      border_width: 0
                       text_color: 0x000000
                       scales:
                         - range_from: 0 # minutes scale
