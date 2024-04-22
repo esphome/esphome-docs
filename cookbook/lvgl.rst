@@ -1204,6 +1204,8 @@ Using the :ref:`lvgl-wgt-mtr` and :ref:`lvgl-wgt-lbl` widgets, we can create an 
 .. figure:: images/lvgl_cook_clock.png
     :align: center
 
+The :ref:`lvgl-wgt-mtr` has three scales: one for minutes ticks and hand, ranged between ``0`` and ``60``; one for the hour ticks and the labels as majors, ranged between ``1`` and ``12``; and a higher resolution scale for the hour hand, ranged between ``1`` and ``720``, to be able to position naturally the hour hand in between the hours. The second scale doesn't have an indicator, while the third scale doesn't have ticks nor labels.
+
 The script runs every minute to update the hand line positions and the texts.
 
 .. code-block:: yaml
@@ -1213,7 +1215,7 @@ The script runs every minute to update the hand line positions and the texts.
       pages:
         - id: clock_page
           widgets:
-            - obj: # Clock container
+            - obj: # clock container
                 height: size_content
                 width: 240
                 align: CENTER
@@ -1221,22 +1223,22 @@ The script runs every minute to update the hand line positions and the texts.
                 border_width: 0
                 bg_color: 0xFFFFFF
                 widgets:
-                  - meter: # Clock face
+                  - meter: # clock face
                       height: 220
                       width: 220
                       align: center
                       bg_opa: TRANSP
                       text_color: 0x000000
                       scales:
-                        - ticks: # minutes scale
+                        - range_from: 0 # minutes scale
+                          range_to: 60
+                          angle_range: 360
+                          rotation: 270
+                          ticks:
                             width: 1
                             count: 61
                             length: 10
                             color: 0x000000
-                          range_from: 0
-                          range_to: 60
-                          angle_range: 360
-                          rotation: 270
                           indicators:
                             - line:
                                 id: minute_hand
@@ -1244,31 +1246,33 @@ The script runs every minute to update the hand line positions and the texts.
                                 color: 0xa6a6a6
                                 r_mod: -4
                                 value: 0
-                        - ticks: # hours scale
+                        - range_from: 1 # hours scale for labels
+                          range_to: 12
+                          angle_range: 330
+                          rotation: 300
+                          ticks: 
                             width: 1
                             count: 12
                             length: 1
                             major:
                               stride: 1
                               width: 4
-                              length: 8
+                              length: 10
                               color: 0xC0C0C0
                               label_gap: 12
-                          angle_range: 330
-                          rotation: 300
-                          range_from: 1
-                          range_to: 12
-                        - indicators:
+                        - range_from: 0 # hi-res hours scale for hand
+                          range_to: 720
+                          angle_range: 360
+                          rotation: 270
+                          ticks: 
+                            count: 0
+                          indicators:
                             - line:
                                 id: hour_hand
                                 width: 5
                                 color: 0xa6a6a6
                                 r_mod: -30
                                 value: 0
-                          angle_range: 360
-                          rotation: 270
-                          range_from: 0
-                          range_to: 720
                   - label:
                       styles: date_style
                       id: day_label
@@ -1276,7 +1280,7 @@ The script runs every minute to update the hand line positions and the texts.
                   - label:
                       id: date_label
                       styles: date_style
-                      y: +30
+                      y: 30
 
     time:
       - platform: homeassistant
@@ -1315,8 +1319,7 @@ The script runs every minute to update the hand line positions and the texts.
               id: day_label
               text: !lambda |-
                 static const char * const day_names[] = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
-                return day_names[id(time_comp).now().day_of_week-1];
-
+                return day_names[id(time_comp).now().day_of_week - 1];
 
 .. _lvgl-cook-keypad:
 
