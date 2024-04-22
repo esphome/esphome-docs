@@ -1205,27 +1205,28 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
     - meter:
         align: center
         scales:
-          - ticks:
-              width: 1
-              count: 81
-              length: 5
-              color: 0x000000
-              major:
-                stride: 10
+          range_from: -10
+          range_to: 40
+          angle_range: 240
+          rotation: 150
+          ticks:
+            count: 51
+            length: 3
+            major:
+              stride: 5
+              length: 13
+              label_gap: 13
+          indicators:
+            - line:
+                id: temperature_needle
                 width: 2
-                length: 8
-                color: 0xC0C0C0
-                label_gap: 8
-            range_from: -30
-            range_to: 50
-            angle_range: 240
-            rotation: 150
-            indicators:
-              - line:
-                  id: temperature_needle
-                  width: 2
-                  color: 0xFF0000
-                  r_mod: -4
+                color: 0xFF0000
+                r_mod: -4
+            - tick_style:
+                start_value: -10
+                end_value: 40
+                color_start: 0x0000bd #FF0000
+                color_end: 0xbd0000 #0000FF
 
     # Example action:
     on_...:
