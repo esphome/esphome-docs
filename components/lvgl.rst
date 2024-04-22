@@ -58,6 +58,10 @@ Some widgets integrate in ESPHome also as components:
 
 These are useful to make :ref:`automations <automation>` triggered by actions performed at the screen.
 
+.. note::
+
+    LVGL only supports **integers** for numeric values. Visualizer widgets can't display floats directly, but they allow scaling by 10s. Some examples in the :doc:`Cookbook </cookbook/lvgl>` cover how to do that.
+
 Main Component
 --------------
 
