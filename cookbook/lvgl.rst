@@ -282,9 +282,9 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
                         border_width: 0
                         align: center
                         scales:
-                          angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
-                          range_to: 10
                           range_from: -10
+                          range_to: 10
+                          angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
                           ticks:
                             count: 0
                           indicators:
