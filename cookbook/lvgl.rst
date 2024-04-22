@@ -381,17 +381,12 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
                             width: 2
                             color: 0xFF0000
                             r_mod: -4
-                        - ticks:
-                            start_value: -10
-                            end_value: 40
-                            color_start: 0x0000bd
-                            color_end: 0xbd0000
                     - range_from: -10 # scale for the value labels
                       range_to: 40
                       angle_range: 240
                       rotation: 150
                       ticks:
-                        width: 2
+                        width: 1
                         count: 51
                         length: 10
                         color: 0x000000
