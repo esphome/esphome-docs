@@ -381,6 +381,12 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
                             width: 2
                             color: 0xFF0000
                             r_mod: -4
+                        - tick_style:
+                            start_value: -10
+                            end_value: 40
+                            color_start: 0x0000bd
+                            color_end: 0xbd0000
+                            width: 1
                     - range_from: -10 # scale for the value labels
                       range_to: 40
                       angle_range: 240
@@ -392,10 +398,10 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
                         color: 0x000000
                         major:
                           stride: 5
-                          width: 4
+                          width: 2
                           length: 10
                           color: 0x404040
-                          label_gap: 13
+                          label_gap: 10
                   widgets:
                     - label:
                         id: temperature_text
