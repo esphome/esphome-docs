@@ -313,6 +313,7 @@ Environmental
     BMP581, components/sensor/bmp581, bmp581.jpg, Temperature & Pressure
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
+    ds248x, components/sensor/ds248x, ds248x.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
     DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
