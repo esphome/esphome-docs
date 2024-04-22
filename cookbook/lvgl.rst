@@ -282,29 +282,29 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
                         border_width: 0
                         align: center
                         scales:
-                          range_from: -10
-                          range_to: 10
-                          angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
-                          ticks:
-                            count: 0
-                          indicators:
-                            - line:
-                                id: val_needle
-                                width: 8
-                                r_mod: 12 # sets line length by this much difference from the scale default radius
-                                value: -2
-                            - arc: # first half of the scale background
-                                color: 0xFF3000
-                                r_mod: 10 # radius difference from the scale default radius
-                                width: 31
-                                start_value: -10
-                                end_value: 0
-                            - arc: # second half of the scale background
-                                color: 0x00FF00
-                                r_mod: 10
-                                width: 31
-                                start_value: 0
-                                end_value: 10
+                          - range_from: -10
+                            range_to: 10
+                            angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
+                            ticks:
+                              count: 0
+                            indicators:
+                              - line:
+                                  id: val_needle
+                                  width: 8
+                                  r_mod: 12 # sets line length by this much difference from the scale default radius
+                                  value: -2
+                              - arc: # first half of the scale background
+                                  color: 0xFF3000
+                                  r_mod: 10 # radius difference from the scale default radius
+                                  width: 31
+                                  start_value: -10
+                                  end_value: 0
+                              - arc: # second half of the scale background
+                                  color: 0x00FF00
+                                  r_mod: 10
+                                  width: 31
+                                  start_value: 0
+                                  end_value: 10
                     - obj: # to erase middle part of meter indicator line
                         height: 146
                         width: 146
