@@ -532,6 +532,7 @@ Miscellaneous
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg, dark-invert
     Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
+    Adafruit NeoKey 1x4, components/neokey, adafruit_neokey_1x4.jpg
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Pylontech Batteries, components/pylontech, pylontech.jpg
     Qwiic PIR Motion, components/binary_sensor/qwiic_pir, qwiic_pir.jpg

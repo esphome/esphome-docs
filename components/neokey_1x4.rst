@@ -6,7 +6,7 @@ Adafruit NeoKey 1x4 QT I2C Breakout
 
 The NeoKey 1x4 is a breakout board, running the seesaw firmware, that runs over an I²C bus and has the ability to read key presses and control LEDs.
 
-.. figure:: images/adafruit_neokey_1x4.jpg
+.. figure:: /images/adafruit_neokey_1x4.jpg
     :align: center
     :width: 50.0%
 
