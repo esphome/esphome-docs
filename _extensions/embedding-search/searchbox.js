@@ -11,8 +11,8 @@ const tokenize = (value) => {
     .replace(/\. /g, " . ")
     .replace(/['’] /g, " ' ")
     .replace(/["“”]/g, " '' ");
+  value = value.replace(/[-+]?[.\d]*[\d]+[:,.\d]*|²/g, " <number> ");
   value = value
-    .replaceAll("²", "2")
     .replaceAll("b-parasite", "b parasite")
     .replaceAll("nfc/rfid", "nfc rfid")
     .replaceAll("fastled", "fast led")
@@ -22,9 +22,13 @@ const tokenize = (value) => {
     .replaceAll("rgbw", "rgb white")
     .replaceAll("rgbww", "rgb cold warm")
     .replaceAll("rgbct", "rgb temperature brightness")
+    .replaceAll("faqs", "frequently asked questions")
+    .replaceAll("faq", "frequently asked questions")
     .replaceAll("cannot", "can not")
-    .replaceAll("addressable", "addressed");
-  value = value.replace(/[-+]?[.\d]*[\d]+[:,.\d]*/g, " <number> ");
+    .replaceAll("addressable", "addressed")
+    .replaceAll("automations", "automation")
+    .replace(/\bha\b/g, "home assistant")
+    .replace(/\badc\b/g, "analog digital converter");
   return value.replace(/\s+/g, " ").trim().split(" ");
 };
 const embed = (tokens) => {
