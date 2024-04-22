@@ -234,6 +234,7 @@ Bluetooth Low Energy (BLE)
     Mopeka Standard Check LP, components/sensor/mopeka_std_check, mopeka_std_check.jpg, tank level
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
+    HHCCJCY10 (MiFlora Pink), components/sensor/xiaomi_hhccjcy10, xiaomi_hhccjcy10.jpg, Soil moisture & Temperature & Light
     Alpha3, components/sensor/alpha3, alpha3.jpg
 
 
@@ -258,7 +259,7 @@ Distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
     VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg, IR optical distance
     Zio Ultrasonic Sensor, components/sensor/zio_ultrasonic, zio_ultrasonic.jpg, Acoustic distance
-
+    JSN-SR04T, components/sensor/jsn_sr04t, jsn-sr04t-v3.jpg, Acoustic distance
 
 Electricity
 ***********
@@ -319,6 +320,7 @@ Environmental
     ENS160, components/sensor/ens160, ens160.jpg, CO2 & Air Quality
     ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
+    HHCCJCY10 (MiFlora Pink), components/sensor/xiaomi_hhccjcy10, xiaomi_hhccjcy10.jpg, Soil moisture & Temperature & Light
     HTE501, components/sensor/hte501, HTE501.png, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
     Honeywell ABP2 I2C, components/sensor/honeywellabp2_i2c, honeywellabp.jpg, Pressure & Temperature
@@ -517,6 +519,7 @@ Presence Detection
 .. imgtable::
 
     DFRobot mmWave Radar, components/dfrobot_sen0395, dfrobot_sen0395.jpg
+    AT581X, components/at581x, at581x.png
     LD2410, components/sensor/ld2410, ld2410.jpg
     LD2420, components/sensor/ld2420, ld2420.jpg
     Seeed Studio MR24HPC1 mmWave, components/seeed_mr24hpc1, seeed-mr24hpc1.jpg
@@ -553,6 +556,7 @@ Output Components
     PCA9685, components/output/pca9685, pca9685.jpg
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     TLC5947, components/output/tlc5947, tlc5947.jpg
+    TLC5971, components/output/tlc5971, tlc5971.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
@@ -933,6 +937,7 @@ Miscellaneous Components
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg, dark-invert
     SML, components/sml, sml.svg
+    SUN-GTIL2 inverter, components/sun_gtil2, sun_1000g2.png
     Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     WireGuard, components/wireguard, wireguard_custom_logo.svg
