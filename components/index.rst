@@ -11,6 +11,7 @@ Components
     fan/index
     light/index
     number/index
+    datetime/index
     output/index
     select/index
     sensor/index
@@ -28,4 +29,5 @@ Components
     time/index
     alarm_control_panel/index
     text/index
+    valve/index
     *
