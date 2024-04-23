@@ -241,7 +241,6 @@ Core
 
     Sensor Core, components/sensor/index, folder-open.svg, dark-invert
     Template Sensor, components/sensor/template, description.svg, dark-invert
-    Custom Sensor, components/sensor/custom, language-cpp.svg, dark-invert
     Home Assistant, components/sensor/homeassistant, home-assistant.svg, dark-invert
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     Uptime Sensor, components/sensor/uptime, timer.svg, dark-invert
@@ -541,7 +540,6 @@ Core
 .. imgtable::
 
     Binary Sensor Core, components/binary_sensor/index, folder-open.svg, dark-invert
-    Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg, dark-invert
     GPIO, components/binary_sensor/gpio, pin.svg, dark-invert
     Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg, dark-invert
     Status, components/binary_sensor/status, server-network.svg, dark-invert
@@ -597,8 +595,8 @@ Presence Detection
 
 .. imgtable::
 
-    DFRobot mmWave Radar, components/dfrobot_sen0395, dfrobot_sen0395.jpg
     AT581X, components/at581x, at581x.png
+    DFRobot mmWave Radar, components/dfrobot_sen0395, dfrobot_sen0395.jpg
     LD2410, components/sensor/ld2410, ld2410.jpg
     LD2420, components/sensor/ld2420, ld2420.jpg
     Seeed Studio MR24HPC1 mmWave, components/seeed_mr24hpc1, seeed-mr24hpc1.jpg
@@ -627,7 +625,6 @@ Output Components
 
     Output Core, components/output/index, folder-open.svg, dark-invert
     Template Output, components/output/template, description.svg, dark-invert
-    Custom Output, components/output/custom, language-cpp.svg, dark-invert
     AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg, dark-invert
     BLE Binary Output, components/output/ble_client, bluetooth.svg, dark-invert
     BP1658CJ, components/output/bp1658cj, bp1658cj.svg
@@ -663,7 +660,6 @@ Light Components
 .. imgtable::
 
     Light Core, components/light/index, folder-open.svg, dark-invert
-    Custom Light, components/light/custom, language-cpp.svg, dark-invert
     Binary Light, components/light/binary, lightbulb.svg, dark-invert
     Cold+Warm White Light, components/light/cwww, brightness-medium.svg, dark-invert
     Color Temperature Light, components/light/color_temperature, brightness-medium.svg, dark-invert
@@ -696,11 +692,10 @@ Switch Components
 
     Switch Core, components/switch/index, folder-open.svg, dark-invert
     Template Switch, components/switch/template, description.svg, dark-invert
-    Custom Switch, components/switch/custom, language-cpp.svg, dark-invert
-    GPIO Switch, components/switch/gpio, pin.svg, dark-invert
     BLE Client Switch, components/switch/ble_client, bluetooth.svg, dark-invert
     Factory Reset Switch, components/switch/factory_reset, restart-alert.svg, dark-invert
     Generic Output Switch, components/switch/output, upload.svg, dark-invert
+    GPIO Switch, components/switch/gpio, pin.svg, dark-invert
     Modbus Switch, components/switch/modbus_controller, modbus.png
     Nextion Switch, components/switch/nextion, nextion.jpg
     Restart Switch, components/switch/restart, restart.svg, dark-invert
@@ -763,12 +758,12 @@ Display Hardware Platforms
     WSPICOLCD, components/display/ili9xxx, ili9488.svg
     Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
-    MAX7219, components/display/max7219, max7219.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
+    MAX7219, components/display/max7219, max7219.jpg
     Nextion, components/display/nextion, nextion.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
-    Quad SPI AMOLED, components/display/qspi_amoled, t4-s3.jpg
     PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
+    Quad SPI AMOLED, components/display/qspi_amoled, t4-s3.jpg
     RPI_DPI_RGB, components/display/rpi_dpi_rgb, waveshare_touch-s3.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1322, components/display/ssd1322, ssd1322.jpg
@@ -777,8 +772,8 @@ Display Hardware Platforms
     SSD1331, components/display/ssd1331, ssd1331.jpg
     SSD1351, components/display/ssd1351, ssd1351.jpg
     ST7567, components/display/st7567, st7567.jpg
-    ST7735, components/display/st7735, st7735.jpg
     ST7701S, components/display/st7701s, indicator.jpg
+    ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     ST7796, components/display/ili9xxx, st7796.svg
     ST7920, components/display/st7920, st7920.jpg
@@ -810,14 +805,12 @@ Cover Components
 
     Cover Core, components/cover/index, folder-open.svg, dark-invert
     Template Cover, components/cover/template, description.svg, dark-invert
-    Custom Cover, components/cover/custom, language-cpp.svg, dark-invert
+    AM43 Cover, components/cover/am43, am43.jpg
     Current-Based Cover, components/cover/current_based, flash.svg, dark-invert
     Endstop Cover, components/cover/endstop, electric-switch.svg, dark-invert
     Feedback Cover, components/cover/feedback, feedback_cover.svg, dark-invert
-    Time-Based Cover, components/cover/time_based, timer.svg, dark-invert
-
-    AM43 Cover, components/cover/am43, am43.jpg
     HE60R Cover, components/cover/he60r, he60r.jpg
+    Time-Based Cover, components/cover/time_based, timer.svg, dark-invert
     Tuya Cover, components/cover/tuya, tuya.png
 
 Text Components
@@ -835,7 +828,6 @@ Text Sensor Components
 
     Text Sensor Core, components/text_sensor/index, folder-open.svg, dark-invert
     Template Text Sensor, components/text_sensor/template, description.svg, dark-invert
-    Custom Text Sensor, components/text_sensor/custom, language-cpp.svg, dark-invert
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg, dark-invert
     Ethernet Info, components/text_sensor/ethernet_info, ethernet.svg, dark-invert
     Home Assistant, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
@@ -855,16 +847,14 @@ Climate Components
 .. imgtable::
 
     Climate Core, components/climate/index, folder-open.svg, dark-invert
-    Custom Climate, components/climate/custom, language-cpp.svg, dark-invert
-    Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg, dark-invert
-    PID Controller, components/climate/pid, function.svg, dark-invert
-    Thermostat Controller, components/climate/thermostat, air-conditioner.svg, dark-invert
-
     Anova Cooker, components/climate/anova, anova.png
+    Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg, dark-invert
     BedJet Climate System, components/climate/bedjet, bedjet.png
     Haier Climate, components/climate/haier, haier.svg
     IR Remote Climate, components/climate/climate_ir, air-conditioner-ir.svg, dark-invert
     Midea, components/climate/midea, midea.svg
+    PID Controller, components/climate/pid, function.svg, dark-invert
+    Thermostat Controller, components/climate/thermostat, air-conditioner.svg, dark-invert
     Tuya Climate, components/climate/tuya, tuya.png
     Uponor Smatrix Base Pulse Underfloor Heating, components/uponor_smatrix, uponor.svg
 
@@ -874,8 +864,8 @@ Number Components
 .. imgtable::
 
     Number Core, components/number/index, folder-open.svg, dark-invert
-    Modbus Number, components/number/modbus_controller, modbus.png
     Template Number, components/number/template, description.svg, dark-invert
+    Modbus Number, components/number/modbus_controller, modbus.png
     Tuya Number, components/number/tuya, tuya.png
 
 Select Components
@@ -1014,14 +1004,24 @@ Miscellaneous Components
     Sun, components/sun, weather-sunny.svg, dark-invert
     Tuya MCU, components/tuya, tuya.png
 
-Additional Custom Components
-----------------------------
+Custom Components
+-----------------
 
-**Note: Custom Components have been deprecated in favor of** :doc:`components/external_components`!
+**Note: Custom Components are deprecated in favor of** :doc:`components/external_components`!
 
 .. imgtable::
 
     Generic Custom Component, custom/custom_component, language-cpp.svg, dark-invert
+
+    Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg, dark-invert
+    Custom Climate, components/climate/custom, language-cpp.svg, dark-invert
+    Custom Cover, components/cover/custom, language-cpp.svg, dark-invert
+    Custom Light, components/light/custom, language-cpp.svg, dark-invert
+    Custom Output, components/output/custom, language-cpp.svg, dark-invert
+    Custom Sensor, components/sensor/custom, language-cpp.svg, dark-invert
+    Custom Switch, components/switch/custom, language-cpp.svg, dark-invert
+    Custom Text Sensor, components/text_sensor/custom, language-cpp.svg, dark-invert
+
     Custom I²C Component, custom/i2c, language-cpp.svg, dark-invert
     Custom SPI Component, custom/spi, language-cpp.svg, dark-invert
     Custom UART Component, custom/uart, language-cpp.svg, dark-invert
