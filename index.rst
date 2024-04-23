@@ -811,12 +811,13 @@ Cover Components
     Cover Core, components/cover/index, folder-open.svg, dark-invert
     Template Cover, components/cover/template, description.svg, dark-invert
     Custom Cover, components/cover/custom, language-cpp.svg, dark-invert
-    AM43 Cover, components/cover/am43, am43.jpg
     Current-Based Cover, components/cover/current_based, flash.svg, dark-invert
     Endstop Cover, components/cover/endstop, electric-switch.svg, dark-invert
     Feedback Cover, components/cover/feedback, feedback_cover.svg, dark-invert
-    HE60R Cover, components/cover/he60r, he60r.jpg
     Time-Based Cover, components/cover/time_based, timer.svg, dark-invert
+
+    AM43 Cover, components/cover/am43, am43.jpg
+    HE60R Cover, components/cover/he60r, he60r.jpg
     Tuya Cover, components/cover/tuya, tuya.png
 
 Text Components
@@ -855,14 +856,15 @@ Climate Components
 
     Climate Core, components/climate/index, folder-open.svg, dark-invert
     Custom Climate, components/climate/custom, language-cpp.svg, dark-invert
-    Anova Cooker, components/climate/anova, anova.png
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg, dark-invert
+    PID Controller, components/climate/pid, function.svg, dark-invert
+    Thermostat Controller, components/climate/thermostat, air-conditioner.svg, dark-invert
+
+    Anova Cooker, components/climate/anova, anova.png
     BedJet Climate System, components/climate/bedjet, bedjet.png
     Haier Climate, components/climate/haier, haier.svg
     IR Remote Climate, components/climate/climate_ir, air-conditioner-ir.svg, dark-invert
     Midea, components/climate/midea, midea.svg
-    PID Controller, components/climate/pid, function.svg, dark-invert
-    Thermostat Controller, components/climate/thermostat, air-conditioner.svg, dark-invert
     Tuya Climate, components/climate/tuya, tuya.png
     Uponor Smatrix Base Pulse Underfloor Heating, components/uponor_smatrix, uponor.svg
 
