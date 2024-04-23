@@ -736,6 +736,14 @@ Cover Components
     Tuya Cover, components/cover/tuya, tuya.png
     HE60R Cover, components/cover/he60r, he60r.jpg
 
+Valve Components
+----------------
+
+.. imgtable::
+
+    Valve Core, components/valve/index, folder-open.svg, dark-invert
+    Template Valve, components/valve/template, description.svg, dark-invert
+
 Text Sensor Components
 ----------------------
 

@@ -38,6 +38,18 @@ use that route instead. This is more reliable because the ESPHome API uses a TCP
 your audio will also be encrypted in transit.
 
 
+Release 2024.4.1 - April 23
+---------------------------
+
+- [Tuya Climate] Fix compilation error caused by codegen :esphomepr:`6568` by :ghuser:`zry98`
+- wifi: fix reconnect issue due to enablement of fast connect :esphomepr:`6598` by :ghuser:`jpeletier`
+- Calibrate Beken internal temperature :esphomepr:`6599` by :ghuser:`Mat931`
+- fix streaming logs from MQTT for ESP32 devices using TLS :esphomepr:`6605` by :ghuser:`ccutrer`
+- Disallow variant/family override for known boards :esphomepr:`6512` by :ghuser:`clydebarrow`
+- esp32_ble: Consider ESP_BT_STATUS_DONE a successful state :esphomepr:`6493` by :ghuser:`polyfloyd`
+- Fix or filter :esphomepr:`6574` by :ghuser:`swoboda1337`
+
+
 Full list of changes
 --------------------
 
