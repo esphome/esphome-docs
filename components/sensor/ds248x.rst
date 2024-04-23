@@ -123,7 +123,6 @@ To initialize a sensor, first supply either ``address`` **or** ``index`` to iden
           channel: 0
           name: "Livingroom Temperature"
           resolution: 12
-	  
 
 Configuration variables:
 ************************
@@ -189,13 +188,13 @@ Now we can add the individual sensors to our configuration:
     sensor:
       - platform: ds248x
         address: 0x80000002a5fea828
-	channel: 0
+        channel: 0
         name: "Temperature #1"
       - platform: ds248x
         address: 0xf10000051c169828
-	chanel: 1
+        channel: 1
         name: "Temperature #2"
-	
+
         # ...
 
 Next, individually warm up or cool down the sensors and observe the log again.
@@ -216,7 +215,7 @@ Use this if you have multiple ds248x hubs on your I²C bus:
     # Example configuration entry
     ds248x:
       - type: ds2482-800
-	id: hub_1
+        id: hub_1
         address: 0x18
         active_pullup: true
         strong_pullup: false
@@ -224,7 +223,7 @@ Use this if you have multiple ds248x hubs on your I²C bus:
         update_interval: 10s
 
       - type: ds2482-800
-	id: hub_2
+        id: hub_2
         address: 0x19
         active_pullup: true
         strong_pullup: false
