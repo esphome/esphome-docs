@@ -121,8 +121,8 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
 
 .. _devices:
 
-Supported Processors
---------------------
+Supported Microcontrollers
+--------------------------
 
 .. imgtable::
 
@@ -132,10 +132,10 @@ Supported Processors
     BK72xx, components/libretiny, bk72xx.svg
     RTL87xx, components/libretiny, rtl87xx.svg
 
-Processor Peripherals
----------------------
+Microcontroller Peripherals
+---------------------------
 
-Peripherals which directly support the operation of the processor(s).
+Peripherals which directly support the operation of the microcontroller's processor(s).
 
 .. imgtable::
 
@@ -210,24 +210,23 @@ Hardware Peripheral Interfaces/Busses
     I²S Audio, components/i2s_audio, i2s_audio.svg
     SPI Bus, components/spi, spi.svg
     UART, components/uart, uart.svg
-    ESP32 Camera, components/esp32_camera, camera.svg, dark-invert
 
-I/O Expanders
--------------
+I/O Expanders/Multiplexers
+--------------------------
 
 .. imgtable::
 
-    MAX6956 I/O expander - I²C Bus, components/max6956, max6956.jpg
-    MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
-    MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
-    PCA6416A I/O Expander, components/pca6416a, pca6416a.svg
-    PCA9554 I/O Expander, components/pca9554, pca9554a.jpg
-    PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
-    SN74HC165 I/O Expander, components/sn74hc165, sn74hc595.jpg
-    SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
-    SX1509 I/O Expander, components/sx1509, sx1509.jpg
+    MAX6956 - I²C Bus, components/max6956, max6956.jpg
+    MCP230XX - I²C Bus, components/mcp230xx, mcp230xx.svg
+    MCP23SXX - SPI Bus, components/mcp23Sxx, mcp230xx.svg
+    PCA6416A, components/pca6416a, pca6416a.svg
+    PCA9554, components/pca9554, pca9554a.jpg
+    PCF8574, components/pcf8574, pcf8574.jpg
+    SN74HC165, components/sn74hc165, sn74hc595.jpg
+    SN74HC595, components/sn74hc595, sn74hc595.jpg
+    SX1509, components/sx1509, sx1509.jpg
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
-    XL9535 I/O Expander, components/xl9535, xl9535.svg
+    XL9535, components/xl9535, xl9535.svg
 
 Sensor Components
 -----------------
@@ -540,10 +539,10 @@ Core
 .. imgtable::
 
     Binary Sensor Core, components/binary_sensor/index, folder-open.svg, dark-invert
+    Template Binary Sensor, components/binary_sensor/template, description.svg, dark-invert
     GPIO, components/binary_sensor/gpio, pin.svg, dark-invert
     Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg, dark-invert
     Status, components/binary_sensor/status, server-network.svg, dark-invert
-    Template Binary Sensor, components/binary_sensor/template, description.svg, dark-invert
 
 Capacitive Touch
 ****************
@@ -740,7 +739,7 @@ Display Components
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
     Font Renderer, components/display/fonts, format-font.svg, dark-invert
 
-    Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.jpg
+    Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.png
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
 
 Display Hardware Platforms
@@ -925,8 +924,10 @@ Time Components
     PCF8563 RTC, components/time/pcf8563, clock-outline.svg, dark-invert
     SNTP, components/time/sntp, clock-outline.svg, dark-invert
 
-Home Assistant Companion Components
------------------------------------
+Home Assistant Components
+-------------------------
+
+Components specifically for interacting with Home Assistant.
 
 .. imgtable::
 
@@ -995,6 +996,7 @@ Miscellaneous Components
 
 .. imgtable::
 
+    ESP32 Camera, components/esp32_camera, camera.svg, dark-invert
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     GPS, components/gps, crosshairs-gps.svg, dark-invert
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg, dark-invert
