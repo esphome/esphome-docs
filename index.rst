@@ -121,10 +121,8 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
 
 .. _devices:
 
-Processor Components
+Supported Processors
 --------------------
-
-Processors ESPHome supports.
 
 .. imgtable::
 
@@ -134,10 +132,10 @@ Processors ESPHome supports.
     BK72xx, components/libretiny, bk72xx.svg
     RTL87xx, components/libretiny, rtl87xx.svg
 
-Processor Peripheral Components
--------------------------------
+Processor Peripherals
+---------------------
 
-Peripherals which directly support the processor(s).
+Peripherals which directly support the operation of the processor(s).
 
 .. imgtable::
 
@@ -159,16 +157,16 @@ ESPHome-specific components or components supporting ESPHome device provisioning
     Improv via BLE, components/esp32_improv, improv.svg, dark-invert
     Improv via Serial, components/improv_serial, improv.svg, dark-invert
 
-Network Hardware Components
----------------------------
+Network Hardware
+----------------
 
 .. imgtable::
 
     WiFi, components/wifi, network-wifi.svg, dark-invert
     ESP32 Ethernet, components/ethernet, ethernet.svg, dark-invert
 
-Network Protocol Components
----------------------------
+Network Protocols
+-----------------
 
 .. imgtable::
 
@@ -179,8 +177,8 @@ Network Protocol Components
     mDNS, components/mdns, radio-tower.svg, dark-invert
     WireGuard, components/wireguard, wireguard_custom_logo.svg
 
-Bluetooth Components
---------------------
+Bluetooth/BLE
+-------------
 
 .. imgtable::
 
@@ -190,8 +188,8 @@ Bluetooth Components
     Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg, dark-invert
     Improv via BLE, components/esp32_improv, improv.svg, dark-invert
 
-Management and Monitoring Components
-------------------------------------
+Management and Monitoring
+-------------------------
 
 .. imgtable::
 
@@ -202,8 +200,8 @@ Management and Monitoring Components
     Web Server, components/web_server, http.svg, dark-invert
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg, dark-invert
 
-Hardware Peripheral Interface/Bus Components
---------------------------------------------
+Hardware Peripheral Interfaces/Busses
+-------------------------------------
 
 .. imgtable::
 
@@ -214,8 +212,8 @@ Hardware Peripheral Interface/Bus Components
     UART, components/uart, uart.svg
     ESP32 Camera, components/esp32_camera, camera.svg, dark-invert
 
-Input/Output Expansion Interface Components
--------------------------------------------
+I/O Expanders
+-------------
 
 .. imgtable::
 
@@ -568,8 +566,8 @@ Mechanical
     TM1637, components/display/tm1637, tm1637.jpg
     TM1638, components/display/tm1638, tm1638.jpg
 
-NFC/RFID Components
-*******************
+NFC/RFID
+********
 
 Often known as "tag" or "card" readers within the community.
 
@@ -821,6 +819,14 @@ Cover Components
     Time-Based Cover, components/cover/time_based, timer.svg, dark-invert
     Tuya Cover, components/cover/tuya, tuya.png
 
+Text Components
+---------------
+
+.. imgtable::
+
+    Text Core, components/text/index, folder-open.svg, dark-invert
+    Template Text, components/text/template, description.svg, dark-invert
+
 Text Sensor Components
 ----------------------
 
@@ -888,14 +894,6 @@ Lock Components
     Lock Core, components/lock/index, folder-open.svg, dark-invert
     Template Lock, components/lock/template, description.svg, dark-invert
     Generic Output Lock, components/lock/output, upload.svg, dark-invert
-
-Text Components
----------------
-
-.. imgtable::
-
-    Text Core, components/text/index, folder-open.svg, dark-invert
-    Template Text, components/text/template, description.svg, dark-invert
 
 Media Player Components
 -----------------------
@@ -975,8 +973,8 @@ Energy/Solar Management
     SML, components/sml, sml.svg
     SUN-GTIL2 inverter, components/sun_gtil2, sun_1000g2.png
 
-Electromechanical Components
-----------------------------
+Electromechanical
+-----------------
 
 .. imgtable::
 
@@ -987,8 +985,8 @@ Electromechanical Components
     Servo, components/servo, servo.svg
     Stepper, components/stepper/index, stepper.svg
 
-Wireless Communication Components
----------------------------------
+Wireless Communication
+----------------------
 
 Wireless communication that is **not Wi-Fi.**
 
