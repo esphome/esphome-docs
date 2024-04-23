@@ -8,6 +8,10 @@ Valve Component
 The ``valve`` component is a generic representation of valves in ESPHome. A valve can (currently) either be *closed* or
 *open* and supports three commands: *open*, *close* and *stop*.
 
+.. note::
+
+    To use a valve in Home Assistant requires Home Assistant 2024.5 or later.
+
 .. figure:: images/valve-ui.png
     :align: center
 
@@ -42,11 +46,9 @@ Advanced options:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will not be exposed to the
   frontend (like Home Assistant). Only specifying an ``id`` without a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, this entity should not be added to any client's frontend,
-  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI). Requires Home Assistant
-  2021.9 or newer. Defaults to ``false``.
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI). Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity. See
-  https://developers.home-assistant.io/docs/core/entity/#generic-properties for a list of available options. Requires
-  Home Assistant 2021.11 or newer. Set to ``""`` to remove the default entity category.
+  https://developers.home-assistant.io/docs/core/entity/#generic-properties for a list of available options. Set to ``""`` to remove the default entity category.
 
 MQTT options:
 
