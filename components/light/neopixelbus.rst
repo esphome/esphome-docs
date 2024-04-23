@@ -18,7 +18,7 @@ in ESPHome for individually addressable lights like NeoPixel or WS2812.
 It is very similar to the :doc:`fastled` platform.
 In fact, most addressable lights are supported through both light platforms. The
 difference is that they use different libraries: while the fastled platform uses
-the `FastLED <https://github.com/FastLED/FastLED>`__ library, this integration uses
+the `FastLED <https://github.com/FastLED/FastLED>`__ library, this component uses
 the `NeoPixelBus <https://github.com/Makuna/NeoPixelBus/>`__ library internally.
 
 .. code-block:: yaml
