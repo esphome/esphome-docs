@@ -56,8 +56,8 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
             <h3 class="guide-card-title">Next steps</h3>
             <ul>
                 <li>
-                    <a class="reference" href="/guides/faq.html">
-                        FAQ and Tips
+                    <a class="reference" href="/guides/components.html">
+                        Components
                     </a>
                 </li>
                 <li>
@@ -66,13 +66,18 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/diy.html">
-                        DIY Examples
+                    <a class="reference" href="/guides/configuration-types.html">
+                        Configuration types
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/configuration-types.html">
-                        Configuration types
+                    <a class="reference" href="/guides/faq.html">
+                        FAQ and Tips
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/diy.html">
+                        DIY Examples
                     </a>
                 </li>
                 <li>
@@ -156,6 +161,12 @@ ESPHome-specific components or components supporting ESPHome device provisioning
     External Components, components/external_components, external_components.svg, dark-invert
     Improv via BLE, components/esp32_improv, improv.svg, dark-invert
     Improv via Serial, components/improv_serial, improv.svg, dark-invert
+    Intervals, guides/components#interval
+    Global Variables, guides/components#config-globals
+    Packages, guides/components#packages
+    Scripts, guides/automations#script
+    Substitutions, guides/components#substitution
+
 
 Network Hardware
 ----------------
