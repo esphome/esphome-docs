@@ -5,8 +5,17 @@ I²S Audio Microphone
     :description: Instructions for setting up I²S based microphones in ESPHome.
     :image: i2s_audio.svg
 
-The ``i2s_audio`` microphone platform allows you to receive audio via the the
-:doc:`/components/i2s_audio`. This platform only works on ESP32 based chips.
+The ``i2s_audio`` microphone platform allows you to receive audio via the the :doc:`/components/i2s_audio`.
+
+This platform only works on ESP32 based chips.
+
+.. warning::
+
+    Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
+
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. In particular, Bluetooth/BLE components are known to cause issues when used in
+    combination with Voice Assistant and/or other audio components.
 
 .. code-block:: yaml
 
@@ -32,9 +41,11 @@ Configuration variables:
   - ``internal``: Use the internal ADC of the ESP32. Only supported on ESP32, no variant support.
 
 - **channel** (*Optional*, enum): The channel of the microphone. One of ``left`` or ``right``. Defaults to ``right``.
+- **sample_rate** (*Optional*, positive integer): I2S sample rate. Defaults to ``16000``.
 - **bits_per_sample** (*Optional*, enum): The bit depth of the audio samples. Note that while set to ``32bit``, the samples
   will be scaled down to 16bit before being forwarded.
   One of ``16bit`` or ``32bit``. Defaults to ``16bit``.
+- **use_apll** (*Optional*, boolean): I2S using APLL as main I2S clock, enable it to get accurate clock. Defaults to ``false``.
 - **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this microphone.
 - All other options from :ref:`Microphone <config-microphone>`
 

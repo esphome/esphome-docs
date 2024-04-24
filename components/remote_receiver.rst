@@ -30,13 +30,18 @@ Configuration variables:
 - **dump** (*Optional*, list): Decode and dump these remote codes in the logs (at log.level=DEBUG).
   Set to ``all`` to dump all available codecs:
 
+  - **abbwelcome**: Decode and dump ABB-Welcome codes. Messages are sent via copper wires. See :ref:`remote_transmitter-transmit_abbwelcome`
   - **aeha**: Decode and dump AEHA infrared codes.
+  - **byronsx**: Decode and dump Byron SX doorbell RF codes.
   - **canalsat**: Decode and dump CanalSat infrared codes.
   - **canalsatld**: Decode and dump CanalSatLD infrared codes.
   - **coolix**: Decode and dump Coolix infrared codes.
   - **dish**: Decode and dump Dish infrared codes.
+  - **dooya**: Decode and dump Dooya RF codes.
   - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **jvc**: Decode and dump JVC infrared codes.
+  - **keeloq**: Decode and dump KeeLoq RF codes.
+  - **haier**: Decode and dump Haier infrared codes.
   - **lg**: Decode and dump LG infrared codes.
   - **magiquest**: Decode and dump MagiQuest wand infrared codes.
   - **midea**: Decode and dump Midea infrared codes.
@@ -59,6 +64,17 @@ Configuration variables:
   decoding process. Defaults to ``25%``.
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kB``
   on the ESP32 and ``1kB`` on the ESP8266.
+- **rmt_channel** (*Optional*, int): The RMT channel to use. Only on **esp32**.
+  The following ESP32 variants have these channels available:
+
+  .. csv-table::
+      :header: "ESP32 Variant", "Channels"
+
+      "ESP32", "0, 1, 2, 3, 4, 5, 6, 7"
+      "ESP32-S2", "0, 1, 2, 3"
+      "ESP32-S3", "4, 5, 6, 7"
+      "ESP32-C3", "2, 3"
+
 - **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. Defaults to
   ``3``.
 - **filter** (*Optional*, :ref:`config-time`): Filter any pulses that are shorter than this. Useful for removing
@@ -77,8 +93,14 @@ Configuration variables:
 Automations:
 ------------
 
+- **on_abbwelcome** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  ABB-Welcome code has been decoded. A variable ``x`` of type :apiclass:`remote_base::ABBWelcomeData`
+  is passed to the automation for use in lambdas.
 - **on_aeha** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   AEHA remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::AEHAData`
+  is passed to the automation for use in lambdas.
+- **on_byronsx** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Byron SX doorbell RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ByronSXData`
   is passed to the automation for use in lambdas.
 - **on_canalsat** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   CanalSat remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::CanalSatData`
@@ -93,11 +115,20 @@ Automations:
   dish network remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DishData`
   is passed to the automation for use in lambdas.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
+- **on_dooya** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Dooya RF remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DooyaData`
+  is passed to the automation for use in lambdas.
 - **on_drayton** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Drayton Digistat RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DraytonData`
   is passed to the automation for use in lambdas.
 - **on_jvc** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   JVC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::JVCData`
+  is passed to the automation for use in lambdas.
+- **on_keeloq** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  KeeLoq RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::KeeloqData`
+  is passed to the automation for use in lambdas.
+- **on_haier** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Haier remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::HaierData`
   is passed to the automation for use in lambdas.
 - **on_lg** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   LG remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::LGData`
@@ -199,11 +230,31 @@ Configuration variables:
 
 Remote code selection (exactly one of these has to be included):
 
+- **abbwelcome**: Trigger on a decoded ABB-Welcome code with the given data.
+
+  - **source_address** (**Required**, int): The source address to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
+    for more info.
+  - **destination_address** (**Required**, int): The destination address to trigger on, see
+    :ref:`remote_transmitter-transmit_abbwelcome` for more info.
+  - **three_byte_address** (**Optional**, boolean): The length of the source and destination address. ``false`` means two bytes
+    and ``true`` means three bytes. Defaults to ``false``.
+  - **retransmission** (**Optional**, boolean): ``true`` if the message was re-transmitted. Defaults to ``false``.
+  - **message_type** (**Required**, int): The message type to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
+    for more info.
+  - **message_id** (**Optional**, int): The random message ID to trigger on, see dumper output for more info. Defaults to any ID.
+  - **data** (**Optional**, 0-7 bytes list): The code to listen for. Usually you only need to copy this directly from the
+    dumper output. Defaults to ``[]``
+
 - **aeha**: Trigger on a decoded AEHA remote code with the given data.
 
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
   - **data** (**Required**, 3-35 bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_aeha`
     for more info. Usually you only need to copy this directly from the dumper output.
+
+- **byronsx**: Trigger on a decoded Byron SX Doorbell RF remote code with the given data.
+
+  - **address** (**Required**, int): The 8-bit ID code to trigger on, see dumper output for more info.
+  - **command** (**Optional**, int): The 4-bit command to listen for. If omitted, will match on any command.
 
 - **canalsat**: Trigger on a decoded CanalSat remote code with the given data.
 
@@ -217,15 +268,25 @@ Remote code selection (exactly one of these has to be included):
   - **address** (*Optional*, int): The address (or subdevice) to trigger on, see dumper output for more info. Defaults to ``0``
   - **command** (**Required**, int): The command to listen for.
 
-- **coolix**: Trigger on a decoded Coolix remote code with the given data.
+- **coolix**: Trigger on a decoded Coolix remote code with the given data. It is possible to directly specify a 24-bit code,
+  it will be checked for a match to at least one of the two received packets. The main configuration scheme is below.
 
-  - **data** (**Required**, int): The 24-bit Coolix code to trigger on, see dumper output for more info.
+  - **first** (**Required**, uint32_t): The first 24-bit Coolix code to trigger on, see dumper output for more info.
+  - **second** (*Optional*, uint32_t): The second 24-bit Coolix code to trigger on, see dumper output for more info.
+    If not set, trigger on on only single non-strict packet, specified by the ``first`` parameter.
 
 - **dish**: Trigger on a decoded Dish Network remote code with the given data.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
 
   - **address** (*Optional*, int): The number of the receiver to target, between 1 and 16 inclusive. Defaults to ``1``.
   - **command** (**Required**, int): The Dish command to listen for, between 0 and 63 inclusive.
+
+- **dooya**: Trigger on a decoded Dooya RF remote code with the given data.
+
+  - **id** (**Required**, int): The 24-bit ID code to trigger on.
+  - **channel** (**Required**, int): The 8-bit channel to listen for.
+  - **button** (**Required**, int): The 4-bit button to listen for.
+  - **check** (**Required**, int): The 4-bit check to listen for. Includes an indication that a button is being held down.
 
 - **drayton**: Trigger on a decoded Drayton Digistat RF remote code with the given data.
 
@@ -236,6 +297,16 @@ Remote code selection (exactly one of these has to be included):
 - **jvc**: Trigger on a decoded JVC remote code with the given data.
 
   - **data** (**Required**, int): The JVC code to trigger on, see dumper output for more info.
+
+- **keeloq**: Trigger on a decoded KeeLoq RF remote code with the given data.
+
+  - **address** (**Required**, int): The 32-bit ID code to trigger on, see dumper output for more info.
+  - **command** (**Required**, int): The 8-bit switch/command to listen for. If omitted, will match on any command/button.
+
+- **haier**: Trigger on a Haier remote code with the given code.
+
+  - **code** (**Required**, 13-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_haier`
+    for more info. Usually you only need to copy this directly from the dumper output.
 
 - **lg**: Trigger on a decoded LG remote code with the given data.
 
@@ -278,6 +349,8 @@ Remote code selection (exactly one of these has to be included):
 
   - **data** (**Required**, string): The code to listen for, see :ref:`remote_transmitter-transmit_raw`
     for more info. Usually you only need to copy this directly from the dumper output.
+  - **delta** (**Optional**, integer): This parameter allows you to manually specify the allowed difference
+    between what Pronto code is specified, and what IR signal has been sent by the remote control.
 
 - **raw**: Trigger on a raw remote code with the given code.
 
@@ -410,3 +483,4 @@ See Also
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote/remote_receiver.h`
 - :ghedit:`Edit`
+

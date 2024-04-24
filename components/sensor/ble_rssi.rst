@@ -10,6 +10,14 @@ The ``ble_rssi`` sensor platform lets you track the RSSI value or signal strengt
 BLE device. See :ref:`the binary sensor setup <esp32_ble_tracker-setting_up_devices>` for
 instructions for setting up this platform.
 
+.. warning::
+
+    The BLE software stack on the ESP32 consumes a significant amount of RAM on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. Memory-intensive components such as :doc:`/components/voice_assistant` and other
+    audio components are most likely to cause issues.
+
 .. code-block:: yaml
 
     # Example configuration entry

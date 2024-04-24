@@ -48,6 +48,7 @@ Configuration variables:
   row by row. Required for ``key_collector`` and ``binary_sensor`` (if using key selection).
 - **has_diodes** (*Optional*, boolean): For pads where row pins are outputs, and the keys are
   connected with diodes. Defaults to ``false``.
+- **has_pulldowns** (*Optional*, boolean): For pads where the column lines have external pulldowns. Defaults to ``false``.
 
 
 Binary Sensor

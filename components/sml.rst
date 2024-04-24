@@ -47,6 +47,13 @@ smart meter. If you see checksum errors in the log try changing the interface pa
     sml:
       id: mysml
       uart_id: uart_bus
+      on_data:
+        - lambda: !lambda |-
+            if (valid) {
+              id(mqttclient).publish("gridmeter/sensor/sml/state", format_hex(bytes));
+            } else {
+              id(mqttclient).publish("gridmeter/sensor/sml/error", format_hex(bytes));
+            }
 
     sensor:
       - platform: sml
@@ -100,6 +107,21 @@ Text Sensor
 - **sml_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`SML platform <sml-platform>`
 - **format** (*Optional*, string): Override the automatic interpretation of the transmitted binary data value. Possible values (`int`, `uint`, `bool`, `hex`, `text`).
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+Automations:
+------------
+
+- **on_data** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  SML message is received. See :ref:`sml-on-data`.
+
+.. _sml-on-data:
+
+``on_data`` Trigger
+********************
+
+This automation will be triggered when a valid SML message is received. The variable ``bytes`` (of type
+``std::vector<uint8_t>``) contains the raw sml data including start/end sequence. The variable ``valid``
+(of type ``bool``) contains the result of the checksum verification.
 
 
 Getting OBIS codes and sensor ids
@@ -171,6 +193,41 @@ This results in problems when using the sensor in combination with the `Utility 
 The state template provided above checks for the sensor's availability and keeps the
 current state in case of unavailability.
 
+Holley DTZ541 Smart Meters
+--------------------------
+
+The Holley DTZ541 series of electricity meters have a faulty implementation of the SML protocol.
+These meters send multiple conflicting values with the OBIS code ``1-0:1.8.0``, the code for the meter's energy reading.
+Because the first value of every package is the correct value, in order to discard the erroneous values a throttle filter of 0.5s can be applied.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: sml
+        name: "Total energy Consumption"
+        sml_id: mysml
+        obis_code: "1-0:1.8.0"
+        unit_of_measurement: kWh
+        accuracy_decimals: 5
+        device_class: energy
+        state_class: total_increasing
+        filters:
+          - throttle: 0.5s
+          - multiply: 0.0001
+
+These meters can also measure the instantaneous power usage.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: sml
+        name: "Instantaneous power"
+        sml_id: mysml
+        obis_code: "1-0:16.7.0"
+        unit_of_measurement: W
+        accuracy_decimals: 0
+        device_class: power
+        state_class: measurement
 
 See Also
 --------

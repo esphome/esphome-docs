@@ -53,6 +53,7 @@ Configuration example:
 
     sensor:
       - platform: airthings_wave_plus
+        name: wave_plus
         ble_client_id: airthings01
         update_interval: 5min # default
         battery_update_interval: 24h # default
@@ -154,7 +155,7 @@ the AirThings mobile app.
       - platform: copy
         source_id: bv
         name: "WaveMini Battery Level"
-        unit_of_measurement: percent
+        unit_of_measurement: "%"
         device_class: battery
         accuracy_decimals: 0
         filters:
@@ -173,10 +174,16 @@ the AirThings mobile app.
       - platform: copy
         source_id: bv
         name: "WavePlus Battery Level"
-        unit_of_measurement: percent
+        unit_of_measurement: "%"
         device_class: battery
         accuracy_decimals: 0
         filters:
           - calibrate_linear:
             - 2.2 -> 0
             - 3.1 -> 100
+
+See Also
+--------
+
+- :doc:`/components/esp32_ble_tracker`
+- :ghedit:`Edit`

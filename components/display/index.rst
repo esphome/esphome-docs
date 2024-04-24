@@ -9,10 +9,10 @@ The ``display`` component houses ESPHome's powerful rendering and display
 engine. Fundamentally, there are these types of displays:
 
 - Text based displays like :doc:`7-Segment displays <max7219>` or
-  :doc:`some LCD displays <lcd_display>`.
-- Displays like the :doc:`nextion` that have their own processors for rendering.
-- Binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper displays <waveshare_epaper>` or
-  :doc:`OLED displays <ssd1306>`.
+  :doc:`LCD displays <lcd_display>`.
+- Graphical serial displays like :doc:`nextion` that have their own processors for rendering.
+- Graphical binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper <waveshare_epaper>`,
+  :doc:`OLED <ssd1306>` or :doc:`TFT <ili9xxx>` displays.
 
 For the last type, ESPHome has a powerful rendering engine that can do
 many things like draw some basic shapes, print text with any font you want, or even show images.
@@ -33,12 +33,20 @@ In this section we will be discussing how to use ESPHome's display rendering eng
 and some basic commands. Please note that this only applies to displays that can control each pixel
 individually.
 
+.. note::
+
+    Display hardware is complex and sometimes doesn't behave as expected. If you're having trouble with your display,
+    please see :ref:`troubleshooting` below.
+
 So, first a few basics: When setting up a display platform in ESPHome there will be a configuration
 option called ``lambda:`` which will be called every time ESPHome wants to re-render the display.
 In each cycle, the display is automatically cleared before the lambda is executed. You can disable
 this behavior by setting ``auto_clear_enabled: false``.
 In the lambda, you can write code like in any :ref:`lambda <config-lambda>` in ESPHome. Display
 lambdas are additionally passed a variable called ``it`` which represents the rendering engine object.
+
+.. figure:: images/display_rendering_line.png
+    :align: center
 
 .. code-block:: yaml
 
@@ -67,10 +75,12 @@ x always represents the horizontal axis (width) and y the vertical axis (height)
 the rendering engine is always first specify the ``x`` coordinate and then the ``y`` coordinate.
 
 Basic Shapes
-************
+------------
 
-Now that you know a bit more about ESPHome's coordinate system, let's draw some basic shapes like lines, rectangles
-and circles:
+Now that you know a bit more about ESPHome's coordinate system, let's draw some basic shapes like lines, rectangles, circles or even polygons:
+
+.. figure:: images/display_rendering_shapes.png
+    :align: center
 
 .. code-block:: yaml
 
@@ -80,15 +90,28 @@ and circles:
         lambda: |-
           // Draw a line from [0,0] to [100,50]
           it.line(0, 0, 100, 50);
-          // Draw the outline of a rectangle with the top left at [50,60], a width of 30 and a height of 42
-          it.rectangle(50, 60, 30, 42);
-          // Draw the same rectangle, but this time filled.
-          it.filled_rectangle(50, 60, 30, 42);
+          // Draw the outline of a rectangle with the top left at [5,20], a width of 30 and a height of 42
+          it.rectangle(5, 20, 30, 42);
+          // Draw the same rectangle a few pixels apart, but this time filled
+          it.filled_rectangle(40, 40, 30, 42);
 
-          // Circles! Let's draw one with the center at [25,25] and a radius of 10
-          it.circle(25, 25, 10);
+          // Circles! Let's draw one with the center at [20,40] and a radius of 10
+          it.circle(20, 40, 10);
           // ... and the same thing filled again
-          it.filled_circle(25, 25, 10);
+          it.filled_circle(20, 75, 10);
+
+          // Triangles... Let's draw the outline of a triangle from the [x,y] coordinates of its three points
+          // [25,5], [100,5], [80,25]
+          it.triangle(25, 5, 100, 5, 80, 25);
+          // and a filled triangle !
+          it.filled_triangle(115, 5, 95, 25, 125, 70);
+
+          // Regular Polygons? Let's draw a filled, pointy-topped hexagon inscribed in a circle
+          // centered on [170,45] with a radius of 20
+          it.filled_regular_polygon(170, 45, 20, EDGES_HEXAGON);
+          // and the outline of flat-topped octagon around it!
+          it.regular_polygon(170, 45, 40, EDGES_OCTAGON, VARIATION_FLAT_TOP);
+          // Need to rotate the polygon, or retrieve the coordinates of its vertices? Check the API!
 
 All the above methods can optionally also be called with an argument at the end which specifies in which
 color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
@@ -99,18 +122,18 @@ color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color 
       - platform: ...
         # ...
         lambda: |-
-          // Turn the whole display on.
+          // Turn the whole display on
           it.fill(COLOR_ON);
-          // Turn the whole display off.
+          // Turn the whole display off
           it.fill(COLOR_OFF);
 
           // Turn a single pixel off at [50,60]
           it.draw_pixel_at(50, 60, COLOR_OFF);
 
-          // Turn off a whole display portion.
-          it.rectangle(50, 50, 30, 42, COLOR_OFF);
-
 For color displays (e.g. TFT displays), you can use the Color class.
+
+.. figure:: images/display_rendering_colors.png
+    :align: center
 
 .. code-block:: yaml
 
@@ -118,14 +141,16 @@ For color displays (e.g. TFT displays), you can use the Color class.
       - platform: ...
         # ...
         lambda: |-
+          auto black = Color(0, 0, 0);
           auto red = Color(255, 0, 0);
           auto green = Color(0, 255, 0);
           auto blue = Color(0, 0, 255);
           auto white = Color(255, 255, 255);
-          it.rectangle(20, 50, 30, 30, white);
-          it.rectangle(25, 55, 30, 30, red);
-          it.rectangle(30, 60, 30, 30, green);
-          it.rectangle(35, 65, 30, 30, blue);
+          it.filled_circle(20, 32, 15, black);
+          it.filled_circle(40, 32, 15, red);
+          it.filled_circle(60, 32, 15, green);
+          it.filled_circle(80, 32, 15, blue);
+          it.filled_circle(100, 32, 15, white);
 
 Additionally, you have access to two helper methods which will fetch the width and height of the display:
 
@@ -138,107 +163,19 @@ Additionally, you have access to two helper methods which will fetch the width a
           // Draw a circle in the middle of the display
           it.filled_circle(it.get_width() / 2, it.get_height() / 2, 20);
 
+          // Turn off bottom half of the screen
+          it.filled_rectangle(0, it.get_height()/2, it.get_width(), it.get_height()/2, COLOR_OFF);
 
 You can view the full API documentation for the rendering engine in the "API Reference" in the See Also section.
-
-.. _display-fonts:
-
-Fonts
-*****
-
-The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome.
-Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very
-specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf``) font file
-at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Portable_Compiled_Format>`_ and `BDF <https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`_ bitmap fonts! Granted the reason for it is
-actually not having to worry about the licensing of font files :)
-
-To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
-a ``.ttf``, ``.pcf``, or ``.bdf`` file from somewhere on the internet and place it, for example,
-inside a ``fonts`` folder next to your configuration file.
-
-Next, create a ``font:`` section in your configuration:
-
-.. code-block:: yaml
-
-    font:
-      - file: "fonts/Comic Sans MS.ttf"
-        id: my_font
-        size: 20
-
-      # gfonts://family[@weight]
-      - file: "gfonts://Roboto"
-        id: roboto
-        size: 20
-
-      - file:
-          type: gfonts
-          family: Roboto
-          weight: 900
-        id: font2
-        size: 16
-
-      - file: "fonts/tom-thumb.bdf"
-        id: tomthumb
-
-    display:
-      # ...
-
-Configuration variables:
-
-- **file** (**Required**): The path (relative to where the .yaml file is) of the font
-  file. You can use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
-
-  - **type** (**Required**, string): Can be ``gfonts`` or ``local``.
-
-    **Google Fonts**:
-
-    Each Google Font will be downloaded once and cached for future use.
-
-  - **family** (**Required**, string): The name of the Google Font family.
-  - **weight** (*Optional*, enum): The weight of the font. Can be either the text name or the integer value:
-
-    - **thin**: 100
-    - **extra-light**: 200
-    - **light**: 300
-    - **regular**: 400 (**default**)
-    - **medium**: 500
-    - **semi-bold**: 600
-    - **bold**: 700
-    - **extra-bold**: 800
-    - **black**: 900
-
-  - **italic** (*Optional*, boolean): Whether the font should be italic.
-
-    **Local Fonts**:
-
-  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType or bitmap font file.
-
-- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
-  in your display code.
-- **size** (*Optional*, int): The size of the font in pt (not pixel!).
-  If you want to use the same font in different sizes, create two font objects. Note: *size* is ignored
-  by bitmap fonts. Defaults to ``20``.
-- **glyphs** (*Optional*, list): A list of characters you plan to use. Only the characters you specify
-  here will be compiled into the binary. Adjust this if you need some special characters or want to
-  reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
-  be more than one character long if you for example want to use font ligatures. Defaults to
-  ``!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
-
-
-.. note::
-
-    To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
-    to translate the TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
-    add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
-    to install it using
-    ``pip install pillow``.
 
 .. _display-static_text:
 
 Drawing Static Text
-*******************
+-------------------
 
-In your display code, you can render static text by referencing the font and just entering your string:
+To be able to display text, you need to prepare some fonts. ESPHome's :ref:`font renderer <display-fonts>` allows you to use OpenType/TrueType/Bitmap fonts for your texts. This is very flexiblle because you can prepare various sets of fonts at different sizes with a different number of glyphs which is extremely convenient when we're talking about flash space.
+
+In your display code, you can render static text by referencing the font and just entering your string enclosed in double quotes:
 
 .. code-block:: yaml
 
@@ -279,11 +216,25 @@ As with basic shapes, you can also specify a color for the text:
           // Syntax is always: it.print(<x>, <y>, <font>, [color=COLOR_ON], [align=TextAlign::TOP_LEFT], <text>);
           it.print(0, 0, id(my_font), COLOR_ON, "Left aligned");
 
+In case of fonts rendered at higher bit depths, the background color has to be specified after the text in order for antialiasing to work:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          // Syntax is always: it.print(<x>, <y>, <font>, [color=COLOR_ON], [align], <text>, [color=COLOR_OFF]);
+          it.print(0, 0, id(my_font_with_icons), COLOR_ON, TextAlign::CENTER, "Just\U000f05d4here. Already\U000F02D1this.", COLOR_OFF);
+
+
+.. figure:: images/display_rendering_text.png
+    :align: center
 
 .. _display-printf:
 
 Formatted Text
-**************
+--------------
 
 Static text by itself is not too impressive. What we really want is to display *dynamic* content like sensor values
 on the display!. That's where ``printf`` comes in. ``printf`` is a formatting engine from the C era and ESPHome
@@ -333,7 +284,7 @@ Another interesting format string is ``%7.2f``, which would become the right-jus
 - ``.2`` - round the decimal number to ``2`` digits after the decimal point.
 - ``f`` - specifier: f(loat).
 
-You can even have as many format strings as you want in a single printf call. Just make sure the put the
+You can even have as many formatted items as you want in a single printf call. Just make sure the put the
 arguments after the format string in the right order.
 
 .. code-block:: yaml
@@ -354,6 +305,19 @@ To display a text string from a ``text_sensor``, append ``.c_str()`` to the end 
         # ...
         lambda: |-
           it.printf(0, 0, id(my_font), "Text to follow: %s", id(template_text).state.c_str());
+
+
+When using anti-aliased fonts you will probably need to specify the color to draw the characters, and the background
+color to mix in for anti-aliasing. This requires the full version of `printf`, e.g.:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+            it.printf(10, 100, id(roboto), Color(0x123456), COLOR_OFF, display::TextAlign::BASELINE, "%f", id(heap_free).state);
+
 
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
 *could* of course just check the state with an ``if`` statement as the first few lines in the example below, but if
@@ -387,19 +351,19 @@ use any string you pass it, like ``"ON"`` or ``"OFF"``.
 .. _display-strftime:
 
 Displaying Time
-***************
+---------------
 
 You can display current time using a time component. Please see the example :ref:`here <strftime>`.
 
 .. _clipping:
 
 Screen Clipping
-***************
+---------------
 
-Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show 
+Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show
 a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
 
-With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region 
+With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region
 you can stop the clipping process with ``end_clipping();`` . You can nest as many ``start_clipping();`` as you want as long
 you end them as many times as well.
 
@@ -409,7 +373,7 @@ you end them as many times as well.
       - platform: ...
         # ...
         id: my_binary_sensor
-    
+
     color:
       - name: my_red
         red: 100%
@@ -428,12 +392,12 @@ you end them as many times as well.
           it.printf(0, 0, id(my_font), id(my_red), "State: %s", id(my_binary_sensor).state ? "ON" : "OFF");
           it.end_clipping();
 
-After you started clipping you can manipulate the region with ``extend_clipping(left, top, right, bottom);`` 
+After you started clipping you can manipulate the region with ``extend_clipping(left, top, right, bottom);``
 and ``shrink_clipping(left, top, right, bottom);`` within previous set clipping region.
 
 With ``get_clipping();`` you get a ``Rect`` object back with the latest set clipping region.
 
-.. code-block:: cpp 
+.. code-block:: cpp
 
     class Rect {
         int16_t x;  ///< X/Left coordinate
@@ -446,12 +410,10 @@ With ``get_clipping();`` you get a ``Rect`` object back with the latest set clip
 
 With ``is_clipping();`` tells you if clipping is activated.
 
-
-
 .. _config-color:
 
 Color
-*****
+-----
 
 When using RGB-capable displays in ESPHome you may wish to use custom colors.
 A ``color`` component exists for just this purpose:
@@ -501,20 +463,15 @@ RGB displays use red, green, and blue, while grayscale displays may use white.
 .. _display-graphs:
 
 Graph Component
-***************
+---------------
 
 You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in
 memory at the time the sensor updates and will be lost when the device reboots.
 
 Examples:
 
-.. figure:: images/graph_screen.png
+.. figure:: images/display_rendering_graph.png
     :align: center
-    :width: 60.0%
-
-.. figure:: images/graph_dualtrace.png
-    :align: center
-    :width: 60.0%
 
 Graph component with options for grids, border and line-types.
 
@@ -541,6 +498,7 @@ Graph component with options for grids, border and line-types.
             color: my_red
           - sensor: my_outside_temperature
             line_type: SOLID
+            continuous: true
             line_thickness: 3
             color: my_blue
           - sensor: my_beer_temperature
@@ -569,6 +527,7 @@ Trace specific fields:
 - **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
 - **line_thickness** (*Optional*): Defaults to 3
 - **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
+- **continuous** (*Optional*): connects the individual points to make a continuous line.  Defaults to ``false``.
 - **color** (*Optional*): Sets the color of the sensor trace.
 
 And then later in code:
@@ -612,8 +571,11 @@ And then later in code:
     - Axis labels are currently not possible without manually placing them.
     - The grid and border color is set with it.graph(), while the traces are defined separately.
 
+
+.. _display-qrcode:
+
 QR Code Component
-*****************
+-----------------
 
 Use this component to generate a QR-code containing a string on the device, which can then be drawn on compatible displays.
 
@@ -648,8 +610,17 @@ To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
               // Draw the QR-code at position [x=50,y=0] with white color and a 2x scale
               it.qr_code(50, 0, id(homepage_qr), Color(255,255,255), 2);
 
+              // Draw the QR-code in the center of the screen with white color and a 2x scale
+              auto size = id(homepage_qr).get_size() * 2; // Multiply by scale
+              auto x = (it.get_width() / 2) - (size / 2);
+              auto y = (it.get_height() / 2) - (size / 2);
+              it.qr_code(x, y, id(homepage_qr), Color(255,255,255), 2);
+
+
+.. _display-image:
+
 Images
-******
+------
 
 Use this component to store graphical images on the device, you can then draw the images on compatible displays.
 
@@ -667,6 +638,13 @@ Use this component to store graphical images on the device, you can then draw th
         id: alert
         resize: 80x80
 
+.. code-block:: yaml
+
+    image:
+      - file: https://esphome.io/_images/logo.png
+        id: esphome_logo
+        resize: 200x162
+
 Configuration variables:
 
 - **file** (**Required**, string):
@@ -674,7 +652,8 @@ Configuration variables:
   - **Local files**: The path (relative to where the .yaml file is) of the image file.
   - **Material Design Icons**: Specify the `Material Design Icon <https://pictogrammers.com/library/mdi/>`_
     id in the format ``mdi:icon-name``, and that icon will automatically be downloaded and added to the configuration.
-  
+  - **Remote files**: The URL of the image file.
+
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
 - **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
@@ -756,7 +735,7 @@ You can also use this to invert images in two colors display, use ``COLOR_OFF`` 
 as the additional parameters.
 
 Animation
-*********
+---------
 
 Allows to use animated images on displays. Animation inherits all options from the image component.
 It adds additional lambda methods: ``next_frame()``, ``prev_frame()`` and ``set_frame()`` to change the shown picture of a gif.
@@ -951,10 +930,60 @@ You can then switch between these with three different actions:
 
 Additionally the old page will be given as the variable ``from`` and the new one as the variable ``to``.
 
+.. _troubleshooting:
+
+Troubleshooting
+---------------
+
+Color Test Pattern
+------------------
+
+If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
+It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine
+the best way to help you, **a picture of the result of this script is very helpful.**
+
+Should you `create an issue <https://github.com/esphome/issues/issues>`__ in GitHub regarding your display, please
+be sure to **include a link to where you purchased it** so that we can validate the configuration you've used.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        ...
+        lambda: |-
+          int shift_x = (it.get_width()-310)/2;
+          int shift_y = (it.get_height()-256)/2;
+          for(auto i = 0; i<256; i++) {
+            it.horizontal_line(shift_x+  0,i+shift_y,50, my_red.fade_to_white(i));
+            it.horizontal_line(shift_x+ 50,i+shift_y,50, my_red.fade_to_black(i));
+
+            it.horizontal_line(shift_x+105,i+shift_y,50, my_green.fade_to_white(i));
+            it.horizontal_line(shift_x+155,i+shift_y,50, my_green.fade_to_black(i));
+
+            it.horizontal_line(shift_x+210,i+shift_y,50, my_blue.fade_to_white(i));
+            it.horizontal_line(shift_x+260,i+shift_y,50, my_blue.fade_to_black(i));
+          }
+          it.rectangle(shift_x+ 0, 0+shift_y, shift_x+ 310, 256+shift_y, my_yellow);
+
+    color:
+      - id: my_blue
+        blue: 100%
+      - id: my_red
+        red: 100%
+      - id: my_green
+        green: 100%
+      - id: my_white
+        red: 100%
+        blue: 100%
+        green: 100%
+      - id: my_yellow
+        hex: ffff00
+
 See Also
 --------
 
 - :apiref:`display/display_buffer.h`
+- :ref:`Fonts <display-fonts>`
 - :ghedit:`Edit`
 
 .. toctree::

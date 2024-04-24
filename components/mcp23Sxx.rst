@@ -2,11 +2,11 @@ MCP23Sxx I/O Expander
 =====================
 
 .. seo::
-    :description: Instructions for setting up MCP23S08, MCP23S16 or MCP23S17 digital port expander in ESPHome. This is exactly the same API as the MCP230XX I/O Expander except talks on the SPI bus
+    :description: Instructions for setting up MCP23S08, MCP23S16 or MCP23S17 digital port expander in ESPHome. This series features exactly the same API as the MCP230xx I/O Expander (I²C)
     :image: mcp230xx.svg
 
 The Microchip MCP23Sxx series of general purpose, parallel I/O expansion for SPI bus applications.
-This is exactly the same API as the MCP23SXX I/O Expander except talks on the SPI bus
+This series features exactly the same API as the MCP230xx I/O Expander (I²C).
 
 **Supported Variants :**
 

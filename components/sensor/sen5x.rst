@@ -142,7 +142,7 @@ Configuration variables:
 
 
   - **offset** (*Optional*): Temperature offset [°C]. Defaults to ``0``
-  - **normalized_offset_slope** (*Optional*): Normalized temperature offset slope in percent. Defaults to ``0``
+  - **normalized_offset_slope** (*Optional*): Normalized temperature offset slope. Defaults to ``0``
   - **time_constant** (*Optional*): Time constant in seconds. Defaults to ``0``
 
 - **acceleration_mode** (*Optional*): Allowed value are ``low``, ``medium`` and ``high``. (default is ``low``)

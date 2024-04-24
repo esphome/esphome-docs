@@ -21,7 +21,7 @@ ESPHome 2023.2.0 - 15th February 2023
     EE895, components/sensor/ee895, EE895.png
     HTE501, components/sensor/hte501, HTE501.png
     TEE501, components/sensor/tee501, TEE501.png
-    Sigma-Delta Output, components/output/sigma_delta, sigma-delta.svg, dark-invert
+    Sigma-Delta Output, components/output/sigma_delta_output, sigma-delta.svg, dark-invert
     Wiegand Reader, components/wiegand, wiegand.jpg
     MiCS-4514, components/sensor/mics_4514, mics_4514.jpg
     LD2410, components/sensor/ld2410, ld2410.jpg

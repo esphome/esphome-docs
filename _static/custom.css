@@ -256,7 +256,7 @@ div.body p, div.body dd, div.body li, div.body blockquote {
       background: #212121;
       color: #ececec;
     }
-    
+
   }
 
   body, div.body {
@@ -281,7 +281,7 @@ div.body p, div.body dd, div.body li, div.body blockquote {
     color: #ececec;
     background-color: #212121;
   }
-  
+
   a, a.reference, a:visited {
     color: #00bfff;
     border-bottom: 1px dotted #00bfff;
@@ -326,7 +326,7 @@ div.body p, div.body dd, div.body li, div.body blockquote {
     color: #e2e2e2;
   }
 
-  div.note, div.tip {
+  div.note, div.tip, div.important {
     background-color: #2d2c2c;
     border: 1px solid #808080;
   }
