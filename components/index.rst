@@ -17,6 +17,7 @@ Components
     sensor/index
     switch/index
     button/index
+    event/index
     display/index
     text_sensor/index
     stepper/index
