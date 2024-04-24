@@ -5,7 +5,11 @@ Event Component
     :description: Instructions for setting up event components in ESPHome.
     :image: folder-open.svg
 
-ESPHome supports the creation of event entities in Home Assistant. These entities allow for the triggering of custom events within the Home Assistant ecosystem, enabling complex automations and integrations. An event entity is represented as a stateless entity associated with a device that has a pre-defined set of event types which can be triggered in Home Assistant via automations.
+ESPHome supports the creation of event entities in Home Assistant.
+These entities allow for the triggering of custom events within the Home Assistant ecosystem,
+enabling complex automations and integrations. An event entity is represented as a stateless
+entity associated with a device that has a pre-defined set of event types which can be
+triggered in Home Assistant via automations.
 
 .. note::
 
@@ -16,9 +20,7 @@ ESPHome supports the creation of event entities in Home Assistant. These entitie
 
 .. note::
 
-    Home Assistant Core 2024.XX or higher is required for ESPHome event entities to work.
-    Whatever is the earliest version to incorporate these PRs:
-    https://github.com/esphome/aioesphomeapi/pull/853
+    Home Assistant Core 2024.5 or higher is required for ESPHome event entities to work.
 
 .. _config-event:
 
@@ -34,9 +36,6 @@ Each event in ESPHome needs to be configured with a list of event types it can t
       - platform: ...
         name: Motion Detected Event
         id: my_event
-        event_types:
-          - "motion_detected"
-          - "no_motion"
 
         # Optional variables:
         icon: "mdi:motion-sensor"
@@ -47,6 +46,9 @@ Each event in ESPHome needs to be configured with a list of event types it can t
 
 Configuration variables:
 
+One of ``id`` or ``name`` is required.
+
+- **id** (**Required**, :ref:`config-id`): Manually specify the ID used for code generation, allowing for further customization or interaction with this event within ESPHome scripts or lambda functions.
 - **name** (**Required**, string): The name for the event.
 
   .. note::
@@ -54,7 +56,6 @@ Configuration variables:
       If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
       you want the event to use that name, you can set ``name: None``.
 
-- **event_types** (**Required**, list): A list of event types this event can trigger.
 - **icon** (*Optional*, icon): Manually set the icon to use for the event in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
@@ -66,17 +67,17 @@ Configuration variables:
   for a list of available options. Set to ``""`` to remove the default entity category.
 - **device_class** (*Optional*, string): The device class for the event. The following device classes are supported by event entities:
 
-  - None: Generic event. This is the default and doesn’t need to be set.
-  - button: For remote control buttons.
-  - doorbell: Specifically for buttons that are used as a doorbell.
-  - motion: For motion events detected by a motion sensor.
+  - None: Generic event. This is the default and doesn't need to be set.
+  - ``button``: For remote control buttons.
+  - ``doorbell``: Specifically for buttons that are used as a doorbell.
+  - ``motion``: For motion events detected by a motion sensor.
 
   See https://www.home-assistant.io/integrations/event/#device-class
   for a list of available options.
 
 Automations:
 
-- **on_event** (*Optional*, :ref:`Automation <automation>`): An automation to perform when an event of the specified types is triggered. 
+- **on_event** (*Optional*, :ref:`Automation <automation>`): An automation to perform when an event is triggered.
 
 MQTT options:
 
@@ -103,21 +104,21 @@ This automation will be triggered when an event of the specified types is trigge
 
 Configuration variables: see :ref:`Automation <automation>`.
 
-``event.fire`` Action
-*********************
+``event.trigger`` Action
+************************
 
-This action allows for the firing of an event from within an automation.
+This action allows for the triggering of an event from within an automation.
 
 .. code-block:: yaml
 
-    - event.fire:
+    - event.trigger:
         id: my_event
         event_type: "custom_event"
 
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the event.
-- **event_type** (**Required**, string): The type of event to fire.
+- **event_type** (**Required**, string): The type of event to trigger.
 
 .. _event-lambda_calls:
 
@@ -126,12 +127,12 @@ lambda Calls
 
 From :ref:`lambdas <config-lambda>`, you can trigger an event.
 
-- ``fire_event(std::string event_type)``: Fire an event with the specified type.
+- ``trigger(std::string event_type)``: Trigger an event with the specified type.
 
   .. code-block:: cpp
 
-      // Within lambda, fire the event.
-      id(my_event).fire_event("custom_event_type");
+      // Within lambda, trigger the event.
+      id(my_event).trigger("custom_event");
 
 See Also
 --------
