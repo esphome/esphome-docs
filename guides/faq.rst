@@ -91,7 +91,7 @@ Second, you need to put the ESP in :ref:`programming mode <esphome-phy-con-prg>`
 Third, to flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use:
 
 - `ESPHome Web <https://web.esphome.io/>`__ web-based installer, which requires a browser that supports WebSerial, like Google Chrome or Microsoft Edge. Connect the board to your computer, make sure it's detected as a :ref:`serial port <esphome-phy-con-drv>`, and press **Connect**. Give the requested permission in the browser and in the popup box that appears, select the serial device which connects to your ESP. Then press **Install**, and browse for the binary file you downloaded from the Dashboard in the step above. Note that the file will be processed locally, it won't be uploaded to any cloud service.
-- *esptool* `from the GitHub repository <https://github.com/espressif/esptool/releases>`__, package from your distro or install it yourself with ``pip install esptool`` (in case of Linux). 
+- *esptool* `from the GitHub repository <https://github.com/espressif/esptool/releases>`__, package from your distro or install it yourself with ``pip install esptool`` (in case of Linux).
 
 Before using ``esptool``, make sure you know which serial port your programming adapter is connected to. In Linux use the ``dmesg`` command afer you plug the device into the USB port to see the name of the newly detected serial port. In Windows check the Device Manager to see if a new serial port appears when you plug it in and note the COM number.
 
@@ -109,16 +109,16 @@ Program flash with your firmware binary:
 
 .. note::
 
-    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, check for these: 
+    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, check for these:
 
-    - the device name of the port has changed while you were re-plugging it too fast (eg. changed from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``). 
+    - the device name of the port has changed while you were re-plugging it too fast (eg. changed from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``).
     - double check the UART wires are connected correctly if flashing using an external programmer (RX of programmer to TX of the ESP and vice-versa).
     - for some devices you need to keep ``GPIO0`` and ``GND`` connected at least until flashing has begun.
     - for some devices you need to power-cycle in programming mode after erasing flash, they don't auto-reset.
-    - it also might be a sign that ESP is defect or cannot be programmed. 
-    
+    - it also might be a sign that ESP is defect or cannot be programmed.
+
     If you're in an RF noisy environment or your UART wires are a bit long, flashing can fail during transfer. Don't worry, an ESP won't brick just because of that. Put it again in programming mode and flash with a reduced baudrate for safer transfers:
-    
+
     ``esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash 0x0 your_node_firmware.bin``
 
 
@@ -463,6 +463,52 @@ Why do entities show as Unavailable during deep sleep?
 The :doc:`Deep Sleep </components/deep_sleep>` component needs to be present within the config when the device
 is first added to Home Assistant. To prevent entities from appearing as Unavailable, you can remove and re-add the
 device in Home Assistant.
+
+.. _timers_and_timeouts:
+
+Timers and timeouts
+-------------------
+
+While ESPHome does not provide a construction for timers, you can easily implement them by
+combining ``script`` and ``delay``. You can have an absolute timeout or sliding timeout by
+using script modes ``single`` and ``restart`` respectively.
+
+.. code-block:: yaml
+
+    script:
+      - id: hallway_light_script
+        mode: restart     # Light will be kept on during 1 minute since
+                          # the latest time the script is executed
+        then:
+          - light.turn_on: hallway_light
+          - delay: 1 min
+          - light.turn_off: hallway_light
+
+    ...
+      on_...:           # can be called from different wall switches
+        - script.execute: hallway_light_script
+
+Sometimes you'll also need a timer which does not perform any action, that is ok too, just
+use a single ``delay`` action, then in your automation check ``script.is_running`` condition
+to know if your *timer* is going or due.
+
+
+.. _automation-networkless:
+
+Do Automations Work Without a Network Connection
+------------------------------------------------
+
+YES! All automations you define in ESPHome are executed on the ESP itself and will continue to
+work even if the WiFi network is down or the MQTT server is not reachable.
+
+There is one caveat though: ESPHome automatically reboots if no connection to the MQTT broker can be
+made. This is because the ESPs typically have issues in their network stacks that require a reboot to fix.
+You can adjust this behavior (or even disable automatic rebooting) using the ``reboot_timeout`` option
+in the :doc:`wifi component </components/wifi>` and :doc:`mqtt component </components/mqtt>`.
+(Beware that effectively disables the reboot watchdog, so you will need to power cycle the device
+if it fails to connect to the network without a reboot)
+
+
 
 See Also
 --------

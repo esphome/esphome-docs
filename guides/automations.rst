@@ -160,8 +160,8 @@ ESPHome has another extremely powerful tool to offer: Templates.
 
 .. _delay_action:
 
-``delay`` Action
-****************
+Action *delay*
+**************
 
 This action delays the execution of the next action in the action list by a specified
 time period.
@@ -188,8 +188,8 @@ Component Actions
 
 .. _component-update_action:
 
-``component.update`` Action
-***************************
+Action *component.update*
+*************************
 
 Using this action you can manually call the ``update()`` method of a component.
 
@@ -207,8 +207,8 @@ compile error.
 
 .. _component-suspend_action:
 
-``component.suspend`` Action
-****************************
+Action *component.suspend*
+**************************
 
 Using this action you can manually call the ``stop_poller()`` method of a component.
 
@@ -231,8 +231,8 @@ compile error.
 
 .. _component-resume_action:
 
-``component.resume`` Action
-***************************
+Action *component.resume*
+*************************
 
 Using this action you can manually call the ``start_poller()`` method of a component.
 
@@ -240,7 +240,7 @@ After this action the component will refresh at the original update_interval rat
 
 This will allow the component to resume automatic update at the defined interval.
 
-This action also allows to change the update interval, calling it without suspend, 
+This action also allows to change the update interval, calling it without suspend,
 replace the poller directly.
 
 Please note that this only works with PollingComponent types and others will result in a
@@ -258,7 +258,7 @@ compile error.
     # Change the poller interval
     on_...:
       then:
-        - component.resume: 
+        - component.resume:
             id: my_component
             update_interval: 15s
 
@@ -269,8 +269,8 @@ Conditional Actions
 
 .. _if_action:
 
-``if`` Action
-*************
+Action *if*
+***********
 
 This action first evaluated a certain condition (``if:``) and then either
 executes the ``then:`` branch or the ``else:`` branch depending on the output of the condition.
@@ -306,8 +306,9 @@ Configuration variables:
 
 .. _while_action:
 
-``while`` Action
-****************
+
+Action *while*
+**************
 
 This action is similar to the :ref:`if <if_action>` Action. The ``while`` action loops
 through a block as long as the given condition is true.
@@ -331,8 +332,8 @@ Configuration variables:
 
 .. _repeat_action:
 
-``repeat`` Action
-*****************
+ Action *repeat*
+****************
 
 This action allows you to repeat a block a given number of times.
 For example, the automation below will flash the light five times.
@@ -355,8 +356,8 @@ Configuration variables:
 
 .. _wait_until_action:
 
-``wait_until`` Action
-*********************
+Action *wait_until*
+*******************
 
 This action allows your automations to wait until a condition evaluates to true. (So this is just
 a shorthand way of writing a ``while`` action with an empty ``then`` block.)
@@ -394,15 +395,15 @@ Configuration variables:
 Conditions
 ----------
 
-Most components have there own conditions set. 
+Most components have there own conditions set.
 
 .. _and_condition:
 .. _or_condition:
 .. _xor_condition:
 .. _not_condition:
 
-``and`` / ``or`` / ``xor`` / ``not`` Condition
-**********************************************
+Condition  *and* / *or* / *xor* / *not*
+***************************************
 
 Check a combination of conditions
 
@@ -425,8 +426,8 @@ Check a combination of conditions
 
 .. _for_condition:
 
-``for`` Condition
-*****************
+ Condition *for*
+****************
 
 This :ref:`Condition <config-condition>` allows you to check if a given condition has been
 true for at least a given amount of time.
@@ -525,8 +526,8 @@ we're retrieving the current state of the end stop using ``.state`` and using it
 
 .. _config-templatable:
 
-Lambda on Parameters
-********************
+Parameter *Lambda*
+******************
 
 Another feature of ESPHome is that you can template almost every parameter for actions in automations. For example
 if you have a light and want to set it to a pre-defined color when a button is pressed, you can do this:
@@ -550,8 +551,8 @@ all of the usual lambda syntax.
 
 .. _config-lambda-action:
 
-``lambda`` Action
-*****************
+Action *lambda*
+***************
 
 This action executes an arbitrary piece of C++ code (see :ref:`Lambda <config-lambda>`).
 
@@ -564,8 +565,8 @@ This action executes an arbitrary piece of C++ code (see :ref:`Lambda <config-la
 
 .. _config-lambda-condition:
 
-``lambda`` Condition
-********************
+Condition *lambda*
+******************
 
 This condition performs an arbitrary piece of C++ code (see :ref:`Lambda <config-lambda>`)
 and can be used to create conditional flow in actions.
@@ -635,8 +636,8 @@ Configuration variables:
 
 .. _globals-set_action:
 
-``globals.set`` Action
-**********************
+Action *globals.set*
+********************
 
 This :ref:`Action <config-action>` allows you to change the value of a :ref:`global <config-globals>`
 variable without having to go through the lambda syntax.
@@ -656,8 +657,8 @@ Configuration variables:
 
 .. _script:
 
-``script`` Component
---------------------
+Scripts
+-------
 
 With the ``script:`` component you can define a list of steps in a central place, and then
 execute the script with a single call.
@@ -694,8 +695,8 @@ Configuration variables:
 
 .. _script-parameters:
 
-``Script Parameters``
-*********************
+Script Parameters
+*****************
 
 Scripts can be defined with parameters. The arguments given when calling the script can be used within
 the script's lambda actions. To define the parameters, add the parameter names under `parameters:` key
@@ -727,8 +728,11 @@ Each of these also exist in array form:
 
 .. _script-execute_action:
 
-``script.execute`` Action
-*************************
+Actions
+*******
+
+*script.execute*
+~~~~~~~~~~~~~~~~
 
 This action executes the script. The script **mode** dictates what will happen if the
 script was already running.
@@ -753,8 +757,8 @@ script was already running.
 
 .. _script-stop_action:
 
-``script.stop`` Action
-**********************
+script.stop
+***********
 
 This action allows you to stop a given script during execution. If the
 script is not running, it does nothing.
@@ -786,8 +790,8 @@ or as lambda
 
 .. _script-wait_action:
 
-``script.wait`` Action
-**********************
+Action *script.wait*
+********************
 
 This action suspends execution of the automation until a script has finished executing.
 
@@ -814,8 +818,8 @@ This can't be used in a lambda as it would block all functioning of the device. 
 
 .. _script-is_running_condition:
 
-``script.is_running`` Condition
-*******************************
+Condition *script.is_running*
+*****************************
 
 This :ref:`condition <config-condition>` allows you to check if a given script is running.
 In case scripts are run in ``parallel``, this condition only tells you if at least one script
@@ -843,8 +847,8 @@ or as lambda
 
 .. _interval:
 
-``interval`` Component
-----------------------
+Intervals
+---------
 
 This component allows you to run actions at fixed time intervals.
 For example if you want to toggle a switch every minute, you can use this component.
@@ -870,181 +874,9 @@ Configuration variables:
 - **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
 
-
 See Also
 --------
 
 - :doc:`configuration-types`
 - :doc:`faq`
 - :ghedit:`Edit`
-
-
-
-Timers and timeouts
--------------------
-
-While ESPHome does not provide a construction for timers, you can easily implement them by
-combining ``script`` and ``delay``. You can have an absolute timeout or sliding timeout by
-using script modes ``single`` and ``restart`` respectively.
-
-.. code-block:: yaml
-
-    script:
-      - id: hallway_light_script
-        mode: restart     # Light will be kept on during 1 minute since
-                          # the latest time the script is executed
-        then:
-          - light.turn_on: hallway_light
-          - delay: 1 min
-          - light.turn_off: hallway_light
-
-    ...
-      on_...:           # can be called from different wall switches
-        - script.execute: hallway_light_script
-
-Sometimes you'll also need a timer which does not perform any action, that is ok too, just
-use a single ``delay`` action, then in your automation check ``script.is_running`` condition
-to know if your *timer* is going or due.
-
-
-.. _automation-networkless:
-
-Do Automations Work Without a Network Connection
-------------------------------------------------
-
-YES! All automations you define in ESPHome are executed on the ESP itself and will continue to
-work even if the WiFi network is down or the MQTT server is not reachable.
-
-There is one caveat though: ESPHome automatically reboots if no connection to the MQTT broker can be
-made. This is because the ESPs typically have issues in their network stacks that require a reboot to fix.
-You can adjust this behavior (or even disable automatic rebooting) using the ``reboot_timeout`` option
-in the :doc:`wifi component </components/wifi>` and :doc:`mqtt component </components/mqtt>`.
-(Beware that effectively disables the reboot watchdog, so you will need to power cycle the device
-if it fails to connect to the network without a reboot)
-
-All Triggers
-------------
-
-- :ref:`api.services <api-services>` / :ref:`api.on_client_connected <api-on_client_connected_trigger>` / :ref:`api.on_client_disconnected <api-on_client_disconnected_trigger>`
-- :ref:`sensor.on_value <sensor-on_value>` / :ref:`sensor.on_raw_value <sensor-on_raw_value>` / :ref:`sensor.on_value_range <sensor-on_value_range>`
-- :ref:`binary_sensor.on_press <binary_sensor-on_press>` / :ref:`binary_sensor.on_release <binary_sensor-on_release>` /
-  :ref:`binary_sensor.on_state <binary_sensor-on_state>`
-- :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` /
-  :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
-- :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>`
-- :ref:`light.on_turn_on / light.on_turn_off <light-on_turn_on_off_trigger>`
-- :ref:`logger.on_message <logger-on_message>`
-- :ref:`time.on_time <time-on_time>` / - :ref:`time.on_time_sync <time-on_time_sync>`
-- :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>` /
-  :ref:`mqtt.on_connect / mqtt.on_disconnect <mqtt-on_connect_disconnect>`
-- :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`pn532.on_tag_removed <pn532-on_tag_removed>` / :ref:`rc522.on_tag <rc522-on_tag>`
-  / :ref:`rc522.on_tag_removed <rc522-on_tag_removed>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
-- :ref:`interval.interval <interval>`
-- :ref:`switch.on_turn_on / switch.on_turn_off <switch-on_turn_on_off_trigger>`
-- :doc:`remote_receiver.on_* </components/remote_receiver>`
-- :doc:`sun.on_sunrise </components/sun>` / :doc:`sun.on_sunset </components/sun>`
-- :ref:`sim800l.on_sms_received <sim800l-on_sms_received>`
-- :ref:`rf_bridge.on_code_received <rf_bridge-on_code_received>`
-- :ref:`ota.on_begin <ota-on_begin>` / :ref:`ota.on_progress <ota-on_progress>` /
-  :ref:`ota.on_end <ota-on_end>` / :ref:`ota.on_error <ota-on_error>` /
-  :ref:`ota.on_state_change <ota-on_state_change>`
-- :ref:`display.on_page_change <display-on_page_change-trigger>`
-- :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
-- :ref:`wifi.on_connect / wifi.on_disconnect <wifi-on_connect_disconnect>`
-
-All Actions
------------
-
-- :ref:`delay <delay_action>`
-- :ref:`lambda <lambda_action>`
-- :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_until <wait_until_action>`
-- :ref:`component.update <component-update_action>`
-- :ref:`component.suspend <component-suspend_action>` / :ref:`component.resume <component-resume_action>`
-- :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
-- :ref:`logger.log <logger-log_action>`
-- :ref:`homeassistant.service <api-homeassistant_service_action>`
-- :ref:`homeassistant.event <api-homeassistant_event_action>`
-- :ref:`homeassistant.tag_scanned <api-homeassistant_tag_scanned_action>`
-- :ref:`mqtt.publish <mqtt-publish_action>` / :ref:`mqtt.publish_json <mqtt-publish_json_action>`
-- :ref:`switch.toggle <switch-toggle_action>` / :ref:`switch.turn_off <switch-turn_off_action>` / :ref:`switch.turn_on <switch-turn_on_action>`
-- :ref:`light.toggle <light-toggle_action>` / :ref:`light.turn_off <light-turn_off_action>` / :ref:`light.turn_on <light-turn_on_action>`
-  / :ref:`light.control <light-control_action>` / :ref:`light.dim_relative <light-dim_relative_action>`
-  / :ref:`light.addressable_set <light-addressable_set_action>`
-- :ref:`cover.open <cover-open_action>` / :ref:`cover.close <cover-close_action>` / :ref:`cover.stop <cover-stop_action>` /
-  :ref:`cover.control <cover-control_action>`
-- :ref:`fan.toggle <fan-toggle_action>` / :ref:`fan.turn_off <fan-turn_off_action>` / :ref:`fan.turn_on <fan-turn_on_action>`
-- :ref:`output.turn_off <output-turn_off_action>` / :ref:`output.turn_on <output-turn_on_action>` / :ref:`output.set_level <output-set_level_action>`
-- :ref:`deep_sleep.enter <deep_sleep-enter_action>` / :ref:`deep_sleep.prevent <deep_sleep-prevent_action>` / :ref:`deep_sleep.allow <deep_sleep-allow_action>`
-- :ref:`sensor.template.publish <sensor-template-publish_action>` / :ref:`binary_sensor.template.publish <binary_sensor-template-publish_action>`
-  / :ref:`cover.template.publish <cover-template-publish_action>` / :ref:`switch.template.publish <switch-template-publish_action>`
-  / :ref:`text_sensor.template.publish <text_sensor-template-publish_action>`
-- :ref:`stepper.set_target <stepper-set_target_action>` / :ref:`stepper.report_position <stepper-report_position_action>`
-  / :ref:`stepper.set_speed <stepper-set_speed_action>`
-- :ref:`servo.write <servo-write_action>` / :ref:`servo.detach <servo-detach_action>`
-- :ref:`sprinkler.start_full_cycle <sprinkler-controller-action_start_full_cycle>` /   :ref:`sprinkler.start_from_queue <sprinkler-controller-action_start_from_queue>` /
-  :ref:`sprinkler.start_single_valve <sprinkler-controller-action_start_single_valve>` /   :ref:`sprinkler.shutdown <sprinkler-controller-action_shutdown>` /
-  :ref:`sprinkler.next_valve <sprinkler-controller-action_next_valve>` /   :ref:`sprinkler.previous_valve <sprinkler-controller-action_previous_valve>` /
-  :ref:`sprinkler.pause <sprinkler-controller-action_pause>` /   :ref:`sprinkler.resume <sprinkler-controller-action_resume>` /
-  :ref:`sprinkler.resume_or_start_full_cycle <sprinkler-controller-action_resume_or_start_full_cycle>` /   :ref:`sprinkler.queue_valve <sprinkler-controller-action_queue_valve>` /
-  :ref:`sprinkler.clear_queued_valves <sprinkler-controller-action_clear_queued_valves>` /   :ref:`sprinkler.set_multiplier <sprinkler-controller-action_set_multiplier>` /
-  :ref:`sprinkler.set_repeat <sprinkler-controller-action_set_repeat>` /   :ref:`sprinkler.set_divider <sprinkler-controller-action_set_divider>` /
-  :ref:`sprinkler.set_valve_run_duration <sprinkler-controller-action_set_valve_run_duration>`
-- :ref:`globals.set <globals-set_action>`
-- :ref:`remote_transmitter.transmit_* <remote_transmitter-transmit_action>`
-- :ref:`climate.control <climate-control_action>`
-- :ref:`output.esp8266_pwm.set_frequency <output-esp8266_pwm-set_frequency_action>` / :ref:`output.ledc.set_frequency <output-ledc-set_frequency_action>`
-- :ref:`sensor.integration.reset <sensor-integration-reset_action>`
-- :ref:`display.page.show_* <display-pages>`
-- :ref:`uart.write <uart-write_action>`
-- :ref:`sim800l.send_sms <sim800l-send_sms_action>`
-- :ref:`mhz19.calibrate_zero <mhz19-calibrate_zero_action>` / :ref:`mhz19.abc_enable <mhz19-abc_enable_action>` / :ref:`mhz19.abc_disable <mhz19-abc_disable_action>`
-- :ref:`sensor.rotary_encoder.set_value <sensor-rotary_encoder-set_value_action>`
-- :ref:`http_request.get <http_request-get_action>` / :ref:`http_request.post <http_request-post_action>` / :ref:`http_request.send <http_request-send_action>`
-- :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
-- :ref:`rf_bridge.learn <rf_bridge-learn_action>`
-- :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
-- :ref:`pcf85063.read_time <pcf85063-read_time_action>` / :ref:`pcf85063.write_time <pcf85063-write_time_action>`
-- :ref:`cs5460a.restart <cs5460a-restart_action>`
-- :ref:`pzemac.reset_energy <pzemac-reset_energy_action>`
-- :ref:`number.set <number-set_action>` / :ref:`number.to_min <number-to-min_action>` / :ref:`number.to_max <number-to-max_action>` / :ref:`number.decrement <number-decrement_action>` / :ref:`number.increment <number-increment_action>` / :ref:`number.operation <number-operation_action>`
-- :ref:`select.set <select-set_action>` / :ref:`select.set_index <select-set_index_action>` / :ref:`select.first <select-first_action>` / :ref:`select.last <select-last_action>` / :ref:`select.previous <select-previous_action>`  / :ref:`select.next <select-next_action>`  / :ref:`select.operation <select-operation_action>`
-- :ref:`media_player.play <media_player-play>` / :ref:`media_player.pause <media_player-pause>` / :ref:`media_player.stop <media_player-stop>` / :ref:`media_player.toggle <media_player-toggle>`
-  / :ref:`media_player.volume_up <media_player-volume_up>` / :ref:`media_player.volume_down <media_player-volume_down>` / :ref:`media_player.volume_set <media_player-volume_set>`
-- :ref:`ble_client.ble_write <ble_client-ble_write_action>`
-- :ref:`wireguard.disable <wireguard-actions>` / :ref:`wireguard.enable <wireguard-actions>`
-
-.. _config-condition:
-
-All Conditions
---------------
-
-- :ref:`lambda <lambda_condition>`
-- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`xor <xor_condition>` / :ref:`not <not_condition>` 
-- :ref:`for <for_condition>`
-- :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` / :ref:`binary_sensor.is_off <binary_sensor-is_off_condition>`
-- :ref:`switch.is_on <switch-is_on_condition>` / :ref:`switch.is_off <switch-is_off_condition>`
-- :ref:`sensor.in_range <sensor-in_range_condition>`
-- :ref:`wifi.connected <wifi-connected_condition>` / :ref:`api.connected <api-connected_condition>`
-  / :ref:`mqtt.connected <mqtt-connected_condition>`
-- :ref:`time.has_time <time-has_time_condition>`
-- :ref:`script.is_running <script-is_running_condition>`
-- :ref:`sun.is_above_horizon / sun.is_below_horizon <sun-is_above_below_horizon-condition>`
-- :ref:`text_sensor.state <text_sensor-state_condition>`
-- :ref:`light.is_on <light-is_on_condition>` / :ref:`light.is_off <light-is_off_condition>`
-- :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
-- :ref:`number.in_range <number-in_range_condition>`
-- :ref:`fan.is_on <fan-is_on_condition>` / :ref:`fan.is_off <fan-is_off_condition>`
-- :ref:`wireguard.enabled <wireguard-conditions>` / :ref:`wireguard.peer_online <wireguard-conditions>`
-
-All Lambda Calls
-----------------
-
-- :ref:`Sensor <sensor-lambda_calls>`
-- :ref:`Binary Sensor <binary_sensor-lambda_calls>`
-- :ref:`Switch <switch-lambda_calls>`
-- :ref:`Display <display-engine>`
-- :ref:`Cover <cover-lambda_calls>`
-- :ref:`Text Sensor <text_sensor-lambda_calls>`
-- :ref:`Stepper <stepper-lambda_calls>`
-- :ref:`Number <number-lambda_calls>`
-
