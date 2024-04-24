@@ -47,8 +47,8 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Requires Home Assistant 2021.11 or newer.
   Set to ``""`` to remove the default entity category.
-- **time_id** (**Required**, :ref:`config-id`): THe ID of the time entity. Automatically set
-  to the id of a time component if a single one is defined.
+- **time_id** (**Required**, :ref:`config-id`): The ID of the time entity. Automatically set
+  to the ID of a time component if only a single one is defined.
 
 MQTT Options:
 
@@ -275,11 +275,10 @@ Configuration variables:
 
 .. _datetime-datetime-lambda_calls:
 
-lambda calls
+Lambda calls
 ************
 
-From :ref:`lambdas <config-lambda>`, you can call several methods on all datetimes to do some
-advanced stuff (see the full API Reference for more info).
+For more complex use cases, several methods are available for use on datetimes from within :ref:`lambdas <config-lambda>`. See the full API Reference for more information.
 
 - ``.make_call()``: Make a call for updating the datetime value.
 
