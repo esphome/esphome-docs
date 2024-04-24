@@ -1,7 +1,7 @@
 Share data directly between ESPHome nodes
 =========================================
 
-In certain special cases it might be desired to avoid placing any middleware like an MQTT or a home automation server just to transfer small bits of data from one node to another. Direct data polling is possibvle using HTTP, but beware that the involved components are resource hungry and may be less stable on long term. The webserver embedded in the node is not designed to constantly serve a large amount of requests.
+In certain special cases it might be desired to avoid placing any middleware like an MQTT or a home automation server just to transfer small bits of data from one node to another. Direct data polling is possible using HTTP, but beware that the involved components are resource hungry and may be less stable on long term. The webserver embedded in the node is not designed to constantly serve a large amount of requests.
 
 The primary node holding the data we need to retrieve from will be the server, and the others polling for it will be the clients (can be multiple). 
 

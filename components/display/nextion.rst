@@ -64,12 +64,15 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **tft_url** (*Optional*, string): The URL to download the TFT file from for updates. See :ref:`Nextion Upload <nextion_upload_tft>`.
 - **touch_sleep_timeout** (*Optional*, int): Sets internal No-touch-then-sleep timer in seconds.
+- **start_up_page** (*Optional*, int): Sets the page to display when ESPHome connects to the Nextion. (Nextion shows page 0 on start-up by default).
 - **wake_up_page** (*Optional*, int): Sets the page to display after waking up
 - **auto_wake_on_touch** (*Optional*, boolean): Sets if Nextion should auto-wake from sleep when touch press occurs.
+- **exit_reparse_on_start** (*Optional*, boolean): Request the Nextion exit Active Reparse Mode before setup of the display. Defaults to ``false``.
 - **on_setup** (*Optional*, :ref:`Action <config-action>`): An action to be performed after ESPHome connects to the Nextion. See :ref:`Nextion Automation <nextion-on_setup>`.
 - **on_sleep** (*Optional*, :ref:`Action <config-action>`): An action to be performed when the Nextion goes to sleep. See :ref:`Nextion Automation <nextion-on_sleep>`.
 - **on_wake** (*Optional*, :ref:`Action <config-action>`): An action to be performed when the Nextion wakes up. See :ref:`Nextion Automation <nextion-on_sleep>`.
 - **on_page** (*Optional*, :ref:`Action <config-action>`): An action to be performed after a page change. See :ref:`Nextion Automation <nextion-on_page>`.
+- **on_touch** (*Optional*, :ref:`Action <config-action>`): An action to be performed after a touch event (press or release). See :ref:`Nextion Automation <nextion-on_touch>`.
   
 .. _display-nextion_lambda:
 
@@ -197,7 +200,8 @@ With Nextion displays, it's possible to define several automation actions. Depen
 
 This automation will be triggered once ESP establishes a connection with Nextion. This happens after a boot up and may take some
 noticeable time (e.g. hundreds of milliseconds) to establish a connection over UART. Typical use scenario for this automation is choosing of the initial
-page to display depending on some runtime conditions or simply showing a page with a non-zero index (Nextion shows page 0 by default).
+page to display depending on some runtime conditions or simply showing a page with a non-zero index (Nextion shows page 0 by default and ESPHome will
+use ``start_up_page`` on connection, if set).
 
 .. code-block:: yaml
 
@@ -235,7 +239,7 @@ for that and :ref:`force-update <nextion_update_all_components>` the on-screen c
 ***********
 
 This automation is triggered when a page is changed on the Nextion display. This includes both ESP and Nextion initiated page changes.
-ESP initiates a page change by calling ``goto_page("page_name")`` function. Nextion can change pages as a reaction to user's activity (e.g. clicks) or using a timer.
+ESP initiates a page change by calling ``goto_page("page_name")`` or ``goto_page(page_id)`` function. Nextion can change pages as a reaction to user's activity (e.g. clicks) or using a timer.
 In either case, this automation can be helpful to update on-screen controls for the newly displayed page.
 
 If you fully own your Nextoin HMI design and follow the best practice of setting the components' vscope to global in the Nextion Editor, you'll probably never need this trigger.
@@ -256,6 +260,31 @@ Once you know the page id, it's time to update the components. Two strategies wo
               id(disp).set_component_text_printf("qr_wifi", "WIFI:T:nopass;S:%s;P:;;", wifi::global_wifi_component->get_ap().get_ssid().c_str());
               break;
           }
+
+.. _nextion-on_touch:
+
+``on_touch``
+************
+
+This automation is triggered when a component is pressed or released on the Nextion display.
+
+The following arguments will be available:
+
+  - ``page_id``: Contains the id (integer) of the page where the touch happened.
+
+  - ``component_id``: Contains the id (integer) of the component touched. It's required that the component have "Send Component ID" enabled either for "Touch Press Event" and/or "Touch Release Event".
+
+  - ``touch_event``: It will be ``true`` for a "press" event, or ``false`` for a "release" event.
+
+.. code-block:: yaml
+
+    on_touch:
+      then:
+        lambda: |-
+          ESP_LOGD("nextion.on_touch", "Nextion touch event detected!");
+          ESP_LOGD("nextion.on_touch", "Page Id: %i", page_id);
+          ESP_LOGD("nextion.on_touch", "Component Id: %i", component_id);
+          ESP_LOGD("nextion.on_touch", "Event type: %s", touch_event ? "Press" : "Release");
 
 .. _nextion_upload_tft_file:
 

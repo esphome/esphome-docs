@@ -47,6 +47,13 @@ smart meter. If you see checksum errors in the log try changing the interface pa
     sml:
       id: mysml
       uart_id: uart_bus
+      on_data:
+        - lambda: !lambda |-
+            if (valid) {
+              id(mqttclient).publish("gridmeter/sensor/sml/state", format_hex(bytes));
+            } else {
+              id(mqttclient).publish("gridmeter/sensor/sml/error", format_hex(bytes));
+            }
 
     sensor:
       - platform: sml
@@ -100,6 +107,21 @@ Text Sensor
 - **sml_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`SML platform <sml-platform>`
 - **format** (*Optional*, string): Override the automatic interpretation of the transmitted binary data value. Possible values (`int`, `uint`, `bool`, `hex`, `text`).
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+Automations:
+------------
+
+- **on_data** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  SML message is received. See :ref:`sml-on-data`.
+
+.. _sml-on-data:
+
+``on_data`` Trigger
+********************
+
+This automation will be triggered when a valid SML message is received. The variable ``bytes`` (of type
+``std::vector<uint8_t>``) contains the raw sml data including start/end sequence. The variable ``valid``
+(of type ``bool``) contains the result of the checksum verification.
 
 
 Getting OBIS codes and sensor ids
