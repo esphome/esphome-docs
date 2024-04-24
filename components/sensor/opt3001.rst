@@ -1,35 +1,31 @@
-.. _BH1750:
+.. _OPT3001:
 
-BH1750 Ambient Light Sensor
+OPT3001 Ambient Light Sensor
 ===========================
 
 .. seo::
-    :description: Instructions for setting up BH1750 ambient light sensors in ESPHome.
-    :image: bh1750.jpg
-    :keywords: BH1750
+    :description: Instructions for setting up OPT3001 ambient light sensors in ESPHome.
+    :image: opt3001.jpg
+    :keywords: OPT3001
 
-The ``bh1750`` sensor platform allows you to use your BH1750
-(`datasheet <http://www.mouser.com/ds/2/348/bh1750fvi-e-186247.pdf>`__)
+The ``opt3001`` sensor platform allows you to use your OPT3001
+(`datasheet <https://www.ti.com/lit/ds/symlink/opt3001.pdf>`__)
 ambient light sensor with ESPHome. The :ref:`I²C bus <i2c>` is required to be set up in
 your configuration for this sensor to work.
 
-.. figure:: images/bh1750-full.jpg
+.. figure:: images/opt3001-full.jpg
     :align: center
     :width: 50.0%
 
-    BH1750 Ambient Light Sensor.
-
-.. figure:: images/bh1750-ui.png
-    :align: center
-    :width: 80.0%
+    OPT3001 Ambient Light Sensor.
 
 .. code-block:: yaml
 
     # Example configuration entry
     sensor:
-      - platform: bh1750
-        name: "BH1750 Illuminance"
-        address: 0x23
+      - platform: opt3001
+        name: "OPT3001 Illuminance"
+        address: 0x44
         update_interval: 60s
 
 Configuration variables:
@@ -37,8 +33,9 @@ Configuration variables:
 
 - **name** (**Required**, string): The name for the sensor.
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
-  Defaults to ``0x23`` (address if address pin is pulled low). If the address pin is pulled high,
-  the address is ``0x5C``.
+  Defaults to ``0x44`` (address if address pin is pulled low). If the address pin is pulled high,
+  the address is ``0x45``. If the address pin is connected to SDA, the address is ``0x46``. If the
+  address pin is connected to SCL, the address is ``0x47``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code
@@ -49,9 +46,8 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`opt3001`
+- :doc:`bh1750`
 - :doc:`tsl2561`
 - :doc:`tsl2591`
-- :apiref:`bh1750/bh1750.h`
-- `BH1750 Library <https://github.com/claws/BH1750>`__ by `@claws <https://github.com/claws>`__
+- :apiref:`opt3001/opt3001.h`
 - :ghedit:`Edit`
