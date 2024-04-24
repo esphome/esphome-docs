@@ -59,7 +59,6 @@ For example, this configuration would achieve your desired behavior:
             - switch.toggle: dehumidifier1
 
 
-
 Woah, hold on there. Please explain what's going on here! Sure :) Let's step through what's happening here.
 
 .. code-block:: yaml
@@ -92,7 +91,7 @@ There are also other triggers like ``on_release``, ``on_click`` or ``on_double_c
       then:
         - switch.toggle: dehumidifier1
 
-.. _config-action:
+.. _config-actions:
 
 Actions
 -------
@@ -158,10 +157,304 @@ Now that concludes the introduction to automations in ESPHome. They're a powerfu
 everything on your device with an easy-to-use syntax. For the cases where the "pure" YAML automations don't work,
 ESPHome has another extremely powerful tool to offer: Templates.
 
+
+.. _delay_action:
+
+``delay`` Action
+****************
+
+This action delays the execution of the next action in the action list by a specified
+time period.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - switch.turn_on: relay_1
+        - delay: 2s
+        - switch.turn_off: relay_1
+        # Templated, waits for 1s (1000ms) only if a reed switch is active
+        - delay: !lambda "if (id(reed_switch).state) return 1000; else return 0;"
+
+.. note::
+
+    This is a "smart" asynchronous delay - other code will still run in the background while
+    the delay is happening. When using a lambda call, you should return the delay value in milliseconds.
+
+.. _config-component-actions:
+
+Component Actions
+-----------------
+
+.. _component-update_action:
+
+``component.update`` Action
+***************************
+
+Using this action you can manually call the ``update()`` method of a component.
+
+Please note that this only works with some component types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.update: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).update();'
+
+.. _component-suspend_action:
+
+``component.suspend`` Action
+****************************
+
+Using this action you can manually call the ``stop_poller()`` method of a component.
+
+After this action the component will stop being refreshed.
+
+While the poller is suspendend, it's still possible to trigger on-demand updates by
+using :ref:`component.update <component-update_action>`
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.suspend: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).stop_poller();'
+
+.. _component-resume_action:
+
+``component.resume`` Action
+***************************
+
+Using this action you can manually call the ``start_poller()`` method of a component.
+
+After this action the component will refresh at the original update_interval rate
+
+This will allow the component to resume automatic update at the defined interval.
+
+This action also allows to change the update interval, calling it without suspend, 
+replace the poller directly.
+
+Please note that this only works with PollingComponent types and others will result in a
+compile error.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - component.resume: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).start_poller();'
+
+    # Change the poller interval
+    on_...:
+      then:
+        - component.resume: 
+            id: my_component
+            update_interval: 15s
+
+.. _config-conditional-actions:
+
+Conditional Actions
+-------------------
+
+.. _if_action:
+
+``if`` Action
+*************
+
+This action first evaluated a certain condition (``if:``) and then either
+executes the ``then:`` branch or the ``else:`` branch depending on the output of the condition.
+
+After the chosen branch (``then`` or ``else``) is done with execution, the next action is performed.
+
+For example below you can see an automation that checks if a sensor value is below 30 and if so
+turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - if:
+            condition:
+              lambda: 'return id(some_sensor).state < 30;'
+            then:
+              - logger.log: "The sensor value is below 30!"
+              - light.turn_on: my_light
+              - delay: 5s
+            else:
+              - logger.log: "The sensor value is above 30!"
+        - light.turn_off: my_light
+
+
+Configuration variables:
+
+- **condition** (**Required**, :ref:`config-condition`): The condition to check which branch to take. See :ref:`Conditions <config-condition>`.
+- **then** (*Optional*, :ref:`Action <config-action>`): The action to perform if the condition evaluates to true.
+  Defaults to doing nothing.
+- **else** (*Optional*, :ref:`Action <config-action>`): The action to perform if the condition evaluates to false.
+  Defaults to doing nothing.
+
+.. _while_action:
+
+``while`` Action
+****************
+
+This action is similar to the :ref:`if <if_action>` Action. The ``while`` action loops
+through a block as long as the given condition is true.
+
+.. code-block:: yaml
+
+    # In a trigger:
+    on_...:
+      - while:
+          condition:
+            binary_sensor.is_on: some_binary_sensor
+          then:
+          - logger.log: "Still executing"
+          - light.toggle: some_light
+          - delay: 5s
+
+Configuration variables:
+
+- **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to perform until the condition evaluates to false.
+
+.. _repeat_action:
+
+``repeat`` Action
+*****************
+
+This action allows you to repeat a block a given number of times.
+For example, the automation below will flash the light five times.
+
+.. code-block:: yaml
+
+    on_...:
+      - repeat:
+          count: 5
+          then:
+            - light.turn_on: some_light
+            - delay: 1s
+            - light.turn_off: some_light
+            - delay: 10s
+
+Configuration variables:
+
+- **count** (**Required**, int): The number of times the action should be repeated.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to repeat.
+
+.. _wait_until_action:
+
+``wait_until`` Action
+*********************
+
+This action allows your automations to wait until a condition evaluates to true. (So this is just
+a shorthand way of writing a ``while`` action with an empty ``then`` block.)
+
+.. code-block:: yaml
+
+    # In a trigger:
+    on_...:
+      - logger.log: "Waiting for binary sensor"
+      - wait_until:
+          binary_sensor.is_on: some_binary_sensor
+      - logger.log: "Binary sensor is ready"
+
+If you want to use a timeout, the term "condition" is required:
+
+.. code-block:: yaml
+
+    # In a trigger:
+    on_...:
+      - logger.log: "Waiting for binary sensor"
+      - wait_until:
+          condition:
+            binary_sensor.is_on: some_binary_sensor
+          timeout: 8s
+      - logger.log: "Binary sensor might be ready"
+
+
+Configuration variables:
+
+- **condition** (**Required**): The condition to wait to become true. See :ref:`Conditions <config-condition>`.
+- **timeout** (*Optional*, :ref:`config-time`): Time to wait before timing out. Defaults to never timing out.
+
+.. _config-conditions:
+
+Conditions
+----------
+
+Most components have there own conditions set. 
+
+.. _and_condition:
+.. _or_condition:
+.. _xor_condition:
+.. _not_condition:
+
+``and`` / ``or`` / ``xor`` / ``not`` Condition
+**********************************************
+
+Check a combination of conditions
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - if:
+            condition:
+              # Same syntax for `and` as well as `xor` conditions
+              or:
+                - binary_sensor.is_on: some_binary_sensor
+                - binary_sensor.is_on: other_binary_sensor
+            # ...
+
+        - if:
+            condition:
+              not:
+                binary_sensor.is_off: some_binary_sensor
+
+.. _for_condition:
+
+``for`` Condition
+*****************
+
+This :ref:`Condition <config-condition>` allows you to check if a given condition has been
+true for at least a given amount of time.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          for:
+            time: 5min
+            condition:
+              api.connected:
+        then:
+          - logger.log: API has stayed connected for at least 5 minutes!
+
+Configuration variables:
+
+- **time** (**Required**, :ref:`templatable <config-templatable>`, :ref:`config-time`):
+  The time for which the condition has to have been true.
+- **condition** (**Required**, :ref:`Condition <config-condition>`):
+  The condition to check.
+
+
 .. _config-lambda:
 
-Templates (Lambdas)
--------------------
+Lambdas
+-------
 
 With templates inside ESPHome, you can do almost *everything*. If for example you want to only perform a certain
 automation if a certain complex formula evaluates to true, you can do that with templates. Let's look at an example
@@ -232,8 +525,8 @@ we're retrieving the current state of the end stop using ``.state`` and using it
 
 .. _config-templatable:
 
-Bonus: Templating Actions
-*************************
+Lambda on Parameters
+********************
 
 Another feature of ESPHome is that you can template almost every parameter for actions in automations. For example
 if you have a light and want to set it to a pre-defined color when a button is pressed, you can do this:
@@ -254,6 +547,40 @@ if you have a light and want to set it to a pre-defined color when a button is p
 
 Every parameter in actions that has the label "templatable" in the docs can be templated like above, using
 all of the usual lambda syntax.
+
+.. _config-lambda-action:
+
+``lambda`` Action
+*****************
+
+This action executes an arbitrary piece of C++ code (see :ref:`Lambda <config-lambda>`).
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - lambda: |-
+            id(some_binary_sensor).publish_state(false);
+
+.. _config-lambda-condition:
+
+``lambda`` Condition
+********************
+
+This condition performs an arbitrary piece of C++ code (see :ref:`Lambda <config-lambda>`)
+and can be used to create conditional flow in actions.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - if:
+            condition:
+              # Should return either true or false
+              lambda: |-
+                return id(some_sensor).state < 30;
+            # ...
+
 
 .. _config-globals:
 
@@ -305,6 +632,280 @@ Configuration variables:
 - **initial_value** (*Optional*, string): The value with which to initialize this variable if the state
   can not be restored or if state restoration is not enabled. This needs to be wrapped in quotes! Defaults to
   the C++ default value for this type (for example ``0`` for integers).
+
+.. _globals-set_action:
+
+``globals.set`` Action
+**********************
+
+This :ref:`Action <config-action>` allows you to change the value of a :ref:`global <config-globals>`
+variable without having to go through the lambda syntax.
+
+.. code-block:: yaml
+
+    on_...:
+      - globals.set:
+          id: my_global_var
+          value: '10'
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The :ref:`config-id` of the global variable to set.
+- **value** (**Required**, :ref:`templatable <config-templatable>`): The value to set the global
+  variable to.
+
+.. _script:
+
+``script`` Component
+--------------------
+
+With the ``script:`` component you can define a list of steps in a central place, and then
+execute the script with a single call.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    script:
+      - id: my_script
+        then:
+          - switch.turn_on: my_switch
+          - delay: 1s
+          - switch.turn_off: my_switch
+
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The :ref:`config-id` of the script. Use this
+  to interact with the script using the script actions.
+- **mode** (*Optional*, string): Controls what happens when a script is
+  invoked while it is still running from one or more previous invocations. Default to ``single``.
+
+    - ``single``: Do not start a new run. Issue a warning.
+    - ``restart``: Start a new run after first stopping previous run.
+    - ``queued``: Start a new run after previous runs complete.
+    - ``parallel``: Start a new, independent run in parallel with previous runs.
+
+- **max_runs** (*Optional*, int): Allows limiting the maxiumun number of runs when using script
+  modes ``queued`` and ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
+- **parameters** (*Optional*, :ref:`Script Parameters <script-parameters>`): A script can define one
+  or more parameters that must be provided in order to execute. All parameters defined here are
+  mandatory and must be given when calling the script.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
+
+.. _script-parameters:
+
+``Script Parameters``
+*********************
+
+Scripts can be defined with parameters. The arguments given when calling the script can be used within
+the script's lambda actions. To define the parameters, add the parameter names under `parameters:` key
+and specify the data type for that parameter.
+
+Supported data types:
+
+* `bool`: A boolean true/false. C++ type: `bool`
+* `int`: An integer. C++ type: `int32_t`
+* `float`: A floating point number. C++ type: `float`
+* `string`: A string. C++ type: `std::string`
+
+Each of these also exist in array form:
+
+* `bool[]`: An array of boolean values. C++ type: `std::vector<bool>`
+* Same for other types.
+
+.. code-block:: yaml
+
+    script:
+      - id: blink_light
+        parameters:
+          delay_ms: int
+        then:
+          - light.turn_on: status_light
+          # The param delay_ms is accessible using a lambda
+          - delay: !lambda return delay_ms;
+          - light.turn_off: status_light
+
+.. _script-execute_action:
+
+``script.execute`` Action
+*************************
+
+This action executes the script. The script **mode** dictates what will happen if the
+script was already running.
+
+.. code-block:: yaml
+
+    # in a trigger:
+    on_...:
+      then:
+        - script.execute: my_script
+
+        # Calling a non-parameterised script in a lambda
+        - lambda: id(my_script).execute();
+
+        # Calling a script with parameters
+        - script.execute:
+            id: blink_light
+            delay_ms: 500
+
+        # Calling a parameterised script inside a lambda
+        - lambda: id(blink_light)->execute(1000);
+
+.. _script-stop_action:
+
+``script.stop`` Action
+**********************
+
+This action allows you to stop a given script during execution. If the
+script is not running, it does nothing.
+This is useful if you want to stop a script that contains a
+``delay`` action, ``wait_until`` action, or is inside a ``while`` loop, etc.
+You can also call this action from the script itself, and any subsequent action
+will not be executed.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    script:
+      - id: my_script
+        then:
+          - switch.turn_on: my_switch
+          - delay: 1s
+          - switch.turn_off: my_switch
+
+    # in a trigger:
+    on_...:
+      then:
+        - script.stop: my_script
+
+or as lambda
+
+.. code-block:: yaml
+
+    lambda: 'id(my_script).stop();'
+
+.. _script-wait_action:
+
+``script.wait`` Action
+**********************
+
+This action suspends execution of the automation until a script has finished executing.
+
+Note: If no script is executing, this will continue immediately. If multiple instances
+of the script are running in parallel, this will block until all of them have terminated.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    script:
+      - id: my_script
+        then:
+          - switch.turn_on: my_switch
+          - delay: 1s
+          - switch.turn_off: my_switch
+
+    # in a trigger:
+    on_...:
+      then:
+        - script.execute: my_script
+        - script.wait: my_script
+
+This can't be used in a lambda as it would block all functioning of the device.  The script wouldn't even get to run.
+
+.. _script-is_running_condition:
+
+``script.is_running`` Condition
+*******************************
+
+This :ref:`condition <config-condition>` allows you to check if a given script is running.
+In case scripts are run in ``parallel``, this condition only tells you if at least one script
+of the given id is running, not how many. Not designed for use with :ref:`while <while_action>`, instead try :ref:`script.wait <script-wait_action>`.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          - script.is_running: my_script
+        then:
+          - logger.log: Script is running!
+
+or as lambda
+
+.. code-block:: yaml
+
+    lambda: |-
+        if (id(my_script).is_running()) {
+            ESP_LOGI("main", "Script is running!");
+        }
+
+
+
+.. _interval:
+
+``interval`` Component
+----------------------
+
+This component allows you to run actions at fixed time intervals.
+For example if you want to toggle a switch every minute, you can use this component.
+Please note that it's possible to achieve the same thing with the :ref:`time.on_time <time-on_time>`
+trigger, but this technique is more light-weight and user-friendly.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    interval:
+      - interval: 1min
+        then:
+          - switch.toggle: relay_1
+
+
+If a startup delay is configured, the first execution of the actions will not occur before at least that time
+after boot.
+
+Configuration variables:
+
+- **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
+- **startup_delay** (*Optional*, :ref:`config-time`): An optional startup delay - defaults to zero.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
+
+
+
+See Also
+--------
+
+- :doc:`configuration-types`
+- :doc:`faq`
+- :ghedit:`Edit`
+
+
+
+Timers and timeouts
+-------------------
+
+While ESPHome does not provide a construction for timers, you can easily implement them by
+combining ``script`` and ``delay``. You can have an absolute timeout or sliding timeout by
+using script modes ``single`` and ``restart`` respectively.
+
+.. code-block:: yaml
+
+    script:
+      - id: hallway_light_script
+        mode: restart     # Light will be kept on during 1 minute since
+                          # the latest time the script is executed
+        then:
+          - light.turn_on: hallway_light
+          - delay: 1 min
+          - light.turn_off: hallway_light
+
+    ...
+      on_...:           # can be called from different wall switches
+        - script.execute: hallway_light_script
+
+Sometimes you'll also need a timer which does not perform any action, that is ok too, just
+use a single ``delay`` action, then in your automation check ``script.is_running`` condition
+to know if your *timer* is going or due.
+
 
 .. _automation-networkless:
 
@@ -447,579 +1048,3 @@ All Lambda Calls
 - :ref:`Stepper <stepper-lambda_calls>`
 - :ref:`Number <number-lambda_calls>`
 
-.. _delay_action:
-
-``delay`` Action
-----------------
-
-This action delays the execution of the next action in the action list by a specified
-time period.
-
-.. code-block:: yaml
-
-    on_...:
-      then:
-        - switch.turn_on: relay_1
-        - delay: 2s
-        - switch.turn_off: relay_1
-        # Templated, waits for 1s (1000ms) only if a reed switch is active
-        - delay: !lambda "if (id(reed_switch).state) return 1000; else return 0;"
-
-.. note::
-
-    This is a "smart" asynchronous delay - other code will still run in the background while
-    the delay is happening. When using a lambda call, you should return the delay value in milliseconds.
-
-.. _lambda_action:
-
-``lambda`` Action
------------------
-
-This action executes an arbitrary piece of C++ code (see :ref:`Lambda <config-lambda>`).
-
-.. code-block:: yaml
-
-    on_...:
-      then:
-        - lambda: |-
-            id(some_binary_sensor).publish_state(false);
-
-.. _lambda_condition:
-
-``lambda`` Condition
---------------------
-
-This condition performs an arbitrary piece of C++ code (see :ref:`Lambda <config-lambda>`)
-and can be used to create conditional flow in actions.
-
-.. code-block:: yaml
-
-    on_...:
-      then:
-        - if:
-            condition:
-              # Should return either true or false
-              lambda: |-
-                return id(some_sensor).state < 30;
-            # ...
-
-.. _and_condition:
-.. _or_condition:
-.. _xor_condition:
-.. _not_condition:
-
-``and`` / ``or`` / ``xor`` / ``not`` Condition
-----------------------------------------------
-
-Check a combination of conditions
-
-.. code-block:: yaml
-
-    on_...:
-      then:
-        - if:
-            condition:
-              # Same syntax for `and` as well as `xor` conditions
-              or:
-                - binary_sensor.is_on: some_binary_sensor
-                - binary_sensor.is_on: other_binary_sensor
-            # ...
-
-        - if:
-            condition:
-              not:
-                binary_sensor.is_off: some_binary_sensor
-
-.. _if_action:
-
-``if`` Action
--------------
-
-This action first evaluated a certain condition (``if:``) and then either
-executes the ``then:`` branch or the ``else:`` branch depending on the output of the condition.
-
-After the chosen branch (``then`` or ``else``) is done with execution, the next action is performed.
-
-For example below you can see an automation that checks if a sensor value is below 30 and if so
-turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
-
-.. code-block:: yaml
-
-    on_...:
-      then:
-        - if:
-            condition:
-              lambda: 'return id(some_sensor).state < 30;'
-            then:
-              - logger.log: "The sensor value is below 30!"
-              - light.turn_on: my_light
-              - delay: 5s
-            else:
-              - logger.log: "The sensor value is above 30!"
-        - light.turn_off: my_light
-
-
-Configuration variables:
-
-- **condition** (**Required**, :ref:`config-condition`): The condition to check which branch to take. See :ref:`Conditions <config-condition>`.
-- **then** (*Optional*, :ref:`Action <config-action>`): The action to perform if the condition evaluates to true.
-  Defaults to doing nothing.
-- **else** (*Optional*, :ref:`Action <config-action>`): The action to perform if the condition evaluates to false.
-  Defaults to doing nothing.
-
-.. _while_action:
-
-``while`` Action
-----------------
-
-This action is similar to the :ref:`if <if_action>` Action. The ``while`` action loops
-through a block as long as the given condition is true.
-
-.. code-block:: yaml
-
-    # In a trigger:
-    on_...:
-      - while:
-          condition:
-            binary_sensor.is_on: some_binary_sensor
-          then:
-          - logger.log: "Still executing"
-          - light.toggle: some_light
-          - delay: 5s
-
-Configuration variables:
-
-- **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
-- **then** (**Required**, :ref:`Action <config-action>`): The action to perform until the condition evaluates to false.
-
-.. _repeat_action:
-
-``repeat`` Action
------------------
-
-This action allows you to repeat a block a given number of times.
-For example, the automation below will flash the light five times.
-
-.. code-block:: yaml
-
-    on_...:
-      - repeat:
-          count: 5
-          then:
-            - light.turn_on: some_light
-            - delay: 1s
-            - light.turn_off: some_light
-            - delay: 10s
-
-Configuration variables:
-
-- **count** (**Required**, int): The number of times the action should be repeated.
-- **then** (**Required**, :ref:`Action <config-action>`): The action to repeat.
-
-.. _wait_until_action:
-
-``wait_until`` Action
----------------------
-
-This action allows your automations to wait until a condition evaluates to true. (So this is just
-a shorthand way of writing a ``while`` action with an empty ``then`` block.)
-
-.. code-block:: yaml
-
-    # In a trigger:
-    on_...:
-      - logger.log: "Waiting for binary sensor"
-      - wait_until:
-          binary_sensor.is_on: some_binary_sensor
-      - logger.log: "Binary sensor is ready"
-
-If you want to use a timeout, the term "condition" is required:
-
-.. code-block:: yaml
-
-    # In a trigger:
-    on_...:
-      - logger.log: "Waiting for binary sensor"
-      - wait_until:
-          condition:
-            binary_sensor.is_on: some_binary_sensor
-          timeout: 8s
-      - logger.log: "Binary sensor might be ready"
-
-
-Configuration variables:
-
-- **condition** (**Required**): The condition to wait to become true. See :ref:`Conditions <config-condition>`.
-- **timeout** (*Optional*, :ref:`config-time`): Time to wait before timing out. Defaults to never timing out.
-
-.. _component-update_action:
-
-``component.update`` Action
----------------------------
-
-Using this action you can manually call the ``update()`` method of a component.
-
-Please note that this only works with some component types and others will result in a
-compile error.
-
-.. code-block:: yaml
-
-    on_...:
-      then:
-        - component.update: my_component
-
-        # The same as:
-        - lambda: 'id(my_component).update();'
-
-.. _component-suspend_action:
-
-``component.suspend`` Action
-----------------------------
-
-Using this action you can manually call the ``stop_poller()`` method of a component.
-
-After this action the component will stop being refreshed.
-
-While the poller is suspendend, it's still possible to trigger on-demand updates by
-using :ref:`component.update <component-update_action>`
-
-Please note that this only works with PollingComponent types and others will result in a
-compile error.
-
-.. code-block:: yaml
-
-    on_...:
-      then:
-        - component.suspend: my_component
-
-        # The same as:
-        - lambda: 'id(my_component).stop_poller();'
-
-.. _component-resume_action:
-
-``component.resume`` Action
----------------------------
-
-Using this action you can manually call the ``start_poller()`` method of a component.
-
-After this action the component will refresh at the original update_interval rate
-
-This will allow the component to resume automatic update at the defined interval.
-
-This action also allows to change the update interval, calling it without suspend, 
-replace the poller directly.
-
-Please note that this only works with PollingComponent types and others will result in a
-compile error.
-
-.. code-block:: yaml
-
-    on_...:
-      then:
-        - component.resume: my_component
-
-        # The same as:
-        - lambda: 'id(my_component).start_poller();'
-
-    # Change the poller interval
-    on_...:
-      then:
-        - component.resume: 
-            id: my_component
-            update_interval: 15s
-
-
-.. _globals-set_action:
-
-``globals.set`` Action
-----------------------
-
-This :ref:`Action <config-action>` allows you to change the value of a :ref:`global <config-globals>`
-variable without having to go through the lambda syntax.
-
-.. code-block:: yaml
-
-    on_...:
-      - globals.set:
-          id: my_global_var
-          value: '10'
-
-Configuration variables:
-
-- **id** (**Required**, :ref:`config-id`): The :ref:`config-id` of the global variable to set.
-- **value** (**Required**, :ref:`templatable <config-templatable>`): The value to set the global
-  variable to.
-
-
-``script`` Component
---------------------
-
-With the ``script:`` component you can define a list of steps in a central place, and then
-execute the script with a single call.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    script:
-      - id: my_script
-        then:
-          - switch.turn_on: my_switch
-          - delay: 1s
-          - switch.turn_off: my_switch
-
-
-Configuration variables:
-
-- **id** (**Required**, :ref:`config-id`): The :ref:`config-id` of the script. Use this
-  to interact with the script using the script actions.
-- **mode** (*Optional*, string): Controls what happens when a script is
-  invoked while it is still running from one or more previous invocations. Default to ``single``.
-
-    - ``single``: Do not start a new run. Issue a warning.
-    - ``restart``: Start a new run after first stopping previous run.
-    - ``queued``: Start a new run after previous runs complete.
-    - ``parallel``: Start a new, independent run in parallel with previous runs.
-
-- **max_runs** (*Optional*, int): Allows limiting the maxiumun number of runs when using script
-  modes ``queued`` and ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
-- **parameters** (*Optional*, :ref:`Script Parameters <script-parameters>`): A script can define one
-  or more parameters that must be provided in order to execute. All parameters defined here are
-  mandatory and must be given when calling the script.
-- **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
-
-
-.. _script-parameters:
-
-``Script Parameters``
----------------------
-
-Scripts can be defined with parameters. The arguments given when calling the script can be used within
-the script's lambda actions. To define the parameters, add the parameter names under `parameters:` key
-and specify the data type for that parameter.
-
-Supported data types:
-
-* `bool`: A boolean true/false. C++ type: `bool`
-* `int`: An integer. C++ type: `int32_t`
-* `float`: A floating point number. C++ type: `float`
-* `string`: A string. C++ type: `std::string`
-
-Each of these also exist in array form:
-
-* `bool[]`: An array of boolean values. C++ type: `std::vector<bool>`
-* Same for other types.
-
-.. code-block:: yaml
-
-    script:
-      - id: blink_light
-        parameters:
-          delay_ms: int
-        then:
-          - light.turn_on: status_light
-          # The param delay_ms is accessible using a lambda
-          - delay: !lambda return delay_ms;
-          - light.turn_off: status_light
-
-.. _script-execute_action:
-
-``script.execute`` Action
--------------------------
-
-This action executes the script. The script **mode** dictates what will happen if the
-script was already running.
-
-.. code-block:: yaml
-
-    # in a trigger:
-    on_...:
-      then:
-        - script.execute: my_script
-
-        # Calling a non-parameterised script in a lambda
-        - lambda: id(my_script).execute();
-
-        # Calling a script with parameters
-        - script.execute:
-            id: blink_light
-            delay_ms: 500
-
-        # Calling a parameterised script inside a lambda
-        - lambda: id(blink_light)->execute(1000);
-
-.. _script-stop_action:
-
-``script.stop`` Action
-----------------------
-
-This action allows you to stop a given script during execution. If the
-script is not running, it does nothing.
-This is useful if you want to stop a script that contains a
-``delay`` action, ``wait_until`` action, or is inside a ``while`` loop, etc.
-You can also call this action from the script itself, and any subsequent action
-will not be executed.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    script:
-      - id: my_script
-        then:
-          - switch.turn_on: my_switch
-          - delay: 1s
-          - switch.turn_off: my_switch
-
-    # in a trigger:
-    on_...:
-      then:
-        - script.stop: my_script
-
-or as lambda
-
-.. code-block:: yaml
-
-    lambda: 'id(my_script).stop();'
-
-.. _script-wait_action:
-
-``script.wait`` Action
-----------------------
-
-This action suspends execution of the automation until a script has finished executing.
-
-Note: If no script is executing, this will continue immediately. If multiple instances
-of the script are running in parallel, this will block until all of them have terminated.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    script:
-      - id: my_script
-        then:
-          - switch.turn_on: my_switch
-          - delay: 1s
-          - switch.turn_off: my_switch
-
-    # in a trigger:
-    on_...:
-      then:
-        - script.execute: my_script
-        - script.wait: my_script
-
-This can't be used in a lambda as it would block all functioning of the device.  The script wouldn't even get to run.
-
-.. _script-is_running_condition:
-
-``script.is_running`` Condition
--------------------------------
-
-This :ref:`condition <config-condition>` allows you to check if a given script is running.
-In case scripts are run in ``parallel``, this condition only tells you if at least one script
-of the given id is running, not how many. Not designed for use with :ref:`while <while_action>`, instead try :ref:`script.wait <script-wait_action>`.
-
-.. code-block:: yaml
-
-    on_...:
-      if:
-        condition:
-          - script.is_running: my_script
-        then:
-          - logger.log: Script is running!
-
-or as lambda
-
-.. code-block:: yaml
-
-    lambda: |-
-        if (id(my_script).is_running()) {
-            ESP_LOGI("main", "Script is running!");
-        }
-
-.. _for_condition:
-
-``for`` Condition
------------------
-
-This :ref:`Condition <config-condition>` allows you to check if a given condition has been
-true for at least a given amount of time.
-
-.. code-block:: yaml
-
-    on_...:
-      if:
-        condition:
-          for:
-            time: 5min
-            condition:
-              api.connected:
-        then:
-          - logger.log: API has stayed connected for at least 5 minutes!
-
-Configuration variables:
-
-- **time** (**Required**, :ref:`templatable <config-templatable>`, :ref:`config-time`):
-  The time for which the condition has to have been true.
-- **condition** (**Required**, :ref:`Condition <config-condition>`):
-  The condition to check.
-
-.. _interval:
-
-``interval`` Component
-----------------------
-
-This component allows you to run actions at fixed time intervals.
-For example if you want to toggle a switch every minute, you can use this component.
-Please note that it's possible to achieve the same thing with the :ref:`time.on_time <time-on_time>`
-trigger, but this technique is more light-weight and user-friendly.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    interval:
-      - interval: 1min
-        then:
-          - switch.toggle: relay_1
-
-
-If a startup delay is configured, the first execution of the actions will not occur before at least that time
-after boot.
-
-Configuration variables:
-
-- **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
-- **startup_delay** (*Optional*, :ref:`config-time`): An optional startup delay - defaults to zero.
-- **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
-
-
-Timers and timeouts
--------------------
-
-While ESPHome does not provide a construction for timers, you can easily implement them by
-combining ``script`` and ``delay``. You can have an absolute timeout or sliding timeout by
-using script modes ``single`` and ``restart`` respectively.
-
-.. code-block:: yaml
-
-    script:
-      - id: hallway_light_script
-        mode: restart     # Light will be kept on during 1 minute since
-                          # the latest time the script is executed
-        then:
-          - light.turn_on: hallway_light
-          - delay: 1 min
-          - light.turn_off: hallway_light
-
-    ...
-      on_...:           # can be called from different wall switches
-        - script.execute: hallway_light_script
-
-Sometimes you'll also need a timer which does not perform any action, that is ok too, just
-use a single ``delay`` action, then in your automation check ``script.is_running`` condition
-to know if your *timer* is going or due.
-
-See Also
---------
-
-- :doc:`configuration-types`
-- :doc:`faq`
-- :ghedit:`Edit`
