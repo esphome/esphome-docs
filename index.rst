@@ -226,6 +226,7 @@ I/O Expanders/Multiplexers
     SN74HC595, components/sn74hc595, sn74hc595.jpg
     SX1509, components/sx1509, sx1509.jpg
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
+    WeiKai SPI/I²C UART/IO Expander, components/weikai, wk2168.jpg
     XL9535, components/xl9535, xl9535.svg
 
 Sensor Components
