@@ -325,6 +325,7 @@ through a block as long as the given condition is true.
           - light.toggle: some_light
           - delay: 5s
 
+
 Configuration variables:
 
 - **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
@@ -349,6 +350,7 @@ For example, the automation below will flash the light five times.
             - light.turn_off: some_light
             - delay: 10s
 
+
 Configuration variables:
 
 - **count** (**Required**, int): The number of times the action should be repeated.
@@ -370,6 +372,7 @@ a shorthand way of writing a ``while`` action with an empty ``then`` block.)
       - wait_until:
           binary_sensor.is_on: some_binary_sensor
       - logger.log: "Binary sensor is ready"
+
 
 If you want to use a timeout, the term "condition" is required:
 
