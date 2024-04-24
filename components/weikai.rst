@@ -5,22 +5,20 @@ WeiKai SPI/I²C UART/IO Expander
     :description: Instructions for setting up WeiKai SPI/I²C to UART Expanders in ESPHome.
     :image: wk2168.jpg
     :keywords: UART, SPI, I²C, WK2132, WK2168, WK2204, WK2212, wk2124
-    
-.. _weikai-component:
-
-.. role:: raw-html-m2r(raw)
-   :format: html
 
 **WeiKai Microelectronics** provides a family of UART & GPIO expansion chips
 that interfaces to a micro-controller through SPI or I²C bus.
 
 The ESPHome ``WeiKai`` component supports the following WeiKai chips:
-`WK2168-IQPG <https://jlcpcb.com/partdetail/WEIKAI-WK2168IQPG/C401041>`__
-`WK2132-ISSG <https://jlcpcb.com/partdetail/WeiKai-WK2132ISSG/C401039>`__
-`WK2124-ISSG <https://jlcpcb.com/partdetail/WeiKai-WK2124ISSG/C86332>`__
-`WK2204-IQNG <https://jlcpcb.com/partdetail/WeiKai-WK2204IQNG/C401040>`__
-`WK2212-IQNG <https://jlcpcb.com/partdetail/WeiKai-WK2212IQNG/C2987671>`__ \ :raw-html-m2r:`<br>`
+
+- `WK2168-IQPG <https://jlcpcb.com/partdetail/WEIKAI-WK2168IQPG/C401041>`__
+- `WK2132-ISSG <https://jlcpcb.com/partdetail/WeiKai-WK2132ISSG/C401039>`__
+- `WK2124-ISSG <https://jlcpcb.com/partdetail/WeiKai-WK2124ISSG/C86332>`__
+- `WK2204-IQNG <https://jlcpcb.com/partdetail/WeiKai-WK2204IQNG/C401040>`__
+- `WK2212-IQNG <https://jlcpcb.com/partdetail/WeiKai-WK2212IQNG/C2987671>`__
+
 It can also be used with evaluation board equipped with these chips, such as:
+
 - `WK2168 Chip Development Board <https://fr.aliexpress.com/item/1005002198759633.html>`__
 - `WK2132 Chip Development Board <https://www.aliexpress.com/item/1005002018579265.html>`__
 - `DFROBOT Gravity: I²C to Dual UART Module <https://www.dfrobot.com/product-2001.html>`__
@@ -63,29 +61,31 @@ The features provided by the different WeiKai chips are described in the followi
 As you can see most of the components can interface either through an I²C bus or a SPI bus,
 they provide either 2 or 4 serial channels, and some provide 8 input/output pins.
 
-Each UART channel has two independent 256-byte FIFO hardware buffers to transmit and 
-receive and support data transmission rates up to 1 Mbps. 
-The baud rate and parity format of each UART channel can be configured independently. 
-However, the data bit length is fixed at 8. \ :raw-html-m2r:`<br>`
-Utilizing the UART channels enables you to connect your UART devices, with each channel functioning 
+Each UART channel has two independent 256-byte FIFO hardware buffers to transmit and
+receive and support data transmission rates up to 1 Mbps.
+The baud rate and parity format of each UART channel can be configured independently.
+However, the data bit length is fixed at 8.
+
+Utilizing the UART channels enables you to connect your UART devices, with each channel functioning
 as a virtual UART bus for the connected component.
 
-The I/O pins of the WeiKai chips can be use as any of the other GPIO pins. 
-Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically 
-be used, but some more complicated components that do communication through 
+The I/O pins of the WeiKai chips can be use as any of the other GPIO pins.
+Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically
+be used, but some more complicated components that do communication through
 this I/O expander might not work.
 
 Connecting via an SPI bus
 -------------------------
 
-The ``wk2132_spi``, ``wk2212_spi``, ``wk2204_spi``, ``wk2168_spi`` components allows 
-you to connect the WeiKai chip with ESPHome via a :ref:`SPI <spi>` bus. \ :raw-html-m2r:`<br>`
-You can connect several of these modules to a single SPI controller circuit effectively expanding 
-the number of hardware serial ports available. Each WeiKai chip needs to be selected 
+The ``wk2132_spi``, ``wk2212_spi``, ``wk2204_spi``, ``wk2168_spi`` components allows
+you to connect the WeiKai chip with ESPHome via a :ref:`SPI <spi>` bus.
+
+You can connect several of these modules to a single SPI controller circuit effectively expanding
+the number of hardware serial ports available. Each WeiKai chip needs to be selected
 with a individual CS.
 
 Here is an example of configuration entry for a wk2168_spi component. For the other components
-in the list just replace the name of the component and make sure you do not use more channels that the chip 
+in the list just replace the name of the component and make sure you do not use more channels that the chip
 can support (an error message will be generated otherwise). Note that for the ``WK2124-ISSG`` chip
 you need to use ``wk2204_spi`` as the two chips are similar.
 
@@ -118,28 +118,28 @@ Configuration variables:
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
   of the chip is connected to.
 - **data_rate** (*Optional*): Set the data rate of the controller. One of ``80MHz``, ``40MHz``, ``20MHz``, ``10MHz``,
-  ``5MHz``, ``4MHz``, ``2MHz``, ``1MHz`` (default), ``200kHz``, ``75kHz`` or ``1kHz``. A numeric value in Hz can 
+  ``5MHz``, ``4MHz``, ``2MHz``, ``1MHz`` (default), ``200kHz``, ``75kHz`` or ``1kHz``. A numeric value in Hz can
   alternatively be specified.
 - **crystal** (*Optional*): The frequency in Hz of the crystal connected to the chip.
   The default value is 14745600 Hz.
 - **uart** (**Required**): The UART channels.
 
   - **id** (**Required**, :ref:`config-id`): The id to use for this UART channel.
-  - **channel** (**Required**): Unique channel number of this virtual UART. 
+  - **channel** (**Required**): Unique channel number of this virtual UART.
     Options: ``0`` to ``1`` or ``0`` to ``3`` depending on the model.
   - **baud_rate** (**Required**): The baud rate of the UART channel.
-  - **parity** (*Optional*): The parity used on the UART channel. Options: ``NONE``, ``EVEN``, 
+  - **parity** (*Optional*): The parity used on the UART channel. Options: ``NONE``, ``EVEN``,
     ``ODD``. Defaults to ``NONE``.
-  - **stop_bits** (*Optional*): The number of stop bits to send. Options: ``1``, ``2``. 
+  - **stop_bits** (*Optional*): The number of stop bits to send. Options: ``1``, ``2``.
     Defaults to ``1``.
 
 Connecting via an I²C bus
 -------------------------
 
-The ``wk2132_i2c`` ``wk2212_i2c`` ``wk2204_i2c`` ``wk2168_i2c`` components allows you 
-to connect the WeiKai chip with ESPHome via an :ref:`I²C <i2c>` bus. 
-Up to four WeiKai chips can be connected to an I²C controller board, effectively expanding the 
-available hardware serial ports. The base addresses of these boards are defined by the 
+The ``wk2132_i2c`` ``wk2212_i2c`` ``wk2204_i2c`` ``wk2168_i2c`` components allows you
+to connect the WeiKai chip with ESPHome via an :ref:`I²C <i2c>` bus.
+Up to four WeiKai chips can be connected to an I²C controller board, effectively expanding the
+available hardware serial ports. The base addresses of these boards are defined by the
 positions of two switches, A0 and A1, on the board.
 
 ..  list-table:: WeiKai address selection
@@ -163,12 +163,13 @@ positions of two switches, A0 and A1, on the board.
       - 1
       - 1
 
-.. important:: 
+.. important::
 
     Note that the address is given as a **range** a not a number as you usually find on other I²C component.
-    Indeed due to a peculiar way of addressing the different internal registers each component actually occupy 
-    8 consecutive addresses. For example if the component base address is 0x10, it will occupy the addresses ranging from 
-    0x10 to 0x17 on the I²C bus. \ :raw-html-m2r:`<br>`
+    Indeed due to a peculiar way of addressing the different internal registers each component actually occupy
+    8 consecutive addresses. For example if the component base address is 0x10, it will occupy the addresses ranging from
+    0x10 to 0x17 on the I²C bus.
+
     This is important to know if you want to connect other devices on the same I²C bus.
 
 Here is an example of configuration entry for a ``wk2168_i2c`` component. For the other components
@@ -206,12 +207,12 @@ Configuration variables:
 - **uart** (*Required*): The UART channels.
 
   - **id** (**Required**, :ref:`config-id`): The id to use for this UART channel.
-  - **channel** (**Required**): Unique channel number of this virtual UART. 
+  - **channel** (**Required**): Unique channel number of this virtual UART.
     Options: ``0`` to ``1`` or ``0`` to ``3`` depending on the model.
   - **baud_rate** (**Required**): The baud rate of the UART channel.
-  - **parity** (*Optional*): The parity used on the UART channel. Options: ``NONE``, ``EVEN``, 
+  - **parity** (*Optional*): The parity used on the UART channel. Options: ``NONE``, ``EVEN``,
     ``ODD``. Defaults to ``NONE``.
-  - **stop_bits** (*Optional*): The number of stop bits to send. Options: ``1``, ``2``. 
+  - **stop_bits** (*Optional*): The number of stop bits to send. Options: ``1``, ``2``.
     Defaults to ``1``.
 
 Using the GPIO pins
@@ -257,7 +258,7 @@ For example for a wk2168_spi chip:
           mode:
             output: true
           inverted: true
-      
+
 Pin configuration variables:
 ****************************
 
@@ -270,15 +271,16 @@ Pin configuration variables:
 Performance considerations:
 ---------------------------
 
-Bus speed 
+Bus speed
 *********
 
-Please be aware that the communication between the WeiKai chips and the processor occurs on an external bus, 
-with a relatively low operating frequency. Therefore tasks such as checking the status of the chip's 
-registers or transferring bytes from the internal FIFOs to the processor may take time. \ :raw-html-m2r:`<br>`
-To improve this situation, it is strongly recommended to increase the default bus frequency. 
+Please be aware that the communication between the WeiKai chips and the processor occurs on an external bus,
+with a relatively low operating frequency. Therefore tasks such as checking the status of the chip's
+registers or transferring bytes from the internal FIFOs to the processor may take time.
 
-- With a SPI bus this can be done on the WeiKai component by specifying `data_rate`. For example:
+To improve this situation, it is strongly recommended to increase the default bus frequency.
+
+- With a SPI bus this can be done on the WeiKai component by specifying ``data_rate``. For example:
 
 .. code-block:: yaml
 
@@ -288,7 +290,7 @@ To improve this situation, it is strongly recommended to increase the default bu
         cs_pin: 5
         data_rate: 4MHz
 
-- With an I²C bus this needs to be done on the `i2c` declaration and therefore this frequency will
+- With an I²C bus this needs to be done on the ``i2c`` declaration and therefore this frequency will
   apply to all components connected to this bus.
 
 .. code-block:: yaml
