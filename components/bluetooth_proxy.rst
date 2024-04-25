@@ -32,7 +32,7 @@ our `Bluetooth Proxy installer <https://esphome.github.io/bluetooth-proxies/>`__
 
     The :doc:`web_server` component should be disabled as the device is likely
     to run out of memory and will malfunction when both components are enabled simultaneously.
-    
+
     Not all devices are supported and ESPHome does not decode or keep a list. To find out if your device is supported,
     please search for it in the `Home Assistant Integrations <https://www.home-assistant.io/integrations/>`__ list.
 
@@ -43,14 +43,10 @@ Configuration:
 
     bluetooth_proxy:
 
-- **active** (*Optional*, boolean): Enables proxying active connections. Defaults to ``false``. Requires Home Assistant 2022.10 or later.
+- **active** (*Optional*, boolean): Enables proxying active connections. Defaults to ``false``.
 - **cache_services** (*Optional*, boolean): Enables caching GATT services in NVS flash storage which significantly speeds up active connections. Defaults to ``true`` when using the ESP-IDF framework.
 
 The Bluetooth proxy depends on :doc:`esp32_ble_tracker` so make sure to add that to your configuration.
-
-.. note::
-
-    Bluetooth proxy requires Home Assistant 2022.9 or later. ESPHome 2022.12.0 and Home Assistant 2022.12.6 or later is recommended.
 
 Improving reception performance
 -------------------------------
