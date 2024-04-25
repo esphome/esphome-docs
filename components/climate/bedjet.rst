@@ -119,6 +119,13 @@ Configuration variables:
 
     Whichever is not selected will be made available as a custom preset.
 
+- **temperature_source** (*Optional*, string): The temperature that should be used as the
+  climate entity's current temperature:
+
+    - ``ambient`` (Default) - The temperature of the room the BedJet is in will be
+      reported as the climate entity's current temperature.
+    - ``outlet`` - The temperature of the air being discharged by the BedJet will be
+      reported as the climate entity's current temperature.
 - All other options from :ref:`Climate <config-climate>`.
 
 ``bedjet`` Fan
@@ -145,6 +152,38 @@ Configuration variables:
 - **name** (**Required**, string): The name of the fan device.
 - **bedjet_id** (**Required**, :ref:`config-id`): The ID of the Bedjet component.
 - Other options from :ref:`Fan <config-fan>`.
+
+``bedjet`` Sensor
+-----------------
+
+The ``sensor`` platform exposes the BedJet's various temperature readings as sensors.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: bedjet
+        bedjet_id: bedjet_1
+        outlet_temperature:
+          name: "My BedJet Outlet Temperature"
+        ambient_temperature:
+          name: "My BedJet Ambient Temperature"
+
+Configuration variables:
+************************
+
+- **outlet_temperature** (*Optional*): If specified, the temperature of the air being
+  discharged from the BedJet will be reported as a sensor.
+
+  - **name** (**Required**, string): The name for the outlet temperature sensor.
+  - **id** (*Optional*, string): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **ambient_temperature** (*Optional*): If specified, the temperature of the room the
+  BedJet is in will be reported as a sensor.
+
+  - **name** (**Required**, string): The name for the ambient temperature sensor.
+  - **id** (*Optional*, string): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 Known issues:
 -------------
