@@ -210,6 +210,7 @@ Hardware Peripheral Interfaces/Busses
     I²S Audio, components/i2s_audio, i2s_audio.svg
     SPI Bus, components/spi, spi.svg
     UART, components/uart, uart.svg
+    OpenTherm, components/opentherm, opentherm.png
 
 I/O Expanders/Multiplexers
 --------------------------
