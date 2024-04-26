@@ -94,7 +94,7 @@ Configuration variables:
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen if necessarry. Defaults to ``1s``.
 - **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, enum): The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, defaults to ``big_endian``.
-- **default_font**  (*Optional*, enum): The C array name of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
+- **default_font**  (*Optional*, enum): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each. If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
@@ -476,7 +476,7 @@ A label is the basic widget type that is used to display text.
 - **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
 - **text_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to render the text in.
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
-- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the C array name of the font used to render the text or symbol.
+- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the ID of the font used to render the text or symbol.
 - **text_letter_space** (*Optional*, int16): Characher spacing of the text.
 - **text_line_space** (*Optional*, int16): Line spacing of the text.
 - **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
@@ -1471,7 +1471,7 @@ The Base Object is just a simple, empty widget. By default, it's nothing more th
 .. figure:: /components/images/lvgl_baseobj.png
     :align: center
 
-You can use it as a parent for other widgets, like background shape. By default, it catches touches.
+You can use it as a parent container for other widgets. By default, it catches touches.
 
 **Specific options:**
 
@@ -1497,7 +1497,7 @@ The tileview is a container object whose elements (called tiles) can be arranged
 
 If the Tile view is screen sized, the user interface resembles what you may have seen on smartwatches.
 
-A typical application would probably use an ``obj`` container as a tile, to display multiple child widgets.
+A typical application would probably use an ``obj`` container widget as a tile, to display multiple child widgets, but any widget can be used directly too.
 
 **Specific options:**
 
@@ -1539,6 +1539,7 @@ A typical application would probably use an ``obj`` container as a tile, to disp
               widgets:
                 - img:
                     src: cat_image
+                - ...
           - ...
 
     # Example action:
