@@ -216,13 +216,6 @@ Minimal example with numeric input
     esphome:
       name: thermostat-number-minimal
 
-    external_components:
-      # Replace with a direct reference to GitHub in your own configuration
-      #source: github://arthurrump/esphome-opentherm@main
-      source: 
-        type: local
-        path: ../components
-
     esp8266:
       board: d1_mini
 
