@@ -1490,6 +1490,76 @@ You can use it as a parent for other widgets, like background shape. By default,
         widgets:
           - ...
 
+``tileview``
+************
+
+The tileview is a container object whose elements (called tiles) can be arranged in grid form. A user can navigate between the tiles by dragging or swiping. Any direction can be disabled on the tiles individually to not allow moving from one tile to another.
+
+If the Tile view is screen sized, the user interface resembles what you may have seen on smartwatches.
+
+A typical application would probably use an ``obj`` container as a tile, to display multiple child widgets.
+
+**Specific options:**
+
+- **tiles** (**Required**, list): A list with (any number of) tiles to be added to meter.  
+    - *widget* (**Required**): Any kind of widget to be used as tile container.
+        - **tile_id** (**Required**): An ID to be used with ``lvgl.tileview.select`` action
+        - **dir** (*Optional*): Enable moving to the adjacent tiles into the given direction by swiping/dragging. One or multiple of ``LEFT``, ``RIGHT`, ``TOP`, ``BOTTOM`, ``HOR`, ``VER`, ``ALL``. Defaults to ``ALL``.
+        - **row** (**Required**): Horrizontal position of the tile in the tileview matrix.
+        - **column** (**Required**): Vertical position of the tile in the tileview matrix.
+        - Style options from the widget used as container.
+
+**Specific actions:**
+
+``lvgl.tileview.select`` :ref:`action <config-action>` jumps the ``tileview`` to the desired tile.
+ 
+- **id** (**Required**): The ID of the ``tileview`` which receives this action
+- **tile_id** (*Optional*): The ID of the tile from within it, to which to jump. Required if not specifying ``row`` and ``column``.
+- **row** (*Optional*): Horrizontal position of the tile to which to jump. Required if not specifying ``tile_id``.
+- **column** (*Optional*): Vertical position of the tile to which to jump. Required if not specifying ``tile_id``.
+- **animated** (*Optional*, boolean): To animate the movement. Defaults to ``false``.
+
+**Specific triggers:**
+
+``on_value`` :ref:`trigger <automation>` is activated when displayed tile changes. The new value is returned in the variable ``tile``, as the ID of the newly visilbe tile. 
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - tileview:
+        id: tv_id
+        tiles:
+          - obj:
+              row: 0
+              column: 0
+              tile_id: cat_tile
+              dir: VER
+              widgets:
+                - img:
+                    src: cat_image
+          - ...
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.tileview.select:
+            id: tv_id
+            row: 0
+            column: 0
+            animated: true
+
+    # Example trigger:
+    - slider:
+        ...
+        on_value:
+          - if:
+              condition:
+                lambda: return tile == id(cat_tile);
+              then:
+                - logger.log: "Cat tile is now showing"
+
 .. _lvgl-wgt-msg:
 
 ``msgboxes``
