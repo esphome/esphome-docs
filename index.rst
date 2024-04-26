@@ -584,13 +584,13 @@ Touchscreen
 
 .. imgtable::
 
-    Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
-    LVGL widget, components/binary_sensor/lvgl, lvgl_c_bns.png
-    Touchscreen, components/touchscreen/index, touch.svg, dark-invert
-    TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
+    Touchscreen Core, components/touchscreen/index, touch.svg, dark-invert
     FT5X06, components/touchscreen/ft5x06, indicator.jpg
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
-    
+    Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
+    TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
+    LVGL widget, components/binary_sensor/lvgl, lvgl_c_bns.png
+
 Presence Detection
 ******************
 
@@ -759,7 +759,6 @@ Display Hardware Platforms
 
 .. imgtable::
 
->>>>>>> next
     Addressable Light, components/display/addressable_light, addressable_light.jpg
     ILI9xxx, components/display/ili9xxx, ili9341.jpg
     ILI9341, components/display/ili9xxx, ili9341.svg
