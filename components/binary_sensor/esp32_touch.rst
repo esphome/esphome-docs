@@ -149,6 +149,35 @@ Configuration variables:
    wake-up from a touch event. Note that no filter(s) is/are active during deep sleep.
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
+
+Raw Values
+----------
+
+If access to the raw values is required, a template sensor can be created that polls for them:
+
+.. code-block:: yaml
+
+    # Example configuration entry for accessing raw values
+    esp32_touch:
+      id: esp32_touch_1
+
+    binary_sensor:
+      - platform: esp32_touch
+        id: esp32_touch_pad
+        pin: GPIO4
+        threshold: 0
+
+    sensor:
+      - platform: template
+        name: "Raw touch value"
+        lambda: |-
+            return id(esp32_touch_pad).get_value();
+        update_interval: 3s
+
+One example of use is a wide area pressure sensor that integrates a number of smaller sensors in an area. Make two strips 
+of aluminium foil that sandwich paper, and connect one wire to a touch pin and the other to ground. Set up several sensors 
+under a flexible object like a plastic mat, add the raw values, and apply a threshold.
+
 .. _esp32-touch-pad-pins:
 
 Touch Pad Pins

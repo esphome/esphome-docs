@@ -22,7 +22,7 @@ In the example below, modify ``platform: bme280`` as appropriate for your hardwa
 .. code-block:: yaml
 
     sensor:
-      - platform: bme280
+      - platform: bme280_i2c
         temperature:
           name: "BME280 Temperature"
           id: bme280_temperature

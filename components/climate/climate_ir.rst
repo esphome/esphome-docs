@@ -27,6 +27,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Daikin                                | ``daikin``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`Daikin ARC<daikin_arc>`         | ``daikin_arc``      | yes                  |
++---------------------------------------+---------------------+----------------------+
 | :ref:`Daikin BRC<daikin_brc>`         | ``daikin_brc``      | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Delonghi<delonghi_ir>`          | ``delonghi``        | yes                  |
@@ -221,6 +223,21 @@ Configuration variables:
         sensor: room_temperature
         header_high: 3265us # AC Units from LG in Brazil, for example use these timings
         header_low: 9856us
+
+.. _daikin_arc:
+
+``daikin_arc`` Climate
+-------------------------
+
+The Daikin ARC remotes are used by the japanese model of Daikin.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: daikin_arc
+        name: "AC"
+        sensor: room_temperature
 
 .. _daikin_brc:
 
