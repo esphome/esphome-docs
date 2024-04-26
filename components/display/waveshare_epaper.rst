@@ -96,6 +96,7 @@ Configuration variables:
   - ``2.70in-b`` - Black/White/Red
   - ``2.70in-bv2`` - Black/White/Red
   - ``2.90in``
+  - ``2.90in-dke``
   - ``2.90inv2``
   - ``2.90inv2-r2`` - 2.9in V2 display, but with different initialization and full/partial display refresh management than ``2.90inv2`` 
   - ``2.90in-b`` - B/W rendering only
