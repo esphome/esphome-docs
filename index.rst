@@ -1058,6 +1058,7 @@ Cookbook
 .. imgtable::
 
     Lambda Magic: Tips and Tricks, cookbook/lambda_magic, head-lightbulb-outline.svg, dark-invert
+    LVGL Graphic recipes, cookbook/lvgl, lvgl.png
     Garage Door Template Cover, cookbook/garage-door, garage-variant.svg, dark-invert
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
@@ -1067,7 +1068,6 @@ Cookbook
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
     Share data directly between ESPHome nodes, cookbook/http_request_sensor, connection.svg, dark-invert
-    LVGL Graphics: Tips and Tricks, cookbook/lvgl, lvgl.png
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
