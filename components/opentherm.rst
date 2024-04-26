@@ -22,6 +22,7 @@ Since OpenTherm doesn't operate in a standard voltage range, special hardware is
     DIYLESS Master OpenTherm Shield.
 
 .. note::
+
     This component acts only as an OpenTherm master (i.e. a thermostat or controller) and not as a slave or gateway. You can no longer use your existing thermostat if you control your boiler through ESPHome with this component.
 
 Quick glossary
@@ -58,13 +59,13 @@ There are three ways to set an input value:
   
 .. code-block:: yaml
 
-  opentherm:
-    t_set: setpoint_sensor
+    opentherm:
+      t_set: setpoint_sensor
 
-  sensor:
-    - platform: homeassistant
-      id: setpoint_sensor
-      entity_id: sensor.boiler_setpoint
+    sensor:
+      - platform: homeassistant
+        id: setpoint_sensor
+        entity_id: sensor.boiler_setpoint
 
 This can be useful if you have an external thermostat-like device that provides the setpoint as a sensor.
 
@@ -72,10 +73,10 @@ This can be useful if you have an external thermostat-like device that provides 
   
 .. code-block:: yaml
 
-  number:
-    - platform: opentherm
-      t_set:
-        name: Boiler Setpoint
+    number:
+      - platform: opentherm
+        t_set:
+          name: Boiler Setpoint
 
 This is useful if you want full control over your boiler and want to manually set all values.
 
@@ -83,8 +84,8 @@ This is useful if you want full control over your boiler and want to manually se
   
 .. code-block:: yaml
 
-  output:
-    - platform: opentherm
+    output:
+      - platform: opentherm
       t_set:
         id: setpoint
   
@@ -92,8 +93,8 @@ This is especially useful in combination with the PID Climate component:
 
 .. code-block:: yaml
 
-  climate:
-    - platform: pid
+    climate:
+      - platform: pid
       heat_output: setpoint
       # ...
 
