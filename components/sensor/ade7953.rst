@@ -122,6 +122,7 @@ Configuration variables:
 - **active_power_gain_a** (*Optional*, int): Set the active power amplification of the A channel. Defaults to ``0x400000``.
 - **active_power_gain_b** (*Optional*, int): Set the active power amplification of the B channel. Defaults to ``0x400000``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+- **use_accumulated_energy_registers** (*Optional*, boolean): Use ADE7935 accumulated energy registers instead of instant power registers. These registers store the accumulated energy since the last read and should provide better accuracy for power calculation. Defaults to ``false``.
 
 Over SPI
 --------
@@ -253,6 +254,7 @@ Configuration variables:
 - **active_power_gain_a** (*Optional*, int): Set the active power amplification of the A channel. Defaults to ``0x400000``.
 - **active_power_gain_b** (*Optional*, int): Set the active power amplification of the B channel. Defaults to ``0x400000``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+- **use_accumulated_energy_registers** (*Optional*, boolean): Use ADE7935 accumulated energy registers instead of instant power registers. These registers store the accumulated energy since the last read and should provide better accuracy for power calculation. Defaults to ``false``.
 
 Use with Shelly 2.5
 -------------------
