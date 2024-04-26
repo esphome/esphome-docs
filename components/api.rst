@@ -81,6 +81,11 @@ Actions
 Before using any of the actions below, you'll need to tell Home Assistant to allow your device to
 make service calls:
 
+.. raw:: html
+
+    <a href="https://my.home-assistant.io/redirect/integration/?domain=esphome" target="_blank" rel="noreferrer noopener"><img src="https://my.home-assistant.io/badges/integration.svg" alt="Open your Home Assistant instance and show an integration." /></a>
+
+
 #. Go to the Home Assistant "integrations" page
 #. Click on "ESPHome"
 #. Fnd your device and click the "configure" button next to it
