@@ -306,7 +306,7 @@ In ESPHome LVGL offers two font choices: the internal fonts offered by the libra
 
 **Internal fonts**
 
-The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and 60 symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Choose one of the names below when specifying the ``text_font`` parameter:
+The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and 60 symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Use one of the IDs below when specifying the ``text_font`` parameter:
 
 - ``montserrat_8``: 8px font
 - ``montserrat_10``: 10px font
@@ -350,7 +350,7 @@ In addition to the above, the following special fonts are available from LVGL as
 
 **ESPHome fonts**
 
-In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary. This has the advantage that you can define custom sets of glyphs of any size, with icons or diacritic characters of your choice, for any language, from any TrueType/OpenType font.
+In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary. This has the advantage that you can define custom sets of glyphs of any size, with icons or diacritic characters of your choice, for any language, from any TrueType/OpenType font, using less flash space because you don't need to include all glyphs for all sizes you wish to use.
 
 Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-cook-iconbatt` in the Cookbook for examples how to play with texts and icons using various TrueType/OpenType fonts.
 
