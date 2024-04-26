@@ -943,7 +943,7 @@ If you're experiencing issues with your color display, the **`show_test_card: tr
 - Together with that it will show the letters "**R**", "**G**" and "**B**" to validate the text oriantation.
 - And as last it will show a rectangle around the corners of the display with a marker at the 0,0 corner most likely at the top left of the screen.
 
-When all points above are correctly shown correctly then everything is perfect and working as it should be.
+When all points above are shown correctly then the display is working as expected.
 To help the graphics display team determine the best way to help you, **a picture of the result of this script is very helpful.**
 
 Should you `create an issue <https://github.com/esphome/issues/issues>`__ in GitHub regarding your display, please
