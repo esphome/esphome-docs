@@ -938,18 +938,27 @@ Troubleshooting
 Using the Color Test Card
 -------------------------
 
-If you're experiencing issues with your color display, the **`show_test_card: true`** option can help you to identify what might be wrong.
-- It will show 3 color bars in **RED**, **GREEN** and **BLUE** to **BLACK^^ and the same 3 colors to **WHITE**. (1) 
-- Together with that it will show the letters "**R**", "**G**" and "**B**" to validate the text oriantation.
-- And as last it will show a rectangle around the corners of the display with a marker at the 0,0 corner most likely at the top left of the screen.
+If you're experiencing issues with your color display, the ``show_test_card: true`` option can help you to identify what might be wrong.
+
+- It will show bars for Red, Green and Blue, graduating to black and white.
+- Together with that it will show the letters "**R**", "**G**" and "**B**" to validate the display geometry.
+- There will be a rectangle around the corners of the display with a marker at the 0,0 corner which should be at the top left of the screen.
+
+.. figure:: images/test_card.jpg
+    :align: center
+    :width: 50.0%
+
+
 
 When all points above are shown correctly then the display is working as expected.
-To help the graphics display team determine the best way to help you, **a picture of the result of this script is very helpful.**
+To help the graphics display team determine the best way to help you, **a picture of the result of this option is very helpful.**
 
 Should you `create an issue <https://github.com/esphome/issues/issues>`__ in GitHub regarding your display, please
 be sure to **include a link to where you purchased the display** so that we can validate the configuration you've used.
 
-(1) for display's working on 8bit mode you will see 5 red block, 6 green blocks and 5 blue blocks. This is totally normal. 
+.. note::
+
+    For displays in 8 bit mode you will see distinct color blocks rather than a smooth gradient.
 
 See Also
 --------
