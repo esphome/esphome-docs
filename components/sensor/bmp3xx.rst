@@ -63,7 +63,7 @@ Configuration variables:
   ``OFF``, ``2x``, ``4x``, ``16x``, ``32``, ``64x``, ``128x``. Defaults to ``OFF``.
 - **address** (*Optional*, int): *I2C* only. Manually specify the I²C address of
   the sensor. Defaults to ``0x77``. Another address can be ``0x76``.
-- **cs_pin** (*Optional*, :ref:`gpio`): *SPI* only. The CS pin of the sensor.
+- **cs_pin** (*Required*, :ref:`Pin Schema <config-pin_schema>`): *SPI* only. The CS pin of the sensor.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
