@@ -115,7 +115,7 @@ This automation will be triggered when an OTA update has completed successfully,
 rebooted.
 
 Because the update has completed, you can safely use (an) automation action(s) that takes some time to complete. If,
-for example, you want to flash an LED, multiple a pauses/delays would be required to make the LED blink a few times,
+for example, you want to flash an LED, multiple pauses/delays would be required to make the LED blink a few times,
 before the reboot. The OTA update can't fail at this point because it is already complete.
 
 .. code-block:: yaml
