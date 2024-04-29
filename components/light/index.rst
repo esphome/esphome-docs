@@ -77,10 +77,10 @@ Advanced options:
   a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
@@ -583,6 +583,7 @@ Configuration variables:
   - **cold_white** (*Optional*, percentage): The cold white channel of the light, if applicable. Defaults to ``100%``.
   - **warm_white** (*Optional*, percentage): The warm white channel of the light, if applicable. Defaults to ``100%``.
   - **duration** (**Required**, :ref:`config-time`): The duration this color should be active.
+  - **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``0s``.
 
 See `light.turn_on <light-turn_on_action>` for more information on the various color fields.
 
