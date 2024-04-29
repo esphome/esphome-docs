@@ -264,7 +264,7 @@ Configuration examples
       clk_mode: GPIO17_OUT
       phy_addr: 1
 
-**LILYGO T-ETH-Lite**:
+**LILYGO T-ETH-Lite ESP32**:
 
 .. code-block:: yaml
 
