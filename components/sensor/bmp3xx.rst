@@ -16,10 +16,15 @@ Either :ref:`I²C <i2c>` bus or :ref:`SPI <spi>` bus is required to be set up in
 
     BMP388/BMP390 Temperature and Pressure Sensor.
 
+
+Over I²C
+--------
+The ``bmp3xx_i2c`` component allows you to use the device over :ref:`I²C <i2c>` interface.
+
 .. code-block:: yaml
 
+    # Example configuration entry for I2C connection
     sensor:
-      # Example configuration entry for I2C connection
       - platform: bmp3xx_i2c
         temperature:
           name: "Outside Temperature"
@@ -29,7 +34,43 @@ Either :ref:`I²C <i2c>` bus or :ref:`SPI <spi>` bus is required to be set up in
         address: 0x77
         update_interval: 60s
 
-      # Example configuration entry for SPI connection
+
+Configuration variables:
+************************
+
+- **address** (*Optional*, int): Manually specify the I²C address of  the sensor. Defaults to ``0x77``. 
+  Another address can be ``0x76``.
+- **temperature** (*Optional*): The information for the temperature sensor.
+
+  - **name** (**Required**, string): The name for the temperature
+    sensor.
+  - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
+    See :ref:`Oversampling Options <bmp3xx-oversampling>`.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **pressure** (*Optional*): The information for the pressure sensor.
+
+  - **name** (**Required**, string): The name for the pressure sensor.
+  - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
+    See :ref:`Oversampling Options <bmp3xx-oversampling>`.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **iir_filter** (*Optional*): Set up an Infinite Impulse Response filter to increase accuracy. One of
+  ``OFF``, ``2x``, ``4x``, ``16x``, ``32``, ``64x``, ``128x``. Defaults to ``OFF``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``60s``.
+
+
+Over SPI
+--------
+The ``bmp3xx_spi`` component allows you to use the device over :ref:`SPI <spi>` interface.
+
+.. code-block:: yaml
+
+    # Example configuration entry for SPI connection
+    sensor:
       - platform: bmp3xx_spi
         temperature:
           name: "Outside Temperature"
@@ -39,9 +80,11 @@ Either :ref:`I²C <i2c>` bus or :ref:`SPI <spi>` bus is required to be set up in
         cs_pin: 13
         update_interval: 60s
 
-Configuration variables:
-------------------------
 
+Configuration variables:
+************************
+
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Chip Select (CS) pin.
 - **temperature** (*Optional*): The information for the temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature
@@ -63,7 +106,6 @@ Configuration variables:
   ``OFF``, ``2x``, ``4x``, ``16x``, ``32``, ``64x``, ``128x``. Defaults to ``OFF``.
 - **address** (*Optional*, int): *I2C* only. Manually specify the I²C address of
   the sensor. Defaults to ``0x77``. Another address can be ``0x76``.
-- **cs_pin** (*Required*, :ref:`Pin Schema <config-pin_schema>`): *SPI* only. The CS pin of the sensor.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
