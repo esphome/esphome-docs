@@ -37,11 +37,9 @@ INA228 and INA229 are the most comprehensive devices of the family with extra fe
 energy and charge accumulation, and capability to utilize the temperature measurement to compensate 
 for shunt resistor temperature variance.
 
-
-Example configuration
----------------------
-
-Use ``ina2xx_i2c`` or ``ina2xx_spi`` components for :ref:`I²C <i2c>` or :ref:`SPI <spi>` devices respectively. 
+Over I²C
+--------
+Use ``ina2xx_i2c`` component to connect INA228, INA237, or INA238 device over :ref:`I²C <i2c>` bus. 
 
 .. code-block:: yaml
 
@@ -59,37 +57,18 @@ Use ``ina2xx_i2c`` or ``ina2xx_spi`` components for :ref:`I²C <i2c>` or :ref:`S
         max_current: 10 A
         adc_range: 0
         update_interval: 60s
-        current: "INA2xx Current"
-        bus_voltage: "INA2xx Bus Voltage"
-        charge: "INA2xx Charge"
+        current: "INA228 Current"
+        bus_voltage: "INA228 Bus Voltage"
+        charge: "INA228 Charge"
 
 
-.. code-block:: yaml
-
-    # Example configuration entry for SPI
-    spi:
-      clk_pin: D0
-      mosi_pin: D1
-      miso_pin: D2
-        
-    sensor:
-      - platform: ina2xx_spi
-        cs_pin: D3
-        model: INA229
-        shunt_resistance: 0.001130 ohm
-        max_current: 40 A
-        adc_range: 0
-        temperature_coefficient: 50
-        current: "INA2xx Current"
-        power: "INA2xx Power"
-
-         
 Configuration variables:
-------------------------
+************************
 
-- **model** (*Required*, string): The model of the INA2xx sensor. Options are ``INA228``, ``INA229``, ``INA237``, ``INA238``, ``INA239``.
-- **shunt_resistance** (float): The value of the shunt resistor used for current calculation. No default value.
-- **max_current** (float): The maximum current you are expecting. Component will use it to 
+- **model** (**Required**, string): The model of the INA2xx sensor. Options are ``INA228``, ``INA237``, ``INA238``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x40``.
+- **shunt_resistance** (**Required**, float): The value of the shunt resistor used for current calculation. No default value.
+- **max_current** (**Required**, float): The maximum current you are expecting. Component will use it to 
   calibrate the sensor. No default value.
 - **adc_range** (*Optional*, ``0`` or ``1``): Selects the range for differential input across shunt
   resistor. ``0`` for ±163.84 mV, ``1`` for ±40.96 mV range. Defaults to ``0``.
@@ -110,7 +89,63 @@ Configuration variables:
   shunt for temperature compensation correction. Only applicable to INA228 and INA229 devices. Zero value means 
   no compensation is done. Defaults to ``0``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
-- All other options for SPI/I²C devices as descibed in respective documentation.
+- All other options for I²C device as descibed in respective documentation.
+
+
+Over SPI
+--------
+
+Use ``ina2xx_spi`` component to connect INA229 or INA239 device over :ref:`SPI <spi>` bus. 
+
+
+.. code-block:: yaml
+
+    # Example configuration entry for SPI
+    spi:
+      clk_pin: D0
+      mosi_pin: D1
+      miso_pin: D2
+        
+    sensor:
+      - platform: ina2xx_spi
+        cs_pin: D3
+        model: INA239
+        shunt_resistance: 0.001130 ohm
+        max_current: 40 A
+        adc_range: 0
+        temperature_coefficient: 50
+        current: "INA239 Current"
+        power: "INA239 Power"
+
+         
+Configuration variables:
+************************
+
+- **model** (**Required**, string): The model of the INA2xx sensor. Options are ``INA229``, ``INA239``.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Chip Select (CS) pin.
+- **shunt_resistance** (**Required**, float): The value of the shunt resistor used for current calculation. No default value.
+- **max_current** (**Required**, float): The maximum current you are expecting. Component will use it to 
+  calibrate the sensor. No default value.
+- **adc_range** (*Optional*, ``0`` or ``1``): Selects the range for differential input across shunt
+  resistor. ``0`` for ±163.84 mV, ``1`` for ±40.96 mV range. Defaults to ``0``.
+- **adc_time** (*Optional*, :ref:`config-time`): The time in microseconds to perform a single ADC conversion. 
+  Defaults to ``4120 us``. Valid values are ``50 us``, ``84 us``, ``150 us``, ``280 us``, ``540 us``, 
+  ``1052 us``, ``2074 us``, ``4120 us``.
+
+  Instead of one time for all ADC measurements, separate configuration of conversion times for shunt voltage, 
+  bus voltage, and temperature measurements possible. Options are the same as for ``adc_time``.
+
+  - **bus_voltage** (*Optional*, :ref:`config-time`): Conversion time for bus voltage measurement.
+  - **shunt_voltage** (*Optional*, :ref:`config-time`): Conversion time for shunt voltage measurement.
+  - **temperature** (*Optional*, :ref:`config-time`): Conversion time for temperature measurement.
+
+- **adc_averaging** (*Optional*, integer): Selects ADC sample averaging count. Defaults to ``128``. 
+  Valid values are ``1``, ``4``, ``16``, ``64``, ``128``, ``256``, ``512``, ``1024``.
+- **temperature_coefficient** (*Optional*, integer from ``0`` to ``16383``): Temperature coefficient (ppm/°C) of the 
+  shunt for temperature compensation correction. Only applicable to INA228 and INA229 devices. Zero value means 
+  no compensation is done. Defaults to ``0``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+- All other options for SPI device as descibed in respective documentation.
 
 
 Sensors
