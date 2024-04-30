@@ -53,6 +53,7 @@ Use ``ina2xx_i2c`` or ``ina2xx_spi`` components for :ref:`I²C <i2c>` or :ref:`S
     sensor:
       - platform: ina2xx_i2c
         id: my_charge_sensor
+        model: INA228
         address: 0x40
         shunt_resistance: 0.010 ohm
         max_current: 10 A
@@ -74,6 +75,7 @@ Use ``ina2xx_i2c`` or ``ina2xx_spi`` components for :ref:`I²C <i2c>` or :ref:`S
     sensor:
       - platform: ina2xx_spi
         cs_pin: D3
+        model: INA229
         shunt_resistance: 0.001130 ohm
         max_current: 40 A
         adc_range: 0
@@ -85,6 +87,7 @@ Use ``ina2xx_i2c`` or ``ina2xx_spi`` components for :ref:`I²C <i2c>` or :ref:`S
 Configuration variables:
 ------------------------
 
+- **model** (*Required*, string): The model of the INA2xx sensor. Options are ``INA228``, ``INA229``, ``INA237``, ``INA238``, ``INA239``.
 - **shunt_resistance** (float): The value of the shunt resistor used for current calculation. No default value.
 - **max_current** (float): The maximum current you are expecting. Component will use it to 
   calibrate the sensor. No default value.
