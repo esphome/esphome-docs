@@ -353,6 +353,7 @@ MQTT can have some overrides for specific options.
 
     name: "Component Name"
     # Optional variables:
+    qos: 1
     retain: true
     availability:
       topic: livingroom/status
@@ -366,6 +367,7 @@ Configuration variables:
 
 -  **name** (**Required**, string): The name to use for the MQTT
    Component.
+-  **qos** (*Optional*, int): The [Quality of Service](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/) level for publishing. Defaults to 0.
 -  **retain** (*Optional*, boolean): If all MQTT state messages should
    be retained. Defaults to ``true``.
 -  **discovery** (*Optional*, boolean): Manually enable/disable
