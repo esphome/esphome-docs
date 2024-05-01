@@ -7,6 +7,7 @@ Components
 
     binary_sensor/index
     climate/index
+    humidifier/index
     cover/index
     fan/index
     light/index

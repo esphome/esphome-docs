@@ -857,6 +857,13 @@ Climate Components
     Tuya Climate, components/climate/tuya, tuya.png
     Uponor Smatrix Base Pulse Underfloor Heating, components/uponor_smatrix, uponor.svg
 
+Humidifier Components
+---------------------
+
+.. imgtable::
+    Humidifier Core, components/humidifier/index, folder-open, dark-invert
+    Generic Humidifier, components/humidifier/generic-humidifier, folder-open, dark-invert    
+
 Number Components
 -----------------
 
