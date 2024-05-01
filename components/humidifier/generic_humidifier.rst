@@ -12,7 +12,7 @@ The generic humidifier component allows user basic controls of humidifier device
 manufacturer defined profiles to a target humidity setting. 
 
 .. note::
-    
+
     The at the moment the automation of this component needs to be manually set using scripts.
 
 Humidifier output profiles or modes that can be set by this component include:
