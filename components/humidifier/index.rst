@@ -1,5 +1,5 @@
 Humidifier Component
-=================
+====================
 
 .. seo::
     :description: Information about the base representation of all humidifier devices.
