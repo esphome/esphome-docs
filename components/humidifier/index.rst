@@ -16,7 +16,7 @@ and can be put in different output modes like ``NORMAL``, ``BOOST``, ``ECO``, ``
 .. _config-humidifier:
 
 Base Humidifier Configuration
---------------------------
+-----------------------------
 
 .. code-block:: yaml
 
@@ -85,12 +85,12 @@ MQTT options:
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Humidifier Automation
-------------------
+---------------------
 
 .. _humidifier-control_action:
 
 ``humidifier.control`` Action
-**************************
+*****************************
 
 This is an :ref:`Action <config-action>` for setting parameters for humidifier devices.
 
@@ -152,7 +152,7 @@ advanced stuff.
 .. _humidifier-on_state_trigger:
 
 ``humidifier.on_state`` Trigger
-****************************
+*******************************
 
 This trigger is activated each time the state of the humidifier device is updated
 (for example, if the current humidity measurement or the mode set by the users changes).
@@ -173,7 +173,7 @@ The ``Humidifier`` itself is available to automations as the reference ``x``.
 .. _humidifier-on_control_trigger:
 
 ``humidifier.on_control`` Trigger
-******************************
+*********************************
 
 This trigger is activated each time a *control* input of the humidifier device
 is updated via a ``HumidifierCall`` (which includes changes coming in from Home
