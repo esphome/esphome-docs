@@ -862,8 +862,8 @@ Humidifier Components
 
 .. imgtable::
 
-    Humidifier Core, components/humidifier/index, folder-open, dark-invert
-    Generic Humidifier, components/humidifier/generic-humidifier, folder-open, dark-invert    
+    Humidifier Core, components/humidifier/index, folder-open.svg, dark-invert
+    Generic Humidifier, components/humidifier/generic-humidifier, humidifier.svg, dark-invert    
 
 Number Components
 -----------------
