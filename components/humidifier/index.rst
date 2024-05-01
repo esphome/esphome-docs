@@ -7,9 +7,7 @@ Humidifier Component
 
 ESPHome has support for humidifier devices. Humidifier devices can represent different types of
 hardware, but the defining factor is that humidifier devices have a settable target humidity
-and can be put in different output modes like ``NORMAL``, ``BOOST``, ``ECO``, ``SLEEP``, ``BABY``,
- ``AUTO`` or ``OFF``.
-
+and can be put in different output modes like ``NORMAL``, ``BOOST``, ``ECO``, ``SLEEP``, ``BABY``, ``AUTO`` or ``OFF``.
 
 .. note::
 
