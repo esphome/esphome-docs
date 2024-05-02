@@ -68,7 +68,6 @@ These are useful to make :ref:`automations <automation>` triggered by actions pe
 
     Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
 
-
 Main Component
 --------------
 
@@ -111,7 +110,7 @@ Configuration variables:
     - **flex_flow** (*Optional*, string): Same option as above, for the ``FLEX`` layout on this page.
     - All other options from :ref:`lvgl-styling` to be applied to this page.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
-- **page_wrap** (*Optional*, boolean): Wrap pages around when navigating between them with :ref:`lvgl-pgnx-act`. ``true`` if not specified.
+- **page_wrap** (*Optional*, boolean): Wrap pages around when navigating between them with :ref:`lvgl-pgnx-act`. Defaults to ``true`` if not specified.
 - **top_layer** (*Optional*, list): A special kind of *Always on Top* page, which acts as a parent for widgets placed on it. It's shown above all the pages - useful for widgets which need to be always visible, regardless of the pages. Only of no ``widgets`` are configured at this level. Options:
     - **layout** (*Optional*, string): Layout to be applied to this page. Same option as above.
     - **flex_flow** (*Optional*, string): Same option as above, for the ``FLEX`` layout on this page.
