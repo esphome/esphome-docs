@@ -66,6 +66,9 @@ These are useful to make :ref:`automations <automation>` triggered by actions pe
 
     LVGL only supports **integers** for numeric values. Visualizer widgets can't display floats directly, but they allow scaling by 10s. Some examples in the :doc:`Cookbook </cookbook/lvgl>` cover how to do that.
 
+    Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
+
+
 Main Component
 --------------
 
@@ -96,7 +99,7 @@ Configuration variables:
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen if necessarry. Defaults to ``1s``.
 - **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, enum): The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, defaults to ``big_endian``.
-- **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or a hexadecimal representation of a color to fill the bacground. 
+- **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a color to fill the bacground. 
 - **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as backround wallpaper.
 - **default_font** (*Optional*, enum): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
@@ -251,8 +254,8 @@ The border is drawn inside the bounding box. Padding sets the space on the inner
 
 You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each of them. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
 
-- **bg_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background of the widget.
-- **bg_grad_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to make the background gradually fade to.
+- **bg_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color for the background of the widget.
+- **bg_grad_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to make the background gradually fade to.
 - **bg_dither_mode** (*Optional*, enum): Set ditherhing of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``.
 - **bg_grad_dir** (*Optional*, enum): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``.
 - **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``0``.
@@ -261,9 +264,9 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **opa** (*Optional*, enum or percentage): Opacity of the entire widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **opa_layered** (*Optional*, enum or percentage): Opacity of the entire layer the widget is on. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **bg_img_opa** (*Optional*, enum or percentage): Opacity of the background image of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to mix with every pixel of the image. 
+- **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to mix with every pixel of the image. 
 - **bg_img_recolor_opa** (*Optional*, enum or percentage): Opacity of the recoloring. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **border_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to draw borders of the widget.
+- **border_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to draw borders of the widget.
 - **border_opa** (*Optional*, enum or percentage): Opacity of the borders of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn.
 - **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be chosen):
@@ -276,7 +279,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **border_width** (*Optional*, int16): Set the width of the border in pixels.
 - **radius** (*Optional*, uint16): The radius of the rounded corners of the widget. 0 = no radius i.e. square corners; 65535 = pill shaped widget (true circle if it has same width and height).
 - **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
-- **outline_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to draw an outline around the widget.
+- **outline_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to draw an outline around the widget.
 - **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself.
 - **outline_width** (*Optional*, int16): Set the width of the outline in pixels.
@@ -287,7 +290,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **pad_right** (*Optional*, int16): Set the padding on the right, in pixels.
 - **pad_row** (*Optional*, int16): Set the padding between the rows of the children elements, in pixels.
 - **pad_column** (*Optional*, int16): Set the padding between the columns of the children elements, in pixels.
-- **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to create a drop shadow under the widget.
+- **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to create a drop shadow under the widget.
 - **shadow_ofs_x** (*Optional*, int16): Horrizontal offset of the shadow, in pixels
 - **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels
 - **shadow_opa** (*Optional*, string or percentage): Opacity of the shadow. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
@@ -485,7 +488,7 @@ A label is the basic widget type that is used to display text.
 
 - **text** (**Required**, string): The text or built-in :ref:`symbol <lvgl-fonts>` to display. To display an empty label, specify ``""``.
 - **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
-- **text_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to render the text in.
+- **text_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to render the text in.
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
 - **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the ID of the font used to render the text or symbol.
 - **text_letter_space** (*Optional*, int16): Characher spacing of the text.
@@ -1013,7 +1016,7 @@ The Arc consists of a background and a foreground arc. The foreground (indicator
 - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
 - **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
 - **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **arc_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to use to draw the arcs.
+- **arc_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to use to draw the arcs.
 - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
 - **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
 - **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws a handle on the end of the indicator using all background properties and padding values. With zero padding the knob size is the same as the indicator's width. Larger padding makes it larger, smaller padding makes it smaller.
@@ -1269,8 +1272,6 @@ Images are the basic widgets to display images.
 - **src** (**Required**, :ref:`image <display-image>`):  The ID of an existing image configuration.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
-Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
-
 **Specific actions:**
 
 ``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. Updating the ``src`` option changes the image at runtime.
@@ -1311,8 +1312,6 @@ The animation image is similar to the normal ``img`` widget. The main difference
 - **duration** (**Required**, :ref:`Time <config-time>`): Total duration of a playback cycle (frames are displayed equally in time).
 - **repeat_count** (*Optional*, int16 or *forever*): How many times to repeat the playback. Defaults to ``forever``.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
-
-Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
 
 **Specific actions:**
 
@@ -1360,7 +1359,7 @@ The Line widget is capable of drawing straight lines between a set of points.
 - **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
 - **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
 - **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
-- **line_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the line.
+- **line_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color for the line.
 - Style options from :ref:`lvgl-styling`, all the typical background properties and line style properties.
 
 By default, the Line widget width and height dimensions are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts of the line may not be visible.
@@ -1394,7 +1393,7 @@ The Led widgets are rectangle-like (or circle) widget whose brightness can be ad
 
 **Specific options:**
 
-- **color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color for the background, border, and shadow of the widget.
+- **color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color for the background, border, and shadow of the widget.
 - **brightness** (*Optional*, percentage): The brightness of the LED color, where ``0%`` corresponds to black, and ``100%`` corresponds to the full brightness of the color specified above.
 - Style options from :ref:`lvgl-styling`, using all the typical background style properties.
 
@@ -1443,7 +1442,7 @@ The Spinner widget is a spinning arc over a ring.
 - **spin_time** (**Required**, :ref:`Time <config-time>`): Duration of one cycle of the spin.
 - **arc_length** (**Required**, 0-360): Length of the spinning arc in degrees.
 - **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **arc_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or a hexadecimal representation of a RGB color to use to draw the arcs.
+- **arc_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to use to draw the arcs.
 - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
 - **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
 - **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws *another arc using the arc style* properties. Its padding values are interpreted relative to the background arc.
