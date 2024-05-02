@@ -23,6 +23,9 @@ will probably want some sort of averaging or throttle filter on the sensors.
 .. code-block:: yaml
 
     # Example configuration entry
+    substitutions:
+      update_interval: 60s
+
     # Disable logging over USB
     logger:
       baud_rate: 0
@@ -36,15 +39,27 @@ will probably want some sort of averaging or throttle filter on the sensors.
         current:
           name: "Sonoff Pow R2 Current"
           filters:
-            - throttle_average: 60s
+            - throttle_average: ${update_interval}
         voltage:
           name: "Sonoff Pow R2 Voltage"
           filters:
-            - throttle: 60s
+            - throttle_average: ${update_interval}
         power:
           name: "Sonoff Pow R2 Power"
+          filters:
+            - throttle_average: ${update_interval}
         energy:
           name: "Sonoff Pow R2 Energy"
+          filters:
+            - throttle: ${update_interval}
+        apparent_power:
+          name: "Sonoff Pow R2 Apparent Power"
+          filters:
+            - throttle_average: ${update_interval}
+        power_factor:
+          name: "Sonoff Pow R2 Power Factor"
+          filters:
+            - throttle_average: ${update_interval}
 .. note::
 
     The configuration above should work for Sonoff POWs (R2).
@@ -59,6 +74,10 @@ Configuration variables:
 - **voltage** (*Optional*): Use the voltage value of the sensor in V (RMS).
   All options from :ref:`Sensor <config-sensor>`.
 - **energy** (*Optional*): Use the total energy value of the sensor in Wh.
+  All options from :ref:`Sensor <config-sensor>`.
+- **apparent_power** (*Optional*): Use the apparent power value of the sensor in volt amps.
+  All options from :ref:`Sensor <config-sensor>`.
+- **power_factor** (*Optional*): Use the power factor value of the sensor.
   All options from :ref:`Sensor <config-sensor>`.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
