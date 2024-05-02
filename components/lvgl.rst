@@ -365,7 +365,7 @@ Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-co
 Colors
 ******
 
-Colors can be specified anywehere in the LVGL configuartion either by referencing a preconfigured :ref:`ESPHome color <config-color>`, or directly represennting them in hexadecimal format. Eg. ``0xFF0000`` for red.
+Colors can be specified anywehere in the LVGL configuartion either by referencing a preconfigured :ref:`ESPHome color <config-color>`, or directly represennted in hexadecimal format. Eg. ``0xFF0000`` for red.
 
 .. _lvgl-widgets:
 
