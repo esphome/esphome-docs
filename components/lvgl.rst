@@ -77,9 +77,9 @@ At the highest level of the LVGL object hierarchy is the display which represent
 
 The widget is at the next level, and it allows main styling. It can have sub-parts, which may be styled separately. Usually styles are inherited, but this depends on widget specifics or functionality. The widget and the parts have states, and the different styling can be set for different states.
 
-By default, LVGL draws new widgets on top of old widgets, including their children. If widgets are children of other widgets (they have the parentid property set), property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. Inheritance takes place at run time too.
+By default, LVGL draws new widgets on top of old widgets, including their children. When widgets have children, property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. 
 
-Configuration variables:
+**Configuration options:**
 
 - **displays** (**Required**, list): A list of displays where to render this entire LVGL configuration:
     - **display_id** (**Required**, :ref:`config-id`): The ID of a display configuration.
