@@ -439,7 +439,6 @@ To apply styles to the states, you need to specify them one level above, for exa
         checked:
           bg_color: 0x00FF00 # here you apply styles to be used when in the respective state
 
-
 The state itself can be can be changed by interacting with the widget, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.widget.update`` action.
 
 See :ref:`lvgl-cook-cover` for a cookbook example how to play with styling and properties to show different states of a Home Assistant entity.
@@ -584,7 +583,6 @@ To have a button with a text label on it, add a :ref:`lvgl-wgt-lbl` widget as ch
           - label:
               align: center
               text: "Light"
-
 
 A notable state is ``checked`` (boolean) which can have different styles applied.
 
@@ -871,7 +869,6 @@ Roller allows you to simply select one option from a list by scrolling.
 
 The ``roller`` can be also integrated as :doc:`/components/select/lvgl`.
 
-
 .. _lvgl-wgt-bar:
 
 ``bar``
@@ -1074,7 +1071,6 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
 See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use a slider (or an arc) to control entities in Home Assistant.
-
 
 .. _lvgl-wgt-spb:
 
@@ -1515,7 +1511,7 @@ A typical application would probably use an ``obj`` container widget as a tile, 
 - **tiles** (**Required**, list): A list with (any number of) tiles to be added to meter.  
     - *widget* (**Required**): Any kind of widget to be used as tile container.
         - **tile_id** (**Required**): An ID to be used with ``lvgl.tileview.select`` action
-        - **dir** (*Optional*): Enable moving to the adjacent tiles into the given direction by swiping/dragging. One or multiple of ``LEFT``, ``RIGHT`, ``TOP`, ``BOTTOM`, ``HOR`, ``VER`, ``ALL``. Defaults to ``ALL``.
+        - **dir** (*Optional*): Enable moving to the adjacent tiles into the given direction by swiping/dragging. One or multiple of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
         - **row** (**Required**): Horrizontal position of the tile in the tileview grid.
         - **column** (**Required**): Vertical position of the tile in the tileview grid.
         - Style options from the widget used as container.
@@ -1733,7 +1729,6 @@ This :ref:`action <config-action>` resumes the activity of LVGL, including rende
       then:
         - lvgl.resume:
 
-
 .. _lvgl-pgnx-act:
 
 ``lvgl.page.next``, ``lvgl.page.previous``
@@ -1743,7 +1738,6 @@ This :ref:`action <config-action>` changes page to the next following in the con
 
 - **animation** (*Optional*): The page change with one of these animations: ``NONE``, ``OVER_LEFT``, ``OVER_RIGHT``, ``OVER_TOP``, ``OVER_BOTTOM``, ``MOVE_LEFT``, ``MOVE_RIGHT``, ``MOVE_TOP``, ``MOVE_BOTTOM``, ``FADE_IN``, ``FADE_OUT``, ``OUT_LEFT``, ``OUT_RIGHT``, ``OUT_TOP``, ``OUT_BOTTOM``. Defaults to ``NONE`` if not specified.
 - **time** (*Optional*, :ref:`Time <config-time>`): Duration of the page change animation. Defaults to ``50ms``.
-
 
 .. code-block:: yaml
 
