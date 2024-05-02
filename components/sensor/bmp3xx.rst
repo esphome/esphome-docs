@@ -42,19 +42,14 @@ Configuration variables:
   Another address can be ``0x76``.
 - **temperature** (*Optional*): The information for the temperature sensor.
 
-  - **name** (**Required**, string): The name for the temperature
-    sensor.
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
     See :ref:`Oversampling Options <bmp3xx-oversampling>`.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pressure** (*Optional*): The information for the pressure sensor.
 
-  - **name** (**Required**, string): The name for the pressure sensor.
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
     See :ref:`Oversampling Options <bmp3xx-oversampling>`.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **iir_filter** (*Optional*): Set up an Infinite Impulse Response filter to increase accuracy. One of
@@ -87,19 +82,14 @@ Configuration variables:
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Chip Select (CS) pin.
 - **temperature** (*Optional*): The information for the temperature sensor.
 
-  - **name** (**Required**, string): The name for the temperature
-    sensor.
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
     See :ref:`Oversampling Options <bmp3xx-oversampling>`.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pressure** (*Optional*): The information for the pressure sensor.
 
-  - **name** (**Required**, string): The name for the pressure sensor.
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
     See :ref:`Oversampling Options <bmp3xx-oversampling>`.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **iir_filter** (*Optional*): Set up an Infinite Impulse Response filter to increase accuracy. One of
