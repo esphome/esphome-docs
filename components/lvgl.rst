@@ -96,22 +96,11 @@ Configuration variables:
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen if necessarry. Defaults to ``1s``.
 - **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, enum): The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, defaults to ``big_endian``.
-- **default_font** (*Optional*, enum): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
 - **disp_bg_color** (*Optional*, :ref:`color <config-color>`): The ID of a configured color, or a hexadecimal representation of a color to fill the bacground. 
-- **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as a backround wallpaper.
+- **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as backround wallpaper.
+- **default_font** (*Optional*, enum): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
-- **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each. If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
-- **flex_flow** (*Optional*, string): In case of ``FLEX`` layout, choose one of the following options. Defaults to ``ROW_WRAP``:
-    - ``ROW`` to place the children in a row without wrapping
-    - ``COLUMN`` to place the children in a column without wrapping
-    - ``ROW_WRAP`` to place the children in a row with wrapping
-    - ``COLUMN_WRAP`` to place the children in a column with wrapping
-    - ``ROW_REVERSE`` to place the children in a row without wrapping but in reversed order
-    - ``COLUMN_REVERSE`` to place the children in a column without wrapping but in reversed order
-    - ``ROW_WRAP_REVERSE`` to place the children in a row with wrapping but in reversed order
-    - ``COLUMN_WRAP_REVERSE`` to place the children in a column with wrapping but in reversed order
-- All other options from :ref:`lvgl-styling` to be commonly apply to the widgets directly.
 - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the root display. Not possible if you configure ``pages``.
 - **pages** (*Optional*, list): A list of page IDs, where each page acts as a parent for widgets placed on it. Only if no ``widgets`` are configured at this level! Options for each page:
     - **skip** (*Optional*, boolean): Option to skip this page when navigating between them with :ref:`lvgl-pgnx-act`.
@@ -125,6 +114,17 @@ Configuration variables:
     - **flex_flow** (*Optional*, string): Same option as above, for the ``FLEX`` layout on this page.
     - All other options from :ref:`lvgl-styling` to be applied to this page.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
+- **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each. If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
+- **flex_flow** (*Optional*, string): In case of ``FLEX`` layout, choose one of the following options. Defaults to ``ROW_WRAP``:
+    - ``ROW`` to place the children in a row without wrapping
+    - ``COLUMN`` to place the children in a column without wrapping
+    - ``ROW_WRAP`` to place the children in a row with wrapping
+    - ``COLUMN_WRAP`` to place the children in a column with wrapping
+    - ``ROW_REVERSE`` to place the children in a row without wrapping but in reversed order
+    - ``COLUMN_REVERSE`` to place the children in a column without wrapping but in reversed order
+    - ``ROW_WRAP_REVERSE`` to place the children in a row with wrapping but in reversed order
+    - ``COLUMN_WRAP_REVERSE`` to place the children in a column with wrapping but in reversed order
+- All other options from :ref:`lvgl-styling` to be commonly apply to the widgets directly.
 
 **Example:**
 
