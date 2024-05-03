@@ -13,9 +13,9 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 
 .. figure:: /components/images/lvgl_main_screenshot.png
 
-In order to be able to drive a display with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended.
+In order to be able to drive a :ref:`display <display-hw>` with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended.
 
-The display itself should have ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set. It should be configured with an :ref:`config-id` which will be referenced in the main LGVL component configuration.
+The display itself has to be a graphical binary type, should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set. It should also have an :ref:`config-id` set, which will be referenced in the main LGVL component configuration.
 
 For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly prefered) or a :doc:`/components/sensor/rotary_encoder` can be used.
 
@@ -24,12 +24,9 @@ Check out a few detailed examples :ref:`in the Cookbook <lvgl-cook>` to see a co
 Basics
 ------
 
-In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` for a list of the available ones in ESPHome. Not all LVGL widgets are implemented, just the ones having most common usecases.
+In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` for a list of the available ones in ESPHome. Not all LVGL widgets are implemented, just the ones having most common usecases in home automation.
 
-Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label.
-The child widget moves with the parent and if the parent is hidden the children will be hidden too. Children can be visible only within their parent's bounding area. In other words, the areas of the children outside the parent are clipped.
-
-Some more complex widgets are internally made up from the simpler ones, these are known as parts - which can have separate properties from the main widget.
+Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label. Some more complex widgets are internally made up from the simpler ones, these are known as parts - which can have separate properties from the main widget.
 
 Pages in ESPHome are implemented as LVGL screens, which are special objects which have no parent. There is always one active page on a display.
 
@@ -68,16 +65,18 @@ These are useful to make :ref:`automations <automation>` triggered by actions pe
 
     Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
 
-Main Component
---------------
+Configuration
+-------------
 
 Although LVGL is a complex matrix of objects-parts-states-styles, in ESPHome this is simplified to a hierarchy.
 
-At the highest level of the LVGL object hierarchy is the display which represents the driver for a display device (physical display). A display can have one or more pages associated with it. Each page contains a hierarchy of objects for graphical widgets representing a layout that covers the entire display.
+At the highest level of the LVGL object hierarchy is the display which represents the driver for the display hardware. A display can have one or more pages associated with it. Each page contains a hierarchy of objects for graphical widgets representing a layout that covers the entire display.
 
-The widget is at the next level, and it allows main styling. It can have sub-parts, which may be styled separately. Usually styles are inherited, but this depends on widget specifics or functionality. The widget and the parts have states, and the different styling can be set for different states.
+The widget is at the next level, and it allows main styling. It can have sub-parts, which may be styled separately. Usually styles are inherited, but this depends on widget specifics or functionality. The widget and its parts have states, and the different styling can be set for different states.
 
-By default, LVGL draws new widgets on top of old widgets, including their children. When widgets have children, property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. Inheritance is applied only at first draw. In this case, if the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for the property. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. 
+Widgets can have children, which can be any other widgets. Think of this as a nested structure. The child widgets move with the parent and if the parent is hidden the children will be hidden too. 
+
+By default, LVGL draws new widgets on top of old widgets, including their children. When widgets have children, property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. When the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for it. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. 
 
 **Configuration options:**
 
@@ -208,7 +207,7 @@ And then you apply these selected styles to two labels, and only change very spe
           styles: date_style
           y: +20
 
-Additionally, you can change the styles based on the state of the widgets or their parts. If you want to set a property for all states (e.g. red background color) just set it for the default state, at the root of the widget. If the widget can't find a property for its current state it will fall back to the default state's property.
+Additionally, you can change the styles based on the ``state`` property of the widgets or their parts. If you want to set a property for all states (e.g. red background color) just set it for the default state at the root of the widget. If the widget can't find a property for its current state it will fall back to this.
 
 In the example below, you have an ``arc`` with some styles set here. Note how you change the ``arc_color`` of the ``indicator`` part, based on state changes:
 
@@ -230,9 +229,9 @@ So the inheritance happens like this: state based styles override the locally sp
 
 The precedence (value) of states is quite intuitive, and it's something the user would expect naturally. E.g. if a widget is focused the user will still want to see if it's pressed, therefore the pressed state has a higher precedence. If the focused state had a higher precedence it would overwrite the pressed color.
 
-Some properties (e.g. text color) can be inherited from a parent(s) if it's not specified in the widget.
+Feel free to experiment to discover inheritance of the styles based on states between the nested widgets.
 
-See :ref:`lvgl-cook-theme` in the Cookbook for an example how to easily implement a gradient style for your widgets.
+:ref:`lvgl-cook-theme` in the Cookbook shows an example how to easily implement a gradient style for your widgets.
 
 .. _lvgl-styling:
 
@@ -247,7 +246,7 @@ LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/W
 - **bounding box**: the width/height of the elements.
 - **border width**: the width of the border.
 - **padding**: space between the sides of the widget and its children.
-- **content**: the content area which is the size of the bounding box reduced by the border width and padding.
+- **content**: the content area which is the size of the bounding box reduced by the border width and padding (it's what's referenced as the ``size_content`` option of certain widgets).
 
 The border is drawn inside the bounding box. Padding sets the space on the inner sides of the border. It means *I don't want my children too close to my sides, so keep this space*. The outline is drawn outside the bounding box.
 
@@ -984,7 +983,7 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 .. note::
 
-    The ``on_value`` trigger is sent while the slider is being dragged or changed with keys. The event is sent *continuously* while the slider is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
+    The ``on_value`` trigger is sent while the slider is being dragged or changed with keys. The event is sent *continuously* while the slider is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a :ref:`universal event trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
 The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
 
@@ -1066,7 +1065,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 .. note::
 
-    The ``on_value`` trigger is sent while the arc knob is being dragged or changed with keys. The event is sent *continuously* while the knob is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
+    The ``on_value`` trigger is sent while the arc knob is being dragged or changed with keys. The event is sent *continuously* while the knob is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a :ref:`universal event trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
 
