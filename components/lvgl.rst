@@ -136,8 +136,6 @@ See :ref:`lvgl-cook-navigator` in the Cookbook for an example how to easily impl
 
 .. note::
 
-    LVGL only supports **integers** for numeric values. Visualizer widgets can't display floats directly, but they allow scaling by 10s. Some examples in the :doc:`Cookbook </cookbook/lvgl>` cover how to do that.
-
     Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
 
 .. _lvgl-color:
@@ -473,6 +471,10 @@ In addition to visual stilyng, each widget supports some boolean **flags** to in
 - **layout_1**, **layout_2** (*Optional*, boolean): custom flags, free to use by layouts.
 - **widget_1**, **widget_2** (*Optional*, boolean): custom flags, free to use by widget.
 - **user_1**, **user_2**, **user_3**, **user_4** (*Optional*, boolean): custom flags, free to use by user.
+
+.. note::
+
+    LVGL only supports only **integers** for numeric ``value``. Visualizer widgets can't display floats directly, but they allow scaling by 10s. Some examples in the :doc:`Cookbook </cookbook/lvgl>` cover how to do that.
 
 .. _lvgl-wgt-lbl:
 
