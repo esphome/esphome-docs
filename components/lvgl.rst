@@ -214,9 +214,9 @@ LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/W
 .. figure:: /components/images/lvgl_boxmodel.png
     :align: center
 
-- *bounding box*: the box defined with ``width`` and ``height`` of the widgets (pixels of parent content area percentage; not drawn, just for caculations)
-- *border*: the border line, drawn on the inner side of the bounding box (pixels)
-- *outline*: the outline, drawn on the outer side of the bounding box (pixels)
+- *bounding box*: the box defined with ``width`` and ``height`` of the widgets (pixels of parent content area percentage; not drawn, just for caculations).
+- *border*: the border line, drawn on the inner side of the bounding box (pixels).
+- *outline*: the outline, drawn on the outer side of the bounding box (pixels).
 - *padding*: space to keep between the border of the widget and its content or children (*I don't want my children too close to my sides, so keep this space*). 
 - *content*: the content area which is the size of the bounding box reduced by the border width and padding (it's what's referenced as the ``size_content`` option of certain widgets).
 
@@ -240,7 +240,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **border_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to draw borders of the widget.
 - **border_opa** (*Optional*, enum or percentage): Opacity of the borders of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn.
-- **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be chosen):
+- **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be specified):
     - ``NONE``
     - ``TOP``
     - ``BOTTOM``
