@@ -59,14 +59,8 @@ Some widgets integrate also as native ESPHome components:
 
 These are useful to make :ref:`automations <automation>` triggered by actions performed at the screen.
 
-.. note::
-
-    LVGL only supports **integers** for numeric values. Visualizer widgets can't display floats directly, but they allow scaling by 10s. Some examples in the :doc:`Cookbook </cookbook/lvgl>` cover how to do that.
-
-    Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
-
-Configuration
--------------
+Main Configuration
+------------------
 
 Although LVGL is a complex matrix of objects-parts-states-styles, in ESPHome this is simplified to a hierarchy.
 
@@ -141,6 +135,12 @@ The following configuration options apply to the main ``lvgl`` component, in ord
                 text: 'Hello World!'
 
 See :ref:`lvgl-cook-navigator` in the Cookbook for an example how to easily implement a page navigation bar at the bottom of the screen.
+
+.. note::
+
+    LVGL only supports **integers** for numeric values. Visualizer widgets can't display floats directly, but they allow scaling by 10s. Some examples in the :doc:`Cookbook </cookbook/lvgl>` cover how to do that.
+
+    Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
 
 .. _lvgl-color:
 
@@ -367,7 +367,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 Widgets
 -------
 
-At the next level of the LVGL object hierarchy are the widgets, which support styling directly. It can have sub-parts, which may be styled separately. Usually styles are inherited, but this depends on widget specifics or functionality. The widget and its parts have states, and the different styling can be set for different states.
+At the next level of the LVGL object hierarchy are the widgets, which support styling directly. They can have sub-parts, which may be styled separately. Usually styles are inherited, but this depends on widget specifics or functionality. The widget and its parts have states, and the different styling can be set for different states.
 
 Widgets can have children, which can be any other widgets. Think of this as a nested structure. The child widgets move with the parent and if the parent is hidden the children will be hidden too. 
 
