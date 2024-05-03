@@ -7,7 +7,6 @@ LVGL Graphics
     :description: LVGL - ESPHome Displays showing contents created with Light and Versatile Graphics Library
     :image: /images/lvgl.png
 
-
 `LVGL <https://lvgl.io/>`__ (Light and Versatile Graphics Library) is a free and open-source 
 embedded graphics library to create beautiful UIs for any MCU, MPU and display type. ESPHome supports `LVGL version 8 <https://docs.lvgl.io/8.4/>`__.
 
@@ -215,14 +214,15 @@ LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/W
 .. figure:: /components/images/lvgl_boxmodel.png
     :align: center
 
-- **bounding box**: the width/height of the elements.
-- **border width**: the width of the border.
-- **padding**: space between the sides of the widget and its children.
-- **content**: the content area which is the size of the bounding box reduced by the border width and padding (it's what's referenced as the ``size_content`` option of certain widgets).
-
-The border is drawn inside the bounding box. Padding sets the space on the inner sides of the border. It means *I don't want my children too close to my sides, so keep this space*. The outline is drawn outside the bounding box.
+- *bounding box*: the box defined with ``width`` and ``height`` of the widgets (pixels of parent content area percentage; not drawn, just for caculations)
+- *border*: the border line, drawn on the inner side of the bounding box (pixels)
+- *outline*: the outline, drawn on the outer side of the bounding box (pixels)
+- *padding*: space to keep between the border of the widget and its content or children (*I don't want my children too close to my sides, so keep this space*). 
+- *content*: the content area which is the size of the bounding box reduced by the border width and padding (it's what's referenced as the ``size_content`` option of certain widgets).
 
 You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each of them. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
+
+**Styling options:**
 
 - **bg_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color for the background of the widget.
 - **bg_grad_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to make the background gradually fade to.
@@ -236,6 +236,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **bg_img_opa** (*Optional*, enum or percentage): Opacity of the background image of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to mix with every pixel of the image. 
 - **bg_img_recolor_opa** (*Optional*, enum or percentage): Opacity of the recoloring. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **border_width** (*Optional*, int16): Set the width of the border in pixels.
 - **border_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to draw borders of the widget.
 - **border_opa** (*Optional*, enum or percentage): Opacity of the borders of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn.
@@ -246,13 +247,12 @@ You can adjust the appearance of widgets by changing the foreground, background 
     - ``LEFT``
     - ``RIGHT``
     - ``INTERNAL``
-- **border_width** (*Optional*, int16): Set the width of the border in pixels.
 - **radius** (*Optional*, uint16): The radius of the rounded corners of the widget. 0 = no radius i.e. square corners; 65535 = pill shaped widget (true circle if it has same width and height).
 - **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
+- **outline_width** (*Optional*, int16): Set the width of the outline in pixels.
 - **outline_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to draw an outline around the widget.
 - **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself.
-- **outline_width** (*Optional*, int16): Set the width of the outline in pixels.
 - **pad_all** (*Optional*, int16): Set the padding in all directions, in pixels.
 - **pad_top** (*Optional*, int16): Set the padding on the top, in pixels.
 - **pad_bottom** (*Optional*, int16): Set the padding on the bottom, in pixels.
@@ -381,7 +381,7 @@ The properties below are common to all widgets.
 
 .. note::
 
-    By default, the ``x`` and ``y`` coordinates are measured from the *top left corner* of the parent's content area. Important: content area starts *after the padding* thus if the parent has a non-zero padding value, position will be shifted with that. Percentage values are calculated from the parent's content area size. 
+    By default, the ``x`` and ``y`` coordinates are measured from the *top left corner* of the parent's content area. :ref:`Important <lvgl-styling>`: content area starts *after the padding* thus if the parent has a non-zero padding value, position will be shifted with that. Percentage values are calculated from the parent's content area size. 
 
 - **width** (*Optional*): Width of the widget in pixels or a percentage, or ``size_content`` (see note below).
 - **height** (*Optional*): Height of the widget in pixels or a percentage, or ``size_content`` (see note below).
