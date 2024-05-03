@@ -41,7 +41,9 @@ Configuration variables:
   authentication. Empty (the default) means no authentication.
 - **client_id** (*Optional*, string): The client id to use for opening
   connections. See :ref:`mqtt-defaults` for more information.
-- **discovery** (*Optional*, boolean): If Home Assistant automatic
+- **discover_ip** (*Optional*, boolean): If Home Assistant automatic device
+  discovery should be enabled. Defaults to ``true``.
+- **discovery** (*Optional*, boolean): If Home Assistant automatic entity
   discovery should be enabled. Defaults to ``true``.
 - **discovery_retain** (*Optional*, boolean): Whether to retain MQTT
   discovery messages so that entities are added automatically on Home
