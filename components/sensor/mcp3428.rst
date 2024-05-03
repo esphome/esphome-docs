@@ -75,33 +75,33 @@ More detailed example configuration with Home Assistant discoverability:
 
 .. code-block:: yaml
 
-  mcp3428:
-    address: 0b1101000
+    mcp3428:
+      address: 0b1101000
 
-  sensor:
-    - platform: mcp3428
-      name: "Channel 1"
-      multiplexer: 1
-      resolution: 12
-      gain: 8
-      id: mcp3428_sensor1
-    - platform: mcp3428
-      name: "Channel 2"
-      multiplexer: 2
-      resolution: 14
-      id: mcp3428_sensor2
-    - platform: mcp3428
-      name: "Channel 3"
-      multiplexer: 3
-      resolution: 16
-      gain: 8
-      id: mcp3428_sensor3
-      update_interval: 10s
-    - platform: mcp3428
-      name: "Channel 4"
-      multiplexer: 4
-      resolution: 14
-      id: mcp3428_sensor4
+    sensor:
+      - platform: mcp3428
+        name: "Channel 1"
+        multiplexer: 1
+        resolution: 12
+        gain: 8
+        id: mcp3428_sensor1
+      - platform: mcp3428
+        name: "Channel 2"
+        multiplexer: 2
+        resolution: 14
+        id: mcp3428_sensor2
+      - platform: mcp3428
+        name: "Channel 3"
+        multiplexer: 3
+        resolution: 16
+        gain: 8
+        id: mcp3428_sensor3
+        update_interval: 10s
+      - platform: mcp3428
+        name: "Channel 4"
+        multiplexer: 4
+        resolution: 14
+        id: mcp3428_sensor4
 
 Example output of the above configuration in HA:
 
