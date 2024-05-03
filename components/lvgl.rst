@@ -489,16 +489,16 @@ A label is the basic widget type that is used to display text.
 **Specific options:**
 
 - **text** (**Required**, string): The text or built-in :ref:`symbol <lvgl-fonts>` to display. To display an empty label, specify ``""``.
-- **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``
+- **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``.
 - **text_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to render the text in.
-- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be chosen)
+- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified).
 - **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the ID of the font used to render the text or symbol.
 - **text_letter_space** (*Optional*, int16): Characher spacing of the text.
 - **text_line_space** (*Optional*, int16): Line spacing of the text.
 - **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
 - **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
-    - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped. (Default)
+    - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped (Default). 
     - ``DOT``: Replaces the last 3 characters from bottom right corner of the label with dots.
     - ``SCROLL``: If the text is wider than the label scroll it horizontally back and forth. If it's higher, scroll vertically. Only one direction is scrolled and horizontal scrolling has higher precedence.
     - ``SCROLL_CIRCULAR``: If the text is wider than the label scroll it horizontally continuously. If it's higher, scroll vertically. Only one direction is scrolled and horizontal scrolling has higher precedence.
@@ -507,7 +507,9 @@ A label is the basic widget type that is used to display text.
 - **selected** (*Optional*, list): Settings for the the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
 - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties. The padding values can be used to add space between the text and the background.
 
-Newline escape sequences are handled automatically by the label widget. You can use ``\n`` to make a line break. For example: ``"line1\nline2\n\nline4"``. **Note**: For escape sequences like newline to be translated, enclose the string in double quotes.
+.. note::
+
+    Newline escape sequences are handled automatically by the label widget. You can use ``\n`` to make a line break. For example: ``"line1\nline2\n\nline4"``. For escape sequences like newline to be translated, *enclose the string in double quotes*.
 
 **Specific actions:**
 
@@ -608,21 +610,21 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
 
 - **rows** (**Required**, list): A list for the button rows:
     - **buttons** (**Required**, list): A list of buttons in a row:
-        - **id** (*Optional*): An ID for a button
+        - **id** (*Optional*): An ID for the button in the matrix.
         - **text** (*Optional*): Text or built-in :ref:`symbol <lvgl-fonts>` to display on the button.
         - **key_code** (*Optional*, string): One character be sent as the key code to a :ref:`key_collector` instead of ``text`` when the button is pressed.
         - **width** (*Optional*): Width relative to the other buttons in the same row. A value between ``1`` and ``15`` range, default ``1`` (eg. in a line with two buttons: one ``width: 1`` and another one ``width: 2``, the first will be ``33%`` wide while the second will be ``66%`` wide). 
         - **selected** (*Optional*, boolean): Set the button as the most recently released or focused. Defaults to ``false``.
         - **control** (*Optional*): Binary flags to control behavior of the buttons (all ``false`` by default):
-            - **hidden** (*Optional*, boolean): makes a button hidden (hidden buttons still take up space in the layout, they are just not visible or clickable).
+            - **hidden** (*Optional*, boolean): Make a button hidden (hidden buttons still take up space in the layout, they are just not visible or clickable).
             - **no_repeat** (*Optional*, boolean): Disable repeating when the button is long pressed.
-            - **disabled** (*Optional*, boolean): applies *disabled* styles and properties to the button.
+            - **disabled** (*Optional*, boolean): Apply ``disabled`` styles to the button.
             - **checkable** (*Optional*, boolean): Enable toggling of a button, ``checked`` state will be added/removed as the button is clicked.
-            - **checked** (*Optional*, boolean): make the button checked. It will use the styles of the ``checked`` state.
-            - **click_trig** (*Optional*, boolean): Controls how to :ref:`trigger <lvgl-event-trg>` ``on_value`` : if ``true`` on *click*, if ``false`` on *press*.
-            - **popover** (*Optional*, boolean): show the button label in a popover when pressing this key.
+            - **checked** (*Optional*, boolean): Make the button checked. Apply ``checked`` styles to the button.
+            - **click_trig** (*Optional*, boolean): Control how to :ref:`trigger <lvgl-event-trg>` ``on_value`` : if ``true`` on *click*, if ``false`` on *press*.
+            - **popover** (*Optional*, boolean): Show the button label in a popover when pressing this button.
             - **recolor** (*Optional*, boolean): Enable recoloring of button texts with #. E.g. ``It's #ff0000 red#``
-            - **custom_1** and **custom_2** (*Optional*, boolean): custom free to use flags
+            - **custom_1** and **custom_2** (*Optional*, boolean): Custom, free to use flags.
 
 - **items** (*Optional*, list): Settings for the items *part*, the buttons all use the text and typical background style properties except translations and transformations.
 - **one_checked** (*Optional*, boolean): Allow only one button to be checked at a time (aka. radio buttons). Defaults to ``false``.
@@ -776,7 +778,7 @@ The ``checkbox`` can be also integrated as a :doc:`/components/switch/lvgl`.
 
 The Dropdown widget allows the user to select one value from a list.
 
-The dropdown list is closed by default and displays a single value or a predefined text. When activated (by click on the drop-down list), a list is drawn from which the user may select one option. When the user selects a new value, the list is deleted from the screen.
+The dropdown list is closed by default and displays a single value. When activated (by clicking on the drop-down list), a list is drawn from which the user may select one option. When the user selects a new value, the list is deleted from the screen.
 
 .. figure:: /components/images/lvgl_dropdown.png
     :align: center
@@ -842,7 +844,7 @@ Roller allows you to simply select one option from a list by scrolling.
 - **visible_row_count** (*Optional*, int8): The number of visible rows.
 - **selected** (*Optional*, list): Settings for the selected *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the :ref:`lvgl-wgt-lbl` text style properties to change the appearance of the text in the selected area.
 - **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
-- **anim_time** (*Optional*, :ref:`Time <config-time>`): When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in ``anim_time`` milliseconds as specified in the style.
+- **anim_time** (*Optional*, :ref:`Time <config-time>`): When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in this amount of time.
 - Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and :ref:`lvgl-wgt-lbl` style properties. ``text_line_space`` adjusts the space between the options. 
 
 **Specific actions:**
@@ -878,7 +880,7 @@ The ``roller`` can be also integrated as :doc:`/components/select/lvgl`.
 ``bar``
 *******
 
-The bar widget has a background and an indicator on it. The width of the indicator is set according to the current value of the bar.
+The bar widget has a background and an indicator on it. The size of the indicator is set according to the current ``value`` of the bar.
 
 .. figure:: /components/images/lvgl_bar.png
     :align: center
@@ -1202,7 +1204,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - Style options for the *needle line* using the :ref:`lvgl-wgt-lin` style properties, as well as the background properties from :ref:`lvgl-styling` to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
         - **img** (*Optional*): Add a rotating needle image to the scale:
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
-            - **src**:  The ID of an existing image configuration, represennting a needle pointing to the right like ``-o--->``. Cannot be updated at runtime with ``lvgl.indicator.update``.
+            - **src**:  The ID of an existing image configuration, represennting a needle pointing to the right like ``-o--->``. 
             - **pivot_x**: Horizontal position of the pivot point of rotation relative to the top left corner of the image. Defaults to ``50%`` (center of image).
             - **pivot_y**: Vertical position of the pivot point of rotation relative to the top left corner of the image.. Defaults to ``50%`` (center of image).
             - **value**: The value in the scale range to show at start.
@@ -1214,7 +1216,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 
 **Specific actions:**
 
-``lvgl.indicator.update`` :ref:`action <config-action>` updates indicator options, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+``lvgl.indicator.update`` :ref:`action <config-action>` updates indicator options, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` cannot be updated at runtime.
 
 **Example:**
 
@@ -1514,7 +1516,7 @@ A typical application would probably use an ``obj`` container widget as a tile, 
 
 - **tiles** (**Required**, list): A list with (any number of) tiles to be added to meter.  
     - *widget* (**Required**): Any kind of widget to be used as tile container.
-        - **tile_id** (**Required**): An ID to be used with ``lvgl.tileview.select`` action
+        - **tile_id** (**Required**): A tile ID to be used with ``lvgl.tileview.select`` action.
         - **dir** (*Optional*): Enable moving to the adjacent tiles into the given direction by swiping/dragging. One or multiple of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
         - **row** (**Required**): Horrizontal position of the tile in the tileview grid.
         - **column** (**Required**): Vertical position of the tile in the tileview grid.
