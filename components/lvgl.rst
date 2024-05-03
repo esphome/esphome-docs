@@ -56,7 +56,6 @@ Some widgets integrate also as native ESPHome components:
     * - ``led``
       - :doc:`Light </components/light/lvgl>`
 
-
 These are useful to make :ref:`automations <automation>` triggered by actions performed at the screen.
 
 Main Configuration
@@ -320,7 +319,6 @@ In the example below, you defined ``date_style``:
           bg_opa: cover
           radius: 4
           pad_all: 2
-
 
 And then you apply these selected styles to two labels, and only change very specific stlye ``y`` locally:
 
@@ -1381,7 +1379,6 @@ By default, the Line widget width and height dimensions are set to ``size_conten
         line_color: 0x0000FF
         line_rounded: true
 
-
 .. _lvgl-wgt-led:
 
 ``led``
@@ -1704,7 +1701,6 @@ This :ref:`action <config-action>` redraws the entire screen, or optionally only
       then:
         - lvgl.widget.redraw:
 
-
 .. _lvgl-pause-act:
 
 ``lvgl.pause``
@@ -1720,7 +1716,6 @@ This :ref:`action <config-action>` pauses the activity of LVGL, including render
       then:
         - lvgl.pause:
             show_snow: true
-
 
 .. _lvgl-resume-act:
 
@@ -1759,7 +1754,6 @@ This :ref:`action <config-action>` changes page to the next following in the con
             animation: OUT_RIGHT
             time: 300ms
 
-
 .. _lvgl-pgsh-act:
 
 ``lvgl.page.show``
@@ -1771,7 +1765,6 @@ This :ref:`action <config-action>` shows a specific page (even the ones with ``s
 - **animation** (*Optional*): The page change with one of these animations: ``NONE``, ``OVER_LEFT``, ``OVER_RIGHT``, ``OVER_TOP``, ``OVER_BOTTOM``, ``MOVE_LEFT``, ``MOVE_RIGHT``, ``MOVE_TOP``, ``MOVE_BOTTOM``, ``FADE_IN``, ``FADE_OUT``, ``OUT_LEFT``, ``OUT_RIGHT``, ``OUT_TOP``, ``OUT_BOTTOM``. Defaults to ``NONE`` if not specified.
 - **time** (*Optional*, :ref:`Time <config-time>`): Duration of the page change animation. Defaults to ``50ms``.
 
-
 .. code-block:: yaml
 
     on_...:
@@ -1782,7 +1775,6 @@ This :ref:`action <config-action>` shows a specific page (even the ones with ``s
     on_...:
       then:
         - lvgl.page.show: secret_page  # shorthand version
-
 
 Conditions
 ----------
@@ -1808,7 +1800,6 @@ This :ref:`condition <config-condition>` checks if since the last touch event, t
               - light.turn_off:
                   id: display_backlight
                   transition_length: 3s
-
 
 .. _lvgl-paused-cond:
 
@@ -1897,7 +1888,6 @@ The ``on_idle`` :ref:`triggers <automation>` are activated when inactivity time 
           then:
             - light.turn_off: display_backlight
             - lvgl.pause:
-
 
 See :ref:`lvgl-cook-idlescreen` example how to implement screen saving with idle settings.
 

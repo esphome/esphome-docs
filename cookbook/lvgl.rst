@@ -90,7 +90,6 @@ In case your local light implements as a different platform than GPIO, you can u
                   on_click:
                     light.toggle: room_light
 
-
 .. _lvgl-cook-binent:
 
 Remote light button
@@ -622,7 +621,6 @@ Since LVGL uses inheritance to apply styles across the widgets, it's possible to
 
 In this example we prepare a set of gradient styles in the *theme*, and make some modifications in a *style_definition* which can be applied in a batch to the desired widgets. Theme is applied automatically, and can be overridden manually with style definitions (read further to see how).
 
-
 .. code-block:: yaml
 
     lvgl:
@@ -937,7 +935,6 @@ In the example below we use the default set of glyphs from RobotoCondensed-Regul
                   text_align: center
                   text_font: roboto_icons_42
 
-
 .. tip::
 
     Follow these steps to choose your MDI icons:
@@ -946,7 +943,6 @@ In the example below we use the default set of glyphs from RobotoCondensed-Regul
     - To get the TrueType font with all the icons in it, head on to the `Pictogrammers GitHub repository <https://github.com/Pictogrammers/pictogrammers.github.io/tree/main/%40mdi/font/>`_ and from a recent version folder, download the ``materialdesignicons-webfont.ttf`` file and place it in your ESPHome config directory under a folder named ``fonts`` (to match the example above).
     - To use the desired icon, prepend the copied codepoint with ``\U000``. The unicode character escape sequence has to start with capital ``\U`` and have exactly 8 hexadecimal digits.
     - To translate the escape sequence into the real glyph, make sure you enclose your strings in double quotes.    
-
 
 .. _lvgl-cook-iconstat:
 
@@ -1504,7 +1500,6 @@ LVGL has a notion of screen inactivity, i.e. how long did the user not interact 
         max_value: 180
         step: 5
         mode: box
-
 
 .. _lvgl-cook-antiburn:
 
