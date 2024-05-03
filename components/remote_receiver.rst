@@ -23,6 +23,8 @@ which will trigger when they hear their own configured signal.
       pin: GPIO32
       dump: all
 
+Multiple remote receivers can be configured as a list of dict definitions in remote_receiver.
+
 Configuration variables:
 ------------------------
 
@@ -222,6 +224,8 @@ Configuration variables:
 
 - **name** (**Required**, string): The name for the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **receiver_id** (*Optional*, :ref:`config-id`): The remote receiver to receive the
+  remote code with. Required if multiple receivers configured.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Remote code selection (exactly one of these has to be included):
