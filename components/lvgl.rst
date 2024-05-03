@@ -214,7 +214,7 @@ LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/W
 .. figure:: /components/images/lvgl_boxmodel.png
     :align: center
 
-- *bounding box*: the box defined with ``width`` and ``height`` of the widgets (pixels of parent content area percentage; not drawn, just for caculations).
+- *bounding box*: the box defined with ``width`` and ``height`` of the widgets (pixels or parent content area percentage; not drawn, just for caculations).
 - *border*: the border line, drawn on the inner side of the bounding box (pixels).
 - *outline*: the outline, drawn on the outer side of the bounding box (pixels).
 - *padding*: space to keep between the border of the widget and its content or children (*I don't want my children too close to my sides, so keep this space*). 
@@ -271,8 +271,8 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **transform_pivot_x** (*Optional*, int16 or percentage): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
 - **transform_pivot_y** (*Optional*, int16 or percentage): Vertical anchor point of the transformation. Relative to the widget's top left corner.
 - **transform_zoom** (*Optional*, 0.1-10):  Trannsformation zoom of the widget (eg. resizing)
-- **translate_x** (*Optional*, int16 or percentage): Move of the widget with this value in horizontal direction.
-- **translate_y** (*Optional*, int16 or percentage): Move of the widget with this value in vertical direction.
+- **translate_x** (*Optional*, int16 or percentage): Movement of the widget with this value in horizontal direction.
+- **translate_y** (*Optional*, int16 or percentage): Movement of the widget with this value in vertical direction.
 
 .. _lvgl-theme:
 
