@@ -620,7 +620,8 @@ Since LVGL uses inheritance to apply styles across the widgets, it's possible to
 .. figure:: images/lvgl_cook_gradient_styles.png
     :align: center
 
-In this example we prepare a set of gradient styles in the *theme*, and make some modifications in a *style_definition* which can be applied in a batch to the desired widgets. Theme is applied automatically, the style definition is applied manually (read further to see how).
+In this example we prepare a set of gradient styles in the *theme*, and make some modifications in a *style_definition* which can be applied in a batch to the desired widgets. Theme is applied automatically, and can be overridden manually with style definitions (read further to see how).
+
 
 .. code-block:: yaml
 

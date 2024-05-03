@@ -282,7 +282,7 @@ Themes
 
 The widgets support lots of :ref:`lvgl-styling` to customize their appearance and behavior.
 
-You can configure a global theme for all the widgets at the top level with the ``theme`` configuration option. In the example below, all the ``arc``, ``slider`` and ``btn`` widgets will use the styles and properties predefined by default here. A combination of styles and states can be chosen for every widget.
+You can configure a global theme for all the widgets at the top level with the ``theme`` configuration option. In the example below, all the ``arc``, ``slider`` and ``btn`` widgets will use the styles and properties predefined by default here. A combination of styles and :ref:`states <lvgl-wgtprop-state>` can be chosen for every widget.
 
 .. code-block:: yaml
 
@@ -336,7 +336,7 @@ And then you apply these selected styles to two labels, and only change very spe
           styles: date_style
           y: +20
 
-Additionally, you can change the styles based on the ``state`` property of the widgets or their parts. If you want to set a property for all states (e.g. red background color) just set it for the default state at the root of the widget. If the widget can't find a property for its current state it will fall back to this.
+Additionally, you can change the styles based on the :ref:`state <lvgl-wgtprop-state>` property of the widgets or their parts. If you want to set a property for all states (e.g. red background color) just set it for the default state at the root of the widget. If the widget can't find a property for its current state it will fall back to this.
 
 In the example below, you have an ``arc`` with some styles set here. Note how you change the ``arc_color`` of the ``indicator`` part, based on state changes:
 
@@ -371,7 +371,7 @@ At the next level of the LVGL object hierarchy are the widgets, which support st
 
 Widgets can have children, which can be any other widgets. Think of this as a nested structure. The child widgets move with the parent and if the parent is hidden the children will be hidden too. 
 
-By default, LVGL draws new widgets on top of old widgets, including their children. When widgets have children, property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. When the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for it. The parents will use their own state to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. 
+By default, LVGL draws new widgets on top of old widgets, including their children. When widgets have children, property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. When the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for it. The parents will use their own :ref:`state <lvgl-wgtprop-state>` to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. 
 
 Common properties
 *****************
