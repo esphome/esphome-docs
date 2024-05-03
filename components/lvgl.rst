@@ -142,10 +142,74 @@ The following configuration options apply to the main ``lvgl`` component, in ord
 
 See :ref:`lvgl-cook-navigator` in the Cookbook for an example how to easily implement a page navigation bar at the bottom of the screen.
 
+.. _lvgl-color:
+
+Colors
+******
+
+Colors can be specified anywehere in the LVGL configuartion either by referencing a preconfigured :ref:`ESPHome color <config-color>`, or directly represennted in hexadecimal format. Eg. ``0xFF0000`` for red.
+
+.. _lvgl-fonts:
+
+Fonts
+*****
+
+In ESPHome LVGL offers two font choices: the internal fonts offered by the library or :ref:`fonts configured in the normal way<display-fonts>`.
+
+**Internal fonts**
+
+The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and 60 symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Use one of the IDs below when specifying the ``text_font`` parameter:
+
+- ``montserrat_8``: 8px font
+- ``montserrat_10``: 10px font
+- ``montserrat_12``: 12px font
+- ``montserrat_14``: 14px font (**default**)
+- ``montserrat_16``: 16px font
+- ``montserrat_18``: 18px font
+- ``montserrat_20``: 20px font
+- ``montserrat_22``: 22px font
+- ``montserrat_24``: 24px font
+- ``montserrat_26``: 26px font
+- ``montserrat_28``: 28px font
+- ``montserrat_30``: 30px font
+- ``montserrat_32``: 32px font
+- ``montserrat_34``: 34px font
+- ``montserrat_36``: 36px font
+- ``montserrat_38``: 38px font
+- ``montserrat_40``: 40px font
+- ``montserrat_42``: 42px font
+- ``montserrat_44``: 44px font
+- ``montserrat_46``: 46px font
+- ``montserrat_48``: 48px font
+
+You can display the embedded symbols among the text by their codepoint address preceeded by ``\u``, eg. ``\uF00C``:
+
+.. figure:: /components/images/lvgl_symbols.png
+    :align: center
+
+.. note::
+
+    The ``text_font`` parameter affects the size of symbols, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes. If you set ``text_font`` on a widget to a custom ESPHome font, these symbols will likely not display, unles you include them manually from a FontAwesome OpenType file.
+    
+    For escape sequences to work, you have to put them in strings enclosed in double quotes.
+
+In addition to the above, the following special fonts are available from LVGL as built-in:
+
+- ``unscii_8``: 8 px pixel perfect font with only ASCII characters.
+- ``unscii_16``: 16 px pixel perfect font with only ASCII characters.
+- ``simsun_16_cjk``: 16 px font with normal range + 1000 most common `CJK Radicals <https://en.wikipedia.org/wiki/CJK_Radicals_Supplement>`__.
+- ``dejavu_16_persian_hebrew``: 16 px font with normal range + Hebrew, Arabic, Persian letters and all their forms.
+
+**ESPHome fonts**
+
+In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary. This has the advantage that you can define custom sets of glyphs of any size, with icons or diacritic characters of your choice, for any language, from any TrueType/OpenType font, using less flash space because you don't need to include all glyphs for all sizes you wish to use.
+
+Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-cook-iconbatt` in the Cookbook for examples how to play with texts and icons using various TrueType/OpenType fonts.
+
 .. _lvgl-theme:
 
-Theming and Styling
--------------------
+Theming
+*******
 
 The widgets support lots of :ref:`lvgl-styling` to customize their appearance and behavior.
 
@@ -297,70 +361,6 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **transform_zoom** (*Optional*, 0.1-10):  Trannsformation zoom of the widget (eg. resizing)
 - **translate_x** (*Optional*, int16 or percentage): Move of the widget with this value in horizontal direction.
 - **translate_y** (*Optional*, int16 or percentage): Move of the widget with this value in vertical direction.
-
-.. _lvgl-fonts:
-
-Fonts
-*****
-
-In ESPHome LVGL offers two font choices: the internal fonts offered by the library or :ref:`fonts configured in the normal way<display-fonts>`.
-
-**Internal fonts**
-
-The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and 60 symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Use one of the IDs below when specifying the ``text_font`` parameter:
-
-- ``montserrat_8``: 8px font
-- ``montserrat_10``: 10px font
-- ``montserrat_12``: 12px font
-- ``montserrat_14``: 14px font (**default**)
-- ``montserrat_16``: 16px font
-- ``montserrat_18``: 18px font
-- ``montserrat_20``: 20px font
-- ``montserrat_22``: 22px font
-- ``montserrat_24``: 24px font
-- ``montserrat_26``: 26px font
-- ``montserrat_28``: 28px font
-- ``montserrat_30``: 30px font
-- ``montserrat_32``: 32px font
-- ``montserrat_34``: 34px font
-- ``montserrat_36``: 36px font
-- ``montserrat_38``: 38px font
-- ``montserrat_40``: 40px font
-- ``montserrat_42``: 42px font
-- ``montserrat_44``: 44px font
-- ``montserrat_46``: 46px font
-- ``montserrat_48``: 48px font
-
-You can display the embedded symbols among the text by their codepoint address preceeded by ``\u``, eg. ``\uF00C``:
-
-.. figure:: /components/images/lvgl_symbols.png
-    :align: center
-
-.. note::
-
-    The ``text_font`` parameter affects the size of symbols, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes. If you set ``text_font`` on a widget to a custom ESPHome font, these symbols will likely not display, unles you include them manually from a FontAwesome OpenType file.
-    
-    For escape sequences to work, you have to put them in strings enclosed in double quotes.
-
-In addition to the above, the following special fonts are available from LVGL as built-in:
-
-- ``unscii_8``: 8 px pixel perfect font with only ASCII characters.
-- ``unscii_16``: 16 px pixel perfect font with only ASCII characters.
-- ``simsun_16_cjk``: 16 px font with normal range + 1000 most common `CJK Radicals <https://en.wikipedia.org/wiki/CJK_Radicals_Supplement>`__.
-- ``dejavu_16_persian_hebrew``: 16 px font with normal range + Hebrew, Arabic, Persian letters and all their forms.
-
-**ESPHome fonts**
-
-In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary. This has the advantage that you can define custom sets of glyphs of any size, with icons or diacritic characters of your choice, for any language, from any TrueType/OpenType font, using less flash space because you don't need to include all glyphs for all sizes you wish to use.
-
-Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-cook-iconbatt` in the Cookbook for examples how to play with texts and icons using various TrueType/OpenType fonts.
-
-.. _lvgl-color:
-
-Colors
-******
-
-Colors can be specified anywehere in the LVGL configuartion either by referencing a preconfigured :ref:`ESPHome color <config-color>`, or directly represennted in hexadecimal format. Eg. ``0xFF0000`` for red.
 
 .. _lvgl-widgets:
 
