@@ -85,7 +85,7 @@ The following configuration options apply to the main ``lvgl`` component, in ord
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen if necessarry. Defaults to ``1s``.
 - **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, enum): The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, defaults to ``big_endian``.
-- **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a color to fill the bacground. 
+- **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): Solid color to fill the bacground. 
 - **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as backround wallpaper.
 - **default_font** (*Optional*, enum): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
@@ -143,7 +143,7 @@ See :ref:`lvgl-cook-navigator` in the Cookbook for an example how to easily impl
 Colors
 ******
 
-Colors can be specified anywehere in the LVGL configuartion either by referencing a preconfigured :ref:`ESPHome color <config-color>`, or directly represennted in hexadecimal format. Eg. ``0xFF0000`` for red.
+Colors can be specified anywehere in the LVGL configuartion either by referencing a preconfigured :ref:`ESPHome color <config-color>` ID, or by represennting directly in hexadecimal format. Eg. ``0xFF0000`` for red.
 
 .. _lvgl-fonts:
 
@@ -222,8 +222,8 @@ You can adjust the appearance of widgets by changing the foreground, background 
 
 **Styling options:**
 
-- **bg_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color for the background of the widget.
-- **bg_grad_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to make the background gradually fade to.
+- **bg_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the background of the widget.
+- **bg_grad_color** (*Optional*, :ref:`color <lvgl-color>`): Color to make the background gradually fade to.
 - **bg_dither_mode** (*Optional*, enum): Set ditherhing of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``.
 - **bg_grad_dir** (*Optional*, enum): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``.
 - **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``0``.
@@ -232,10 +232,10 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **opa** (*Optional*, enum or percentage): Opacity of the entire widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **opa_layered** (*Optional*, enum or percentage): Opacity of the entire layer the widget is on. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **bg_img_opa** (*Optional*, enum or percentage): Opacity of the background image of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to mix with every pixel of the image. 
+- **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): Color to mix with every pixel of the image. 
 - **bg_img_recolor_opa** (*Optional*, enum or percentage): Opacity of the recoloring. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **border_width** (*Optional*, int16): Set the width of the border in pixels.
-- **border_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to draw borders of the widget.
+- **border_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw borders of the widget.
 - **border_opa** (*Optional*, enum or percentage): Opacity of the borders of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn.
 - **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be specified):
@@ -248,7 +248,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **radius** (*Optional*, uint16): The radius of the rounded corners of the widget. 0 = no radius i.e. square corners; 65535 = pill shaped widget (true circle if it has same width and height).
 - **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
 - **outline_width** (*Optional*, int16): Set the width of the outline in pixels.
-- **outline_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to draw an outline around the widget.
+- **outline_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw an outline around the widget.
 - **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
 - **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself.
 - **pad_all** (*Optional*, int16): Set the padding in all directions, in pixels.
@@ -258,7 +258,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **pad_right** (*Optional*, int16): Set the padding on the right, in pixels.
 - **pad_row** (*Optional*, int16): Set the padding between the rows of the children elements, in pixels.
 - **pad_column** (*Optional*, int16): Set the padding between the columns of the children elements, in pixels.
-- **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to create a drop shadow under the widget.
+- **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): Color to create a drop shadow under the widget.
 - **shadow_ofs_x** (*Optional*, int16): Horrizontal offset of the shadow, in pixels
 - **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels
 - **shadow_opa** (*Optional*, string or percentage): Opacity of the shadow. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
@@ -490,7 +490,7 @@ A label is the basic widget type that is used to display text.
 
 - **text** (**Required**, string): The text or built-in :ref:`symbol <lvgl-fonts>` to display. To display an empty label, specify ``""``.
 - **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``.
-- **text_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to render the text in.
+- **text_color** (*Optional*, :ref:`color <lvgl-color>`): Color to render the text in.
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified).
 - **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the ID of the font used to render the text or symbol.
 - **text_letter_space** (*Optional*, int16): Characher spacing of the text.
@@ -1018,7 +1018,7 @@ The Arc consists of a background and a foreground arc. The foreground (indicator
 - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
 - **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
 - **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **arc_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to use to draw the arcs.
+- **arc_color** (*Optional*, :ref:`color <lvgl-color>`): Color used to draw the arc.
 - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
 - **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
 - **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws a handle on the end of the indicator using all background properties and padding values. With zero padding the knob size is the same as the indicator's width. Larger padding makes it larger, smaller padding makes it smaller.
@@ -1172,12 +1172,12 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
         - **count** (**Required**): How many ticks to be on the scale. Defaults to ``12``.
         - **width** (*Optional*): Tick line width in pixels. Required if ``count`` is greater than ``0``. Defaults to ``2``.
         - **length** (*Optional*): Tick line length in pixels. Required if ``count`` is greater than ``0``. Defaults to ``10``.
-        - **color** (*Optional*): ID or hex code for the ticks :ref:`color <lvgl-color>`. Required if ``count`` is greater than ``0``. Defaults to ``0x808080``.
+        - **color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw the ticks. Required if ``count`` is greater than ``0``. Defaults to ``0x808080``.
         - **major** (*Optional*, list): If you want major ticks and value labels displayed:
             - **stride**: How many minor ticks to skip when adding major ticks. Defaults to ``3``.
             - **width**: Tick line width in pixels. Defaults to ``5``.
             - **length**: Tick line length in pixels or percentage. Defaults to ``15%``.
-            - **color**: ID or hex code for the ticks :ref:`color <lvgl-color>`. Defaults to ``0``.
+            - **color**: :ref:`Color <lvgl-color>` to draw the major ticks. Defaults to ``0`` (black).
             - **label_gap**: Label distance from the ticks with text proportionally to the values of the tick line. Defaults to ``4``.
         - Style options from :ref:`lvgl-styling` for the tick *lines* and *labels* using the :ref:`lvgl-wgt-lin` and :ref:`lvgl-wgt-lbl` text style properties.
     - **indicators** (**Required**, list): A list with indicators to be added to the scale. Multiple of each can be added. Their values are interpreted in the range of the scale:
@@ -1185,20 +1185,20 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - **start_value**: The value in the scale range to start drawing the arc from.
             - **end_value**: The value in the scale range to end drawing the arc to.
             - **width**: Arc width in pixels. Defaults to ``4``.
-            - **color**: ID or hex code for the arc :ref:`color <lvgl-color>`. Defaults to ``0``.
+            - **color**: :ref:`Color <lvgl-color>` to draw the arc. Defaults to ``0`` (black).
             - **r_mod**: Adjust the position of the arc from the scale radius with this amount (can be negative). Defaults to ``0``.
             - Style options for the *arc* using the :ref:`lvgl-wgt-arc` style properties.
         - **tick_style** (**Optional**): Add tick style modifications:
             - **start_value**: The value in the scale range to modify the ticks from.
             - **end_value**: The value in the scale range to modify the ticks to.
-            - **color_start**: ID or hex code for the gradient start :ref:`color <lvgl-color>` of the ticks.
-            - **color_end**: ID or hex code for the gradient end :ref:`color <lvgl-color>` of the ticks.
+            - **color_start**: :ref:`Color <lvgl-color>` for the gradient start of the ticks.
+            - **color_end**: :ref:`Color <lvgl-color>` for the gradient end of the ticks.
             - **local**: If ``true`` the ticks' color will be faded from ``color_start`` to ``color_end`` in the start and end values specified above. If ``false``, ``color_start`` and ``color_end`` will be mapped to the entire scale range (and only a *slice* of that color gradient will be visible in the indicator's start and end value range). Defaults to ``false``.
             - **width**: Modifies the ``width`` of the tick lines.
         - **line** (*Optional*): Add a needle line to the scale. By default, the length of the line is the same as the scale's radius:
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **width**: Needle line width in pixels. Defaults to ``4``.
-            - **color**: ID or hex code for the needle line :ref:`color <lvgl-color>`. Defaults to ``0``.
+            - **color**: :ref:`Color <lvgl-color>` for the needle line. Defaults to ``0`` (black).
             - **r_mod**: Adjust the length of the needle from the scale radius with this amount (can be negative). Defaults to ``0``.
             - **value**: The value in the scale range to show at start.
             - Style options for the *needle line* using the :ref:`lvgl-wgt-lin` style properties, as well as the background properties from :ref:`lvgl-styling` to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
@@ -1360,7 +1360,7 @@ The Line widget is capable of drawing straight lines between a set of points.
 - **line_dash_width** (*Optional*, int16): Set the width of the dashes in the line (in pixels).
 - **line_dash_gap** (*Optional*, int16): Set the width of the gap between the dashes in the line (in pixels).
 - **line_rounded** (*Optional*, boolean): Make the end points of the line rounded. ``true`` rounded, ``false`` perpendicular line ending.
-- **line_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color for the line.
+- **line_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the line.
 - Style options from :ref:`lvgl-styling`, all the typical background properties and line style properties.
 
 By default, the Line widget width and height dimensions are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts of the line may not be visible.
@@ -1393,7 +1393,7 @@ The Led widgets are rectangle-like (or circle) widget whose brightness can be ad
 
 **Specific options:**
 
-- **color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color for the background, border, and shadow of the widget.
+- **color** (*Optional*, :ref:`color <lvgl-color>`): Color for the background, border, and shadow of the widget.
 - **brightness** (*Optional*, percentage): The brightness of the LED color, where ``0%`` corresponds to black, and ``100%`` corresponds to the full brightness of the color specified above.
 - Style options from :ref:`lvgl-styling`, using all the typical background style properties.
 
@@ -1442,7 +1442,7 @@ The Spinner widget is a spinning arc over a ring.
 - **spin_time** (**Required**, :ref:`Time <config-time>`): Duration of one cycle of the spin.
 - **arc_length** (**Required**, 0-360): Length of the spinning arc in degrees.
 - **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **arc_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to use to draw the arcs.
+- **arc_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw the arcs.
 - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
 - **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
 - **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws *another arc using the arc style* properties. Its padding values are interpreted relative to the background arc.
