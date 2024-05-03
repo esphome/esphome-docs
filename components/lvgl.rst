@@ -206,10 +206,79 @@ In ESPHome you can also use a :ref:`font configured in the normal way<display-fo
 
 Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-cook-iconbatt` in the Cookbook for examples how to play with texts and icons using various TrueType/OpenType fonts.
 
+.. _lvgl-styling:
+
+Style properties
+****************
+
+LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing>`__. A widget's *box* is built from the following parts:
+
+.. figure:: /components/images/lvgl_boxmodel.png
+    :align: center
+
+- **bounding box**: the width/height of the elements.
+- **border width**: the width of the border.
+- **padding**: space between the sides of the widget and its children.
+- **content**: the content area which is the size of the bounding box reduced by the border width and padding (it's what's referenced as the ``size_content`` option of certain widgets).
+
+The border is drawn inside the bounding box. Padding sets the space on the inner sides of the border. It means *I don't want my children too close to my sides, so keep this space*. The outline is drawn outside the bounding box.
+
+You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each of them. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
+
+- **bg_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color for the background of the widget.
+- **bg_grad_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to make the background gradually fade to.
+- **bg_dither_mode** (*Optional*, enum): Set ditherhing of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``.
+- **bg_grad_dir** (*Optional*, enum): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``.
+- **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``0``.
+- **bg_grad_stop** (*Optional*, 0-255): Specify where the gradient should stop: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``255``.
+- **bg_opa** (*Optional*, enum or percentage): Opacity of the background. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **opa** (*Optional*, enum or percentage): Opacity of the entire widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **opa_layered** (*Optional*, enum or percentage): Opacity of the entire layer the widget is on. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **bg_img_opa** (*Optional*, enum or percentage): Opacity of the background image of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to mix with every pixel of the image. 
+- **bg_img_recolor_opa** (*Optional*, enum or percentage): Opacity of the recoloring. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **border_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to draw borders of the widget.
+- **border_opa** (*Optional*, enum or percentage): Opacity of the borders of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn.
+- **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be chosen):
+    - ``NONE``
+    - ``TOP``
+    - ``BOTTOM``
+    - ``LEFT``
+    - ``RIGHT``
+    - ``INTERNAL``
+- **border_width** (*Optional*, int16): Set the width of the border in pixels.
+- **radius** (*Optional*, uint16): The radius of the rounded corners of the widget. 0 = no radius i.e. square corners; 65535 = pill shaped widget (true circle if it has same width and height).
+- **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
+- **outline_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to draw an outline around the widget.
+- **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself.
+- **outline_width** (*Optional*, int16): Set the width of the outline in pixels.
+- **pad_all** (*Optional*, int16): Set the padding in all directions, in pixels.
+- **pad_top** (*Optional*, int16): Set the padding on the top, in pixels.
+- **pad_bottom** (*Optional*, int16): Set the padding on the bottom, in pixels.
+- **pad_left** (*Optional*, int16): Set the padding on the left, in pixels.
+- **pad_right** (*Optional*, int16): Set the padding on the right, in pixels.
+- **pad_row** (*Optional*, int16): Set the padding between the rows of the children elements, in pixels.
+- **pad_column** (*Optional*, int16): Set the padding between the columns of the children elements, in pixels.
+- **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to create a drop shadow under the widget.
+- **shadow_ofs_x** (*Optional*, int16): Horrizontal offset of the shadow, in pixels
+- **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels
+- **shadow_opa** (*Optional*, string or percentage): Opacity of the shadow. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **shadow_spread** (*Optional*, int16): Spread of the shadow, in pixels.
+- **shadow_width** (*Optional*, int16): Width of the shadow, in pixels.
+- **transform_angle** (*Optional*, 0-360): Trannsformation angle of the widget (eg. rotation)
+- **transform_height** (*Optional*, int16 or percentage): Trannsformation height of the widget (eg. stretching)
+- **transform_pivot_x** (*Optional*, int16 or percentage): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
+- **transform_pivot_y** (*Optional*, int16 or percentage): Vertical anchor point of the transformation. Relative to the widget's top left corner.
+- **transform_zoom** (*Optional*, 0.1-10):  Trannsformation zoom of the widget (eg. resizing)
+- **translate_x** (*Optional*, int16 or percentage): Move of the widget with this value in horizontal direction.
+- **translate_y** (*Optional*, int16 or percentage): Move of the widget with this value in vertical direction.
+
 .. _lvgl-theme:
 
-Theming
-*******
+Themes
+******
 
 The widgets support lots of :ref:`lvgl-styling` to customize their appearance and behavior.
 
@@ -292,75 +361,6 @@ The precedence (value) of states is quite intuitive, and it's something the user
 Feel free to experiment to discover inheritance of the styles based on states between the nested widgets.
 
 :ref:`lvgl-cook-theme` in the Cookbook shows an example how to easily implement a gradient style for your widgets.
-
-.. _lvgl-styling:
-
-Style properties
-****************
-
-LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing>`__. A widget's *box* is built from the following parts:
-
-.. figure:: /components/images/lvgl_boxmodel.png
-    :align: center
-
-- **bounding box**: the width/height of the elements.
-- **border width**: the width of the border.
-- **padding**: space between the sides of the widget and its children.
-- **content**: the content area which is the size of the bounding box reduced by the border width and padding (it's what's referenced as the ``size_content`` option of certain widgets).
-
-The border is drawn inside the bounding box. Padding sets the space on the inner sides of the border. It means *I don't want my children too close to my sides, so keep this space*. The outline is drawn outside the bounding box.
-
-You can adjust the appearance of widgets by changing the foreground, background and/or border color, font of each of them. Some widgets allow for more complex styling, effectively changing the appearance of their parts. 
-
-- **bg_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color for the background of the widget.
-- **bg_grad_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to make the background gradually fade to.
-- **bg_dither_mode** (*Optional*, enum): Set ditherhing of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``.
-- **bg_grad_dir** (*Optional*, enum): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``.
-- **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``0``.
-- **bg_grad_stop** (*Optional*, 0-255): Specify where the gradient should stop: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``255``.
-- **bg_opa** (*Optional*, enum or percentage): Opacity of the background. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **opa** (*Optional*, enum or percentage): Opacity of the entire widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **opa_layered** (*Optional*, enum or percentage): Opacity of the entire layer the widget is on. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **bg_img_opa** (*Optional*, enum or percentage): Opacity of the background image of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to mix with every pixel of the image. 
-- **bg_img_recolor_opa** (*Optional*, enum or percentage): Opacity of the recoloring. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **border_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to draw borders of the widget.
-- **border_opa** (*Optional*, enum or percentage): Opacity of the borders of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn.
-- **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be chosen):
-    - ``NONE``
-    - ``TOP``
-    - ``BOTTOM``
-    - ``LEFT``
-    - ``RIGHT``
-    - ``INTERNAL``
-- **border_width** (*Optional*, int16): Set the width of the border in pixels.
-- **radius** (*Optional*, uint16): The radius of the rounded corners of the widget. 0 = no radius i.e. square corners; 65535 = pill shaped widget (true circle if it has same width and height).
-- **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
-- **outline_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to draw an outline around the widget.
-- **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself.
-- **outline_width** (*Optional*, int16): Set the width of the outline in pixels.
-- **pad_all** (*Optional*, int16): Set the padding in all directions, in pixels.
-- **pad_top** (*Optional*, int16): Set the padding on the top, in pixels.
-- **pad_bottom** (*Optional*, int16): Set the padding on the bottom, in pixels.
-- **pad_left** (*Optional*, int16): Set the padding on the left, in pixels.
-- **pad_right** (*Optional*, int16): Set the padding on the right, in pixels.
-- **pad_row** (*Optional*, int16): Set the padding between the rows of the children elements, in pixels.
-- **pad_column** (*Optional*, int16): Set the padding between the columns of the children elements, in pixels.
-- **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): The ID of a configured color, or hexadecimal representation of a RGB color to create a drop shadow under the widget.
-- **shadow_ofs_x** (*Optional*, int16): Horrizontal offset of the shadow, in pixels
-- **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels
-- **shadow_opa** (*Optional*, string or percentage): Opacity of the shadow. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **shadow_spread** (*Optional*, int16): Spread of the shadow, in pixels.
-- **shadow_width** (*Optional*, int16): Width of the shadow, in pixels.
-- **transform_angle** (*Optional*, 0-360): Trannsformation angle of the widget (eg. rotation)
-- **transform_height** (*Optional*, int16 or percentage): Trannsformation height of the widget (eg. stretching)
-- **transform_pivot_x** (*Optional*, int16 or percentage): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
-- **transform_pivot_y** (*Optional*, int16 or percentage): Vertical anchor point of the transformation. Relative to the widget's top left corner.
-- **transform_zoom** (*Optional*, 0.1-10):  Trannsformation zoom of the widget (eg. resizing)
-- **translate_x** (*Optional*, int16 or percentage): Move of the widget with this value in horizontal direction.
-- **translate_y** (*Optional*, int16 or percentage): Move of the widget with this value in vertical direction.
 
 .. _lvgl-widgets:
 
