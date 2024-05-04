@@ -245,7 +245,7 @@ stopped midway. An example GET request for ``/cover/front_window_blinds`` might 
 -  **position**: (only if supported by this cover component) Current cover position as a float number.
 
 POST requests on the other hand allow performing actions on the cover, the available
-methods being ``open``, ``close``, ``stop`` and ``set``. The following parameters
+methods being ``open``, ``close``, ``stop``, ``toggle`` and ``set``. The following parameters
 can be used:
 
 -  **position**: The target position for a ``set`` call. The ``open`` method implies
