@@ -266,7 +266,7 @@ then run the ``mqtt-fingerprint`` script of ESPHome to get the certificate:
 
 .. code-block:: bash
 
-    esphome livingroom.yaml mqtt-fingerprint
+    esphome mqtt-fingerprint livingroom.yaml
     > SHA1 Fingerprint: a502ff13999f8b398ef1834f1123650b3236fc07
     > Copy above string into mqtt.ssl_fingerprints section of livingroom.yaml
 
