@@ -50,7 +50,7 @@ Configuration variables:
 - **current** (*Optional*): The current value of the sensor in Amperes. All options from
   :ref:`Sensor <config-sensor>`.
 - **power** (*Optional*): The (active) power value of the sensor in Watts. Note that some power meters will report this in negative values (probably wired backwards), so you may want to use a filter to multiply it by -1. All options from :ref:`Sensor <config-sensor>`. 
-- **energy** (*Optional*): Use the voltage value of the sensor in kWh.
+- **energy** (*Optional*): Use the energy value of the sensor in kWh.
   All options from :ref:`Sensor <config-sensor>`.
 - **frequency** (*Optional*): The frequency value of the sensor in Hertz. All options from
   :ref:`Sensor <config-sensor>`.
