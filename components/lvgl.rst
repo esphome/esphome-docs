@@ -150,16 +150,22 @@ Colors can be specified anywehere in the LVGL configuartion either by referencin
 Fonts
 *****
 
-In ESPHome LVGL offers two font choices: the internal fonts offered by the library or :ref:`fonts configured in the normal way<display-fonts>`.
+There are two font choices for LVGL here: 
 
-**Internal fonts**
+**ESPHome fonts**
 
-The library offers by default the  ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and 60 symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). Use one of the IDs below when specifying the ``text_font`` parameter:
+You can use :ref:`fonts configured normally<display-fonts>`, the glyphs will be rendered while building the binary. This has the advantage that you can define custom sets of glyphs of any size, with icons or diacritic characters of your choice, for any language, from any TrueType/OpenType font, allowing a more optimal flash space usage because you don't need to include all glyphs for all sizes you wish to use.
+
+Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-cook-iconbatt` in the Cookbook for examples how to play with texts and icons using various TrueType/OpenType fonts.
+
+**Library fonts**
+
+The LVGL library offers by default pre-rendered sets with ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and 60 symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). You can use the IDs below when specifying the ``text_font`` parameter:
 
 - ``montserrat_8``: 8px font
 - ``montserrat_10``: 10px font
 - ``montserrat_12``: 12px font
-- ``montserrat_14``: 14px font (**default**)
+- ``montserrat_14``: 14px font (**default**, included if ``default_font`` option is missing)
 - ``montserrat_16``: 16px font
 - ``montserrat_18``: 18px font
 - ``montserrat_20``: 20px font
@@ -178,6 +184,8 @@ The library offers by default the  ASCII characters (``0x20-0x7F``) the degree s
 - ``montserrat_46``: 46px font
 - ``montserrat_48``: 48px font
 
+The binary will only include any of the above if used in the configuration.
+
 You can display the embedded symbols among the text by their codepoint address preceeded by ``\u``, eg. ``\uF00C``:
 
 .. figure:: /components/images/lvgl_symbols.png
@@ -195,12 +203,6 @@ In addition to the above, the following special fonts are available from LVGL as
 - ``unscii_16``: 16 px pixel perfect font with only ASCII characters.
 - ``simsun_16_cjk``: 16 px font with normal range + 1000 most common `CJK Radicals <https://en.wikipedia.org/wiki/CJK_Radicals_Supplement>`__.
 - ``dejavu_16_persian_hebrew``: 16 px font with normal range + Hebrew, Arabic, Persian letters and all their forms.
-
-**ESPHome fonts**
-
-In ESPHome you can also use a :ref:`font configured in the normal way<display-fonts>`, conversion will be done while building the binary. This has the advantage that you can define custom sets of glyphs of any size, with icons or diacritic characters of your choice, for any language, from any TrueType/OpenType font, using less flash space because you don't need to include all glyphs for all sizes you wish to use.
-
-Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-cook-iconbatt` in the Cookbook for examples how to play with texts and icons using various TrueType/OpenType fonts.
 
 .. _lvgl-styling:
 
@@ -488,11 +490,11 @@ A label is the basic widget type that is used to display text.
 
 **Specific options:**
 
-- **text** (**Required**, string): The text or built-in :ref:`symbol <lvgl-fonts>` to display. To display an empty label, specify ``""``.
+- **text** (**Required**, string): The text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display. To display an empty label, specify ``""``.
 - **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``.
 - **text_color** (*Optional*, :ref:`color <lvgl-color>`): Color to render the text in.
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified).
-- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID or the ID of the font used to render the text or symbol.
+- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID of the font used to render the text or symbol.
 - **text_letter_space** (*Optional*, int16): Characher spacing of the text.
 - **text_line_space** (*Optional*, int16): Line spacing of the text.
 - **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
@@ -611,7 +613,7 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
 - **rows** (**Required**, list): A list for the button rows:
     - **buttons** (**Required**, list): A list of buttons in a row:
         - **id** (*Optional*): An ID for the button in the matrix.
-        - **text** (*Optional*): Text or built-in :ref:`symbol <lvgl-fonts>` to display on the button.
+        - **text** (*Optional*): Text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display on the button.
         - **key_code** (*Optional*, string): One character be sent as the key code to a :ref:`key_collector` instead of ``text`` when the button is pressed.
         - **width** (*Optional*): Width relative to the other buttons in the same row. A value between ``1`` and ``15`` range, default ``1`` (eg. in a line with two buttons: one ``width: 1`` and another one ``width: 2``, the first will be ``33%`` wide while the second will be ``66%`` wide). 
         - **selected** (*Optional*, boolean): Set the button as the most recently released or focused. Defaults to ``false``.
@@ -1594,7 +1596,7 @@ The text will be broken into multiple lines automatically and the height will be
         - **text** (**Required**, string):  The string to be displayed in the body of the message box. Can be shorthanded if no further options are specified.
         - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties.
     - **buttons** (**Required**, enum): A list of buttons to show at the bottom of the message box:
-        - **text** (**Required**, string):  The text or built-in :ref:`symbol <lvgl-fonts>` to display on the button.
+        - **text** (**Required**, string):  The text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display on the button.
 
 **Specific actions:**
 
