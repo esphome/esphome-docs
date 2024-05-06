@@ -93,26 +93,19 @@ The following configuration options apply to the main ``lvgl`` component, in ord
 - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the root display. Not possible if you configure ``pages``.
 - **pages** (*Optional*, list): A list of page IDs, where each page acts as a parent for widgets placed on it. Only if no ``widgets`` are configured at this level! Options for each page:
     - **skip** (*Optional*, boolean): Option to skip this page when navigating between them with :ref:`lvgl-pgnx-act`.
-    - **layout** (*Optional*, string): Layout to be applied to this page. Same option as above.
-    - **flex_flow** (*Optional*, string): Same option as above, for the ``FLEX`` layout on this page.
+    - **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. See :ref:`layouts <lvgl-layouts>`.  If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
+    - **flex_flow** (*Optional*, string): See :ref:`flex layout <lvgl-layouts-flex>` options. 
     - All other options from :ref:`lvgl-styling` to be applied to this page.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
 - **page_wrap** (*Optional*, boolean): Wrap pages around when navigating between them with :ref:`lvgl-pgnx-act`. Defaults to ``true`` if not specified.
 - **top_layer** (*Optional*, list): A special kind of *Always on Top* page, which acts as a parent for widgets placed on it. It's shown above all the pages - useful for widgets which need to be always visible, regardless of the pages. Only of no ``widgets`` are configured at this level. Options:
-    - **layout** (*Optional*, string): Layout to be applied to this page. Same option as above.
-    - **flex_flow** (*Optional*, string): Same option as above, for the ``FLEX`` layout on this page.
+    - **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. See :ref:`layouts <lvgl-layouts>`.  If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
+    - **flex_flow** (*Optional*, string): See :ref:`flex layout <lvgl-layouts-flex>` options. 
     - All other options from :ref:`lvgl-styling` to be applied to this page.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
-- **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. LVGL supports two styles of layouts, ``FLEX`` and ``GRID``. ``FLEX`` can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item fill the remaining space with respect to min/max width and height. ``GRID`` can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. With these layouts the widgets can be placed automatically, and there's no need to specify the ``x`` and the ``y`` positional coordinates for each. If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
-- **flex_flow** (*Optional*, string): In case of ``FLEX`` layout, choose one of the following options. Defaults to ``ROW_WRAP``:
-    - ``ROW`` to place the children in a row without wrapping
-    - ``COLUMN`` to place the children in a column without wrapping
-    - ``ROW_WRAP`` to place the children in a row with wrapping
-    - ``COLUMN_WRAP`` to place the children in a column with wrapping
-    - ``ROW_REVERSE`` to place the children in a row without wrapping but in reversed order
-    - ``COLUMN_REVERSE`` to place the children in a column without wrapping but in reversed order
-    - ``ROW_WRAP_REVERSE`` to place the children in a row with wrapping but in reversed order
-    - ``COLUMN_WRAP_REVERSE`` to place the children in a column with wrapping but in reversed order
+- **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. See :ref:`layouts <lvgl-layouts>`.  If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
+- **flex_flow** (*Optional*, string): See :ref:`flex layout <lvgl-layouts-flex>` options. 
+
 - All other options from :ref:`lvgl-styling` to be commonly apply to the widgets directly.
 
 **Example:**
@@ -144,6 +137,13 @@ Colors
 ******
 
 Colors can be specified anywehere in the LVGL configuartion either by referencing a preconfigured :ref:`ESPHome color <config-color>` ID, or by represennting directly in hexadecimal format. Eg. ``0xFF0000`` for red.
+
+.. _lvgl-opa:
+
+Opacity
+*******
+
+Various parts of the widgets (like bacground, borders etc.) support opacity. It can be overridden with a string: ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage. Actual default values depend on widgget specifics.
 
 .. _lvgl-fonts:
 
@@ -230,15 +230,15 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **bg_grad_dir** (*Optional*, enum): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``.
 - **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``0``.
 - **bg_grad_stop** (*Optional*, 0-255): Specify where the gradient should stop: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``255``.
-- **bg_opa** (*Optional*, enum or percentage): Opacity of the background. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **opa** (*Optional*, enum or percentage): Opacity of the entire widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **opa_layered** (*Optional*, enum or percentage): Opacity of the entire layer the widget is on. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
-- **bg_img_opa** (*Optional*, enum or percentage): Opacity of the background image of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **bg_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the widget background.
+- **opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire widget.
+- **opa_layered** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire layer the widget is on.
+- **bg_img_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the background image (if such option is supported) of the widget.
 - **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): Color to mix with every pixel of the image. 
-- **bg_img_recolor_opa** (*Optional*, enum or percentage): Opacity of the recoloring. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **bg_img_recolor_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the recoloring. 
 - **border_width** (*Optional*, int16): Set the width of the border in pixels.
 - **border_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw borders of the widget.
-- **border_opa** (*Optional*, enum or percentage): Opacity of the borders of the widget. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **border_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the borders of the widget. 
 - **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn.
 - **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be specified):
     - ``NONE``
@@ -251,7 +251,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
 - **outline_width** (*Optional*, int16): Set the width of the outline in pixels.
 - **outline_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw an outline around the widget.
-- **outline_opa** (*Optional*, string or percentage): Opacity of the outline. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **outline_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the outline of the widget. 
 - **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself.
 - **pad_all** (*Optional*, int16): Set the padding in all directions, in pixels.
 - **pad_top** (*Optional*, int16): Set the padding on the top, in pixels.
@@ -263,7 +263,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): Color to create a drop shadow under the widget.
 - **shadow_ofs_x** (*Optional*, int16): Horrizontal offset of the shadow, in pixels
 - **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels
-- **shadow_opa** (*Optional*, string or percentage): Opacity of the shadow. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **shadow_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the shadow.
 - **shadow_spread** (*Optional*, int16): Spread of the shadow, in pixels.
 - **shadow_width** (*Optional*, int16): Width of the shadow, in pixels.
 - **transform_angle** (*Optional*, 0-360): Trannsformation angle of the widget (eg. rotation)
@@ -360,6 +360,50 @@ Feel free to experiment to discover inheritance of the styles based on states be
 
 :ref:`lvgl-cook-theme` in the Cookbook shows an example how to easily implement a gradient style for your widgets.
 
+.. _lvgl-layouts:
+
+Layouts
+*******
+
+Layouts help positioning the widgets automatically, without the need to manually specify the ``x`` and the ``y`` positional coordinates for each. This is a great way to simplify the configuration, allowing you to even omit alignment options.
+
+The layout configuration options are applied to any parent widget or page, which influence the appearance of the children.
+
+.. _lvgl-layouts-flex:
+
+**Flex**
+
+The Flex layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
+
+It can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item(s) fill the remaining space with respect to min/max width and height.
+
+Terms used:
+
+- *tracks*: the rows or columns main direction: row or column, the direction in which the items are placed.
+- *cross direction*: perpendicular to the main direction
+- *wrap*: if there is no more space in the track a new track is started
+- *grow*: if set on an item it will grow to fill the remaining space on the track. The available space will be distributed among items respective to their grow value (larger value means more space)
+- *gap*: the space between the rows and columns or the items on a track
+
+In a Flex layout, use the following options in the ``flex_flow`` configuartion parameter to select the arrangement of the children widgets:
+
+- ``ROW``: place the children in a row without wrapping.
+- ``COLUMN``: place the children in a column without wrapping.
+- ``ROW_WRAP``: place the children in a row with wrapping (default).
+- ``COLUMN_WRAP``: place the children in a column with wrapping.
+- ``ROW_REVERSE``: place the children in a row without wrapping but in reversed order.
+- ``COLUMN_REVERSE``: place the children in a column without wrapping but in reversed order.
+- ``ROW_WRAP_REVERSE``: place the children in a row with wrapping but in reversed order.
+- ``COLUMN_WRAP_REVERSE``: place the children in a column with wrapping but in reversed order.
+
+.. _lvgl-layouts-grid:
+
+**Grid**
+
+The Grid layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
+
+It can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. The track's size can be set in pixel, to the largest item or in "Free unit" to distribute the free space proportionally.
+
 .. _lvgl-widgets:
 
 Widgets
@@ -412,8 +456,8 @@ The properties below are common to all widgets.
 - **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused widget which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
 - **styles** (*Optional*, :ref:`config-id`): The ID of a *style definition* from the main component configuration to override the theme styles.
 - **theme** (*Optional*, list): A list of styles to apply to the widget and children. Same configuration option as at the main component.
-- **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. Same configuration option as at the main component.
-- **flex_flow** (*Optional*, string): Option for ``FLEX`` layout, similar configuration as at the main component.
+- **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. See :ref:`layouts <lvgl-layouts>`.  If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
+- **flex_flow** (*Optional*, string): See :ref:`flex layout <lvgl-layouts-flex>` options. 
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn as children of this widget. Same configuration option as at the main component.
 
 .. _lvgl-wgtprop-state:
@@ -467,7 +511,7 @@ In addition to visual stilyng, each widget supports some boolean **flags** to in
 - **event_bubble** (*Optional*, boolean): propagate the events to the parent too.
 - **gesture_bubble** (*Optional*, boolean): propagate the gestures to the parent.
 - **adv_hittest** (*Optional*, boolean): allow performing more accurate hit (click) test. E.g. Accounting for rounded corners.
-- **ignore_layout** (*Optional*, boolean): make the widget positionable by the layouts.
+- **ignore_layout** (*Optional*, boolean): do not make the widget positionable by the layouts.
 - **floating** (*Optional*, boolean): do not scroll the widget when the parent scrolls and ignore layout.
 - **overflow_visible** (*Optional*, boolean): do not clip the children's content to the parent's boundary.
 - **layout_1**, **layout_2** (*Optional*, boolean): custom flags, free to use by layouts.
@@ -497,7 +541,7 @@ A label is the basic widget type that is used to display text.
 - **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID of the font used to render the text or symbol.
 - **text_letter_space** (*Optional*, int16): Characher spacing of the text.
 - **text_line_space** (*Optional*, int16): Line spacing of the text.
-- **text_opa** (*Optional*, string or percentage): Opacity of the text. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **text_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the text. 
 - **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
 - **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
     - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped (Default). 
@@ -1019,7 +1063,7 @@ The Arc consists of a background and a foreground arc. The foreground (indicator
 - **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``.
 - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
 - **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
-- **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **arc_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the arc.
 - **arc_color** (*Optional*, :ref:`color <lvgl-color>`): Color used to draw the arc.
 - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
 - **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
@@ -1443,7 +1487,7 @@ The Spinner widget is a spinning arc over a ring.
 
 - **spin_time** (**Required**, :ref:`Time <config-time>`): Duration of one cycle of the spin.
 - **arc_length** (**Required**, 0-360): Length of the spinning arc in degrees.
-- **arc_opa** (*Optional*, enum or percentage): Opacity of the arcs. ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage.
+- **arc_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the arc.
 - **arc_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw the arcs.
 - **arc_rounded** (*Optional*, boolean): Make the end points of the arcs rounded. ``true`` rounded, ``false`` perpendicular line ending.
 - **arc_width** (*Optional*, int16): Set the width of the arcs in pixels.
