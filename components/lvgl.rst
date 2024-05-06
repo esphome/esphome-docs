@@ -224,23 +224,23 @@ You can adjust the appearance of widgets by changing the foreground, background 
 
 **Styling options:**
 
-- **bg_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the background of the widget.
-- **bg_grad_color** (*Optional*, :ref:`color <lvgl-color>`): Color to make the background gradually fade to.
-- **bg_dither_mode** (*Optional*, enum): Set ditherhing of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``.
-- **bg_grad_dir** (*Optional*, enum): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``.
+- **bg_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the background of the widget. Defaults to ``0xFFFFFF`` (white).
+- **bg_grad_color** (*Optional*, :ref:`color <lvgl-color>`): Color to make the background gradually fade to. Defaults to ``0`` (black).
+- **bg_dither_mode** (*Optional*, enum): Set ditherhing of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``. Defaults to ``NONE``.
+- **bg_grad_dir** (*Optional*, enum): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``. Defaults to ``NONE``.
 - **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``0``.
 - **bg_grad_stop** (*Optional*, 0-255): Specify where the gradient should stop: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``255``.
-- **opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire widget.
+- **opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire widget. Inherited from parent. Defaults to ``COVER``.
 - **bg_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the widget background.
-- **opa_layered** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire layer the widget is on.
+- **opa_layered** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire layer the widget is on. Inherited from parent. Defaults to ``COVER``.
 - **bg_img_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the background image (if such option is supported) of the widget.
-- **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): Color to mix with every pixel of the background image (if such option is supported) of the widget
+- **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): Color to mix with every pixel of the background image (if such option is supported) of the widget.
 - **bg_img_recolor_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the recoloring. 
-- **border_width** (*Optional*, int16): Set the width of the border in pixels.
-- **border_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw borders of the widget.
-- **border_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the borders of the widget. 
-- **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn.
-- **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be specified):
+- **border_width** (*Optional*, int16): Set the width of the border in pixels. Defaults to ``0``.
+- **border_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw borders of the widget. Defaults to ``0`` (black).
+- **border_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the borders of the widget.  Defaults to ``COVER``.
+- **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn. Defaults to ``false``
+- **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be specified, defaults to ``NONE``):
     - ``NONE``
     - ``TOP``
     - ``BOTTOM``
@@ -249,10 +249,10 @@ You can adjust the appearance of widgets by changing the foreground, background 
     - ``INTERNAL``
 - **radius** (*Optional*, uint16): The radius of the rounded corners of the widget. 0 = no radius i.e. square corners; 65535 = pill shaped widget (true circle if it has same width and height).
 - **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
-- **outline_width** (*Optional*, int16): Set the width of the outline in pixels.
-- **outline_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw an outline around the widget.
-- **outline_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the outline of the widget. 
-- **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself.
+- **outline_width** (*Optional*, int16): Set the width of the outline in pixels. Defaults to ``0``.
+- **outline_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw an outline around the widget. Defaults to ``0`` (black).
+- **outline_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the outline of the widget. Defaults to ``COVER``.
+- **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself. Defaults to ``0``.
 - **pad_all** (*Optional*, int16): Set the padding in all directions, in pixels.
 - **pad_top** (*Optional*, int16): Set the padding on the top, in pixels.
 - **pad_bottom** (*Optional*, int16): Set the padding on the bottom, in pixels.
@@ -260,12 +260,12 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **pad_right** (*Optional*, int16): Set the padding on the right, in pixels.
 - **pad_row** (*Optional*, int16): Set the padding between the rows of the children elements, in pixels.
 - **pad_column** (*Optional*, int16): Set the padding between the columns of the children elements, in pixels.
-- **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): Color to create a drop shadow under the widget.
-- **shadow_ofs_x** (*Optional*, int16): Horrizontal offset of the shadow, in pixels
-- **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels
-- **shadow_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the shadow.
-- **shadow_spread** (*Optional*, int16): Spread of the shadow, in pixels.
-- **shadow_width** (*Optional*, int16): Width of the shadow, in pixels.
+- **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): Color to create a drop shadow under the widget. Defaults to ``0`` (black).
+- **shadow_ofs_x** (*Optional*, int16): Horrizontal offset of the shadow, in pixels. Defaults to ``0``.
+- **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels. Defaults to ``0``.
+- **shadow_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the shadow. Defaults to ``COVER``.
+- **shadow_spread** (*Optional*, int16): Spread of the shadow, in pixels. Defaults to ``0``.
+- **shadow_width** (*Optional*, int16): Width of the shadow, in pixels. Defaults to ``0``.
 - **transform_angle** (*Optional*, 0-360): Trannsformation angle of the widget (eg. rotation)
 - **transform_height** (*Optional*, int16 or percentage): Trannsformation height of the widget (eg. stretching)
 - **transform_pivot_x** (*Optional*, int16 or percentage): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
@@ -535,13 +535,13 @@ A label is the basic widget type that is used to display text.
 **Specific options:**
 
 - **text** (**Required**, string): The text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display. To display an empty label, specify ``""``.
-- **text_align** (*Optional*, enum): Alignment of the text in the widget. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``.
-- **text_color** (*Optional*, :ref:`color <lvgl-color>`): Color to render the text in.
-- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified).
-- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID of the font used to render the text or symbol.
-- **text_letter_space** (*Optional*, int16): Characher spacing of the text.
-- **text_line_space** (*Optional*, int16): Line spacing of the text.
-- **text_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the text. 
+- **text_align** (*Optional*, enum): Alignment of the text in the widget - it doesn't align the object itself, only the lines inside the object. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``. Inherited from parent. Defaults to ``AUTO``, which detects the text base direction and uses left or right alignment accordingly.
+- **text_color** (*Optional*, :ref:`color <lvgl-color>`): Color to render the text in. Inherited from parent. Defaults to ``0`` (black). 
+- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified). Inherited from parent. Defaults to ``NONE``
+- **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID of the font used to render the text or symbol. Inherited from parent.
+- **text_letter_space** (*Optional*, int16): Extra characher spacing of the text. Inherited from parent. Defaults to ``0``.
+- **text_line_space** (*Optional*, int16): Line spacing of the text. Inherited from parent. Defaults to ``0``
+- **text_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the text. Inherited from parent. Defaults to ``COVER``.
 - **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
 - **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
     - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped (Default). 
