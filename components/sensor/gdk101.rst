@@ -83,7 +83,7 @@ Sample Configuration:
           name: "GDK101 Status"
         version:
           name: "GDK101 FW Version"
-        meas_time: 
+        measurement_duration: 
           name: "GDK101 Measuring Time"
     binary_sensor:
       - platform: gdk101
