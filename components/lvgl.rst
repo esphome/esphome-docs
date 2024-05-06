@@ -88,7 +88,7 @@ The following configuration options apply to the main ``lvgl`` component, in ord
 - **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): Solid color to fill the bacground. 
 - **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as backround wallpaper.
 - **default_font** (*Optional*, enum): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
-- **style_definitions** (*Optional*, list): A batch of style definitions to use with selected LVGL widgets. See :ref:`below <lvgl-theme>` for more details. 
+- **style_definitions** (*Optional*, list): A batch of style definitions to use in LVGL widgets ``styles`` configuration. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the root display. Not possible if you configure ``pages``.
 - **pages** (*Optional*, list): A list of page IDs, where each page acts as a parent for widgets placed on it. Only if no ``widgets`` are configured at this level! Options for each page:
@@ -143,7 +143,7 @@ Colors can be specified anywehere in the LVGL configuartion either by referencin
 Opacity
 *******
 
-Various parts of the widgets (like bacground, borders etc.) support opacity. It can be overridden with a string: ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or an integer between ``0%`` and ``100%`` for percentage. Actual default values depend on widgget specifics.
+Various parts of the widgets (like bacground, borders etc.) support opacity. It can be overridden with a string: ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or percentage between ``0%`` and ``100%``. Actual default values depend on widgget specifics.
 
 .. _lvgl-fonts:
 
@@ -230,11 +230,11 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **bg_grad_dir** (*Optional*, enum): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``.
 - **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``0``.
 - **bg_grad_stop** (*Optional*, 0-255): Specify where the gradient should stop: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``255``.
-- **bg_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the widget background.
 - **opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire widget.
+- **bg_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the widget background.
 - **opa_layered** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire layer the widget is on.
 - **bg_img_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the background image (if such option is supported) of the widget.
-- **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): Color to mix with every pixel of the image. 
+- **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): Color to mix with every pixel of the background image (if such option is supported) of the widget
 - **bg_img_recolor_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the recoloring. 
 - **border_width** (*Optional*, int16): Set the width of the border in pixels.
 - **border_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw borders of the widget.
