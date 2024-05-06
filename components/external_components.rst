@@ -46,6 +46,7 @@ Configuration variables:
   - **ref** (*Optional*, string): Git ref (branch or tag). If not specified the default branch is used.
   - **username** (*Optional*, string): Username for the Git server, if one is required
   - **password** (*Optional*, string): Password for the Git server, if one is required
+  - **path** (*Optional*, string): Path inside the repo, if different from ``components`` or ``esphome/components``
 
   local options:
 
