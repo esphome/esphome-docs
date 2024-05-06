@@ -367,7 +367,7 @@ Layouts
 
 Layouts help positioning the widgets automatically, without the need to manually specify the ``x`` and the ``y`` positional coordinates for each. This is a great way to simplify the configuration, allowing you to even omit alignment options.
 
-The layout configuration options are applied to any parent widget or page, which influence the appearance of the children.
+The layout configuration options are applied to any parent widget or page, influencing the appearance of the children.
 
 .. _lvgl-layouts-flex:
 
@@ -380,10 +380,10 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust the 
 Terms used:
 
 - *tracks*: the rows or columns main direction: row or column, the direction in which the items are placed.
-- *cross direction*: perpendicular to the main direction
-- *wrap*: if there is no more space in the track a new track is started
-- *grow*: if set on an item it will grow to fill the remaining space on the track. The available space will be distributed among items respective to their grow value (larger value means more space)
-- *gap*: the space between the rows and columns or the items on a track
+- *cross direction*: perpendicular to the main direction.
+- *wrap*: if there is no more space in the track a new track is started.
+- *grow*: if set on an item it will grow to fill the remaining space on the track. The available space will be distributed among items respective to their grow value (larger value means more space).
+- *gap*: the space between the rows and columns or the items on a track.
 
 In a Flex layout, use the following options in the ``flex_flow`` configuartion parameter to select the arrangement of the children widgets:
 
