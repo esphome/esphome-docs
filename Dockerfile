@@ -14,6 +14,7 @@ RUN useradd -ms /bin/bash esphome
 USER esphome
 
 WORKDIR /workspaces/esphome-docs
+ENV PATH="${PATH}:/home/esphome/.local/bin"
 
 COPY requirements.txt ./
 RUN pip3 install --no-cache-dir --no-binary :all: -r requirements.txt
