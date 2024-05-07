@@ -26,11 +26,6 @@ The ``monochromatic`` light platform creates a simple brightness-only light from
         name: "Kitchen Lights"
         output: output_component1
 
-    # Example output entry
-    output:
-      - platform: esp8266_pwm
-        id: output_component1
-        pin: D1
 
 Configuration variables:
 ------------------------

@@ -23,7 +23,7 @@ single-color E-Ink displays are implemented and of those only a few modules.
 
     Waveshare E-Paper 2.9 Inch E-Paper Display.
 
-The communication ESPHome has chosen to use for this integration is 4-wire :ref:`SPI <spi>`, as it's the most stable
+The communication ESPHome has chosen to use for this component is 4-wire :ref:`SPI <spi>`, as it's the most stable
 and high-speed. So you need to make sure your board is set to the 4-wire SPI mode and have an ``spi:`` section in your
 configuration.
 

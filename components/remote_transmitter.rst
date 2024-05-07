@@ -24,17 +24,8 @@ remote signals.
 
     # Example configuration entry
     remote_transmitter:
-      pin: GPIO32
+      pin: GPIOXX
       carrier_duty_percent: 50%
-
-    # Individual switches
-    switch:
-      - platform: template
-        name: "Panasonic TV Off"
-        turn_on_action:
-          remote_transmitter.transmit_panasonic:
-            address: 0x4004
-            command: 0x100BCBD
 
 Configuration variables:
 ------------------------
@@ -293,7 +284,7 @@ Configuration variables:
 
 - **id** (**Required**, int): The 24-bit ID to send. Each remote has a unique one.
 - **channel** (**Required**, int): The 8-bit channel to send, between 0 and 255 inclusive.
-- **button** (**Required**, int): The 4-bit button to send, between 0 and 15 inclusive. 
+- **button** (**Required**, int): The 4-bit button to send, between 0 and 15 inclusive.
 - **check** (**Required**, int): The 4-bit check to send. Includes an indication that a button is being held down. See dumper output for more info.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
@@ -934,7 +925,7 @@ remote_receiver instance:
 .. code-block:: yaml
 
     remote_receiver:
-      pin: D0
+      pin: GPIOXX
       dump: all
 
 Compile and upload the code. While viewing the log output from the ESP,
@@ -963,7 +954,7 @@ IR diode to a new pin on the ESP and configure a global ``remote_transmitter`` i
 .. code-block:: yaml
 
     remote_transmitter:
-      pin: D1
+      pin: GPIOXX
       # Infrared remotes use a 50% carrier signal
       carrier_duty_percent: 50%
 
@@ -1009,7 +1000,7 @@ First, connect the RF module to a pin on the ESP and set up a remote_receiver in
 .. code-block:: yaml
 
     remote_receiver:
-      pin: D0
+      pin: GPIOXX
       dump: all
       # Settings to optimize recognition of RF devices
       tolerance: 50%
@@ -1041,7 +1032,7 @@ You should see log output like below:
     .. code-block:: yaml
 
         remote_receiver:
-          pin: D0
+          pin: GPIOXX
           dump:
             - rc_switch
           tolerance: 50%
@@ -1059,7 +1050,7 @@ RF transmitter to a new pin on the ESP and configure a global ``remote_transmitt
 .. code-block:: yaml
 
     remote_transmitter:
-      pin: D1
+      pin: GPIOXX
       # RF uses a 100% carrier signal
       carrier_duty_percent: 100%
 
