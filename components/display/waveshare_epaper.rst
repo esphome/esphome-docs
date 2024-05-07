@@ -14,14 +14,21 @@ version (see below).
 The 1.54" `Good Display gdew0154m09 <https://www.good-display.com/product/206.html>`__ 
 as used in the `M5Stack Core Ink <https://shop.m5stack.com/products/m5stack-esp32-core-ink-development-kit1-54-elnk-display>`__
 is also supported.
-Similar modules sold by other vendors might also work but not have been tested yet. Currently only
-single-color E-Ink displays are implemented and of those only a few modules.
+Similar modules sold by other vendors might also work but not have been tested yet.
+
+Currently, most displays managed by Esphome are single-color E-Ink displays; but Esphome also supports E-Ink displays capable of showing up to 7 colors.
 
 .. figure:: images/waveshare_epaper-full.jpg
     :align: center
     :width: 75.0%
 
     Waveshare E-Paper 2.9 Inch E-Paper Display.
+
+.. figure:: images/waveshare_epaper_7color_acep-full.jpg
+    :align: center
+    :width: 75.0%
+
+    Waveshare E-Paper 7.3 Inch ACeP 7-Color E-Paper Display.
 
 The communication ESPHome has chosen to use for this integration is 4-wire :ref:`SPI <spi>`, as it's the most stable
 and high-speed. So you need to make sure your board is set to the 4-wire SPI mode and have an ``spi:`` section in your
@@ -74,6 +81,22 @@ configuration.
         lambda: |-
           it.print(0, 0, id(font1), "Hello World!");
 
+For the 7-color display, the color can be defined like this in the lambda function:
+
+.. code-block:: yaml
+
+    lambda: |- 
+      const auto BLACK   = Color(0,   0,   0,   0);
+      const auto RED     = Color(255, 0,   0,   0);
+      const auto GREEN   = Color(0,   255, 0,   0);
+      const auto BLUE    = Color(0,   0,   255, 0);
+      const auto YELLOW  = Color(255, 255, 0,   0);
+      const auto ORANGE  = Color(255, 127, 0,   0);
+      const auto WHITE   = Color(255, 255, 255, 0);
+
+      it.print(0, 0, id(font1), BLUE, "Hello World in blue!");
+      it.print(100, 100, id(font1), RED, "Hello World in red!");
+
 Configuration variables:
 ------------------------
 
@@ -105,6 +128,7 @@ Configuration variables:
   - ``4.20in-bV2`` - B/W rendering only
   - ``5.83in``
   - ``5.83inv2``
+  - ``7.30in-f`` - 7.3in 7-color display (black, white, red, yellow, blue, green, and orange)
   - ``7.50in``
   - ``7.50in-bV2`` - also supports v3, B/W rendering only
   - ``7.50in-bV3`` - display with the '(V3)' sticker on the back, B/W rendering only
@@ -117,8 +141,7 @@ Configuration variables:
 
 .. warning::
 
-    The BUSY pin on the gdew0154m09 and Waveshare 7.50in V2 models must be inverted to prevent permanent display damage. Set the pin to 
-    ``inverted: true`` in the config. 
+    The BUSY pin on the ``gdew0154m09``, the ``Waveshare 7.30in-f`` and the ``Waveshare 7.50in V2`` models must be inverted to prevent permanent display damage. Set the busy pin to ``inverted: true`` in the config. 
 
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
