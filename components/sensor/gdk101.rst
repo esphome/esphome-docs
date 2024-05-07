@@ -50,7 +50,10 @@ I2C Address   Jumpers State
     GDK101 Gamma Radiation Sensor Module.
 
 Sample Configuration:
----------------------
+---------------------          
+
+Platform Configuration
+----------------------
 
 
 .. code-block:: yaml
@@ -60,6 +63,19 @@ Sample Configuration:
       i2c_id: bus_a
       address: 0x18
       update_interval: 10s
+
+- **address** (*Optional*, int): Manually specify the I²C address of
+  the sensor. Defaults to ``0x18`` (``A0`` and ``A1`` shorted).
+  The address is made up using the state of ``A0`` as bit 1 and the state of ``A1`` as bit 2, so a total of four addresses is possible.
+- **update_interval** (*Optional*, int): Manually defined update iterval of sensor. Default to 60s.
+- **i2c_id** (*Optional*, string): Optional name of the bus.
+
+Sensor
+------
+
+.. code-block:: yaml
+
+    # Example configuration entry
     sensor:
       - platform: gdk101
         radiation_dose_per_1m:
@@ -72,24 +88,6 @@ Sample Configuration:
           name: "GDK101 FW Version"
         measurement_duration: 
           name: "GDK101 Measuring Time"
-    binary_sensor:
-      - platform: gdk101
-        vibrations:
-          name: "GDK101 Vibrations"
-          
-
-Configuration variables:
-************************
-
-
-- **address** (*Optional*, int): Manually specify the I²C address of
-  the sensor. Defaults to ``0x18`` (``A0`` and ``A1`` shorted).
-  The address is made up using the state of ``A0`` as bit 1 and the state of ``A1`` as bit 2, so a total of four addresses is possible.
-- **update_interval** (*Optional*, int): Manually defined update iterval of sensor. Default to 60s.
-- **i2c_id** (*Optional*, string): Optional name of the bus.
-
-Sensor
-------
 
 A sensor platform to radiation data
 
@@ -99,10 +97,18 @@ Configuration variables:
 - **radiation_dose_per_10m** (**Required**): Radiation average dose per 10 minutes.
 - **version** (**Required**): Fimware version of the module.
 - **status** (*Optional*): Sensor status.
-- **meas_time** (*Optional*): Total time of measurement.
+- **measurement_duration** (*Optional*): Total time of measurement.
 
 Binary Sensor
 -------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    binary_sensor:
+      - platform: gdk101
+        vibrations:
+          name: "GDK101 Vibrations"
 
 Binary sensor that indicates if measurement was disturbed by vibrations.
 
