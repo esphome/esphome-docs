@@ -145,7 +145,7 @@ Light brightness slider
 
 You can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the  the brightness of a dimmable light.
 
-We can use a sensor to retrieve the current brightness of a light, which is stored in Home Assistant as an attribute of the entity, as an integer value between ``0`` (min) and ``255`` (max). It's conveninent to set the slider's ``min_value`` and ``max_value`` accordingly.
+We can use a sensor to retrieve the current brightness of a light, which is stored in Home Assistant as an attribute of the entity, as an integer value between ``0`` (min) and ``255`` (max). It's convenient to set the slider's ``min_value`` and ``max_value`` accordingly.
 
 .. code-block:: yaml
 
@@ -194,7 +194,7 @@ Media player volume slider
 
 Similarly, you can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the volume level of a media player, which uses float values.
 
-With a sensor we retrieve the current volume level of the media player, which is stored in Home Assistant as an attribute of the entity, and is a float value between ``0`` (min) and ``1`` (max). Since LVGL only handles integers, it's conveninent to set the slider's possible values to be between ``0`` and ``100``. Thus a conversion is needed back and forth, meaning that when we read the value from Home Assistant we have to multiply it by ``100``, and when we set the volume through the service call, we have to divide it by ``100``:
+With a sensor we retrieve the current volume level of the media player, which is stored in Home Assistant as an attribute of the entity, and is a float value between ``0`` (min) and ``1`` (max). Since LVGL only handles integers, it's convenient to set the slider's possible values to be between ``0`` and ``100``. Thus a conversion is needed back and forth, meaning that when we read the value from Home Assistant we have to multiply it by ``100``, and when we set the volume through the service call, we have to divide it by ``100``:
 
 .. code-block:: yaml
 
@@ -234,14 +234,14 @@ The ``adv_hittest`` option ensures that accidental touches to the screen won't c
 
 .. note::
 
-    Keep in mind that ``on_value`` is triggered *continuously* by the slider while it's being dragged. This can affect performance and have negative effects on the actions to be performed. For example, you shouldn't use this trigger to set the target temperature of a heatpump via Modbus, or set the position of motorized covers, because it will likely cause malfunctions. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
+    Keep in mind that ``on_value`` is triggered *continuously* by the slider while it's being dragged. This can affect performance and have negative effects on the actions to be performed. For example, you shouldn't use this trigger to set the target temperature of a heat pump via Modbus, or set the position of motorized covers, because it will likely cause malfunctions. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
 .. _lvgl-cook-gauge:
 
 Semicircle gauge
 ----------------
 
-A gauge similar to what Home Assistant shows in the Energy Dashboard can acomplished with :ref:`lvgl-wgt-mtr` and :ref:`lvgl-wgt-lbl` widgets:
+A gauge similar to what Home Assistant shows in the Energy Dashboard can accomplished with :ref:`lvgl-wgt-mtr` and :ref:`lvgl-wgt-lbl` widgets:
 
 .. figure:: images/lvgl_cook_gauge.png
     :align: center
@@ -332,7 +332,7 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
 
 .. tip::
 
-    The ``obj`` used to hide the middle part of meter indicator line has ``radius`` equal to half of the ``width`` and ``height``. This results in a circle - which is actually a square with extralarge rounded corners. 
+    The ``obj`` used to hide the middle part of meter indicator line has ``radius`` equal to half of the ``width`` and ``height``. This results in a circle - which is actually a square with extra large rounded corners. 
 
 .. _lvgl-cook-thermometer:
 
@@ -424,7 +424,7 @@ Climate control
 .. figure:: images/lvgl_cook_climate.png
     :align: center
 
-First we import from Home Assistant the current target temperature of the climate component, and we update the value of the spinbox with it whenever it changes. We use two buttons labelled with minus and plus to control the spinbox, and whenever we change its value, we just simply call a Home Assistant service to set the new target temperature of the climate.
+First we import from Home Assistant the current target temperature of the climate component, and we update the value of the spinbox with it whenever it changes. We use two buttons labeled with minus and plus to control the spinbox, and whenever we change its value, we just simply call a Home Assistant service to set the new target temperature of the climate.
 
 .. code-block:: yaml
 
@@ -494,7 +494,7 @@ To make a nice user interface for controlling Home Assistant covers you could us
 .. figure:: images/lvgl_cook_cover.png
     :align: center
 
-Just as in the previous examples, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and with a text sensor we retrive the current movement state of it. We are particularly interested in the moving (*opening* and *closing*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
+Just as in the previous examples, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and with a text sensor we retrieve the current movement state of it. We are particularly interested in the moving (*opening* and *closing*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
 
 .. code-block:: yaml
 
@@ -614,7 +614,7 @@ Just as in the previous examples, we need to get the states of the cover first. 
 Theme and style definitions
 ---------------------------
 
-Since LVGL uses inheritance to apply styles across the widgets, it's possible to apply them at the top level, and only make modifications on demand, if necessarry. 
+Since LVGL uses inheritance to apply styles across the widgets, it's possible to apply them at the top level, and only make modifications on demand, if necessary. 
 
 .. figure:: images/lvgl_cook_gradient_styles.png
     :align: center
@@ -632,7 +632,7 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
           bg_color: 0x2F8CD8
           bg_grad_color: 0x005782
           bg_grad_dir: VER
-          bg_opa: cover
+          bg_opa: COVER
           border_color: 0x0077b3
           border_width: 1
           text_color: 0xFFFFFF
@@ -644,16 +644,16 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
             bg_grad_color: 0x03324A
             text_color: 0xfff300
         btnmatrix:
-          bg_opa: transp
+          bg_opa: TRANSP
           border_color: 0x0077b3
           border_width: 0
           text_color: 0xFFFFFF
           pad_all: 0
-          items: # set all your btnmatrix buttins to use your custom defined styles and font
+          items: # set all your btnmatrix buttons to use your custom defined styles and font
             bg_color: 0x2F8CD8
             bg_grad_color: 0x005782
             bg_grad_dir: VER
-            bg_opa: cover
+            bg_opa: COVER
             border_color: 0x0077b3
             border_width: 1
             text_color: 0xFFFFFF
@@ -669,17 +669,17 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
           bg_color: 0xC0C0C0
           bg_grad_color: 0xb0b0b0
           bg_grad_dir: VER
-          bg_opa: cover
+          bg_opa: COVER
           checked:
             bg_color: 0x1d5f96
             bg_grad_color: 0x03324A
             bg_grad_dir: VER
-            bg_opa: cover
+            bg_opa: COVER
           knob:
             bg_color: 0xFFFFFF
             bg_grad_color: 0xC0C0C0
             bg_grad_dir: VER
-            bg_opa: cover
+            bg_opa: COVER
         slider:
           border_width: 1
           border_opa: 15%
@@ -689,12 +689,12 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
             bg_color: 0x1d5f96
             bg_grad_color: 0x03324A
             bg_grad_dir: VER
-            bg_opa: cover
+            bg_opa: COVER
           knob:
             bg_color: 0x2F8CD8
             bg_grad_color: 0x005782
             bg_grad_dir: VER
-            bg_opa: cover
+            bg_opa: COVER
             border_color: 0x0077b3
             border_width: 1
             text_color: 0xFFFFFF
@@ -703,7 +703,7 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
           bg_color: 0x2F8CD8
           bg_grad_color: 0x005782
           bg_grad_dir: VER
-          bg_opa: cover
+          bg_opa: COVER
           border_width: 0
           radius: 0
           pad_all: 0
@@ -762,7 +762,7 @@ For the navigation bar we can use a button matrix. Note how the *header_footer* 
                       then:
                         lvgl.page.next:
 
-For this example to look correctly, use the theme and style options from :ref:`above <lvgl-cook-theme>` amd LVGL's built-in fonts.
+For this example to look correctly, use the theme and style options from :ref:`above <lvgl-cook-theme>` and LVGL's own library :ref:`fonts <lvgl-fonts>`.
 
 .. _lvgl-cook-statico:
 
@@ -818,7 +818,7 @@ Each page can have its own title bar:
 .. figure:: images/lvgl_cook_titlebar.png
     :align: center
 
-To put a titlebar behind the status icon, we need to add it to each page, also containing the label with a unique title:
+To put a title bar behind the status icon, we need to add it to each page, also containing the label with a unique title:
 
 .. code-block:: yaml
 
@@ -901,7 +901,7 @@ To display a boot image which disappears automatically after a few moments or on
 MDI icons in text
 -----------------
 
-ESPHome's :ref:`font renderer <display-fonts>` allows you to use any OpenType/TrueType font file for your texts. This is very flexiblle because you can prepare various sets of fonts at different sizes with a different number of glyphs which is extremely convenient when we're talking about flash space.
+ESPHome's :ref:`font renderer <display-fonts>` allows you to use any OpenType/TrueType font file for your texts. This is very flexible because you can prepare various sets of fonts at different sizes with a different number of glyphs which is extremely convenient when we're talking about flash space.
 
 One example is when you'd like some MDI icons to be used in line with the text (similarly how LVGL's internal fonts and symbols coexist). You can use a font of your choice, choose the symbols you want and mix them in a single sized set with icons from MDI.
 
@@ -941,7 +941,7 @@ In the example below we use the default set of glyphs from RobotoCondensed-Regul
     
     - To lookup your icons, use the `Pictogrammers <https://pictogrammers.com/library/mdi/>`_ site. Click on the desired icon, and note down / copy the codepoint of it (it's the hexadecimal number near the download options).
     - To get the TrueType font with all the icons in it, head on to the `Pictogrammers GitHub repository <https://github.com/Pictogrammers/pictogrammers.github.io/tree/main/%40mdi/font/>`_ and from a recent version folder, download the ``materialdesignicons-webfont.ttf`` file and place it in your ESPHome config directory under a folder named ``fonts`` (to match the example above).
-    - To use the desired icon, prepend the copied codepoint with ``\U000``. The unicode character escape sequence has to start with capital ``\U`` and have exactly 8 hexadecimal digits.
+    - To use the desired icon, prepend the copied codepoint with ``\U000``. The Unicode character escape sequence has to start with capital ``\U`` and have exactly 8 hexadecimal digits.
     - To translate the escape sequence into the real glyph, make sure you enclose your strings in double quotes.    
 
 .. _lvgl-cook-iconstat:
@@ -952,7 +952,7 @@ Toggle state icon button
 .. figure:: images/lvgl_cook_font_binstat.png
     :align: left
 
-A good example for using icons is for showing a different icon on a checkable (toggle) button based on the state of the switch or light it is linked to. To put an icon on a button you use a :ref:`lvgl-wgt-lbl` widget as the child of the :ref:`lvgl-wgt-btn`. The coloring can alredy be different thanks to the :ref:`lvgl-cook-theme` where you can set a different color for the ``checked`` state. Additionally, by using a ``text_sensor`` to import the state from Home Assistant, we can not only track the ``on`` state, but also the ``unavailable`` or ``unknown`` to apply *disabled styles* for these cases.
+A good example for using icons is for showing a different icon on a checkable (toggle) button based on the state of the switch or light it is linked to. To put an icon on a button you use a :ref:`lvgl-wgt-lbl` widget as the child of the :ref:`lvgl-wgt-btn`. The coloring can already be different thanks to the :ref:`lvgl-cook-theme` where you can set a different color for the ``checked`` state. Additionally, by using a ``text_sensor`` to import the state from Home Assistant, we can not only track the ``on`` state, but also the ``unavailable`` or ``unknown`` to apply *disabled styles* for these cases.
 
 If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like this:
 
@@ -1506,13 +1506,13 @@ LVGL has a notion of screen inactivity, i.e. how long did the user not interact 
 Prevent burn-in of LCD
 ----------------------
 
-You can use this to protect and prolonge the lifetime of the LCD screens, thus being more green and generating less hazardous waste.
+You can use this to protect and prolong the lifetime of the LCD screens, thus being more green and generating less hazardous waste.
 
 Wall mounted LCD screens' main problem is that they display the same picture 99.999% of the time. Even if somebody turns off backlight during the night or dark periods, the LCD screen keeps showing the same picture, seen by nobody. There are high chances that this will lead to screen picture burn-in after a few years of operation.
 
-One way to mitigate this is to *train* the pixels periodically with completely different other content. ``show_snow`` option during LVGL paused state was developed in this scope, to  display random coloured pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel.
+One way to mitigate this is to *train* the pixels periodically with completely different other content. ``show_snow`` option during LVGL paused state was developed in this scope, to  display random colored pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel.
 
-In the example below pixel traning is done four times for a half an hour every night, can also be stopped by touching the screen.
+In the example below pixel training is done four times for a half an hour every night, can also be stopped by touching the screen.
 
 .. code-block:: yaml
 
@@ -1548,7 +1548,7 @@ In the example below pixel traning is done four times for a half an hour every n
           - lvgl.pause:
               show_snow: true
         turn_off_action:
-          - logger.log: "Stoping Antiburn"
+          - logger.log: "Stopping Antiburn"
           - if:
               condition: lvgl.is_paused
               then:

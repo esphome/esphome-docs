@@ -16,14 +16,14 @@ In order to be able to drive a :ref:`display <display-hw>` with LVGL under ESPHo
 
 The display itself has to be a graphical binary type, should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set. It should also have an :ref:`config-id` set, which will be referenced in the main LGVL component configuration.
 
-For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly prefered) or a :doc:`/components/sensor/rotary_encoder` can be used.
+For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly preferred) or a :doc:`/components/sensor/rotary_encoder` can be used.
 
 Check out a few detailed examples :ref:`in the Cookbook <lvgl-cook>` to see a couple ways to integrate LVGL through ESPHome with your environment.
 
 Basics
 ------
 
-In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` for a list of the available ones in ESPHome. Not all LVGL widgets are implemented, just the ones having most common usecases in home automation.
+In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` for a list of the available ones in ESPHome. Not all LVGL widgets are implemented, just the ones having most common use cases in home automation.
 
 Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label. Some more complex widgets are internally made up from the simpler ones, these are known as parts - which can have separate properties from the main widget.
 
@@ -71,22 +71,22 @@ The following configuration options apply to the main ``lvgl`` component, in ord
 - **displays** (**Required**, list): A list of displays where to render this entire LVGL configuration:
     - **display_id** (**Required**, :ref:`config-id`): The ID of a display configuration.
 - **touchscreens** (*Optional*, list): A list of touchscreens interacting with the LVGL widgets on the display. Can be omitted if there's at least a rotary encoder configured.
-    - **touchscreen_id** (**Required**, :ref:`config-id`): ID of a touchscreen configuration related to a dsisplay.
+    - **touchscreen_id** (**Required**, :ref:`config-id`): ID of a touchscreen configuration related to a display.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
 - **rotary_encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display. Can be omitted if there's at least a touchscreen configured.
     - **sensor:** (**Required**, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder` used to interact with the widgets.
     - **binary_sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, usually used as a push button within the rotary encoder used to interact with the widgets.
-    - **group** (*Optional*, string): A name for a group of widgets whics will interact with the the rotary encoder. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
+    - **group** (*Optional*, string): A name for a group of widgets which will interact with the the rotary encoder. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
 - **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
-- **buffer_size** (*Optional*, percentage): The percentage of scren size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
-- **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen if necessarry. Defaults to ``1s``.
+- **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM recommended value is ``25%``. 
+- **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen if necessary. Defaults to ``1s``.
 - **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, enum): The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, defaults to ``big_endian``.
-- **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): Solid color to fill the bacground. 
-- **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as backround wallpaper.
+- **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): Solid color to fill the background. 
+- **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as background wallpaper.
 - **default_font** (*Optional*, enum): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use in LVGL widgets ``styles`` configuration. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
@@ -136,14 +136,14 @@ See :ref:`lvgl-cook-navigator` in the Cookbook for an example how to easily impl
 Colors
 ******
 
-Colors can be specified anywehere in the LVGL configuartion either by referencing a preconfigured :ref:`ESPHome color <config-color>` ID, or by represennting directly in hexadecimal format. Eg. ``0xFF0000`` for red.
+Colors can be specified anywhere in the LVGL configuration either by referencing a preconfigured :ref:`ESPHome color <config-color>` ID, or by representing directly in hexadecimal format. Eg. ``0xFF0000`` for red.
 
 .. _lvgl-opa:
 
 Opacity
 *******
 
-Various parts of the widgets (like bacground, borders etc.) support opacity. It can be overridden with a string: ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or percentage between ``0%`` and ``100%``. Actual default values depend on widgget specifics.
+Various parts of the widgets (like background, borders etc.) support opacity. It can be overridden with a string: ``TRANSP`` for fully transparent, ``COVER`` for fully opaque, or percentage between ``0%`` and ``100%``. Actual default values depend on widget specifics.
 
 .. _lvgl-fonts:
 
@@ -160,7 +160,7 @@ Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-co
 
 **Library fonts**
 
-The LVGL library offers by default pre-rendered sets with ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and 60 symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). You can use the IDs below when specifying the ``text_font`` parameter:
+The LVGL library offers by default prerendered sets with ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and 60 symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). You can use the IDs below when specifying the ``text_font`` parameter:
 
 - ``montserrat_8``: 8px font
 - ``montserrat_10``: 10px font
@@ -186,14 +186,14 @@ The LVGL library offers by default pre-rendered sets with ASCII characters (``0x
 
 The binary will only include any of the above if used in the configuration.
 
-You can display the embedded symbols among the text by their codepoint address preceeded by ``\u``, eg. ``\uF00C``:
+You can display the embedded symbols among the text by their codepoint address preceded by ``\u``, eg. ``\uF00C``:
 
 .. figure:: /components/images/lvgl_symbols.png
     :align: center
 
 .. note::
 
-    The ``text_font`` parameter affects the size of symbols, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes. If you set ``text_font`` on a widget to a custom ESPHome font, these symbols will likely not display, unles you include them manually from a FontAwesome OpenType file.
+    The ``text_font`` parameter affects the size of symbols, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes. If you set ``text_font`` on a widget to a custom ESPHome font, these symbols will likely not display, unless you include them manually from a FontAwesome OpenType file.
     
     For escape sequences to work, you have to put them in strings enclosed in double quotes.
 
@@ -214,7 +214,7 @@ LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/W
 .. figure:: /components/images/lvgl_boxmodel.png
     :align: center
 
-- *bounding box*: the box defined with ``width`` and ``height`` of the widgets (pixels or parent content area percentage; not drawn, just for caculations).
+- *bounding box*: the box defined with ``width`` and ``height`` of the widgets (pixels or parent content area percentage; not drawn, just for calculations).
 - *border*: the border line, drawn on the inner side of the bounding box (pixels).
 - *outline*: the outline, drawn on the outer side of the bounding box (pixels).
 - *padding*: space to keep between the border of the widget and its content or children (*I don't want my children too close to my sides, so keep this space*). 
@@ -226,7 +226,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 
 - **bg_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the background of the widget. Defaults to ``0xFFFFFF`` (white).
 - **bg_grad_color** (*Optional*, :ref:`color <lvgl-color>`): Color to make the background gradually fade to. Defaults to ``0`` (black).
-- **bg_dither_mode** (*Optional*, enum): Set ditherhing of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``. Defaults to ``NONE``.
+- **bg_dither_mode** (*Optional*, enum): Set dithering of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``. Defaults to ``NONE``.
 - **bg_grad_dir** (*Optional*, enum): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``. Defaults to ``NONE``.
 - **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``0``.
 - **bg_grad_stop** (*Optional*, 0-255): Specify where the gradient should stop: ``0`` = at left/top most position, ``128`` = in the center, ``255`` = at right/bottom most position. Defaults to ``255``.
@@ -261,16 +261,16 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **pad_row** (*Optional*, int16): Set the padding between the rows of the children elements, in pixels.
 - **pad_column** (*Optional*, int16): Set the padding between the columns of the children elements, in pixels.
 - **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): Color to create a drop shadow under the widget. Defaults to ``0`` (black).
-- **shadow_ofs_x** (*Optional*, int16): Horrizontal offset of the shadow, in pixels. Defaults to ``0``.
+- **shadow_ofs_x** (*Optional*, int16): Horizontal offset of the shadow, in pixels. Defaults to ``0``.
 - **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels. Defaults to ``0``.
 - **shadow_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the shadow. Defaults to ``COVER``.
 - **shadow_spread** (*Optional*, int16): Spread of the shadow, in pixels. Defaults to ``0``.
 - **shadow_width** (*Optional*, int16): Width of the shadow, in pixels. Defaults to ``0``.
-- **transform_angle** (*Optional*, 0-360): Trannsformation angle of the widget (eg. rotation)
-- **transform_height** (*Optional*, int16 or percentage): Trannsformation height of the widget (eg. stretching)
+- **transform_angle** (*Optional*, 0-360): Transformation angle of the widget (eg. rotation)
+- **transform_height** (*Optional*, int16 or percentage): Transformation height of the widget (eg. stretching)
 - **transform_pivot_x** (*Optional*, int16 or percentage): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
 - **transform_pivot_y** (*Optional*, int16 or percentage): Vertical anchor point of the transformation. Relative to the widget's top left corner.
-- **transform_zoom** (*Optional*, 0.1-10):  Trannsformation zoom of the widget (eg. resizing)
+- **transform_zoom** (*Optional*, 0.1-10):  Transformation zoom of the widget (eg. resizing)
 - **translate_x** (*Optional*, int16 or percentage): Movement of the widget with this value in horizontal direction.
 - **translate_y** (*Optional*, int16 or percentage): Movement of the widget with this value in vertical direction.
 
@@ -305,7 +305,7 @@ You can configure a global theme for all the widgets at the top level with the `
           focused:
             border_color: 0x00FF00
 
-Naturally, you can override these at the indivdual configuration level of each widget. This can be done in batches, using ``style_definitions`` configuration option of the main component.
+Naturally, you can override these at the individual configuration level of each widget. This can be done in batches, using ``style_definitions`` configuration option of the main component.
 In the example below, you defined ``date_style``:
 
 .. code-block:: yaml
@@ -320,14 +320,14 @@ In the example below, you defined ``date_style``:
           radius: 4
           pad_all: 2
 
-And then you apply these selected styles to two labels, and only change very specific stlye ``y`` locally:
+And then you apply these selected styles to two labels, and only change very specific style ``y`` locally:
 
 .. code-block:: yaml
 
     widgets:
       - label:
           id: day_label
-          styles: date_style # apply the definiton here by the ID chosen above
+          styles: date_style # apply the definition here by the ID chosen above
           y: -20
       - label:
           id: date_label
@@ -385,7 +385,7 @@ Terms used:
 - *grow*: if set on an item it will grow to fill the remaining space on the track. The available space will be distributed among items respective to their grow value (larger value means more space).
 - *gap*: the space between the rows and columns or the items on a track.
 
-In a Flex layout, use the following options in the ``flex_flow`` configuartion parameter to select the arrangement of the children widgets:
+In a Flex layout, use the following options in the ``flex_flow`` configuration parameter to select the arrangement of the children widgets:
 
 - ``ROW``: place the children in a row without wrapping.
 - ``COLUMN``: place the children in a column without wrapping.
@@ -413,15 +413,15 @@ At the next level of the LVGL object hierarchy are the widgets, which support st
 
 Widgets can have children, which can be any other widgets. Think of this as a nested structure. The child widgets move with the parent and if the parent is hidden the children will be hidden too. 
 
-By default, LVGL draws new widgets on top of old widgets, including their children. When widgets have children, property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. When the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for it. The parents will use their own :ref:`state <lvgl-wgtprop-state>` to detemine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. 
+By default, LVGL draws new widgets on top of old widgets, including their children. When widgets have children, property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. When the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for it. The parents will use their own :ref:`state <lvgl-wgtprop-state>` to determine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. 
 
 Common properties
 *****************
 
 The properties below are common to all widgets.
 
-- **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to top left of parent or screen). If layouts are used, or if specfiyng ``align``, it is used as an offset to the calculated position (can also be negative).
-- **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If layouts are used, or if specfiyng ``align``, it is used as an offset to the calculated position (can also be negative).
+- **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to top left of parent or screen). If layouts are used, or if specifying ``align``, it is used as an offset to the calculated position (can also be negative).
+- **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If layouts are used, or if specifying ``align``, it is used as an offset to the calculated position (can also be negative).
 
 .. note::
 
@@ -437,9 +437,9 @@ The properties below are common to all widgets.
     Similarly to CSS, LVGL also supports ``min_width``, ``max_width``, ``min_height`` and ``max_height``. These are limits preventing a widget's size from becoming smaller/larger than these values. They are especially useful if the size is set by percentage or ``size_content``.
 
 - **min_width**, **max_width**, **min_height**, **max_height** (*Optional*, int16 or percentage): Sets a minimal/maximal width or a minimal/maximal height. Pixel and percentage values can be used. Percentage values are relative to the height of the parent's content area. Defaults to ``0%``.
-- **scrollbar_mode** (*Optional*, string): If a child widget is outside its parent content area (the size without padding), the parent can become scrollable (see the ``scrollable`` :ref:`flag <lvgl-objupdflag-act>`). The widget can either be scrolled horizontally or vertically in one stroke. Scrollbars can appear depending on the setting:
-    - ``"OFF"``: Never show the scrollbars (use the double quotes!).
-    - ``"ON"``: Always show the scrollbars (use the double quotes!).
+- **scrollbar_mode** (*Optional*, string): If a child widget is outside its parent content area (the size without padding), the parent can become scrollable (see the ``scrollable`` :ref:`flag <lvgl-objupdflag-act>`). The widget can either be scrolled horizontally or vertically in one stroke. Scroll bars can appear depending on the setting:
+    - ``"OFF"``: Never show the scroll bars (use the double quotes!).
+    - ``"ON"``: Always show the scroll bars (use the double quotes!).
     - ``"ACTIVE"``: Show scroll bars while a widget is being scrolled.
     - ``"AUTO"``: Show scroll bars when the content is large enough to be scrolled (default).
 
@@ -462,14 +462,14 @@ The properties below are common to all widgets.
 
 .. _lvgl-wgtprop-state:
 
-- **state** (*Optional*, enum): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overriden within style definitions or locally set. Can be one of:
+- **state** (*Optional*, enum): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overridden within style definitions or locally set. Can be one of:
     - **default** (*Optional*, boolean): Normal, released state.
     - **disabled** (*Optional*, boolean): Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.enable`` and ``lvgl.widget.disable``).
     - **pressed** (*Optional*, boolean): Being pressed.
     - **checked** (*Optional*, boolean): Toggled or checked state.
     - **scrolled** (*Optional*, boolean): Being scrolled.
-    - **focused** (*Optional*, boolean): Focused via keypad or encoder or clicked via touchpad/mouse.
-    - **focus_key** (*Optional*, boolean): Focused via keypad or encoder but not via touchpad/mouse.
+    - **focused** (*Optional*, boolean): Focused via keypad or encoder or clicked via touch screen.
+    - **focus_key** (*Optional*, boolean): Focused via keypad or encoder but *not* via touch screen.
     - **edited** (*Optional*, boolean): Edit by an encoder.
     - **user_1**, **user_2**, **user_3**, **user_4** (*Optional*, boolean): Custom states.
 
@@ -485,13 +485,13 @@ To apply styles to the states, you need to specify them one level above, for exa
         checked:
           bg_color: 0x00FF00 # here you apply styles to be used when in the respective state
 
-The state itself can be can be changed by interacting with the widget, or :ref:`programatically <lvgl-objupd-act>` with ``lvgl.widget.update`` action.
+The state itself can be can be changed by interacting with the widget, or through :ref:`actions <lvgl-objupd-act>` with ``lvgl.widget.update``.
 
 See :ref:`lvgl-cook-cover` for a cookbook example how to play with styling and properties to show different states of a Home Assistant entity.
 
 .. _lvgl-objupdflag-act:
 
-In addition to visual stilyng, each widget supports some boolean **flags** to influence the behavior:
+In addition to visual styling, each widget supports some boolean **flags** to influence the behavior:
 
 - **hidden** (*Optional*, boolean): make the widget hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.show`` and ``lvgl.widget.hide``. Defaults to ``false``.
 - **checkable** (*Optional*, boolean): toggle checked state when the widget is clicked.
@@ -499,7 +499,7 @@ In addition to visual stilyng, each widget supports some boolean **flags** to in
 - **scrollable** (*Optional*, boolean): the widget can become scrollable. Defaults to ``true`` (also see the ``scrollbar_mode`` property).
 - **scroll_elastic** (*Optional*, boolean): allow scrolling inside but with slower speed.
 - **scroll_momentum** (*Optional*, boolean): make the widget scroll further when "thrown".
-- **scroll_one** (*Optional*, boolean): allow scrolling only one snappable children.
+- **scroll_one** (*Optional*, boolean): allow scrolling only on ``snappable`` children.
 - **scroll_chain_hor** (*Optional*, boolean): allow propagating the horizontal scroll to a parent.
 - **scroll_chain_ver** (*Optional*, boolean): allow propagating the vertical scroll to a parent.
 - **scroll_chain simple** (*Optional*, boolean): packaging for (``scroll_chain_hor | scroll_chain_ver``).
@@ -539,17 +539,17 @@ A label is the basic widget type that is used to display text.
 - **text_color** (*Optional*, :ref:`color <lvgl-color>`): Color to render the text in. Inherited from parent. Defaults to ``0`` (black). 
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified). Inherited from parent. Defaults to ``NONE``
 - **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID of the font used to render the text or symbol. Inherited from parent.
-- **text_letter_space** (*Optional*, int16): Extra characher spacing of the text. Inherited from parent. Defaults to ``0``.
+- **text_letter_space** (*Optional*, int16): Extra character spacing of the text. Inherited from parent. Defaults to ``0``.
 - **text_line_space** (*Optional*, int16): Line spacing of the text. Inherited from parent. Defaults to ``0``
 - **text_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the text. Inherited from parent. Defaults to ``COVER``.
-- **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text indvidually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
+- **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text individually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
 - **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
     - ``WRAP``: Wrap too long lines. If the height is ``size_content`` the label's height will be expanded, otherwise the text will be clipped (Default). 
     - ``DOT``: Replaces the last 3 characters from bottom right corner of the label with dots.
     - ``SCROLL``: If the text is wider than the label scroll it horizontally back and forth. If it's higher, scroll vertically. Only one direction is scrolled and horizontal scrolling has higher precedence.
     - ``SCROLL_CIRCULAR``: If the text is wider than the label scroll it horizontally continuously. If it's higher, scroll vertically. Only one direction is scrolled and horizontal scrolling has higher precedence.
     - ``CLIP``: Simply clip the parts of the text outside the label.
-- **scrollbar** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scrollbar that is shown when the text is larger than the widget's size.
+- **scrollbar** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scroll bar that is shown when the text is larger than the widget's size.
 - **selected** (*Optional*, list): Settings for the the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
 - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties. The padding values can be used to add space between the text and the background.
 
@@ -776,7 +776,7 @@ See :ref:`lvgl-cook-relay` for an example how to use a switch to act on a local 
 ``checkbox``
 ************
 
-The Checkbox widget is made internally from a "tick box" and a label. When the Checkbox is clicked the tick box is ``checked`` state toggled.
+The Checkbox widget is made internally from a *tick box* and a label. When the Checkbox is clicked the tick box's ``checked`` state will be toggled.
 
 .. figure:: /components/images/lvgl_checkbox.png
     :align: center
@@ -784,7 +784,7 @@ The Checkbox widget is made internally from a "tick box" and a label. When the C
 **Specific options:**
 
 - **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The "tick box" is a square that uses all the typical background style properties. By default, its size is equal to the height of the main part's font. Padding properties make the tick box larger in the respective directions.
-- Style options from :ref:`lvgl-styling` for the background of the widget and it uses the text and all the typical background style properties. ``pad_column`` adjusts the spacing between the tickbox and the label.
+- Style options from :ref:`lvgl-styling` for the background of the widget and it uses the text and all the typical background style properties. ``pad_column`` adjusts the spacing between the tick box and the label.
 
 **Specific actions:**
 
@@ -1129,7 +1129,7 @@ See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use 
 ``spinbox``
 ***********
 
-The Spinbox contains a numeric value (as text) which can be increased or decreased through actions. You can use for example buttons labelled with plus and minus to call them as required.
+The Spinbox contains a numeric value (as text) which can be increased or decreased through actions. You can use for example buttons labeled with plus and minus to call them as required.
 
 .. figure:: /components/images/lvgl_spinbox.png
     :align: center
@@ -1137,8 +1137,8 @@ The Spinbox contains a numeric value (as text) which can be increased or decreas
 **Specific options:**
 
 - **value** (**Required**, float): Actual value to be shown by the spinbox at start. 
-- **range_from** (*Optional*, float): The minimum value allowded to set the spinbox to. Defaults to ``0``.
-- **range_to** (*Optional*, float): The maximum value allowded to set the spinbox to. Defaults to ``100``.
+- **range_from** (*Optional*, float): The minimum value allowed to set the spinbox to. Defaults to ``0``.
+- **range_to** (*Optional*, float): The maximum value allowed to set the spinbox to. Defaults to ``100``.
 - **step** (*Optional*, float): The granularity with which the value can be set. Defaults to ``1.0``.
 - **digits** (*Optional*, 1..10): The number of digits (excluding the decimal separator and the sign characters).  Defaults to ``4``.
 - **decimal_places** (*Optional*, 0..6): The number of digits after the decimal point. If ``0``, no decimal point is displayed. Defaults to ``0``.
@@ -1152,7 +1152,6 @@ The Spinbox contains a numeric value (as text) which can be increased or decreas
 **Specific actions:**
 
 ``lvgl.spinbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
-
 ``lvgl.spinbox.decrement`` :ref:`action <config-action>` decreases the value by one ``step`` configured above.
 ``lvgl.spinbox.increment`` :ref:`action <config-action>` increases the value by one ``step`` configured above.
 
@@ -1250,7 +1249,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - Style options for the *needle line* using the :ref:`lvgl-wgt-lin` style properties, as well as the background properties from :ref:`lvgl-styling` to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
         - **img** (*Optional*): Add a rotating needle image to the scale:
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
-            - **src**:  The ID of an existing image configuration, represennting a needle pointing to the right like ``-o--->``. 
+            - **src**:  The ID of an existing image configuration, representing a needle pointing to the right like ``-o--->``. 
             - **pivot_x**: Horizontal position of the pivot point of rotation relative to the top left corner of the image. Defaults to ``50%`` (center of image).
             - **pivot_y**: Vertical position of the pivot point of rotation relative to the top left corner of the image.. Defaults to ``50%`` (center of image).
             - **value**: The value in the scale range to show at start.
@@ -1363,9 +1362,7 @@ The animation image is similar to the normal ``img`` widget. The main difference
 **Specific actions:**
 
 ``lvgl.animimg.start`` :ref:`action <config-action>` starts the animation playback if it was displayed with ``auto_start`` false or after ``repeat_count`` expired.
-
 ``lvgl.animimg.stop`` :ref:`action <config-action>` stops the animation playback.
-
 ``lvgl.animimg.update`` :ref:`action <config-action>` can be used to change ``repeat_count`` and ``duration``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` and ``auto_start`` cannot be updated at runtime.
 
 **Example:**
@@ -1563,7 +1560,7 @@ A typical application would probably use an ``obj`` container widget as a tile, 
     - *widget* (**Required**): Any kind of widget to be used as tile container.
         - **tile_id** (**Required**): A tile ID to be used with ``lvgl.tileview.select`` action.
         - **dir** (*Optional*): Enable moving to the adjacent tiles into the given direction by swiping/dragging. One or multiple of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
-        - **row** (**Required**): Horrizontal position of the tile in the tileview grid.
+        - **row** (**Required**): Horizontal position of the tile in the tileview grid.
         - **column** (**Required**): Vertical position of the tile in the tileview grid.
         - Style options from the widget used as container.
 
@@ -1573,13 +1570,13 @@ A typical application would probably use an ``obj`` container widget as a tile, 
  
 - **id** (**Required**): The ID of the ``tileview`` which receives this action
 - **tile_id** (*Optional*): The ID of the tile from within it, to which to jump. Required if not specifying ``row`` and ``column``.
-- **row** (*Optional*): Horrizontal position of the tile to which to jump. Required if not specifying ``tile_id``.
+- **row** (*Optional*): Horizontal position of the tile to which to jump. Required if not specifying ``tile_id``.
 - **column** (*Optional*): Vertical position of the tile to which to jump. Required if not specifying ``tile_id``.
 - **animated** (*Optional*, boolean): To animate the movement. Defaults to ``false``.
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated when displayed tile changes. The new value is returned in the variable ``tile``, as the ID of the newly visilbe tile. 
+``on_value`` :ref:`trigger <automation>` is activated when displayed tile changes. The new value is returned in the variable ``tile``, as the ID of the newly visible tile. 
 
 **Example:**
 
@@ -1635,7 +1632,7 @@ The text will be broken into multiple lines automatically and the height will be
 
 - **msgboxes** (*Optional*, enum): A list of message boxes to use. This option has to be added to the top level of the LVGL component configuration.
     - **close_button** (**Required**, boolean): Controls the appearance of the close button to the top right of the message box. 
-    - **title** (**Required**, string): A string to display at the top of the meessage box.
+    - **title** (**Required**, string): A string to display at the top of the message box.
     - **body** (**Required**, enum): The content of body of the message box:
         - **text** (**Required**, string):  The string to be displayed in the body of the message box. Can be shorthanded if no further options are specified.
         - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties.
@@ -1656,9 +1653,9 @@ The configured message boxes are hidden by default. One can show them with ``lvg
       msgboxes:
         - id: message_box
           close_button: true
-          title: Messagebox
+          title: Message box
           body:
-            text: "This is a sample messagebox."
+            text: "This is a sample message box."
             bg_color: 0x808080
           buttons:
             - id: msgbox_apply
@@ -1676,7 +1673,7 @@ The configured message boxes are hidden by default. One can show them with ``lvg
 Actions
 -------
 
-Specific actions are available for cetrain widgets, they are described above in their respective section. Some universal actions are available for all the widgets or for LVGL itself:
+Specific actions are available for certain widgets, they are described above in their respective section. Some universal actions are available for all the widgets or for LVGL itself:
 
 .. _lvgl-objupd-act:
 
@@ -1756,7 +1753,7 @@ This :ref:`action <config-action>` redraws the entire screen, or optionally only
 
 This :ref:`action <config-action>` pauses the activity of LVGL, including rendering.
 
-- **show_snow** (*Optional*, boolean): During paused, display random coloured pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel. See :ref:`lvgl-cook-antiburn` for an example how to use this.
+- **show_snow** (*Optional*, boolean): During paused, display random colored pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel. See :ref:`lvgl-cook-antiburn` for an example how to use this.
 
 .. code-block:: yaml
 
@@ -1869,7 +1866,7 @@ This :ref:`condition <config-condition>` checks if LVGL is in paused state or no
 Triggers
 --------
 
-Specific triggers like ``on_value`` are available for cetrain widgets, they are described above in their respective section. Some universal triggers are available for all the widgets or for LVGL itself:
+Specific triggers like ``on_value`` are available for certain widgets, they are described above in their respective section. Some universal triggers are available for all the widgets or for LVGL itself:
 
 .. _lvgl-event-trg:
 
