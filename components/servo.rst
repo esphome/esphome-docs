@@ -9,7 +9,7 @@ The ``servo`` component allows you to use servo motors with ESPHome. Servos are
 motor controllers that contain all the electronics necessary for driving the motor and provide
 a simple PWM interface to control the motor.
 
-This integration works with both continuous-rotation and absolute servos and has a similar
+This component works with both continuous-rotation and absolute servos and has a similar
 interface to the Arduino Servo library.
 
 First, create an :ref:`output component <output>` (here ``esp8266_pwm``) for the pin the

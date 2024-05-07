@@ -45,7 +45,7 @@ Configuration variables:
 Supported devices
 -----------------
 
-Tuya cover devices known to be supported by this integration:
+Tuya cover devices known to be supported by this component:
 
 - Tuya ``M515EGWT`` (motor for bead chain roller blinds)
 
