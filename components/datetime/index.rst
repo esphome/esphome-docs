@@ -208,7 +208,7 @@ advanced stuff (see the full API Reference for more info).
 
       // Within lambda, set the time to 12:34:56
       auto call = id(my_time).make_call();
-      call.set_date("12:34:56");
+      call.set_time("12:34:56");
       call.perform();
 
   Check the API reference for information on the methods that are available for
