@@ -30,7 +30,7 @@ be measured at the same exact points in time.
     # Example configuration entry
     sensor:
       - platform: hlw8012
-        sel_GPIOXX
+        sel_pin: GPIOXX
         cf_pin: GPIOXX
         cf1_pin: GPIOXX
         current:
