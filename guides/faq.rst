@@ -21,11 +21,11 @@ Tips for using ESPHome
        binary_sensor:
          - platform: gpio
            id: button1
-           pin: GPIO16
+           pin: GPIOXX
            on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
          - platform: gpio
            id: button2
-           pin: GPIO4
+           pin: GPIOXX
            on_multi_click: !include
              # multi-line syntax
              file: on-multi-click.yaml
@@ -99,7 +99,7 @@ Third, to flash a firmware file downloaded from Home Assistant add-on Dashboard,
   for the binary file you downloaded from the Dashboard in the step above. Note that the file will be processed
   locally, it won't be uploaded to any cloud service.
 - *esptool* `from the GitHub repository <https://github.com/espressif/esptool/releases>`__, package from your distro or
-  install it yourself with ``pip install esptool`` (in case of Linux). 
+  install it yourself with ``pip install esptool`` (in case of Linux).
 
 Before using ``esptool``, make sure you know which serial port your programming adapter is connected to. In Linux use
 the ``dmesg`` command afer you plug the device into the USB port to see the name of the newly detected serial port.
@@ -119,7 +119,7 @@ Program flash with your firmware binary:
 
 .. note::
 
-    If you're just seeing ``Connecting....____....`` on the screen and flashing fails: 
+    If you're just seeing ``Connecting....____....`` on the screen and flashing fails:
 
     - verify that the device name of the port has not changed while you were re-plugging it too fast (eg. changed
       from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``).
@@ -128,11 +128,11 @@ Program flash with your firmware binary:
     - for some devices you need to keep ``GPIO0`` and ``GND`` connected at least until flashing has begun.
     - for some devices you need to power-cycle in programming mode after erasing flash, they don't auto-reset.
     - it also might be a sign that ESP is defective, damaged or otherwise cannot be programmed.
-    
+
     If you're in an RF noisy environment or your UART wires are a bit long, flashing can fail during transfer. Don't
     worry, an ESP won't brick just because of that. Put it again in programming mode and flash with a reduced baudrate
     for safer transfers:
-    
+
     ``esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash 0x0 your_node_firmware.bin``
 
 

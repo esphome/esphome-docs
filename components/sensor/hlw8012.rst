@@ -30,9 +30,9 @@ be measured at the same exact points in time.
     # Example configuration entry
     sensor:
       - platform: hlw8012
-        sel_pin: 5
-        cf_pin: 14
-        cf1_pin: 13
+        sel_pin: GPIOXX
+        cf_pin: GPIOXX
+        cf1_pin: GPIOXX
         current:
           name: "HLW8012 Current"
         voltage:
@@ -69,11 +69,11 @@ Advanced Options:
   Defaults to the Sonoff POW's value ``0.001 ohm``.
 - **voltage_divider** (*Optional*, float): The value of the voltage divider on the board as ``(R_upstream + R_downstream) / R_downstream``.
   Defaults to the Sonoff POW's value ``2351``.
-- **model** (*Optional*, string): The sensor model on the board, to set internal constant factors to convert pulses to measurements. 
-  Possible values are ``HLW8012``, ``CSE7759``, ``BL0937``. Defaults to ``HLW8012``. 
+- **model** (*Optional*, string): The sensor model on the board, to set internal constant factors to convert pulses to measurements.
+  Possible values are ``HLW8012``, ``CSE7759``, ``BL0937``. Defaults to ``HLW8012``.
   CSE7759 uses same constants and it also works with default. Must be set for BL0937 to be able to calibrate all three measurements at the same time.
 - **change_mode_every** (*Optional*, int): After how many updates to cycle between the current/voltage measurement mode.
-  Note that the first value after switching is discarded because it is often inaccurate. When set to ``"never"`` the measurement mode will stay at the 
+  Note that the first value after switching is discarded because it is often inaccurate. When set to ``"never"`` the measurement mode will stay at the
   set ``initial_mode``. Defaults to ``8``.
 - **initial_mode** (*Optional*, string): The initial measurement mode. Defaults to ``VOLTAGE``.
   Possible initial measurement modes are ``VOLTAGE`` or ``CURRENT``.
@@ -89,9 +89,9 @@ the initial measurement mode to match whichever mode the device uses, and disabl
     # Example configuration entry for device with fixed measurement mode
     sensor:
       - platform: hlw8012
-        sel_pin: 5
-        cf_pin: 14
-        cf1_pin: 13
+        sel_pin: GPIOXX
+        cf_pin: GPIOXX
+        cf1_pin: GPIOXX
         current:
           name: "HLW8012 Current"
         voltage:
@@ -114,11 +114,11 @@ when SEL=1 voltage is measured. To accommodate this change use the following con
     sensor:
       - platform: hlw8012
         model: BL0937
-        sel_pin:  
-          number: 12
+        sel_pin:
+          number: GPIOXX
           inverted: true
-        cf_pin: 4
-        cf1_pin: 5
+        cf_pin: GPIOXX
+        cf1_pin: GPIOXX
         current:
           name: "BL0937 Current"
         voltage:

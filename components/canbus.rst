@@ -69,7 +69,7 @@ Configuration variables:
     - ``12K5BPS`` - Support by ``esp32_can`` depends on ESP32 variant
     - ``16KBPS`` - Support by ``esp32_can`` depends on ESP32 variant
     - ``20KBPS`` - Support by ``esp32_can`` depends on ESP32 variant
-    - ``25KBPS`` 
+    - ``25KBPS``
     - ``31K25BPS`` - Not supported by ``esp32_can``
     - ``33KBPS`` - Not supported by ``esp32_can``
     - ``40KBPS`` - Not supported by ``esp32_can``
@@ -197,8 +197,8 @@ You only need to specify the RX and TX pins. Any GPIO will work.
     # Example configuration entry
     canbus:
       - platform: esp32_can
-        tx_pin: GPIO5
-        rx_pin: GPIO4
+        tx_pin: GPIOXX
+        rx_pin: GPIOXX
         can_id: 4
         bit_rate: 50kbps
         on_frame:
@@ -209,28 +209,28 @@ You only need to specify the RX and TX pins. Any GPIO will work.
 
 The table lists the specific bit rates supported by the component for ESP32 variants:
  =================== ======= ========== ========== ========== ========== ==========
-  bit_rate            ESP32   ESP32-S2   ESP32-S3   ESP32-C3   ESP32-C6   ESP32-H2   
+  bit_rate            ESP32   ESP32-S2   ESP32-S3   ESP32-C3   ESP32-C6   ESP32-H2
  =================== ======= ========== ========== ========== ========== ==========
-  1KBPS                        x          x          x          x          x          
-  5KBPS                        x          x          x          x          x          
-  10KBPS                       x          x          x          x          x          
-  12K5BPS                      x          x          x          x          x          
-  16KBPS                       x          x          x          x          x          
-  20KBPS                       x          x          x          x          x          
-  25KBPS               x       x          x          x          x          x          
-  31K25BPS                                                                           
-  33KBPS                                                                              
-  40KBPS                                                                              
-  50KBPS               x       x          x          x          x          x          
-  80KBPS                                                                              
-  83K38BPS                                                                           
-  95KBPS                                                                              
-  100KBPS              x       x          x          x          x          x          
-  125KBPS (Default)    x       x          x          x          x          x          
-  250KBPS              x       x          x          x          x          x          
-  500KBPS              x       x          x          x          x          x          
-  800KBPS              x       x          x          x          x          x          
-  1000KBPS             x       x          x          x          x          x          
+  1KBPS                        x          x          x          x          x
+  5KBPS                        x          x          x          x          x
+  10KBPS                       x          x          x          x          x
+  12K5BPS                      x          x          x          x          x
+  16KBPS                       x          x          x          x          x
+  20KBPS                       x          x          x          x          x
+  25KBPS               x       x          x          x          x          x
+  31K25BPS
+  33KBPS
+  40KBPS
+  50KBPS               x       x          x          x          x          x
+  80KBPS
+  83K38BPS
+  95KBPS
+  100KBPS              x       x          x          x          x          x
+  125KBPS (Default)    x       x          x          x          x          x
+  250KBPS              x       x          x          x          x          x
+  500KBPS              x       x          x          x          x          x
+  800KBPS              x       x          x          x          x          x
+  1000KBPS             x       x          x          x          x          x
  =================== ======= ========== ========== ========== ========== ==========
 
 
@@ -273,7 +273,7 @@ For wiring up the MSP2515 please refer to the section below.
     # Example configuration entry
     canbus:
       - platform: mcp2515
-        cs_pin: D5
+        cs_pin: GPIOXX
         can_id: 4
         bit_rate: 50kbps
         on_frame:
@@ -359,7 +359,7 @@ Standard IDs and Extended IDs can coexist on the same segment.
       - platform: mcp2515
         id: my_mcp2515
         spi_id: McpSpi
-        cs_pin: GPIO14
+        cs_pin: GPIOXX
         can_id: 0x1fff
         use_extended_id: true
         bit_rate: 125kbps
@@ -385,9 +385,9 @@ Button is connected on a can node which sends an A message on ID 0x100 with payl
 
     spi:
       id: McpSpi
-      clk_pin: GPIO16
-      mosi_pin: GPIO5
-      miso_pin: GPIO4
+      clk_pin: GPIOXX
+      mosi_pin: GPIOXX
+      miso_pin: GPIOXX
 
     binary_sensor:
       - platform: template
@@ -398,7 +398,7 @@ Button is connected on a can node which sends an A message on ID 0x100 with payl
       - platform: mcp2515
         id: my_mcp2515
         spi_id: McpSpi
-        cs_pin: GPIO14
+        cs_pin: GPIOXX
         can_id: 4
         bit_rate: 125kbps
         on_frame:
@@ -430,15 +430,15 @@ Buttons are connected on the CAN-Node and also the motor is connected via CAN.
 
     spi:
       id: McpSpi
-      clk_pin: GPIO16
-      mosi_pin: GPIO5
-      miso_pin: GPIO4
+      clk_pin: GPIOXX
+      mosi_pin: GPIOXX
+      miso_pin: GPIOXX
 
     canbus:
       - platform: mcp2515
         id: my_mcp2515
         spi_id: McpSpi
-        cs_pin: GPIO14
+        cs_pin: GPIOXX
         can_id: 4
         bit_rate: 125kbps
         on_frame:

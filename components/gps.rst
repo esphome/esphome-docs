@@ -22,9 +22,6 @@ in your configuration - only the RX pin should be necessary.
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      rx_pin: D7
-      baud_rate: 9600
 
     # Declare GPS module
     gps:

@@ -346,7 +346,7 @@ Relay management commands received from an authorized sender:
     switch:
       - platform: gpio
         id: relay_1
-        pin: 0
+        pin: GPIOXX
 
 
 See Also

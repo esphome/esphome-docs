@@ -16,7 +16,7 @@ The ``output`` switch platform allows you to use any output component as a switc
     # Example configuration entry
     output:
       - platform: gpio
-        pin: 25
+        pin: GPIOXX
         id: 'generic_out'
     switch:
       - platform: output

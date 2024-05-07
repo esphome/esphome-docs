@@ -17,7 +17,7 @@ momentarily set a GPIO pin using a button.
     # Example configuration entry
     output:
       - platform: gpio
-        pin: 25
+        pin: GPIOXX
         id: output1
 
     button:

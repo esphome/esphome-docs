@@ -22,8 +22,8 @@ and brightness settings. All updates can be made via lambda expressions.
 
     tm1651:
         id: tm1651_battery
-        clk_pin: D6
-        dio_pin: D5
+        clk_pin: GPIOXX
+        dio_pin: GPIOXX
 
 Configuration variables:
 ************************

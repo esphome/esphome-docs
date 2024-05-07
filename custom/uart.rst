@@ -59,8 +59,8 @@ And in YAML:
 
     uart:
       id: uart_bus
-      tx_pin: D0
-      rx_pin: D1
+      tx_pin: GPIOXX
+      rx_pin: GPIOXX
       baud_rate: 9600
 
     custom_component:
