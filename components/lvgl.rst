@@ -85,8 +85,8 @@ The following configuration options apply to the main ``lvgl`` component, in ord
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval to re-draw the screen if necessary. Defaults to ``1s``.
 - **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, enum): The byte order of the data outputted by lvgl, ``big_endian`` or ``little_endian``. If not specified, defaults to ``big_endian``.
-- **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): Solid color to fill the background. 
-- **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as background wallpaper.
+- **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): Solid color to fill the background. Can be changed a runtime with ``lvgl.update`` action.
+- **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as background wallpaper. To change the image at runtime use the ``lvgl.update`` action.
 - **default_font** (*Optional*, enum): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use in LVGL widgets ``styles`` configuration. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to commonly apply to the widgets. See :ref:`below <lvgl-theme>` for more details. 
@@ -1672,6 +1672,21 @@ The configured message boxes are hidden by default. One can show them with ``lvg
 
 Actions
 -------
+
+``lvgl.update``
+***************
+
+This :ref:`action <config-action>` allows changing on the fly the ``disp_bg_color`` or ``disp_bg_image`` configuration options of the main component, making it possible to use change the background color or wallpaper at any time.
+
+.. code-block:: yaml
+
+    # Examples:
+    on_...:
+      then:
+        - lvgl.update:
+            disp_bg_color: 0x0000FF
+        - lvgl.update:
+            disp_bg_image: cat_image
 
 Specific actions are available for certain widgets, they are described above in their respective section. Some universal actions are available for all the widgets or for LVGL itself:
 
