@@ -28,8 +28,8 @@ Base Touchscreen Configuration
     touchscreen:
       platform: cst816
       id: my_touchscreen
-      interrupt_pin: GPIO3
-      reset_pin: GPIO21
+      interrupt_pin: GPIOXX
+      reset_pin: GPIOXX
 
 Configuration variables:
 ************************

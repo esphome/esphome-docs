@@ -22,7 +22,7 @@ When the device is in OK state, the LED will be restored to the state of the ``b
     light:
       - platform: status_led
         name: "Switch state"
-        pin: GPIO2
+        pin: GPIOXX
 
 .. note::
 
@@ -50,7 +50,7 @@ Configuration variables:
     .. code-block:: yaml
 
         pin:
-          number: GPIO2
+          number: GPIOXX
           inverted: true
 
 
