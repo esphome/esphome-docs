@@ -17,6 +17,7 @@ Components
     sensor/index
     switch/index
     button/index
+    event/index
     display/index
     text_sensor/index
     stepper/index
@@ -29,4 +30,5 @@ Components
     time/index
     alarm_control_panel/index
     text/index
+    valve/index
     *
