@@ -62,7 +62,7 @@ Main Configuration
 
 Although LVGL is a complex matrix of objects-parts-states-styles, in ESPHome this is simplified to a hierarchy.
 
-At the highest level of the LVGL object hierarchy is the display which represents the driver for the display hardware. A display can have one or more pages associated with it. Each page contains a hierarchy of objects for graphical widgets representing a layout that covers the entire display.
+At the highest level of the LVGL object hierarchy is the display represented the hardware driver. A display can have one or more pages associated with it. Each page contains a hierarchy of objects for graphical widgets representing a layout that covers the entire display.
 
 The following configuration options apply to the main ``lvgl`` component, in order to establish the principal operating conditions. Some :ref:`styling options <lvgl-theme>` can be set at this level too, but only for inheritance purposes.
 
@@ -239,7 +239,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **border_width** (*Optional*, int16): Set the width of the border in pixels. Defaults to ``0``.
 - **border_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw borders of the widget. Defaults to ``0`` (black).
 - **border_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the borders of the widget.  Defaults to ``COVER``.
-- **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn. Defaults to ``false``
+- **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn. Defaults to ``false``.
 - **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be specified, defaults to ``NONE``):
     - ``NONE``
     - ``TOP``
@@ -453,7 +453,7 @@ The properties below are common to all widgets.
 .. figure:: /components/images/lvgl_align.png
     :align: center
 
-- **group** (*Optional*, string): Widgets can be grouped together for interaction with a :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused widget which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
+- **group** (*Optional*, string): The name of the group of widgets which will interact with a  :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused widget which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
 - **styles** (*Optional*, :ref:`config-id`): The ID of a *style definition* from the main component configuration to override the theme styles.
 - **theme** (*Optional*, list): A list of styles to apply to the widget and children. Same configuration option as at the main component.
 - **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. See :ref:`layouts <lvgl-layouts>`.  If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
@@ -537,10 +537,10 @@ A label is the basic widget type that is used to display text.
 - **text** (**Required**, string): The text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display. To display an empty label, specify ``""``.
 - **text_align** (*Optional*, enum): Alignment of the text in the widget - it doesn't align the object itself, only the lines inside the object. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``. Inherited from parent. Defaults to ``AUTO``, which detects the text base direction and uses left or right alignment accordingly.
 - **text_color** (*Optional*, :ref:`color <lvgl-color>`): Color to render the text in. Inherited from parent. Defaults to ``0`` (black). 
-- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified). Inherited from parent. Defaults to ``NONE``
+- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified). Inherited from parent. Defaults to ``NONE``.
 - **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID of the font used to render the text or symbol. Inherited from parent.
 - **text_letter_space** (*Optional*, int16): Extra character spacing of the text. Inherited from parent. Defaults to ``0``.
-- **text_line_space** (*Optional*, int16): Line spacing of the text. Inherited from parent. Defaults to ``0``
+- **text_line_space** (*Optional*, int16): Line spacing of the text. Inherited from parent. Defaults to ``0``.
 - **text_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the text. Inherited from parent. Defaults to ``COVER``.
 - **recolor** (*Optional*, boolean): Enable recoloring of button texts with ``#``. This makes it possible to set the color of characters in the text individually, just prefix the text to be re-colored with a ``#RRGGBB`` hexadecimal color code and a *space*, and close with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
 - **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
