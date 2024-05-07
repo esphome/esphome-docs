@@ -14,16 +14,16 @@ directly integrate into Home Assistant through the native API.
     esp32_camera:
       name: My Camera
       external_clock:
-        pin: GPIO27
+        pin: GPIOXX
         frequency: 20MHz
       i2c_pins:
-        sda: GPIO25
-        scl: GPIO23
-      data_pins: [GPIO17, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
-      vsync_pin: GPIO22
-      href_pin: GPIO26
-      pixel_clock_pin: GPIO21
-      reset_pin: GPIO15
+        sda: GPIOXX
+        scl: GPIOXX
+      data_pins: [GPIOXX, GPIOXX, GPIOXX, GPIOXX, GPIOXX, GPIOXX, GPIOXX, GPIOXX]
+      vsync_pin: GPIOXX
+      href_pin: GPIOXX
+      pixel_clock_pin: GPIOXX
+      reset_pin: GPIOXX
       resolution: 640x480
       jpeg_quality: 10
 

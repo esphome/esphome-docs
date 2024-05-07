@@ -34,7 +34,7 @@ names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf
 
 .. note::
 
-    These IDs are used only within ESPHome and are not translated to Home Assistant's Entity ID. 
+    These IDs are used only within ESPHome and are not translated to Home Assistant's Entity ID.
 
 
 .. _config-pin:
@@ -75,11 +75,11 @@ In some places, ESPHome also supports a more advanced “pin schema”.
 
     some_config_option:
       # Basic:
-      pin: D0
+      pin: GPIOXX
 
       # Advanced:
       pin:
-        number: D0
+        number: GPIOXX
         inverted: true
         mode:
           input: true
@@ -203,7 +203,7 @@ Two substitution passes are performed allowing compound replacements.
       foo: yellow
       bar_yellow_value: !secret yellow_secret
       bar_green_value: !secret green_secret
-    
+
     something:
       test: ${bar_${foo}_value}
 
@@ -258,22 +258,22 @@ ESPHome's ``!include`` accepts a list of variables that can be substituted withi
     binary_sensor:
       - platform: gpio
         id: button1
-        pin: GPIO16
+        pin: GPIOXX
         on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
       - platform: gpio
         id: button2
-        pin: GPIO4
+        pin: GPIOXX
         on_multi_click: !include
           # multi-line syntax
           file: on-multi-click.yaml
           vars:
             id: 2
-            
+
 ``on-multi-click.yaml``:
 
 .. code-block:: yaml
 
-    - timing: !include click-single.yaml 
+    - timing: !include click-single.yaml
       then:
         - mqtt.publish:
             topic: ${device_name}/button${id}/status
@@ -408,8 +408,8 @@ merged with the services definitions from main config file.
 
     # I²C Bus
     i2c:
-      sda: GPIO21
-      scl: GPIO22
+      sda: GPIOXX
+      scl: GPIOXX
       scan: true
       frequency: 100kHz
 

@@ -28,13 +28,7 @@ if you don't have massively long wires.
 
     # Example configuration entry
     dallas:
-      - pin: 23
-
-    # Individual sensors
-    sensor:
-      - platform: dallas
-        address: 0x1c0000031edd2a28
-        name: "Livingroom Temperature"
+      - pin: GPIOXX
 
 Configuration variables:
 ************************
@@ -70,10 +64,6 @@ To initialize a sensor, first supply either ``address`` **or** ``index`` to iden
     :width: 80.0%
 
 .. code-block:: yaml
-
-    # Example configuration entry
-    dallas:
-      - pin: GPIO23
 
     # Individual sensors
     sensor:
@@ -114,7 +104,7 @@ the scanning will happen even with no sensors connected. For example with this c
 
     # Example configuration entry
     dallas:
-      - pin: GPIO23
+      - pin: GPIOXX
 
     # Note you don't have to add any sensors at this point
 
@@ -128,7 +118,7 @@ Now we can add the individual sensors to our configuration:
 
     # Example configuration entry
     dallas:
-      - pin: GPIO23
+      - pin: GPIOXX
 
     sensor:
       - platform: dallas
@@ -154,9 +144,9 @@ Use this if you have multiple dallas hubs:
 
     # Example configuration entry
     dallas:
-      - pin: GPIO23
+      - pin: GPIOXX
         id: hub_1
-      - pin: GPIO24
+      - pin: GPIOXX
         id: hub_2
 
     sensor:

@@ -35,30 +35,30 @@ This component also accepts a list of controllers if you want to implement multi
 
     # Example configuration entry - single controller
     spi:
-      clk_pin: GPIO14
-      mosi_pin: GPIO13
-      miso_pin: GPIO12
+      clk_pin: GPIOXX
+      mosi_pin: GPIOXX
+      miso_pin: GPIOXX
 
     # Example configuration entry - three controllers, one using quad SPI
     spi:
       - id: spi_bus0
-        clk_pin: GPIO18
-        mosi_pin: GPIO23
-        miso_pin: GPIO19
+        clk_pin: GPIOXX
+        mosi_pin: GPIOXX
+        miso_pin: GPIOXX
         interface: hardware
       - id: spi_bus1
-        clk_pin: GPIO14
-        mosi_pin: GPIO27
-        miso_pin: GPIO26
+        clk_pin: GPIOXX
+        mosi_pin: GPIOXX
+        miso_pin: GPIOXX
         interface: any
       - id: quad_spi_bus
         type: quad
-        clk_pin: GPIO47
+        clk_pin: GPIOXX
         data_pins:
-          - 40
-          - 41
-          - 42
-          - 43
+          - GPIOXX
+          - GPIOXX
+          - GPIOXX
+          - GPIOXX
 
 Configuration variables:
 ------------------------
@@ -117,14 +117,14 @@ Reads and writes on the device can be performed with lambdas. For example:
 .. code-block:: yaml
 
     spi:
-        clk_pin: GPIO14
-        mosi_pin: GPIO27
-        miso_pin: GPIO26
+        clk_pin: GPIOXX
+        mosi_pin: GPIOXX
+        miso_pin: GPIOXX
         interface: hardware
 
     spi_device:
         id: spidev
-        cs_pin: GPIO13
+        cs_pin: GPIOXX
         data_rate: 2MHz
         mode: 3
         bit_order: lsb_first
