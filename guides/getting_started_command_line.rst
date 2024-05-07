@@ -191,7 +191,7 @@ for docker you need to supply an additional parameter:
 
 .. code-block:: bash
 
-    esphome livingroom.yaml run
+    esphome run livingroom.yaml
     # On docker
     docker run --rm -v "${PWD}":/config -it ghcr.io/esphome/esphome run livingroom.yaml
 
