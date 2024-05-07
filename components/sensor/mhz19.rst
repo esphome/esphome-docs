@@ -26,36 +26,23 @@ TX/RX labels are from the perspective of the MH-Z19). Additionally, you need to 
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      rx_pin: GPIO3
-      tx_pin: GPIO1
-      baud_rate: 9600
-
     sensor:
       - platform: mhz19
         co2:
-          name: "MH-Z19 CO2 Value"
+          name: MH-Z19 CO2 Value
         temperature:
-          name: "MH-Z19 Temperature"
-        update_interval: 60s
-        automatic_baseline_calibration: false
+          name: MH-Z19 Temperature
 
 Configuration variables:
 ------------------------
 
 
 - **co2** (**Required**): The CO_2 data from the sensor in parts per million (ppm).
-
-  - **name** (**Required**, string): The name for the CO_2 sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Sensor <config-sensor>`.
 
 - **temperature** (**Required**): The information for the temperature sensor. Please note that this is
   not officially documented in the datasheet and seems to be quite inaccurate.
-
-  - **name** (**Required**, string): The name for the temperature sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Sensor <config-sensor>`.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.

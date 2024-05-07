@@ -75,19 +75,34 @@ Configuration variables:
 
 .. _api-actions:
 
-.. note::
-
-    Before a newly added ESPHome device can interact with the Home Assistant API it needs to be allowed to communicate
-    with it. This setting can be found in the ESPHome integration (NOT in the Add-On) by clicking "CONFIGURE" for
-    that device and enabling the "Allow device to make service calls" option.
-
 Actions
 -------
+
+Before using any of the actions below, you'll need to tell Home Assistant to allow your device to
+make service calls.
+
+Open the ESPHome integration page on your Home Assistant instance:
+
+.. raw:: html
+
+    <a href="https://my.home-assistant.io/redirect/integration/?domain=esphome" target="_blank" rel="noreferrer noopener"><img src="https://my.home-assistant.io/badges/integration.svg" alt="Open your Home Assistant instance and show an integration." /></a>
+
+Then:
+
+#. Fnd your device in the device list
+#. Click the "configure" button next to it
+#. Check the "Allow the device to make Home Assistant service calls" box
+#. Then click "submit".
 
 .. _api-homeassistant_event_action:
 
 ``homeassistant.event`` Action
 ******************************
+
+.. note::
+
+    Be sure to :ref:`follow the instructions above <api-actions>` to tell Home Assistant to allow
+    your device to make service calls.
 
 When using the native API with Home Assistant, you can create events in the Home Assistant event bus
 straight from ESPHome :ref:`Automations <automation>`.
@@ -116,6 +131,11 @@ Configuration variables:
 
 ``homeassistant.service`` Action
 ********************************
+
+.. note::
+
+    Be sure to :ref:`follow the instructions above <api-actions>` to tell Home Assistant to allow
+    your device to make service calls.
 
 When using the native API with Home Assistant, you can create Home Assistant service
 calls straight from ESPHome :ref:`Automations <automation>`.
@@ -188,6 +208,11 @@ Then, in ESPHome:
 
 ``homeassistant.tag_scanned`` Action
 ************************************
+
+.. note::
+
+    Be sure to :ref:`follow the instructions above <api-actions>` to tell Home Assistant to allow
+    your device to make service calls.
 
 When using the native API with Home Assistant, you can push tag_scanned to Home Assistant
 straight from ESPHome :ref:`Automations <automation>`.

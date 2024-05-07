@@ -20,7 +20,7 @@ which will trigger when they hear their own configured signal.
 
     # Example configuration entry
     remote_receiver:
-      pin: GPIO32
+      pin: GPIOXX
       dump: all
 
 Configuration variables:
@@ -218,10 +218,6 @@ then immediately OFF.
 .. code-block:: yaml
 
     # Example configuration entry
-    remote_receiver:
-      pin: GPIO32
-      dump: all
-
     binary_sensor:
       - platform: remote_receiver
         name: "Panasonic Remote Input"
@@ -455,7 +451,7 @@ Remote code selection (exactly one of these has to be included):
 
         remote_receiver:
           pin:
-            number: D4
+            number: GPIOXX
             inverted: true
             mode:
               input: true
@@ -491,4 +487,3 @@ See Also
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote/remote_receiver.h`
 - :ghedit:`Edit`
-
