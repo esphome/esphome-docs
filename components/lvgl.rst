@@ -1673,21 +1673,6 @@ The configured message boxes are hidden by default. One can show them with ``lvg
 Actions
 -------
 
-``lvgl.update``
-***************
-
-This :ref:`action <config-action>` allows changing on the fly the ``disp_bg_color`` or ``disp_bg_image`` configuration options of the main component, making it possible to use change the background color or wallpaper at any time.
-
-.. code-block:: yaml
-
-    # Examples:
-    on_...:
-      then:
-        - lvgl.update:
-            disp_bg_color: 0x0000FF
-        - lvgl.update:
-            disp_bg_image: cat_image
-
 Specific actions are available for certain widgets, they are described above in their respective section. Some universal actions are available for all the widgets or for LVGL itself:
 
 .. _lvgl-objupd-act:
@@ -1789,6 +1774,21 @@ This :ref:`action <config-action>` resumes the activity of LVGL, including rende
     on_...:
       then:
         - lvgl.resume:
+
+``lvgl.update``
+***************
+
+This :ref:`action <config-action>` allows changing on the fly the ``disp_bg_color`` or ``disp_bg_image`` configuration options of the main component, making it possible to use change the background color or wallpaper at any time.
+
+.. code-block:: yaml
+
+    # Examples:
+    on_...:
+      then:
+        - lvgl.update:
+            disp_bg_color: 0x0000FF
+        - lvgl.update:
+            disp_bg_image: cat_image
 
 .. _lvgl-pgnx-act:
 
