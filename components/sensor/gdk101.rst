@@ -6,8 +6,7 @@ FTLab GDK101 Gamma Radiation Sensor Module
     :image: gdk101.jpg
     :keywords: gdk101
 
-The **GDK101** sensor platform allows you to use your GDKA101 sensor
-(`AliExpress`_, `Amazon`_, `DesertCart`_, `RadonShop`_, `FTLab`_) to monitor radiation levels at your place.
+The **GDK101** sensor platform allows you to use your GDK101 sensor to monitor radiation levels at your place.
 
 The GDK101 can measure average dose rate per 1 and 10 minutes, it also detect vibrations that can disturb the measurement.
 
@@ -50,12 +49,6 @@ I2C Address   Jumpers State
 
     GDK101 Gamma Radiation Sensor Module.
 
-.. _AliExpress: https://pl.aliexpress.com/i/1005001299979570.html
-.. _Amazon: https://www.amazon.com/GDK101-Radiation-Sensor-Module-Aduino/product-reviews/B01I4RZWA8
-.. _DesertCart: https://www.desertcart.in/products/98880150-gdk-101-gamma-radiation-sensor-module-aduino-sensor-module
-.. _RadonShop: https://www.radonshop.com/ftlab-gdk101-gamma-radiation-sensor-module-arduino
-.. _FTLab: http://allsmartlab.com/eng/294-2/
-
 Sample Configuration:
 ---------------------
 
@@ -63,12 +56,6 @@ Sample Configuration:
 .. code-block:: yaml
 
     # Example configuration entry
-    i2c:
-      sda: GPIO21
-      scl: GPIO22
-      scan: True
-      id: bus_a
-      frequency: 100kHz
     gdk101:
       i2c_id: bus_a
       address: 0x18
