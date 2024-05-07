@@ -18,15 +18,15 @@ with ESPHome.
 As the communication with the Nextion LCD display is done using UART, you need to have an :ref:`UART bus <uart>`
 in your configuration with ``rx_pin`` both the ``tx_pin`` set to the respective pins on the display.
 The Nextion uses a baud rate of 9600 by default. It may be configured to use a faster speed by adding (for
-example) 
+example)
 
 .. code-block:: c++
 
     baud=115200   // Sets the baud rate to 115200
     bkcmd=0       // Tells the Nextion to not send responses on commands. This is the current default but can be set just in case
 
- 
-  
+
+
 to the ``program.s`` source file (in the Nextion Editor) before the ``page`` line.
 This permits faster communication with the Nextion display and it is highly recommended when using :ref:`uart-hardware_uarts`. Without a hardware uart make sure to set the baud rate to 9600.
 
@@ -36,17 +36,9 @@ The below example configures a UART for the Nextion display to use
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      id: uart_2
-      rx_pin: GPIO16
-      tx_pin: GPIO17
-      baud_rate: 115200
-
-
     display:
       - platform: nextion
         id: nextion1
-        uart_id: uart_2      
         lambda: |-
           it.set_component_value("gauge", 50);
           it.set_component_text("textview", "Hello World!");
@@ -73,7 +65,7 @@ Configuration variables:
 - **on_wake** (*Optional*, :ref:`Action <config-action>`): An action to be performed when the Nextion wakes up. See :ref:`Nextion Automation <nextion-on_sleep>`.
 - **on_page** (*Optional*, :ref:`Action <config-action>`): An action to be performed after a page change. See :ref:`Nextion Automation <nextion-on_page>`.
 - **on_touch** (*Optional*, :ref:`Action <config-action>`): An action to be performed after a touch event (press or release). See :ref:`Nextion Automation <nextion-on_touch>`.
-  
+
 .. _display-nextion_lambda:
 
 Rendering Lambda
@@ -113,7 +105,7 @@ Lambda Calls
 ************
 
 Several methods are available for use within :ref:`lambdas <config-lambda>`; these permit advanced functionality beyond simple
-display updates. See the full :apiref:`nextion/nextion.h` for more info. 
+display updates. See the full :apiref:`nextion/nextion.h` for more info.
 
 .. _nextion_upload_tft:
 
@@ -126,7 +118,7 @@ The developer tools in Home Assistant can be used to trigger the update. The bel
         services:
           - service: update_nextion
             then:
-              - lambda: 'id(nextion1)->upload_tft();' 
+              - lambda: 'id(nextion1)->upload_tft();'
 
 .. _nextion_update_all_components:
 
@@ -178,7 +170,7 @@ The developer tools in Home Assistant can be used to trigger the update. The bel
 
 .. _nextion_queue_types:
 
- Queue Types: 
+ Queue Types:
   - SENSOR            0
   - BINARY_SENSOR     1
   - SWITCH            2
@@ -291,7 +283,7 @@ The following arguments will be available:
 Uploading A TFT File
 --------------------
 This will download the file from the tft_url and will transfer it over the UART to the Nextion.
-Once completed both the ESP and Nextion will reboot. During the upload process esphome will be 
+Once completed both the ESP and Nextion will reboot. During the upload process esphome will be
 unresponsive and no logging will take place. This uses the same protocol as the Nextion editor and
 only updates the changes of the TFT file. If HTTPS/SSL is enabled it will be about 1kB/sec.
 
@@ -304,7 +296,7 @@ To host the TFT file you can use Home Assistant itself or any other web server. 
 
 Home Assistant
 **************
-To host the TFT file from Home Assistant, create a www directory if it doesn't exist in your config 
+To host the TFT file from Home Assistant, create a www directory if it doesn't exist in your config
 directory. You can create a subdirectory for those files as well.
 
 For example if the file is located
@@ -321,8 +313,8 @@ The below NGINX example configuration will serve files out of the /var/www/nexti
 .. code-block:: nginx
 
     server {
-      listen 80;    
-      access_log  /var/log/nginx/nextion_access.log;    
+      listen 80;
+      access_log  /var/log/nginx/nextion_access.log;
       error_log  /var/log/nginx/nextion_error.log;
       root /var/www/nextion;
     }
