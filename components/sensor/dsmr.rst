@@ -11,7 +11,7 @@ Component/Hub
 The DSMR component connects to Dutch Smart Meters which comply to DSMR (Dutch Smart Meter
 Requirements), also known as ‘Slimme meter’ or ‘P1 port’.
 
-This integration supports plain non encrypted telegrams and also encrypted as used in Luxembourg.
+This component supports plain non encrypted telegrams and also encrypted as used in Luxembourg.
 In case your equipment has encryption you must get a 32 character long encryption key from your energy company.
 
 This component is passive, it does not transmit any data to your equipment, the equipment always transmits

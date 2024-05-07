@@ -78,7 +78,7 @@ Technically there is no difference between the "inline" and the standard definit
       ...
 
     modbus:
-      flow_control_pin: 5
+      flow_control_pin: GPIOXX
       id: modbus1
 
     modbus_controller:
@@ -129,43 +129,43 @@ Bitmasks
 
 Some devices use decimal values in read registers to show multiple binary states occupying only one register address. To decode them, you can use bitmasks according to the table below. The decimal value corresponding to a bit is always double of the previous one in the row. Multiple bits can be represented in a single register by making a sum of all the values corresponding to the bits.
 
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | Alarm  bit | Description      | DEC value | HEX value |
-+============+==================+===========+===========+ 
++============+==================+===========+===========+
 | bit 0      | Binary Sensor 0  | 1         | 1         |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 1      | Binary Sensor 1  | 2         | 2         |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 2      | Binary Sensor 2  | 4         | 4         |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 3      | Binary Sensor 3  | 8         | 8         |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 4      | Binary Sensor 4  | 16        | 10        |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 5      | Binary Sensor 5  | 32        | 20        |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 6      | Binary Sensor 6  | 64        | 40        |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 7      | Binary Sensor 7  | 128       | 80        |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 8      | Binary Sensor 8  | 256       | 100       |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 9      | Binary Sensor 9  | 512       | 200       |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 10     | Binary Sensor 10 | 1024      | 400       |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 11     | Binary Sensor 11 | 2048      | 800       |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 12     | Binary Sensor 12 | 4096      | 1000      |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 13     | Binary Sensor 13 | 8192      | 2000      |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 14     | Binary Sensor 14 | 16384     | 4000      |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 | bit 15     | Binary Sensor 15 | 32768     | 8000      |
-+------------+------------------+-----------+-----------+ 
++------------+------------------+-----------+-----------+
 
-In the example below, register ``15``, holds several binary values. It stores the decimal value ``12288``, which is the sum of ``4096`` + ``8192``, meaning the corresponding bits ``12`` and ``13`` are ``1``, the other bits are ``0``. 
+In the example below, register ``15``, holds several binary values. It stores the decimal value ``12288``, which is the sum of ``4096`` + ``8192``, meaning the corresponding bits ``12`` and ``13`` are ``1``, the other bits are ``0``.
 
 To gather some of these bits as binary sensors in ESPHome, use ``bitmask``:
 
@@ -513,7 +513,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
     The code synchronizes the localtime of MCU to the epever controller
     The time is set by writing 12 bytes to register 0x9013.
     Then battery charge settings are sent.
-    
+
     .. code-block:: yaml
 
         esphome:
@@ -565,7 +565,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
                       0x04BA,  // 900d Low Volt. Disconnect Volt. 11.8
                       0x04BA   // 900E Discharging Limit Voltage 11.8
                   };
-    
+
                   // Boost and equalization periods
                   std::vector<uint16_t> battery_settings2 = {
                       0x0000,  // 906B Equalize Duration (min.) 0
@@ -574,7 +574,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
                   esphome::modbus_controller::ModbusCommandItem set_battery1_command =
                       esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x9000, battery_settings1.size() ,
                                                                                                   battery_settings1);
-    
+
                   esphome::modbus_controller::ModbusCommandItem set_battery2_command =
                       esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x906B, battery_settings3.size(),
                                                                                                   battery_settings2);
@@ -583,19 +583,19 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
                   delay(200) ;
                   controller->queue_command(set_battery2_command);
                   ESP_LOGI("ModbusLambda", "EPSOLAR Battery set");
-    
+
         uart:
           id: mod_bus
-          tx_pin: 19
-          rx_pin: 18
+          tx_pin: GPIOXX
+          rx_pin: GPIOXX
           baud_rate: 115200
           stop_bits: 1
-    
+
         modbus:
-          #flow_control_pin: 23
+          #flow_control_pin: GPIOXX
           send_wait_time: 200ms
           id: mod_bus_epever
-    
+
         modbus_controller:
           - id: epever
             ## the Modbus device addr
@@ -604,7 +604,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
             command_throttle: 0ms
             setup_priority: -10
             update_interval: ${updates}
-    
+
         sensor:
           - platform: modbus_controller
             modbus_controller_id: epever
@@ -617,7 +617,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
             accuracy_decimals: 1
             filters:
               - multiply: 0.01
-    
+
           - platform: modbus_controller
             modbus_controller_id: epever
             id: array_rated_current
@@ -629,7 +629,7 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
             accuracy_decimals: 2
             filters:
               - multiply: 0.01
-    
+
           - platform: modbus_controller
             modbus_controller_id: epever
             id: array_rated_power
