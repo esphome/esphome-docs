@@ -17,17 +17,17 @@ Additional sensors for Haier Climate device. **These sensors are supported only 
     # Example configuration entry
     uart:
       baud_rate: 9600
-      tx_pin: 17
-      rx_pin: 16
+      tx_pin: GPIOXX
+      rx_pin: GPIOXX
       id: ac_port
-    
+
     climate:
       - platform: haier
         id: haier_ac
         protocol: hOn
         name: Haier AC
         uart_id: ac_port
-    
+
     binary_sensor:
       - platform: haier
         haier_id: haier_ac
@@ -56,9 +56,9 @@ Configuration variables:
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
 - **indoor_electric_heating_status** (*Optional*): A binary sensor that indicates electrical heating system activity.
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
-- **indoor_fan_status** (*Optional*): A binary sensor that indicates indoor fan activity. 
+- **indoor_fan_status** (*Optional*): A binary sensor that indicates indoor fan activity.
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
-- **outdoor_fan_status** (*Optional*): A binary sensor that indicates outdoor fan activity. 
+- **outdoor_fan_status** (*Optional*): A binary sensor that indicates outdoor fan activity.
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 See Also
