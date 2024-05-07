@@ -211,7 +211,7 @@ This trigger is activated every time the media player finishes playing.
 .. _media_player-on_announcement_trigger:
 
 ``media_player.on_announcement`` Trigger
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This trigger is activated every time the media player is announcing.
 
