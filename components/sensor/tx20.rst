@@ -32,29 +32,22 @@ connected to GND in the TX20.
     sensor:
       - platform: tx20
         wind_speed:
-          name: "Wind speed"
+          name: Wind speed
         wind_direction_degrees:
-          name: "Wind direction degrees"
+          name: Wind direction degrees
         pin:
-          number: GPIO04
+          number: GPIOXX
 
 
 Configuration variables:
 ------------------------
 
 - **wind_speed** (**Required**): The information for the wind speed sensor.
-
-  - **name** (**Required**, string): The name for the wind speed
-    sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Sensor <config-sensor>`.
 
 - **wind_direction_degrees** (**Required**): The information for the direction
   in degrees sensor.
-
-  - **name** (**Required**, string): The name for the direction sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Sensor <config-sensor>`.
 
 - **pin** (**Required**, :ref:`config-pin`): The pin, where the black or brown
   cable are connected.

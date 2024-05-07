@@ -27,7 +27,7 @@ Base Touchscreen Configuration
     touchscreen:
       platform: gt911
       id: my_touchscreen
-      interrupt_pin: GPIO3
+      interrupt_pin: GPIOXX
 
 Configuration variables:
 ************************

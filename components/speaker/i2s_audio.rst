@@ -12,7 +12,7 @@ This platform only works on ESP32 based chips.
 .. warning::
 
     Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
-    
+
     **Crashes are likely to occur** if you include too many additional components in your device's
     configuration. In particular, Bluetooth/BLE components are known to cause issues when used in
     combination with Voice Assistant and/or other audio components.
@@ -23,7 +23,7 @@ This platform only works on ESP32 based chips.
     speaker:
       - platform: i2s_audio
         dac_type: external
-        i2s_dout_pin: GPIO22
+        i2s_dout_pin: GPIOXX
         mode: mono
 
 Configuration variables:
@@ -39,6 +39,7 @@ External DAC
 
 - **i2s_dout_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I²S DOUT (Data Out) signal.
 - **mode** (*Optional*, string): The mode of the I²S bus. Can be ``mono`` or ``stereo``. Defaults to ``mono``.
+- **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this speaker.
 
 For best results, keep the wires as short as possible.
 
