@@ -1,7 +1,7 @@
 Sigma-Delta Output
 ==================
 
-This integration uses `sigma-delta modulation <https://en.wikipedia.org/wiki/Delta-sigma_modulation>`__
+This component uses `sigma-delta modulation <https://en.wikipedia.org/wiki/Delta-sigma_modulation>`__
 to output a floating-point value on a binary output. Unlike with :doc:`/components/output/slow_pwm`,
 it is possible to update the output value with each update cycle, not just at the end of a longer period.
 

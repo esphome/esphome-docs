@@ -6,10 +6,9 @@ MCP3204 & MCP3208 12-Bit A/D Converters
     :keywords: MCP3204 MCP3208
     :image: mcp3204.jpg
 
-The Microchip Technology Inc. MCP3204 & MCP3208
-devices are successive approximation 12-bit Analog-to-Digital (A/D) converters with on-board sample and
-hold circuitry. This integration is common for both device types.
-configure both devices as MCP3204 and observe the maximum number of channels as per variant used.
+The Microchip Technology Inc. MCP3204 & MCP3208 devices are successive approximation 12-bit Analog-to-Digital (A/D)
+converters with on-board sample and hold circuitry. This component is common for both device types.
+Configure both devices as MCP3204 and observe the maximum number of channels as per variant used.
 
 .. figure:: images/mcp3204.jpg
     :align: center

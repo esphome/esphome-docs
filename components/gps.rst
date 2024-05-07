@@ -2,7 +2,7 @@ GPS Component
 =============
 
 .. seo::
-    :description: Instructions for setting up GPS integration in ESPHome.
+    :description: Instructions for setting up GPS component in ESPHome.
     :image: crosshairs-gps.svg
 
 The ``gps`` component allows you to connect GPS modules to your ESPHome project.
@@ -16,7 +16,7 @@ Any GPS module that uses the standardized NMEA communication protocol will work.
 
 .. _Adafruit: https://www.adafruit.com/product/746
 
-For this integration to work you need to have set up a :ref:`UART bus <uart>`
+For this component to work you need to have set up a :ref:`UART bus <uart>`
 in your configuration - only the RX pin should be necessary.
 
 .. code-block:: yaml

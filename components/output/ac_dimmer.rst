@@ -2,7 +2,7 @@ AC Dimmer Component
 ===================
 
 .. seo::
-    :description: Instructions for setting up AC Dimmer integration in ESPHome.
+    :description: Instructions for setting up AC Dimmer component in ESPHome.
     :image: ac_dimmer.svg
 
 .. warning::
@@ -16,9 +16,8 @@ AC Dimmer Component
 The ``ac_dimmer`` component allows you to connect a dimmable light or other load
 which supports phase control dimming to your ESPHome project.
 
-There are several already made boards which are compatible with this integration,
-for example the `RobotDyn dimmer
-<https://robotdyn.com/ac-light-dimmer-module-1-channel-3-3v-5v-logic-ac-50-60hz-220v-110v.html>`__.
+There are several already made boards which are compatible with this component, such as the
+`RobotDyn dimmer <https://robotdyn.com/ac-light-dimmer-module-1-channel-3-3v-5v-logic-ac-50-60hz-220v-110v.html>`__.
 
 .. figure:: images/robotdyn_dimmer.jpg
     :align: center

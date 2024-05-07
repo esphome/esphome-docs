@@ -2,7 +2,7 @@ DF-Player mini
 ==============
 
 .. seo::
-    :description: Instructions for setting up DF Player Mini integration in ESPHome.
+    :description: Instructions for setting up DF Player Mini component in ESPHome.
     :image: dfplayer.svg
 
 The ``dfplayer`` (`datasheet <https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299>`__), component
@@ -14,8 +14,7 @@ allows you to play sound and music stored in an SD card or USB flash drive.
 
     DF-Player mini Module.
 
-For this integration to work you need to have set up a :ref:`UART bus <uart>`
-in your configuration.
+For this component to work you need to have set up a :ref:`UART bus <uart>` in your configuration.
 
 Overview
 --------

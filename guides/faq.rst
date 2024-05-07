@@ -73,12 +73,14 @@ Tips for using ESPHome
 .. |include| replace:: ``!include``
 .. _include: https://www.home-assistant.io/docs/configuration/splitting_configuration/
 
-I can't get flashing over USB to work.
---------------------------------------
+I can't get flashing over USB to work
+-------------------------------------
 
 .. _esphome-esptool:
 
-ESPHome depends on the operating system the tool is running on to recognize the ESP. This can sometimes fail. Common causes are that you may not have the drivers installed (see :ref:`here <esphome-phy-con-drv>`) or you are trying to upload from a Docker container and did not mount the ESP device into your container using ``--device=/dev/ttyUSB0``.
+ESPHome depends on the operating system the tool is running on to recognize the ESP. This can sometimes fail. Common
+causes are that you may not have the drivers installed (see :ref:`here <esphome-phy-con-drv>`) or you are trying to
+upload from a Docker container and did not mount the ESP device into your container using ``--device=/dev/ttyUSB0``.
 
 First, you need to get the firmware file to flash. For the Home Assistant add-on based
 installs you can use the ``Manual download`` method of the Dashboard (click ``Install`` in the overflow icon with the three dots
@@ -90,10 +92,18 @@ Second, you need to put the ESP in :ref:`programming mode <esphome-phy-con-prg>`
 
 Third, to flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use:
 
-- `ESPHome Web <https://web.esphome.io/>`__ web-based installer, which requires a browser that supports WebSerial, like Google Chrome or Microsoft Edge. Connect the board to your computer, make sure it's detected as a :ref:`serial port <esphome-phy-con-drv>`, and press **Connect**. Give the requested permission in the browser and in the popup box that appears, select the serial device which connects to your ESP. Then press **Install**, and browse for the binary file you downloaded from the Dashboard in the step above. Note that the file will be processed locally, it won't be uploaded to any cloud service.
-- *esptool* `from the GitHub repository <https://github.com/espressif/esptool/releases>`__, package from your distro or install it yourself with ``pip install esptool`` (in case of Linux).
+- `ESPHome Web <https://web.esphome.io/>`__ web-based installer, which requires a browser that supports WebSerial, like
+  Google Chrome or Microsoft Edge. Connect the board to your computer, make sure it's detected as a
+  :ref:`serial port <esphome-phy-con-drv>`, and press **Connect**. Give the requested permission in the browser and in
+  the pop-up box that appears, select the serial device which connects to your ESP. Then press **Install**, and browse
+  for the binary file you downloaded from the Dashboard in the step above. Note that the file will be processed
+  locally, it won't be uploaded to any cloud service.
+- *esptool* `from the GitHub repository <https://github.com/espressif/esptool/releases>`__, package from your distro or
+  install it yourself with ``pip install esptool`` (in case of Linux).
 
-Before using ``esptool``, make sure you know which serial port your programming adapter is connected to. In Linux use the ``dmesg`` command afer you plug the device into the USB port to see the name of the newly detected serial port. In Windows check the Device Manager to see if a new serial port appears when you plug it in and note the COM number.
+Before using ``esptool``, make sure you know which serial port your programming adapter is connected to. In Linux use
+the ``dmesg`` command afer you plug the device into the USB port to see the name of the newly detected serial port.
+In Windows check the Device Manager to see if a new serial port appears when you plug it in and note the COM number.
 
 Erase flash:
 
@@ -109,15 +119,19 @@ Program flash with your firmware binary:
 
 .. note::
 
-    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, check for these:
+    If you're just seeing ``Connecting....____....`` on the screen and flashing fails:
 
-    - the device name of the port has changed while you were re-plugging it too fast (eg. changed from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``).
-    - double check the UART wires are connected correctly if flashing using an external programmer (RX of programmer to TX of the ESP and vice-versa).
+    - verify that the device name of the port has not changed while you were re-plugging it too fast (eg. changed
+      from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``).
+    - double check the UART wires are connected correctly if flashing using an external programmer (RX of programmer to
+      TX of the ESP and vice-versa).
     - for some devices you need to keep ``GPIO0`` and ``GND`` connected at least until flashing has begun.
     - for some devices you need to power-cycle in programming mode after erasing flash, they don't auto-reset.
-    - it also might be a sign that ESP is defect or cannot be programmed.
+    - it also might be a sign that ESP is defective, damaged or otherwise cannot be programmed.
 
-    If you're in an RF noisy environment or your UART wires are a bit long, flashing can fail during transfer. Don't worry, an ESP won't brick just because of that. Put it again in programming mode and flash with a reduced baudrate for safer transfers:
+    If you're in an RF noisy environment or your UART wires are a bit long, flashing can fail during transfer. Don't
+    worry, an ESP won't brick just because of that. Put it again in programming mode and flash with a reduced baudrate
+    for safer transfers:
 
     ``esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash 0x0 your_node_firmware.bin``
 
@@ -277,7 +291,7 @@ Some steps that can help with the issue:
   of the networking code. For this reason, we advise using a lower log level for production
   purposes.
 - Related to this, seems to be the number of clients that are simultaneously connected to the native
-  API server on the device. These might for example be Home Assistant (via the ESPHome integration) and
+  API server on the device. These might for example be Home Assistant (via the ESPHome component) and
   the log viewer on the web dashboard. In production, you will likely only have a single connection from
   Home Assistant, making this less of an issue. But beware that attaching a log viewer might
   have impact.
@@ -367,14 +381,16 @@ And a docker compose file looks like this:
 .. _docker-reference-notes:
 .. note::
 
-    By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature to work you need to enable host networking mode.
+    By default ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature to work you
+    need to enable host networking mode.
 
     On MacOS the networking mode ("-net=host" option) doesn't work as expected. You have to use
     another way to launch the dashboard with a port mapping option and use alternative to mDNS
     to have the online/offline stat (see below)
 
     mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
-    If your router supports Avahi (eg. OpenWRT or pfSense), you are able to get mDNS working over different subnets following the steps below:
+    If your router supports Avahi (eg. OpenWRT or pfSense), you are able to get mDNS working over different subnets
+    following the steps below:
 
     1. Enable Avahi on both subnets (install Avahi modules on OpenWRT or pfSense).
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
@@ -387,15 +403,22 @@ And a docker compose file looks like this:
 .. _faq-notes_on_disabling_mdns:
 
 Notes on disabling mDNS
-------------------------------------------------------------------------------
-Some of ESPHome's functionalities rely on mDNS, so naturally :doc:`disabling </components/mdns>` it will cause these features to stop working.
-Generally speaking, disabling mDNS without setting a :ref:`static IP address <wifi-manual_ip>` (or a static DHCP lease) is bound to cause problems. This is due to the fact that mDNS is used to find the IP address of each ESPHome nodes.
+-----------------------
+Some of ESPHome's functionalities rely on mDNS, so naturally :doc:`disabling </components/mdns>` it will cause these
+features to stop working.
+Generally speaking, disabling mDNS without setting a :ref:`static IP address <wifi-manual_ip>` (or a static DHCP lease)
+is bound to cause problems. This is due to the fact that mDNS is used to find the IP address of each ESPHome nodes.
 
 - You will not be able to use the node's hostname to ping, find it's IP address or connect to it.
 
-- Automatic discovery in Home Assistant when using :doc:`native API </components/api>` relies on mDNS broadcast messages to detect presence of new ESPHome nodes. If you need to use the native API with mDNS disabled, then you will have to use a static IP address and manually add the ESPHome integration with the fixed IP address.
+- Automatic discovery in Home Assistant when using :doc:`native API </components/api>` relies on mDNS broadcast
+  messages to detect presence of new ESPHome nodes. If you need to use the native API with mDNS disabled, then you will
+  have to use a static IP address and manually add the ESPHome component with the fixed IP address.
 
-- Online status detection in ESPHome's dashboard by default uses mDNS, so disabling mDNS will cause the ESPHome dashboard to show the status of the nodes created without mDNS support to be always offline. Currently, this does not affect any functionality, however if you want to see the online/offline status you could configure ESPHome to ping each node instead. See the :ref:`notes in the Docker Reference section <docker-reference-notes>` for more information.
+- Online status detection in ESPHome's dashboard by default uses mDNS, so disabling mDNS will cause the ESPHome
+  dashboard to show the status of the nodes created without mDNS support to be always offline. Currently, this does not
+  affect any functionality, however if you want to see the online/offline status you could configure ESPHome to ping
+  each node instead. See the :ref:`notes in the Docker Reference section <docker-reference-notes>` for more information.
 
 Can Configuration Files Be Recovered From The Device?
 -----------------------------------------------------
@@ -411,25 +434,37 @@ Always back up all your files!
 Why shouldn't I use underscores in my device name?
 --------------------------------------------------
 
-The top level ``name:`` field in your .yaml file defines the node name(/hostname) on the local network.  According to `RFC1912 <https://datatracker.ietf.org/doc/html/rfc1912>`_, underscore characters (``_``) in hostnames are not valid.  In reality some local DNS/DHCP setups will be ok with underscores and some will not.  If connecting via a static IP address, there will probably be no issues.  In some cases, initial setup using an underscore works, but later the connection might fail when Home Assistant restarts or if you change router hardware.  Recommendation: use hyphen (``-``) instead of underscore if you can.
+The top level ``name:`` field in your .yaml file defines the node name(/hostname) on the local network.  According to
+`RFC1912 <https://datatracker.ietf.org/doc/html/rfc1912>`_, underscore characters (``_``) in hostnames are not valid.
+In reality some local DNS/DHCP setups will be ok with underscores and some will not.  If connecting via a static IP
+address, there will probably be no issues.  In some cases, initial setup using an underscore works, but later the
+connection might fail when Home Assistant restarts or if you change router hardware.
+Recommendation: use hyphen (``-``) instead of underscore if you can.
 
-Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
+Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the
+``use_address`` parameter when renaming a live device, as the connection to an existing device will only
+work with the old name until the name change is complete.
 
 .. _strapping-warnings:
 
 Why am I getting a warning about strapping pins?
---------------------------------------------------
+------------------------------------------------
 
-The ESP chips have special "strapping pins" that are read during the bootup procedure and determine how it boots up. They define whether the ESP boots into a special "flashing mode" or normal boot and a couple of other internal settings.
+The ESP chips have special "strapping pins" that are read during the bootup procedure and determine how it boots up.
+They define whether the ESP boots into a special "flashing mode" or normal boot and a couple of other internal settings.
 If an external pullup/down changes the configured voltage levels boot failures or hard to diagnose issues can happen.
-While the use of them in software is not a problem, if there's something attached to the pins (particularly if they're not floating during the bootup) you may run into problems.
-It's recommended to avoid them unless you have a pressing need to use them and you have reviewed the expected boot voltage levels of these pins from the ESP datasheet.
+While the use of them in software is not a problem, if there's something attached to the pins (particularly if they're
+not floating during the bootup) you may run into problems.
+It's recommended to avoid them unless you have a pressing need to use them and you have reviewed the expected boot
+voltage levels of these pins from the ESP datasheet.
 
-Some development boards connect GPIO 0 to a button, often labeled "boot". Holding this button while the ESP is turning on will cause it to go into bootloader mode. Once the ESP is fully booted up, this button can be used as a normal input safely.
+Some development boards connect GPIO 0 to a button, often labeled "boot". Holding this button while the ESP is
+turning on will cause it to go into bootloader mode. Once the ESP is fully booted up, this button can be used
+as a normal input safely.
 
-Strapping pins should be safe to use as outputs if they are *only* connected to other devices that have hi-impedance inputs
-with no pull-up or pull-down resistors. Note that I2C clock and data lines *do* have pull-up resistors and are not
-safe on strapping pins.
+Strapping pins should be safe to use as outputs if they are *only* connected to other devices that have hi-impedance
+inputs with no pull-up or pull-down resistors. Note that I2C clock and data lines *do* have pull-up resistors and are
+not safe on strapping pins.
 
 If you are absolutely sure that your use of strapping pins is safe, and want to suppress the warning, you can
 add ``ignore_strapping_warning: true`` to the relevant pin configurations.

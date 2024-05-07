@@ -144,7 +144,7 @@ Then just copy the address (``D3:75:F2:DC:16:91``) into a new
 
 .. note::
 
-    The ESPHome Mopeka Pro Check BLE integration listens passively to packets the Mopeka/Lippert device sends by itself.
+    The ESPHome Mopeka Pro Check BLE component listens passively to packets the Mopeka/Lippert device sends by itself.
     ESPHome therefore has no impact on the battery life of the device.
 
 See Also
