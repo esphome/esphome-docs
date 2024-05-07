@@ -54,6 +54,9 @@ Configuration variables:
    performed after a failed OTA update. See :ref:`ota-on_error`.
 -  **on_state_change** (*Optional*, :ref:`Automation<automation>`): An action to be
    performed when an OTA update state change happens. See :ref:`ota-on_state_change`.
+-  **version** (*Optional*, int): Version of OTA protocol to use. Version 2 is more stable.
+   To downgrade to legacy ESPHome, the device should be updated with OTA version 1 first.
+   Defaults to ``2``.
 
 .. note::
 
@@ -174,7 +177,7 @@ enum. These values are:
         then:
           - if:
               condition:
-                lambda: return state == ota::OTA_STARTED
+                lambda: return state == ota::OTA_STARTED;
               then:
                 - logger.log: "OTA start"
 
