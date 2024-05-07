@@ -22,8 +22,8 @@ with ESPHome. Currently integration supports level and brightness setting. All u
 
     tm1651:
         id: tm1651_battery
-        clk_pin: D6
-        dio_pin: D5
+        clk_pin: GPIOXX
+        dio_pin: GPIOXX
 
 Configuration variables:
 ************************

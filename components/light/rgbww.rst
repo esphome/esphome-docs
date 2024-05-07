@@ -44,9 +44,8 @@ perceived intensity of different colors will generally vary. This can be done by
 
     # Example output entry
     output:
-      - platform: esp8266_pwm
+      - platform: ...
         id: output_component1
-        pin: D1
         max_power: 80%
 
 .. note::

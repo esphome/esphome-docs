@@ -32,10 +32,10 @@ Over GPIO
     # Example configuration entry
     sn74hc595:
       - id: 'sn74hc595_hub'
-        data_pin: D5
-        clock_pin: D8
-        latch_pin: D7
-        oe_pin: D6
+        data_pin: GPIOXX
+        clock_pin: GPIOXX
+        latch_pin: GPIOXX
+        oe_pin: GPIOXX
         sr_count: 2
 
     # Individual outputs
@@ -73,11 +73,10 @@ Over SPI
 .. code-block:: yaml
 
     # Example configuration entry
-    spi:
     sn74hc595:
       - id: 'sn74hc595_hub'
-        latch_pin: D7
-        oe_pin: D6
+        latch_pin: GPIOXX
+        oe_pin: GPIOXX
         sr_count: 2
 
     # Individual outputs

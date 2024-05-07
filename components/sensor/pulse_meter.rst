@@ -22,7 +22,7 @@ Please note that it is not possible to use both of these two sensors on the same
     # Example configuration entry
     sensor:
       - platform: pulse_meter
-        pin: 12
+        pin: GPIOXX
         name: "Pulse Meter"
 
 Configuration variables
@@ -32,7 +32,7 @@ Configuration variables
 - **name** (**Required**, string): The name of the sensor.
 
 - **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this   time is detected, it is discarded. Defaults to ``13us``.
-  
+
   This acts as a debounce filter to eliminate input noise, so choose a value a little less than your expected minimum pulse width.
 
 - **internal_filter_mode** (*Optional*, string): Determines how the internal filter is applied.
@@ -62,7 +62,7 @@ For example, if you’re using the pulse meter with a photodiode to count the li
         state_class: measurement
         internal_filter: 20ms # Assuming maximum load of 16 kW and 10000 impulses per kWh, any pulses faster than 22.5 ms would exceed load. -10% ~= 20 ms.
         accuracy_decimals: 0
-        pin: 12
+        pin: GPIOXX
         filters:
           - multiply: 6 # (60s / impulse constant) * (1000W / 1kW)
 

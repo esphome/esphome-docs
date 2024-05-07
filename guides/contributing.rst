@@ -211,7 +211,7 @@ documents establish the following character order for better consistency.
           switch:
             - platform: gpio
               name: "Relay #42"
-              pin: GPIO13
+              pin: GPIOXX
 
   .. code-block:: yaml
 
@@ -219,7 +219,7 @@ documents establish the following character order for better consistency.
       switch:
         - platform: gpio
           name: "Relay #42"
-          pin: GPIO13
+          pin: GPIOXX
 
   .. note::
 

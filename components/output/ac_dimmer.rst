@@ -34,9 +34,9 @@ for example the `RobotDyn dimmer
     output:
       - platform: ac_dimmer
         id: dimmer1
-        gate_pin: D7
+        gate_pin: GPIOXX
         zero_cross_pin:
-          number: D6
+          number: GPIOXX
           mode:
             input: true
           inverted: yes

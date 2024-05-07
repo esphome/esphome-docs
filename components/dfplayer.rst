@@ -31,16 +31,7 @@ will be required.
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      tx_pin: GPIO2
-      rx_pin: GPIO5
-      baud_rate: 9600
-
-    # Declare DFPlayer mini module
     dfplayer:
-      on_finished_playback:
-        then:
-          logger.log: 'Somebody press play!'
 
 Configuration variables:
 ------------------------
@@ -114,11 +105,11 @@ Configuration options:
 ``dfplayer.play_mp3`` Action
 ----------------------------
 
-Plays a track inside the folder ``mp3``. Files inside the folder must be numbered from 1 
+Plays a track inside the folder ``mp3``. Files inside the folder must be numbered from 1
 to 9999, like ``0001.mp3``, ``0002.mp3``, ... etc.
-The folder name needs to be ``mp3``, placed under the SD card root directory, and the 
-mp3 file name needs to be 4 digits, for example, "0001.mp3", placed under the mp3 folder. 
-If you want, you can add additional text after the number in the filename, for example, 
+The folder name needs to be ``mp3``, placed under the SD card root directory, and the
+mp3 file name needs to be 4 digits, for example, "0001.mp3", placed under the mp3 folder.
+If you want, you can add additional text after the number in the filename, for example,
 ``0001hello.mp3``, but must always be referenced by number only in yaml.
 
 .. code-block:: bash
@@ -345,8 +336,8 @@ Sample code
 .. code-block:: yaml
 
     uart:
-      tx_pin: GPIO2
-      rx_pin: GPIO5
+      tx_pin: GPIOXX
+      rx_pin: GPIOXX
       baud_rate: 9600
 
     dfplayer:

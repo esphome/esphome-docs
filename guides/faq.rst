@@ -21,11 +21,11 @@ Tips for using ESPHome
        binary_sensor:
          - platform: gpio
            id: button1
-           pin: GPIO16
+           pin: GPIOXX
            on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
          - platform: gpio
            id: button2
-           pin: GPIO4
+           pin: GPIOXX
            on_multi_click: !include
              # multi-line syntax
              file: on-multi-click.yaml
@@ -91,7 +91,7 @@ Second, you need to put the ESP in :ref:`programming mode <esphome-phy-con-prg>`
 Third, to flash a firmware file downloaded from Home Assistant add-on Dashboard, you can use:
 
 - `ESPHome Web <https://web.esphome.io/>`__ web-based installer, which requires a browser that supports WebSerial, like Google Chrome or Microsoft Edge. Connect the board to your computer, make sure it's detected as a :ref:`serial port <esphome-phy-con-drv>`, and press **Connect**. Give the requested permission in the browser and in the popup box that appears, select the serial device which connects to your ESP. Then press **Install**, and browse for the binary file you downloaded from the Dashboard in the step above. Note that the file will be processed locally, it won't be uploaded to any cloud service.
-- *esptool* `from the GitHub repository <https://github.com/espressif/esptool/releases>`__, package from your distro or install it yourself with ``pip install esptool`` (in case of Linux). 
+- *esptool* `from the GitHub repository <https://github.com/espressif/esptool/releases>`__, package from your distro or install it yourself with ``pip install esptool`` (in case of Linux).
 
 Before using ``esptool``, make sure you know which serial port your programming adapter is connected to. In Linux use the ``dmesg`` command afer you plug the device into the USB port to see the name of the newly detected serial port. In Windows check the Device Manager to see if a new serial port appears when you plug it in and note the COM number.
 
@@ -109,16 +109,16 @@ Program flash with your firmware binary:
 
 .. note::
 
-    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, check for these: 
+    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, check for these:
 
-    - the device name of the port has changed while you were re-plugging it too fast (eg. changed from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``). 
+    - the device name of the port has changed while you were re-plugging it too fast (eg. changed from ``/dev/ttyUSB0`` to ``/dev/ttyUSB1``).
     - double check the UART wires are connected correctly if flashing using an external programmer (RX of programmer to TX of the ESP and vice-versa).
     - for some devices you need to keep ``GPIO0`` and ``GND`` connected at least until flashing has begun.
     - for some devices you need to power-cycle in programming mode after erasing flash, they don't auto-reset.
-    - it also might be a sign that ESP is defect or cannot be programmed. 
-    
+    - it also might be a sign that ESP is defect or cannot be programmed.
+
     If you're in an RF noisy environment or your UART wires are a bit long, flashing can fail during transfer. Don't worry, an ESP won't brick just because of that. Put it again in programming mode and flash with a reduced baudrate for safer transfers:
-    
+
     ``esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash 0x0 your_node_firmware.bin``
 
 
