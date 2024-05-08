@@ -304,7 +304,7 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
                                   width: 31
                                   start_value: 0
                                   end_value: 10
-                    - obj: # to erase middle part of meter indicator line
+                    - obj: # to cover the middle part of meter indicator line
                         height: 146
                         width: 146
                         radius: 73
@@ -407,12 +407,83 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
                         text: "-.-°C"
                         align: CENTER
                         y: 45
-                        text_align: center
                     - label:
                         text: "Outdoor"
                         align: CENTER
                         y: 65
-                        text_align: center
+
+And here's for the same sensor configuration a semicircle gauge with a gradient background drawn by a multitude of ticks:
+
+.. figure:: images/lvgl_cook_thermometer_gauge.png
+    :align: center
+
+If you change the size of the widget, to obtain uniform gradient make sure to increase or decrease the ticks count accordingly.
+
+.. code-block:: yaml
+
+    lvgl:
+        ...
+        pages:
+          - id: meter_page
+            widgets:
+              - obj: 
+                  height: 240
+                  width: 240
+                  align: CENTER
+                  y: -18
+                  bg_opa: TRANSP
+                  border_width: 0
+                  pad_all: 14
+                  widgets:
+                    - meter:
+                        height: 100%
+                        width: 100%
+                        border_width: 0
+                        align: center
+                        bg_opa: TRANSP
+                        scales:
+                          - range_from: -15
+                            range_to: 35
+                            angle_range: 180
+                            ticks:
+                              count: 70
+                              width: 1
+                              length: 31
+                            indicators:
+                              - tick_style:
+                                  start_value: -15
+                                  end_value: 35
+                                  color_start: 0x3399ff
+                                  color_end: 0xffcc66
+                          - range_from: -150
+                            range_to: 350
+                            angle_range: 180
+                            ticks:
+                              count: 0
+                            indicators:
+                              - line:
+                                  id: temperature_needle
+                                  width: 8
+                                  r_mod: 2
+                                  value: -150
+                    - obj: # to cover the middle part of meter indicator line
+                        height: 123
+                        width: 123
+                        radius: 73
+                        align: center
+                        border_width: 0
+                        pad_all: 0
+                        bg_color: 0xFFFFFF
+                    - label:
+                        id: temperature_text
+                        text: "--.-°C"
+                        align: CENTER
+                        y: -26
+                    - label:
+                        text: "Outdoor"
+                        align: CENTER
+                        y: -6
+
 
 .. _lvgl-cook-climate:
 
