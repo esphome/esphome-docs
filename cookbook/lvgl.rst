@@ -271,7 +271,7 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
                   height: 240 
                   width: 240
                   align: CENTER
-                  bg_opa: TRANSP
+                  bg_color: 0xFFFFFF
                   border_width: 0
                   pad_all: 4
                   widgets:
@@ -279,6 +279,7 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
                         height: 100%
                         width: 100%
                         border_width: 0
+                        bg_opa: TRANSP
                         align: center
                         scales:
                           - range_from: -10
@@ -310,6 +311,7 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
                         radius: 73
                         align: center
                         border_width: 0
+                        bg_color: 0xFFFFFF
                         pad_all: 0
                     - label: # gauge numeric indicator
                         id: val_text
@@ -431,7 +433,7 @@ If you change the size of the widget, to obtain uniform gradient make sure to in
                   width: 240
                   align: CENTER
                   y: -18
-                  bg_opa: TRANSP
+                  bg_color: 0xFFFFFF
                   border_width: 0
                   pad_all: 14
                   widgets:
