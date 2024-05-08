@@ -42,10 +42,10 @@ Configuration variables:
   a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
 
 MQTT Options:
@@ -208,7 +208,7 @@ advanced stuff (see the full API Reference for more info).
 
       // Within lambda, set the time to 12:34:56
       auto call = id(my_time).make_call();
-      call.set_date("12:34:56");
+      call.set_time("12:34:56");
       call.perform();
 
   Check the API reference for information on the methods that are available for
@@ -231,7 +231,7 @@ See Also
 - :apiref:`DateTimeBase <datetime/datetime_base.h>`
 - :apiref:`DateEntity <datetime/date_entity.h>`
 - :apiref:`DateCall <datetime/date_entity.h>`
-- :apiref:`TimeeEntity <datetime/time_entity.h>`
+- :apiref:`TimeEntity <datetime/time_entity.h>`
 - :apiref:`TimeCall <datetime/time_entity.h>`
 - :ghedit:`Edit`
 

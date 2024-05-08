@@ -22,7 +22,7 @@ ADC in your device to measure a voltage on certain pins.
     # Example configuration entry
     sensor:
       - platform: adc
-        pin: A0
+        pin: GPIOXX
         name: "Living Room Brightness"
         update_interval: 60s
 

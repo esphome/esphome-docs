@@ -130,8 +130,8 @@ an ``OFF`` state.
 
     binary_sensor:
       - platform: esp32_touch
-        name: "ESP32 Touch Pad GPIO27"
-        pin: GPIO27
+        name: "ESP32 Touch Pad"
+        pin: GPIOXX
         threshold: 1000
 
 Configuration variables:
@@ -164,7 +164,7 @@ If access to the raw values is required, a template sensor can be created that p
     binary_sensor:
       - platform: esp32_touch
         id: esp32_touch_pad
-        pin: GPIO4
+        pin: GPIOXX
         threshold: 0
 
     sensor:
@@ -174,8 +174,8 @@ If access to the raw values is required, a template sensor can be created that p
             return id(esp32_touch_pad).get_value();
         update_interval: 3s
 
-One example of use is a wide area pressure sensor that integrates a number of smaller sensors in an area. Make two strips 
-of aluminium foil that sandwich paper, and connect one wire to a touch pin and the other to ground. Set up several sensors 
+One example of use is a wide area pressure sensor that integrates a number of smaller sensors in an area. Make two strips
+of aluminium foil that sandwich paper, and connect one wire to a touch pin and the other to ground. Set up several sensors
 under a flexible object like a plastic mat, add the raw values, and apply a threshold.
 
 .. _esp32-touch-pad-pins:

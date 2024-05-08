@@ -107,7 +107,7 @@ entry like in the configuration example at the top.
 
 .. note::
 
-    The ESPHome Inkbird IBS-TH1/TH2 integration listens passively to packets the device sends by itself.
+    The ESPHome Inkbird IBS-TH1/TH2 component listens passively to packets the device sends by itself.
     ESPHome therefore has no impact on the battery life of the device.
 
 See Also

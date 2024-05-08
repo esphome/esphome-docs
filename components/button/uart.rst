@@ -11,10 +11,6 @@ The ``uart`` button platform allows you to send a pre-defined sequence of bytes 
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      baud_rate: 9600
-      tx_pin: D0
-
     button:
       - platform: uart
         name: "UART String Output"
