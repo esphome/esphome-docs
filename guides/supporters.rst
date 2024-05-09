@@ -259,6 +259,7 @@ Contributors
 - `Chris Feenstra (@cfeenstra1024) <https://github.com/cfeenstra1024>`__
 - `Filipe Mendonça (@cfilipem) <https://github.com/cfilipem>`__
 - `cg089 (@cg089) <https://github.com/cg089>`__
+- `chbmuc (@chbmuc) <https://github.com/chbmuc>`__
 - `Audric Schiltknecht (@chemicalstorm) <https://github.com/chemicalstorm>`__
 - `Charles Johnson (@ChemicalXandco) <https://github.com/ChemicalXandco>`__
 - `chiahsing (@chiahsing) <https://github.com/chiahsing>`__
@@ -591,6 +592,7 @@ Contributors
 - `HengYongChao (@HengYongChao) <https://github.com/HengYongChao>`__
 - `Hermann Kraus (@herm) <https://github.com/herm>`__
 - `Herr Frei (@herrfrei) <https://github.com/herrfrei>`__
+- `Nate Clark (@heythisisnate) <https://github.com/heythisisnate>`__
 - `highground88 (@highground88) <https://github.com/highground88>`__
 - `hindenbugbite (@hindenbugbite) <https://github.com/hindenbugbite>`__
 - `Hobby Components (@HobbyComponents) <https://github.com/HobbyComponents>`__
