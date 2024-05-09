@@ -607,6 +607,12 @@ Simple push or toggle button.
 - **checkable** (*Optional*, boolean): A significant :ref:`flag <lvgl-objupdflag-act>` to make a toggle button (which remains pressed in ``checked`` state). Defaults to ``false``.
 - Style options from :ref:`lvgl-styling` for the background of the button. Uses the typical background style properties.
 
+A notable state is ``checked`` (boolean) which can have different styles applied.
+
+**Specific triggers:**
+
+``on_value`` :ref:`trigger <automation>` is activated after clicking, in case of ``checkable`` configured as ``true``, the variable ``x`` returning a boolean representing the checked state.
+
 **Example:**
 
 .. code-block:: yaml
@@ -636,7 +642,14 @@ To have a button with a text label on it, add a :ref:`lvgl-wgt-lbl` widget as ch
               align: center
               text: "Light"
 
-A notable state is ``checked`` (boolean) which can have different styles applied.
+    # Example trigger:
+    - btn:
+        ...
+        on_value:
+          then:
+            - logger.log:
+                format: "Button checked state: %d"
+                args: [ x ]
 
 The ``btn`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
 
@@ -757,6 +770,10 @@ The Switch looks like a little slider and can be used to turn something on and o
 - **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
 - Style options from :ref:`lvgl-styling`.
 
+**Specific triggers:**
+
+``on_value`` :ref:`trigger <automation>` is activated when toggling the switch, the variable ``x`` returning a boolean representing the checked state.
+
 **Example:**
 
 .. code-block:: yaml
@@ -767,7 +784,16 @@ The Switch looks like a little slider and can be used to turn something on and o
         y: 10
         id: switch_id
 
-The ``switch`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
+    # Example trigger:
+    - switch:
+        ...
+        on_value:
+          then:
+            - logger.log:
+                format: "Switch state: %d"
+                args: [ x ]
+
+The ``switch`` can be also integrated as a :doc:`/components/switch/lvgl`.
 
 See :ref:`lvgl-cook-relay` for an example how to use a switch to act on a local component.
 
@@ -795,6 +821,10 @@ The Checkbox widget is made internally from a *tick box* and a label. When the C
     -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the
        format message.
 
+**Specific triggers:**
+
+``on_value`` :ref:`trigger <automation>` is activated when toggling the checkbox, the variable ``x`` returning a boolean representing the checked state.
+
 **Example:**
 
 .. code-block:: yaml
@@ -814,6 +844,15 @@ The Checkbox widget is made internally from a *tick box* and a label. When the C
             state:
               checked: true
             text: Checked
+
+    # Example trigger:
+    - checkbox:
+        ...
+        on_value:
+          then:
+            - logger.log:
+                format: "Checkbox state: %d"
+                args: [ x ]
 
 The ``checkbox`` can be also integrated as a :doc:`/components/switch/lvgl`.
 
@@ -847,6 +886,11 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
 
 ``lvgl.dropdown.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
+**Specific triggers:**
+
+``on_value`` :ref:`trigger <automation>` is activated only when you select an item from the list. The new selected index is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the selected index in ``x``. 
+``on_cancel`` :ref:`trigger <automation>` is also activated when you close the dropdown without selecting an item from the list. The currently selected index is returned in the variable ``x``.
+
 **Example:**
 
 .. code-block:: yaml
@@ -869,7 +913,19 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
       then:
         - lvgl.dropdown.update:
             id: dropdown_id
-            selected_index: 5
+            selected_index: 4
+
+    # Example trigger:
+    - dropdown:
+        ...
+        on_value:
+          - logger.log:
+              format: "Selected index is: %d"
+              args: [ x ]
+        on_cancel:
+          - logger.log:
+              format: "Dropdown closed. Selected index is: %d"
+              args: [ x ]
 
 The ``dropdown`` can be also integrated as :doc:`/components/select/lvgl`.
 
@@ -897,6 +953,10 @@ Roller allows you to simply select one option from a list by scrolling.
 
 ``lvgl.roller.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
+**Specific triggers:**
+
+``on_value`` :ref:`trigger <automation>` is activated when you select an item from the list. The new selected index is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the selected index in ``x``. 
+
 **Example:**
 
 .. code-block:: yaml
@@ -917,7 +977,15 @@ Roller allows you to simply select one option from a list by scrolling.
       then:
         - lvgl.roller.update:
             id: roller_id
-            selected_index: 5
+            selected_index: 4
+
+    # Example trigger:
+    - roller:
+        ...
+        on_value:
+          - logger.log:
+              format: "Selected index is: %d"
+              args: [ x ]
 
 The ``roller`` can be also integrated as :doc:`/components/select/lvgl`.
 
@@ -1514,7 +1582,6 @@ The Textarea is a widget allowing to input text and displays a cursor. Long line
         - lvgl.textarea.update:
             id: textarea_id
             text: "Hello World!"
-
 
     # Example trigger:
     - textarea:
