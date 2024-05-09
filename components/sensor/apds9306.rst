@@ -65,3 +65,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :apiref:`apds9306/apds9306.h`
+- :ghedit:`Edit`
