@@ -57,7 +57,7 @@ Configuration variables:
 - **device_class** (*Optional*, string): The device class for the number.
   See https://www.home-assistant.io/integrations/number/#device-class
   for a list of available options.
-- If Webserver enabled, ``web_server_sorting_weight`` can be set :ref:`Webserver Entity Sorting <config-webserver-sorting>`.  
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.  
 
 Automations:
 
