@@ -4,7 +4,7 @@ LVGL Binary Sensor
 ==================
 
 .. seo::
-    :description: Instructions for setting up a LVGL widget binary sensor.
+    :description: Instructions for setting up an LVGL widget binary sensor.
     :image: ../images/lvgl_c_bns.png
 
 The ``lvgl`` binary sensor platform creates a binary sensor from a LVGL widget
