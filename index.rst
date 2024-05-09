@@ -435,7 +435,7 @@ Light
 .. imgtable::
 
     AM43, components/sensor/am43, am43.jpg, Lux
-    APDS9306, components/sensor/apds9306, apds9306.jpg, Lux
+    APDS9306, components/sensor/apds9306, apds9306.png, Lux
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
