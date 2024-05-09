@@ -49,6 +49,7 @@ Base configuration:
     - 500ms
     - 1000ms
 
+
 Sensor
 ------
 
