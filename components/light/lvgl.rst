@@ -19,7 +19,7 @@ Configuration options:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the light.
-- **led** (**Required**): The ID of a ``led`` widget configured in LVGL, which will reflect the state of the light.
+- **widget** (**Required**): The ID of a ``led`` widget configured in LVGL, which will reflect the state of the light.
 - All other options from :ref:`light <config-light>`.
 
 
@@ -29,7 +29,7 @@ Example:
 
     light:
       - platform: lvgl
-        led: led_id
+        widget: led_id
         name: LVGL light
 
 .. note::
@@ -45,4 +45,6 @@ See Also
 - :doc:`/components/number/lvgl`
 - :doc:`/components/switch/lvgl`
 - :doc:`/components/select/lvgl`
+- :doc:`/components/text/lvgl`
+- :doc:`/components/text_sensor/lvgl`
 - :ghedit:`Edit`

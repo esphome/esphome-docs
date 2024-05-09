@@ -45,4 +45,6 @@ See Also
 - :doc:`/components/select/lvgl`
 - :doc:`/components/light/lvgl`
 - :doc:`/components/output/index`
+- :doc:`/components/text/lvgl`
+- :doc:`/components/text_sensor/lvgl`
 - :ghedit:`Edit`

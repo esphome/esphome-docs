@@ -40,4 +40,6 @@ See Also
 - :doc:`/components/number/lvgl`
 - :doc:`/components/switch/lvgl`
 - :doc:`/components/light/lvgl`
+- :doc:`/components/text/lvgl`
+- :doc:`/components/text_sensor/lvgl`
 - :ghedit:`Edit`
