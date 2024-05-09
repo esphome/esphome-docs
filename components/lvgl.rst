@@ -1475,7 +1475,7 @@ Check out :ref:`lvgl-cook-keypad` in the Cookbook for an example how to change t
 ``textarea``
 ************
 
-The Text Area is a widget allowing to input text and displays a cursor. Long lines are wrapped and when the text becomes long enough the Text area can be scrolled. It supports one line mode and password mode, where typed characters are replaced visually with bullets or asterisks.
+The Textarea is a widget allowing to input text and displays a cursor. Long lines are wrapped and when the text becomes long enough the Text area can be scrolled. It supports one line mode and password mode, where typed characters are replaced visually with bullets or asterisks.
 
 .. figure:: /components/images/lvgl_textarea.png
     :align: center
@@ -1522,13 +1522,15 @@ The Text Area is a widget allowing to input text and displays a cursor. Long lin
         on_value:
           then:
             - logger.log:
-                format: "textarea changed to: %s"
+                format: "Textarea changed to: %s"
                 args: [ text ]
         on_ready:
           then:
             - logger.log:
-                format: "textarea ready: %s"
+                format: "Textarea ready: %s"
                 args: [ text ]
+
+The ``textarea`` can be also integrated as :doc:`/components/text/lvgl` or :doc:`/components/text_sensor/lvgl`.
 
 .. _lvgl-wgt-spi:
 
