@@ -248,7 +248,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
     - ``RIGHT``
     - ``INTERNAL``
 - **radius** (*Optional*, uint16): The radius to be used to form the widget's rounded corners. 0 = no radius (square corners); 65535 = pill shaped widget (true circle if it has same width and height).
-- **clip_corner** (*Optional*, boolean): Enable to clip off the overflowed content on the rounded (``radius`` > ``0``) corners of a widget.
+- **clip_corner** (*Optional*, boolean): If set to ``true``, overflowing content will be clipped off by the widget's rounded corners (``radius`` > ``0``).
 - **outline_width** (*Optional*, int16): Set the width of the outline in pixels. Defaults to ``0``.
 - **outline_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw an outline around the widget. Defaults to ``0`` (black).
 - **outline_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the outline of the widget. Defaults to ``COVER``.
