@@ -7,7 +7,7 @@ LVGL Binary Sensor
     :description: Instructions for setting up an LVGL widget binary sensor.
     :image: ../images/lvgl_c_bns.png
 
-The ``lvgl`` binary sensor platform creates a binary sensor from a LVGL widget
+The ``lvgl`` binary sensor platform creates a binary sensor from an LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widget is :ref:`lvgl-wgt-btn`. A single binary sensor supports
