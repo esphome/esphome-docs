@@ -40,6 +40,16 @@ Breaking Changes
 - Add datetime entities :esphomepr:`6513` by :ghuser:`jesserockz` (breaking-change)
 - SPI and I2C for BMP390 and BMP380 :esphomepr:`6652` by :ghuser:`latonita` (new-integration) (breaking-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- [github] Upgrade to actions/[upload,download]-artifact v4 :esphomepr:`6698` by :ghuser:`jesserockz`
+- [nextion] Replace flags to ``USE_ARDUINO`` :esphomepr:`6700` by :ghuser:`edwardtfn`
+- [remote_receiver, remote_transmitter] Improve error messages on the ESP32 :esphomepr:`6701` by :ghuser:`Mat931`
+- [ethernet] Use constexpr instead of inline define for KSZ80XX_PC2R_REG_ADDR :esphomepr:`6705` by :ghuser:`jesserockz`
+- Add PHY register writes to enable external clock on Ethernet with RTL8201 :esphomepr:`6704` by :ghuser:`heythisisnate`
+- Bump recommended ESP-IDF to 4.4.7 :esphomepr:`6703` by :ghuser:`bdraco`
+
 All changes
 ^^^^^^^^^^^
 
@@ -170,6 +180,12 @@ All changes
 - Consolidate test files where all tests are identical :esphomepr:`6690` by :ghuser:`kbx81`
 - Make ``pulse_meter`` PULSE filter report the pulse as soon as it can :esphomepr:`6014` by :ghuser:`TrentHouliston`
 - Update webserver local assets to 20240507-231331 :esphomepr:`6696` by :ghuser:`esphomebot`
+- [github] Upgrade to actions/[upload,download]-artifact v4 :esphomepr:`6698` by :ghuser:`jesserockz`
+- [nextion] Replace flags to ``USE_ARDUINO`` :esphomepr:`6700` by :ghuser:`edwardtfn`
+- [remote_receiver, remote_transmitter] Improve error messages on the ESP32 :esphomepr:`6701` by :ghuser:`Mat931`
+- [ethernet] Use constexpr instead of inline define for KSZ80XX_PC2R_REG_ADDR :esphomepr:`6705` by :ghuser:`jesserockz`
+- Add PHY register writes to enable external clock on Ethernet with RTL8201 :esphomepr:`6704` by :ghuser:`heythisisnate`
+- Bump recommended ESP-IDF to 4.4.7 :esphomepr:`6703` by :ghuser:`bdraco`
 
 Past Changelogs
 ---------------
