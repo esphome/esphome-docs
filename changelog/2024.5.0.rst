@@ -49,6 +49,9 @@ Beta Changes
 - [ethernet] Use constexpr instead of inline define for KSZ80XX_PC2R_REG_ADDR :esphomepr:`6705` by :ghuser:`jesserockz`
 - Add PHY register writes to enable external clock on Ethernet with RTL8201 :esphomepr:`6704` by :ghuser:`heythisisnate`
 - Bump recommended ESP-IDF to 4.4.7 :esphomepr:`6703` by :ghuser:`bdraco`
+- [core] Ensure that a generated ID name is distinct from its type. :esphomepr:`6706` by :ghuser:`clydebarrow`
+- [color] Fix crash when hex color parses as int, improve error reporting. :esphomepr:`6707` by :ghuser:`clydebarrow`
+- [github] Fix digest artifact name :esphomepr:`6710` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -186,6 +189,9 @@ All changes
 - [ethernet] Use constexpr instead of inline define for KSZ80XX_PC2R_REG_ADDR :esphomepr:`6705` by :ghuser:`jesserockz`
 - Add PHY register writes to enable external clock on Ethernet with RTL8201 :esphomepr:`6704` by :ghuser:`heythisisnate`
 - Bump recommended ESP-IDF to 4.4.7 :esphomepr:`6703` by :ghuser:`bdraco`
+- [core] Ensure that a generated ID name is distinct from its type. :esphomepr:`6706` by :ghuser:`clydebarrow`
+- [color] Fix crash when hex color parses as int, improve error reporting. :esphomepr:`6707` by :ghuser:`clydebarrow`
+- [github] Fix digest artifact name :esphomepr:`6710` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
