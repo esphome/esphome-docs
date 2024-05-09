@@ -260,7 +260,7 @@ You can adjust the appearance of widgets by changing the foreground, background 
 - **pad_right** (*Optional*, int16): Set the padding on the right, in pixels.
 - **pad_row** (*Optional*, int16): Set the padding between the rows of the children elements, in pixels.
 - **pad_column** (*Optional*, int16): Set the padding between the columns of the children elements, in pixels.
-- **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): Color to create a drop shadow under the widget. Defaults to ``0`` (black).
+- **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): Color used to create a drop shadow under the widget. Defaults to ``0`` (black).
 - **shadow_ofs_x** (*Optional*, int16): Horizontal offset of the shadow, in pixels. Defaults to ``0``.
 - **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels. Defaults to ``0``.
 - **shadow_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the shadow. Defaults to ``COVER``.
