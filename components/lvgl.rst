@@ -1470,6 +1470,66 @@ The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
 Check out :ref:`lvgl-cook-keypad` in the Cookbook for an example how to change the led styling properties from an automation.
 
+.. _lvgl-wgt-txt:
+
+``textarea``
+************
+
+The Text Area is a widget allowing to input text and displays a cursor. Long lines are wrapped and when the text becomes long enough the Text area can be scrolled. It supports one line mode and password mode, where typed characters are replaced visually with bullets or asterisks.
+
+.. figure:: /components/images/lvgl_textarea.png
+    :align: center
+
+**Specific options:**
+
+- **placeholder_text** (*Optional*, string): A placeholder text can be specified, which is displayed when the Text area is empty.
+- **accepted_chars** (*Optional*, string): You can set a list of accepted characters, so other characters will be ignored.
+- **one_line** (*Optional*, boolean): The Text area can be configured to be on a single line when the height is set automatically to show only one line, line break characters are ignored, and word wrap is disabled.
+- **password_mode** (*Optional*, boolean): The text area supports password mode. By default, if the ``•`` (bullet, ``0x2022``) glyph exists in the font, the entered characters are converted to it after some time or when a new character is entered. If ``•`` is missing from the font, ``*`` (asterisk) will be used. 
+- **max_length** (*Optional*, int): Limit the maximum number of characters to this value.
+- any :ref:`Styling <lvgl-styling>` and state-based option for the background of the textarea. Uses all the typical background style properties and the text/label related style properties for the text.
+
+**Specific actions:**
+
+``lvgl.textarea.update`` :ref:`action <config-action>` updates the widget's ``text`` property, to replace the entire text content.
+
+**Specific triggers:**
+
+``on_value`` :ref:`trigger <automation>` is activated on every keystroke, the variable ``text`` containing the entire contents of the textarea.
+``on_ready`` :ref:`trigger <automation>` is activated in case of ``one_line`` configured as ``true``, when the New Line character is receicved (Enter key on the keyboard).
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - textarea:
+        id: textarea_id
+        one_line: true
+        placeholder_text: "Enter text here"
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.textarea.update:
+            id: textarea_id
+            text: "Hello World!"
+
+
+    # Example trigger:
+    - textarea:
+        ...
+        on_value:
+          then:
+            - logger.log:
+                format: "textarea changed to: %s"
+                args: [ text ]
+        on_ready:
+          then:
+            - logger.log:
+                format: "textarea ready: %s"
+                args: [ text ]
+
 .. _lvgl-wgt-spi:
 
 ``spinner``
