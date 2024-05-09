@@ -23,14 +23,14 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
 
 .. code-block:: yaml
 
-  # Example configuration entry
-  sensor:
-    - platform: apds9306
-      name: "APDS9306 Light Level" # below are optional
-      gain: 1
-      bit_width: 18
-      measurement_rate: 100ms
-      update_interval: 60s
+    # Example configuration entry
+    sensor:
+      - platform: apds9306
+        name: "APDS9306 Light Level" # below are optional
+        gain: 1
+        bit_width: 18
+        measurement_rate: 100ms
+        update_interval: 60s
 
 .. _Broadcom: https://www.broadcom.com/products/optical-sensors/ambient-light-photo-sensors/apds-9306-065
 
