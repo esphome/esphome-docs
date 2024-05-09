@@ -57,6 +57,7 @@ Configuration variables:
 - **device_class** (*Optional*, string): The device class for the number.
   See https://www.home-assistant.io/integrations/number/#device-class
   for a list of available options.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set :ref:`Webserver Entity Sorting <config-webserver-sorting>`.  
 
 Automations:
 
@@ -69,9 +70,6 @@ MQTT Options:
 
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
-Webserver Options:
-
-- All other options from :ref:`Webserver Component <config-webserver-sorting>`.
 
 Number Automation
 -----------------

@@ -83,6 +83,7 @@ Advanced options:
   for a list of available options.
   Set to ``""`` to remove the default entity category.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 .. _light-toggle_action:
 
