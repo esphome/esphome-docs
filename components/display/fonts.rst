@@ -85,8 +85,8 @@ Next, create a ``font:`` section in your configuration:
       # ...
 
 
-Configuration options:
-----------------------
+Configuration variables:
+------------------------
 
 - **file** (**Required**, string): The path (relative to where the .yaml file is) of the font
   file. You can also use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
