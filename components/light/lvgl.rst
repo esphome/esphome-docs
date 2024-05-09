@@ -36,13 +36,13 @@ Example:
 
     To have linear brightness control, ``gamma_correct`` of the light is set by default to ``0``.
 
-
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
 - :ref:`LED widget <lvgl-wgt-led>`
 - :doc:`/components/binary_sensor/lvgl`
-- :doc:`/components/switch/lvgl`
+- :doc:`/components/sensor/lvgl`
 - :doc:`/components/number/lvgl`
+- :doc:`/components/switch/lvgl`
 - :doc:`/components/select/lvgl`
 - :ghedit:`Edit`

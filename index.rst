@@ -476,6 +476,7 @@ Miscellaneous
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Integration, components/sensor/integration, sigma.svg, dark-invert
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
+    LVGL widget, components/sensor/lvgl, lvgl_c_num.png
     MicroNova pellet stove, components/micronova, pellet.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
@@ -833,6 +834,7 @@ Text Components
 
     Text Core, components/text/index, folder-open.svg, dark-invert
     Template Text, components/text/template, description.svg, dark-invert
+    LVGL textarea Text, components/text/lvgl, lvgl_c_txt.png
 
 Valve Components
 ----------------
@@ -853,6 +855,7 @@ Text Sensor Components
     Ethernet Info, components/text_sensor/ethernet_info, ethernet.svg, dark-invert
     Home Assistant, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
     LibreTiny, components/text_sensor/libretiny, libretiny.svg
+    LVGL textarea Text Sensor, components/text_sensor/lvgl, lvgl_c_txt.png
     Modbus Text Sensor, components/text_sensor/modbus_controller, modbus.png
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg

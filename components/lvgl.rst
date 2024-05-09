@@ -14,7 +14,7 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 
 In order to be able to drive a :ref:`display <display-hw>` with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended.
 
-The display itself has to be a graphical binary type, should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set. It should also have an :ref:`config-id` set, which will be referenced in the main LGVL component configuration.
+The display itself has to be a graphical binary type, should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set. It should have an :ref:`config-id` set, which will be referenced in the main LGVL component configuration.
 
 For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly preferred) or a :doc:`/components/sensor/rotary_encoder` can be used.
 
@@ -970,7 +970,7 @@ Not only the end, but also the start value of the bar can be set, which changes 
             id: bar_id
             value: 55
 
-The ``bar`` can be also integrated as :doc:`/components/number/lvgl`.
+The ``bar`` can be also integrated as :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`.
 
 .. _lvgl-wgt-sli:
 
@@ -1038,7 +1038,7 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
     The ``on_value`` trigger is sent while the slider is being dragged or changed with keys. The event is sent *continuously* while the slider is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a :ref:`universal event trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
-The ``slider`` can be also integrated as :doc:`/components/number/lvgl`.
+The ``slider`` can be also integrated as :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`.
 
 See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use a slider to control entities in Home Assistant.
 
@@ -1120,7 +1120,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
     The ``on_value`` trigger is sent while the arc knob is being dragged or changed with keys. The event is sent *continuously* while the knob is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a :ref:`universal event trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
-The ``arc`` can be also integrated as :doc:`/components/number/lvgl`.
+The ``arc`` can be also integrated as :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`.
 
 See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use a slider (or an arc) to control entities in Home Assistant.
 
@@ -1192,7 +1192,7 @@ The Spinbox contains a numeric value (as text) which can be increased or decreas
                 format: "Spinbox value is %f"
                 args: [ x ]
 
-The ``spinbox`` can be also integrated as :doc:`/components/number/lvgl`.
+The ``spinbox`` can be also integrated as :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`.
 
 See :ref:`lvgl-cook-climate` for an example how to implement a thermostat control using the spinbox.
 
@@ -1959,7 +1959,7 @@ See Also
 - :doc:`Examples in the Cookbook </cookbook/lvgl>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/switch/lvgl`
-- :doc:`/components/number/lvgl`
+- :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`
 - :doc:`/components/select/lvgl`
 - :doc:`/components/light/lvgl`
 - :doc:`/components/display/index`

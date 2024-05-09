@@ -30,7 +30,6 @@ Example:
         widget: slider_id
         name: LVGL Slider
 
-
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
@@ -39,6 +38,7 @@ See Also
 - :ref:`Slider widget <lvgl-wgt-sli>`
 - :ref:`Spinbox widget <lvgl-wgt-spb>`
 - :doc:`/components/binary_sensor/lvgl`
+- :doc:`/components/sensor/lvgl`
 - :doc:`/components/switch/lvgl`
 - :doc:`/components/select/lvgl`
 - :doc:`/components/light/lvgl`

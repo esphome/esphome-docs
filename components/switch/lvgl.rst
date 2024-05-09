@@ -40,6 +40,7 @@ See Also
 - :ref:`Switch widget <lvgl-wgt-swi>`
 - :ref:`Checkbox widget <lvgl-wgt-chk>`
 - :doc:`/components/binary_sensor/lvgl`
+- :doc:`/components/sensor/lvgl`
 - :doc:`/components/number/lvgl`
 - :doc:`/components/select/lvgl`
 - :doc:`/components/light/lvgl`

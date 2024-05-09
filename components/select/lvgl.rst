@@ -36,7 +36,8 @@ See Also
 - :ref:`Roller widget <lvgl-wgt-rol>`
 - :ref:`Dropdown widget <lvgl-wgt-drp>`
 - :doc:`/components/binary_sensor/lvgl`
-- :doc:`/components/switch/lvgl`
+- :doc:`/components/sensor/lvgl`
 - :doc:`/components/number/lvgl`
+- :doc:`/components/switch/lvgl`
 - :doc:`/components/light/lvgl`
 - :ghedit:`Edit`
