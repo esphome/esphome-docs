@@ -143,7 +143,7 @@ Configuration options:
 .. _mqtt-device_discovery:
 
 MQTT device discovery
--------------------------
+---------------------
 
 The ESPHome device will respond to the following MQTT topics if `mqtt.discover_ip` is enabled.
 
@@ -161,6 +161,7 @@ The MQTT device discovery is currently used for:
 Example Payload:
 
 .. code-block:: json
+
     {
       "ip": "192.168.0.122",
       "name": "esp32-test",
@@ -195,7 +196,7 @@ JSON keys:
 .. _mqtt-using_device_discovery_with_home_assistant:
 
 Using device discovery with Home Assistant
----------------------------------------
+------------------------------------------
 
 MQTT can be used to automatically discover the ESPHome devices in Home Assistant.
 This allows Home Assistant to find the ESPHome device and connect
@@ -209,6 +210,7 @@ MQTT entity discovery if Home Assistant will connect to the ESPHome API.
 Example configuration:
 
 .. code-block:: yaml
+
     api:
       encryption:
         key: "<secret>"
