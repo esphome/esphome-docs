@@ -62,7 +62,7 @@ Main Configuration
 
 Although LVGL is a complex matrix of objects-parts-states-styles, ESPHome simplifies this into a hierarchy.
 
-At the highest level of the LVGL object hierarchy is the display represented the hardware driver. A display can have one or more pages associated with it. Each page contains a hierarchy of objects for graphical widgets representing a layout that covers the entire display.
+At the highest level of the LVGL object hierarchy is the display (represented by the hardware driver). A display can have one or more pages associated with it. Each page contains a hierarchy of objects for graphical widgets representing a layout to be presented on the display.
 
 The following configuration options apply to the main ``lvgl`` component, in order to establish the principal operating conditions. Some :ref:`styling options <lvgl-theme>` can be set at this level too, but only for inheritance purposes.
 
