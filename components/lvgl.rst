@@ -358,7 +358,7 @@ The precedence (value) of states is quite intuitive and it's something the user 
 
 Feel free to experiment to discover inheritance of the styles based on states between the nested widgets.
 
-:ref:`lvgl-cook-theme` in the Cookbook shows an example how to easily implement a gradient style for your widgets.
+:ref:`lvgl-cook-theme` The Cookbook contains an example illustrating how to easily implement a gradient style for your widgets.
 
 .. _lvgl-layouts:
 
