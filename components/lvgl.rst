@@ -305,7 +305,7 @@ You can configure a global theme for all widgets at the top level with the ``the
           focused:
             border_color: 0x00FF00
 
-Naturally, you can override these at the individual configuration level of each widget. This can be done in batches, using ``style_definitions`` configuration option of the main component.
+Naturally, you can override these at the individual configuration level of each widget. This can be done in batches, using the ``style_definitions`` configuration variable of the main component.
 In the example below, you defined ``date_style``:
 
 .. code-block:: yaml
