@@ -625,7 +625,7 @@ A notable state is ``checked`` (boolean) which can have different styles applied
         height: 30
         id: btn_id
 
-To have a button with a text label on it, add a :ref:`lvgl-wgt-lbl` widget as child to it:
+To have a button with a text label on it, add a child :ref:`lvgl-wgt-lbl` widget to it:
 
 .. code-block:: yaml
 
