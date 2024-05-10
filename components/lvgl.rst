@@ -354,7 +354,7 @@ In the example below, you have an ``arc`` with some styles set here. Note how yo
 
 So the inheritance happens like this: state based styles override the locally specified styles, which override the style definitions, which override the theme, which overrides the top level styles.
 
-The precedence (value) of states is quite intuitive, and it's something the user would expect naturally. E.g. if a widget is focused the user will still want to see if it's pressed, therefore the pressed state has a higher precedence. If the focused state had a higher precedence it would overwrite the pressed color.
+The precedence (value) of states is quite intuitive and it's something the user would expect naturally. For example, if a widget is focused the user will still want to see if it's pressed, therefore the pressed state has a higher precedence. (If the focused state had a higher precedence it would override the "pressed" color, defeating its purpose.)
 
 Feel free to experiment to discover inheritance of the styles based on states between the nested widgets.
 
