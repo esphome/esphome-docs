@@ -281,7 +281,7 @@ Themes
 
 The widgets support lots of :ref:`lvgl-styling` to customize their appearance and behavior.
 
-You can configure a global theme for all the widgets at the top level with the ``theme`` configuration option. In the example below, all the ``arc``, ``slider`` and ``btn`` widgets will use the styles and properties predefined by default here. A combination of styles and :ref:`states <lvgl-wgtprop-state>` can be chosen for every widget.
+You can configure a global theme for all widgets at the top level with the ``theme`` configuration variable. In the example below, all the ``arc``, ``slider`` and ``btn`` widgets will, by default, use the styles and properties defined here. A combination of styles and :ref:`states <lvgl-wgtprop-state>` can be chosen for every widget.
 
 .. code-block:: yaml
 
