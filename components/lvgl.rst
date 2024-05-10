@@ -68,7 +68,7 @@ The following configuration options apply to the main ``lvgl`` component, in ord
 
 **Configuration options:**
 
-- **displays** (**Required**, list): A list of displays where to render this entire LVGL configuration:
+- **displays** (**Required**, list): A list of displays where LVGL should perform rendering based on its configuration:
     - **display_id** (**Required**, :ref:`config-id`): The ID of a display configuration.
 - **touchscreens** (*Optional*, list): A list of touchscreens interacting with the LVGL widgets on the display. Can be omitted if there's at least a rotary encoder configured.
     - **touchscreen_id** (**Required**, :ref:`config-id`): ID of a touchscreen configuration related to a display.
