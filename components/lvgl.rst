@@ -25,7 +25,7 @@ Basics
 
 In LVGL, graphical elements like buttons, labels, sliders, etc. are called widgets or objects. See :ref:`lvgl-widgets` for a complete list of widgets supported within ESPHome. Not all LVGL widgets are implemented, just those commonly used to support home automation needs/tasks.
 
-Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label. Some more complex widgets are internally made up from the simpler ones, these are known as parts - which can have separate properties from the main widget.
+Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of the label. Complex widgets internally consist of several smaller/simpler widgets; these are known as parts, each of which can have separate properties from the main widget.
 
 Pages in ESPHome are implemented as LVGL screens, which are special objects which have no parent. There is always one active page on a display.
 
