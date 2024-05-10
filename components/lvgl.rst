@@ -409,7 +409,7 @@ It can arrange items into a 2D "table" that has rows or columns (tracks). The it
 Widgets
 -------
 
-At the next level of the LVGL object hierarchy are the widgets, which support styling directly. They can have sub-parts, which may be styled separately. Usually styles are inherited, but this depends on widget specifics or functionality. The widget and its parts have states, and the different styling can be set for different states.
+At the next level of the LVGL object hierarchy are the widgets, which support styling directly. They can have sub-parts, which may be styled separately. Usually styles are inherited, but this depends on widget specifics or functionality. The widget and its parts have states, and different styling can be set for different states.
 
 Widgets can have children, which can be any other widgets. Think of this as a nested structure. The child widgets move with the parent and if the parent is hidden the children will be hidden too. 
 
