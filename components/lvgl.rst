@@ -402,7 +402,7 @@ In a Flex layout, use the following options in the ``flex_flow`` configuration p
 
 The Grid layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
 
-It can arrange items into a 2D "table" that has rows or columns (tracks). The item can span through multiple columns or rows. The track's size can be set in pixel, to the largest item or in "Free unit" to distribute the free space proportionally.
+It can arrange items into a 2D "table" that has rows or columns (tracks). The item(s) can span through multiple columns or rows. The track's size can be set in pixels, to the largest item or in "free units" to distribute the free space proportionally.
 
 .. _lvgl-widgets:
 
