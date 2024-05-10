@@ -23,7 +23,7 @@ Check out a few detailed examples :ref:`in the Cookbook <lvgl-cook>` to see a co
 Basics
 ------
 
-In LVGL, graphical elements like Buttons, Labels, Sliders etc. are called widgets or objects. See :ref:`lvgl-widgets` for a list of the available ones in ESPHome. Not all LVGL widgets are implemented, just the ones having most common use cases in home automation.
+In LVGL, graphical elements like buttons, labels, sliders, etc. are called widgets or objects. See :ref:`lvgl-widgets` for a complete list of widgets supported within ESPHome. Not all LVGL widgets are implemented, just those commonly used to support home automation needs/tasks.
 
 Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of label. Some more complex widgets are internally made up from the simpler ones, these are known as parts - which can have separate properties from the main widget.
 
