@@ -7,7 +7,7 @@ LVGL Text Sensor
     :description: Instructions for setting up an LVGL textarea Text Sensor.
     :image: ../images/lvgl_c_txt.png
 
-The ``lvgl`` text platform creates a Text Sensor from a LVGL textarea widget
+The ``lvgl`` text platform creates a Text Sensor from an LVGL textarea widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widget is :ref:`lvgl-wgt-txt`. A single Text Sensor supports
