@@ -17,8 +17,6 @@ a single widget, thus you need to choose among which one's state you want to use
 Configuration options:
 ----------------------
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (**Required**, string): The name of the light.
 - **widget** (**Required**): The ID of a ``led`` widget configured in LVGL, which will reflect the state of the light.
 - All other options from :ref:`light <config-light>`.
 
