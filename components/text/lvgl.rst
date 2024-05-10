@@ -4,7 +4,7 @@ LVGL Text
 =========
 
 .. seo::
-    :description: Instructions for setting up a LVGL textarea Text component.
+    :description: Instructions for setting up an LVGL textarea Text component.
     :image: ../images/lvgl_c_txt.png
 
 The ``lvgl`` text platform creates an editable text component from a LVGL textarea widget
