@@ -4,7 +4,7 @@ LVGL Sensor
 ===========
 
 .. seo::
-    :description: Instructions for setting up a LVGL widget sensor component.
+    :description: Instructions for setting up an LVGL widget sensor component.
     :image: ../images/lvgl_c_num.png
 
 The ``lvgl`` sensor platform creates a semsor component from a LVGL widget
