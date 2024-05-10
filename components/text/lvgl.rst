@@ -10,8 +10,7 @@ LVGL Text
 The ``lvgl`` text platform creates an editable text component from an LVGL textarea widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widget is :ref:`lvgl-wgt-txt`. A text component supports
-only a single widget; it is not possible for multiple widgets to be associated with a single text component.
+Supported widget is :ref:`lvgl-wgt-txt`. A single text supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome text component.
 
 
 Configuration options:

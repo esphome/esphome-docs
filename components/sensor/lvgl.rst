@@ -10,7 +10,7 @@ LVGL Sensor
 The ``lvgl`` sensor platform creates a semsor component from an LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widgets are :ref:`lvgl-wgt-arc`, :ref:`lvgl-wgt-bar`, :ref:`lvgl-wgt-sli` and :ref:`lvgl-wgt-spb`. A single sensor supports only a single widget; in other words, it's not possible to have multiple widgets associated with an ESPHome sensor.
+Supported widgets are :ref:`lvgl-wgt-arc`, :ref:`lvgl-wgt-bar`, :ref:`lvgl-wgt-sli` and :ref:`lvgl-wgt-spb`. A single sensor supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome sensor.
 
 Configuration options:
 ----------------------

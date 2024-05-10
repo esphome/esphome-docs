@@ -10,8 +10,7 @@ LVGL Select
 The ``lvgl`` switch platform creates a select from an LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widgets are :ref:`lvgl-wgt-drp` and :ref:`lvgl-wgt-rol`. A single select supports
-a single widget, thus you need to choose among which one's state you want to use.
+Supported widgets are :ref:`lvgl-wgt-drp` and :ref:`lvgl-wgt-rol`. A single select supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome select component.
 
 Configuration options:
 ----------------------
