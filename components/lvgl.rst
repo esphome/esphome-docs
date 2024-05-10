@@ -651,7 +651,7 @@ To have a button with a text label on it, add a child :ref:`lvgl-wgt-lbl` widget
                 format: "Button checked state: %d"
                 args: [ x ]
 
-The ``btn`` can be also integrated as :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
+The ``btn`` can be also integrated as a :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
 
 See :ref:`lvgl-cook-binent` for an example how to use a checkable button to act on a Home Assistant service.
 
