@@ -4,7 +4,7 @@ LVGL Number
 ===========
 
 .. seo::
-    :description: Instructions for setting up a LVGL widget number component.
+    :description: Instructions for setting up an LVGL widget number component.
     :image: ../images/lvgl_c_num.png
 
 The ``lvgl`` number platform creates a number component from a LVGL widget
