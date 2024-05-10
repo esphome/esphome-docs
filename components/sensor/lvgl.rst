@@ -15,8 +15,6 @@ Supported widgets are :ref:`lvgl-wgt-arc`, :ref:`lvgl-wgt-bar`, :ref:`lvgl-wgt-s
 Configuration options:
 ----------------------
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (**Required**, string): The name of the sensor.
 - **widget** (**Required**): The ID of a supported widget configured in LVGL, which will reflect the state of the sensor.
 - All other options from :ref:`Sensor <config-sensor>`.
 
