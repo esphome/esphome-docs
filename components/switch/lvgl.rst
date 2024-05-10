@@ -12,12 +12,12 @@ and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widgets are :ref:`lvgl-wgt-btn` (with ``checkable`` option enabled), :ref:`lvgl-wgt-swi` and :ref:`lvgl-wgt-chk`. A single switch supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome switch component.
 
-Configuration options:
-----------------------
+Configuration variables:
+------------------------
 
 - **widget** (**Required**): The ID of a supported widget configured in LVGL, which will reflect the state of the switch.
 - **output_id** (*Optional*, :ref:`config-id`): The ID of a **binary** output to drive in sync with the ``checked`` state of the configured widget.
-- All other options from :ref:`Switch <config-switch>`.
+- All other variables from :ref:`Switch <config-switch>`.
 
 Example:
 

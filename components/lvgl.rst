@@ -41,7 +41,7 @@ Some widgets integrate also as native ESPHome components:
       - ESPHome component
 
     * - ``btn``
-      - :doc:`Binary Sensor </components/binary_sensor/lvgl>`, :doc:`Switch </components/switch/lvgl>`
+      - :doc:`Switch </components/switch/lvgl>`, :doc:`Binary Sensor </components/binary_sensor/lvgl>`
 
     * - ``switch``, ``checkbox``
       - :doc:`Switch </components/switch/lvgl>`
@@ -52,12 +52,11 @@ Some widgets integrate also as native ESPHome components:
     * - ``dropdown``,  ``roller``
       - :doc:`Select </components/select/lvgl>`
 
-    * - ``led``
-      - :doc:`Light </components/light/lvgl>`
-
     * - ``textarea``
       - :doc:`Text </components/text/lvgl>`, :doc:`Text Sensor </components/text_sensor/lvgl>`
 
+    * - ``led``
+      - :doc:`Light </components/light/lvgl>`
 
 These are useful to make :ref:`automations <automation>` triggered by actions performed at the screen.
 

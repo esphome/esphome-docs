@@ -7,17 +7,15 @@ LVGL Text
     :description: Instructions for setting up an LVGL textarea Text component.
     :image: ../images/lvgl_c_txt.png
 
-The ``lvgl`` text platform creates an editable text component from an LVGL textarea widget
-and requires :ref:`LVGL <lvgl-main>` to be configured.
+The ``lvgl`` text platform creates an editable text component from an LVGL textarea widget and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widget is :ref:`lvgl-wgt-txt`. A single text supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome text component.
 
-
-Configuration options:
-----------------------
+Configuration variables:
+------------------------
 
 - **widget** (**Required**): The ID of a ``textarea`` widget configured in LVGL, which will reflect the state of the text component.
-- All other options from :ref:`Text <config-text>`.
+- All other variables from :ref:`Text <config-text>`.
 
 Example:
 

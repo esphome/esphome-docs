@@ -12,11 +12,11 @@ and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widgets are :ref:`lvgl-wgt-drp` and :ref:`lvgl-wgt-rol`. A single select supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome select component.
 
-Configuration options:
-----------------------
+Configuration variables:
+------------------------
 
 - **widget** (**Required**): The ID of a supported widget configured in LVGL, which will reflect the state of the select.
-- All other options from :ref:`Select <config-select>`.
+- All other variables from :ref:`Select <config-select>`.
 
 Example:
 

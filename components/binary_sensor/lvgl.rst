@@ -12,11 +12,11 @@ and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widget is :ref:`lvgl-wgt-btn`. A single binary sensor supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome binary sensor component.
 
-Configuration options:
-----------------------
+Configuration variables:
+------------------------
 
 - **widget** (**Required**): The ID of a supported widget configured in LVGL, which will reflect the state of the binary sensor.
-- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+- All other variables from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Example:
 

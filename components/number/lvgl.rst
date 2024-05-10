@@ -12,12 +12,12 @@ and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widgets are :ref:`lvgl-wgt-arc`, :ref:`lvgl-wgt-bar`, :ref:`lvgl-wgt-sli` and :ref:`lvgl-wgt-spb`. A single number supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome number component.
 
-Configuration options:
-----------------------
+Configuration variables:
+------------------------
 
 - **widget** (**Required**): The ID of a supported widget configured in LVGL, which will reflect the state of the number.
 - **animated** (*Optional*, boolean): Whether to set the value of the widget with an animation (if supported by the widget). Defaults to ``true``.
-- All other options from :ref:`Number <config-number>`.
+- All other variables from :ref:`Number <config-number>`.
 
 Example:
 

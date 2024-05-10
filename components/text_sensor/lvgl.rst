@@ -12,11 +12,11 @@ and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widget is :ref:`lvgl-wgt-txt`. A single text sensor supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome text sensor component.
 
-Configuration options:
-----------------------
+Configuration variables:
+------------------------
 
 - **widget** (**Required**): The ID of a ``textarea`` widget configured in LVGL, which will reflect the state of the text sensor.
-- All other options from :ref:`Text Sensor <config-text_sensor>`.
+- All other variables from :ref:`Text Sensor <config-text_sensor>`.
 
 Example:
 
