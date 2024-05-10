@@ -365,7 +365,7 @@ Feel free to experiment to discover inheritance of the styles based on states be
 Layouts
 *******
 
-Layouts help positioning the widgets automatically, without the need to manually specify the ``x`` and the ``y`` positional coordinates for each. This is a great way to simplify the configuration, allowing you to even omit alignment options.
+Layouts aim to position widgets automatically, eliminating the need to specify ``x`` and ``y`` coordinates to position each widget. This is a great way to simplify your configuration as it allows you to omit alignment options.
 
 The layout configuration options are applied to any parent widget or page, influencing the appearance of the children.
 
