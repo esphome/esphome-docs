@@ -17,8 +17,6 @@ only a single widget; it is not possible for multiple widgets to be associated w
 Configuration options:
 ----------------------
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (**Required**, string): The name of the text sensor.
 - **widget** (**Required**): The ID of a ``textarea`` widget configured in LVGL, which will reflect the state of the text sensor.
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
