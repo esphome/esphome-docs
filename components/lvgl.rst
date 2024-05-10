@@ -462,7 +462,7 @@ The properties below are common to all widgets.
 
 .. _lvgl-wgtprop-state:
 
-- **state** (*Optional*, enum): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from theme, but can be locally overridden within style definitions or locally set. Can be one of:
+- **state** (*Optional*, enum): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from the theme, but can be locally set or overridden within style definitions. Can be one of:
     - **default** (*Optional*, boolean): Normal, released state.
     - **disabled** (*Optional*, boolean): Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.enable`` and ``lvgl.widget.disable``).
     - **pressed** (*Optional*, boolean): Being pressed.
