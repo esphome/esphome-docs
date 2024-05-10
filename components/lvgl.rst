@@ -375,7 +375,7 @@ The layout configuration options are applied to any parent widget or page, influ
 
 The Flex layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
 
-It can arrange items into rows or columns (tracks), handle wrapping, adjust the spacing between the items and tracks, handle grow to make the item(s) fill the remaining space with respect to min/max width and height.
+It can arrange items into rows or columns (tracks), handle wrapping, adjust spacing between items and tracks and even handle growing the layout to make the item(s) fill the remaining space with respect to minimum/maximum width and height.
 
 Terms used:
 
