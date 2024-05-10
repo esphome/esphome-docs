@@ -7,7 +7,7 @@ LVGL Light
     :description: Instructions for setting up an LVGL widget light.
     :image: ../images/lvgl_c_lig.png
 
-The ``lvgl`` light platform creates a light from a LVGL widget
+The ``lvgl`` light platform creates a light from an LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widgets are :ref:`lvgl-wgt-led`. A single light supports
