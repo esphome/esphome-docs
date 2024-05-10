@@ -487,7 +487,7 @@ To apply styles to the states, you need to specify them one level above, for exa
 
 The state itself can be can be changed by interacting with the widget, or through :ref:`actions <lvgl-objupd-act>` with ``lvgl.widget.update``.
 
-See :ref:`lvgl-cook-cover` for a cookbook example how to play with styling and properties to show different states of a Home Assistant entity.
+See :ref:`lvgl-cook-cover` for a cookbook example illustrating how to use styling and properties to show different states of a Home Assistant entity.
 
 .. _lvgl-objupdflag-act:
 
