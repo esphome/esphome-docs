@@ -7,7 +7,7 @@ LVGL Text
     :description: Instructions for setting up an LVGL textarea Text component.
     :image: ../images/lvgl_c_txt.png
 
-The ``lvgl`` text platform creates an editable text component from a LVGL textarea widget
+The ``lvgl`` text platform creates an editable text component from an LVGL textarea widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widget is :ref:`lvgl-wgt-txt`. A single text component supports
