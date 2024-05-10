@@ -4,7 +4,7 @@ LVGL Text Sensor
 ================
 
 .. seo::
-    :description: Instructions for setting up a LVGL textarea Text Sensor.
+    :description: Instructions for setting up an LVGL textarea Text Sensor.
     :image: ../images/lvgl_c_txt.png
 
 The ``lvgl`` text platform creates a Text Sensor from a LVGL textarea widget
