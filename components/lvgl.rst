@@ -420,6 +420,7 @@ Common properties
 
 The properties below are common to all widgets.
 
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to top left of parent or screen). If layouts are used, or if specifying ``align``, it is used as an offset to the calculated position (can also be negative).
 - **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If layouts are used, or if specifying ``align``, it is used as an offset to the calculated position (can also be negative).
 
@@ -692,6 +693,11 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
 - ``lvgl.button.update`` :ref:`action <config-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options.
 - ``lvgl.btnmatrix.update`` :ref:`action <config-action>` updates the items styles and properties specified in the specific ``state``, ``items`` options.
 
+**Specific triggers:**
+
+- ``on_value`` and :ref:`universal <lvgl-event-trg>` triggers can be configured for each button, is activated after clicking. If ``checkable`` is ``true``, the boolean variable ``x``, representing the checked state, may be used by lambdas within this trigger.
+- The :ref:`universal <lvgl-event-trg>` LVGL event triggers can be configured for the main widget, they pass the ID of the pressed button (or null if nothing pressed) as variable ``x`` (a pointer to a ``uint16_t`` which holds the index number of the button). 
+
 **Example:**
 
 .. code-block:: yaml
@@ -746,6 +752,30 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
               disabled: true
             items:
               bg_color: 0xf0f0f0
+
+    # Example trigger:
+    - btnmatrix:
+        ...
+        rows:
+          - buttons:
+            ...
+            - id: button_2
+              ...
+              control:
+                checkable: true
+              on_value: # Trigger for the individual button, returning the checked state
+                then:
+                  - logger.log:
+                      format: "Button 2 checked: %d"
+                      args: [ x ]
+        on_press: # Triggers for the matrix, to determine which button was pressed
+          logger.log:
+            format: "Matrix button pressed: %d"
+            args: ["*x"]
+        on_click:
+          logger.log:
+            format: "Matrix button clicked: %d, is button_2 = %u"
+            args: ["*x", "id(button_2) == x"]
 
 .. tip::
 
@@ -1792,6 +1822,72 @@ The configured message boxes are hidden by default. One can show them with ``lvg
 .. tip::
 
     You can create your own more complex dialogs with a full-screen sized, half-opaque ``obj`` with any child widgets on it, and the ``hidden`` flag set to ``true`` by default. For non-modal dialogs, simply set the ``clickable`` flag to ``false`` on it.
+
+.. _lvgl-wgt-kbd:
+
+``keyboard``
+************
+
+The Keyboard widget is a special Button matrix with predefined keymaps and other features to show an on-screen keyboard usable to type texts into a :ref:`lvgl-wgt-txt`.
+
+.. figure:: /components/images/lvgl_keyboard.png
+    :align: center
+
+From styling point of view, it uses the same settings as :ref:`lvgl-wgt-bmx`.
+
+**Specific options:**
+
+- **textarea** (*Optional*): The ID of the ``textarea`` which to receive the keystrokes.
+- **mode** (*Optional*, enum): Keyboard layout to use. The ``TEXT_`` modes' layout contains buttons to change between each other.
+    - ``TEXT_LOWER``: Display lower case letters (default).
+    - ``TEXT_UPPER``: Display upper case letters.
+    - ``TEXT_SPECIAL``: Display special characters.
+    - ``NUMBER``: Display numbers, +/- sign, and decimal dot.
+
+**Specific actions:**
+
+- ``lvgl.keyboard.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+
+**Specific triggers:**
+
+- ``on_ready`` :ref:`trigger <automation>` is activated ckeckmark key is pressed.
+- ``on_cancel`` :ref:`trigger <automation>` is activated key representing a keyboard icon is pressed.
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - keyboard:
+        id: keyboard_id
+        textarea: textarea_1
+        mode: TEXT_UPPER
+
+    # Example actions:
+    on_focus:
+      then:
+        - lvgl.keyboard.update:
+            id: keyboard_id
+            mode: number
+            textarea: textarea_2
+
+    # Example trigger:
+    - keyboard:
+        ...
+        on_ready:
+          then:
+            - logger.log: Keyboard is ready
+        on_cancel:
+          then:
+            - logger.log: Keyboard cancelled
+
+.. tip::
+
+    The Keyboard widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations. 
+
+.. note::
+
+    The Keyboard widget doesn't support popovers or custom layouts.
 
 Actions
 -------

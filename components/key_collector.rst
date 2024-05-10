@@ -8,12 +8,10 @@ Key collector component
 
 The ``key_collector`` component collects key presses from components 
 like :ref:`matrix_keypad`, :ref:`Wiegand keypad <wiegand>`
-or :ref:`LVGL Button Matrix widget <lvgl-wgt-bmx>`. It allows you to process
-key sequences and treat them as one, for example to allow inputting of 
-a PIN code or a passkey. The component outputs the result of the keypress
-sequence as a variable usable in automations.
-
-
+or LVGL :ref:`Button Matrix <lvgl-wgt-bmx>`, :ref:`Keyboard <lvgl-wgt-kbd>`
+widgets. It allows you to process key sequences and treat them as one, for
+example to allow inputting of a PIN code or a passkey. The component outputs
+the result of the keypress sequence as a variable usable in automations.
 
 Component
 ---------
@@ -44,8 +42,6 @@ Component
           - logger.log:
               format: "input timeout: '%s', started by '%c'"
               args: [ 'x.c_str()', "(start == 0 ? '~' : start)" ]
-
-
 
 Configuration variables:
 
@@ -96,4 +92,5 @@ See Also
 - :doc:`/components/matrix_keypad`
 - :doc:`/components/wiegand`
 - :ref:`LVGL Button Matrix widget <lvgl-wgt-bmx>`
+- :ref:`LVGL Keyboard widget <lvgl-wgt-kbd>`
 - :ghedit:`Edit`
