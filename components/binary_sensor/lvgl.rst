@@ -11,7 +11,7 @@ The ``lvgl`` binary sensor platform creates a binary sensor from an LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widget is :ref:`lvgl-wgt-btn`. A single binary sensor supports
-a single widget, thus you need to choose among which one's state you want to use.
+only a single widget; it is not possible to have a single binary sensor respond to multiple widgets.
 
 Configuration options:
 ----------------------
