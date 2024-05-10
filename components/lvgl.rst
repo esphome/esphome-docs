@@ -693,7 +693,7 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
 **Actions:**
 
 - ``lvgl.button.update`` :ref:`action <config-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options.
-- ``lvgl.btnmatrix.update`` :ref:`action <config-action>` updates the items styles and properties specified in the specific ``state``, ``items`` options.
+- ``lvgl.btnmatrix.update`` :ref:`action <config-action>` updates the item styles and properties specified in the specific ``state``, ``items`` options.
 
 **Triggers:**
 
@@ -801,7 +801,7 @@ The Switch looks like a little slider and can be used to turn something on and o
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <automation>` is activated when toggling the switch, the variable ``x`` returning a boolean representing the checked state.
+- ``on_value`` :ref:`trigger <automation>` is activated when toggling the switch. The boolean variable ``x``, representing the switch's state, may be used by lambdas within this trigger.
 
 **Example:**
 
