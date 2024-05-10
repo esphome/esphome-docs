@@ -7,7 +7,7 @@ LVGL Sensor
     :description: Instructions for setting up an LVGL widget sensor component.
     :image: ../images/lvgl_c_num.png
 
-The ``lvgl`` sensor platform creates a semsor component from a LVGL widget
+The ``lvgl`` sensor platform creates a semsor component from an LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widgets are :ref:`lvgl-wgt-arc`, :ref:`lvgl-wgt-bar`, :ref:`lvgl-wgt-sli` and :ref:`lvgl-wgt-spb`. A single sensor supports a single widget, thus you need to choose among which one's state you want to use.
