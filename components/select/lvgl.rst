@@ -4,10 +4,10 @@ LVGL Select
 ===========
 
 .. seo::
-    :description: Instructions for setting up a LVGL widget select.
+    :description: Instructions for setting up an LVGL widget select.
     :image: ../images/lvgl_c_sel.png
 
-The ``lvgl`` switch platform creates a select from a LVGL widget
+The ``lvgl`` switch platform creates a select from an LVGL widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widgets are :ref:`lvgl-wgt-drp` and :ref:`lvgl-wgt-rol`. A single select supports
@@ -16,8 +16,6 @@ a single widget, thus you need to choose among which one's state you want to use
 Configuration options:
 ----------------------
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (**Required**, string): The name of the select.
 - **widget** (**Required**): The ID of a supported widget configured in LVGL, which will reflect the state of the select.
 - All other options from :ref:`Select <config-select>`.
 
