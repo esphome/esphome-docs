@@ -24,8 +24,8 @@ For graphical binary displays, there are two options:
 Display Rendering Engine
 ------------------------
 
-ESPHome's own powerful rendering engine can do many things like draw some basic shapes, print text with any font
-you want, or even show images.
+ESPHome's own powerful rendering engine can handle many common tasks such as drawing basic shapes, printing text with fonts of your choice,
+or even rendering images.
 
 To achieve all this flexibility displays tie in directly into ESPHome's :ref:`lambda system <config-lambda>`.
 So when you want to write some text or sensor values to the screen you will be writing in C++ code
