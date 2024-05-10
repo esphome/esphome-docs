@@ -411,7 +411,7 @@ Widgets
 
 At the next level of the LVGL object hierarchy are the widgets, which support styling directly. They can have sub-parts, which may be styled separately. Usually styles are inherited, but this depends on widget specifics or functionality. The widget and its parts have states, and different styling can be set for different states.
 
-Widgets can have children, which can be any other widgets. Think of this as a nested structure. The child widgets move with the parent and if the parent is hidden the children will be hidden too. 
+Widgets can have children, which can be any other widgets. Think of this as a nested structure. The child widgets move with the parent and, if the parent is hidden, its children will also be hidden.
 
 By default, LVGL draws new widgets on top of old widgets, including their children. When widgets have children, property inheritance takes place. Some properties (typically that are related to text and opacity) can be inherited from the parent widgets's styles. When the property is inheritable, the property's value will be searched in the parents too until an object specifies a value for it. The parents will use their own :ref:`state <lvgl-wgtprop-state>` to determine the value. So for example if a button is pressed, and the text color comes from here, the pressed text color will be used. 
 
