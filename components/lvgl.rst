@@ -47,13 +47,17 @@ Some widgets integrate also as native ESPHome components:
       - :doc:`Switch </components/switch/lvgl>`
 
     * - ``slider``, ``arc``, ``spinbox``
-      - :doc:`Number </components/number/lvgl>`
+      - :doc:`Number </components/number/lvgl>`, :doc:`Sensor </components/sensor/lvgl>`
 
     * - ``dropdown``,  ``roller``
       - :doc:`Select </components/select/lvgl>`
 
     * - ``led``
       - :doc:`Light </components/light/lvgl>`
+
+    * - ``textarea``
+      - :doc:`Text </components/text/lvgl>`, :doc:`Text Sensor </components/text_sensor/lvgl>`
+
 
 These are useful to make :ref:`automations <automation>` triggered by actions performed at the screen.
 
