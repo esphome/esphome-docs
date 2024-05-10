@@ -4,7 +4,7 @@ LVGL Light
 ==========
 
 .. seo::
-    :description: Instructions for setting up a LVGL widget light.
+    :description: Instructions for setting up an LVGL widget light.
     :image: ../images/lvgl_c_lig.png
 
 The ``lvgl`` light platform creates a light from a LVGL widget
