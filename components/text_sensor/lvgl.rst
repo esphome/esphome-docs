@@ -10,8 +10,8 @@ LVGL Text Sensor
 The ``lvgl`` text platform creates a Text Sensor from an LVGL textarea widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widget is :ref:`lvgl-wgt-txt`. A single Text Sensor supports
-a single widget, thus you need to choose among which one's state you want to use.
+Supported widget is :ref:`lvgl-wgt-txt`. A text sensor supports
+only a single widget; it is not possible for multiple widgets to be associated with a single text sensor.
 
 
 Configuration options:
