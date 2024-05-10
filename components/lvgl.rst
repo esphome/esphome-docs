@@ -559,11 +559,10 @@ A label is the basic widget type that is used to display text.
 
 **Specific actions:**
 
-``lvgl.label.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. 
-
-- **text** (**Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
-    -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
-    -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the
+- ``lvgl.label.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. 
+    - **text** (**Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
+        -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
+        -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the
        format message.
 
 **Example:**
@@ -611,7 +610,7 @@ A notable state is ``checked`` (boolean) which can have different styles applied
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated after clicking. If ``checkable`` is ``true``, the boolean variable ``x``, representing the checked state, may be used by lambdas within this trigger.
+- ``on_value`` :ref:`trigger <automation>` is activated after clicking. If ``checkable`` is ``true``, the boolean variable ``x``, representing the checked state, may be used by lambdas within this trigger.
 
 **Example:**
 
@@ -691,9 +690,8 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
 
 **Specific actions:**
 
-``lvgl.button.update`` :ref:`action <config-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options.
-
-``lvgl.btnmatrix.update`` :ref:`action <config-action>` updates the items styles and properties specified in the specific ``state``, ``items`` options.
+- ``lvgl.button.update`` :ref:`action <config-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options.
+- ``lvgl.btnmatrix.update`` :ref:`action <config-action>` updates the items styles and properties specified in the specific ``state``, ``items`` options.
 
 **Example:**
 
@@ -772,7 +770,7 @@ The Switch looks like a little slider and can be used to turn something on and o
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated when toggling the switch, the variable ``x`` returning a boolean representing the checked state.
+- ``on_value`` :ref:`trigger <automation>` is activated when toggling the switch, the variable ``x`` returning a boolean representing the checked state.
 
 **Example:**
 
@@ -814,12 +812,10 @@ The Checkbox widget is made internally from a *tick box* and a label. When the C
 
 **Specific actions:**
 
-``lvgl.checkbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
-
-- **text** (**Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
-    -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
-    -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the
-       format message.
+- ``lvgl.checkbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+    - **text** (**Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
+        -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
+        -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the format message.
 
 **Specific triggers:**
 
@@ -884,12 +880,12 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
 
 **Specific actions:**
 
-``lvgl.dropdown.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.dropdown.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated only when you select an item from the list. The new selected index is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the selected index in ``x``. 
-``on_cancel`` :ref:`trigger <automation>` is also activated when you close the dropdown without selecting an item from the list. The currently selected index is returned in the variable ``x``.
+- ``on_value`` :ref:`trigger <automation>` is activated only when you select an item from the list. The new selected index is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the selected index in ``x``. 
+- ``on_cancel`` :ref:`trigger <automation>` is also activated when you close the dropdown without selecting an item from the list. The currently selected index is returned in the variable ``x``.
 
 **Example:**
 
@@ -951,11 +947,11 @@ Roller allows you to simply select one option from a list by scrolling.
 
 **Specific actions:**
 
-``lvgl.roller.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.roller.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated when you select an item from the list. The new selected index is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the selected index in ``x``. 
+- ``on_value`` :ref:`trigger <automation>` is activated when you select an item from the list. The new selected index is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the selected index in ``x``. 
 
 **Example:**
 
@@ -1016,7 +1012,7 @@ Not only the end, but also the start value of the bar can be set, which changes 
 
 **Specific actions:**
 
-``lvgl.bar.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.bar.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -1065,11 +1061,11 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 **Specific actions:**
 
-``lvgl.slider.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.slider.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
+- ``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
 
 **Example:**
 
@@ -1147,11 +1143,11 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 **Specific actions:**
 
-``lvgl.arc.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.arc.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
+- ``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
 
 **Example:**
 
@@ -1219,13 +1215,13 @@ The Spinbox contains a numeric value (as text) which can be increased or decreas
 
 **Specific actions:**
 
-``lvgl.spinbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
-``lvgl.spinbox.decrement`` :ref:`action <config-action>` decreases the value by one ``step`` configured above.
-``lvgl.spinbox.increment`` :ref:`action <config-action>` increases the value by one ``step`` configured above.
+- ``lvgl.spinbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.spinbox.decrement`` :ref:`action <config-action>` decreases the value by one ``step`` configured above.
+- ``lvgl.spinbox.increment`` :ref:`action <config-action>` increases the value by one ``step`` configured above.
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
+- ``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
 
 **Example:**
 
@@ -1329,7 +1325,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 
 **Specific actions:**
 
-``lvgl.indicator.update`` :ref:`action <config-action>` updates indicator options, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` cannot be updated at runtime.
+- ``lvgl.indicator.update`` :ref:`action <config-action>` updates indicator options, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` cannot be updated at runtime.
 
 **Example:**
 
@@ -1388,7 +1384,7 @@ Images are the basic widgets to display images.
 
 **Specific actions:**
 
-``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. Updating the ``src`` option changes the image at runtime.
+- ``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. Updating the ``src`` option changes the image at runtime.
 
 **Example:**
 
@@ -1429,9 +1425,9 @@ The animation image is similar to the normal ``img`` widget. The main difference
 
 **Specific actions:**
 
-``lvgl.animimg.start`` :ref:`action <config-action>` starts the animation playback if it was displayed with ``auto_start`` false or after ``repeat_count`` expired.
-``lvgl.animimg.stop`` :ref:`action <config-action>` stops the animation playback.
-``lvgl.animimg.update`` :ref:`action <config-action>` can be used to change ``repeat_count`` and ``duration``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` and ``auto_start`` cannot be updated at runtime.
+- ``lvgl.animimg.start`` :ref:`action <config-action>` starts the animation playback if it was displayed with ``auto_start`` false or after ``repeat_count`` expired.
+- ``lvgl.animimg.stop`` :ref:`action <config-action>` stops the animation playback.
+- ``lvgl.animimg.update`` :ref:`action <config-action>` can be used to change ``repeat_count`` and ``duration``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` and ``auto_start`` cannot be updated at runtime.
 
 **Example:**
 
@@ -1510,7 +1506,7 @@ The Led widgets are rectangle-like (or circle) widget whose brightness can be ad
 
 **Specific actions:**
 
-``lvgl.led.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.led.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -1563,8 +1559,8 @@ The Textarea is a widget allowing to input text and displays a cursor. Long line
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated on every keystroke, the variable ``text`` containing the entire contents of the textarea.
-``on_ready`` :ref:`trigger <automation>` is activated in case of ``one_line`` configured as ``true``, when the New Line character is receicved (Enter key on the keyboard).
+- ``on_value`` :ref:`trigger <automation>` is activated on every keystroke, the variable ``text`` containing the entire contents of the textarea.
+- ``on_ready`` :ref:`trigger <automation>` is activated in case of ``one_line`` configured as ``true``, when the New Line character is receicved (Enter key on the keyboard).
 
 **Example:**
 
@@ -1621,7 +1617,7 @@ The Spinner widget is a spinning arc over a ring.
 
 **Specific actions:**
 
-``lvgl.spinner.update`` :ref:`action <config-action>` updates the widget styles and properties for the *indicator* part (anything other than the properties that apply commonly to all widgets), just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.spinner.update`` :ref:`action <config-action>` updates the widget styles and properties for the *indicator* part (anything other than the properties that apply commonly to all widgets), just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -1695,17 +1691,16 @@ A typical application would probably use an ``obj`` container widget as a tile, 
 
 **Specific actions:**
 
-``lvgl.tileview.select`` :ref:`action <config-action>` jumps the ``tileview`` to the desired tile:
- 
-- **id** (**Required**): The ID of the ``tileview`` which receives this action
-- **tile_id** (*Optional*): The ID of the tile from within it, to which to jump. Required if not specifying ``row`` and ``column``.
-- **row** (*Optional*): Horizontal position of the tile to which to jump. Required if not specifying ``tile_id``.
-- **column** (*Optional*): Vertical position of the tile to which to jump. Required if not specifying ``tile_id``.
-- **animated** (*Optional*, boolean): To animate the movement. Defaults to ``false``.
+- ``lvgl.tileview.select`` :ref:`action <config-action>` jumps the ``tileview`` to the desired tile:
+    - **id** (**Required**): The ID of the ``tileview`` which receives this action
+    - **tile_id** (*Optional*): The ID of the tile from within it, to which to jump. Required if not specifying ``row`` and ``column``.
+    - **row** (*Optional*): Horizontal position of the tile to which to jump. Required if not specifying ``tile_id``.
+    - **column** (*Optional*): Vertical position of the tile to which to jump. Required if not specifying ``tile_id``.
+    - **animated** (*Optional*, boolean): To animate the movement. Defaults to ``false``.
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated when displayed tile changes. The new value is returned in the variable ``tile``, as the ID of the newly visible tile. 
+- ``on_value`` :ref:`trigger <automation>` is activated when displayed tile changes. The new value is returned in the variable ``tile``, as the ID of the newly visible tile. 
 
 **Example:**
 
