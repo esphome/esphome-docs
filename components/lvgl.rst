@@ -2082,10 +2082,13 @@ See Also
 
 - :doc:`Examples in the Cookbook </cookbook/lvgl>`
 - :doc:`/components/binary_sensor/lvgl`
+- :doc:`/components/sensor/lvgl`
+- :doc:`/components/number/lvgl`
 - :doc:`/components/switch/lvgl`
-- :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`
 - :doc:`/components/select/lvgl`
 - :doc:`/components/light/lvgl`
+- :doc:`/components/text/lvgl`
+- :doc:`/components/text_sensor/lvgl`
 - :doc:`/components/display/index`
 - :doc:`/components/touchscreen/index`
 - :doc:`/components/sensor/rotary_encoder`
