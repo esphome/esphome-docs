@@ -659,7 +659,7 @@ See :ref:`lvgl-cook-binent` for an example illustrating how to use a checkable b
 ``btnmatrix``
 *************
 
-The Button Matrix widget is a lightweight way to display multiple buttons in rows and columns. Lightweight because the buttons are not actually created but just virtually drawn on the fly. This way, one button use only eight extra bytes of memory instead of the ~100-150 bytes a normal Button widget plus the 100 or so bytes for the Label widget.
+The Button Matrix widget is a lightweight way to display multiple buttons in rows and columns. It's lightweight because the buttons are not actually created but instead simply drawn on the fly. This reduces the memory footprint of each button from approximately 200 bytes (for both the button and its label widget) down to only eight bytes.
 
 .. figure:: /components/images/lvgl_btnmatrix.png
     :align: center
@@ -671,7 +671,7 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
         - **id** (*Optional*): An ID for the button in the matrix.
         - **text** (*Optional*): Text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display on the button.
         - **key_code** (*Optional*, string): One character be sent as the key code to a :ref:`key_collector` instead of ``text`` when the button is pressed.
-        - **width** (*Optional*): Width relative to the other buttons in the same row. A value between ``1`` and ``15`` range, default ``1`` (eg. in a line with two buttons: one ``width: 1`` and another one ``width: 2``, the first will be ``33%`` wide while the second will be ``66%`` wide). 
+        - **width** (*Optional*): Width relative to the other buttons in the same row. Must be a value between ``1`` and ``15``; the default is ``1`` (for example, given a line with two buttons, one with ``width: 1`` and another one with ``width: 2``, the first will be ``33%`` wide while the second will be ``66%`` wide). 
         - **selected** (*Optional*, boolean): Set the button as the most recently released or focused. Defaults to ``false``.
         - **control** (*Optional*): Binary flags to control behavior of the buttons (all ``false`` by default):
             - **hidden** (*Optional*, boolean): Make a button hidden (hidden buttons still take up space in the layout, they are just not visible or clickable).
@@ -681,7 +681,7 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
             - **checked** (*Optional*, boolean): Make the button checked. Apply ``checked`` styles to the button.
             - **click_trig** (*Optional*, boolean): Control how to :ref:`trigger <lvgl-event-trg>` ``on_value`` : if ``true`` on *click*, if ``false`` on *press*.
             - **popover** (*Optional*, boolean): Show the button label in a popover when pressing this button.
-            - **recolor** (*Optional*, boolean): Enable recoloring of button texts with #. E.g. ``It's #ff0000 red#``
+            - **recolor** (*Optional*, boolean): Enable recoloring of button text with ``#``. For example: ``It's #FF0000 red#``
             - **custom_1** and **custom_2** (*Optional*, boolean): Custom, free to use flags.
 
 - **items** (*Optional*, list): Settings for the items *part*, the buttons all use the text and typical background style properties except translations and transformations.
@@ -841,14 +841,14 @@ The Checkbox widget is made internally from a *tick box* and a label. When the C
 
 **Specific actions:**
 
-- ``lvgl.checkbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.checkbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
     - **text** (**Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
         -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
         -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the format message.
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated when toggling the checkbox, the variable ``x`` returning a boolean representing the checked state.
+``on_value`` :ref:`trigger <automation>` is activated when toggling the checkbox. The boolean variable ``x``, representing the checkbox's state, may be used by lambdas within this trigger.
 
 **Example:**
 
@@ -900,16 +900,16 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
 - **options** (**Required**, list): The list of available options in the drop-down.
 - **dir** (*Optional*, enum): Where the list part of the dropdown gets created relative to the button part. ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
 - **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
-- **symbol** (*Optional*, enum): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from the built-in ones or from your own customized font.
+- **symbol** (*Optional*, enum): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from those built-in or from your own customized font.
 - **indicator** (*Optional*, list): Settings for the the parent of ``symbol``. Supports a list of :ref:`styles <lvgl-styling>` to customize.
 - **dropdown_list** (*Optional*, list): Settings for the dropdown_list *part*, the list with items. Supports a list of :ref:`styles <lvgl-styling>` to customize. Notable are ``text_line_space`` and ``pad_all`` for spacing of list items, and ``text_font`` to separately change the font in the list.
 - **selected** (*Optional*, list): Settings for the selected item in the list. Supports a list of :ref:`styles <lvgl-styling>` to customize.
 - **scrollbar** (*Optional*, list): Settings for the scrollbar *part*. Supports a list of :ref:`styles <lvgl-styling>` to customize. The scrollbar background, border, shadow properties and width (for its own width) and right padding for the spacing on the right.
-- Style options from :ref:`lvgl-styling` for the background of the button and the list. Uses the typical background properties and :ref:`lvgl-wgt-lbl` text properties for the text on it. ``max_height`` can be used to limit the height of the list. ``text_font`` to set the font of the button part, including the symbol.
+- Style options from :ref:`lvgl-styling` for the background of the button and the list. Uses the typical background properties and :ref:`lvgl-wgt-lbl` text properties for the text on it. ``max_height`` can be used to limit the height of the list. ``text_font`` can be used to set the font of the button part, including the symbol.
 
 **Specific actions:**
 
-- ``lvgl.dropdown.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.dropdown.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Specific triggers:**
 
@@ -976,7 +976,7 @@ Roller allows you to simply select one option from a list by scrolling.
 
 **Specific actions:**
 
-- ``lvgl.roller.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.roller.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Specific triggers:**
 
@@ -1035,13 +1035,13 @@ Not only the end, but also the start value of the bar can be set, which changes 
 - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
 - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
 - **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize, all the typical background properties.
-- **animated** (*Optional*, boolean): To animate indicator when bar changes value. Defaults to ``true``.
+- **animated** (*Optional*, boolean): Animate the indicator when the bar changes value. Defaults to ``true``.
 - **anim_time** (*Optional*, :ref:`Time <config-time>`): Sets the animation time if the value is set with ``animated: true``.
 - Style options from :ref:`lvgl-styling`. The background of the bar and it uses the typical background style properties. Adding padding will make the indicator smaller or larger.
 
 **Specific actions:**
 
-- ``lvgl.bar.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.bar.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -1070,7 +1070,7 @@ The ``bar`` can be also integrated as :doc:`/components/number/lvgl` or :doc:`/c
 ``slider``
 **********
 
-The Slider widget looks like a bar supplemented with a knob. The knob can be dragged to set a value. Just like Bar, Slider can be vertical or horizontal.
+The Slider widget looks like a bar supplemented with a knob. The user can drag the knob to set a value. Just like Bar, Slider can be vertical or horizontal.
 
 .. figure:: /components/images/lvgl_slider.png
     :align: center
@@ -1080,9 +1080,9 @@ The Slider widget looks like a bar supplemented with a knob. The knob can be dra
 - **value** (**Required**, int8): Actual value of the indicator at start, in ``0``-``100`` range. Defaults to ``0``.
 - **min_value** (*Optional*, int8): Minimum value of the indicator. Defaults to ``0``.
 - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
-- **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. A rectangle (or circle) drawn at the current value. Also uses all the typical background properties to describe the knob. By default, the knob is square (with an optional corner radius) with side length equal to the smaller side of the slider. The knob can be made larger with the padding values. Padding values can be asymmetric too.
-- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The indicator that shows the current state of the slider. Also uses all the typical background style properties.
-- **animated** (*Optional*, boolean): To animate indicator when bar changes value. Defaults to ``true``.
+- **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. A rectangle (or circle) is drawn at the current value. Also uses all the typical background properties to describe the knob. By default, the knob is square (with an optional corner radius) with side length equal to the smaller side of the slider. The knob can be made larger with the padding values. Padding values can be asymmetric.
+- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The indicator shows the current state of the slider. Also uses all the typical background style properties.
+- **animated** (*Optional*, boolean): Animate the indicator when the bar changes value. Defaults to ``true``.
 - **anim_time** (*Optional*, :ref:`Time <config-time>`): Sets the animation time if the value is set with ``animated: true``.
 - any :ref:`Styling <lvgl-styling>` and state-based option for the background of the slider. Uses all the typical background style properties. Padding makes the indicator smaller in the respective direction.
 
@@ -1090,11 +1090,11 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 **Specific actions:**
 
-- ``lvgl.slider.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.slider.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Specific triggers:**
 
-- ``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
+- ``on_value`` :ref:`trigger <automation>` is activated when the knob changes the value of the slider. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
 
 **Example:**
 
@@ -1129,11 +1129,11 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 .. note::
 
-    The ``on_value`` trigger is sent while the slider is being dragged or changed with keys. The event is sent *continuously* while the slider is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a :ref:`universal event trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
+    The ``on_value`` trigger is sent as the slider is dragged or changed with keys. The event is sent *continuously* while the slider is being dragged; this generally has a negative effect on performance. To mitigate this, consider using a :ref:`universal event trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
 The ``slider`` can be also integrated as :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`.
 
-See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use a slider to control entities in Home Assistant.
+See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples illustrating how to use a slider to control entities in Home Assistant.
 
 .. _lvgl-wgt-arc:
 
