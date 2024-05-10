@@ -611,7 +611,7 @@ A notable state is ``checked`` (boolean) which can have different styles applied
 
 **Specific triggers:**
 
-``on_value`` :ref:`trigger <automation>` is activated after clicking, in case of ``checkable`` configured as ``true``, the variable ``x`` returning a boolean representing the checked state.
+``on_value`` :ref:`trigger <automation>` is activated after clicking. If ``checkable`` is ``true``, the boolean variable ``x``, representing the checked state, may be used by lambdas within this trigger.
 
 **Example:**
 
