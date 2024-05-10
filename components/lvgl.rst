@@ -60,7 +60,7 @@ These are useful to make :ref:`automations <automation>` triggered by actions pe
 Main Configuration
 ------------------
 
-Although LVGL is a complex matrix of objects-parts-states-styles, in ESPHome this is simplified to a hierarchy.
+Although LVGL is a complex matrix of objects-parts-states-styles, ESPHome simplifies this into a hierarchy.
 
 At the highest level of the LVGL object hierarchy is the display represented the hardware driver. A display can have one or more pages associated with it. Each page contains a hierarchy of objects for graphical widgets representing a layout that covers the entire display.
 
