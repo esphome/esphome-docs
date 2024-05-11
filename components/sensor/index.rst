@@ -157,6 +157,8 @@ Filters are processed in the order they are defined in your configuration.
         - throttle: 1s
         - delta: 5.0
       - lambda: return x * (9.0/5.0) + 32.0;
+      - high_pass: 0.75
+      - low_pass: 0.25
 
 ``offset``
 **********
@@ -461,6 +463,64 @@ Configuration variables:
 - **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
   published. With this parameter you can specify when the very first value is to be sent.
   Defaults to ``1``.
+
+.. _sensor-filter-high_pass:
+
+``high_pass``
+*************
+
+(**Required**, float between 0 and 1): *alpha* smoothing factor for the high pass filter and controls
+the attenuation of the low-frequency components of the signal.
+
+Basic `high pass filter <https://en.wikipedia.org/wiki/High-pass_filter>`__ for the sensor values,
+assuming the sensor values are sampled at a constant rate. This filter will remove low-frequency
+components and offset from the sensor values. 
+
+The formula for the high pass filter is: ``y[i] := α × y[i−1] + α × (x[i] − x[i−1])``, 
+where x is the input value and y is the output value.
+
+ \(\alpha = \frac{\omega_c T_s}{1+\omega_c T_s}\), where \(\omega_c\) 
+ 
+
+A large α implies that the output will decay very slowly but will also be strongly influenced by 
+even small changes in input.
+
+A small α implies that the output will decay quickly and will require large changes in the input
+to cause the output to change much
+
+A value of 0.5 (when time constant equal sampling period) might be a good starting point.
+
+.. code-block:: yaml
+
+    - platform: ...
+      filters:
+        - high_pass: 0.5 # alpha value
+
+.. _sensor-filter-low_pass:
+
+``low_pass``
+************
+
+(**Required**, float between 0 and 1): *alpha* smoothing factor for the low pass filter.
+
+Basic `low pass filter <https://en.wikipedia.org/wiki/Low-pass_filter>`__ for the sensor values,
+assuming the sensor values are sampled at a constant rate. This filter will remove high-frequency
+components and noise from the sensor values.
+
+The formula for the low pass filter is: ``y[i] := α * x[i] + (1-α) * y[i-1]``, 
+where x is the input value and y is the output value.
+
+A lower α implies that the output will respond more slowly to changes in the input but will also
+be less influenced by noise. We can say the system has more inertia.
+
+A value of 0.5 (when time constant equal sampling period) might be a good starting point.
+
+.. code-block:: yaml
+
+    - platform: ...
+      filters:
+        - low_pass: 0.5 # alpha value
+
 
 ``skip_initial``
 ****************
