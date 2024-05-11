@@ -155,7 +155,7 @@ The response will be sent to `esphome/discover/<APP_NAME>` and is a JSON encoded
 The MQTT device discovery is currently used for:
 
 - ESPHome dashboard (online / offline status)
-- ESPHome CLI (IP discovery e.g. for upload, logs)
+- ESPHome CLI (IP discovery; used to view logs and perform OTA uploads)
 - Home Assistant device discovery
 
 Example Payload:
