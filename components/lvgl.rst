@@ -14,7 +14,7 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 
 In order to be able to drive a :ref:`display <display-hw>` with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended.
 
-The graphic display should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set. It should have an :ref:`config-id` set, which will be referenced in the main LGVL component configuration.
+The graphic display should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set. It should have an :ref:`config-id` configured, which will be referenced by the main LGVL component.
 
 For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly preferred) or a :doc:`/components/sensor/rotary_encoder` can be used.
 
@@ -1892,7 +1892,7 @@ From styling point of view, it uses the same settings as :ref:`lvgl-wgt-bmx`.
 
 .. note::
 
-    The Keyboard widget doesn't support popovers or custom layouts.
+    The Keyboard widget in ESPHome doesn't support popovers or custom layouts.
 
 Actions
 -------
