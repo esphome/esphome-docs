@@ -183,7 +183,7 @@ JSON keys:
 -  **mac** (**Required**, string): MAC address of the device.
 -  **board** (**Required**, string): Board used for the device.
 -  **version** (**Required**, string): ESPHome version.
--  **port** (*Optional*, port): Port of the ESPHome API (if activated).
+-  **port** (*Optional*, port): Port of the ESPHome API (if enabled).
 -  **ipX** (*Optional*, ip): Additional IP addresses (X is a number starting at 1).
 -  **friendly_name** (*Optional*, string): Friendly name of the device (`esphome.friendly_name`).
 -  **platform** (*Optional*, string): Platform of the device (e.g. ESP32 or ESP8266)
