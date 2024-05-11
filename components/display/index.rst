@@ -8,10 +8,9 @@ Display Component
 The ``display`` component houses ESPHome's powerful rendering and display
 engine. Fundamentally, there are these types of displays:
 
-- Text based displays like :doc:`7-Segment displays <max7219>` or
-  :doc:`LCD displays <lcd_display>`.
-- Graphical serial displays like :doc:`nextion` that have their own processors for rendering.
-- Graphical binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper <waveshare_epaper>`,
+- Character displays like :doc:`7-Segment <max7219>` or :doc:`LCD <lcd_display>`.
+- Serial displays like :doc:`nextion` that have their own processors for graphics rendering.
+- Graphical displays which can toggle ON/OFF any pixel, like :doc:`E-Paper <waveshare_epaper>`,
   :doc:`OLED <ssd1306>` or :doc:`TFT <ili9xxx>` displays.
 
 For graphical binary displays, there are two options: 
@@ -24,8 +23,8 @@ For graphical binary displays, there are two options:
 Display Rendering Engine
 ------------------------
 
-ESPHome's own powerful rendering engine can handle many common tasks such as drawing basic shapes, printing text with fonts of your choice,
-or even rendering images.
+ESPHome's own powerful rendering engine can handle many common tasks such as drawing basic shapes,
+printing text with fonts of your choice, or even rendering images.
 
 To achieve all this flexibility displays tie in directly into ESPHome's :ref:`lambda system <config-lambda>`.
 So when you want to write some text or sensor values to the screen you will be writing in C++ code
