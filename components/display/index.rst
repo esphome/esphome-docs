@@ -13,9 +13,9 @@ engine. Fundamentally, there are these types of displays:
 - Graphical displays which can toggle ON/OFF any pixel, like :doc:`E-Paper <waveshare_epaper>`,
   :doc:`OLED <ssd1306>` or :doc:`TFT <ili9xxx>` displays.
 
-For graphical binary displays, there are two options: 
+For graphical displays, which offer the greatest flexibility, there are two options: 
 
-- ESPHome's :ref:`own powerful rendering engine <display-engine>`
+- ESPHome's :ref:`own rendering engine <display-engine>`
 - :ref:`LVGL <lvgl-main>` - Light and Versatile Graphics Library
 
 .. _display-engine:
