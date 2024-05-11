@@ -150,7 +150,7 @@ The ESPHome device will respond to the following MQTT topics if `mqtt.discover_i
 - `esphome/discover` (All ESPHome device will answer)
 - `esphome/ping/<APP_NAME>`
 
-The response will be send to `esphome/discover/<APP_NAME>` and is a JSON encoded message.
+The response will be sent to `esphome/discover/<APP_NAME>` and is a JSON encoded message.
 
 The MQTT device discovery is currently used for:
 
