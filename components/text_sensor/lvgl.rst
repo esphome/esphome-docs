@@ -4,13 +4,13 @@ LVGL Text Sensor
 ================
 
 .. seo::
-    :description: Instructions for setting up an LVGL textarea Text Sensor.
+    :description: Instructions for setting up an LVGL Text Sensor.
     :image: ../images/lvgl_c_txt.png
 
-The ``lvgl`` text platform creates a Text Sensor from an LVGL textarea widget
+The ``lvgl`` text platform creates a Text Sensor from an LVGL textual widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
-Supported widget is :ref:`lvgl-wgt-txt`. A single text sensor supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome text sensor component.
+Supported widgets are :ref:`lvgl-wgt-lbl` and :ref:`lvgl-wgt-txt`. A single text sensor supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome text sensor component.
 
 Configuration variables:
 ------------------------
@@ -27,9 +27,14 @@ Example:
         widget: textarea_id
         name: "Textarea 1 text"
 
+.. note::
+
+    Widget-specific actions (``lvgl.label.update``, ``lvgl.textarea.update``) will trigger correspponding component updates to be sent to Home Assistant.
+
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
+- :ref:`Label widget <lvgl-wgt-lbl>`
 - :ref:`Textarea widget <lvgl-wgt-txt>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`

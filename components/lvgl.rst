@@ -52,7 +52,7 @@ Some widgets integrate also as native ESPHome components:
     * - ``dropdown``,  ``roller``
       - :doc:`Select </components/select/lvgl>`
 
-    * - ``textarea``
+    * - ``label``, ``textarea``
       - :doc:`Text </components/text/lvgl>`, :doc:`Text Sensor </components/text_sensor/lvgl>`
 
     * - ``led``
@@ -243,7 +243,7 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 - **border_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw borders of the widget. Defaults to ``0`` (black).
 - **border_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the borders of the widget.  Defaults to ``COVER``.
 - **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn. Defaults to ``false``.
-- **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be specified, defaults to ``NONE``):
+- **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be specified as a YAML list, defaults to ``NONE``):
     - ``NONE``
     - ``TOP``
     - ``BOTTOM``
@@ -543,7 +543,7 @@ A label is the basic widget type that is used to display text.
 - **text** (**Required**, string): The text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display. To display an empty label, specify ``""``.
 - **text_align** (*Optional*, enum): Alignment of the text in the widget - it doesn't align the object itself, only the lines inside the object. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``. Inherited from parent. Defaults to ``AUTO``, which detects the text base direction and uses left or right alignment accordingly.
 - **text_color** (*Optional*, :ref:`color <lvgl-color>`): Color to render the text in. Inherited from parent. Defaults to ``0`` (black). 
-- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified). Inherited from parent. Defaults to ``NONE``.
+- **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified as YAML list). Inherited from parent. Defaults to ``NONE``.
 - **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID of the font used to render the text or symbol. Inherited from parent.
 - **text_letter_space** (*Optional*, int16): Extra character spacing of the text. Inherited from parent. Defaults to ``0``.
 - **text_line_space** (*Optional*, int16): Line spacing of the text. Inherited from parent. Defaults to ``0``.
@@ -595,6 +595,8 @@ A label is the basic widget type that is used to display text.
             text:
               format: "%.0fdBm"
               args: [ 'id(wifi_signal_db).get_state()' ]
+
+The ``label`` can be also integrated as :doc:`/components/text/lvgl` or :doc:`/components/text_sensor/lvgl`.
 
 .. _lvgl-wgt-btn:
 
@@ -1593,8 +1595,8 @@ The Textarea is a widget allowing to input text and displays a cursor. Long line
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <automation>` is activated on every keystroke, the variable ``text`` containing the entire contents of the textarea.
-- ``on_ready`` :ref:`trigger <automation>` is activated in case of ``one_line`` configured as ``true``, when the New Line character is receicved (Enter key on the keyboard).
+- ``on_value`` :ref:`trigger <automation>` is activated on every keystroke, the variable ``text`` (``std::string`` type) containing the entire contents of the textarea.
+- ``on_ready`` :ref:`trigger <automation>` is activated in case of ``one_line`` configured as ``true``, when the New Line character is receicved (Enter/Ready key on the keyboard), the variable ``text`` (``std::string`` type) containing the entire contents of the textarea.
 
 **Example:**
 
@@ -1718,7 +1720,7 @@ A typical application would probably use an ``obj`` container widget as a tile, 
 - **tiles** (**Required**, list): A list with (any number of) tiles to be added to meter.  
     - *widget* (**Required**): Any kind of widget to be used as tile container.
         - **tile_id** (**Required**): A tile ID to be used with ``lvgl.tileview.select`` action.
-        - **dir** (*Optional*): Enable moving to the adjacent tiles into the given direction by swiping/dragging. One or multiple of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
+        - **dir** (*Optional*): Enable moving to the adjacent tiles into the given direction by swiping/dragging. One (or multiple as YAML list) of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
         - **row** (**Required**): Horizontal position of the tile in the tileview grid.
         - **column** (**Required**): Vertical position of the tile in the tileview grid.
         - Style options from the widget used as container.

@@ -27,6 +27,10 @@ Example:
         widget: dropdown_id
         name: LVGL Dropdown
 
+.. note::
+
+    Widget-specific actions (``lvgl.dropdown.update``, ``lvgl.roller.update``) will trigger correspponding component updates to be sent to Home Assistant.
+
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`

@@ -27,6 +27,10 @@ Example:
         widget: slider_id
         name: LVGL Slider
 
+.. note::
+
+    Widget-specific actions (``lvgl.arc.update``, ``lvgl.bar.update``, ``lvgl.slider.update``, ``lvgl.spinbox.update``, ``lvgl.spinbox.decrement``, ``lvgl.spinbox.increment``) will trigger correspponding component updates to be sent to Home Assistant.
+
 See Also
 --------
 - :ref:`LVGL Main component <lvgl-main>`
