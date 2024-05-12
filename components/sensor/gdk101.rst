@@ -10,12 +10,7 @@ The **GDK101** sensor platform allows you to use your GDK101 sensor to monitor r
 
 The GDK101 can measure average dose rate per 1 and 10 minutes, it also detect vibrations that can disturb the measurement.
 
-Component/Hub
--------------
-
-The GDK101 using I²C protocol for data communication.
-Connect your sensor module to MCU using I²C pins and setup your esphome to use apropariet pins for I²C communication.
-Set the I²C adress on module using jumpers and also set it up in esphome configuration.
+The GDK101 requires setting up :ref:`I²C <i2c>` for data communication.
 
 Module Pins
 -----------
@@ -49,12 +44,8 @@ I2C Address   Jumpers State
 
     GDK101 Gamma Radiation Sensor Module.
 
-Sample Configuration:
----------------------          
-
-Platform Configuration
-----------------------
-
+Component/Hub
+-------------
 
 .. code-block:: yaml
 
@@ -86,7 +77,7 @@ Sensor
           name: "GDK101 Status"
         version:
           name: "GDK101 FW Version"
-        measurement_duration: 
+        measurement_duration:
           name: "GDK101 Measuring Time"
 
 A sensor platform to radiation data
@@ -94,10 +85,15 @@ A sensor platform to radiation data
 Configuration variables:
 
 - **radiation_dose_per_1m** (**Required**): Radiation average dose per 1 minute.
+  All options from :ref:`Sensor <config-sensor>`.
 - **radiation_dose_per_10m** (**Required**): Radiation average dose per 10 minutes.
+  All options from :ref:`Sensor <config-sensor>`.
 - **version** (**Required**): Fimware version of the module.
+  All options from :ref:`Sensor <config-sensor>`.
 - **status** (*Optional*): Sensor status.
+  All options from :ref:`Sensor <config-sensor>`.
 - **measurement_duration** (*Optional*): Total time of measurement.
+  All options from :ref:`Sensor <config-sensor>`.
 
 Binary Sensor
 -------------
@@ -114,7 +110,8 @@ Binary sensor that indicates if measurement was disturbed by vibrations.
 
 Configuration variables:
 
--  **vibrations** (**Required**): Vibration status.
+- **vibrations** (**Required**): Vibration status.
+  All options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
 See Also
