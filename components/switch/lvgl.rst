@@ -28,7 +28,7 @@ Example:
         widget: checkbox_id
         name: LVGL switch
 
-Check out :ref:`lvgl-cook-outbin` in the Cookbook for an example how to set up a LVGL Switch component to interact directly with a GPIO.
+Check out :ref:`lvgl-cook-outbin` in the Cookbook for an example illustrating how to set up a LVGL Switch component to interact directly with a GPIO.
 
 See Also
 --------

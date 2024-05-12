@@ -1173,11 +1173,11 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 .. note::
 
-    Zero degree is at the middle right (3 o'clock) of the widget and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
+    The zero degree position is at the middle right (3 o'clock) of the widget and the degrees increase in a clockwise direction from there. Angles are specified in the ``0``-``360`` range. 
 
 **Actions:**
 
-- ``lvgl.arc.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.arc.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Triggers:**
 
@@ -1216,18 +1216,18 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 .. note::
 
-    The ``on_value`` trigger is sent while the arc knob is being dragged or changed with keys. The event is sent *continuously* while the knob is being dragged, this can affect performance and have negative effects on the actions to be performed. In such cases use a :ref:`universal event trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
+    The ``on_value`` trigger is sent as the arc knob is dragged or changed with keys. The event is sent *continuously* while the arc knob is being dragged; this generally has a negative effect on performance. To mitigate this, consider using a :ref:`universal event trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
 The ``arc`` can be also integrated as :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`.
 
-See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples how to use a slider (or an arc) to control entities in Home Assistant.
+See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples illustrating how to use a slider (or an arc) to control entities in Home Assistant.
 
 .. _lvgl-wgt-spb:
 
 ``spinbox``
 ***********
 
-The Spinbox contains a numeric value (as text) which can be increased or decreased through actions. You can use for example buttons labeled with plus and minus to call them as required.
+The Spinbox contains a numeric value (as text) which can be increased or decreased through actions. You can, for example, use buttons labeled with plus and minus to call actions which increase or decrease the value as required.
 
 .. figure:: /components/images/lvgl_spinbox.png
     :align: center
@@ -1249,7 +1249,7 @@ The Spinbox contains a numeric value (as text) which can be increased or decreas
 
 **Actions:**
 
-- ``lvgl.spinbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.spinbox.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 - ``lvgl.spinbox.decrement`` :ref:`action <config-action>` decreases the value by one ``step`` configured above.
 - ``lvgl.spinbox.increment`` :ref:`action <config-action>` increases the value by one ``step`` configured above.
 
@@ -1292,21 +1292,21 @@ The Spinbox contains a numeric value (as text) which can be increased or decreas
 
 The ``spinbox`` can be also integrated as :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`.
 
-See :ref:`lvgl-cook-climate` for an example how to implement a thermostat control using the spinbox.
+See :ref:`lvgl-cook-climate` for an example illustrating how to implement a thermostat control using the spinbox.
 
 .. _lvgl-wgt-mtr:
 
 ``meter``
 *********
 
-The Meter widget can visualize data in very flexible ways. In can show arcs, needles, ticks lines and labels.
+The Meter widget can visualize data in very flexible ways. It can use arcs, needles, ticks, lines and/or labels.
 
 .. figure:: /components/images/lvgl_meter.png
     :align: center
 
 **Configuration variables:**
 
-- **scales** (**Required**, list): A list with (any number of) scales to be added to meter.  
+- **scales** (**Required**, list): A list with (any number of) scales to be added to the meter.
     - **range_from** (**Required**): The minimum value of the tick scale. Defaults to ``0``.
     - **range_to** (**Required**): The maximum value of the tick scale. Defaults to ``100``.
     - **angle_range** (**Required**): The angle between start and end of the tick scale. Defaults to ``270``.
@@ -1321,7 +1321,7 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             - **width**: Tick line width in pixels. Defaults to ``5``.
             - **length**: Tick line length in pixels or percentage. Defaults to ``15%``.
             - **color**: :ref:`Color <lvgl-color>` to draw the major ticks. Defaults to ``0`` (black).
-            - **label_gap**: Label distance from the ticks with text proportionally to the values of the tick line. Defaults to ``4``.
+            - **label_gap**: Label distance from the ticks with text proportional to the values of the tick line. Defaults to ``4``.
         - Style options from :ref:`lvgl-styling` for the tick *lines* and *labels* using the :ref:`lvgl-wgt-lin` and :ref:`lvgl-wgt-lbl` text style properties.
     - **indicators** (**Required**, list): A list with indicators to be added to the scale. Multiple of each can be added. Their values are interpreted in the range of the scale:
         - **arc** (*Optional*): Add a background arc the scale: 
@@ -1355,11 +1355,11 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
 
 .. note::
 
-    Zero degree is at the middle right (3 o'clock) of the widget and the degrees are increasing in a clockwise direction. The angles should be in the ``0``-``360`` range. 
+    The zero degree position is at the middle right (3 o'clock) of the widget and the degrees increase in a clockwise direction from there. Angles are specified in the ``0``-``360`` range. 
 
 **Actions:**
 
-- ``lvgl.indicator.update`` :ref:`action <config-action>` updates indicator options, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` cannot be updated at runtime.
+- ``lvgl.indicator.update`` :ref:`action <config-action>` updates indicator options, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` cannot be updated at runtime.
 
 **Example:**
 
@@ -1399,26 +1399,26 @@ The Meter widget can visualize data in very flexible ways. In can show arcs, nee
             id: temperature_needle
             value: 3
 
-See :ref:`lvgl-cook-gauge`, :ref:`lvgl-cook-thermometer` and :ref:`lvgl-cook-clock` in the Cookbook for examples how to effectively use this widget.
+See :ref:`lvgl-cook-gauge`, :ref:`lvgl-cook-thermometer` and :ref:`lvgl-cook-clock` in the Cookbook for examples illustrating how to effectively use this widget.
 
 .. _lvgl-wgt-img:
 
 ``img``
 *******
 
-Images are the basic widgets to display images. 
+Images are the basic widgets used to display images. 
 
 .. figure:: /components/images/lvgl_image.png
     :align: center
 
 **Configuration variables:**
 
-- **src** (**Required**, :ref:`image <display-image>`):  The ID of an existing image configuration.
+- **src** (**Required**, :ref:`image <display-image>`): The ID of an existing image configuration.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
 **Actions:**
 
-- ``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. Updating the ``src`` option changes the image at runtime.
+- ``lvgl.img.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. Updating the ``src`` option changes the image at runtime.
 
 **Example:**
 
@@ -1453,15 +1453,15 @@ The animation image is similar to the normal ``img`` widget. The main difference
 
 - **src** (**Required**, list of :ref:`images <display-image>`): A list of IDs of existing image configurations to be loaded as frames of the animation.
 - **auto_start** (*Optional*, boolean): Start the animation playback automatically at boot and when updating the widget. Defaults to ``true``.
-- **duration** (**Required**, :ref:`Time <config-time>`): Total duration of a playback cycle (frames are displayed equally in time).
-- **repeat_count** (*Optional*, int16 or *forever*): How many times to repeat the playback. Defaults to ``forever``.
+- **duration** (**Required**, :ref:`Time <config-time>`): Total duration of a playback cycle (each frame is displayed for an equal amount of time).
+- **repeat_count** (*Optional*, int16 or *forever*): The number of times playback should be repeated. Defaults to ``forever``.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
 **Actions:**
 
 - ``lvgl.animimg.start`` :ref:`action <config-action>` starts the animation playback if it was displayed with ``auto_start`` false or after ``repeat_count`` expired.
 - ``lvgl.animimg.stop`` :ref:`action <config-action>` stops the animation playback.
-- ``lvgl.animimg.update`` :ref:`action <config-action>` can be used to change ``repeat_count`` and ``duration``, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` and ``auto_start`` cannot be updated at runtime.
+- ``lvgl.animimg.update`` :ref:`action <config-action>` can be used to change ``repeat_count`` and ``duration``, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` and ``auto_start`` cannot be updated at runtime.
 
 **Example:**
 
