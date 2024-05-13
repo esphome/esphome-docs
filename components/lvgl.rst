@@ -1729,6 +1729,74 @@ You can use it as a parent container for other widgets. By default, it catches t
         widgets:
           - ...
 
+.. _lvgl-wgt-tab:
+
+``tabview``
+***********
+
+The Tab view object can be used to organize content in tabs. The tab buttons are internally generated with a :ref:`lvgl-wgt-bmx`. 
+
+.. figure:: /components/images/lvgl_tabview.png
+    :align: center
+
+A new tab can be selected either by clicking on a tab button or by sliding horizontally on the content.
+
+**Configuration variables:**
+
+- **position** (*Optional*, string): Position of the tab selector buttons. One of ``TOP``, ``BOTTOM``, ``LEFT``, ``RIGHT``. Defaults to ``TOP``.
+- **size** (*Optional*, percentage): The height (in case of ``TOP``, ``BOTTOM``) or width (in case of ``LEFT``, ``RIGHT``) tab buttons. Defaults to ``10%``.
+- **tabs** (**Required**, list): A list with (any number of) tabs to be added to tabview.  
+    - **id** (*Optional*): A tab ID to be used with the ``lvgl.tabview.select`` action.
+    - **name** (**Required**): The text to be shown on the button corresponding to the tab.
+    - **widgets** (**Required**, list): A list of :ref:`lvgl-widgets` to be drawn on the tab, as children.
+
+**Actions:**
+
+- ``lvgl.tabview.select`` :ref:`action <config-action>` jumps the view to the desired tab:
+    - **id** (**Required**): The ID of the ``tabview`` which receives this action.
+    - **tab_id** (*Optional*): The ID of the tab to which to jump. 
+    - **animated** (*Optional*, boolean): To animate the movement. Defaults to ``false``.
+
+**Triggers:**
+
+- ``on_value`` :ref:`trigger <automation>` is activated when displayed tab changes. The new value is returned in the variable ``tab`` as the ID of the now-visible tab. 
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - tabview:
+        id: tabview_id
+        position: top
+        tabs:
+          - name: Dog
+            id: tabview_tab_1
+            widgets:
+              - img:
+                  src: dog_img
+              ...
+          ...
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.tabview.select:
+            id: tabview_id
+            tab_id: tabview_tab_1
+            animated: true
+
+    # Example trigger:
+    - tabview:
+        ...
+        on_value:
+          then:
+            - if:
+                condition:
+                  lambda: return tab == id(tabview_tab_1);
+                then:
+                  - logger.log: "Dog tab is now showing"
+
 .. _lvgl-wgt-tiv:
 
 ``tileview``
@@ -1745,12 +1813,12 @@ If the Tile view is screen sized, the user interface resembles what you may have
     - **row** (**Required**): Horizontal position of the tile in the tileview grid.
     - **column** (**Required**): Vertical position of the tile in the tileview grid.
     - **dir** (*Optional*): Enable moving to adjacent tiles in the given direction by swiping/dragging. One (or multiple as YAML list) of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
-    - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the tile.
+    - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the tile, as children.
 
 **Actions:**
 
 - ``lvgl.tileview.select`` :ref:`action <config-action>` jumps the ``tileview`` to the desired tile:
-    - **id** (**Required**): The ID of the ``tileview`` which receives this action
+    - **id** (**Required**): The ID of the ``tileview`` which receives this action.
     - **tile_id** (*Optional*): The ID of the tile (from within the tileview) to which to jump. Required if not specifying ``row`` and ``column``.
     - **row** (*Optional*): Horizontal position of the tile to which to jump. Required if not specifying ``tile_id``.
     - **column** (*Optional*): Vertical position of the tile to which to jump. Required if not specifying ``tile_id``.
