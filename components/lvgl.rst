@@ -1738,17 +1738,14 @@ The tileview is a container object whose elements, called tiles, can be arranged
 
 If the Tile view is screen sized, the user interface resembles what you may have seen on smartwatches.
 
-A typical application would probably use an ``obj`` container widget as a tile, to display multiple child widgets, but any widget can be used directly too.
-
 **Configuration variables:**
 
 - **tiles** (**Required**, list): A list with (any number of) tiles to be added to tileview.  
-    - *widget* (**Required**): Any kind of widget to be used as tile container.
-        - **tile_id** (**Required**): A tile ID to be used with the ``lvgl.tileview.select`` action.
-        - **dir** (*Optional*): Enable moving to adjacent tiles in the given direction by swiping/dragging. One (or multiple as YAML list) of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
-        - **row** (**Required**): Horizontal position of the tile in the tileview grid.
-        - **column** (**Required**): Vertical position of the tile in the tileview grid.
-        - Style options from the widget used as container.
+    - **id** (**Required**): A tile ID to be used with the ``lvgl.tileview.select`` action.
+    - **row** (**Required**): Horizontal position of the tile in the tileview grid.
+    - **column** (**Required**): Vertical position of the tile in the tileview grid.
+    - **dir** (*Optional*): Enable moving to adjacent tiles in the given direction by swiping/dragging. One (or multiple as YAML list) of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
+    - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the tile.
 
 **Actions:**
 
@@ -1771,15 +1768,14 @@ A typical application would probably use an ``obj`` container widget as a tile, 
     - tileview:
         id: tiv_id
         tiles:
-          - obj:
-              row: 0
-              column: 0
-              tile_id: cat_tile
-              dir: VER
-              widgets:
-                - img:
-                    src: cat_image
-                - ...
+          - id: cat_tile
+            row: 0
+            column: 0
+            dir: VER
+            widgets:
+              - img:
+                  src: cat_image
+              - ...
           - ...
 
     # Example action:
@@ -1787,9 +1783,9 @@ A typical application would probably use an ``obj`` container widget as a tile, 
       then:
         - lvgl.tileview.select:
             id: tiv_id
-            row: 0
-            column: 0
+            tile_id: cat_tile
             animated: true
+
 
     # Example trigger:
     - tileview:
