@@ -947,7 +947,7 @@ This example illustrates a control panel for three covers, made up of labels and
         pages:
           - id: room_page
             widgets:
-              - obj: # a coontainer object for all these controls
+              - obj: # a properly placed coontainer object for all these controls
                   align: CENTER
                   width: 240
                   height: 260
@@ -973,7 +973,7 @@ This example illustrates a control panel for three covers, made up of labels and
                           - label:
                               id: cov_up_east
                               align: center
-                              text: "\uE05D" #UP
+                              text: "\U000F005D" # mdi:arrow-up
                     - btn:
                         id: but_cov_stop_east
                         width: 70
@@ -982,7 +982,7 @@ This example illustrates a control panel for three covers, made up of labels and
                           - label:
                               id: cov_stop_east
                               align: center
-                              text: "\uE4DB" #STOP
+                              text: "\U000F04DB" # mdi:stop
                     - btn:
                         id: but_cov_down_east
                         width: 70
@@ -991,7 +991,7 @@ This example illustrates a control panel for three covers, made up of labels and
                           - label:
                               id: cov_down_east
                               align: center
-                              text: "\uE045" #DOWN
+                              text: "\U000F0045" # mdi:arrow-down
 
                     - label:
                         text: "South"
@@ -1003,7 +1003,7 @@ This example illustrates a control panel for three covers, made up of labels and
                           - label:
                               id: cov_up_south
                               align: center
-                              text: "\uE05D" #UP
+                              text: "\U000F005D"
                     - btn:
                         id: but_cov_stop_south
                         width: 70
@@ -1012,7 +1012,7 @@ This example illustrates a control panel for three covers, made up of labels and
                           - label:
                               id: cov_stop_south
                               align: center
-                              text: "\uE4DB" #STOP
+                              text: "\U000F04DB"
                     - btn:
                         id: but_cov_down_south
                         width: 70
@@ -1021,7 +1021,7 @@ This example illustrates a control panel for three covers, made up of labels and
                           - label:
                               id: cov_down_south
                               align: center
-                              text: "\uE045" #DOWN
+                              text: "\U000F0045"
 
                     - label:
                         text: "West"
@@ -1033,7 +1033,7 @@ This example illustrates a control panel for three covers, made up of labels and
                           - label:
                               id: cov_up_west
                               align: center
-                              text: "\uE05D" #UP
+                              text: "\U000F005D"
                     - btn:
                         id: but_cov_stop_west
                         width: 70
@@ -1042,7 +1042,7 @@ This example illustrates a control panel for three covers, made up of labels and
                           - label:
                               id: cov_stop_west
                               align: center
-                              text: "\uE4DB" #STOP
+                              text: "\U000F04DB"
                     - btn:
                         id: but_cov_down_west
                         width: 70
@@ -1051,9 +1051,9 @@ This example illustrates a control panel for three covers, made up of labels and
                           - label:
                               id: cov_down_west
                               align: center
-                              text: "\uE045" #DOWN
+                              text: "\U000F0045"
 
-This saved you from a considerable amount of manual calculation of widget positioning, if you wanted to place each of them manually with ``x`` and ``y``!
+This saved you from a considerable amount of manual calculation of widget positioning, if you wanted to place each of them manually with ``x`` and ``y``! (:ref:`lvgl-cook-icontext` below shows how to use custom icons)
 
 .. _lvgl-cook-btlg:
 
