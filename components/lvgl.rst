@@ -369,7 +369,7 @@ The layout configuration options are applied to any parent widget or page, influ
 **Configuration variables:**
 
 - **layout** (*Optional*, string): A dictionary describing the layout configuration:
-    - **type** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. Defaults to ``NONE``.
+    - **type** (*Optional*, string): ``flex``, ``grid`` or ``none``. Defaults to ``none``.
     - Further options from below depending on the chosen type.
 
 .. _lvgl-layouts-flex:
