@@ -489,6 +489,7 @@ Miscellaneous
     uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png, EC & Temperature
     uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png, pH & Temperature
     WireGuard, components/wireguard, wireguard_custom_logo.svg
+    GDK101, components/sensor/gdk101, gdk101.jpg, Radiation
 
 Motion
 ******
