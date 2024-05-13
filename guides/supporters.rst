@@ -263,6 +263,7 @@ Contributors
 - `Audric Schiltknecht (@chemicalstorm) <https://github.com/chemicalstorm>`__
 - `Charles Johnson (@ChemicalXandco) <https://github.com/ChemicalXandco>`__
 - `chiahsing (@chiahsing) <https://github.com/chiahsing>`__
+- `Paweł Dembicki (@CHKDSK88) <https://github.com/CHKDSK88>`__
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__
 - `Chris (@chrismaki) <https://github.com/chrismaki>`__
 - `Christoph Wagner (@Christoph-Wagner) <https://github.com/Christoph-Wagner>`__
@@ -531,6 +532,7 @@ Contributors
 - `Alex Hermann (@gaaf) <https://github.com/gaaf>`__
 - `Gabe Cook (@gabe565) <https://github.com/gabe565>`__
 - `Gábor Poczkodi (@gabest11) <https://github.com/gabest11>`__
+- `Matthew (@Gaff) <https://github.com/Gaff>`__
 - `gazoodle (@gazoodle) <https://github.com/gazoodle>`__
 - `gcopeland (@gcopeland) <https://github.com/gcopeland>`__
 - `Greg Cormier (@gcormier) <https://github.com/gcormier>`__
@@ -666,6 +668,7 @@ Contributors
 - `jerome992 (@jerome992) <https://github.com/jerome992>`__
 - `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__
 - `Jessica Hamilton (@jessicah) <https://github.com/jessicah>`__
+- `J.G.Aguado (@JGAguado) <https://github.com/JGAguado>`__
 - `Yuval Brik (@jhamhader) <https://github.com/jhamhader>`__
 - `Joe (@jhansche) <https://github.com/jhansche>`__
 - `jimtng (@jimtng) <https://github.com/jimtng>`__
@@ -683,6 +686,7 @@ Contributors
 - `JMoratelli (@JMoratelli) <https://github.com/JMoratelli>`__
 - `Jonathas Barbosa (@jnthas) <https://github.com/jnthas>`__
 - `jochenvg (@jochenvg) <https://github.com/jochenvg>`__
+- `joederpoliveira (@joederpoliveira) <https://github.com/joederpoliveira>`__
 - `Johboh (@Johboh) <https://github.com/Johboh>`__
 - `John Moxley (@johnmoxley) <https://github.com/johnmoxley>`__
 - `John White (@johnpwhite) <https://github.com/johnpwhite>`__
@@ -830,6 +834,7 @@ Contributors
 - `Matjah Sonneveld (@matjahs) <https://github.com/matjahs>`__
 - `Michel Marti (@matoxp) <https://github.com/matoxp>`__
 - `matt123p (@matt123p) <https://github.com/matt123p>`__
+- `Matteo Franceschini (@matteofranceschini) <https://github.com/matteofranceschini>`__
 - `matthias882 (@matthias882) <https://github.com/matthias882>`__
 - `Mattia Baldani (@mattibal) <https://github.com/mattibal>`__
 - `mattsgreen (@mattsgreen) <https://github.com/mattsgreen>`__
@@ -1024,6 +1029,7 @@ Contributors
 - `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__
 - `PlainTechEnthusiast (@PlainTechEnthusiast) <https://github.com/PlainTechEnthusiast>`__
 - `Jan Pluskal (@pluskal) <https://github.com/pluskal>`__
+- `Peter (@pmannk) <https://github.com/pmannk>`__
 - `DK (@poldim) <https://github.com/poldim>`__
 - `poloswiss (@poloswiss) <https://github.com/poloswiss>`__
 - `polyfloyd (@polyfloyd) <https://github.com/polyfloyd>`__
@@ -1130,6 +1136,7 @@ Contributors
 - `scamiv (@scamiv) <https://github.com/scamiv>`__
 - `Nils Schulte (@Schnilz) <https://github.com/Schnilz>`__
 - `Wolle (@schreibfaul1) <https://github.com/schreibfaul1>`__
+- `MSchwarzbach (@schwarzbach) <https://github.com/schwarzbach>`__
 - `Scobber (@Scobber) <https://github.com/Scobber>`__
 - `Ville Skyttä (@scop) <https://github.com/scop>`__
 - `Dan (@ScrewLooseDan) <https://github.com/ScrewLooseDan>`__
@@ -1207,6 +1214,7 @@ Contributors
 - `tantive (@tantive) <https://github.com/tantive>`__
 - `Aiden (@tarontop) <https://github.com/tarontop>`__
 - `Hawawa McTaru (@TaruDesigns) <https://github.com/TaruDesigns>`__
+- `Jake Kromer (@techwithjake) <https://github.com/techwithjake>`__
 - `Ryan Hoffman (@tekmaven) <https://github.com/tekmaven>`__
 - `testbughub (@testbughub) <https://github.com/testbughub>`__
 - `Tudor Sandu (@tetele) <https://github.com/tetele>`__
@@ -1303,6 +1311,7 @@ Contributors
 - `VitaliyKurokhtin (@VitaliyKurokhtin) <https://github.com/VitaliyKurokhtin>`__
 - `voed (@voed) <https://github.com/voed>`__
 - `Xuming Feng (@voicevon) <https://github.com/voicevon>`__
+- `Manuel Bichler (@votacom) <https://github.com/votacom>`__
 - `vozvivan (@vozvivan) <https://github.com/vozvivan>`__
 - `vt-vaio (@vt-vaio) <https://github.com/vt-vaio>`__
 - `vtechun (@vtechun) <https://github.com/vtechun>`__
@@ -1356,4 +1365,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated May 9, 2024.*
+*This page was last updated May 14, 2024.*
