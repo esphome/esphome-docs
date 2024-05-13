@@ -374,7 +374,7 @@ The layout configuration options are applied to any parent widget or page, influ
 
 .. _lvgl-layouts-flex:
 
-**Flex**
+*Flex*
 
 The Flex layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
 
@@ -418,11 +418,32 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
 
 .. _lvgl-layouts-grid:
 
-**Grid**
+*Grid*
 
 The Grid layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
 
 It can arrange items into a 2D "table" that has rows or columns (tracks). The item(s) can span through multiple columns or rows. The track's size can be set in pixels, to the largest item or in "free units" to distribute the free space proportionally.
+
+**Terms used:**
+
+- *tracks*: the rows or columns.
+- *gap*: the space between the rows and columns or the items on a track.
+
+**Configuration variables:**
+
+    - **grid_rows** (**Required**): The number of rows in the grid.
+    - **grid_columns** (**Required**): The number of columns in the grid.
+    - **grid_column_align** (*Optional*, string): How to align the widget within the column. Possible options below.
+    - **grid_row_align** (*Optional*, string): How to align the widget within the row. Possible options below.
+    
+     Applicable to ``grid_column_align``, ``grid_row_align``:
+
+        - ``START``: means left horizontally and top vertically (default).
+        - ``END``: means right horizontally and bottom vertically.
+        - ``CENTER``: simply center.
+        - ``SPACE_EVENLY``: items are distributed so that the spacing between any two items (and the space to the edges) is equal.
+        - ``SPACE_AROUND``: items are evenly distributed in the track with equal space around them. Note that visually the spaces aren’t equal, since all the items have equal space on both sides. The first item will have one unit of space against the container edge, but two units of space between the next item because that next item has its own spacing that applies.
+        - ``SPACE_BETWEEN``: items are evenly distributed in the track: first item is on the start line, last item on the end line.
 
 .. _lvgl-widgets:
 
@@ -1809,7 +1830,7 @@ If the Tile view is screen sized, the user interface resembles what you may have
 **Configuration variables:**
 
 - **tiles** (**Required**, list): A list with (any number of) tiles to be added to tileview.  
-    - **id** (**Required**): A tile ID to be used with the ``lvgl.tileview.select`` action.
+    - **id** (*Optional*): A tile ID to be used with the ``lvgl.tileview.select`` action.
     - **row** (**Required**): Horizontal position of the tile in the tileview grid.
     - **column** (**Required**): Vertical position of the tile in the tileview grid.
     - **dir** (*Optional*): Enable moving to adjacent tiles in the given direction by swiping/dragging. One (or multiple as YAML list) of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
@@ -1853,7 +1874,6 @@ If the Tile view is screen sized, the user interface resembles what you may have
             id: tiv_id
             tile_id: cat_tile
             animated: true
-
 
     # Example trigger:
     - tileview:
