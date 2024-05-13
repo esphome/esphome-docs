@@ -1057,8 +1057,8 @@ This saved you from a considerable amount of manual calculation of widget positi
 
 .. _lvgl-cook-btlg:
 
-ESPHome boot bogo
------------------
+ESPHome boot screen
+-------------------
 
 To display a boot image with a spinner animation which disappears automatically after a few moments or on touch of the screen you can use the *top layer*. The trick is to put a base :ref:`lvgl-wgt-obj` full screen and child :ref:`lvgl-wgt-img` widget in its middle as the last item of the widgets list, so they draw on top of all the others. To make it automatically disappear afer boot, you use ESPHome's ``on_boot`` trigger:
 
