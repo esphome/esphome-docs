@@ -369,7 +369,7 @@ The layout configuration options are applied to any parent widget or page, influ
 **Configuration variables:**
 
 - **layout** (*Optional*, string): A dictionary describing the layout configuration:
-    - *type* (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. Defaults to ``NONE``.
+    - **type** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. Defaults to ``NONE``.
     - Further options from below depending on the chosen type.
 
 .. _lvgl-layouts-flex:
@@ -402,7 +402,9 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
 
     - **flex_align_main** (*Optional*, string): Determines how to distribute the items in their track on the *main* axis. For example, flush the items to the right on with ``flex_flow: ROW_WRAP`` (known as *justify-content* in CSS). Possible options below.
     - **flex_align_cross** (*Optional*, string): Determines how to distribute the items in their track on the *cross* axis .For example, if the items have different height place them to the bottom of the track (known as *align-items* in CSS). Possible options below.
-    - **flex_align_track** (*Optional*, string): Determines how to distribute the tracks (known as *align-content* in CSS). Possible options below:
+    - **flex_align_track** (*Optional*, string): Determines how to distribute the tracks (known as *align-content* in CSS). Possible options below.
+    
+    Applicable to ``flex_align_main``, ``flex_align_cross``, ``flex_align_track``:
         - ``START``: means left horizontally and top vertically (default).
         - ``END``: means right horizontally and bottom vertically.
         - ``CENTER``: simply center.
