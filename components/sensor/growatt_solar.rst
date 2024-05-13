@@ -24,6 +24,7 @@ to some pins on your board and the baud rate set to 9600.
     sensor:
       - platform: growatt_solar
         protocol_version: RTU
+        warm_up_time: 30
 
         inverter_status:
           name: "Growatt Status Code"
@@ -92,6 +93,8 @@ Configuration variables:
 
 - **protocol_version** (*Optional*): Version of the protocol used by your inverter.
   Old inverters use RTU (default). Newer ones use RTU2 (e.g. MIC, MIN, MAX series)
+
+- **warm_up_time** (*Optional*): Warm up time for the inverter to get the values sane on power up in seconds. Default to 0, but when you see invalid readings or yesterdays values (energy generation) right after the inverter comes online and with that power up the ESPHome node you should set this to eg `30`. During this warm up time you won't get readings.
 
 - **phase_a** (*Optional*): The group of exposed sensors for Phase A/1.
 
