@@ -1434,8 +1434,8 @@ Images are the basic widgets used to display images.
 - **zoom** (*Optional*, 0.1-10): Zoom of the image.
 - **pivot_x** (*Optional*): Horizontal position of the pivot point of rotation relative to the top left corner of the image. Defaults to ``50%`` (center of image).
 - **pivot_y** (*Optional*): Vertical position of the pivot point of rotation relative to the top left corner of the image.. Defaults to ``50%`` (center of image).
-- **antialias** (*Optional*): The quality of the angle or zoom transformation. With enabled anti-aliasing the transformations are higher quality but slower. Defaults to ``false``.
-- **mode** (*Optional*): ``VIRTUAL``: when the image is zoomed or rotated the real coordinates of the image object are not changed. The larger content simply overflows the object's boundaries. It also means the layouts are not affected the by the transformations. ``REAL`` if the width/height of the object is set to ``size_content`` the object's size will be set to the zoomed and rotated size. If an explicit size is set then the overflowing content will be cropped. Defaults to ``VIRTUAL``.
+- **antialias** (*Optional*): The quality of the angle or zoom transformation. When anti-aliasing is enabled, the transformations are higher quality but slower. Defaults to ``false``.
+- **mode** (*Optional*): Either ``REAL`` or  ``VIRTUAL``. With ``VIRTUAL``, when the image is zoomed or rotated, the real coordinates of the image object are not changed. The larger content simply overflows the object's boundaries. It also means the layouts are not affected the by the transformations. With ``REAL``, if the width/height of the object is set to ``size_content``, the object's size will be set to the zoomed and rotated size. If an explicit size is set, the overflowing content will be cropped. Defaults to ``VIRTUAL``.
 - **offset_x**, **offset_y** (*Optional*): Add an offset to the displayed image. Useful if the widget size is smaller than the image source size. Tip: a *running image* effect can be created by animating these values.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
@@ -1550,7 +1550,7 @@ By default, the Line widget width and height dimensions are set to ``size_conten
 ``led``
 ********
 
-The Led widgets are rectangle-like (or circle) widget whose brightness can be adjusted. With lower brightness the colors become darker.
+The LED widgets are either circular or rectangular widgets whose brightness can be adjusted. As their brightness decreases, the colors become darker.
 
 .. figure:: /components/images/lvgl_led.png
     :align: center
@@ -1563,7 +1563,7 @@ The Led widgets are rectangle-like (or circle) widget whose brightness can be ad
 
 **Actions:**
 
-- ``lvgl.led.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.led.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -1589,14 +1589,14 @@ The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
 
     If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup, according to its ``restore_mode`` setting.
 
-Check out :ref:`lvgl-cook-keypad` in the Cookbook for an example how to change the led styling properties from an automation.
+Check out :ref:`lvgl-cook-keypad` in the Cookbook for an example illustrating how to change the ``led`` styling properties from an automation.
 
 .. _lvgl-wgt-txt:
 
 ``textarea``
 ************
 
-The Textarea is a widget allowing to input text and displays a cursor. Long lines are wrapped and when the text becomes long enough the Text area can be scrolled. It supports one line mode and password mode, where typed characters are replaced visually with bullets or asterisks.
+The Textarea is a widget which displays a cursor and allows the user to input text. Long lines are wrapped and when the text becomes long enough the Text area can be scrolled. It supports one line mode and password mode, where typed characters are replaced visually with bullets or asterisks.
 
 .. figure:: /components/images/lvgl_textarea.png
     :align: center
@@ -1616,8 +1616,10 @@ The Textarea is a widget allowing to input text and displays a cursor. Long line
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <automation>` is activated on every keystroke, the variable ``text`` (``std::string`` type) containing the entire contents of the textarea.
-- ``on_ready`` :ref:`trigger <automation>` is activated in case of ``one_line`` configured as ``true``, when the New Line character is receicved (Enter/Ready key on the keyboard), the variable ``text`` (``std::string`` type) containing the entire contents of the textarea.
+- ``on_value`` :ref:`trigger <automation>` is activated on every keystroke.
+- ``on_ready`` :ref:`trigger <automation>` is activated when ``one_line`` is configured as ``true`` and the newline character is received (Enter/Ready key on the keyboard).
+
+For both triggers above, when triggered, the variable ``text`` (``std::string`` type) is available for use in lambdas within these triggers and it will contain the entire contents of the textarea.
 
 **Example:**
 
@@ -1674,7 +1676,7 @@ The Spinner widget is a spinning arc over a ring.
 
 **Actions:**
 
-- ``lvgl.spinner.update`` :ref:`action <config-action>` updates the widget styles and properties for the *indicator* part (anything other than the properties that apply commonly to all widgets), just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.spinner.update`` :ref:`action <config-action>` updates the widget styles and properties for the *indicator* part (anything other than the properties that apply commonly to all widgets), just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Example:**
 
@@ -1740,8 +1742,8 @@ A typical application would probably use an ``obj`` container widget as a tile, 
 
 - **tiles** (**Required**, list): A list with (any number of) tiles to be added to tileview.  
     - *widget* (**Required**): Any kind of widget to be used as tile container.
-        - **tile_id** (**Required**): A tile ID to be used with ``lvgl.tileview.select`` action.
-        - **dir** (*Optional*): Enable moving to the adjacent tiles into the given direction by swiping/dragging. One (or multiple as YAML list) of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
+        - **tile_id** (**Required**): A tile ID to be used with the ``lvgl.tileview.select`` action.
+        - **dir** (*Optional*): Enable moving to adjacent tiles in the given direction by swiping/dragging. One (or multiple as YAML list) of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
         - **row** (**Required**): Horizontal position of the tile in the tileview grid.
         - **column** (**Required**): Vertical position of the tile in the tileview grid.
         - Style options from the widget used as container.
@@ -1750,14 +1752,14 @@ A typical application would probably use an ``obj`` container widget as a tile, 
 
 - ``lvgl.tileview.select`` :ref:`action <config-action>` jumps the ``tileview`` to the desired tile:
     - **id** (**Required**): The ID of the ``tileview`` which receives this action
-    - **tile_id** (*Optional*): The ID of the tile from within it, to which to jump. Required if not specifying ``row`` and ``column``.
+    - **tile_id** (*Optional*): The ID of the tile (from within the tileview) to which to jump. Required if not specifying ``row`` and ``column``.
     - **row** (*Optional*): Horizontal position of the tile to which to jump. Required if not specifying ``tile_id``.
     - **column** (*Optional*): Vertical position of the tile to which to jump. Required if not specifying ``tile_id``.
     - **animated** (*Optional*, boolean): To animate the movement. Defaults to ``false``.
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <automation>` is activated when displayed tile changes. The new value is returned in the variable ``tile``, as the ID of the newly visible tile. 
+- ``on_value`` :ref:`trigger <automation>` is activated when displayed tile changes. The new value is returned in the variable ``tile`` as the ID of the now-visible tile. 
 
 **Example:**
 
@@ -1814,7 +1816,7 @@ The text will be broken into multiple lines automatically and the height will be
 - **msgboxes** (*Optional*, enum): A list of message boxes to use. This option has to be added to the top level of the LVGL component configuration.
     - **close_button** (**Required**, boolean): Controls the appearance of the close button to the top right of the message box. 
     - **title** (**Required**, string): A string to display at the top of the message box.
-    - **body** (**Required**, enum): The content of body of the message box:
+    - **body** (**Required**, enum): The content of the body of the message box:
         - **text** (**Required**, string):  The string to be displayed in the body of the message box. Can be shorthanded if no further options are specified.
         - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties.
     - **buttons** (**Required**, enum): A list of buttons to show at the bottom of the message box:
@@ -1856,17 +1858,17 @@ The configured message boxes are hidden by default. One can show them with ``lvg
 ``keyboard``
 ************
 
-The Keyboard widget is a special Button matrix with predefined keymaps and other features to show an on-screen keyboard usable to type texts into a :ref:`lvgl-wgt-txt`.
+The Keyboard widget is a special Button matrix with predefined keymaps and other features to show an on-screen keyboard usable to type text into a :ref:`lvgl-wgt-txt`.
 
 .. figure:: /components/images/lvgl_keyboard.png
     :align: center
 
-From styling point of view, it uses the same settings as :ref:`lvgl-wgt-bmx`.
+For styling, the ``keyboard`` widget uses the same settings as :ref:`lvgl-wgt-bmx`.
 
 **Configuration variables:**
 
-- **textarea** (*Optional*): The ID of the ``textarea`` which to receive the keystrokes.
-- **mode** (*Optional*, enum): Keyboard layout to use. The ``TEXT_`` modes' layout contains buttons to change between each other.
+- **textarea** (*Optional*): The ID of the ``textarea`` from which to receive the keystrokes.
+- **mode** (*Optional*, enum): Keyboard layout to use. Each ``TEXT_`` layout contains a button to allow the user to iterate through the ``TEXT_`` layouts.
     - ``TEXT_LOWER``: Display lower case letters (default).
     - ``TEXT_UPPER``: Display upper case letters.
     - ``TEXT_SPECIAL``: Display special characters.
@@ -1874,12 +1876,12 @@ From styling point of view, it uses the same settings as :ref:`lvgl-wgt-bmx`.
 
 **Actions:**
 
-- ``lvgl.keyboard.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
+- ``lvgl.keyboard.update`` :ref:`action <config-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
 **Triggers:**
 
-- ``on_ready`` :ref:`trigger <automation>` is activated ckeckmark key is pressed.
-- ``on_cancel`` :ref:`trigger <automation>` is activated key representing a keyboard icon is pressed.
+- ``on_ready`` :ref:`trigger <automation>` is activated when the checkmark key is pressed.
+- ``on_cancel`` :ref:`trigger <automation>` is activated when the key containing the keyboard icon is pressed.
 
 **Example:**
 
@@ -1920,14 +1922,15 @@ From styling point of view, it uses the same settings as :ref:`lvgl-wgt-bmx`.
 Actions
 -------
 
-Specific actions are available for certain widgets, they are described above in their respective section. Some universal actions are available for all the widgets or for LVGL itself:
+As outlined in the sections above, each widget type supports several of its own, unique actions.
+Several universal actions are also available for all widgets and/or for LVGL itself; these are outlined below.
 
 .. _lvgl-objupd-act:
 
 ``lvgl.widget.update``
 **********************
 
-This powerful :ref:`action <config-action>` allows changing on the fly any common :ref:`style property <lvgl-styling>`, state (templatable) or :ref:`flag <lvgl-objupdflag-act>` of any widget.
+This powerful :ref:`action <config-action>` allows changing/updating any widget's common :ref:`style property <lvgl-styling>`, state (templatable) or :ref:`flag <lvgl-objupdflag-act>` on the fly.
 
 .. code-block:: yaml
 
@@ -1947,7 +1950,7 @@ This powerful :ref:`action <config-action>` allows changing on the fly any commo
             id: my_label_id
             hidden: true
 
-Check out in the Cookbook :ref:`lvgl-cook-binent` for an example how to use a template to update the state.
+Check out in the Cookbook :ref:`lvgl-cook-binent` for an example illustrating how to use a template to update the state.
 
 .. _lvgl-objupd-shorthands:
 
@@ -1985,7 +1988,7 @@ These :ref:`actions <config-action>` are shorthands for toggling the ``disabled`
 
 This :ref:`action <config-action>` redraws the entire screen, or optionally only a widget on it.
 
-- **id** (*Optional*): The ID of a widget configured in LVGL, which you want to redraw. Entire screen if omitted.
+- **id** (*Optional*): The ID of a widget configured in LVGL which you want to redraw; if omitted, the entire screen will be redrawn.
 
 .. code-block:: yaml
 
@@ -2025,7 +2028,7 @@ This :ref:`action <config-action>` resumes the activity of LVGL, including rende
 ``lvgl.update``
 ***************
 
-This :ref:`action <config-action>` allows changing on the fly the ``disp_bg_color`` or ``disp_bg_image`` configuration options of the main component, making it possible to use change the background color or wallpaper at any time.
+This :ref:`action <config-action>` allows changing/updating the ``disp_bg_color`` or ``disp_bg_image`` configuration variables of the main component, making it possible to change the background color or wallpaper at any time.
 
 .. code-block:: yaml
 
@@ -2042,9 +2045,9 @@ This :ref:`action <config-action>` allows changing on the fly the ``disp_bg_colo
 ``lvgl.page.next``, ``lvgl.page.previous``
 ******************************************
 
-This :ref:`action <config-action>` changes page to the next following in the configuration (except the ones with ``skip`` option enabled), wraps around at the end.
+This :ref:`action <config-action>` changes the page to the next/previous based on the configuration (pages with their ``skip`` option enabled are...skipped). Page changes will wrap around at the end.
 
-- **animation** (*Optional*): The page change with one of these animations: ``NONE``, ``OVER_LEFT``, ``OVER_RIGHT``, ``OVER_TOP``, ``OVER_BOTTOM``, ``MOVE_LEFT``, ``MOVE_RIGHT``, ``MOVE_TOP``, ``MOVE_BOTTOM``, ``FADE_IN``, ``FADE_OUT``, ``OUT_LEFT``, ``OUT_RIGHT``, ``OUT_TOP``, ``OUT_BOTTOM``. Defaults to ``NONE`` if not specified.
+- **animation** (*Optional*): Animate page changes as specified. One of: ``NONE``, ``OVER_LEFT``, ``OVER_RIGHT``, ``OVER_TOP``, ``OVER_BOTTOM``, ``MOVE_LEFT``, ``MOVE_RIGHT``, ``MOVE_TOP``, ``MOVE_BOTTOM``, ``FADE_IN``, ``FADE_OUT``, ``OUT_LEFT``, ``OUT_RIGHT``, ``OUT_TOP``, ``OUT_BOTTOM``. Defaults to ``NONE``.
 - **time** (*Optional*, :ref:`Time <config-time>`): Duration of the page change animation. Defaults to ``50ms``.
 
 .. code-block:: yaml
@@ -2066,10 +2069,10 @@ This :ref:`action <config-action>` changes page to the next following in the con
 ``lvgl.page.show``
 ******************
 
-This :ref:`action <config-action>` shows a specific page (even the ones with ``skip`` option enabled).
+This :ref:`action <config-action>` shows a specific page (including pages with their ``skip`` option enabled).
 
 - **id** (**Required**): The ID of the page to be shown.
-- **animation** (*Optional*): The page change with one of these animations: ``NONE``, ``OVER_LEFT``, ``OVER_RIGHT``, ``OVER_TOP``, ``OVER_BOTTOM``, ``MOVE_LEFT``, ``MOVE_RIGHT``, ``MOVE_TOP``, ``MOVE_BOTTOM``, ``FADE_IN``, ``FADE_OUT``, ``OUT_LEFT``, ``OUT_RIGHT``, ``OUT_TOP``, ``OUT_BOTTOM``. Defaults to ``NONE`` if not specified.
+- **animation** (*Optional*): Animate page changes as specified. One of: ``NONE``, ``OVER_LEFT``, ``OVER_RIGHT``, ``OVER_TOP``, ``OVER_BOTTOM``, ``MOVE_LEFT``, ``MOVE_RIGHT``, ``MOVE_TOP``, ``MOVE_BOTTOM``, ``FADE_IN``, ``FADE_OUT``, ``OUT_LEFT``, ``OUT_RIGHT``, ``OUT_TOP``, ``OUT_BOTTOM``. Defaults to ``NONE``.
 - **time** (*Optional*, :ref:`Time <config-time>`): Duration of the page change animation. Defaults to ``50ms``.
 
 .. code-block:: yaml
@@ -2091,9 +2094,9 @@ Conditions
 ``lvgl.is_idle``
 ****************
 
-This :ref:`condition <config-condition>` checks if since the last touch event, the amount of time specified here has passed or not.
+This :ref:`condition <config-condition>` checks if the amount of time specified has passed since the last touch event.
 
-- **timeout** (**Required**, :ref:`templatable <config-templatable>`, int): :ref:`Time <config-time>` to check against the time that has elapsed since the last touch event.
+- **timeout** (**Required**, :ref:`templatable <config-templatable>`, int): Amount of :ref:`time <config-time>` expected since the last touch event.
 
 .. code-block:: yaml
 
@@ -2113,7 +2116,7 @@ This :ref:`condition <config-condition>` checks if since the last touch event, t
 ``lvgl.is_paused``
 ******************
 
-This :ref:`condition <config-condition>` checks if LVGL is in paused state or not.
+This :ref:`condition <config-condition>` checks if LVGL is in the paused state or not.
 
 .. code-block:: yaml
 
@@ -2128,7 +2131,8 @@ This :ref:`condition <config-condition>` checks if LVGL is in paused state or no
 Triggers
 --------
 
-Specific triggers like ``on_value`` are available for certain widgets, they are described above in their respective section. Some universal triggers are available for all the widgets or for LVGL itself:
+Specific triggers like ``on_value`` are available for certain widgets; they are described above in their respective section.
+ Some universal triggers are also available for all of the widgets and/or for LVGL itself:
 
 .. _lvgl-event-trg:
 
@@ -2149,7 +2153,7 @@ ESPHome implements as universal triggers the following interaction events genera
 - ``on_focus``:  The widget is focused.
 - ``on_defocus``: The widget is unfocused.
 
-These triggers can be applied directly to any widget in the lvgl configuration, given that the widget itself supports generating such events. For the widgets having a value, the triggers return the current value in variable ``x``.
+These triggers can be applied directly to any widget in the LVGL configuration, given that the widget itself supports generating such events. For the widgets having a value, the triggers return the current value in variable ``x``; this variable may be used in lambdas defined within those triggers.
 
 .. code-block:: yaml
 
@@ -2177,7 +2181,7 @@ These triggers can be applied directly to any widget in the lvgl configuration, 
 ``lvgl.on_idle``
 ****************
 
-LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be use to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter. 
+LVGL has a notion of screen inactivity -- in other words, the time since the last user interaction with the screen is tracked. This can be used to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter. 
 
 The ``on_idle`` :ref:`triggers <automation>` are activated when inactivity time becomes longer than the specified ``timeout``. You can configure any desired number of timeouts with different actions.
 
@@ -2196,7 +2200,7 @@ The ``on_idle`` :ref:`triggers <automation>` are activated when inactivity time 
             - light.turn_off: display_backlight
             - lvgl.pause:
 
-See :ref:`lvgl-cook-idlescreen` example how to implement screen saving with idle settings.
+See :ref:`lvgl-cook-idlescreen` for an example illustrating how to implement screen saving with idle settings.
 
 .. _lvgl-seealso:
 
