@@ -96,19 +96,15 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the root display. May not be used if ``pages`` (below) is configured.
 - **pages** (*Optional*, list): A list of page IDs. Each page acts as a parent for widgets placed on it. May not be used with ``widgets`` (above). Options for each page:
     - **skip** (*Optional*, boolean): Option to skip this page when navigating between them with :ref:`lvgl-pgnx-act`.
-    - **layout** (*Optional*, string): One of ``FLEX``, ``GRID`` or ``NONE``. See :ref:`layouts <lvgl-layouts>`. Defaults to ``NONE`` which disables layouts (each widget will then require manual positioning).
-    - **flex_flow** (*Optional*, string): See :ref:`flex layout <lvgl-layouts-flex>` options. 
+    - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
     - All other options from :ref:`lvgl-styling` to be applied to this page.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
 - **page_wrap** (*Optional*, boolean): Wrap pages around when navigating between them with :ref:`lvgl-pgnx-act`. Defaults to ``true``.
 - **top_layer** (*Optional*, list): A special kind of *Always on Top* page, which acts as a parent for widgets placed on it. It's shown above all the pages, which may be useful for widgets which always need to be visible. May not be used with ``widgets`` (above). Options:
-    - **layout** (*Optional*, string): One of ``FLEX``, ``GRID`` or ``NONE``. See :ref:`layouts <lvgl-layouts>`.  Defaults to ``NONE`` which disables layouts (each widget will then require manual positioning).
-    - **flex_flow** (*Optional*, string): See :ref:`flex layout <lvgl-layouts-flex>` options. 
+    - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
     - All other options from :ref:`lvgl-styling` to be applied to this page.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
-- **layout** (*Optional*, string): One of ``FLEX``, ``GRID`` or ``NONE``. See :ref:`layouts <lvgl-layouts>`.  Defaults to ``NONE`` which disables layouts (each widget will then require manual positioning).
-- **flex_flow** (*Optional*, string): See :ref:`flex layout <lvgl-layouts-flex>` options. 
-
+- **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
 - All other options from :ref:`lvgl-styling` to be applied to all widgets directly.
 
 **Example:**
@@ -355,11 +351,9 @@ In the example below, you have an ``arc`` with some styles set here. Note how yo
           focused:
             arc_color: 0x808080
 
-So the inheritance happens like this: state based styles override the locally specified styles, which override the style definitions, which override the theme, which overrides the top level styles.
+So the precedence happens like this: state based styles override the locally specified styles, which override the style definitions, which override the theme, which overrides the top level styles. The value precedence of states is quite intuitive and it's something the user would expect naturally. For example, if a widget is focused the user will still want to see if it's pressed, therefore the pressed state has a higher precedence. (If the focused state had a higher precedence it would override the *pressed* color, defeating its purpose.)
 
-The precedence (value) of states is quite intuitive and it's something the user would expect naturally. For example, if a widget is focused the user will still want to see if it's pressed, therefore the pressed state has a higher precedence. (If the focused state had a higher precedence it would override the "pressed" color, defeating its purpose.)
-
-Feel free to experiment to discover inheritance of the styles based on states between the nested widgets.
+Feel free to experiment to discover inheritance and precedence of the styles based on states between the nested widgets.
 
 :ref:`lvgl-cook-theme` The Cookbook contains an example illustrating how to easily implement a gradient style for your widgets.
 
@@ -372,6 +366,12 @@ Layouts aim to position widgets automatically, eliminating the need to specify `
 
 The layout configuration options are applied to any parent widget or page, influencing the appearance of the children.
 
+**Configuration variables:**
+
+- **layout** (*Optional*, string): A dictionary describing the layout configuration:
+    - *type* (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. Defaults to ``NONE``.
+    - Further options from below depending on the chosen type.
+
 .. _lvgl-layouts-flex:
 
 **Flex**
@@ -380,24 +380,39 @@ The Flex layout in LVGL is a subset implementation of `CSS Flexbox <https://css-
 
 It can arrange items into rows or columns (tracks), handle wrapping, adjust spacing between items and tracks and even handle growing the layout to make the item(s) fill the remaining space with respect to minimum/maximum width and height.
 
-Terms used:
+**Terms used:**
 
-- *tracks*: the rows or columns main direction: row or column, the direction in which the items are placed.
+- *tracks*: the rows or columns *main* direction: row or column, the direction in which the items are placed.
 - *cross direction*: perpendicular to the main direction.
 - *wrap*: if there is no more space in the track a new track is started.
-- *grow*: if set on an item it will grow to fill the remaining space on the track. The available space will be distributed among items respective to their grow value (larger value means more space).
 - *gap*: the space between the rows and columns or the items on a track.
+- *grow*: if set on an item it will grow to fill the remaining space on the track. The available space will be distributed among items respective to their grow value (larger value means more space). For example, if there is 400 px available space and 4 widgets are set: A with ``flex_grow: 1``, B with ``flex_grow: 1``, C with ``flex_grow: 2``, A and B will have 100 px size, and C will have 200 px size.
 
-In a Flex layout, use the following options in the ``flex_flow`` configuration parameter to select the arrangement of the children widgets:
+**Configuration variables:**
 
-- ``ROW``: place the children in a row without wrapping.
-- ``COLUMN``: place the children in a column without wrapping.
-- ``ROW_WRAP``: place the children in a row with wrapping (default).
-- ``COLUMN_WRAP``: place the children in a column with wrapping.
-- ``ROW_REVERSE``: place the children in a row without wrapping but in reversed order.
-- ``COLUMN_REVERSE``: place the children in a column without wrapping but in reversed order.
-- ``ROW_WRAP_REVERSE``: place the children in a row with wrapping but in reversed order.
-- ``COLUMN_WRAP_REVERSE``: place the children in a column with wrapping but in reversed order.
+    - **flex_flow** (*Optional*, string): Select the arrangement of the children widgets:
+        - ``ROW``: place the children in a row without wrapping.
+        - ``COLUMN``: place the children in a column without wrapping.
+        - ``ROW_WRAP``: place the children in a row with wrapping (default).
+        - ``COLUMN_WRAP``: place the children in a column with wrapping.
+        - ``ROW_REVERSE``: place the children in a row without wrapping but in reversed order.
+        - ``COLUMN_REVERSE``: place the children in a column without wrapping but in reversed order.
+        - ``ROW_WRAP_REVERSE``: place the children in a row with wrapping but in reversed order.
+        - ``COLUMN_WRAP_REVERSE``: place the children in a column with wrapping but in reversed order.
+
+    - **flex_align_main** (*Optional*, string): Determines how to distribute the items in their track on the *main* axis. For example, flush the items to the right on with ``flex_flow: ROW_WRAP`` (known as *justify-content* in CSS). Possible options below.
+    - **flex_align_cross** (*Optional*, string): Determines how to distribute the items in their track on the *cross* axis .For example, if the items have different height place them to the bottom of the track (known as *align-items* in CSS). Possible options below.
+    - **flex_align_track** (*Optional*, string): Determines how to distribute the tracks (known as *align-content* in CSS). Possible options below:
+        - ``START``: means left horizontally and top vertically (default).
+        - ``END``: means right horizontally and bottom vertically.
+        - ``CENTER``: simply center.
+        - ``SPACE_EVENLY``: items are distributed so that the spacing between any two items (and the space to the edges) is equal. Does not apply to ``flex_align_track``.
+        - ``SPACE_AROUND``: items are evenly distributed in the track with equal space around them. Note that visually the spaces aren’t equal, since all the items have equal space on both sides. The first item will have one unit of space against the container edge, but two units of space between the next item because that next item has its own spacing that applies. Does not apply to ``flex_align_track``.
+        - ``SPACE_BETWEEN``: items are evenly distributed in the track: first item is on the start line, last item on the end line. Does not apply to ``flex_align_track``.
+
+    - **pad_row** (*Optional*, int16): Set the padding between the rows, in pixels.
+    - **pad_column** (*Optional*, int16): Set the padding between the columns, in pixels.
+    - **flex_grow** (*Optional*, int16): Flex grow can be used to make one or more children fill the available space on the track. When more children have grow parameters, the available space will be distributed proportionally to the grow values. Defaults to ``0``, which disables growing.
 
 .. _lvgl-layouts-grid:
 
@@ -462,8 +477,7 @@ The properties below are common to all widgets.
 - **group** (*Optional*, string): The name of the group of widgets which will interact with a  :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused widget which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
 - **styles** (*Optional*, :ref:`config-id`): The ID of a *style definition* from the main component configuration to override the theme styles.
 - **theme** (*Optional*, list): A list of styles to apply to the widget and children. Same configuration option as at the main component.
-- **layout** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. See :ref:`layouts <lvgl-layouts>`.  If not specified, defaults to ``NONE``, which disables layouts each widget needing manual positioning.
-- **flex_flow** (*Optional*, string): See :ref:`flex layout <lvgl-layouts-flex>` options. 
+- **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn as children of this widget. Same configuration option as at the main component.
 
 .. _lvgl-wgtprop-state:
@@ -549,7 +563,7 @@ A label is the basic widget type that is used to display text.
 - **text_line_space** (*Optional*, int16): Line spacing of the text. Inherited from parent. Defaults to ``0``.
 - **text_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the text. Inherited from parent. Defaults to ``COVER``.
 - **recolor** (*Optional*, boolean): Enable recoloring of button text with ``#``. This makes it possible to set the color of characters in the text individually by prefixing the text to be re-colored with a ``#RRGGBB`` hexadecimal color code followed by a *space*, and finally closed with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
-- **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or set by a ``layout``), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
+- **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or set by :ref:`lvgl-layouts`), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
     - ``WRAP``: Wrap lines which are too long. If the height is ``size_content``, the label's height will be expanded, otherwise the text will be clipped (default). 
     - ``DOT``: Replaces the last 3 characters from bottom right corner of the label with dots.
     - ``SCROLL``: If the text is wider than the label, scroll the text horizontally back and forth. If it's higher, scroll vertically. Text will scroll in only one direction; horizontal scrolling has higher precedence.
@@ -1422,7 +1436,7 @@ Images are the basic widgets used to display images.
 - **pivot_y** (*Optional*): Vertical position of the pivot point of rotation relative to the top left corner of the image.. Defaults to ``50%`` (center of image).
 - **antialias** (*Optional*): The quality of the angle or zoom transformation. With enabled anti-aliasing the transformations are higher quality but slower. Defaults to ``false``.
 - **mode** (*Optional*): ``VIRTUAL``: when the image is zoomed or rotated the real coordinates of the image object are not changed. The larger content simply overflows the object's boundaries. It also means the layouts are not affected the by the transformations. ``REAL`` if the width/height of the object is set to ``size_content`` the object's size will be set to the zoomed and rotated size. If an explicit size is set then the overflowing content will be cropped. Defaults to ``VIRTUAL``.
-- **offset_x**, **offset_y** (*Optional*): Add offset to the displayed image. Useful if the widget size is smaller than the image source size. Using the offset parameter a *running image* effect can be created by animating these values.
+- **offset_x**, **offset_y** (*Optional*): Add an offset to the displayed image. Useful if the widget size is smaller than the image source size. Tip: a *running image* effect can be created by animating these values.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
 **Actions:**
