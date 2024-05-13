@@ -1159,7 +1159,7 @@ The Arc consists of a background and a foreground arc. The foreground (indicator
 - **max_value** (*Optional*, int8): Maximum value of the indicator. Defaults to ``100``.
 - **start_angle** (*Optional*, 0-360): start angle of the arc background (see note). Defaults to ``135``.
 - **end_angle** (*Optional*, 0-360): end angle of the arc background (see note). Defaults to ``45``.
-- **rotation** (*Optional*, int8): Offset to the 0 degree position. Defaults to ``0.0``.
+- **rotation** (*Optional*, 0-360): Offset to the 0 degree position. Defaults to ``0.0``.
 - **adjustable** (*Optional*, boolean): Add a knob that the user can move to change the value. Defaults to ``false``.
 - **mode** (*Optional*, string): ``NORMAL``: the indicator is drawn from the minimum value to the current. ``REVERSE``: the indicator is drawn counter-clockwise from the maximum value to the current. ``SYMMETRICAL``: the indicator is drawn from the middle point to the current value. Defaults to ``NORMAL``.
 - **change_rate** (*Optional*, int8): If the arc is pressed the current value will set with a limited speed according to the set change rate. The change rate is defined in degree/second. Defaults to ``720``.
@@ -1416,6 +1416,13 @@ Images are the basic widgets used to display images.
 **Configuration variables:**
 
 - **src** (**Required**, :ref:`image <display-image>`): The ID of an existing image configuration.
+- **angle** (*Optional*, 0-360): Rotation of the image. Defaults to ``0.0``.
+- **zoom** (*Optional*, 0.1-10): Zoom of the image.
+- **pivot_x** (*Optional*): Horizontal position of the pivot point of rotation relative to the top left corner of the image. Defaults to ``50%`` (center of image).
+- **pivot_y** (*Optional*): Vertical position of the pivot point of rotation relative to the top left corner of the image.. Defaults to ``50%`` (center of image).
+- **antialias** (*Optional*): The quality of the angle or zoom transformation. With enabled anti-aliasing the transformations are higher quality but slower. Defaults to ``false``.
+- **mode** (*Optional*): ``VIRTUAL``: when the image is zoomed or rotated the real coordinates of the image object are not changed. The larger content simply overflows the object's boundaries. It also means the layouts are not affected the by the transformations. ``REAL`` if the width/height of the object is set to ``size_content`` the object's size will be set to the zoomed and rotated size. If an explicit size is set then the overflowing content will be cropped. Defaults to ``VIRTUAL``.
+- **offset_x**, **offset_y** (*Optional*): Add offset to the displayed image. Useful if the widget size is smaller than the image source size. Using the offset parameter a *running image* effect can be created by animating these values.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
 **Actions:**
