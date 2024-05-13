@@ -1605,7 +1605,7 @@ The Textarea is a widget which displays a cursor and allows the user to input te
 
 - **placeholder_text** (*Optional*, string): A placeholder text can be specified, which is displayed when the Text area is empty.
 - **accepted_chars** (*Optional*, string): You can set a list of accepted characters, so other characters will be ignored.
-- **one_line** (*Optional*, boolean): The Text area can be configured to be on a single line when the height is set automatically to show only one line, line break characters are ignored, and word wrap is disabled.
+- **one_line** (*Optional*, boolean): The text area can be limited to only allow a single line of text. In this case the height will set automatically to fit only one line, line break characters will be ignored, and word wrap will be disabled.
 - **password_mode** (*Optional*, boolean): The text area supports password mode. By default, if the ``•`` (bullet, ``0x2022``) glyph exists in the font, the entered characters are converted to it after some time or when a new character is entered. If ``•`` is missing from the font, ``*`` (asterisk) will be used. 
 - **max_length** (*Optional*, int): Limit the maximum number of characters to this value.
 - any :ref:`Styling <lvgl-styling>` and state-based option for the background of the textarea. Uses all the typical background style properties and the text/label related style properties for the text.
