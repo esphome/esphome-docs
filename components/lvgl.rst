@@ -1738,7 +1738,7 @@ A typical application would probably use an ``obj`` container widget as a tile, 
 
 **Configuration variables:**
 
-- **tiles** (**Required**, list): A list with (any number of) tiles to be added to meter.  
+- **tiles** (**Required**, list): A list with (any number of) tiles to be added to tileview.  
     - *widget* (**Required**): Any kind of widget to be used as tile container.
         - **tile_id** (**Required**): A tile ID to be used with ``lvgl.tileview.select`` action.
         - **dir** (*Optional*): Enable moving to the adjacent tiles into the given direction by swiping/dragging. One (or multiple as YAML list) of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
@@ -2000,7 +2000,7 @@ This :ref:`action <config-action>` redraws the entire screen, or optionally only
 
 This :ref:`action <config-action>` pauses the activity of LVGL, including rendering.
 
-- **show_snow** (*Optional*, boolean): During paused, display random colored pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel. See :ref:`lvgl-cook-antiburn` for an example how to use this.
+- **show_snow** (*Optional*, boolean): When paused, display random colored pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel. See :ref:`lvgl-cook-antiburn` for an example illustrating how to use this.
 
 .. code-block:: yaml
 
