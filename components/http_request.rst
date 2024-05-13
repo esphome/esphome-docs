@@ -24,6 +24,11 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **follow_redirects** (*Optional*, boolean): Enable following HTTP redirects. Defaults to ``true``.
 - **redirect_limit** (*Optional*, integer): Maximum amount of redirects to follow when enabled. Defaults to ``3``.
+- **retry** (*Optional*): Enable retries due to network errors.
+
+  - **count** (*Optional*, integer): Number of retries to attempt if request fails. Defaults to ``0``.
+  - **delay** (*Optional*, :ref:`config-time`): Initial delay between retries. Defaults to ``1s``.
+  - **backoff_factor** (*Optional*, float): Retry delay is multiplied by this factor each attempt. Defaults to ``1.0``.
 
 ESP8266 Options:
 
