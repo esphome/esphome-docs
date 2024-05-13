@@ -11,11 +11,11 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
 .. note::
 
-    Many examples below call services in Home Assistant, but by default these are not allowed out of the box. For an ESPHome device to call services, you must explicitly enable this setting in Home Assistant for each device,  either during adoption of it, or using the `Configure` option in the devices list of the integration.
+    Many of the examples below call services in Home Assistant; however, Home Assistant does not allow such service calls by default. For each ESPHome device which will call services, you must explicitly enable this setting in Home Assistant. This may be done when the device is initially adopted or by using the `Configure` option in the "devices" list of the ESPHome integration.
 
 .. note::
 
-    The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen width of ``240x320px``, you have to adjust them to your screen in order to obtain expected results.
+    The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen with dimensions of ``240x320px``; if your display's dimensions differ, you'll need to adjust them in order to obtain the expected results.
 
 .. _lvgl-cook-outbin:
 
@@ -143,7 +143,7 @@ Light brightness slider
 .. figure:: images/lvgl_cook_volume.png
     :align: left
 
-You can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the  the brightness of a dimmable light.
+You can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the brightness of a dimmable light.
 
 We can use a sensor to retrieve the current brightness of a light, which is stored in Home Assistant as an attribute of the entity, as an integer value between ``0`` (min) and ``255`` (max). It's convenient to set the slider's ``min_value`` and ``max_value`` accordingly.
 
@@ -182,7 +182,7 @@ We can use a sensor to retrieve the current brightness of a light, which is stor
 
 Note that Home Assistant expects an integer at the ``brightness`` parameter of the ``light.turn_on`` service call, and since ESPHome uses floats, ``x`` needs to be converted.
 
-This is applicable to service calls like ``fan.set_percentage``, ``valve.set_valve_position`` too, only difference is that ``max_value`` has to be ``100``.
+This is applicable to service calls like ``fan.set_percentage`` or ``valve.set_valve_position``, too; the only difference is that ``max_value`` has to be ``100``.
 
 .. _lvgl-cook-volume:
 
@@ -234,7 +234,7 @@ The ``adv_hittest`` option ensures that accidental touches to the screen won't c
 
 .. note::
 
-    Keep in mind that ``on_value`` is triggered *continuously* by the slider while it's being dragged. This can affect performance and have negative effects on the actions to be performed. For example, you shouldn't use this trigger to set the target temperature of a heat pump via Modbus, or set the position of motorized covers, because it will likely cause malfunctions. In such cases use a universal widget trigger like ``on_release``, to get the ``x`` variable once after the interaction has completed.
+    Keep in mind that ``on_value`` is triggered *continuously* by the slider while it's being dragged. This generally has a negative effect on performance. For example, you shouldn't use this trigger to set the target temperature of a heat pump via Modbus, or set the position of motorized covers, because it will likely cause malfunctions. To mitigate this, consider using a universal widget trigger like ``on_release`` to get the ``x`` variable once after the interaction has completed.
 
 .. _lvgl-cook-gauge:
 
@@ -246,7 +246,7 @@ A gauge similar to what Home Assistant shows in the Energy Dashboard can accompl
 .. figure:: images/lvgl_cook_gauge.png
     :align: center
 
-The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widgets as children. We place a :ref:`lvgl-wgt-mtr` in the middle, which is made from an indicator ``line`` and two ``arc`` widgets. We use another, smaller :ref:`lvgl-wgt-obj` on top of it, to hide the indicator central parts, and place some :ref:`lvgl-wgt-lbl` widgets to show numeric information:
+The trick here is to have a parent :ref:`lvgl-wgt-obj` which contains the other widgets as children. We place a :ref:`lvgl-wgt-mtr` in the middle, which is made from an indicator ``line`` and two ``arc`` widgets. We use another, smaller :ref:`lvgl-wgt-obj` on top of it to hide the indicator's central parts and place some :ref:`lvgl-wgt-lbl` widgets to display numeric information:
 
 .. code-block:: yaml
 
@@ -334,7 +334,7 @@ The trick here is to have parent :ref:`lvgl-wgt-obj`, which holds the other widg
 
 .. tip::
 
-    The ``obj`` used to hide the middle part of meter indicator line has ``radius`` equal to half of the ``width`` and ``height``. This results in a circle - which is actually a square with extra large rounded corners. 
+    The ``obj`` used to hide the middle part of the meter indicator line has ``radius`` equal to half of the ``width`` and ``height``. This results in a circle - which is actually a square with extra large rounded corners. 
 
 .. _lvgl-cook-thermometer:
 
@@ -346,7 +346,7 @@ A thermometer with a precise gauge also made from a :ref:`lvgl-wgt-mtr` widget a
 .. figure:: images/lvgl_cook_thermometer.png
     :align: center
 
-Whenever a new value comes from the sensor, we update the needle indicator, and the text label respectively. Since LVGL only handles integer values on the :ref:`lvgl-wgt-mtr` scale, but we want a float precision scale we use the same approach as in the examples above to multiply the needle values by ``10``. We use two scales on top of each other: one to set the needle in the multiplied interval, and one to show the labels in the original interval.
+Whenever a new value comes from the sensor, we update the needle indicator as well as the text in the :ref:`lvgl-wgt-lbl`. Since LVGL only handles integer values on the :ref:`lvgl-wgt-mtr` scale, but the sensor's value is a ``float``, we use the same approach as in the examples above; we multiply the sensor's values by ``10`` and feed this value to the :ref:`lvgl-wgt-mtr`. It's essentially two scales on top of each other: one to set the needle based on the multiplied value and the other to show sensor's original value in the :ref:`lvgl-wgt-lbl`.
 
 .. code-block:: yaml
 
@@ -414,12 +414,12 @@ Whenever a new value comes from the sensor, we update the needle indicator, and 
                         align: CENTER
                         y: 65
 
-And here's for the same sensor configuration a semicircle gauge with a gradient background drawn by a multitude of ticks:
+And here's the same sensor configuration, but instead with a semicircle gauge with a gradient background drawn by a multitude of ticks:
 
 .. figure:: images/lvgl_cook_thermometer_gauge.png
     :align: center
 
-If you change the size of the widget, to obtain uniform gradient make sure to increase or decrease the ticks count accordingly.
+If you change the size of the widget, to obtain a uniform gradient, be sure to increase or decrease the ticks count accordingly.
 
 .. code-block:: yaml
 
@@ -567,7 +567,7 @@ To make a nice user interface for controlling Home Assistant covers you could us
 .. figure:: images/lvgl_cook_cover.png
     :align: center
 
-Just as in the previous examples, we need to get the states of the cover first. With a numeric sensor we retrieve the current position of the cover, and with a text sensor we retrieve the current movement state of it. We are particularly interested in the moving (*opening* and *closing*) states, because during these we'd like to change the label on the middle to show *STOP*. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or close.
+Just as in the previous examples, we need to get the state of the cover first. We'll use a numeric sensor to retrieve the current position of the cover and a text sensor to retrieve its current movement. We are particularly interested in the moving (*opening* and *closing*) states, because during these we'd like to change the label in the middle to show *STOP*. Otherwise, this button label will show the actual percentage of the opening. Additionally, we'll change the opacity of the labels on the *UP* and *DOWN* buttons depending on if the cover is fully open or closed.
 
 .. code-block:: yaml
 
@@ -835,7 +835,7 @@ For the navigation bar we can use a :ref:`lvgl-wgt-bmx`. Note how the *header_fo
                       then:
                         lvgl.page.next:
 
-For this example to look correctly, use the theme and style options from :ref:`above <lvgl-cook-theme>` and LVGL's own library :ref:`fonts <lvgl-fonts>`.
+For this example to appear correctly, use the theme and style options from :ref:`above <lvgl-cook-theme>` and LVGL's own library :ref:`fonts <lvgl-fonts>`.
 
 .. _lvgl-cook-statico:
 
@@ -847,7 +847,7 @@ The top layer is useful to show status icons visible on all pages:
 .. figure:: images/lvgl_cook_statico.png
     :align: center
 
-In the example below we only show the icon when connection with Home Assistant is established:
+In the example below, we only show the icon when the connection with Home Assistant is established:
 
 .. code-block:: yaml
 
@@ -879,7 +879,10 @@ In the example below we only show the icon when connection with Home Assistant i
               text_align: right
               text_color: 0xFFFFFF
 
-Two notable things here, the widget starts *hidden* at boot, and it's only shown when triggered by connection with the API, and alignment of the widget: since the *align* option is given, the *x* and *y* options are used to position the widget relative to the calculated position.
+Of note:
+
+- The widget starts *hidden* at boot and it's only shown when triggered by connection with the API.
+- Alignment of the widget: since the *align* option is given, the *x* and *y* options are used to position the widget relative to the calculated position.
 
 .. _lvgl-cook-titlebar:
 
@@ -974,14 +977,14 @@ To display a boot image which disappears automatically after a few moments or on
 MDI icons in text
 -----------------
 
-ESPHome's :ref:`font renderer <display-fonts>` allows you to use any OpenType/TrueType font file for your texts. This is very flexible because you can prepare various sets of fonts at different sizes with a different number of glyphs which is extremely convenient when we're talking about flash space.
+ESPHome's :ref:`font renderer <display-fonts>` allows you to use any OpenType/TrueType font file for your text. This is very flexible because you can prepare various sets of fonts at different sizes each with a different number of glyphs; this is important as it may help to conserve flash memory space.
 
-One example is when you'd like some MDI icons to be used in line with the text (similarly how LVGL's internal fonts and symbols coexist). You can use a font of your choice, choose the symbols you want and mix them in a single sized set with icons from MDI.
+One example is when you'd like some MDI icons to be used in line with the text (similar to how LVGL's internal fonts and symbols coexist). You can use a font of your choice; choose the symbols you want and mix them in a single sized set with icons from MDI.
 
 .. figure:: images/lvgl_cook_font_roboto_mdi.png
     :align: center
 
-In the example below we use the default set of glyphs from RobotoCondensed-Regular, and append some extra symbols to it from MDI. Then we display these inline with the text by escaping their codepoints:
+In the example below, we use the default set of glyphs from RobotoCondensed-Regular and append some extra symbols to it from MDI. Then we display these inline with the text by escaping their codepoints:
 
 .. code-block:: yaml
 
@@ -1012,7 +1015,7 @@ In the example below we use the default set of glyphs from RobotoCondensed-Regul
 
     Follow these steps to choose your MDI icons:
     
-    - To lookup your icons, use the `Pictogrammers <https://pictogrammers.com/library/mdi/>`_ site. Click on the desired icon, and note down / copy the codepoint of it (it's the hexadecimal number near the download options).
+    - To lookup your icons, use the `Pictogrammers <https://pictogrammers.com/library/mdi/>`_ site. Click on the desired icon and note its codepoint (it's the hexadecimal number near the download options).
     - To get the TrueType font with all the icons in it, head on to the `Pictogrammers GitHub repository <https://github.com/Pictogrammers/pictogrammers.github.io/tree/main/%40mdi/font/>`_ and from a recent version folder, download the ``materialdesignicons-webfont.ttf`` file and place it in your ESPHome config directory under a folder named ``fonts`` (to match the example above).
     - To use the desired icon, prepend the copied codepoint with ``\U000``. The Unicode character escape sequence has to start with capital ``\U`` and have exactly 8 hexadecimal digits.
     - To translate the escape sequence into the real glyph, make sure you enclose your strings in double quotes.    
@@ -1025,7 +1028,7 @@ Toggle state icon button
 .. figure:: images/lvgl_cook_font_binstat.png
     :align: left
 
-A good example for using icons is for showing a different icon on a checkable (toggle) button based on the state of the switch or light it is linked to. To put an icon on a button you use a :ref:`lvgl-wgt-lbl` widget as the child of the :ref:`lvgl-wgt-btn`. The coloring can already be different thanks to the :ref:`lvgl-cook-theme` where you can set a different color for the ``checked`` state. Additionally, by using a ``text_sensor`` to import the state from Home Assistant, we can not only track the ``on`` state, but also the ``unavailable`` or ``unknown`` to apply *disabled styles* for these cases.
+A common use case for icons is a status display. For example, a checkable (toggle) button will display different icons based on the status of a light or switch. To put an icon on a button you use a :ref:`lvgl-wgt-lbl` widget as the child of the :ref:`lvgl-wgt-btn`. The coloring can already be different thanks to the :ref:`lvgl-cook-theme` where you can set a different color for the ``checked`` state. Additionally, by using a ``text_sensor`` to import the state from Home Assistant, we can not only track the ``on`` state, but also the ``unavailable`` or ``unknown`` states to apply *disabled styles* for these cases.
 
 If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like this:
 
@@ -1276,7 +1279,7 @@ Using the :ref:`lvgl-wgt-mtr` and :ref:`lvgl-wgt-lbl` widgets, we can create an 
 
 The :ref:`lvgl-wgt-mtr` has three scales: one for minutes ticks and hand, ranged between ``0`` and ``60``; one for the hour ticks and the labels as majors, ranged between ``1`` and ``12``; and a higher resolution scale for the hour hand, ranged between ``0`` and ``720``, to be able to naturally position the hand in between the hours. The second scale doesn't have an indicator, while the third scale doesn't have ticks nor labels.
 
-The script runs at the beginning of every minute to update the hand line positions and the texts.
+The script runs at the beginning of every minute to update the line positions for each hand as well as the respective text.
 
 .. code-block:: yaml
 
@@ -1526,14 +1529,19 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                     id: lvgl_led
                     color: 0xFF0000
 
-A few notable things in this example: usage of a base object ``obj`` as a parent for the label (in order to center the label in the middle of it and emphasize it with shadows independently of the label's dimensions); usage of ``align_to`` to align it to the led vertically; changing the background color of the buttons in ``pressed`` state; using the ``key_code`` configuration option to send a different character to ``key_collector`` instead of the displayed symbol.
+Of note:
+
+- A base object ``obj`` is used as a parent for the label; this allows proper centering of the label as well as emphasizing it with shadows independently of the label's dimensions.
+- ``align_to`` is used to align the label to the ``led`` vertically.
+- Changing the background color of the buttons in ``pressed`` state.
+- Use of the ``key_code`` configuration to send a different character to ``key_collector`` instead of the displayed symbol.
 
 .. _lvgl-cook-idlescreen:
 
 Turn off screen when idle
 -------------------------
 
-LVGL has a notion of screen inactivity, i.e. how long did the user not interact with the screen. This can be used to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Touching the screen counts as an activity and resets the inactivity counter (it's important to use the ``on_release`` trigger). With a template number you can make the timeout settable by the users.
+LVGL has a notion of screen inactivity -- in other words, the time since the last user interaction with the screen is tracked. This can be used to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter. Note that it's important to use the ``on_release`` trigger to accomplish this task. With a template number you can make the timeout adjustable by the users.
 
 .. code-block:: yaml
 
@@ -1581,9 +1589,9 @@ Prevent burn-in of LCD
 
 You can use this to protect and prolong the lifetime of the LCD screens, thus being more green and generating less hazardous waste.
 
-Wall mounted LCD screens' main problem is that they display the same picture 99.999% of the time. Even if somebody turns off backlight during the night or dark periods, the LCD screen keeps showing the same picture, seen by nobody. There are high chances that this will lead to screen picture burn-in after a few years of operation.
+A common problem with wall-mounted LCD screens is that they display the same picture 99.999% of the time. Even if somebody turns off the backlight during the night or dark periods, the LCD screen keeps showing the same picture, but seen by nobody. This scenario is likely to lead to burn-in after a few years of operation.
 
-One way to mitigate this is to *train* the pixels periodically with completely different other content. ``show_snow`` option during LVGL paused state was developed in this scope, to  display random colored pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel.
+One way to mitigate this is to *exercise* the pixels periodically by displaying different content. ``show_snow`` option during LVGL paused state was developed with this in mind; it displays randomly colored pixels across the entire screen in order to minimize screen burn-in by exercising each individual pixel.
 
 In the example below pixel training is done four times for a half an hour every night, can also be stopped by touching the screen.
 
