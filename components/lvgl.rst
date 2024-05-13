@@ -401,7 +401,7 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
         - ``COLUMN_WRAP_REVERSE``: place the children in a column with wrapping but in reversed order.
 
     - **flex_align_main** (*Optional*, string): Determines how to distribute the items in their track on the *main* axis. For example, flush the items to the right on with ``flex_flow: ROW_WRAP`` (known as *justify-content* in CSS). Possible options below.
-    - **flex_align_cross** (*Optional*, string): Determines how to distribute the items in their track on the *cross* axis .For example, if the items have different height place them to the bottom of the track (known as *align-items* in CSS). Possible options below.
+    - **flex_align_cross** (*Optional*, string): Determines how to distribute the items in their track on the *cross* axis. For example, if the items have different height place them to the bottom of the track (known as *align-items* in CSS). Possible options below.
     - **flex_align_track** (*Optional*, string): Determines how to distribute the tracks (known as *align-content* in CSS). Possible options below.
     
     Applicable to ``flex_align_main``, ``flex_align_cross``, ``flex_align_track``:
@@ -415,6 +415,8 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
     - **pad_row** (*Optional*, int16): Set the padding between the rows, in pixels.
     - **pad_column** (*Optional*, int16): Set the padding between the columns, in pixels.
     - **flex_grow** (*Optional*, int16): Flex grow can be used to make one or more children fill the available space on the track. When more children have grow parameters, the available space will be distributed proportionally to the grow values. Defaults to ``0``, which disables growing.
+
+Checkout :ref:`lvgl-cook-flex` in the Cookbook for an example illustrating how to save a lot of manual widget positioning. 
 
 .. _lvgl-layouts-grid:
 
@@ -444,6 +446,9 @@ It can arrange items into a 2D "table" that has rows or columns (tracks). The it
         - ``SPACE_EVENLY``: items are distributed so that the spacing between any two items (and the space to the edges) is equal.
         - ``SPACE_AROUND``: items are evenly distributed in the track with equal space around them. Note that visually the spaces aren’t equal, since all the items have equal space on both sides. The first item will have one unit of space against the container edge, but two units of space between the next item because that next item has its own spacing that applies.
         - ``SPACE_BETWEEN``: items are evenly distributed in the track: first item is on the start line, last item on the end line.
+
+    - **pad_row** (*Optional*, int16): Set the padding between the rows, in pixels.
+    - **pad_column** (*Optional*, int16): Set the padding between the columns, in pixels.
 
 .. _lvgl-widgets:
 

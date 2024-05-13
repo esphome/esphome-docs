@@ -928,12 +928,139 @@ To put a title bar behind the status icon, we need to add it to each page, also 
 
 For this example to work, use the theme and style options from :ref:`above <lvgl-cook-theme>`.
 
+.. _lvgl-cook-flex:
+
+Positioning with Flex layout
+----------------------------
+
+:ref:`lvgl-layouts` aim to position widgets automatically, eliminating the need to specify coordinates to position each widget. This is a great way to simplify your configuration containing many widgets as it allows you to even omit alignment options.
+
+.. figure:: images/lvgl_cook_flex_layout.png
+    :align: center
+
+This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefere full featured individual buttons, as they offer wider customization possibilities as seen in the :ref:`lvgl-cook-cover` example.
+
+.. code-block:: yaml
+
+    lvgl:
+        ...
+        pages:
+          - id: room_page
+            widgets:
+              - obj: # a coontainer object for all these controls
+                  align: CENTER
+                  width: 240
+                  height: 260
+                  x: 4
+                  y: 4
+                  pad_all: 3
+                  pad_row: 6
+                  pad_column: 8
+                  bg_opa: transp
+                  border_width: 0
+                  layout: # enable the FLEX layout for the children widgets
+                    type: FLEX
+                    flex_flow: COLUMN_WRAP # the order of the widgets starts top left
+                    flex_align_cross: CENTER # they sould be centered
+                  widgets:
+                    - label:
+                        text: "East"
+                    - btn:
+                        id: but_cov_up_east
+                        width: 70 # choose the button dimensions so 
+                        height: 68 # they fill the columns nincely as they flow
+                        widgets:
+                          - label:
+                              id: cov_up_east
+                              align: center
+                              text: "\uE05D" #UP
+                    - btn:
+                        id: but_cov_stop_east
+                        width: 70
+                        height: 68
+                        widgets:
+                          - label:
+                              id: cov_stop_east
+                              align: center
+                              text: "\uE4DB" #STOP
+                    - btn:
+                        id: but_cov_down_east
+                        width: 70
+                        height: 68
+                        widgets:
+                          - label:
+                              id: cov_down_east
+                              align: center
+                              text: "\uE045" #DOWN
+
+                    - label:
+                        text: "South"
+                    - btn:
+                        id: but_cov_up_south
+                        width: 70
+                        height: 68
+                        widgets:
+                          - label:
+                              id: cov_up_south
+                              align: center
+                              text: "\uE05D" #UP
+                    - btn:
+                        id: but_cov_stop_south
+                        width: 70
+                        height: 68
+                        widgets:
+                          - label:
+                              id: cov_stop_south
+                              align: center
+                              text: "\uE4DB" #STOP
+                    - btn:
+                        id: but_cov_down_south
+                        width: 70
+                        height: 68
+                        widgets:
+                          - label:
+                              id: cov_down_south
+                              align: center
+                              text: "\uE045" #DOWN
+
+                    - label:
+                        text: "West"
+                    - btn:
+                        id: but_cov_up_west
+                        width: 70
+                        height: 68
+                        widgets:
+                          - label:
+                              id: cov_up_west
+                              align: center
+                              text: "\uE05D" #UP
+                    - btn:
+                        id: but_cov_stop_west
+                        width: 70
+                        height: 68
+                        widgets:
+                          - label:
+                              id: cov_stop_west
+                              align: center
+                              text: "\uE4DB" #STOP
+                    - btn:
+                        id: but_cov_down_west
+                        width: 70
+                        height: 68
+                        widgets:
+                          - label:
+                              id: cov_down_west
+                              align: center
+                              text: "\uE045" #DOWN
+
+This saved you from a considerable amount of manual calculation of widget positioning, if you wanted to place each of them manually with ``x`` and ``y``!
+
 .. _lvgl-cook-btlg:
 
 ESPHome boot bogo
 -----------------
 
-To display a boot image which disappears automatically after a few moments or on touch of the screen you can use the *top layer*. The trick is to put a base :ref:`lvgl-wgt-obj` full screen and child :ref:`lvgl-wgt-img` widget in its middle as the last item of the widgets list, so they draw on top of all the others. To make it automatically disappear afer boot, you use ESPHome's ``on_boot`` trigger:
+To display a boot image with a spinner animation which disappears automatically after a few moments or on touch of the screen you can use the *top layer*. The trick is to put a base :ref:`lvgl-wgt-obj` full screen and child :ref:`lvgl-wgt-img` widget in its middle as the last item of the widgets list, so they draw on top of all the others. To make it automatically disappear afer boot, you use ESPHome's ``on_boot`` trigger:
 
 .. code-block:: yaml
 
@@ -969,6 +1096,18 @@ To display a boot image which disappears automatically after a few moments or on
                 - img:
                     align: center
                     src: boot_logo
+                    y: -40
+                - spinner:
+                    align: center
+                    y: 95
+                    height: 50
+                    width: 50
+                    spin_time: 1s
+                    arc_length: 60deg
+                    arc_width: 8
+                    indicator:
+                      arc_color: 0x404040
+                      arc_width: 8
               on_press:
                 - lvgl.widget.hide: boot_screen
 
