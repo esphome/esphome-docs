@@ -129,3 +129,4 @@ Sample Configurations
 - `FishFeeder <https://github.com/ColoMAX/fishfeeder>`__ by :ghuser:`ColoMAX`
 - `ESPHome IKEA VINDRIKTNING <https://github.com/DzurisHome/ESPHome-IKEA-VINDRIKTNING>`__ by :ghuser:`DzurisHome`
 - `ESPHome Refoss P11 <https://github.com/DzurisHome/ESPHome-Refoss-P11>`__ by :ghuser:`DzurisHome`
+- `ESPHome on a generic 16-Channel ESP8266 Relay Board <https://github.com/AndySymons/ESPHome-on-a-generic-16-channel-ESP8266-Relay-Board/wiki>`__ by :ghuser:`AndySymons`
