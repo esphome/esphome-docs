@@ -938,7 +938,7 @@ Positioning with Flex layout
 .. figure:: images/lvgl_cook_flex_layout.png
     :align: center
 
-This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefere full featured individual buttons, as they offer wider customization possibilities as seen in the :ref:`lvgl-cook-cover` example.
+This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefer full featured individual buttons, as they offer wider customization possibilities as seen in the :ref:`lvgl-cook-cover` example.
 
 .. code-block:: yaml
 
