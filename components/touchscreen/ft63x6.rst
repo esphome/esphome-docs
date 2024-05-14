@@ -14,14 +14,9 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
 .. code-block:: yaml
 
     # Example configuration entry
-
     touchscreen:
       - platform: ft63x6
         interrupt_pin: GPIOXX
-        on_touch:
-          - logger.log:
-              format: Touch %d at (%d, %d)
-              args: [touch.id, touch.x, touch.y]
 
 Configuration variables:
 ------------------------

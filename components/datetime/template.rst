@@ -10,8 +10,8 @@ using :ref:`lambdas <config-lambda>`.
 
 .. code-block:: yaml
 
-    # Example configuration entry
     datetime:
+      # Example Date
       - platform: template
         id: my_date
         type: date
@@ -20,10 +20,19 @@ using :ref:`lambdas <config-lambda>`.
         initial_value: "2024-01-30"
         restore_value: true
 
+      # Example Time
+      - platform: template
+        id: my_time
+        type: time
+        name: Pick a Time
+        optimistic: yes
+        initial_value: "12:34:56"
+        restore_value: true
+
 Configuration variables:
 ------------------------
 
-- **type** (*Required*, enum): The type of the datetime. Can only be ``date``.
+- **type** (*Required*, enum): The type of the datetime. Can be one of ``date`` or ``time``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the current value of the datetime.
 - **set_action** (*Optional*, :ref:`Action <config-action>`): The action that should
@@ -39,15 +48,29 @@ Configuration variables:
 - **initial_value** (*Optional*, string): The value to set the state to on setup if not
   restored with ``restore_value``. Can be one of:
 
-  - A string in the format ``%Y-%m-%d``, eg: ``"2023-12-04"``.
-  - An object including ``year``, ``month``, ``day``.
+  - For ``type: date``:
 
-  .. code-block:: yaml
+    - A string in the format ``%Y-%m-%d`` , eg: ``"2023-12-04"``.
+    - An object including ``year``, ``month``, ``day``.
 
-      initial_value:
-        year: 2023
-        month: 12
-        day: 4
+    .. code-block:: yaml
+
+        initial_value:
+          year: 2023
+          month: 12
+          day: 4
+
+  - For ``type: time``:
+
+    - A string in the format ``%H:%M:%S`` , eg: ``"12:34:56"``.
+    - An object including ``hour``, ``minute``, ``second``.
+
+    .. code-block:: yaml
+
+        initial_value:
+          hour: 12
+          minute: 34
+          second: 56
 
 - All other options from :ref:`Datetime <config-datetime>`.
 

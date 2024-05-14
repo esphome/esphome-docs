@@ -256,7 +256,7 @@ For example you could do:
 Be aware that you need to check the state flag every time to see if the touch is still valid.
 
 - state value 0. means the touch is invalid as the touch is no longer detected.
-- state value 1 means is being the first time detected. 
+- state value 1 means is being the first time detected.
 - state value 2 means the touch is still being detected but is moved on the screen.
 - state value 4 and higher means a touch release is detected.
 

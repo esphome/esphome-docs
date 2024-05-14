@@ -20,7 +20,7 @@ which will trigger when they hear their own configured signal.
 
     # Example configuration entry
     remote_receiver:
-      pin: GPIO32
+      pin: GPIOXX
       dump: all
 
 Configuration variables:
@@ -30,12 +30,14 @@ Configuration variables:
 - **dump** (*Optional*, list): Decode and dump these remote codes in the logs (at log.level=DEBUG).
   Set to ``all`` to dump all available codecs:
 
+  - **abbwelcome**: Decode and dump ABB-Welcome codes. Messages are sent via copper wires. See :ref:`remote_transmitter-transmit_abbwelcome`
   - **aeha**: Decode and dump AEHA infrared codes.
   - **byronsx**: Decode and dump Byron SX doorbell RF codes.
   - **canalsat**: Decode and dump CanalSat infrared codes.
   - **canalsatld**: Decode and dump CanalSatLD infrared codes.
   - **coolix**: Decode and dump Coolix infrared codes.
   - **dish**: Decode and dump Dish infrared codes.
+  - **dooya**: Decode and dump Dooya RF codes.
   - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **jvc**: Decode and dump JVC infrared codes.
   - **keeloq**: Decode and dump KeeLoq RF codes.
@@ -61,6 +63,17 @@ Configuration variables:
   decoding process. Defaults to ``25%``.
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kB``
   on the ESP32 and ``1kB`` on the ESP8266.
+- **rmt_channel** (*Optional*, int): The RMT channel to use. Only on **esp32**.
+  The following ESP32 variants have these channels available:
+
+  .. csv-table::
+      :header: "ESP32 Variant", "Channels"
+
+      "ESP32", "0, 1, 2, 3, 4, 5, 6, 7"
+      "ESP32-S2", "0, 1, 2, 3"
+      "ESP32-S3", "4, 5, 6, 7"
+      "ESP32-C3", "2, 3"
+
 - **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. Defaults to
   ``3``.
 - **filter** (*Optional*, :ref:`config-time`): Filter any pulses that are shorter than this. Useful for removing
@@ -79,6 +92,9 @@ Configuration variables:
 Automations:
 ------------
 
+- **on_abbwelcome** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  ABB-Welcome code has been decoded. A variable ``x`` of type :apiclass:`remote_base::ABBWelcomeData`
+  is passed to the automation for use in lambdas.
 - **on_aeha** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   AEHA remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::AEHAData`
   is passed to the automation for use in lambdas.
@@ -98,6 +114,9 @@ Automations:
   dish network remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DishData`
   is passed to the automation for use in lambdas.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
+- **on_dooya** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Dooya RF remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DooyaData`
+  is passed to the automation for use in lambdas.
 - **on_drayton** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Drayton Digistat RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DraytonData`
   is passed to the automation for use in lambdas.
@@ -187,10 +206,6 @@ then immediately OFF.
 .. code-block:: yaml
 
     # Example configuration entry
-    remote_receiver:
-      pin: GPIO32
-      dump: all
-
     binary_sensor:
       - platform: remote_receiver
         name: "Panasonic Remote Input"
@@ -206,6 +221,21 @@ Configuration variables:
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Remote code selection (exactly one of these has to be included):
+
+- **abbwelcome**: Trigger on a decoded ABB-Welcome code with the given data.
+
+  - **source_address** (**Required**, int): The source address to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
+    for more info.
+  - **destination_address** (**Required**, int): The destination address to trigger on, see
+    :ref:`remote_transmitter-transmit_abbwelcome` for more info.
+  - **three_byte_address** (**Optional**, boolean): The length of the source and destination address. ``false`` means two bytes
+    and ``true`` means three bytes. Defaults to ``false``.
+  - **retransmission** (**Optional**, boolean): ``true`` if the message was re-transmitted. Defaults to ``false``.
+  - **message_type** (**Required**, int): The message type to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
+    for more info.
+  - **message_id** (**Optional**, int): The random message ID to trigger on, see dumper output for more info. Defaults to any ID.
+  - **data** (**Optional**, 0-7 bytes list): The code to listen for. Usually you only need to copy this directly from the
+    dumper output. Defaults to ``[]``
 
 - **aeha**: Trigger on a decoded AEHA remote code with the given data.
 
@@ -242,6 +272,13 @@ Remote code selection (exactly one of these has to be included):
 
   - **address** (*Optional*, int): The number of the receiver to target, between 1 and 16 inclusive. Defaults to ``1``.
   - **command** (**Required**, int): The Dish command to listen for, between 0 and 63 inclusive.
+
+- **dooya**: Trigger on a decoded Dooya RF remote code with the given data.
+
+  - **id** (**Required**, int): The 24-bit ID code to trigger on.
+  - **channel** (**Required**, int): The 8-bit channel to listen for.
+  - **button** (**Required**, int): The 4-bit button to listen for.
+  - **check** (**Required**, int): The 4-bit check to listen for. Includes an indication that a button is being held down.
 
 - **drayton**: Trigger on a decoded Drayton Digistat RF remote code with the given data.
 
@@ -304,6 +341,8 @@ Remote code selection (exactly one of these has to be included):
 
   - **data** (**Required**, string): The code to listen for, see :ref:`remote_transmitter-transmit_raw`
     for more info. Usually you only need to copy this directly from the dumper output.
+  - **delta** (**Optional**, integer): This parameter allows you to manually specify the allowed difference
+    between what Pronto code is specified, and what IR signal has been sent by the remote control.
 
 - **raw**: Trigger on a raw remote code with the given code.
 
@@ -396,7 +435,7 @@ Remote code selection (exactly one of these has to be included):
 
         remote_receiver:
           pin:
-            number: D4
+            number: GPIOXX
             inverted: true
             mode:
               input: true

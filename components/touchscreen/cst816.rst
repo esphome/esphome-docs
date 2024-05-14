@@ -29,6 +29,7 @@ Base Touchscreen Configuration
       platform: cst816
       id: my_touchscreen
       interrupt_pin: GPIOXX
+      reset_pin: GPIOXX
 
 Configuration variables:
 ************************

@@ -20,8 +20,8 @@ connecting the wires from each device back to the two I²C pins on the ESP.
 
     # Example configuration entry for ESP32
     i2c:
-      sda: 21
-      scl: 22
+      sda: GPIOXX
+      scl: GPIOXX
       scan: true
       id: bus_a
 
@@ -37,6 +37,9 @@ Configuration variables:
   Defaults to ``true``.
 - **frequency** (*Optional*, float): Set the frequency the I²C bus should operate on.
   Defaults to ``50kHz``. Values are ``10kHz``, ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
+- **timeout** (*Optional*, :ref:`config-time`): Set the I²C bus timeout.
+  Defaults to the framework defaults (``100us`` on ``esp32`` with ``esp-idf``, ``50ms`` on ``esp32`` with ``Arduino``,
+  ``1s`` on ``esp8266`` and ``1s`` on ``rp2040``). Maximum on ``esp-idf`` is 13ms.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this I²C bus if you need multiple I²C buses.
 
 .. note::
@@ -48,12 +51,12 @@ Configuration variables:
         # Example configuration entry
         i2c:
           - id: bus_a
-            sda: 13
-            scl: 16
+            sda: GPIOXX
+            scl: GPIOXX
             scan: true
           - id: bus_b
-            sda: 14
-            scl: 15
+            sda: GPIOXX
+            scl: GPIOXX
             scan: true
        # Sensors should be specified as follows
        - platform: bme680

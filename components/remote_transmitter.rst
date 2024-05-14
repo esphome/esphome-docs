@@ -24,17 +24,8 @@ remote signals.
 
     # Example configuration entry
     remote_transmitter:
-      pin: GPIO32
+      pin: GPIOXX
       carrier_duty_percent: 50%
-
-    # Individual switches
-    switch:
-      - platform: template
-        name: "Panasonic TV Off"
-        turn_on_action:
-          remote_transmitter.transmit_panasonic:
-            address: 0x4004
-            command: 0x100BCBD
 
 Configuration variables:
 ------------------------
@@ -43,6 +34,17 @@ Configuration variables:
 -  **carrier_duty_percent** (*Optional*, int): How much of the time the remote is on. For example, infrared
    protocols modulate the signal using a carrier signal. Set this to ``50%`` if you're working with IR LEDs and to
    ``100%`` if working with other things like 433MHz transmitters.
+- **rmt_channel** (*Optional*, int): The RMT channel to use. Only on **esp32**.
+  The following ESP32 variants have these channels available:
+
+  .. csv-table::
+      :header: "ESP32 Variant", "Channels"
+
+      "ESP32", "0, 1, 2, 3, 4, 5, 6, 7"
+      "ESP32-S2", "0, 1, 2, 3"
+      "ESP32-S3", "0, 1, 2, 3"
+      "ESP32-C3", "0, 1"
+
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation. Use this if you have multiple remote transmitters.
 
@@ -77,6 +79,56 @@ Configuration variables:
 
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
+
+.. _remote_transmitter-transmit_abbwelcome:
+
+``remote_transmitter.transmit_abbwelcome`` Action
+*************************************************
+
+This :ref:`action <config-action>` sends a ABB-Welcome message to the intercom bus. The
+message type, addresses, address length and data can vary a lot between ABB-Welcome
+systems. Please refer to the received messages while performing actions like ringing a
+doorbell or opening a door.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_abbwelcome:
+          source_address: 0x1001 # your indoor station address
+          destination_address: 0x4001 # door address
+          three_byte_address: false # address length of your system
+          message_type: 0x0d # unlock door, on some systems 0x0e is used instead
+          data: [0xab, 0xcd, 0xef]  # message data, see receiver dump
+
+Configuration variables:
+
+- **source_address** (**Required**, int):The source address to send the command from,
+  see received messages for more info. For indoor stations the last byte of the address
+  represents the apartment number set by the dials on the back of the indoor station and is
+  transmitted in hexadecimal format.
+- **destination_address** (**Required**, int): The destination address to send the command to,
+  see received messages for more info.
+- **three_byte_address** (**Required**, int): The destination address to send the command to,
+  see received messages for more info.
+- **three_byte_address** (**Optional**, boolean): The length of the source and destination address. ``false``
+  means two bytes and ``true`` means three bytes. Please check the received messages to see which address length
+  is used by your system. For example, ``[XXXX > XXXX]`` appears in the receiver log for two byte addresses and
+  ``[XXXXXX > XXXXXX]`` for three byte addresses. Defaults to ``false``.
+- **retransmission** (**Optional**, boolean): Should only be ``true`` if this message has been transmitted
+  before with the same ``message_id``. Typically, messages are transmitted up to three times with a 1 second
+  interval if no reply is received. Defaults to ``false``.
+- **message_type** (**Required**, int): The message type, see dumper output for more info.
+  The highest bit indicates a reply.
+- **message_id** (**Optional**, int): The message ID, see dumper output for more info.
+  Defaults to a randomly generated ID if this message is not a reply or retransmission.
+- **data** (**Optional**, 0-7 bytes list): The code to send.
+  Usually you only need to copy this directly from the dumper output. Defaults to ``[]``
+
+.. note::
+
+    ABB-Welcome messages are sent over the two-wire bus of your intercom system.
+    A custom receiver and transmitter circuit is required.
+    `More info <https://github.com/Mat931/esp32-doorbell-bus-interface>`__
 
 .. _remote_transmitter-transmit_aeha:
 
@@ -212,6 +264,30 @@ Configuration variables:
 
 You can find a list of commands in the `LIRC project <https://sourceforge.net/p/lirc-remotes/code/ci/master/tree/remotes/dishnet/Dish_Network.lircd.conf>`__.
 
+.. _remote_transmitter-transmit_dooya:
+
+``remote_transmitter.transmit_dooya`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends a Dooya RF remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_dooya:
+          id: 0x001612E5
+          channel: 142
+          button: 12
+          check: 3
+
+Configuration variables:
+
+- **id** (**Required**, int): The 24-bit ID to send. Each remote has a unique one.
+- **channel** (**Required**, int): The 8-bit channel to send, between 0 and 255 inclusive.
+- **button** (**Required**, int): The 4-bit button to send, between 0 and 15 inclusive.
+- **check** (**Required**, int): The 4-bit check to send. Includes an indication that a button is being held down. See dumper output for more info.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 .. _remote_transmitter-transmit_drayton:
 
 ``remote_transmitter.transmit_drayton`` Action
@@ -267,7 +343,7 @@ This :ref:`action <config-action>` sends KeeLoq RF remote code to a remote trans
           code: '0xd19ef0a9'
           repeat:
             times: 3
-            wait_time: 15ms  
+            wait_time: 15ms
 
 Configuration variables:
 
@@ -826,7 +902,7 @@ remote_receiver instance:
 .. code-block:: yaml
 
     remote_receiver:
-      pin: D0
+      pin: GPIOXX
       dump: all
 
 Compile and upload the code. While viewing the log output from the ESP,
@@ -855,7 +931,7 @@ IR diode to a new pin on the ESP and configure a global ``remote_transmitter`` i
 .. code-block:: yaml
 
     remote_transmitter:
-      pin: D1
+      pin: GPIOXX
       # Infrared remotes use a 50% carrier signal
       carrier_duty_percent: 50%
 
@@ -901,7 +977,7 @@ First, connect the RF module to a pin on the ESP and set up a remote_receiver in
 .. code-block:: yaml
 
     remote_receiver:
-      pin: D0
+      pin: GPIOXX
       dump: all
       # Settings to optimize recognition of RF devices
       tolerance: 50%
@@ -933,7 +1009,7 @@ You should see log output like below:
     .. code-block:: yaml
 
         remote_receiver:
-          pin: D0
+          pin: GPIOXX
           dump:
             - rc_switch
           tolerance: 50%
@@ -951,7 +1027,7 @@ RF transmitter to a new pin on the ESP and configure a global ``remote_transmitt
 .. code-block:: yaml
 
     remote_transmitter:
-      pin: D1
+      pin: GPIOXX
       # RF uses a 100% carrier signal
       carrier_duty_percent: 100%
 
