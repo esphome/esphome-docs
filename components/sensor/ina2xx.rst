@@ -99,7 +99,7 @@ Use ``ina2xx_spi`` component to connect INA229 or INA239 device over :ref:`SPI <
     # Example configuration entry for SPI
     sensor:
       - platform: ina2xx_spi
-        cs_pin: D3
+        cs_pin: GPIOXX
         model: INA239
         shunt_resistance: 0.001130 ohm
         max_current: 40 A
