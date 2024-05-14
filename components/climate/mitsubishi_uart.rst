@@ -16,7 +16,7 @@ The ``mitsubishi_uart`` component creates a climate device for controlling a Mit
     # Example minimal configuration entry
 
     mitsubishi_uart:
-        heatpump_uart: hp_uart
+      heatpump_uart: hp_uart
 
     uart:
       - id: hp_uart
@@ -68,40 +68,40 @@ One particularly useful way to get additional temperature data is by having Home
 
 .. code-block:: yaml
 
-  esphome:
-    name: office-heatpump
+    esphome:
+      name: office-heatpump
 
-  api:
-    services:
-      - service: report_temperature
-          variables:
-            current_temperature_C: float
-          then:
-            - sensor.template.publish:
-                id: home_assistant_temperature
-                state: !lambda "return current_temperature_C;"
+    api:
+      services:
+        - service: report_temperature
+            variables:
+              current_temperature_C: float
+            then:
+              - sensor.template.publish:
+                  id: home_assistant_temperature
+                  state: !lambda "return current_temperature_C;"
 
-  sensor:
-    - platform: template
-      id: home_assistant_temperature
-      internal: true
-      name: "Home Assistant"
-      update_interval: never # Only updated by service
+    sensor:
+      - platform: template
+        id: home_assistant_temperature
+        internal: true
+        name: "Home Assistant"
+        update_interval: never # Only updated by service
 
-  mitsubishi_uart:
-    heatpump_uart: hp_uart
-    temperature_sources:
-      - home_assistant_temperature
+    mitsubishi_uart:
+      heatpump_uart: hp_uart
+      temperature_sources:
+        - home_assistant_temperature
 
 
 An automation in Home Assistant can then be configured with an action like the following to report a temperature to the device:
 
 .. code-block:: yaml
 
-  action:
-    - service: esphome.office_heatpump_report_temperature
-      data:
-        current_temperature_C: "{{float(states('sensor.office_temperature'))}}"
+    action:
+      - service: esphome.office_heatpump_report_temperature
+        data:
+          current_temperature_C: "{{float(states('sensor.office_temperature'))}}"
 
 
 Built-in Sensors
