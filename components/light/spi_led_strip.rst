@@ -8,8 +8,8 @@ SPI LED Strip Light
 The ``spi_led_strip`` light platform drives one or more SPI interfaced RGB LEDs. These LEDs are often used in strips, where
 each LED is individually addressable. This component requires an SPI interface to be configured.
 
-This component has been tested with APA102 LEDs and should also work with HD107 and SK9822 type LEDs, or any others
-with a similar interface - SPI, 8 bits per colour and BGR ordering.
+This component has been tested with APA102 LEDs and the P9813 LED driver. It should also work with HD107 and SK9822 type
+LEDs, or any others with a similar interface - SPI, 8 bits per colour and BGR ordering.
 
 .. figure:: images/apa102.jpg
     :align: center
@@ -18,14 +18,9 @@ with a similar interface - SPI, 8 bits per colour and BGR ordering.
 .. code-block:: yaml
 
     # Example configuration entry
-    spi:
-      mosi_pin: GPIO3
-      clk_pin: GPIO9
-
     light:
       - platform: spi_led_strip
         num_leds: 30
-        color_correct: [80%, 60%, 100%]
         id: rgb_led
         name: "RGB LED Strip"
         data_rate: 1MHz

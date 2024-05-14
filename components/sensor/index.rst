@@ -50,7 +50,7 @@ Configuration variables:
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
 - **device_class** (*Optional*, string): The device class for the
-  sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-device-classes
+  sensor. See https://www.home-assistant.io/integrations/sensor/#device-class
   for a list of available options. Set to ``""`` to remove the default device class of a sensor.
 - **state_class** (*Optional*, string): The state class for the
   sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
@@ -68,10 +68,10 @@ Configuration variables:
   significantly increase the database size. Defaults to ``false``.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
 
 Automations:
@@ -262,12 +262,38 @@ degree with a least squares solver.
 ``clamp``
 *********
 
-Limits the value to the range between ``min_value`` and ``max_value``. Sensor values outside these bounds will be set to ``min_value`` or ``max_value``, respectively. If ``min_value`` is not set, there is no lower bound, if ``max_value`` is not set there is no upper bound.
+Limits the value to the range between ``min_value`` and ``max_value``. By default, sensor values outside these bounds will be set to ``min_value`` or ``max_value``, respectively. If ``ignore_out_of_range`` is true, then sensor values outside those bounds will be ignored. If ``min_value`` is not set, there is no lower bound; if ``max_value`` is not set there is no upper bound.
 
 Configuration variables:
 
 - **min_value** (*Optional*, float): The lower bound of the range.
 - **max_value** (*Optional*, float): The upper bound of the range.
+- **ignore_out_of_range** (*Optional*, bool): If true, ignores all sensor values out of the range. Defaults to ``false``.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: wifi_signal
+      # ...
+      filters:
+        - clamp:
+            min_value: 10
+            max_value: 75
+            ignore_out_of_range: true
+
+
+
+``round``
+*********
+
+Rounds the value to the given decimal places.
+
+.. code-block:: yaml
+
+    - platform: ...
+      filters:
+        - round: 1 # will round to 1 decimal place
+
 
 ``quantile``
 ************
@@ -544,7 +570,7 @@ However, if the last value passed through was 100 only values greater than 120 o
 ``or``
 ******
 
-Pass forward a value with the first child filter that returns. Above example
+Pass forward a value with the first child filter that returns. Below example
 will only pass forward values that are *either* at least 1s old or are if the absolute
 difference is at least 5.0.
 
@@ -577,7 +603,7 @@ To prevent values from being published, return ``{}``:
 .. code-block:: yaml
 
     filters:
-      - lambda: !lambda |-
+      - lambda: |-
           if (x < 10) return {};
           return x-10;
 

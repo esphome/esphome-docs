@@ -34,6 +34,61 @@ Configuration variables:
     - ``keyboard_display`` - A keyboard and a display
     - ``display_yes_no`` - A display to show PIN codes and buttons to confirm or deny the connection
 
+- **enable_on_boot** (*Optional*, boolean): If enabled, the BLE interface will be enabled on boot. Defaults to ``true``.
+
+``ble.disable`` Action
+-----------------------
+
+This action turns off the BLE interface on demand.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - ble.disable:
+
+.. note::
+
+    The configuration option ``enable_on_boot`` can be set to ``false`` if you do not want BLE to be enabled on boot.
+
+
+``ble.enable`` Action
+----------------------
+
+This action turns on the BLE interface on demand.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - ble.enable:
+
+.. note::
+
+    The configuration option ``enable_on_boot`` can be set to ``false`` if you do not want BLE to be enabled on boot.
+
+
+.. _ble-enabled_condition:
+
+``ble.enabled`` Condition
+--------------------------
+
+This :ref:`Condition <config-condition>` checks if BLE is currently enabled or not.
+
+.. code-block:: yaml
+
+    on_...:
+      - if:
+          condition: ble.enabled
+          then:
+            - ble.disable:
+          else:
+            - ble.enable:
+
+
+The lambda equivalent for this is ``id(ble_id).is_active()``.
+
+
 See Also
 --------
 

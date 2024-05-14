@@ -34,7 +34,7 @@ names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf
 
 .. note::
 
-    These IDs are used only within ESPHome and are not translated to Home Assistant's Entity ID. 
+    These IDs are used only within ESPHome and are not translated to Home Assistant's Entity ID.
 
 
 .. _config-pin:
@@ -75,11 +75,11 @@ In some places, ESPHome also supports a more advanced “pin schema”.
 
     some_config_option:
       # Basic:
-      pin: D0
+      pin: GPIOXX
 
       # Advanced:
       pin:
-        number: D0
+        number: GPIOXX
         inverted: true
         mode:
           input: true
@@ -90,6 +90,10 @@ Configuration variables:
 -  **number** (**Required**, pin): The pin number.
 -  **inverted** (*Optional*, boolean): If all read and written values
    should be treated as inverted. Defaults to ``false``.
+-  **allow_other_uses** (*Optional*, boolean): If the pin is also specified elsewhere in the configuration.
+   By default multiple uses of the same pin will be flagged as an error. This option will suppress the error and is
+   intended for rare cases where a pin is shared between multiple components. Defaults to ``false``.
+
 -  **mode** (*Optional*, string or mapping): Configures the pin to behave in different
    modes like input or output. The default value depends on the context.
    Accepts either a shorthand string or a mapping where each feature can be individually
@@ -117,6 +121,14 @@ Advanced options:
 - **drive_strength** (*Optional*, string): On ESP32s with esp-idf framework the pad drive strength,
   i.e. the maximum amount of current can additionally be set. Defaults to ``20mA``.
   Options are ``5mA``, ``10mA``, ``20mA``, ``40mA``.
+- **ignore_strapping_warning** (*Optional*, boolean): Certain pins on ESP32s are designated *strapping pins* and are read
+  by the chip on reset to configure initial operation, e.g. to enable bootstrap mode.
+  Using such pins for I/O should be avoided and ESPHome will warn if I/O is configured on a strapping pin.
+
+  For more detail see :ref:`strapping-warnings`.
+
+  If you are *absolutely* sure that you are using a strapping pin for I/O in a way that will not cause problems,
+  you can suppress the warning by setting this option to ``true`` in the pin configuration.
 
 .. _config-time:
 
@@ -191,7 +203,7 @@ Two substitution passes are performed allowing compound replacements.
       foo: yellow
       bar_yellow_value: !secret yellow_secret
       bar_green_value: !secret green_secret
-    
+
     something:
       test: ${bar_${foo}_value}
 
@@ -246,22 +258,22 @@ ESPHome's ``!include`` accepts a list of variables that can be substituted withi
     binary_sensor:
       - platform: gpio
         id: button1
-        pin: GPIO16
+        pin: GPIOXX
         on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
       - platform: gpio
         id: button2
-        pin: GPIO4
+        pin: GPIOXX
         on_multi_click: !include
           # multi-line syntax
           file: on-multi-click.yaml
           vars:
             id: 2
-            
+
 ``on-multi-click.yaml``:
 
 .. code-block:: yaml
 
-    - timing: !include click-single.yaml 
+    - timing: !include click-single.yaml
       then:
         - mqtt.publish:
             topic: ${device_name}/button${id}/status
@@ -323,20 +335,6 @@ your configuration file. This can be used to create generic 'template' configura
 files (like the ``example.yaml`` above) which can be used for multiple devices,
 using substitutions which are provided on the command line.
 
-Extend
-------
-
-To make changes or add additional configuration to included configurations ``!extend config_id`` can be used, where ``config_id`` is the ID of the configuration to modify.
-For example to set a specific update interval on a common uptime sensor that is shared between configurations:
-
-.. code-block:: yaml
-
-    <<: !include common.yaml
-
-    sensor:
-    - id: !extend uptime_sensor
-      update_interval: 10s
-
 .. _config-packages:
 
 Packages
@@ -346,7 +344,8 @@ Another way to modularize and reuse your configuration is to use packages. This 
 you to put common pieces of configuration in separate files and keep only unique pieces of your
 config in the main yaml file. All definitions from packages will be merged with your main
 config in non-destructive way so you could always override some bits and pieces of package
-configuration.
+configuration. Substitutions in your main config will override substitutions with the same
+name in a package.
 
 Dictionaries are merged key-by-key. Lists of components are merged by component
 ID if specified. Other lists are merged by concatenation. All other config
@@ -409,8 +408,8 @@ merged with the services definitions from main config file.
 
     # I²C Bus
     i2c:
-      sda: GPIO21
-      scl: GPIO22
+      sda: GPIOXX
+      scl: GPIOXX
       scan: true
       frequency: 100kHz
 
@@ -473,6 +472,8 @@ variables can be provided to them.  This means that packages can be
 used as `templates`, allowing complex or repetitive configurations to
 be stored in a package file and then incorporated into the
 configuration more than once.
+Additionally packages could contain a ``defaults`` block which provides
+subsitutions for variables not provided by the ``!include`` block.
 
 As an example, if the configuration needed to support three garage
 doors using the ``gpio`` switch platform and the ``time_based`` cover
@@ -503,11 +504,17 @@ platform, it could be constructed like this:
           door_location: right
           open_switch_gpio: 15
           close_switch_gpio: 18
+          open_duration: "1min"
+          close_duration: "50s"
 
 
 .. code-block:: yaml
 
     # In garage-door.yaml
+    defaults:
+      open_duration: "2.1min"
+      close_duration: "2min"
+
     switch:
       - id: open_${door_location}_door_switch
         name: ${door_name} Garage Door Open Switch
@@ -525,16 +532,53 @@ platform, it could be constructed like this:
 
         open_action:
           - switch.turn_on: open_${door_location}_door_switch
-        open_duration: 2.1min
+        open_duration: ${open_duration}
 
         close_action:
           - switch.turn_on: close_${door_location}_door_switch
-        close_duration: 2min
+        close_duration: ${close_duration}
 
         stop_action:
           - switch.turn_off: open_${door_location}_door_switch
           - switch.turn_off: close_${door_location}_door_switch
 
+Extend
+------
+
+To make changes or add additional configuration to included configurations ``!extend config_id`` can be used, where ``config_id`` is the ID of the configuration to modify.
+For example to set a specific update interval on a common uptime sensor that is shared between configurations:
+
+.. code-block:: yaml
+
+    packages:
+      common: !include common.yaml
+
+    sensor:
+    - id: !extend uptime_sensor
+      update_interval: 10s
+
+Remove
+------
+
+To remove existing entries from included configurations ``!remove [config_id]`` can be used, where ``config_id`` is the ID of the entry to modify.
+For example to remove a common uptime sensor that is shared between configurations:
+
+.. code-block:: yaml
+
+    packages:
+      common: !include common.yaml
+
+    sensor:
+      - id: !remove uptime_sensor
+
+To remove captive portal for a specific device:
+
+.. code-block:: yaml
+
+    packages:
+      common: !include common.yaml
+
+    captive_portal: !remove
 
 See Also
 --------

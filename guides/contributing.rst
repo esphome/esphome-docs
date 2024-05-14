@@ -98,7 +98,7 @@ Build
 
     .. code-block:: bash
 
-        docker run --rm -v "${PWD}/":/data/esphomedocs -p 8000:8000 -it ghcr.io/esphome/esphome-docs
+        docker run --rm -v "${PWD}/":/workspaces/esphome-docs -p 8000:8000 -it ghcr.io/esphome/esphome-docs
 
     With ``PWD`` referring to the root of the ``esphome-docs`` git repository. Then go to ``<CONTAINER_IP>:8000`` in your browser.
 
@@ -211,7 +211,7 @@ documents establish the following character order for better consistency.
           switch:
             - platform: gpio
               name: "Relay #42"
-              pin: GPIO13
+              pin: GPIOXX
 
   .. code-block:: yaml
 
@@ -219,7 +219,7 @@ documents establish the following character order for better consistency.
       switch:
         - platform: gpio
           name: "Relay #42"
-          pin: GPIO13
+          pin: GPIOXX
 
   .. note::
 
@@ -341,8 +341,8 @@ This is only possible for ``pip`` installs.
     git checkout -b my-new-feature
     cd ..
 
-The environment is now ready for use, but you need to activate the Python virtual environment 
-every time you are using it. 
+The environment is now ready for use, but you need to activate the Python virtual environment
+every time you are using it.
 
 .. code-block:: bash
 
@@ -372,6 +372,10 @@ a fork of the repository that you can modify and create git branches on.
     # Clone your fork
     git clone https://github.com/<YOUR_GITHUB_USERNAME>/<REPO_NAME>.git
     # For example: git clone https://github.com/OttoWinter/esphome.git
+
+    # To continue you now need to enter the directory you created above
+    cd <REPO_NAME>
+    # For example: cd esphome
 
     # Add "upstream" remote
     git remote add upstream https://github.com/esphome/<REPO_NAME>.git
@@ -413,6 +417,8 @@ a "rebase". More info `here <https://developers.home-assistant.io/docs/en/develo
     git fetch upstream dev
     git rebase upstream/dev
 
+.. _contributing_to_esphome:
+
 Contributing to ESPHome
 -----------------------
 
@@ -445,18 +451,18 @@ like this:
     ├── codegen.py
     ├── config_validation.py
     ├── components
-    │   ├── __init__.py
-    │   ├── dht12
-    │   │   ├── __init__.py
-    │   │   ├── dht12.cpp
-    │   │   ├── dht12.h
-    │   │   ├── sensor.py
-    │   ├── restart
-    │   │   ├── __init__.py
-    │   │   ├── restart_switch.cpp
-    │   │   ├── restart_switch.h
-    │   │   ├── switch.py
-    │  ...
+    │   ├── __init__.py
+    │   ├── dht12
+    │   │   ├── __init__.py
+    │   │   ├── dht12.cpp
+    │   │   ├── dht12.h
+    │   │   ├── sensor.py
+    │   ├── restart
+    │   │   ├── __init__.py
+    │   │   ├── restart_switch.cpp
+    │   │   ├── restart_switch.h
+    │   │   ├── switch.py
+    │  ...
 
 As you can see, all components are in the "components" folder. Each component is in its own
 subfolder which contains the Python code (.py) and the C++ code (.h and .cpp).
@@ -479,7 +485,7 @@ Let's leave what's written in those files for (2.), but for now you should also 
 whenever a component is loaded, all the C++ source files in the folder of the component
 are automatically copied into the generated PlatformIO project. So you just need to add the C++
 source files in the folder and the ESPHome core will copy them with no additional code required
-by the integration developer.
+by the component developer.
 
 .. note::
 
@@ -514,7 +520,7 @@ called ``CONFIG_SCHEMA``. An example of such a schema is shown below:
 This variable is automatically loaded by the ESPHome core and validated against.
 The underlying system ESPHome uses for this is `voluptuous <https://github.com/alecthomas/voluptuous>`__.
 Going into how to validate is out of scope for this guide, but the best way to learn is to look
-at examples of how similar integrations validate user input.
+at examples of how similar components validate user input.
 
 A few point on validation:
 
@@ -531,7 +537,7 @@ After the user input has been successfully validated, the last step of the Pytho
 is called: Code generation.
 
 As you may know, ESPHome converts the user's configuration into C++ code (you can see the generated
-code under ``<NODE_NAME>/src/main.cpp``). Each integration must define its own ``to_code`` method
+code under ``<NODE_NAME>/src/main.cpp``). Each component must define its own ``to_code`` method
 that converts the user input to C++ code.
 
 This method is also automatically loaded and invoked by the ESPHome core. An example of
@@ -549,10 +555,10 @@ such a method can be seen below:
 
 Again, going into all the details of ESPHome code generation would be out-of-scope. However,
 ESPHome's code generation is 99% syntactic sugar - and again it's probably best to study other
-integrations and just copy what they do.
+components and just copy what they do.
 
 There's one important concept for the ``to_code`` method: coroutines with ``yield``.
-First the problem that leads to coroutines: In ESPHome, integrations can declare (via ``cg.Pvariable``) and access variables
+First the problem that leads to coroutines: In ESPHome, components can declare (via ``cg.Pvariable``) and access variables
 (``cg.get_variable()``) - but sometimes when one part of the code base requests a variable
 it has not been declared yet because the code for the component creating the variable has not run yet.
 
@@ -569,14 +575,14 @@ If you do not call "add" a piece of code explicitly, it will not be added to the
 **********
 
 Okay, the Python part of the codebase is now complete - now let's talk about the C++ part of
-creating a new integration.
+creating a new component.
 
-The two major parts of any integration roughly are:
+The two major parts of any component roughly are:
 
  - Setup Phase
  - Run Phase
 
-When you create a new integration, your new component will inherit from :apiclass:`Component`.
+When you create a new component, your new component will inherit from :apiclass:`Component`.
 That class has a special ``setup()`` method that will be called once to set up the component -
 at the time the ``setup()`` method is called, all the setters generated by the Python codebase
 have already run and the all fields are set for your class.
@@ -584,7 +590,7 @@ have already run and the all fields are set for your class.
 The ``setup()`` method should set up the communication interface for the component and check
 if communication works (if not, it should call ``mark_failed()``).
 
-Again, look at examples of other integrations to learn more.
+Again, look at examples of other components to learn more.
 
 The next thing that will be called with your component is ``loop()`` (or ``update()`` for a
 :apiclass:`PollingComponent`). In these methods you should retrieve the latest data from the
@@ -612,14 +618,14 @@ loader. These are:
   create the necessary C++ source code.
 - ``DEPENDENCIES``: Mark the component to depend on other components. If the user hasn't explicitly
   added these components in their configuration, a validation error will be generated.
-- ``AUTO_LOAD``: Automatically load an integration if the user hasn't added it manually.
+- ``AUTO_LOAD``: Automatically load a component if the user hasn't added it manually.
 - ``MULTI_CONF``: Mark this component to accept an array of configurations. If this is an
   integer instead of a boolean, validation will only permit the given number of entries.
-- ``CONFLICTS_WITH``: Mark a list of components as conflicting with this integration. If the user
+- ``CONFLICTS_WITH``: Mark a list of components as conflicting with this component. If the user
   has one of them in the config, a validation error will be generated.
 
-- ``ESP_PLATFORMS``: Provide a list of allowed ESP types this integration works with.
-- ``CODEOWNERS``: GitHub usernames or team names of people that are responsible for this integration.
+- ``ESP_PLATFORMS``: Provide a list of allowed ESP types this component works with.
+- ``CODEOWNERS``: GitHub usernames or team names of people that are responsible for this component.
   You should add at least your GitHub username here, as well as anyone who helped you to write code
   that is being included.
 
@@ -657,8 +663,8 @@ Standard for the esphome-core codebase:
     like ``Wire`` there's a problem because then the component may not modular (i.e. not possible
     to create two instances of a component on one ESP)
 
-- Integrations **must** use the provided abstractions like ``Sensor``, ``Switch`` etc.
-  Integration should specifically **not** directly access other components like for example
+- Components **must** use the provided abstractions like ``sensor``, ``switch`` etc.
+  Components should specifically **not** directly access other components like for example
   publish to MQTT topics.
 
 - Implementations for new devices should contain reference links for the datasheet and other sample
@@ -688,6 +694,27 @@ Standard for the esphome-core codebase:
         # Run lint only over changed files from powershell
         docker run --rm -v "$($current_dir):/esphome" -it ghcr.io/esphome/esphome-lint script/quicklint
 
+
+PRs are being drafted when changes are needed
+---------------------------------------------
+
+If there have been changes requested to your PR, our bot will automatically mark your PR as a draft.
+This means that the PR is not ready to be merged or further reviewed for the moment.
+
+Draft PRs tell other reviewers that look at the list of all PRs that this PR is currently in progress and doesn't require their attention yet.
+
+Once you have made the requested changes, you can mark the PR as ready for review again by clicking the "Ready for review button":
+
+.. figure:: images/pr-draft-ready.png
+    :align: center
+    :width: 100.0%
+    :alt: The ready for review button in the bottom of a PR in draft mode
+
+Before you click the "Ready for review" button, ensure you have addressed all requested changes,
+there are no merge conflicts, and that all our CI jobs and checks are passing successfully.
+
+Once you've clicked the "Ready for review" button, the PR will return to a normal state again,
+and our bot will automatically notify the reviewers who requested the changes that the PR is ready to go!
 
 
 

@@ -11,7 +11,7 @@ Component/Hub
 The DSMR component connects to Dutch Smart Meters which comply to DSMR (Dutch Smart Meter
 Requirements), also known as ‘Slimme meter’ or ‘P1 port’.
 
-This integration supports plain non encrypted telegrams and also encrypted as used in Luxembourg.
+This component supports plain non encrypted telegrams and also encrypted as used in Luxembourg.
 In case your equipment has encryption you must get a 32 character long encryption key from your energy company.
 
 This component is passive, it does not transmit any data to your equipment, the equipment always transmits
@@ -418,6 +418,9 @@ Best results have been achieved by using an optocoupler circuit to handle the sw
 or a transistor-based circuit are not feasible options. Here's an example circuit design:
 
 .. figure:: images/dsmr-request-pin-circuit-example.png
+
+When using a type of MCU that provides 5V on the GPIO outputs instead of 3.3V, then use a 330 Ohm
+resistor instead of the 200 Ohm resistor.
 
 .. _sensor-dsmr-improving_reader_results:
 
