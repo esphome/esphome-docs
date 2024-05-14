@@ -97,11 +97,6 @@ Use ``ina2xx_spi`` component to connect INA229 or INA239 device over :ref:`SPI <
 .. code-block:: yaml
 
     # Example configuration entry for SPI
-    spi:
-      clk_pin: D0
-      mosi_pin: D1
-      miso_pin: D2
-        
     sensor:
       - platform: ina2xx_spi
         cs_pin: D3
