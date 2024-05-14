@@ -85,7 +85,7 @@ Configuration variables:
   shunt for temperature compensation correction. Only applicable to INA228 and INA229 devices. Zero value means 
   no compensation is done. Defaults to ``0``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
-- All other options for I²C device as descibed in respective documentation.
+- All other options from :ref:`Sensor <config-sensor>` and :ref:`I²C device <i2c>`.
 
 
 Over SPI
