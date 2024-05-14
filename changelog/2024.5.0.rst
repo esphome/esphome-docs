@@ -56,6 +56,8 @@ Beta Changes
 - Set FEATURE_API_AUDIO flag also if the speaker component is not used :esphomepr:`6712` by :ghuser:`gnumpi`
 - Bump platformio from 6.1.13 to 6.1.15 :esphomepr:`6634` by :ghuser:`dependabot[bot]`
 - Fix ESPHOME_PROJECT_VERSION_30 :esphomepr:`6731` by :ghuser:`jesserockz`
+- Voice-Assistant: Start-order change for VAD disabled: start va-pipeline when microphon… :esphomepr:`6391` by :ghuser:`gnumpi`
+- Add ANNOUNCING state to media_player. :esphomepr:`6691` by :ghuser:`gnumpi`
 
 All changes
 ^^^^^^^^^^^
@@ -200,6 +202,8 @@ All changes
 - Set FEATURE_API_AUDIO flag also if the speaker component is not used :esphomepr:`6712` by :ghuser:`gnumpi`
 - Bump platformio from 6.1.13 to 6.1.15 :esphomepr:`6634` by :ghuser:`dependabot[bot]`
 - Fix ESPHOME_PROJECT_VERSION_30 :esphomepr:`6731` by :ghuser:`jesserockz`
+- Voice-Assistant: Start-order change for VAD disabled: start va-pipeline when microphon… :esphomepr:`6391` by :ghuser:`gnumpi`
+- Add ANNOUNCING state to media_player. :esphomepr:`6691` by :ghuser:`gnumpi`
 
 Past Changelogs
 ---------------
