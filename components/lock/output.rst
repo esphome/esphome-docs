@@ -16,7 +16,7 @@ The ``output`` lock platform allows you to use any output component as a lock.
     # Example configuration entry
     output:
       - platform: gpio
-        pin: 25
+        pin: GPIOXX
         id: 'generic_out'
     lock:
       - platform: output

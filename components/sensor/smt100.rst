@@ -1,5 +1,5 @@
 SMT100 Soil Moisture Sensor
-================================
+===========================
 
 .. seo::
     :description: Instructions for setting up SMT100 soil moisture and temperature sensor
@@ -14,7 +14,9 @@ The SMT100 sensor platform allows you to use the SMT100 soil moisture and temper
     :width: 50.0%
 
 
-The communication with this integration is done over a UART bus using a simple ASCII protocol. You must therefore have a ``uart:`` entry in your configuration with both the TX and RX pins set to some pins on your board and the baud rate set to 9600.
+The communication with this component is done via a :ref:`UART <uart>` using a simple ASCII protocol. You must
+therefore have a ``uart:`` entry in your configuration with both the TX and RX pins set to some pins on your
+board and the baud rate set to 9600.
 
 
 .. code-block:: yaml

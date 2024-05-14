@@ -50,9 +50,9 @@ ESP-IDF. PSRAM is a requirement due to the size of the display buffer. A :ref:`q
         color_order: rgb
         invert_colors: false
         brightness: 255
-        cs_pin: 11
-        reset_pin: 13
-        enable_pin: 9
+        cs_pin: GPIOXX
+        reset_pin: GPIOXX
+        enable_pin: GPIOXX
 
 
 Configuration variables:
@@ -150,17 +150,17 @@ Lilygo T-Display S3 AMOLED
         - 7
         - 48
         - 5
-  
+
     i2c:
       sda: 3
       scl: 2
-  
+
     touchscreen:
       - platform: cst816
         id: my_touchscreen
         interrupt_pin:
           number: 21
-  
+
     display:
       - platform: qspi_amoled
         model: RM67162

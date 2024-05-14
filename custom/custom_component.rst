@@ -1,20 +1,29 @@
 Generic Custom Component
 ========================
 
+.. seo::
+    :description: Instructions for setting up Custom C++ components with ESPHome.
+    :image: language-cpp.svg
+    :keywords: C++, Custom
+
 .. warning::
 
-    Custom components are deprecated, not recommended for new configurations
-    and will be removed from ESPHome in a future release.
-    Please look at creating a real ESPHome component and "importing" it into your
-    configuration with :doc:`/components/external_components`.
+    Custom components are deprecated, not recommended for new configurations and will be removed from ESPHome in a
+    future release. Please look at creating a real ESPHome component and "importing" it into your configuration with
+    :doc:`/components/external_components`.
 
-    You can find some basic documentation on creating your own components
-    at :ref:`contributing_to_esphome`.
+    You can find some basic documentation on creating your own components at :ref:`contributing_to_esphome`.
 
-This integration can be used to create generic custom components in ESPHome
-using the C++ (Arduino) API. This integration should be used in cases where
+.. warning::
+
+    While we try to keep the ESPHome YAML configuration options as stable as possible, the ESPHome API is less
+    stable. If something in the APIs needs to be changed in order for something else to work, we will do so.
+
+
+This component can be used to create generic custom components in ESPHome
+using the C++ (Arduino) API. This component should be used in cases where
 none of ESPHome's abstraction layers (for example the "sensor", "binary sensor",
-"switch", etc concepts) work well for your integration.
+"switch", etc concepts) work well for your component.
 
 Please first read :doc:`/components/sensor/custom` guide, the same principles apply here.
 

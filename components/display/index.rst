@@ -2,7 +2,7 @@ Display Component
 =================
 
 .. seo::
-    :description: Instructions for setting up the display integration.
+    :description: Instructions for setting up the display component.
     :image: folder-open.svg
 
 The ``display`` component houses ESPHome's powerful rendering and display

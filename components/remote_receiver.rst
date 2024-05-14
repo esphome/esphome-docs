@@ -20,7 +20,7 @@ which will trigger when they hear their own configured signal.
 
     # Example configuration entry
     remote_receiver:
-      pin: GPIO32
+      pin: GPIOXX
       dump: all
 
 Configuration variables:
@@ -60,8 +60,13 @@ Configuration variables:
   - **sony**: Decode and dump Sony infrared codes.
   - **toshiba_ac**: Decode and dump Toshiba AC infrared codes.
 
-- **tolerance** (*Optional*, int): The percentage that the remote signal lengths can deviate in the
-  decoding process. Defaults to ``25%``.
+- **tolerance** (*Optional*, int, :ref:`config-time` or mapping): The percentage or time that the remote signal lengths can
+  deviate in the decoding process.  Defaults to ``25%``.
+
+  - **type** (**Required**, enum): Set the type of the tolerance. Can be ``percentage`` or ``time``.
+  - **value** (**Required**, int or :ref:`config-time`): The percentage or time value. Allowed values are in range ``0`` to
+    ``100%`` or ``0`` to ``4294967295us``.
+
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kB``
   on the ESP32 and ``1kB`` on the ESP8266.
 - **rmt_channel** (*Optional*, int): The RMT channel to use. Only on **esp32**.
@@ -75,14 +80,17 @@ Configuration variables:
       "ESP32-S3", "4, 5, 6, 7"
       "ESP32-C3", "2, 3"
 
-- **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. Defaults to
-  ``3``.
+- **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. The maximum
+  number of blocks shared by all receivers and transmitters depends on the ESP32 variant. Defaults to ``3``.
 - **filter** (*Optional*, :ref:`config-time`): Filter any pulses that are shorter than this. Useful for removing
-  glitches from noisy signals. Defaults to ``50us``.
+  glitches from noisy signals. Allowed values are in range ``0`` to ``4294967295us``. Defaults to ``50us``.
 - **idle** (*Optional*, :ref:`config-time`): The amount of time that a signal should remain stable (i.e. not
-  change) for it to be considered complete. Defaults to ``10ms``.
+  change) for it to be considered complete. Allowed values are in range ``0`` to ``4294967295us``. Defaults to ``10ms``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this if you have
   multiple remote receivers.
+- **clock_divider** (*Optional*, int): The clock divider used by the RMT peripheral. A clock divider of ``80`` leads to
+  a resolution of 1 µs per tick, ``160`` leads to 2 µs. Allowed values are in range ``1`` to ``255``. Only used on ESP32
+  platform. Defaults to ``80``.
 
 .. note::
 
@@ -210,10 +218,6 @@ then immediately OFF.
 .. code-block:: yaml
 
     # Example configuration entry
-    remote_receiver:
-      pin: GPIO32
-      dump: all
-
     binary_sensor:
       - platform: remote_receiver
         name: "Panasonic Remote Input"
@@ -447,7 +451,7 @@ Remote code selection (exactly one of these has to be included):
 
         remote_receiver:
           pin:
-            number: D4
+            number: GPIOXX
             inverted: true
             mode:
               input: true
@@ -483,4 +487,3 @@ See Also
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote/remote_receiver.h`
 - :ghedit:`Edit`
-
