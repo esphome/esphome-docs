@@ -142,8 +142,8 @@ Configuration variables:
 Sensors
 -------
 The component offers nine sensors. You can configure all or any subset of the sensors. Each configured sensor 
-is reported  separately on each update_interval. The ``name`` option is required for each sensor configured. 
-All other options from :ref:`Sensor <config-sensor>`. Shorthand notation can be used for the sensors like this:
+is reported  separately on each update_interval. The ``name`` option is required for each sensor configured; 
+all other options from :ref:`Sensor <config-sensor>` are also supported. Shorthand notation can be used for the sensors like this:
 ``current: "Current"``.
 
 - **current** (*Optional*): Calculated current output, A
