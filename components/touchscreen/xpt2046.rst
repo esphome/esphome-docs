@@ -28,8 +28,8 @@ The :ref:`SPI <spi>` is required to be set up in your configuration for this sen
     touchscreen:
       platform: xpt2046
       id: my_touchscreen
-      cs_pin: 17
-      interrupt_pin: 16
+      cs_pin: GPIOXX
+      interrupt_pin: GPIOXX
       update_interval: 50ms
       threshold: 400
       calibration:

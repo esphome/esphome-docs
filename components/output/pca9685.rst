@@ -44,7 +44,7 @@ global ``pca9685`` hub and give it an id, and then define the
     output:
         # generate PWM from ESP32 ledc
       - platform: ledc
-        pin: 25
+        pin: GPIOXX
         id: extclk
         min_power: 1
         frequency: 40MHz
@@ -118,10 +118,10 @@ This output can be used for different PWM functions. E.g. output for light, fan 
       - platform: pca9685
         channel: 0
         id: pwm01
-        
+
     light:
-      - platform: monochromatic 
-        name: 'main light' 
+      - platform: monochromatic
+        name: 'main light'
         output: pwm01
 
 See Also

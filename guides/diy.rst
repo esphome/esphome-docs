@@ -92,6 +92,7 @@ Custom Components & Code
 - `Custom esp32 media player and notifier <https://www.printables.com/model/327708-esphome-nodemcu-esp32-media-player>`__ by :ghuser:`rananna`
 - `Blauberg recuperator S22 controller replacement <https://github.com/Benas09/Blauberg_S22>`__ by :ghuser:`Benas09`
 - `Rheem Econet Water Heater and Furnace Controller <https://github.com/esphome-econet/esphome-econet>`__ by `ESPHome-econet <https://github.com/esphome-econet>`__
+- `Garage Door Opener with position control using a relay and one or two reed sensors <https://github.com/tronikos/esphome-gdo>`__ by :ghuser:`tronikos`
 - `Medisana BS440 (and propably more scales) <https://github.com/bwynants/weegschaal>`__ by `bwynants <https://github.com/bwynants>`__
 
 Sample Configurations
@@ -115,7 +116,6 @@ Sample Configurations
 - `ESPHome config for Universal IR Remote ZJ-A1 (russian) <https://kvvhost.ru/2019/10/30/review-firmware-zj-a1-ir-remote/>`__ by `kvvhost <https://kvvhost.ru/>`__
 - `ESPHome Home Assistant Cheap Cat Feeder <https://github.com/rubengargar/diy-cheap-cat-feeder>`__ by :ghuser:`rubengargar`
 - `ESPHome configs <https://github.com/nuttytree/ESPHome-Devices>`__ by :ghuser:`nuttytree`
-- `ESPHome Home Assistant stepper motor blinds/curtain <https://github.com/icarome/esphome/blob/master/cortina.yaml>`__ by :ghuser:`icarome`
 - `Control LG UD79-B monitor via UART <https://github.com/kquinsland/lg-m43mu79-esp-home-bridge>`__ by :ghuser:`kquinsland`
 - `ESPHome AXA Remote 2 control <https://github.com/galagaking/espaxa/>`__ by :ghuser:`galagaking`
 - `ESPHome WF-DS01 TuyaMCU based dimmable bedside touch lamp <https://github.com/davet2001/miscellaneous/blob/master/tuyamcu_ws-df01_touchlamp.yaml>`__ by :ghuser:`davet2001`
