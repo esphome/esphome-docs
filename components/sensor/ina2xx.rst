@@ -44,10 +44,6 @@ Use ``ina2xx_i2c`` component to connect INA228, INA237, or INA238 device over :r
 .. code-block:: yaml
 
     # Example configuration entry for I²C
-    i2c:
-      sda: D1
-      scl: D2
-        
     sensor:
       - platform: ina2xx_i2c
         id: my_charge_sensor
