@@ -930,15 +930,15 @@ For this example to work, use the theme and style options from :ref:`above <lvgl
 
 .. _lvgl-cook-flex:
 
-Positioning with Flex layout
-----------------------------
+Flex layout positioning
+-----------------------
 
 :ref:`lvgl-layouts` aim to position widgets automatically, eliminating the need to specify coordinates to position each widget. This is a great way to simplify your configuration containing many widgets as it allows you to even omit alignment options.
 
 .. figure:: images/lvgl_cook_flex_layout.png
     :align: center
 
-This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefer fully-featured individual buttons, as they offer a wider range of customization possibilities as seen in the :ref:`lvgl-cook-cover` example.
+This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefer fully-featured individual buttons, as they offer a wider range of customization possibilities as seen in the :ref:`lvgl-cook-cover` example. Here we use the :ref:`lvgl-layouts-flex` layout:
 
 .. code-block:: yaml
 
@@ -1054,6 +1054,156 @@ This example illustrates a control panel for three covers, made up of labels and
                               text: "\U000F0045"
 
 This saved you from a considerable amount of manual calculation of widget positioning which would otherwise be required to place them manually with ``x`` and ``y``! You only need to determine a common width and height for your widgets to distribute them on the page as you prefer. (:ref:`lvgl-cook-icontext` below shows how to use custom icons.)
+
+.. _lvgl-cook-grid:
+
+Grid layout positioning
+-----------------------
+
+But there's even more! With :ref:`lvgl-layouts-grid` layout, you don't even need to give specific widths and height to your widgets. All you have to do is split the space in proportional rows and columns, and drop the widgets in the cells, all stretched to the cell sizes. The same task from above, in a fully automated grid, looks like this:
+
+.. code-block:: yaml
+
+    lvgl:
+        ...
+        pages:
+          - id: room_page
+            widgets:
+              - obj: # a properly placed coontainer object for all these controls
+                  align: CENTER
+                  width: 240
+                  height: 260
+                  pad_all: 6
+                  pad_row: 6
+                  pad_column: 8
+                  bg_opa: transp
+                  border_width: 0
+                  layout: # enable the GRID layout for the children widgets
+                    type: GRID # split the rows and the columns in proportional areas
+                    grid_columns: [FR(1), FR(1), FR(1) ] # equal
+                    grid_rows: [FR(10), FR(30), FR(30), FR(30)] # like percents
+                  widgets:
+                    - label:
+                        text: "East"
+                        grid_cell_row_pos: 0 # place the widget in
+                        grid_cell_column_pos: 0 # the corresponding cell
+                        grid_cell_x_align: stretch
+                        grid_cell_y_align: stretch
+                    - btn:
+                        id: but_cov_up_east
+                        grid_cell_row_pos: 1
+                        grid_cell_column_pos: 0
+                        grid_cell_x_align: stretch
+                        grid_cell_y_align: stretch
+                        widgets:
+                          - label:
+                              id: cov_up_east
+                              align: center
+                              text: "\U000F005D" # mdi:arrow-up
+                    - btn:
+                        id: but_cov_stop_east
+                        grid_cell_row_pos: 2
+                        grid_cell_column_pos: 0
+                        grid_cell_x_align: stretch
+                        grid_cell_y_align: stretch
+                        widgets:
+                          - label:
+                              id: cov_stop_east
+                              align: center
+                              text: "\U000F04DB" # mdi:stop
+                    - btn:
+                        id: but_cov_down_east
+                        grid_cell_row_pos: 3
+                        grid_cell_column_pos: 0
+                        grid_cell_x_align: stretch
+                        grid_cell_y_align: stretch
+                        widgets:
+                          - label:
+                              id: cov_down_east
+                              align: center
+                              text: "\U000F0045" # mdi:arrow-down
+
+                    - label:
+                        text: "South"
+                        grid_cell_row_pos: 0
+                        grid_cell_column_pos: 1
+                        grid_cell_x_align: stretch
+                        grid_cell_y_align: stretch
+                    - btn:
+                        id: but_cov_up_south
+                        grid_cell_row_pos: 1
+                        grid_cell_column_pos: 1
+                        grid_cell_x_align: stretch
+                        grid_cell_y_align: stretch
+                        widgets:
+                          - label:
+                              id: cov_up_south
+                              align: center
+                              text: "\U000F005D"
+                    - btn:
+                        id: but_cov_stop_south
+                        grid_cell_row_pos: 2
+                        grid_cell_column_pos: 1
+                        grid_cell_x_align: stretch
+                        grid_cell_y_align: stretch
+                        widgets:
+                          - label:
+                              id: cov_stop_south
+                              align: center
+                              text: "\U000F04DB"
+                    - btn:
+                        id: but_cov_down_south
+                        grid_cell_row_pos: 3
+                        grid_cell_column_pos: 1
+                        grid_cell_x_align: stretch
+                        grid_cell_y_align: stretch
+                        widgets:
+                          - label:
+                              id: cov_down_south
+                              align: center
+                              text: "\U000F0045"
+
+                    - label:
+                        text: "West"
+                        grid_cell_row_pos: 0
+                        grid_cell_column_pos: 2
+                        grid_cell_x_align: stretch
+                        grid_cell_y_align: stretch
+                    - btn:
+                        id: but_cov_up_west
+                        grid_cell_row_pos: 1
+                        grid_cell_column_pos: 2
+                        grid_cell_x_align: stretch
+                        grid_cell_y_align: stretch
+                        widgets:
+                          - label:
+                              id: cov_up_west
+                              align: center
+                              text: "\U000F005D"
+                    - btn:
+                        id: but_cov_stop_west
+                        grid_cell_row_pos: 2
+                        grid_cell_column_pos: 2
+                        grid_cell_x_align: stretch
+                        grid_cell_y_align: stretch
+                        widgets:
+                          - label:
+                              id: cov_stop_west
+                              align: center
+                              text: "\U000F04DB"
+                    - btn:
+                        id: but_cov_down_west
+                        grid_cell_row_pos: 3
+                        grid_cell_column_pos: 2
+                        grid_cell_x_align: stretch
+                        grid_cell_y_align: stretch
+                        widgets:
+                          - label:
+                              id: cov_down_west
+                              align: center
+                              text: "\U000F0045"
+
+The big advantage here is that whenever you need to add, for example, an extra columns of buttons for a new cover, you just simply append it to the ``grid_columns`` variable, and add the corresponding widgets as above. Their sizes and positions will automatically be calculated to fit in.
 
 .. _lvgl-cook-btlg:
 

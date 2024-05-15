@@ -366,6 +366,8 @@ Layouts aim to position widgets automatically, eliminating the need to specify `
 
 The layout configuration options are applied to any parent widget or page, influencing the appearance of the children.
 
+Checkout :ref:`lvgl-cook-flex` and :ref:`lvgl-cook-grid` in the Cookbook for examples illustrating how to automate widget positioning, potentially reducing the size of your device's YAML configuration, and saving you from lots of manual calculations.
+
 **Configuration variables:**
 
 - **layout** (*Optional*, string): A dictionary describing the layout configuration:
@@ -417,8 +419,6 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
     - **pad_column** (*Optional*, int16): Set the padding between the columns, in pixels.
     - **flex_grow** (*Optional*, int16): Flex grow can be used to make one or more children fill the available space on the track. When more children have grow parameters, the available space will be distributed proportionally to the grow values. Defaults to ``0``, which disables growing.
 
-Checkout :ref:`lvgl-cook-flex` in the Cookbook for an example illustrating how to automate widget positioning, potentially reducing the size of your device's YAML configuration.
-
 .. _lvgl-layouts-grid:
 
 *Grid*
@@ -431,12 +431,12 @@ It can arrange items into a 2D "table" that has rows or columns (tracks). The it
 
 - *tracks*: the rows or the columns.
 - *gap*: the space between the rows and columns or the items on a track.
-- *free unit (FR)*: a proportional distribution unit for the space available on the track. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space the widget should take up. For example if all items on the track have a ``FR`` set to ``1``, the space in the track will be distributed equally to all of them. If one of the items has a value of 2, that one would take up twice as much of the space as either one of the others.
+- *free unit (FR)*: a proportional distribution unit for the space available on the track. It accepts a unitless integer value that serves as a proportion. It dictates what amount of the available space the widget should take up. For example if all items on the track have a ``FR`` set to ``1``, the space in the track will be distributed equally to all of them. If one of the items has a value of 2, that one would take up twice as much of the space as either one of the others.
 
 **Configuration variables:**
 
-    - **grid_rows** (**Required**): The number of rows in the grid, expressed a list of values in pixels, ``CONTENT`` or ``FR(n)`` (free units, where ``n`` is a proportional unitless value).
-    - **grid_columns** (**Required**): The number of columns in the grid, expressed a list of values in pixels, ``CONTENT`` or ``FR(n)`` (free units, where ``n`` is a proportional unitless value).
+    - **grid_rows** (**Required**): The number of rows in the grid, expressed a list of values in pixels, ``CONTENT`` or ``FR(n)`` (free units, where ``n`` is a proportional integer value).
+    - **grid_columns** (**Required**): The number of columns in the grid, expressed a list of values in pixels, ``CONTENT`` or ``FR(n)`` (free units, where ``n`` is a proportional integer value).
     - **grid_column_align** (*Optional*, string): How to align the widgets within the column. Possible options below.
     - **grid_row_align** (*Optional*, string): How to align the widgets within the row. Possible options below.
     - **pad_row** (*Optional*, int16): Set the padding between the rows, in pixels.
@@ -464,8 +464,6 @@ Values for use with ``grid_column_align``, ``grid_row_align``, ``grid_cell_x_ali
         - ``SPACE_EVENLY``: items are distributed so that the spacing between any two items (and the space to the edges) is equal.
         - ``SPACE_AROUND``: items are evenly distributed in the track with equal space around them. Note that visually the spaces aren’t equal, since all the items have equal space on both sides. The first item will have one unit of space against the container edge, but two units of space between the next item because that next item has its own spacing that applies.
         - ``SPACE_BETWEEN``: items are evenly distributed in the track: first item is on the start line, last item on the end line.
-
-
 
 .. _lvgl-widgets:
 
