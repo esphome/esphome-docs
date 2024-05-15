@@ -19,6 +19,22 @@ ESPHome 2024.5.0 - 15th May 2024
     Template Datetime, components/datetime/template, description.svg, dark-invert
     WeiKai SPI/I²C UART/IO Expander, components/weikai, wk2168.jpg
 
+Valves, Events, and More
+------------------------
+
+This release brings a new ``Valve`` component, which can be used to control valves.
+A ``Valve`` can be opened, closed, or a specific position set if supported.
+
+``Event`` entities were added to Home Assistant in `2023.8 <https://www.home-assistant.io/blog/2023/08/02/release-20238/#introducing-the-event-entity>`__.
+They allow better structure and also history and logging of the events sent from ESPHome to Home Assistant compared to just using publishing events onto the
+Home Assistant event bus with the ``homeassistant.event`` action.
+
+ESP32 ADC Attenuation
+---------------------
+
+The attenuation configuration option for ESP32 ``adc`` sensors has had a deprecation in the underlying ESP-IDF framework with the ``11dB`` option.
+The value to replace ``11dB`` with is ``12dB``. There are no functionality changes otherwise. There will be a warning in the logs when installing if you
+are using ``11dB`` and it will be removed in **2024.8.0**.
 
 Full list of changes
 --------------------
@@ -56,6 +72,14 @@ Beta Changes
 - Set FEATURE_API_AUDIO flag also if the speaker component is not used :esphomepr:`6712` by :ghuser:`gnumpi`
 - Bump platformio from 6.1.13 to 6.1.15 :esphomepr:`6634` by :ghuser:`dependabot[bot]`
 - Fix ESPHOME_PROJECT_VERSION_30 :esphomepr:`6731` by :ghuser:`jesserockz`
+- Voice-Assistant: Start-order change for VAD disabled: start va-pipeline when microphon… :esphomepr:`6391` by :ghuser:`gnumpi`
+- Add ANNOUNCING state to media_player. :esphomepr:`6691` by :ghuser:`gnumpi`
+- [adc] Fix 11db deprecation warning :esphomepr:`6749` by :ghuser:`jesserockz` (notable-change)
+
+Notable Changes
+^^^^^^^^^^^^^^^
+
+- [adc] Fix 11db deprecation warning :esphomepr:`6749` by :ghuser:`jesserockz` (notable-change)
 
 All changes
 ^^^^^^^^^^^
@@ -200,6 +224,9 @@ All changes
 - Set FEATURE_API_AUDIO flag also if the speaker component is not used :esphomepr:`6712` by :ghuser:`gnumpi`
 - Bump platformio from 6.1.13 to 6.1.15 :esphomepr:`6634` by :ghuser:`dependabot[bot]`
 - Fix ESPHOME_PROJECT_VERSION_30 :esphomepr:`6731` by :ghuser:`jesserockz`
+- Voice-Assistant: Start-order change for VAD disabled: start va-pipeline when microphon… :esphomepr:`6391` by :ghuser:`gnumpi`
+- Add ANNOUNCING state to media_player. :esphomepr:`6691` by :ghuser:`gnumpi`
+- [adc] Fix 11db deprecation warning :esphomepr:`6749` by :ghuser:`jesserockz` (notable-change)
 
 Past Changelogs
 ---------------
