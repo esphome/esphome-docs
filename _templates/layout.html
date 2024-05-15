@@ -5,6 +5,23 @@
 {% endblock %}
 
 {%- block extrahead %}
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+    <script src="/pagefind/pagefind-ui.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            new PagefindUI({
+                element: "#search",
+                showSubResults: true,
+                showImages: false,
+                ranking: {
+                    pageLength: 0.0,
+                    termSaturation: 1.6,
+                    termFrequency: 0.4,
+                    termSimilarity: 6.0
+                }
+            });
+        });
+    </script>
   <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}?hash={{ custom_css_hash }}" type="text/css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/_static/apple-touch-icon.png">
   <link rel="shortcut icon" href="/_static/favicon.ico">
@@ -29,14 +46,16 @@
 {% endblock %}
 
 {% block relbar_top %}
-  {% if parents|length > 0 %}
   <ul class="breadcrumbs">
+  {% if parents|length > 0 %}
     {%- for doc in parents %}
       <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> ➔</li>
     {%- endfor %}
       <li>{{title}}</li>
-  </ul>
+
   {% endif %}
+  <li id="search"></li>
+  </ul>
 {% endblock %}
 
 {% block footer %}

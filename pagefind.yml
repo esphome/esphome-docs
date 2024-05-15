@@ -5,4 +5,5 @@ exclude_selectors:
   - ".sphinxsidebar"
   - ".breadcrumbs"
 glob: "{components,cookbook,guides,projects,web-api}/**/*.html"
+root_selector: div[role=main]
 
