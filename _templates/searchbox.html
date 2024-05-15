@@ -7,9 +7,12 @@
         new PagefindUI({
             element: "#search",
             showSubResults: true,
-            pageLength: 0.5,
-            termSaturation: 0.8,
-            termFrequency: 0.4
+            ranking: {
+                pageLength: 0.0,
+                termSaturation: 1.6,
+                termFrequency: 0.4,
+                termSimilarity: 6.0
+            }
         });
     });
 </script>
