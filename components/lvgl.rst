@@ -374,9 +374,9 @@ Checkout :ref:`lvgl-cook-flex` and :ref:`lvgl-cook-grid` in the Cookbook for exa
     - **type** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. Defaults to ``NONE``.
     - Further options from below depending on the chosen type.
 
-*Flex*
-
 .. _lvgl-layouts-flex:
+
+#### Flex ####
 
 The Flex layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
 
@@ -419,9 +419,9 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
     - **pad_column** (*Optional*, int16): Set the padding between the columns, in pixels.
     - **flex_grow** (*Optional*, int16): Flex grow can be used to make one or more children fill the available space on the track. When more children have grow parameters, the available space will be distributed proportionally to the grow values. Defaults to ``0``, which disables growing.
 
-*Grid*
-
 .. _lvgl-layouts-grid:
+
+#### Grid ####
 
 The Grid layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
 
