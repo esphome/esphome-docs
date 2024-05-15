@@ -1099,7 +1099,7 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
                           - label:
                               id: cov_up_east
                               align: center
-                              text: "\U000F005D" # mdi:arrow-up
+                              text: "\U000F005D"
                     - btn:
                         id: but_cov_stop_east
                         grid_cell_row_pos: 2
@@ -1110,7 +1110,7 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
                           - label:
                               id: cov_stop_east
                               align: center
-                              text: "\U000F04DB" # mdi:stop
+                              text: "\U000F04DB"
                     - btn:
                         id: but_cov_down_east
                         grid_cell_row_pos: 3
@@ -1121,7 +1121,7 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
                           - label:
                               id: cov_down_east
                               align: center
-                              text: "\U000F0045" # mdi:arrow-down
+                              text: "\U000F0045"
 
                     - label:
                         text: "South"
