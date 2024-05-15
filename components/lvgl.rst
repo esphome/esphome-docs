@@ -369,7 +369,7 @@ The layout configuration options are applied to any parent widget or page, influ
 **Configuration variables:**
 
 - **layout** (*Optional*, string): A dictionary describing the layout configuration:
-    - **type** (*Optional*, string): ``flex``, ``grid`` or ``none``. Defaults to ``none``.
+    - **type** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. Defaults to ``NONE``.
     - Further options from below depending on the chosen type.
 
 .. _lvgl-layouts-flex:
@@ -382,11 +382,11 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
 
 **Terms used:**
 
-- *tracks*: the rows or columns *main* direction: row or column, the direction in which the items are placed.
+- *track*: the rows or columns *main* direction flow: row or column in the direction in which the items are placed one after the other.
 - *cross direction*: perpendicular to the main direction.
 - *wrap*: if there is no more space in the track a new track is started.
 - *gap*: the space between the rows and columns or the items on a track.
-- *grow*: if set on an item it will grow to fill the remaining space on the track. The available space will be distributed among items respective to their grow value (larger value means more space). For example, if there is 400 px available space and 4 widgets are set: A with ``flex_grow: 1``, B with ``flex_grow: 1``, C with ``flex_grow: 2``, A and B will have 100 px size, and C will have 200 px size.
+- *grow*: if set on an item it will grow to fill the remaining space on the track. The available space will be distributed among items respective to their grow value (larger value means more space). It dictates what amount of the available space the widget should take up. For example if all items on the track have a ``grow`` set to ``1``, the space in the track will be distributed equally to all of them. If one of the items has a value of 2, that one would take up twice as much of the space as either one of the others.
 
 **Configuration variables:**
 
@@ -404,7 +404,8 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
     - **flex_align_cross** (*Optional*, string): Determines how to distribute the items in their track on the *cross* axis. For example, if the items have different height place them to the bottom of the track (known as *align-items* in CSS). Possible options below.
     - **flex_align_track** (*Optional*, string): Determines how to distribute the tracks (known as *align-content* in CSS). Possible options below.
     
-    Applicable to ``flex_align_main``, ``flex_align_cross``, ``flex_align_track``:
+    Values for use with  ``flex_align_main``, ``flex_align_cross``, ``flex_align_track``:
+
         - ``START``: means left horizontally and top vertically (default).
         - ``END``: means right horizontally and bottom vertically.
         - ``CENTER``: simply center.
@@ -424,31 +425,47 @@ Checkout :ref:`lvgl-cook-flex` in the Cookbook for an example illustrating how t
 
 The Grid layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
 
-It can arrange items into a 2D "table" that has rows or columns (tracks). The item(s) can span through multiple columns or rows. The track's size can be set in pixels, to the largest item or in "free units" to distribute the free space proportionally.
+It can arrange items into a 2D "table" that has rows or columns (tracks). The item(s) can span through multiple columns or rows. The track's size can be set in pixels, to the largest item of the track (``CONTENT``) or in "free units" to distribute the free space proportionally.
 
 **Terms used:**
 
-- *tracks*: the rows or columns.
+- *tracks*: the rows or the columns.
 - *gap*: the space between the rows and columns or the items on a track.
+- *free unit (FR)*: a proportional distribution unit for the space available on the track. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space the widget should take up. For example if all items on the track have a ``FR`` set to ``1``, the space in the track will be distributed equally to all of them. If one of the items has a value of 2, that one would take up twice as much of the space as either one of the others.
 
 **Configuration variables:**
 
-    - **grid_rows** (**Required**): The number of rows in the grid.
-    - **grid_columns** (**Required**): The number of columns in the grid.
-    - **grid_column_align** (*Optional*, string): How to align the widget within the column. Possible options below.
-    - **grid_row_align** (*Optional*, string): How to align the widget within the row. Possible options below.
+    - **grid_rows** (**Required**): The number of rows in the grid, expressed a list of values in pixels, ``CONTENT`` or ``FR(n)`` (free units, where ``n`` is a proportional unitless value).
+    - **grid_columns** (**Required**): The number of columns in the grid, expressed a list of values in pixels, ``CONTENT`` or ``FR(n)`` (free units, where ``n`` is a proportional unitless value).
+    - **grid_column_align** (*Optional*, string): How to align the widgets within the column. Possible options below.
+    - **grid_row_align** (*Optional*, string): How to align the widgets within the row. Possible options below.
+    - **pad_row** (*Optional*, int16): Set the padding between the rows, in pixels.
+    - **pad_column** (*Optional*, int16): Set the padding between the columns, in pixels.
     
-     Values for use with ``grid_column_align``, ``grid_row_align``:
+In a grid layout, *all the widgets placed on the grid* will get some additional configuration variables to help with placement:
+
+    - **grid_cell_row_pos** (**Required**, int16): Position of the widget, in which row to appear (0 based count).
+    - **grid_cell_column_pos** (**Required**, int16): Position of the widget, in which column to appear (0 based count).
+    - **grid_cell_x_align** (*Optional*, string): How to align the widget horizontally within the cell. Possible options below.
+    - **grid_cell_y_align** (*Optional*, string): How to align the widget vertically within the cell. Possible options below.
+    - **grid_cell_row_span**  (*Optional*, int16): How many rows to span across the widget. Defaults to ``1``.
+    - **grid_cell_column_span** (*Optional*, int16): How many columns to span across the widget. . Defaults to ``1``.
+
+    .. note::
+
+        These ``grid_cell_`` variables apply to widget configuations!
+
+Values for use with ``grid_column_align``, ``grid_row_align``, ``grid_cell_x_align``, ``grid_cell_y_align``:
 
         - ``START``: means left horizontally and top vertically (default).
         - ``END``: means right horizontally and bottom vertically.
         - ``CENTER``: simply center.
+        - ``STRETCH``: stretch the widget to the cell in the respective direction. Does not apply to ``grid_column_align``, ``grid_row_align``.
         - ``SPACE_EVENLY``: items are distributed so that the spacing between any two items (and the space to the edges) is equal.
         - ``SPACE_AROUND``: items are evenly distributed in the track with equal space around them. Note that visually the spaces aren’t equal, since all the items have equal space on both sides. The first item will have one unit of space against the container edge, but two units of space between the next item because that next item has its own spacing that applies.
         - ``SPACE_BETWEEN``: items are evenly distributed in the track: first item is on the start line, last item on the end line.
 
-    - **pad_row** (*Optional*, int16): Set the padding between the rows, in pixels.
-    - **pad_column** (*Optional*, int16): Set the padding between the columns, in pixels.
+
 
 .. _lvgl-widgets:
 
