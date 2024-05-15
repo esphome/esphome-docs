@@ -938,7 +938,7 @@ Positioning with Flex layout
 .. figure:: images/lvgl_cook_flex_layout.png
     :align: center
 
-This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefer full featured individual buttons, as they offer wider customization possibilities as seen in the :ref:`lvgl-cook-cover` example.
+This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefer fully-featured individual buttons, as they offer a wider range of customization possibilities as seen in the :ref:`lvgl-cook-cover` example.
 
 .. code-block:: yaml
 
@@ -1053,7 +1053,7 @@ This example illustrates a control panel for three covers, made up of labels and
                               align: center
                               text: "\U000F0045"
 
-This saved you from a considerable amount of manual calculation of widget positioning, if you wanted to place each of them manually with ``x`` and ``y``! You only need to decide for a common width of your widgets, and a height which will distribute them the way you like it. (:ref:`lvgl-cook-icontext` below shows how to use custom icons)
+This saved you from a considerable amount of manual calculation of widget positioning which would otherwise be required to place them manually with ``x`` and ``y``! You only need to determine a common width and height for your widgets to distribute them on the page as you prefer. (:ref:`lvgl-cook-icontext` below shows how to use custom icons.)
 
 .. _lvgl-cook-btlg:
 

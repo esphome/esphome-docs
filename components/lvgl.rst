@@ -416,7 +416,7 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
     - **pad_column** (*Optional*, int16): Set the padding between the columns, in pixels.
     - **flex_grow** (*Optional*, int16): Flex grow can be used to make one or more children fill the available space on the track. When more children have grow parameters, the available space will be distributed proportionally to the grow values. Defaults to ``0``, which disables growing.
 
-Checkout :ref:`lvgl-cook-flex` in the Cookbook for an example illustrating how to save a lot of manual widget positioning. 
+Checkout :ref:`lvgl-cook-flex` in the Cookbook for an example illustrating how to automate widget positioning, potentially reducing the size of your device's YAML configuration.
 
 .. _lvgl-layouts-grid:
 
@@ -438,7 +438,7 @@ It can arrange items into a 2D "table" that has rows or columns (tracks). The it
     - **grid_column_align** (*Optional*, string): How to align the widget within the column. Possible options below.
     - **grid_row_align** (*Optional*, string): How to align the widget within the row. Possible options below.
     
-     Applicable to ``grid_column_align``, ``grid_row_align``:
+     Values for use with ``grid_column_align``, ``grid_row_align``:
 
         - ``START``: means left horizontally and top vertically (default).
         - ``END``: means right horizontally and bottom vertically.
