@@ -938,7 +938,7 @@ Flex layout positioning
 .. figure:: images/lvgl_cook_flex_layout.png
     :align: center
 
-This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefer fully-featured individual buttons, as they offer a wider range of customization possibilities as seen in the :ref:`lvgl-cook-cover` example. Here we use the :ref:`lvgl-layouts-flex` layout:
+This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefer fully-featured individual buttons, as they offer a wider range of customization possibilities as seen in the :ref:`lvgl-cook-cover` example. Here we use the **Flex** layout:
 
 .. code-block:: yaml
 
@@ -1060,7 +1060,7 @@ This saved you from a considerable amount of manual calculation of widget positi
 Grid layout positioning
 -----------------------
 
-But there's even more! With :ref:`lvgl-layouts-grid` layout, you don't even need to give specific widths and height to your widgets. All you have to do is split the space in proportional rows and columns, and drop the widgets in the cells, all stretched to the cell sizes. The same task from above, in a fully automated grid, looks like this:
+But there's even more! With **Grid** layout, you don't even need to give specific widths and height to your widgets. All you have to do is split the space in proportional rows and columns, and drop the widgets in the cells, all stretched to the cell sizes. The same task from above, in a fully automated grid, looks like this:
 
 .. code-block:: yaml
 
