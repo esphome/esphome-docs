@@ -12,24 +12,6 @@
 
 {% block scripts -%}
 {{ super() }}
-<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    new PagefindUI({
-      element: "#search",
-      showImages: false,
-    });
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q');
-    const searchInputElement = document.querySelector("#search form[role=search] input");
-
-    const inputChangeEvent = new Event('input');
-    searchInputElement.value = query;
-    searchInputElement?.dispatchEvent(inputChangeEvent);
-    searchInputElement?.focus();
-  });
-</script>
 {%- endblock scripts %}
 
 {% block extra_styles -%}

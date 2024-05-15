@@ -1,11 +1,9 @@
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
-<script src="/pagefind/pagefind-ui.js"></script>
-
+<link href="/pagefind/pagefind-modular-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-modular-ui.js"></script>
 <div id="search"></div>
 <script>
     window.addEventListener('DOMContentLoaded', (event) => {
-        new PagefindUI({
-            element: "#search",
+        const instance = new PagefindModularUI.Instance({
             showSubResults: true,
             showImages: false,
             ranking: {
@@ -15,6 +13,11 @@
                 termSimilarity: 6.0
             }
         });
+        instance.add(new PagefindModularUI.Input({
+            containerElement: "#search"
+        }));
+        instance.add(new PagefindModularUI.ResultList({
+            containerElement: "#search-results"
+        }));
     });
 </script>
-
