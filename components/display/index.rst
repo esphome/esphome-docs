@@ -935,49 +935,30 @@ Additionally the old page will be given as the variable ``from`` and the new one
 Troubleshooting
 ---------------
 
-Color Test Pattern
-------------------
+Using the Color Test Card
+-------------------------
 
-If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
-It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine
-the best way to help you, **a picture of the result of this script is very helpful.**
+If you're experiencing issues with your color display, the ``show_test_card: true`` option can help you to identify what might be wrong.
+
+- It will show bars for Red, Green and Blue, graduating to black and white.
+- Together with that it will show the letters "**R**", "**G**" and "**B**" to validate the display geometry.
+- There will be a rectangle around the corners of the display with a marker at the 0,0 corner which should be at the top left of the screen.
+
+.. figure:: images/test_card.jpg
+    :align: center
+    :width: 50.0%
+
+
+
+When all points above are shown correctly then the display is working as expected.
+To help the graphics display team determine the best way to help you, **a picture of the result of this option is very helpful.**
 
 Should you `create an issue <https://github.com/esphome/issues/issues>`__ in GitHub regarding your display, please
-be sure to **include a link to where you purchased it** so that we can validate the configuration you've used.
+be sure to **include a link to where you purchased the display** so that we can validate the configuration you've used.
 
-.. code-block:: yaml
+.. note::
 
-    display:
-      - platform: ...
-        ...
-        lambda: |-
-          int shift_x = (it.get_width()-310)/2;
-          int shift_y = (it.get_height()-256)/2;
-          for(auto i = 0; i<256; i++) {
-            it.horizontal_line(shift_x+  0,i+shift_y,50, my_red.fade_to_white(i));
-            it.horizontal_line(shift_x+ 50,i+shift_y,50, my_red.fade_to_black(i));
-
-            it.horizontal_line(shift_x+105,i+shift_y,50, my_green.fade_to_white(i));
-            it.horizontal_line(shift_x+155,i+shift_y,50, my_green.fade_to_black(i));
-
-            it.horizontal_line(shift_x+210,i+shift_y,50, my_blue.fade_to_white(i));
-            it.horizontal_line(shift_x+260,i+shift_y,50, my_blue.fade_to_black(i));
-          }
-          it.rectangle(shift_x+ 0, 0+shift_y, shift_x+ 310, 256+shift_y, my_yellow);
-
-    color:
-      - id: my_blue
-        blue: 100%
-      - id: my_red
-        red: 100%
-      - id: my_green
-        green: 100%
-      - id: my_white
-        red: 100%
-        blue: 100%
-        green: 100%
-      - id: my_yellow
-        hex: ffff00
+    For displays in 8 bit mode you will see distinct color blocks rather than a smooth gradient.
 
 See Also
 --------
