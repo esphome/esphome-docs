@@ -173,17 +173,11 @@ Configuration variables:
 
 - **outlet_temperature** (*Optional*): If specified, the temperature of the air being
   discharged from the BedJet will be reported as a sensor.
-
-  - **name** (**Required**, string): The name for the outlet temperature sensor.
-  - **id** (*Optional*, string): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Sensor <config-sensor>`.
 
 - **ambient_temperature** (*Optional*): If specified, the temperature of the room the
   BedJet is in will be reported as a sensor.
-
-  - **name** (**Required**, string): The name for the ambient temperature sensor.
-  - **id** (*Optional*, string): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  All options from :ref:`Sensor <config-sensor>`.
 
 Known issues:
 -------------
