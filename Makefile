@@ -2,6 +2,7 @@ ESPHOME_PATH = ../esphome
 ESPHOME_REF = 2024.5.0
 PAGEFIND_VERSION=1.1.0
 PAGEFIND=pagefind
+NET_PAGEFIND=../pagefindbin/pagefind
 
 .PHONY: html html-strict cleanhtml deploy help live-html live-pagefind Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
 
@@ -40,6 +41,10 @@ api:
 	fi
 	ESPHOME_PATH=$(ESPHOME_PATH) doxygen Doxygen
 
+net-html:
+	sphinx-build -M html . _build -j auto -n $(O)
+	${NET_PAGEFIND}
+
 netlify-api: netlify-dependencies
 	mkdir -p _build/html/api
 	@if [ ! -d "$(ESPHOME_PATH)" ]; then \
@@ -58,14 +63,13 @@ pagefind-binary:
 	curl -o pagefind-v$(PAGEFIND_VERSION)-x86_64-unknown-linux-musl.tar.gz https://github.com/CloudCannon/pagefind/releases/download/v$(PAGEFIND_VERSION)/pagefind-v$(PAGEFIND_VERSION)-x86_64-unknown-linux-musl.tar.gz -L
 	tar xzf pagefind-v$(PAGEFIND_VERSION)-x86_64-unknown-linux-musl.tar.gz
 	rm pagefind-v$(PAGEFIND_VERSION)-x86_64-unknown-linux-musl.tar.gz
-	mv pagefind ../pagefindbin
-	PAGEFIND=../pagefindbin/pagefind
+	mv pagefind ${NET_PAGEFIND)
 
 
 copy-svg2png:
 	cp svg2png/*.png _build/html/_images/
 
-netlify: netlify-dependencies netlify-api html copy-svg2png
+netlify: netlify-dependencies netlify-api net-html copy-svg2png
 
 lint: html-strict
 	python3 lint.py

@@ -5,6 +5,7 @@
 {% endblock %}
 
 {%- block extrahead %}
+  <link href="/pagefind/pagefind-modular-ui.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}?hash={{ custom_css_hash }}" type="text/css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/_static/apple-touch-icon.png">
   <link rel="shortcut icon" href="/_static/favicon.ico">
@@ -38,7 +39,7 @@
 
   {% endif %}
   </ul>
-  <div id="search-results"></div>
+  <div class="pagefind-ui__drawer" id="search-results"></div>
 {% endblock %}
 
 {% block footer %}

@@ -249,16 +249,12 @@ div.body p, div.body dd, div.body li, div.body blockquote {
   hyphens: none;
 }
 .pagefind-ui__form {
-    width: 200px;
+    width: 100%;
     left: auto;
-    top: 10px;
-    right: 30px;
-    float: inline-end;
-    overflow: visible;
     position: relative;
 }
 
-#search-results {
+.pagefind-ui__drawer {
     background-color: #f8f8f8;
     box-shadow: 0 6px 10px rgb(0 0 0 / 0.2);
     position: absolute;
@@ -366,9 +362,12 @@ div.body p, div.body dd, div.body li, div.body blockquote {
     background-color: #8e8129;
   }
 
-  #search-results {
+  .pagefind-ui__drawer {
     background-color: #313131;
     box-shadow: 0 6px 10px rgb(0 0 0 / 0.8);
+  }
+  .pagefind-ui__form, .pagefind-modular-input {
+    color: #ececec;
   }
   :root {
     --pagefind-ui-primary: #eeeeee;
