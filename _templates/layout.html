@@ -28,16 +28,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 {% endblock %}
 
-{% block relbar_top %}
-  {% if parents|length > 0 %}
-  <ul class="breadcrumbs">
-    {%- for doc in parents %}
-      <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> ➔</li>
-    {%- endfor %}
-      <li>{{title}}</li>
-  </ul>
-  {% endif %}
-{% endblock %}
+{%- block content %}
+  <div class="document">
+    {{ sidebar() }}
+    {%- block document %}
+      <div class="documentwrapper">
+      {%- if render_sidebar %}
+        <div class="bodywrapper">
+      {%- endif %}
+
+          {% block relbar_top %}
+            {% if parents|length > 0 %}
+            <ul class="breadcrumbs">
+              {%- for doc in parents %}
+                <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> ➔</li>
+              {%- endfor %}
+                <li>{{title}}</li>
+            </ul>
+            {% endif %}
+          {% endblock %}
+
+          <div class="body" data-pagefind-body role="main">
+            {% block body %} {% endblock %}
+          </div>
+
+          {%- block relbar_bottom %}
+            {%- if theme_show_relbar_bottom|tobool %}
+              <div class="related bottom">
+                &nbsp;
+                {{- rellink_markup () }}
+              </div>
+            {%- endif %}
+          {% endblock %}
+
+      {%- if render_sidebar %}
+        </div>
+      {%- endif %}
+      </div>
+    {%- endblock %}
+    <div class="clearer"></div>
+  </div>
+{%- endblock %}
 
 {% block footer %}
   <div id="upgrade-footer">

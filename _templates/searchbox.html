@@ -4,7 +4,13 @@
 <div id="search"></div>
 <script>
     window.addEventListener('DOMContentLoaded', (event) => {
-        new PagefindUI({ element: "#search", showSubResults: true });
+        new PagefindUI({
+            element: "#search",
+            showSubResults: true,
+            pageLength: 0.5,
+            termSaturation: 0.8,
+            termFrequency: 0.4
+        });
     });
 </script>
 
