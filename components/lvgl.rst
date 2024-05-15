@@ -378,6 +378,7 @@ Checkout :ref:`lvgl-cook-flex` and :ref:`lvgl-cook-grid` in the Cookbook for exa
 
 Flex
 >>>>
+[TOC]
 
 The Flex layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
 
