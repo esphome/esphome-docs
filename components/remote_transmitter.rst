@@ -772,6 +772,29 @@ Configuration variables:
   for more information.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+.. _remote_transmitter-transmit_roomba:
+
+``remote_transmitter.transmit_roomba`` Action
+*********************************************
+
+This :ref:`action <config-action>` sends a Roomba infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_roomba:
+          data: 0x88  # clean
+          repeat:
+            times: 3
+            wait_time: 17ms
+
+Configuration variables:
+
+- **data** (**Required**, int): The Roomba code to send, see dumper output for more info.
+- Note that ``repeat`` is still optional, however **Roomba vacuums require that a given code is received at least three times before they will act on it.** If your Roomba still does not respond to sent command increase this value.
+- Note that ``wait_time`` is still optional; it will even work without this parameter, but Roomba Remote uses this 17 ms wait time between sent commands.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 .. _remote_transmitter-transmit_samsung:
 
 ``remote_transmitter.transmit_samsung`` Action
