@@ -47,17 +47,22 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options.
   Set to ``""`` to remove the default entity category.
+- **time_id** (**Required**, :ref:`config-id`): The ID of the time entity. Automatically set
+  to the ID of a time component if only a single one is defined.
 
 MQTT Options:
 
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
-Datetime Automation
--------------------
+Time and DateTime Options:
 
-You can access the most recent state as a string of the datetime in :ref:`lambdas <config-lambda>` using
-``id(datetime_id).state``.
-You can also access it as a ``ESPTime`` object by ``id(datetime_id).state_as_time``
+- **on_time** (*Optional*, :ref:`automation`): Automation to run when the current datetime or time matches the current state.
+  Only valid on ``time`` or ``datetime`` types.
+
+Automation
+----------
+
+You can access the most recent state as a ``ESPTime`` object by ``id(datetime_id).state_as_esptime()``
 
 .. _datetime-on_value:
 
@@ -225,6 +230,84 @@ advanced stuff (see the full API Reference for more info).
       ESP_LOGI("main", "Value of my datetime: %0d:%02d:%02d", id(my_time).hour, id(my_time).minute, id(my_time).second);
 
 
+DateTime Automation
+-------------------
+
+.. _datetime-datetime_set_action:
+
+``datetime.datetime.set`` Action
+********************************
+
+This is an :ref:`Action <config-action>` for setting a datetime datetime state.
+The ``datetime`` provided can be in one of 3 formats:
+
+.. code-block:: yaml
+
+    # String datetime
+    - datetime.time.set:
+        id: my_datetime
+        datetime: "2024-12-31 12:34:56"
+
+    # Individual datetime parts
+    - datetime.datetime.set:
+        id: my_datetime
+        datetime:
+          year: 2024
+          month: 12
+          day: 31
+          hour: 12
+          minute: 34
+          second: 56
+
+    # Using a lambda
+    - datetime.datetime.set:
+        id: my_datetime
+        datetime: !lambda |-
+          // Return an ESPTime struct
+          return {.second: 56, .minute: 34, .hour: 12, .day_of_month: 31, .month: 12, .year: 2024};
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the datetime to set.
+- **datetime** (**Required**, string, datetime parts, :ref:`templatable <config-templatable>`):
+  The value to set the datetime to.
+
+
+.. _datetime-datetime-lambda_calls:
+
+Lambda calls
+************
+
+For more complex use cases, several methods are available for use on datetimes from within :ref:`lambdas <config-lambda>`. See the full API Reference for more information.
+
+- ``.make_call()``: Make a call for updating the datetime value.
+
+  .. code-block:: cpp
+
+      // Within lambda, set the datetime to 2024-12-31 12:34:56
+      auto call = id(my_datetime).make_call();
+      call.set_date("2024-12-31 12:34:56");
+      call.perform();
+
+  Check the API reference for information on the methods that are available for
+  the ``DateTimeCall`` object.
+
+- ``.year``: Retrieve the current year of the ``datetime``. It will be ``0`` if no value has been set.
+- ``.month``: Retrieve the current month of the ``datetime``. It will be ``0`` if no value has been set.
+- ``.day``: Retrieve the current day of the ``datetime``. It will be ``0`` if no value has been set.
+- ``.hour``: Retrieve the current hour of the ``datetime``. It will be ``0`` if no value has been set.
+- ``.minute``: Retrieve the current minute of the ``datetime``. It will be ``0`` if no value has been set.
+- ``.second``: Retrieve the current second of the ``datetime``. It will be ``0`` if no value has been set.
+- ``.state_as_esptime()``: Retrieve the current value of the datetime as a :apistruct:`ESPTime` object.
+
+  .. code-block:: cpp
+
+      // For example, create a custom log message when a value is received:
+      ESP_LOGI("main", "Value of my datetime: %04d-%02d-%02d %0d:%02d:%02d",
+               id(my_datetime).year, id(my_datetime).month, id(my_datetime).day,
+               id(my_datetime).hour, id(my_datetime).minute, id(my_datetime).second);
+
+
 See Also
 --------
 
@@ -233,6 +316,8 @@ See Also
 - :apiref:`DateCall <datetime/date_entity.h>`
 - :apiref:`TimeEntity <datetime/time_entity.h>`
 - :apiref:`TimeCall <datetime/time_entity.h>`
+- :apiref:`DateTimeEntity <datetime/datetime_entity.h>`
+- :apiref:`DateTimeCall <datetime/datetime_entity.h>`
 - :ghedit:`Edit`
 
 .. toctree::
