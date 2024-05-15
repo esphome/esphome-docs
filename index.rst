@@ -661,6 +661,7 @@ Light Components
 .. imgtable::
 
     Light Core, components/light/index, folder-open.svg, dark-invert
+    Beken SPI, components/light/beken_spi_led_strip, color_lens.svg, dark-invert
     Binary Light, components/light/binary, lightbulb.svg, dark-invert
     Cold+Warm White Light, components/light/cwww, brightness-medium.svg, dark-invert
     Color Temperature Light, components/light/color_temperature, brightness-medium.svg, dark-invert
