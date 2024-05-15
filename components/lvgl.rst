@@ -376,7 +376,8 @@ Checkout :ref:`lvgl-cook-flex` and :ref:`lvgl-cook-grid` in the Cookbook for exa
 
 .. _lvgl-layouts-flex:
 
-#### Flex ####
+Flex
+####
 
 The Flex layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
 
@@ -421,7 +422,8 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
 
 .. _lvgl-layouts-grid:
 
-#### Grid ####
+Grid
+####
 
 The Grid layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
 
