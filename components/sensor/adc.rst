@@ -63,8 +63,8 @@ ESP32 Attenuation
 -----------------
 
 On the ESP32 the voltage measured with the ADC caps out at ~1.1V by default as the sensing range (attenuation of the ADC) is set to ``0db`` by default.
-Measuring higher voltages requires setting ``attenuation`` to one of the following values: ``0db``, ``2.5db``, ``6db``, ``11db``.
-There's more information `at the manufacturer's website <https://docs.espressif.com/projects/esp-idf/en/v4.4.2/esp32/api-reference/peripherals/adc.html#_CPPv425adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__.
+Measuring higher voltages requires setting ``attenuation`` to one of the following values: ``0db``, ``2.5db``, ``6db``, ``12db``.
+There's more information `at the manufacturer's website <https://docs.espressif.com/projects/esp-idf/en/v4.4.7/esp32/api-reference/peripherals/adc.html#_CPPv425adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__.
 
 To simplify this, we provide the setting ``attenuation: auto`` for an automatic/seamless transition among scales. `Our implementation
 <https://github.com/esphome/esphome/blob/dev/esphome/components/adc/adc_sensor.cpp>`__ combines all available ranges to allow the best resolution without having to compromise on a specific attenuation.
@@ -118,7 +118,7 @@ For users that don't need a precise voltage reading, the "raw" output option all
       - multiply: 0.00026862 # 1.1/4095, for attenuation 0db
       - multiply: 0.00036630 # 1.5/4095, for attenuation 2.5db
       - multiply: 0.00053724 # 2.2/4095, for attenuation 6db
-      - multiply: 0.00095238 # 3.9/4095, for attenuation 11db
+      - multiply: 0.00095238 # 3.9/4095, for attenuation 12db
       # your existing filters would go here
 
 Note we don't recommend this method as it will change between chips, and newer ESP32 modules have different ranges (i.e. 0-8191); it is better to use the new calibrated voltages and update any existing filters accordingly.
@@ -189,7 +189,7 @@ You can only use as many ADC sensors as your device can support. The ESP8266 onl
 Measuring battery voltage on the Firebeetle ESP32-E
 ---------------------------------------------------
 
-This board has a internal voltage divider and the battery voltage can easily be measured like this using 11dB attenuation
+This board has a internal voltage divider and the battery voltage can easily be measured like this using 12dB attenuation
 on GPIO34.
 
 .. code-block:: yaml
@@ -199,7 +199,7 @@ on GPIO34.
       pin: GPIO34
       accuracy_decimals: 2
       update_interval: 60s
-      attenuation: 11dB
+      attenuation: 12dB
       samples: 10
       filters:
         - multiply: 2.0  # The voltage divider requires us to multiply by 2
