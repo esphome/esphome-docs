@@ -1,21 +1,22 @@
 ESPHOME_PATH = ../esphome
 ESPHOME_REF = 2024.4.2
+PAGEFIND = npx -y pagefind@1.1.0
 
 .PHONY: html html-strict cleanhtml deploy help live-html live-pagefind Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
 
 html:
 	sphinx-build -M html . _build -j auto -n $(O)
-	pagefind
+	${PAGEFIND}
 
 live-html:	html
 	sphinx-autobuild . _build -j auto -n $(O) --host 0.0.0.0
 
 live-pagefind:	html
-	pagefind --serve
+	${PAGEFIND} --serve
 
 html-strict:
 	sphinx-build -M html . _build -W -j auto -n $(O)
-	pagefind
+	${PAGEFIND}
 
 minify:
 	minify _static/webserver-v1.js > _static/webserver-v1.min.js
@@ -46,18 +47,10 @@ netlify-api: netlify-dependencies
 	fi
 	ESPHOME_PATH=$(ESPHOME_PATH) ../doxybin/doxygen Doxygen
 
-netlify-dependencies: pagefind-binary
+netlify-dependencies:
 	mkdir -p ../doxybin
 	curl -L https://github.com/esphome/esphome-docs/releases/download/v1.10.1/doxygen-1.8.13.xz | xz -d >../doxybin/doxygen
 	chmod +x ../doxybin/doxygen
-
-pagefind-binary:
-	mkdir -p ../pagefindbin
-	curl -o pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz https://github.com/CloudCannon/pagefind/releases/download/v1.0.2/pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz -L
-	tar xzf pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz
-	rm pagefind-v1.0.2-x86_64-unknown-linux-musl.tar.gz
-	mv pagefind ../pagefindbin
-
 
 copy-svg2png:
 	cp svg2png/*.png _build/html/_images/
