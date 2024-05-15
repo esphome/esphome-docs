@@ -1079,20 +1079,20 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
                   bg_opa: transp
                   border_width: 0
                   layout: # enable the GRID layout for the children widgets
-                    type: GRID # split the rows and the columns in proportional areas
+                    type: GRID # split the rows and the columns proportionally
                     grid_columns: [FR(1), FR(1), FR(1) ] # equal
                     grid_rows: [FR(10), FR(30), FR(30), FR(30)] # like percents
                   widgets:
                     - label:
                         text: "East"
-                        grid_cell_row_pos: 0 # place the widget in
-                        grid_cell_column_pos: 0 # the corresponding cell
+                        grid_cell_column_pos: 0 # place the widget in
+                        grid_cell_row_pos: 0 # the corresponding cell
                         grid_cell_x_align: stretch
                         grid_cell_y_align: stretch
                     - btn:
                         id: but_cov_up_east
-                        grid_cell_row_pos: 1
                         grid_cell_column_pos: 0
+                        grid_cell_row_pos: 1
                         grid_cell_x_align: stretch
                         grid_cell_y_align: stretch
                         widgets:
@@ -1102,8 +1102,8 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
                               text: "\U000F005D"
                     - btn:
                         id: but_cov_stop_east
-                        grid_cell_row_pos: 2
                         grid_cell_column_pos: 0
+                        grid_cell_row_pos: 2
                         grid_cell_x_align: stretch
                         grid_cell_y_align: stretch
                         widgets:
@@ -1113,8 +1113,8 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
                               text: "\U000F04DB"
                     - btn:
                         id: but_cov_down_east
-                        grid_cell_row_pos: 3
                         grid_cell_column_pos: 0
+                        grid_cell_row_pos: 3
                         grid_cell_x_align: stretch
                         grid_cell_y_align: stretch
                         widgets:
@@ -1125,14 +1125,14 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
 
                     - label:
                         text: "South"
-                        grid_cell_row_pos: 0
                         grid_cell_column_pos: 1
+                        grid_cell_row_pos: 0
                         grid_cell_x_align: stretch
                         grid_cell_y_align: stretch
                     - btn:
                         id: but_cov_up_south
-                        grid_cell_row_pos: 1
                         grid_cell_column_pos: 1
+                        grid_cell_row_pos: 1
                         grid_cell_x_align: stretch
                         grid_cell_y_align: stretch
                         widgets:
@@ -1142,8 +1142,8 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
                               text: "\U000F005D"
                     - btn:
                         id: but_cov_stop_south
-                        grid_cell_row_pos: 2
                         grid_cell_column_pos: 1
+                        grid_cell_row_pos: 2
                         grid_cell_x_align: stretch
                         grid_cell_y_align: stretch
                         widgets:
@@ -1153,8 +1153,8 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
                               text: "\U000F04DB"
                     - btn:
                         id: but_cov_down_south
-                        grid_cell_row_pos: 3
                         grid_cell_column_pos: 1
+                        grid_cell_row_pos: 3
                         grid_cell_x_align: stretch
                         grid_cell_y_align: stretch
                         widgets:
@@ -1165,14 +1165,14 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
 
                     - label:
                         text: "West"
-                        grid_cell_row_pos: 0
                         grid_cell_column_pos: 2
+                        grid_cell_row_pos: 0
                         grid_cell_x_align: stretch
                         grid_cell_y_align: stretch
                     - btn:
                         id: but_cov_up_west
-                        grid_cell_row_pos: 1
                         grid_cell_column_pos: 2
+                        grid_cell_row_pos: 1
                         grid_cell_x_align: stretch
                         grid_cell_y_align: stretch
                         widgets:
@@ -1182,8 +1182,8 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
                               text: "\U000F005D"
                     - btn:
                         id: but_cov_stop_west
-                        grid_cell_row_pos: 2
                         grid_cell_column_pos: 2
+                        grid_cell_row_pos: 2
                         grid_cell_x_align: stretch
                         grid_cell_y_align: stretch
                         widgets:
@@ -1193,8 +1193,8 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
                               text: "\U000F04DB"
                     - btn:
                         id: but_cov_down_west
-                        grid_cell_row_pos: 3
                         grid_cell_column_pos: 2
+                        grid_cell_row_pos: 3
                         grid_cell_x_align: stretch
                         grid_cell_y_align: stretch
                         widgets:
@@ -1203,7 +1203,7 @@ But there's even more! With **Grid** layout, you don't even need to give specifi
                               align: center
                               text: "\U000F0045"
 
-The big advantage here is that whenever you need to add, for example, an extra columns of buttons for a new cover, you just simply append it to the ``grid_columns`` variable, and add the corresponding widgets as above. Their sizes and positions will automatically be calculated to fit in.
+The big advantage here is that whenever you need to add, for example, an extra column of buttons for a new cover, you just simply append it to the ``grid_columns`` variable, and add the corresponding widgets as above. Their sizes and positions will automatically be calculated to fit in.
 
 .. _lvgl-cook-btlg:
 
