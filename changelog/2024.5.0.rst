@@ -76,6 +76,11 @@ Beta Changes
 - Add ANNOUNCING state to media_player. :esphomepr:`6691` by :ghuser:`gnumpi`
 - [adc] Fix 11db deprecation warning :esphomepr:`6749` by :ghuser:`jesserockz` (notable-change)
 
+Notable Changes
+^^^^^^^^^^^^^^^
+
+- [adc] Fix 11db deprecation warning :esphomepr:`6749` by :ghuser:`jesserockz` (notable-change)
+
 All changes
 ^^^^^^^^^^^
 
