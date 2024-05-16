@@ -13,8 +13,9 @@ ESPHome devices over their network (Wi-Fi or Ethernet) interface.
 This platform is used by both the ESPHome dashboard as well as the command line interface (CLI) (via
 ``esphome run ...``) to install firmware onto supported devices.
 
-In addition to updates, ESPHome also supports a "safe mode" to help with recovery if/when updates don't work as
-expected. See :doc:`/components/safe_mode` for details.
+In addition to OTA updates, ESPHome also supports a "safe mode" to help with recovery if/when updates don't work as
+expected. This is automatically enabled by this component, but it maybe be disabled if desired. See
+:doc:`/components/safe_mode` for details.
 
 .. code-block:: yaml
 

@@ -26,6 +26,8 @@ for ``num_attempts`` times (see below).
 Configuration variables:
 ------------------------
 
+-  **disabled** (*Optional*, boolean): Set to ``true`` to disable safe_mode. :doc:`/components/ota` automatically sets
+   up safe mode; this allows disabling it if/when it is not wanted.
 -  **num_attempts** (*Optional*, int): The number of failed boot attempts which must occur before invoking safe mode.
    Defaults to ``10``.
 -  **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when in safe mode.
