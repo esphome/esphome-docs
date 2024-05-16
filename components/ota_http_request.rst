@@ -96,8 +96,8 @@ Configuration variables:
   pointed to by ``url`` (below).
 - **url** (**Required**, string, :ref:`templatable <config-templatable>`):
   The URL of the binary file containing the (new) firmware to be installed.
-- **force_update** (*Optional*, boolean): Force flash if the remote firmware is the same as the currently 
-  installed one. Defaults to ``false``.
+- **force_update** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Force flash if the remote firmware
+  is the same as the currently installed one. Defaults to ``false``.
 
 .. note::
 
