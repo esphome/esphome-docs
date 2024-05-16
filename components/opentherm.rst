@@ -163,7 +163,7 @@ The component can report boiler status on several binary sensors. The *Status* s
 - ``control_type_on_off``: Configuration: Control type is on/off
 - ``cooling_supported``: Configuration: Cooling supported
 - ``dhw_storage_tank``: Configuration: DHW storage tank
-- ``master_pump_control_allowed``: Configuration: Master pump control allowed
+- ``controller_pump_control_allowed``: Configuration: Controller pump control allowed
 - ``ch2_present``: Configuration: CH2 present
 - ``dhw_setpoint_transfer_enabled``: Remote boiler parameters: DHW setpoint transfer enabled
 - ``max_ch_setpoint_transfer_enabled``: Remote boiler parameters: CH maximum setpoint transfer enabled
