@@ -76,7 +76,7 @@ controller unit.
 
     # Example configuration entry
     remote_transmitter:
-      pin: GPIO32
+      pin: GPIOXX
       carrier_duty_percent: 50%
 
     climate:
@@ -156,7 +156,7 @@ IR receiver.
     remote_receiver:
       id: rcvr
       pin:
-        number: GPIO14
+        number: GPIOXX
         inverted: true
         mode:
           input: true
@@ -283,8 +283,8 @@ Configuration variables:
 
 - **set_fan_mode** (*Optional*, string): Select the fan modes desired or that are supported on your remote. Defaults to ``3levels``
 
-  - Options are: ``3levels`` , ``4levels``, ``quiet_4levels``. 
-  
+  - Options are: ``3levels`` , ``4levels``, ``quiet_4levels``.
+
     - ``3levels``; Low [fan speed 1], Medium [2], High [3]
     - ``4levels``; Low [1], Middle [2], Medium [3], High [4]
     - ``quiet_4levels``; Low [1], Middle [2], Medium [3], High [4], Quiet [5]
@@ -292,10 +292,10 @@ Configuration variables:
 - **supports_dry** (*Optional*, boolean): Enables setting dry mode for this unit. Defaults to ``false``.
 - **supports_fan_only** (*Optional*, boolean): Enables setting fan only mode for this unit. Confirm that mode is supported on your remote. Defaults to ``false``.
 
-- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to ``middle``. 
+- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to ``middle``.
 
   - Options are: ``left``, ``middle-left``, ``middle``, ``middle-right``, ``right``, ``auto``
-- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Defaults to ``middle``. 
+- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Defaults to ``middle``.
 
   - Options are: ``down``, ``middle-down``, ``middle``, ``middle-up``, ``up``, ``auto``
 
@@ -423,8 +423,8 @@ Configuration variables:
 ``zhlt01`` Climate
 ---------------------
 
-ZH/LT-01 is a remote control that is used with many locally branded split airconditioners. 
-Supported brands include: 
+ZH/LT-01 is a remote control that is used with many locally branded split airconditioners.
+Supported brands include:
 
 - Eurom
 - Chigo
