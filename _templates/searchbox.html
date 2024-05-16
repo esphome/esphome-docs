@@ -2,6 +2,8 @@
 <div class="pagefind-ui__form" id="search"></div>
 <div class="search-results" id="mobile-search-results"></div>
 <script>
+    let callbackAdded = null;
+
     window.addEventListener('DOMContentLoaded', (event) => {
         const std_target = document.getElementById("search-results");
         const mobile_target = document.getElementById("mobile-search-results");
@@ -21,6 +23,10 @@
             target.style.width = "100%";
             target.style.height = "fit-content";
             target.style.maxHeight = (height - rect.top - 10) + "px";
+            if (!callbackAdded) {
+                callbackAdded = true;
+                document.addEventListener('click', clickCallback);
+            }
         }
 
         function hideTargets() {
@@ -28,6 +34,10 @@
             mobile_target.style.display = "none";
             std_target.style.height = "0";
             mobile_target.style.height = "0";
+            if (callbackAdded) {
+                document.removeEventListener('click', clickCallback);
+                callbackAdded = false;
+            }
         }
 
 
@@ -52,16 +62,15 @@
         instance.add(new PagefindModularUI.ResultList({
             containerElement: "#mobile-search-results"
         }));
-        if (std_target && mobile_target) {
-            document.addEventListener('click', (event) => {
-                const path = event.composedPath();
-                if (path.includes(std_target) || path.includes(mobile_target) || path.includes(inpel))
-                    return;
-                hideTargets();
-            });
 
+        const clickCallback = (event) => {
+            const path = event.composedPath();
+            if (path.includes(std_target) || path.includes(mobile_target) || path.includes(inpel))
+                return;
+            hideTargets();
+        };
+        if (std_target && mobile_target) {
             instance.on("results", (results) => {
-                console.log(results);
                 if (results.results.length) {
                     showTarget();
                 } else {
