@@ -1,11 +1,11 @@
-OTA via HTTP Update Component
-=============================
+OTA Update via HTTP Request Component
+=====================================
 
 .. seo::
     :description: Instructions for setting up Over-The-Air (OTA) updates for ESPs to download firmwares remotely by HTTP.
     :image: system-update.svg
 
-With the OTA (Over The Air) via HTTP update component, your devices can install updated firmware on their own.
+With the OTA (Over The Air) via HTTP Request update component, your devices can install updated firmware on their own.
 To use it, in your device's configuration, you specify a URL from which the device will download the binary
 file (firmware). To trigger the update, an ESPHome :ref:`action <config-action>` is used which initiates the
 download and installation of the new firmware. Once complete, the device is rebooted, invoking the new firmware.
@@ -16,37 +16,19 @@ is primarily useful with either standalone or MQTT-only devices.
 .. code-block:: yaml
 
     # Example configuration entry
-
-    esphome:
-      name: mydevice
-
-    ota_http:
+    ota:
+      - platform: http_request
 
     # OTA updade trigerred by a button
     button:
       - platform: template
-        name: "Firmware update"
+        name: Firmware update
         on_press:
           then:
-            - ota_http.flash:
+            - ota_http_request.flash:
                 md5_url: http://example.com/firmware.md5
                 url: http://example.com/firmware.bin
             - logger.log: "This message should be not displayed because the device reboots"
-
-    # Automatic update if remote firmware has changed
-    # (Do not set 'force_update: true', because the device will reboot at each interval)
-    interval:
-      - interval: 1d
-        then:
-          - if:
-              condition:
-                wifi.connected:
-              then:
-                - ota_http.flash:
-                    # files on the server are named 'firmware-mydevice.bin' and 'firmware-mydevice.md5'
-                    url: !lambda return ("http://example.com/firmware-" + App.get_name() + ".bin").c_str();
-                    md5_url: !lambda return ("http://exemple.com/firmware-" + App.get_name() + ".md5").c_str();
-                - logger.log: "This message might be not displayed if the OTA was already installed"
 
 
 Configuration variables:
@@ -62,11 +44,10 @@ Configuration variables:
         - ``yes``: Always flash at boot time.
         - ``fallback``: Retry at boot time if OTA fails.
 - **watchdog_timeout** (*Optional*, :ref:`config-time`): Change the watchdog timeout during flash operation.
-  Can be useful on slow certificate validation, or if the http server is behind a slow proxy.
-  **Only available on ESP32 and RP2040**.
-- **max_url_length** (*Optional*, int): Maxixum url length. Can be lowered to save memory. Defaults to ``240``.
-- **force_update** (*Optional*, boolean): Force flash if the remote firmware is the same as the currently 
-  installed one. Defaults to ``false``.
+  May be useful on slow connections or connections with high latency. **Do not change this value unless you are
+  experiencing device reboots due to watchdog timeouts;** doing so may prevent the device from rebooting due to a
+  legitimate problem. **Only available on ESP32 and RP2040**.
+- **max_url_length** (*Optional*, int): Maxixum URL length. Can be lowered to save memory. Defaults to ``240``.
 - **esp8266_disable_ssl_support** (*Optional*, boolean): Disables SSL support on the ESP8266 when set to ``true``.
   **Only available on ESP8266.** Defaults to ``false``. See :ref:`esphome-esp8266_disable_ssl_support` for more information.
 
@@ -88,12 +69,12 @@ Configuration variables:
 
       ...where *"project"* is the name of your ESPHome device/project.
 
-    You **cannot** use ``firmware-factory.bin`` or *"Modern format"* with ``ota_http``.
+    You **cannot** use ``firmware-factory.bin`` or *"Modern format"* with ``ota_http_request``.
 
-.. _ota_http-flash_action:
+.. _ota_http_request-flash_action:
 
-``ota_http.flash`` Action
--------------------------
+``ota_http_request.flash`` Action
+---------------------------------
 
 This action triggers the download and installation of the updated firmware from the configured URL.
 As it's an ESPHome :ref:`action <config-action>`, it may be used in any ESPHome automation(s).
@@ -102,15 +83,9 @@ As it's an ESPHome :ref:`action <config-action>`, it may be used in any ESPHome 
 
     on_...:
       then:
-        - ota_http.flash:
+        - ota_http_request.flash:
             md5_url: http://example.com/firmware.md5
             url: https://example.com/firmware.bin
-        - logger.log: "This message should be not displayed because the device reboots"
-
-        # Templated:
-        - ota_http.flash:
-            md5_url: !lambda return id(text_sensor_md5).state;
-            url: !lambda return id(text_sensor_url).state;
         - logger.log: "This message should be not displayed because the device reboots"
 
 Configuration variables:
@@ -121,6 +96,8 @@ Configuration variables:
   pointed to by ``url`` (below).
 - **url** (**Required**, string, :ref:`templatable <config-templatable>`):
   The URL of the binary file containing the (new) firmware to be installed.
+- **force_update** (*Optional*, boolean): Force flash if the remote firmware is the same as the currently 
+  installed one. Defaults to ``false``.
 
 .. note::
 
