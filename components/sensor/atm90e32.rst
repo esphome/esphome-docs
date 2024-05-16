@@ -168,7 +168,7 @@ a time-series-database, e.g. InfluxDB.
     sensor:
     #IC1 Main
       - platform: atm90e32
-        cs_pin: 5
+        cs_pin: GPIOXX
         phase_a:
           forward_active_energy:
             name: ${disp_name} ct1 FAWattHours
@@ -208,13 +208,13 @@ Additional Examples
 
     # Example configuration entry for split single phase meter
     spi:
-      clk_pin: 18
-      miso_pin: 19
-      mosi_pin: 23
+      clk_pin: GPIOXX
+      miso_pin: GPIOXX
+      mosi_pin: GPIOXX
 
     sensor:
       - platform: atm90e32
-        cs_pin: 5
+        cs_pin: GPIOXX
         phase_a:
           voltage:
             name: "EMON Line Voltage A"

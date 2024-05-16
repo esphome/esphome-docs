@@ -1,11 +1,11 @@
-Copy Integration
-================
+Copy Component
+==============
 
 .. seo::
-    :description: Instructions for setting up the copy integration in ESPHome
+    :description: Instructions for setting up the copy component in ESPHome
     :image: content-copy.svg
 
-The ``copy`` integration can be used to copy an existing component (like a sensor, switch, etc.)
+The ``copy`` component can be used to copy an existing component (like a sensor, switch, etc.)
 and create a duplicate mirroring the source's state and forwarding actions such as turning on to the source.
 
 For each of the supported platforms, the configuration consists of the required configuration
