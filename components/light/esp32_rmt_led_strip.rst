@@ -12,7 +12,7 @@ This is a component using the ESP32 RMT peripheral to drive most addressable LED
     light:
       - platform: esp32_rmt_led_strip
         rgb_order: GRB
-        pin: GPIO13
+        pin: GPIOXX
         num_leds: 30
         rmt_channel: 0
         chipset: ws2812
@@ -24,10 +24,14 @@ Configuration variables
 - **pin** (**Required**, :ref:`config-pin`): The pin for the data line of the light.
 - **num_leds** (**Required**, int): The number of LEDs in the strip.
 - **rmt_channel** (**Required**, int): The RMT channel to use. If using multiple strips, you need to use different channels.
-    - **ESP32**: ``0`` to ``7``
-    - **ESP32-S2**: ``0`` to ``3``
-    - **ESP32-S3**: ``0`` to ``3``
-    - **ESP32-C3**: ``0`` or ``1``
+
+  .. csv-table::
+      :header: "ESP32 Variant", "Channels"
+
+      "ESP32", "0, 1, 2, 3, 4, 5, 6, 7"
+      "ESP32-S2", "0, 1, 2, 3"
+      "ESP32-S3", "0, 1, 2, 3"
+      "ESP32-C3", "0, 1"
 
 - **chipset** (**Required**, enum): The chipset to apply known timings from. Not used if specifying the timings manually, see below.
     - ``WS2812``

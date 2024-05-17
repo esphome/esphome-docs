@@ -15,7 +15,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this to
     # Example configuration entry
     touchscreen:
       - platform: lilygo_t5_47
-        interrupt_pin: GPIO13
+        interrupt_pin: GPIOXX
 
 
 Configuration variables:

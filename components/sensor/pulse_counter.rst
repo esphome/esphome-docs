@@ -21,7 +21,7 @@ on the ESP32. However, due to the use of the pulse counter peripheral, a maximum
     # Example configuration entry
     sensor:
       - platform: pulse_counter
-        pin: 12
+        pin: GPIOXX
         name: "Pulse Counter"
 
 Configuration variables
@@ -72,7 +72,7 @@ count the light pulses on a power meter, you can do the following:
     # Example configuration entry
     sensor:
       - platform: pulse_counter
-        pin: 12
+        pin: GPIOXX
         unit_of_measurement: 'kW'
         name: 'Power Meter House'
         filters:
@@ -90,7 +90,7 @@ measure the total consumed energy in kWh.
     # Example configuration entry
     sensor:
       - platform: pulse_counter
-        pin: 12
+        pin: GPIOXX
         unit_of_measurement: 'kW'
         name: 'Power Meter House'
         filters:

@@ -119,7 +119,6 @@ Sample Configurations
 - `ESPHome config for Universal IR Remote ZJ-A1 (russian) <https://kvvhost.ru/2019/10/30/review-firmware-zj-a1-ir-remote/>`__ by `kvvhost <https://kvvhost.ru/>`__
 - `ESPHome Home Assistant Cheap Cat Feeder <https://github.com/rubengargar/diy-cheap-cat-feeder>`__ by :ghuser:`rubengargar`
 - `ESPHome configs <https://github.com/nuttytree/ESPHome-Devices>`__ by :ghuser:`nuttytree`
-- `ESPHome Home Assistant stepper motor blinds/curtain <https://github.com/icarome/esphome/blob/master/cortina.yaml>`__ by :ghuser:`icarome`
 - `Control LG UD79-B monitor via UART <https://github.com/kquinsland/lg-m43mu79-esp-home-bridge>`__ by :ghuser:`kquinsland`
 - `ESPHome AXA Remote 2 control <https://github.com/galagaking/espaxa/>`__ by :ghuser:`galagaking`
 - `ESPHome WF-DS01 TuyaMCU based dimmable bedside touch lamp <https://github.com/davet2001/miscellaneous/blob/master/tuyamcu_ws-df01_touchlamp.yaml>`__ by :ghuser:`davet2001`

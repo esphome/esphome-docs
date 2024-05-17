@@ -28,15 +28,15 @@ Base Touchscreen Configuration
     touchscreen:
       platform: cst816
       id: my_touchscreen
-      interrupt_pin: GPIO3
-      reset_pin: GPIO21
+      interrupt_pin: GPIOXX
+      reset_pin: GPIOXX
 
 Configuration variables:
 ************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually set the ID of this touchscreen.
 - **interrupt_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin.
-- **reset_pin** (**Optional**, :ref:`Pin Schema <config-pin_schema>`): The chip reset pin.
+- **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The chip reset pin.
 
 - All other options from :ref:`Touchscreen <config-touchscreen>`.
 
@@ -61,6 +61,19 @@ Configuration variables:
 
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
+Sample config for the T-Display S3 AMOLED
+*****************************************
+
+.. code-block:: yaml
+
+    i2c:
+      sda: GPIO3
+      scl: GPIO2
+
+    touchscreen:
+      - platform: cst816
+        id: my_touchscreen
+        interrupt_pin: GPIO21
 
 See Also
 --------
