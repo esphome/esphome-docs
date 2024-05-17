@@ -34,7 +34,7 @@ names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf
 
 .. note::
 
-    These IDs are used only within ESPHome and are not translated to Home Assistant's Entity ID. 
+    These IDs are used only within ESPHome and are not translated to Home Assistant's Entity ID.
 
 
 .. _config-pin:
@@ -75,11 +75,11 @@ In some places, ESPHome also supports a more advanced “pin schema”.
 
     some_config_option:
       # Basic:
-      pin: D0
+      pin: GPIOXX
 
       # Advanced:
       pin:
-        number: D0
+        number: GPIOXX
         inverted: true
         mode:
           input: true
@@ -203,7 +203,7 @@ Two substitution passes are performed allowing compound replacements.
       foo: yellow
       bar_yellow_value: !secret yellow_secret
       bar_green_value: !secret green_secret
-    
+
     something:
       test: ${bar_${foo}_value}
 
@@ -258,22 +258,22 @@ ESPHome's ``!include`` accepts a list of variables that can be substituted withi
     binary_sensor:
       - platform: gpio
         id: button1
-        pin: GPIO16
+        pin: GPIOXX
         on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
       - platform: gpio
         id: button2
-        pin: GPIO4
+        pin: GPIOXX
         on_multi_click: !include
           # multi-line syntax
           file: on-multi-click.yaml
           vars:
             id: 2
-            
+
 ``on-multi-click.yaml``:
 
 .. code-block:: yaml
 
-    - timing: !include click-single.yaml 
+    - timing: !include click-single.yaml
       then:
         - mqtt.publish:
             topic: ${device_name}/button${id}/status
@@ -408,8 +408,8 @@ merged with the services definitions from main config file.
 
     # I²C Bus
     i2c:
-      sda: GPIO21
-      scl: GPIO22
+      sda: GPIOXX
+      scl: GPIOXX
       scan: true
       frequency: 100kHz
 
@@ -472,6 +472,8 @@ variables can be provided to them.  This means that packages can be
 used as `templates`, allowing complex or repetitive configurations to
 be stored in a package file and then incorporated into the
 configuration more than once.
+Additionally packages could contain a ``defaults`` block which provides
+subsitutions for variables not provided by the ``!include`` block.
 
 As an example, if the configuration needed to support three garage
 doors using the ``gpio`` switch platform and the ``time_based`` cover
@@ -502,11 +504,17 @@ platform, it could be constructed like this:
           door_location: right
           open_switch_gpio: 15
           close_switch_gpio: 18
+          open_duration: "1min"
+          close_duration: "50s"
 
 
 .. code-block:: yaml
 
     # In garage-door.yaml
+    defaults:
+      open_duration: "2.1min"
+      close_duration: "2min"
+
     switch:
       - id: open_${door_location}_door_switch
         name: ${door_name} Garage Door Open Switch
@@ -524,11 +532,11 @@ platform, it could be constructed like this:
 
         open_action:
           - switch.turn_on: open_${door_location}_door_switch
-        open_duration: 2.1min
+        open_duration: ${open_duration}
 
         close_action:
           - switch.turn_on: close_${door_location}_door_switch
-        close_duration: 2min
+        close_duration: ${close_duration}
 
         stop_action:
           - switch.turn_off: open_${door_location}_door_switch

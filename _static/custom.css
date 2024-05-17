@@ -240,6 +240,11 @@ a:hover code {
   background: none;
 }
 
+/* don't underline links that contain an image and nothing else */
+a:has(> img:only-child) {
+  border-bottom: none;
+}
+
 div.body p, div.body dd, div.body li, div.body blockquote {
   hyphens: none;
 }

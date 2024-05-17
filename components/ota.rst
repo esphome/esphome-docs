@@ -40,6 +40,7 @@ Configuration variables:
    - ``3232`` for the ESP32
    - ``8266`` for the ESP8266
    - ``2040`` for the RP2040
+   - ``8892`` for Beken chips
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 -  **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when in
    safe mode. Defaults to ``5min``.
@@ -54,6 +55,9 @@ Configuration variables:
    performed after a failed OTA update. See :ref:`ota-on_error`.
 -  **on_state_change** (*Optional*, :ref:`Automation<automation>`): An action to be
    performed when an OTA update state change happens. See :ref:`ota-on_state_change`.
+-  **version** (*Optional*, int): Version of OTA protocol to use. Version 2 is more stable.
+   To downgrade to legacy ESPHome, the device should be updated with OTA version 1 first.
+   Defaults to ``2``.
 
 .. note::
 

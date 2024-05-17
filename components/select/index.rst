@@ -43,10 +43,10 @@ Configuration variables:
   a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
 
 Automations:
@@ -70,7 +70,7 @@ For more information on using lambdas with select, see :ref:`select-lambda_calls
 ``on_value``
 ************
 
-This automation will be triggered when a new value is published. In :ref:`Lambdas <config-lambda>`
+This automation will be triggered whenever a value is set/published, even if the value is the same as before. In :ref:`Lambdas <config-lambda>`
 you can get the value from the trigger with ``x`` and the index offset of the selected value with ``i``.
 
 .. code-block:: yaml
@@ -280,6 +280,14 @@ advanced stuff (see the full API Reference for more info).
       // For example, create a custom log message when an option is selected:
       auto state = id(my_select).state.c_str();
       ESP_LOGI("main", "Option of my select: %s", state);
+
+  .. code-block:: yaml
+
+      # Check if a specific option is selected
+      - if:
+          condition:
+            - lambda: 'return id(my_select).state == "my_option_value";'
+
 
 - ``.size()``: Retrieve the number of options in the select.
 

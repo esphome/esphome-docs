@@ -50,7 +50,7 @@ Configuration variables:
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
 - **device_class** (*Optional*, string): The device class for the
-  sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-device-classes
+  sensor. See https://www.home-assistant.io/integrations/sensor/#device-class
   for a list of available options. Set to ``""`` to remove the default device class of a sensor.
 - **state_class** (*Optional*, string): The state class for the
   sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
@@ -68,10 +68,10 @@ Configuration variables:
   significantly increase the database size. Defaults to ``false``.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
 
 Automations:
@@ -603,7 +603,7 @@ To prevent values from being published, return ``{}``:
 .. code-block:: yaml
 
     filters:
-      - lambda: !lambda |-
+      - lambda: |-
           if (x < 10) return {};
           return x-10;
 
