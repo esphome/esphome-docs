@@ -10,6 +10,7 @@ ILI9xxx TFT LCD Series
 Models
 ------
 With this display driver you can control the following displays:
+  - GC9A01A
   - ILI9341
   - ILI9342
   - ILI9481
@@ -54,8 +55,8 @@ beyond the basic SPI connections, and a reasonable amount of RAM, it is not well
     display:
       - platform: ili9xxx
         model: ili9341
-        dc_pin: 27
-        reset_pin: 33
+        dc_pin: GPIOXX
+        reset_pin: GPIOXX
         lambda: |-
           it.fill(COLOR_BLACK);
           it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_LEFT, "Hello World!");
@@ -69,6 +70,7 @@ Configuration variables:
   - ``ILI9341``, ``ILI9342``, ``ILI9486``, ``ILI9488``, ``ILI9488_A`` (alternative gamma configuration for ILI9488)
   - ``ILI9481``, ``ILI9481-18`` (18 bit mode)
   - ``ST7789V``, ``ST7796``
+  - ``GC9A01A``
 
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
@@ -178,13 +180,13 @@ To configure a dimmable backlight:
     # Define a PWM output on the ESP32
     output:
       - platform: ledc
-        pin: 32
-        id: gpio_32_backlight_pwm
+        pin: GPIOXX
+        id: backlight_pwm
 
     # Define a monochromatic, dimmable light for the backlight
     light:
       - platform: monochromatic
-        output: gpio_32_backlight_pwm
+        output: backlight_pwm
         name: "Display Backlight"
         id: back_light
         restore_mode: ALWAYS_ON
@@ -202,8 +204,8 @@ To configure an image adaptive color pallet to show greater than 8 bit color dep
     display:
       - platform: ili9xxx
         model: ili9341
-        dc_pin: 4
-        reset_pin: 22
+        dc_pin: GPIOXX
+        reset_pin: GPIOXX
         rotation: 90
         id: tft_ha
         color_palette: IMAGE_ADAPTIVE
@@ -232,7 +234,7 @@ This config rotates the display into landscape mode using the driver chip.
           mirror_y: true
         color_order: bgr
         data_rate: 80MHz
-        cs_pin: 10
+        cs_pin: GPIOXX
         dc_pin: GPIO13
         reset_pin: GPIO9
 
