@@ -16,7 +16,6 @@ Configuration variables:
 ------------------------
 
 - **widget** (**Required**): The ID of a supported widget configured in LVGL, which will reflect the state of the switch.
-- **output_id** (*Optional*, :ref:`config-id`): The ID of a **binary** output to drive in sync with the ``checked`` state of the configured widget.
 - All other variables from :ref:`Switch <config-switch>`.
 
 Example:
@@ -27,8 +26,6 @@ Example:
       - platform: lvgl
         widget: checkbox_id
         name: LVGL switch
-
-Check out :ref:`lvgl-cook-outbin` in the Cookbook for an example illustrating how to set up a LVGL Switch component to interact directly with a GPIO.
 
 See Also
 --------

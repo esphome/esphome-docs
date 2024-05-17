@@ -17,38 +17,6 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
     The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen with dimensions of ``240x320px``; if your display's dimensions differ, you'll need to adjust them in order to obtain the expected results.
 
-.. _lvgl-cook-outbin:
-
-Local GPIO switch
------------------
-
-.. figure:: /components/images/lvgl_switch.png
-    :align: right
-
-The easiest way to integrate a LVGL :ref:`lvgl-wgt-swi` widget and a GPIO output on your display board is with the :ref:`lvgl-swi` component. This will create a Switch, which will toggle your GPIO directly:
-
-.. code-block:: yaml
-
-    output:
-      - id: output_display_light
-        platform: gpio
-        pin: GPIO14 # choose yours
-
-    switch:
-      - platform: lvgl
-        name: Display lights
-        widget: light_switch
-        output_id: output_display_light
-
-    lvgl:
-        ...
-        pages:
-          - id: main_page
-            widgets:
-              - switch:
-                  align: center
-                  id: light_switch
-
 .. _lvgl-cook-relay:
 
 Local light switch
@@ -57,28 +25,25 @@ Local light switch
 .. figure:: /components/images/lvgl_switch.png
     :align: left
 
-In case your local light implements as a different platform than GPIO, you can use :ref:`automations <automation>` to link together triggers and states with the :ref:`lvgl-wgt-swi` widget: 
+The easiest way to integrate a LVGL :ref:`lvgl-wgt-swi` widget and a switch or light on your display board is by using :ref:`automations <automation>` to link together triggers and states of them: 
 
 .. code-block:: yaml
 
     light:
       - platform: ...
-        id: room_light
-        name: 'Room light'
-        on_state:
-            if:
-              condition:
-                light.is_on: room_light
-              then:
-                - lvgl.widget.update:
-                    id: light_switch
-                    state:
-                      checked: true
-              else:
-                - lvgl.widget.update:
-                    id: light_switch
-                    state:
-                      checked: false
+        id: local_light
+        name: 'Local light'
+        on_turn_on:
+          - lvgl.widget.update:
+              id: light_switch
+              state:
+                checked: true
+        on_turn_off:
+          - lvgl.widget.update:
+              id: light_switch
+              state:
+                checked: false
+
     lvgl:
         ...
         pages:
@@ -88,7 +53,7 @@ In case your local light implements as a different platform than GPIO, you can u
                   align: center
                   id: light_switch
                   on_click:
-                    light.toggle: room_light
+                    light.toggle: local_light
 
 .. _lvgl-cook-binent:
 
@@ -1060,7 +1025,7 @@ This saved you from a considerable amount of manual calculation of widget positi
 Grid layout positioning
 -----------------------
 
-But there's even more! With **Grid** layout, you don't even need to give specific widths and height to your widgets. All you have to do is split the space in proportional rows and columns, and drop the widgets in the cells, all stretched to the cell sizes. The same task from above, in a fully automated grid, looks like this:
+But there's even more! With **Grid** layout, you don't need to give specific widths and height to your widgets. All you have to do is split the space in proportional rows and columns, and drop the widgets in the cells, all stretched to the cell sizes. The same task from above, in a fully automated grid, looks like this:
 
 .. code-block:: yaml
 
