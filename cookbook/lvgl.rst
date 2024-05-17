@@ -1058,8 +1058,6 @@ But there's even more! With **Grid** layout, you don't need to give specific wid
                         id: but_cov_up_east
                         grid_cell_column_pos: 0
                         grid_cell_row_pos: 1
-                        grid_cell_x_align: stretch
-                        grid_cell_y_align: stretch
                         widgets:
                           - label:
                               id: cov_up_east
@@ -1069,8 +1067,6 @@ But there's even more! With **Grid** layout, you don't need to give specific wid
                         id: but_cov_stop_east
                         grid_cell_column_pos: 0
                         grid_cell_row_pos: 2
-                        grid_cell_x_align: stretch
-                        grid_cell_y_align: stretch
                         widgets:
                           - label:
                               id: cov_stop_east
@@ -1080,8 +1076,6 @@ But there's even more! With **Grid** layout, you don't need to give specific wid
                         id: but_cov_down_east
                         grid_cell_column_pos: 0
                         grid_cell_row_pos: 3
-                        grid_cell_x_align: stretch
-                        grid_cell_y_align: stretch
                         widgets:
                           - label:
                               id: cov_down_east
@@ -1098,8 +1092,6 @@ But there's even more! With **Grid** layout, you don't need to give specific wid
                         id: but_cov_up_south
                         grid_cell_column_pos: 1
                         grid_cell_row_pos: 1
-                        grid_cell_x_align: stretch
-                        grid_cell_y_align: stretch
                         widgets:
                           - label:
                               id: cov_up_south
@@ -1109,8 +1101,6 @@ But there's even more! With **Grid** layout, you don't need to give specific wid
                         id: but_cov_stop_south
                         grid_cell_column_pos: 1
                         grid_cell_row_pos: 2
-                        grid_cell_x_align: stretch
-                        grid_cell_y_align: stretch
                         widgets:
                           - label:
                               id: cov_stop_south
@@ -1120,8 +1110,6 @@ But there's even more! With **Grid** layout, you don't need to give specific wid
                         id: but_cov_down_south
                         grid_cell_column_pos: 1
                         grid_cell_row_pos: 3
-                        grid_cell_x_align: stretch
-                        grid_cell_y_align: stretch
                         widgets:
                           - label:
                               id: cov_down_south
@@ -1138,8 +1126,6 @@ But there's even more! With **Grid** layout, you don't need to give specific wid
                         id: but_cov_up_west
                         grid_cell_column_pos: 2
                         grid_cell_row_pos: 1
-                        grid_cell_x_align: stretch
-                        grid_cell_y_align: stretch
                         widgets:
                           - label:
                               id: cov_up_west
@@ -1149,8 +1135,6 @@ But there's even more! With **Grid** layout, you don't need to give specific wid
                         id: but_cov_stop_west
                         grid_cell_column_pos: 2
                         grid_cell_row_pos: 2
-                        grid_cell_x_align: stretch
-                        grid_cell_y_align: stretch
                         widgets:
                           - label:
                               id: cov_stop_west
@@ -1160,8 +1144,6 @@ But there's even more! With **Grid** layout, you don't need to give specific wid
                         id: but_cov_down_west
                         grid_cell_column_pos: 2
                         grid_cell_row_pos: 3
-                        grid_cell_x_align: stretch
-                        grid_cell_y_align: stretch
                         widgets:
                           - label:
                               id: cov_down_west
