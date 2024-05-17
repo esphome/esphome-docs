@@ -22,9 +22,7 @@ Configuration variables:
 ------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually set the ID of this touchscreen.
-- **interrupt_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin.
-  Must be ``GPIO13``.
-
+- **interrupt_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin. Must be ``GPIO13``.
 - All other options from :ref:`config-touchscreen`.
 
 See Also
