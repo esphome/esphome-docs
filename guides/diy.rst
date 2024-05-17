@@ -61,7 +61,6 @@ Blog Posts & Videos
 - `Stepper motor blinds <https://github.com/tronikos/esphome-blinds>`__ by :ghuser:`tronikos`
 - `Read your water mater or gas meter using a triple-axis magnetometer <https://github.com/tronikos/esphome-magnetometer-water-gas-meter>`__ by :ghuser:`tronikos`
 
-
 Custom Components & Code
 ------------------------
 
