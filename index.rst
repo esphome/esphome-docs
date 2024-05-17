@@ -354,6 +354,11 @@ Electricity
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
     INA219, components/sensor/ina219, ina219.jpg, DC Current
     INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
+    INA228, components/sensor/ina2xx, ina228.jpg, DC Voltage & Current & Power & Charge
+    INA229, components/sensor/ina2xx, ina2xx.jpg, DC Voltage & Current & Power & Charge
+    INA237, components/sensor/ina2xx, ina2xx.jpg, DC Voltage & Current & Power
+    INA238, components/sensor/ina2xx, ina2xx.jpg, DC Voltage & Current & Power
+    INA239, components/sensor/ina2xx, ina2xx.jpg, DC Voltage & Current & Power
     INA260, components/sensor/ina260, ina260.jpg, DC Current & Power
     INA3221, components/sensor/ina3221, ina3221.jpg, 3-Ch DC current
     Kamstrup KMP, components/sensor/kamstrup_kmp, kamstrup_kmp.jpg, District Heating Meter
@@ -663,6 +668,7 @@ Light Components
 .. imgtable::
 
     Light Core, components/light/index, folder-open.svg, dark-invert
+    Beken SPI, components/light/beken_spi_led_strip, color_lens.svg, dark-invert
     Binary Light, components/light/binary, lightbulb.svg, dark-invert
     Cold+Warm White Light, components/light/cwww, brightness-medium.svg, dark-invert
     Color Temperature Light, components/light/color_temperature, brightness-medium.svg, dark-invert
