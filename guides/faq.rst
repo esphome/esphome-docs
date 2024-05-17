@@ -387,8 +387,7 @@ And a docker compose file looks like this:
 
     The `host networking driver <https://docs.docker.com/network/drivers/host/>`_ only works on Linux hosts, but is available as a Beta feature, on Docker Desktop version 4.29 and later.
 
-    If you don't want to use the host networking driver, you have to use another way to launch the dashboard with a port mapping option and use alternative to mDNS
-    to have the online/offline stat (see below)
+    If you don't want to use the host networking driver, you have to use an alternative method described below.
 
     mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
     If your router supports Avahi (eg. OpenWRT or pfSense), you are able to get mDNS working over different subnets
