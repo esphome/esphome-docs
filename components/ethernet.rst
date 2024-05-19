@@ -40,6 +40,8 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
       interrupt_pin: GPIOXX
       reset_pin: GPIOXX
 
+>> Support for W5500 is currently not working (see https://github.com/esphome/issues/issues/5781)  
+
 Configuration variables:
 ------------------------
 
