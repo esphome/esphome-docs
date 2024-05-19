@@ -3,7 +3,7 @@ AJ-SR04M Ultrasonic Distance Sensor
 
 .. seo::
     :description: Instructions for setting up ultrasonic distance measurement sensors in ESPHome.
-    :image: aj_sr04m-1024x768.jpg
+    :image: aj_sr04m.jpg
     :keywords: ultrasonic, aj-sr04m
 
 The ultrasonic distance sensor allows you to use simple ultrasonic
