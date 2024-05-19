@@ -22,7 +22,7 @@ When the trigger command(0x55) is received RX pin, the sensor wakes up,
 performs distance calculation and outputs the distance over the TX line.
 The sensor goes back to sleep after transmitting data.
 
-.. figure:: images/aj_sr04m.jpg
+.. figure:: images/aj_sr04m-1024x768.jpg
     :align: center
     :width: 50.0%
 
