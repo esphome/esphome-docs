@@ -326,6 +326,7 @@ Distance
 
     A01NYUB, components/sensor/a01nyub, a01nyub.jpg, Acoustic distance
     A02YYUW, components/sensor/a02yyuw, a02yyuw.jpg, Acoustic distance
+    AJ-SR04M, components/sensor/aj_sr04m, aj_sr04m.jpg, Acoustic distance
     HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg, Acoustic distance
     JSN-SR04T, components/sensor/jsn_sr04t, jsn-sr04t-v3.jpg, Acoustic distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
