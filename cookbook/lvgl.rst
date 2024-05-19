@@ -25,7 +25,7 @@ Local light switch
 .. figure:: /components/images/lvgl_switch.png
     :align: left
 
-The easiest way to integrate a LVGL :ref:`lvgl-wgt-swi` widget and a switch or light on your display board is by using :ref:`automations <automation>` to link together triggers and states of them: 
+The easiest way to integrate an LVGL :ref:`lvgl-wgt-swi` widget and a switch or light is with :ref:`automations <automation>`: 
 
 .. code-block:: yaml
 
@@ -1025,7 +1025,7 @@ This saved you from a considerable amount of manual calculation of widget positi
 Grid layout positioning
 -----------------------
 
-But there's even more! With **Grid** layout, you don't need to give specific widths and height to your widgets. All you have to do is split the space in proportional rows and columns, and drop the widgets in the cells, all stretched to the cell sizes. The same task from above, in a fully automated grid, looks like this:
+But there's even more! With the **Grid** layout, you don't need to specify width and height for your widgets. All you have to do is divide the space into rows and columns; the widgets will automatically be sized to fit into cells defined by these rows and columns. The same task from above, in a fully automated grid, looks like this:
 
 .. code-block:: yaml
 
