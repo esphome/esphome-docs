@@ -1045,7 +1045,7 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                   border_width: 0
                   layout: # enable the GRID layout for the children widgets
                     type: GRID # split the rows and the columns proportionally
-                    grid_columns: [FR(1), FR(1), FR(1) ] # equal
+                    grid_columns: [FR(1), FR(1), FR(1)] # equal
                     grid_rows: [FR(10), FR(30), FR(30), FR(30)] # like percents
                   widgets:
                     - label:
