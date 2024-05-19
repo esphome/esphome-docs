@@ -1025,7 +1025,7 @@ This saved you from a considerable amount of manual calculation of widget positi
 Grid layout positioning
 -----------------------
 
-But there's even more! With the **Grid** layout, you don't need to specify width and height for your widgets. All you have to do is divide the space into rows and columns; the widgets will automatically be sized to fit into cells defined by these rows and columns. The same task from above, in a fully automated grid, looks like this:
+But there's even more! With the **Grid** layout, you don't need to specify width and height for your widgets. All you have to do is divide the space into rows and columns; the widgets can be automatically be sized to fit into cells defined by these rows and columns. The same task from above, in a fully automated grid, looks like this:
 
 .. code-block:: yaml
 
