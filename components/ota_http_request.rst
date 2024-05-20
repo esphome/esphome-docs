@@ -34,22 +34,16 @@ is primarily useful with either standalone or MQTT-only devices.
 Configuration variables:
 ------------------------
 
+- **esp8266_disable_ssl_support** (*Optional*, boolean): Disables SSL support on the ESP8266 when set to ``true``.
+  **Only available on ESP8266.** Defaults to ``false``. See :ref:`esphome-esp8266_disable_ssl_support` for more information.
 - **exclude_certificate_bundle** (*Optional*, boolean): When set to ``true``, the default ESP x509 certificate bundle
   is excluded from the build. This certificate bundle includes the complete list of root certificates from Mozilla's
   NSS root certificate store. Defaults to ``false``.
   **Only available when using the ESP-IDF framework; must be explicitly set to true when using the Arduino framework.**
-- **safe_mode** (*Optional*, boolean, string): Flash at boot time. Defaults to ``fallback``.
-    Valid values:
-        - ``no``: Never attempt to flash at boot time.
-        - ``yes``: Always flash at boot time.
-        - ``fallback``: Retry at boot time if OTA fails.
 - **watchdog_timeout** (*Optional*, :ref:`config-time`): Change the watchdog timeout during flash operation.
   May be useful on slow connections or connections with high latency. **Do not change this value unless you are
   experiencing device reboots due to watchdog timeouts;** doing so may prevent the device from rebooting due to a
   legitimate problem. **Only available on ESP32 and RP2040**.
-- **max_url_length** (*Optional*, int): Maxixum URL length. Can be lowered to save memory. Defaults to ``240``.
-- **esp8266_disable_ssl_support** (*Optional*, boolean): Disables SSL support on the ESP8266 when set to ``true``.
-  **Only available on ESP8266.** Defaults to ``false``. See :ref:`esphome-esp8266_disable_ssl_support` for more information.
 
 .. warning::
 
@@ -91,19 +85,25 @@ As it's an ESPHome :ref:`action <config-action>`, it may be used in any ESPHome 
 Configuration variables:
 ------------------------
 
-- **md5_url** (**Required**, string, :ref:`templatable <config-templatable>`):
-  The URL of the file containing an `MD5sum <https://en.wikipedia.org/wiki/Md5sum>`_ of the firmware file
-  pointed to by ``url`` (below).
-- **url** (**Required**, string, :ref:`templatable <config-templatable>`):
-  The URL of the binary file containing the (new) firmware to be installed.
 - **force_update** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Force flash if the remote firmware
-  is the same as the currently installed one. Defaults to ``false``.
+  is the same as the currently installed firmware (as determined by the MD5sum). Defaults to ``false``.
+- **md5** (*Optional*, string, :ref:`templatable <config-templatable>`): The
+  `MD5sum <https://en.wikipedia.org/wiki/Md5sum>`_ of the firmware file pointed to by ``url`` (below). May not be used
+  with ``md5_url`` (below); must be specified if ``md5_url`` is not.
+- **md5_url** (*Optional*, string, :ref:`templatable <config-templatable>`): The URL of the file containing an
+  `MD5sum <https://en.wikipedia.org/wiki/Md5sum>`_ of the firmware file pointed to by ``url`` (below). May not be used
+  with ``md5`` (above); must be specified if ``md5`` is not.
+- **url** (**Required**, string, :ref:`templatable <config-templatable>`): The URL of the binary file containing the
+  (new) firmware to be installed.
+- **username** (*Optional*, string, :ref:`templatable <config-templatable>`): The username to use for HTTP basic
+  authentication.
+- **password** (*Optional*, string, :ref:`templatable <config-templatable>`): The password to use for HTTP basic
+  authentication.
 
 .. note::
 
-    - Basic authentication is supported with **https://username:password@example.com/firmware.bin**.  `username`
-      and `password` must be `URL-encoded <https://en.wikipedia.org/wiki/Percent-encoding>`_  if they include
-      special characters.
+    - ``username`` and ``password`` must be `URL-encoded <https://en.wikipedia.org/wiki/Percent-encoding>`_  if they
+      include special characters.
 
     - The `MD5sum <https://en.wikipedia.org/wiki/Md5sum>`_ of the firmware binary file is an ASCII file (also known
       as "plain text", typically found in files with a ``.txt`` extension) consisting of 32 lowercase hexadecimal
@@ -130,6 +130,9 @@ Configuration variables:
       This will generate the MD5 hash of the ``firmware.bin`` file and write the resulting hash value to the
       ``firmware.md5`` file. The ``md5_url`` configuration variable should point to this file on the web server.
       It is used by the OTA updating mechanism to ensure the integrity of the (new) firmware as it is installed.
+      
+      **If, for any reason, the MD5sum provided does not match the MD5sum computed as the firmware is installed, the
+      device will continue to use the original firmware and the new firmware is discarded.**
 
 See Also
 --------
