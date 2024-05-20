@@ -921,7 +921,6 @@ This example illustrates a control panel for three covers, made up of labels and
                   pad_all: 3
                   pad_row: 6
                   pad_column: 8
-                  bg_opa: transp
                   border_width: 0
                   layout: # enable the FLEX layout for the children widgets
                     type: FLEX
@@ -1041,7 +1040,6 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                   pad_all: 6
                   pad_row: 6
                   pad_column: 8
-                  bg_opa: transp
                   border_width: 0
                   layout: # enable the GRID layout for the children widgets
                     type: GRID # split the rows and the columns proportionally
