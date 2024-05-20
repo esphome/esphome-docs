@@ -19,6 +19,7 @@ ESPHome 2024.5.0 - 15th May 2024
     Template Datetime, components/datetime/template, description.svg, dark-invert
     WeiKai SPI/I²C UART/IO Expander, components/weikai, wk2168.jpg
 
+
 Valves, Events, and More
 ------------------------
 
@@ -29,12 +30,25 @@ A ``Valve`` can be opened, closed, or a specific position set if supported.
 They allow better structure and also history and logging of the events sent from ESPHome to Home Assistant compared to just using publishing events onto the
 Home Assistant event bus with the ``homeassistant.event`` action.
 
+The ``datetime`` component has also been extended with ``DateTime`` and ``Time`` entity types this release.
+
+
 ESP32 ADC Attenuation
 ---------------------
 
 The attenuation configuration option for ESP32 ``adc`` sensors has had a deprecation in the underlying ESP-IDF framework with the ``11dB`` option.
 The value to replace ``11dB`` with is ``12dB``. There are no functionality changes otherwise. There will be a warning in the logs when installing if you
 are using ``11dB`` and it will be removed in **2024.8.0**.
+
+
+Release 2024.5.1 - May 20
+-------------------------
+
+- Add device_class to valve core config :esphomepr:`6765` by :ghuser:`acshef`
+- Synchronise Device Classes from Home Assistant :esphomepr:`6768` by :ghuser:`esphomebot`
+- Fix Upload from Dashboard with MQTT discovery. :esphomepr:`6774` by :ghuser:`Links2004`
+- Fix MQTT dashboard discovery (Exception in MqttStatusThread). :esphomepr:`6775` by :ghuser:`Links2004`
+
 
 Full list of changes
 --------------------
