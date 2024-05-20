@@ -30,7 +30,7 @@ required to be set up in your configuration for this sensor to work.
     cap1188:
       id: cap1188_component
       address: 0x29
-      reset_pin: 14
+      reset_pin: GPIOXX
       touch_threshold: 0x40
       allow_multiple_touches: true
 

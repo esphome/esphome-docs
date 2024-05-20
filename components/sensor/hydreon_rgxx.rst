@@ -26,57 +26,40 @@ Device FAQ: `<https://rainsensors.com/support/rg-9-rg-15-faq/>`__
 .. code-block:: yaml
 
     # Example RG-9 entry
-
-    uart:
-      rx_pin: GPIO16
-      tx_pin: GPIO17
-      baud_rate: 9600
-
     sensor:
       - platform: hydreon_rgxx
-        model: "RG_9"
-        id: "hydreon_1"
-        update_interval: 20s
-        disable_led: false
+        model: RG_9
+        id: hydreon_1
         moisture:
-          name: "Rain Level"
+          name: Rain Level
         temperature:
-          name: "Device Temperature"
+          name: Device Temperature
 
     binary_sensor:
       - platform: hydreon_rgxx
-        hydreon_rgxx_id: "hydreon_1"
+        hydreon_rgxx_id: hydreon_1
         too_cold:
-          entity_category: diagnostic
-          name: "Temperature Status"
+          name: Temperature Status
         lens_bad:
-          entity_category: diagnostic
-          name: "Lens Status"
+          name: Lens Status
         em_sat:
-          entity_category: diagnostic
-          name: "Emitter Saturation"
+          name: Emitter Saturation
 
 .. code-block:: yaml
 
     # Example RG-15 entry
-
-    uart:
-      rx_pin: GPIO16
-      tx_pin: GPIO17
-      baud_rate: 9600
-
     sensor:
       - platform: hydreon_rgxx
-        model: "RG_15"
-        update_interval: 60s
+        model: RG_15
+        resolution: high
         acc:
-          name: "rain"
+          name: Rain
         event_acc:
-          name: "rain event"
+          name: Rain Event"
         total_acc:
-          name: "rain total"
+          name: Rain Total"
         r_int:
-          name: "rain intensity"
+          name: Rain Intensity
 
 Configuration variables:
 ------------------------
@@ -100,6 +83,9 @@ Configuration variables:
   - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
+
+- **resolution** (*Optional*, string): Specify rain sensor resolution. Must be either ``low`` or ``high``. Default resolution is ``high``.
+  Only applies to RG-15.
 
 - **acc** (*Optional*): Amount of rain since last message (see ``update_interval``), in ``mm``. Only on RG-15.
 

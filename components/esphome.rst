@@ -58,6 +58,10 @@ Advanced options:
 
   - **name** (**Required**, string): Name of the project
   - **version** (**Required**, string): Version of the project
+  - **on_update** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the device firmware is updated.
+    This compares the above ``version`` field with the ``version`` that was in the previous firmware
+    as long as the ``name`` matches.
+    The ``version`` is stored in flash memory when the firmware is first run for future comparisons.
 - **min_version** (*Optional*, string): The minimum ESPHome version required to compile this configuration.
   See :ref:`esphome-min_version`.
 - **compile_process_limit** (*Optional*, int): The maximum number of simultaneous compile processes to run.
@@ -325,15 +329,15 @@ The same procedure can be done for changing the static IP of a device.
 Adding the MAC address as a suffix to the device name
 -----------------------------------------------------
 
-Using ``name_add_mac_suffix`` allows :doc:`creators </guides/creators>` to 
-provision multiple devices at the factory with a single firmware and still 
+Using ``name_add_mac_suffix`` allows :doc:`creators </guides/creators>` to
+provision multiple devices at the factory with a single firmware and still
 have unique identification for customer installs.
 
 .. note::
 
-    End users will need to create an individual YAML config file if they want to OTA update the 
+    End users will need to create an individual YAML config file if they want to OTA update the
     devices in the future.  Creators can facilitate this process by providing ``dashboard_import`` URL
-    for end users.  This allows them to easily update their devices as new features are made available 
+    for end users.  This allows them to easily update their devices as new features are made available
     upstream.
 
 
