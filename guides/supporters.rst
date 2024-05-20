@@ -1371,4 +1371,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated May 20, 2024.*
+*This page was last updated May 21, 2024.*
