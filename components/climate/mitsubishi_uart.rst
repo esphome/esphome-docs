@@ -39,7 +39,6 @@ Configuration variables:
 - **supported_modes** (*Optional*): List of modes supported by this climate device.  A combination of
 
   - ``OFF`` - The device is manually set to off, the device is inactive.
-  - ``AUTO`` - The device is should adjust the temperature dynamically. For example based on a schedule, or learned behavior.
   - ``HEAT`` - The device is set to heat to reach a target temperature.
   - ``COOL`` - The device is set to cool to reach a target temperature.
   - ``HEAT_COOL`` - The device should heat/cool to maintain a target temperature.
@@ -106,7 +105,7 @@ An automation in Home Assistant can then be configured with an action like the f
 
 Built-in Sensors
 ------------------------
-The Mitsubishi UART device has several built in sensors whose default configuration can be overridden using the normal sensor variables (see: :ref:`config-sensor`).
+The Mitsubishi UART device has several built in sensors whose default configuration can be overridden using the normal sensor variables (see: :ref:`config-sensor`).  These sensors are disabled by default in Home Assistant but can be enabled if desired.
 
 .. note::
 
