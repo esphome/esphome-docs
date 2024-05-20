@@ -84,6 +84,10 @@ Configuration variables:
     you can save power and RF pollution by setting it to ``false``. Defaults to ``true``.
   - **continuous** (*Optional*, boolean): Whether to scan continuously (forever) or to only scan when
     asked to start a scan (with start_scan action). Defaults to ``true``.
+  - **allowlist_address** (*Optional*, list of MAC Address): The MAC address(es) to allow with the scanner. 
+    This uses the built-in ESP-IDF whitelist functionality, which limits the scanner to the given MAC addresses. 
+    This can be especially useful in evironments where there are a large number of BLE devices but the 
+    number of devices to monitor is small.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ESP32 BLE Hub.
 
