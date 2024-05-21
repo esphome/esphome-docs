@@ -1684,12 +1684,12 @@ For both triggers above, when triggered, the variable ``text`` (``std::string`` 
           then:
             - logger.log:
                 format: "Textarea changed to: %s"
-                args: [ text ]
+                args: [ text.c_str() ]
         on_ready:
           then:
             - logger.log:
                 format: "Textarea ready: %s"
-                args: [ text ]
+                args: [ text.c_str() ]
 
 The ``textarea`` can be also integrated as :doc:`/components/text/lvgl` or :doc:`/components/text_sensor/lvgl`.
 
