@@ -77,10 +77,12 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **touchscreen_id** (**Required**, :ref:`config-id`): ID of a touchscreen configuration related to a display.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
-- **rotary_encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display. May be omitted if a touchscreen is configured (as above).
-    - **sensor:** (**Required**, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder` used to interact with the widgets.
-    - **binary_sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, usually used as a push button within the rotary encoder used to interact with the widgets.
-    - **group** (*Optional*, string): A name for a group of widgets which will interact with the the rotary encoder. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
+- **rotary_encoders** (*Optional*, list): A list of rotary encoders or keypads interacting with the LVGL widgets on the display. May be omitted if a touchscreen is configured (as above).
+    - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
+    - **enter_button** (**Required**, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a push button within the input device used to interact with the widgets.
+    - **sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder` used to interact with the widgets; or a list with buttons for left/right navigation:
+        - **left_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a left push button within the input device.
+        - **right_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a right push button within the input device.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
 - **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
