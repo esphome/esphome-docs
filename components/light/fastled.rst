@@ -47,7 +47,7 @@ Clockless FastLED lights differ from the
     light:
       - platform: fastled_clockless
         chipset: WS2811
-        pin: GPIO23
+        pin: GPIOXX
         num_leds: 60
         rgb_order: BRG
         name: "FastLED WS2811 Light"
@@ -126,8 +126,8 @@ whereas the clockless lights only need a single pin.
     light:
       - platform: fastled_spi
         chipset: WS2801
-        data_pin: GPIO23
-        clock_pin: GPIO22
+        data_pin: GPIOXX
+        clock_pin: GPIOXX
         num_leds: 60
         rgb_order: BRG
         name: "FastLED SPI Light"

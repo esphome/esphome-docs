@@ -23,15 +23,15 @@ Component
     matrix_keypad:
       id: mykeypad
       rows:
-        - pin: 21
-        - pin: 19
-        - pin: 18
-        - pin: 5
+        - pin: GPIOXX
+        - pin: GPIOXX
+        - pin: GPIOXX
+        - pin: GPIOXX
       columns:
-        - pin: 17
-        - pin: 16
-        - pin: 4
-        - pin: 15
+        - pin: GPIOXX
+        - pin: GPIOXX
+        - pin: GPIOXX
+        - pin: GPIOXX
       keys: "123A456B789C*0#D"
       has_diodes: false
 
