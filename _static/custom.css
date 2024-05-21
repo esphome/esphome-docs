@@ -248,6 +248,34 @@ a:has(> img:only-child) {
 div.body p, div.body dd, div.body li, div.body blockquote {
   hyphens: none;
 }
+.pagefind-ui__form {
+    width: 100%;
+    max-width: 300px;
+    left: auto;
+    right: auto;
+    position: relative;
+}
+
+.pagefind-modular-list-excerpt, .pagefind-modular-list-title {
+    color: #111111 !important;
+}
+
+.search-results {
+    background-color: #f8f8f8;
+    box-shadow: 0 6px 10px rgb(0 0 0 / 0.2);
+    position: absolute;
+    z-index: 1500;
+    margin-top: 4px;
+    padding-right: 6px;
+    padding-left: 6px;
+    border-radius: 12px;
+    overflow: auto;
+    width: 0;
+    height: fit-content;
+    max-width: 650px;
+    transition: height, width 0.1s ease-in-out;
+    display: none;
+}
 
 /* dark theme */
 @media (prefers-color-scheme: dark) {
@@ -343,5 +371,25 @@ div.body p, div.body dd, div.body li, div.body blockquote {
   dt:target, span.highlighted {
     background-color: #8e8129;
   }
+
+  .search-results {
+    background-color: #313131;
+    box-shadow: 0 6px 10px rgb(0 0 0 / 0.8);
+  }
+  .pagefind-modular-list-excerpt, .pagefind-modular-list-title {
+      color: #eeeeee !important;
+  }
+
+  .pagefind-ui__form, .pagefind-modular-input, .search-results {
+    color: #ececec !important;
+  }
+  :root {
+    --pagefind-ui-primary: #eeeeee;
+    --pagefind-ui-text: #eeeeee;
+    --pagefind-ui-background: #152028;
+    --pagefind-ui-border: #152028;
+    --pagefind-ui-tag: #152028;
+  }
+
 
 }
