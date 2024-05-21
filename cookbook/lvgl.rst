@@ -915,13 +915,14 @@ This example illustrates a control panel for three covers, made up of labels and
               - obj: # a properly placed coontainer object for all these controls
                   align: CENTER
                   width: 240
-                  height: 260
+                  height: 256
                   x: 4
                   y: 4
                   pad_all: 3
                   pad_row: 6
                   pad_column: 8
-                  border_width: 0
+                  bg_opa: TRANSP
+                  border_opa: TRANSP
                   layout: # enable the FLEX layout for the children widgets
                     type: FLEX
                     flex_flow: COLUMN_WRAP # the order of the widgets starts top left
@@ -1036,11 +1037,12 @@ But there's even more! With the **Grid** layout, you don't need to specify width
               - obj: # a properly placed coontainer object for all these controls
                   align: CENTER
                   width: 240
-                  height: 260
+                  height: 256
                   pad_all: 6
                   pad_row: 6
                   pad_column: 8
-                  border_width: 0
+                  bg_opa: TRANSP
+                  border_opa: TRANSP
                   layout: # enable the GRID layout for the children widgets
                     type: GRID # split the rows and the columns proportionally
                     grid_columns: [FR(1), FR(1), FR(1)] # equal
