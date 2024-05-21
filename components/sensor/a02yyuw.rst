@@ -15,8 +15,6 @@ Since this sensor reads multiple times per second, :ref:`sensor-filters` are hig
 
 To use the sensor, first set up an :ref:`uart` with a baud rate of 9600 and connect the sensor to the specified pin.
 
-`PWM and RS485 <https://www.dypcn.com/uploads/A02-Datasheet.pdf>`__ Versions of the A02YYUW are not supported by this component.
-
 .. figure:: images/a02yyuw-full.jpg
     :align: center
     :width: 50.0%
@@ -38,6 +36,10 @@ Configuration variables:
 - **uart_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`UART bus <uart>` you wish to use for this sensor.
   Use this if you want to use multiple UART buses at once.
 - All other options from :ref:`Sensor <config-sensor>`.
+
+.. note::
+
+    `PWM and RS485 <https://www.dypcn.com/uploads/A02-Datasheet.pdf>`__ versions of the A02YYUW are not supported by this component.
 
 See Also
 --------
