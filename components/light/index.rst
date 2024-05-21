@@ -77,10 +77,10 @@ Advanced options:
   a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
@@ -583,6 +583,7 @@ Configuration variables:
   - **cold_white** (*Optional*, percentage): The cold white channel of the light, if applicable. Defaults to ``100%``.
   - **warm_white** (*Optional*, percentage): The warm white channel of the light, if applicable. Defaults to ``100%``.
   - **duration** (**Required**, :ref:`config-time`): The duration this color should be active.
+  - **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``0s``.
 
 See `light.turn_on <light-turn_on_action>` for more information on the various color fields.
 
@@ -1092,10 +1093,14 @@ It is also possible to use LedFx_ to control the lights. Please use the connecti
         effects:
           - wled:
               # port: 21324
+              # blank_on_start: True
+              # sync_group_mask: 0
 
 Configuration variables:
 
 - **port** (*Optional*, int): The port to run the UDP server on. Defaults to ``21324``.
+- **blank_on_start** (*Optional*, boolean): Whether or not to blank all LEDs when effect starts. Deaults to ``True``.
+- **sync_group_mask** (*Optional*, int): Used with WLED Notifier. The Sync Group mask value that specifies which WLED Sync Groups to listen to. Defaults to ``0`` (All Sync Groups). Sync Groups 1, 2, 3, 4, 5, 6, 7, 8 use masks 1, 2, 4, 8, 16, 32, 64, 128. Combine mask values to listen to multiple Sync Groups.
 
 .. note::
 

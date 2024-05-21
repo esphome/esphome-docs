@@ -20,7 +20,7 @@ which will trigger when they hear their own configured signal.
 
     # Example configuration entry
     remote_receiver:
-      pin: GPIO32
+      pin: GPIOXX
       dump: all
 
 Configuration variables:
@@ -30,12 +30,14 @@ Configuration variables:
 - **dump** (*Optional*, list): Decode and dump these remote codes in the logs (at log.level=DEBUG).
   Set to ``all`` to dump all available codecs:
 
+  - **abbwelcome**: Decode and dump ABB-Welcome codes. Messages are sent via copper wires. See :ref:`remote_transmitter-transmit_abbwelcome`
   - **aeha**: Decode and dump AEHA infrared codes.
   - **byronsx**: Decode and dump Byron SX doorbell RF codes.
   - **canalsat**: Decode and dump CanalSat infrared codes.
   - **canalsatld**: Decode and dump CanalSatLD infrared codes.
   - **coolix**: Decode and dump Coolix infrared codes.
   - **dish**: Decode and dump Dish infrared codes.
+  - **dooya**: Decode and dump Dooya RF codes.
   - **drayton**: Decode and dump Drayton Digistat RF codes.
   - **jvc**: Decode and dump JVC infrared codes.
   - **keeloq**: Decode and dump KeeLoq RF codes.
@@ -52,23 +54,44 @@ Configuration variables:
   - **rc5**: Decode and dump RC5 IR codes.
   - **rc6**: Decode and dump RC6 IR codes.
   - **rc_switch**: Decode and dump RCSwitch RF codes.
+  - **roomba**: Decode and dump Roomba infrared codes.
   - **samsung**: Decode and dump Samsung infrared codes.
   - **samsung36**: Decode and dump Samsung36 infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
   - **toshiba_ac**: Decode and dump Toshiba AC infrared codes.
+  - **mirage**: Decode and dump Mirage infrared codes.
 
-- **tolerance** (*Optional*, int): The percentage that the remote signal lengths can deviate in the
-  decoding process. Defaults to ``25%``.
+- **tolerance** (*Optional*, int, :ref:`config-time` or mapping): The percentage or time that the remote signal lengths can
+  deviate in the decoding process.  Defaults to ``25%``.
+
+  - **type** (**Required**, enum): Set the type of the tolerance. Can be ``percentage`` or ``time``.
+  - **value** (**Required**, int or :ref:`config-time`): The percentage or time value. Allowed values are in range ``0`` to
+    ``100%`` or ``0`` to ``4294967295us``.
+
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kB``
   on the ESP32 and ``1kB`` on the ESP8266.
-- **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. Defaults to
-  ``3``.
+- **rmt_channel** (*Optional*, int): The RMT channel to use. Only on **esp32**.
+  The following ESP32 variants have these channels available:
+
+  .. csv-table::
+      :header: "ESP32 Variant", "Channels"
+
+      "ESP32", "0, 1, 2, 3, 4, 5, 6, 7"
+      "ESP32-S2", "0, 1, 2, 3"
+      "ESP32-S3", "4, 5, 6, 7"
+      "ESP32-C3", "2, 3"
+
+- **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. The maximum
+  number of blocks shared by all receivers and transmitters depends on the ESP32 variant. Defaults to ``3``.
 - **filter** (*Optional*, :ref:`config-time`): Filter any pulses that are shorter than this. Useful for removing
-  glitches from noisy signals. Defaults to ``50us``.
+  glitches from noisy signals. Allowed values are in range ``0`` to ``4294967295us``. Defaults to ``50us``.
 - **idle** (*Optional*, :ref:`config-time`): The amount of time that a signal should remain stable (i.e. not
-  change) for it to be considered complete. Defaults to ``10ms``.
+  change) for it to be considered complete. Allowed values are in range ``0`` to ``4294967295us``. Defaults to ``10ms``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this if you have
   multiple remote receivers.
+- **clock_divider** (*Optional*, int): The clock divider used by the RMT peripheral. A clock divider of ``80`` leads to
+  a resolution of 1 µs per tick, ``160`` leads to 2 µs. Allowed values are in range ``1`` to ``255``. Only used on ESP32
+  platform. Defaults to ``80``.
 
 .. note::
 
@@ -79,6 +102,9 @@ Configuration variables:
 Automations:
 ------------
 
+- **on_abbwelcome** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  ABB-Welcome code has been decoded. A variable ``x`` of type :apiclass:`remote_base::ABBWelcomeData`
+  is passed to the automation for use in lambdas.
 - **on_aeha** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   AEHA remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::AEHAData`
   is passed to the automation for use in lambdas.
@@ -98,6 +124,9 @@ Automations:
   dish network remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DishData`
   is passed to the automation for use in lambdas.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
+- **on_dooya** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Dooya RF remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DooyaData`
+  is passed to the automation for use in lambdas.
 - **on_drayton** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Drayton Digistat RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DraytonData`
   is passed to the automation for use in lambdas.
@@ -146,6 +175,9 @@ Automations:
 - **on_rc_switch** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   RCSwitch RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RCSwitchData`
   is passed to the automation for use in lambdas.
+- **on_roomba** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Roomba remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RoombaData`
+  is passed to the automation for use in lambdas.
 - **on_samsung** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Samsung remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::SamsungData`
   is passed to the automation for use in lambdas.
@@ -157,6 +189,9 @@ Automations:
   is passed to the automation for use in lambdas.
 - **on_toshiba_ac** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Toshiba AC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ToshibaAcData`
+  is passed to the automation for use in lambdas.
+- **on_mirage** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Mirage remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::MirageData`
   is passed to the automation for use in lambdas.
 
 .. code-block:: yaml
@@ -187,10 +222,6 @@ then immediately OFF.
 .. code-block:: yaml
 
     # Example configuration entry
-    remote_receiver:
-      pin: GPIO32
-      dump: all
-
     binary_sensor:
       - platform: remote_receiver
         name: "Panasonic Remote Input"
@@ -206,6 +237,21 @@ Configuration variables:
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Remote code selection (exactly one of these has to be included):
+
+- **abbwelcome**: Trigger on a decoded ABB-Welcome code with the given data.
+
+  - **source_address** (**Required**, int): The source address to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
+    for more info.
+  - **destination_address** (**Required**, int): The destination address to trigger on, see
+    :ref:`remote_transmitter-transmit_abbwelcome` for more info.
+  - **three_byte_address** (**Optional**, boolean): The length of the source and destination address. ``false`` means two bytes
+    and ``true`` means three bytes. Defaults to ``false``.
+  - **retransmission** (**Optional**, boolean): ``true`` if the message was re-transmitted. Defaults to ``false``.
+  - **message_type** (**Required**, int): The message type to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
+    for more info.
+  - **message_id** (**Optional**, int): The random message ID to trigger on, see dumper output for more info. Defaults to any ID.
+  - **data** (**Optional**, 0-7 bytes list): The code to listen for. Usually you only need to copy this directly from the
+    dumper output. Defaults to ``[]``
 
 - **aeha**: Trigger on a decoded AEHA remote code with the given data.
 
@@ -242,6 +288,13 @@ Remote code selection (exactly one of these has to be included):
 
   - **address** (*Optional*, int): The number of the receiver to target, between 1 and 16 inclusive. Defaults to ``1``.
   - **command** (**Required**, int): The Dish command to listen for, between 0 and 63 inclusive.
+
+- **dooya**: Trigger on a decoded Dooya RF remote code with the given data.
+
+  - **id** (**Required**, int): The 24-bit ID code to trigger on.
+  - **channel** (**Required**, int): The 8-bit channel to listen for.
+  - **button** (**Required**, int): The 4-bit button to listen for.
+  - **check** (**Required**, int): The 4-bit check to listen for. Includes an indication that a button is being held down.
 
 - **drayton**: Trigger on a decoded Drayton Digistat RF remote code with the given data.
 
@@ -304,6 +357,8 @@ Remote code selection (exactly one of these has to be included):
 
   - **data** (**Required**, string): The code to listen for, see :ref:`remote_transmitter-transmit_raw`
     for more info. Usually you only need to copy this directly from the dumper output.
+  - **delta** (**Optional**, integer): This parameter allows you to manually specify the allowed difference
+    between what Pronto code is specified, and what IR signal has been sent by the remote control.
 
 - **raw**: Trigger on a raw remote code with the given code.
 
@@ -355,6 +410,10 @@ Remote code selection (exactly one of these has to be included):
   - **state** (**Required**, boolean): The on/off state to trigger on.
   - **protocol** (*Optional*): The RC Switch protocol to use, see :ref:`remote_transmitter-rc_switch-protocol` for more info.
 
+- **roomba**: Trigger on a decoded Roomba remote code with the given data.
+
+  - **data** (**Required**, int): The Roomba code to trigger on, see dumper output for more info.
+
 - **samsung**: Trigger on a decoded Samsung remote code with the given data.
 
   - **data** (**Required**, int): The data to trigger on, see dumper output for more info.
@@ -374,6 +433,11 @@ Remote code selection (exactly one of these has to be included):
 
   - **rc_code_1** (**Required**, int): The remote control code to trigger on, see dumper output for more details.
   - **rc_code_2** (*Optional*, int): The second part of the remote control code to trigger on, see dumper output for more details.
+
+- **mirage**: Trigger on a Mirage remote code with the given code.
+
+  - **code** (**Required**, 14-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_mirage`
+    for more info. Usually you only need to copy this directly from the dumper output.
 
 .. note::
 
@@ -396,7 +460,7 @@ Remote code selection (exactly one of these has to be included):
 
         remote_receiver:
           pin:
-            number: D4
+            number: GPIOXX
             inverted: true
             mode:
               input: true

@@ -662,7 +662,7 @@ could easily be added by adding the ``pump_switch_id`` parameter and a :ref:`swi
     switch:
       - platform: gpio
         id: garden_sprinkler_valve
-        pin: 5
+        pin: GPIOXX
 
 Single Controller, Three Valves, No Pump
 ****************************************
@@ -707,13 +707,13 @@ This example illustrates a complete, simple three-valve system with no pump/upst
     switch:
       - platform: gpio
         id: lawn_sprinkler_valve_sw0
-        pin: 0
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw1
-        pin: 2
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw2
-        pin: 4
+        pin: GPIOXX
 
 Single Controller, Three Valves, Single Pump
 ********************************************
@@ -759,16 +759,16 @@ This example illustrates a complete three-valve system with a single pump/upstre
     switch:
       - platform: gpio
         id: sprinkler_pump_sw
-        pin: 12
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw0
-        pin: 0
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw1
-        pin: 2
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw2
-        pin: 4
+        pin: GPIOXX
 
 Single Controller, Three Latching Valves, Single Latching Pump
 **************************************************************
@@ -832,28 +832,28 @@ a common pump/upstream valve.
     switch:
       - platform: gpio
         id: sprinkler_pump_sw_off
-        pin: 14
+        pin: GPIOXX
       - platform: gpio
         id: sprinkler_pump_sw_on
-        pin: 15
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw0_off
-        pin: 0
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw0_on
-        pin: 2
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw1_off
-        pin: 4
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw1_on
-        pin: 5
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw2_off
-        pin: 12
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw2_on
-        pin: 13
+        pin: GPIOXX
 
 Dual Controller, Five Valves, Two Pumps
 ***************************************
@@ -925,25 +925,25 @@ valves, each of which are shared between the two controllers:
     switch:
       - platform: gpio
         id: sprinkler_pump_sw0
-        pin: 12
+        pin: GPIOXX
       - platform: gpio
         id: sprinkler_pump_sw1
-        pin: 13
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw0
-        pin: 0
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw1
-        pin: 2
+        pin: GPIOXX
       - platform: gpio
         id: lawn_sprinkler_valve_sw2
-        pin: 4
+        pin: GPIOXX
       - platform: gpio
         id: garden_sprinkler_valve_sw0
-        pin: 14
+        pin: GPIOXX
       - platform: gpio
         id: garden_sprinkler_valve_sw1
-        pin: 15
+        pin: GPIOXX
 
 .. note::
 
@@ -1160,7 +1160,7 @@ How Do I...
 ***********
 
 - **...determine if the sprinkler controller is running?**
-  
+
   Use the method ``optional<size_t> active_valve()`` to check if there is an active valve. If the ``optional`` returned
   ``has_value()``, the sprinkler controller is running and you may use the ``value()`` method to check which specific
   valve is active.
@@ -1225,7 +1225,7 @@ How Do I...
             }
 
 - **...determine the sprinkler controller's multiplier/repeat values?**
-  
+
   Methods of interest in this case are:
 
   - ``float multiplier()``
