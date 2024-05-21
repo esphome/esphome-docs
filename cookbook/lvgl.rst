@@ -1052,8 +1052,8 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                         text: "East"
                         grid_cell_column_pos: 0 # place the widget in
                         grid_cell_row_pos: 0 # the corresponding cell
-                        grid_cell_x_align: stretch
-                        grid_cell_y_align: stretch
+                        grid_cell_x_align: STRETCH
+                        grid_cell_y_align: STRETCH
                     - btn:
                         id: but_cov_up_east
                         grid_cell_column_pos: 0
@@ -1086,8 +1086,8 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                         text: "South"
                         grid_cell_column_pos: 1
                         grid_cell_row_pos: 0
-                        grid_cell_x_align: stretch
-                        grid_cell_y_align: stretch
+                        grid_cell_x_align: STRETCH
+                        grid_cell_y_align: STRETCH
                     - btn:
                         id: but_cov_up_south
                         grid_cell_column_pos: 1
@@ -1120,8 +1120,8 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                         text: "West"
                         grid_cell_column_pos: 2
                         grid_cell_row_pos: 0
-                        grid_cell_x_align: stretch
-                        grid_cell_y_align: stretch
+                        grid_cell_x_align: STRETCH
+                        grid_cell_y_align: STRETCH
                     - btn:
                         id: but_cov_up_west
                         grid_cell_column_pos: 2
