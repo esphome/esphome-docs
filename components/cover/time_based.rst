@@ -86,10 +86,10 @@ This can be handled at the **stop_action** by using the folling lamda function:
 
     stop_action: 
       - lambda: !lambda |-
-          if (id(cover).last_operation() == CoverOperation::COVER_OPERATION_OPENING) {
+          if (id(cover).get_last_operation() == CoverOperation::COVER_OPERATION_OPENING) {
             // Cover is currently opening
             id(cover_button_down).press();
-          } else if (id(cover).last_operation() == CoverOperation::COVER_OPERATION_CLOSING) {
+          } else if (id(cover).get_last_operation() == CoverOperation::COVER_OPERATION_CLOSING) {
             // Cover is currently closing
             id(cover_button_up).press();
           }
