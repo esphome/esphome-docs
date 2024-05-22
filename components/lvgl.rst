@@ -487,6 +487,10 @@ Values for use with ``grid_column_align``, ``grid_row_align``, ``grid_cell_x_ali
         - ``SPACE_AROUND``: items are evenly distributed in the track with equal space around them. Note that visually the spaces aren’t equal, since all the items have equal space on both sides. The first item will have one unit of space against the container edge, but two units of space between the next item because that next item has its own spacing that applies.
         - ``SPACE_BETWEEN``: items are evenly distributed in the track: first item is on the start line, last item on the end line.
 
+.. tip::
+
+    To visualize real, calculated sizes of transparent widgets you can temporarily set ``outline_width: 1`` on them.
+
 .. _lvgl-widgets:
 
 Widgets
@@ -513,7 +517,7 @@ The properties below are common to all widgets.
 
     By default, the ``x`` and ``y`` coordinates are measured from the *top left corner* of the parent's content area. :ref:`Important <lvgl-styling>`: content area starts *after the padding* thus if the parent has a non-zero padding value, position will be shifted with that. Percentage values are calculated from the parent's content area size. 
     
-    If specifying ``align``, it is used as an offset to the calculated position (can also be negative). Ignored if :ref:`lvgl-layouts` are used.
+    If specifying ``align``, ``x`` and ``y`` can be used as an offset to the calculated position (can also be negative). They are ignored if :ref:`lvgl-layouts` are used on the parent.
 
 - **width** (*Optional*): Width of the widget in pixels or a percentage, or ``SIZE_CONTENT``.
 - **height** (*Optional*): Height of the widget in pixels or a percentage, or ``SIZE_CONTENT``.
