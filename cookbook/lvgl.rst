@@ -1792,6 +1792,300 @@ Of note:
 - Changing the background color of the buttons in ``pressed`` state.
 - Use of the ``key_code`` configuration to send a different character to ``key_collector`` instead of the displayed symbol.
 
+.. _lvgl-cook-weather:
+
+Weather forecast panel
+----------------------
+
+Another example relying on the **Grid** layout can be a weather panel showing the forecast through the `OpenWeatherMap integration <https://www.home-assistant.io/integrations/openweathermap/>`__ of Home Assistant.
+
+.. figure:: images/lvgl_cook_weather.png
+    :align: center
+
+All the information displayed here could be retrieved to local ``platform: homeassistant`` sensors as desribed in several examples in this Cookbook, however, this time we take a different approach. Instead of pulling the data by ESPHome, we'll be pushing it from Home Assistant, to native :doc:`/components/text/lvgl` components.
+
+The weather condition icons we use from MDI. We import just the ones corresponding to the weather conditions supported by the Weather integration in Home Assistant. For all the other labels you can use any :ref:`font <lvgl-fonts>` of your choice.
+
+.. code-block:: yaml
+
+    font:
+      - file: "fonts/materialdesignicons-webfont.ttf"
+        id: icons_100
+        size: 100
+        bpp: 4
+        glyphs: [
+          "\U000F0594", # clear-night
+          "\U000F0590", # cloudy
+          "\U000F0F2F", # exceptional
+          "\U000F0591", # fog
+          "\U000F0592", # hail
+          "\U000F0593", # lightning
+          "\U000F067E", # lightning-rainy
+          "\U000F0595", # partlycloudy
+          "\U000F0596", # pouring
+          "\U000F0597", # rainy
+          "\U000F0598", # snowy
+          "\U000F067F", # snowy-rainy
+          "\U000F0599", # sunny
+          "\U000F059D", # windy
+          "\U000F059E", # windy-variant
+          "\U000F14E4", # sunny-off
+          ]
+
+    lvgl:
+      ...
+      pages:
+        - id: weather_forecast
+          widgets:
+            - obj:
+                align: CENTER
+                width: 228
+                height: 250
+                pad_all: 10
+                pad_column: 0
+                layout:
+                  type: GRID
+                  grid_rows: [ FR(48), FR(13), FR(13), FR(13),  FR(13)  ]
+                  grid_columns: [ FR(7), FR(40), FR(43), FR(10) ]
+                widgets:
+                  - label:
+                      text: "\U000F14E4"
+                      id: lbl_weather_forecast_condition_icon
+                      text_font: icons_100
+                      text_align: center
+                      grid_cell_row_pos: 0
+                      grid_cell_column_pos: 0
+                      grid_cell_column_span: 2
+                      grid_cell_x_align: CENTER
+                      grid_cell_y_align: START
+
+                  - label:
+                      text: "Unknown"
+                      id: lbl_weather_forecast_condition_name
+                      text_align: CENTER
+                      grid_cell_row_pos: 0
+                      grid_cell_column_pos: 2
+                      grid_cell_column_span: 2
+                      grid_cell_x_align: STRETCH
+                      grid_cell_y_align: CENTER
+
+                  - label:
+                      text: "Feels like:"
+                      text_align: left
+                      grid_cell_row_pos: 1
+                      grid_cell_column_pos: 1
+
+                  - label:
+                      text: "--.- °C"
+                      id: lbl_weather_forecast_tempap
+                      text_align: RIGHT
+                      grid_cell_row_pos: 1
+                      grid_cell_column_pos: 2
+                      grid_cell_x_align: STRETCH
+
+                  - label:
+                      text: "Maximum:"
+                      grid_cell_row_pos: 2
+                      grid_cell_column_pos: 1
+
+                  - label:
+                      text: "--.- °C"
+                      id: lbl_weather_forecast_temphi
+                      text_align: RIGHT
+                      grid_cell_row_pos: 2
+                      grid_cell_column_pos: 2
+                      grid_cell_x_align: STRETCH
+
+                  - label:
+                      text: "Minimum:"
+                      grid_cell_row_pos: 3
+                      grid_cell_column_pos: 1
+
+                  - label:
+                      text: "--.- °C"
+                      id: lbl_weather_forecast_templo
+                      text_align: RIGHT
+                      grid_cell_row_pos: 3
+                      grid_cell_column_pos: 2
+                      grid_cell_x_align: STRETCH
+
+                  - label:
+                      text: "Now:"
+                      grid_cell_row_pos: 4
+                      grid_cell_column_pos: 1
+
+                  - label:
+                      text: "--.- °C"
+                      id: lbl_weather_outdnoor_now
+                      text_align: RIGHT
+                      grid_cell_row_pos: 4
+                      grid_cell_column_pos: 2
+                      grid_cell_x_align: STRETCH
+
+    text:
+      - platform: lvgl
+        name: fr_cond_icon
+        widget: lbl_weather_forecast_condition_icon
+        mode: text
+      - platform: lvgl
+        name: fr_cond_name
+        widget: lbl_weather_forecast_condition_name
+        mode: text
+      - platform: lvgl
+        name: fr_tempap
+        widget: lbl_weather_forecast_tempap
+        mode: text
+      - platform: lvgl
+        name: fr_temphi
+        widget: lbl_weather_forecast_temphi
+        mode: text
+      - platform: lvgl
+        name: fr_templo
+        widget: lbl_weather_forecast_templo
+        mode: text
+      - platform: lvgl
+        name: wd_out_now
+        widget: lbl_weather_outdnoor_now
+        mode: text
+
+    binary_sensor:
+      - platform: status
+        name: Status sensor
+
+These labels will appear in Home Assistant as `editable text components <https://www.home-assistant.io/integrations/text/>`__, which makes it very easy to update them with the ``text.set_value`` service. For this purpose, we add the following `automations <https://www.home-assistant.io/docs/automation/>`__ to Home Assistant:
+
+.. code-block:: yaml
+
+    - id: weather_cond_now
+      alias: 'Weather Forecast Condition'
+      trigger:
+        - platform: state
+          entity_id: sensor.openweathermap_forecast_condition
+        - platform: state
+          entity_id: binary_sensor.your_esphome_node_status_sensor
+          to: 'on'
+      action:
+        - service: text.set_value
+          target:
+            entity_id: 
+              - text.your_esphome_node_fr_cond_icon
+          data:
+            value: >
+              {% set d = {
+              "clear-night": "\U000F0594",
+              "cloudy": "\U000F0590",
+              "exceptional": "\U000F0F2F",
+              "fog": "\U000F0591",
+              "hail": "\U000F0592",
+              "lightning": "\U000F0593",
+              "lightning-rainy": "\U000F067E",
+              "partlycloudy": "\U000F0595",
+              "pouring": "\U000F0596",
+              "rainy": "\U000F0597",
+              "snowy": "\U000F0598",
+              "snowy-rainy": "\U000F067F",
+              "sunny": "\U000F0599",
+              "windy": "\U000F059D",
+              "windy-variant": "\U000F059E",
+              "unknown": "\U000F14E4",
+              "unavailable": "\U000F14E4",
+              } %}
+              {{ d.get( states('sensor.openweathermap_forecast_condition') ) }}
+
+        - service: text.set_value
+          target:
+            entity_id: 
+              - text.your_esphome_node_fr_cond_name
+          data:
+            value: >
+              {% set d = {
+              "clear-night": "Clear Night",
+              "cloudy": "Cloudy",
+              "exceptional": "Except ional",
+              "fog": "Fog",
+              "hail": "Hail",
+              "lightning": "Lightning",
+              "lightning-rainy": "Lightning rainy",
+              "partlycloudy": "Partly cloudy",
+              "pouring": "Pouring",
+              "rainy": "Rainy",
+              "snowy": "Snowy",
+              "snowy-rainy": "Snowy rainy",
+              "sunny": "Sunny",
+              "windy": "Windy",
+              "windy-variant": "Windy cloudy",
+              "unknown": "Unknown",
+              "unavailable": "Unavai lable",
+              } %}
+              {{ d.get( states('sensor.openweathermap_forecast_condition') ) }}
+
+    - id: weather_temp_feels_like
+      alias: 'Weather Temperature Feels Like'
+      trigger:
+        - platform: state
+          entity_id: sensor.openweathermap_feels_like_temperature
+        - platform: state
+          entity_id: binary_sensor.your_esphome_node_status_sensor
+          to: 'on'
+
+      action:
+        - service: text.set_value
+          target:
+            entity_id: 
+              - text.your_esphome_node_fr_tempap
+          data:
+            value: "{{states('sensor.openweathermap_feels_like_temperature') | round(1)}}°C"
+
+    - id: weather_temp_forecast_temphi
+      alias: 'Weather Temperature Forecast Hi'
+      trigger:
+        - platform: state
+          entity_id: sensor.openweathermap_forecast_temperature
+        - platform: state
+          entity_id: binary_sensor.your_esphome_node_status_sensor
+          to: 'on'
+      action:
+        - service: text.set_value
+          target:
+            entity_id: 
+              - text.your_esphome_node_fr_temphi
+          data:
+            value: "{{states('sensor.openweathermap_forecast_temperature') | round(1)}}°C"
+
+    - id: weather_temp_forecast_templo
+      alias: 'Weather Temperature Forecast Lo'
+      trigger:
+        - platform: state
+          entity_id: sensor.openweathermap_forecast_temperature_low
+        - platform: state
+          entity_id: binary_sensor.your_esphome_node_status_sensor
+          to: 'on'
+      action:
+        - service: text.set_value
+          target:
+            entity_id: 
+              - text.your_esphome_node_fr_templo
+          data:
+            value: "{{states('sensor.openweathermap_forecast_temperature_low') | round(1)}}°C"
+
+    - id: weather_temp_forecast_tempnow
+      alias: 'Weather Temperature Now'
+      trigger:
+        - platform: state
+          entity_id: sensor.kinti_homerseklet
+        - platform: state
+          entity_id: binary_sensor.your_esphome_node_status_sensor
+          to: 'on'
+      action:
+        - service: text.set_value
+          target:
+            entity_id: 
+              - text.your_esphome_node_wd_out_now
+          data:
+            value: "{{states('sensor.kinti_homerseklet') | round(1)}}°C"
+              
+The automations will be triggered to update the labels every time the corresponding entities change, and when the ESPHome comes alive - the reason you also need the :doc:`/components/binary_sensor/status`.
+
 .. _lvgl-cook-idlescreen:
 
 Turn off screen when idle
