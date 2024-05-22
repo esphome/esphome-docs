@@ -506,15 +506,17 @@ The properties below are common to all widgets.
 **Configuration variables:**
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to top left of parent or screen). If specifying ``align``, it is used as an offset to the calculated position (can also be negative). Ignored if :ref:`lvgl-layouts` are used.
-- **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If specifying ``align``, it is used as an offset to the calculated position (can also be negative). Ignored if :ref:`lvgl-layouts` are used.
+- **x** (*Optional*, int16 or percentage): Horizontal position of the widget. 
+- **y** (*Optional*, int16 or percentage): Vertical position of the widget.
 
 .. note::
 
     By default, the ``x`` and ``y`` coordinates are measured from the *top left corner* of the parent's content area. :ref:`Important <lvgl-styling>`: content area starts *after the padding* thus if the parent has a non-zero padding value, position will be shifted with that. Percentage values are calculated from the parent's content area size. 
+    
+    If specifying ``align``, it is used as an offset to the calculated position (can also be negative). Ignored if :ref:`lvgl-layouts` are used.
 
-- **width** (*Optional*): Width of the widget in pixels or a percentage, or ``SIZE_CONTENT`` (see note below).
-- **height** (*Optional*): Height of the widget in pixels or a percentage, or ``SIZE_CONTENT`` (see note below).
+- **width** (*Optional*): Width of the widget in pixels or a percentage, or ``SIZE_CONTENT``.
+- **height** (*Optional*): Height of the widget in pixels or a percentage, or ``SIZE_CONTENT``.
 
 .. note::
 
