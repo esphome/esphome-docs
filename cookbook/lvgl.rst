@@ -1856,7 +1856,7 @@ The weather condition icons we use are from MDI. We import just the ones corresp
                       text: "\U000F14E4"
                       id: lbl_weather_forecast_condition_icon
                       text_font: icons_100
-                      text_align: center
+                      text_align: CENTER
                       grid_cell_row_pos: 0
                       grid_cell_column_pos: 0
                       grid_cell_column_span: 2
@@ -1875,7 +1875,6 @@ The weather condition icons we use are from MDI. We import just the ones corresp
 
                   - label:
                       text: "Feels like:"
-                      text_align: left
                       grid_cell_row_pos: 1
                       grid_cell_column_pos: 1
 
