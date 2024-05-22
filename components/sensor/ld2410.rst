@@ -454,7 +454,7 @@ under account, you can set up a :ref:`GPIO Binary Sensor <gpio-binary-sensor>`:
 
     binary_sensor:
       - platform: gpio
-        pin: REPLACEME
+        pin: GPIOXX
         name: gpio out pin presence
         device_class: presence
 
