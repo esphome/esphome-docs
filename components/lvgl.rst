@@ -79,26 +79,26 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
 - **rotary_encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display. May be omitted if a touchscreen or keypad is configured.
     - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
-    - **enter_button** (**Required**, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as the ``ENTER`` key.
+    - **enter_button** (**Required**, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as the ``ENTER`` key.
     - **sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder`; or a list with buttons for left/right interaction with the widgets:
-        - **left_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``LEFT`` key.
-        - **right_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``RIGHT`` key.
+        - **left_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``LEFT`` key.
+        - **right_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``RIGHT`` key.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``. Can be disabled with ``never``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``. Can be disabled with ``never``.
 - **keypads** (*Optional*, list): A list of keypads interacting with the LVGL widgets on the display. May be omitted if a touchscreen or a rotary encoder is configured.
     - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
-    - **up** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as an ``UP`` key.
-    - **down** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``DOWN`` key.
+    - **up** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as an ``UP`` key.
+    - **down** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``DOWN`` key.
     - **right** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``RIGHT`` key.
-    - **left** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``LEFT`` key.
-    - **esc** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``ESC`` key.
-    - **del** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``DEL`` key.
-    - **backspace** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``BACKSPACE`` key.
-    - **enter** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``ENTER`` key.
-    - **next** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``NEXT`` key.
-    - **prev** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``PREV`` key.
-    - **home** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``HOME`` key.
-    - **end** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as an ``END`` key.
+    - **left** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``LEFT`` key.
+    - **esc** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``ESC`` key.
+    - **del** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``DEL`` key.
+    - **backspace** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``BACKSPACE`` key.
+    - **enter** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``ENTER`` key.
+    - **next** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``NEXT`` key.
+    - **prev** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``PREV`` key.
+    - **home** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``HOME`` key.
+    - **end** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as an ``END`` key.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``. Can be disabled with ``never``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``. Can be disabled with ``never``.
 - **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
