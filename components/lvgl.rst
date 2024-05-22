@@ -390,7 +390,7 @@ Layouts aim to position widgets automatically, eliminating the need to specify `
 
 The layout configuration options are applied to any parent widget or page, influencing the appearance of the children. The position and size calculated by the layout overwrites the *normal* ``x``, ``y``, ``width``, and ``height`` settings of the children.
 
-Checkout :ref:`lvgl-cook-flex` and :ref:`lvgl-cook-grid` in the Cookbook for examples illustrating how to automate widget positioning, potentially reducing the size of your device's YAML configuration, and saving you from lots of manual calculations.
+Checkout :ref:`lvgl-cook-flex`, :ref:`lvgl-cook-grid` and :ref:`lvgl-cook-weather` in the Cookbook for examples illustrating how to automate widget positioning, potentially reducing the size of your device's YAML configuration, and saving you from lots of manual calculations.
 
 The ``hidden``, ``ignore_layout`` and ``floating`` :ref:`flags <lvgl-objupdflag-act>` can be used on widgets to ignore them in layout calculations.
 

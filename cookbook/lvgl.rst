@@ -1849,7 +1849,7 @@ The weather condition icons we use are from MDI. We import just the ones corresp
                 pad_column: 0
                 layout:
                   type: GRID
-                  grid_rows: [ FR(48), FR(13), FR(13), FR(13),  FR(13)  ]
+                  grid_rows: [ FR(48), FR(13), FR(13), FR(13), FR(13) ]
                   grid_columns: [ FR(7), FR(40), FR(43), FR(10) ]
                 widgets:
                   - label:
