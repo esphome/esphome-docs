@@ -85,8 +85,6 @@ As it's an ESPHome :ref:`action <config-action>`, it may be used in any ESPHome 
 Configuration variables:
 ------------------------
 
-- **force_update** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Force flash if the remote firmware
-  is the same as the currently installed firmware (as determined by the MD5sum). Defaults to ``false``.
 - **md5** (*Optional*, string, :ref:`templatable <config-templatable>`): The
   `MD5sum <https://en.wikipedia.org/wiki/Md5sum>`_ of the firmware file pointed to by ``url`` (below). May not be used
   with ``md5_url`` (below); must be specified if ``md5_url`` is not.
