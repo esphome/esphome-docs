@@ -148,6 +148,8 @@ Configuration variables:
 
 - **address** (**Required**, int): The address to send the command to, see dumper output for more details.
 - **data** (**Required**, list): The command to send, A length of 2-35 bytes can be specified for one packet.
+- **carrier_frequency** (*Optional*, float): Optionally set a frequency to send the signal
+  with for infrared signals. Defaults to ``38000Hz``.
 
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
 
