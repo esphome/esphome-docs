@@ -1804,9 +1804,13 @@ Another example relying on the **Grid** layout can be a weather panel showing th
 
 All the information displayed here could be retrieved to local ``platform: homeassistant`` sensors as desribed in several examples in this Cookbook, however, this time we take a different approach. Instead of pulling the data by ESPHome, we'll be pushing it from Home Assistant, to native :doc:`/components/text/lvgl` components.
 
-The weather condition icons we use from MDI. We import just the ones corresponding to the weather conditions supported by the Weather integration in Home Assistant. For all the other labels you can use any :ref:`font <lvgl-fonts>` of your choice.
+The weather condition icons we use are from MDI. We import just the ones corresponding to the weather conditions supported by the Weather integration in Home Assistant. For all the other labels you can use any :ref:`font <lvgl-fonts>` of your choice.
 
 .. code-block:: yaml
+
+    binary_sensor:
+      - platform: status
+        name: Status sensor
 
     font:
       - file: "fonts/materialdesignicons-webfont.ttf"
@@ -1948,15 +1952,11 @@ The weather condition icons we use from MDI. We import just the ones correspondi
         widget: lbl_weather_outdnoor_now
         mode: text
 
-    binary_sensor:
-      - platform: status
-        name: Status sensor
-
 These labels will appear in Home Assistant as `editable text components <https://www.home-assistant.io/integrations/text/>`__, which makes it very easy to update them with the ``text.set_value`` service. For this purpose, we add the following `automations <https://www.home-assistant.io/docs/automation/>`__ to Home Assistant:
 
 .. code-block:: yaml
 
-    - id: weather_cond_now
+    - id: weather_cond_forecast
       alias: 'Weather Forecast Condition'
       trigger:
         - platform: state
@@ -2019,7 +2019,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
               } %}
               {{ d.get( states('sensor.openweathermap_forecast_condition') ) }}
 
-    - id: weather_temp_feels_like
+    - id: weather_temp_feels_like_forecast
       alias: 'Weather Temperature Feels Like'
       trigger:
         - platform: state
@@ -2027,7 +2027,6 @@ These labels will appear in Home Assistant as `editable text components <https:/
         - platform: state
           entity_id: binary_sensor.your_esphome_node_status_sensor
           to: 'on'
-
       action:
         - service: text.set_value
           target:
@@ -2068,11 +2067,11 @@ These labels will appear in Home Assistant as `editable text components <https:/
           data:
             value: "{{states('sensor.openweathermap_forecast_temperature_low') | round(1)}}°C"
 
-    - id: weather_temp_forecast_tempnow
+    - id: weather_temp_outdoor_now
       alias: 'Weather Temperature Now'
       trigger:
         - platform: state
-          entity_id: sensor.kinti_homerseklet
+          entity_id: sensor.outdoor_temperature
         - platform: state
           entity_id: binary_sensor.your_esphome_node_status_sensor
           to: 'on'
@@ -2082,9 +2081,9 @@ These labels will appear in Home Assistant as `editable text components <https:/
             entity_id: 
               - text.your_esphome_node_wd_out_now
           data:
-            value: "{{states('sensor.kinti_homerseklet') | round(1)}}°C"
+            value: "{{states('sensor.outdoor_temperature') | round(1)}}°C"
               
-The automations will be triggered to update the labels every time the corresponding entities change, and when the ESPHome comes alive - the reason you also need the :doc:`/components/binary_sensor/status`.
+The automations will be triggered to update the labels every time the corresponding entities change, and when the ESPHome comes alive - the reason you also need the :doc:`/components/binary_sensor/status`. Note that you'll need to adjust the entity IDs corresponding to your ESPHome node depedning on how you :ref:`configured it to use its name<esphome-configuration_variables>`.
 
 .. _lvgl-cook-idlescreen:
 
