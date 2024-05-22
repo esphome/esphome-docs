@@ -877,7 +877,7 @@ Climate Components
     Haier Climate, components/climate/haier, haier.svg
     IR Remote Climate, components/climate/climate_ir, air-conditioner-ir.svg, dark-invert
     Midea, components/climate/midea, midea.svg
-    Mitsubishi UART, components/mitsubishi_uart, air-conditioner.svg, dark-invert
+    Mitsubishi UART, components/climate/mitsubishi_uart, air-conditioner.svg, dark-invert
     PID Controller, components/climate/pid, function.svg, dark-invert
     Thermostat Controller, components/climate/thermostat, air-conditioner.svg, dark-invert
     Tuya Climate, components/climate/tuya, tuya.png
