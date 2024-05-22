@@ -50,7 +50,7 @@ The easiest way to integrate an LVGL :ref:`lvgl-wgt-swi` widget and a switch or 
           - id: main_page
             widgets:
               - switch:
-                  align: center
+                  align: CENTER
                   id: light_switch
                   on_click:
                     light.toggle: local_light
@@ -86,13 +86,13 @@ If you'd like to control a remote light which appears as an entity in Home Assis
             widgets:
               - btn:
                   id: light_btn
-                  align: center
+                  align: CENTER
                   width: 100
                   height: 70
                   checkable: true
                   widgets:
                     - label:
-                        align: center
+                        align: CENTER
                         text: 'Remote light'
                   on_click:
                     - homeassistant.service:
@@ -245,7 +245,7 @@ The trick here is to have a parent :ref:`lvgl-wgt-obj` which contains the other 
                         width: 100%
                         border_width: 0
                         bg_opa: TRANSP
-                        align: center
+                        align: CENTER
                         scales:
                           - range_from: -10
                             range_to: 10
@@ -274,25 +274,25 @@ The trick here is to have a parent :ref:`lvgl-wgt-obj` which contains the other 
                         height: 146
                         width: 146
                         radius: 73
-                        align: center
+                        align: CENTER
                         border_width: 0
                         bg_color: 0xFFFFFF
                         pad_all: 0
                     - label: # gauge numeric indicator
                         id: val_text
                         text_font: montserrat_48
-                        align: center
+                        align: CENTER
                         y: -5
                         text: "0"
                     - label: # lower range indicator
                         text_font: montserrat_18
-                        align: center
+                        align: CENTER
                         y: 8
                         x: -90
                         text: "-10"
                     - label: # higher range indicator
                         text_font: montserrat_18
-                        align: center
+                        align: CENTER
                         y: 8
                         x: 90
                         text: "+10"
@@ -406,7 +406,7 @@ If you change the size of the widget, to obtain a uniform gradient, be sure to i
                         height: 100%
                         width: 100%
                         border_width: 0
-                        align: center
+                        align: CENTER
                         bg_opa: TRANSP
                         scales:
                           - range_from: -15
@@ -437,7 +437,7 @@ If you change the size of the widget, to obtain a uniform gradient, be sure to i
                         height: 123
                         width: 123
                         radius: 73
-                        align: center
+                        align: CENTER
                         border_width: 0
                         pad_all: 0
                         bg_color: 0xFFFFFF
@@ -484,10 +484,12 @@ First we import from Home Assistant the current target temperature of the climat
               - obj:
                   align: BOTTOM_MID
                   y: -50
-                  layout: flex
-                  flex_flow: row
-                  width: size_content
-                  height: size_content
+                  layout: 
+                    type: FLEX
+                    flex_flow: ROW
+                    flex_align_cross: CENTER
+                  width: SIZE_CONTENT
+                  height: SIZE_CONTENT
                   widgets:
                     - btn:
                         id: spin_down
@@ -498,8 +500,8 @@ First we import from Home Assistant the current target temperature of the climat
                                text: "-"
                     - spinbox:
                         id: spinbox_id
-                        align: center
-                        text_align: center
+                        align: CENTER
+                        text_align: CENTER
                         width: 50
                         range_from: 15
                         range_to: 35
@@ -597,7 +599,7 @@ Just as in the previous examples, we need to get the state of the cover first. W
                   y: 6
                   width: 70
                   text: "My room"
-                  text_align: center
+                  text_align: CENTER
               - btn:
                   x: 10
                   y: 30
@@ -606,7 +608,7 @@ Just as in the previous examples, we need to get the state of the cover first. W
                   widgets:
                     - label:
                         id: cov_up_myroom
-                        align: center
+                        align: CENTER
                         text: "\uF077"
                   on_press:
                     then:
@@ -622,7 +624,7 @@ Just as in the previous examples, we need to get the state of the cover first. W
                   widgets:
                     - label:
                         id: cov_stop_myroom
-                        align: center
+                        align: CENTER
                         text: STOP
                   on_press:
                     then:
@@ -638,7 +640,7 @@ Just as in the previous examples, we need to get the state of the cover first. W
                   widgets:
                     - label:
                         id: cov_down_myroom
-                        align: center
+                        align: CENTER
                         text: "\uF078"
                   on_press:
                     then:
@@ -874,8 +876,8 @@ To put a title bar behind the status icon, we need to add it to each page, also 
                 widgets:
                   - label:
                       text: "ESPHome LVGL Display"
-                      align: center
-                      text_align: center
+                      align: CENTER
+                      text_align: CENTER
                       text_color: 0xFFFFFF
             ...
         - id: second_page
@@ -886,8 +888,8 @@ To put a title bar behind the status icon, we need to add it to each page, also 
                 widgets:
                   - label:
                       text: "A second page"
-                      align: center
-                      text_align: center
+                      align: CENTER
+                      text_align: CENTER
                       text_color: 0xFFFFFF
             ...
 
@@ -937,7 +939,7 @@ This example illustrates a control panel for three covers, made up of labels and
                         widgets:
                           - label:
                               id: cov_up_east
-                              align: center
+                              align: CENTER
                               text: "\U000F005D" # mdi:arrow-up
                     - btn:
                         id: but_cov_stop_east
@@ -946,7 +948,7 @@ This example illustrates a control panel for three covers, made up of labels and
                         widgets:
                           - label:
                               id: cov_stop_east
-                              align: center
+                              align: CENTER
                               text: "\U000F04DB" # mdi:stop
                     - btn:
                         id: but_cov_down_east
@@ -955,7 +957,7 @@ This example illustrates a control panel for three covers, made up of labels and
                         widgets:
                           - label:
                               id: cov_down_east
-                              align: center
+                              align: CENTER
                               text: "\U000F0045" # mdi:arrow-down
 
                     - label:
@@ -967,7 +969,7 @@ This example illustrates a control panel for three covers, made up of labels and
                         widgets:
                           - label:
                               id: cov_up_south
-                              align: center
+                              align: CENTER
                               text: "\U000F005D"
                     - btn:
                         id: but_cov_stop_south
@@ -976,7 +978,7 @@ This example illustrates a control panel for three covers, made up of labels and
                         widgets:
                           - label:
                               id: cov_stop_south
-                              align: center
+                              align: CENTER
                               text: "\U000F04DB"
                     - btn:
                         id: but_cov_down_south
@@ -985,7 +987,7 @@ This example illustrates a control panel for three covers, made up of labels and
                         widgets:
                           - label:
                               id: cov_down_south
-                              align: center
+                              align: CENTER
                               text: "\U000F0045"
 
                     - label:
@@ -997,7 +999,7 @@ This example illustrates a control panel for three covers, made up of labels and
                         widgets:
                           - label:
                               id: cov_up_west
-                              align: center
+                              align: CENTER
                               text: "\U000F005D"
                     - btn:
                         id: but_cov_stop_west
@@ -1006,7 +1008,7 @@ This example illustrates a control panel for three covers, made up of labels and
                         widgets:
                           - label:
                               id: cov_stop_west
-                              align: center
+                              align: CENTER
                               text: "\U000F04DB"
                     - btn:
                         id: but_cov_down_west
@@ -1015,7 +1017,7 @@ This example illustrates a control panel for three covers, made up of labels and
                         widgets:
                           - label:
                               id: cov_down_west
-                              align: center
+                              align: CENTER
                               text: "\U000F0045"
 
 This saved you from a considerable amount of manual calculation of widget positioning which would otherwise be required to place them manually with ``x`` and ``y``! You only need to determine a common width and height for your widgets to distribute them on the page as you prefer. (:ref:`lvgl-cook-icontext` below shows how to use custom icons.)
@@ -1058,28 +1060,34 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                         id: but_cov_up_east
                         grid_cell_column_pos: 0
                         grid_cell_row_pos: 1
+                        grid_cell_x_align: STRETCH
+                        grid_cell_y_align: STRETCH
                         widgets:
                           - label:
                               id: cov_up_east
-                              align: center
+                              align: CENTER
                               text: "\U000F005D"
                     - btn:
                         id: but_cov_stop_east
                         grid_cell_column_pos: 0
                         grid_cell_row_pos: 2
+                        grid_cell_x_align: STRETCH
+                        grid_cell_y_align: STRETCH
                         widgets:
                           - label:
                               id: cov_stop_east
-                              align: center
+                              align: CENTER
                               text: "\U000F04DB"
                     - btn:
                         id: but_cov_down_east
                         grid_cell_column_pos: 0
                         grid_cell_row_pos: 3
+                        grid_cell_x_align: STRETCH
+                        grid_cell_y_align: STRETCH
                         widgets:
                           - label:
                               id: cov_down_east
-                              align: center
+                              align: CENTER
                               text: "\U000F0045"
 
                     - label:
@@ -1092,28 +1100,34 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                         id: but_cov_up_south
                         grid_cell_column_pos: 1
                         grid_cell_row_pos: 1
+                        grid_cell_x_align: STRETCH
+                        grid_cell_y_align: STRETCH
                         widgets:
                           - label:
                               id: cov_up_south
-                              align: center
+                              align: CENTER
                               text: "\U000F005D"
                     - btn:
                         id: but_cov_stop_south
                         grid_cell_column_pos: 1
                         grid_cell_row_pos: 2
+                        grid_cell_x_align: STRETCH
+                        grid_cell_y_align: STRETCH
                         widgets:
                           - label:
                               id: cov_stop_south
-                              align: center
+                              align: CENTER
                               text: "\U000F04DB"
                     - btn:
                         id: but_cov_down_south
                         grid_cell_column_pos: 1
                         grid_cell_row_pos: 3
+                        grid_cell_x_align: STRETCH
+                        grid_cell_y_align: STRETCH
                         widgets:
                           - label:
                               id: cov_down_south
-                              align: center
+                              align: CENTER
                               text: "\U000F0045"
 
                     - label:
@@ -1126,31 +1140,37 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                         id: but_cov_up_west
                         grid_cell_column_pos: 2
                         grid_cell_row_pos: 1
+                        grid_cell_x_align: STRETCH
+                        grid_cell_y_align: STRETCH
                         widgets:
                           - label:
                               id: cov_up_west
-                              align: center
+                              align: CENTER
                               text: "\U000F005D"
                     - btn:
                         id: but_cov_stop_west
                         grid_cell_column_pos: 2
                         grid_cell_row_pos: 2
+                        grid_cell_x_align: STRETCH
+                        grid_cell_y_align: STRETCH
                         widgets:
                           - label:
                               id: cov_stop_west
-                              align: center
+                              align: CENTER
                               text: "\U000F04DB"
                     - btn:
                         id: but_cov_down_west
                         grid_cell_column_pos: 2
                         grid_cell_row_pos: 3
+                        grid_cell_x_align: STRETCH
+                        grid_cell_y_align: STRETCH
                         widgets:
                           - label:
                               id: cov_down_west
-                              align: center
+                              align: CENTER
                               text: "\U000F0045"
 
-The big advantage here is that whenever you need to add, for example, an extra column of buttons for a new cover, you just simply append it to the ``grid_columns`` variable, and add the corresponding widgets as above. Their sizes and positions will automatically be calculated to fit in.
+The big advantage here is that whenever you need to add, for example, an extra column of buttons for a new cover, you just simply append it to the ``grid_columns`` variable, and add the corresponding widgets as above. With ``STRETCH`` their sizes and positions will automatically be calculated to fill in the cells, while the parent's ``pad_all``, ``pad_row`` and ``pad_column`` can help with spacing between them.
 
 .. _lvgl-cook-btlg:
 
@@ -1185,17 +1205,17 @@ To display a boot image with a spinner animation which disappears automatically 
               width: 100%
               height: 100%
               bg_color: 0xFFFFFF
-              bg_opa: cover
+              bg_opa: COVER
               radius: 0
               pad_all: 0
               border_width: 0
               widgets:
                 - img:
-                    align: center
+                    align: CENTER
                     src: boot_logo
                     y: -40
                 - spinner:
-                    align: center
+                    align: CENTER
                     y: 95
                     height: 50
                     width: 50
@@ -1244,7 +1264,7 @@ In the example below, we use the default set of glyphs from RobotoCondensed-Regu
               - label:
                   text: "Just\U000f05d4here. Already\U000F02D1this."
                   align: CENTER
-                  text_align: center
+                  text_align: CENTER
                   text_font: roboto_icons_42
 
 .. tip::
@@ -1319,7 +1339,7 @@ If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like t
                   widgets:
                     - label:
                         id: lbl_lightbulb
-                        align: center
+                        align: CENTER
                         text_font: mdi_42
                         text: "\U000F0336" # mdi-lightbulb-outline
                   on_short_click:
@@ -1525,7 +1545,7 @@ The script runs at the beginning of every minute to update the line positions fo
         - id: clock_page
           widgets:
             - obj: # clock container
-                height: size_content
+                height: SIZE_CONTENT
                 width: 240
                 align: CENTER
                 pad_all: 0
@@ -1535,7 +1555,7 @@ The script runs at the beginning of every minute to update the line positions fo
                   - meter: # clock face
                       height: 220
                       width: 220
-                      align: center
+                      align: CENTER
                       bg_opa: TRANSP
                       border_width: 0
                       text_color: 0x000000
@@ -1677,7 +1697,7 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                       id: lvgl_label
                       align: CENTER
                       text: "Enter code and \uF00C"
-                      text_align: center
+                      text_align: CENTER
             - btnmatrix:
                 id: lvgl_keypad
                 x: 20
