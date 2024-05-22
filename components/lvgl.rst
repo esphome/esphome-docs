@@ -388,9 +388,11 @@ Layouts
 
 Layouts aim to position widgets automatically, eliminating the need to specify ``x`` and ``y`` coordinates to position each widget. This is a great way to simplify your configuration as it allows you to omit alignment options.
 
-The layout configuration options are applied to any parent widget or page, influencing the appearance of the children.
+The layout configuration options are applied to any parent widget or page, influencing the appearance of the children. The position and size calculated by the layout overwrites the *normal* ``x``, ``y``, ``width``, and ``height`` settings of the children.
 
 Checkout :ref:`lvgl-cook-flex` and :ref:`lvgl-cook-grid` in the Cookbook for examples illustrating how to automate widget positioning, potentially reducing the size of your device's YAML configuration, and saving you from lots of manual calculations.
+
+The ``hidden``, ``ignore_layout`` and ``floating`` :ref:`flags <lvgl-objupdflag-act>` can be used on widgets to ignore them in layout calculations.
 
 **Configuration variables:**
 
@@ -504,8 +506,8 @@ The properties below are common to all widgets.
 **Configuration variables:**
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to top left of parent or screen). If layouts are used, or if specifying ``align``, it is used as an offset to the calculated position (can also be negative).
-- **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If layouts are used, or if specifying ``align``, it is used as an offset to the calculated position (can also be negative).
+- **x** (*Optional*, int16 or percentage): Horizontal position of the widget (anchored in the top left corner, relative to top left of parent or screen). If specifying ``align``, it is used as an offset to the calculated position (can also be negative). Ignored if :ref:`lvgl-layouts` are used.
+- **y** (*Optional*, int16 or percentage): Vertical position of the widget (anchored in the top left corner, relative to to top left of the parent or screen). If specifying ``align``, it is used as an offset to the calculated position (can also be negative). Ignored if :ref:`lvgl-layouts` are used.
 
 .. note::
 
@@ -576,7 +578,7 @@ See :ref:`lvgl-cook-cover` for a cookbook example illustrating how to use stylin
 
 In addition to visual styling, each widget supports some boolean **flags** to influence the behavior:
 
-- **hidden** (*Optional*, boolean): make the widget hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.show`` and ``lvgl.widget.hide``. Defaults to ``false``.
+- **hidden** (*Optional*, boolean): make the widget hidden (like it wasn't there at all), also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.show`` and ``lvgl.widget.hide``. Hidden objects are ignored in layout calculations. Defaults to ``false``.
 - **checkable** (*Optional*, boolean): toggle checked state when the widget is clicked.
 - **clickable** (*Optional*, boolean): make the widget clickable by input devices. Defaults to ``true``. If ``false``, it will pass the click to the widgets behind it (clicking through).
 - **scrollable** (*Optional*, boolean): the widget can become scrollable. Defaults to ``true`` (also see the ``scrollbar_mode`` property).
@@ -594,7 +596,7 @@ In addition to visual styling, each widget supports some boolean **flags** to in
 - **event_bubble** (*Optional*, boolean): propagate the events to the parent.
 - **gesture_bubble** (*Optional*, boolean): propagate the gestures to the parent.
 - **adv_hittest** (*Optional*, boolean): allow performing more accurate hit (click) test. For example, may help by accounting for rounded corners.
-- **ignore_layout** (*Optional*, boolean): do not make the widget positionable by the layouts.
+- **ignore_layout** (*Optional*, boolean): the widget is simply ignored by the layouts. Its coordinates can be set as usual.
 - **floating** (*Optional*, boolean): do not scroll the widget when the parent scrolls and ignore layout.
 - **overflow_visible** (*Optional*, boolean): do not clip the children's content to the parent's boundary.
 - **layout_1**, **layout_2** (*Optional*, boolean): custom flags, free to use by layouts.
