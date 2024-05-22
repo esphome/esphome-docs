@@ -73,18 +73,32 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 
 - **displays** (**Required**, list): A list of displays where LVGL should perform rendering based on its configuration:
     - **display_id** (**Required**, :ref:`config-id`): The ID of a display configuration.
-- **touchscreens** (*Optional*, list): A list of touchscreens interacting with the LVGL widgets on the display. May be omitted if a rotary encoder is configured (see below).
+- **touchscreens** (*Optional*, list): A list of touchscreens interacting with the LVGL widgets on the display. May be omitted if a rotary encoder or a keypad is configured.
     - **touchscreen_id** (**Required**, :ref:`config-id`): ID of a touchscreen configuration related to a display.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
-- **rotary_encoders** (*Optional*, list): A list of rotary encoders or keypads interacting with the LVGL widgets on the display. May be omitted if a touchscreen is configured (as above).
+- **rotary_encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display. May be omitted if a touchscreen or keypad is configured.
     - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
-    - **enter_button** (**Required**, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a push button within the input device used to interact with the widgets.
-    - **sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder` used to interact with the widgets; or a list with buttons for left/right navigation:
-        - **left_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a left push button within the input device.
-        - **right_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a right push button within the input device.
+    - **enter_button** (**Required**, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as the ``ENTER`` key.
+    - **sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder`; or a list with buttons for left/right interaction with the widgets:
+        - **left_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``LEFT`` key.
+        - **right_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``RIGHT`` key.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
+- **keypads** (*Optional*, list): A list of keypads interacting with the LVGL widgets on the display. May be omitted if a touchscreen or a rotary encoder is configured.
+    - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
+    - **up** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as an ``UP`` key.
+    - **down** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``DOWN`` key.
+    - **right** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``RIGHT`` key.
+    - **left** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``LEFT`` key.
+    - **esc** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``ESC`` key.
+    - **del** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``DEL`` key.
+    - **backspace** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``BACKSPACE`` key.
+    - **enter** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``ENTER`` key.
+    - **next** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``NEXT`` key.
+    - **prev** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``PREV`` key.
+    - **home** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``HOME`` key.
+    - **end** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as an ``END`` key.
 - **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
 - **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM, the recommended value is ``25%``. 
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval at which the screen should be redrawn (when necessary). Defaults to ``1s``.
@@ -99,15 +113,19 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 - **pages** (*Optional*, list): A list of page IDs. Each page acts as a parent for widgets placed on it. May not be used with ``widgets`` (above). Options for each page:
     - **skip** (*Optional*, boolean): Option to skip this page when navigating between them with :ref:`lvgl-pgnx-act`.
     - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
-    - All other options from :ref:`lvgl-styling` to be applied to this page.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
+    - All other options from :ref:`lvgl-styling` to be applied to this page.
 - **page_wrap** (*Optional*, boolean): Wrap pages around when navigating between them with :ref:`lvgl-pgnx-act`. Defaults to ``true``.
 - **top_layer** (*Optional*, list): A special kind of *Always on Top* page, which acts as a parent for widgets placed on it. It's shown above all the pages, which may be useful for widgets which always need to be visible. May not be used with ``widgets`` (above). Options:
     - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
-    - All other options from :ref:`lvgl-styling` to be applied to this page.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
+    - All other options from :ref:`lvgl-styling` to be applied to this page.
 - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
 - All other options from :ref:`lvgl-styling` to be applied to all widgets directly.
+
+.. tip::
+
+    When using binary sensors (from physical keys) to interact with LVGL, if there are only 3 keys available, they are best used when configured as a rotary encoder, where ``LEFT`` and ``RIGHT`` act like the rotary wheel, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-event-trg>`. With 4 or more keys, a keypad configuration suits better. For example a 5-key keypad might use ``PREV``, ``NEXT``, ``UP``, ``DOWN`` and ``ENTER``: ``PREV``/``NEXT`` can select a widget within the group, ``UP``/``DOWN`` changes the value, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-event-trg>`.
 
 **Example:**
 
