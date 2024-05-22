@@ -83,13 +83,13 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder`; or a list with buttons for left/right interaction with the widgets:
         - **left_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``LEFT`` key.
         - **right_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``RIGHT`` key.
-    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
-    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
+    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``. Can be disabled with ``never``.
+    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``. Can be disabled with ``never``.
 - **keypads** (*Optional*, list): A list of keypads interacting with the LVGL widgets on the display. May be omitted if a touchscreen or a rotary encoder is configured.
     - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
     - **up** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as an ``UP`` key.
     - **down** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``DOWN`` key.
-    - **right** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``RIGHT`` key.
+    - **right** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as a ``RIGHT`` key.
     - **left** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``LEFT`` key.
     - **esc** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``ESC`` key.
     - **del** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``DEL`` key.
@@ -99,6 +99,8 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **prev** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``PREV`` key.
     - **home** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as a ``HOME`` key.
     - **end** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/binary_sensor/index`, to be used as an ``END`` key.
+    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``. Can be disabled with ``never``.
+    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``. Can be disabled with ``never``.
 - **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
 - **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM, the recommended value is ``25%``. 
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval at which the screen should be redrawn (when necessary). Defaults to ``1s``.
@@ -126,6 +128,8 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 .. tip::
 
     When using binary sensors (from physical keys) to interact with LVGL, if there are only 3 keys available, they are best used when configured as a rotary encoder, where ``LEFT`` and ``RIGHT`` act like the rotary wheel, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-event-trg>`. With 4 or more keys, a keypad configuration suits better. For example a 5-key keypad might use ``PREV``, ``NEXT``, ``UP``, ``DOWN`` and ``ENTER``: ``PREV``/``NEXT`` can select a widget within the group, ``UP``/``DOWN`` changes the value, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-event-trg>`.
+    
+    The ``long_press_time`` and ``long_press_repeat_time`` can be fine-tuned also by setting them to ``never`` and using the ``autorepeat`` filter on each binary sensor separately.
 
 **Example:**
 
