@@ -219,7 +219,7 @@ LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/W
 - *border*: the border line, drawn on the inner side of the bounding box (pixels).
 - *outline*: the outline, drawn on the outer side of the bounding box (pixels).
 - *padding*: space to keep between the border of the widget and its content or children (*I don't want my children too close to my sides, so keep this space*). 
-- *content*: the content area which is the size of the bounding box reduced by the border width and padding (it's what's referenced as the ``size_content`` option of certain widgets).
+- *content*: the content area which is the size of the bounding box reduced by the border width and padding (it's what's referenced as the ``SIZE_CONTENT`` option of certain widgets).
 
 You can adjust the appearance of widgets by changing their foreground, background, border color and/or font. Some widgets allow for more complex styling, effectively changing all or part of their appearance. 
 
@@ -444,8 +444,8 @@ In a grid layout, *all the widgets placed on the grid* will get some additional 
 
     - **grid_cell_row_pos** (**Required**, int16): Position of the widget, in which row to appear (0 based count).
     - **grid_cell_column_pos** (**Required**, int16): Position of the widget, in which column to appear (0 based count).
-    - **grid_cell_x_align** (*Optional*, string): How to align the widget horizontally within the cell. Possible options below.
-    - **grid_cell_y_align** (*Optional*, string): How to align the widget vertically within the cell. Possible options below.
+    - **grid_cell_x_align** (*Optional*, string): How to align the widget horizontally within the cell. Can also be applied through :ref:`lvgl-styling`. Possible options below.
+    - **grid_cell_y_align** (*Optional*, string): How to align the widget vertically within the cell. Can also be applied through :ref:`lvgl-styling`. Possible options below.
     - **grid_cell_row_span**  (*Optional*, int16): How many rows to span across the widget. Defaults to ``1``.
     - **grid_cell_column_span** (*Optional*, int16): How many columns to span across the widget. . Defaults to ``1``.
 
@@ -489,14 +489,14 @@ The properties below are common to all widgets.
 
     By default, the ``x`` and ``y`` coordinates are measured from the *top left corner* of the parent's content area. :ref:`Important <lvgl-styling>`: content area starts *after the padding* thus if the parent has a non-zero padding value, position will be shifted with that. Percentage values are calculated from the parent's content area size. 
 
-- **width** (*Optional*): Width of the widget in pixels or a percentage, or ``size_content`` (see note below).
-- **height** (*Optional*): Height of the widget in pixels or a percentage, or ``size_content`` (see note below).
+- **width** (*Optional*): Width of the widget in pixels or a percentage, or ``SIZE_CONTENT`` (see note below).
+- **height** (*Optional*): Height of the widget in pixels or a percentage, or ``SIZE_CONTENT`` (see note below).
 
 .. note::
 
-    The size settings support a special value: ``size_content``. It means the widget's size in the respective direction will be set to the size of its children. Note that only children on the right and bottom sides will be considered and children on the top and left remain cropped. This limitation makes the behavior more predictable. Widgets with ``hidden`` or ``floating`` flags will be ignored by the ``size_content`` calculation.
+    The size settings support a special value: ``SIZE_CONTENT``. It means the widget's size in the respective direction will be set to the size of its children. Note that only children on the right and bottom sides will be considered and children on the top and left remain cropped. This limitation makes the behavior more predictable. Widgets with ``hidden`` or ``floating`` flags will be ignored by the ``SIZE_CONTENT`` calculation.
     
-    Similarly to CSS, LVGL also supports ``min_width``, ``max_width``, ``min_height`` and ``max_height``. These are limits preventing a widget's size from becoming smaller/larger than these values. They are especially useful if the size is set by percentage or ``size_content``.
+    Similarly to CSS, LVGL also supports ``min_width``, ``max_width``, ``min_height`` and ``max_height``. These are limits preventing a widget's size from becoming smaller/larger than these values. They are especially useful if the size is set by percentage or ``SIZE_CONTENT``.
 
 - **min_width**, **max_width**, **min_height**, **max_height** (*Optional*, int16 or percentage): Sets a minimal/maximal width or a minimal/maximal height. Pixel and percentage values can be used. Percentage values are relative to the dimensions of the parent's content area. Defaults to ``0%``.
 - **scrollbar_mode** (*Optional*, string): If a child widget is outside its parent content area (the size without padding), the parent can become scrollable (see the ``scrollable`` :ref:`flag <lvgl-objupdflag-act>`). The widget can either be scrolled horizontally or vertically in one stroke. Scroll bars can appear depending on the setting:
@@ -604,8 +604,8 @@ A label is the basic widget type that is used to display text.
 - **text_line_space** (*Optional*, int16): Line spacing of the text. Inherited from parent. Defaults to ``0``.
 - **text_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the text. Inherited from parent. Defaults to ``COVER``.
 - **recolor** (*Optional*, boolean): Enable recoloring of button text with ``#``. This makes it possible to set the color of characters in the text individually by prefixing the text to be re-colored with a ``#RRGGBB`` hexadecimal color code followed by a *space*, and finally closed with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
-- **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``size_content``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or set by :ref:`lvgl-layouts`), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
-    - ``WRAP``: Wrap lines which are too long. If the height is ``size_content``, the label's height will be expanded, otherwise the text will be clipped (default). 
+- **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``SIZE_CONTENT``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or set by :ref:`lvgl-layouts`), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
+    - ``WRAP``: Wrap lines which are too long. If the height is ``SIZE_CONTENT``, the label's height will be expanded, otherwise the text will be clipped (default). 
     - ``DOT``: Replaces the last 3 characters from bottom right corner of the label with dots.
     - ``SCROLL``: If the text is wider than the label, scroll the text horizontally back and forth. If it's higher, scroll vertically. Text will scroll in only one direction; horizontal scrolling has higher precedence.
     - ``SCROLL_CIRCULAR``: If the text is wider than the label, continuously scroll the text horizontally. If it's higher, scroll vertically. Text will scroll in only one direction; horizontal scrolling has higher precedence.
@@ -1476,7 +1476,7 @@ Images are the basic widgets used to display images.
 - **pivot_x** (*Optional*): Horizontal position of the pivot point of rotation relative to the top left corner of the image. Defaults to ``50%`` (center of image).
 - **pivot_y** (*Optional*): Vertical position of the pivot point of rotation relative to the top left corner of the image.. Defaults to ``50%`` (center of image).
 - **antialias** (*Optional*): The quality of the angle or zoom transformation. When anti-aliasing is enabled, the transformations are higher quality but slower. Defaults to ``false``.
-- **mode** (*Optional*): Either ``REAL`` or  ``VIRTUAL``. With ``VIRTUAL``, when the image is zoomed or rotated, the real coordinates of the image object are not changed. The larger content simply overflows the object's boundaries. It also means the layouts are not affected the by the transformations. With ``REAL``, if the width/height of the object is set to ``size_content``, the object's size will be set to the zoomed and rotated size. If an explicit size is set, the overflowing content will be cropped. Defaults to ``VIRTUAL``.
+- **mode** (*Optional*): Either ``REAL`` or  ``VIRTUAL``. With ``VIRTUAL``, when the image is zoomed or rotated, the real coordinates of the image object are not changed. The larger content simply overflows the object's boundaries. It also means the layouts are not affected the by the transformations. With ``REAL``, if the width/height of the object is set to ``SIZE_CONTENT``, the object's size will be set to the zoomed and rotated size. If an explicit size is set, the overflowing content will be cropped. Defaults to ``VIRTUAL``.
 - **offset_x**, **offset_y** (*Optional*): Add an offset to the displayed image. Useful if the widget size is smaller than the image source size. Tip: a *running image* effect can be created by animating these values.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
@@ -1568,7 +1568,7 @@ The Line widget is capable of drawing straight lines between a set of points.
 - **line_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the line.
 - Style options from :ref:`lvgl-styling`, all the typical background properties and line style properties.
 
-By default, the Line widget width and height dimensions are set to ``size_content``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts of the line may not be visible.
+By default, the Line widget width and height dimensions are set to ``SIZE_CONTENT``. This means it will automatically set its size to fit all the points. If the size is set explicitly, parts of the line may not be visible.
 
 **Example:**
 
