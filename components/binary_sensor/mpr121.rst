@@ -82,7 +82,7 @@ GPIO
 
 The ``mpr121`` also supports configuring its touch electrodes as GPIO inputs and outputs. To do so,
 specify an ``id`` in the configuration of the ``mpr121`` component. Then, configure a GPIO output or
-input using this ID in the ``mpr121_id`` field.
+input using this ID in the ``mpr121`` field.
 
 .. code-block:: yaml
 
