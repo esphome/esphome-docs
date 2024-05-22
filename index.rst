@@ -198,6 +198,7 @@ Management and Monitoring
     OTA Updates, components/ota, system-update.svg, dark-invert
     OTA Updates via HTTP Request, components/ota_http_request, system-update.svg, dark-invert
     Prometheus, components/prometheus, prometheus.svg
+    Safe Mode, components/safe_mode, restart-alert.svg
     Web Server, components/web_server, http.svg, dark-invert
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg, dark-invert
 
