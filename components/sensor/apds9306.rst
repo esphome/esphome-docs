@@ -61,7 +61,6 @@ The ``apds9306`` sensor allows you to use your :doc:`apds9306` to perform ambien
   - 1000
 
 - **update\_interval** (*Optional*, :ref:`config-time`): The interval at which the sensor reading will be updated. Defaults to ``60s``.
-- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All opther options from :ref:`Sensor <config-sensor>`.
 
 See Also
