@@ -16,6 +16,7 @@ This driver has been tested with the following displays:
 
   - Seeed Sensecap Indicator
   - Makerfabs 4" display
+  - GUITION 4" ESP32-S3-4848S040 Smart Display
 
 Usage
 -----
@@ -190,6 +191,67 @@ Seeed Sensecap Indicator
           it.fill(COLOR_BLACK);
           it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_LEFT, "Hello World!");
 
+
+GUITION 4" ESP32-S3-4848S040 Smart Display
+************************
+
+.. code-block:: yaml
+
+    spi:
+      - id: lcd_spi
+        clk_pin: GPIO48
+        mosi_pin: GPIO47
+    
+    display:
+      - platform: st7701s
+        id: my_display
+        update_interval: never
+        auto_clear_enabled: False
+        spi_mode: MODE3
+        data_rate: 2MHz
+        color_order: RGB
+        invert_colors: False
+        dimensions:
+          width: 480
+          height: 480
+        cs_pin: 39
+        de_pin: 18
+        hsync_pin: 16
+        vsync_pin: 17
+        pclk_pin: 21
+        pclk_frequency: 12MHz
+        pclk_inverted: False
+        hsync_pulse_width: 8
+        hsync_front_porch: 10
+        hsync_back_porch: 20
+        vsync_pulse_width: 8
+        vsync_front_porch: 10
+        vsync_back_porch: 10
+        init_sequence:
+          - 1
+          # Custom sequences are an array, first byte is command, the rest are data.
+          - [ 0xFF, 0x77, 0x01, 0x00, 0x00, 0x10 ] # CMD2_BKSEL_BK0
+          - [ 0xCD, 0x00 ] # disable MDT flag
+        data_pins:
+          red:
+            - 11        #r1
+            - 12        #r2
+            - 13        #r3
+            - 14        #r4
+            - 0         #r5
+          green:
+            - 8         #g0
+            - 20        #g1
+            - 3         #g2
+            - 46        #g3
+            - 9         #g4
+            - 10        #g5
+          blue:
+            - 4         #b1
+            - 5         #b2
+            - 6         #b3
+            - 7         #b4
+            - 15        #b5 
 
 See Also
 --------
