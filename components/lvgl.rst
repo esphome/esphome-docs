@@ -16,7 +16,7 @@ In order to be able to drive a :ref:`display <display-hw>` with LVGL under ESPHo
 
 The graphic display should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set. It should have an :ref:`config-id` configured, which will be referenced by the main LGVL component.
 
-For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly preferred) or a :doc:`/components/sensor/rotary_encoder` can be used.
+For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly preferred), a :doc:`/components/sensor/rotary_encoder` or a custom keypad made up from discrete :doc:`Binary Sensors </components/binary_sensor/index>` can be used.
 
 Check out a few detailed examples :ref:`in the Cookbook <lvgl-cook>` to see a couple ways to integrate LVGL through ESPHome with your environment.
 
@@ -58,7 +58,7 @@ Some widgets integrate also as native ESPHome components:
     * - ``led``
       - :doc:`Light </components/light/lvgl>`
 
-These are useful to make :ref:`automations <automation>` triggered by actions performed at the screen.
+These are useful with `Home Assistant automations <https://www.home-assistant.io/docs/automation/>`__ interacting directly with the widgets.
 
 Main Configuration
 ------------------
@@ -101,13 +101,20 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **end** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``END`` key.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``. Can be disabled with ``never``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the encoder above, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``. Can be disabled with ``never``.
+
+    .. tip::
+
+        When using binary sensors (from physical keys) to interact with LVGL, if there are only 3 keys available, they are best used when configured as a rotary encoder, where ``LEFT`` and ``RIGHT`` act like the rotary wheel, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-event-trg>`. With 4 or more keys, a keypad configuration suits better. For example a 5-key keypad might use ``PREV``, ``NEXT``, ``UP``, ``DOWN`` and ``ENTER``: ``PREV``/``NEXT`` can select a widget within the group, ``UP``/``DOWN`` changes the value, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-event-trg>`.
+        
+        The ``long_press_time`` and ``long_press_repeat_time`` can be fine-tuned also by setting them to ``never`` and using the ``autorepeat`` filter on each binary sensor separately.
+
 - **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
 - **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM, the recommended value is ``25%``. 
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval at which the screen should be redrawn (when necessary). Defaults to ``1s``.
 - **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, enum): The byte order of the data LVGL outputs; either ``big_endian`` or ``little_endian``. Defaults to ``big_endian``.
 - **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): Solid color used to fill the background. Can be changed at runtime with the ``lvgl.update`` action.
-- **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as background wallpaper. To change the image at runtime use the ``lvgl.update`` action.
+- **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as background wallpaper. To change the image at runtime use the ``lvgl.update`` action. Also see :ref:`lvgl-wgt-img` for a note regarding supported image formats.
 - **default_font** (*Optional*, enum): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use in LVGL widget's ``styles`` configuration. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to be applied to all widgets. See :ref:`below <lvgl-theme>` for more details. 
@@ -125,11 +132,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
 - All other options from :ref:`lvgl-styling` to be applied to all widgets directly.
 
-.. tip::
 
-    When using binary sensors (from physical keys) to interact with LVGL, if there are only 3 keys available, they are best used when configured as a rotary encoder, where ``LEFT`` and ``RIGHT`` act like the rotary wheel, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-event-trg>`. With 4 or more keys, a keypad configuration suits better. For example a 5-key keypad might use ``PREV``, ``NEXT``, ``UP``, ``DOWN`` and ``ENTER``: ``PREV``/``NEXT`` can select a widget within the group, ``UP``/``DOWN`` changes the value, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-event-trg>`.
-    
-    The ``long_press_time`` and ``long_press_repeat_time`` can be fine-tuned also by setting them to ``never`` and using the ``autorepeat`` filter on each binary sensor separately.
 
 **Example:**
 
@@ -149,10 +152,6 @@ The following configuration variables apply to the main ``lvgl`` component, in o
                 text: 'Hello World!'
 
 See :ref:`lvgl-cook-navigator` in the Cookbook for an example illustrating how to easily implement a page navigation bar at the bottom of the screen.
-
-.. note::
-
-    Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
 
 .. _lvgl-color:
 
@@ -681,7 +680,70 @@ A label is the basic widget type that is used to display text.
               format: "%.0fdBm"
               args: [ 'id(wifi_signal_db).get_state()' ]
 
-The ``label`` can be also integrated as :doc:`/components/text/lvgl` or :doc:`/components/text_sensor/lvgl`.
+The ``label`` can be also integrated as :doc:`Text </components/text/lvgl>` or :doc:`Text Sensor </components/text_sensor/lvgl>` component.
+
+.. _lvgl-wgt-txt:
+
+``textarea``
+************
+
+The Textarea is an extended label widget which displays a cursor and allows the user to input text. Long lines are wrapped and when the text becomes long enough the Text area can be scrolled. It supports one line mode and password mode, where typed characters are replaced visually with bullets or asterisks.
+
+.. figure:: /components/images/lvgl_textarea.png
+    :align: center
+
+**Configuration variables:**
+
+- **placeholder_text** (*Optional*, string): A placeholder text can be specified, which is displayed when the Text area is empty.
+- **accepted_chars** (*Optional*, string): You can set a list of accepted characters, so other characters will be ignored.
+- **one_line** (*Optional*, boolean): The text area can be limited to only allow a single line of text. In this case the height will set automatically to fit only one line, line break characters will be ignored, and word wrap will be disabled.
+- **password_mode** (*Optional*, boolean): The text area supports password mode. By default, if the ``•`` (bullet, ``0x2022``) glyph exists in the font, the entered characters are converted to it after some time or when a new character is entered. If ``•`` is missing from the font, ``*`` (asterisk) will be used. 
+- **max_length** (*Optional*, int): Limit the maximum number of characters to this value.
+- any :ref:`Styling <lvgl-styling>` and state-based option for the background of the textarea. Uses all the typical background style properties and the text/label related style properties for the text.
+
+**Actions:**
+
+``lvgl.textarea.update`` :ref:`action <config-action>` updates the widget's ``text`` property, to replace the entire text content.
+
+**Triggers:**
+
+- ``on_value`` :ref:`trigger <automation>` is activated on every keystroke.
+- ``on_ready`` :ref:`trigger <automation>` is activated when ``one_line`` is configured as ``true`` and the newline character is received (Enter/Ready key on the keyboard).
+
+For both triggers above, when triggered, the variable ``text`` (``std::string`` type) is available for use in lambdas within these triggers and it will contain the entire contents of the textarea.
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - textarea:
+        id: textarea_id
+        one_line: true
+        placeholder_text: "Enter text here"
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.textarea.update:
+            id: textarea_id
+            text: "Hello World!"
+
+    # Example trigger:
+    - textarea:
+        ...
+        on_value:
+          then:
+            - logger.log:
+                format: "Textarea changed to: %s"
+                args: [ text.c_str() ]
+        on_ready:
+          then:
+            - logger.log:
+                format: "Textarea ready: %s"
+                args: [ text.c_str() ]
+
+The ``textarea`` can be also integrated as :doc:`Text </components/text/lvgl>` or :doc:`Text Sensor </components/text_sensor/lvgl>` component.
 
 .. _lvgl-wgt-btn:
 
@@ -742,7 +804,7 @@ To have a button with a text label on it, add a child :ref:`lvgl-wgt-lbl` widget
                 format: "Button checked state: %d"
                 args: [ x ]
 
-The ``btn`` can be also integrated as a :doc:`/components/binary_sensor/lvgl` or as a :doc:`/components/switch/lvgl`.
+The ``btn`` can be also integrated as a :doc:`Binary Sensor </components/binary_sensor/lvgl>` or as a :doc:`Switch </components/switch/lvgl>` component.
 
 See :ref:`lvgl-cook-binent` for an example illustrating how to use a checkable button to act on a Home Assistant service.
 
@@ -912,7 +974,7 @@ The Switch looks like a little slider and can be used to turn something on and o
                 format: "Switch state: %d"
                 args: [ x ]
 
-The ``switch`` can be also integrated as a :doc:`/components/switch/lvgl`.
+The ``switch`` can be also integrated as a :doc:`Switch </components/switch/lvgl>` component.
 
 See :ref:`lvgl-cook-relay` for an example how to use a switch to act on a local component.
 
@@ -971,7 +1033,7 @@ The Checkbox widget is made internally from a *tick box* and a label. When the C
                 format: "Checkbox state: %d"
                 args: [ x ]
 
-The ``checkbox`` can be also integrated as a :doc:`/components/switch/lvgl`.
+The ``checkbox`` can be also integrated as a :doc:`Switch </components/switch/lvgl>` component.
 
 .. _lvgl-wgt-drp:
 
@@ -1044,7 +1106,7 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
               format: "Dropdown closed. Selected index is: %d"
               args: [ x ]
 
-The ``dropdown`` can be also integrated as :doc:`/components/select/lvgl`.
+The ``dropdown`` can be also integrated as :doc:`Select </components/select/lvgl>` component.
 
 .. _lvgl-wgt-rol:
 
@@ -1104,7 +1166,7 @@ Roller allows you to simply select one option from a list by scrolling.
               format: "Selected index is: %d"
               args: [ x ]
 
-The ``roller`` can be also integrated as :doc:`/components/select/lvgl`.
+The ``roller`` can be also integrated as :doc:`Select </components/select/lvgl>` component.
 
 .. _lvgl-wgt-bar:
 
@@ -1155,7 +1217,7 @@ Not only the end, but also the start value of the bar can be set, which changes 
             id: bar_id
             value: 55
 
-The ``bar`` can be also integrated as :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`.
+The ``bar`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
 .. _lvgl-wgt-sli:
 
@@ -1223,7 +1285,7 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
     The ``on_value`` trigger is sent as the slider is dragged or changed with keys. The event is sent *continuously* while the slider is being dragged; this generally has a negative effect on performance. To mitigate this, consider using a :ref:`universal event trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
-The ``slider`` can be also integrated as :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`.
+The ``slider`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
 See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples illustrating how to use a slider to control entities in Home Assistant.
 
@@ -1305,7 +1367,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
     The ``on_value`` trigger is sent as the arc knob is dragged or changed with keys. The event is sent *continuously* while the arc knob is being dragged; this generally has a negative effect on performance. To mitigate this, consider using a :ref:`universal event trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
-The ``arc`` can be also integrated as :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`.
+The ``arc`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
 See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples illustrating how to use a slider (or an arc) to control entities in Home Assistant.
 
@@ -1377,7 +1439,7 @@ The Spinbox contains a numeric value (as text) which can be increased or decreas
                 format: "Spinbox value is %f"
                 args: [ x ]
 
-The ``spinbox`` can be also integrated as :doc:`/components/number/lvgl` or :doc:`/components/sensor/lvgl`.
+The ``spinbox`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
 See :ref:`lvgl-cook-climate` for an example illustrating how to implement a thermostat control using the spinbox.
 
@@ -1533,6 +1595,10 @@ Images are the basic widgets used to display images.
             id: img_id
             src: cat_image_bowtie
 
+.. note::
+
+    Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
+
 .. _lvgl-wgt-aim:
 
 ``animimg``
@@ -1654,76 +1720,13 @@ The LED widgets are either circular or rectangular widgets whose brightness can 
             id: led_id
             color: 0x00FF00
 
-The ``led`` can be also integrated as :doc:`/components/light/lvgl`.
+The ``led`` can be also integrated as :doc:`Light </components/light/lvgl>` component.
 
 .. note::
 
     If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup, according to its ``restore_mode`` setting.
 
 Check out :ref:`lvgl-cook-keypad` in the Cookbook for an example illustrating how to change the ``led`` styling properties from an automation.
-
-.. _lvgl-wgt-txt:
-
-``textarea``
-************
-
-The Textarea is a widget which displays a cursor and allows the user to input text. Long lines are wrapped and when the text becomes long enough the Text area can be scrolled. It supports one line mode and password mode, where typed characters are replaced visually with bullets or asterisks.
-
-.. figure:: /components/images/lvgl_textarea.png
-    :align: center
-
-**Configuration variables:**
-
-- **placeholder_text** (*Optional*, string): A placeholder text can be specified, which is displayed when the Text area is empty.
-- **accepted_chars** (*Optional*, string): You can set a list of accepted characters, so other characters will be ignored.
-- **one_line** (*Optional*, boolean): The text area can be limited to only allow a single line of text. In this case the height will set automatically to fit only one line, line break characters will be ignored, and word wrap will be disabled.
-- **password_mode** (*Optional*, boolean): The text area supports password mode. By default, if the ``•`` (bullet, ``0x2022``) glyph exists in the font, the entered characters are converted to it after some time or when a new character is entered. If ``•`` is missing from the font, ``*`` (asterisk) will be used. 
-- **max_length** (*Optional*, int): Limit the maximum number of characters to this value.
-- any :ref:`Styling <lvgl-styling>` and state-based option for the background of the textarea. Uses all the typical background style properties and the text/label related style properties for the text.
-
-**Actions:**
-
-``lvgl.textarea.update`` :ref:`action <config-action>` updates the widget's ``text`` property, to replace the entire text content.
-
-**Triggers:**
-
-- ``on_value`` :ref:`trigger <automation>` is activated on every keystroke.
-- ``on_ready`` :ref:`trigger <automation>` is activated when ``one_line`` is configured as ``true`` and the newline character is received (Enter/Ready key on the keyboard).
-
-For both triggers above, when triggered, the variable ``text`` (``std::string`` type) is available for use in lambdas within these triggers and it will contain the entire contents of the textarea.
-
-**Example:**
-
-.. code-block:: yaml
-
-    # Example widget:
-    - textarea:
-        id: textarea_id
-        one_line: true
-        placeholder_text: "Enter text here"
-
-    # Example action:
-    on_...:
-      then:
-        - lvgl.textarea.update:
-            id: textarea_id
-            text: "Hello World!"
-
-    # Example trigger:
-    - textarea:
-        ...
-        on_value:
-          then:
-            - logger.log:
-                format: "Textarea changed to: %s"
-                args: [ text.c_str() ]
-        on_ready:
-          then:
-            - logger.log:
-                format: "Textarea ready: %s"
-                args: [ text.c_str() ]
-
-The ``textarea`` can be also integrated as :doc:`/components/text/lvgl` or :doc:`/components/text_sensor/lvgl`.
 
 .. _lvgl-wgt-spi:
 

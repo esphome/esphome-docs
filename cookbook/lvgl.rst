@@ -451,6 +451,9 @@ If you change the size of the widget, to obtain a uniform gradient, be sure to i
                         align: CENTER
                         y: -6
 
+.. tip::
+
+    You can omit the ``obj`` used to hide the middle part of meter indicator line by using a bitmap ``img`` indicator as needle, were only the part hanging above the ticks scale is visible, the rest is transparent.
 
 .. _lvgl-cook-climate:
 
@@ -1170,7 +1173,7 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                               align: CENTER
                               text: "\U000F0045"
 
-The big advantage here is that whenever you need to add, for example, an extra column of buttons for a new cover, you just simply append it to the ``grid_columns`` variable, and add the corresponding widgets as above. With ``STRETCH`` their sizes and positions will automatically be calculated to fill in the cells, while the parent's ``pad_all``, ``pad_row`` and ``pad_column`` can help with spacing between them.
+The big advantage here is that whenever you need to add, for example, an extra column of buttons for a new cover, you just simply append it to the ``grid_columns`` variable, and add the corresponding widgets as above. With ``STRETCH`` their sizes and positions will automatically be calculated to fill in the cells, while the parent's ``pad_all``, ``pad_row`` and ``pad_column`` can help with spacing between them. See :ref:`lvgl-cook-weather` further down this page for another example relying on **Grid**.
 
 .. _lvgl-cook-btlg:
 
@@ -1235,7 +1238,7 @@ MDI icons in text
 
 ESPHome's :ref:`font renderer <display-fonts>` allows you to use any OpenType/TrueType font file for your text. This is very flexible because you can prepare various sets of fonts at different sizes each with a different number of glyphs; this is important as it may help to conserve flash memory space.
 
-One example is when you'd like some MDI icons to be used in line with the text (similar to how LVGL's internal fonts and symbols coexist). You can use a font of your choice; choose the symbols you want and mix them in a single sized set with icons from MDI.
+One example is when you'd like some MDI icons to be used in line with the text (similar to how LVGL's internal fonts and symbols coexist). You can use a font of your choice; choose the symbols/icons from MDI you want and mix them in a single sized set.
 
 .. figure:: images/lvgl_cook_font_roboto_mdi.png
     :align: center
@@ -2032,7 +2035,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
             entity_id: 
               - text.your_esphome_node_fr_tempap
           data:
-            value: "{{states('sensor.openweathermap_feels_like_temperature') | round(1)}}°C"
+            value: "{{states('sensor.openweathermap_feels_like_temperature') | round(1)}} °C"
 
     - id: weather_temp_forecast_temphi
       alias: 'Weather Temperature Forecast Hi'
@@ -2048,7 +2051,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
             entity_id: 
               - text.your_esphome_node_fr_temphi
           data:
-            value: "{{states('sensor.openweathermap_forecast_temperature') | round(1)}}°C"
+            value: "{{states('sensor.openweathermap_forecast_temperature') | round(1)}} °C"
 
     - id: weather_temp_forecast_templo
       alias: 'Weather Temperature Forecast Lo'
@@ -2064,7 +2067,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
             entity_id: 
               - text.your_esphome_node_fr_templo
           data:
-            value: "{{states('sensor.openweathermap_forecast_temperature_low') | round(1)}}°C"
+            value: "{{states('sensor.openweathermap_forecast_temperature_low') | round(1)}} °C"
 
     - id: weather_temp_outdoor_now
       alias: 'Weather Temperature Now'
@@ -2080,7 +2083,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
             entity_id: 
               - text.your_esphome_node_wd_out_now
           data:
-            value: "{{states('sensor.outdoor_temperature') | round(1)}}°C"
+            value: "{{states('sensor.outdoor_temperature') | round(1)}} °C"
               
 The automations will be triggered to update the labels every time the corresponding entities change, and when the ESPHome comes alive - the reason you also need the :doc:`/components/binary_sensor/status`. Note that you'll need to adjust the entity IDs corresponding to your ESPHome node depedning on how you :ref:`configured it to use its name<esphome-configuration_variables>`.
 
