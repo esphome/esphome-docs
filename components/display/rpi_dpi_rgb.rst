@@ -115,6 +115,9 @@ Example configurations
 Waveshare ESP32-S3 Touch 4.3
 ****************************
 
+  - LCD controller is the ST7262E43
+  - Touch controller is the GT911
+
 .. code-block:: yaml
 
     display:
