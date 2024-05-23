@@ -10,19 +10,6 @@ Additional buttons for Haier AC cleaning. **These buttons are supported only by 
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      baud_rate: 9600
-      tx_pin: GPIOXX
-      rx_pin: GPIOXX
-      id: ac_port
-
-    climate:
-      - platform: haier
-        id: haier_ac
-        protocol: hOn
-        name: Haier AC
-        uart_id: ac_port
-
     button:
       - platform: haier
         haier_id: haier_ac
