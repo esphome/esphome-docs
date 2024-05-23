@@ -51,14 +51,14 @@ The ``apds9306`` sensor allows you to use your :doc:`apds9306` to perform ambien
   - 16 - takes 25ms
   - 13 - takes 3.125ms
 
-- **measurement\_rate** (*Optional*, int): The measurement rate of the ambient light sensor. One of:
+- **measurement\_rate** (*Optional*, int): The measurement rate of the ambient light sensor in milliseconds. One of:
 
-  - 25ms
-  - 50ms
-  - 100ms (``default``);
-  - 200ms
-  - 500ms
-  - 1000ms
+  - 25
+  - 50
+  - 100 (``default``);
+  - 200
+  - 500
+  - 1000
 
 - **update\_interval** (*Optional*, :ref:`config-time`): The interval at which the sensor reading will be updated. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
