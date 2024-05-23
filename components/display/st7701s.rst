@@ -193,7 +193,7 @@ Seeed Sensecap Indicator
 
 
 GUITION 4" ESP32-S3-4848S040 Smart Display
-************************
+******************************************
 
 .. code-block:: yaml
 
