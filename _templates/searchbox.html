@@ -2,6 +2,7 @@
 <div class="pagefind-ui__form" id="search"></div>
 <script>
 
+
     class El {
         constructor(tagname) {
             this.element = document.createElement(tagname);
@@ -48,34 +49,9 @@
             return this.element;
         }
     }
-    let callbackAdded = null;
-
-    const resultTemplate = (result) => {
-        let wrapper = new El("li").class("pagefind-modular-list-result");
-
-        let thumb = new El("div").class("pagefind-modular-list-thumb").addTo(wrapper);
-        if (result?.meta?.image) {
-            new El("img").class("pagefind-modular-list-image").attrs({
-                src: result.meta.image,
-                alt: result.meta.image_alt || result.meta.title
-            }).addTo(thumb);
-        }
-
-        let inner = new El("div").class("pagefind-modular-list-inner").addTo(wrapper);
-        let title = new El("p").class("pagefind-modular-list-title").addTo(inner);
-        new El("a").class("pagefind-modular-list-link").text(result.meta?.title).attrs({
-            href: result.meta?.url || result.url
-        }).addTo(title);
-
-        let excerpt = new El("p").class("pagefind-modular-list-excerpt").addTo(inner);
-        new El("a").class("pagefind-modular-list-link").html(result.excerpt).attrs({
-            href: result.meta?.url || result.url
-        }).addTo(excerpt);
-
-        return wrapper.element;
-    }
 
     window.addEventListener('DOMContentLoaded', (event) => {
+
         const targetClass = "search-results";
         const docel = document.getElementsByClassName("document");
         if (docel.length === 0)
@@ -83,6 +59,13 @@
         const inpel = document.getElementById("search");
         if (!inpel)
             return;
+
+        var mobileWidth = getComputedStyle(document.body).getPropertyValue("--mobile-width-stop");
+
+        function isMobile() {
+            return window.innerWidth <= mobileWidth;
+        }
+
         const target = document.createElement("div");
         target.classList.add(targetClass);
         target.id = targetClass;
@@ -91,7 +74,33 @@
 
         const margin = 20;
 
-        function showTarget() {
+        const resultTemplate = (result) => {
+            let wrapper = new El("li").class("pagefind-modular-list-result");
+
+            let thumb = new El("div").class("pagefind-modular-list-thumb").addTo(wrapper);
+            if (result?.meta?.image) {
+                new El("img").class("pagefind-modular-list-image").attrs({
+                    src: result.meta.image,
+                    alt: result.meta.image_alt || result.meta.title
+                }).addTo(thumb);
+            }
+
+            let inner = new El("div").class("pagefind-modular-list-inner").addTo(wrapper);
+            let title = new El("p").class("pagefind-modular-list-title").addTo(inner);
+            new El("a").class("pagefind-modular-list-link").text(result.meta?.title).attrs({
+                href: result.meta?.url || result.url
+            }).addTo(title);
+
+            let excerpt = new El("p").class("pagefind-modular-list-excerpt").addTo(inner);
+            new El("a").class("pagefind-modular-list-link").html(result.excerpt).attrs({
+                href: result.meta?.url || result.url
+            }).addTo(excerpt);
+
+            return wrapper.element;
+        }
+
+
+        function resizeTarget() {
             const searchPos = inpel.getBoundingClientRect();
             var leftPos;
             var topPos;
@@ -100,7 +109,7 @@
             target.style.height = "fit-content";
             target.style.maxWidth = maxWidth + "px";
             let rightPos = margin;
-            if (window.innerWidth <= 875) {
+            if (isMobile()) {
                 // position search results left aligned with the search box, and below.
                 leftPos = margin / 2;
                 topPos = searchPos.bottom + margin / 2;
@@ -116,23 +125,26 @@
             target.style.top = topPos + "px";
             target.style.left = leftPos + "px";
             let twidth = window.innerWidth - margin - leftPos;
-            if (twidth > 650)
-                twidth = 650;
+            if (twidth > maxWidth)
+                twidth = maxWidth;
             target.style.width = twidth + "px";
             target.style.maxHeight = (window.innerHeight - margin - topPos) + "px";
-            target.style.display = "block";
-            if (!callbackAdded) {
-                callbackAdded = true;
+        }
+
+        window.addEventListener("resize", (event) => { resizeTarget(); });
+
+        function showTarget() {
+            if (target.style.display !== "block") {
+                target.style.display = "block";
                 document.addEventListener('click', clickCallback);
             }
+            resizeTarget();
         }
 
         function hideTargets() {
-            target.style.display = "none";
-            target.style.height = "0";
-            if (callbackAdded) {
+            if (target.style.display !== "none") {
+                target.style.display = "none";
                 document.removeEventListener('click', clickCallback);
-                callbackAdded = false;
             }
         }
 
