@@ -2223,6 +2223,8 @@ This :ref:`action <config-action>` shows a specific page (including pages with t
       then:
         - lvgl.page.show: secret_page  # shorthand version
 
+.. _lvgl-cond:
+
 Conditions
 ----------
 

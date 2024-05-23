@@ -351,6 +351,7 @@ All Triggers
 - :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
 - :ref:`safe_mode.on_safe_mode <safe_mode-configuration_variables>`
 - :ref:`wifi.on_connect / wifi.on_disconnect <wifi-on_connect_disconnect>`
+- :ref:`LVGL event triggers <lvgl-event-trg>`
 
 All Actions
 -----------
@@ -412,6 +413,7 @@ All Actions
   / :ref:`media_player.volume_up <media_player-volume_up>` / :ref:`media_player.volume_down <media_player-volume_down>` / :ref:`media_player.volume_set <media_player-volume_set>`
 - :ref:`ble_client.ble_write <ble_client-ble_write_action>`
 - :ref:`wireguard.disable <wireguard-actions>` / :ref:`wireguard.enable <wireguard-actions>`
+- :ref:`LVGL universal actions <lvgl-objupd-act>`
 
 .. _config-condition:
 
@@ -435,6 +437,7 @@ All Conditions
 - :ref:`number.in_range <number-in_range_condition>`
 - :ref:`fan.is_on <fan-is_on_condition>` / :ref:`fan.is_off <fan-is_off_condition>`
 - :ref:`wireguard.enabled <wireguard-conditions>` / :ref:`wireguard.peer_online <wireguard-conditions>`
+- :ref:`LVGL conditions <lvgl-cond>`
 
 All Lambda Calls
 ----------------
