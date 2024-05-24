@@ -3,12 +3,12 @@ Rotary Encoder Sensor
 
 .. seo::
     :description: Setting up the ``m5angle8`` input device with 8 potentiometers.
-    :image: m5angle8.jpg
+    :image: m5angle8.png
 
 The ``m5angle8`` platform allows to use the [m5angle](https://docs.m5stack.com/en/unit/UNIT%208Angle) input device with ESPHome. 
 It has 8 potentiometers, a switch and can individually drive 9 RGB LEDs. 
 
-.. figure:: images/m5angle8.jpg
+.. figure:: images/m5angle8.png
     :align: center
     :width: 75.0%
 
