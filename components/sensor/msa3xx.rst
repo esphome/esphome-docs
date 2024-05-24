@@ -26,7 +26,7 @@ calibrated and transformed to match the physical orientation of the sensor.
 
 .. figure:: images/msa3xx-ui.png
     :align: center
-    :width: 80.0%
+    :width: 50.0%
 
     Example of MSA3xx sensor represenration in ESPHome dashboard.
 
@@ -71,7 +71,7 @@ calibrated and transformed to match the physical orientation of the sensor.
 
 
 Configuration variables:
-------------------------
+************************
 
 The configuration is made up of three parts: The central component, acceleration sensors,
 text sensors with orientation information, and binary sensors for taps and movement detection.
@@ -107,7 +107,7 @@ You can use shorthand notation like ``acceleration_x: "Acceleration X"`` or use 
 regular notation only the **name** is required. All options from :ref:`Sensor <config-sensor>`.
 
 Configuration variables:
-========================
+************************
 
 - **acceleration_x** (*Optional*): X-axis acceleration, m/s².
 - **acceleration_y** (*Optional*): Y-axis acceleration, m/s².
@@ -121,7 +121,7 @@ For every sensor **name** is required. All other options from :ref:`Binary Senso
 Shorthand notation also can be used.
 
 Configuration variables:
-========================
+************************
 
 - **tap** (*Optional*): Single tap detection.
 - **double_tap** (*Optional*): Double tap detection.
