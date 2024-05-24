@@ -38,15 +38,6 @@ calibrated and transformed to match the physical orientation of the sensor.
       range: 4G
       resolution: 12
       update_interval: 10s
-      calibration:
-        offset_x: 0.000
-        offset_y: 0.000
-        offset_z: 0.000
-      transform:
-        mirror_x: false
-        mirror_y: false
-        mirror_z: false
-        swap_xy: false
 
     sensor:
       - platform: msa3xx
