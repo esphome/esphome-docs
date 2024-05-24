@@ -12,7 +12,7 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 
 .. figure:: /components/images/lvgl_main_screenshot.png
 
-In order to be able to drive a :ref:`display <display-hw>` with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended.
+In order to be able to drive a :ref:`display <display-hw>` with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended for bigger displays.
 
 The graphic display should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set. It should have an :ref:`config-id` configured, which will be referenced by the main LGVL component.
 
@@ -177,6 +177,10 @@ Two font choices are available:
 **ESPHome fonts**
 
 You can use :ref:`fonts configured normally<display-fonts>`, the glyphs will be rendered while building the binary. This has the advantage that you can define custom sets of glyphs of any size, with icons or diacritic characters of your choice, for any language, from any TrueType/OpenType font, allowing a more optimal flash space usage because you don't need to include all glyphs for all sizes you wish to use.
+
+.. tip::
+
+    For best results, set ``bpp: 4`` to get the glyphs rendered with proper anti-aliasing.
 
 Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-cook-iconbatt` in the Cookbook for examples illustrating how to use icons and text with TrueType/OpenType fonts.
 
