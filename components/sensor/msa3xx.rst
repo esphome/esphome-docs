@@ -28,7 +28,7 @@ calibrated and transformed to match the physical orientation of the sensor.
     :align: center
     :width: 50.0%
 
-    Example of MSA3xx sensor represenration in ESPHome dashboard.
+    Example of MSA3xx sensor representation in ESPHome dashboard.
 
 .. code-block:: yaml
 
@@ -38,27 +38,6 @@ calibrated and transformed to match the physical orientation of the sensor.
       range: 4G
       resolution: 12
       update_interval: 10s
-
-    sensor:
-      - platform: msa3xx
-        acceleration_x: Accel X
-        acceleration_y: Accel Y
-        acceleration_z: Accel Z
-
-    text_sensor:
-      - platform: msa3xx
-        orientation_xy: Orientation XY
-        orientation_z: Orientation Z
-
-    binary_sensor:
-      - platform: msa3xx
-        tap: Single tap   # shorthand notation for the sensor
-        double_tap:       # regular notation for the sensor
-          name: Double tap
-        active: 
-          name: Active
-          filters: 
-            - delayed_off: 5000ms
 
 
 Configuration variables:
@@ -90,26 +69,24 @@ Base Configuration:
   - **swap_xy** (*Optional*, boolean): Swap X and Y axis. Defaults to ``false``.
   
 
-Sensor
-------
-
-Acceleration data is available through sensors configuration. 
-You can use shorthand notation like ``acceleration_x: "Acceleration X"`` or use regular notation. For 
-regular notation only the **name** is required. All options from :ref:`Sensor <config-sensor>`.
-
-Configuration variables:
-************************
-
-- **acceleration_x** (*Optional*): X-axis acceleration, m/s².
-- **acceleration_y** (*Optional*): Y-axis acceleration, m/s².
-- **acceleration_Z** (*Optional*): Z-axis acceleration, m/s².
-
 Binary Sensor
 -------------
 
 Three binary sensors available for use. Internal 500 ms debounce is applied for all sensors.
 For every sensor **name** is required. All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 Shorthand notation also can be used.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: msa3xx
+        tap: Single tap         # shorthand notation for the sensor
+        double_tap: Double tap  # -- "" -- 
+        active:                 # regular notation for the sensor
+          name: Active
+          filters: 
+            - delayed_off: 5000ms
+
 
 Configuration variables:
 ************************
@@ -119,10 +96,50 @@ Configuration variables:
 - **active** (*Optional*): Movement detection.
 
 
+Sensor
+------
+
+Acceleration data is available through sensors configuration. 
+You can use shorthand notation like ``acceleration_x: "Acceleration X"`` or use regular notation. For 
+regular notation only the **name** is required. All options from :ref:`Sensor <config-sensor>`.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: msa3xx
+        acceleration_x: Accel X
+        acceleration_y: Accel Y
+        acceleration_z: Accel Z
+
+Configuration variables:
+************************
+
+- **acceleration_x** (*Optional*): X-axis acceleration, m/s².
+- **acceleration_y** (*Optional*): Y-axis acceleration, m/s².
+- **acceleration_Z** (*Optional*): Z-axis acceleration, m/s².
+
+Text Sensor
+-----------
+
+.. code-block:: yaml
+
+    text_sensor:
+      - platform: msa3xx
+        orientation_xy: Orientation XY
+        orientation_z: Orientation Z
+
+
+Text sensor provides orientation information. You can use shorthand notation like 
+``orientation_xy: "Orientation XY"`` or use regular notation.
+
+- **orientation_xy** (*Optional*): XY orientation. Can be one of ``Portrait Upright``, 
+  ``Portrait Upside Down``, ``Landscape Left``, ``Landscape Right``.
+- **orientation_z** (*Optional*): Z orientation. Can be one of ``Upwards looking``, ``Downwards looking`` 
+
 Automations
 -----------
 
-``on_tap`` Trigger
+``on_tap`` trigger
 ******************
 
 This automation will be triggered when single tap is detected.
@@ -136,7 +153,7 @@ This automation will be triggered when single tap is detected.
             - logger.log: "Tapped"
 
 
-``on_double_tap`` Trigger
+``on_double_tap`` trigger
 *************************
 
 This automation will be triggered when double tap is detected.
@@ -150,7 +167,7 @@ This automation will be triggered when double tap is detected.
             - logger.log: "Double tapped"
 
 
-``on_active`` Trigger
+``on_active`` trigger
 *********************
 
 This automation will be triggered when device detects changes in motion.
@@ -164,7 +181,7 @@ This automation will be triggered when device detects changes in motion.
             - logger.log: "Activity detected"
 
 
-``on_orientation`` Trigger
+``on_orientation`` trigger
 **************************
 
 This automation will be triggered when device orientation is changed with respect to the gravitation field vector ``g``.
