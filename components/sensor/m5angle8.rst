@@ -8,7 +8,7 @@ Rotary Encoder Sensor
 The ``m5angle8`` platform allows to use the [m5angle](https://docs.m5stack.com/en/unit/UNIT%208Angle) input device with ESPHome. 
 It has 8 potentiometers, a switch and can individually drive 9 RGB LEDs. 
 
-.. figure:: images/m5angle8.png
+.. figure:: images/m5angle8.jpg
     :align: center
     :width: 75.0%
 
@@ -65,14 +65,14 @@ Configuration variables:
 - **knob_position_{1-8}** (*Optional*): Sensors for the knobs' position. If configured, it gives value of between 0-1 with 0 being the leftmost position.
  
   - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. Defaults to ``60s``.
+    sensor. Defaults to ``60s``.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **input_switch** (*Optional*): A binary sensor of the switch on the device.
  
   - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. Defaults to ``60s``.
-  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+    sensor. Defaults to ``60s``.
+    All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
 Read positions and switch state in Lambdas
@@ -83,12 +83,11 @@ A negative return value indicates a failure to read the state.
 
 .. code-block:: yaml
 
-    # Example configuration entry
+    # Example configuration entry for having the LEDs indicate the knobs' position 
     lights:
         id: m8_angle_leds
         name: "M5Angle Lights"
         effects:
-            - addressable_rainbow:
             - addressable_lambda:
                 name: "Indicate Values"
                 update_interval: 200ms
