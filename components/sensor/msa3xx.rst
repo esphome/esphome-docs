@@ -15,6 +15,9 @@ The ``msa3xx`` sensor platform allows you to use your MSA301 and MSA311 tri-axia
 low-g accelerometers (`datasheet <https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf>`__) 
 with ESPHome. The :ref:`I²C <i2c>` is required to be set up in your configuration for this sensor to work.
 
+This component provides acceleration data in m/s², orientation information, and tap detection. XYZ axes can be
+calibrated and transformed to match the physical orientation of the sensor.
+
 .. figure:: images/msa311-full.jpg
     :align: center
     :width: 80.0%
@@ -113,7 +116,7 @@ Configuration variables:
 Binary Sensor
 -------------
 
-Three binary sensors available for use. 
+Three binary sensors available for use. Internal 500 ms debounce is applied for all sensors.
 For every sensor **name** is required. All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 Shorthand notation also can be used.
 
