@@ -58,9 +58,8 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <i2c>` if you need
 - **address** (*Optional*, int): Manually specify the I²C address of the device. Defaults to ``0x43``. 
-  
-
 - **lights** (*Optional*): Use the 9 LEDs as addressable light output.
+
   - All options from :ref:`Light <config-light>`.
    
 - **knob_position_{1-8}** (*Optional*): Sensors for the knobs' position. If configured, it gives value of between 0-1 with 0 being the leftmost position.
@@ -68,7 +67,6 @@ Configuration variables:
   - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
   - All other options from :ref:`Sensor <config-sensor>`.
-
 
 - **input_switch** (*Optional*): A binary sensor of the switch on the device.
  
