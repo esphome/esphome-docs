@@ -65,6 +65,12 @@ Release 2024.5.2 - May 21
 - Update webserver local assets to 20240519-215627 :esphomepr:`6779` by :ghuser:`esphomebot`
 
 
+Release 2024.5.3 - May 25
+-------------------------
+
+- [voice_assistant] Don't allocate buffers until starting the microphone for the first time :esphomepr:`6800` by :ghuser:`jesserockz`
+
+
 Full list of changes
 --------------------
 
