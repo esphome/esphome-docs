@@ -84,30 +84,33 @@ A negative return value indicates a failure to read the state.
 .. code-block:: yaml
 
     # Example configuration entry for having the LEDs indicate the knobs' position 
-    lights:
-        id: m8_angle_leds
-        name: "M5Angle Lights"
-        effects:
-            - addressable_lambda:
-                name: "Indicate Values"
-                update_interval: 200ms
-                lambda: |-
-                        ESPHSVColor hsv;
-                        hsv.value = 255;
-                        hsv.saturation = 240;
-                        auto parent = id(m8_angle_base);
-                        for (int i=0; i < 8; i++) {
-                          auto kpos = parent->read_knob_pos(i);
-                          if (kpos >= 0){
-                            hsv.hue = kpos * 200; 
-                            it[i] = hsv;
-                          }
-                        }
-                        if (parent->read_switch() > 0)
-                            hsv.hue = 20;   
-                        else
-                            hsv.hue = 200; 
-                        it[8] = hsv;
+    m5angle8:
+        i2c_id: bus_external
+        id: m8_angle_base
+        lights:
+            id: m8_angle_leds
+            name: "M5Angle Lights"
+            effects:
+                - addressable_lambda:
+                    name: "Indicate Values"
+                    update_interval: 200ms
+                    lambda: |-
+                            ESPHSVColor hsv;
+                            hsv.value = 255;
+                            hsv.saturation = 240;
+                            auto parent = id(m8_angle_base);
+                            for (int i=0; i < 8; i++) {
+                              auto kpos = parent->read_knob_pos(i);
+                              if (kpos >= 0){
+                                hsv.hue = kpos * 200; 
+                                it[i] = hsv;
+                              }
+                            }
+                            if (parent->read_switch() > 0)
+                                hsv.hue = 20;   
+                            else
+                                hsv.hue = 200; 
+                            it[8] = hsv;
 
 See Also
 --------
