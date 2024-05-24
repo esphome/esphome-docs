@@ -108,14 +108,14 @@ The following configuration variables apply to the main ``lvgl`` component, in o
         
         The ``long_press_time`` and ``long_press_repeat_time`` can be fine-tuned also by setting them to ``never`` and using the ``autorepeat`` filter on each binary sensor separately.
 
-- **color_depth** (*Optional*, enum): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
+- **color_depth** (*Optional*, string): The color deph at which the contents are generated. Valid values are ``1`` (monochrome), ``8``, ``16`` or ``32``, defaults to ``16``.
 - **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM, the recommended value is ``25%``. 
 - **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval at which the screen should be redrawn (when necessary). Defaults to ``1s``.
-- **log_level** (*Optional*, enum): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
-- **byte_order** (*Optional*, enum): The byte order of the data LVGL outputs; either ``big_endian`` or ``little_endian``. Defaults to ``big_endian``.
+- **log_level** (*Optional*, string): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
+- **byte_order** (*Optional*, int16): The byte order of the data LVGL outputs; either ``big_endian`` or ``little_endian``. Defaults to ``big_endian``.
 - **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): Solid color used to fill the background. Can be changed at runtime with the ``lvgl.update`` action.
 - **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as background wallpaper. To change the image at runtime use the ``lvgl.update`` action. Also see :ref:`lvgl-wgt-img` for a note regarding supported image formats.
-- **default_font** (*Optional*, enum): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
+- **default_font** (*Optional*, ID): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use in LVGL widget's ``styles`` configuration. See :ref:`below <lvgl-theme>` for more details. 
 - **theme** (*Optional*, list): A list of styles to be applied to all widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the root display. May not be used if ``pages`` (below) is configured.
@@ -182,7 +182,7 @@ Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-co
 
 **Library fonts**
 
-The LVGL library offers by default prerendered sets with ASCII characters (``0x20-0x7F``) the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from the `Montserrat <https://fonts.google.com/specimen/Montserrat>`__ Medium font, and 60 symbols from the `FontAwesome <https://fontawesome.com/>`__ font (see below). You can use the IDs below when specifying the ``text_font`` parameter:
+The LVGL library offers by default prerendered sets with ASCII characters (``0x20-0x7F``), the degree symbol (``0xB0``), the bullet symbol (``0x2022``) from `Montserrat Medium <https://fonts.google.com/specimen/Montserrat>`__, and 60 symbols from `FontAwesome <https://fontawesome.com/>`__ (see below). You can use the IDs below when specifying the ``text_font`` parameter:
 
 - ``montserrat_8``: 8px font
 - ``montserrat_10``: 10px font
@@ -248,8 +248,8 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 
 - **bg_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the background of the widget. Defaults to ``0xFFFFFF`` (white).
 - **bg_grad_color** (*Optional*, :ref:`color <lvgl-color>`): Color to make the background gradually fade to. Defaults to ``0`` (black).
-- **bg_dither_mode** (*Optional*, enum): Set dithering of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``. Defaults to ``NONE``.
-- **bg_grad_dir** (*Optional*, enum): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``. Defaults to ``NONE``.
+- **bg_dither_mode** (*Optional*, dict): Set dithering of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``. Defaults to ``NONE``.
+- **bg_grad_dir** (*Optional*, dict): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``. Defaults to ``NONE``.
 - **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = upper left, ``128`` = in the center, ``255`` = lower right. Defaults to ``0``.
 - **bg_grad_stop** (*Optional*, 0-255): Specify where the gradient should stop: ``0`` = upper left, ``128`` = in the center, ``255`` = lower right. Defaults to ``255``.
 - **opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire widget. Inherited from parent. Defaults to ``COVER``.
@@ -395,7 +395,7 @@ The ``hidden``, ``ignore_layout`` and ``floating`` :ref:`flags <lvgl-objupdflag-
 
 **Configuration variables:**
 
-- **layout** (*Optional*, string): A dictionary describing the layout configuration:
+- **layout** (*Optional*, dict): A dictionary describing the layout configuration:
     - **type** (*Optional*, string): ``FLEX``, ``GRID`` or ``NONE``. Defaults to ``NONE``.
     - Further options from below depending on the chosen type.
 
@@ -534,10 +534,10 @@ The properties below are common to all widgets.
     - ``"ACTIVE"``: Show scroll bars while a widget is being scrolled.
     - ``"AUTO"``: Show scroll bars when the content is large enough to be scrolled (default).
 
-- **align** (*Optional*, enum): Alignment of the of the widget relative to the parent. A child widget is clipped to its parent boundaries. One of the values *not* starting with ``OUT_`` (see picture below).
+- **align** (*Optional*, dict): Alignment of the of the widget relative to the parent. A child widget is clipped to its parent boundaries. One of the values *not* starting with ``OUT_`` (see picture below).
 - **align_to** (*Optional*, list): Alignment of the of the widget relative to another widget on the same level:
     - **id** (**Required**): The ID of a widget *to* which you want to align.
-    - **align** (**Required**, enum): Desired alignment (one of the values starting with ``OUT_``).
+    - **align** (**Required**, string): Desired alignment (one of the values starting with ``OUT_``).
     - **x** (*Optional*, int16 or percentage): Horizontal offset position. Default ``0``.
     - **y** (*Optional*, int16 or percentage): Vertical offset position. Default ``0``.
 
@@ -552,7 +552,7 @@ The properties below are common to all widgets.
 
 .. _lvgl-wgtprop-state:
 
-- **state** (*Optional*, enum): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from the theme, but can be locally set or overridden within style definitions. Can be one of:
+- **state** (*Optional*, dict): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from the theme, but can be locally set or overridden within style definitions. Can be one of:
     - **default** (*Optional*, boolean): Normal, released state.
     - **disabled** (*Optional*, boolean): Disabled state (also usable with :ref:`shorthand <lvgl-objupd-shorthands>` actions ``lvgl.widget.enable`` and ``lvgl.widget.disable``).
     - **pressed** (*Optional*, boolean): Being pressed.
@@ -625,7 +625,7 @@ A label is the basic widget type that is used to display text.
 **Configuration variables:**
 
 - **text** (**Required**, string): The text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display. To display an empty label, specify ``""``.
-- **text_align** (*Optional*, enum): Alignment of the text in the widget - it doesn't align the object itself, only the lines inside the object. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``. Inherited from parent. Defaults to ``AUTO``, which detects the text base direction and uses left or right alignment accordingly.
+- **text_align** (*Optional*, dict): Alignment of the text in the widget - it doesn't align the object itself, only the lines inside the object. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``. Inherited from parent. Defaults to ``AUTO``, which detects the text base direction and uses left or right alignment accordingly.
 - **text_color** (*Optional*, :ref:`color <lvgl-color>`): Color to render the text in. Inherited from parent. Defaults to ``0`` (black). 
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified as YAML list). Inherited from parent. Defaults to ``NONE``.
 - **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID of the font used to render the text or symbol. Inherited from parent.
@@ -1033,6 +1033,10 @@ The Checkbox widget is made internally from a *tick box* and a label. When the C
                 format: "Checkbox state: %d"
                 args: [ x ]
 
+.. note::
+
+    In case you configure ``default_font`` in the main section to a custom font, the checkmark will not be shown correctly when the checkbox is in the checked state. See :ref:`lvgl-cook-ckboxmark` how to easily resolve this.
+
 The ``checkbox`` can be also integrated as a :doc:`Switch </components/switch/lvgl>` component.
 
 .. _lvgl-wgt-drp:
@@ -1052,9 +1056,9 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
 **Configuration variables:**
 
 - **options** (**Required**, list): The list of available options in the drop-down.
-- **dir** (*Optional*, enum): Where the list part of the dropdown gets created relative to the button part. ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
+- **dir** (*Optional*, dict): Where the list part of the dropdown gets created relative to the button part. ``LEFT``, ``RIGHT``, ``BOTTOM``, ``TOP``, defaults to ``BOTTOM``.
 - **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
-- **symbol** (*Optional*, enum): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from those built-in or from your own customized font.
+- **symbol** (*Optional*, dict): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from those built-in or from your own customized font.
 - **indicator** (*Optional*, list): Settings for the the parent of ``symbol``. Supports a list of :ref:`styles <lvgl-styling>` to customize.
 - **dropdown_list** (*Optional*, list): Settings for the dropdown_list *part*, the list with items. Supports a list of :ref:`styles <lvgl-styling>` to customize. Notable are ``text_line_space`` and ``pad_all`` for spacing of list items, and ``text_font`` to separately change the font in the list.
 - **selected** (*Optional*, list): Settings for the selected item in the list. Supports a list of :ref:`styles <lvgl-styling>` to customize.
@@ -1121,7 +1125,7 @@ Roller allows you to simply select one option from a list by scrolling.
 **Configuration variables:**
 
 - **options** (**Required**, list): The list of available options in the roller.
-- **mode** (*Optional*, enum): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
+- **mode** (*Optional*, dict): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
 - **visible_row_count** (*Optional*, int8): The number of visible rows.
 - **selected** (*Optional*, list): Settings for the selected *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the :ref:`lvgl-wgt-lbl` text style properties to change the appearance of the text in the selected area.
 - **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
@@ -1950,13 +1954,13 @@ The text will be broken into multiple lines automatically and the height will be
 
 **Configuration variables:**
 
-- **msgboxes** (*Optional*, enum): A list of message boxes to use. This option has to be added to the top level of the LVGL component configuration.
+- **msgboxes** (*Optional*, dict): A list of message boxes to use. This option has to be added to the top level of the LVGL component configuration.
     - **close_button** (**Required**, boolean): Controls the appearance of the close button to the top right of the message box. 
     - **title** (**Required**, string): A string to display at the top of the message box.
-    - **body** (**Required**, enum): The content of the body of the message box:
+    - **body** (**Required**, dict): The content of the body of the message box:
         - **text** (**Required**, string):  The string to be displayed in the body of the message box. Can be shorthanded if no further options are specified.
         - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties.
-    - **buttons** (**Required**, enum): A list of buttons to show at the bottom of the message box:
+    - **buttons** (**Required**, dict): A list of buttons to show at the bottom of the message box:
         - **text** (**Required**, string):  The text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display on the button.
 
 **Actions:**
@@ -2005,7 +2009,7 @@ For styling, the ``keyboard`` widget uses the same settings as :ref:`lvgl-wgt-bm
 **Configuration variables:**
 
 - **textarea** (*Optional*): The ID of the ``textarea`` from which to receive the keystrokes.
-- **mode** (*Optional*, enum): Keyboard layout to use. Each ``TEXT_`` layout contains a button to allow the user to iterate through the ``TEXT_`` layouts.
+- **mode** (*Optional*, dict): Keyboard layout to use. Each ``TEXT_`` layout contains a button to allow the user to iterate through the ``TEXT_`` layouts.
     - ``TEXT_LOWER``: Display lower case letters (default).
     - ``TEXT_UPPER``: Display upper case letters.
     - ``TEXT_SPECIAL``: Display special characters.

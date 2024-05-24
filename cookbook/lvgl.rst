@@ -1279,6 +1279,36 @@ In the example below, we use the default set of glyphs from RobotoCondensed-Regu
     - To use the desired icon, prepend the copied codepoint with ``\U000``. The Unicode character escape sequence has to start with capital ``\U`` and have exactly 8 hexadecimal digits.
     - To translate the escape sequence into the real glyph, make sure you enclose your strings in double quotes.    
 
+.. _lvgl-cook-ckboxmark:
+
+Restore checkbox mark
+---------------------
+
+In case you configure the ``default_font`` used by LVGL to a custom one, which doesn't contain the `FontAwesome <https://fontawesome.com/>`__ symbols, you'll run into the issue that some widgets don't display correctly; specifically :ref:`lvgl-wgt-chk` won't show the checkmark when it's checked.
+
+This issue can be easily worked around by importing only the ckeckmark symbol in the desired size, and applying it through :ref:`lvgl-cook-theme` to all the checkboxes in the configuration:
+
+.. code-block:: yaml
+
+    font:
+      - file: 'fonts/FontAwesome5-Solid+Brands+Regular.woff'
+        id: fontawesome_checkmark
+        size: 18
+        bpp: 4
+        glyphs: [
+          "\uF00C", # ckeckmark, for checkbox
+          ]
+
+    lvgl:
+        ...
+        theme:
+          checkbox:
+            indicator:
+              checked:
+                text_font: fontawesome_checkmark
+
+You could of course simply apply one of the built-in ``montserrat_`` packs, but that would not be beneficial on the binary size - it would uselessly include the entire set of glyphs in the flash.
+
 .. _lvgl-cook-iconstat:
 
 Toggle state icon button
