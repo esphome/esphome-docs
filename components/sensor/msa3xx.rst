@@ -1,9 +1,9 @@
-MSA301 and MSA301 Sensors
+MSA301 and MSA311 Sensors
 =========================
 
 .. seo::
     :description: Instructions for setting up MSA301 and MSA311 digital tri-axial accelerometers.
-    :image: apds9960.jpg
+    :image: msa311.jpg
 
 
 .. _msa3xx-component:
@@ -12,14 +12,20 @@ Component/Hub
 -------------
 
 The ``msa3xx`` sensor platform allows you to use your MSA301 and MSA311 tri-axial, 
-low-g accelerometers (`datasheet <https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf>`__,
-`SparkFun`_) with ESPHome. The :ref:`I²C <i2c>` is required to be set up in your configuration for this sensor to work.
+low-g accelerometers (`datasheet <https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf>`__) 
+with ESPHome. The :ref:`I²C <i2c>` is required to be set up in your configuration for this sensor to work.
 
-.. figure:: images/apds9960-full.jpg
+.. figure:: images/msa311-full.jpg
     :align: center
     :width: 80.0%
 
-    Image by `SparkFun`_.
+    Module breakout board with MSA311 sensor.
+
+.. figure:: images/msa3xx-ui.png
+    :align: center
+    :width: 80.0%
+
+    Example of MSA3xx sensor represenration in ESPHome dashboard.
 
 .. code-block:: yaml
 
@@ -28,7 +34,7 @@ low-g accelerometers (`datasheet <https://cdn-shop.adafruit.com/product-files/53
       model: msa311
       range: 4G
       resolution: 12
-      update_interval: 15s
+      update_interval: 10s
       calibration:
         offset_x: 0.000
         offset_y: 0.000
@@ -38,18 +44,6 @@ low-g accelerometers (`datasheet <https://cdn-shop.adafruit.com/product-files/53
         mirror_y: false
         mirror_z: false
         swap_xy: false
-      on_tap:
-        - then: 
-            - logger.log: "Tapped"
-      on_double_tap:
-        - then: 
-            - logger.log: "Double tapped"
-      on_active:
-        - then: 
-            - logger.log: "Activity detected"
-      on_orientation:
-        - then: 
-            - logger.log: "Orientation changed"
 
     sensor:
       - platform: msa3xx
@@ -72,7 +66,6 @@ low-g accelerometers (`datasheet <https://cdn-shop.adafruit.com/product-files/53
           filters: 
             - delayed_off: 5000ms
 
-.. _SparkFun: https://www.adafruit.com/product/5309
 
 Configuration variables:
 ------------------------
