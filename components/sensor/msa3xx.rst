@@ -15,6 +15,9 @@ The ``msa3xx`` sensor platform allows you to use your MSA301 and MSA311 tri-axia
 low-g accelerometers (`datasheet <https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf>`__) 
 with ESPHome. The :ref:`I²C <i2c>` is required to be set up in your configuration for this sensor to work.
 
+MSA301 and MSA311 are almost identical sensors.  The only difference is the ADC resolution. MSA311 has fixed 
+12-bits resolution while MSA301 ADC is 14-bits and it can be configured to do 8, 10, 12, or 14 bits measurements.
+
 This component provides acceleration data in m/s², orientation information, and tap detection. XYZ axes can be
 calibrated and transformed to match the physical orientation of the sensor.
 
@@ -51,8 +54,8 @@ Base Configuration:
 - **model** (**Required**, string): The model of the sensor. One of ``msa301`` or ``msa311``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval for updating acceleration sensors.
   Defaults to ``10s``.
-- **range** (*Optional*, string): The range of the sensor. One of ``2G``, ``4G``, ``8G``, ``16G``. Defaults to ``2G`` 
-  which means it picks up accelerations between -2g and 2g.
+- **range** (*Optional*, string): The range of the sensor measurements. One of ``2G``, ``4G``, ``8G``, ``16G``. 
+  Defaults to ``2G``  which means it picks up accelerations between ``-2g`` and ``2g``.
 - **resolution** (*Optional*, int): The ADC resolution of the sensor in bits. ``msa311`` only supports 12-bits resolution. 
   For ``msa301`` it can be one of ``8``, ``10``, ``12``, ``14``. Defaults to ``12`` for ``msa311``. and ``14`` for ``msa301``.
 - **calibration** (*Optional*):
@@ -82,10 +85,10 @@ Shorthand notation also can be used.
       - platform: msa3xx
         tap: Single tap         # shorthand notation for the sensor
         double_tap: Double tap  # -- "" -- 
-        active:                 # regular notation for the sensor
-          name: Active
+        active:                 # regular notation for the sensor to be able
+          name: Active          # to use filters and other options
           filters: 
-            - delayed_off: 5000ms
+            - delayed_off: 5000ms # example of prolongation of movement detection signal
 
 
 Configuration variables:
@@ -121,6 +124,9 @@ Configuration variables:
 Text Sensor
 -----------
 
+Text sensor provides orientation information. You can use shorthand notation like 
+``orientation_xy: "Orientation XY"`` or use regular notation.
+
 .. code-block:: yaml
 
     text_sensor:
@@ -128,9 +134,8 @@ Text Sensor
         orientation_xy: Orientation XY
         orientation_z: Orientation Z
 
-
-Text sensor provides orientation information. You can use shorthand notation like 
-``orientation_xy: "Orientation XY"`` or use regular notation.
+Configuration variables:
+************************
 
 - **orientation_xy** (*Optional*): XY orientation. Can be one of ``Portrait Upright``, 
   ``Portrait Upside Down``, ``Landscape Left``, ``Landscape Right``.
