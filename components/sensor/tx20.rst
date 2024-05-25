@@ -70,7 +70,7 @@ Configuration variables:
     There are various alternatives though, and since ESPHome has a :doc:`/components/modbus`, any model supporting RS485 connection
     can be easily integrated. 
 
-    Check out on the ESPHome Devices database example configurations for
+    Check out in the ESPHome Devices database example configurations for
     `RS-FSJT-N01 Wind Speed <https://devices.esphome.io/devices/Renke-RS-FSJT-N01-Wind-Speed>`__ and
     `RS-FXJT-N01 Wind Direction <https://devices.esphome.io/devices/Renke-RS-FXJT-N01-Wind-Direction>`__ sensors.
 
