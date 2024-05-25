@@ -42,6 +42,7 @@ Configuration variables:
 
 
 .. note::
+
     **Shorthand notation**: All the sensors described below support shorthand notation which is used in all the yaml examples.
     Should you wish to configure other sensor options please use regular notation.
 
