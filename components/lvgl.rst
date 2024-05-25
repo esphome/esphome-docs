@@ -462,8 +462,8 @@ It can arrange items into a 2D "table" that has rows or columns (tracks). The it
 
     - **grid_rows** (**Required**): The number of rows in the grid, expressed a list of values in pixels, ``CONTENT`` or ``FR(n)`` (free units, where ``n`` is a proportional integer value).
     - **grid_columns** (**Required**): The number of columns in the grid, expressed a list of values in pixels, ``CONTENT`` or ``FR(n)`` (free units, where ``n`` is a proportional integer value).
-    - **grid_column_align** (*Optional*, string): How to align the widgets within the column. Possible options below.
-    - **grid_row_align** (*Optional*, string): How to align the widgets within the row. Possible options below.
+    - **grid_row_align** (*Optional*, string): How to align the row. Works only when ``grid_rows`` is given in pixels. Possible options below.
+    - **grid_column_align** (*Optional*, string): How to align the column. Works only when ``grid_columns`` is given in pixels. Possible options below.
     - **pad_row** (*Optional*, int16): Set the padding between the rows, in pixels.
     - **pad_column** (*Optional*, int16): Set the padding between the columns, in pixels.
     
