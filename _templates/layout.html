@@ -5,6 +5,7 @@
 {% endblock %}
 
 {%- block extrahead %}
+  <link href="/pagefind/pagefind-modular-ui.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}?hash={{ custom_css_hash }}" type="text/css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/_static/apple-touch-icon.png">
   <link rel="shortcut icon" href="/_static/favicon.ico">
@@ -29,14 +30,16 @@
 {% endblock %}
 
 {% block relbar_top %}
-  {% if parents|length > 0 %}
   <ul class="breadcrumbs">
+  {% if parents|length > 0 %}
     {%- for doc in parents %}
       <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> ➔</li>
     {%- endfor %}
       <li>{{title}}</li>
-  </ul>
+
   {% endif %}
+  </ul>
+  <div class="search-results" id="search-results"></div>
 {% endblock %}
 
 {% block footer %}

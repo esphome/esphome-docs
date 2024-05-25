@@ -13,12 +13,9 @@ ESPHome devices over their network (Wi-Fi or Ethernet) interface.
 This platform is used by both the ESPHome dashboard as well as the command line interface (CLI) (via
 ``esphome run ...``) to install firmware onto supported devices.
 
-In addition to updates, ESPHome also supports a "safe mode" to help recover from boot failures/reboot loops. After a
-specified number (the default is ten) of boot failures, the safe mode may be invoked; in this mode, all components are
-disabled except serial logging, network (Wi-Fi or Ethernet) and the OTA component, allowing you to attempt to upload a
-new binary. You can also force the invocation of safe mode by configuring a dedicated
-:doc:`button</components/button/safe_mode>` or :doc:`switch</components/switch/safe_mode>` component and/or by pressing
-the reset button on the board for ``num_attempts`` times (see below).
+In addition to OTA updates, ESPHome also supports a "safe mode" to help with recovery if/when updates don't work as
+expected. This is automatically enabled by this component, but it may be disabled if desired. See
+:doc:`/components/safe_mode` for details.
 
 .. code-block:: yaml
 
@@ -31,7 +28,6 @@ the reset button on the board for ``num_attempts`` times (see below).
 Configuration variables:
 ------------------------
 
--  **safe_mode** (*Optional*, boolean): Whether to enable safe mode. Defaults to ``true``.
 -  **password** (*Optional*, string): The password to use for updates.
 -  **port** (*Optional*, int): The port to use for OTA updates. Defaults:
 
@@ -40,10 +36,6 @@ Configuration variables:
    - ``2040`` for the RP2040
    - ``8892`` for Beken chips
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
--  **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when in safe mode.
-   Defaults to ``5min``.
--  **num_attempts** (*Optional*, int): The number of failed boot attempts which must occur before invoking safe mode.
-   Defaults to ``10``.
 -  **on_begin** (*Optional*, :ref:`Automation<automation>`): An action to be performed when an OTA update is started.
    See :ref:`ota-on_begin`.
 -  **on_progress** (*Optional*, :ref:`Automation<automation>`): An action to be performed (approximately each second)
