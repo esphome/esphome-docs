@@ -7,8 +7,7 @@ TX20/TX23 Wind Speed/Direction Sensor
     :keywords: TX20
 
 The ``tx20`` sensor platform allows you to use your TX20/TX23
-(`Amazon`_,
-`lacrosse_tx23`_)
+(`lacrosse_tx23`_)
 wind direction and speed sensors with ESPHome.
 The only required pin is the black or brown cable (which is used to transmit data.)
 The red cable should be connected to VCC (3.3V), green initiates the data transfer when connected to GND
