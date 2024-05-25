@@ -67,7 +67,7 @@ Configuration variables:
 
 .. note::
 
-    It apears that the manufacturer stopped production of this sensor, as it doesn't seem to be available anymore for purchase.
+    It apears that the manufacturer discontinued production of this sensor, as it doesn't seem to be available anymore for purchase.
     There are various alternatives though, and since ESPHome has a :doc:`/components/modbus`, any model supporting RS485 connection
     can be easily integrated. 
 
