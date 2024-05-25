@@ -353,6 +353,7 @@ Electricity
     Daly BMS, components/sensor/daly_bms, daly_bms.jpg, Voltage & Current & Power
     DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
+    HUSB238, components/sensor/husb238, husb238.jpg, USB Power Delivery (PD) Sink
     INA219, components/sensor/ina219, ina219.jpg, DC Current
     INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
     INA228, components/sensor/ina2xx, ina228.jpg, DC Voltage & Current & Power & Charge
