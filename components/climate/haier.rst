@@ -58,18 +58,11 @@ This component requires a :ref:`uart` to be setup.
 .. code-block:: yaml
 
     # Example configuration entry
-
-    uart:
-      baud_rate: 9600
-      tx_pin: 17
-      rx_pin: 16
-      id: ac_port  
-    
     climate:
       - platform: haier
         id: haier_ac
         protocol: hOn
-        name: Haier AC 
+        name: Haier AC
         uart_id: ac_port
         wifi_signal: true
         beeper: true

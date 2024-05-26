@@ -18,18 +18,18 @@ Let's begin with an example to explain these concepts. Suppose you have this con
 
     switch:
       - platform: gpio
-        pin: GPIO3
+        pin: GPIOXX
         name: "Living Room Dehumidifier"
 
     binary_sensor:
       - platform: gpio
-        pin: GPIO4
+        pin: GPIOXX
         name: "Living Room Dehumidifier Toggle Button"
 
 With this file you can already perform some basic tasks. You can control the ON/OFF state
 of the dehumidifier in your living room from Home Assistant's front-end. But in many cases,
 controlling everything strictly from the frontend is quite a pain. That's why you have
-decided to also install a simple push button next to the dehumidifier on pin GPIO4.
+decided to also install a simple push button next to the dehumidifier on pin GPIOXX.
 A simple push on this button should toggle the state of the dehumidifier.
 
 You *could* write an automation to do this task in Home Assistant's automation engine, but
@@ -46,13 +46,13 @@ For example, this configuration would achieve your desired behavior:
 
     switch:
       - platform: gpio
-        pin: GPIO3
+        pin: GPIOXX
         name: "Living Room Dehumidifier"
         id: dehumidifier1
 
     binary_sensor:
       - platform: gpio
-        pin: GPIO4
+        pin: GPIOXX
         name: "Living Room Dehumidifier Toggle Button"
         on_press:
           then:
@@ -418,7 +418,7 @@ All Conditions
 --------------
 
 - :ref:`lambda <lambda_condition>`
-- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`xor <xor_condition>` / :ref:`not <not_condition>` 
+- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`xor <xor_condition>` / :ref:`not <not_condition>`
 - :ref:`for <for_condition>`
 - :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` / :ref:`binary_sensor.is_off <binary_sensor-is_off_condition>`
 - :ref:`switch.is_on <switch-is_on_condition>` / :ref:`switch.is_off <switch-is_off_condition>`
@@ -706,7 +706,7 @@ After this action the component will refresh at the original update_interval rat
 
 This will allow the component to resume automatic update at the defined interval.
 
-This action also allows to change the update interval, calling it without suspend, 
+This action also allows to change the update interval, calling it without suspend,
 replace the poller directly.
 
 Please note that this only works with PollingComponent types and others will result in a
@@ -724,7 +724,7 @@ compile error.
     # Change the poller interval
     on_...:
       then:
-        - component.resume: 
+        - component.resume:
             id: my_component
             update_interval: 15s
 

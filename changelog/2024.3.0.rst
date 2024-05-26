@@ -59,6 +59,22 @@ If you are building an :doc:`/components/external_components` or you use
 ``network::get_ip_address()``, ``wifi::global_wifi_component->get_ip_address()`` or ``ethernet::global_eth_component->get_ip_address()``,
 these functions have been renamed to ``::get_ip_addresses()`` respectively and now return a list of all IP addresses.
 
+
+Release 2024.3.1 - March 27
+---------------------------
+
+- AHT10: Fix bug :esphomepr:`6409` by :ghuser:`clydebarrow`
+- microWakeWord: Fix model path joining :esphomepr:`6426` by :ghuser:`ebw44`
+- Don't compile strptime unless its required :esphomepr:`6424` by :ghuser:`gabest11`
+- Fix editor live validation :esphomepr:`6431` by :ghuser:`bdraco`
+
+Release 2024.3.2 - April 4
+--------------------------
+
+- Fix logger compile error on ESP32-C6 :esphomepr:`6323` by :ghuser:`DAVe3283`
+- Add missing ethernet types :esphomepr:`6444` by :ghuser:`ssieb`
+- fix: changing the content source when playing is paused blocks the player :esphomepr:`6454` by :ghuser:`NewoPL`
+
 Thank you for your support
 --------------------------
 
