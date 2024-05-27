@@ -19,25 +19,25 @@ The :ref:`UART <uart>` is required to be set up in your configuration for this s
 Select, and number components provide real-time configuration of the sensor during operation.
 
 
-.. figure:: /images/ld2415h.front.png
+.. figure:: images/ld2415h.front.png
     :align: center
     :width: 50.0%
 
     Front of the HLK-LD2415H velocity radar sensor.
 
-.. figure:: /images/ld2415h.back.png
+.. figure:: images/ld2415h.back.png
     :align: center
     :width: 50.0%
 
     Back of the HLK-LD2415H velocity radar sensor.
 
-.. figure:: /images/ld2415h.sensor.ui.png
+.. figure:: images/ld2415h.sensor.ui.png
     :align: center
     :width: 50.0%
 
     ld2415h sensor UI.
 
-.. figure:: /images/ld2415h.configuration.ui.png
+.. figure:: images/ld2415h.configuration.ui.png
     :align: center
     :width: 50.0%
 
