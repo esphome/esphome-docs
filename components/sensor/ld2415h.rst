@@ -30,6 +30,20 @@ Select, and number components provide real-time configuration of the sensor duri
 
     Back of the HLK-LD2415H velocity radar sensor.
 
+.. figure:: /images/ld2415h.sensor.ui.png
+    :align: center
+    :width: 50.0%
+
+    ld2415h sensor UI.
+
+.. figure:: /images/ld2415h.configuration.ui.png
+    :align: center
+    :width: 50.0%
+
+    ld2415h configuration UI.
+
+
+
 .. code-block:: yaml
 
     # Example configuration entry
