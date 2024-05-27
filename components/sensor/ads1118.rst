@@ -25,7 +25,7 @@ It uses the :ref:`SPI Bus <spi>` for communication.
 .. code-block:: yaml
 
     ads1118:
-      cs_pin: GPIO15
+      cs_pin: GPIOXX
 
 Configuration variables:
 ************************
@@ -46,14 +46,12 @@ sensor platform to create individual sensors that will report the voltage.
 
 .. code-block:: yaml
 
-    ads1118:
-      cs_pin: GPIO15
     sensor:
       - platform: ads1118
-        type: 'adc'  
-        id: 'batt_volt' 
-        name: "Battery Voltage"
-        multiplexer: 'A3_GND'
+        type: adc
+        id: batt_volt
+        name: Battery Voltage
+        multiplexer: A3_GND
         gain: 4.096
         update_interval: .01s
 

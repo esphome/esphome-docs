@@ -24,12 +24,12 @@ This platform only works on ESP32 based chips.
       - platform: i2s_audio
         id: external_mic
         adc_type: external
-        i2s_din_pin: GPIO23
+        i2s_din_pin: GPIOXX
 
       - platform: i2s_audio
         id: adc_mic
         adc_type: internal
-        adc_pin: GPIO35
+        adc_pin: GPIOXX
 
 
 Configuration variables:
@@ -80,7 +80,7 @@ M5Stack Atom Echo
     microphone:
       - platform: i2s_audio
         adc_type: external
-        i2s_din_pin: GPIO23
+        i2s_din_pin: GPIOXX
         pdm: true
 
 RaspiAudio Muse Luxe
@@ -90,7 +90,7 @@ RaspiAudio Muse Luxe
 
     microphone:
       - platform: i2s_audio
-        i2s_din_pin: GPIO35
+        i2s_din_pin: GPIOXX
         adc_type: external
         pdm: false
 
