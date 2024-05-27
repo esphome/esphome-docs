@@ -477,10 +477,7 @@ assuming the sensor values are sampled at a constant rate. This filter will remo
 components and offset from the sensor values. 
 
 The formula for the high pass filter is: ``y[i] := α × y[i−1] + α × (x[i] − x[i−1])``, 
-where x is the input value and y is the output value.
-
- \(\alpha = \frac{\omega_c T_s}{1+\omega_c T_s}\), where \(\omega_c\) 
- 
+where ``x`` is the input value and ``y`` is the output value.
 
 A large α implies that the output will decay very slowly but will also be strongly influenced by 
 even small changes in input.
@@ -493,6 +490,7 @@ A value of 0.5 (when time constant equal sampling period) might be a good starti
 .. code-block:: yaml
 
     - platform: ...
+      # ...
       filters:
         - high_pass: 0.5 # alpha value
 
@@ -508,7 +506,7 @@ assuming the sensor values are sampled at a constant rate. This filter will remo
 components and noise from the sensor values.
 
 The formula for the low pass filter is: ``y[i] := α * x[i] + (1-α) * y[i-1]``, 
-where x is the input value and y is the output value.
+where ``x`` is the input value and ``y`` is the output value.
 
 A lower α implies that the output will respond more slowly to changes in the input but will also
 be less influenced by noise. We can say the system has more inertia.
@@ -518,6 +516,7 @@ A value of 0.5 (when time constant equal sampling period) might be a good starti
 .. code-block:: yaml
 
     - platform: ...
+      # ...
       filters:
         - low_pass: 0.5 # alpha value
 
