@@ -3,7 +3,8 @@ LD2415H 24Ghz mmWave Radar Sensor
 
 .. seo::
     :description: Instructions for setting up LD2415H sensors.
-    :image: images/ld2415h.front.png
+    :image: ld2415h.png
+    :keywords: LD2415H
 
 Component
 ---------
