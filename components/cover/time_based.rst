@@ -80,7 +80,7 @@ Configuration variables:
 Handle stop_action:
 ------------------------
 For some cover controllers, separate switches for UP and DOWN action are used while a stop is issued when sending a counter command.
-This can be handled at the **stop_action** by using the folling lamda function:
+This can be handled at the **stop_action** by using the following lambda function:
 
 .. code-block:: yaml
 
