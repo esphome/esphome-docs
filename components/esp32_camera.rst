@@ -174,6 +174,30 @@ Test Setting:
     Camera uses PWM timer #1. If you need PWM (via the ``ledc`` platform) you need to manually specify
     a channel there (with the ``channel: 2``  parameter)
 
+Base64 encode/decode
+--------------------
+There are helper functions available which can encode or decode raw image data into Base64 strings and vice versa. This can be useful to sent images over MQTT or other protocols.
+
+.. code-block:: yaml
+
+    # Example of how to encode data
+    esp32_camera:
+      ...
+      on_image:
+          then:
+            - lambda: |-
+                const char* image_data_char = reinterpret_cast<char*>(image.data);
+                std::string encodedData = base64_encode(&image_data_char[0], image.length);
+                id(mqtt_client).publish("cam/image", encodedData);
+                
+    # Example of how to decode data
+    mqtt:
+      on_message:
+        topic: cam/image
+        then:
+          - lambda: |-
+              std::vector<char> decodedData = base64_decode(x);
+
 Configuration for Ai-Thinker Camera
 -----------------------------------
 
