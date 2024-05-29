@@ -16,13 +16,13 @@ Changelog - Version 1.18.0 - 19th May 2021
     SHT4X, components/sensor/sht4x, sht4x.jpg
 
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
-    Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
+    Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg, dark-invert
     TOF10120, components/sensor/tof10120, tof10120.jpg
     SM2135, components/output/sm2135, sm2135.svg
 
-    ESP32 BLE Client, components/ble_client, bluetooth.svg
-    BLE Sensor, components/sensor/ble_sensor, bluetooth.svg
-    External Components, components/external_components, external_components.svg
+    ESP32 BLE Client, components/ble_client, bluetooth.svg, dark-invert
+    BLE Sensor, components/sensor/ble_sensor, bluetooth.svg, dark-invert
+    External Components, components/external_components, external_components.svg, dark-invert
 
 
 It feels like I was just writing the release notes for 1.17 not long ago, so here's to getting ESPHome going on a regular schedule.

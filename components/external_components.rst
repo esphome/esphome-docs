@@ -8,6 +8,8 @@ External Components
 You can easily import community or personal components using the external components feature.
 Bundled components can be overridden using this feature.
 
+You can find some basic documentation on creating your own components at :ref:`contributing_to_esphome`.
+
 .. code-block:: yaml
 
     external_components:
@@ -44,6 +46,7 @@ Configuration variables:
   - **ref** (*Optional*, string): Git ref (branch or tag). If not specified the default branch is used.
   - **username** (*Optional*, string): Username for the Git server, if one is required
   - **password** (*Optional*, string): Password for the Git server, if one is required
+  - **path** (*Optional*, string): Path inside the repo, if different from ``components`` or ``esphome/components``
 
   local options:
 
@@ -91,15 +94,15 @@ Given the above example of ``my_components``, the folder structure must look lik
     ├── node2.yaml
     └── my_components
         ├── my_component1
-        │   ├── __init__.py
-        │   ├── component1.cpp
-        │   ├── component1.h
-        │   └── sensor.py
-        └── my_component2
-            ├── __init__.py
-            ├── component2.cpp
-            ├── component2.h
-            └── switch.py
+        │   ├── __init__.py
+        │   ├── component1.cpp
+        │   ├── component1.h
+        │   └── sensor.py
+        └── my_component2
+            ├── __init__.py
+            ├── component2.cpp
+            ├── component2.h
+            └── switch.py
 
 
 ..   _external-components_git:
@@ -119,16 +122,16 @@ For repositories where you share one or a few components:
 .. code-block:: text
 
     components
-    ├── my_component1
-    │   ├── __init__.py
-    │   ├── component1.cpp
-    │   ├── component1.h
-    │   └── sensor.py
-    └── my_component2
-        ├── __init__.py
-        ├── component2.cpp
-        ├── component2.h
-        └── switch.py
+    ├── my_component1
+    │   ├── __init__.py
+    │   ├── component1.cpp
+    │   ├── component1.h
+    │   └── sensor.py
+    └── my_component2
+        ├── __init__.py
+        ├── component2.cpp
+        ├── component2.h
+        └── switch.py
     example_component1.yaml        <- not required but recommended
     README.md
 
@@ -140,17 +143,17 @@ repository:
 
     esphome
     ├── components
-    │   ├── my_component1
-    │   │   ├── __init__.py
-    │   │   ├── component1.cpp
-    │   │   ├── component1.h
-    │   │   └── sensor.py
-    │   ├── my_component2
-    │   │   ├── __init__.py
-    │   │   ├── component2.cpp
-    │   │   ├── component2.h
-    │   │   └── switch.py
-    │  ...
+    │   ├── my_component1
+    │   │   ├── __init__.py
+    │   │   ├── component1.cpp
+    │   │   ├── component1.h
+    │   │   └── sensor.py
+    │   ├── my_component2
+    │   │   ├── __init__.py
+    │   │   ├── component2.cpp
+    │   │   ├── component2.h
+    │   │   └── switch.py
+    │  ...
     ...
 
 HTTP git repositories in general are supported with this configuration:

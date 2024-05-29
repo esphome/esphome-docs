@@ -5,11 +5,19 @@ ESP32 Bluetooth Low Energy Tracker Hub
     :description: Instructions for setting up ESP32 bluetooth low energy device trackers using ESPHome.
     :image: bluetooth.svg
 
-The ``esp32_ble_tracker`` component creates a global hub so that you can track bluetooth low
-energy devices using your ESP32 node.
+The ``esp32_ble_tracker`` component creates a global hub so that you can track bluetooth low energy devices
+using your ESP32 node.
 
-See :ref:`Setting up devices <esp32_ble_tracker-setting_up_devices>`
-for information on how you can find out the MAC address of a device and track it using ESPHome.
+See :ref:`Setting up devices <esp32_ble_tracker-setting_up_devices>` for information on how you can determine
+the MAC address of a device and track it using ESPHome.
+
+.. warning::
+
+    The BLE software stack on the ESP32 consumes a significant amount of RAM on the device.
+    
+    **Crashes are likely to occur** if you include too many additional components in your device's
+    configuration. Memory-intensive components such as :doc:`/components/voice_assistant` and other
+    audio components are most likely to cause issues.
 
 .. code-block:: yaml
 
@@ -108,7 +116,9 @@ This automation will be triggered when a Bluetooth advertising is received. A va
 
     esp32_ble_tracker:
       on_ble_advertise:
-        - mac_address: 11:22:33:44:55:66
+        - mac_address: 
+            - 11:11:11:11:11:11
+            - 22:22:22:22:22:22
           then:
             - lambda: |-
                 ESP_LOGD("ble_adv", "New BLE device");
@@ -129,7 +139,7 @@ This automation will be triggered when a Bluetooth advertising is received. A va
 
 Configuration variables:
 
-- **mac_address** (*Optional*, MAC Address): The MAC address to filter for this automation.
+- **mac_address** (*Optional*, list of MAC Address): The MAC address to filter for this automation.
 - See :ref:`Automation <automation>`.
 
 .. _esp32_ble_tracker-on_ble_manufacturer_data_advertise:
@@ -137,7 +147,7 @@ Configuration variables:
 ``on_ble_manufacturer_data_advertise`` Trigger
 ************************************************
 
-This automation will be triggered when a Bluetooth advertising with manufcaturer data is received. A
+This automation will be triggered when a Bluetooth advertising with manufacturer data is received. A
 variable ``x`` of type ``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
 
 .. code-block:: yaml
@@ -253,6 +263,29 @@ Stops the bluetooth scanning. It can be started again with the above start scan 
 
     on_...:
       - esp32_ble_tracker.stop_scan:
+
+Use on single-core chips
+------------------------
+
+On dual-core devices the WiFi component runs on core 1, while this component runs on core 0.
+When using this component on single core chips such as the ESP32-C3 both WiFi and ``ble_tracker`` must run on
+the same core, and this has been known to cause issues when connecting to WiFi. A work-around for this is to
+enable the tracker only while the native API is connected. The following config will achieve this:
+
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+      scan_parameters:
+        continuous: false
+
+    api:
+      encryption:
+        key: !secret encryption_key
+      on_client_connected:
+        - esp32_ble_tracker.start_scan:
+           continuous: true
+      on_client_disconnected:
+        - esp32_ble_tracker.stop_scan:
 
 See Also
 --------

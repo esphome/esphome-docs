@@ -9,15 +9,15 @@ Changelog - Version 1.12.0
 
 .. imgtable::
 
-    User-Defined Services, components/api.html#user-defined-services, home-assistant.svg
-    ESP32 Camera, components/esp32_camera, camera.svg
+    User-Defined Services, components/api.html#user-defined-services, home-assistant.svg, dark-invert
+    ESP32 Camera, components/esp32_camera, camera.svg, dark-invert
     MPR121, components/binary_sensor/mpr121, mpr121.jpg
 
     SDS011, components/sensor/sds011, sds011.jpg
     MCP23017, components/mcp23017, mcp23017.svg
     Servo, components/servo, servo.svg
 
-    WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
+    WiFi Info, components/text_sensor/wifi_info, network-wifi.svg, dark-invert
 
 It's release day! 🎉 Today I'm happy to release ESPHome 1.12.0. What's new? A lot of awesome
 stuff got added! Let me walk you through it:
