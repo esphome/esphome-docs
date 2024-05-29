@@ -20,6 +20,12 @@ FastLED Light
     - https://github.com/FastLED/FastLED/issues/1322
     - https://github.com/FastLED/FastLED/issues/1264
 
+.. warning::
+
+    FastLED does **not** work with ESP-IDF.
+
+    For addressable lights, you can use :doc:`esp32_rmt_led_strip` or for SPI LEDs see :doc:`spi_led_strip`..
+
 .. _fastled-clockless:
 
 Clockless
@@ -41,7 +47,7 @@ Clockless FastLED lights differ from the
     light:
       - platform: fastled_clockless
         chipset: WS2811
-        pin: GPIO23
+        pin: GPIOXX
         num_leds: 60
         rgb_order: BRG
         name: "FastLED WS2811 Light"
@@ -104,6 +110,8 @@ SPI
 The ``fastled_spi`` light platform allows you to create RGB lights
 in ESPHome for a :ref:`number of supported chipsets <fastled_spi-chipsets>`.
 
+See :doc:`/components/light/spi_led_strip` for an alternative component that works on ESP-IDF (and Arduino.)
+
 SPI FastLED lights differ from the
 :ref:`fastled-clockless` in that they require two pins to be connected, one for a data and one for a clock signal
 whereas the clockless lights only need a single pin.
@@ -118,8 +126,8 @@ whereas the clockless lights only need a single pin.
     light:
       - platform: fastled_spi
         chipset: WS2801
-        data_pin: GPIO23
-        clock_pin: GPIO22
+        data_pin: GPIOXX
+        clock_pin: GPIOXX
         num_leds: 60
         rgb_order: BRG
         name: "FastLED SPI Light"
@@ -163,6 +171,7 @@ See Also
 --------
 
 - :doc:`/components/light/index`
+- :doc:`/components/light/spi_led_strip`
 - :doc:`/components/power_supply`
 - :apiref:`fastled_base/fastled_light.h`
 - `Arduino FastLED library <https://github.com/FastLED/FastLED>`__

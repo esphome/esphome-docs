@@ -41,6 +41,12 @@ All buttons in ESPHome have a name and an optional icon.
 Configuration variables:
 
 - **name** (**Required**, string): The name for the button.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the button to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the button in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
@@ -51,7 +57,7 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Set to ``""`` to remove the default entity category.
 - **device_class** (*Optional*, string): The device class for the button.
-  See https://developers.home-assistant.io/docs/core/entity/button/#available-device-classes
+  See https://www.home-assistant.io/integrations/button/#device-class
   for a list of available options.
 
 Automations:

@@ -58,10 +58,29 @@ Currently, the platform doesn't support activating the built-in heater,
 as it seems to only be rarely of use. If you need it, please open an
 issue.
 
+Notes
+--------
+
+This library also appears to the compatible with the  `DFRobot CHT8305 I2C Temperature and Humidity Sensor <https://wiki.dfrobot.com/SKU_SEN0546_I2C_Temperature_and_Humidity_Sensor_Stainless_Steel_Shell>`__) on address 0x40.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: hdc1080
+        temperature:
+          name: "Outside Temperature"
+        humidity:
+          name: "Outside Humidity"
+        address: 0x40
+        update_interval: 60s
+
+
 See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :doc:`dht`
 - :doc:`dht12`
 - :doc:`htu21d`

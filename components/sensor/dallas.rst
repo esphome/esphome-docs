@@ -28,13 +28,7 @@ if you don't have massively long wires.
 
     # Example configuration entry
     dallas:
-      - pin: 23
-
-    # Individual sensors
-    sensor:
-      - platform: dallas
-        address: 0x1c0000031edd2a28
-        name: "Livingroom Temperature"
+      - pin: GPIOXX
 
 Configuration variables:
 ************************
@@ -71,10 +65,6 @@ To initialize a sensor, first supply either ``address`` **or** ``index`` to iden
 
 .. code-block:: yaml
 
-    # Example configuration entry
-    dallas:
-      - pin: GPIO23
-
     # Individual sensors
     sensor:
       - platform: dallas
@@ -89,7 +79,7 @@ Configuration variables:
 - **index** (**Required**, int): The index of the sensor starting with 0.
   So the first sensor will for example have index 0. :ref:`It’s recommended
   to use address instead <dallas-getting-ids>`.
-- **resolution** (*Optional*, int): An optional resolution from 8 to
+- **resolution** (*Optional*, int): An optional resolution from 9 to
   12. Higher means more accurate. Defaults to the maximum for most Dallas temperature sensors: 12.
 - **dallas_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`dallas hub <dallas-component>`.
   Use this if you have multiple dallas hubs.
@@ -114,7 +104,7 @@ the scanning will happen even with no sensors connected. For example with this c
 
     # Example configuration entry
     dallas:
-      - pin: GPIO23
+      - pin: GPIOXX
 
     # Note you don't have to add any sensors at this point
 
@@ -128,7 +118,7 @@ Now we can add the individual sensors to our configuration:
 
     # Example configuration entry
     dallas:
-      - pin: GPIO23
+      - pin: GPIOXX
 
     sensor:
       - platform: dallas
@@ -145,6 +135,29 @@ You will see the outputted sensor values changing when they're being warmed.
 When you're finished mapping each address to a name, just change the ``Temperature #1``
 to your assigned names and you should be ready.
 
+Multiple dallas hubs
+********************
+
+Use this if you have multiple dallas hubs:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    dallas:
+      - pin: GPIOXX
+        id: hub_1
+      - pin: GPIOXX
+        id: hub_2
+
+    sensor:
+      - platform: dallas
+        dallas_id: hub_1
+        # ...
+      - platform: dallas
+        dallas_id: hub_2
+        # ...
+
+
 See Also
 --------
 
@@ -154,3 +167,4 @@ See Also
   by `Miles Burton <https://github.com/milesburton>`__
 - :apiref:`dallas/dallas_component.h`
 - :ghedit:`Edit`
+- `Guidelines for Reliable Long Line 1-Wire Networks <https://www.analog.com/en/technical-articles/guidelines-for-reliable-long-line-1wire-networks.html>`__
