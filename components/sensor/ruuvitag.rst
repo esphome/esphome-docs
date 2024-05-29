@@ -176,7 +176,7 @@ Then just copy the address (``FF:56:D3:2F:7D:E8``) into a new
 
 .. note::
 
-    The ESPHome Ruuvi BLE integration listens passively to packets the RuuviTag device sends by itself.
+    The ESPHome Ruuvi BLE component listens passively to packets the RuuviTag device sends by itself.
     ESPHome therefore has no impact on the battery life of the device.
 
 See Also
@@ -184,6 +184,7 @@ See Also
 
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/index`
+- :doc:`absolute_humidity`
 - :apiref:`ruuvitag/ruuvitag.h`
 - `Ruuvi <https://ruuvi.com>`__
 - :ghedit:`Edit`
