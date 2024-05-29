@@ -99,6 +99,7 @@ then locate the executable file called ``program`` within the ``.esphome`` build
 See Also
 --------
 
+- :ref:`SDL touchscreen <sdl_touchscreen>`
 - :doc:`index`
 - :apiref:`sdl/sdl_esphome.h`
 - :ghedit:`Edit`
