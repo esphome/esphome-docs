@@ -107,7 +107,7 @@ entry like in the configuration example at the top.
 
 .. note::
 
-    The ESPHome Inkbird IBS-TH1/TH2 integration listens passively to packets the device sends by itself.
+    The ESPHome Inkbird IBS-TH1/TH2 component listens passively to packets the device sends by itself.
     ESPHome therefore has no impact on the battery life of the device.
 
 See Also
@@ -115,6 +115,7 @@ See Also
 
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/index`
+- :doc:`absolute_humidity`
 - :apiref:`inkbird_ibsth1_mini/inkbird_ibsth1_mini.h`
 - `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
 - :ghedit:`Edit`

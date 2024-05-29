@@ -168,6 +168,8 @@ Configuration Variables:
 The thermostat controller uses the sensor to determine whether it should heat or cool.
 
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature.
+- **humidity_sensor** (**Optional**, :ref:`config-id`): If specified, this sensor is used to measure the current humidity.
+  This is used for information only and does not influence temperature control.
 
 Heating and Cooling Actions
 ***************************
@@ -257,6 +259,8 @@ These should be used to control the fan only, if available.
   should direct its airflow at a specific area.
 - **fan_mode_diffuse_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
   should direct its airflow over a broad area.
+- **fan_mode_quiet_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should run at quiet speed.
 
 Swing Mode Actions
 ******************
@@ -331,6 +335,7 @@ experience and automation.
     - ``middle``
     - ``focus``
     - ``diffuse``
+    - ``quiet``
   - **swing_mode** (*Optional*, climate swing mode): The fan swing mode the thermostat should switch to when this
     preset is activated. If not specified, the thermostat's fan swing mode will remain unchanged when the preset
     is activated. One of:

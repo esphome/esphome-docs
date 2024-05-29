@@ -25,16 +25,26 @@ Base Text Sensor Configuration
 Configuration variables:
 
 - **name** (**Required**, string): The name for the sensor.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the text sensor to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
+- **device_class** (*Optional*, string): The device class for the
+  sensor. Only the ``timestamp`` and ``date`` device classes are supported.
+  Set to ``""`` to remove the default device class of a sensor.
+  Requires Home Assistant 2024.3 or newer.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
 - If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
@@ -145,7 +155,7 @@ The arguments are a list of substitutions, each in the form ``TO_FIND -> REPLACE
 ``map``
 *******
 
-Lookup the current value of the text sensor in a list, and return the matching item if found. 
+Lookup the current value of the text sensor in a list, and return the matching item if found.
 Does not change the value of the text sensor if the current value wasn't found.
 
 
