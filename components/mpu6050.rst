@@ -1,0 +1,47 @@
+.. _mpu6050:
+
+MPU6050 Accelerometer and Gyroscope
+===================================
+
+.. seo::
+    :description: Instructions for setting up the MPU6050 Accelerometer and Gyroscope base component.
+    :image: mpu6050.jpg
+    :keywords: i2c
+
+This component sets the base configuration of the MPU6050 Accelerometer and Gyroscope device.
+
+The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work, 
+and this component is needed to set up the :ref:`mpu6050 sensor <mpu6050_sensor>`.
+
+This component can be used alone if the only needed feature is to trigger an interrupt on motion detection.
+
+.. code-block:: yaml
+
+    # Example configuration entry 
+    mpu6050:
+      id: my_mpu6050
+      address: 0x68
+      i2c_id: i2c_bus
+      interrupt:
+        threshold: 2
+        duration: 2ms
+
+Configuration variables:
+------------------------
+
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x68``.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <i2c>` if you want
+  to use multiple I²C buses.
+- **interrupt** (*Optional*, boolean or schema): Enable motion interrupt. Defaults to ``false``. If ``true``, uses maximal sensitivity as defaults.
+
+  - **threshold** (*Required*, int): Motion threshold, in range 1-255. Lower values are more sensitive, and the unit is ``2mg`` 
+    (See `Jeff Rowberg's i2cdevlib <https://github.com/jrowberg/i2cdevlib/blob/19c420b6798872ee91e85fc5f522fbc5b8771194/Arduino/MPU6050/MPU6050.cpp#L496-L502>`__).
+  - **duration** (*Required*, :ref:`config-time`): Minimum motion duration to trigger an interrupt, in the range 1ms-255ms.
+
+See Also
+--------
+
+- :doc:`/components/i2c`
+- :ref:`mpu6050 sensor <mpu6050_sensor>`
+- :ghedit:`Edit`

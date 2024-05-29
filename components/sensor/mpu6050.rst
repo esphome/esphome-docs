@@ -1,3 +1,5 @@
+.. _mpu6050_sensor:
+
 MPU6050 Accelerometer/Gyroscope Sensor
 ======================================
 
@@ -7,8 +9,7 @@ MPU6050 Accelerometer/Gyroscope Sensor
 
 The ``mpu6050`` sensor platform allows you to use your MPU6050 Accelerometer/Gyroscope
 (`datasheet <https://www.invensense.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf>`__,
-`SparkFun`_) sensors with
-ESPHome. The :ref:`I²C Bus <i2c>` is
+`SparkFun`_) sensors with ESPHome. The :ref:`mpu6050 component <mpu6050>` is
 required to be set up in your configuration for this sensor to work.
 
 This component only does some basic filtering and no calibration. Due to the complexity of
@@ -34,7 +35,7 @@ new feature. Supporting all possible use-cases would be quite hard.
     # Example configuration entry
     sensor:
       - platform: mpu6050
-        address: 0x68
+        mpu6050_id: mpu6050_1
         accel_x:
           name: "MPU6050 Accel X"
         accel_y:
@@ -75,6 +76,7 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`mpu6050`
 - :ref:`sensor-filters`
 - :doc:`template`
 - :doc:`ultrasonic`
