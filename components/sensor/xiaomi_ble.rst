@@ -8,6 +8,12 @@ Xiaomi Mijia BLE Sensors
 
 The ``xiaomi_ble`` sensor platform lets you track the output of Xiaomi Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track, for example, the temperature, humidity, moisture, conductivity, illuminance, formaldehyde, mosquito tablet and battery level of the device every time the sensor sends out a BLE broadcast. Contrary to other implementations, ``xiaomi_ble`` listens passively to advertisement packets and does not pair with the device. Hence ESPHome has no impact on battery life. Thus, if you only use such sensors, you can safely set ``scan_parameters.active: false`` in ``esp32_ble_tracker`` configuration, to save from spamming your RF environment with useless scan requests.
 
+
+.. note::
+
+    You may alternatively use ESPHome's :doc:`/components/bluetooth_proxy` component to forward sensor data to Home Assistant and have Mija devices configured using its own Mija BLE component. This should work for the devices flashed with `PVVX MiThermometer <https://github.com/pvvx/ATC_MiThermometer>`__ custom firmware, as well as the regular, stock firmware.
+
+
 Supported Devices
 -----------------
 
@@ -641,10 +647,6 @@ Security considerations
 -----------------------
 
 You should at least protect your sensors with a custom pairing PIN code. Choose a method employing bindkey in order to use encrypted communication over the air.
-
-.. note::
-
-    Devices flashed with `PVVX MiThermometer <https://github.com/pvvx/ATC_MiThermometer>`__ custom firmware also support the `BTHome protocol <https://bthome.io/>`__ which can be used in conjunction with ESPHome's :doc:`/components/bluetooth_proxy` component to forward sensor data to Home Assistant.
 
 
 See Also

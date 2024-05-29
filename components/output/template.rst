@@ -22,14 +22,10 @@ The ``template`` output component can be used to create templated binary and flo
               id: output2
               level: !lambda return state;
 
-      - platform: esp8266_pwm
+      - platform: ...
         id: output1
-        pin: GPIO12
-        inverted: true
-      - platform: esp8266_pwm
+      - platform: ...
         id: output2
-        pin: GPIO14
-        inverted: true
 
 
 
@@ -72,7 +68,7 @@ It is possible to access the state value inside Lambdas:
                 - output.turn_off: button_off
 
 
-Complete example from the cookbook: :doc:`Sonoff Dual Light Switch</cookbook/sonoff-dual-light-switch>`.
+Complete example: `Sonoff Dual Light Switch <https://devices.esphome.io/devices/Sonoff-Dual-DIY-light>`__.
 
 See Also
 --------

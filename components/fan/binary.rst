@@ -16,8 +16,11 @@ The ``binary`` fan platform lets you represent any binary :ref:`output` as a fan
     # Example configuration entry
     fan:
       - platform: binary
-        output: my_output_1
+        output: fan_output
         name: "Living Room Fan"
+
+
+
 
 Configuration variables:
 ------------------------

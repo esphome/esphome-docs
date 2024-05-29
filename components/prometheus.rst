@@ -56,7 +56,7 @@ and then adding a block with ``id`` and/or ``name`` fields for each sensor whose
 ``relabel``
 ***********
 
-Set the the ``id`` and ``name`` label values of the Prometheus metric for the sensor with the specified ID.
+Set the ``id`` and ``name`` label values of the Prometheus metric for the sensor with the specified ID.
 
 .. code-block:: yaml
 
@@ -71,5 +71,9 @@ Set the the ``id`` and ``name`` label values of the Prometheus metric for the se
 See Also
 --------
 
+- :doc:`/components/web_server`
+- :ref:`api-rest`
+- :doc:`/components/http_request`
 - :apiref:`prometheus/prometheus_handler.h`
+- `Prometheus <https://prometheus.io/>`__
 - :ghedit:`Edit`
