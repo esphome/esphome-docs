@@ -77,7 +77,22 @@ Configuration variables:
     ``esp8266_restore_from_flash: true`` option set. 
     See :doc:`esp8266_restore_from_flash </components/esphome>` for details.
 
+Handle stop_action:
+------------------------
+For some cover controllers, separate switches for UP and DOWN action are used while a stop is issued when sending a counter command.
+This can be handled at the **stop_action** by using the following lambda function:
 
+.. code-block:: yaml
+
+    stop_action: 
+      - lambda: !lambda |-
+          if (id(cover).last_operation() == CoverOperation::COVER_OPERATION_OPENING) {
+            // Cover is currently opening
+            id(cover_button_down).press();
+          } else if (id(cover).last_operation() == CoverOperation::COVER_OPERATION_CLOSING) {
+            // Cover is currently closing
+            id(cover_button_up).press();
+          }
 
 See Also
 --------

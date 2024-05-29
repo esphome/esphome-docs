@@ -31,14 +31,9 @@ global ``my9231`` hub and give it an id, and then define the
 
     # Example configuration entry
     my9231:
-      - data_pin: GPIO12
-        clock_pin: GPIO14
+      - data_pin: GPIOXX
+        clock_pin: GPIOXX
 
-    # Individual outputs
-    output:
-      - platform: my9231
-        id: 'my9231_output1'
-        channel: 0
 
 Configuration variables:
 ************************
@@ -67,11 +62,6 @@ The MY931/MY9291 output component exposes a MY931/MY9291 channel of a global
 :ref:`my9231-component` as a float output.
 
 .. code-block:: yaml
-
-    # Example configuration entry
-    my9231:
-      - data_pin: GPIO12
-        clock_pin: GPIO14
 
     # Individual outputs
     output:
@@ -104,7 +94,7 @@ complete configuration for a Sonoff B1 looks like:
 .. code-block:: yaml
 
     esphome:
-      name: REPLACEME
+      name: GPIOXX
 
     esp8266:
       board: esp01_1m
@@ -145,7 +135,7 @@ complete configuration for a Sonoff B1 looks like:
 
     light:
       - platform: rgbww
-        name: REPLACEME
+        name: GPIOXX
         red: output_red
         green: output_green
         blue: output_blue
@@ -159,7 +149,7 @@ And here is a complete configuration for the AiThinker AiLight:
 .. code-block:: yaml
 
     esphome:
-      name: REPLACEME
+      name: GPIOXX
 
     esp8266:
       board: esp01_1m
@@ -197,7 +187,7 @@ And here is a complete configuration for the AiThinker AiLight:
 
     light:
       - platform: rgbw
-        name: REPLACEME
+        name: GPIOXX
         red: output_red
         green: output_green
         blue: output_blue

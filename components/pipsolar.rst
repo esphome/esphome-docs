@@ -37,16 +37,8 @@ There is a buffer to buffer up to 10 commands.
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      - id: uart_bus
-        tx_pin: GPIO18
-        rx_pin: GPIO19
-        # most devices use 2400 as baud_rate
-        baud_rate: 2400
-
     pipsolar:
-      - uart_id: uart_bus
-        id: inverter0
+      - id: inverter0
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~

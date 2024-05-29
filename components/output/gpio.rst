@@ -14,7 +14,7 @@ will not show up in Home Assistant. See :doc:`/components/switch/gpio`.
     # Example configuration entry
     output:
       - platform: gpio
-        pin: D1
+        pin: GPIOXX
         id: gpio_d1
 
 Configuration variables:

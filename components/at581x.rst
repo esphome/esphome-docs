@@ -32,17 +32,6 @@ a :doc:`/components/i2c` component (and its requisite GPIO pins) is required in 
       id: "Radar"
       i2c_id: bus_a
 
-    binary_sensor:
-      - platform: gpio
-        pin: GPIO21
-        name: "Radar motion"
-
-    switch:
-      # Switch to turn on/off RF emission
-      - platform: at581x
-        at581x_id: "Radar"
-        name: "Enable Radar"
-
 .. _at581x-component:
 
 Component/Hub
@@ -87,7 +76,7 @@ The state of the radar detection is available via its GPIO pin. It's required to
     binary_sensor:
       - platform: gpio
         name: "Human in front"
-        pin: GPIO21
+        pin: GPIOXX
 
 Configuration variables:
 ************************
@@ -127,8 +116,8 @@ Actions
 
 .. warning::
 
-    The hardware frontend reset option is only required to reset the frontend in case it is struck, before sending the 
-    new configuration. However, a frontend reset is always performed after changing the settings. 
+    The hardware frontend reset option is only required to reset the frontend in case it is struck, before sending the
+    new configuration. However, a frontend reset is always performed after changing the settings.
 
 The radar has several settings which can be changed. These settings are not saved in non-volatile memory
 and need to be set on each boot.
