@@ -94,7 +94,7 @@ All sensors are *Optional* and support all other options from :ref:`Sensor <conf
 
 
 Text Sensor
-------
+-----------
 
 .. code-block:: yaml
 
