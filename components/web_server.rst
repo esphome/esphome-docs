@@ -16,19 +16,18 @@ will take up *a lot* of memory and may decrease stability, especially on ESP8266
 
     Web server version 1
 
-    
 .. figure:: /components/images/web_server-v2.png
     :align: center
     :width: 86.0%
 
-    Web server version 2    
+    Web server version 2
 
 
 .. figure:: /components/images/web_server-v3.png
     :align: center
     :width: 86.0%
 
-    Web server version 3    
+    Web server version 3
 
     
 To navigate to the web server in your browser, either use the IP address of the node or

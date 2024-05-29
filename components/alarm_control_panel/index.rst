@@ -52,7 +52,6 @@ Configuration variables:
 - If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 
-
 Automation:
 -----------
 
