@@ -69,7 +69,7 @@ segment of the previous position will be used.
 
 
 Brightness Control
------------------
+------------------
 
 With the ``ht16k33_alpha`` the brightness can be controlled by functions ``get_brightness()`` and off by ``set_brightness()`` 
 in the using lambdas. For example a ``number`` component could be used to get and set the brightness value:
