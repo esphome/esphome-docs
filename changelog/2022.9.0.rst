@@ -16,8 +16,8 @@ ESPHome 2022.9.0 - 21st September 2022
     MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg
     uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png
     uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png
-    Factory Reset Switch, components/switch/factory_reset, restart-alert.svg
-    Factory Reset Button, components/button/factory_reset, restart-alert.svg
+    Factory Reset Switch, components/switch/factory_reset, restart-alert.svg, dark-invert
+    Factory Reset Button, components/button/factory_reset, restart-alert.svg, dark-invert
     TM1638, components/display/tm1638, tm1638.jpg
     BL0942, components/sensor/bl0942, bl0942.png
 

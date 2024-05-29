@@ -22,7 +22,7 @@ heating element through a relay where a fast PWM update cycle would not be appro
     # Example configuration entry
     output:
       - platform: slow_pwm
-        pin: D1
+        pin: GPIOXX
         id: my_slow_pwm
         period: 15s
 
@@ -70,7 +70,7 @@ Example:
 .. note::
 
     If the duty cycle is not constrained to a maximum value, the
-    :doc:`/components/output/sigma_delta` component offers faster updates and
+    :doc:`/components/output/sigma_delta_output` component offers faster updates and
     greater control over the switching frequency. This is better for loads that
     need some time to fully change between on and off, like eletric thermal
     actuator heads or fans.
@@ -81,7 +81,7 @@ See Also
 - :doc:`/components/output/index`
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/components/output/ledc`
-- :doc:`/components/output/sigma_delta`
+- :doc:`/components/output/sigma_delta_output`
 - :doc:`/components/light/monochromatic`
 - :doc:`/components/fan/speed`
 - :doc:`/components/power_supply`

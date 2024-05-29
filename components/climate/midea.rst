@@ -20,22 +20,11 @@ The ``midea`` component creates a Midea air conditioner climate device.
         - `Senville <https://senville.com/>`_
         - and maybe others
 
-    Control is possible with a custom dongle. Example of hardware implementation is `IoT Uni Dongle <https://github.com/dudanov/iot-uni-dongle>`_ or `Midea SLWF-01pro <https://www.ebay.com/itm/164956459539>`_ (`store <https://smartlight.me/smart-home-devices/wifi-devices/wifi-dongle-air-conditioners-midea-idea-electrolux-for-home-assistant>`_, `Tindie <https://www.tindie.com/products/smartlightme/wifi-dongle-for-air-conditioners-midea-electrolux>`_).
+    Control is possible with a custom dongle. Example of hardware implementation is `IoT Uni Dongle <https://github.com/dudanov/iot-uni-dongle>`_ or `Midea SLWF-01pro <https://smartlight.me/smart-home-devices/wifi-devices/wifi-dongle-air-conditioners-midea-idea-electrolux-for-home-assistant>`_ (`CloudFree <https://cloudfree.shop/product/ductless-hvac-wi-fi-module/>`_, `Tindie <https://www.tindie.com/products/smartlightme/wifi-dongle-for-air-conditioners-midea-electrolux>`_).
 
 .. code-block:: yaml
 
     # Example configuration entry
-
-    # Disable logging over UART (required)
-    logger:
-      baud_rate: 0
-
-    # UART settings for Midea dongle (required)
-    uart:
-      tx_pin: 1         # hardware dependant
-      rx_pin: 3         # hardware dependant
-      baud_rate: 9600
-
     # Main settings
     climate:
       - platform: midea
@@ -49,23 +38,23 @@ The ``midea`` component creates a Midea air conditioner climate device.
           min_temperature: 17 °C    # min: 17
           max_temperature: 30 °C    # max: 30
           temperature_step: 0.5 °C  # min: 0.5
-        supported_modes:            # All capabilities in this section detected by autoconf.
-          - FAN_ONLY                # This capability is always used.
+        supported_modes:            # Optional. All capabilities in this section may be detected by autoconf.
+          - FAN_ONLY
           - HEAT_COOL
           - COOL
           - HEAT
           - DRY
-        custom_fan_modes:
+        custom_fan_modes:           # Optional
           - SILENT
           - TURBO
-        supported_presets:          # All capabilities in this section detected by autoconf.
+        supported_presets:          # Optional. All capabilities in this section may be detected by autoconf.
           - ECO
           - BOOST
-          - SLEEP                   # This capability is always used.
-        custom_presets:             # All capabilities in this section detected by autoconf.
+          - SLEEP
+        custom_presets:             # Optional. All capabilities in this section may be detected by autoconf.
           - FREEZE_PROTECTION
-        supported_swing_modes:
-          - VERTICAL                # This capability is always used.
+        supported_swing_modes:      # Optional
+          - VERTICAL
           - HORIZONTAL
           - BOTH
         outdoor_temperature:        # Optional. Outdoor temperature sensor (may display incorrect values after long inactivity).

@@ -42,6 +42,7 @@ To additionally display signal strength in percentage use the :ref:`copy-sensor`
           - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
         unit_of_measurement: "Signal %"
         entity_category: "diagnostic"
+        device_class: ""
 
 Configuration variables:
 ------------------------

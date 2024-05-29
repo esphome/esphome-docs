@@ -14,16 +14,16 @@ directly integrate into Home Assistant through the native API.
     esp32_camera:
       name: My Camera
       external_clock:
-        pin: GPIO27
+        pin: GPIOXX
         frequency: 20MHz
       i2c_pins:
-        sda: GPIO25
-        scl: GPIO23
-      data_pins: [GPIO17, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
-      vsync_pin: GPIO22
-      href_pin: GPIO26
-      pixel_clock_pin: GPIO21
-      reset_pin: GPIO15
+        sda: GPIOXX
+        scl: GPIOXX
+      data_pins: [GPIOXX, GPIOXX, GPIOXX, GPIOXX, GPIOXX, GPIOXX, GPIOXX, GPIOXX]
+      vsync_pin: GPIOXX
+      href_pin: GPIOXX
+      pixel_clock_pin: GPIOXX
+      reset_pin: GPIOXX
       resolution: 640x480
       jpeg_quality: 10
 
@@ -37,10 +37,10 @@ Configuration variables:
   a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
 
 Connection Options:
@@ -53,8 +53,8 @@ Connection Options:
 - **external_clock** (**Required**): The configuration of the external clock to drive the camera.
 
   - **pin** (**Required**, pin): The pin the external clock line is connected to.
-  - **frequency** (*Optional*, float): The frequency of the external clock, must be either 20MHz
-    or 10MHz. Defaults to ``20MHz``.
+  - **frequency** (*Optional*, float): The frequency of the external clock, must be between 10
+    and 20MHz. Defaults to ``20MHz``.
 
 - **i2c_pins** (**Required**): The I²C control pins of the camera.
 
@@ -80,16 +80,25 @@ Image Settings:
 - **resolution** (*Optional*, enum): The resolution the camera will capture images at. Higher
   resolutions require more memory, if there's not enough memory you will see an error during startup.
 
-    - ``160x120`` (QQVGA)
-    - ``176x144`` (QCIF)
-    - ``240x176`` (HQVGA)
-    - ``320x240`` (QVGA)
-    - ``400x296`` (CIF)
-    - ``640x480`` (VGA, default)
-    - ``800x600`` (SVGA)
-    - ``1024x768`` (XGA)
-    - ``1280x1024`` (SXGA)
-    - ``1600x1200`` (UXGA)
+    - ``160x120`` (QQVGA, 4:3)
+    - ``176x144`` (QCIF, 11:9)
+    - ``240x176`` (HQVGA, 15:11)
+    - ``320x240`` (QVGA, 4:3)
+    - ``400x296`` (CIF, 50:37)
+    - ``640x480`` (VGA, 4:3, default)
+    - ``800x600`` (SVGA, 4:3)
+    - ``1024x768`` (XGA, 4:3)
+    - ``1280x1024`` (SXGA, 5:4)
+    - ``1600x1200`` (UXGA, 4:3)
+    - ``1920x1080`` (FHD, 16:9)
+    - ``720x1280`` (Portrait HD, 9:16)
+    - ``864x1536`` (Portrait 3MP, 9:16)
+    - ``2048x1536`` (QXGA, 4:3)
+    - ``2560x1440`` (QHD, 16:9)
+    - ``2560x1600`` (WQXGA, 8:5)
+    - ``1080x1920`` (Portrait FHD, 9:16)
+    - ``2560x1920`` (QSXGA, 4:3)
+
 
 - **jpeg_quality** (*Optional*, int): The JPEG quality that the camera should encode images with.
   From 10 (best) to 63 (worst). Defaults to ``10``.
@@ -153,6 +162,7 @@ Automations:
   when a stream starts.
 - **on_stream_stop** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a stream stops.
+- **on_image** (*Optional*, :ref:`Automation <automation>`): An automation called when image taken. Image is available as ``image`` variable of type :apistruct:`esp32_camera::CameraImageData`.
 
 Test Setting:
 
@@ -166,6 +176,12 @@ Test Setting:
 
 Configuration for Ai-Thinker Camera
 -----------------------------------
+
+.. warning::
+
+    GPIO16 on this board (and possibly other boards below) is connected to onboard PSRAM.
+    Using this GPIO for other purposes (eg as a button) will trigger the watchdog.
+    Further information on pin notes can be found here: https://github.com/raphaelbs/esp32-cam-ai-thinker/blob/master/docs/esp32cam-pin-notes.md
 
 .. code-block:: yaml
 
@@ -241,6 +257,25 @@ Configuration for M5Stack Timer Camera X/F
       # Image settings
       name: My Camera
       # ...
+
+Confguration for M5Stack M5CameraF New
+--------------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry as per https://docs.m5stack.com/en/unit/m5camera_f_new
+    esp32_camera:
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO22
+        scl: GPIO23
+      data_pins: [GPIO32, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO25
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+      reset_pin: GPIO15
 
 Configuration for Wrover Kit Boards
 -----------------------------------
@@ -427,6 +462,33 @@ Configuration for ESP-EYE
       name: My Camera
       # ...
 
+Configuration for ESP32S3_EYE on `Freenove ESP32-S3-DevKitC-1 <https://github.com/Freenove/Freenove_ESP32_S3_WROOM_Board>`_
+---------------------------------------------------------------------------------------------------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    external_components:
+      - source:
+          type: git
+          url: https://github.com/MichaKersloot/esphome_custom_components
+        components: [ esp32_camera ]
+
+    esp32_camera:
+      external_clock:
+        pin: GPIO15
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO4
+        scl: GPIO5
+      data_pins: [GPIO11, GPIO9, GPIO8, GPIO10, GPIO12, GPIO18, GPIO17, GPIO16]
+      vsync_pin: GPIO6
+      href_pin: GPIO7
+      pixel_clock_pin: GPIO13
+
+      # Image settings
+      name: My Camera
+      # ...
 
 See Also
 --------
