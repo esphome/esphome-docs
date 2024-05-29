@@ -37,8 +37,8 @@ Configuration variables:
 - **rotation** (*Optional*, enum): In certain situations, e.g. when you use a stepper motor to control
   the hands of a clock, or when rotation in one direction is blocked, you want to limit the rotation of the
   stepper motor in one direction only. **Note** that you need to take care of positioning the stepper motor
-  yourself, and that you could run into an infinite loop. Possible values: ``BOTH``, ``CW``, ``CCW``,
-  ``CLOCKWISE``, ``COUNTERCLOCKWISE``, ``COUNTER-CLOCKWISE``. Defaults to ``BOTH`` (the stepper will move
+  yourself, and that you could run into an infinite loop. Possible values: ``BOTH``, ``CLOCKWISE``,
+  ``COUNTERCLOCKWISE``. Defaults to ``BOTH`` (the stepper will move
   to the target position in either direction, depending on which way it 'should' go).
 
 A4988 Component
@@ -59,7 +59,7 @@ Put this code into the configuration file on ESPHome for this device.
         sleep_pin: GPIOXX
         acceleration: inf
         deceleration: inf
-        rotation: CCW
+        rotation: COUNTERCLOCKWISE
 
 
 Configuration variables:
