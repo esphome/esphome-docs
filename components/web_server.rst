@@ -151,15 +151,18 @@ Entity sorting
 ``web_server`` version 3 supports the sorting of the entitys.
 You can set a ``web_server_sorting_weight`` on each entity.
 Smaller numbers will be displayed first, defaults to 50.
-Example ``sensor`` configuration
+Example ``sensor`` configuration.
+``My Sensor 2`` is displayed first, then ``My Sensor 1``
 
 .. code-block:: yaml
 
     sensor:
       - platform: template
-        name: "My Sensor"
-        web_server_sorting_weight: -99
-
+        name: "My Sensor 1"
+        web_server_sorting_weight: 10
+      - platform: template
+        name: "My Sensor 2"
+        web_server_sorting_weight: -1
 
 See Also
 --------
