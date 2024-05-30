@@ -40,9 +40,9 @@ Platform configuration
 Configuration variables
 ~~~~~~~~~~~~~~~~~~~~~~~
 - **protocol** (**Required**, string): The protocol for communication (``KW`` or ``P300``; ``GWG`` is not supported). See `this page <https://github.com/openv/openv/wiki/Geräte>`__ 
-- **rx_pin** (*Optional*, :ref:`Pin <config-pin>`, only ESP32): Receive pin (RX)
-- **tx_pin** (*Optional*, :ref:`Pin <config-pin>`, only ESP32): Transmit pin (TX)
-- **logger** (*Optional*, boolean): More detailled log output (:doc:`/components/logger` needed). See *Troubleshooting*. Defaults to 'false'.
+- **rx_pin** (**Required**, only ESP32, :ref:`Pin <config-pin>`): Receive pin (RX)
+- **tx_pin** (**Required**, only ESP32, :ref:`Pin <config-pin>`): Transmit pin (TX)
+- **logger** (**Required**, boolean): More detailled log output (:doc:`/components/logger` needed). See *Troubleshooting*. Defaults to 'false'.
 
 .. warning::
 
