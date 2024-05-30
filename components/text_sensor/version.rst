@@ -10,7 +10,6 @@ was compiled against as a text sensor.
 
 .. figure:: images/version-ui.png
     :align: center
-    :width: 80.0%
 
 .. code-block:: yaml
 
@@ -40,7 +39,7 @@ Disabling the compilation timestamp:
 
 This will, for example, change the output of the sensor from:
 
-``1.15.0-dev (Jun 8 2020, 18:53:16)`` to ``1.15.0-dev``
+``2024.6.0-dev May 30 2024, 09:07:35`` to just ``2024.6.0-dev``
 
 
 See Also
