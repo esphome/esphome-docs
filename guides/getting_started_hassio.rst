@@ -101,7 +101,7 @@ to the configuration like this:
     switch:
       - platform: gpio
         name: "Living Room Dehumidifier"
-        pin: 5
+        pin: GPIO5
 
 In above example, we're simply adding a switch that's called "Living Room Dehumidifier" (could control
 anything really, for example lights) and is connected to the pin ``GPIO5``.

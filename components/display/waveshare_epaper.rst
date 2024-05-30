@@ -23,7 +23,7 @@ single-color E-Ink displays are implemented and of those only a few modules.
 
     Waveshare E-Paper 2.9 Inch E-Paper Display.
 
-The communication ESPHome has chosen to use for this integration is 4-wire :ref:`SPI <spi>`, as it's the most stable
+The communication ESPHome has chosen to use for this component is 4-wire :ref:`SPI <spi>`, as it's the most stable
 and high-speed. So you need to make sure your board is set to the 4-wire SPI mode and have an ``spi:`` section in your
 configuration.
 
@@ -112,7 +112,7 @@ Configuration variables:
   - ``7.50inV2`` - Can't use with an ESP8266 as it runs out of RAM
   - ``7.50inV2alt`` (alternative version to the above ``7.50inV2``)
   - ``7.50in-hd-b`` - Can't use with an ESP8266 as it runs out of RAM
-  - ``gdey029t94`` - GooDisplay GDEY029T94, as used on the AdaFruit MagTag
+  - ``gdew029t5`` - GooDisplay GDEW029T5, as used on the AdaFruit MagTag (previously incorrectly referred to as GDEY029T94)
   - ``1.54in-m5coreink-m09`` - GoodDisplay gdew0154m09, as used in the M5Stack Core Ink
 
 .. warning::

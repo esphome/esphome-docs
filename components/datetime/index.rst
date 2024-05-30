@@ -49,6 +49,7 @@ Configuration variables:
   Set to ``""`` to remove the default entity category.
 - **time_id** (**Required**, :ref:`config-id`): The ID of the time entity. Automatically set
   to the ID of a time component if only a single one is defined.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 MQTT Options:
 
@@ -213,7 +214,7 @@ advanced stuff (see the full API Reference for more info).
 
       // Within lambda, set the time to 12:34:56
       auto call = id(my_time).make_call();
-      call.set_date("12:34:56");
+      call.set_time("12:34:56");
       call.perform();
 
   Check the API reference for information on the methods that are available for

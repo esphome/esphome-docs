@@ -17,22 +17,11 @@ shift register to the pin QH of the next shift register.
     # Example configuration entry
     sn74hc165:
       - id: sn74hc165_hub
-        clock_pin: GPIO16
-        data_pin: GPIO17
-        load_pin: GPIO4
-        clock_inhibit_pin: GPIO18
+        clock_pin: GPIOXX
+        data_pin: GPIOXX
+        load_pin: GPIOXX
+        clock_inhibit_pin: GPIOXX
         sr_count: 2
-
-    # Individual inputs
-    binary_sensor:
-      - platform: gpio
-        name: "SN74HC165 Pin #0"
-        pin:
-          sn74hc165: sn74hc165_hub
-          # Use pin number 0
-          number: 0
-          inverted: false
-
 
 Configuration variables:
 ************************
@@ -48,7 +37,20 @@ Configuration variables:
 Pin configuration variables:
 ****************************
 
-- **SN74HC165** (**Required**, :ref:`config-id`): The id of the SN74HC165 component of the pin.
+.. code-block:: yaml
+
+    # Individual inputs
+    binary_sensor:
+      - platform: gpio
+        name: "SN74HC165 Pin #0"
+        pin:
+          sn74hc165: sn74hc165_hub
+          # Use pin number 0
+          number: 0
+          inverted: false
+
+
+- **sn74hc165** (**Required**, :ref:`config-id`): The id of the SN74HC165 component of the pin.
 - **number** (**Required**, int): The pin number.
 - **inverted** (*Optional*, boolean): If received value should be treated as inverted.
   Defaults to ``false``.
