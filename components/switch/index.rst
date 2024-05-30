@@ -68,6 +68,7 @@ Configuration variables:
   See https://www.home-assistant.io/integrations/switch/#device-class
   for a list of available options.
 - If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 .. _switch-toggle_action:
 
