@@ -1,5 +1,5 @@
 Lite-On Ambient Light & Proximity Sensors
-==================================================
+=========================================
 
 .. seo::
     :description: Instructions for setting up LTR303, LTR329, LTR553, LTR556, LTR559, LTR659 ambient light sensors/proximity sensors with ESPHome.
@@ -19,7 +19,7 @@ Lite-On Ambient Light & Proximity Sensors
 
     LTR-303 Sensor in Home Assistant UI.
 
-The ``ltr_als_ps`` sensor platform allows you to use family of several LiteOn ambient light and proximity sensors
+The ``ltr_als_ps`` sensor platform allows you to use a range of LiteOn ambient light and proximity sensors
 with ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 The family of sensors includes:
@@ -33,8 +33,8 @@ have default I²C address ``0x23``. The sensors are available on breakout boards
 example `Adafruit`_ or `Pimoroni`_.
 
 Proximity sensors are the same sort of sensors that you find in phones and tablets to disable the screen when you hold
-the device up to your ear. They might be useful for automated turning on or off of displays and control panels. Good
-example is CoreS3 board from M5Stack that has LTR-559ALS sensor integrated just under the screen.
+the device up to your ear. They might be useful for automated turning on or off of displays and control panels. An
+example is the CoreS3 board from M5Stack that has an LTR-559ALS sensor integrated just under the screen.
 
 .. _Adafruit: http://www.adafruit.com/products/5610
 .. _Pimoroni: https://shop.pimoroni.com/products/ltr-559-light-proximity-sensor-breakout
@@ -42,18 +42,18 @@ example is CoreS3 board from M5Stack that has LTR-559ALS sensor integrated just 
 Ambient light sensing
 ---------------------
 
-Sensor platform provides a linear response over a wide dynamic range from 0.01 lux to 64k lux and is well suited 
+The sensor platform provides a linear response over a wide dynamic range from 0.01 lux to 64k lux and is well suited 
 to applications under high ambient brightness. There are altogether six gain settings (1X, 2X, 4X, 8X, 48X and 96X)
 available for user to configure. Use higher gain for dimmer areas.
 
-Devices consists of two photodiodes: *CH0* diode that is sensitive to both visible and infrared light and 
-*CH1* diode that is sensitive only to infrared light.
+The devices consist of two photodiodes: The *CH0* diode is sensitive to both visible and infrared light and 
+the *CH1* diode is sensitive only to infrared light.
 
 .. figure:: images/ltr303-spectral.png
     :align: center
     :width: 100.0%
 
-    CH0 and CH1 channels typical spectral response
+    CH0 and CH1 typical spectral response
 
 Ambient light illuminance calculation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -103,9 +103,9 @@ This Wikipedia `article <https://en.wikipedia.org/wiki/Lux>`__ has a table of so
 Proximity sensing
 -----------------
 
-Proximity sensor has built-in emitter and detector. The sensor detects reflected IR light from the emitter and
-gives a raw count value inversely exponential to the distance. Drop in the count value means an object is getting
-further away from the sensor, and vice versa. Neither of the datasheets provides any information on how to convert
+The proximity sensor has a built-in emitter and detector. The sensor detects reflected IR light from the emitter and
+gives a raw count value inversely exponential to the distance. A decrease in the count value means an object is getting
+further away from the sensor, and vice-versa. Neither of the datasheets provides any information on how to convert
 the raw count value to distance. The only way to do it is to test the sensor yourself and select the threshold
 according to your needs and environment. Exact numbers will depend on the type of the object, its color and 
 reflectivity.
@@ -165,11 +165,11 @@ Configuration variables:
 
 Sensors
 ^^^^^^^
-This component offers five sensors for ALS-enabled devices and one sensor for PS-enabled devices.
-You can configure all or any subset of the sensors. Each configured sensor is reported separately 
-on each ``update_interval``. **name** option is required for the sensor. All other options from 
-:ref:`Sensor <config-sensor>`. If you don’t need to configure any other sensor options, you can use 
-the simplified syntax for the sensor: ``ambient_light: "Ambient light"``, for example.
+This component offers five sensors for ALS-equipped devices and one sensor for PS-equipped devices.
+You can configure all or any subset of these sensors. Each configured sensor is reported separately 
+on each ``update_interval``. Each is an ESPHome :ref:`sensor <config-sensor>` and may be configured
+accordingly; if you don’t need to configure additional :ref:`sensor <config-sensor>` variables, you may simply
+use the shorthand syntax for the sensor. For example: ``ambient_light: "Ambient light"``
 
 - **ambient_light** (*Optional*): Illuminance of ambient light, close to human eye spectre, lx.
 - **infrared_counts** (*Optional*): Sensor counts from the IR-sensitive sensor (*CH1*), counts.
