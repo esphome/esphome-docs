@@ -89,7 +89,7 @@ Configuration:
 - **on_timer_cancelled** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a voice assistant
   timer has been cancelled. The timer is available as ``timer`` of type :apistruct:`voice_assistant::Timer`.
 - **on_timer_updated** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a voice assistant
-  timer has been updated. The timer is available as ``timer`` of type :apistruct:`voice_assistant::Timer`.
+  timer has been updated (paused/resumed/duration changed). The timer is available as ``timer`` of type :apistruct:`voice_assistant::Timer`.
 - **on_timer_tick** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the voice assistant timers
   tick is triggered.
   This is called every **1 second** while there are timers on this device.
