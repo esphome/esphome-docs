@@ -37,6 +37,10 @@ Configuration variables:
   Use this if you want to use multiple UART buses at once.
 - All other options from :ref:`Sensor <config-sensor>`.
 
+.. note::
+
+    `PWM and RS485 <https://www.dypcn.com/uploads/A02-Datasheet.pdf>`__ versions of the A02YYUW are not supported by this component.
+
 See Also
 --------
 
