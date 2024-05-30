@@ -1984,6 +1984,8 @@ The weather condition icons we use are from MDI. We import just the ones corresp
         widget: lbl_weather_outdnoor_now
         mode: text
 
+If you look carefully at the ``grid_columns`` variable, you'll notice that there are two thinner columns at left and right (``FR(10)``). Reason is to add some space to the labels from the edges. And that's why we had to use ``grid_cell_column_span`` for the widgets in the first row, to take up the space of multiple columns.
+
 These labels will appear in Home Assistant as `editable text components <https://www.home-assistant.io/integrations/text/>`__, which makes it very easy to update them with the ``text.set_value`` service. For this purpose, we add the following `automations <https://www.home-assistant.io/docs/automation/>`__ to Home Assistant:
 
 .. code-block:: yaml
