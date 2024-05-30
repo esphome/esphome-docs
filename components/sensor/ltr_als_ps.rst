@@ -116,9 +116,6 @@ Example configuration
 
 .. code-block:: yaml
 
-    i2c:
-      # ...
-
     sensor:
       - platform: ltr_als_ps
         address: 0x23
@@ -168,8 +165,8 @@ Sensors
 This component offers five sensors for ALS-equipped devices and one sensor for PS-equipped devices.
 You can configure all or any subset of these sensors. Each configured sensor is reported separately 
 on each ``update_interval``. Each is an ESPHome :ref:`sensor <config-sensor>` and may be configured
-accordingly; if you don’t need to configure additional :ref:`sensor <config-sensor>` variables, you may simply
-use the shorthand syntax for the sensor. For example: ``ambient_light: "Ambient light"``
+accordingly; if you don’t need to configure additional :ref:`sensor <config-sensor>` variables, you
+may simply use the shorthand syntax for the sensor. For example: ``ambient_light: "Ambient light"``
 
 - **ambient_light** (*Optional*): Illuminance of ambient light, close to human eye spectre, lx.
 - **infrared_counts** (*Optional*): Sensor counts from the IR-sensitive sensor (*CH1*), counts.
