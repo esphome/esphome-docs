@@ -127,6 +127,7 @@ MQTT options:
 - **target_humidity_command_topic** (*Optional*, string): The topic to receive
   target humidity commands on.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 Climate Automation
 ------------------
