@@ -14,7 +14,7 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 
 In order to be able to drive a :ref:`display <display-hw>` with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended for bigger displays.
 
-The graphic display should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set. It should have an :ref:`config-id` configured, which will be referenced by the main LGVL component.
+The graphic display should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set.
 
 For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly preferred), a :doc:`/components/sensor/rotary_encoder` or a custom keypad made up from discrete :doc:`Binary Sensors </components/binary_sensor/index>` can be used.
 
@@ -71,13 +71,13 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 
 **Configuration variables:**
 
-- **displays** (**Required**, list): A list of displays where LVGL should perform rendering based on its configuration:
+- **displays** (**Required**, list): A list of displays where LVGL should perform rendering based on its configuration. This may be omitted if there is a single display configured, which will be used automatically.
     - **display_id** (**Required**, :ref:`config-id`): The ID of a display configuration.
-- **touchscreens** (*Optional*, list): A list of touchscreens interacting with the LVGL widgets on the display. May be omitted if a rotary encoder or a keypad is configured.
+- **touchscreens** (*Optional*, list): A list of touchscreens interacting with the LVGL widgets on the display.
     - **touchscreen_id** (**Required**, :ref:`config-id`): ID of a touchscreen configuration related to a display.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
-- **rotary_encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display. May be omitted if a touchscreen or keypad is configured.
+- **rotary_encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display.
     - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
     - **enter_button** (**Required**, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``ENTER`` key.
     - **sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder`; or a list with buttons for left/right interaction with the widgets:
@@ -85,7 +85,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
         - **right_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``RIGHT`` key.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the rotary encoder, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``. Can be disabled with ``never``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the rotary encoder, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``. Can be disabled with ``never``.
-- **keypads** (*Optional*, list): A list of keypads interacting with the LVGL widgets on the display. May be omitted if a touchscreen or a rotary encoder is configured.
+- **keypads** (*Optional*, list): A list of keypads interacting with the LVGL widgets on the display.
     - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
     - **up** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``UP`` key.
     - **down** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``DOWN`` key.
@@ -110,7 +110,6 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 
 - **color_depth** (*Optional*, string): The color deph at which the contents are generated. Currently only ``16`` is supported (RGB565, 2 bytes/pixel), which is the default value.
 - **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM, the recommended value is ``25%``. 
-- **update_interval**: (*Optional*, :ref:`Time <config-time>`): The interval at which the screen should be redrawn (when necessary). Defaults to ``1s``.
 - **log_level** (*Optional*, string): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, int16): The byte order of the data LVGL outputs; either ``big_endian`` or ``little_endian``. Defaults to ``big_endian``.
 - **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): Solid color used to fill the background. Can be changed at runtime with the ``lvgl.update`` action.
@@ -124,8 +123,8 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
     - All other options from :ref:`lvgl-styling` to be applied to this page.
-- **page_wrap** (*Optional*, boolean): Wrap pages around when navigating between them with :ref:`lvgl-pgnx-act`. Defaults to ``true``.
-- **top_layer** (*Optional*, list): A special kind of *Always on Top* page, which acts as a parent for widgets placed on it. It's shown above all the pages, which may be useful for widgets which always need to be visible. May not be used with ``widgets`` (above). Options:
+- **page_wrap** (*Optional*, boolean): Wrap from the last to the first page when navigating between them with :ref:`lvgl-pgnx-act`. Defaults to ``true``.
+- **top_layer** (*Optional*, list): A special kind of *Always on Top* page, which acts as a parent for widgets placed on it. It's shown above all the pages, which may be useful for widgets which always need to be visible.
     - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
     - All other options from :ref:`lvgl-styling` to be applied to this page.
@@ -141,9 +140,9 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     # Example configuration entry
     lvgl:
       displays:
-        - display_id: my_display
+        - my_display
       touchscreens:
-        - touchscreen_id: my_touch
+        - my_touch
       pages:
         - id: main_page
           widgets:
