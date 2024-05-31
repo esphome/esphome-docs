@@ -85,6 +85,13 @@ tools installed, and you must be using a desktop system with a graphic display.
 You can check installation with the command ``sdl2-config --libs --cflags``.
 
 
+Microsoft Windows
+-----------------
+
+Although SDL2 is supported, natively running ESPHome on Windows isn't easy. However the *Windows Subsystem for Linux* (WSL) can be
+used to install and use a Linux development environment on Windows, which will enable use of ESPHome and SDL2 as per the
+Linux instructions above. See https://learn.microsoft.com/en-us/windows/wsl/install for more information on WSL.
+
 Build and run
 -------------
 
