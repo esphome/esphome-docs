@@ -193,7 +193,7 @@ power saving mode.
 Connecting to Multiple Networks
 -------------------------------
 
-Starting with version 1.10.0, you can give ESPHome a number of WiFi networks to connect to.
+You can give ESPHome a number of WiFi networks to connect to.
 ESPHome will then attempt to connect to the one with the highest signal strength.
 
 To enable this mode, remove the ``ssid`` and ``password`` options from your wifi configuration
