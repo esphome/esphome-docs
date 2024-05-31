@@ -487,34 +487,34 @@ You can use another uart to supply another P1 receiver with the same telegram. S
 
 .. code-block:: yaml
 
-  # define multiple uart's
-  uart:
-    - id: p1_uart
-      rx_pin:
-        number: 4
-        inverted: true
-      baud_rate: 115200
-      rx_buffer_size: 1700
-    - id: p1_bridge_uart
-      tx_pin:
-        number: 10
-      baud_rate: 115200
+    # define multiple uart's
+    uart:
+      - id: p1_uart
+        rx_pin:
+          number: 4
+          inverted: true
+        baud_rate: 115200
+        rx_buffer_size: 1700
+      - id: p1_bridge_uart
+        tx_pin:
+          number: 10
+        baud_rate: 115200
 
-  # link input uart to dsmr
-  dsmr:
-    uart_id: p1_uart
-    max_telegram_length: 1700
+    # link input uart to dsmr
+    dsmr:
+      uart_id: p1_uart
+      max_telegram_length: 1700
 
-  # log the telegram and pass telegram to p1_bridge_uart
-  text_sensor:
-    - platform: dsmr
-      telegram:
-        name: "telegram"
-        on_value:
-          then:
-            - lambda: |-
-                ESP_LOGV("dsrm", "telegram: %s", x.c_str());
-                p1_bridge_uart->write_str(x.c_str());
+    # log the telegram and pass telegram to p1_bridge_uart
+    text_sensor:
+      - platform: dsmr
+        telegram:
+          name: "telegram"
+          on_value:
+            then:
+              - lambda: |-
+                  ESP_LOGV("dsrm", "telegram: %s", x.c_str());
+                  p1_bridge_uart->write_str(x.c_str());
 
 
 See Also
