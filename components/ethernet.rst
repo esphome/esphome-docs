@@ -74,9 +74,9 @@ RMII configuration variables:
 - **phy_addr** (*Optional*, int): The PHY addr type of the Ethernet controller. Defaults to 0.
 - **phy_registers** (*Optional*, mapping): Arbitrary PHY register values to set after Ethernet initialization.
 
-  - **address** (**Required**, hex): The register address as a hex number (e.g. `0x10` for address 16)
-  - **value** (**Required**, hex): The value of the register to set as a hex number (e.g. `0x1FFA`)
-  - **page_id** (*Optional*, hex): (RTL8201 only) Register page number to select before writing (e.g. `0x07` for page 7)
+  - **address** (**Required**, hex): The register address as a hex number (e.g. ``0x10`` for address 16)
+  - **value** (**Required**, hex): The value of the register to set as a hex number (e.g. ``0x1FFA``)
+  - **page_id** (*Optional*, hex): (RTL8201 only) Register page number to select before writing (e.g. ``0x07`` for page 7)
 
 - **power_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin controlling the
   power/reset status of the Ethernet controller. Leave unspecified for no power pin (default).
