@@ -3,7 +3,7 @@ HOST Platform
 
 .. seo::
     :description: Configuration for the host platform for ESPHome.
-    :image: esp32.svg
+    :image: host.svg
 
 The ``host`` platform allows ESPHome configurations to be compiled and run on a desktop computer. This is known
 to work on MacOS and Linux. On Windows `WSL <https://learn.microsoft.com/en-us/windows/wsl/install>`_ (Windows Subsystem for Linux) can be used to create a Linux environment that will run ESPHome.
