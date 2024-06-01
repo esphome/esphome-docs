@@ -92,6 +92,7 @@ Event Automation
 ************
 
 This automation will be triggered when an event of the specified types is triggered.
+In :ref:`Lambdas <config-lambda>` you can get the event type from the trigger with ``event_type``.
 
 .. code-block:: yaml
 
@@ -100,7 +101,8 @@ This automation will be triggered when an event of the specified types is trigge
         # ...
         on_event:
           then:
-            - logger.log: "Event Triggered"
+            - lambda: |-
+                ESP_LOGD("main", "Event %s triggered.", event_type.c_str());
 
 Configuration variables: see :ref:`Automation <automation>`.
 
