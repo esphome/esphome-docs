@@ -136,7 +136,7 @@ Alternatively these modified remote components can directly set ``rmt_channel``.
 
 .. note::
 
-    Recent `PR#6497<https://github.com/esphome/esphome/pull/6497>`__ integrated these changes into the main codebase.
+    `PR#6497 <https://github.com/esphome/esphome/pull/6497>`__ integrated these changes into the main codebase.
 
 .. code-block:: yaml
 
