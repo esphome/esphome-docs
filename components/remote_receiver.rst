@@ -63,6 +63,10 @@ Configuration variables:
   decoding process. Defaults to ``25%``.
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kB``
   on the ESP32 and ``1kB`` on the ESP8266.
+
+  .. note::
+      ESP8266 implementation treats the given value as the number of codes (microsecond timestamps) to allocate and each one is a 32-bit value. It uses four times as much memory, 4kB by default. Which can be a limiting factor since it only has 80kB in total.
+
 - **rmt_channel** (*Optional*, int): The RMT channel to use. Only on **esp32**.
   The following ESP32 variants have these channels available:
 
