@@ -12,7 +12,7 @@ like 433.92 or 868 MHz.
 
 Tested frameworks are Arduino and esp-idf but it might work with others.
 
-.. figure:: images/cc1101.jpg
+.. figure:: images/cc1101-full.jpg
     :align: center
     :width: 50.0%
 
