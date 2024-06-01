@@ -134,6 +134,10 @@ Alternatively these modified remote components can directly set ``rmt_channel``.
 - `<https://github.com/predam/remote_transmitter/>`__
 - `<https://github.com/Jorre05/remote_receiver/>`__
 
+.. note::
+
+    Recent `PR#6497<https://github.com/esphome/esphome/pull/6497>`__ integrated these changes into the main codebase.
+
 .. code-block:: yaml
 
     remote_transmitter:
