@@ -60,6 +60,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Whynter<whynter>`               | ``whynter``         | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`YK-H/531E`                      | ``ykh531e``         | yes                  |
++---------------------------------------+---------------------+----------------------+
 | :ref:`ZH/LT-01<zhlt01>`               | ``zhlt01``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
 
@@ -416,6 +418,16 @@ Configuration variables:
         name: "AC"
         sensor: room_temperature
         model: yan
+
+.. _ykh531e:
+
+
+``ykh531e`` Climate
+---------------------
+
+YK-H/531E is a remote control that is used for e.g. Electrolux Chillflex EXP26U338CW.
+
+No additional configuration is required for this model.
 
 .. _zhlt01:
 
