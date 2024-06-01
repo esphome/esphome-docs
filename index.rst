@@ -488,7 +488,7 @@ Miscellaneous
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Integration, components/sensor/integration, sigma.svg, dark-invert
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg    
-    M5Angle8 input device, components/sensor/m5angle8, m5angle8.png
+    M5Stack 8 Angle input device, components/sensor/m5stack_8angle, m5stack_8angle.png
     MicroNova pellet stove, components/micronova, pellet.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
