@@ -156,6 +156,7 @@ Entity grouping
 Version `3` of the ``web_server`` allows for grouping of entities in custom groups.
 Groups can be sorted by providing a ``sorting_weight``. Groups with a smaller ``sorting_weight`` will be displayed first.
 If you don't provide a ``web_server_sorting_group`` on the component, the ``entity_category`` will be used as the group.
+
 Example configuration:
 
 .. code-block:: yaml
