@@ -86,13 +86,16 @@ This can be handled at the **stop_action** by using the following lambda functio
 
     stop_action: 
       - lambda: !lambda |-
-          if (id(cover).last_operation() == CoverOperation::COVER_OPERATION_OPENING) {
+          if (id(cover).get_last_operation() == CoverOperation::COVER_OPERATION_OPENING) {
             // Cover is currently opening
             id(cover_button_down).press();
-          } else if (id(cover).last_operation() == CoverOperation::COVER_OPERATION_CLOSING) {
+          } else if (id(cover).get_last_operation() == CoverOperation::COVER_OPERATION_CLOSING) {
             // Cover is currently closing
             id(cover_button_up).press();
           }
+
+Be aware that ``get_last_operation`` will only return the last opening or closing operation, but not the last idle operation. 
+This issue is tracked `here <https://github.com/esphome/issues/issues/4252#issuecomment-2132727377>`_.
 
 See Also
 --------
