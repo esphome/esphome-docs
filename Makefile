@@ -43,7 +43,9 @@ api:
 
 net-html:
 	sphinx-build -M html . _build -j auto -n $(O)
+	mkdir -p _pagefind/pagefind
 	${NET_PAGEFIND}
+	sphinx-build -M html . _build -j auto -n $(O) -Dhtml_extra_path=_redirects,_pagefind
 
 netlify-api: netlify-dependencies
 	mkdir -p _build/html/api
