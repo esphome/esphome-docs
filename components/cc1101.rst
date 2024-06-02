@@ -58,9 +58,13 @@ Example configuration for ESP8266
       dump:
         - rc_switch
       tolerance: 50%
-      buffer_size: 2kb
+      buffer_size: 256
       filter: 250us
       idle: 4ms
+
+.. note::
+
+    ``buffer_size`` on ESP8266 is actually four times as big, the given number is used to allocate a 32-bit array for microsecond timestamps. ``buffer_size: 256`` will allocate 1kB.
 
 Example configuration for ESP32
 -------------------------------
