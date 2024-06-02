@@ -147,7 +147,7 @@ V2 embeds the css within the js file so is not required, however you could inclu
 Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
 
 
-.. _config-webserver_grouping:
+.. _config-webserver-grouping:
 
 Entity grouping
 ---------------
