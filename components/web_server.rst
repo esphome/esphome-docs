@@ -71,6 +71,10 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **local** (*Optional*, boolean): Include supporting javascript locally allowing it to work without internet access. Defaults to ``false``.
 - **version** (*Optional*, string): ``1``, ``2`` or ``3``. Version 1 displays as a table. Version 2 uses web components and has more functionality. Version 3 uses HA-Styling. Defaults to ``2``.
+- **sorting_groups**  (*Optional*, list): Avaliable only if ``version: 3`` is specified. A list of group ID's and names to group the entities. See :ref:`Webserver Entity Grouping <config-webserver-grouping>`.
+  - **id** (*Required*, :ref:`config-id`): Manually specify the ID used for the group.
+  - **name** (*Required*, string): A string of the group name which is displayed as the header
+  - **sorting_weight** (*Optional*, float) A float representing the weight of the group. A group with a smaler ``sorting_weight`` will be displayed first. Defaults to ``50``
 
 To conserve flash size, the CSS and JS files used on the root page to show a simple user
 interface are hosted by esphome.io. If you want to use your own service, use the
@@ -142,16 +146,51 @@ V2 embeds the css within the js file so is not required, however you could inclu
 
 Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
 
+
+.. _config-webserver_grouping:
+
+Entity grouping
+---------------
+
+Version `3` of the ``web_server`` allows for grouping of entities in custom groups.
+Groups can be sorted by providing a ``sorting_weight``. Groups with a smaller ``sorting_weight`` will be displayed first.
+If you don't provide a ``web_server_sorting_group`` on the component, the ``entity_category`` will be used as the group.
+Example configuration:
+
+.. code-block:: yaml
+
+    web_server:
+      version: 3
+      sorting_groups:
+        - id: sorting_group_time_settings
+          name: "Time Settings"
+          sorting_weight: 10
+        - id: sorting_group_number_settings
+          name: "Number settings"
+          sorting_weight: 20
+          
+    datetime:
+      - platform: template
+        ...
+        web_server_sorting_group: sorting_group_time_settings
+
+    number:
+      - platform: template
+      ...
+        web_server_sorting_group: sorting_group_number_settings
+
+
 .. _config-webserver-sorting:
 
 Entity sorting
 --------------
 
-``web_server`` version 3 supports the sorting of the entitys.
+Version `3` supports the sorting of the entities.
 You can set a ``web_server_sorting_weight`` on each entity.
 Smaller numbers will be displayed first, defaults to 50.
-Example ``sensor`` configuration.
-``My Sensor 2`` is displayed first, then ``My Sensor 1``
+``My Sensor 2`` is displayed before ``My Sensor 1``
+
+Example configuration:
 
 .. code-block:: yaml
 
