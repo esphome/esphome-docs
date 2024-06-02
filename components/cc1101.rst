@@ -64,7 +64,7 @@ Example configuration for ESP8266
 
 .. note::
 
-    ``buffer_size`` on ESP8266 is actually four times as big, the given number is used to allocate a 32-bit array for microsecond timestamps. ``buffer_size: 256`` will allocate 1kB.
+    ``buffer_size`` on ESP8266 is actually four times as big, the given number is used to allocate a 32-bit array for microsecond timestamps. ``buffer_size: 256`` will allocate 1kB. The default setting will actually allocate 4kB, a significat portion of the 80kB total memory.
 
 Example configuration for ESP32
 -------------------------------
