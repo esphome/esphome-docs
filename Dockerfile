@@ -16,8 +16,6 @@ RUN <<EOF
     export TARGETARCH=${TARGETARCH/arm64/aarch64}
     export TARGETARCH=${TARGETARCH/amd64/x86_64}
     curl -o pagefind.tar.gz https://github.com/CloudCannon/pagefind/releases/download/v$PAGEFIND_VERSION/pagefind-v$PAGEFIND_VERSION-$TARGETARCH-unknown-linux-musl.tar.gz -L
-    file pagefind.tar.gz
-    ls -l pagefind.tar.gz
     tar xzf pagefind.tar.gz
     rm pagefind.tar.gz
     mv pagefind /usr/bin
