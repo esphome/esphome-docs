@@ -425,6 +425,7 @@ Environmental
     SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     STS3X, components/sensor/sts3x, sts3x.jpg, Temperature
     TEE501, components/sensor/tee501, TEE501.png, Temperature
+    TE-M3200, components/sensor/tem3200, tem3200.jpg, Temperature & Pressure
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP1075, components/sensor/tmp1075, tmp1075.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
