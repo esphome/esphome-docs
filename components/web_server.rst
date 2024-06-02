@@ -174,12 +174,14 @@ Example configuration:
     datetime:
       - platform: template
         ...
-        web_server_sorting_group: sorting_group_time_settings
+        web_server:
+          sorting_group: sorting_group_time_settings
 
     number:
       - platform: template
       ...
-        web_server_sorting_group: sorting_group_number_settings
+      web_server:
+        sorting_group: sorting_group_number_settings
 
 
 .. _config-webserver-sorting:
@@ -199,10 +201,12 @@ Example configuration:
     sensor:
       - platform: template
         name: "My Sensor 1"
-        web_server_sorting_weight: 10
+        web_server:
+          sorting_weight: 10
       - platform: template
         name: "My Sensor 2"
-        web_server_sorting_weight: -1
+        web_server:
+          sorting_weight: -1
 
 See Also
 --------
