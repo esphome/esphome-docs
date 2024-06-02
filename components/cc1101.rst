@@ -282,6 +282,37 @@ SDA/SCL is not needed of course, they are just there as suggestions in case you 
 .. [2] the c3 supermini has multiple versions, this one has the led on pin 8 and the button on pin 9
 .. [3] still possible to use i2c with TX
 
+Pinout reference
+----------------
+
+.. figure:: images/cc1101-green.jpg
+    :align: center
+    :width: 50.0%
+
+    CC1101 green
+
+.. figure:: images/cc1101-red.jpg
+    :align: center
+    :width: 50.0%
+
+    CC1101 red
+
+.. figure:: images/cc1101-blue-8pin.jpg
+    :align: center
+    :width: 50.0%
+
+    CC1101 blue 8-pin variation
+
+.. figure:: images/cc1101-blue-10pin.jpg
+    :align: center
+    :width: 50.0%
+
+    CC1101 blue 10-pin variation
+
+.. note::
+
+    The pin pitch on green and red is smaller than 2.54mm. The blue is not breadboard friendly. Choose your poison.
+
 See Also
 --------
 
