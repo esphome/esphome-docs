@@ -7,7 +7,7 @@ LVGL Text Sensor
     :description: Instructions for setting up an LVGL Text Sensor.
     :image: ../images/lvgl_c_txt.png
 
-The ``lvgl`` text platform creates a Text Sensor from an LVGL textual widget
+The ``lvgl`` text sensor platform creates a Text Sensor from an LVGL textual widget
 and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widgets are :ref:`lvgl-wgt-lbl` and :ref:`lvgl-wgt-txt`. A single text sensor supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome text sensor component.
