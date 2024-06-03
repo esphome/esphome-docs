@@ -9,7 +9,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         software-properties-common \
         && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/*
 
+ENV PAGEFIND_VERSION="1.1.0"
+ARG TARGETARCH
+SHELL ["/bin/bash", "-c"]
+RUN <<EOF
+    export TARGETARCH=${TARGETARCH/arm64/aarch64}
+    export TARGETARCH=${TARGETARCH/amd64/x86_64}
+    curl -o pagefind.tar.gz https://github.com/CloudCannon/pagefind/releases/download/v$PAGEFIND_VERSION/pagefind-v$PAGEFIND_VERSION-$TARGETARCH-unknown-linux-musl.tar.gz -L
+    tar xzf pagefind.tar.gz
+    rm pagefind.tar.gz
+    mv pagefind /usr/bin
+    chmod +x /usr/bin/pagefind
+EOF
+
 RUN useradd -ms /bin/bash esphome
+
 
 USER esphome
 
