@@ -690,7 +690,7 @@ The ``label`` can be also integrated as :doc:`Text </components/text/lvgl>` or :
 ``textarea``
 ************
 
-The Textarea is an extended label widget which displays a cursor and allows the user to input text. Long lines are wrapped and when the text becomes long enough the Text area can be scrolled. It supports one line mode and password mode, where typed characters are replaced visually with bullets or asterisks.
+The textarea is an extended label widget which displays a cursor and allows the user to input text. Long lines are wrapped and when the text becomes long enough the text area can be scrolled. It supports one line mode and password mode, where typed characters are replaced visually with bullets or asterisks.
 
 .. figure:: /components/images/lvgl_textarea.png
     :align: center
@@ -753,7 +753,7 @@ The ``textarea`` can be also integrated as :doc:`Text </components/text/lvgl>` o
 ``btn``
 *******
 
-Simple push or toggle button. 
+Simple push (momentary) or toggle (two-states) button. 
 
 .. figure:: /components/images/lvgl_button.png
     :align: center
@@ -816,7 +816,7 @@ See :ref:`lvgl-cook-binent` for an example illustrating how to use a checkable b
 ``btnmatrix``
 *************
 
-The Button Matrix widget is a lightweight way to display multiple buttons in rows and columns. It's lightweight because the buttons are not actually created but instead simply drawn on the fly. This reduces the memory footprint of each button from approximately 200 bytes (for both the button and its label widget) down to only eight bytes.
+The button matrix widget is a lightweight way to display multiple buttons in rows and columns. It's lightweight because the buttons are not actually created but instead simply drawn on the fly. This reduces the memory footprint of each button from approximately 200 bytes (for both the button and its label widget) down to only eight bytes.
 
 .. figure:: /components/images/lvgl_btnmatrix.png
     :align: center
@@ -943,7 +943,7 @@ The Button Matrix widget is a lightweight way to display multiple buttons in row
 ``switch``
 **********
 
-The Switch looks like a little slider and can be used to turn something on and off.
+The switch looks like a little slider and can be used to turn something on and off.
 
 .. figure:: /components/images/lvgl_switch.png
     :align: center
@@ -951,7 +951,7 @@ The Switch looks like a little slider and can be used to turn something on and o
 **Configuration variables:**
 
 - **knob** (*Optional*, list): Settings for the knob *part* to control the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
-- **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
+- **indicator** (*Optional*, list): Settings for the indicator *part*, the foreground area underneath the knob shown when the switch is in ``checked`` state. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize.
 - Style options from :ref:`lvgl-styling`.
 
 **Triggers:**
@@ -986,7 +986,7 @@ See :ref:`lvgl-cook-relay` for an example how to use a switch to act on a local 
 ``checkbox``
 ************
 
-The Checkbox widget is made internally from a *tick box* and a label. When the Checkbox is clicked the tick box's ``checked`` state will be toggled.
+The checkbox widget is made internally from a *tick box* and a label. When the checkbox is clicked the tick box's ``checked`` state will be toggled.
 
 .. figure:: /components/images/lvgl_checkbox.png
     :align: center
@@ -1047,7 +1047,7 @@ The ``checkbox`` can be also integrated as a :doc:`Switch </components/switch/lv
 ``dropdown``
 ************
 
-The Dropdown widget allows the user to select one value from a list.
+The dropdown widget allows the user to select one value from a list.
 
 The dropdown list is closed by default and displays a single value. When activated (by clicking on the drop-down list), a list is drawn from which the user may select one option. When the user selects a new value, the list is deleted from the screen.
 
@@ -1180,7 +1180,7 @@ The ``roller`` can be also integrated as :doc:`Select </components/select/lvgl>`
 ``bar``
 *******
 
-The bar widget has a background and an indicator on it. The size of the indicator is set according to the current ``value`` of the bar.
+The bar widget has a background and an indicator foreground on it. The size of the indicator is set according to the current ``value`` of the bar.
 
 .. figure:: /components/images/lvgl_bar.png
     :align: center
@@ -1231,7 +1231,7 @@ The ``bar`` can be also integrated as :doc:`Number </components/number/lvgl>` or
 ``slider``
 **********
 
-The Slider widget looks like a bar supplemented with a knob. The user can drag the knob to set a value. Just like Bar, Slider can be vertical or horizontal.
+The slider widget looks like a bar supplemented with a knob. The user can drag the knob to set a value. Just like bar, slider can be vertical or horizontal. The size of the indicator foreground and the knob position is set according to the current ``value`` of the slider.
 
 .. figure:: /components/images/lvgl_slider.png
     :align: center
@@ -1301,7 +1301,7 @@ See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples illustratin
 ``arc``
 *******
 
-The Arc consists of a background and a foreground arc. The foreground (indicator) can be touch-adjusted with a knob.
+The arc consists of a background and a foreground arc. The indicator foreground can be touch-adjusted with a knob.
 
 .. figure:: /components/images/lvgl_arc.png
     :align: center
@@ -1383,7 +1383,7 @@ See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples illustratin
 ``spinbox``
 ***********
 
-The Spinbox contains a numeric value (as text) which can be increased or decreased through actions. You can, for example, use buttons labeled with plus and minus to call actions which increase or decrease the value as required.
+The spinbox contains a numeric value (as text) which can be increased or decreased through actions. You can, for example, use buttons labeled with plus and minus to call actions which increase or decrease the value as required.
 
 .. figure:: /components/images/lvgl_spinbox.png
     :align: center
@@ -1455,7 +1455,7 @@ See :ref:`lvgl-cook-climate` for an example illustrating how to implement a ther
 ``meter``
 *********
 
-The Meter widget can visualize data in very flexible ways. It can use arcs, needles, ticks, lines and/or labels.
+The meter widget can visualize data in very flexible ways. It can use arcs, needles, ticks, lines and/or labels.
 
 .. figure:: /components/images/lvgl_meter.png
     :align: center
@@ -1656,7 +1656,7 @@ See :ref:`lvgl-cook-animbatt` in the Cookbook for a more detailed example.
 ``line``
 ********
 
-The Line widget is capable of drawing straight lines between a set of points.
+The line widget is capable of drawing straight lines between a set of points.
 
 .. figure:: /components/images/lvgl_line.png
     :align: center
@@ -1784,7 +1784,7 @@ The Spinner widget is a spinning arc over a ring.
 ``obj``
 *******
 
-The Base Object is just a simple, empty widget. By default, it's nothing more than a rounded rectangle:
+The base object is just a simple, empty widget. By default, it's nothing more than a rounded rectangle:
 
 .. figure:: /components/images/lvgl_baseobj.png
     :align: center
@@ -1813,7 +1813,7 @@ You can use it as a parent container for other widgets. By default, it catches t
 ``tabview``
 ***********
 
-The Tab view object can be used to organize content in tabs. The tab buttons are internally generated with a :ref:`lvgl-wgt-bmx`. 
+The tab view object can be used to organize content in tabs. The tab buttons are internally generated with a :ref:`lvgl-wgt-bmx`. 
 
 .. figure:: /components/images/lvgl_tabview.png
     :align: center
@@ -1948,7 +1948,7 @@ If the Tile view is screen sized, the user interface resembles what you may have
 ``msgboxes``
 ************
 
-The Message boxes act as pop-ups. They are built from a background container, a title, an optional close button, a text and optional buttons.
+The message boxes act as pop-ups. They are built from a background container, a title, an optional close button, a text and optional buttons.
 
 .. figure:: /components/images/lvgl_msgbox.png
     :align: center
@@ -2002,7 +2002,7 @@ The configured message boxes are hidden by default. One can show them with ``lvg
 ``keyboard``
 ************
 
-The Keyboard widget is a special Button matrix with predefined keymaps and other features to show an on-screen keyboard usable to type text into a :ref:`lvgl-wgt-txt`.
+The keyboard widget is a special Button matrix with predefined keymaps and other features to show an on-screen keyboard usable to type text into a :ref:`lvgl-wgt-txt`.
 
 .. figure:: /components/images/lvgl_keyboard.png
     :align: center
