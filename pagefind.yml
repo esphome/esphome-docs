@@ -1,4 +1,5 @@
 site: _build/html
+output_path: _pagefind/pagefind
 exclude_selectors:
   - "a.headerlink"
   - ".toctree-wrapper"
