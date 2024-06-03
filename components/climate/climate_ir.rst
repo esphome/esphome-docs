@@ -277,7 +277,7 @@ Known working with:
 .. _delonghi_ir_pac_n81:
 
 ``delonghi_pac_n81`` Climate
--------------------------
+-------------------------------
 
 Supports the DeLonghi PAC N81 portable air conditioner.
 
