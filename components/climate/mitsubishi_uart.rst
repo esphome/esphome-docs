@@ -16,7 +16,7 @@ The ``mitsubishi_uart`` component creates a climate device for controlling a Mit
     # Example minimal configuration entry
 
     mitsubishi_uart:
-      heatpump_uart: hp_uart
+      uart_heatpump: hp_uart
 
     uart:
       - id: hp_uart
@@ -30,8 +30,8 @@ The ``mitsubishi_uart`` component creates a climate device for controlling a Mit
 Configuration variables:
 ------------------------
 
-- **heatpump_uart** (**Required**, :ref:`config-id`): Id of the UART component that is connected to the heat pump.
-- **thermostat_uart** (*Optional*, :ref:`config-id`): Id of the UART component that is connected to the MHK2 thermostat (if present).
+- **uart_heatpump** (**Required**, :ref:`config-id`): Id of the UART component that is connected to the heat pump.
+- **uart_thermostat** (*Optional*, :ref:`config-id`): Id of the UART component that is connected to the MHK2 thermostat (if present).
 - **name** (*Optional*, string): The name for this heat pump.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **update_interval** (*Optional*, :ref:`config-time`): How long to wait between polling the equipment for state and updating Home Assistant.
@@ -88,7 +88,7 @@ One particularly useful way to get additional temperature data is by having Home
         update_interval: never # Only updated by service
 
     mitsubishi_uart:
-      heatpump_uart: hp_uart
+      uart_heatpump: hp_uart
       temperature_sources:
         - home_assistant_temperature
 
