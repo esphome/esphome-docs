@@ -131,6 +131,7 @@ Supported Microcontrollers
     RP2040, components/rp2040, rp2040.svg
     BK72xx, components/libretiny, bk72xx.svg
     RTL87xx, components/libretiny, rtl87xx.svg
+    host, components/host, host.svg
 
 Microcontroller Peripherals
 ---------------------------
@@ -197,6 +198,7 @@ Management and Monitoring
     Logger, components/logger, file-document-box.svg, dark-invert
     OTA Updates, components/ota, system-update.svg, dark-invert
     Prometheus, components/prometheus, prometheus.svg
+    Safe Mode, components/safe_mode, restart-alert.svg
     Web Server, components/web_server, http.svg, dark-invert
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg, dark-invert
 
@@ -355,6 +357,11 @@ Electricity
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
     INA219, components/sensor/ina219, ina219.jpg, DC Current
     INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
+    INA228, components/sensor/ina2xx, ina228.jpg, DC Voltage & Current & Power & Charge
+    INA229, components/sensor/ina2xx, ina2xx.jpg, DC Voltage & Current & Power & Charge
+    INA237, components/sensor/ina2xx, ina2xx.jpg, DC Voltage & Current & Power
+    INA238, components/sensor/ina2xx, ina2xx.jpg, DC Voltage & Current & Power
+    INA239, components/sensor/ina2xx, ina2xx.jpg, DC Voltage & Current & Power
     INA260, components/sensor/ina260, ina260.jpg, DC Current & Power
     INA3221, components/sensor/ina3221, ina3221.jpg, 3-Ch DC current
     Kamstrup KMP, components/sensor/kamstrup_kmp, kamstrup_kmp.jpg, District Heating Meter
@@ -439,7 +446,13 @@ Light
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
+    LTR303, components/sensor/ltr_als_ps, ltr303.jpg, Lux
+    LTR329, components/sensor/ltr_als_ps, ltr329.jpg, Lux
     LTR390, components/sensor/ltr390, ltr390.jpg, Lux & UV
+    LTR553, components/sensor/ltr_als_ps, ltr-ps.jpg, Lux & Proximity
+    LTR556, components/sensor/ltr_als_ps, ltr-ps.jpg, Lux & Proximity
+    LTR559, components/sensor/ltr_als_ps, ltr559.jpg, Lux & Proximity
+    LTR659, components/sensor/ltr_als_ps, ltr-ps.jpg, Proximity
     MAX44009, components/sensor/max44009, max44009.svg, Lux
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
@@ -489,6 +502,7 @@ Miscellaneous
     uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png, EC & Temperature
     uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png, pH & Temperature
     WireGuard, components/wireguard, wireguard_custom_logo.svg
+    GDK101, components/sensor/gdk101, gdk101.jpg, Radiation
 
 Motion
 ******
@@ -661,6 +675,7 @@ Light Components
 .. imgtable::
 
     Light Core, components/light/index, folder-open.svg, dark-invert
+    Beken SPI, components/light/beken_spi_led_strip, color_lens.svg, dark-invert
     Binary Light, components/light/binary, lightbulb.svg, dark-invert
     Cold+Warm White Light, components/light/cwww, brightness-medium.svg, dark-invert
     Color Temperature Light, components/light/color_temperature, brightness-medium.svg, dark-invert

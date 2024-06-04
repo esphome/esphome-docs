@@ -193,7 +193,7 @@ power saving mode.
 Connecting to Multiple Networks
 -------------------------------
 
-Starting with version 1.10.0, you can give ESPHome a number of WiFi networks to connect to.
+You can give ESPHome a number of WiFi networks to connect to.
 ESPHome will then attempt to connect to the one with the highest signal strength.
 
 To enable this mode, remove the ``ssid`` and ``password`` options from your wifi configuration
@@ -255,6 +255,7 @@ These are advanced settings and you will usually need to consult your enterprise
         eap:
           username: bob
           password: VerySafePassword
+          ttls_phase_2: mschapv2
       - ssid: EAP-TLS_EnterpriseNetwork
         eap:
           identity: bob
@@ -273,6 +274,8 @@ Configuration variables:
 - **certificate** (*Optional*, string): Path to a PEM encoded certificate to use for EAP-TLS authentication.
 - **key** (*Optional*, string): Path to a PEM encoded private key matching ``certificate`` for EAP-TLS authentication.
   Optionally encrypted with ``password``.
+- **ttls_phase_2** (*Optional*, string): The Phase 2 Authentication Method for EAP-TTLS.
+  Can be ``pap``, ``eap``, ``mschap``, ``mschapv2`` or ``chap``, defaults to ``mschapv2``.
 
 .. _wifi-on_connect_disconnect:
 
