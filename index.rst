@@ -212,7 +212,7 @@ Hardware Peripheral Interfaces/Busses
     I²S Audio, components/i2s_audio, i2s_audio.svg
     SPI Bus, components/spi, spi.svg
     UART, components/uart, uart.svg
-    1-Wire, components/one_wire, one_wire.svg
+    1-Wire, components/one_wire, one-wire.svg
 
 I/O Expanders/Multiplexers
 --------------------------
