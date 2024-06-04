@@ -319,7 +319,7 @@ Configuration variables:
 
 .. _mhi_zj:
 
-``mhi_zj` Climate
+``mhi_zj`` Climate
 ------------------------
 
 Mitsubishi Heavy Industries SRKxxZJ-S models with RKX502A001C remote control.
