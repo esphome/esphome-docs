@@ -2,7 +2,7 @@ Display Component
 =================
 
 .. seo::
-    :description: Instructions for setting up the display integration.
+    :description: Instructions for setting up the display component.
     :image: folder-open.svg
 
 The ``display`` component houses ESPHome's powerful rendering and display
@@ -45,6 +45,9 @@ this behavior by setting ``auto_clear_enabled: false``.
 In the lambda, you can write code like in any :ref:`lambda <config-lambda>` in ESPHome. Display
 lambdas are additionally passed a variable called ``it`` which represents the rendering engine object.
 
+.. figure:: images/display_rendering_line.png
+    :align: center
+
 .. code-block:: yaml
 
     display:
@@ -74,8 +77,10 @@ the rendering engine is always first specify the ``x`` coordinate and then the `
 Basic Shapes
 ------------
 
-Now that you know a bit more about ESPHome's coordinate system, let's draw some basic shapes like lines, rectangles
-and circles:
+Now that you know a bit more about ESPHome's coordinate system, let's draw some basic shapes like lines, rectangles, circles or even polygons:
+
+.. figure:: images/display_rendering_shapes.png
+    :align: center
 
 .. code-block:: yaml
 
@@ -85,27 +90,27 @@ and circles:
         lambda: |-
           // Draw a line from [0,0] to [100,50]
           it.line(0, 0, 100, 50);
-          // Draw the outline of a rectangle with the top left at [50,60], a width of 30 and a height of 42
-          it.rectangle(50, 60, 30, 42);
-          // Draw the same rectangle, but this time filled.
-          it.filled_rectangle(50, 60, 30, 42);
+          // Draw the outline of a rectangle with the top left at [5,20], a width of 30 and a height of 42
+          it.rectangle(5, 20, 30, 42);
+          // Draw the same rectangle a few pixels apart, but this time filled
+          it.filled_rectangle(40, 40, 30, 42);
 
-          // Circles! Let's draw one with the center at [25,25] and a radius of 10
-          it.circle(25, 25, 10);
+          // Circles! Let's draw one with the center at [20,40] and a radius of 10
+          it.circle(20, 40, 10);
           // ... and the same thing filled again
-          it.filled_circle(25, 25, 10);
+          it.filled_circle(20, 75, 10);
 
           // Triangles... Let's draw the outline of a triangle from the [x,y] coordinates of its three points
-          // [25,5], [5,25], [50,50]
-          it.triangle(25, 5, 5, 25, 50, 50);
+          // [25,5], [100,5], [80,25]
+          it.triangle(25, 5, 100, 5, 80, 25);
           // and a filled triangle !
-          it.filled_triangle(125, 5, 105, 25, 150, 50);
+          it.filled_triangle(115, 5, 95, 25, 125, 70);
 
-          // Regular Polygons? Let's draw the outline of a pointy-topped hexagon inscribed in a circle 
-          // centered on [x1=100,y1=100] with a radius of 50
-          it.regular_polygon(100, 100, 50, EDGES_HEXAGON);
-          // and a filled flat-topped octagon!
-          it.filled_regular_polygon(200, 200, 50, EDGES_OCTAGON, VARIATION_FLAT_TOP);
+          // Regular Polygons? Let's draw a filled, pointy-topped hexagon inscribed in a circle
+          // centered on [170,45] with a radius of 20
+          it.filled_regular_polygon(170, 45, 20, EDGES_HEXAGON);
+          // and the outline of flat-topped octagon around it!
+          it.regular_polygon(170, 45, 40, EDGES_OCTAGON, VARIATION_FLAT_TOP);
           // Need to rotate the polygon, or retrieve the coordinates of its vertices? Check the API!
 
 All the above methods can optionally also be called with an argument at the end which specifies in which
@@ -117,18 +122,18 @@ color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color 
       - platform: ...
         # ...
         lambda: |-
-          // Turn the whole display on.
+          // Turn the whole display on
           it.fill(COLOR_ON);
-          // Turn the whole display off.
+          // Turn the whole display off
           it.fill(COLOR_OFF);
 
           // Turn a single pixel off at [50,60]
           it.draw_pixel_at(50, 60, COLOR_OFF);
 
-          // Turn off a whole display portion.
-          it.rectangle(50, 50, 30, 42, COLOR_OFF);
-
 For color displays (e.g. TFT displays), you can use the Color class.
+
+.. figure:: images/display_rendering_colors.png
+    :align: center
 
 .. code-block:: yaml
 
@@ -136,14 +141,16 @@ For color displays (e.g. TFT displays), you can use the Color class.
       - platform: ...
         # ...
         lambda: |-
+          auto black = Color(0, 0, 0);
           auto red = Color(255, 0, 0);
           auto green = Color(0, 255, 0);
           auto blue = Color(0, 0, 255);
           auto white = Color(255, 255, 255);
-          it.rectangle(20, 50, 30, 30, white);
-          it.rectangle(25, 55, 30, 30, red);
-          it.rectangle(30, 60, 30, 30, green);
-          it.rectangle(35, 65, 30, 30, blue);
+          it.filled_circle(20, 32, 15, black);
+          it.filled_circle(40, 32, 15, red);
+          it.filled_circle(60, 32, 15, green);
+          it.filled_circle(80, 32, 15, blue);
+          it.filled_circle(100, 32, 15, white);
 
 Additionally, you have access to two helper methods which will fetch the width and height of the display:
 
@@ -156,6 +163,8 @@ Additionally, you have access to two helper methods which will fetch the width a
           // Draw a circle in the middle of the display
           it.filled_circle(it.get_width() / 2, it.get_height() / 2, 20);
 
+          // Turn off bottom half of the screen
+          it.filled_rectangle(0, it.get_height()/2, it.get_width(), it.get_height()/2, COLOR_OFF);
 
 You can view the full API documentation for the rendering engine in the "API Reference" in the See Also section.
 
@@ -217,6 +226,10 @@ In case of fonts rendered at higher bit depths, the background color has to be s
         lambda: |-
           // Syntax is always: it.print(<x>, <y>, <font>, [color=COLOR_ON], [align], <text>, [color=COLOR_OFF]);
           it.print(0, 0, id(my_font_with_icons), COLOR_ON, TextAlign::CENTER, "Just\U000f05d4here. Already\U000F02D1this.", COLOR_OFF);
+
+
+.. figure:: images/display_rendering_text.png
+    :align: center
 
 .. _display-printf:
 
@@ -347,8 +360,7 @@ You can display current time using a time component. Please see the example :ref
 Screen Clipping
 ---------------
 
-Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show
-a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
+Screen clipping can be useful when you just want to show a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
 
 With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region
 you can stop the clipping process with ``end_clipping();`` . You can nest as many ``start_clipping();`` as you want as long
@@ -457,13 +469,8 @@ memory at the time the sensor updates and will be lost when the device reboots.
 
 Examples:
 
-.. figure:: images/graph_screen.png
+.. figure:: images/display_rendering_graph.png
     :align: center
-    :width: 60.0%
-
-.. figure:: images/graph_dualtrace.png
-    :align: center
-    :width: 60.0%
 
 Graph component with options for grids, border and line-types.
 
@@ -601,6 +608,12 @@ To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
             lambda: |-
               // Draw the QR-code at position [x=50,y=0] with white color and a 2x scale
               it.qr_code(50, 0, id(homepage_qr), Color(255,255,255), 2);
+
+              // Draw the QR-code in the center of the screen with white color and a 2x scale
+              auto size = id(homepage_qr).get_size() * 2; // Multiply by scale
+              auto x = (it.get_width() / 2) - (size / 2);
+              auto y = (it.get_height() / 2) - (size / 2);
+              it.qr_code(x, y, id(homepage_qr), Color(255,255,255), 2);
 
 
 .. _display-image:
@@ -921,49 +934,30 @@ Additionally the old page will be given as the variable ``from`` and the new one
 Troubleshooting
 ---------------
 
-Color Test Pattern
-------------------
+Using the Color Test Card
+-------------------------
 
-If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
-It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine
-the best way to help you, **a picture of the result of this script is very helpful.**
+If you're experiencing issues with your color display, the ``show_test_card: true`` option can help you to identify what might be wrong.
+
+- It will show bars for Red, Green and Blue, graduating to black and white.
+- Together with that it will show the letters "**R**", "**G**" and "**B**" to validate the display geometry.
+- There will be a rectangle around the corners of the display with a marker at the 0,0 corner which should be at the top left of the screen.
+
+.. figure:: images/test_card.jpg
+    :align: center
+    :width: 50.0%
+
+
+
+When all points above are shown correctly then the display is working as expected.
+To help the graphics display team determine the best way to help you, **a picture of the result of this option is very helpful.**
 
 Should you `create an issue <https://github.com/esphome/issues/issues>`__ in GitHub regarding your display, please
-be sure to **include a link to where you purchased it** so that we can validate the configuration you've used.
+be sure to **include a link to where you purchased the display** so that we can validate the configuration you've used.
 
-.. code-block:: yaml
+.. note::
 
-    display:
-      - platform: ...
-        ...
-        lambda: |-
-          int shift_x = (it.get_width()-310)/2;
-          int shift_y = (it.get_height()-256)/2;
-          for(auto i = 0; i<256; i++) {
-            it.horizontal_line(shift_x+  0,i+shift_y,50, my_red.fade_to_white(i));
-            it.horizontal_line(shift_x+ 50,i+shift_y,50, my_red.fade_to_black(i));
-
-            it.horizontal_line(shift_x+105,i+shift_y,50, my_green.fade_to_white(i));
-            it.horizontal_line(shift_x+155,i+shift_y,50, my_green.fade_to_black(i));
-
-            it.horizontal_line(shift_x+210,i+shift_y,50, my_blue.fade_to_white(i));
-            it.horizontal_line(shift_x+260,i+shift_y,50, my_blue.fade_to_black(i));
-          }
-          it.rectangle(shift_x+ 0, 0+shift_y, shift_x+ 310, 256+shift_y, my_yellow);
-
-    color:
-      - id: my_blue
-        blue: 100%
-      - id: my_red
-        red: 100%
-      - id: my_green
-        green: 100%
-      - id: my_white
-        red: 100%
-        blue: 100%
-        green: 100%
-      - id: my_yellow
-        hex: ffff00
+    For displays in 8 bit mode you will see distinct color blocks rather than a smooth gradient.
 
 See Also
 --------
