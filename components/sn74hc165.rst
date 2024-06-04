@@ -29,8 +29,7 @@ Configuration variables:
 - **data_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC165 Serial Output (QH) input.
 - **clock_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC165 Clock (CLK) pin.
 - **load_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC165 Load input (SH/LD) pin.
-- **clock_inhibit_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC165 Clock Inhibit (CLK INH) pin.
-The use of it is optional, as it can be directly connected to ground.
+- **clock_inhibit_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC165 Clock Inhibit (CLK INH) pin. The use of it is optional, as it can be directly connected to ground.
 - **sr_count** (*Optional*, int): Number of daisy-chained shift registers, up-to 256. Defaults to ``1``.
 
 Pin configuration variables:
