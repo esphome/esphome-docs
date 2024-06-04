@@ -75,7 +75,7 @@ Configuration variables:
   Defaults to ``.local``.
 - **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   WiFi connection exists. Can be disabled by setting this to ``0s``, but note that the low level IP stack currently
-  seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``15min``.
+  seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``15min``. Does not apply when in access point mode.
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
   See :ref:`wifi-power_save_mode`
 
@@ -193,7 +193,7 @@ power saving mode.
 Connecting to Multiple Networks
 -------------------------------
 
-Starting with version 1.10.0, you can give ESPHome a number of WiFi networks to connect to.
+You can give ESPHome a number of WiFi networks to connect to.
 ESPHome will then attempt to connect to the one with the highest signal strength.
 
 To enable this mode, remove the ``ssid`` and ``password`` options from your wifi configuration

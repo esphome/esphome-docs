@@ -81,6 +81,8 @@ Configuration variables:
   for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`.
   for more information.
 - **certificate_authority** (*Optional*, string): Only with ``esp-idf``. CA certificate in PEM format. See :ref:`mqtt-tls-idf` for more information
+- **client_certificate** (*Optional*, string): Only on ``esp32``. Client certificate in PEM format.
+- **client_certificate_key** (*Optional*, string): Only on ``esp32``. Client private key in PEM format.
 - **skip_cert_cn_check** (*Optional*, bool): Only with ``esp-idf``. Don't verify if the common name in the server certificate matches the value of ``broker``.
 - **idf_send_async** (*Optional*, bool): Only with ``esp-idf``. If true publishing the message happens from the internal mqtt task. The client only enqueues the message. Defaults to ``false``.
   The advantage of asyncronous publishing is that it doesn't block the esphome main thread. The disadvantage is a delay (up to 1-2 seconds) until the messages are actually sent out.
@@ -182,12 +184,11 @@ Home Assistant generates entity names for all discovered devices based on entity
 entity name (e.g. ``sensor.uptime``). Numeric suffixes are appended to entity names when
 multiple devices use the same name for a sensor, making it harder to distinguish between
 similar sensors on different devices. Home Assistant 2021.12 allows MQTT devices to change
-this behaviour by specifying ``object_id`` discovery attribute which replaces the sensor
+this behaviour by specifying the ``object_id`` discovery attribute which replaces the sensor
 name part of the generated entity name. Setting ``discovery_object_id_generator: device_name``
-in ESPHome MQTT integration configuration will cause Home Assistant to include device name
+in the ESPHome MQTT component configuration will cause Home Assistant to include device name
 in the generated entity names (e.g. ``sensor.uptime`` becomes ``sensor.<device name>_uptime``),
 making it easier to distinguish the entities in various entity lists.
-
 
 .. _mqtt-defaults:
 
@@ -264,7 +265,7 @@ then run the ``mqtt-fingerprint`` script of ESPHome to get the certificate:
 
 .. code-block:: bash
 
-    esphome livingroom.yaml mqtt-fingerprint
+    esphome mqtt-fingerprint livingroom.yaml
     > SHA1 Fingerprint: a502ff13999f8b398ef1834f1123650b3236fc07
     > Copy above string into mqtt.ssl_fingerprints section of livingroom.yaml
 
@@ -351,6 +352,7 @@ MQTT can have some overrides for specific options.
 
     name: "Component Name"
     # Optional variables:
+    qos: 1
     retain: true
     availability:
       topic: livingroom/status
@@ -364,6 +366,7 @@ Configuration variables:
 
 -  **name** (**Required**, string): The name to use for the MQTT
    Component.
+-  **qos** (*Optional*, int): The [Quality of Service](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/) level for publishing. Defaults to 0.
 -  **retain** (*Optional*, boolean): If all MQTT state messages should
    be retained. Defaults to ``true``.
 -  **discovery** (*Optional*, boolean): Manually enable/disable

@@ -12,7 +12,7 @@ This platform only works on ESP32 based chips.
 .. warning::
 
     Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
-    
+
     **Crashes are likely to occur** if you include too many additional components in your device's
     configuration. In particular, Bluetooth/BLE components are known to cause issues when used in
     combination with Voice Assistant and/or other audio components.
@@ -24,12 +24,12 @@ This platform only works on ESP32 based chips.
       - platform: i2s_audio
         id: external_mic
         adc_type: external
-        i2s_din_pin: GPIO23
+        i2s_din_pin: GPIOXX
 
       - platform: i2s_audio
         id: adc_mic
         adc_type: internal
-        adc_pin: GPIO35
+        adc_pin: GPIOXX
 
 
 Configuration variables:
@@ -41,9 +41,11 @@ Configuration variables:
   - ``internal``: Use the internal ADC of the ESP32. Only supported on ESP32, no variant support.
 
 - **channel** (*Optional*, enum): The channel of the microphone. One of ``left`` or ``right``. Defaults to ``right``.
+- **sample_rate** (*Optional*, positive integer): I2S sample rate. Defaults to ``16000``.
 - **bits_per_sample** (*Optional*, enum): The bit depth of the audio samples. Note that while set to ``32bit``, the samples
   will be scaled down to 16bit before being forwarded.
   One of ``16bit`` or ``32bit``. Defaults to ``16bit``.
+- **use_apll** (*Optional*, boolean): I2S using APLL as main I2S clock, enable it to get accurate clock. Defaults to ``false``.
 - **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this microphone.
 - All other options from :ref:`Microphone <config-microphone>`
 
@@ -78,7 +80,7 @@ M5Stack Atom Echo
     microphone:
       - platform: i2s_audio
         adc_type: external
-        i2s_din_pin: GPIO23
+        i2s_din_pin: GPIOXX
         pdm: true
 
 RaspiAudio Muse Luxe
@@ -88,7 +90,7 @@ RaspiAudio Muse Luxe
 
     microphone:
       - platform: i2s_audio
-        i2s_din_pin: GPIO35
+        i2s_din_pin: GPIOXX
         adc_type: external
         pdm: false
 
