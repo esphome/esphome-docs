@@ -8,10 +8,6 @@ Lock Component
 The ``lock`` domain includes all platforms that should function like a lock
 with lock/unlock actions.
 
-.. note::
-
-    ESPHome lock components requires Home Assistant 2022.3 or newer
-
 .. _config-lock:
 
 Base Lock Configuration

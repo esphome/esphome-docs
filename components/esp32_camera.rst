@@ -14,16 +14,16 @@ directly integrate into Home Assistant through the native API.
     esp32_camera:
       name: My Camera
       external_clock:
-        pin: GPIO27
+        pin: GPIOXX
         frequency: 20MHz
       i2c_pins:
-        sda: GPIO25
-        scl: GPIO23
-      data_pins: [GPIO17, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
-      vsync_pin: GPIO22
-      href_pin: GPIO26
-      pixel_clock_pin: GPIO21
-      reset_pin: GPIO15
+        sda: GPIOXX
+        scl: GPIOXX
+      data_pins: [GPIOXX, GPIOXX, GPIOXX, GPIOXX, GPIOXX, GPIOXX, GPIOXX, GPIOXX]
+      vsync_pin: GPIOXX
+      href_pin: GPIOXX
+      pixel_clock_pin: GPIOXX
+      reset_pin: GPIOXX
       resolution: 640x480
       jpeg_quality: 10
 
@@ -37,10 +37,10 @@ Configuration variables:
   a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
 
 Connection Options:
@@ -80,24 +80,24 @@ Image Settings:
 - **resolution** (*Optional*, enum): The resolution the camera will capture images at. Higher
   resolutions require more memory, if there's not enough memory you will see an error during startup.
 
-    - ``160x120`` (QQVGA)
-    - ``176x144`` (QCIF)
-    - ``240x176`` (HQVGA)
-    - ``320x240`` (QVGA)
-    - ``400x296`` (CIF)
-    - ``640x480`` (VGA, default)
-    - ``800x600`` (SVGA)
-    - ``1024x768`` (XGA)
-    - ``1280x1024`` (SXGA)
-    - ``1600x1200`` (UXGA)
-    - ``1920x1080`` (FHD)
-    - ``720x1280`` (Portrait HD)
-    - ``864x1536`` (Portrait 3MP)
-    - ``2048x1536`` (QXGA)
-    - ``2560x1440`` (QHD)
-    - ``2560x1600`` (WQXGA)
-    - ``1080x1920`` (Portrait FHD)
-    - ``2560x1920`` (QSXGA)
+    - ``160x120`` (QQVGA, 4:3)
+    - ``176x144`` (QCIF, 11:9)
+    - ``240x176`` (HQVGA, 15:11)
+    - ``320x240`` (QVGA, 4:3)
+    - ``400x296`` (CIF, 50:37)
+    - ``640x480`` (VGA, 4:3, default)
+    - ``800x600`` (SVGA, 4:3)
+    - ``1024x768`` (XGA, 4:3)
+    - ``1280x1024`` (SXGA, 5:4)
+    - ``1600x1200`` (UXGA, 4:3)
+    - ``1920x1080`` (FHD, 16:9)
+    - ``720x1280`` (Portrait HD, 9:16)
+    - ``864x1536`` (Portrait 3MP, 9:16)
+    - ``2048x1536`` (QXGA, 4:3)
+    - ``2560x1440`` (QHD, 16:9)
+    - ``2560x1600`` (WQXGA, 8:5)
+    - ``1080x1920`` (Portrait FHD, 9:16)
+    - ``2560x1920`` (QSXGA, 4:3)
 
 
 - **jpeg_quality** (*Optional*, int): The JPEG quality that the camera should encode images with.
@@ -179,7 +179,7 @@ Configuration for Ai-Thinker Camera
 
 .. warning::
 
-    GPIO16 on this board (and possibly other boards below) is connected to onboard PSRAM. 
+    GPIO16 on this board (and possibly other boards below) is connected to onboard PSRAM.
     Using this GPIO for other purposes (eg as a button) will trigger the watchdog.
     Further information on pin notes can be found here: https://github.com/raphaelbs/esp32-cam-ai-thinker/blob/master/docs/esp32cam-pin-notes.md
 

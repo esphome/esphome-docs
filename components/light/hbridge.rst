@@ -12,23 +12,12 @@ The ``hbridge`` light platform creates a dual color brightness controlled light 
     :align: center
     :width: 40.0%
 
-H-bridge lights are very common for Christmas lighting and they use 2 wires for a bunch of LEDs. 
+H-bridge lights are very common for Christmas lighting and they use 2 wires for a bunch of LEDs.
 The pins are switched alternatively to allow two sets of lights to operate.
 
 .. code-block:: yaml
 
     # Example configuration entry
-
-    # Specify the two pins of the h-bridge as PWM pins
-    output:
-      - platform: esp8266_pwm
-        id: pina
-        pin: GPIO12
-      - platform: esp8266_pwm
-        id: pinb
-        pin: GPIO14
-
-    # Create a light using the hbridge
     light:
       - platform: hbridge
         id: mainlight

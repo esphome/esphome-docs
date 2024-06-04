@@ -30,7 +30,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
 
     BME680 Temperature, Pressure, Humidity & Gas Sensor.
 
-.. _BSEC license agreement: https://www.bosch-sensortec.com/media/boschsensortec/downloads/bsec/2017-07-17_clickthrough_license_terms_environmentalib_sw_clean.pdf
+.. _BSEC license agreement: https://www.bosch-sensortec.com/media/boschsensortec/downloads/software/bme688_development_software/2023_04/license_terms_bme688_bme680_bsec.pdf
 
 .. _Adafruit: https://www.adafruit.com/product/3660
 
