@@ -1,4 +1,4 @@
-HOST Platform
+Host Platform
 =============
 
 .. seo::
@@ -35,4 +35,5 @@ See Also
 --------
 
 - :doc:`esphome`
+- :doc:`/components/time/host`
 - :ghedit:`Edit`
