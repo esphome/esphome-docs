@@ -174,8 +174,10 @@ Test Setting:
     Camera uses PWM timer #1. If you need PWM (via the ``ledc`` platform) you need to manually specify
     a channel there (with the ``channel: 2``  parameter)
 
-Configuration for Ai-Thinker Camera
------------------------------------
+Configuration examples
+----------------------
+
+**Ai-Thinker Camera**:
 
 .. warning::
 
@@ -203,8 +205,7 @@ Configuration for Ai-Thinker Camera
       name: My Camera
       # ...
 
-Configuration for M5Stack Camera
---------------------------------
+**M5Stack Camera**:
 
 .. warning::
 
@@ -235,8 +236,7 @@ Configuration for M5Stack Camera
       name: My Camera
       # ...
 
-Configuration for M5Stack Timer Camera X/F
-------------------------------------------
+**M5Stack Timer Camera X/F**:
 
 .. code-block:: yaml
 
@@ -258,8 +258,7 @@ Configuration for M5Stack Timer Camera X/F
       name: My Camera
       # ...
 
-Confguration for M5Stack M5CameraF New
---------------------------------------
+**M5Stack M5CameraF New**:
 
 .. code-block:: yaml
 
@@ -277,8 +276,7 @@ Confguration for M5Stack M5CameraF New
       pixel_clock_pin: GPIO21
       reset_pin: GPIO15
 
-Configuration for Wrover Kit Boards
------------------------------------
+**Wrover Kit Boards**:
 
 .. code-block:: yaml
 
@@ -299,8 +297,7 @@ Configuration for Wrover Kit Boards
       name: My Camera
       # ...
 
-Configuration for TTGO T-Camera V05
------------------------------------
+**TTGO T-Camera V05**:
 
 .. code-block:: yaml
 
@@ -322,8 +319,7 @@ Configuration for TTGO T-Camera V05
       name: My Camera
       # ...
 
-Configuration for TTGO T-Camera V162
-------------------------------------
+**TTGO T-Camera V162**:
 
 .. code-block:: yaml
 
@@ -346,8 +342,7 @@ Configuration for TTGO T-Camera V162
       name: My Camera
       # ...
 
-Configuration for TTGO T-Camera V17
------------------------------------
+**TTGO T-Camera V17**:
 
 .. code-block:: yaml
 
@@ -371,8 +366,7 @@ Configuration for TTGO T-Camera V17
       name: My Camera
       # ...
 
-Configuration for TTGO T-Journal
---------------------------------
+**TTGO T-Journal**:
 
 .. code-block:: yaml
 
@@ -394,8 +388,7 @@ Configuration for TTGO T-Journal
       # ...
 
 
-Configuration for TTGO-Camera Plus
-----------------------------------
+**TTGO-Camera Plus**:
 
 .. code-block:: yaml
 
@@ -418,8 +411,7 @@ Configuration for TTGO-Camera Plus
       name: My Camera
       # ...
 
-Configuration for TTGO-Camera Mini
-----------------------------------
+**TTGO-Camera Mini**:
 
 .. code-block:: yaml
 
@@ -440,8 +432,7 @@ Configuration for TTGO-Camera Mini
       name: My Camera
       # ...
 
-Configuration for ESP-EYE
-----------------------------------
+**ESP-EYE**:
 
 .. code-block:: yaml
 
@@ -462,8 +453,7 @@ Configuration for ESP-EYE
       name: My Camera
       # ...
 
-Configuration for ESP32S3_EYE on `Freenove ESP32-S3-DevKitC-1 <https://github.com/Freenove/Freenove_ESP32_S3_WROOM_Board>`_
----------------------------------------------------------------------------------------------------------------------------
+**ESP32S3_EYE** on `Freenove ESP32-S3-DevKitC-1 <https://github.com/Freenove/Freenove_ESP32_S3_WROOM_Board>`__:
 
 .. code-block:: yaml
 
@@ -490,8 +480,7 @@ Configuration for ESP32S3_EYE on `Freenove ESP32-S3-DevKitC-1 <https://github.co
       name: My Camera
       # ...
 
-Configuration for Seeed Studio XIAO ESP32S3 Sense
----------------------------------------------------------------------------------------------------------------------------
+**Seeed Studio XIAO ESP32S3 Sense**:
 
 .. code-block:: yaml
 
