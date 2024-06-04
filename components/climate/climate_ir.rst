@@ -317,7 +317,7 @@ Configuration variables:
         horizontal_default: "left"
         vertical_default: "down"
 
-.. _mitsubishi:
+.. _mhi_zj:
 
 ``mhi_zj` Climate
 ------------------------
