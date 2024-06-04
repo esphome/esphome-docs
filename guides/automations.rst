@@ -18,18 +18,18 @@ Let's begin with an example to explain these concepts. Suppose you have this con
 
     switch:
       - platform: gpio
-        pin: GPIO3
+        pin: GPIOXX
         name: "Living Room Dehumidifier"
 
     binary_sensor:
       - platform: gpio
-        pin: GPIO4
+        pin: GPIOXX
         name: "Living Room Dehumidifier Toggle Button"
 
 With this file you can already perform some basic tasks. You can control the ON/OFF state
 of the dehumidifier in your living room from Home Assistant's front-end. But in many cases,
 controlling everything strictly from the frontend is quite a pain. That's why you have
-decided to also install a simple push button next to the dehumidifier on pin GPIO4.
+decided to also install a simple push button next to the dehumidifier on pin GPIOXX.
 A simple push on this button should toggle the state of the dehumidifier.
 
 You *could* write an automation to do this task in Home Assistant's automation engine, but
@@ -46,13 +46,13 @@ For example, this configuration would achieve your desired behavior:
 
     switch:
       - platform: gpio
-        pin: GPIO3
+        pin: GPIOXX
         name: "Living Room Dehumidifier"
         id: dehumidifier1
 
     binary_sensor:
       - platform: gpio
-        pin: GPIO4
+        pin: GPIOXX
         name: "Living Room Dehumidifier Toggle Button"
         on_press:
           then:
@@ -98,7 +98,8 @@ Actions
 -------
 
 Now comes the actual automation block. With ``then``, you tell ESPHome what should happen when the press happens.
-Within this block, you can define several "actions". For example, ``switch.toggle`` and the line after that form an
+Within this block, you can define several "actions" that will be executed sequentially.
+For example, ``switch.toggle`` and the line after that form an
 action. Each action is separated by a dash and multiple actions can be executed in series by just adding another ``-``
 like so:
 
@@ -409,6 +410,7 @@ All Actions
 - :ref:`media_player.play <media_player-play>` / :ref:`media_player.pause <media_player-pause>` / :ref:`media_player.stop <media_player-stop>` / :ref:`media_player.toggle <media_player-toggle>`
   / :ref:`media_player.volume_up <media_player-volume_up>` / :ref:`media_player.volume_down <media_player-volume_down>` / :ref:`media_player.volume_set <media_player-volume_set>`
 - :ref:`ble_client.ble_write <ble_client-ble_write_action>`
+- :ref:`wireguard.disable <wireguard-actions>` / :ref:`wireguard.enable <wireguard-actions>`
 
 .. _config-condition:
 
@@ -416,7 +418,7 @@ All Conditions
 --------------
 
 - :ref:`lambda <lambda_condition>`
-- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`xor <xor_condition>` / :ref:`not <not_condition>` 
+- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`xor <xor_condition>` / :ref:`not <not_condition>`
 - :ref:`for <for_condition>`
 - :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` / :ref:`binary_sensor.is_off <binary_sensor-is_off_condition>`
 - :ref:`switch.is_on <switch-is_on_condition>` / :ref:`switch.is_off <switch-is_off_condition>`
@@ -431,6 +433,7 @@ All Conditions
 - :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
 - :ref:`number.in_range <number-in_range_condition>`
 - :ref:`fan.is_on <fan-is_on_condition>` / :ref:`fan.is_off <fan-is_off_condition>`
+- :ref:`wireguard.enabled <wireguard-conditions>` / :ref:`wireguard.peer_online <wireguard-conditions>`
 
 All Lambda Calls
 ----------------
@@ -703,7 +706,7 @@ After this action the component will refresh at the original update_interval rat
 
 This will allow the component to resume automatic update at the defined interval.
 
-This action also allows to change the update interval, calling it without suspend, 
+This action also allows to change the update interval, calling it without suspend,
 replace the poller directly.
 
 Please note that this only works with PollingComponent types and others will result in a
@@ -721,7 +724,7 @@ compile error.
     # Change the poller interval
     on_...:
       then:
-        - component.resume: 
+        - component.resume:
             id: my_component
             update_interval: 15s
 
