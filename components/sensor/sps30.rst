@@ -53,6 +53,7 @@ This sensor supports both UART and I²C communication. However, at the moment on
           id: "pm_size"
         address: 0x69
         update_interval: 10s
+        idle_interval: 5min
 
 Configuration variables:
 ------------------------
@@ -123,6 +124,7 @@ Configuration variables:
   Defaults to ``0x69``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
+- **idle_interval** (*Optional*, :ref:`config-time`): If specified, will put the sensor into an idle mode between readings for the specified amount of time.
 
 Wiring:
 -------
@@ -157,6 +159,45 @@ This :ref:`action <config-action>` manually starts fan-cleaning.
       then:
         - sps30.start_fan_autoclean: my_sps30
 
+Idle Operation Mode:
+--------------------
+
+The SPS30 sensor can go into an idle operation mode where most internal electronics are switched off, including the fan and laser.  This greatly reduces power consumption as well
+as can prolong the life of the sensor.
+
+Specifying an ``idle_interval`` configuration parameter will automatically stop the sensor for that interval, wake it when it is time, allow the sensor to warm up, and take a reading
+before putting it back into idle state.
+
+The start and stop actions below allow users to manually take the sensor in and out of idle mode.  Note that after the sensor is started, it does have a warm-up period of 30 seconds
+prior to outputting measurements.
+
+See `low power documentation <https://sensirion.com/media/documents/188A2C3C/6166F165/Sensirion_Particulate_Matter_AppNotes_SPS30_Low_Power_Operation_D1.pdf>`__ for more information.
+
+.. _sps30_start_measurement_action:
+
+``sps30.start_measurement`` Action
+------------------------------------
+
+This :ref:`action <config-action>` manually puts the sensor into measurement mode.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - sps30.start_measurement: my_sps30
+
+.. _sps30_stop_measurement_action:
+
+``sps30.stop_measurement`` Action
+------------------------------------
+
+This :ref:`action <config-action>` manually puts the sensor into sleep mode.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - sps30.stop_measurement: my_sps30
 
 See Also
 --------
