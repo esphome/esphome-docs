@@ -1,24 +1,24 @@
 ESPHOME_PATH = ../esphome
-ESPHOME_REF = 2024.5.4
+ESPHOME_REF = dev
 PAGEFIND_VERSION=1.1.0
 PAGEFIND=pagefind
 NET_PAGEFIND=../pagefindbin/pagefind
 
-.PHONY: html html-strict cleanhtml deploy help live-html live-pagefind Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
+.PHONY: pagefind build-html html html-strict cleanhtml deploy help live-html live-pagefind Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
 
-html:
+html: pagefind
+	sphinx-build -M html . _build -j auto -n $(O) -Dhtml_extra_path=_redirects,_pagefind
+
+pagefind:
 	sphinx-build -M html . _build -j auto -n $(O)
+	mkdir -p _pagefind/pagefind
 	${PAGEFIND}
 
-live-html:	html
-	sphinx-autobuild . _build -j auto -n $(O) --host 0.0.0.0
-
-live-pagefind:	html
-	${PAGEFIND} --serve
+live-html:	pagefind
+	sphinx-autobuild . _build -j auto -n $(O) --host 0.0.0.0 -Dhtml_extra_path=_redirects,_pagefind
 
 html-strict:
 	sphinx-build -M html . _build -W -j auto -n $(O)
-	${PAGEFIND}
 
 minify:
 	minify _static/webserver-v1.js > _static/webserver-v1.min.js
@@ -43,7 +43,9 @@ api:
 
 net-html:
 	sphinx-build -M html . _build -j auto -n $(O)
+	mkdir -p _pagefind/pagefind
 	${NET_PAGEFIND}
+	sphinx-build -M html . _build -j auto -n $(O) -Dhtml_extra_path=_redirects,_pagefind
 
 netlify-api: netlify-dependencies
 	mkdir -p _build/html/api
@@ -60,9 +62,9 @@ netlify-dependencies: pagefind-binary
 
 pagefind-binary:
 	mkdir -p ../pagefindbin
-	curl -o pagefind-v$(PAGEFIND_VERSION)-x86_64-unknown-linux-musl.tar.gz https://github.com/CloudCannon/pagefind/releases/download/v$(PAGEFIND_VERSION)/pagefind-v$(PAGEFIND_VERSION)-x86_64-unknown-linux-musl.tar.gz -L
-	tar xzf pagefind-v$(PAGEFIND_VERSION)-x86_64-unknown-linux-musl.tar.gz
-	rm pagefind-v$(PAGEFIND_VERSION)-x86_64-unknown-linux-musl.tar.gz
+	curl -o pagefind.tar.gz https://github.com/CloudCannon/pagefind/releases/download/v$(PAGEFIND_VERSION)/pagefind-v$(PAGEFIND_VERSION)-x86_64-unknown-linux-musl.tar.gz -L
+	tar xzf pagefind.tar.gz
+	rm pagefind.tar.gz
 	mv pagefind ${NET_PAGEFIND}
 
 
@@ -73,6 +75,10 @@ netlify: netlify-dependencies netlify-api net-html copy-svg2png
 
 lint: html-strict
 	python3 lint.py
+
+clean:
+	rm -rf _pagefind/
+	sphinx-build -M clean . _build $(O)
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
