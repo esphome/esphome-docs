@@ -449,7 +449,6 @@ Contributors
 - `Eenoo (@Eenoo) <https://github.com/Eenoo>`__
 - `Eli Fidler (@efidler) <https://github.com/efidler>`__
 - `egandro (@egandro) <https://github.com/egandro>`__
-- `Erwin Kooi (@egeltje) <https://github.com/egeltje>`__
 - `Maxime Michel (@Egglestron) <https://github.com/Egglestron>`__
 - `Eike (@ei-ke) <https://github.com/ei-ke>`__
 - `Elazar Leibovich (@elazarl) <https://github.com/elazarl>`__
@@ -1048,6 +1047,7 @@ Contributors
 - `Mike Lynch (@Prow7) <https://github.com/Prow7>`__
 - `Peter Sarossy (@psarossy) <https://github.com/psarossy>`__
 - `Peter Tatrai (@ptatrai) <https://github.com/ptatrai>`__
+- `Pieter Viljoen (@ptr727) <https://github.com/ptr727>`__
 - `Leandro Puerari (@puerari) <https://github.com/puerari>`__
 - `puuu (@puuu) <https://github.com/puuu>`__
 - `Pascal Vizeli (@pvizeli) <https://github.com/pvizeli>`__
@@ -1374,4 +1374,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated May 28, 2024.*
+*This page was last updated June 5, 2024.*
