@@ -410,6 +410,7 @@ Environmental
     MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     MS8607, components/sensor/ms8607, ms8607.jpg, Temperature & Humidity & Pressure
+    NPI-19, components/sensor/npi19, npi19.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
     PMWCS3, components/sensor/pmwcs3, pmwcs3.jpg, Soil moisture & Temperature
     QMP6988, components/sensor/qmp6988, qmp6988_env3.png, Temperature & Pressure
