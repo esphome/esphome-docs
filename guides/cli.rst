@@ -210,6 +210,12 @@ single configuration file.
     Manually set the unix socket to bind to. If specified along with ``--address`` or ``--port`` the values
     for those parameters will be ignored. Cannot be used along with ``--systemd-socket``.
 
+.. option:: --systemd-socket
+
+    Have the dashboard bind to a unix socket that is passed in using systemd socket activation. If
+    specified along with ``--address`` or ``--port`` the values for those parameters will be ignored.
+    Cannot be used along with ``--socket``.
+
 .. option:: --username USERNAME
 
     The optional username to require for authentication.
@@ -221,7 +227,7 @@ single configuration file.
 .. option:: --open-ui
 
     If set, opens the dashboard UI in a browser once the server is up and running. Does not work when using
-    ``--socket``.
+    ``--socket`` or `--systemd-socket`.
 
 ``logs`` Command
 ---------------------
