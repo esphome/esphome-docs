@@ -136,6 +136,7 @@ Contributors
 - `Mike Dunston (@atanisoft) <https://github.com/atanisoft>`__
 - `Glenn Morrison (@atomicpapa) <https://github.com/atomicpapa>`__
 - `Alexander Turlov (@aturlov) <https://github.com/aturlov>`__
+- `august huber (@augs) <https://github.com/augs>`__
 - `aus (@aus) <https://github.com/aus>`__
 - `AustinMorris (@AustinMorris) <https://github.com/AustinMorris>`__
 - `Avirsaam (@Avirsaam) <https://github.com/Avirsaam>`__
@@ -448,7 +449,6 @@ Contributors
 - `Eenoo (@Eenoo) <https://github.com/Eenoo>`__
 - `Eli Fidler (@efidler) <https://github.com/efidler>`__
 - `egandro (@egandro) <https://github.com/egandro>`__
-- `Erwin Kooi (@egeltje) <https://github.com/egeltje>`__
 - `Maxime Michel (@Egglestron) <https://github.com/Egglestron>`__
 - `Eike (@ei-ke) <https://github.com/ei-ke>`__
 - `Elazar Leibovich (@elazarl) <https://github.com/elazarl>`__
@@ -1047,6 +1047,7 @@ Contributors
 - `Mike Lynch (@Prow7) <https://github.com/Prow7>`__
 - `Peter Sarossy (@psarossy) <https://github.com/psarossy>`__
 - `Peter Tatrai (@ptatrai) <https://github.com/ptatrai>`__
+- `Pieter Viljoen (@ptr727) <https://github.com/ptr727>`__
 - `Leandro Puerari (@puerari) <https://github.com/puerari>`__
 - `puuu (@puuu) <https://github.com/puuu>`__
 - `Pascal Vizeli (@pvizeli) <https://github.com/pvizeli>`__
@@ -1192,6 +1193,7 @@ Contributors
 - `Stefan Staub (@sstaub) <https://github.com/sstaub>`__
 - `Stanislav Habich (@standahabich) <https://github.com/standahabich>`__
 - `stegm (@stegm) <https://github.com/stegm>`__
+- `Steven Hack (@steven-hack) <https://github.com/steven-hack>`__
 - `Stewart (@stewiem2000) <https://github.com/stewiem2000>`__
 - `sthorley (@sthorley) <https://github.com/sthorley>`__
 - `sticilface (@sticilface) <https://github.com/sticilface>`__
@@ -1242,6 +1244,7 @@ Contributors
 - `Alan Lord (@theopensourcerer) <https://github.com/theopensourcerer>`__
 - `Brian Levinsen (@therealeldaria) <https://github.com/therealeldaria>`__
 - `Steve Scott (@thewishy) <https://github.com/thewishy>`__
+- `Zachery Notz (@TheZackCodec) <https://github.com/TheZackCodec>`__
 - `Florian Gareis (@TheZoker) <https://github.com/TheZoker>`__
 - `Thibault Maekelbergh (@thibmaek) <https://github.com/thibmaek>`__
 - `Thies Gerken (@thiesgerken) <https://github.com/thiesgerken>`__
@@ -1371,4 +1374,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated May 25, 2024.*
+*This page was last updated June 5, 2024.*
