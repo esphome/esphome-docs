@@ -29,7 +29,7 @@ All buttons in ESPHome have a name and an optional icon.
 
     # Example button configuration
     button:
-      - platform: ...
+      - platform: template
         name: Livingroom Lazy Mood
         id: my_button
 
