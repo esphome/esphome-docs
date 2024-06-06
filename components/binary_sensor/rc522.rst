@@ -42,7 +42,7 @@ you can then create individual binary sensors that track if an NFC/RFID tag is c
     spi:
 
     rc522_spi:
-      cs_pin: GPIO15
+      cs_pin: GPIOXX
 
     binary_sensor:
       - platform: rc522

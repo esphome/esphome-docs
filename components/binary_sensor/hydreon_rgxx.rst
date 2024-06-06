@@ -12,12 +12,6 @@ For this sensor to work, a :doc:`/components/sensor/hydreon_rgxx` must be set up
 .. code-block:: yaml
 
     # Example RG-9 entry
-
-    uart:
-      rx_pin: GPIO16
-      tx_pin: GPIO17
-      baud_rate: 9600
-
     sensor:
       - platform: hydreon_rgxx
         model: "RG_9"
