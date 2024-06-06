@@ -34,9 +34,9 @@ is primarily useful with either standalone or MQTT-only devices.
 Configuration variables:
 ------------------------
 
-- **esp8266_disable_ssl_support** (*Optional*, boolean): When set to ``true``, SSL support is excluded from the build,
-  resulting in a smaller binary. **Only available on ESP8266.** Defaults to ``false``. See
-  :ref:`esphome-esp8266_disable_ssl_support` for more information.
+- **esp8266_disable_ssl_support** (*Optional*, boolean): When set to ``true``, HTTPS/SSL support is excluded from the
+  build, resulting in a smaller binary. HTTPS connections will not be possible. **Only available on ESP8266.** Defaults
+  to ``false``. See :ref:`esphome-esp8266_disable_ssl_support` for more information.
 - **verify_ssl** (*Optional*, boolean): When set to ``true``, SSL/TLS certificate validity will be verified upon
   connection. To accomplish this, ESP-IDF's default ESP x509 certificate bundle is included in the build. This
   certificate bundle includes the complete list of root certificates from Mozilla's NSS root certificate store.
@@ -51,10 +51,14 @@ Configuration variables:
 
     Setting ``verify_ssl`` to ``false`` **reduces security** when using HTTPS connections!
 
-    Without the certificate bundle, the remote HTTPS server cannot be verified, opening the update process up to
-    man-in-the-middle attacks. To maximize security, this option should **only** be enabled when the device does
-    not have sufficient memory to store the certificate bundle, when a custom CA/self-signed certificate is used
-    or when the Arduino framework is used.
+    Without the certificate bundle, certificates used by the remote HTTPS server cannot be verified, opening the update
+    process up to man-in-the-middle attacks.
+    
+    To maximize security, do not set ``verify_ssl`` to ``false`` *unless:*
+    
+    - the device does not have sufficient memory to store the certificate bundle
+    - a custom CA/self-signed certificate is used, or
+    - the Arduino framework is used
 
 .. note::
 
