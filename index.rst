@@ -177,6 +177,7 @@ Network Protocols
     HTTP Request, components/http_request, connection.svg, dark-invert
     mDNS, components/mdns, radio-tower.svg, dark-invert
     WireGuard, components/wireguard, wireguard_custom_logo.svg
+    UDP, components/udp, udp.svg
 
 Bluetooth/BLE
 -------------
