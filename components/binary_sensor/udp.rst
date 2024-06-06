@@ -21,6 +21,7 @@ Configuration variables
 -----------------------
 
 -  **name** (*Optional*, string): The name of the binary sensor.
+-  **internal** (*Optional*, boolean): Whether the sensor should be exposed via API (e.g. to Home Assistant.) Defaults to true if name is not set, required if name is provided.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 -  **remote_id** (*Optional*, :ref:`config-id`): The ID of the binary sensor in the remote device. If not specified defaults to the ID configured with ``id:``.
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
