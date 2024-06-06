@@ -37,11 +37,11 @@ Configuration variables:
 - **esp8266_disable_ssl_support** (*Optional*, boolean): When set to ``true``, HTTPS/SSL support is excluded from the
   build, resulting in a smaller binary. HTTPS connections will not be possible. **Only available on ESP8266.** Defaults
   to ``false``. See :ref:`esphome-esp8266_disable_ssl_support` for more information.
-- **verify_ssl** (*Optional*, boolean): When set to ``true``, SSL/TLS certificate validity will be verified upon
-  connection. To accomplish this, ESP-IDF's default ESP x509 certificate bundle is included in the build. This
-  certificate bundle includes the complete list of root certificates from Mozilla's NSS root certificate store.
-  Defaults to ``true``. **May only be set to true when using the ESP-IDF framework; must be explicitly set to false
-  when using the Arduino framework.**
+- **verify_ssl** (*Optional*, boolean): When set to ``true`` (default), SSL/TLS certificates will be validated upon
+  connection; if invalid, the connection will be aborted. To accomplish this, ESP-IDF's default ESP x509 certificate
+  bundle is included in the build. This certificate bundle includes the complete list of root certificates from
+  Mozilla's NSS root certificate store. **May only be set to true when using the ESP-IDF framework; must be explicitly
+  set to false when using the Arduino framework.**
 - **watchdog_timeout** (*Optional*, :ref:`config-time`): Change the watchdog timeout during flash operation.
   May be useful on slow connections or connections with high latency. **Do not change this value unless you are
   experiencing device reboots due to watchdog timeouts;** doing so may prevent the device from rebooting due to a
