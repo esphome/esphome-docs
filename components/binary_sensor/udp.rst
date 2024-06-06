@@ -32,7 +32,7 @@ See Also
 --------
 
 - :doc:`/components/udp`
-- :doc:`/components/binary_sensor/index`
+- :doc:`/components/sensor/index`
 - :ref:`automation`
 - :apiref:`udp/udp_component.h`
 - :ghedit:`Edit`
