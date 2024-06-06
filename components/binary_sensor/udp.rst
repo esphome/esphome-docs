@@ -29,6 +29,18 @@ Configuration variables
 At least one of ``id`` and ``remote_id`` must be configured.
 
 
+Publishing to Home Assistant
+----------------------------
+
+Typically this type of binary sensor would be used for internal automation purposes rather than having it published to
+HA, since it will be a duplicate of the remote sensor.
+
+If it *is* desired to expose the sensor to HA, then the ``internal:`` configuration setting needs to be explicitly
+set to ``false`` and a name provided.
+Only the state (i.e. binary value) of the remote sensor is received by the consumer, so any other attributes must be explicitly
+configured.
+
+
 See Also
 --------
 
