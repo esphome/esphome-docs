@@ -360,8 +360,7 @@ You can display current time using a time component. Please see the example :ref
 Screen Clipping
 ---------------
 
-Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show
-a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
+Screen clipping can be useful when you just want to show a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
 
 With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region
 you can stop the clipping process with ``end_clipping();`` . You can nest as many ``start_clipping();`` as you want as long
