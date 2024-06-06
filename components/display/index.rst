@@ -412,7 +412,7 @@ With ``is_clipping();`` tells you if clipping is activated.
 .. _local_coordinates:
 
 Local Coordinates
-*****************
+-----------------
 
 Typically when rendering everything is relative to (0, 0) - i.e the top left of the screen with respect to rotation. This is
 sometimes known as the *Global Coordinates*. However there are times when it is useful to redefine the meaning of (0, 0) for
