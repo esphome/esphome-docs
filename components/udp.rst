@@ -39,6 +39,7 @@ Wherever a provider name is required, this should be the name configured in the 
     sensor:
       - platform: udp
         provider: some-device-name
+        id: local_sensor_id
         remote_id: some_sensor_id
 
     binary_sensor:
