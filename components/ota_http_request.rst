@@ -34,12 +34,14 @@ is primarily useful with either standalone or MQTT-only devices.
 Configuration variables:
 ------------------------
 
-- **esp8266_disable_ssl_support** (*Optional*, boolean): Disables SSL support on the ESP8266 when set to ``true``.
-  **Only available on ESP8266.** Defaults to ``false``. See :ref:`esphome-esp8266_disable_ssl_support` for more information.
-- **exclude_certificate_bundle** (*Optional*, boolean): When set to ``true``, the default ESP x509 certificate bundle
-  is excluded from the build. This certificate bundle includes the complete list of root certificates from Mozilla's
-  NSS root certificate store. Defaults to ``false``.
-  **Only available when using the ESP-IDF framework; must be explicitly set to true when using the Arduino framework.**
+- **esp8266_disable_ssl_support** (*Optional*, boolean): When set to ``true``, SSL support is excluded from the build,
+  resulting in a smaller binary. **Only available on ESP8266.** Defaults to ``false``. See
+  :ref:`esphome-esp8266_disable_ssl_support` for more information.
+- **verify_ssl** (*Optional*, boolean): When set to ``true``, SSL/TLS certificate validity will be verified upon
+  connection. To accomplish this, ESP-IDF's default ESP x509 certificate bundle is included in the build. This
+  certificate bundle includes the complete list of root certificates from Mozilla's NSS root certificate store.
+  Defaults to ``true``. **May only be set to true when using the ESP-IDF framework; must be explicitly set to false
+  when using the Arduino framework.**
 - **watchdog_timeout** (*Optional*, :ref:`config-time`): Change the watchdog timeout during flash operation.
   May be useful on slow connections or connections with high latency. **Do not change this value unless you are
   experiencing device reboots due to watchdog timeouts;** doing so may prevent the device from rebooting due to a
@@ -47,7 +49,7 @@ Configuration variables:
 
 .. warning::
 
-    Setting ``exclude_certificate_bundle`` to ``true`` **reduces security** when using HTTPS connections!
+    Setting ``verify_ssl`` to ``false`` **reduces security** when using HTTPS connections!
 
     Without the certificate bundle, the remote HTTPS server cannot be verified, opening the update process up to
     man-in-the-middle attacks. To maximize security, this option should **only** be enabled when the device does
