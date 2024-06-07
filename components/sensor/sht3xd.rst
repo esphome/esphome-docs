@@ -54,6 +54,24 @@ Configuration variables:
   but can also increase temperature readings and decrease humidity readings as a side effect.
   Defaults to ``false``.
 
+Configuration using Higher I²C Frequencies
+------------------------------------------
+
+When using the **IDF framework** and **I²C Frequencies greater than 50-100kHz**, the I²C configuration needs to include a **timeout** option.
+On an ESP32, the Arduino framework has a default I²C timeout of 50ms whereas on IDF framework, the default timeout is 100us.
+At these higher I²C Frequencies, the default I²C timeout on IDF framework causes a "Communication with SHT3xD failed" error on setup.
+A solution that has been tested on ESP32 at 800kHz, is to increase the I²C timeout to 10ms as per the following example.
+
+.. code-block:: yaml
+
+    # Example I²C configuration entry
+    i2c:
+      sda: 21
+      scl: 22
+      scan: true
+      frequency: 800khz
+      timeout: 10ms
+
 See Also
 --------
 
