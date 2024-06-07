@@ -239,7 +239,7 @@ custom components.
         - Wire
 
         # use the git version of a library used by a component
-        - esphome/Improv=https://github.com/improv-wifi/sdk-cpp.git#v1.0.0
+        - Improv=https://github.com/improv-wifi/sdk-cpp.git#v1.0.0
 
 The most common usage of this option is to include third-party libraries that are available in the `PlatformIO registry
 <https://platformio.org/lib>`__. They can be added by listing their name under this option. It is also possible to use
