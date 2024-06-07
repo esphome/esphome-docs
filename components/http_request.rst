@@ -253,14 +253,13 @@ whose ``id`` is  set to ``player_volume``:
     on_...:
     - http_request.get:
         url: https://esphome.io
+        capture_response: true
         on_response:
           then:
             - lambda: |-
-                json::parse_json(id(http_request_data).get_string(), [](JsonObject root) {
+                json::parse_json(body, [](JsonObject root) {
                     id(player_volume).publish_state(root["vol"]);
                 });
-
-**Note:** For this example to work, the main ``http_request`` component needs its ``id`` set to ``http_request_data``.
 
 
 See Also
