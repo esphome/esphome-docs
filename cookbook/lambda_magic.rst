@@ -61,6 +61,11 @@ You can send such UDP commands from ESPHome using a Lambda in a script.
 
 .. code-block:: yaml
 
+    esphome:
+      ...
+      includes: # only needed in case of ESP8266
+        - inc/WiFiUdp.h
+
     script:
     - id: send_udp
       parameters:
@@ -68,6 +73,14 @@ You can send such UDP commands from ESPHome using a Lambda in a script.
         host: string
         port: int
       then:
+        # in case of ESP8266:
+        - lambda: |-
+              WiFiUDP Udp;
+              Udp.beginPacket(host.c_str(), port);
+              Udp.write(msg.c_str());
+              Udp.endPacket();
+
+        # in case of ESP32:
         - lambda: |-
               int sock = ::socket(AF_INET, SOCK_DGRAM, 0);
               struct sockaddr_in destination, source;
@@ -97,7 +110,7 @@ You can send such UDP commands from ESPHome using a Lambda in a script.
             host: "192.168.1.10"
             port: 5000
 
-Tested on both `arduino` and `esp-idf` platforms.
+Tested on ESP32 ``arduino`` and ``esp-idf`` platforms. In case of ESP8266 get ``WiFiUdp.h`` from `here <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/WiFiUdp.h>`__ and place it in an `inc` folder near your yaml config.
 
 .. _lambda_magic_uart_text_sensor:
 
