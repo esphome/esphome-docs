@@ -10,7 +10,7 @@ UDP Component
 
 The purpose of this component is to allow ESPHome nodes to directly communicate with each over an IP network
 without relying on Home Assistant. It permits the state of sensors and binary sensors to be broadcasted via UDP packets
-to other nodes on the same LAN, or to specific IP addresses (which may be in a remote, but reachable, network.)
+to other nodes on the same LAN, or to specific IP addresses (which may be in remote, but reachable networks).
 
 Nodes may be *providers* which broadcast sensor data, or *consumers* which receive sensor data from one or more
 providers. A node may be both a provider and a consumer. Optional security is provided by one or more of:
@@ -103,8 +103,8 @@ contain it.
 
 Use of the ping-pong feature will add to network traffic and the size of the transmitted packets (a single packet may
 include up to 4 nonces from different devices) but provides a high level of protection against replay attacks. It does
-require a 2-way network connection, and it only works on local networks because the consumer can only *broadcast* it to
-all the providers.
+require a 2-way network connection, and it only works on local networks because the consumer can only *broadcast* the
+nonce to the providers.
 
 .. note::
 
