@@ -112,6 +112,9 @@ all the providers.
     It's also incremented and written to flash when the counting, lower 32 bits overflows, which can only happen after
     a very long time. The consumer side does not store the received rolling codes in flash.
 
+    When encryption is used, all the data is encrypted except the sender node name. This doesn't decrease the security
+    level, because this information is available anyway in clear from the usual mdns broadcasts of the nodes. 
+
 Configuration examples
 ----------------------
 
