@@ -25,7 +25,9 @@ Configuration variables:
 - **follow_redirects** (*Optional*, boolean): Enable following HTTP redirects. Defaults to ``true``.
 - **redirect_limit** (*Optional*, integer): Maximum amount of redirects to follow when enabled. Defaults to ``3``.
 - **timeout** (*Optional*, :ref:`config-time`): Timeout for request. Defaults to ``5s``.
-- **useragent** (*Optional*, string): User-Agent header for requests. Defaults to ``ESPHome``.
+- **useragent** (*Optional*, string): User-Agent header for requests. Defaults to
+  ``ESPHome/<version> (https://esphome.io)`` where ``<version>`` is the version of ESPHome the device is running.
+  For example: ``ESPHome/2024.6.0 (https://esphome.io)``
 - **verify_ssl** (*Optional*, boolean): When set to ``true`` (default), SSL/TLS certificates will be validated upon
   connection; if invalid, the connection will be aborted. To accomplish this, ESP-IDF's default ESP x509 certificate
   bundle is included in the build. This certificate bundle includes the complete list of root certificates from
@@ -39,10 +41,13 @@ Configuration variables:
 **For the ESP8266:**
 
 - **esp8266_disable_ssl_support** (*Optional*, boolean): Determines whether to include HTTPS/SSL support in the
-  firmware binary. Defaults to ``false``. This allows you to exclude SSL libraries from your build, resulting in a
-  smaller binary. HTTPS connections will not be possible when set to ``true``. This may be useful on memory-constrained
-  devices (512 kB or 1 MB). If you see ``Error: ESP does not have enough space to store OTA file`` in your device's
-  logs, you may need to enable this option.
+  firmware binary. Excluding the SSL libraries from your build will result in a smaller binary, which may be
+  necessary for memory-constrained devices (512 kB or 1 MB). If you see
+  ``Error: ESP does not have enough space to store OTA file`` in your device's logs, you may need to enable this
+  option. Defaults to ``false``. By setting this option to ``true``:
+
+  - HTTPS connections will not be possible
+  - ``verify_ssl: false`` is implied
 
 .. warning::
 
