@@ -207,7 +207,7 @@ encryption and a rolling code to a remote host.
         provider: st7735s
         id: wifi_signal_sensor
 
-.. [#f1] As until 2024.06.
+.. [#f1] As known in 2024.06.
 
 See Also
 --------
