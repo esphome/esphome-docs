@@ -5,7 +5,7 @@ UDP Sensor
     :description: Instructions for setting up a UDP sensor.
     :image: udp.svg
 
-The ``udp`` sensor platform allows you to receive numeric sensor data directly from another device.
+The ``udp`` sensor platform allows you to receive numeric sensor data directly from another ESPHome node.
 
 .. code-block:: yaml
 
