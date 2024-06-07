@@ -31,7 +31,7 @@ Publishing to Home Assistant
 ----------------------------
 
 Typically this type of sensor would be used for internal automation purposes rather than having it published back to
-Home Assistant, since it will be a duplicate of the original sensor.
+Home Assistant, since it would be a duplicate of the original sensor.
 
 If it *is* desired to expose the sensor to Home Assistant, then the ``internal:`` configuration setting needs to be explicitly
 set to ``false`` and a name provided.
