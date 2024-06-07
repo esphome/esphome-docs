@@ -131,6 +131,7 @@ Supported Microcontrollers
     RP2040, components/rp2040, rp2040.svg
     BK72xx, components/libretiny, bk72xx.svg
     RTL87xx, components/libretiny, rtl87xx.svg
+    host, components/host, host.svg, dark-invert
 
 Microcontroller Peripherals
 ---------------------------
@@ -196,6 +197,7 @@ Management and Monitoring
     Debug, components/debug, bug-report.svg, dark-invert
     Logger, components/logger, file-document-box.svg, dark-invert
     OTA Updates, components/ota, system-update.svg, dark-invert
+    OTA Updates via HTTP Request, components/ota_http_request, system-update.svg, dark-invert
     Prometheus, components/prometheus, prometheus.svg
     Safe Mode, components/safe_mode, restart-alert.svg
     Web Server, components/web_server, http.svg, dark-invert
