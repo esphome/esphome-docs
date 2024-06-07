@@ -44,7 +44,7 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`LG<climate_ir_lg>`              | ``climate_ir_lg``   | yes                  |
 +---------------------------------------+---------------------+----------------------+
-| Midea                                 | ``midea_ir``        | yes                  |
+| :ref:`Midea<midea_ir>`                | ``midea_ir``        | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Mitsubishi<mitsubishi>`         | ``mitsubishi``      | yes                  |
 +---------------------------------------+---------------------+----------------------+
@@ -169,35 +169,6 @@ IR receiver.
         name: "Living Room AC"
         receiver_id: rcvr
 
-.. _midea_ir:
-
-``midea_ir`` Climate
--------------------------
-
-These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.
-
-Additional configuration is available for this platform
-
-
-Configuration variables:
-
-- **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    climate:
-      - platform: midea_ir
-        name: "AC"
-        sensor: room_temperature
-        use_fahrenheit: true
-
-.. note::
-
-    - See :ref:`Transmit Midea<remote_transmitter-transmit_midea>` to send custom commands, including Follow Me mode.
-    - See :ref:`Toshiba<toshiba>` below if you are looking for compatibility with Midea model MAP14HS1TBL or similar.
-
-
 .. _climate_ir_lg:
 
 ``climate_ir_lg`` Climate
@@ -271,6 +242,34 @@ Currently supports the protocol used by some Delonghi portable units
 Known working with:
 
 - Delonghi PAC WE 120HP
+
+.. _midea_ir:
+
+``midea_ir`` Climate
+-------------------------
+
+These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.
+
+Additional configuration is available for this platform
+
+
+Configuration variables:
+
+- **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: midea_ir
+        name: "AC"
+        sensor: room_temperature
+        use_fahrenheit: true
+
+.. note::
+
+    - See :ref:`Transmit Midea<remote_transmitter-transmit_midea>` to send custom commands, including Follow Me mode.
+    - See :ref:`Toshiba<toshiba>` below if you are looking for compatibility with Midea model MAP14HS1TBL or similar.
 
 .. _mitsubishi:
 
