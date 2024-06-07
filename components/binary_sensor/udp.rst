@@ -12,14 +12,15 @@ The ``udp`` binary sensor platform allows you to receive binary sensor data dire
     # Example configuration entry
     binary_sensor:
       - platform: udp
-        provider: light-switch
         id: switch_status
+        provider: light-switch
         remote_id: light_switch
 
 Configuration variables
 -----------------------
 
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+-  **provider** (**Required**, string): The name of the provider node.
 -  **remote_id** (*Optional*, :ref:`config-id`): The ID of the original binary sensor in the provider device. If not specified defaults to the ID configured with ``id:``.
 -  **name** (*Optional*, string): The name of the binary sensor.
 -  **internal** (*Optional*, boolean): Whether the sensor should be exposed via API (e.g. to Home Assistant.) Defaults to ``true`` if name is not set, required if name is provided.
