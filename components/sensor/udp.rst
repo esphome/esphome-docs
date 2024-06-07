@@ -5,7 +5,7 @@ UDP Sensor
     :description: Instructions for setting up a UDP sensor.
     :image: udp.svg
 
-The ``udp`` sensor platform allows you to receive sensor data directly from another device.
+The ``udp`` sensor platform allows you to receive numeric sensor data directly from another device.
 
 .. code-block:: yaml
 
@@ -27,16 +27,15 @@ Configuration variables
 
 At least one of ``id`` and ``remote_id`` must be configured. 
 
-
 Publishing to Home Assistant
 ----------------------------
 
-Typically this type of binary sensor would be used for internal automation purposes rather than having it published back to
+Typically this type of sensor would be used for internal automation purposes rather than having it published back to
 Home Assistant, since it will be a duplicate of the original sensor.
 
 If it *is* desired to expose the sensor to Home Assistant, then the ``internal:`` configuration setting needs to be explicitly
 set to ``false`` and a name provided.
-Only the state (i.e. binary value) of the remote sensor is received by the consumer, so any other attributes must be explicitly
+Only the state (i.e. numeric value) of the remote sensor is received by the consumer, so any other attributes must be explicitly
 configured.
 
 See Also
