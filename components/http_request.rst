@@ -174,8 +174,8 @@ The following variables are available for use in :ref:`lambdas <config-lambda>`:
                 - logger.log:
                     format: "Response status: %d, Duration: %u ms"
                     args:
-                      - status_code
-                      - duration_ms
+                      - response.status_code
+                      - response.duration_ms
 
 
 .. _http_request-examples:
