@@ -12,15 +12,16 @@ The ``udp`` sensor platform allows you to receive numeric sensor data directly f
     # Example configuration entry
     sensor:
       - platform: udp
-        provider: thermometer
         id: temperature_id
+        provider: thermometer
         remote_id: temp_id
 
 Configuration variables
 -----------------------
 
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
--  **remote_id** (*Optional*, :ref:`config-id`): The ID of the original sensor in the provider device. If not specified defaults to the ID configured with ``id:``.
+-  **provider** (**Required**, string): The name of the provider node.
+-  **remote_id** (*Optional*, :ref:`config-id`): The ID of the original sensor in the provider node. If not specified defaults to the ID configured with ``id:``.
 -  **name** (*Optional*, string): The name of the sensor.
 -  **internal** (*Optional*, boolean): Whether the sensor should be exposed via API (e.g. to Home Assistant.) Defaults to ``true`` if name is not set, required if name is provided.
 -  All other options from :ref:`Sensor <config-sensor>`.
