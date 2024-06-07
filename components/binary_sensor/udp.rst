@@ -5,7 +5,7 @@ UDP Binary Sensor
     :description: Instructions for setting up a UDP binary sensor.
     :image: udp.svg
 
-The ``udp`` binary sensor platform allows you to receive binary sensor data directly from another device.
+The ``udp`` binary sensor platform allows you to receive binary sensor data directly from another ESPHome node.
 
 .. code-block:: yaml
 
