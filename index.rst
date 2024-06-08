@@ -131,6 +131,7 @@ Supported Microcontrollers
     RP2040, components/rp2040, rp2040.svg
     BK72xx, components/libretiny, bk72xx.svg
     RTL87xx, components/libretiny, rtl87xx.svg
+    host, components/host, host.svg, dark-invert
 
 Microcontroller Peripherals
 ---------------------------
@@ -196,6 +197,7 @@ Management and Monitoring
     Debug, components/debug, bug-report.svg, dark-invert
     Logger, components/logger, file-document-box.svg, dark-invert
     OTA Updates, components/ota, system-update.svg, dark-invert
+    OTA Updates via HTTP Request, components/ota_http_request, system-update.svg, dark-invert
     Prometheus, components/prometheus, prometheus.svg
     Safe Mode, components/safe_mode, restart-alert.svg
     Web Server, components/web_server, http.svg, dark-invert
@@ -445,7 +447,13 @@ Light
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
+    LTR303, components/sensor/ltr_als_ps, ltr303.jpg, Lux
+    LTR329, components/sensor/ltr_als_ps, ltr329.jpg, Lux
     LTR390, components/sensor/ltr390, ltr390.jpg, Lux & UV
+    LTR553, components/sensor/ltr_als_ps, ltr-ps.jpg, Lux & Proximity
+    LTR556, components/sensor/ltr_als_ps, ltr-ps.jpg, Lux & Proximity
+    LTR559, components/sensor/ltr_als_ps, ltr559.jpg, Lux & Proximity
+    LTR659, components/sensor/ltr_als_ps, ltr-ps.jpg, Proximity
     MAX44009, components/sensor/max44009, max44009.svg, Lux
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
