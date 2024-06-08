@@ -8,8 +8,8 @@ UDP Component
     :image: udp.svg
     :keywords: UDP
 
-The purpose of this component is to allow ESPHome nodes to directly communicate with each over an IP network
-without relying on Home Assistant. It permits the state of sensors and binary sensors to be broadcast via UDP packets
+The purpose of this component is to allow ESPHome nodes to directly communicate with each over an IP network.
+It permits the state of sensors and binary sensors to be broadcast via UDP packets
 to other nodes on the same LAN, or to specific IP addresses (which may be in remote, but reachable networks).
 
 Nodes may be *providers* which broadcast sensor data, or *consumers* which receive sensor data from one or more
