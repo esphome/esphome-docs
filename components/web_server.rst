@@ -180,8 +180,8 @@ Example configuration:
     number:
       - platform: template
       ...
-      web_server:
-        sorting_group: sorting_group_number_settings
+        web_server:
+          sorting_group: sorting_group_number_settings
 
 
 .. _config-webserver-sorting:
