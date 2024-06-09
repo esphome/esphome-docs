@@ -44,7 +44,7 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`LG<climate_ir_lg>`              | ``climate_ir_lg``   | yes                  |
 +---------------------------------------+---------------------+----------------------+
-| Midea                                 | ``midea_ir``        | yes                  |
+| :ref:`Midea<midea_ir>`                | ``midea_ir``        | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Mitsubishi<mitsubishi>`         | ``mitsubishi``      | yes                  |
 +---------------------------------------+---------------------+----------------------+
@@ -76,7 +76,7 @@ controller unit.
 
     # Example configuration entry
     remote_transmitter:
-      pin: GPIO32
+      pin: GPIOXX
       carrier_duty_percent: 50%
 
     climate:
@@ -156,7 +156,7 @@ IR receiver.
     remote_receiver:
       id: rcvr
       pin:
-        number: GPIO14
+        number: GPIOXX
         inverted: true
         mode:
           input: true
@@ -168,35 +168,6 @@ IR receiver.
       - platform: coolix
         name: "Living Room AC"
         receiver_id: rcvr
-
-.. _midea_ir:
-
-``midea_ir`` Climate
--------------------------
-
-These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.
-
-Additional configuration is available for this platform
-
-
-Configuration variables:
-
-- **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    climate:
-      - platform: midea_ir
-        name: "AC"
-        sensor: room_temperature
-        use_fahrenheit: true
-
-.. note::
-
-    - See :ref:`Transmit Midea<remote_transmitter-transmit_midea>` to send custom commands, including Follow Me mode.
-    - See :ref:`Toshiba<toshiba>` below if you are looking for compatibility with Midea model MAP14HS1TBL or similar.
-
 
 .. _climate_ir_lg:
 
@@ -272,6 +243,34 @@ Known working with:
 
 - Delonghi PAC WE 120HP
 
+.. _midea_ir:
+
+``midea_ir`` Climate
+-------------------------
+
+These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.
+
+Additional configuration is available for this platform
+
+
+Configuration variables:
+
+- **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: midea_ir
+        name: "AC"
+        sensor: room_temperature
+        use_fahrenheit: true
+
+.. note::
+
+    - See :ref:`Transmit Midea<remote_transmitter-transmit_midea>` to send custom commands, including Follow Me mode.
+    - See :ref:`Toshiba<toshiba>` below if you are looking for compatibility with Midea model MAP14HS1TBL or similar.
+
 .. _mitsubishi:
 
 ``mitsubishi`` Climate
@@ -283,8 +282,8 @@ Configuration variables:
 
 - **set_fan_mode** (*Optional*, string): Select the fan modes desired or that are supported on your remote. Defaults to ``3levels``
 
-  - Options are: ``3levels`` , ``4levels``, ``quiet_4levels``. 
-  
+  - Options are: ``3levels`` , ``4levels``, ``quiet_4levels``.
+
     - ``3levels``; Low [fan speed 1], Medium [2], High [3]
     - ``4levels``; Low [1], Middle [2], Medium [3], High [4]
     - ``quiet_4levels``; Low [1], Middle [2], Medium [3], High [4], Quiet [5]
@@ -292,10 +291,10 @@ Configuration variables:
 - **supports_dry** (*Optional*, boolean): Enables setting dry mode for this unit. Defaults to ``false``.
 - **supports_fan_only** (*Optional*, boolean): Enables setting fan only mode for this unit. Confirm that mode is supported on your remote. Defaults to ``false``.
 
-- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to ``middle``. 
+- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to ``middle``.
 
   - Options are: ``left``, ``middle-left``, ``middle``, ``middle-right``, ``right``, ``auto``
-- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Defaults to ``middle``. 
+- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Defaults to ``middle``.
 
   - Options are: ``down``, ``middle-down``, ``middle``, ``middle-up``, ``up``, ``auto``
 
@@ -423,8 +422,8 @@ Configuration variables:
 ``zhlt01`` Climate
 ---------------------
 
-ZH/LT-01 is a remote control that is used with many locally branded split airconditioners. 
-Supported brands include: 
+ZH/LT-01 is a remote control that is used with many locally branded split airconditioners.
+Supported brands include:
 
 - Eurom
 - Chigo

@@ -17,8 +17,8 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
     # Example configuration entry for RMII chips
     ethernet:
       type: LAN8720
-      mdc_pin: GPIO23
-      mdio_pin: GPIO18
+      mdc_pin: GPIOXX
+      mdio_pin: GPIOXX
       clk_mode: GPIO0_IN
       phy_addr: 0
 
@@ -33,12 +33,12 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
     # Example configuration entry for SPI chips
     ethernet:
       type: W5500
-      clk_pin: GPIO19
-      mosi_pin: GPIO21
-      miso_pin: GPIO23
-      cs_pin: GPIO18
-      interrupt_pin: GPIO36
-      reset_pin: GPIO22
+      clk_pin: GPIOXX
+      mosi_pin: GPIOXX
+      miso_pin: GPIOXX
+      cs_pin: GPIOXX
+      interrupt_pin: GPIOXX
+      reset_pin: GPIOXX
 
 Configuration variables:
 ------------------------
@@ -72,6 +72,12 @@ RMII configuration variables:
   - ``GPIO17_OUT`` - Internal clock
 
 - **phy_addr** (*Optional*, int): The PHY addr type of the Ethernet controller. Defaults to 0.
+- **phy_registers** (*Optional*, mapping): Arbitrary PHY register values to set after Ethernet initialization.
+
+  - **address** (**Required**, hex): The register address as a hex number (e.g. ``0x10`` for address 16)
+  - **value** (**Required**, hex): The value of the register to set as a hex number (e.g. ``0x1FFA``)
+  - **page_id** (*Optional*, hex): (RTL8201 only) Register page number to select before writing (e.g. ``0x07`` for page 7)
+
 - **power_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin controlling the
   power/reset status of the Ethernet controller. Leave unspecified for no power pin (default).
 
@@ -230,10 +236,15 @@ Configuration examples
       mdio_pin: GPIO17
       clk_mode: GPIO0_IN
       phy_addr: 0
+      phy_registers:
+        - address: 0x10
+          value: 0x1FFA
+          page_id: 0x07
+
 
 .. note::
 
-    Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY. Revision 7 and newer of it use the RTL8201 Ethernet PHY. Support for RTL8201 is available from ESPHome version 2022.12 upwards.
+    Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY. Revision 7 and newer of it use the RTL8201 Ethernet PHY.
 
 
 **OpenHacks LAN8720**:
@@ -264,7 +275,7 @@ Configuration examples
       clk_mode: GPIO17_OUT
       phy_addr: 1
 
-**LILYGO T-ETH-Lite**:
+**LILYGO T-ETH-Lite ESP32**:
 
 .. code-block:: yaml
 
