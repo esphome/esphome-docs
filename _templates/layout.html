@@ -37,7 +37,7 @@
   <ul class="breadcrumbs">
   {% if parents|length > 0 %}
     {%- for doc in parents %}
-      <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> ➔</li>
+      <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> ▸</li>
     {%- endfor %}
       <li>{{title}}</li>
 
