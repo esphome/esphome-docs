@@ -303,6 +303,10 @@ div.body p, div.body dd, div.body li {
   line-height: 1.6;
 }
 
+img.logo {
+  content: url("/_static/logo-text-on-light.svg");
+}
+
 @media screen and (max-width: 875px) {
   /* hide search result thumbnails on mobile */
   .pagefind-modular-list-thumb {
@@ -338,7 +342,11 @@ div.body p, div.body dd, div.body li {
     background-color: #212121;
   }
 
-  img.dark-invert, img.logo {
+  img.logo {
+    content: url("/_static/logo-text-on-dark.svg");
+  }
+  
+  img.dark-invert {
     filter: invert(1);
   }
 
