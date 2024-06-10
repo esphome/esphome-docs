@@ -296,11 +296,11 @@ div.body h1 {
 body {
   font-family: "Instrument Sans", system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
   line-height: 1.5;
-  letter-spacing
+  letter-spacing: 0.01rem;
 }
 
 div.body p, div.body dd, div.body li {
-  line-height: 1.75;
+  line-height: 1.6;
 }
 
 @media screen and (max-width: 875px) {
