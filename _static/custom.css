@@ -303,6 +303,12 @@ div.body p, div.body dd, div.body li {
   line-height: 1.6;
 }
 
+div.sphinxsidebar li {
+  line-height: 1.5;
+  margin-bottom: .25rem;
+}
+
+
 @media screen and (max-width: 875px) {
   /* hide search result thumbnails on mobile */
   .pagefind-modular-list-thumb {
