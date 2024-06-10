@@ -321,6 +321,10 @@ div.sphinxsidebar input {
 }
 
 
+img.logo {
+  content: url("/_static/logo-text-on-light.svg");
+}
+
 @media screen and (max-width: 875px) {
   /* hide search result thumbnails on mobile */
   .pagefind-modular-list-thumb {
@@ -356,7 +360,11 @@ div.sphinxsidebar input {
     background-color: #212121;
   }
 
-  img.dark-invert, img.logo {
+  img.logo {
+    content: url("/_static/logo-text-on-dark.svg");
+  }
+  
+  img.dark-invert {
     filter: invert(1);
   }
 
