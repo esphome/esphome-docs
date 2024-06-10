@@ -44,6 +44,8 @@ Configuration variables:
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 -  **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when in
    safe mode. Defaults to ``5min``.
+-  **attempt_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before resetting the 
+   safe mode counter after loading. Defaults to ``5min``.
 -  **num_attempts** (*Optional*, int): The number of attempts to wait before entering safe mode. Defaults to ``10``.
 -  **on_begin** (*Optional*, :ref:`Automation<automation>`): An action to be
    performed when an OTA update is started. See :ref:`ota-on_begin`.
