@@ -303,6 +303,28 @@ div.body p, div.body dd, div.body li {
   line-height: 1.6;
 }
 
+div.sphinxsidebar h3 {
+  line-height: 1.25;
+}
+
+div.sphinxsidebar li {
+  line-height: 1.5;
+  margin-bottom: .25rem;
+}
+
+div.sphinxsidebar input {
+  font-family: "Instrument Sans", system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+.pagefind-ui__form {
+  margin-bottom: 1rem;
+}
+
+
+img.logo {
+  content: url("/_static/logo-text-on-light.svg");
+}
+
 @media screen and (max-width: 875px) {
   /* hide search result thumbnails on mobile */
   .pagefind-modular-list-thumb {
@@ -338,7 +360,11 @@ div.body p, div.body dd, div.body li {
     background-color: #212121;
   }
 
-  img.dark-invert, img.logo {
+  img.logo {
+    content: url("/_static/logo-text-on-dark.svg");
+  }
+  
+  img.dark-invert {
     filter: invert(1);
   }
 
