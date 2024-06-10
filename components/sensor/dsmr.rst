@@ -510,8 +510,6 @@ You can use another uart to supply another P1 receiver with the same telegram. S
       - platform: dsmr
         telegram:
           name: "telegram"
-          #prevent the telegram being published
-          internal: true
           on_value:
             then:
               - lambda: |-
