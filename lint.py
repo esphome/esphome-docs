@@ -251,7 +251,7 @@ def lint_ext_check(fname: str, stat: os.stat_result):
     )
 
 
-@lint_file_check(exclude=["script/*", "lint.py"])
+@lint_file_check(exclude=["script/*", ".devcontainer/*", "lint.py"])
 def lint_executable_bit(fname: str, stat: os.stat_result):
     ex = EXECUTABLE_BIT[fname]
     if ex != 100644:

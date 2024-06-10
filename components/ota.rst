@@ -55,11 +55,13 @@ Configuration variables:
     update and receive the error message ``Bad Answer: ERR: ERROR[11]: Invalid bootstrapping``, the ESP module/board
     must be power-cycled.
 
+.. _ota-automations:
+
 OTA Automations
 ---------------
 
-The OTA component provides various automations that can be used to provide feedback during the OTA update process.
-When using these automation triggers, note that:
+The OTA component provides various :ref:`automations <automation>` that can be used to provide feedback during the OTA
+update process. When using these automation triggers, note that:
 
 - OTA updates block the main application loop while in progress. You won't be able to represent state changes using
   components that update their output only from within their ``loop()`` method. Explained differently: if you try to
@@ -195,4 +197,5 @@ See Also
 - :apiref:`ota/ota_component.h`
 - :doc:`/components/button/safe_mode`
 - :doc:`/components/switch/safe_mode`
+- :doc:`/components/ota_http_request`
 - :ghedit:`Edit`
