@@ -1191,10 +1191,11 @@ To display a boot image with a spinner animation which disappears automatically 
         - lvgl.widget.hide: boot_screen
 
     image:
-      - file: https://esphome.io/_images/logo.png
+      - file: https://esphome.io/_static/favicon-512x512.png
         id: boot_logo
         resize: 200x200
         type: RGB565
+        use_transparency: true
 
     lvgl:
       ...
@@ -1207,7 +1208,7 @@ To display a boot image with a spinner animation which disappears automatically 
               y: 0
               width: 100%
               height: 100%
-              bg_color: 0xFFFFFF
+              bg_color: 0xffffff
               bg_opa: COVER
               radius: 0
               pad_all: 0
@@ -1226,7 +1227,7 @@ To display a boot image with a spinner animation which disappears automatically 
                     arc_length: 60deg
                     arc_width: 8
                     indicator:
-                      arc_color: 0x404040
+                      arc_color: 0x18bcf2
                       arc_width: 8
               on_press:
                 - lvgl.widget.hide: boot_screen
