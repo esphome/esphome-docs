@@ -32,10 +32,6 @@ Configuration variables:
 - **pin** (**Required**, number): The pin the sensor bus is connected to. Please note that 1-wire is a bi-directional bus so it requires both input and output from the pin.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.  Required if you have multiple busses.
 
-DS248x
-------
-
-Use the DS248x family of i2c to 1-wire converters to generate the bus signals.  In progress.
 
 Getting Sensor IDs
 ******************
