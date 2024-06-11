@@ -350,7 +350,6 @@ All Triggers
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
 - :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
 - :ref:`safe_mode.on_safe_mode <safe_mode-configuration_variables>`
-- :ref:`update.on_update_available <update-on_update_available>`
 - :ref:`wifi.on_connect / wifi.on_disconnect <wifi-on_connect_disconnect>`
 
 All Actions
@@ -435,7 +434,6 @@ All Conditions
 - :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
 - :ref:`number.in_range <number-in_range_condition>`
 - :ref:`fan.is_on <fan-is_on_condition>` / :ref:`fan.is_off <fan-is_off_condition>`
-- :ref:`update.is_available <update-update_is_available>`
 - :ref:`wireguard.enabled <wireguard-conditions>` / :ref:`wireguard.peer_online <wireguard-conditions>`
 
 All Lambda Calls
