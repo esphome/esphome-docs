@@ -60,6 +60,12 @@ The manifest consists of a JSON file structured as follows:
 
 While ``release_url`` and ``summary`` are optional, all other fields shown here are required.
 
+If ``path`` begins with:
+
+- ``http`` or ``https``: ``path`` is treated as full URL which will be used to obtain the firmware binary.
+- A forward slash (``/``): ``path`` will be appended to the hostname (an "absolute" path) specified for ``source`` (as above).
+- Any other character: ``path`` will be appended to ``source`` (as specified above) after trimming the manifest file name.
+
 Note that there may be multiple ``builds`` specified within a single JSON file.
 
 See Also
