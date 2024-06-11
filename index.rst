@@ -203,6 +203,16 @@ Management and Monitoring
     Web Server, components/web_server, http.svg, dark-invert
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg, dark-invert
 
+Update Management
+-----------------
+
+Create update entities simplifying management of OTA updates.
+
+.. imgtable::
+
+    Update Core, components/update/index, system-update.svg, dark-invert
+    Managed Updates, components/update/http_request, system-update.svg, dark-invert
+
 Hardware Peripheral Interfaces/Busses
 -------------------------------------
 
