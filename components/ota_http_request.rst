@@ -1,5 +1,5 @@
-OTA Update via HTTP Request Component
-=====================================
+OTA Update via HTTP Request
+===========================
 
 .. seo::
     :description: Instructions for setting up Over-The-Air (OTA) updates for ESPs to download firmwares remotely by HTTP.
