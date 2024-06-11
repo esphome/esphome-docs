@@ -24,7 +24,7 @@ The ``gpio`` platform uses the CPU to generate the bus signals on a GPIO pin.
     # Example configuration entry
     one_wire:
       - platform: gpio
-        pin: REPLACEME
+        pin: GPIOXX
 
 Configuration variables:
 ************************
