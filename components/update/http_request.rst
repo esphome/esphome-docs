@@ -27,8 +27,6 @@ To use it, the following components are required in your device's configuration:
 Configuration variables:
 ------------------------
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (*Optional*, string): The name for the update component.
 - **source** (**Required**, string): The URL of the YAML manifest file containing the firmware metadata.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval at which to check for updates. Defaults to 6 hours.
 - All other options from :ref:`Update <config-update>`.
