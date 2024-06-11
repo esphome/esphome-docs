@@ -1,5 +1,5 @@
-sen0501/sen0500 Environmental Sensor
-====================================
+sen0501 and sen0500 Environmental Sensor
+========================================
 
 .. seo::
     :description: Instructions for setting up the sen0501 and sen0500 environmental sensor.
@@ -9,7 +9,7 @@ sen0501/sen0500 Environmental Sensor
 The ``sen0501`` sensor platform allows you to use your DFRobot Gravity sen0501
 (`product wiki <https://wiki.dfrobot.com/SKU_SEN0501_Gravity_Multifunctional_Environmental_Sensor>`__,
 `DFRobot0501`_) or DFRobot Fermion sen0500 (`product wiki <https://wiki.dfrobot.com/SKU_SEN0500_Fermion_Multifunctional_Environmental_Sensor>`__,
-`DFRobot0500`_) environmental sensor with ESPHome. The :ref:`I²C <i2c>` is
+`DFRobot0500`_) environmental sensor with ESPHome. :ref:`I²C <i2c>` is
 required to be set up in your configuration for either of these sensors to work.
 
 .. note::
@@ -20,15 +20,15 @@ required to be set up in your configuration for either of these sensors to work.
 
 .. figure:: images/sen0501.jpg
     :align: center
-    :width: 50.0%
+    :width: 80.0%
 
-    DFRobot Gravity sen0501 Environmental Sensor.
+    DFRobot Gravity sen0501 Environmental Sensor
 
 .. figure:: images/sen0500.jpg
     :align: center
-    :width: 50.0%
+    :width: 80.0%
 
-    DFRobot Fermion sen0500 Environmental Sensor.
+    DFRobot Fermion sen0500 Environmental Sensor
 
 .. _DFRobot0501: https://www.dfrobot.com/product-2528.html
 .. _DFRobot0500: https://www.dfrobot.com/product-2522.html
@@ -54,7 +54,7 @@ required to be set up in your configuration for either of these sensors to work.
 
 .. note::
 
-    The sensor platform, as detailed in the example above, will always be ``sen0501``, regardless of whether you use the sen0501 or sen0500 board.
+    The sensor ``-platform:`` will always be ``sen0501``, regardless of whether you use the sen0501 or sen0500 board.
 
 Configuration variables:
 ------------------------
@@ -66,8 +66,7 @@ Configuration variables:
 
 .. note::
 
-    The default I²C address is set as ``0x22``, as it appears there is no alternative provided for the board.
-    Therefore it is a configuration variable that does not need setting.
+    The default I²C address is set as ``0x22``. It appears there is no alternative provided for either the sen0501 or sen0500.
 
 See Also
 --------
