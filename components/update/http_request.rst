@@ -36,7 +36,8 @@ Configuration variables:
 Update Manifest Format
 ----------------------
 
-The manifest used by this component is the [ESP-Web-Tools manifest](https://github.com/esphome/esp-web-tools) with an extension in the ``ota`` block that is structured as follows:
+This component expects the `ESP-Web-Tools manifest <https://github.com/esphome/esp-web-tools>`__ with an extension in
+the ``ota`` block that is structured as follows:
 
 .. code-block:: json
 
