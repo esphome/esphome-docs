@@ -6,9 +6,10 @@ Managed Updates via HTTP Request
     :image: system-update.svg
     :keywords: Updates, OTA, ESP32, ESP8266
 
-This platform allows you to manage the deployment of updates to your ESPHome devices. It works by reading a YAML
-manifest file and using it to determine the presence of an update. To use it, the following components are required in
-your device's configuration:
+This platform allows you to manage the deployment of updates to your ESPHome devices. It works by reading a
+:ref:`JSON manifest file <update_http_request-manifest_format>` and using it to determine the presence of an update.
+
+To use it, the following components are required in your device's configuration:
 
 - :doc:`/components/http_request`
 - :doc:`/components/ota_http_request`
@@ -19,9 +20,9 @@ your device's configuration:
     update:
       - platform: http_request
         name: Firmware Update
-        source: http://example.com/manifest.yaml
+        source: http://example.com/manifest.json
 
-.. _update-configuration_variables:
+.. _update_http_request-configuration_variables:
 
 Configuration variables:
 ------------------------
@@ -29,7 +30,37 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (*Optional*, string): The name for the update component.
 - **source** (**Required**, string): The URL of the YAML manifest file containing the firmware metadata.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval at which to check for updates.
 - All other options from :ref:`Update <config-update>`.
+
+.. _update_http_request-manifest_format:
+
+Update Manifest Format
+----------------------
+
+The manifest consists of a JSON file structured as follows:
+
+.. code-block:: json
+
+    {
+      "name": "My ESPHome Project",
+      "version": "2024.6.1",
+      "builds": [
+        {
+          "chipFamily": "ESP32C3",
+          "ota": {
+            "md5": "1234567890abcdef1234567890abcdef",
+            "path": "/local/esp32c3/firmware.bin",
+            "release_url": "http://example.com/releases/10",
+            "summary": "Another update",
+          }
+        }
+      ]
+    }
+
+While ``release_url`` and ``summary`` are optional, all other fields shown here are required.
+
+Note that there may be multiple ``builds`` specified within a single JSON file.
 
 See Also
 --------
