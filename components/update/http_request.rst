@@ -45,7 +45,7 @@ The manifest consists of a JSON file structured as follows:
       "version": "2024.6.1",
       "builds": [
         {
-          "chipFamily": "ESP32C3",
+          "chipFamily": "ESP32-C3",
           "ota": {
             "md5": "1234567890abcdef1234567890abcdef",
             "path": "/local/esp32c3/firmware.bin",
