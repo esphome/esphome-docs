@@ -5,6 +5,9 @@
 {% endblock %}
 
 {%- block extrahead %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
   <link href="/pagefind/pagefind-modular-ui.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}?hash={{ custom_css_hash }}" type="text/css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/_static/apple-touch-icon.png">
@@ -34,7 +37,7 @@
   <ul class="breadcrumbs">
   {% if parents|length > 0 %}
     {%- for doc in parents %}
-      <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> ➔</li>
+      <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> ▸</li>
     {%- endfor %}
       <li>{{title}}</li>
 
