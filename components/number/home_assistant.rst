@@ -23,7 +23,7 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the number.
-- **entity_id** (*Optional*, string): The Home Assistant entity ID of the number to synchronize with.
+- **entity_id** (**Required**, string): The Home Assistant entity ID of the number to synchronize with.
 - **min_value** (**Required**, float): The minimum value this number can be.
 - **max_value** (**Required**, float): The maximum value this number can be.
 - **step** (**Required**, float): The granularity with which the number can be set.
