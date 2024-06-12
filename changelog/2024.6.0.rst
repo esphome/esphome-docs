@@ -41,21 +41,20 @@ ESPHome branding
 ^^^^^^^^^^^^^^^^
 
 In April, Nabu Casa donated ESPHome to the newly found Open Home Foundation. This foundation,
-which also owns Home Assistant, fights for the rights of privacy, choice and sustainability
+which also owns Home Assistant, fights for the rights of privacy, choice, and sustainability
 of the smart home - and everyone that lives in one. This was done to create a bulwark against
 surveillance capitalism, the risk of buyout, and open-source projects becoming abandonware.
 To an extent, this protection extends even against our future selves—so that smart home users
-can continue to benefit for years, if not decades. No matter what comes.
+can continue to benefit for years, if not decades, no matter what comes.
 
 As part of this new governance, we decided to align the branding of Home Assistant and ESPHome,
-the two consumer facing projects of the foundation, to communicate that we share a common vision.
+the two consumer-facing projects of the foundation, to communicate that we share a common vision.
 
-This change has not had any impact on the day-to-day of ESPHome.
-Both Keith and myself will remain full-time employed at Nabu Casa, a commercial partner of
-the Open Home Foundation, to further develop ESPHome to be the best way for anyone to create
+This change will not have any impact on the day-to- day running of ESPHome.
+Both Keith and I will remain full-time employees at Nabu Casa, a commercial partner of
+the Open Home Foundation, to further develop ESPHome as the best way for anyone to create
 smart home devices. To support our work,
 `subscribe to Home Assistant Cloud by Nabu Casa <https://www.nabucasa.com/>`__.
-
 `Learn more about the Open Home Foundation <https://www.openhomefoundation.org/blog/announcing-the-open-home-foundation/>`__
 
 Update Entities
@@ -111,6 +110,26 @@ There had been requests to add support for other 1-wire based components, so :gh
 made a new top level :doc:`1-wire </components/one_wire>` component that will allow for this.
 In doing so, the ``dallas`` sensor platform has been removed, and replaced with ``dallas_temp``
 to allow for other Dallas sensors to be implemented that are not temperature sensors.
+
+.. code-block:: yaml
+
+      # Old
+      dallas:
+        - pin: GPIOXX
+
+      sensor:
+        - platform: dallas
+          address: 0x1234567890abcdef
+          name: "My Sensor"
+
+      # New
+      one_wire:
+        - pin: GPIOXX
+
+      sensor:
+        - platform: dallas_temp
+          address: 0x1234567890abcdef
+          name: "My Sensor"
 
 HTTP(s) Requests
 ^^^^^^^^^^^^^^^^
@@ -173,6 +192,14 @@ Breaking Changes
 - [http_request] Add esp-idf and rp2040 support :esphomepr:`3256` by :ghuser:`jesserockz` (breaking-change)
 - Allow parse_json to return a boolean result :esphomepr:`6884` by :ghuser:`jesserockz` (breaking-change)
 - New 1-wire component :esphomepr:`6860` by :ghuser:`ssieb` (new-integration) (breaking-change)
+
+Beta Changes
+^^^^^^^^^^^^
+
+- [CI] Fix for sdl :esphomepr:`6892` by :ghuser:`jesserockz`
+- Add operation_speed option to X9C component :esphomepr:`6890` by :ghuser:`oliverhihn`
+- [host] Execute host program when using run command :esphomepr:`6897` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20240613.0 :esphomepr:`6901` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
