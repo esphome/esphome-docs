@@ -113,23 +113,23 @@ to allow for other Dallas sensors to be implemented that are not temperature sen
 
 .. code-block:: yaml
 
-      # Old
-      dallas:
-        - pin: GPIOXX
+    # Old
+    dallas:
+      - pin: GPIOXX
 
-      sensor:
-        - platform: dallas
-          address: 0x1234567890abcdef
-          name: "My Sensor"
+    sensor:
+      - platform: dallas
+        address: 0x1234567890abcdef
+        name: "My Sensor"
 
-      # New
-      one_wire:
-        - pin: GPIOXX
+    # New
+    one_wire:
+      - pin: GPIOXX
 
-      sensor:
-        - platform: dallas_temp
-          address: 0x1234567890abcdef
-          name: "My Sensor"
+    sensor:
+      - platform: dallas_temp
+        address: 0x1234567890abcdef
+        name: "My Sensor"
 
 HTTP(s) Requests
 ^^^^^^^^^^^^^^^^
