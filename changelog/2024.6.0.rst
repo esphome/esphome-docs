@@ -48,8 +48,6 @@ ESPHome over the past few months, its new home under the Open Home Foundation, a
             allowfullscreen>
     </iframe>
 
-https://www.youtube.com/watch?v=hbcGz3ZlUX4
-
 ESPHome branding
 ^^^^^^^^^^^^^^^^
 
