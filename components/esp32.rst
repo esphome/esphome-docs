@@ -113,6 +113,8 @@ of the ESP32 like ESP32S2, ESP32S3, ESP32C3 and single-core ESP32 chips.
         # Advanced tweaking options
         advanced:
           ignore_efuse_mac_crc: false
+        # Add Arduino framework as IDF component
+        add_arduino_component: true
 
 Configuration variables:
 ------------------------
@@ -131,6 +133,8 @@ Configuration variables:
 
   - **ignore_efuse_mac_crc** (*Optional*, boolean): Can be set to ``true`` for devices on which the burnt in MAC address does not
     match the also burnt in CRC for that MAC address, resulting in an error like ``Base MAC address from BLK0 of EFUSE CRC error``.
+
+- **add_arduino_component** (*Optional*, boolean): Set to ``true`` if you want to add Arduino framework as IDF component.
 
 See Also
 --------
