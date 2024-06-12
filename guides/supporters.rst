@@ -980,6 +980,7 @@ Contributors
 - `Larry (@ojaksch) <https://github.com/ojaksch>`__
 - `OkhammahkO (@OkhammahkO) <https://github.com/OkhammahkO>`__
 - `Oleg Tarasov (@olegtarasov) <https://github.com/olegtarasov>`__
+- `Oliver Hihn (@oliverhihn) <https://github.com/oliverhihn>`__
 - `Omar Ghader (@omarghader) <https://github.com/omarghader>`__
 - `Ömer Şiar Baysal (@omersiar) <https://github.com/omersiar>`__
 - `Onne (@onnlucky) <https://github.com/onnlucky>`__
@@ -1374,4 +1375,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated June 12, 2024.*
+*This page was last updated June 13, 2024.*
