@@ -103,12 +103,12 @@ The ``date`` provided can be in one of 3 formats:
 
     # String date
     - datetime.date.set:
-        id: my_date
+        id: my_datetime_date
         date: "2023-12-04"
 
     # Individual date parts
     - datetime.date.set:
-        id: my_date
+        id: my_datetime_date
         date:
           year: 2023
           month: 12
@@ -116,7 +116,7 @@ The ``date`` provided can be in one of 3 formats:
 
     # Using a lambda
     - datetime.date.set:
-        id: my_date
+        id: my_datetime_date
         date: !lambda |-
           // Return an ESPTime struct
           return {.day_of_month: 4, .month: 12, .year: 2023};
@@ -142,7 +142,7 @@ advanced stuff (see the full API Reference for more info).
   .. code-block:: cpp
 
       // Within lambda, set the date to 2024-02-25
-      auto call = id(my_date).make_call();
+      auto call = id(my_datetime_date).make_call();
       call.set_date("2024-02-25");
       call.perform();
 
@@ -174,12 +174,12 @@ The ``time`` provided can be in one of 3 formats:
 
     # String time
     - datetime.time.set:
-        id: my_time
+        id: my_datetime_time
         time: "12:34:56"
 
     # Individual time parts
     - datetime.time.set:
-        id: my_time
+        id: my_datetime_time
         time:
           hour: 12
           minute: 34
@@ -187,7 +187,7 @@ The ``time`` provided can be in one of 3 formats:
 
     # Using a lambda
     - datetime.time.set:
-        id: my_time
+        id: my_datetime_time
         time: !lambda |-
           // Return an ESPTime struct
           return {.second: 56, .minute: 34, .hour: 12};
@@ -212,7 +212,7 @@ advanced stuff (see the full API Reference for more info).
   .. code-block:: cpp
 
       // Within lambda, set the time to 12:34:56
-      auto call = id(my_time).make_call();
+      auto call = id(my_datetime_time).make_call();
       call.set_time("12:34:56");
       call.perform();
 
@@ -227,7 +227,7 @@ advanced stuff (see the full API Reference for more info).
   .. code-block:: cpp
 
       // For example, create a custom log message when a value is received:
-      ESP_LOGI("main", "Value of my datetime: %0d:%02d:%02d", id(my_time).hour, id(my_time).minute, id(my_time).second);
+      ESP_LOGI("main", "Value of my datetime: %0d:%02d:%02d", id(my_datetime_time).hour, id(my_datetime_time).minute, id(my_datetime_time).second);
 
 
 DateTime Automation

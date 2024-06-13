@@ -702,14 +702,14 @@ the strip and shifts them forward every ``add_led_interval``.
                 - red: 100%
                   green: 100%
                   blue: 100%
-                  num_leds: 1
+                  num_leds: 5
+                  gradient: true
                 - red: 0%
                   green: 0%
                   blue: 0%
                   num_leds: 1
               add_led_interval: 100ms
               reverse: false
-              gradient: false
 
 Configuration variables:
 
