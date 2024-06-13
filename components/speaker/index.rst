@@ -62,16 +62,6 @@ Configuration variables:
 
 .. _speaker-conditions:
 
-Speaker Conditions
----------------------
-
-All ``speaker`` conditions can be used without specifying an ``id`` if you have only one ``speaker`` in
-your configuration YAML.
-
-.. _speaker-is_playing:
-
-.. _speaker-finish:
-
 ``speaker.finish`` Action
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -106,6 +96,10 @@ Configuration variables:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This condition will check if the speaker is fully stopped audio data and is in idle mode.
+
+.. note:
+
+Between the time ``speaker.is_playing`` is false and ``speaker.is_stopped`` is true the 'speaker' component is closing down structures that where used to play the data correctly. *It better to check if the speaker is stopped then that if it plays.*
 
 Configuration variables:
 
