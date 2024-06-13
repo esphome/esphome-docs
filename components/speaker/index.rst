@@ -70,10 +70,42 @@ your configuration YAML.
 
 .. _speaker-is_playing:
 
+.. _speaker-finish:
+
+``speaker.finish`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action will stop playing audio data from the speaker after all data **is** played. 
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The speaker to control. Defaults to the only one in YAML.
+
+.. _speaker-conditions:
+
+Speaker Conditions
+---------------------
+
+All ``speaker`` conditions can be used without specifying an ``id`` if you have only one ``speaker`` in
+your configuration YAML.
+
+.. _speaker-is_playing:
+
 ``speaker.is_playing`` Condition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This condition will check if the speaker is currently playing audio data.
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The speaker to check. Defaults to the only one in YAML.
+
+.. _speaker-is_stopped:
+
+``speaker.is_stopped`` Condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This condition will check if the speaker is fully stopped audio data and is in idle mode.
 
 Configuration variables:
 
