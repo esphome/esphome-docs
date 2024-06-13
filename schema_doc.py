@@ -85,6 +85,7 @@ PLATFORMS_TITLES = {
     "Microphone": "microphone",
     "Speaker": "speaker",
     "Alarm Control Panel": "alarm_control_panel",
+    "Event": "event",
 }
 
 CUSTOM_DOCS = {

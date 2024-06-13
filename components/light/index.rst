@@ -583,6 +583,7 @@ Configuration variables:
   - **cold_white** (*Optional*, percentage): The cold white channel of the light, if applicable. Defaults to ``100%``.
   - **warm_white** (*Optional*, percentage): The warm white channel of the light, if applicable. Defaults to ``100%``.
   - **duration** (**Required**, :ref:`config-time`): The duration this color should be active.
+  - **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``0s``.
 
 See `light.turn_on <light-turn_on_action>` for more information on the various color fields.
 
@@ -701,14 +702,14 @@ the strip and shifts them forward every ``add_led_interval``.
                 - red: 100%
                   green: 100%
                   blue: 100%
-                  num_leds: 1
+                  num_leds: 5
+                  gradient: true
                 - red: 0%
                   green: 0%
                   blue: 0%
                   num_leds: 1
               add_led_interval: 100ms
               reverse: false
-              gradient: false
 
 Configuration variables:
 

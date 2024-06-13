@@ -10,7 +10,7 @@
     :image: logo.svg
 
 .. image:: /images/logo-text.svg
-    :class: dark-invert
+    :class: logo
 
 ESPHome is a system to control your microcontrollers by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
@@ -131,6 +131,7 @@ Supported Microcontrollers
     RP2040, components/rp2040, rp2040.svg
     BK72xx, components/libretiny, bk72xx.svg
     RTL87xx, components/libretiny, rtl87xx.svg
+    host, components/host, host.svg, dark-invert
 
 Microcontroller Peripherals
 ---------------------------
@@ -226,6 +227,7 @@ I/O Expanders/Multiplexers
     SN74HC595, components/sn74hc595, sn74hc595.jpg
     SX1509, components/sx1509, sx1509.jpg
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
+    WeiKai SPI/I²C UART/IO Expander, components/weikai, wk2168.jpg
     XL9535, components/xl9535, xl9535.svg
 
 Sensor Components
@@ -718,6 +720,14 @@ Button Components
     UART Button, components/button/uart, uart.svg
     Wake-on-LAN, components/button/wake_on_lan, power_settings.svg, dark-invert
 
+Event Components
+-----------------
+
+.. imgtable::
+
+    Event Core, components/event/index, folder-open.svg, dark-invert
+    Template Event, components/event/template, description.svg, dark-invert
+
 Fan Components
 --------------
 
@@ -819,6 +829,14 @@ Text Components
 
     Text Core, components/text/index, folder-open.svg, dark-invert
     Template Text, components/text/template, description.svg, dark-invert
+
+Valve Components
+----------------
+
+.. imgtable::
+
+    Valve Core, components/valve/index, folder-open.svg, dark-invert
+    Template Valve, components/valve/template, description.svg, dark-invert
 
 Text Sensor Components
 ----------------------

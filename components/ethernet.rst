@@ -17,8 +17,8 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
     # Example configuration entry for RMII chips
     ethernet:
       type: LAN8720
-      mdc_pin: GPIO23
-      mdio_pin: GPIO18
+      mdc_pin: GPIOXX
+      mdio_pin: GPIOXX
       clk_mode: GPIO0_IN
       phy_addr: 0
 
@@ -33,12 +33,12 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
     # Example configuration entry for SPI chips
     ethernet:
       type: W5500
-      clk_pin: GPIO19
-      mosi_pin: GPIO21
-      miso_pin: GPIO23
-      cs_pin: GPIO18
-      interrupt_pin: GPIO36
-      reset_pin: GPIO22
+      clk_pin: GPIOXX
+      mosi_pin: GPIOXX
+      miso_pin: GPIOXX
+      cs_pin: GPIOXX
+      interrupt_pin: GPIOXX
+      reset_pin: GPIOXX
 
 Configuration variables:
 ------------------------
@@ -233,7 +233,7 @@ Configuration examples
 
 .. note::
 
-    Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY. Revision 7 and newer of it use the RTL8201 Ethernet PHY. Support for RTL8201 is available from ESPHome version 2022.12 upwards.
+    Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY. Revision 7 and newer of it use the RTL8201 Ethernet PHY.
 
 
 **OpenHacks LAN8720**:

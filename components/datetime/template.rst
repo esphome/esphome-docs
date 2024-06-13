@@ -13,7 +13,7 @@ using :ref:`lambdas <config-lambda>`.
     datetime:
       # Example Date
       - platform: template
-        id: my_date
+        id: my_datetime_date
         type: date
         name: Pick a Date
         optimistic: yes
@@ -22,11 +22,20 @@ using :ref:`lambdas <config-lambda>`.
 
       # Example Time
       - platform: template
-        id: my_time
+        id: my_datetime_time
         type: time
         name: Pick a Time
         optimistic: yes
         initial_value: "12:34:56"
+        restore_value: true
+
+      # Example DateTime
+      - platform: template
+        id: my_datetime
+        type: datetime
+        name: Pick a DateTime
+        optimistic: yes
+        initial_value: "2024-12-31 12:34:56"
         restore_value: true
 
 Configuration variables:
@@ -68,6 +77,21 @@ Configuration variables:
     .. code-block:: yaml
 
         initial_value:
+          hour: 12
+          minute: 34
+          second: 56
+
+  - For ``type: datetime``:
+
+    - A string in the format ``%Y-%m-%d %H:%M:%S`` , eg: ``"2023-12-04 12:34:56"``.
+    - An object including ``year``, ``month``, ``day``, ``hour``, ``minute``, ``second``.
+
+    .. code-block:: yaml
+
+        initial_value:
+          year: 2023
+          month: 12
+          day: 4
           hour: 12
           minute: 34
           second: 56
