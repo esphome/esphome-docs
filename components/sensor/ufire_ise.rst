@@ -127,4 +127,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :apiref:`ufire_ise/ufire_ise.h`
+- [u-fire ESPHomeComponents](https://github.com/u-fire/ESPHomeComponents) and [Mod-pH for Home Assistant](https://www.microfire.co/develop/ha/mod-ph)
 - :ghedit:`Edit`
