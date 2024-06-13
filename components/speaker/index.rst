@@ -60,7 +60,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): The speaker to control. Defaults to the only one in YAML.
 
-.. _speaker-conditions:
+.. _speaker-finish:
 
 ``speaker.finish`` Action
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
