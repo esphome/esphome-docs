@@ -2,7 +2,7 @@ Display Component
 =================
 
 .. seo::
-    :description: Instructions for setting up the display integration.
+    :description: Instructions for setting up the display component.
     :image: folder-open.svg
 
 The ``display`` component houses ESPHome's powerful rendering and display
@@ -106,7 +106,7 @@ Now that you know a bit more about ESPHome's coordinate system, let's draw some 
           // and a filled triangle !
           it.filled_triangle(115, 5, 95, 25, 125, 70);
 
-          // Regular Polygons? Let's draw a filled, pointy-topped hexagon inscribed in a circle 
+          // Regular Polygons? Let's draw a filled, pointy-topped hexagon inscribed in a circle
           // centered on [170,45] with a radius of 20
           it.filled_regular_polygon(170, 45, 20, EDGES_HEXAGON);
           // and the outline of flat-topped octagon around it!
@@ -360,8 +360,7 @@ You can display current time using a time component. Please see the example :ref
 Screen Clipping
 ---------------
 
-Screen clipping is a new set of methods since version 2023.2.0 of esphome. It could be useful when you just want to show
-a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
+Screen clipping can be useful when you just want to show a part of an image or make sure that what you draw on the screen does not go outside a specific region on the screen.
 
 With ``start_clipping(left, top, right, bottom);`` start you the clipping process and when you are done drawing in that region
 you can stop the clipping process with ``end_clipping();`` . You can nest as many ``start_clipping();`` as you want as long
@@ -609,6 +608,12 @@ To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
             lambda: |-
               // Draw the QR-code at position [x=50,y=0] with white color and a 2x scale
               it.qr_code(50, 0, id(homepage_qr), Color(255,255,255), 2);
+
+              // Draw the QR-code in the center of the screen with white color and a 2x scale
+              auto size = id(homepage_qr).get_size() * 2; // Multiply by scale
+              auto x = (it.get_width() / 2) - (size / 2);
+              auto y = (it.get_height() / 2) - (size / 2);
+              it.qr_code(x, y, id(homepage_qr), Color(255,255,255), 2);
 
 
 .. _display-image:
@@ -929,49 +934,30 @@ Additionally the old page will be given as the variable ``from`` and the new one
 Troubleshooting
 ---------------
 
-Color Test Pattern
-------------------
+Using the Color Test Card
+-------------------------
 
-If you're experiencing issues with your color display, the script below can help you to identify what might be wrong.
-It will show 3 color bars in **RED**, **GREEN** and **BLUE**. To help the graphics display team determine
-the best way to help you, **a picture of the result of this script is very helpful.**
+If you're experiencing issues with your color display, the ``show_test_card: true`` option can help you to identify what might be wrong.
+
+- It will show bars for Red, Green and Blue, graduating to black and white.
+- Together with that it will show the letters "**R**", "**G**" and "**B**" to validate the display geometry.
+- There will be a rectangle around the corners of the display with a marker at the 0,0 corner which should be at the top left of the screen.
+
+.. figure:: images/test_card.jpg
+    :align: center
+    :width: 50.0%
+
+
+
+When all points above are shown correctly then the display is working as expected.
+To help the graphics display team determine the best way to help you, **a picture of the result of this option is very helpful.**
 
 Should you `create an issue <https://github.com/esphome/issues/issues>`__ in GitHub regarding your display, please
-be sure to **include a link to where you purchased it** so that we can validate the configuration you've used.
+be sure to **include a link to where you purchased the display** so that we can validate the configuration you've used.
 
-.. code-block:: yaml
+.. note::
 
-    display:
-      - platform: ...
-        ...
-        lambda: |-
-          int shift_x = (it.get_width()-310)/2;
-          int shift_y = (it.get_height()-256)/2;
-          for(auto i = 0; i<256; i++) {
-            it.horizontal_line(shift_x+  0,i+shift_y,50, my_red.fade_to_white(i));
-            it.horizontal_line(shift_x+ 50,i+shift_y,50, my_red.fade_to_black(i));
-
-            it.horizontal_line(shift_x+105,i+shift_y,50, my_green.fade_to_white(i));
-            it.horizontal_line(shift_x+155,i+shift_y,50, my_green.fade_to_black(i));
-
-            it.horizontal_line(shift_x+210,i+shift_y,50, my_blue.fade_to_white(i));
-            it.horizontal_line(shift_x+260,i+shift_y,50, my_blue.fade_to_black(i));
-          }
-          it.rectangle(shift_x+ 0, 0+shift_y, shift_x+ 310, 256+shift_y, my_yellow);
-
-    color:
-      - id: my_blue
-        blue: 100%
-      - id: my_red
-        red: 100%
-      - id: my_green
-        green: 100%
-      - id: my_white
-        red: 100%
-        blue: 100%
-        green: 100%
-      - id: my_yellow
-        hex: ffff00
+    For displays in 8 bit mode you will see distinct color blocks rather than a smooth gradient.
 
 See Also
 --------

@@ -12,7 +12,7 @@ This platform only works on ESP32 based chips.
 .. warning::
 
     Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
-    
+
     **Crashes are likely to occur** if you include too many additional components in your device's
     configuration. In particular, Bluetooth/BLE components are known to cause issues when used in
     combination with Voice Assistant and/or other audio components.
@@ -23,7 +23,7 @@ This platform only works on ESP32 based chips.
     speaker:
       - platform: i2s_audio
         dac_type: external
-        i2s_dout_pin: GPIO22
+        i2s_dout_pin: GPIOXX
         mode: mono
 
 Configuration variables:
