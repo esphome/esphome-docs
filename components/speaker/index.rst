@@ -54,7 +54,20 @@ Configuration variables:
 ``speaker.stop`` Action
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This action will stop playing audio data from the speaker and discard the unplayed data.
+This action will stop playing audio data from the speaker and **discard** the unplayed data.
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The speaker to control. Defaults to the only one in YAML.
+
+.. _speaker-conditions:
+
+.. _speaker-finish:
+
+``speaker.finish`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action will stop playing audio data from the speaker after all data **is** played. 
 
 Configuration variables:
 
@@ -79,6 +92,16 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): The speaker to check. Defaults to the only one in YAML.
 
+.. _speaker-is_stopped:
+
+``speaker.is_stopped`` Condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This condition will check if the speaker is fully stopped audio data and is in idle mode.
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The speaker to check. Defaults to the only one in YAML.
 
 Platforms
 ---------
