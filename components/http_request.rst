@@ -55,9 +55,9 @@ Configuration variables:
 
     Without the root certificate bundle, certificates used by the remote HTTPS server cannot be verified, opening the
     HTTPS connection up to person-in-the-middle attacks.
-    
+
     To maximize security, do not set ``verify_ssl`` to ``false`` *unless:*
-    
+
     - a custom CA/self-signed certificate is used,
     - the Arduino framework is used, or
     - the device does not have sufficient memory to store the certificate bundle
@@ -257,8 +257,9 @@ whose ``id`` is  set to ``player_volume``:
         on_response:
           then:
             - lambda: |-
-                json::parse_json(body, [](JsonObject root) {
+                json::parse_json(body, [](JsonObject root) -> bool {
                     id(player_volume).publish_state(root["vol"]);
+                    return true;
                 });
 
 
