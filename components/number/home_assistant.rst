@@ -6,7 +6,7 @@ Home Assistant Number
         :image: description.svg
 
 The ``homeassistant`` number platform allows you to create a number that is synchronized
-with Home Assistant.
+with Home Assistant. Min, Max and Step are not configurable for this platform because they are taken from the Home Assistant entity.
 
 .. code-block:: yaml
 
@@ -14,19 +14,13 @@ with Home Assistant.
         number:
             - platform: homeassistant
                 name: "Home Assistant number"
-                optimistic: true
-                min_value: 0
-                max_value: 100
-                step: 1
+                entity_id: light.my_light
 
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the number.
 - **entity_id** (**Required**, string): The Home Assistant entity ID of the number to synchronize with.
-- **min_value** (**Required**, float): The minimum value this number can be.
-- **max_value** (**Required**, float): The maximum value this number can be.
-- **step** (**Required**, float): The granularity with which the number can be set.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
     Lambda to be evaluated every update interval to get the current value of the number.
 - **set_action** (*Optional*, :ref:`Action <config-action>`): The action that should
@@ -34,14 +28,6 @@ Configuration variables:
     number value. The new value is available to lambdas in the ``x`` variable.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval on which to update the number
     by executing the ``lambda``. Defaults to ``60s``.
-- **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
-    any command sent to the Home Assistant number will immediately update the reported state.
-    Cannot be used with ``lambda``. Defaults to ``false``.
-- **restore_value** (*Optional*, boolean): Saves and loads the state to RTC/Flash.
-    Cannot be used with ``lambda``. Defaults to ``false``.
-- **initial_value** (*Optional*, float): The value to set the state to on setup if not
-    restored with ``restore_value``.
-    Cannot be used with ``lambda``. Defaults to ``min_value``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Number <config-number>`.
 
