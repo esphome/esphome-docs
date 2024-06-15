@@ -13,3 +13,6 @@ venv
 /.idea/
 
 _pagefind/
+
+# Vim
+*.swp
