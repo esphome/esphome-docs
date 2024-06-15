@@ -1,11 +1,11 @@
-Mitsubishi UART
+Mitsubishi ITP
 =====================
 
 .. seo::
-    :description: Instructions for setting up a Mitsubishi heatpump via UART
+    :description: Instructions for setting up an IT Protocol Mitsubishi heatpump via UART
     :image: air-conditioner.svg
 
-The ``mitsubishi_uart`` component creates a climate device for controlling a Mitsubishi heatpump connected via UART.  Optionally also supports connecting an MHK2 thermostat.
+The ``mitsubishi_itp`` component creates a climate device for controlling a Mitsubishi heatpump with the IT Protocol connected via UART.  Optionally also supports connecting an MHK2 thermostat.
 
 .. note::
 
@@ -15,8 +15,9 @@ The ``mitsubishi_uart`` component creates a climate device for controlling a Mit
 
     # Example minimal configuration entry
 
-    mitsubishi_uart:
-      uart_heatpump: hp_uart
+    climate:
+      - platform: mitsubishi_ipt
+        uart_heatpump: hp_uart
 
     uart:
       - id: hp_uart
@@ -61,7 +62,7 @@ The device has an "Active Mode" switch that defaults to ``on`` for normal operat
 
 Temerature Sources
 ------------------------
-The Mitsubishi UART component can use other ESPHome sensors to report current temperature (*in Celsius!*) to the heat pump.  **IMPORTANT:** This component does not poll the sensors explicitly, but rather subscribes to update events on the sensors.  If no updates have been received for 7 minutes, the equipment will be switched back to its internal temperature sensor.  This means that even if the temperature hasn't changed, the sensors need to publish updates.  This may require the use of e.g. ``force_update: true`` to make sure updates are sent regularly.
+The Mitsubishi ITP component can use other ESPHome sensors to report current temperature (*in Celsius!*) to the heat pump.  **IMPORTANT:** This component does not poll the sensors explicitly, but rather subscribes to update events on the sensors.  If no updates have been received for 7 minutes, the equipment will be switched back to its internal temperature sensor.  This means that even if the temperature hasn't changed, the sensors need to publish updates.  This may require the use of e.g. ``force_update: true`` to make sure updates are sent regularly.
 
 One particularly useful way to get additional temperature data is by having Home Assistant send the data to the device via a service.  Here is an example configuration for that scenario:
 
@@ -87,10 +88,11 @@ One particularly useful way to get additional temperature data is by having Home
         name: "Home Assistant"
         update_interval: never # Only updated by service
 
-    mitsubishi_uart:
-      uart_heatpump: hp_uart
-      temperature_sources:
-        - home_assistant_temperature
+    climate:
+      - platform: mitsubishi_ipt
+        uart_heatpump: hp_uart
+        temperature_sources:
+          - home_assistant_temperature
 
 
 An automation in Home Assistant can then be configured with an action like the following to report a temperature to the device:
@@ -105,7 +107,7 @@ An automation in Home Assistant can then be configured with an action like the f
 
 Built-in Sensors
 ------------------------
-The Mitsubishi UART device has several built in sensors whose default configuration can be overridden using the normal sensor variables (see: :ref:`config-sensor`).  These sensors are disabled by default in Home Assistant but can be enabled if desired.
+The Mitsubishi ITP device has several built in sensors whose default configuration can be overridden using the normal sensor variables (see: :ref:`config-sensor`).  These sensors are disabled by default in Home Assistant but can be enabled if desired.
 
 .. note::
 
@@ -124,7 +126,7 @@ Current built-in sensors include:
 
 Select Configuration
 ------------------------
-The Mitsubishi UART device has several select components built in whose default configuration can be overridden using the normal select variables (see: :ref:`config-select`).  Current built-in select components include: 
+The Mitsubishi ITP device has several select components built in whose default configuration can be overridden using the normal select variables (see: :ref:`config-select`).  Current built-in select components include: 
 
 - ``vane_position_select``
 - ``horizontal_vane_position_select``
