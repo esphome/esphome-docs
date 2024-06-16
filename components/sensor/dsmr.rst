@@ -344,7 +344,8 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
-- **telegram** (*Optional*): The (decrypted) unparsed telegram, marked as internal sensor.
+- **telegram** (*Optional*): The (decrypted) unparsed telegram, marked as internal sensor. 
+  Can also be used to trigger an action based on the last values. 
 
   - **name** (**Required**, string): The name for the telegram text sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
@@ -505,7 +506,7 @@ You can use another uart to supply another P1 receiver with the same telegram. S
       uart_id: p1_uart
       max_telegram_length: 1700
 
-    # log the telegram and pass telegram to p1_bridge_uart
+    # log the telegram and pass telegram to p1_bridge_uart and do http-post 
     text_sensor:
       - platform: dsmr
         telegram:
@@ -515,7 +516,19 @@ You can use another uart to supply another P1 receiver with the same telegram. S
               - lambda: |-
                   ESP_LOGV("dsrm", "telegram: %s", x.c_str());
                   p1_bridge_uart->write_str(x.c_str());
-
+              - http_request.post:
+                url: !lambda |-
+                    std::string url;
+                    float l1 = id(returnedl1).state > 0 ? - id(returnedl1).state : id(producedl1).state;
+                    float l2 = id(returnedl2).state > 0 ? - id(returnedl2).state : id(producedl2).state;
+                    float l3 = id(returnedl3).state > 0 ? - id(returnedl3).state : id(producedl3).state;
+                    url.append("http://${ev-host}/currents?L1=");
+                    url.append(to_string(l1/23));
+                    url.append("&L2=");
+                    url.append(to_string(l2/23));
+                    url.append("&L3=");
+                    url.append(to_string(l3/23));
+                    return url.c_str();
 
 See Also
 --------
