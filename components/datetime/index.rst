@@ -49,6 +49,7 @@ Configuration variables:
   Set to ``""`` to remove the default entity category.
 - **time_id** (**Required**, :ref:`config-id`): The ID of the time entity. Automatically set
   to the ID of a time component if only a single one is defined.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 MQTT Options:
 
