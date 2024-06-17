@@ -37,6 +37,7 @@ So we have a few updates to update you on this |ss| update |se| release.
 Please do read these release notes carefully as there are quite a few breaking changes that
 we know will affect a large portion of users.
 
+Jesse
 
 ESPHome branding
 ^^^^^^^^^^^^^^^^
@@ -71,6 +72,14 @@ on a website along with a description of the firmware the device can read and pr
 update available for this device. You do not need to adopt the device into the ESPHome dashboard, and
 you don't actually need the ESPHome dashboard installed. Using the new ``http_request`` OTA platform,
 the device will be able to download the firmware and update itself.
+
+Voice Assistant Timers
+^^^^^^^^^^^^^^^^^^^^^^
+
+Home Assistant 2024.6 added support for starting, pauseing, resuming, cancelling timers via Assist devices.
+In this ESPHome release, we added new triggers to the :doc:`Voice Assistant </components/voice_assistant>` component
+to take advantage of these. Timers are only in memory, do not represent entities and are only available on the device
+that started the timer.
 
 OTA Platforms
 ^^^^^^^^^^^^^
@@ -201,6 +210,9 @@ Beta Changes
 - Add operation_speed option to X9C component :esphomepr:`6890` by :ghuser:`oliverhihn`
 - [host] Execute host program when using run command :esphomepr:`6897` by :ghuser:`jesserockz`
 - Bump esphome-dashboard to 20240613.0 :esphomepr:`6901` by :ghuser:`jesserockz`
+- Synchronise Device Classes from Home Assistant :esphomepr:`6904` by :ghuser:`esphomebot`
+- [ili9xxx] Fix init for GC9A01A :esphomepr:`6913` by :ghuser:`jesserockz`
+- [mqtt] Fix datetime copy pasta :esphomepr:`6914` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -325,6 +337,13 @@ All changes
 - Fix media_player.volume_set when media player is not started :esphomepr:`6859` by :ghuser:`tetele`
 - [display] SDL2 display driver for host platform :esphomepr:`6825` by :ghuser:`clydebarrow` (new-integration)
 - [ili9xxx] Implement st7735 support :esphomepr:`6838` by :ghuser:`clydebarrow`
+- [CI] Fix for sdl :esphomepr:`6892` by :ghuser:`jesserockz`
+- Add operation_speed option to X9C component :esphomepr:`6890` by :ghuser:`oliverhihn`
+- [host] Execute host program when using run command :esphomepr:`6897` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20240613.0 :esphomepr:`6901` by :ghuser:`jesserockz`
+- Synchronise Device Classes from Home Assistant :esphomepr:`6904` by :ghuser:`esphomebot`
+- [ili9xxx] Fix init for GC9A01A :esphomepr:`6913` by :ghuser:`jesserockz`
+- [mqtt] Fix datetime copy pasta :esphomepr:`6914` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
