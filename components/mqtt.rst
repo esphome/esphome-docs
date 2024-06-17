@@ -59,6 +59,8 @@ Configuration variables:
 - **use_abbreviations** (*Optional*, boolean): Whether to use
   `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
   in discovery messages. Defaults to ``true``.
+- **ha_flavored** (*Optional*, boolean): If set to `true` use strings ``ON`` and ``OFF`` to represent
+  a boolean value in MQTT messages, otherwise use ``1`` and ``0`` values. Defaults to ``true``
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
   messages. Should not contain trailing slash. Defaults to ``<APP_NAME>``. 
   Use ``null`` to disable publishing or subscribing of any MQTT topic unless
