@@ -10,7 +10,7 @@
     :image: logo.svg
 
 .. image:: /images/logo-text.svg
-    :class: dark-invert
+    :class: logo
 
 ESPHome is a system to control your microcontrollers by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
@@ -131,7 +131,7 @@ Supported Microcontrollers
     RP2040, components/rp2040, rp2040.svg
     BK72xx, components/libretiny, bk72xx.svg
     RTL87xx, components/libretiny, rtl87xx.svg
-    host, components/host, host.svg
+    host, components/host, host.svg, dark-invert
 
 Microcontroller Peripherals
 ---------------------------
@@ -197,10 +197,21 @@ Management and Monitoring
     Debug, components/debug, bug-report.svg, dark-invert
     Logger, components/logger, file-document-box.svg, dark-invert
     OTA Updates, components/ota, system-update.svg, dark-invert
+    OTA Updates via HTTP Request, components/ota_http_request, system-update.svg, dark-invert
     Prometheus, components/prometheus, prometheus.svg
     Safe Mode, components/safe_mode, restart-alert.svg
     Web Server, components/web_server, http.svg, dark-invert
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg, dark-invert
+
+Update Management
+-----------------
+
+Create update entities simplifying management of OTA updates.
+
+.. imgtable::
+
+    Update Core, components/update/index, system-update.svg, dark-invert
+    Managed Updates, components/update/http_request, system-update.svg, dark-invert
 
 Hardware Peripheral Interfaces/Busses
 -------------------------------------
@@ -212,6 +223,7 @@ Hardware Peripheral Interfaces/Busses
     I²S Audio, components/i2s_audio, i2s_audio.svg
     SPI Bus, components/spi, spi.svg
     UART, components/uart, uart.svg
+    1-Wire, components/one_wire, one-wire.svg
 
 I/O Expanders/Multiplexers
 --------------------------
@@ -391,7 +403,7 @@ Environmental
     BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Pressure
     BMP388 and BMP390, components/sensor/bmp3xx, bmp388.jpg, Temperature & Pressure
     BMP581, components/sensor/bmp581, bmp581.jpg, Temperature & Pressure
-    Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
+    Dallas DS18B20, components/sensor/dallas_temp, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
     DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
@@ -805,6 +817,7 @@ Display Hardware Platforms
     TM1638, components/display/tm1638, tm1638.jpg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
+    Host SDL2 display, components/display/sdl, sdl.png
 
 Touchscreen Components
 ----------------------

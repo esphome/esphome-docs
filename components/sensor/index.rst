@@ -645,7 +645,7 @@ with ``x``.
 .. code-block:: yaml
 
     sensor:
-      - platform: dallas
+      - platform: dht
         # ...
         on_value:
           then:
@@ -673,7 +673,7 @@ So for example ``above: 5`` with no below would mean the range from 5 to positiv
 .. code-block:: yaml
 
     sensor:
-      - platform: dallas
+      - platform: dht
         # ...
         on_value_range:
           - below: 5.0
@@ -705,7 +705,7 @@ trigger with ``x``.
 .. code-block:: yaml
 
     sensor:
-      - platform: dallas
+      - platform: dht
         # ...
         on_raw_value:
           then:
