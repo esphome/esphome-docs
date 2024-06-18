@@ -20,6 +20,7 @@ It has 8 knobs, a switch and can individually drive 9 RGB LEDs.
 The ``m5stack_8angle`` component communicates through an :ref:`I²C <i2c>` bus and uses a default address of 0x43. 
 
 .. code-block:: yaml
+
     # Example configuration entry
     
     i2c:
@@ -47,11 +48,13 @@ Knob's position sensor
 The position of the 8 knobs can be made available as sensors with values between 0-1 (with 0 being the leftmost position).
 
 .. code-block:: yaml
+
     sensor:
       - platform: m5stack_8angle
         m5stack_8angle_id: m5stack_8angle_base
         channel: 1
         name: "Knob 1"
+        bit_depth: 12 bit
       - platform: m5stack_8angle
         m5stack_8angle_id: m5stack_8angle_base
         channel: 2
@@ -62,6 +65,9 @@ Configuration variables:
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
 sensor. Defaults to ``10s``.
+- **bit_depth** (*Optional*, one of ``12 bit`` or ``8 bit``) determines the precision of the analog readout, defaults to ``8bit``.
+- **raw** (*Optional*, boolean) if true, the sensor returns the raw readout value of the knob. 
+
 - All other options from :ref:`Sensor <config-sensor>`.
 
 
@@ -71,6 +77,7 @@ Input switch binary sensor
  A binary sensor indicating the state of the switch on the device.
 
 .. code-block:: yaml
+
     binary_sensor:
       - platform: m5stack_8angle
         m5stack_8angle_id: m5stack_8angle_base
