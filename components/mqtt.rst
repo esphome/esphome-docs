@@ -59,6 +59,10 @@ Configuration variables:
 - **use_abbreviations** (*Optional*, boolean): Whether to use
   `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
   in discovery messages. Defaults to ``true``.
+- **payload_true** (*Optional*, string): Payload to be sent to MQTT
+  Topic to represent ``true`` for binary sensors only. Defaults to ``ON``
+- **payload_false** (*Optional*, string): Payload to be sent to MQTT
+  Topic to represent ``false`` for binary sensors only. Defaults to ``OFF``
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
   messages. Should not contain trailing slash. Defaults to ``<APP_NAME>``. 
   Use ``null`` to disable publishing or subscribing of any MQTT topic unless
@@ -358,6 +362,8 @@ MQTT can have some overrides for specific options.
       topic: livingroom/status
       payload_available: online
       payload_not_available: offline
+    payload_true: "1"
+    payload_false: "0"
     state_topic: livingroom/custom_state_topic
     command_topic: livingroom/custom_command_topic
     command_retain: false
@@ -374,6 +380,10 @@ Configuration variables:
 -  **availability** (*Optional*): Manually set what should be sent to
    Home Assistant for showing entity availability. Default derived from
    :ref:`global birth/last will message <mqtt-last_will_birth>`.
+-  **payload_true** (*Optional*, string): Payload to be sent to MQTT
+   Topic to represent ``true``, for binary sensors only. Defaults to global default.
+-  **payload_false** (*Optional*, string): Payload to be sent to MQTT
+   Topic to represent ``false``, for binary sensors only. Defaults to global default.
 -  **state_topic** (*Optional*, string): The topic to publish state
    updates to. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/state``.
