@@ -63,11 +63,9 @@ The position of the 8 knobs can be made available as sensors with values between
 Configuration variables:
 ************************
 
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-sensor. Defaults to ``10s``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``10s``.
 - **bit_depth** (*Optional*, one of ``12 bit`` or ``8 bit``) determines the precision of the analog readout, defaults to ``8bit``.
 - **raw** (*Optional*, boolean) if true, the sensor returns the raw readout value of the knob. 
-
 - All other options from :ref:`Sensor <config-sensor>`.
 
 
