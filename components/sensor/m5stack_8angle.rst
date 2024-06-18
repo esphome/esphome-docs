@@ -84,8 +84,7 @@ Input switch binary sensor
 Configuration variables:
 ************************
 
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-sensor. Defaults to ``10s``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``10s``.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
