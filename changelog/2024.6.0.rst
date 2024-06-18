@@ -73,10 +73,14 @@ update available for this device. You do not need to adopt the device into the E
 you don't actually need the ESPHome dashboard installed. Using the new ``http_request`` OTA platform,
 the device will be able to download the firmware and update itself.
 
+.. note::
+
+  Update Entities require at least Home Assistant 2024.7 to show up and be controlled in the Home Assistant UI.
+
 Voice Assistant Timers
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Home Assistant 2024.6 added support for starting, pauseing, resuming, cancelling timers via Assist devices.
+Home Assistant 2024.6 added support for starting, pausing, resuming, cancelling timers via Assist devices.
 In this ESPHome release, we added new triggers to the :doc:`Voice Assistant </components/voice_assistant>` component
 to take advantage of these. Timers are only in memory, do not represent entities and are only available on the device
 that started the timer.
@@ -213,6 +217,9 @@ Beta Changes
 - Synchronise Device Classes from Home Assistant :esphomepr:`6904` by :ghuser:`esphomebot`
 - [ili9xxx] Fix init for GC9A01A :esphomepr:`6913` by :ghuser:`jesserockz`
 - [mqtt] Fix datetime copy pasta :esphomepr:`6914` by :ghuser:`jesserockz`
+- fix(dallas): make recovery time for 1-bit equal to that of 0-bit :esphomepr:`6763` by :ghuser:`muggenhor`
+- [wifi] Fix some access point bugs related to esp-idf 4.4.7 :esphomepr:`6928` by :ghuser:`jesserockz`
+- Rename legacy/modern to ota/factory :esphomepr:`6922` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -344,6 +351,9 @@ All changes
 - Synchronise Device Classes from Home Assistant :esphomepr:`6904` by :ghuser:`esphomebot`
 - [ili9xxx] Fix init for GC9A01A :esphomepr:`6913` by :ghuser:`jesserockz`
 - [mqtt] Fix datetime copy pasta :esphomepr:`6914` by :ghuser:`jesserockz`
+- fix(dallas): make recovery time for 1-bit equal to that of 0-bit :esphomepr:`6763` by :ghuser:`muggenhor`
+- [wifi] Fix some access point bugs related to esp-idf 4.4.7 :esphomepr:`6928` by :ghuser:`jesserockz`
+- Rename legacy/modern to ota/factory :esphomepr:`6922` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
