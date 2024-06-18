@@ -145,12 +145,12 @@ Configuration options:
 MQTT device discovery
 ---------------------
 
-The ESPHome device will respond to the following MQTT topics if `mqtt.discover_ip` is enabled.
+The ESPHome device will respond to the following MQTT topics if ``mqtt.discover_ip`` is enabled.
 
-- `esphome/discover` (All ESPHome device will answer)
-- `esphome/ping/<APP_NAME>`
+- ``esphome/discover`` (All ESPHome device will answer)
+- ``esphome/ping/<APP_NAME>``
 
-The response will be sent to `esphome/discover/<APP_NAME>` and is a JSON encoded message.
+The response will be sent to ``esphome/discover/<APP_NAME>`` and is a JSON encoded message.
 
 The MQTT device discovery is currently used for:
 
@@ -179,18 +179,18 @@ Example Payload:
 JSON keys:
 
 -  **ip** (**Required**, ip): The IP address of the ESPHome device.
--  **name** (**Required**, string): Name of the device (`esphome.name`).
+-  **name** (**Required**, string): Name of the device (``esphome.name``).
 -  **mac** (**Required**, string): MAC address of the device.
 -  **board** (**Required**, string): Board used for the device.
 -  **version** (**Required**, string): ESPHome version.
 -  **port** (*Optional*, port): Port of the ESPHome API (if enabled).
 -  **ipX** (*Optional*, ip): Additional IP addresses (X is a number starting at 1).
--  **friendly_name** (*Optional*, string): Friendly name of the device (`esphome.friendly_name`).
+-  **friendly_name** (*Optional*, string): Friendly name of the device (``esphome.friendly_name``).
 -  **platform** (*Optional*, string): Platform of the device (e.g. ESP32 or ESP8266)
 -  **network** (*Optional*, string): Network type.
--  **project_name** (*Optional*, string): `esphome.project.name`.
--  **project_version** (*Optional*, string): `esphome.project.version`.
--  **project_version** (*Optional*, string): `dashboard_import.package_import_url`.
+-  **project_name** (*Optional*, string): ``esphome.project.name``.
+-  **project_version** (*Optional*, string): ``esphome.project.version``.
+-  **project_version** (*Optional*, string): ``dashboard_import.package_import_url``.
 -  **api_encryption** (*Optional*, string): API encryption type.
 
 .. _mqtt-using_device_discovery_with_home_assistant:
@@ -203,8 +203,8 @@ This allows Home Assistant to find the ESPHome device and connect
 to it via the ESPHome API which allows the usage
 of more features then MQTT entity discovery alone (e.g. Bluetooth Proxy, Voice Assistant).
 
-This can be achieved by enabling `api` and `mqtt` with `mqtt.discover_ip` enabled.
-It may makes sense to disable `mqtt.discovery` since there will be no need to use the
+This can be achieved by enabling ``api`` and ``mqtt`` with ``mqtt.discover_ip`` enabled.
+It may makes sense to disable ``mqtt.discovery`` since there will be no need to use the
 MQTT entity discovery if Home Assistant will connect to the ESPHome API.
 
 Example configuration:
@@ -462,16 +462,16 @@ Configuration variables:
 -  **state_topic** (*Optional*, string): The topic to publish state
    updates to. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/state``.
-   
-   ESPHome will always publish a manually configured state topic, even if 
-   the component is internal. Use ``null`` to disable publishing the 
+
+   ESPHome will always publish a manually configured state topic, even if
+   the component is internal. Use ``null`` to disable publishing the
    component's state.
 -  **command_topic** (*Optional*, string): The topic to subscribe to for
    commands from the remote. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
-   
-   ESPHome will always subscribe to a manually configured command topic, 
-   even if the component is internal. Use ``null`` to disable subscribing 
+
+   ESPHome will always subscribe to a manually configured command topic,
+   even if the component is internal. Use ``null`` to disable subscribing
    to the component's command topic.
 -  **command_retain** (*Optional*, boolean): Whether MQTT command messages
    sent to the device should be retained or not. Default to ``false``.
