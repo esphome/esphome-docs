@@ -220,6 +220,10 @@ Beta Changes
 - fix(dallas): make recovery time for 1-bit equal to that of 0-bit :esphomepr:`6763` by :ghuser:`muggenhor`
 - [wifi] Fix some access point bugs related to esp-idf 4.4.7 :esphomepr:`6928` by :ghuser:`jesserockz`
 - Rename legacy/modern to ota/factory :esphomepr:`6922` by :ghuser:`jesserockz`
+- Bump pypa/gh-action-pypi-publish from 1.8.14 to 1.9.0 :esphomepr:`6926` by :ghuser:`dependabot[bot]`
+- Bump docker/build-push-action from 5.4.0 to 6.0.0 in /.github/actions/build-image :esphomepr:`6927` by :ghuser:`dependabot[bot]`
+- Bump docker/build-push-action from 6.0.0 to 6.0.1 in /.github/actions/build-image :esphomepr:`6934` by :ghuser:`dependabot[bot]`
+- [network] Default ipv6 to false to always set the flags :esphomepr:`6937` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -354,6 +358,10 @@ All changes
 - fix(dallas): make recovery time for 1-bit equal to that of 0-bit :esphomepr:`6763` by :ghuser:`muggenhor`
 - [wifi] Fix some access point bugs related to esp-idf 4.4.7 :esphomepr:`6928` by :ghuser:`jesserockz`
 - Rename legacy/modern to ota/factory :esphomepr:`6922` by :ghuser:`jesserockz`
+- Bump pypa/gh-action-pypi-publish from 1.8.14 to 1.9.0 :esphomepr:`6926` by :ghuser:`dependabot[bot]`
+- Bump docker/build-push-action from 5.4.0 to 6.0.0 in /.github/actions/build-image :esphomepr:`6927` by :ghuser:`dependabot[bot]`
+- Bump docker/build-push-action from 6.0.0 to 6.0.1 in /.github/actions/build-image :esphomepr:`6934` by :ghuser:`dependabot[bot]`
+- [network] Default ipv6 to false to always set the flags :esphomepr:`6937` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
