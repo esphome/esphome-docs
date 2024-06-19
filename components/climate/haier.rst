@@ -315,6 +315,8 @@ See Also
 - `haier-esphome <https://github.com/paveldn/haier-esphome>`__
 - :doc:`Haier Climate Sensors </components/sensor/haier>`
 - :doc:`Haier Climate Binary Sensors </components/binary_sensor/haier>`
+- :doc:`Haier Climate Text Sensors </components/text_sensor/haier>`
+- :doc:`Haier Climate Buttons </components/button/haier>`
 - :doc:`/components/climate/index`
 - :apiref:`haier/climate/haier.h`
 - :ghedit:`Edit`
