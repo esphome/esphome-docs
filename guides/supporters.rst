@@ -644,6 +644,7 @@ Contributors
 - `Jonathan Kollasch (@jakllsch) <https://github.com/jakllsch>`__
 - `jakub-medrzak (@jakub-medrzak) <https://github.com/jakub-medrzak>`__
 - `James Hirka (@jameshirka) <https://github.com/jameshirka>`__
+- `James Myatt (@jamesmyatt) <https://github.com/jamesmyatt>`__
 - `James Lakin (@jamesorlakin) <https://github.com/jamesorlakin>`__
 - `Jamie Cole (@jamiejcole) <https://github.com/jamiejcole>`__
 - `Jason (@jamman9000) <https://github.com/jamman9000>`__
@@ -912,6 +913,7 @@ Contributors
 - `Murray Scott (@mscottco) <https://github.com/mscottco>`__
 - `MSe-5-14 (@MSe-5-14) <https://github.com/MSe-5-14>`__
 - `mtl010957 (@mtl010957) <https://github.com/mtl010957>`__
+- `Giel van Schijndel (@muggenhor) <https://github.com/muggenhor>`__
 - `mulcmu (@mulcmu) <https://github.com/mulcmu>`__
 - `mulder-fbi (@mulder-fbi) <https://github.com/mulder-fbi>`__
 - `Martin Murray (@murrayma) <https://github.com/murrayma>`__
@@ -928,7 +930,6 @@ Contributors
 - `Kevin Uhlir (@n0bel) <https://github.com/n0bel>`__
 - `n6ham (@n6ham) <https://github.com/n6ham>`__
 - `N6RDV (@N6RDV) <https://github.com/N6RDV>`__
-- `Erik Näsström (@Naesstrom) <https://github.com/Naesstrom>`__
 - `H. Árkosi Róbert (@nagyrobi) <https://github.com/nagyrobi>`__
 - `Viktor Nagy (@nagyv) <https://github.com/nagyv>`__
 - `nanoparticle (@nanoparticle) <https://github.com/nanoparticle>`__
@@ -1007,6 +1008,7 @@ Contributors
 - `Daniel Mahaney (@Papa-DMan) <https://github.com/Papa-DMan>`__
 - `Christian Schmitt (@papillon81) <https://github.com/papillon81>`__
 - `Faidon Liambotis (@paravoid) <https://github.com/paravoid>`__
+- `Pascal Roeleven (@pascallj) <https://github.com/pascallj>`__
 - `Patrick Collins (@patrickcollins12) <https://github.com/patrickcollins12>`__
 - `Paul Deen (@PaulAntonDeen) <https://github.com/PaulAntonDeen>`__
 - `Paul Monigatti (@paulmonigatti) <https://github.com/paulmonigatti>`__
@@ -1245,6 +1247,7 @@ Contributors
 - `Theexternaldisk (@Theexternaldisk) <https://github.com/Theexternaldisk>`__
 - `Martijn van der Pol (@TheFes) <https://github.com/TheFes>`__
 - `TheGroundZero (@TheGroundZero) <https://github.com/TheGroundZero>`__
+- `Alexander Münch (@theHacker) <https://github.com/theHacker>`__
 - `thejonesyboy (@thejonesyboy) <https://github.com/thejonesyboy>`__
 - `TheJulianJES (@TheJulianJES) <https://github.com/TheJulianJES>`__
 - `Bart (@TheNameIsBart) <https://github.com/TheNameIsBart>`__
@@ -1383,4 +1386,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated June 18, 2024.*
+*This page was last updated June 19, 2024.*

@@ -37,6 +37,17 @@ So we have a few updates to update you on this |ss| update |se| release.
 Please do read these release notes carefully as there are quite a few breaking changes that
 we know will affect a large portion of users.
 
+Join us for the ESPHome Release Party for the 2024.6.0 release! We'll talk about the hard work put into
+ESPHome over the past few months, its new home under the Open Home Foundation, and share with you the new logo!
+
+.. raw:: html
+
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/hTiG9Dd8wjw"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+    </iframe>
+
 Jesse
 
 ESPHome branding
@@ -220,6 +231,10 @@ Beta Changes
 - fix(dallas): make recovery time for 1-bit equal to that of 0-bit :esphomepr:`6763` by :ghuser:`muggenhor`
 - [wifi] Fix some access point bugs related to esp-idf 4.4.7 :esphomepr:`6928` by :ghuser:`jesserockz`
 - Rename legacy/modern to ota/factory :esphomepr:`6922` by :ghuser:`jesserockz`
+- Bump pypa/gh-action-pypi-publish from 1.8.14 to 1.9.0 :esphomepr:`6926` by :ghuser:`dependabot[bot]`
+- Bump docker/build-push-action from 5.4.0 to 6.0.0 in /.github/actions/build-image :esphomepr:`6927` by :ghuser:`dependabot[bot]`
+- Bump docker/build-push-action from 6.0.0 to 6.0.1 in /.github/actions/build-image :esphomepr:`6934` by :ghuser:`dependabot[bot]`
+- [network] Default ipv6 to false to always set the flags :esphomepr:`6937` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -354,6 +369,10 @@ All changes
 - fix(dallas): make recovery time for 1-bit equal to that of 0-bit :esphomepr:`6763` by :ghuser:`muggenhor`
 - [wifi] Fix some access point bugs related to esp-idf 4.4.7 :esphomepr:`6928` by :ghuser:`jesserockz`
 - Rename legacy/modern to ota/factory :esphomepr:`6922` by :ghuser:`jesserockz`
+- Bump pypa/gh-action-pypi-publish from 1.8.14 to 1.9.0 :esphomepr:`6926` by :ghuser:`dependabot[bot]`
+- Bump docker/build-push-action from 5.4.0 to 6.0.0 in /.github/actions/build-image :esphomepr:`6927` by :ghuser:`dependabot[bot]`
+- Bump docker/build-push-action from 6.0.0 to 6.0.1 in /.github/actions/build-image :esphomepr:`6934` by :ghuser:`dependabot[bot]`
+- [network] Default ipv6 to false to always set the flags :esphomepr:`6937` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
