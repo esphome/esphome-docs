@@ -50,6 +50,7 @@ Configuration variables:
   for a list of available options. Set to ``""`` to remove the default entity category.
 - **mode** (**Required**, string): Defines how the text should be displayed in the frontend.
   One of ``text`` or ``password``.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 Automations:
 

@@ -50,6 +50,15 @@ Release 2024.4.1 - April 23
 - Fix or filter :esphomepr:`6574` by :ghuser:`swoboda1337`
 
 
+Release 2024.4.2 - April 30
+---------------------------
+
+- Fix SHT3xd fails sometimes in 2024.4.0 :esphomepr:`6592` by :ghuser:`mrtoy-me`
+- allow defaults with no include vars :esphomepr:`6613` by :ghuser:`ssieb`
+- Revert #6458 :esphomepr:`6650` by :ghuser:`tronikos`
+- [i2s_audio.microphone] Fixing adc bug :esphomepr:`6654` by :ghuser:`jesserockz`
+
+
 Full list of changes
 --------------------
 
