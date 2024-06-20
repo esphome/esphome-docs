@@ -176,6 +176,13 @@ This is mostly an internal change, but could be used by :doc:`external component
 or lambdas in YAML.
 
 
+Release 2024.6.1 - June 20
+--------------------------
+
+- debug_libretiny - Fix typo :esphomepr:`6942` by :ghuser:`Cossid`
+- Bump esphome-dashboard to 20240620.0 :esphomepr:`6944` by :ghuser:`jesserockz`
+
+
 Full list of changes
 --------------------
 
