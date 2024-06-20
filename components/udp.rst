@@ -19,8 +19,6 @@ providers. A node may be both a provider and a consumer. Optional security is pr
 - a rolling code
 - a challenge-response (ping-pong) key
 
-Wherever a provider name is required, this should be the node name configured in the ``esphome:`` block.
-
 .. code-block:: yaml
 
     # Example configuration entry
@@ -52,7 +50,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **update_interval** (*Optional*, :ref:`config-time`): Interval between full broadcasts. Defaults to 15s.
-- **port** (*Optional*, int): The destination UDP port number to use. Defaults to 18511.
+- **port** (*Optional*, int): The destination UDP port number to use. Defaults to ``18511``.
 - **addresses** (*Optional*, list of IPv4 addresses): One or more IP addresses to broadcast data to. Defaults to ``255.255.255.255``
   which is the local network broadcast address.
 - **sensors** (*Optional*, list): A list of sensor IDs to be broadcast.
@@ -66,6 +64,11 @@ Configuration variables:
 
   - **name** (**Required**, string): The device name of the provider.
   - **encryption** (*Optional*, string): The provider's encryption key.
+
+Wherever a provider name is required, this should be the node name configured in the ``esphome:`` block.
+
+This component supports multiple configurations, making it possible to differentiate between consumers when providing data to them.
+When receiving data in such a configuration, sensors need an ``udp_id`` configuration item to know where to expect data to come from.
 
 Reliability
 -----------
@@ -109,8 +112,7 @@ nonce to the providers.
     It's also incremented and written to flash when the counting, lower 32 bits overflows, which can only happen after
     a very long time. The consumer side does not store the received rolling codes in flash.
 
-Security considerations
------------------------
+**Security considerations**
 
 The encryption used is `XXTEA <https://en.wikipedia.org/wiki/XXTEA>`_ which is fast and compact. Although XXTEA is known
 to be susceptible to a chosen-plaintext attack, such an attack is not possible with this application, and it otherwise
@@ -219,6 +221,51 @@ encryption and a rolling code to a remote host.
       - platform: udp
         provider: st7735s
         id: wifi_signal_sensor
+
+The example below shows a provider device separating data sent to different consumers. There are two provider confgurations, with different IDs.
+The ``udp_internal`` provider broadcasts the selected sensor states in plain every 10 seconds to all the network members, while the ``udp_external``
+provider sends other sensors data to an external IP address and port, with encryption. The node also listens to data from a ``remote-node`` through
+the port specified in the ``udp_external`` configuration:
+
+.. code-block:: yaml
+
+    udp:
+      - id: udp_internal
+        update_interval: 10s
+        sensors:
+          - temp_outdoor
+          - temp_rooma
+          - temp_roomb
+          - temp_roomc
+          - temp_garage
+          - temp_water
+          - humi_rooma
+          - humi_roomb
+          - humi_roomc
+    
+      - id: udp_external
+        update_interval: 60s
+        encryption: "Muddy Waters"
+        ping_pong_enable: true
+        rolling_code_enable: true
+        port: 38512
+        addresses:
+          - 10.87.135.110
+        binary_sensors:
+          - binary_sensor_door
+        sensors:
+          - temp_outdoor
+
+    binary_sensor:
+      - platform: udp
+        id: binary_sensor_unlock
+        udp_id: udp_external
+        provider: remote-node
+        remote_id: binary_sensor_unlock_me
+        on_press:
+          - lambda: |- 
+              ESP_LOGI("main", "Received command to binary_sensor_unlock");
+
 
 .. [#f1] As known in 2024.06.
 
