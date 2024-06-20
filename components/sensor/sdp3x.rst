@@ -7,8 +7,8 @@ SDP3x / SDP800 Series Differential Pressure Sensor
     :keywords: SDP3x, SDP31, SDP32, SDP800 Series, SDP810, SDP810
 
 The SDP3x Differential Pressure sensor allows you to use your SDP3x
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/8_Differential_Pressure/Datasheets/Sensirion_Differential_Pressure_Datasheet_SDP3x_Digital.pdf>`__,
-`sparkfun <https://www.sparkfun.com/products/17874>`__) or SDP800 Series (`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/8_Differential_Pressure/Datasheets/Sensirion_Differential_Pressure_Datasheet_SDP8xx_Digital.pdf>`__)
+(`datasheet <https://sensirion.com/media/documents/4D045D69/6375F34F/DP_DS_SDP3x_digital_D1.pdf>`__,
+`sparkfun <https://www.sparkfun.com/products/17874>`__) or SDP800 Series (`datasheet <https://sensirion.com/media/documents/90500156/6167E43B/Sensirion_Differential_Pressure_Datasheet_SDP8xx_Digital.pdf>`__)
 sensors with ESPHome.
 
 .. figure:: images/sdp31.jpg

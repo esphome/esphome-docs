@@ -47,11 +47,11 @@ Configuration variables:
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
     - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
     - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
-    - ``ALWAYS_OFF`` - Always initialize the switch as OFF on bootup.
+    - ``ALWAYS_OFF`` (Default) - Always initialize the switch as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the switch as ON on bootup.
     - ``DISABLED`` - Does nothing and leaves it up to the downstream platform component to decide. For example, the component could read hardware and determine the state, or have a specific configuration option to regulate initial state.
 
-  Unless a specific platform defines another default value, the default is ``RESTORE_DEFAULT_OFF``.
+  Unless a specific platform defines another default value, the default is ``ALWAYS_OFF``.
 
 - **on_turn_on** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the switch is turned on. See :ref:`switch-on_turn_on_off_trigger`.
@@ -59,14 +59,14 @@ Configuration variables:
   when the switch is turned off. See :ref:`switch-on_turn_on_off_trigger`.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
 - **device_class** (*Optional*, string): The device class for the switch.
-  See https://developers.home-assistant.io/docs/core/entity/switch/#available-device-classes
-  for a list of available options. Requires Home Assistant 2022.3 or newer.
+  See https://www.home-assistant.io/integrations/switch/#device-class
+  for a list of available options.
 - If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _switch-toggle_action:

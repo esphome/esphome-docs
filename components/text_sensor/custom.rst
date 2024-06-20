@@ -1,6 +1,16 @@
 Custom Text Sensor
 ==================
 
+.. warning::
+
+    Custom components are deprecated, not recommended for new configurations
+    and will be removed from ESPHome in a future release.
+    Please look at creating a real ESPHome component and "importing" it into your
+    configuration with :doc:`/components/external_components`.
+
+    You can find some basic documentation on creating your own components
+    at :ref:`contributing_to_esphome`.
+
 This integration can be used to create custom text sensors in ESPHome
 using the C++ (Arduino) API.
 

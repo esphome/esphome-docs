@@ -10,18 +10,18 @@ ESPHome 2022.2.0 - 16th February 2022
 .. imgtable::
     :columns: 4
 
-    Lock Core, components/lock/index, folder-open.svg
-    Generic Output Lock, components/lock/output, upload.svg
-    Template Lock, components/lock/template, description.svg
+    Lock Core, components/lock/index, folder-open.svg, dark-invert
+    Generic Output Lock, components/lock/output, upload.svg, dark-invert
+    Template Lock, components/lock/template, description.svg, dark-invert
     QR Code, components/display/index, qr-code.svg
 
-    Touchscreen Core, components/touchscreen/index, folder-open.svg
+    Touchscreen Core, components/touchscreen/index, folder-open.svg, dark-invert
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
     MLX90393, components/sensor/mlx90393, mlx90393.jpg
 
-    Wake-on-LAN Button, components/button/wake_on_lan, power_settings.svg
-    Generic Output Button, components/button/output, upload.svg
+    Wake-on-LAN Button, components/button/wake_on_lan, power_settings.svg, dark-invert
+    Generic Output Button, components/button/output, upload.svg, dark-invert
     Xiaomi MHOC303, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
     RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png
 

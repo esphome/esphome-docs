@@ -402,6 +402,7 @@ See Also
 --------
 
 - :apiref:`rf_bridge/rf_bridge.h`
+- :ref:`lambda_magic_rf_queues`
 - `RF-Bridge-EFM8BB1 <https://github.com/Portisch/RF-Bridge-EFM8BB1>`__ by `Portisch <https://github.com/Portisch>`__
 - :doc:`/components/uart`
 - :doc:`/components/remote_receiver`

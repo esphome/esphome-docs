@@ -145,6 +145,29 @@ You will see the outputted sensor values changing when they're being warmed.
 When you're finished mapping each address to a name, just change the ``Temperature #1``
 to your assigned names and you should be ready.
 
+Multiple dallas hubs
+********************
+
+Use this if you have multiple dallas hubs:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    dallas:
+      - pin: GPIO23
+        id: hub_1
+      - pin: GPIO24
+        id: hub_2
+
+    sensor:
+      - platform: dallas
+        dallas_id: hub_1
+        # ...
+      - platform: dallas
+        dallas_id: hub_2
+        # ...
+
+
 See Also
 --------
 
@@ -154,3 +177,4 @@ See Also
   by `Miles Burton <https://github.com/milesburton>`__
 - :apiref:`dallas/dallas_component.h`
 - :ghedit:`Edit`
+- `Guidelines for Reliable Long Line 1-Wire Networks <https://www.analog.com/en/technical-articles/guidelines-for-reliable-long-line-1wire-networks.html>`__

@@ -10,7 +10,7 @@ The ``bme280`` sensor platform allows you to use your BME280
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/BST-BME280_DS001-10.pdf>`__,
 `Adafruit`_) temperature, pressure and humidity sensors with ESPHome. The sensor
 is used in *Forced Mode* where measurement is performed and then 
-the sensor returns to sleep mode until next measurement. The :ref:`I²C <i2c>` is
+the sensor returns to sleep mode until next measurement. The :ref:`I²C <i2c>` or :ref:`SPI <spi>` is
 required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/bme280-full.jpg
@@ -23,9 +23,9 @@ required to be set up in your configuration for this sensor to work.
 
 .. code-block:: yaml
 
-    # Example configuration entry
+    # Example configuration entry I2C
     sensor:
-      - platform: bme280
+      - platform: bme280_i2c
         temperature:
           name: "BME280 Temperature"
           oversampling: 16x
@@ -36,11 +36,24 @@ required to be set up in your configuration for this sensor to work.
         address: 0x77
         update_interval: 60s
 
+
+    # Example configuration entry SPI
+    sensor:
+      - platform: bme280_spi
+        temperature:
+          name: "BME280 Temperature"
+          oversampling: 16x
+        pressure:
+          name: "BME280 Pressure"
+        humidity:
+          name: "BME280 Humidity"
+        cs_pin: GPIO5
+        update_interval: 60s
+
 Configuration variables:
 ------------------------
 
-- **temperature** (*Optional*): The information for the temperature.
-  sensor
+- **temperature** (*Optional*): The information for the temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature
     sensor.

@@ -15,12 +15,12 @@ temperature to a user-specified setpoint.
 .. note::
 
     PID is like cruise control in the cars: it keeps the car's speed constant by continuously
-    adjusting the fuel quantity, based on load measurements. Eg when the car has to go up on a hill, 
+    adjusting the fuel quantity, based on load measurements. Eg when the car has to go up on a hill,
     the system notices the load increase thus immediately gives more fuel to the engine; and when it
     goes down on the other side of the hill, it notices the load decrease thus reduces or cuts off fuel
     completely so that car speed remains as constant as possible. The calculation takes in consideration
-    constants like car weight, wind resistance etc. 
-    
+    constants like car weight, wind resistance etc.
+
     This kind of math can be used for a heating or cooling system too, and an auto-tuning algorithm can help
     determining such constants, which mainly describe the heat loss of the room or building. Goal is to
     keep the temperature as constant as possible, and smooth out oscillations otherwise produced by
@@ -47,12 +47,14 @@ but there's a nice article explaining the function principle `here <https://blog
         deadband_parameters:
           threshold_high: 0.5°C       # deadband within +/-0.5°C of target_temperature
           threshold_low: -0.5°C
-          
+
 Configuration variables:
 ------------------------
 
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current
-  temperature. 
+  temperature.
+- **humidity_sensor** (**Optional**, :ref:`config-id`): If specified, this sensor is used to measure the current humidity.
+  This is used for information only and does not influence temperature control.
 - **default_target_temperature** (**Required**, float): The default target temperature (setpoint)
   for the control algorithm. This can be dynamically set in the frontend later.
 - **heat_output** (*Optional*, :ref:`config-id`): The ID of a :ref:`float output <config-output>`
@@ -68,41 +70,39 @@ Configuration variables:
     Defaults to ``0``.
   - **kd** (*Optional*, float): The factor for the derivative term of the PID controller.
     Defaults to ``0``.
-  - **min_integral** (*Optional*, float): The maximum value of the integral term multiplied by
+  - **min_integral** (*Optional*, float): The minimum value of the integral term multiplied by
     ``ki`` to prevent windup. Defaults to ``-1``.
-  - **max_integral** (*Optional*, float): The minimum value of the integral term multiplied by
+  - **max_integral** (*Optional*, float): The maximum value of the integral term multiplied by
     ``ki`` to prevent windup. Defaults to ``1``.
-  - **starting_integral_term** (*Optional*, float): Set the initial output, by priming the integral 
-    term. This is useful for when your system is rebooted and you don't want to wait 
+  - **starting_integral_term** (*Optional*, float): Set the initial output, by priming the integral
+    term. This is useful for when your system is rebooted and you don't want to wait
     for it to get back equilibrium.
 
-  - **output_averaging_samples** (*Optional*, int): average the output over this many samples. PID controllers 
-    can be quite sensitive to small changes on the input sensor. By averaging the last X output samples,  
-    the temperature can be more stable. However, the larger the sampling window, the less responsive the 
+  - **output_averaging_samples** (*Optional*, int): average the output over this many samples. PID controllers
+    can be quite sensitive to small changes on the input sensor. By averaging the last X output samples,
+    the temperature can be more stable. However, the larger the sampling window, the less responsive the
     PID controller. Defaults to ``1`` which is no sampling/averaging.
 
-  - **derivative_averaging_samples** (*Optional*, int): average the derivative term over this many samples. Many 
-    controllers don't use the derivative term because it is sensitive to slight changes in the input sensor. 
-    By taking an average of the derivative term it might become more useful for you. Most PID controllers call 
-    this derivative filtering. The derivative term is used to pre-act so don't filter too much. Defaults to ``1`` 
+  - **derivative_averaging_samples** (*Optional*, int): average the derivative term over this many samples. Many
+    controllers don't use the derivative term because it is sensitive to slight changes in the input sensor.
+    By taking an average of the derivative term it might become more useful for you. Most PID controllers call
+    this derivative filtering. The derivative term is used to pre-act so don't filter too much. Defaults to ``1``
     which is no sampling/averaging.
 
-- **deadband_parameters** (*Optional*): Enables a deadband to stabilise and minimise changes in the 
+- **deadband_parameters** (*Optional*): Enables a deadband to stabilise and minimise changes in the
   output when the temperature is close to the target temperature. See `Deadband Setup`_.
 
-  - **threshold_low/threshold_high** (**Required**, float): Specifies a high/low 
-    threshold defining the deadband 
-    around the target temperature. For instance with `default_target_temperature` of ``21°C`` and 
-    thresholds of ``+/-0.5°C``, the deadband will be 
+  - **threshold_high/threshold_low** (**Required**, float): Specifies a high/low
+    threshold defining the deadband around the target temperature. For instance with
+    ``default_target_temperature`` of ``21°C`` and thresholds of ``+/-0.5°C``, the deadband will be
     between ``20.5°C - 21.5°C``. The PID controller will limit output changes within the deadband.
+  - **kp_multiplier** (*Optional*, float): Set the ``kp`` gain when inside the deadband. Defaults to ``0``.
+  - **ki_multiplier** (*Optional*, float): Set the ``ki`` gain when inside the deadband. Defaults to ``0``.
+  - **kd_multiplier** (*Optional*, float): Set the ``kd`` gain when inside the deadband. Recommended this
+    is set to ``0``. Defaults to ``0``.
 
-  - **kp_multiplier** (**Optional**, float): Set the ``kp`` gain when inside the deadband. Defaults to ``0``.
-  - **ki_multiplier** (**Optional**, float): Set the ``ki`` gain when inside the deadband. Defaults to ``0``.
-  - **kd_multiplier** (**Optional**, float): Set the ``kd`` gain when inside the deadband. Recommended this
-    is set to 0. Defaults to ``0``.
-
-  - **deadband_output_averaging_samples** (**Optional**, int): Typically when inside the deadband the PID Controller has 
-    reached a state of equilibrium, so it advantageous to use a higher number of output samples 
+  - **deadband_output_averaging_samples** (*Optional*, int): Typically when inside the deadband the PID Controller has
+    reached a state of equilibrium, so it advantageous to use a higher number of output samples
     like 10-30 samples. Defaults to ``1`` which is no sampling/averaging.
 
 - All other options from :ref:`Climate <config-climate>`.
@@ -116,7 +116,7 @@ To set up a PID climate controller, you need a couple of components:
 
 - A :ref:`Sensor <config-sensor>` to read the current temperature (``sensor``).
 - At least one :ref:`float output <config-output>` to drive for heating or cooling (or both).
-  This could for example be a PWM output via :doc:`/components/output/sigma_delta` or :doc:`/components/output/slow_pwm` that drives a heating unit.
+  This could for example be a PWM output via :doc:`/components/output/sigma_delta_output` or :doc:`/components/output/slow_pwm` that drives a heating unit.
 
   Please note the output *must* be controllable with continuous value (not only ON/OFF, but any state
   in between for example 50% heating power).
@@ -126,22 +126,22 @@ To set up a PID climate controller, you need a couple of components:
     The sensor should have a short update interval. The PID update frequency is tied to the update
     interval of the sensor. Set a short ``update_interval`` like ``5s`` on the sensor.
 
-    We recommend putting a filter on the sensor (see filters in :doc:`/components/sensor/index`) and 
+    We recommend putting a filter on the sensor (see filters in :doc:`/components/sensor/index`) and
     using ``output_averaging_samples`` to calm the PID sensor from a noisy input sensor.
 
 Deadband Setup
 --------------
-A deadband is used to prevent the PID controller from further adjusting the power 
-once the temperature has settled within a range of the target temperature. 
+A deadband is used to prevent the PID controller from further adjusting the power
+once the temperature has settled within a range of the target temperature.
 
-We do this by specifying a high/low threshold of the target temperature. 
+We do this by specifying a high/low threshold of the target temperature.
 
-To understand the benefit, consider a heating/cooling HVAC which is constantly 
-oscillating between heating and cooling as the thermostat records very minor 
-changes from +0.1º to -0.1º. Clearly this is undesirable and will cause wear 
-and tear as the HVAC oscillates.  With a deadband in place the heater won't 
-activate until the thermostat breaches the low_threshold and the cooler won't activate 
-until the thermostat breaches the high_threshold. 
+To understand the benefit, consider a heating/cooling HVAC which is constantly
+oscillating between heating and cooling as the thermostat records very minor
+changes from +0.1º to -0.1º. Clearly this is undesirable and will cause wear
+and tear as the HVAC oscillates.  With a deadband in place the heater won't
+activate until the thermostat breaches the low_threshold and the cooler won't activate
+until the thermostat breaches the high_threshold.
 
 The most basic setup specifies the threshold around the target temperature as follows:
 
@@ -153,7 +153,7 @@ The most basic setup specifies the threshold around the target temperature as fo
       threshold_high: 0.5°C
       threshold_low: -1.0°C
 
-In this example the deadband is between ``20.0°C - 21.5°C``. The PID controller will limit any output 
+In this example the deadband is between ``20.0°C - 21.5°C``. The PID controller will limit any output
 variation inside this deadband. How it limits depends on how you set the `Deadband Multipliers`_.
 
 .. figure:: images/deadband1.png
@@ -161,19 +161,19 @@ variation inside this deadband. How it limits depends on how you set the `Deadba
 Deadband Multipliers
 ********************
 
-Deadband Multipliers tell the controller how to operate when inside of the deadband. 
+Deadband Multipliers tell the controller how to operate when inside of the deadband.
 
-Each of the p,i and d terms can be controlled using the kp, ki and kd multipliers. For instance, if the kp_multiplier 
-is set to 0.05 then the final proportional term will be set to 5% of its normal value within the deadband. 
+Each of the p,i and d terms can be controlled using the kp, ki and kd multipliers. For instance, if the kp_multiplier
+is set to 0.05 then the final proportional term will be set to 5% of its normal value within the deadband.
 
-If all of the multipliers are set to 0, then the controller will not adjust power at all within the 
+If all of the multipliers are set to 0, then the controller will not adjust power at all within the
 deadband. This is the default behavior.
 
-Most deadband implementations set kp and ki multipliers to a small gain like ``0.05`` and set 
-derivative to 0. This means that the PID output will calmly make minor adjustments over a 20x longer 
-timeframe to stay within the deadband zone. 
+Most deadband implementations set kp and ki multipliers to a small gain like ``0.05`` and set
+derivative to 0. This means that the PID output will calmly make minor adjustments over a 20x longer
+timeframe to stay within the deadband zone.
 
-To start with we recommend just setting the ``ki_multiplier`` to ``0.05`` (5%). Then 
+To start with we recommend just setting the ``ki_multiplier`` to ``0.05`` (5%). Then
 set ``kp_multiplier`` to ``0.05`` (5%) if the controller is falling out of the deadband too often.
 
 .. code-block:: yaml
@@ -184,7 +184,7 @@ set ``kp_multiplier`` to ``0.05`` (5%) if the controller is falling out of the d
       threshold_high: 0.5°C
       threshold_low: -1.0°C
       kp_multiplier: 0.0   # proportional gain turned off inside deadband
-      ki_multiplier: 0.05  # integral accumulates at only 5% of normal ki 
+      ki_multiplier: 0.05  # integral accumulates at only 5% of normal ki
       kd_multiplier: 0.0   # derviative is turned off inside deadband
       deadband_output_averaging_samples: 15   # average the output over 15 samples within the deadband
 
@@ -192,8 +192,8 @@ set ``kp_multiplier`` to ``0.05`` (5%) if the controller is falling out of the d
 
 Deadband Output Averaging Samples
 *********************************
-Since we expect the PID Controller to be at equilibrium while inside the deadband, we can 
-average the output over a longer range of samples, like 15 samples. This helps even further 
+Since we expect the PID Controller to be at equilibrium while inside the deadband, we can
+average the output over a longer range of samples, like 15 samples. This helps even further
 with temperature and controller stability.
 
 .. _pid-autotune:
@@ -249,7 +249,7 @@ is automatically calculated. To do this, it needs to observe at least 3 oscillat
     device can reach. For example if the temperature of a room is to be controlled, the setpoint needs
     to be above the ambient temperature. If the ambient temperature is 20°C, the setpoint of the
     climate device should be set to at least ~24°C so that an oscillation can be induced.
-    
+
     Also take care of external influences, like for example when room temperature is severely affected by
     outdoor weather like sun, if it starts to warm up the room in parallel with the heating
     autotune will likely fail or give false results.
@@ -273,10 +273,10 @@ is automatically calculated. To do this, it needs to observe at least 3 oscillat
 .. note::
 
     In the output above, the autotuner is driving the heating output at 100% and trying to reach 24.25 °C.
-    
+
     This will continue for some time until data for 3 phases (6 crossings of the setpoint; or a bit more, depending on
     the data quality) have been acquired.
-    
+
     The autotune algorithm may take a long time to complete, it depends on the time needed to reproduce the
     heating up and cooling down oscillations the required number of times.
 
@@ -298,7 +298,7 @@ is automatically calculated. To do this, it needs to observe at least 3 oscillat
 
 As soon as the the autotune procedure finishes, the climate starts to work with the calculated parameters
 so that expected operation can be immediately verified.
-   
+
 If satisfied, copy the values in ``control_parameters`` into your configuration:
 
    .. code-block:: yaml
@@ -349,7 +349,7 @@ Configuration variables:
   Defaults to ``-1.0``.
 
 The ``positive_output`` and ``negative_output`` parameters can be used to compensate the heating or the
-cooling process during the autotune, in the cases when they are not changing the temperature at the 
+cooling process during the autotune, in the cases when they are not changing the temperature at the
 same rate, resulting in a not symmetrical oscillation. The autotune result will print a message when
 it's recommended to repeat the entire procedure with such parameters configured.
 
@@ -435,7 +435,7 @@ See Also
 - Åström, K. J. and T. Hägglund (1984a), 'Automatic tuning of simple regulators',
   Proceedings of IFAC 9th World Congress, Budapest, 1867-1872
 - :doc:`/components/climate/index`
-- :doc:`/components/output/sigma_delta`
+- :doc:`/components/output/sigma_delta_output`
 - :doc:`/components/output/slow_pwm`
 - `Principles of PID <https://blog.opticontrols.com/archives/344>`__
 - :apiref:`pid/pid_climate.h`
