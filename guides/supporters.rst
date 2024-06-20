@@ -466,14 +466,11 @@ Contributors
 - `EmmanuelLM (@EmmanuelLM) <https://github.com/EmmanuelLM>`__
 - `Emory Dunn (@emorydunn) <https://github.com/emorydunn>`__
 - `Eric van Blokland (@Emrvb) <https://github.com/Emrvb>`__
-- `Eric Muehlstein (@emuehlstein) <https://github.com/emuehlstein>`__
 - `Anders Persson (@emwap) <https://github.com/emwap>`__
 - `Bert (@Engelbert) <https://github.com/Engelbert>`__
 - `Engineer_Will (@EngineerWill) <https://github.com/EngineerWill>`__
 - `erapade (@erapade) <https://github.com/erapade>`__
 - `Josh Gwosdz (@erdii) <https://github.com/erdii>`__
-- `Eric Coffman (@ericbrian) <https://github.com/ericbrian>`__
-- `Eric Hiller (@erichiller) <https://github.com/erichiller>`__
 - `Eduardo Roldan (@eroldan) <https://github.com/eroldan>`__
 - `ervede (@ervede) <https://github.com/ervede>`__
 - `escoand (@escoand) <https://github.com/escoand>`__
@@ -1215,6 +1212,7 @@ Contributors
 - `sud33p (@sud33p) <https://github.com/sud33p>`__
 - `sumirati (@sumirati) <https://github.com/sumirati>`__
 - `Sun Xiang yu (@sun-xiangyu) <https://github.com/sun-xiangyu>`__
+- `Penny Wood (@Swamp-Ig) <https://github.com/Swamp-Ig>`__
 - `swhaat (@swhaat) <https://github.com/swhaat>`__
 - `swifty99 (@swifty99) <https://github.com/swifty99>`__
 - `Jan Gutowski (@Switch123456789) <https://github.com/Switch123456789>`__
@@ -1386,4 +1384,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated June 19, 2024.*
+*This page was last updated June 20, 2024.*
