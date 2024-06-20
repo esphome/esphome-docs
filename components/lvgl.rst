@@ -1608,6 +1608,7 @@ Images are the basic widgets used to display images.
     Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
 
 .. tip::
+
     ``offset_x`` and ``offset_y`` can be useful when the widget size is set to be smaller than the image source size. A "running image" effect can be created by animating these values.
 
 .. _lvgl-wgt-aim:
