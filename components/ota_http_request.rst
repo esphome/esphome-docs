@@ -1,5 +1,5 @@
-OTA Update via HTTP Request Component
-=====================================
+OTA Update via HTTP Request
+===========================
 
 .. seo::
     :description: Instructions for setting up Over-The-Air (OTA) updates for ESPs to download firmwares remotely by HTTP.
@@ -40,7 +40,7 @@ ESPHome :ref:`action <config-action>`, it may be used in any ESPHome :ref:`autom
       then:
         - ota.http_request.flash:
             md5_url: http://example.com/firmware.md5
-            url: https://example.com/firmware.bin
+            url: https://example.com/firmware.ota.bin
         - logger.log: "This message should be not displayed because the device reboots"
 
 Configuration variables:
@@ -61,14 +61,14 @@ Configuration variables:
 
 .. note::
 
-    - You can obtain the ``firmware.bin`` file from either:
+    - You can obtain the ``firmware.ota.bin`` file from either:
 
-      - **ESPHome dashboard** (HA add-on): download in *"Legacy format"*
-      - **ESPHome CLI**: the directory ``.esphome/build/project/.pioenvs/project/firmware.bin``
+      - **ESPHome dashboard** (HA add-on): download in *"OTA format"* (formerly "legacy format")
+      - **ESPHome CLI**: the directory ``.esphome/build/project/.pioenvs/project/firmware.ota.bin``
 
         ...where *"project"* is the name of your ESPHome device/project.
 
-      You **cannot** use ``firmware-factory.bin`` or *"Modern format"* with this component.
+      You **cannot** use ``firmware.factory.bin`` or *"Factory format"* (formerly "Modern format") with this component.
 
     - ``username`` and ``password`` must be `URL-encoded <https://en.wikipedia.org/wiki/Percent-encoding>`_  if they
       include special characters.
@@ -81,21 +81,21 @@ Configuration variables:
 
         .. code-block:: shell
 
-            md5 -q firmware.bin > firmware.md5
+            md5 -q firmware.ota.bin > firmware.md5
 
       - On most Linux distributions:
 
         .. code-block:: shell
 
-            md5sum firmware.bin > firmware.md5
+            md5sum firmware.ota.bin > firmware.md5
 
       - On Windows/PowerShell:
 
         .. code-block:: shell
 
-            (Get-FileHash -Path firmware.bin -Algorithm md5).Hash.ToLower() | Out-File -FilePath firmware.md5 -Encoding ASCII
+            (Get-FileHash -Path firmware.ota.bin -Algorithm md5).Hash.ToLower() | Out-File -FilePath firmware.md5 -Encoding ASCII
 
-      This will generate the MD5 hash of the ``firmware.bin`` file and write the resulting hash value to the
+      This will generate the MD5 hash of the ``firmware.ota.bin`` file and write the resulting hash value to the
       ``firmware.md5`` file. The ``md5_url`` configuration variable should point to this file on the web server.
       It is used by the OTA updating mechanism to ensure the integrity of the (new) firmware as it is installed.
       

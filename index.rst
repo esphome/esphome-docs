@@ -204,6 +204,16 @@ Management and Monitoring
     Web Server, components/web_server, http.svg, dark-invert
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg, dark-invert
 
+Update Management
+-----------------
+
+Create update entities simplifying management of OTA updates.
+
+.. imgtable::
+
+    Update Core, components/update/index, system-update.svg, dark-invert
+    Managed Updates, components/update/http_request, system-update.svg, dark-invert
+
 Hardware Peripheral Interfaces/Busses
 -------------------------------------
 
@@ -214,6 +224,7 @@ Hardware Peripheral Interfaces/Busses
     I²S Audio, components/i2s_audio, i2s_audio.svg
     SPI Bus, components/spi, spi.svg
     UART, components/uart, uart.svg
+    1-Wire, components/one_wire, one-wire.svg
 
 I/O Expanders/Multiplexers
 --------------------------
@@ -393,7 +404,7 @@ Environmental
     BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Pressure
     BMP388 and BMP390, components/sensor/bmp3xx, bmp388.jpg, Temperature & Pressure
     BMP581, components/sensor/bmp581, bmp581.jpg, Temperature & Pressure
-    Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
+    Dallas DS18B20, components/sensor/dallas_temp, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
     DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
@@ -807,6 +818,7 @@ Display Hardware Platforms
     TM1638, components/display/tm1638, tm1638.jpg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
+    Host SDL2 display, components/display/sdl, sdl.png
 
 Touchscreen Components
 ----------------------
