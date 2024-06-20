@@ -1570,13 +1570,14 @@ Images are the basic widgets used to display images.
 **Configuration variables:**
 
 - **src** (**Required**, :ref:`image <display-image>`): The ID of an existing image configuration.
-- **angle** (*Optional*, 0-360): Rotation of the image. Defaults to ``0.0``.
+- **offset_x** (*Optional*): Add a horrizontal offset to the image position. 
+- **offset_y** (*Optional*): Add a vertical offset to the image position. 
 - **zoom** (*Optional*, 0.1-10): Zoom of the image.
-- **pivot_x** (*Optional*): Horizontal position of the pivot point of rotation relative to the top left corner of the image. Defaults to ``50%`` (center of image).
-- **pivot_y** (*Optional*): Vertical position of the pivot point of rotation relative to the top left corner of the image.. Defaults to ``50%`` (center of image).
+- **angle** (*Optional*, 0-360): Rotation of the image. Defaults to ``0.0``. Needs ``pivot_x`` and ``pivot_y`` to be specified.
+- **pivot_x** (*Optional*): Horizontal position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
+- **pivot_y** (*Optional*): Vertical position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
 - **antialias** (*Optional*): The quality of the angle or zoom transformation. When anti-aliasing is enabled, the transformations are higher quality but slower. Defaults to ``false``.
 - **mode** (*Optional*): Either ``REAL`` or  ``VIRTUAL``. With ``VIRTUAL``, when the image is zoomed or rotated, the real coordinates of the image object are not changed. The larger content simply overflows the object's boundaries. It also means the layouts are not affected the by the transformations. With ``REAL``, if the width/height of the object is set to ``SIZE_CONTENT``, the object's size will be set to the zoomed and rotated size. If an explicit size is set, the overflowing content will be cropped. Defaults to ``VIRTUAL``.
-- **offset_x**, **offset_y** (*Optional*): Add an offset to the displayed image. Useful if the widget size is smaller than the image source size. Tip: a *running image* effect can be created by animating these values.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
 **Actions:**
@@ -1605,6 +1606,9 @@ Images are the basic widgets used to display images.
 .. note::
 
     Currently ``RGB565`` type images are supported, with transparency using the optional parameter ``use_transparency`` set to ``true``. See :ref:`display-image` for how to load an image for rendering in ESPHome.
+
+.. tip::
+    ``offset_x`` and ``offset_y`` can be useful when the widget size is set to be smaller than the image source size. A "running image" effect can be created by animating these values.
 
 .. _lvgl-wgt-aim:
 
