@@ -38,7 +38,7 @@ Configuration variables:
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 -  **version** (*Optional*, int): Version of OTA protocol to use. Version 2 is more stable. To downgrade to legacy
    ESPHome, the device should be updated with OTA version 1 first. Defaults to ``2``.
--  All :ref:`automations <automation>` supported by :doc:`ota`.
+-  All :ref:`automations <automation>` supported by :doc:`/components/ota/index`.
 
 .. note::
 
@@ -79,7 +79,7 @@ See Also
 --------
 
 - :apiref:`ota/ota_component.h`
-- :doc:`/components/button/safe_mode`
-- :doc:`/components/switch/safe_mode`
-- :doc:`/components/ota_http_request`
+- :doc:`/components/ota/index`
+- :doc:`/components/ota/http_request`
+- :doc:`/components/safe_mode`
 - :ghedit:`Edit`

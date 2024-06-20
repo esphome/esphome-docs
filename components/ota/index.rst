@@ -19,6 +19,20 @@ change was made to facilitate the use of multiple update mechanisms, enabling gr
     ota:
       - platform: ...
 
+Configuration variables:
+------------------------
+
+-  **on_begin** (*Optional*, :ref:`Automation<automation>`): An action to be performed when an OTA update is started.
+   See :ref:`ota-on_begin`.
+-  **on_progress** (*Optional*, :ref:`Automation<automation>`): An action to be performed (approximately each second)
+   while an OTA update is in progress. See :ref:`ota-on_progress`.
+-  **on_end** (*Optional*, :ref:`Automation<automation>`): An action to be performed after a successful OTA update.
+   See :ref:`ota-on_end`.
+-  **on_error** (*Optional*, :ref:`Automation<automation>`): An action to be performed after a failed OTA update.
+   See :ref:`ota-on_error`.
+-  **on_state_change** (*Optional*, :ref:`Automation<automation>`): An action to be performed when an OTA update state
+   change happens. See :ref:`ota-on_state_change`.
+
 .. _ota-automations:
 
 OTA Automations
@@ -142,8 +156,12 @@ See Also
 --------
 
 - :apiref:`ota/ota_component.h`
-- :doc:`/components/ota_esphome`
-- :doc:`/components/ota_http_request`
-- :doc:`/components/button/safe_mode`
-- :doc:`/components/switch/safe_mode`
+
+.. toctree::
+    :maxdepth: 1
+    :glob:
+
+    *
+
+- :doc:`/components/safe_mode`
 - :ghedit:`Edit`

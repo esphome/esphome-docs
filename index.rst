@@ -209,8 +209,8 @@ Install updates over-the-air (OTA).
 .. imgtable::
 
     OTA Core, components/ota, system-update.svg, dark-invert
-    OTA Updates, components/ota_esphome, system-update.svg, dark-invert
-    OTA Updates via HTTP Request, components/ota_http_request, system-update.svg, dark-invert
+    OTA Updates, components/ota/esphome, system-update.svg, dark-invert
+    OTA Updates via HTTP Request, components/ota/http_request, system-update.svg, dark-invert
 
 Update Management
 -----------------
