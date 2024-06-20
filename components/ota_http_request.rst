@@ -24,7 +24,7 @@ To use this platform, the :doc:`http_request` component must be present in your 
 Configuration variables:
 ------------------------
 
-- All :ref:`automations <ota-automations>` supported by :doc:`ota`.
+- All :ref:`automations <automation>` supported by :doc:`ota`.
 
 .. _ota_http_request-flash_action:
 
