@@ -293,8 +293,8 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 - **shadow_width** (*Optional*, int16): Width of the shadow, in pixels. Defaults to ``0``.
 - **transform_angle** (*Optional*, 0-360): Transformation angle of the widget (eg. rotation)
 - **transform_height** (*Optional*, int16 or percentage): Transformation height of the widget (eg. stretching)
-- **transform_pivot_x** (*Optional*, int16 or percentage): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
-- **transform_pivot_y** (*Optional*, int16 or percentage): Vertical anchor point of the transformation. Relative to the widget's top left corner.
+- **transform_pivot_x** (*Optional*, int16): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
+- **transform_pivot_y** (*Optional*, int16): Vertical anchor point of the transformation. Relative to the widget's top left corner.
 - **transform_zoom** (*Optional*, 0.1-10):  Transformation zoom of the widget (eg. resizing)
 - **translate_x** (*Optional*, int16 or percentage): Movement of the widget with this value in horizontal direction.
 - **translate_y** (*Optional*, int16 or percentage): Movement of the widget with this value in vertical direction.
@@ -1504,8 +1504,8 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
         - **img** (*Optional*): Add a rotating needle image to the scale:
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **src**:  The ID of an existing image configuration, representing a needle pointing to the right like ``-o--->``. 
-            - **pivot_x**: Horizontal position of the pivot point of rotation relative to the top left corner of the image. Defaults to ``50%`` (center of image).
-            - **pivot_y**: Vertical position of the pivot point of rotation relative to the top left corner of the image.. Defaults to ``50%`` (center of image).
+            - **pivot_x**: Horizontal position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
+            - **pivot_y**: Vertical position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
             - **value**: The value in the scale range to show at start.
 - Style options from :ref:`lvgl-styling` for the background of the meter, using the typical background properties.
 
