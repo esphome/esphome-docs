@@ -149,7 +149,8 @@ to allow for other Dallas sensors to be implemented that are not temperature sen
 
     # New
     one_wire:
-      - pin: GPIOXX
+      - platform: gpio
+        pin: GPIOXX
 
     sensor:
       - platform: dallas_temp
