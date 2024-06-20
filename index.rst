@@ -508,6 +508,7 @@ Miscellaneous
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
     SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
+    Statistics, components/sensor/statistics, statistics.svg        
     Tuya Sensor, components/sensor/tuya, tuya.png
     TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
     uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png, EC & Temperature
