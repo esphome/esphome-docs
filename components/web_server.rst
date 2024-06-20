@@ -148,10 +148,13 @@ V2 embeds the css within the js file so is not required, however you could inclu
 Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
 
 
+Webserver Version 3 Options
+-------------------
+
 .. _config-webserver-grouping:
 
 Entity grouping
----------------
+***************
 
 Version `3` of the ``web_server`` allows for grouping of entities in custom groups.
 Groups can be sorted by providing a ``sorting_weight``. Groups with a smaller ``sorting_weight`` will be displayed first.
@@ -187,7 +190,7 @@ Example configuration:
 .. _config-webserver-sorting:
 
 Entity sorting
---------------
+**************
 
 Version `3` supports the sorting of the entities.
 You can set a ``web_server_sorting_weight`` on each entity.
