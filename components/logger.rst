@@ -83,8 +83,8 @@ Default UART GPIO Pins
     * - ESP32
       - TX: 1, RX: 3
       - N/A
-      - TX: 9, RX: 10
-      - TX: 16, RX: 17
+      - TX: 10, RX: 9
+      - TX: 17, RX: 16
       - N/A
       - N/A
     * - ESP32-C3
