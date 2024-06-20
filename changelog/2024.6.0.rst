@@ -2,8 +2,8 @@ ESPHome 2024.6.0 - 19th June 2024
 =================================
 
 .. seo::
-    :description: Changelog for ESPHome 2024.5.0.
-    :image: /_static/changelog-2024.5.0.png
+    :description: Changelog for ESPHome 2024.6.0.
+    :image: /_static/changelog-2024.6.0.png
     :author: Jesse Hills
     :author_twitter: @jesserockz
 
@@ -19,7 +19,7 @@ ESPHome 2024.6.0 - 19th June 2024
     Beken SPI, components/light/beken_spi_led_strip, color_lens.svg, dark-invert
 
     INA2XX, components/sensor/ina2xx, ina2xx.jpg
-    LTR Light & Proximity Sensors, components/sensor/ltr_als_ps, ltr329.jpg, Lux
+    LTR Light & Proximity Sensors, components/sensor/ltr_als_ps, ltr329.jpg
     Host SDL2 display, components/display/sdl, sdl.png
 
 .. |ss| raw:: html
@@ -174,6 +174,13 @@ An internal helper component ``json`` has had some minor, but breaking changes t
 callback function to return a boolean value, representing whether the parsing was successful or not.
 This is mostly an internal change, but could be used by :doc:`external components </components/external_components>`
 or lambdas in YAML.
+
+
+Release 2024.6.1 - June 20
+--------------------------
+
+- debug_libretiny - Fix typo :esphomepr:`6942` by :ghuser:`Cossid`
+- Bump esphome-dashboard to 20240620.0 :esphomepr:`6944` by :ghuser:`jesserockz`
 
 
 Full list of changes
