@@ -150,8 +150,8 @@ Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
 
 .. _config-webserver-version-3-options:
 
-Webserver Version 3 Options
--------------------
+Webserver version 3 options
+---------------------------
 
 .. _config-webserver-grouping:
 
