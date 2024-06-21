@@ -12,7 +12,7 @@ This platform allows you to manage the deployment of updates to your ESPHome dev
 To use it, the following components are required in your device's configuration:
 
 - :doc:`/components/http_request`
-- :doc:`/components/ota_http_request`
+- :doc:`/components/ota/http_request`
 
 .. code-block:: yaml
 
@@ -71,7 +71,7 @@ See Also
 --------
 
 - :doc:`http_request`
-- :doc:`/components/ota_http_request`
-- :doc:`/components/ota`
+- :doc:`/components/ota/http_request`
+- :doc:`/components/ota/index`
 - :apiref:`update/update_entity.h`
 - :ghedit:`Edit`
