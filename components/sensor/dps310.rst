@@ -1,4 +1,4 @@
-DPS310 Atmospheric Pressure Sensor
+DPS310 Atmospheric Temperature+Pressure Sensor
 ==================================
 
 .. seo::
