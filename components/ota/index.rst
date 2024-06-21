@@ -19,6 +19,15 @@ change was made to facilitate the use of multiple update mechanisms, enabling gr
     ota:
       - platform: ...
 
+Platforms
+---------
+
+.. toctree::
+    :maxdepth: 1
+    :glob:
+
+    *
+
 Configuration variables:
 ------------------------
 
@@ -156,12 +165,5 @@ See Also
 --------
 
 - :apiref:`ota/ota_component.h`
-
-.. toctree::
-    :maxdepth: 1
-    :glob:
-
-    *
-
 - :doc:`/components/safe_mode`
 - :ghedit:`Edit`
