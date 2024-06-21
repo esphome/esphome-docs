@@ -60,6 +60,7 @@ Configuration variables:
   - **sony**: Decode and dump Sony infrared codes.
   - **toshiba_ac**: Decode and dump Toshiba AC infrared codes.
   - **virtualwire**: Decode and dump VirtualWire / RadioHead RH_ASK codes.
+  - **mirage**: Decode and dump Mirage infrared codes.
 
 - **tolerance** (*Optional*, int, :ref:`config-time` or mapping): The percentage or time that the remote signal lengths can
   deviate in the decoding process.  Defaults to ``25%``.
@@ -193,6 +194,9 @@ Automations:
 - **on_virtualwire** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   VirtualWire / RadioHead RH_ASK code has been decoded. A variable ``x`` of
   type :apistruct:`remote_base::VirtualWireData` is passed to the automation for use in lambdas.
+- **on_mirage** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Mirage remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::MirageData`
+  is passed to the automation for use in lambdas.
 
 .. code-block:: yaml
 
@@ -439,6 +443,11 @@ Remote code selection (exactly one of these has to be included):
   - **data** (**Required**, list): The data to trigger on, see :ref:`remote_transmitter-transmit_virtualwire` for more info.
   - **speed** (*Optional*, int): The transmission speed in bits per second. Set to ``0`` for automatic speed detection.
     Defaults to ``0``.
+
+- **mirage**: Trigger on a Mirage remote code with the given code.
+
+  - **code** (**Required**, 14-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_mirage`
+    for more info. Usually you only need to copy this directly from the dumper output.
 
 .. note::
 
