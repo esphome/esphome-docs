@@ -72,6 +72,12 @@ RMII configuration variables:
   - ``GPIO17_OUT`` - Internal clock
 
 - **phy_addr** (*Optional*, int): The PHY addr type of the Ethernet controller. Defaults to 0.
+- **phy_registers** (*Optional*, mapping): Arbitrary PHY register values to set after Ethernet initialization.
+
+  - **address** (**Required**, hex): The register address as a hex number (e.g. ``0x10`` for address 16)
+  - **value** (**Required**, hex): The value of the register to set as a hex number (e.g. ``0x1FFA``)
+  - **page_id** (*Optional*, hex): (RTL8201 only) Register page number to select before writing (e.g. ``0x07`` for page 7)
+
 - **power_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin controlling the
   power/reset status of the Ethernet controller. Leave unspecified for no power pin (default).
 
@@ -230,10 +236,15 @@ Configuration examples
       mdio_pin: GPIO17
       clk_mode: GPIO0_IN
       phy_addr: 0
+      phy_registers:
+        - address: 0x10
+          value: 0x1FFA
+          page_id: 0x07
+
 
 .. note::
 
-    Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY. Revision 7 and newer of it use the RTL8201 Ethernet PHY. Support for RTL8201 is available from ESPHome version 2022.12 upwards.
+    Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY. Revision 7 and newer of it use the RTL8201 Ethernet PHY.
 
 
 **OpenHacks LAN8720**:

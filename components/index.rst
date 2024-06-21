@@ -30,5 +30,6 @@ Components
     time/index
     alarm_control_panel/index
     text/index
+    update/index
     valve/index
     *
