@@ -168,8 +168,8 @@ There are several ways of doing this. See below examples to see how you can spec
 Substitutions
 -------------
 
-Starting with version 1.10.0, ESPHome has a powerful new way to reduce repetition in configuration files:
-Substitutions. With substitutions, you can have a single generic source file for all nodes of one kind and
+ESPHome has a powerful new way to reduce repetition in configuration files: Substitutions.
+With substitutions, you can have a single generic source file for all nodes of one kind and
 substitute expressions in.
 
 .. code-block:: yaml
@@ -554,8 +554,8 @@ For example to set a specific update interval on a common uptime sensor that is 
       common: !include common.yaml
 
     sensor:
-    - id: !extend uptime_sensor
-      update_interval: 10s
+      - id: !extend uptime_sensor
+        update_interval: 10s
 
 Remove
 ------

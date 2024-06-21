@@ -9,7 +9,7 @@ cst816 Touch Screen Controller
 The ``cst816`` touchscreen platform allows using the touch screen controllers based on the CST816 series of chips with ESPHome.
 The :ref:`I²C <i2c>` is required to be set up in your configuration for this touchscreen to work.
 
-This controller is used in the Lilygo T-Display S3 AMOLED. The component should work with CST816T, CST816S, CST820 and CST716
+This controller is used in the Lilygo T-Display S3 AMOLED. The component should work with CST816T, CST816S, CST820, CST826 and CST716
 controller chips.
 
 
@@ -36,7 +36,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually set the ID of this touchscreen.
 - **interrupt_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin.
-- **reset_pin** (**Optional**, :ref:`Pin Schema <config-pin_schema>`): The chip reset pin.
+- **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The chip reset pin.
 
 - All other options from :ref:`Touchscreen <config-touchscreen>`.
 
@@ -61,6 +61,19 @@ Configuration variables:
 
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
+Sample config for the T-Display S3 AMOLED
+*****************************************
+
+.. code-block:: yaml
+
+    i2c:
+      sda: GPIO3
+      scl: GPIO2
+
+    touchscreen:
+      - platform: cst816
+        id: my_touchscreen
+        interrupt_pin: GPIO21
 
 See Also
 --------
