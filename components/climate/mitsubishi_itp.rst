@@ -16,7 +16,7 @@ The ``mitsubishi_itp`` component creates a climate device for controlling a Mits
     # Example minimal configuration entry
 
     climate:
-      - platform: mitsubishi_ipt
+      - platform: mitsubishi_itp
         uart_heatpump: hp_uart
 
     uart:
@@ -89,7 +89,7 @@ One particularly useful way to get additional temperature data is by having Home
         update_interval: never # Only updated by service
 
     climate:
-      - platform: mitsubishi_ipt
+      - platform: mitsubishi_itp
         uart_heatpump: hp_uart
         temperature_sources:
           - home_assistant_temperature
