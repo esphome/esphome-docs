@@ -60,6 +60,7 @@ Blog Posts & Videos
 - `Droplet Smart Irrigation System <https://github.com/PricelessToolkit/Droplet>`__ by `PricelessToolkit <https://github.com/PricelessToolkit>`__
 - `Stepper motor blinds <https://github.com/tronikos/esphome-blinds>`__ by :ghuser:`tronikos`
 - `Read your water meter or gas meter using a triple-axis magnetometer <https://github.com/tronikos/esphome-magnetometer-water-gas-meter>`__ by :ghuser:`tronikos`
+- `Garage door opener controller for devices with optical encoder <https://github.com/serg987/ESPHomeGarageDoorOpener>`__ by :ghuser:`serg987`
 
 Custom Components & Code
 ------------------------

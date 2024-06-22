@@ -160,8 +160,8 @@ You can do so with the ``manual_ip:`` option in the WiFi configuration.
 After putting a manual IP in your configuration, the ESP will no longer need to negotiate
 a dynamic IP address with the router, thus improving the time until connection.
 
-Additionally, this can help with :doc:`Over-The-Air updates <ota>` if for example the
-home network doesn't allow for ``.local`` addresses. When a manual IP is in your configuration,
+Additionally, this can help with :doc:`/components/ota/index` if for example the
+network doesn't allow for ``.local`` addresses. When a manual IP is in your configuration,
 the OTA process will automatically choose that as the target for the upload.
 
 .. note::
@@ -255,6 +255,7 @@ These are advanced settings and you will usually need to consult your enterprise
         eap:
           username: bob
           password: VerySafePassword
+          ttls_phase_2: mschapv2
       - ssid: EAP-TLS_EnterpriseNetwork
         eap:
           identity: bob
@@ -273,6 +274,8 @@ Configuration variables:
 - **certificate** (*Optional*, string): Path to a PEM encoded certificate to use for EAP-TLS authentication.
 - **key** (*Optional*, string): Path to a PEM encoded private key matching ``certificate`` for EAP-TLS authentication.
   Optionally encrypted with ``password``.
+- **ttls_phase_2** (*Optional*, string): The Phase 2 Authentication Method for EAP-TTLS.
+  Can be ``pap``, ``eap``, ``mschap``, ``mschapv2`` or ``chap``, defaults to ``mschapv2``.
 
 .. _wifi-on_connect_disconnect:
 
