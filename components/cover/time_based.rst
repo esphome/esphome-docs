@@ -50,8 +50,7 @@ Configuration variables:
   when the cover has been opening/closing for the given durations.
 - **has_built_in_endstop** (*Optional*, boolean): Indicates that the cover has built in end stop
   detectors. In this configuration the ``stop_action`` is not performed when the open or close
-  time is completed and if the cover is commanded to open or close the corresponding actions
-  will be performed without checking current state. Defaults to ``false``.
+  time is completed. Defaults to ``false``.
 - **manual_control** (*Optional*, boolean): For covers with manual external controls. With this 
   configuration if the cover is commanded to open or close the corresponding actions will be 
   performed even if the current state fully open or fully closed matches desired state, then 
