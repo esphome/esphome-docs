@@ -320,6 +320,8 @@ Configuration variables:
 - **relative_brightness** (**Required**, :ref:`templatable <config-templatable>`, percentage):
   The relative brightness to dim the light by.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition.
+- **min_brightness** (*Optional*, percentage): The minimum brightness to dim the light to.
+- **max_brightness** (*Optional*, percentage): The maximum brightness to dim the light to.
 
 .. note::
 
@@ -340,6 +342,7 @@ Configuration variables:
                         id: light_1
                         relative_brightness: 5%
                         transition_length: 0.1s
+                        max_brightness: 90%
                     - delay: 0.1s
 
 .. _light-addressable_set_action:
