@@ -115,16 +115,30 @@ This platform utilises the library's generic one-size-fits-all API, which might 
 Additional configuration must be specified for this platform:
 
 - **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: 
-  ``aux``, ``ballu``, ``carrier_mca``, ``carrier_nqv``, ``daikin``,
-  ``daikin_arc417``, ``daikin_arc480``, ``electroluxyal``, ``fuego``, ``fujitsu_awyz``,
-  ``gree``, ``greeya``, ``greeyac``, ``greeyan``, ``greeyap``, ``greeyt``,
-  ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``,
-  ``mitsubishi_fd``, ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``,
-  ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``,
-  ``mitsubishi_heavy_kj``, ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``,
-  ``nibe``, ``panasonic_ckp``, ``panasonic_dke``, ``panasonic_jke``, ``panasonic_lke``,
-  ``panasonic_nke``, ``samsung_aqv``, ``samsung_fjm``, ``sharp``, ``toshiba``,
-  ``toshiba_daiseikai``, ``zhlt01``.
+    +-------------------+-------------------+---------------------------+-----------------------+
+    | ``aux``           | ``greeya``        | ``mitsubishi_fd``         | ``panasonic_ckp``     |
+    +-------------------+-------------------+---------------------------+-----------------------+
+    | ``ballu``         | ``greeyac``       | ``mitsubishi_fe``         | ``panasonic_dke``     |
+    +-------------------+-------------------+---------------------------+-----------------------+
+    | ``carrier_mca``   | ``greeyan``       | ``mitsubishi_heavy_fdtc`` | ``panasonic_jke``     |
+    +-------------------+-------------------+---------------------------+-----------------------+
+    | ``carrier_nqv``   | ``greeyap``       | ``mitsubishi_heavy_kj``   | ``panasonic_lke``     |
+    +-------------------+-------------------+---------------------------+-----------------------+
+    | ``daikin``        | ``greeyt``        | ``mitsubishi_heavy_zj``   | ``panasonic_nke``     |
+    +-------------------+-------------------+---------------------------+-----------------------+
+    | ``daikin_arc417`` | ``hisense_aud``   | ``mitsubishi_heavy_zm``   | ``samsung_aqv``       |
+    +-------------------+-------------------+---------------------------+-----------------------+
+    | ``daikin_arc480`` | ``hitachi``       | ``mitsubishi_heavy_zmp``  | ``samsung_fjm``       |
+    +-------------------+-------------------+---------------------------+-----------------------+
+    | ``electroluxyal`` | ``hyundai``       | ``mitsubishi_msc``        | ``sharp``             |
+    +-------------------+-------------------+---------------------------+-----------------------+
+    | ``fuego``         | ``ivt``           | ``mitsubishi_msy``        | ``toshiba``           |
+    +-------------------+-------------------+---------------------------+-----------------------+
+    | ``fujitsu_awyz``  | ``midea``         | ``mitsubishi_sez``        | ``toshiba_daiseikai`` |
+    +-------------------+-------------------+---------------------------+-----------------------+
+    | ``gree``          | ``mitsubishi_fa`` | ``nibe``                  | ``zhlt01``            |
+    +-------------------+-------------------+---------------------------+-----------------------+
+
 - **horizontal_default** (**Required**, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Options are: ``left``, ``mleft``, ``middle``, ``mright``, ``right``, ``auto``.
 - **vertical_default** (**Required**, string): What to default to when the AC unit's vertical direction is *not* set to swing. Options are: ``down``, ``mdown``, ``middle``, ``mup``, ``up``, ``auto``.
 - **max_temperature** (**Required**, float): The maximum temperature that the AC unit supports being set to.
