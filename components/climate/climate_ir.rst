@@ -115,29 +115,37 @@ This platform utilises the library's generic one-size-fits-all API, which might 
 Additional configuration must be specified for this platform:
 
 - **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: 
-    +-------------------+-------------------+---------------------------+-----------------------+
-    | ``aux``           | ``greeya``        | ``mitsubishi_fd``         | ``panasonic_ckp``     |
-    +-------------------+-------------------+---------------------------+-----------------------+
-    | ``ballu``         | ``greeyac``       | ``mitsubishi_fe``         | ``panasonic_dke``     |
-    +-------------------+-------------------+---------------------------+-----------------------+
-    | ``carrier_mca``   | ``greeyan``       | ``mitsubishi_heavy_fdtc`` | ``panasonic_jke``     |
-    +-------------------+-------------------+---------------------------+-----------------------+
-    | ``carrier_nqv``   | ``greeyap``       | ``mitsubishi_heavy_kj``   | ``panasonic_lke``     |
-    +-------------------+-------------------+---------------------------+-----------------------+
-    | ``daikin``        | ``greeyt``        | ``mitsubishi_heavy_zj``   | ``panasonic_nke``     |
-    +-------------------+-------------------+---------------------------+-----------------------+
-    | ``daikin_arc417`` | ``hisense_aud``   | ``mitsubishi_heavy_zm``   | ``samsung_aqv``       |
-    +-------------------+-------------------+---------------------------+-----------------------+
-    | ``daikin_arc480`` | ``hitachi``       | ``mitsubishi_heavy_zmp``  | ``samsung_fjm``       |
-    +-------------------+-------------------+---------------------------+-----------------------+
-    | ``electroluxyal`` | ``hyundai``       | ``mitsubishi_msc``        | ``sharp``             |
-    +-------------------+-------------------+---------------------------+-----------------------+
-    | ``fuego``         | ``ivt``           | ``mitsubishi_msy``        | ``toshiba``           |
-    +-------------------+-------------------+---------------------------+-----------------------+
-    | ``fujitsu_awyz``  | ``midea``         | ``mitsubishi_sez``        | ``toshiba_daiseikai`` |
-    +-------------------+-------------------+---------------------------+-----------------------+
-    | ``gree``          | ``mitsubishi_fa`` | ``nibe``                  | ``zhlt01``            |
-    +-------------------+-------------------+---------------------------+-----------------------+
+    +-------------------+---------------------------+-----------------------+
+    | ``aux``           | ``greeyt``                | ``mitsubishi_msy``    |
+    +-------------------+---------------------------+-----------------------+
+    | ``ballu``         | ``hisense_aud``           | ``mitsubishi_sez``    |
+    +-------------------+---------------------------+-----------------------+
+    | ``carrier_mca``   | ``hitachi``               | ``nibe``              |
+    +-------------------+---------------------------+-----------------------+
+    | ``carrier_nqv``   | ``hyundai``               | ``panasonic_ckp``     |
+    +-------------------+---------------------------+-----------------------+
+    | ``daikin``        | ``ivt``                   | ``panasonic_dke``     |
+    +-------------------+---------------------------+-----------------------+
+    | ``daikin_arc417`` | ``midea``                 | ``panasonic_jke``     |
+    +-------------------+---------------------------+-----------------------+
+    | ``daikin_arc480`` | ``mitsubishi_fa``         | ``panasonic_lke``     |
+    +-------------------+---------------------------+-----------------------+
+    | ``electroluxyal`` | ``mitsubishi_fd``         | ``panasonic_nke``     |
+    +-------------------+---------------------------+-----------------------+
+    | ``fuego``         | ``mitsubishi_fe``         | ``samsung_aqv``       |
+    +-------------------+---------------------------+-----------------------+
+    | ``fujitsu_awyz``  | ``mitsubishi_heavy_fdtc`` | ``samsung_fjm``       |
+    +-------------------+---------------------------+-----------------------+
+    | ``gree``          | ``mitsubishi_heavy_kj``   | ``sharp``             |
+    +-------------------+---------------------------+-----------------------+
+    | ``greeya``        | ``mitsubishi_heavy_zj``   | ``toshiba``           |
+    +-------------------+---------------------------+-----------------------+
+    | ``greeyac``       | ``mitsubishi_heavy_zm``   | ``toshiba_daiseikai`` |
+    +-------------------+---------------------------+-----------------------+
+    | ``greeyan``       | ``mitsubishi_heavy_zmp``  | ``zhlt01``            |
+    +-------------------+---------------------------+-----------------------+
+    | ``greeyap``       | ``mitsubishi_msc``        |                       |
+    +-------------------+---------------------------+-----------------------+
 
 - **horizontal_default** (**Required**, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Options are: ``left``, ``mleft``, ``middle``, ``mright``, ``right``, ``auto``.
 - **vertical_default** (**Required**, string): What to default to when the AC unit's vertical direction is *not* set to swing. Options are: ``down``, ``mdown``, ``middle``, ``mup``, ``up``, ``auto``.
