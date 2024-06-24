@@ -115,12 +115,12 @@ This platform utilises the library's generic one-size-fits-all API, which might 
 Additional configuration must be specified for this platform:
 
 - **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: 
-    ``aux``, ``ballu``, ``carrier_mca``, ``carrier_nqv``, ``daikin``, ``daikin_arc417``, ``daikin_arc480``,
-    ``electroluxyal``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeyaa``, ``greeyac``, ``greeyan``, ``greeyap``,
+    ``aux``, ``ballu``, ``carrier_mca``, ``carrier_nqv``, ``carrier_qlima_1``, ``carrier_qlima_1``, ``daikin``, ``daikin_arc417``, 
+    ``daikin_arc480``, ``electroluxyal``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeyaa``, ``greeyac``, ``greeyan``, ``greeyap``,
     ``greeyt``, ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``, ``mitsubishi_fd``,
     ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``, ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``,
     ``mitsubishi_kj``, ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``, ``nibe``, ``panasonic_ckp``, ``panasonic_dke``,
-    ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``qlima_1``, ``qlima_2``, ``samsung_aqv``, ``samsung_aqv12msan``,
+    ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``samsung_aqv``, ``samsung_aqv12msan``,
     ``samsung_fjm``, ``sharp``, ``toshiba``, ``toshiba_daiseikai``, ``zhjg01``, ``zhlt01``.
 
 
