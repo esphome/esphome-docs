@@ -178,6 +178,18 @@ The following variables are available for use in :ref:`lambdas <config-lambda>`:
                       - response.duration_ms
 
 
+.. code-block:: yaml
+
+    on_...
+      then:
+        - http_request.get:
+            url: https://esphome.io
+            on_response:
+              then:
+                - lambda: |-
+                    ESP_LOGD(TAG, "Response status: %d, Duration: %u ms", response->status_code, response->duration_ms);
+
+
 .. _http_request-examples:
 
 Examples
