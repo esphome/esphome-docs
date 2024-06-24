@@ -20,9 +20,9 @@ expected. This is automatically enabled by this component, but it may be disable
 .. code-block:: yaml
 
     # Example configuration entry
+    safe_mode:
     ota:
       - platform: esphome
-        safe_mode: true
         password: !secret ota_password
 
 Configuration variables:
