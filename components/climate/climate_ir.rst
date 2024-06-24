@@ -116,35 +116,41 @@ Additional configuration must be specified for this platform:
 
 - **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: 
     +-------------------+---------------------------+-----------------------+
-    | ``aux``           | ``greeyt``                | ``mitsubishi_msy``    |
+    | ``airway``        | ``hisense_aud``           | ``panasonic_ckp``     |
     +-------------------+---------------------------+-----------------------+
-    | ``ballu``         | ``hisense_aud``           | ``mitsubishi_sez``    |
+    | ``aux``           | ``hitachi``               | ``panasonic_dke``     |
     +-------------------+---------------------------+-----------------------+
-    | ``carrier_mca``   | ``hitachi``               | ``nibe``              |
+    | ``ballu``         | ``hyundai``               | ``panasonic_jke``     |
     +-------------------+---------------------------+-----------------------+
-    | ``carrier_nqv``   | ``hyundai``               | ``panasonic_ckp``     |
+    | ``bgh_aud``       | ``ivt``                   | ``panasonic_lke``     |
     +-------------------+---------------------------+-----------------------+
-    | ``daikin``        | ``ivt``                   | ``panasonic_dke``     |
+    | ``carrier_mca``   | ``midea``                 | ``panasonic_nke``     |
     +-------------------+---------------------------+-----------------------+
-    | ``daikin_arc417`` | ``midea``                 | ``panasonic_jke``     |
+    | ``carrier_nqv``   | ``mitsubishi_fa``         | ``qlima_1``           |
     +-------------------+---------------------------+-----------------------+
-    | ``daikin_arc480`` | ``mitsubishi_fa``         | ``panasonic_lke``     |
+    | ``daikin``        | ``mitsubishi_fd``         | ``qlima_2``           |
     +-------------------+---------------------------+-----------------------+
-    | ``electroluxyal`` | ``mitsubishi_fd``         | ``panasonic_nke``     |
+    | ``daikin_arc417`` | ``mitsubishi_fe``         | ``samsung_aqv``       |
     +-------------------+---------------------------+-----------------------+
-    | ``fuego``         | ``mitsubishi_fe``         | ``samsung_aqv``       |
+    | ``daikin_arc480`` | ``mitsubishi_heavy_fdtc`` | ``samsung_aqv12msan`` |
     +-------------------+---------------------------+-----------------------+
-    | ``fujitsu_awyz``  | ``mitsubishi_heavy_fdtc`` | ``samsung_fjm``       |
+    | ``electroluxyal`` | ``mitsubishi_heavy_zj``   | ``samsung_fjm``       |
     +-------------------+---------------------------+-----------------------+
-    | ``gree``          | ``mitsubishi_heavy_kj``   | ``sharp``             |
+    | ``fuego``         | ``mitsubishi_heavy_zm``   | ``sharp``             |
     +-------------------+---------------------------+-----------------------+
-    | ``greeya``        | ``mitsubishi_heavy_zj``   | ``toshiba``           |
+    | ``fujitsu_awyz``  | ``mitsubishi_heavy_zmp``  | ``toshiba``           |
     +-------------------+---------------------------+-----------------------+
-    | ``greeyac``       | ``mitsubishi_heavy_zm``   | ``toshiba_daiseikai`` |
+    | ``gree``          | ``mitsubishi_kj``         | ``toshiba_daiseikai`` |
     +-------------------+---------------------------+-----------------------+
-    | ``greeyan``       | ``mitsubishi_heavy_zmp``  | ``zhlt01``            |
+    | ``greeyaa``       | ``mitsubishi_msc``        | ``vaillantvai8``      |
     +-------------------+---------------------------+-----------------------+
-    | ``greeyap``       | ``mitsubishi_msc``        |                       |
+    | ``greeyac``       | ``mitsubishi_msy``        | ``zhjg01``            |
+    +-------------------+---------------------------+-----------------------+
+    | ``greeyan``       | ``mitsubishi_sez``        | ``zhlt01``            |
+    +-------------------+---------------------------+-----------------------+
+    | ``greeyap``       | ``nibe``                  |                       |
+    +-------------------+---------------------------+-----------------------+
+    | ``greeyt``        | ``panasonic_altdke``      |                       |
     +-------------------+---------------------------+-----------------------+
 
 - **horizontal_default** (**Required**, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Options are: ``left``, ``mleft``, ``middle``, ``mright``, ``right``, ``auto``.
