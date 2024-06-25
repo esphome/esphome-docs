@@ -61,7 +61,7 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/automations.html">
+                    <a class="reference" href="/automations/index.html">
                         Automations
                     </a>
                 </li>
@@ -143,6 +143,19 @@ Peripherals which directly support the operation of the microcontroller's proces
     PSRAM, components/psram, psram.svg
     Deep Sleep, components/deep_sleep, hotel.svg, dark-invert
 
+ESPHome Automations
+-------------------
+
+*"When this happens, I want it to do that..."*
+
+Automations are how we customize ESPHome devices to respond/behave exactly how you want them to.
+
+.. imgtable::
+
+    Overview, automations/index, description.svg, dark-invert
+    "Actions, Triggers, Conditions", automations/actions, description.svg, dark-invert
+    Templates, automations/templates, description.svg, dark-invert
+
 ESPHome Components
 ------------------
 
@@ -155,8 +168,11 @@ ESPHome-specific components or components supporting ESPHome device provisioning
     Copy, components/copy, content-copy.svg, dark-invert
     Demo, components/demo, description.svg, dark-invert
     External Components, components/external_components, external_components.svg, dark-invert
+    Globals, components/globals, description.svg, dark-invert
     Improv via BLE, components/esp32_improv, improv.svg, dark-invert
     Improv via Serial, components/improv_serial, improv.svg, dark-invert
+    Interval, components/interval, description.svg, dark-invert
+    Scripts, components/scripts, description.svg, dark-invert
 
 Network Hardware
 ----------------
