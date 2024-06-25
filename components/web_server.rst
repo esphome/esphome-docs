@@ -16,7 +16,6 @@ will take up *a lot* of memory and may decrease stability, especially on ESP8266
 
     Web server version 1
 
-
 .. figure:: /components/images/web_server-v2.png
     :align: center
     :width: 86.0%
@@ -24,6 +23,13 @@ will take up *a lot* of memory and may decrease stability, especially on ESP8266
     Web server version 2
 
 
+.. figure:: /components/images/web_server-v3.png
+    :align: center
+    :width: 86.0%
+
+    Web server version 3
+
+    
 To navigate to the web server in your browser, either use the IP address of the node or
 use ``<node_name>.local/`` (note the trailing forward slash) via mDNS.
 
@@ -136,6 +142,26 @@ V2 embeds the css within the js file so is not required, however you could inclu
 
 Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
 
+.. _config-webserver-sorting:
+
+Entity sorting
+--------------
+
+``web_server`` version 3 supports the sorting of the entitys.
+You can set a ``web_server_sorting_weight`` on each entity.
+Smaller numbers will be displayed first, defaults to 50.
+Example ``sensor`` configuration.
+``My Sensor 2`` is displayed first, then ``My Sensor 1``
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: template
+        name: "My Sensor 1"
+        web_server_sorting_weight: 10
+      - platform: template
+        name: "My Sensor 2"
+        web_server_sorting_weight: -1
 
 See Also
 --------
