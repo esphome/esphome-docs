@@ -1125,6 +1125,7 @@ If you'd like to share configurations for specific devices, please contribute to
     :hidden:
 
     web-api/index
+    automations/index
     components/index
     cookbook/index
     guides/index
