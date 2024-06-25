@@ -18,6 +18,7 @@ if __name__ == "__main__":
 
     with open(file_name) as json_file:
         raw_json = json.load(json_file)
+
     if args.type not in arg_choices:
         print("Unrecognized automation type")
         exit()

@@ -32,8 +32,8 @@ You *could* write an automation to do this task in Home Assistant's automation e
 depend on network connections to perform their jobs -- especially not for something as simple as switching on/off a
 dehumidifier.
 
-With ESPHome's automation engine, you can write create automations using a syntax that is (hopefully) about as easy to
-use as Home Assistant's. For example, this configuration would achieve your desired behavior for the dehumidifier:
+With ESPHome's automation engine, you can define automations using a syntax that is (hopefully) about as easy to use
+as Home Assistant's. For example, this configuration would achieve your desired behavior for the dehumidifier:
 
 .. code-block:: yaml
 
@@ -75,10 +75,11 @@ Triggers
         # ...
         on_press:
 
-We now attach a special attribute ``on_press`` to the toggle button. This part is called a "trigger". In this example,
-the *automation* which follows on the next few lines will execute whenever someone *begins* to press the button. Note
-the terminology follows what you would call these events on mouse buttons. A *press* happens when you begin pressing
-the button. There are also other triggers like ``on_release``, ``on_click`` or ``on_double_click`` available.
+We now attach a special attribute ``on_press`` to the binary sensor (which represents the button). This part is called
+a "trigger". In this example, the *automation* which follows on the next few lines will execute whenever someone
+*begins* to press the button. Note the terminology follows what you would call these events on mouse buttons. A *press*
+happens when you begin pressing the button. There are also other triggers like ``on_release``, ``on_click`` or
+``on_double_click`` available.
 
 .. code-block:: yaml
 
@@ -481,6 +482,8 @@ All Actions
 -----------
 
 *See the respective component's page(s) for more detail.*
+
+See also: :ref:`common-actions`.
 
 .. include:: all_actions.rst
 
