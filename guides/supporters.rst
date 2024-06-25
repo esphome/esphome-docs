@@ -1201,6 +1201,7 @@ Contributors
 - `Stanislav Habich (@standahabich) <https://github.com/standahabich>`__
 - `stegm (@stegm) <https://github.com/stegm>`__
 - `Stephen Papierski (@stephenpapierski) <https://github.com/stephenpapierski>`__
+- `Steve Baxter (@stevebaxter) <https://github.com/stevebaxter>`__
 - `Steven Hack (@steven-hack) <https://github.com/steven-hack>`__
 - `Stewart (@stewiem2000) <https://github.com/stewiem2000>`__
 - `sthorley (@sthorley) <https://github.com/sthorley>`__
