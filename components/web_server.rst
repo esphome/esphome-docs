@@ -140,8 +140,41 @@ V2 embeds the css within the js file so is not required, however you could inclu
       js_url: ""
       version: 2
 
+
 Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
 
+
+.. _config-webserver-version-3-options:
+
+Version 3 features
+---------------------------
+
+Number in slider mode
+*********************
+.. figure:: /components/images/web_server.png
+    :align: center
+    :width: 86.0%
+
+    You can change the value by moving the slider.
+    If you wish to enter a precice number you can click and hold on the current value. A popup input field will appear where you can enter a number and confirm you input by pressing the enter key.
+
+Expand Controls and Logs
+************************
+.. figure:: /components/images/web_server/tab-header-expand-cloapsed.png
+    :align: center
+    :width: 60.0%
+
+    By double clicking on any group header you can expand the controls to use up the whole screen.
+    You can do the same for the logs.
+
+.. figure:: /components/images/web_server/tab-header-expand-controls-expanded.png
+    :align: center
+    :width: 60.0%
+
+.. figure:: /components/images/web_server/tab-header-expand-logs-expanded.png
+    :align: center
+    :width: 60.0%
+    
 .. _config-webserver-sorting:
 
 Entity sorting
