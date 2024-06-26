@@ -112,13 +112,19 @@ You will need to change the configuration by adding a new line as below:
     # Old
     ota:
 
-    ota:
-      password: "xxxx"
-
     # New
     ota:
       platform: esphome
 
+If you have a password set, it may look like the following:
+
+.. code-block:: yaml
+
+    # Old
+    ota:
+      password: "xxxx"
+
+    # New
     ota:
       platform: esphome
       password: "xxxx"
@@ -183,6 +189,29 @@ Release 2024.6.1 - June 20
 - debug_libretiny - Fix typo :esphomepr:`6942` by :ghuser:`Cossid`
 - Bump esphome-dashboard to 20240620.0 :esphomepr:`6944` by :ghuser:`jesserockz`
 
+Release 2024.6.2 - June 25
+--------------------------
+
+- [core] Fix package merging with lists of primitives :esphomepr:`6952` by :ghuser:`jesserockz`
+- [update] Set entity_category to config & Publish state to logs :esphomepr:`6954` by :ghuser:`jesserockz`
+- Fix infinite loop in http_request for ESP-IDF. :esphomepr:`6963` by :ghuser:`kpfleming`
+- ESP-IDF 4.x expects seconds for esp_task_wdt_init(), not milliseconds. :esphomepr:`6964` by :ghuser:`kpfleming`
+- Onewire :esphomepr:`6967` by :ghuser:`ssieb`
+- [http_request] memory leak fix :esphomepr:`6973` by :ghuser:`gabest11`
+- Await cg.get_variable in Update component :esphomepr:`6974` by :ghuser:`bkaufx`
+- [one-wire] fix potential hang :esphomepr:`6976` by :ghuser:`ssieb`
+- [midea] fix fan speed compatibility with some models :esphomepr:`6978` by :ghuser:`dudanov`
+
+Release 2024.6.3 - June 26
+--------------------------
+
+- [safe_mode] Set safe mode core data in disabled cases :esphomepr:`6983` by :ghuser:`jesserockz`
+- [ota-esphome] Validate for multiple esphome ota instances :esphomepr:`6984` by :ghuser:`kbx81`
+- Improve 'body' handling in http_request on_response triggers :esphomepr:`6968` by :ghuser:`kpfleming`
+- [ds1307] Initialize uninitialized struct members :esphomepr:`6985` by :ghuser:`ptr727`
+- Fix float encoding in modbus server :esphomepr:`6986` by :ghuser:`Petapton`
+- [dallas_temp] fix ds18s20 temp calc :esphomepr:`6988` by :ghuser:`ssieb`
+- [modbus-text-sensor] fix potential buffer overflow :esphomepr:`6993` by :ghuser:`dudanov`
 
 Full list of changes
 --------------------
