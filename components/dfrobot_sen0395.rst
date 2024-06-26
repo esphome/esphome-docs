@@ -44,6 +44,18 @@ a :doc:`/components/uart` component (and its requisite GPIO pins) is required in
       - platform: dfrobot_sen0395
         name: Mmwave Active
 
+    sensor:
+      # Distance to the first detected target
+      - platform: dfrobot_sen0395
+        name: Mmwave target 1 distance
+        type: distance
+        target: 1
+      # Signal-to-Noise Ratio for the first detected target
+      - platform: dfrobot_sen0395
+        name: Mmwave target 1 snr
+        type: SNR
+        target: 1
+
 .. _dfrobot_sen0395-component:
 
 Hub Component
@@ -126,6 +138,36 @@ Configuration variables:
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _dfrobot_sen0395-switch:
+
+Sensor
+------
+
+:ref:`Sensor components <config-sensor>` are used to read additional sensor data.
+
+.. code-block:: yaml
+
+    sensor:
+      # Distance to the first detected target
+      - platform: dfrobot_sen0395
+        name: Mmwave target 1 distance
+        type: distance
+        target: 1
+      # Signal-to-Noise Ratio for the first detected target
+      - platform: dfrobot_sen0395
+        name: Mmwave target 1 snr
+        type: SNR
+        target: 1
+
+Configuration variables:
+************************
+
+- **target** (*Required*, int): Set the target number to track, from 1 to 9, both inclusive.
+- **type** (*Required*, string):
+    - ``distance``: Distance to the target in meters.
+    - ``SNR``: `Signal-to-Noise Ratio <https://en.wikipedia.org/wiki/Signal-to-noise_ratio>`__ for the target.
+- **dfrobot_sen0395_id** (*Optional*, :ref:`config-id`): The ID of the DFRobot mmWave component defined above.
+  Required when multiple instances of the ``dfrobot_sen0395`` component are defined.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 Switch
 ------
