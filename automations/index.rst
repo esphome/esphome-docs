@@ -21,7 +21,7 @@ templates, and more--to customize your ESPHome device just how you like it.
 - :doc:`actions`
 - :doc:`templates`
 - :doc:`/components/globals`
-- :doc:`/components/scripts`
+- :doc:`/components/script`
 - :doc:`/components/interval`
 
 .. toctree::
