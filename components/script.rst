@@ -28,7 +28,7 @@ Configuration variables:
     - ``queued``: Start a new run after previous runs complete.
     - ``parallel``: Start a new, independent run in parallel with previous runs.
 
-- **max_runs** (*Optional*, int): Allows limiting the maxiumun number of runs when using script modes ``queued`` and
+- **max_runs** (*Optional*, int): Allows limiting the maximum number of runs when using script modes ``queued`` and
   ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
 - **parameters** (*Optional*, :ref:`Script Parameters <script-parameters>`): A script can define one or more parameters
   that must be provided in order to execute. All parameters defined here are mandatory and must be given when calling
