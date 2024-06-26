@@ -22,7 +22,7 @@ used to store the state of a garage door.
         initial_value: '"Global value is"'
 
    # In an automation
-   on_press:
+   on_...:
      then:
        - lambda: |-
            if (id(my_global_int) > 5) {
