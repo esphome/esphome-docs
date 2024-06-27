@@ -12,6 +12,7 @@ Components
     light/index
     number/index
     datetime/index
+    ota/index
     output/index
     select/index
     sensor/index

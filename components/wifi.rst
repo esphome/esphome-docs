@@ -160,8 +160,8 @@ You can do so with the ``manual_ip:`` option in the WiFi configuration.
 After putting a manual IP in your configuration, the ESP will no longer need to negotiate
 a dynamic IP address with the router, thus improving the time until connection.
 
-Additionally, this can help with :doc:`Over-The-Air updates <ota>` if for example the
-home network doesn't allow for ``.local`` addresses. When a manual IP is in your configuration,
+Additionally, this can help with :doc:`/components/ota/index` if for example the
+network doesn't allow for ``.local`` addresses. When a manual IP is in your configuration,
 the OTA process will automatically choose that as the target for the upload.
 
 .. note::
