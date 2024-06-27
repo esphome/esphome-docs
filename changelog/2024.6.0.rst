@@ -202,6 +202,23 @@ Release 2024.6.2 - June 25
 - [one-wire] fix potential hang :esphomepr:`6976` by :ghuser:`ssieb`
 - [midea] fix fan speed compatibility with some models :esphomepr:`6978` by :ghuser:`dudanov`
 
+Release 2024.6.3 - June 26
+--------------------------
+
+- [safe_mode] Set safe mode core data in disabled cases :esphomepr:`6983` by :ghuser:`jesserockz`
+- [ota-esphome] Validate for multiple esphome ota instances :esphomepr:`6984` by :ghuser:`kbx81`
+- Improve 'body' handling in http_request on_response triggers :esphomepr:`6968` by :ghuser:`kpfleming`
+- [ds1307] Initialize uninitialized struct members :esphomepr:`6985` by :ghuser:`ptr727`
+- Fix float encoding in modbus server :esphomepr:`6986` by :ghuser:`Petapton`
+- [dallas_temp] fix ds18s20 temp calc :esphomepr:`6988` by :ghuser:`ssieb`
+- [modbus-text-sensor] fix potential buffer overflow :esphomepr:`6993` by :ghuser:`dudanov`
+
+Release 2024.6.4 - June 27
+--------------------------
+
+- [ota-esphome] Merge configurations by port :esphomepr:`7001` by :ghuser:`kbx81`
+- Fix LEDC 100% is not 100% duty with ESP32 IDF :esphomepr:`6997` by :ghuser:`Links2004`
+
 Full list of changes
 --------------------
 
