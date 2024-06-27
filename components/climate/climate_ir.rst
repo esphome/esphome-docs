@@ -10,13 +10,13 @@ control signal, just as the unit's handheld remote controller would.
 
 .. figure:: images/climate-ui.png
     :align: center
-    :width: 60.0%
+    :width: 40.0%
 
 There is a growing list of compatible units. If your unit is not listed below you should
 submit a feature request (see FAQ).
 
 +---------------------------------------+---------------------+----------------------+
-| Supported device                      | Platform name       |  Supports receiver   |
+| Supported units                       | Platform name       |  Supports receiver   |
 |                                       |                     |                      |
 +=======================================+=====================+======================+
 | Ballu                                 | ``ballu``           | yes                  |
@@ -37,7 +37,7 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`GREE<gree_ir>`                  | ``gree``            |                      |
 +---------------------------------------+---------------------+----------------------+
-| Hitachi                               | ``hitachi_ac344``   | yes                  |
+| Hitachi                               | ``hitachi_ac344``,  | yes                  |
 |                                       | ``hitachi_ac424``   |                      |
 +---------------------------------------+---------------------+----------------------+
 | :ref:`LG<climate_ir_lg>`              | ``climate_ir_lg``   | yes                  |
@@ -61,6 +61,7 @@ submit a feature request (see FAQ).
 | :ref:`ZH/LT-01<zhlt01>`               | ``zhlt01``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Arduino-HeatpumpIR<heatpumpir>` | ``heatpumpir``      |                      |
+| library                               |                     |                      |
 +---------------------------------------+---------------------+----------------------+
 
 This component requires that you have configured a :doc:`/components/remote_transmitter`.
@@ -361,19 +362,16 @@ Additional configuration must be specified for this platform:
 
 .. note::
 
-    - The ``greeyac`` protocol supports a feature Gree calls "I-Feel". The handheld remote control
-      has a built-in temperature sensor and it will periodically transmit the temperature from this sensor to the
-      AC unit. If a ``sensor`` is provided in the configuration with this model, the sensor's temperature will be
-      transmitted to the ``greeyac`` device in the same manner as the original remote controller. How often the
-      temperature is transmitted is determined by the ``update_interval`` assigned to the ``sensor``. Note that
-      ``update_interval`` must be less than 10 minutes or the ``greeyac`` device will revert to using its own
-      internal temperature sensor; a value of 2 minutes seems to work well. See :doc:`/components/sensor/index`
-      for more information.
+    The ``greeyac`` protocol in ``heatpumpir`` supports a feature Gree calls "I-Feel". The handheld remote control
+    has a built-in temperature sensor and it will periodically transmit the temperature from this sensor to the
+    AC unit. If a ``sensor`` is provided in the configuration with this model, the sensor's temperature will be
+    transmitted to the ``greeyac`` device in the same manner as the original remote controller. How often the
+    temperature is transmitted is determined by the ``update_interval`` assigned to the ``sensor``. Note that
+    ``update_interval`` must be less than 10 minutes or the ``greeyac`` device will revert to using its own
+    internal temperature sensor; a value of 2 minutes seems to work well. See :doc:`/components/sensor/index`
+    for more information.
 
 .. _delonghi_ir:
-
-``delonghi`` Climate
--------------------------
 
 .. note::
 
@@ -383,13 +381,13 @@ Additional configuration must be specified for this platform:
 
 .. note::
 
-    The Daikin ARC (``daikin_arc``, ``daikin_arc417``, ``daikin_arc480``) remotes are used by the japanese model of Daikin.
+    The Daikin ARC remotes (``daikin_arc`` climate, ``daikin_arc417``, ``daikin_arc480`` protocols) are used by the japanese model of Daikin.
 
 .. _zhlt01:
 
 .. note::
 
-    The ``zhlt01`` climate and ``heatpumpir`` protocol, based on the ZH/LT-01 remote controller, is used with many locally branded airconditioners, like: Eurom, Chigo, Tristar, Tecnomaster, Elgin, Geant, Tekno, Topair, Proma, Sumikura, JBS, Turbo Air, Nakatomy, Celestial Air, Ager, Blueway, Airlux, etc.
+    The ``zhlt01`` climate and protocol, based on the ZH/LT-01 remote controller, is used with many locally branded airconditioners, like: Eurom, Chigo, Tristar, Tecnomaster, Elgin, Geant, Tekno, Topair, Proma, Sumikura, JBS, Turbo Air, Nakatomy, Celestial Air, Ager, Blueway, Airlux, etc.
 
 See Also
 --------
