@@ -155,6 +155,7 @@ Number in slider mode
     :align: left
     :width: 100.0%
 
+
 You can change the value by moving the slider.
 If you wish to enter a precise number you can click and hold the current value. A popup input field will appear where you can enter a number and confirm your input by pressing the enter key.
 
@@ -162,11 +163,13 @@ If you wish to enter a precise number you can click and hold the current value. 
     :align: left
     :width: 100.0%
 
+
 Expand Controls and Logs
 ************************
 .. figure:: /components/images/web_server/tab-header-expand-cloapsed.png
     :align: left
     :width: 100.0%
+
 
 By double-clicking on any group header you can expand the controls to fill up the whole screen.
 You can do the same for the logs.
@@ -177,11 +180,13 @@ You can do the same for the logs.
 
     Expanded Controls
 
+
 .. figure:: /components/images/web_server/tab-header-expand-logs-expanded.png
     :align: center
     :width: 100.0%
     
     Expanded Logs
+
 
 Sensor value graph
 ******************
