@@ -148,6 +148,8 @@ Configuration variables:
 
 - **address** (**Required**, int): The address to send the command to, see dumper output for more details.
 - **data** (**Required**, list): The command to send, A length of 2-35 bytes can be specified for one packet.
+- **carrier_frequency** (*Optional*, float): Set a frequency to send the signal
+  with for infrared signals. Defaults to ``38000Hz``.
 
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
 
@@ -886,6 +888,23 @@ Configuration variables:
 
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+.. _remote_transmitter-transmit_mirage:
+
+``remote_transmitter.transmit_mirage`` Action
+*********************************************
+
+This :ref:`action <config-action>` sends a 112-bit Mirage code to a remote transmitter. 8-bits of checksum added automatically.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_mirage:
+          code: [0x56, 0x77, 0x00, 0x00, 0x22, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+
+Configuration variables:
+
+- **code** (**Required**, list): The 14 byte Mirage code to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 Lambda calls
 ************
