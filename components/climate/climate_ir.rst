@@ -16,11 +16,9 @@ There is a growing list of compatible units. If your unit is not listed below yo
 submit a feature request (see FAQ).
 
 +---------------------------------------+---------------------+----------------------+
-| Name                                  | Platform name       |  Supports receiver   |
+| Supported device                      | Platform name       |  Supports receiver   |
 |                                       |                     |                      |
 +=======================================+=====================+======================+
-| :ref:`Arduino-HeatpumpIR<heatpumpir>` | ``heatpumpir``      |                      |
-+---------------------------------------+---------------------+----------------------+
 | Ballu                                 | ``ballu``           | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Coolix                                | ``coolix``          | yes                  |
@@ -44,7 +42,7 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`LG<climate_ir_lg>`              | ``climate_ir_lg``   | yes                  |
 +---------------------------------------+---------------------+----------------------+
-| :ref:`Midea<midea_ir>`                | ``midea_ir``        | yes                  |
+| Midea                                 | ``midea_ir``        | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Mitsubishi<mitsubishi>`         | ``mitsubishi``      | yes                  |
 +---------------------------------------+---------------------+----------------------+
@@ -62,6 +60,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`ZH/LT-01<zhlt01>`               | ``zhlt01``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`Arduino-HeatpumpIR<heatpumpir>` | ``heatpumpir``      |                      |
++---------------------------------------+---------------------+----------------------+
 
 This component requires that you have configured a :doc:`/components/remote_transmitter`.
 
@@ -76,11 +76,11 @@ controller unit.
 
     # Example configuration entry
     remote_transmitter:
-      pin: GPIOXX
+      pin: GPIO32
       carrier_duty_percent: 50%
 
     climate:
-      - platform: coolix       # adjust to match your AC unit!
+      - platform: coolix
         name: "Living Room AC"
 
 Configuration Variables:
@@ -100,47 +100,6 @@ Advanced Options
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **transmitter_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the remote transmitter.
-
-.. _heatpumpir:
-
-Arduino-HeatpumpIR
-------------------
-
-The ``heatpumpir`` platform supports dozens of manufacturers and hundreds of AC units by utilising the `Arduino-HeatpumpIR library <https://github.com/ToniA/arduino-heatpumpir>`__.
-
-This platform should only be used if your AC unit is not supported by any of the other (native) platforms. No support can be provided for Arduino-HeatpumpIR, because it is a third party library.
-
-This platform utilises the library's generic one-size-fits-all API, which might not line up perfectly with all of the supported AC units. For example, some AC units have more fan speed options than what the generic API supports.
-
-Additional configuration must be specified for this platform:
-
-- **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: 
-    ``airway``, ``aux``, ``ballu``, ``bgh_aud``, ``carrier_mca``, ``carrier_nqv``, ``carrier_qlima_1``, ``carrier_qlima_1``, ``daikin``,
-    ``daikin_arc417``, ``daikin_arc480``, ``electroluxyal``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeyaa``, ``greeyac``, ``greeyan``,
-    ``greeyap``, ``greeyt``, ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``, ``mitsubishi_fd``,
-    ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``, ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``, ``mitsubishi_kj``,
-    ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``, ``nibe``, ``panasonic_altdke``, ``panasonic_ckp``, ``panasonic_dke``,
-    ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``r51m``, ``samsung_aqv``, ``samsung_aqv12msan``, ``samsung_fjm``, ``sharp``,
-    ``toshiba``, ``toshiba_daiseikai``, ``vaillantvai8``, ``zhjg01``, ``zhlt01``
-
-- **horizontal_default** (**Required**, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Options are: ``left``, ``mleft``, ``middle``, ``mright``, ``right``, ``auto``.
-- **vertical_default** (**Required**, string): What to default to when the AC unit's vertical direction is *not* set to swing. Options are: ``down``, ``mdown``, ``middle``, ``mup``, ``up``, ``auto``.
-- **max_temperature** (**Required**, float): The maximum temperature that the AC unit supports being set to.
-- **min_temperature** (**Required**, float): The minimum temperature that the AC unit supports being set to.
-- **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient temperature.
-
-.. note::
-
-    - The ``greeyac`` protocol supports a feature Gree calls "I-Feel". The handheld remote control
-      has a built-in temperature sensor and it will periodically transmit the temperature from this sensor to the
-      AC unit. If a ``sensor`` is provided in the configuration with this model, the sensor's temperature will be
-      transmitted to the ``greeyac`` device in the same manner as the original remote controller. How often the
-      temperature is transmitted is determined by the ``update_interval`` assigned to the ``sensor``. Note that
-      ``update_interval`` must be less than 10 minutes or the ``greeyac`` device will revert to using its own
-      internal temperature sensor; a value of 2 minutes seems to work well. See :doc:`/components/sensor/index`
-      for more information.
-
-    - The ``zhlt01`` protocol supports multiple AC brands: Eurom, Chigo, Tristar, Tecnomaster, Elgin, Geant, Tekno, Topair, Proma, Sumikura, JBS, Turbo Air, Nakatomy, Celestial Air, Ager, Blueway, Airlux, etc.
 
 .. _ir-receiver_id:
 
@@ -164,7 +123,7 @@ IR receiver.
     remote_receiver:
       id: rcvr
       pin:
-        number: GPIOXX
+        number: GPIO14
         inverted: true
         mode:
           input: true
@@ -182,10 +141,7 @@ IR receiver.
 ``climate_ir_lg`` Climate
 -------------------------
 
-Additional configuration is available for this platform
-
-
-Configuration variables:
+Additional configuration variables:
 
 - **header_high** (*Optional*, :ref:`config-time`): time for the high part of the header for the LG protocol. Defaults to ``8000us``
 - **header_low** (*Optional*, :ref:`config-time`): time for the low part of the header for the LG protocol. Defaults to ``4000us``
@@ -203,21 +159,6 @@ Configuration variables:
         header_high: 3265us # AC Units from LG in Brazil, for example use these timings
         header_low: 9856us
 
-.. _daikin_arc:
-
-``daikin_arc`` Climate
--------------------------
-
-The Daikin ARC remotes are used by the japanese model of Daikin.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    climate:
-      - platform: daikin_arc
-        name: "AC"
-        sensor: room_temperature
-
 .. _daikin_brc:
 
 ``daikin_brc`` Climate
@@ -225,8 +166,7 @@ The Daikin ARC remotes are used by the japanese model of Daikin.
 
 The Daikin BRC remotes are used by the ceiling cassette model of Daikin heatpumps.
 
-
-Configuration variables:
+Additional configuration variables:
 
 - **use_fahrenheit** (*Optional*, boolean): U.S. models of the Daikin BRC remote send the temperature in Fahrenheit, if your remote shows Fahrenheit and can not be changed to Celsius then set this to true. Defaults to ``false``.
 
@@ -239,17 +179,28 @@ Configuration variables:
         sensor: room_temperature
         use_fahrenheit: true
 
+.. _gree_ir:
 
-.. _delonghi_ir:
+``gree`` Climate
+---------------------
 
-``delonghi`` Climate
--------------------------
+Additional configuration variables:
 
-Currently supports the protocol used by some Delonghi portable units
+- **model** (*Required*, string): GREE has a few different protocols depending on model. One of these will work for you.
 
-Known working with:
+  - ``generic``
+  - ``yan``
+  - ``yaa``
+  - ``yac``
 
-- Delonghi PAC WE 120HP
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: gree
+        name: "AC"
+        sensor: room_temperature
+        model: yan
 
 .. _midea_ir:
 
@@ -258,10 +209,7 @@ Known working with:
 
 These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.
 
-Additional configuration is available for this platform
-
-
-Configuration variables:
+Additional configuration variables:
 
 - **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
 
@@ -284,14 +232,12 @@ Configuration variables:
 ``mitsubishi`` Climate
 ------------------------
 
-Additonal configurations available for this platform.
-
-Configuration variables:
+Additional configuration variables:
 
 - **set_fan_mode** (*Optional*, string): Select the fan modes desired or that are supported on your remote. Defaults to ``3levels``
 
-  - Options are: ``3levels`` , ``4levels``, ``quiet_4levels``.
-
+  - Options are: ``3levels`` , ``4levels``, ``quiet_4levels``. 
+  
     - ``3levels``; Low [fan speed 1], Medium [2], High [3]
     - ``4levels``; Low [1], Middle [2], Medium [3], High [4]
     - ``quiet_4levels``; Low [1], Middle [2], Medium [3], High [4], Quiet [5]
@@ -299,10 +245,10 @@ Configuration variables:
 - **supports_dry** (*Optional*, boolean): Enables setting dry mode for this unit. Defaults to ``false``.
 - **supports_fan_only** (*Optional*, boolean): Enables setting fan only mode for this unit. Confirm that mode is supported on your remote. Defaults to ``false``.
 
-- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to ``middle``.
+- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to ``middle``. 
 
   - Options are: ``left``, ``middle-left``, ``middle``, ``middle-right``, ``right``, ``auto``
-- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Defaults to ``middle``.
+- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Defaults to ``middle``. 
 
   - Options are: ``down``, ``middle-down``, ``middle``, ``middle-up``, ``up``, ``auto``
 
@@ -327,10 +273,7 @@ Configuration variables:
 ``toshiba`` Climate
 -------------------
 
-Additional configuration is available for this model.
-
-
-Configuration variables:
+Additional configuration variables:
 
 - **model** (*Optional*, string): There are two valid models
 
@@ -363,12 +306,9 @@ Configuration variables:
 ``whirlpool`` Climate
 ---------------------
 
-Additional configuration is available for this model.
+Additional configuration variables:
 
-
-Configuration variables:
-
-- **model** (*Optional*, string): There are two valid models
+- **model** (*Optional*, string): There are two valid models to choose from:
 
   - ``DG11J1-3A``: Temperature range is from 18 to 32 (default)
   - ``DG11J1-91``: Temperature range is from 16 to 30
@@ -378,10 +318,7 @@ Configuration variables:
 ``whynter`` Climate
 -------------------------
 
-Additional configuration is available for this platform
-
-
-Configuration variables:
+Additional configuration variables:
 
 - **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
 
@@ -395,63 +332,64 @@ Configuration variables:
         use_fahrenheit: true
         supports_heat: true
 
+.. _heatpumpir:
 
-.. _gree_ir:
+Arduino-HeatpumpIR
+------------------
 
+The ``heatpumpir`` platform supports dozens of manufacturers and hundreds of AC units by utilising the `Arduino-HeatpumpIR library <https://github.com/ToniA/arduino-heatpumpir>`__.
 
-``gree`` Climate
----------------------
+This platform compiles only under ``arduino`` framework and should only be used if your AC unit is not supported by any of the other (native) platforms from above. No support can be provided for Arduino-HeatpumpIR, because it is a third party library. 
 
-Additional configuration is available for this model.
+This platform utilises the library's generic one-size-fits-all API, which might not line up perfectly with all of the supported AC units. For example, some AC units have more fan speed options than what the generic API supports.
 
+Additional configuration must be specified for this platform:
 
-Configuration variables:
+- **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: 
+    ``airway``, ``aux``, ``ballu``, ``bgh_aud``, ``carrier_mca``, ``carrier_nqv``, ``carrier_qlima_1``, ``carrier_qlima_1``, ``daikin``,
+    ``daikin_arc417``, ``daikin_arc480``, ``electroluxyal``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeyaa``, ``greeyac``, ``greeyan``,
+    ``greeyap``, ``greeyt``, ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``, ``mitsubishi_fd``,
+    ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``, ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``, ``mitsubishi_kj``,
+    ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``, ``nibe``, ``panasonic_altdke``, ``panasonic_ckp``, ``panasonic_dke``,
+    ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``r51m``, ``samsung_aqv``, ``samsung_aqv12msan``, ``samsung_fjm``, ``sharp``,
+    ``toshiba``, ``toshiba_daiseikai``, ``vaillantvai8``, ``zhjg01``, ``zhlt01``
+- **horizontal_default** (**Required**, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Options are: ``left``, ``mleft``, ``middle``, ``mright``, ``right``, ``auto``
+- **vertical_default** (**Required**, string): What to default to when the AC unit's vertical direction is *not* set to swing. Options are: ``down``, ``mdown``, ``middle``, ``mup``, ``up``, ``auto``
+- **max_temperature** (**Required**, float): The maximum temperature that the AC unit supports being set to.
+- **min_temperature** (**Required**, float): The minimum temperature that the AC unit supports being set to.
+- **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient temperature.
 
-- **model** (*Required*, string): GREE has a few different protocols depending on model. One of these will work for you.
+.. note::
 
-  - ``generic``
-  - ``yan``
-  - ``yaa``
-  - ``yac``
+    - The ``greeyac`` protocol supports a feature Gree calls "I-Feel". The handheld remote control
+      has a built-in temperature sensor and it will periodically transmit the temperature from this sensor to the
+      AC unit. If a ``sensor`` is provided in the configuration with this model, the sensor's temperature will be
+      transmitted to the ``greeyac`` device in the same manner as the original remote controller. How often the
+      temperature is transmitted is determined by the ``update_interval`` assigned to the ``sensor``. Note that
+      ``update_interval`` must be less than 10 minutes or the ``greeyac`` device will revert to using its own
+      internal temperature sensor; a value of 2 minutes seems to work well. See :doc:`/components/sensor/index`
+      for more information.
 
+.. _delonghi_ir:
 
-.. code-block:: yaml
+``delonghi`` Climate
+-------------------------
 
-    # Example configuration entry
-    climate:
-      - platform: gree
-        name: "AC"
-        sensor: room_temperature
-        model: yan
+.. note::
+
+    The ``delonghi`` climate currently supports the protocol used by some Delonghi portable units, known working with Delonghi PAC WE 120HP.
+
+.. _daikin_arc:
+
+.. note::
+
+    The Daikin ARC (``daikin_arc``, ``daikin_arc417``, ``daikin_arc480``) remotes are used by the japanese model of Daikin.
 
 .. _zhlt01:
 
+.. note::
 
-``zhlt01`` Climate
----------------------
-
-ZH/LT-01 is a remote control that is used with many locally branded split airconditioners.
-Supported brands include:
-
-- Eurom
-- Chigo
-- Tristar
-- Tecnomaster
-- Elgin
-- Geant
-- Tekno
-- Topair
-- Proma
-- Sumikura
-- JBS
-- Turbo Air
-- Nakatomy
-- Celestial Air
-- Ager
-- Blueway
-- Airlux
-
-No additional configuration is required for this model.
+    The ``zhlt01`` climate and ``heatpumpir`` protocol, based on the ZH/LT-01 remote controller, is used with many locally branded airconditioners, like: Eurom, Chigo, Tristar, Tecnomaster, Elgin, Geant, Tekno, Topair, Proma, Sumikura, JBS, Turbo Air, Nakatomy, Celestial Air, Ager, Blueway, Airlux, etc.
 
 See Also
 --------
