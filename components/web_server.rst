@@ -184,7 +184,7 @@ You can do the same for the logs.
 .. figure:: /components/images/web_server/tab-header-expand-logs-expanded.png
     :align: center
     :width: 100.0%
-    
+
     Expanded Logs
 
 
