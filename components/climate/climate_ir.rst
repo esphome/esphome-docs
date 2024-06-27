@@ -68,6 +68,7 @@ This component requires that you have configured a :doc:`/components/remote_tran
 
 Due to the unidirectional nature of IR remote controllers, this component cannot determine the
 actual state of the device and will assume the state of the device is the latest state requested.
+The assumed state is being restored at boot (if you set ``esp8266_restore_from_flash: true``).
 
 However, when receiver is supported, you can optionally add a :doc:`/components/remote_receiver`
 component so the climate state will be tracked when it is operated with the original remote
