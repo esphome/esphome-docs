@@ -151,30 +151,46 @@ Version 3 features
 
 Number in slider mode
 *********************
-.. figure:: /components/images/web_server.png
-    :align: center
-    :width: 86.0%
+.. figure:: /components/images/web_server/number-slider-popup.png
+    :align: left
+    :width: 100.0%
 
-    You can change the value by moving the slider.
-    If you wish to enter a precice number you can click and hold on the current value. A popup input field will appear where you can enter a number and confirm you input by pressing the enter key.
+You can change the value by moving the slider.
+If you wish to enter a precise number you can click and hold the current value. A popup input field will appear where you can enter a number and confirm your input by pressing the enter key.
+
+.. figure:: /components/images/web_server/number-slider-popup-input-field.png
+    :align: left
+    :width: 100.0%
 
 Expand Controls and Logs
 ************************
 .. figure:: /components/images/web_server/tab-header-expand-cloapsed.png
-    :align: center
-    :width: 60.0%
+    :align: left
+    :width: 100.0%
 
-    By double clicking on any group header you can expand the controls to use up the whole screen.
-    You can do the same for the logs.
+By double-clicking on any group header you can expand the controls to fill up the whole screen.
+You can do the same for the logs.
 
 .. figure:: /components/images/web_server/tab-header-expand-controls-expanded.png
     :align: center
-    :width: 60.0%
+    :width: 100.0%
+
+    Expanded Controls
 
 .. figure:: /components/images/web_server/tab-header-expand-logs-expanded.png
     :align: center
-    :width: 60.0%
+    :width: 100.0%
     
+    Expanded Logs
+
+Sensor value graph
+******************
+.. figure:: /components/images/web_server/sensor-history-graph.png
+    :align: left
+    :width: 100.0%
+
+By clicking on any sensor it will expand a graph with the historical values for that sensor.
+
 .. _config-webserver-sorting:
 
 Entity sorting
