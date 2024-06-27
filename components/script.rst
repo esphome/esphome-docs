@@ -1,4 +1,4 @@
-.. _scripts:
+.. _script:
 
 ``script`` Component
 --------------------
