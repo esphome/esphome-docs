@@ -67,7 +67,7 @@ Configuration variables:
 .. _esp32_ble_server-characteristic:
 
 Characteristic Configuration
----------------------------
+----------------------------
 
 Characteristics expose data and control for a BLE service. Characteristics can have multiple descriptors to provide additional information about the characteristic. Each characteristic can have multiple descriptors.
 
@@ -143,7 +143,7 @@ With this configuration option you can write complex automations that are trigge
 
 
 ``ble_server.characteristic_set_value`` Action
----------------------------------------------
+----------------------------------------------
 
 This action sets the value of a characteristic.
 
