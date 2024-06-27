@@ -302,6 +302,7 @@ Contributors
 - `Paweł Dembicki (@CHKDSK88) <https://github.com/CHKDSK88>`__
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__
 - `Chris (@chrismaki) <https://github.com/chrismaki>`__
+- `Christiaan de Ridder (@christiaanderidder) <https://github.com/christiaanderidder>`__
 - `Christoph Wagner (@Christoph-Wagner) <https://github.com/Christoph-Wagner>`__
 - `Christian Taedcke (@chrta) <https://github.com/chrta>`__
 - `ChuckMash (@ChuckMash) <https://github.com/ChuckMash>`__
@@ -1358,6 +1359,7 @@ Contributors
 - `per1234 (@per1234) <https://github.com/per1234>`__
 - `perjury (@perjury) <https://github.com/perjury>`__
 - `David (@perldj) <https://github.com/perldj>`__
+- `Petapton (@Petapton) <https://github.com/Petapton>`__
 - `Peter Valkov (@peter-valkov) <https://github.com/peter-valkov>`__
 - `Peter Foreman (@peterforeman) <https://github.com/peterforeman>`__
 - `Peter Galantha (@peterg79) <https://github.com/peterg79>`__
@@ -1888,4 +1890,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated June 25, 2024.*
+*This page was last updated June 27, 2024.*
