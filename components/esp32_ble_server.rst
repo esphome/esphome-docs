@@ -118,6 +118,7 @@ Descriptors are optional and are used to provide additional information about a 
 Configuration variables:
 
 - **uuid** (*Required*, string, int): The UUID of the descriptor. If it is a string, it should be in the format ``xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx``.
+- **max_length** (*Optional*, int): The maximum length of the descriptor. Defaults to 0, which means the maximum length is calculated based on the initial value.
 - **value** (*Optional*, string, int, float, boolean, list of bytes, :ref:`templatable <config-templatable>`): The value of the descriptor. Defaults to an empty string.
 
 .. _esp32_ble_server-characteristic-on_write:
