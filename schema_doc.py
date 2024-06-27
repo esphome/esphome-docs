@@ -89,7 +89,7 @@ PLATFORMS_TITLES = {
 }
 
 CUSTOM_DOCS = {
-    "guides/automations": {
+    "components/globals": {
         "Global Variables": "globals.schemas.CONFIG_SCHEMA",
     },
     "guides/configuration-types": {
