@@ -28,6 +28,10 @@ instructions for setting up this platform.
       - platform: ble_rssi
         mac_address: AC:37:43:77:5F:4C
         name: "BLE Google Home Mini RSSI value"
+      # RSSI based on Identity Resolving Key (IRK)
+      - platform: ble_rssi
+        irk: 1234567890abcdef1234567890abcdef
+        name: "BLE Tracker iPhone"
       # RSSI based on Service UUID
       - platform: ble_rssi
         service_uuid: '11aa'
@@ -47,13 +51,17 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the sensor.
 - **mac_address** (*Optional*, MAC Address): The MAC address to track for this
-  sensor. Note that exactly one of ``mac_address``, ``service_uuid`` or ``ibeacon_uuid`` must be present.
+  sensor. Note that exactly one of ``mac_address``, ``irk``, ``service_uuid`` or ``ibeacon_uuid``
+  must be present.
+- **irk** (*Optional*, 16 byte hex string): The Identity Resolving Key (IRK) to track for this
+  sensor. Note that exactly one of ``mac_address``, ``irk``, ``service_uuid`` or ``ibeacon_uuid``
+  must be present.
 - **service_uuid** (*Optional*, 16 bit, 32 bit, or 128 bit BLE Service UUID): The BLE
   Service UUID which can be tracked if the device randomizes the MAC address. Note that exactly one of
-  ``mac_address``, ``service_uuid`` or ``ibeacon_uuid`` must be present.
+  ``mac_address``, ``irk``, ``service_uuid`` or ``ibeacon_uuid`` must be present.
 - **ibeacon_uuid** (*Optional*, string): The `universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`__
   to identify the beacon that needs to be tracked. Note that exactly one of ``mac_address``,
-  ``service_uuid`` or ``ibeacon_uuid`` must be present.
+  ``irk``, ``service_uuid`` or ``ibeacon_uuid`` must be present.
 - **ibeacon_major** (*Optional*, int): The iBeacon major identifier of the beacon that needs
   to be tracked. Usually used to group beacons, for example for grouping all beacons in the
   same building.

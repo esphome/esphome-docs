@@ -21,6 +21,7 @@ With this display driver you can control the following displays:
   - M5STACK
   - S3BOX
   - S3BOX_LITE
+  - ST7735
   - ST7796
   - ST7789V
   - TFT 2.4
@@ -40,7 +41,10 @@ ILI9341 (`datasheet <https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf>`__,
 displays from the same chip family with ESPHome. As this is a somewhat higher resolution display and requires additional pins
 beyond the basic SPI connections, and a reasonable amount of RAM, it is not well suited for the ESP8266.
 
-**Note:** use of 16 bit colors requires double the amount of RAM as 8 bit, and may need PSRAM to be available.
+.. note::
+
+    Use of 16 bit colors requires double the amount of RAM as 8 bit, and may need PSRAM to be available.
+
 
 .. figure:: images/ili9341-full.jpg
     :align: center
@@ -69,8 +73,9 @@ Configuration variables:
   - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R``, ``S3BOX``, ``S3BOX_LITE``, ``WSPICOLCD``
   - ``ILI9341``, ``ILI9342``, ``ILI9486``, ``ILI9488``, ``ILI9488_A`` (alternative gamma configuration for ILI9488)
   - ``ILI9481``, ``ILI9481-18`` (18 bit mode)
-  - ``ST7789V``, ``ST7796``
-  - ``GC9A01A``
+  - ``ST7789V``, ``ST7796``, ``ST7735``
+  - ``GC9A01A``, ``CUSTOM``
+
 
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
@@ -96,8 +101,8 @@ Configuration variables:
     - **offset_width** (*Optional*, int): Specify an offset for the x-direction of the display, typically used when an LCD is smaller than the maximum supported by the driver chip. Default is 0
     - **offset_height** (*Optional*, int): Specify an offset for the y-direction of the display. Default is 0.
 
-- **invert_colors** (*Optional*): With this boolean option you can invert the display colors. **Note** some of the displays have this option set automatically to true and can't be changed.
-- **18bit_mode** (*Optional*): With this boolean option you can manual enable or disable the 18 bit color mode.
+- **invert_colors** (*Optional*): With this boolean option you can invert the display colors.
+- **pixel_mode** (*Optional*): Allows forcing the display into 18 or 16 bit mode. Options are ``18bit`` or ``16bit``. If unspecified, the pixel mode will be determined by the model choice. Not all displays will work in both modes.
 - **rotation** (*Optional*): Rotate the display presentation in software. Choose one of ``0°``, ``90°``, ``180°``, or ``270°``. This option cannot be used with ``transform``.
 - **transform** (*Optional*): Transform the display presentation using hardware. All defaults are ``false``. This option cannot be used with ``rotation``.
 
@@ -105,18 +110,45 @@ Configuration variables:
    - **mirror_x** (*Optional*, boolean): If true, mirror the x axis.
    - **mirror_y** (*Optional*, boolean): If true, mirror the y axis.
 
-**Note:** The ``rotation`` variable will do a software based rotation. It is better to use the **transform** to rotate the display in hardware. Use one of the following combinations:
+.. note::
+
+    The ``rotation`` variable will do a software based rotation.
+    It is better to use the ``transform`` option to rotate the display in hardware. Use one of the following combinations:
     - 90 degrees - use ``swap_xy`` with ``mirror_x``
     - 180 degrees - use ``mirror_x`` with ``mirror_y``
     - 270 degrees - use ``swap_xy`` with ``mirror_y``
 
-With 90 and 270 rotations you will also need to swap the **dimensions** ''height'' and ''width'' (see example below.
+    With 90 and 270 rotations you will also need to swap the ``height`` and ``width`` in ``dimensions`` (see example below.
+
+
+
+- **init_sequence** (*Optional*): Allows custom initialisation sequences to be added. See below for more information.
 
 
 To modify the SPI setting see :ref:`SPI bus <spi>` . The default **data_rate** is set to ``40MHz`` and the **spi_mode** mode is ``MODE0`` but some displays require ``MODE3`` (*).
 
 **Note:** The maximum achievable data rate will depend on the chip type (e.g. ESP32 vs ESP32-S3) the pins used (on ESP32 using the default SPI pins allows higher rates) and the connection type (on-board connections will support higher rates than long cables or DuPont wires.) If in doubt, start with a low speed and test higher rates to find what works. A MISO pin should preferably not be specified, as this will limit the maximum rate in some circumstances, and is not required if the SPI bus is used only for the display.
 
+Additional inititialisation sequences
+*************************************
+
+The ``init_sequence`` option allows additional configuration of the driver chip. Provided commands will be sent to the
+driver chip in addition to, and after the chosen model's pre-defined commands. It requires a list of byte sequences:
+
+.. code-block:: yaml
+
+    init_sequence:
+      - [ 0xD0, 0x07, 0x42, 0x18]
+      - [ 0xD1, 0x00, 0x07, 0x10]
+
+
+
+Each entry represents a single-byte command followed by zero or more data bytes.
+
+CUSTOM model
+************
+
+The ``CUSTOM`` model selection is provided for otherwise unsupported displays, and requires both ``dimensions:`` and ``init_sequence:`` to be specfied. There is no pre-defined init sequence.
 
 Configuration examples
 **********************
