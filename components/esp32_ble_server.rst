@@ -92,7 +92,7 @@ Configuration variables:
 - **id** (*Optional*, string): An ID to refer to this characteristic in automations.
 - **uuid** (*Required*, string, int): The UUID of the characteristic. If it is a string, it should be in the format ``xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx``.
 - **properties** (*Required*, list of string): The properties of the characteristic. Can be ``read``, ``write``, ``notify``, ``broadcast``, ``indicate``, ``write_nr``.
-- **value** (*Optional*, string, int, float, boolean, list of bytes, :ref:`templatable <config-templatable>`): The initial value of the characteristic. Defaults to an empty string.
+- **value** (*Optional*, string, int, float, boolean, list of bytes): The initial value of the characteristic. Defaults to an empty string.
 - **descriptors** (*Optional*, list of :ref:`esp32_ble_server-descriptor`): A list of descriptors to expose in this characteristic.
 - **on_write** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the characteristic is written to. The characteristic must have the ``write`` property. See :ref:`esp32_ble_server-characteristic-on_write`.
 
@@ -119,7 +119,7 @@ Configuration variables:
 
 - **uuid** (*Required*, string, int): The UUID of the descriptor. If it is a string, it should be in the format ``xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx``.
 - **max_length** (*Optional*, int): The maximum length of the descriptor. Defaults to 0, which means the maximum length is calculated based on the initial value.
-- **value** (*Optional*, string, int, float, boolean, list of bytes, :ref:`templatable <config-templatable>`): The value of the descriptor. Defaults to an empty string.
+- **value** (*Optional*, string, int, float, boolean, list of bytes): The value of the descriptor. Defaults to an empty string.
 
 .. _esp32_ble_server-characteristic-on_write:
 
@@ -160,7 +160,7 @@ This action sets the value of a characteristic.
 Configuration variables:
 
 - **id** (*Required*, string): The ID of the characteristic to set the value of.
-- **value** (*Required*, string, int, float, boolean, list of bytes, :ref:`templatable <config-templatable>`): The value to set the characteristic to.
+- **value** (*Required*, string, :ref:`templatable <config-templatable>`): The value to set the characteristic to.
 
 
 See Also
