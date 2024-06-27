@@ -97,7 +97,7 @@ Configuration options:
 See Also
 --------
 
-- :doc:`/guides/automations`
+- :doc:`/automations/index`
 - :doc:`/components/switch/index`
 - :doc:`/components/binary_sensor/index`
 - :apiref:`template/switch/template_switch.h`
