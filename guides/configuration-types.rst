@@ -554,8 +554,8 @@ For example to set a specific update interval on a common uptime sensor that is 
       common: !include common.yaml
 
     sensor:
-    - id: !extend uptime_sensor
-      update_interval: 10s
+      - id: !extend uptime_sensor
+        update_interval: 10s
 
 Remove
 ------
