@@ -71,6 +71,15 @@ all non-alphanumeric characters, making everything lowercase and replacing all s
 To confirm the ``<id>`` to use, you can set the :ref:`log level <logger-log_levels>`
 to ``VERY_VERBOSE`` and check the ``object_id:`` in the logs.
 
+Component State Overview
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can obtain an overview of the current state of all components available on the device by sending a GET request to ``/states``. The result will be a JSON array of all configured component entities with the elements being individual state objects like shown below.
+
+**Note:** On devices with an exceptional high number of configured components, this list can become rather long and potentially eat up all of the devices memory.
+
+Individual Component State
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 By creating a simple GET request for a URL of the form ``/<domain>/<id>`` you will get a JSON payload
 describing the current state of the component. This payload is equivalent to the ones sent by the
