@@ -12,7 +12,7 @@ This platform allows you to manage the deployment of updates to your ESPHome dev
 To use it, the following components are required in your device's configuration:
 
 - :doc:`/components/http_request`
-- :doc:`/components/ota_http_request`
+- :doc:`/components/ota/http_request`
 
 .. code-block:: yaml
 
@@ -28,7 +28,8 @@ Configuration variables:
 ------------------------
 
 - **source** (**Required**, string): The URL of the YAML manifest file containing the firmware metadata.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval at which to check for updates. Defaults to 6 hours.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval at which to check for (**not install**) updates.
+  Defaults to 6 hours.
 - All other options from :ref:`Update <config-update>`.
 
 .. _update_http_request-manifest_format:
@@ -71,7 +72,7 @@ See Also
 --------
 
 - :doc:`http_request`
-- :doc:`/components/ota_http_request`
-- :doc:`/components/ota`
+- :doc:`/components/ota/http_request`
+- :doc:`/components/ota/index`
 - :apiref:`update/update_entity.h`
 - :ghedit:`Edit`
