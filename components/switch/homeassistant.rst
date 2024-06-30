@@ -1,5 +1,5 @@
 Home Assistant Switch
-====================
+=====================
 
 .. seo::
     :description: Instructions for setting up Home Assistant Switch with ESPHome that import states and allows control via your Home Assistant instance.
