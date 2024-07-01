@@ -10,11 +10,11 @@ with Home Assistant. Min, Max and Step are not configurable for this platform be
 
 .. code-block:: yaml
 
-        # Example configuration entry
-        number:
-            - platform: homeassistant
-                name: "Home Assistant number"
-                entity_id: light.my_light
+    # Example configuration entry
+    number:
+        - platform: homeassistant
+            name: "Home Assistant number"
+            entity_id: light.my_light
 
 Configuration variables:
 ------------------------
