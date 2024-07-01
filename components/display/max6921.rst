@@ -15,38 +15,38 @@ As the chip refresh is very time-critical, the ESP8266 is not supported (the ref
 
 .. code-block:: yaml
 
-# Example configuration entry for IV18 VFD tube
-spi:
-  clk_pin: GPIO18
-  mosi_pin: GPIO23
-
-display:
-  - platform: max6921
-    id: iv18
-    load_pin: GPIO5
-    blank_pin: GPIO17
-    out_pin_mapping:
-        seg_to_out_map:
-            seg_a_pin: 0
-            seg_b_pin: 2
-            seg_c_pin: 5
-            seg_d_pin: 6
-            seg_e_pin: 4
-            seg_f_pin: 1
-            seg_g_pin: 3
-            seg_p_pin: 7
-        pos_to_out_map:
-            # IV18 positions starts at the right side!
-            pos_0_pin: 15
-            pos_1_pin: 14
-            pos_2_pin: 13
-            pos_3_pin: 16
-            pos_4_pin: 12
-            pos_5_pin: 17
-            pos_6_pin: 11
-            pos_7_pin: 18
-    lambda: |-
-      it.print("01234567");
+    # Example configuration entry for IV18 VFD tube
+    spi:
+      clk_pin: GPIO18
+      mosi_pin: GPIO23
+    
+    display:
+      - platform: max6921
+        id: iv18
+        load_pin: GPIO5
+        blank_pin: GPIO17
+        out_pin_mapping:
+            seg_to_out_map:
+                seg_a_pin: 0
+                seg_b_pin: 2
+                seg_c_pin: 5
+                seg_d_pin: 6
+                seg_e_pin: 4
+                seg_f_pin: 1
+                seg_g_pin: 3
+                seg_p_pin: 7
+            pos_to_out_map:
+                # IV18 positions starts at the right side!
+                pos_0_pin: 15
+                pos_1_pin: 14
+                pos_2_pin: 13
+                pos_3_pin: 16
+                pos_4_pin: 12
+                pos_5_pin: 17
+                pos_6_pin: 11
+                pos_7_pin: 18
+        lambda: |-
+          it.print("01234567");
 
 Configuration variables:
 ------------------------
