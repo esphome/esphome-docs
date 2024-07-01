@@ -1,43 +1,52 @@
-MAX7219 7-Segment Display
-=========================
+MAX6921 vacuum-fluorescent display (VFD) tube driver
+====================================================
 
 .. seo::
-    :description: Instructions for setting up MAX7219 7-segment displays.
-    :image: max7219.jpg
+    :description: Instructions for setting up MAX6921 vacuum-fluorescent display (VFD) tube driver.
 
-The ``max7219`` display platform allows you to use MAX7219 7-segment display drivers (
-`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf>`__,
-`hobbycomponents <https://hobbycomponents.com/displays/597-max7219-8-digit-seven-segment-display-module>`__)
-with ESPHome. Please note that this component is *only* for 7-segment display, not matrix configurations.
+The ``max6921`` display platform allows you to use MAX6921 VFD display drivers (
+`datasheet <https://www.analog.com/media/en/technical-documentation/data-sheets/MAX6921-MAX6931.pdf>`)
+with ESPHome. An example use case would be to drive an IV18 display tube (`Thingiverse IV18 project` <https://www.thingiverse.com/thing:3417955>).
 
-.. figure:: images/max7219-full.jpg
-    :align: center
-    :width: 75.0%
+As the communication with the MAX6921 is done using SPI for this component, you need
+to have an :ref:`SPI bus <spi>` in your configuration with **clk_pin** and **mosi_pin** set (miso_pin is not required).
 
-    MAX7219 7-Segment Display.
-
-As the communication with the MAX7219 is done using SPI for this component, you need
-to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** set (miso_pin is not required).
-Connect VCC to 3.3V (the manufacturer recommends 4+ V, but 3.3V seems to work fine), DIN to your ``mosi_pin`` and
-CS to your set ``cs_pin`` and finally GND to GND.
-
-You can even daisy-chain multiple MAX7219s by connecting the DOUT of the previous chip in the chain to the
-next DIN. With more than ~3 chips the 3.3V will probably not be enough, so then you will have to potentially
-use a logic level converted.
+As the chip refresh is very time-critical, the ESP8266 is not supported (the refresh routine runs on the 2nd core)!
 
 .. code-block:: yaml
 
-    # Example configuration entry
-    spi:
-      clk_pin: D0
-      mosi_pin: D1
+# Example configuration entry for IV18 VFD tube
+spi:
+  clk_pin: GPIO18
+  mosi_pin: GPIO23
 
-    display:
-      - platform: max7219
-        cs_pin: D2
-        num_chips: 1
-        lambda: |-
-          it.print("01234567");
+display:
+  - platform: max6921
+    id: iv18
+    load_pin: GPIO5
+    blank_pin: GPIO17
+    out_pin_mapping:
+        seg_to_out_map:
+            seg_a_pin: 0
+            seg_b_pin: 2
+            seg_c_pin: 5
+            seg_d_pin: 6
+            seg_e_pin: 4
+            seg_f_pin: 1
+            seg_g_pin: 3
+            seg_p_pin: 7
+        pos_to_out_map:
+            # IV18 positions starts at the right side!
+            pos_0_pin: 15
+            pos_1_pin: 14
+            pos_2_pin: 13
+            pos_3_pin: 16
+            pos_4_pin: 12
+            pos_5_pin: 17
+            pos_6_pin: 11
+            pos_7_pin: 18
+    lambda: |-
+      it.print("01234567");
 
 Configuration variables:
 ------------------------
