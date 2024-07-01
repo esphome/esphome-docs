@@ -47,14 +47,14 @@ Services are the main way to expose data and control over BLE. Services communic
 .. code-block:: yaml
 
     esp32_ble_server:
-        services:
-            - uuid: 2a24b789-7aab-4535-af3e-ee76a35cc42d
-            advertise: false
-            characteristics:
-                - uuid: cad48e28-7fbe-41cf-bae9-d77a6c233423
-                properties:
-                    - read
-                value: "Hello, World!"
+      services:
+        - uuid: 2a24b789-7aab-4535-af3e-ee76a35cc42d
+          advertise: false
+          characteristics:
+            - uuid: cad48e28-7fbe-41cf-bae9-d77a6c233423
+              properties:
+                - read
+              value: "Hello, World!"
 
 
 Configuration variables:
@@ -74,17 +74,17 @@ Characteristics expose data and control for a BLE service. Characteristics can h
 .. code-block:: yaml
 
     esp32_ble_server:
-        services:
-            # ...
-            characteristics:
-                - id: test_characteristic
-                uuid: cad48e28-7fbe-41cf-bae9-d77a6c233423
-                properties:
-                    - read
-                value: "Hello, World!"
-                descriptors:
-                    - uuid: 2901
-                    value: "Hello, World Descriptor!"
+      services:
+        # ...
+        characteristics:
+          - id: test_characteristic
+            uuid: cad48e28-7fbe-41cf-bae9-d77a6c233423
+            properties:
+              - read
+            value: "Hello, World!"
+            descriptors:
+              - uuid: 2901
+                value: "Hello, World Descriptor!"
 
 
 Configuration variables:
@@ -106,13 +106,13 @@ Descriptors are optional and are used to provide additional information about a 
 .. code-block:: yaml
 
     esp32_ble_server:
-        services:
+      services:
+        - uuid: # ...
+          characteristics:
             - uuid: # ...
-            characteristics:
-                - uuid: # ...
-                descriptors:
-                    - uuid: 2901
-                    value: "Hello, World Descriptor!"
+              descriptors:
+                - uuid: 2901
+                  value: "Hello, World Descriptor!"
 
 
 Configuration variables:
@@ -131,16 +131,16 @@ With this configuration option you can write complex automations that are trigge
 .. code-block:: yaml
 
     esp32_ble_server:
-        services:
-            - uuid: # ...
-            characteristics:
-                # ...
-                properties:
-                    - write
-                on_write:
-                    then:
-                    - lambda: |-
-                        ESP_LOGD("BLE", "Received: %s", x.c_str());
+      services:
+        - uuid: # ...
+          characteristics:
+            # ...
+            properties:
+              - write
+            on_write:
+              then:
+                - lambda: |-
+                    ESP_LOGD("BLE", "Received: %s", x.c_str());
 
 
 ``ble_server.characteristic_set_value`` Action
