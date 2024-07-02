@@ -126,7 +126,7 @@ The model JSON file contains the following fields that are all **required** unle
   - **sliding_window_size** (int): The size of the sliding window for the wake word detection. Wake words average all probabilities in the sliding window and VAD models use the maximum of all probabilities in the sliding window.
   - **feature_step_size** (int): The step size for the spectrogram feature generation in milliseconds.
   - **tensor_arena_size** (int): The minimum size of the tensor arena in bytes.
-  - **minimum_esphome_version** (*optional* version): The minimum ESPHome version required to use this model.
+  - **minimum_esphome_version** (version): The minimum ESPHome version required to use this model.
 
 
 See Also
