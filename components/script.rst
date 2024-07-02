@@ -1,7 +1,5 @@
-.. _script:
-
-``script`` Component
---------------------
+Script Component
+----------------
 
 ESPHome's ``script`` component allows you to define a list of steps (actions) in a central place. You can then execute
 the script from nearly anywhere in your device's configuration with a single call.
