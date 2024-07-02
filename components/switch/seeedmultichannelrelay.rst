@@ -27,7 +27,7 @@ https://wiki.seeedstudio.com/Grove-8-Channel_Solid_State_Relay/
     # Example configuration entry
     seeedmultichannelrelay:
         id: SeeedMultiChannelRelay_ID
-        address: 0x11 # changes the address of the seeedmultichannelrelay only runs this once
+        change_address_to: 0x11 # changes the address of the seeedmultichannelrelay only runs this once
         # ...
 
     switch:
@@ -41,7 +41,7 @@ Configuration variables:
 ------------------------
 **Control**
 
-- **addres** (*Optional*, hex-address): This should only be added to change the i2c address
+- **change_address_to** (*Optional*, hex-address): This should only be added to change the i2c address
   on the EPROM of the relay. Afterwards the address will be permanently changed.
 
 - All other options from I2C devices.
