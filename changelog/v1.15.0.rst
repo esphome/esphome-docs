@@ -22,7 +22,7 @@ Changelog - Version 1.15.0 - September 13, 2020
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
     Slow PWM, components/output/slow_pwm, pwm.png
     ESP32 DAC, components/output/esp32_dac, dac.svg
-    AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg
+    AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg, dark-invert
     Tuya Fan, components/fan/tuya, tuya.png
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
     Tuya Dimmer, components/light/tuya, tuya.png
@@ -35,12 +35,12 @@ Changelog - Version 1.15.0 - September 13, 2020
     ST7789V, components/display/st7789v, st7789v.jpg
     ILI9341, components/display/ili9341, ili9341.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
-    BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
-    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
-    Thermostat Controller, components/climate/thermostat, air-conditioner.svg
-    PID Controller, components/climate/pid, function.svg
-    IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
-    HTTP Request, components/http_request, connection.svg
+    BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg, dark-invert
+    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg, dark-invert
+    Thermostat Controller, components/climate/thermostat, air-conditioner.svg, dark-invert
+    PID Controller, components/climate/pid, function.svg, dark-invert
+    IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg, dark-invert
+    HTTP Request, components/http_request, connection.svg, dark-invert
     MCP3008 8-Channel 10-Bit A/D Converter, components/mcp3008, mcp3008.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg

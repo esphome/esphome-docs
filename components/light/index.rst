@@ -77,12 +77,13 @@ Advanced options:
   a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 .. _light-toggle_action:
 
@@ -486,16 +487,30 @@ This effect makes a pulsating light. The period can be defined by ``update_inter
               name: "Fast Pulse"
               transition_length: 0.5s
               update_interval: 0.5s
+              min_brightness: 0%
+              max_brightness: 100%
           - pulse:
               name: "Slow Pulse"
               # transition_length: 1s      # defaults to 1s
               update_interval: 2s
+          - pulse:
+              name: "Asymmetrical Pulse"
+              transition_length:
+                on_length: 1s
+                off_length: 500ms
+              update_interval: 1.5s
 
 Configuration variables:
 
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Pulse``.
-- **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``1s``.
+- **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition.
+  Defaults to ``1s``. Can be a single time or split for on and off using these nested options.
+
+  - **on_length** (*Optional*, :ref:`config-time`): The duration of the transition when the light is turned on.
+  - **off_length** (*Optional*, :ref:`config-time`): The duration of the transition when the light is turned off.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transition is started. Defaults to ``1s``.
+- **min_brightness** (*Optional*, percentage): The minimum brightness value. Defaults to ``0%``
+- **max_brightness** (*Optional*, percentage): The maximum brightness value. Defaults to ``100%``
 
 
 Random Effect
@@ -569,6 +584,7 @@ Configuration variables:
   - **cold_white** (*Optional*, percentage): The cold white channel of the light, if applicable. Defaults to ``100%``.
   - **warm_white** (*Optional*, percentage): The warm white channel of the light, if applicable. Defaults to ``100%``.
   - **duration** (**Required**, :ref:`config-time`): The duration this color should be active.
+  - **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``0s``.
 
 See `light.turn_on <light-turn_on_action>` for more information on the various color fields.
 
@@ -687,7 +703,8 @@ the strip and shifts them forward every ``add_led_interval``.
                 - red: 100%
                   green: 100%
                   blue: 100%
-                  num_leds: 1
+                  num_leds: 5
+                  gradient: true
                 - red: 0%
                   green: 0%
                   blue: 0%
@@ -706,7 +723,8 @@ Configuration variables:
   - **blue** (*Optional*, percentage): The percentage the blue color channel should be on. Defaults to ``100%``.
   - **random** (*Optional*, boolean): If set to ``true``, will overwrite the RGB colors by a new, randomly-chosen
     color each time. Defaults to ``false``.
-  - **num_leds** (*Optional*, int): The number of leds of this type to have before moving on to the next color.
+  - **num_leds** (**Required**, positive int): The number of LEDs of this type to have before transitioning to the next color. If ``gradient`` is true, this will be the number of LEDs over which the color transition will occur.
+  - **gradient** (*Optional*, boolean): If ``true`` the current color will transition with a gradient over ``num_leds`` to the next color. Defaults to ``false``.
 
 - **add_led_interval** (*Optional*, :ref:`config-time`): The interval with which to shift in new leds at the
   beginning of the strip. Defaults to ``100ms``.
@@ -904,7 +922,7 @@ Available variables in the lambda:
               // stopping and starting the effect again
               static uint16_t progress = 0;
 
-              // normal variables lost their value after each
+              // normal variables lose their value after each
               // execution - basically after each update_interval
               uint16_t changes = 0;
 
@@ -1076,10 +1094,14 @@ It is also possible to use LedFx_ to control the lights. Please use the connecti
         effects:
           - wled:
               # port: 21324
+              # blank_on_start: True
+              # sync_group_mask: 0
 
 Configuration variables:
 
 - **port** (*Optional*, int): The port to run the UDP server on. Defaults to ``21324``.
+- **blank_on_start** (*Optional*, boolean): Whether or not to blank all LEDs when effect starts. Deaults to ``True``.
+- **sync_group_mask** (*Optional*, int): Used with WLED Notifier. The Sync Group mask value that specifies which WLED Sync Groups to listen to. Defaults to ``0`` (All Sync Groups). Sync Groups 1, 2, 3, 4, 5, 6, 7, 8 use masks 1, 2, 4, 8, 16, 32, 64, 128. Combine mask values to listen to multiple Sync Groups.
 
 .. note::
 

@@ -11,5 +11,9 @@ venv
 .vscode
 *.DS_Store
 /.idea/
-/.vs/m5stackrelaydoc/v16
-/.vs
+
+_pagefind/
+
+# Vim
+*.swp
+/.vs/ESPHome_doc_fork/v16

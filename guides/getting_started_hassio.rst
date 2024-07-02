@@ -82,7 +82,7 @@ in ``/config/esphome/garage-door.yaml``.
     command line is not very straightforward, but it's possible. To do that,
     install Home Assistant's SSH addon, configure a username and a password,
     and disable `Protection Mode` (please assess the risks you take with that).
-    Then, for example to access the logs form a device through an SSH client,
+    Then, for example to access the logs from a device through an SSH client,
     log in, and you can use a command like
     `docker exec -it addon_15ef4d2f_esphome esphome logs /config/esphome/garage-door.yaml`.
     See :doc:`getting_started_command_line` for more.
@@ -101,7 +101,7 @@ to the configuration like this:
     switch:
       - platform: gpio
         name: "Living Room Dehumidifier"
-        pin: 5
+        pin: GPIO5
 
 In above example, we're simply adding a switch that's called "Living Room Dehumidifier" (could control
 anything really, for example lights) and is connected to the pin ``GPIO5``.
@@ -144,7 +144,7 @@ Sensor </components/binary_sensor/gpio>`.
             pullup: true
 
 This time when installing, you don’t need to have the device plugged in
-through USB again. The upload will happen wirelessly (:doc:`"over the air" </components/ota>`).
+through USB again. The upload will happen wirelessly (:doc:`"over the air" </components/ota/index>`).
 
 .. figure:: /components/binary_sensor/images/gpio-ui.png
     :align: center
