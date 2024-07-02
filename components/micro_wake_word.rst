@@ -15,11 +15,13 @@ The training process is described on the `microWakeWord GitHub repository <https
 
     # Shorthand name
     micro_wake_word:
-      model: okay_nabu
+      models:
+        - model: okay_nabu
 
     # Github shorthand URL
     micro_wake_word:
-      model: github://esphome/micro-wake-word-models/models/okay_nabu.json
+      models:
+        - model: github://esphome/micro-wake-word-models/models/okay_nabu.json
 
 Configuration variables:
 ------------------------
@@ -59,6 +61,34 @@ Configuration variables:
 The ``probability_cutoff`` and ``sliding_window_size`` are provided by the JSON file but can be overridden in YAML. A default VAD model is provided with the ``vad`` configuration variables, but a different model can be overridden in YAML.
 
 
+Automations
+-----------
+
+``micro_wake_word.start`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Starts the wake word detection.
+
+``micro_wake_word.stop`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Stops the wake word detection.
+
+Example usage
+-------------
+
+.. code-block:: yaml
+
+    micro_wake_word:
+      vad:
+      models:
+        - model: okay_nabu
+        - model: hey_mycroft
+      on_wake_word_detected:
+        then:
+          - voice_assistant.start:
+              wake_word: !lambda return wake_word;
+
 
 Model JSON
 ----------
@@ -97,35 +127,6 @@ The model JSON file contains the following fields that are all **required** unle
   - **feature_step_size** (int): The step size for the spectrogram feature generation in milliseconds.
   - **tensor_arena_size** (int): The minimum size of the tensor arena in bytes.
   - **minimum_esphome_version** (*optional* version): The minimum ESPHome version required to use this model.
-
-
-Automations
------------
-
-``micro_wake_word.start`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Starts the wake word detection.
-
-``micro_wake_word.stop`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Stops the wake word detection.
-
-Example usage
--------------
-
-.. code-block:: yaml
-
-    micro_wake_word:
-      vad:
-      models:
-        - model: okay_nabu
-        - model: hey_mycroft
-      on_wake_word_detected:
-        then:
-          - voice_assistant.start:
-              wake_word: !lambda return wake_word;
 
 
 See Also
