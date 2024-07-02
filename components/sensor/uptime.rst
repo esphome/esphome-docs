@@ -24,7 +24,7 @@ Configuration variables:
   - ``seconds`` (*default*): A simple counter.
   - ``timestamp``: presents the time ESPHome last booted up. Requires a :doc:`/components/time/index`.
 
-- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
