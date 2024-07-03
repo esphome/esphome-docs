@@ -1,5 +1,3 @@
-.. _config-globals:
-
 Global Variables
 ----------------
 
@@ -54,7 +52,7 @@ Configuration variables:
 ``globals.set`` Action
 ----------------------
 
-This :ref:`Action <config-action>` allows you to change the value of a :ref:`global <config-globals>`
+This :ref:`Action <config-action>` allows you to change the value of a ``global``
 variable without having to use the lambda syntax.
 
 .. code-block:: yaml
