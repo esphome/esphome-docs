@@ -161,6 +161,7 @@ Contributors
 - `Kamil Trzciński (@ayufan) <https://github.com/ayufan>`__
 - `Nicholas Peters (@Azimath) <https://github.com/Azimath>`__
 - `Daniel (@azrael783) <https://github.com/azrael783>`__
+- `azrdev (@azrdev) <https://github.com/azrdev>`__
 - `B48D81EFCC (@B48D81EFCC) <https://github.com/B48D81EFCC>`__
 - `Florian Mösch (@badbadc0ffee) <https://github.com/badbadc0ffee>`__
 - `Baden (@baden03) <https://github.com/baden03>`__
