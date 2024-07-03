@@ -219,6 +219,13 @@ Release 2024.6.4 - June 27
 - [ota-esphome] Merge configurations by port :esphomepr:`7001` by :ghuser:`kbx81`
 - Fix LEDC 100% is not 100% duty with ESP32 IDF :esphomepr:`6997` by :ghuser:`Links2004`
 
+Release 2024.6.5 - July 3
+-------------------------
+
+- [mpr121] await register parented :esphomepr:`7014` by :ghuser:`jesserockz`
+- Move some consts for #4585 :esphomepr:`7023` by :ghuser:`kbx81`
+- [wifi] Only set default ttls phase 2 on esp-idf :esphomepr:`7033` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
