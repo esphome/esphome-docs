@@ -22,7 +22,6 @@ expected. This is automatically enabled by this component, but it may be disable
     # Example configuration entry
     ota:
       - platform: esphome
-        safe_mode: true
         password: !secret ota_password
 
 Configuration variables:

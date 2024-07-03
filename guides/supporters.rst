@@ -161,6 +161,7 @@ Contributors
 - `Kamil Trzciński (@ayufan) <https://github.com/ayufan>`__
 - `Nicholas Peters (@Azimath) <https://github.com/Azimath>`__
 - `Daniel (@azrael783) <https://github.com/azrael783>`__
+- `azrdev (@azrdev) <https://github.com/azrdev>`__
 - `B48D81EFCC (@B48D81EFCC) <https://github.com/B48D81EFCC>`__
 - `Florian Mösch (@badbadc0ffee) <https://github.com/badbadc0ffee>`__
 - `Baden (@baden03) <https://github.com/baden03>`__
@@ -302,6 +303,7 @@ Contributors
 - `Paweł Dembicki (@CHKDSK88) <https://github.com/CHKDSK88>`__
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__
 - `Chris (@chrismaki) <https://github.com/chrismaki>`__
+- `Christiaan de Ridder (@christiaanderidder) <https://github.com/christiaanderidder>`__
 - `Christoph Wagner (@Christoph-Wagner) <https://github.com/Christoph-Wagner>`__
 - `Christian Taedcke (@chrta) <https://github.com/chrta>`__
 - `ChuckMash (@ChuckMash) <https://github.com/ChuckMash>`__
@@ -1031,6 +1033,7 @@ Contributors
 - `Joakim Sørensen (@ludeeus) <https://github.com/ludeeus>`__
 - `ludrao (@ludrao) <https://github.com/ludrao>`__
 - `Luiz Correia (@luizcorreia) <https://github.com/luizcorreia>`__
+- `luk1803 (@luk1803) <https://github.com/luk1803>`__
 - `luka6000 (@luka6000) <https://github.com/luka6000>`__
 - `Lukas Klass (@LukasK13) <https://github.com/LukasK13>`__
 - `Lukas Lindner (@lukasl96) <https://github.com/lukasl96>`__
@@ -1243,6 +1246,7 @@ Contributors
 - `NatashaLi-ESPRESSIF (@NatashaLi-ESPRESSIF) <https://github.com/NatashaLi-ESPRESSIF>`__
 - `Nate Lust (@natelust) <https://github.com/natelust>`__
 - `Nathan Marlor (@nathanmarlor) <https://github.com/nathanmarlor>`__
+- `Andreas Fritiofson (@nattgris) <https://github.com/nattgris>`__
 - `ueno (@nayuta-ueno) <https://github.com/nayuta-ueno>`__
 - `Nazar Mokrynskyi (@nazar-pc) <https://github.com/nazar-pc>`__
 - `Bergont Nicolas (@nbergont) <https://github.com/nbergont>`__
@@ -1358,6 +1362,7 @@ Contributors
 - `per1234 (@per1234) <https://github.com/per1234>`__
 - `perjury (@perjury) <https://github.com/perjury>`__
 - `David (@perldj) <https://github.com/perldj>`__
+- `Petapton (@Petapton) <https://github.com/Petapton>`__
 - `Peter Valkov (@peter-valkov) <https://github.com/peter-valkov>`__
 - `Peter Foreman (@peterforeman) <https://github.com/peterforeman>`__
 - `Peter Galantha (@peterg79) <https://github.com/peterg79>`__
@@ -1888,4 +1893,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated June 26, 2024.*
+*This page was last updated July 3, 2024.*
