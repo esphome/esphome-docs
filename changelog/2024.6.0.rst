@@ -226,6 +226,13 @@ Release 2024.6.5 - July 3
 - Move some consts for #4585 :esphomepr:`7023` by :ghuser:`kbx81`
 - [wifi] Only set default ttls phase 2 on esp-idf :esphomepr:`7033` by :ghuser:`jesserockz`
 
+Release 2024.6.6 - July 3
+-------------------------
+
+- Bump dockerfile dependencies :esphomepr:`7017` by :ghuser:`jesserockz`
+- [docker] Bump versions inside armv7 block :esphomepr:`7022` by :ghuser:`jesserockz`
+- [docker] Fix docker build error fall through :esphomepr:`7021` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
