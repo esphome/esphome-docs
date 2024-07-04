@@ -41,7 +41,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
 .. figure:: images/bme680-bsec-ui.png
     :align: center
     :width: 80.0%
-    
+
     Example UI
 
 .. code-block:: yaml
