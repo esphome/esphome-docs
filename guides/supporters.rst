@@ -161,6 +161,7 @@ Contributors
 - `Kamil Trzciński (@ayufan) <https://github.com/ayufan>`__
 - `Nicholas Peters (@Azimath) <https://github.com/Azimath>`__
 - `Daniel (@azrael783) <https://github.com/azrael783>`__
+- `azrdev (@azrdev) <https://github.com/azrdev>`__
 - `B48D81EFCC (@B48D81EFCC) <https://github.com/B48D81EFCC>`__
 - `Florian Mösch (@badbadc0ffee) <https://github.com/badbadc0ffee>`__
 - `Baden (@baden03) <https://github.com/baden03>`__
@@ -1032,6 +1033,7 @@ Contributors
 - `Joakim Sørensen (@ludeeus) <https://github.com/ludeeus>`__
 - `ludrao (@ludrao) <https://github.com/ludrao>`__
 - `Luiz Correia (@luizcorreia) <https://github.com/luizcorreia>`__
+- `luk1803 (@luk1803) <https://github.com/luk1803>`__
 - `luka6000 (@luka6000) <https://github.com/luka6000>`__
 - `Lukas Klass (@LukasK13) <https://github.com/LukasK13>`__
 - `Lukas Lindner (@lukasl96) <https://github.com/lukasl96>`__
@@ -1244,6 +1246,7 @@ Contributors
 - `NatashaLi-ESPRESSIF (@NatashaLi-ESPRESSIF) <https://github.com/NatashaLi-ESPRESSIF>`__
 - `Nate Lust (@natelust) <https://github.com/natelust>`__
 - `Nathan Marlor (@nathanmarlor) <https://github.com/nathanmarlor>`__
+- `Andreas Fritiofson (@nattgris) <https://github.com/nattgris>`__
 - `ueno (@nayuta-ueno) <https://github.com/nayuta-ueno>`__
 - `Nazar Mokrynskyi (@nazar-pc) <https://github.com/nazar-pc>`__
 - `Bergont Nicolas (@nbergont) <https://github.com/nbergont>`__
@@ -1890,4 +1893,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated June 27, 2024.*
+*This page was last updated July 3, 2024.*

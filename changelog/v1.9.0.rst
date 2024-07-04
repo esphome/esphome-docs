@@ -137,7 +137,7 @@ New Features
 
 - You can now upload OTA firmware files with the :doc:`web server component </components/web_server>`
 
-- Added the ability to define global variables in esphomeyaml: :ref:`config-globals`.
+- Added the ability to define global variables in esphomeyaml: :doc:`/components/globals`.
 
 - Added a ``frequency`` option to the :doc:`/components/output/esp8266_pwm`.
 
