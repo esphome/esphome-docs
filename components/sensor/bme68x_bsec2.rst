@@ -269,6 +269,6 @@ See Also
 - `BME680 datasheet <https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme680-ds001.pdf>`__
 - `BME688 datasheet <https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme688-ds000.pdf>`__
 - `BME680 VOC classification <https://community.bosch-sensortec.com/t5/MEMS-sensors-forum/BME680-VOC-classification/td-p/26154>`__
-- `BSEC2 Arduino Library <https://github.com/boschsensortec/Bosch-BSEC2-Library>`__ by `Bosch Sensortec <https://www.bosch-sensortec.com/>`__
+- `Bosch BSEC2 Library <https://github.com/boschsensortec/Bosch-BSEC2-Library>`__ by `Bosch Sensortec <https://www.bosch-sensortec.com/>`__
 - `Bosch Sensortec Community <https://community.bosch-sensortec.com/>`__
 - :ghedit:`Edit`
