@@ -61,8 +61,7 @@ Configuration variables:
   sensor. Defaults to ``60s``. Not applicable in mode 1.
 - **uart_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`UART bus <uart>` you wish to use for this sensor.
   Use this if you want to use multiple UART buses at once.
-- **ajsr04m_mode** (*Optional*, boolean): Needs to be enabled for AJ_SR04M sensors, as they use a somewhat different method for checksum calculation.
-  Defaults to ``false`` (checksum calculation for JSN_SR04T)
+- **model** (*Optional*): Sensor model. Available options: ``jsn_sr04t`` (default) and ``aj_sr04t``.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
