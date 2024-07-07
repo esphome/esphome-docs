@@ -6,13 +6,13 @@ OpenTherm
     :image: ../components/images/opentherm-shield.png
     :keywords: OpenTherm
 
-OpenTherm (OT) is a standard communications protocol used in central heating systems for the communication between a central heating appliances and a thermostatic controller. 
+OpenTherm (OT) is a standard communications protocol used in central heating systems for the communication between a central heating appliances and a thermostatic controller.
 As a standard, OpenTherm is independent of any single manufacturer. A controller from manufacturer A can in principle be used to control a boiler from manufacturer B.
 
 Since OpenTherm doesn't operate in a standard voltage range, special hardware is required. You can choose from several ready-made adapters or roll your own:
 
-- `DIYLESS Master OpenTherm Shield <https://diyless.com/product/master-opentherm-shield>`__ 
-- `Ihor Melnyk's OpenTherm Adapter <http://ihormelnyk.com/opentherm_adapter>`__ 
+- `DIYLESS Master OpenTherm Shield <https://diyless.com/product/master-opentherm-shield>`__
+- `Ihor Melnyk's OpenTherm Adapter <http://ihormelnyk.com/opentherm_adapter>`__
 - `Jiří Praus' OpenTherm Gateway Arduino Shield <https://www.tindie.com/products/jiripraus/opentherm-gateway-arduino-shield/>`__ .
 
 .. figure:: images/opentherm-shield.png
@@ -31,11 +31,8 @@ Quick glossary
 - CH: Central Heating
 - DHW: Domestic Hot Water
 
-Usage
------
-
 Hub
-***
+---
 
 First of all you need to define the OpenTherm hub in your configuration. Note that most OpenTherm adapters label ``in`` and ``out`` pins relative to themselves, and this component labels its ``in`` and ``out`` pins relative to ESP board. So usually your bridge's ``in`` pin becomes hub's ``out`` pin and vice versa.
 
@@ -45,8 +42,27 @@ First of all you need to define the OpenTherm hub in your configuration. Note th
       in_pin: 4
       out_pin: 5
 
+Configuration variables:
+************************
+
+- **in_pin** (**Required**, number): The pin of the OpenTherm hardware bridge which is usually labeled ``out`` on the board.
+- **out_pin** (**Required**, number): The pin of the OpenTherm hardware bridge which is usually labeled ``in`` on the board.
+- **sync_mode** (**Optional**, boolean, default **false**): Synchronous communication mode prevents other components from disabling interrupts while we are talking to the boiler. Enable if you experience a lot of random intermittent invalid response errors (very likely to happen while using Dallas temperature sensors).
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.  Required if you have multiple busses.
+
+Note abut sync mode
+*******************
+
+By default this component adheres to ESPHome recommendations and doesn't block the loop while communicating with the boiler. Unfortunately, some other components (like Dallas temperature sensors) don't play well with this behaviour, and may cause a lot of lost frames and protocol warnings from OpenTherm. Since OpenTherm is resilient by design and transmits its messages in a constant loop, these dropped frames don't really matter. But if you want to decrease the number of protocol warnings in your logs, you can enable ``sync_mode``, which blocks ESPHome loop until a single conversation with the boiler is complete. This can greatly reduce the number of dropped frames, but usually doesn't eliminate them entirely. You also need to add a logging directive to your config, so that ESPHome doesn't complain about a single component hogging the loop for too long:
+
+.. code-block:: yaml
+
+    logger:
+        logs:
+            component: ERROR
+
 Usage as a thermostat
-*********************
+---------------------
 
 The most important function for a thermostat is to set the boiler temperature setpoint. This component has three ways to provide this input: using a Home Assistant sensor from which the setpoint can be read, using a :doc:`/components/number/index`, or defining an output to which other components can write. For most users, the last option is the most useful one, as it can be combined with the :doc:`/components/climate/pid` component to create a thermostat that works as you would expect a thermostat to work. See :ref:`thermostat-pid-basic` for an example.
 
@@ -56,7 +72,7 @@ Numerical input
 There are three ways to set an input value:
 
 - As an input sensor, defined in the hub configuration:
-  
+
 .. code-block:: yaml
 
     opentherm:
@@ -70,7 +86,7 @@ There are three ways to set an input value:
 This can be useful if you have an external thermostat-like device that provides the setpoint as a sensor.
 
 - As a number:
-  
+
 .. code-block:: yaml
 
     number:
@@ -81,14 +97,14 @@ This can be useful if you have an external thermostat-like device that provides 
 This is useful if you want full control over your boiler and want to manually set all values.
 
 - As an output:
-  
+
 .. code-block:: yaml
 
     output:
       - platform: opentherm
       t_set:
         id: setpoint
-  
+
 This is especially useful in combination with the PID Climate component:
 
 .. code-block:: yaml
@@ -108,12 +124,12 @@ For the output and number variants, there are four more properties you can confi
 The following inputs are available:
 
 - ``t_set``: Control setpoint: temperature setpoint for the boiler's supply water (°C)
-- ``t_set_ch2``: Control setpoint 2: temperature setpoint for the boiler's supply water on the second heating circuit (°C)  
-- ``cooling_control``: Cooling control signal (%)  
-- ``t_dhw_set``: Domestic hot water temperature setpoint (°C)  
-- ``max_t_set``: Maximum allowable CH water setpoint (°C)  
-- ``t_room_set``: Current room temperature setpoint (informational) (°C)  
-- ``t_room_set_ch2``: Current room temperature setpoint on CH2 (informational) (°C)  
+- ``t_set_ch2``: Control setpoint 2: temperature setpoint for the boiler's supply water on the second heating circuit (°C)
+- ``cooling_control``: Cooling control signal (%)
+- ``t_dhw_set``: Domestic hot water temperature setpoint (°C)
+- ``max_t_set``: Maximum allowable CH water setpoint (°C)
+- ``t_room_set``: Current room temperature setpoint (informational) (°C)
+- ``t_room_set_ch2``: Current room temperature setpoint on CH2 (informational) (°C)
 - ``t_room``: Current sensed room temperature (informational) (°C)
 
 Switch
@@ -127,7 +143,7 @@ For five status codes, switches are available to toggle them manually. The same 
       ch_enable: true
       dhw_enable: true
 
-This can be used to set the value without the need for a switch if you'd never want to toggle it after the initial configuration. 
+This can be used to set the value without the need for a switch if you'd never want to toggle it after the initial configuration.
 The default values for these configuration options are listed below.
 
 For enabling of central heating and cooling, the enable-flag is only sent to the boiler if the following conditions are met:
@@ -141,11 +157,11 @@ The last point ensures that central heating is not enabled if no heating is requ
 
 The following switches are available:
 
-- ``ch_enable``: Central Heating enabled  
-- ``dhw_enable``: Domestic Hot Water enabled  
-- ``cooling_enable``: Cooling enabled  
-- ``otc_active``: Outside temperature compensation active  
-- ``ch2_active``: Central Heating 2 active  
+- ``ch_enable``: Central Heating enabled
+- ``dhw_enable``: Domestic Hot Water enabled
+- ``cooling_enable``: Cooling enabled
+- ``otc_active``: Outside temperature compensation active
+- ``ch2_active``: Central Heating 2 active
 
 Binary sensor
 *************
@@ -291,14 +307,14 @@ Basic PID thermostat
         t_boiler:
           name: "Boiler water temperature"
         t_ret:
-          name: "Boiler Return water temperature"  
+          name: "Boiler Return water temperature"
 
       - platform: homeassistant
         id: ch_room_temperature
         entity_id: sensor.temperature
-        filters: 
+        filters:
           # Push room temperature every second to update PID parameters
-          - heartbeat: 1s  
+          - heartbeat: 1s
 
     binary_sensor:
       - platform: opentherm
@@ -327,7 +343,7 @@ Basic PID thermostat
         heat_output: t_set
         default_target_temperature: 20
         sensor: ch_room_temperature
-        control_parameters: 
+        control_parameters:
           kp: 0.4
           ki: 0.004
 
