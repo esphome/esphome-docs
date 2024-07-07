@@ -27,6 +27,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Daikin                                | ``daikin``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`Daikin ARC<daikin_arc>`         | ``daikin_arc``      | yes                  |
++---------------------------------------+---------------------+----------------------+
 | :ref:`Daikin BRC<daikin_brc>`         | ``daikin_brc``      | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Delonghi<delonghi_ir>`          | ``delonghi``        | yes                  |
@@ -42,7 +44,7 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`LG<climate_ir_lg>`              | ``climate_ir_lg``   | yes                  |
 +---------------------------------------+---------------------+----------------------+
-| Midea                                 | ``midea_ir``        | yes                  |
+| :ref:`Midea<midea_ir>`                | ``midea_ir``        | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Mitsubishi<mitsubishi>`         | ``mitsubishi``      | yes                  |
 +---------------------------------------+---------------------+----------------------+
@@ -74,7 +76,7 @@ controller unit.
 
     # Example configuration entry
     remote_transmitter:
-      pin: GPIO32
+      pin: GPIOXX
       carrier_duty_percent: 50%
 
     climate:
@@ -112,9 +114,18 @@ This platform utilises the library's generic one-size-fits-all API, which might 
 
 Additional configuration must be specified for this platform:
 
-- **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: ``aux``, ``ballu``, ``carrier_mca``, ``carrier_nqv``, ``daikin_arc417``, ``daikin_arc480``, ``daikin``, ``electroluxyal``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeya``, ``greeyac``, ``greeyan``, ``greeyt``, ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``, ``mitsubishi_fd``, ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``, ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``, ``mitsubishi_heavy_kj``, ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``, ``panasonic_ckp``, ``panasonic_dke``, ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``samsung_aqv``, ``samsung_fjm``, ``sharp``, ``toshiba_daiseikai``, ``toshiba``, ``zhlt01``
-- **horizontal_default** (**Required**, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Options are: ``left``, ``mleft``, ``middle``, ``mright``, ``right``, ``auto``
-- **vertical_default** (**Required**, string): What to default to when the AC unit's vertical direction is *not* set to swing. Options are: ``down``, ``mdown``, ``middle``, ``mup``, ``up``, ``auto``
+- **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: 
+    ``aux``, ``ballu``, ``carrier_mca``, ``carrier_nqv``, ``carrier_qlima_1``, ``carrier_qlima_1``, ``daikin``, ``daikin_arc417``, 
+    ``daikin_arc480``, ``electroluxyal``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeyaa``, ``greeyac``, ``greeyan``, ``greeyap``,
+    ``greeyt``, ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``, ``mitsubishi_fd``,
+    ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``, ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``,
+    ``mitsubishi_kj``, ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``, ``nibe``, ``panasonic_ckp``, ``panasonic_dke``,
+    ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``samsung_aqv``, ``samsung_aqv12msan``,
+    ``samsung_fjm``, ``sharp``, ``toshiba``, ``toshiba_daiseikai``, ``zhjg01``, ``zhlt01``.
+
+
+- **horizontal_default** (**Required**, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Options are: ``left``, ``mleft``, ``middle``, ``mright``, ``right``, ``auto``.
+- **vertical_default** (**Required**, string): What to default to when the AC unit's vertical direction is *not* set to swing. Options are: ``down``, ``mdown``, ``middle``, ``mup``, ``up``, ``auto``.
 - **max_temperature** (**Required**, float): The maximum temperature that the AC unit supports being set to.
 - **min_temperature** (**Required**, float): The minimum temperature that the AC unit supports being set to.
 - **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient temperature.
@@ -154,7 +165,7 @@ IR receiver.
     remote_receiver:
       id: rcvr
       pin:
-        number: GPIO14
+        number: GPIOXX
         inverted: true
         mode:
           input: true
@@ -166,35 +177,6 @@ IR receiver.
       - platform: coolix
         name: "Living Room AC"
         receiver_id: rcvr
-
-.. _midea_ir:
-
-``midea_ir`` Climate
--------------------------
-
-These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.
-
-Additional configuration is available for this platform
-
-
-Configuration variables:
-
-- **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    climate:
-      - platform: midea_ir
-        name: "AC"
-        sensor: room_temperature
-        use_fahrenheit: true
-
-.. note::
-
-    - See :ref:`Transmit Midea<remote_transmitter-transmit_midea>` to send custom commands, including Follow Me mode.
-    - See :ref:`Toshiba<toshiba>` below if you are looking for compatibility with Midea model MAP14HS1TBL or similar.
-
 
 .. _climate_ir_lg:
 
@@ -221,6 +203,21 @@ Configuration variables:
         sensor: room_temperature
         header_high: 3265us # AC Units from LG in Brazil, for example use these timings
         header_low: 9856us
+
+.. _daikin_arc:
+
+``daikin_arc`` Climate
+-------------------------
+
+The Daikin ARC remotes are used by the japanese model of Daikin.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: daikin_arc
+        name: "AC"
+        sensor: room_temperature
 
 .. _daikin_brc:
 
@@ -255,6 +252,34 @@ Known working with:
 
 - Delonghi PAC WE 120HP
 
+.. _midea_ir:
+
+``midea_ir`` Climate
+-------------------------
+
+These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.
+
+Additional configuration is available for this platform
+
+
+Configuration variables:
+
+- **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: midea_ir
+        name: "AC"
+        sensor: room_temperature
+        use_fahrenheit: true
+
+.. note::
+
+    - See :ref:`Transmit Midea<remote_transmitter-transmit_midea>` to send custom commands, including Follow Me mode.
+    - See :ref:`Toshiba<toshiba>` below if you are looking for compatibility with Midea model MAP14HS1TBL or similar.
+
 .. _mitsubishi:
 
 ``mitsubishi`` Climate
@@ -266,8 +291,8 @@ Configuration variables:
 
 - **set_fan_mode** (*Optional*, string): Select the fan modes desired or that are supported on your remote. Defaults to ``3levels``
 
-  - Options are: ``3levels`` , ``4levels``, ``quiet_4levels``. 
-  
+  - Options are: ``3levels`` , ``4levels``, ``quiet_4levels``.
+
     - ``3levels``; Low [fan speed 1], Medium [2], High [3]
     - ``4levels``; Low [1], Middle [2], Medium [3], High [4]
     - ``quiet_4levels``; Low [1], Middle [2], Medium [3], High [4], Quiet [5]
@@ -275,10 +300,10 @@ Configuration variables:
 - **supports_dry** (*Optional*, boolean): Enables setting dry mode for this unit. Defaults to ``false``.
 - **supports_fan_only** (*Optional*, boolean): Enables setting fan only mode for this unit. Confirm that mode is supported on your remote. Defaults to ``false``.
 
-- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to ``middle``. 
+- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to ``middle``.
 
   - Options are: ``left``, ``middle-left``, ``middle``, ``middle-right``, ``right``, ``auto``
-- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Defaults to ``middle``. 
+- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Defaults to ``middle``.
 
   - Options are: ``down``, ``middle-down``, ``middle``, ``middle-up``, ``up``, ``auto``
 
@@ -406,8 +431,8 @@ Configuration variables:
 ``zhlt01`` Climate
 ---------------------
 
-ZH/LT-01 is a remote control that is used with many locally branded split airconditioners. 
-Supported brands include: 
+ZH/LT-01 is a remote control that is used with many locally branded split airconditioners.
+Supported brands include:
 
 - Eurom
 - Chigo

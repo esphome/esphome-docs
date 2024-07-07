@@ -15,19 +15,6 @@ Additional sensors for Haier Climate device. **These sensors are supported only 
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      baud_rate: 9600
-      tx_pin: 17
-      rx_pin: 16
-      id: ac_port
-    
-    climate:
-      - platform: haier
-        id: haier_ac
-        protocol: hOn
-        name: Haier AC
-        uart_id: ac_port
-    
     sensor:
       - platform: haier
         haier_id: haier_ac

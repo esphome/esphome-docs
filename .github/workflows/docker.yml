@@ -19,8 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
+        name: Install pagefind
+        uses: jaxxstorm/action-install-gh-release@v1.12.0
+        with:
+          repo: cloudcannon/pagefind
+      -
         name: Checkout source code
-        uses: actions/checkout@v4.1.0
+        uses: actions/checkout@v4.1.7
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -42,7 +47,7 @@ jobs:
       -
         name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
