@@ -83,6 +83,7 @@ Configuration variables:
 
   - ``1.54in``
   - ``1.54inv2``
+  - ``1.54inv2-b`` - Black/White/Red
   - ``2.13in`` - not tested
   - ``2.13in-ttgo`` - T5_V2.3 tested. Also works for Wemos D1 Mini ePaper Shield 2.13 1.0.0 "LOLIN"
   - ``2.13in-ttgo-b73`` - T5_V2.3 with B73 display tested
