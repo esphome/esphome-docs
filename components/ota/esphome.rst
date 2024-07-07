@@ -76,7 +76,7 @@ Adding a Password
 If OTA is already enabled without a password, simply add a ``password:`` line to the existing ``ota:`` config block.
 
 Removing a Password
-*****************
+*******************
 
 -  If you know your password but want to remove it, enter an empty string: ``id(my_ota).set_auth_password("");`` instead of changing.
 -  If you no longer know your password and the web server has been activated:
