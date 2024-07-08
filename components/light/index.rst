@@ -613,6 +613,146 @@ Configuration variables:
 - **intensity** (*Optional*, percentage): The intensity of the flickering, basically the maximum amplitude of the
   random offsets. Defaults to ``1.5%``.
 
+Flame Effects (Candle and Fireplace)
+**************
+
+These effects simulate a candle (which is normally bright and gets dim with a breeze) and
+a fireplace (which glows dim and gets bright as random flames occur).
+This effect is highly configurable with reasonable defaults.
+
+If no color is specified in the configuration, then the color
+and brightness of the light when the effect is started will be used.
+If one or more colors are specified, then the first color will be
+the baseline color and the brightness will be set to 100%.
+
+The number of levels mentioned in the configuration is based on
+the number of probability elements. Level 0 is no flickering at all
+and each higher level is dimmer (candle) or brighter (fireplace)
+with a flicker.
+
+.. code-block:: yaml
+
+    light:
+      - platform: ...
+        # ...
+        effects:
+      # A candle with the values specified the default values.
+      # and add in a two-color swing.
+      - candle:
+          name: "Candle with Defaults add Two Colors"
+          intensity: 15%
+          flicker_transition_length: 75
+          flicker_intensity: 2.5%
+          flicker_level_probabilities:
+            # Three probabilities, so three levels (plus level zero which is implied).
+            - probability: 50%
+            - probability: 30%
+            - probability: 8%
+          number_flickers_config:
+            # The first entry probability does not matter since
+            # it is the default. This will have the light flickering
+            # approximately 50% of the time.
+            - number_flickers: 2
+            - probability: 40%
+              number_flickers: 4
+            - probability: 20%
+              number_flickers: 8
+            - probability: 10%
+              number_flickers: 10
+            # When we get to level three, we want only
+            # a single flicker.
+            - force_at_level: 3
+              number_flickers: 1
+          colors:
+            - red: 100%
+              green: 56%
+              blue: 24%
+            - red: 100%
+              green: 50%
+              blue: 0%
+          use_exponential_gradient: true
+
+      # A fireplace with most of the default values specified and
+      # add a color per level.
+      - fireplace:
+          name: "Fireplace with Defaults add Level Colors"
+          intensity: 21%
+          flicker_transition_length: 150
+          flicker_intensity: 3.5%
+          # The probabilities and flicker count config are the
+          # same for the default candle example, so they are
+          # excluded for brevity.
+          colors:
+              # Level 0
+            - red: 100%
+              green: 50%
+              blue: 0%
+              # Level 1
+            - red: 100%
+              green: 50%
+              blue: 7%
+              # Level 2
+            - red: 100%
+              green: 58%
+              blue: 8%
+              # Level 3
+            - red: 100%
+              green: 66%
+              blue: 22%
+
+      # Undulating Ooze
+      - fireplace:
+          name: "Lava"
+          intensity: 21%
+          flicker_transition_length: 500
+          flicker_intensity: 3%
+          number_flickers_config:
+            - number_flickers: 2
+            - number_flickers: 3
+            - force_at_level: 3
+              number_flickers: 1
+          colors:
+            - red: 100%
+              green: 0%
+              blue: 0%
+            - red: 100%
+              green: 35%
+              blue: 0%
+          use_exponential_gradient: false
+          flicker_level_probabilities:
+            - probability: 50%
+            - probability: 30%
+            - probability: 10%
+
+Configuration variables:
+
+- **name** (*Optional*, string): The name of the effect. Defaults to ``Candle`` or ``Fireplace``.
+- **intensity** (*Optional*, percentage): The overall intensity of the flickering, basically the maximum amplitude of the
+  random offsets. Defaults to ``15%`` for the candle and ``21%`` for the fireplace.
+- **flicker_intensity** (*Optional*, percentage): The high-to-low intensity swing at a flicker level.
+  Normally calculated based on the intensity / number_levels / 2.
+- **colors** (*Optional*): One ore more colors for the effect. When specified, the brightness of the
+  light is set to 100%.
+  If a single color is specified, the light is set to that color.
+  If two colors are specified, then the color will vary between the two based on the level.
+  If more than two colors are specified, then each color is mapped to each level (including level 0).
+- **red** (*Optional*, percentage): An item in ``colors`` to specify the red for that entry.
+- **green** (*Optional*, percentage): An item in ``colors`` to specify the green for that entry.
+- **blue** (*Optional*, percentage): An item in ``colors`` to specify the blue for that entry.
+- **use_exponential_gradient** (*Optional*, boolean): When calculating the gradient in the two-color
+  mode, make the distance down the gradient exponential for a more realistic color effect.
+  Default is true.
+- **number_flickers_config** (*Optional*) Randomly determines how many flickers will occur.
+  Items can be ``probability``, ``number_flickers``, and ``force_at_level``.
+- **probability** (*Optional*, percentage): A number between 0% and 100%.
+- **number_flickers** (*Optional*, int): The number of high-to-low and low-to-high transitions to make.
+- **force_at_level** (*Optional*, int): If the level is this, then force the ``number_flickers``.
+- **flicker_level_probabilities** (*Optional*): A list of ``probability`` for each level of brightness.
+  The probabilities are cumulative so if they add up to 100% or more, then the effect will always be flickering.
+  The default is level 1: 50%; level 2: 30%; level 3: 8%.
+- **flicker_transition_length** (*Optional*, milliseconds): The time to alternate from bright to dim and vise-versa
+   while flickering. Defaults to ``75`` for the candle and ``150`` for the fireplace.
+
 Lambda Effect
 *************
 
