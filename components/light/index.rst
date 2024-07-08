@@ -614,7 +614,7 @@ Configuration variables:
   random offsets. Defaults to ``1.5%``.
 
 Flame Effects (Candle and Fireplace)
-**************
+************************************
 
 These effects simulate a candle (which is normally bright and gets dim with a breeze) and
 a fireplace (which glows dim and gets bright as random flames occur).
