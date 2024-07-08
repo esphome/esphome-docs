@@ -191,7 +191,7 @@ All sensors are normal binary sensors... so all binary sensor variables are work
 - **warning_battery_too_low_to_charge** (*Optional*): warning battery too low to charge
 - **fault_dc_dc_over_current** (*Optional*): fault dc dc over current
 - **fault_code** (*Optional*): fault code
-- **warnung_low_pv_energy** (*Optional*): warnung low pv energy
+- **warning_low_pv_energy** (*Optional*): warning low pv energy
 - **warning_high_ac_input_during_bus_soft_start** (*Optional*): warning high ac input during bus soft start
 - **warning_battery_equalization** (*Optional*): warning battery equalization
 
