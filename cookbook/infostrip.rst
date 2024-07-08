@@ -26,17 +26,9 @@ ESPHome configuration
 
 .. code-block:: yaml
 
-    esphome:
-      name: esp_infostrip
-
-    esp8266:
-      board: d1_mini
-
-    # TODO -> add your personal wifi, logging, api, ota settings here
-
     uart:
-      rx_pin: 4
-      tx_pin: 5
+      rx_pin: GPIOXX
+      tx_pin: GPIOXX
       baud_rate: 9600
 
     sensor:
@@ -57,7 +49,7 @@ ESPHome configuration
       - platform: fastled_clockless
         chipset: WS2812B
         id: light_fastled
-        pin: D4
+        pin: GPIOXX
         num_leds: 4
         rgb_order: GRB
         name: "Infostrip"

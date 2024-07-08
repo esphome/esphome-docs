@@ -40,7 +40,7 @@ If you want to use `docker-compose` instead, here's a sample file:
         privileged: true
         network_mode: host
         environment:
-          - USERNAME=test 
+          - USERNAME=test
           - PASSWORD=ChangeMe
 
 .. note::
@@ -107,7 +107,7 @@ GPIO switch </components/switch/gpio>` to our app.
     switch:
       - platform: gpio
         name: "Living Room Dehumidifier"
-        pin: 5
+        pin: GPIO5
 
 The configuration format should hopefully immediately seem similar to
 you. ESPHome has tried to keep it as close to Home Assistant’s
@@ -191,7 +191,7 @@ for docker you need to supply an additional parameter:
 
 .. code-block:: bash
 
-    esphome livingroom.yaml run
+    esphome run livingroom.yaml
     # On docker
     docker run --rm -v "${PWD}":/config -it ghcr.io/esphome/esphome run livingroom.yaml
 
@@ -224,8 +224,8 @@ To start the ESPHome dashboard, simply start ESPHome with the following command
 .. code-block:: bash
 
     # Install dashboard dependencies
-    pip install tornado esptool
-    esphome dashboard config/
+    pip install tornado esptool\
+     esphome dashboard config
 
     # On Docker, host networking mode is required for online status indicators
     docker run --rm --net=host -v "${PWD}":/config -it ghcr.io/esphome/esphome

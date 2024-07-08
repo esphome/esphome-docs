@@ -80,7 +80,7 @@ Configuration variables:
 Handle stop_action:
 ------------------------
 For some cover controllers, separate switches for UP and DOWN action are used while a stop is issued when sending a counter command.
-This can be handled at the **stop_action** by using the following lamda function:
+This can be handled at the **stop_action** by using the following lambda function:
 
 .. code-block:: yaml
 
@@ -93,6 +93,9 @@ This can be handled at the **stop_action** by using the following lamda function
             // Cover is currently closing
             id(cover_button_up).press();
           }
+
+Be aware that ``get_last_operation`` will only return the last opening or closing operation, but not the last idle operation. 
+This issue is tracked `here <https://github.com/esphome/issues/issues/4252#issuecomment-2132727377>`_.
 
 See Also
 --------

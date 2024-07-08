@@ -12,7 +12,7 @@ This is a component using the ESP32 RMT peripheral to drive most addressable LED
     light:
       - platform: esp32_rmt_led_strip
         rgb_order: GRB
-        pin: GPIO13
+        pin: GPIOXX
         num_leds: 30
         rmt_channel: 0
         chipset: ws2812

@@ -129,6 +129,7 @@ ESPHome configuration
     # Enable Home Assistant API & OTA Updates
     api:
     ota:
+      platform: esphome
 
     status_led:
       pin:
