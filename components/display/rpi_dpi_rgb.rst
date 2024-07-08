@@ -16,6 +16,7 @@ This driver has been tested with the following displays:
 
   - Waveshare ESP32-S3-Touch-LCD-4.3
   - Makerfabs 4.3" display (Sunton)
+  - Elecrow CrowPanel 7.0"
 
 Usage
 -----
@@ -203,6 +204,55 @@ Makerfabs 4.3" 800x480 display
             - 9         #b4
             - 1         #b5
 
+
+
+Elecrow CrowPanel 7.0" 800x480
+******************************
+
+.. code-block:: yaml
+
+    display:
+      - platform: rpi_dpi_rgb
+        update_interval: never
+        auto_clear_enabled: false
+        id: rpi_display
+        color_order: RGB
+        rotation: 0
+        dimensions:
+          width: 800
+          height: 480
+        de_pin: 41
+        hsync_pin: 39
+        vsync_pin: 40
+        pclk_pin: 0
+        hsync_front_porch: 40
+        hsync_pulse_width: 48
+        hsync_back_porch: 13
+        vsync_front_porch: 1
+        vsync_pulse_width: 31
+        vsync_back_porch: 13
+        pclk_inverted: true
+        pclk_frequency: 8500000
+        data_pins:
+          red:
+            - 14
+            - 21
+            - 47
+            - 48
+            - 45
+          green:
+            - 9
+            - 46
+            - 3
+            - 8
+            - 16 
+            - 1
+          blue:
+            - 15
+            - 7
+            - 6
+            - 5
+            - 4
 
 
 See Also
