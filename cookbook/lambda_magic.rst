@@ -13,7 +13,7 @@ These things don't need external or custom components, and show how powerful :re
 Display pages alternative
 -------------------------
 
-Some displays like :ref:`lcd-pcf8574` don't support pages natively, but you can easily implement them 
+Some displays like :ref:`lcd-pcf8574` don't support pages natively, but you can easily implement them
 using Lambdas:
 
 .. code-block:: yaml
@@ -28,10 +28,10 @@ using Lambdas:
                 case 1:
                   it.print(0, 1, "Page1");
                   break;
-                case 2: 
+                case 2:
                   it.print(0, 1, "Page2");
                   break;
-                case 3: 
+                case 3:
                   it.print(0, 1, "Page3");
                   break;
               }
@@ -104,8 +104,8 @@ Tested on both `arduino` and `esp-idf` platforms.
 Custom UART Text Sensor
 -----------------------
 
-Lots of devices communicate using the UART protocol. If you want to read 
-lines from uart to a Text Sensor you can do so using this code example. 
+Lots of devices communicate using the UART protocol. If you want to read
+lines from uart to a Text Sensor you can do so using this code example.
 
 With this you can use automations or lambda to set switch or sensor states.
 
@@ -115,17 +115,17 @@ With this you can use automations or lambda to set switch or sensor states.
 
     class UartReadLineSensor : public Component, public UARTDevice, public TextSensor {
      public:
-      UartReadLineSensor(UARTComponent *parent) : UARTDevice(parent) {}    
+      UartReadLineSensor(UARTComponent *parent) : UARTDevice(parent) {}
 
       void setup() override {
         // nothing to do here
-      }    
+      }
 
       int readline(int readch, char *buffer, int len)
       {
         static int pos = 0;
         int rpos;
-      
+
         if (readch > 0) {
           switch (readch) {
             case '\n': // Ignore new-lines
@@ -143,7 +143,7 @@ With this you can use automations or lambda to set switch or sensor states.
         }
         // No end of line has been found, so return -1.
         return -1;
-      }    
+      }
 
       void loop() override {
         const int max_line_length = 80;
@@ -157,7 +157,7 @@ With this you can use automations or lambda to set switch or sensor states.
     };
 
 (Store this file in your configuration directory, for example ``uart_read_line_sensor.h``)
-    
+
 And in YAML:
 
 .. code-block:: yaml
@@ -166,15 +166,15 @@ And in YAML:
     esphome:
       includes:
         - uart_read_line_sensor.h
-    
+
     logger:
       level: VERBOSE #makes uart stream available in esphome logstream
       baud_rate: 0 #disable logging over uart
 
     uart:
       id: uart_bus
-      tx_pin: D0
-      rx_pin: D1
+      tx_pin: GPIOXX
+      rx_pin: GPIOXX
       baud_rate: 9600
 
     text_sensor:
@@ -215,7 +215,7 @@ Then the switch uses the text sensor state to publish its own state.
           - uart.write: "\r*pow=on#\r"
         turn_off_action:
           - uart.write: "\r*pow=off#\r"
-    
+
     interval:
       - interval: 10s
         then:
@@ -228,13 +228,13 @@ Delaying Remote Transmissions
 
 The solution below handles the problem of RF frames being sent out by :doc:`/components/rf_bridge` (or
 :doc:`/components/remote_transmitter`) too quickly one after another when operating radio controlled
-covers. The cover motors seem to need at least 600-700ms of silence between the individual code transmissions 
+covers. The cover motors seem to need at least 600-700ms of silence between the individual code transmissions
 to be able to recognize them.
 
 This can be solved by building up a queue of raw RF codes and sending them out one after the other with
-(a configurable) delay between them. Delay is only added to the next commands coming from a list of 
-covers which have to be operated at once from Home Assistant. This is transparent to the system, which 
-will still look like they operate simultaneously. 
+(a configurable) delay between them. Delay is only added to the next commands coming from a list of
+covers which have to be operated at once from Home Assistant. This is transparent to the system, which
+will still look like they operate simultaneously.
 
 .. code-block:: yaml
 
@@ -305,7 +305,7 @@ One Button Cover Control
 The configuration below shows how with a single button you can control the motion of a motorized cover
 by cycling between: open->stop->close->stop->...
 
-In this example a :doc:`/components/cover/time_based` is used with the GPIO configuration of a Sonoff Dual R2. 
+In this example a :doc:`/components/cover/time_based` is used with the GPIO configuration of a Sonoff Dual R2.
 
 .. note::
 

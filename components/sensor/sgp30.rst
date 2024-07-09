@@ -39,7 +39,7 @@ Configuration variables:
 
 - **tvoc** (**Required**): The information for the total Volatile Organic Compounds sensor.
 
-  - **name** (**Required**, string): The name for the humidity sensor.
+  - **name** (**Required**, string): The name for the TVOC sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -60,24 +60,24 @@ Advanced:
 
   - **tvoc_baseline** (**Required**, int): The TVOC baseline for calibration purposes. After OTA, this value is used to calibrate the sensor.
 
-- **eco2_baseline** (*Optional*): The information for the CO₂eq. sensor baseline value. Baseline value is published in decimals.
+- **eco2_baseline** (*Optional*): The information for the CO₂eq. baseline value sensor. Baseline value is published in decimals.
 
   - **name** (**Required**, string): The name for the CO₂eq baseline value sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **tvoc_baseline** (*Optional*): The information for the TVOC baseline value sensor. Baseline value is published in in decimals.
+- **tvoc_baseline** (*Optional*): The information for the TVOC baseline value sensor. Baseline value is published in decimals.
 
   - **name** (**Required**, string): The name for the TVOC baseline value sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **compensation** (*Optional*): The block containing sensors used for compensation.
+- **compensation** (*Optional*): The block containing sensors used for compensation. Both values must be supplied in order to be able to generate the absolute humidity to be reported to the sensor.
 
   - **temperature_source** (*Optional*, :ref:`config-id`): Give an external temperature sensor ID
-    here. This can improve the sensor's internal calculations.
+    here. The data must be in Celsius. This can improve the sensor's internal calculations.
 
-  - **humidity_source** (*Optional*, :ref:`config-id`): Give an external humidity sensor ID
+  - **humidity_source** (*Optional*, :ref:`config-id`): Give an external relative humidity sensor ID
     here. This can improve the sensor's internal calculations.
 
 .. _sgp30-calibrating:

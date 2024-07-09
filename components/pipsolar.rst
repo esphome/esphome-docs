@@ -37,16 +37,8 @@ There is a buffer to buffer up to 10 commands.
 .. code-block:: yaml
 
     # Example configuration entry
-    uart:
-      - id: uart_bus
-        tx_pin: GPIO18
-        rx_pin: GPIO19
-        # most devices use 2400 as baud_rate
-        baud_rate: 2400
-
     pipsolar:
-      - uart_id: uart_bus
-        id: inverter0
+      - id: inverter0
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -199,7 +191,7 @@ All sensors are normal binary sensors... so all binary sensor variables are work
 - **warning_battery_too_low_to_charge** (*Optional*): warning battery too low to charge
 - **fault_dc_dc_over_current** (*Optional*): fault dc dc over current
 - **fault_code** (*Optional*): fault code
-- **warnung_low_pv_energy** (*Optional*): warnung low pv energy
+- **warning_low_pv_energy** (*Optional*): warning low pv energy
 - **warning_high_ac_input_during_bus_soft_start** (*Optional*): warning high ac input during bus soft start
 - **warning_battery_equalization** (*Optional*): warning battery equalization
 

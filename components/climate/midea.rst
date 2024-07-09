@@ -25,17 +25,6 @@ The ``midea`` component creates a Midea air conditioner climate device.
 .. code-block:: yaml
 
     # Example configuration entry
-
-    # Disable logging over UART (required)
-    logger:
-      baud_rate: 0
-
-    # UART settings for Midea dongle (required)
-    uart:
-      tx_pin: 1         # hardware dependant
-      rx_pin: 3         # hardware dependant
-      baud_rate: 9600
-
     # Main settings
     climate:
       - platform: midea
