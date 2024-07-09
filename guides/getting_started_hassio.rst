@@ -144,7 +144,7 @@ Sensor </components/binary_sensor/gpio>`.
             pullup: true
 
 This time when installing, you don’t need to have the device plugged in
-through USB again. The upload will happen wirelessly (:doc:`"over the air" </components/ota>`).
+through USB again. The upload will happen wirelessly (:doc:`"over the air" </components/ota/index>`).
 
 .. figure:: /components/binary_sensor/images/gpio-ui.png
     :align: center
