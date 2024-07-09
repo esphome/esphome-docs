@@ -89,7 +89,7 @@ Open the ESPHome integration page on your Home Assistant instance:
 
 Then:
 
-#. Fnd your device in the device list
+#. Find your device in the device list
 #. Click the "configure" button next to it
 #. Check the "Allow the device to make Home Assistant service calls" box
 #. Then click "submit".
