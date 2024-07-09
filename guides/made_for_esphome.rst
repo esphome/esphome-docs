@@ -36,10 +36,12 @@ For all projects
 - Users should be able to apply updates if your project sells ready-made devices
 - Your project supports adoption via the ``dashboard_import`` feature of ESPHome (see
   :doc:`Sharing </guides/creators>`). In particular:
+
     - There are **no** references to secrets or passwords
     - Network configuration must assume defaults (no static IPs or DNS configured)
     - The configuration **must** be valid, compile and run successfully *without any user changes* after adopting it.
     - Use of remote packages in the YAML is permitted only if the above criteria are met.
+
 - Your product name cannot contain "**ESPHome**" except in the case of *ending with* "**for ESPHome**"
 
 When your project matches all requirements of the Made for ESPHome program,
