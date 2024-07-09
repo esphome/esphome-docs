@@ -1,7 +1,5 @@
-.. _interval:
-
-``interval`` Component
-----------------------
+Interval Component
+------------------
 
 This component allows you to run actions at fixed time intervals. For example, if you want to toggle a switch every
 minute, you can use this component. Please note that it's possible to achieve the same thing with the

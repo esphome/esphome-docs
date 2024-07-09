@@ -172,7 +172,7 @@ ESPHome-specific components or components supporting ESPHome device provisioning
     Improv via BLE, components/esp32_improv, improv.svg, dark-invert
     Improv via Serial, components/improv_serial, improv.svg, dark-invert
     Interval, components/interval, description.svg, dark-invert
-    Scripts, components/scripts, description.svg, dark-invert
+    Script, components/script, description.svg, dark-invert
 
 Network Hardware
 ----------------
