@@ -39,7 +39,7 @@ Configuration variables:
 
 - **tvoc** (**Required**): The information for the total Volatile Organic Compounds sensor.
 
-  - **name** (**Required**, string): The name for the humidity sensor.
+  - **name** (**Required**, string): The name for the TVOC sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -60,13 +60,13 @@ Advanced:
 
   - **tvoc_baseline** (**Required**, int): The TVOC baseline for calibration purposes. After OTA, this value is used to calibrate the sensor.
 
-- **eco2_baseline** (*Optional*): The information for the CO₂eq. sensor baseline value. Baseline value is published in decimals.
+- **eco2_baseline** (*Optional*): The information for the CO₂eq. baseline value sensor. Baseline value is published in decimals.
 
   - **name** (**Required**, string): The name for the CO₂eq baseline value sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **tvoc_baseline** (*Optional*): The information for the TVOC baseline value sensor. Baseline value is published in in decimals.
+- **tvoc_baseline** (*Optional*): The information for the TVOC baseline value sensor. Baseline value is published in decimals.
 
   - **name** (**Required**, string): The name for the TVOC baseline value sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
