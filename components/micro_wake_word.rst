@@ -118,6 +118,7 @@ The model JSON file contains the following fields that are all **required** unle
 - **author** (string): The name of the author that trained the model.
 - **website** (*optional* string): The website of the author.
 - **model** (string): The relative or absolute path or URL to the TFLite trained model file.
+- **trained_languages** (list of strings): A list of the wake word samples' primary languages/pronunciations used when training.
 - **version** (int): The version of the JSON schema. The current version is ``2``.
 - **micro** (object): The microWakeWord specific configuration.
 
