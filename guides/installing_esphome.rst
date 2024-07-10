@@ -49,14 +49,26 @@ with the following:
 Mac
 ---
 
-There are no tested installation instructions for Mac. ESPHome does support
-Mac & will run with no problem.
+The simplest way to install ESPHome on a Mac is with `Homebrew<https://brew.sh/>`:
 
-Contributions are welcome!
+.. code-block:: console
 
-The process will likely be similar to Windows. You can install Python from the
-official site, and then install ESPHome with ``pip3 install esphome``.  You can
-then test that things are properly installed with the following:
+    $ brew install esphome
+
+Or, if you have a working Python installation you can install it directly without Homebrew.
+There are several ways to install Python on a Mac, including with Homebrew, Apple's X-Code command 
+line tools, or from `official packages<https://www.python.org/downloads/>`.
+
+Make sure you're running python 3.9 or above, then install using ``pip3``:
+
+.. code-block:: console
+
+    $ python3 --version
+    Python 3.9.15
+
+    $ pip3 install esphome
+
+You can then test that things are properly installed with the following:
 
 .. code-block:: console
 
