@@ -21,7 +21,7 @@ The training process is described on the `microWakeWord GitHub repository <https
     # Github shorthand URL
     micro_wake_word:
       models:
-        - model: github://esphome/micro-wake-word-models/models/okay_nabu.json
+        - model: github://esphome/micro-wake-word-models/models/v2/okay_nabu.json
 
 Configuration variables:
 ------------------------
