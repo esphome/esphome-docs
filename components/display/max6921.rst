@@ -5,13 +5,14 @@ MAX6921 vacuum-fluorescent display (VFD) tube driver
     :description: Instructions for setting up MAX6921 vacuum-fluorescent display (VFD) tube driver.
 
 The ``max6921`` display platform allows you to use MAX6921 VFD display drivers (
-`datasheet <https://www.analog.com/media/en/technical-documentation/data-sheets/MAX6921-MAX6931.pdf>`)
-with ESPHome. An example use case would be to drive an IV18 display tube (`Thingiverse IV18 project` <https://www.thingiverse.com/thing:3417955>).
+`datasheet <https://www.analog.com/media/en/technical-documentation/data-sheets/MAX6921-MAX6931.pdf>`__)
+with ESPHome. Please note that this component is *only* for 7-segment display, not matrix configurations. An example use case would be to drive an IV18 display tube (
+`Thingiverse IV18 project <https://www.thingiverse.com/thing:3417955>`__).
 
 As the communication with the MAX6921 is done using SPI for this component, you need
 to have an :ref:`SPI bus <spi>` in your configuration with **clk_pin** and **mosi_pin** set (miso_pin is not required).
 
-As the chip refresh is very time-critical, the ESP8266 is not supported (the refresh routine runs on the 2nd core)!
+As the chip refresh is very time-critical, the ESP8266 is not supported (the refresh routine uses a 2nd CPU core)!
 
 .. code-block:: yaml
 
@@ -51,18 +52,40 @@ As the chip refresh is very time-critical, the ESP8266 is not supported (the ref
 Configuration variables:
 ------------------------
 
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the CS line hooked up to.
-- **num_chips** (*Optional*, int): The number of chips you wish to use for daisy chaining. Defaults to
-  ``1``.
-- **intensity** (*Optional*, int): The intensity with which the MAX7219 should drive the outputs. Range is from
-  0 (least intense) to 15 (the default).
+- **load_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin is used to update the output latch with data from shift register (see MAX6921 datasheet).
+- **blank_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin is used to control the display brightness by PWM (see MAX6921 datasheet).
+- **out_pin_mapping** (**Required**): The mapping of MAX6921 output pins to the appropriate display pins.
+
+  - **seg_to_out_map** (**Required**): The mapping of MAX6921 output pins to the appropriate 7-segment pins of any display character.
+
+    - **seg_a_pin** (**Required**, int): MAX6921 OUTx pin to control segment ``a``. Range is ``0`` to ``19``.
+    - **seg_b_pin** (**Required**, int): MAX6921 OUTx pin to control segment ``b``. Range is ``0`` to ``19``.
+    - **seg_c_pin** (**Required**, int): MAX6921 OUTx pin to control segment ``c``. Range is ``0`` to ``19``.
+    - **seg_d_pin** (**Required**, int): MAX6921 OUTx pin to control segment ``d``. Range is ``0`` to ``19``.
+    - **seg_e_pin** (**Required**, int): MAX6921 OUTx pin to control segment ``e``. Range is ``0`` to ``19``.
+    - **seg_f_pin** (**Required**, int): MAX6921 OUTx pin to control segment ``f``. Range is ``0`` to ``19``.
+    - **seg_g_pin** (**Required**, int): MAX6921 OUTx pin to control segment ``g``. Range is ``0`` to ``19``.
+    - **seg_p_pin** (*Optional*, int): MAX6921 OUTx pin to control segment ``point``. Range is ``0`` to ``19``.
+  - **pos_to_out_map** (**Required**): The mapping of MAX6921 output pins to the appropriate character position pins of the display.
+
+    - **pos_0_pin** (**Required**, int): MAX6921 OUTx pin to select position ``1``. Range is ``0`` to ``19``.
+    - **pos_1_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``2``. Range is ``0`` to ``19``.
+    - **pos_2_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``3``. Range is ``0`` to ``19``.
+    - **pos_3_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``4``. Range is ``0`` to ``19``.
+    - **pos_4_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``5``. Range is ``0`` to ``19``.
+    - **pos_5_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``6``. Range is ``0`` to ``19``.
+    - **pos_6_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``7``. Range is ``0`` to ``19``.
+    - **pos_7_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``8``. Range is ``0`` to ``19``.
+    - **pos_8_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``9``. Range is ``0`` to ``19``.
+    - **pos_9_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``10``. Range is ``0`` to ``19``.
+    - **pos_10_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``11``. Range is ``0`` to ``19``.
+    - **pos_11_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``12``. Range is ``0`` to ``19``.
+    - **pos_12_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``13``. Range is ``0`` to ``19``.
+- **brightness** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness with which the MAX6921 should drive the outputs. Defaults to ``100%``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``500ms``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the MAX7219.
   See :ref:`display-max7219_lambda` for more information.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
-- **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
-  to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **reverse_enable** (*Optional*, boolean): For some displays the order of the chips is reversed so you'll see "56781234" instead of "12345678". This option will adjust the output to compensate. Defaults to ``false``.
 
 
 .. _display-max7219_lambda:
