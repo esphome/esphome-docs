@@ -253,6 +253,7 @@ Contributors
 - `brtchip-tuannguyen (@brtchip-tuannguyen) <https://github.com/brtchip-tuannguyen>`__
 - `buddydvd (@buddydvd) <https://github.com/buddydvd>`__
 - `bulburDE (@bulburDE) <https://github.com/bulburDE>`__
+- `Justin Bunton (@Bunton33) <https://github.com/Bunton33>`__
 - `Matt Burke (@burkemw3) <https://github.com/burkemw3>`__
 - `Jon Little (@burundiocibu) <https://github.com/burundiocibu>`__
 - `buxtronix (@buxtronix) <https://github.com/buxtronix>`__
@@ -331,6 +332,7 @@ Contributors
 - `Coenie Richards (@coenier) <https://github.com/coenier>`__
 - `Ashton Lafferty (@cogneato) <https://github.com/cogneato>`__
 - `Colin Leroy-Mira (@colinleroy) <https://github.com/colinleroy>`__
+- `Colm (@colmbuckley) <https://github.com/colmbuckley>`__
 - `ColoMAX (@ColoMAX) <https://github.com/ColoMAX>`__
 - `Max (@coltoncat) <https://github.com/coltoncat>`__
 - `Conclusio (@Conclusio) <https://github.com/Conclusio>`__
@@ -393,6 +395,7 @@ Contributors
 - `Aliasghar Dashkhaneh (@dashkhaneh) <https://github.com/dashkhaneh>`__
 - `Sylwester (@DatanoiseTV) <https://github.com/DatanoiseTV>`__
 - `Anthony Uk (@dataway) <https://github.com/dataway>`__
+- `Datortarps (@Datortarp5) <https://github.com/Datortarp5>`__
 - `Dav-id (@dav-id-org) <https://github.com/dav-id-org>`__
 - `DAVe3283 (@DAVe3283) <https://github.com/DAVe3283>`__
 - `DaveCorder (@DaveCorder) <https://github.com/DaveCorder>`__
@@ -430,6 +433,7 @@ Contributors
 - `Mickaël Le Baillif (@demikl) <https://github.com/demikl>`__
 - `denes44 (@denes44) <https://github.com/denes44>`__
 - `Dennis (@dennisvbussel) <https://github.com/dennisvbussel>`__
+- `Denis Prokopenko (@denproc) <https://github.com/denproc>`__
 - `dentra (@dentra) <https://github.com/dentra>`__
 - `depasseg (@depasseg) <https://github.com/depasseg>`__
 - `Davide Depau (@Depau) <https://github.com/Depau>`__
@@ -641,6 +645,7 @@ Contributors
 - `Greg Cormier (@gcormier) <https://github.com/gcormier>`__
 - `GeekVisit (@GeekVisit) <https://github.com/GeekVisit>`__
 - `Ian Reinhart Geiser (@geiseri) <https://github.com/geiseri>`__
+- `Gene Hand (@genehand) <https://github.com/genehand>`__
 - `R Huish (@genestealer) <https://github.com/genestealer>`__
 - `Geoff Davis (@geoffdavis) <https://github.com/geoffdavis>`__
 - `Geoffrey Van Landeghem (@geoffrey-vl) <https://github.com/geoffrey-vl>`__
@@ -895,6 +900,7 @@ Contributors
 - `joskfg (@joskfg) <https://github.com/joskfg>`__
 - `Joscha Wagner (@jowgn) <https://github.com/jowgn>`__
 - `Javier Peletier (@jpeletier) <https://github.com/jpeletier>`__
+- `Jan Rieger (@jrieger) <https://github.com/jrieger>`__
 - `jsuanet (@jsuanet) <https://github.com/jsuanet>`__
 - `James Szalay (@jtszalay) <https://github.com/jtszalay>`__
 - `Jules-R (@Jules-R) <https://github.com/Jules-R>`__
@@ -928,6 +934,7 @@ Contributors
 - `kbouchard111 (@kbouchard111) <https://github.com/kbouchard111>`__
 - `Keith Burzinski (@kbx81) <https://github.com/kbx81>`__
 - `Ken Piper (@Kealper) <https://github.com/Kealper>`__
+- `kecajtop (@kecajtop) <https://github.com/kecajtop>`__
 - `Tom Keller (@kellertk) <https://github.com/kellertk>`__
 - `Kelvie Wong (@kelvie) <https://github.com/kelvie>`__
 - `Kenny Stier (@KennyStier) <https://github.com/KennyStier>`__
@@ -997,6 +1004,7 @@ Contributors
 - `lcavalli (@lcavalli) <https://github.com/lcavalli>`__
 - `Craig Fletcher (@leakypixel) <https://github.com/leakypixel>`__
 - `Dominik Wagenknecht (@LeDominik) <https://github.com/LeDominik>`__
+- `leejoow (@leejoow) <https://github.com/leejoow>`__
 - `Benny de Leeuw (@leeuwte) <https://github.com/leeuwte>`__
 - `Thayne (@Legot) <https://github.com/Legot>`__
 - `lein1013 (@lein1013) <https://github.com/lein1013>`__
@@ -1405,6 +1413,7 @@ Contributors
 - `pplucky (@pplucky) <https://github.com/pplucky>`__
 - `Peter Provost (@PProvost) <https://github.com/PProvost>`__
 - `Q. Marchi (@preeefix) <https://github.com/preeefix>`__
+- `PricelessToolkit (@PricelessToolkit) <https://github.com/PricelessToolkit>`__
 - `Francesco Ciocchetti (@primeroz) <https://github.com/primeroz>`__
 - `probonopd (@probonopd) <https://github.com/probonopd>`__
 - `Gary Morris (@progrmr) <https://github.com/progrmr>`__
@@ -1791,6 +1800,7 @@ Contributors
 - `Aaron Mildenstein (@untergeek) <https://github.com/untergeek>`__
 - `uPesy Electronics (@uPesy) <https://github.com/uPesy>`__
 - `user897943 (@user897943) <https://github.com/user897943>`__
+- `uSlackr (@uSlackr) <https://github.com/uSlackr>`__
 - `UT2UH (@UT2UH) <https://github.com/UT2UH>`__
 - `Vlad Yarotsky (@v-yarotsky) <https://github.com/v-yarotsky>`__
 - `Vc (@Valcob) <https://github.com/Valcob>`__
@@ -1893,4 +1903,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated July 3, 2024.*
+*This page was last updated July 11, 2024.*
