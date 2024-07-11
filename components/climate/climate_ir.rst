@@ -78,7 +78,7 @@ controller unit.
 
     # Example configuration entry
     remote_transmitter:
-      pin: GPIO32
+      pin: GPIOXX
       carrier_duty_percent: 50%
 
     climate:
