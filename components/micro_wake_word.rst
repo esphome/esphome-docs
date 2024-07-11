@@ -48,9 +48,9 @@ Configuration variables:
   - **model** (*Optional*, string): This can be one of:
 
         - A github shorthand URL to a model JSON file.
-          e.g. ``github://esphome/micro-wake-word-models/models/vad.json@main``.
+          e.g. ``github://esphome/micro-wake-word-models/models/v2/vad.json@main``.
         - A full URL to a model JSON file.
-          e.g. ``https://github.com/esphome/micro-wake-word-models/raw/main/models/vad.json``.
+          e.g. ``https://github.com/esphome/micro-wake-word-models/raw/main/models/v2/vad.json``.
 
   - **probability_cutoff** (*Optional*, percentage): The probability cutoff for voice activity detection.
     If the probability is below this value, then no wake word will be accepted.
