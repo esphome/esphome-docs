@@ -125,7 +125,7 @@ IR receiver.
     remote_receiver:
       id: rcvr
       pin:
-        number: GPIO14
+        number: GPIOXX
         inverted: true
         mode:
           input: true
