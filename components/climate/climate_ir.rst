@@ -134,7 +134,7 @@ IR receiver.
       tolerance: 55%
 
     climate:
-      - platform: coolix
+      - platform: REPLACEME
         name: "Living Room AC"
         receiver_id: rcvr
 
