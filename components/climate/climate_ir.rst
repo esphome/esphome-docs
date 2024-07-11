@@ -164,7 +164,7 @@ Additional configuration variables:
 .. _daikin_brc:
 
 ``daikin_brc`` Climate
--------------------------
+----------------------
 
 The Daikin BRC remotes are used by the ceiling cassette model of Daikin heatpumps.
 
@@ -184,7 +184,7 @@ Additional configuration variables:
 .. _gree_ir:
 
 ``gree`` Climate
----------------------
+----------------
 
 Additional configuration variables:
 
@@ -194,6 +194,7 @@ Additional configuration variables:
   - ``yan``
   - ``yaa``
   - ``yac``
+  - ``yac1fb9``
 
 .. code-block:: yaml
 
@@ -207,7 +208,7 @@ Additional configuration variables:
 .. _midea_ir:
 
 ``midea_ir`` Climate
--------------------------
+--------------------
 
 These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.
 
@@ -232,7 +233,7 @@ Additional configuration variables:
 .. _mitsubishi:
 
 ``mitsubishi`` Climate
-------------------------
+----------------------
 
 Additional configuration variables:
 
@@ -318,7 +319,7 @@ Additional configuration variables:
 .. _whynter:
 
 ``whynter`` Climate
--------------------------
+-------------------
 
 Additional configuration variables:
 
