@@ -82,7 +82,7 @@ controller unit.
       carrier_duty_percent: 50%
 
     climate:
-      - platform: coolix
+      - platform: REPLACEME
         name: "Living Room AC"
 
 Configuration Variables:
