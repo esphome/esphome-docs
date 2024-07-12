@@ -381,15 +381,17 @@ Additional configuration must be specified for this platform:
 
 .. _daikin_arc:
 
-.. note::
+``daikin_arc`` Climate
+-------------------------
 
-    The Daikin ARC remotes (``daikin_arc`` climate, ``daikin_arc417``, ``daikin_arc480`` protocols) are used by the japanese model of Daikin.
+The Daikin ARC remotes (``daikin_arc`` climate, ``daikin_arc417``, ``daikin_arc480`` protocols) are used by the japanese model of Daikin.
 
 .. _zhlt01:
 
-.. note::
+``zhlt01`` Climate
+---------------------
 
-    The ``zhlt01`` climate and protocol, based on the ZH/LT-01 remote controller, is used with many locally branded airconditioners, like: Eurom, Chigo, Tristar, Tecnomaster, Elgin, Geant, Tekno, Topair, Proma, Sumikura, JBS, Turbo Air, Nakatomy, Celestial Air, Ager, Blueway, Airlux, etc.
+The ``zhlt01`` climate and protocol, based on the ZH/LT-01 remote controller, is used with many locally branded airconditioners, like: Eurom, Chigo, Tristar, Tecnomaster, Elgin, Geant, Tekno, Topair, Proma, Sumikura, JBS, Turbo Air, Nakatomy, Celestial Air, Ager, Blueway, Airlux, etc.
 
 See Also
 --------
