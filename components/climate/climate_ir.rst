@@ -102,11 +102,11 @@ Configuration Variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **transmitter_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the remote transmitter.
 
+**Specific configuration variables:**
+
 .. _climate_ir_lg:
 
-``climate_ir_lg`` **Climate**
-
-Additional configuration variables:
+``climate_ir_lg`` **Climate**:
 
 - **header_high** (*Optional*, :ref:`config-time`): time for the high part of the header for the LG protocol. Defaults to ``8000us``
 - **header_low** (*Optional*, :ref:`config-time`): time for the low part of the header for the LG protocol. Defaults to ``4000us``
@@ -126,11 +126,9 @@ Additional configuration variables:
 
 .. _daikin_brc:
 
-``daikin_brc`` **Climate**
+``daikin_brc`` **Climate**:
 
 The Daikin BRC remotes are used by the ceiling cassette model of Daikin heatpumps.
-
-Additional configuration variables:
 
 - **use_fahrenheit** (*Optional*, boolean): U.S. models of the Daikin BRC remote send the temperature in Fahrenheit, if your remote shows Fahrenheit and can not be changed to Celsius then set this to true. Defaults to ``false``.
 
@@ -145,21 +143,19 @@ Additional configuration variables:
 
 .. _delonghi_ir:
 
-``delonghi`` **Climate**
+``delonghi`` **Climate**:
 
 The ``delonghi`` climate currently supports the protocol used by some Delonghi portable units, known working with Delonghi PAC WE 120HP.
 
 .. _daikin_arc:
 
-``daikin_arc`` **Climate**
+``daikin_arc`` **Climate**:
 
 The Daikin ARC remotes (``daikin_arc`` climate, ``daikin_arc417``, ``daikin_arc480`` protocols of :ref:`Arduino-HeatpumpIR<heatpumpir>`) are used by the japanese model of Daikin.
 
 .. _gree_ir:
 
-``gree`` **Climate**
-
-Additional configuration variables:
+``gree`` **Climate**:
 
 - **model** (*Required*, string): GREE has a few different protocols depending on model. One of these will work for you.
 
@@ -180,11 +176,9 @@ Additional configuration variables:
 
 .. _midea_ir:
 
-``midea_ir`` **Climate**
+``midea_ir`` **Climate**:
 
 These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.
-
-Additional configuration variables:
 
 - **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
 
@@ -204,9 +198,7 @@ Additional configuration variables:
 
 .. _mitsubishi:
 
-``mitsubishi`` **Climate**
-
-Additional configuration variables:
+``mitsubishi`` **Climate**:
 
 - **set_fan_mode** (*Optional*, string): Select the fan modes desired or that are supported on your remote. Defaults to ``3levels``
 
@@ -244,9 +236,7 @@ Additional configuration variables:
 
 .. _toshiba:
 
-``toshiba`` **Climate**
-
-Additional configuration variables:
+``toshiba`` **Climate**:
 
 - **model** (*Optional*, string): There are two valid models
 
@@ -274,9 +264,7 @@ Additional configuration variables:
 
 .. _whirlpool:
 
-``whirlpool`` **Climate**
-
-Additional configuration variables:
+``whirlpool`` **Climate**:
 
 - **model** (*Optional*, string): There are two valid models to choose from:
 
@@ -285,9 +273,7 @@ Additional configuration variables:
 
 .. _whynter:
 
-``whynter`` **Climate**
-
-Additional configuration variables:
+``whynter`` **Climate**:
 
 - **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
 
@@ -303,7 +289,7 @@ Additional configuration variables:
 
 .. _zhlt01:
 
-``zhlt01`` **Climate**
+``zhlt01`` **Climate**:
 
 The ``zhlt01`` climate and protocol, based on the ZH/LT-01 remote controller, is used with many locally branded airconditioners, like: Eurom, Chigo, Tristar, Tecnomaster, Elgin, Geant, Tekno, Topair, Proma, Sumikura, JBS, Turbo Air, Nakatomy, Celestial Air, Ager, Blueway, Airlux, etc.
 
