@@ -68,6 +68,14 @@ Configuration variables:
 - **value** (**Required**, :ref:`templatable <config-templatable>`): The value to set the global
   variable to.
 
+.. note::
+
+    This action can also be written in lambdas:
+
+    .. code-block:: cpp
+
+        id(my_global_var) = 10;
+
 See Also
 --------
 
