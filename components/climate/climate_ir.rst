@@ -104,8 +104,7 @@ Configuration Variables:
 
 .. _climate_ir_lg:
 
-``climate_ir_lg`` Climate
--------------------------
+``climate_ir_lg`` **Climate**
 
 Additional configuration variables:
 
