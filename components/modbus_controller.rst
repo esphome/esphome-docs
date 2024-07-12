@@ -175,9 +175,9 @@ The following code allows a ModBUS client to read a sensor value from your ESPHo
       - modbus_id: modbus_server
         address: 0x4
         server_registers:
-          - start_address: 0x0002
+          - address: 0x0002
             value_type: S_DWORD_R
-            lambda: |-
+            read_lambda: |-
               return id(evse_voltage_l1).state;
 
     sensor:
