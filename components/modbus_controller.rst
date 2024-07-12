@@ -68,7 +68,7 @@ Configuration variables:
   responds to a command, it'll be marked online again.
 
 - **server_registers** (*Optional*): A list of registers that are responded to when acting as a server.
-  - **start_address** (**Required**, integer): start address of the first register in a range
+  - **address** (**Required**, integer): start address of the first register in a range
   - **value_type** (*Optional*): datatype of the mod_bus register data. The default data type for ModBUS is a 16 bit integer in big endian format (MSB first)
 
       - ``U_WORD``: unsigned 16 bit integer from 1 register = 16bit
@@ -86,7 +86,7 @@ Configuration variables:
 
     Defaults to ``U_WORD``.
 
-  - **lambda** (**Required**, :ref:`lambda <config-lambda>`):
+  - **read_lambda** (**Required**, :ref:`lambda <config-lambda>`):
     Lambda that returns the value of this register.
 
 
