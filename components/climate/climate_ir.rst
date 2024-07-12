@@ -97,46 +97,10 @@ Configuration Variables:
   receiver. see: :ref:`ir-receiver_id`.
 - All other options from :ref:`Climate <config-climate>`.
 
-Advanced Options
-----------------
+**Advanced Options**
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **transmitter_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the remote transmitter.
-
-.. _ir-receiver_id:
-
-Using a Receiver
-----------------
-
-.. note::
-
-    This is only supported with select climate devices, see "Supports receiver" in the table at the top of the page.
-
-Optionally, some platforms can listen to data the climate device sends over infrared to update their state (
-for example what mode the device is in). By setting up a :doc:`remote_receiver </components/remote_receiver>`
-and passing its ID to the climate platform you can enable this mode.
-
-When using a receiver it is recommended to put the IR receiver as close as possible to the equipment's
-IR receiver.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    remote_receiver:
-      id: rcvr
-      pin:
-        number: GPIOXX
-        inverted: true
-        mode:
-          input: true
-          pullup: true
-      # high 55% tolerance is recommended for some remote control units
-      tolerance: 55%
-
-    climate:
-      - platform: REPLACEME
-        name: "Living Room AC"
-        receiver_id: rcvr
 
 .. _climate_ir_lg:
 
@@ -163,8 +127,7 @@ Additional configuration variables:
 
 .. _daikin_brc:
 
-``daikin_brc`` Climate
-----------------------
+``daikin_brc`` **Climate**
 
 The Daikin BRC remotes are used by the ceiling cassette model of Daikin heatpumps.
 
@@ -181,10 +144,21 @@ Additional configuration variables:
         sensor: room_temperature
         use_fahrenheit: true
 
+.. _delonghi_ir:
+
+``delonghi`` **Climate**
+
+The ``delonghi`` climate currently supports the protocol used by some Delonghi portable units, known working with Delonghi PAC WE 120HP.
+
+.. _daikin_arc:
+
+``daikin_arc`` **Climate**
+
+The Daikin ARC remotes (``daikin_arc`` climate, ``daikin_arc417``, ``daikin_arc480`` protocols of :ref:`Arduino-HeatpumpIR<heatpumpir>) are used by the japanese model of Daikin.
+
 .. _gree_ir:
 
-``gree`` Climate
-----------------
+``gree`` **Climate**
 
 Additional configuration variables:
 
@@ -207,8 +181,7 @@ Additional configuration variables:
 
 .. _midea_ir:
 
-``midea_ir`` Climate
---------------------
+``midea_ir`` **Climate**
 
 These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.
 
@@ -232,8 +205,7 @@ Additional configuration variables:
 
 .. _mitsubishi:
 
-``mitsubishi`` Climate
-----------------------
+``mitsubishi`` **Climate**
 
 Additional configuration variables:
 
@@ -273,8 +245,7 @@ Additional configuration variables:
 
 .. _toshiba:
 
-``toshiba`` Climate
--------------------
+``toshiba`` **Climate**
 
 Additional configuration variables:
 
@@ -302,12 +273,9 @@ Additional configuration variables:
     - This climate IR component is also known to work with Midea model MAP14HS1TBL and may work with other similar
       models, as well. (Midea acquired Toshiba's product line and re-branded it.)
 
-
 .. _whirlpool:
 
-
-``whirlpool`` Climate
----------------------
+``whirlpool`` **Climate**
 
 Additional configuration variables:
 
@@ -318,8 +286,7 @@ Additional configuration variables:
 
 .. _whynter:
 
-``whynter`` Climate
--------------------
+``whynter`` **Climate**
 
 Additional configuration variables:
 
@@ -334,6 +301,47 @@ Additional configuration variables:
         sensor: room_temperature
         use_fahrenheit: true
         supports_heat: true
+
+.. _zhlt01:
+
+``zhlt01`` **Climate**
+
+The ``zhlt01`` climate and protocol, based on the ZH/LT-01 remote controller, is used with many locally branded airconditioners, like: Eurom, Chigo, Tristar, Tecnomaster, Elgin, Geant, Tekno, Topair, Proma, Sumikura, JBS, Turbo Air, Nakatomy, Celestial Air, Ager, Blueway, Airlux, etc.
+
+.. _ir-receiver_id:
+
+Using a Receiver
+----------------
+
+.. note::
+
+    This is only supported with select climate devices, see "Supports receiver" in the table at the top of the page.
+
+Optionally, some platforms can listen to data the climate device sends over infrared to update their state (
+for example what mode the device is in). By setting up a :doc:`remote_receiver </components/remote_receiver>`
+and passing its ID to the climate platform you can enable this mode.
+
+When using a receiver it is recommended to put the IR receiver as close as possible to the equipment's
+IR receiver.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    remote_receiver:
+      id: rcvr
+      pin:
+        number: GPIOXX
+        inverted: true
+        mode:
+          input: true
+          pullup: true
+      # high 55% tolerance is recommended for some remote control units
+      tolerance: 55%
+
+    climate:
+      - platform: REPLACEME
+        name: "Living Room AC"
+        receiver_id: rcvr
 
 .. _heatpumpir:
 
@@ -372,26 +380,6 @@ Additional configuration must be specified for this platform:
     ``update_interval`` must be less than 10 minutes or the ``greeyac`` device will revert to using its own
     internal temperature sensor; a value of 2 minutes seems to work well. See :doc:`/components/sensor/index`
     for more information.
-
-.. _delonghi_ir:
-
-.. note::
-
-    The ``delonghi`` climate currently supports the protocol used by some Delonghi portable units, known working with Delonghi PAC WE 120HP.
-
-.. _daikin_arc:
-
-``daikin_arc`` Climate
--------------------------
-
-The Daikin ARC remotes (``daikin_arc`` climate, ``daikin_arc417``, ``daikin_arc480`` protocols) are used by the japanese model of Daikin.
-
-.. _zhlt01:
-
-``zhlt01`` Climate
----------------------
-
-The ``zhlt01`` climate and protocol, based on the ZH/LT-01 remote controller, is used with many locally branded airconditioners, like: Eurom, Chigo, Tristar, Tecnomaster, Elgin, Geant, Tekno, Topair, Proma, Sumikura, JBS, Turbo Air, Nakatomy, Celestial Air, Ager, Blueway, Airlux, etc.
 
 See Also
 --------
