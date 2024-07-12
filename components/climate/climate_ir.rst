@@ -154,7 +154,7 @@ The ``delonghi`` climate currently supports the protocol used by some Delonghi p
 
 ``daikin_arc`` **Climate**
 
-The Daikin ARC remotes (``daikin_arc`` climate, ``daikin_arc417``, ``daikin_arc480`` protocols of :ref:`Arduino-HeatpumpIR<heatpumpir>) are used by the japanese model of Daikin.
+The Daikin ARC remotes (``daikin_arc`` climate, ``daikin_arc417``, ``daikin_arc480`` protocols of :ref:`Arduino-HeatpumpIR<heatpumpir>`) are used by the japanese model of Daikin.
 
 .. _gree_ir:
 
