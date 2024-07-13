@@ -144,7 +144,7 @@ Configuration example:
           name: "LYWSD02 Battery Level"
 
 LYWSD02MMC
-*******
+**********
 
 Hygro thermometer, rectangular body, e-ink display, broadcasts temperature, humidity and battery level. Encrypted.
 
