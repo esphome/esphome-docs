@@ -1881,6 +1881,7 @@ Contributors
 - `Jevgeni Kiski (@yozik04) <https://github.com/yozik04>`__
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__
 - `Yuval Aboulafia (@yuvalabou) <https://github.com/yuvalabou>`__
+- `Z3LIFF (@z3liff) <https://github.com/z3liff>`__
 - `ZabojnikM (@ZabojnikM) <https://github.com/ZabojnikM>`__
 - `Björn Stenberg (@zagor) <https://github.com/zagor>`__
 - `zaluthar (@zaluthar) <https://github.com/zaluthar>`__
@@ -1903,4 +1904,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated July 11, 2024.*
+*This page was last updated July 13, 2024.*
