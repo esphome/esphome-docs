@@ -22,6 +22,25 @@ Breaking Changes
 - [modbus_text_sensor] new default ANSI encoding type :esphomepr:`6975` by :ghuser:`dudanov` (breaking-change)
 - [micro_wake_word] Version 2 :esphomepr:`7032` by :ghuser:`kahrendt` (breaking-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- helpers.cpp: Fix GLIBCXX_RELEASE check < 8 :esphomepr:`7062` by :ghuser:`ferbar`
+- Fix pmsa003i cold boot marked as failed on ESP32 et al :esphomepr:`7064` by :ghuser:`z3liff`
+- [http_request] Fix follow_redirects on arduino :esphomepr:`7054` by :ghuser:`guillempages`
+- [ethernet] Fix compile warning for IPv6 :esphomepr:`7048` by :ghuser:`HeMan`
+- Update webserver local assets to 20240704-081526 :esphomepr:`7041` by :ghuser:`esphomebot`
+- Add braces to if statement to avoid compiler warning. :esphomepr:`7036` by :ghuser:`colmbuckley`
+- [mitsubishi] Fix current temperature :esphomepr:`6909` by :ghuser:`ttaborda`
+- [climate] fix dump output of unsupported features :esphomepr:`7005` by :ghuser:`dudanov`
+- [climate-traits] improved performance :esphomepr:`7006` by :ghuser:`dudanov`
+- Add default icon to restart button :esphomepr:`7076` by :ghuser:`leejoow`
+- Add support for the Gree YAC1FB9 in climate_ir :esphomepr:`7056` by :ghuser:`topeju`
+- add ESP32-C6 support to esp32_can :esphomepr:`7063` by :ghuser:`Adminius`
+- Fix voice assistant crash when no speaker configured :esphomepr:`7075` by :ghuser:`kevdliu`
+- Bump HeatpumpIR, add protocols, remove IRremoteESP8266 :esphomepr:`6996` by :ghuser:`nagyrobi`
+- LTR390 separate ALS and UV gain and resolution :esphomepr:`7026` by :ghuser:`latonita`
+
 All changes
 ^^^^^^^^^^^
 
