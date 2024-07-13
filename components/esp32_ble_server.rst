@@ -52,8 +52,7 @@ Services are the main way to expose data and control over BLE. Services communic
           advertise: false
           characteristics:
             - uuid: cad48e28-7fbe-41cf-bae9-d77a6c233423
-              properties:
-                - read
+              read: true
               value: "Hello, World!"
 
 
@@ -79,9 +78,8 @@ Characteristics expose data and control for a BLE service. Characteristics can h
         characteristics:
           - id: test_characteristic
             uuid: cad48e28-7fbe-41cf-bae9-d77a6c233423
-            properties:
-              - read
-            value: "Hello, World!"
+            read: true
+            value: !lambda 'return to_vector("Hello, World!");'
             descriptors:
               - uuid: 2901
                 value: "Hello, World Descriptor!"
@@ -91,8 +89,13 @@ Configuration variables:
 
 - **id** (*Optional*, string): An ID to refer to this characteristic in automations.
 - **uuid** (*Required*, string, int): The UUID of the characteristic. If it is a string, it should be in the format ``xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx``.
-- **properties** (*Required*, list of string): The properties of the characteristic. Can be ``read``, ``write``, ``notify``, ``broadcast``, ``indicate``, ``write_nr``.
-- **value** (*Optional*, string, int, float, boolean, list of bytes): The initial value of the characteristic. Defaults to an empty string.
+- **read** (*Optional*, boolean): If the characteristic should be readable. Defaults to ``false``.
+- **write** (*Optional*, boolean): If the characteristic should be writable. Defaults to ``false``.
+- **notify** (*Optional*, boolean): If the characteristic should be notifiable. Defaults to ``false``.
+- **broadcast** (*Optional*, boolean): If the characteristic should be broadcasted. Defaults to ``false``.
+- **indicate** (*Optional*, boolean): If the characteristic should be indicated. Defaults to ``false``.
+- **write_no_response** (*Optional*, boolean): If the characteristic should be writable without a response. Defaults to ``false``.
+- **value** (*Optional*, string, int, float, boolean, list of bytes, :ref:`templatable <config-templatable>`): The initial value of the characteristic. It is computed every time the characteristic is read. If a :ref:`templatable <config-templatable>` it must return a list of bytes (you may use the `to_vector` helper function to convert other types to a list of bytes).
 - **descriptors** (*Optional*, list of :ref:`esp32_ble_server-descriptor`): A list of descriptors to expose in this characteristic.
 - **on_write** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the characteristic is written to. The characteristic must have the ``write`` property. See :ref:`esp32_ble_server-characteristic-on_write`.
 
@@ -118,15 +121,14 @@ Descriptors are optional and are used to provide additional information about a 
 Configuration variables:
 
 - **uuid** (*Required*, string, int): The UUID of the descriptor. If it is a string, it should be in the format ``xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx``.
-- **max_length** (*Optional*, int): The maximum length of the descriptor. Defaults to 0, which means the maximum length is calculated based on the initial value.
-- **value** (*Optional*, string, int, float, boolean, list of bytes): The value of the descriptor. Defaults to an empty string.
+- **value** (*Required*, string, int, float, boolean, list of bytes): The value of the descriptor.
 
 .. _esp32_ble_server-characteristic-on_write:
 
 ``on_write`` Trigger
 --------------------
 
-With this configuration option you can write complex automations that are triggered when a characteristic is written to.
+With this configuration option you can write complex automations that are triggered when a characteristic is written to. It provides the ``x`` variable which contains the new value of the characteristic.
 
 .. code-block:: yaml
 
@@ -135,15 +137,14 @@ With this configuration option you can write complex automations that are trigge
         - uuid: # ...
           characteristics:
             # ...
-            properties:
-              - write
+            write: true
             on_write:
               then:
                 - lambda: |-
-                    ESP_LOGD("BLE", "Received: %s", x.c_str());
+                    ESP_LOGD("BLE", "Received: %s", std::string(x.begin(), x.end()).c_str());
 
 
-``ble_server.characteristic_set_value`` Action
+``ble_server.characteristic.set_value`` Action
 ----------------------------------------------
 
 This action sets the value of a characteristic.
@@ -154,13 +155,29 @@ This action sets the value of a characteristic.
       then:
         - ble_server.characteristic_set_value:
             id: test_write_characteristic
-            value: !lambda 'return "Hello, World!";'
+            value: [0, 1, 2]
 
 
 Configuration variables:
 
 - **id** (*Required*, string): The ID of the characteristic to set the value of.
-- **value** (*Required*, string, :ref:`templatable <config-templatable>`): The value to set the characteristic to.
+- **value** (*Required*, string, int, float, boolean, list of bytes, :ref:`templatable <config-templatable>`): The value to set the characteristic to. Follows the same format and behaviour as the ``value`` configuration variable in :ref:`esp32_ble_server-characteristic`.
+
+
+``ble_server.characteristic.notify`` Action
+-------------------------------------------
+
+This action sends a NOTIFY message to the client.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - ble_server.characteristic_notify:
+            id: test_notify_characteristic
+
+Configuration variables:
+- **id** (*Required*, string): The ID of the characteristic to notify the client about (must have the ``notify`` property).
 
 
 See Also
