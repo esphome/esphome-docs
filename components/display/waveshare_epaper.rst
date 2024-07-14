@@ -114,6 +114,7 @@ Configuration variables:
   - ``7.50in-hd-b`` - Can't use with an ESP8266 as it runs out of RAM
   - ``gdew029t5`` - GooDisplay GDEW029T5, as used on the AdaFruit MagTag (previously incorrectly referred to as GDEY029T94)
   - ``1.54in-m5coreink-m09`` - GoodDisplay gdew0154m09, as used in the M5Stack Core Ink
+  - ``13.3in-k`` - 13.3in, with the K model, 960x680, B/W rendering only
 
 .. warning::
 

@@ -12,6 +12,7 @@ Components
     light/index
     number/index
     datetime/index
+    ota/index
     output/index
     select/index
     sensor/index
@@ -30,5 +31,6 @@ Components
     time/index
     alarm_control_panel/index
     text/index
+    update/index
     valve/index
     *
