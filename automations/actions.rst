@@ -258,7 +258,7 @@ For example, the automation below will flash the light five times.
 
 Configuration variables:
 
-- **count** (**Required**, int): The number of times the action should be repeated.
+- **count** (**Required**, int): The number of times the action should be repeated.  The counter is available to lambdas using the reserved word "iteration".
 - **then** (**Required**, :ref:`Action <config-action>`): The action to repeat.
 
 .. _wait_until_action:
