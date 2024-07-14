@@ -9,6 +9,12 @@ The ``radon_eye_rd200`` sensor platforms lets you track the output of Radon Eye 
 
 This component will track radon concentration.
 
+IMPORTANT HINT FOR NEWER DEVICE MODELS
+-----------------
+This sensor might not work with newer models (2022 or later) of Radon Eye. You can use the following HA integration together with a ESP32 Bluetooth Proxy instead:
+https://github.com/jdeath/rd200v2
+
+
 Device Discovery
 -----------------
 
