@@ -736,7 +736,10 @@ as the additional parameters.
 Online Images
 -------------
 
-Use this component to define images that will be downloaded and drawn at runtime. Currently only images in PNG format are supported.
+Use this component to define images that will be downloaded and drawn at runtime.
+
+.. note::
+ Currently only images in PNG format are supported.
 
 This component has an implicit dependency to :doc:`/components/http_request`; the configuration options you set to the ``http_request`` component will also apply here.
 
