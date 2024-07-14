@@ -39,7 +39,7 @@ Example json log:
 
     {
         "timestamp":1578254525,
-        "address":XX:XX:XX:XX:XX:XX,
+        "address": "XX:XX:XX:XX:XX:XX",
         "rssi":"-80",
         "name":"MI Band 2"
     }
