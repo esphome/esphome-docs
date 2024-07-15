@@ -38,6 +38,9 @@ In some cases only **TX** or **RX** exists as the device at the other end only a
     for the data being sent. This could cause unexpected issues if you are using the Software UART and have devices that
     explicity check the parity. Most likely you will need to flip the ``parity`` flag in YAML.
 
+.. note::
+
+    UART implementation for the host platform does not use TX and RX pins but port names.
 
 .. code-block:: yaml
 
@@ -51,8 +54,9 @@ Configuration variables:
 ------------------------
 
 - **baud_rate** (**Required**, int): The baud rate of the UART bus.
-- **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective. Use the full pin schema and set ``inverted: true`` to invert logic levels.
-- **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective. Use the full pin schema and set ``inverted: true`` to invert logic levels.
+- **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective. Use the full pin schema and set ``inverted: true`` to invert logic levels. Not supported by host platform.
+- **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective. Use the full pin schema and set ``inverted: true`` to invert logic levels. Not supported by host platform.
+- **port** (*Optional*, string): Host platform only. Unix style name of the port to use.
 - **rx_buffer_size** (*Optional*, int): The size of the buffer used for receiving UART messages. Increase if you use an integration that needs to read big payloads from UART. Defaults to ``256``.
 - **data_bits** (*Optional*, int): The number of data bits used on the UART bus. Options: 5 to 8. Defaults to 8.
 - **parity** (*Optional*): The parity used on the UART bus. Options: ``NONE``, ``EVEN``, ``ODD``. Defaults to ``NONE``.
@@ -257,6 +261,20 @@ Below are the methods to read current settings and modify them dynamically:
       id(my_uart).set_baud_rate(uint32_t baud_rate);
 
 This flexibility allows for dynamic adaptation to different communication requirements, enhancing the versatility of your ESPHome setup.
+
+UART component with the host platform
+-------------------------------------
+
+Since the host platform does not have physical UART pins, the UART component is implemented using Unix-style ports. Instead of using pins,
+you can specify the port name to use. This implementation also supports components that have ``require_tx`` and ``require_rx`` options such as 
+smt100 etc.
+
+.. code-block:: yaml
+
+    # Example configuration entry for host platform
+    uart:
+      baud_rate: 9600
+      port: "/dev/ttyUSB0"
 
 See Also
 --------
