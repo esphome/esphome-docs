@@ -46,48 +46,48 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 
-.. note::
+  .. note::
 
-  This component doesn't poweron the modem. If the modem doesn't respond, the ``on_not_responding`` action will be called to let you powercycle the modem.
-  For example the following code try to powercycle the modem, assuming that ``modem_power`` is a gpio switch connected to the modem powerkey.
+    This component doesn't poweron the modem. If the modem doesn't respond, the ``on_not_responding`` action will be called to let you powercycle the modem.
+    For example the following code try to powercycle the modem, assuming that ``modem_power`` is a gpio switch connected to the modem powerkey.
 
-.. note::
+  .. note::
 
-  Most modems consume too much current to be powered directly by the ESP32. An external power supply is often required.
+    Most modems consume too much current to be powered directly by the ESP32. An external power supply is often required.
 
-.. note::
+  .. note::
 
-  Internally, the modem component use the CMUX protocol to comminicate with the modem. 
-  This create two virtual channels: one for ``AT`` commands, and one for data.
-  As the data channel is used for ``PPPoS``, It's not possible to create another data channel, for example for NMEA GNSS frames. 
-  (For GNSS, a workaround is to use ``AT+CGNSSINFO``, that doesn't produce NMEA frames).
+    Internally, the modem component use the CMUX protocol to comminicate with the modem. 
+    This create two virtual channels: one for ``AT`` commands, and one for data.
+    As the data channel is used for ``PPPoS``, It's not possible to create another data channel, for example for NMEA GNSS frames. 
+    (For GNSS, a workaround is to use ``AT+CGNSSINFO``, that doesn't produce NMEA frames).
 
 
 
 Configuration examples
 ----------------------
 
-.. code-block:: yaml
+  .. code-block:: yaml
 
-  modem:
-    id: atmodem
-    rx_pin: 26
-    tx_pin: 27
-    model: SIM7600  
-    apn: orange
-    pin_code: "0000"
-    init_at:
-      # enable GNSS
-      - AT+CGNSSMODE=15,1 # GNSS all navigation systems
-      - AT+CGPS=1 # GPS on
-    on_not_responding:
-      # Triggered if the modem is not responding.
-      # assuming tha the gpio switch 'modem_power' is connected to the modem pwrkey, we will powercycle the modem 
-      - logger.log: modem powercyle
-      - switch.turn_off: modem_power
-      - delay: 15s
-      - switch.turn_on: modem_power
-      - delay: 15s
+    modem:
+      id: atmodem
+      rx_pin: 26
+      tx_pin: 27
+      model: SIM7600  
+      apn: orange
+      pin_code: "0000"
+      init_at:
+        # enable GNSS
+        - AT+CGNSSMODE=15,1 # GNSS all navigation systems
+        - AT+CGPS=1 # GPS on
+      on_not_responding:
+        # Triggered if the modem is not responding.
+        # assuming tha the gpio switch 'modem_power' is connected to the modem pwrkey, we will powercycle the modem 
+        - logger.log: modem powercyle
+        - switch.turn_off: modem_power
+        - delay: 15s
+        - switch.turn_on: modem_power
+        - delay: 15s
 
 Lambda calls
 ------------
@@ -98,16 +98,16 @@ From :ref:`lambdas <config-lambda>`, you can call several methods to do some adv
 
 For example, to send an ``AT`` command, and get the result:
 
-.. code-block:: cpp
-
-  std::string gnss_info;
-  esp_modem::command_result err;
-  err = id(atmodem)->dce->at("AT+CGNSSINFO", gnss_info, 3000);
-  if (err != esp_modem::command_result::OK) {
-    ESP_LOGE("", "Error while executing AT command");
-  } else {
-    ESP_LOGI("", "Result: %s", gnss_info.c_str());
-  }
+  .. code-block:: cpp
+  
+    std::string gnss_info;
+    esp_modem::command_result err;
+    err = id(atmodem)->dce->at("AT+CGNSSINFO", gnss_info, 3000);
+    if (err != esp_modem::command_result::OK) {
+      ESP_LOGE("", "Error while executing AT command");
+    } else {
+      ESP_LOGI("", "Result: %s", gnss_info.c_str());
+    }
 
 
 See Also
@@ -118,6 +118,7 @@ See Also
 - :doc:`/components/wireguard`
 - `SIM7600 AT command list <https://simcom.ee/documents/SIM7600C/SIM7500_SIM7600%20Series_AT%20Command%20Manual_V1.01.pdf>`__
 - `SIM7600 Hardware design <https://simcom.ee/documents/SIM7600E/SIM7600%20Series%20Hardware%20Design_V1.03.pdf>`__
+- `esp modem`
 - :ghedit:`Edit`
 
 
