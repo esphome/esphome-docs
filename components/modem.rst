@@ -46,16 +46,16 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 
-  .. note::
+.. note::
 
     This component doesn't poweron the modem. If the modem doesn't respond, the ``on_not_responding`` action will be called to let you powercycle the modem.
     For example the following code try to powercycle the modem, assuming that ``modem_power`` is a gpio switch connected to the modem powerkey.
 
-  .. note::
+.. note::
 
     Most modems consume too much current to be powered directly by the ESP32. An external power supply is often required.
 
-  .. note::
+.. note::
 
     Internally, the modem component use the CMUX protocol to comminicate with the modem. 
     This create two virtual channels: one for ``AT`` commands, and one for data.
@@ -67,7 +67,7 @@ Configuration variables:
 Configuration examples
 ----------------------
 
-  .. code-block:: yaml
+.. code-block:: yaml
 
     modem:
       id: atmodem
@@ -98,8 +98,8 @@ From :ref:`lambdas <config-lambda>`, you can call several methods to do some adv
 
 For example, to send an ``AT`` command, and get the result:
 
-  .. code-block:: cpp
-  
+.. code-block:: cpp
+
     std::string gnss_info;
     esp_modem::command_result err;
     err = id(atmodem)->dce->at("AT+CGNSSINFO", gnss_info, 3000);
