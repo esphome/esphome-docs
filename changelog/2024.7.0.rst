@@ -43,6 +43,7 @@ Beta Changes
 - [improv_serial] Fix linker error created in #6998 :esphomepr:`7082` by :ghuser:`kbx81`
 - [i2s_audio] Allow config for primary/secondary i2s mode :esphomepr:`7092` by :ghuser:`jesserockz`
 - [micro_wake_word] Allow simpler model config :esphomepr:`7094` by :ghuser:`jesserockz`
+- [ota] Print Arduino update errors :esphomepr:`7096` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -126,6 +127,7 @@ All changes
 - [improv_serial] Fix linker error created in #6998 :esphomepr:`7082` by :ghuser:`kbx81`
 - [i2s_audio] Allow config for primary/secondary i2s mode :esphomepr:`7092` by :ghuser:`jesserockz`
 - [micro_wake_word] Allow simpler model config :esphomepr:`7094` by :ghuser:`jesserockz`
+- [ota] Print Arduino update errors :esphomepr:`7096` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
