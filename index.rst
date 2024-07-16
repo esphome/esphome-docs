@@ -181,6 +181,7 @@ Network Hardware
 
     WiFi, components/wifi, network-wifi.svg, dark-invert
     ESP32 Ethernet, components/ethernet, ethernet.svg, dark-invert
+    ESP32 IDF AT Modem, components/modem, network-wifi.svg, dark-invert
 
 Network Protocols
 -----------------
