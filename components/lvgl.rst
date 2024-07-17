@@ -1823,22 +1823,22 @@ The tab view object can be used to organize content in tabs. The tab buttons are
 .. figure:: /components/images/lvgl_tabview.png
     :align: center
 
-A new tab can be selected either by clicking on a tab button or by sliding horizontally on the content.
+The tabs are indexed (zero based) in the order they appear in the configuration file. A new tab can be selected either by clicking on a tab button or by sliding horizontally on the content.
 
 **Configuration variables:**
 
 - **position** (*Optional*, string): Position of the tab selector buttons. One of ``TOP``, ``BOTTOM``, ``LEFT``, ``RIGHT``. Defaults to ``TOP``.
 - **size** (*Optional*, percentage): The height (in case of ``TOP``, ``BOTTOM``) or width (in case of ``LEFT``, ``RIGHT``) tab buttons. Defaults to ``10%``.
 - **tabs** (**Required**, list): A list with (any number of) tabs to be added to tabview.  
-    - **id** (*Optional*): A tab ID to be used with the ``lvgl.tabview.select`` action.
     - **name** (**Required**): The text to be shown on the button corresponding to the tab.
+    - **id** (*Optional*): An ID for the tab itself.
     - **widgets** (**Required**, list): A list of :ref:`lvgl-widgets` to be drawn on the tab, as children.
 
 **Actions:**
 
 - ``lvgl.tabview.select`` :ref:`action <actions-action>` jumps the view to the desired tab:
     - **id** (**Required**): The ID of the ``tabview`` which receives this action.
-    - **tab_id** (*Optional*): The ID of the tab to which to jump. 
+    - **index** (**Required**): The the zero based index of the tab to which to jump. 
     - **animated** (*Optional*, boolean): To animate the movement. Defaults to ``false``.
 
 **Triggers:**
