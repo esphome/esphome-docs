@@ -17,14 +17,13 @@ than compiling for and flashing a microcontroller target system.
 .. code-block:: yaml
 
     # Example configuration entry
+    esphome:
+      name: sdl
+
     host:
-      mac_address: "62:23:45:AF:B3:DD"
 
     display:
       - platform: sdl
-        id: sdl_display
-        update_interval: 1s
-        auto_clear_enabled: false
         show_test_card: true
         dimensions:
           width: 450
@@ -95,13 +94,7 @@ Linux instructions above. See https://learn.microsoft.com/en-us/windows/wsl/inst
 Build and run
 -------------
 
-The ``esphome`` command will not automatically run the build file on the ``host`` platform. Instead use ``esphome compile yourfile.yaml``
-then locate the executable file called ``program`` within the ``.esphome`` build tree:
-
-.. code-block:: sh
-
-    `find .esphome -name program`
-
+The ``esphome run yourfile.yaml`` command will compile and automatically run the build file on the ``host`` platform.
 
 See Also
 --------

@@ -243,7 +243,7 @@ Hardware Peripheral Interfaces/Busses
 
 .. imgtable::
 
-    CAN Bus, components/canbus, canbus.svg
+    CAN Bus, components/canbus/index, canbus.svg
     I²C Bus, components/i2c, i2c.svg
     I²S Audio, components/i2s_audio, i2s_audio.svg
     SPI Bus, components/spi, spi.svg
@@ -267,6 +267,15 @@ I/O Expanders/Multiplexers
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     WeiKai SPI/I²C UART/IO Expander, components/weikai, wk2168.jpg
     XL9535, components/xl9535, xl9535.svg
+
+CAN Bus
+-------
+
+.. imgtable::
+
+    CAN Bus, components/canbus/index, canbus.svg
+    ESP32 CAN, components/canbus/esp32_can, esp32.svg
+    MCP2515, components/canbus/mcp2515, mcp2515.svg
 
 Sensor Components
 -----------------
