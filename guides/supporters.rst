@@ -1769,6 +1769,7 @@ Contributors
 - `Teemu Simola (@tpssim) <https://github.com/tpssim>`__
 - `tracestep (@tracestep) <https://github.com/tracestep>`__
 - `Trent Houliston (@TrentHouliston) <https://github.com/TrentHouliston>`__
+- `Trevor Schirmer (@TrevorSchirmer) <https://github.com/TrevorSchirmer>`__
 - `Felix Eckhofer (@tribut) <https://github.com/tribut>`__
 - `Trick van Staveren (@trickv) <https://github.com/trickv>`__
 - `TripitakaBC (@TripitakaBC) <https://github.com/TripitakaBC>`__
