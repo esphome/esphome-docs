@@ -113,6 +113,12 @@ For example, to send an ``AT`` command, and get the result:
 
 - ``.modem_ready()``: Returns ``True`` or ``False`` if the modem is able to answer ``AT`` commands.
 
+- ``.send_at(std::string cmd)``: Shortand to ``.dce->at()`` that directly returns the ``std::string`` containing the result, or "ERROR" if the command fail.
+
+.. code-block:: cpp
+
+    ESP_LOGI("", "result: %s", id(atmodem).send_at("ATI").c_str());
+
 
 See Also
 --------
