@@ -176,6 +176,8 @@ The following variables are available for use in :ref:`lambdas <config-lambda>`:
                     args:
                       - response->status_code
                       - response->duration_ms
+                - lambda: |-
+                    ESP_LOGD(TAG, "Response status: %d, Duration: %u ms", response->status_code, response->duration_ms);
 
 
 .. _http_request-examples:
