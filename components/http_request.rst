@@ -88,8 +88,8 @@ This :ref:`action <config-action>` sends a GET request.
               - logger.log:
                   format: 'Response status: %d, Duration: %u ms'
                   args:
-                    - status_code
-                    - duration_ms
+                    - response->status_code
+                    - response->duration_ms
       # Short form
       - http_request.get: https://esphome.io
 
@@ -159,7 +159,7 @@ This :ref:`action <config-action>` sends a request.
 This automation will be triggered when the HTTP request is complete.
 The following variables are available for use in :ref:`lambdas <config-lambda>`:
 
-- ``response`` as a ``HttpContainer`` object which contains ``content_length``, ``status_code`` and ``duration_ms``.
+- ``response`` as a pointer to ``HttpContainer`` object which contains ``content_length``, ``status_code`` and ``duration_ms``.
 - ``body`` as ``std::string`` which contains the response body when ``capture_response``
   (see :ref:`http_request-get_action`) is set to ``true``.
 
@@ -174,8 +174,8 @@ The following variables are available for use in :ref:`lambdas <config-lambda>`:
                 - logger.log:
                     format: "Response status: %d, Duration: %u ms"
                     args:
-                      - response.status_code
-                      - response.duration_ms
+                      - response->status_code
+                      - response->duration_ms
 
 
 .. code-block:: yaml

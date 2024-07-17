@@ -103,6 +103,7 @@ This configuration is for an Olimex ESP32-PoE-ISO board with an Ethernet connect
     api:
 
     ota:
+      platform: esphome
 
     esp32_ble_tracker:
       scan_parameters:

@@ -76,8 +76,6 @@ Configuration variables:
   "unknown" value at first. If you set this option to true, the value is published once after
   boot and when it changes. Defaults to ``false``.
 - **restore_mode** (*Optional*): Control how the Rotary Encoder attempts to restore state on bootup.
-  For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
-  :doc:`esphome section </components/esphome>`.
 
     - ``RESTORE_DEFAULT_ZERO`` - (Default) Attempt to restore state and default to zero (0) if not possible to restore.
     - ``ALWAYS_ZERO`` - Always initialize the counter with value zero (0).
