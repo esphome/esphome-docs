@@ -111,6 +111,8 @@ For example, to send an ``AT`` command, and get the result:
         then:
           - logger.log: Modem is connected!
 
+- ``.modem_ready()``: Returns ``True`` or ``False`` if the modem is able to answer ``AT`` commands.
+
 
 See Also
 --------
