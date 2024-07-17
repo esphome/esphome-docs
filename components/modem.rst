@@ -43,6 +43,7 @@ Configuration variables:
 - **pin_code** (*Optional*, string): The pin code of the sim card.
 - **init_at** (*Optional*, list): A list of ``AT`` commands that will be sent to the modem after the connection
 - **on_not_responding** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the modem doesn't respond.
+- **on_connect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the modem get an IP.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 
@@ -79,6 +80,8 @@ Configuration examples
         - delay: 15s
         - switch.turn_on: modem_power
         - delay: 15s
+      on_connect:
+        - logger.log: "modem got IP"
 
 Lambda calls
 ------------
@@ -122,7 +125,7 @@ For example, to send an ``AT`` command, and get the result:
 Performance and stability
 -------------------------
 
-  To gain more speed, or if big transferts fails you can try to enable ``CONFIG_UART_ISR_IN_IRAM``
+  To gain more speed, or if big transferts fails you can try to enable ``CONFIG_UART_ISR_IN_IRAM``:
 
   .. code-block:: yaml
 
