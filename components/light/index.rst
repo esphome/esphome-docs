@@ -514,7 +514,7 @@ Configuration variables:
 Random Effect
 *************
 
-This effect makes a transition (of length ``transition_length``) to a randomly-chosen color every ``update_interval``.
+This effect makes a transition (of length ``transition_length``) to a randomly-chosen color and/or brightness (e.g. monochromatic) every ``update_interval``.
 
 .. code-block:: yaml
 
