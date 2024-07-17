@@ -119,6 +119,20 @@ For example, to send an ``AT`` command, and get the result:
 
     ESP_LOGI("", "result: %s", id(atmodem).send_at("ATI").c_str());
 
+Performance and stability
+-------------------------
+
+  To gain more speed, or if big transferts fails you can try to enable ``CONFIG_UART_ISR_IN_IRAM``
+
+  .. code-block:: yaml
+
+      esp32:
+      framework:
+        type: esp-idf
+        sdkconfig_options:
+          CONFIG_UART_ISR_IN_IRAM: y
+
+  This is not done by default, because it conflict with :doc:`/components/uart` (crash).
 
 See Also
 --------
