@@ -6,6 +6,7 @@ Components
     :glob:
 
     binary_sensor/index
+    canbus/index
     climate/index
     cover/index
     fan/index
