@@ -85,7 +85,7 @@ Lambda calls
 
 From :ref:`lambdas <config-lambda>`, you can call several methods to do some advanced stuff.
 
-- ``->dce``: The DCE object from the underlying `esp_modem`_ library. Most of the `DCE methods <https://docs.espressif.com/projects/esp-protocols/esp_modem/docs/latest/internal_docs.html#_CPPv4N9esp_modem3DCEE>`_ are available.
+- ``.dce``: The DCE object from the underlying `esp_modem`_ library. Most of the `DCE methods <https://docs.espressif.com/projects/esp-protocols/esp_modem/docs/latest/internal_docs.html#_CPPv4N9esp_modem3DCEE>`_ are available.
 
 For example, to send an ``AT`` command, and get the result:
 
@@ -93,12 +93,23 @@ For example, to send an ``AT`` command, and get the result:
 
     std::string gnss_info;
     esp_modem::command_result err;
-    err = id(atmodem)->dce->at("AT+CGNSSINFO", gnss_info, 3000);
+    err = id(atmodem).dce->at("AT+CGNSSINFO", gnss_info, 3000);
     if (err != esp_modem::command_result::OK) {
       ESP_LOGE("", "Error while executing AT command");
     } else {
       ESP_LOGI("", "Result: %s", gnss_info.c_str());
     }
+
+- ``.is_connected()``: Returns ``True`` or ``False`` if the modem is connected or not.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          lambda: return id(atmodem).is_connected();
+        then:
+          - logger.log: Modem is connected!
 
 
 See Also
