@@ -48,15 +48,6 @@ Configuration variables:
 
 .. note::
 
-    This component doesn't poweron the modem. If the modem doesn't respond, the ``on_not_responding`` action will be called to let you powercycle the modem.
-    For example the following code try to powercycle the modem, assuming that ``modem_power`` is a gpio switch connected to the modem powerkey.
-
-.. note::
-
-    Most modems consume too much current to be powered directly by the ESP32. An external power supply is often required.
-
-.. note::
-
     Internally, the modem component use the CMUX protocol to comminicate with the modem. 
     This create two virtual channels: one for ``AT`` commands, and one for data.
     As the data channel is used for ``PPPoS``, It's not possible to create another data channel, for example for NMEA GNSS frames. 
