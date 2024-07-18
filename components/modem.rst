@@ -43,7 +43,9 @@ Configuration variables:
 - **pin_code** (*Optional*, string): The pin code of the sim card.
 - **init_at** (*Optional*, list): A list of ``AT`` commands that will be sent to the modem after the connection
 - **on_not_responding** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the modem doesn't respond.
+- **enable_on_boot** (*Optional*, boolean): If enabled, the PPPoS interface will be enabled on boot. Defaults to ``true``.
 - **on_connect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the modem get an IP.
+- **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the modem lost it's IP.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 
@@ -68,6 +70,7 @@ Configuration examples
       model: SIM7600  
       apn: orange
       pin_code: "0000"
+      enable_on_boot: True
       init_at:
         # enable GNSS
         - AT+CGNSSMODE=15,1 # GNSS all navigation systems
@@ -82,6 +85,8 @@ Configuration examples
         - delay: 15s
       on_connect:
         - logger.log: "modem got IP"
+      on_disconnect:
+        - logger.log: "modem lost IP"
 
 Lambda calls
 ------------
@@ -121,6 +126,9 @@ For example, to send an ``AT`` command, and get the result:
 .. code-block:: cpp
 
     ESP_LOGI("", "result: %s", id(atmodem).send_at("ATI").c_str());
+
+- ``.enable()``: Enable and start the connection.
+- ``.disable()``: Disconnect. 
 
 Performance and stability
 -------------------------
