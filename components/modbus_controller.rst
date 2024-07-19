@@ -732,7 +732,7 @@ Automation
 .. _modbus_controller-on_command_sent:
 
 ``on_command_sent``
-**************
+*******************
 
 This automation will be triggered when a command has been sent by the `modbus_controller`. In :ref:`Lambdas <config-lambda>` 
 you can get the function code in ``function_code`` and the register address in ``address``.
