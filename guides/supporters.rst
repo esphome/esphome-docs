@@ -47,6 +47,7 @@ Contributors
 - `Attila Darazs (@adarazs) <https://github.com/adarazs>`__
 - `ADeadPixel (@ADeadPixel) <https://github.com/ADeadPixel>`__
 - `adezerega (@adezerega) <https://github.com/adezerega>`__
+- `Eugen (@Adminius) <https://github.com/Adminius>`__
 - `Andrea Donno (@adonno) <https://github.com/adonno>`__
 - `Adrian Cuzman (@adriancuzman) <https://github.com/adriancuzman>`__
 - `Adrian Fretwell (@AdrianFretwell) <https://github.com/AdrianFretwell>`__
@@ -940,6 +941,7 @@ Contributors
 - `Kenny Stier (@KennyStier) <https://github.com/KennyStier>`__
 - `Robert Kiss (@kepten) <https://github.com/kepten>`__
 - `kernelpanic85 (@kernelpanic85) <https://github.com/kernelpanic85>`__
+- `kevdliu (@kevdliu) <https://github.com/kevdliu>`__
 - `Kevin O'Rourke (@kevinior) <https://github.com/kevinior>`__
 - `Kevin Reilly (@kevireilly) <https://github.com/kevireilly>`__
 - `kevlar10 (@kevlar10) <https://github.com/kevlar10>`__
@@ -1313,6 +1315,7 @@ Contributors
 - `Chris Nussbaum (@nuttytree) <https://github.com/nuttytree>`__
 - `Michał Sochoń (@nvtkaszpir) <https://github.com/nvtkaszpir>`__
 - `Nathaniel Wesley Filardo (@nwf) <https://github.com/nwf>`__
+- `Olivier ARCHER (@oarcher) <https://github.com/oarcher>`__
 - `obrain17 (@obrain17) <https://github.com/obrain17>`__
 - `Ockert Marais (@OckertM) <https://github.com/OckertM>`__
 - `Dave Walker (@oddsockmachine) <https://github.com/oddsockmachine>`__
@@ -1759,12 +1762,14 @@ Contributors
 - `Tom Price (@tomtom5152) <https://github.com/tomtom5152>`__
 - `Anthony Bourguignon (@Toniob) <https://github.com/Toniob>`__
 - `tony (@tony-fav) <https://github.com/tony-fav>`__
+- `Tomi Junnila (@topeju) <https://github.com/topeju>`__
 - `David Kiliani (@torfbolt) <https://github.com/torfbolt>`__
 - `Aleksandra M (@tort32) <https://github.com/tort32>`__
 - `Torwag (@torwag) <https://github.com/torwag>`__
 - `Teemu Simola (@tpssim) <https://github.com/tpssim>`__
 - `tracestep (@tracestep) <https://github.com/tracestep>`__
 - `Trent Houliston (@TrentHouliston) <https://github.com/TrentHouliston>`__
+- `Trevor Schirmer (@TrevorSchirmer) <https://github.com/TrevorSchirmer>`__
 - `Felix Eckhofer (@tribut) <https://github.com/tribut>`__
 - `Trick van Staveren (@trickv) <https://github.com/trickv>`__
 - `TripitakaBC (@TripitakaBC) <https://github.com/TripitakaBC>`__
@@ -1778,6 +1783,7 @@ Contributors
 - `Trevor North (@trvrnrth) <https://github.com/trvrnrth>`__
 - `Trygve Laugstøl (@trygvis) <https://github.com/trygvis>`__
 - `Gediminas Šaltenis (@trylika) <https://github.com/trylika>`__
+- `ttaborda (@ttaborda) <https://github.com/ttaborda>`__
 - `Tuan (@tuanpmt) <https://github.com/tuanpmt>`__
 - `tubalainen (@tubalainen) <https://github.com/tubalainen>`__
 - `tube0013 (@tube0013) <https://github.com/tube0013>`__
@@ -1881,6 +1887,7 @@ Contributors
 - `Jevgeni Kiski (@yozik04) <https://github.com/yozik04>`__
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__
 - `Yuval Aboulafia (@yuvalabou) <https://github.com/yuvalabou>`__
+- `Z3LIFF (@z3liff) <https://github.com/z3liff>`__
 - `ZabojnikM (@ZabojnikM) <https://github.com/ZabojnikM>`__
 - `Björn Stenberg (@zagor) <https://github.com/zagor>`__
 - `zaluthar (@zaluthar) <https://github.com/zaluthar>`__
@@ -1903,4 +1910,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated July 11, 2024.*
+*This page was last updated July 17, 2024.*
