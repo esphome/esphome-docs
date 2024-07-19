@@ -453,7 +453,7 @@ If you change the size of the widget, to obtain a uniform gradient, be sure to i
 
 .. tip::
 
-    You can omit the ``obj`` used to hide the middle part of meter indicator line by using a bitmap ``img`` indicator as needle, were only the part hanging above the ticks scale is visible, the rest is transparent.
+    You can omit the ``obj`` used to hide the middle part of meter indicator line by using a bitmap ``image`` indicator as needle, were only the part hanging above the ticks scale is visible, the rest is transparent.
 
 .. _lvgl-cook-climate:
 
@@ -1214,7 +1214,7 @@ To display a boot image with a spinner animation which disappears automatically 
               pad_all: 0
               border_width: 0
               widgets:
-                - img:
+                - image:
                     align: CENTER
                     src: boot_logo
                     y: -40

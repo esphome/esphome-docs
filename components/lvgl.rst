@@ -751,7 +751,7 @@ The ``textarea`` can be also integrated as :doc:`Text </components/text/lvgl>` o
 .. _lvgl-wgt-btn:
 
 ``button``
-*******
+**********
 
 Simple push (momentary) or toggle (two-states) button. 
 
@@ -814,7 +814,7 @@ See :ref:`lvgl-cook-binent` for an example illustrating how to use a checkable b
 .. _lvgl-wgt-bmx:
 
 ``buttonmatrix``
-*************
+****************
 
 The button matrix widget is a lightweight way to display multiple buttons in rows and columns. It's lightweight because the buttons are not actually created but instead simply drawn on the fly. This reduces the memory footprint of each button from approximately 200 bytes (for both the button and its label widget) down to only eight bytes.
 
@@ -1501,7 +1501,7 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
             - **r_mod**: Adjust the length of the needle from the scale radius with this amount (can be negative). Defaults to ``0``.
             - **value**: The value in the scale range to show at start.
             - Style options for the *needle line* using the :ref:`lvgl-wgt-lin` style properties, as well as the background properties from :ref:`lvgl-styling` to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
-        - **img** (*Optional*): Add a rotating needle image to the scale:
+        - **image** (*Optional*): Add a rotating needle image to the scale:
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **src**:  The ID of an existing image configuration, representing a needle pointing to the right like ``-o--->``. 
             - **pivot_x**: Horizontal position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
@@ -1559,8 +1559,8 @@ See :ref:`lvgl-cook-gauge`, :ref:`lvgl-cook-thermometer` and :ref:`lvgl-cook-clo
 
 .. _lvgl-wgt-img:
 
-``img``
-*******
+``image``
+*********
 
 Images are the basic widgets used to display images. 
 
@@ -1582,14 +1582,14 @@ Images are the basic widgets used to display images.
 
 **Actions:**
 
-- ``lvgl.img.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. Updating the ``src`` option changes the image at runtime.
+- ``lvgl.image.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. Updating the ``src`` option changes the image at runtime.
 
 **Example:**
 
 .. code-block:: yaml
 
     # Example widget:
-    - img:
+    - image:
         align: CENTER
         src: cat_image
         id: img_id
@@ -1599,7 +1599,7 @@ Images are the basic widgets used to display images.
     # Example action:
     on_...:
       then:
-        - lvgl.img.update:
+        - lvgl.image.update:
             id: img_id
             src: cat_image_bowtie
 
@@ -1616,7 +1616,7 @@ Images are the basic widgets used to display images.
 ``animimg``
 ***********
 
-The animation image is similar to the normal ``img`` widget. The main difference is that instead of one source image, you set a list of multiple source images. You can also specify a duration and a repeat count.
+The animation image is similar to the normal ``image`` widget. The main difference is that instead of one source image, you set a list of multiple source images. You can also specify a duration and a repeat count.
 
 .. figure:: /components/images/lvgl_animimg.gif
     :align: center
@@ -1857,7 +1857,7 @@ The tabs are indexed (zero based) in the order they appear in the configuration 
           - name: Dog
             id: tabview_tab_1
             widgets:
-              - img:
+              - image:
                   src: dog_img
               ...
           ...
@@ -1925,7 +1925,7 @@ If the Tile view is screen sized, the user interface resembles what you may have
             column: 0
             dir: VER
             widgets:
-              - img:
+              - image:
                   src: cat_image
               - ...
           - ...
