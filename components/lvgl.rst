@@ -8,7 +8,7 @@ LVGL Graphics
     :image: /images/lvgl.png
 
 `LVGL <https://lvgl.io/>`__ (Light and Versatile Graphics Library) is a free and open-source 
-embedded graphics library to create beautiful UIs for any MCU, MPU and display type. ESPHome supports `LVGL version 8 <https://docs.lvgl.io/8.4/>`__.
+embedded graphics library to create beautiful UIs for any MCU, MPU and display type. ESPHome supports `LVGL version 9 <https://docs.lvgl.io/9.1/>`__.
 
 .. figure:: /components/images/lvgl_main_screenshot.png
 
