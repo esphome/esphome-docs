@@ -8,9 +8,17 @@ AJ-SR04M Ultrasonic Distance Sensor
 
 The ultrasonic distance sensor allows you to use simple ultrasonic
 sensors like the AJ-SR04M (`User Manual <https://device.report/manual/11063803>`__) with ESPHome
-to measure distances. These sensors usually can’t measure anything more
-than about two meters and may sometimes make some annoying clicking
-sounds.
+to measure distances. 
+
+Working voltage: DC 3-5.5V
+Working current: 40 mA duration less than 50 us
+Standby current: 2 mA
+Working frequency: 40 kHz
+Recent range: 20 cm
+Furthest range: 600 cm
+Measuring Angle: 75 degree
+Resolution: about 2 mm
+Working Temperature: -20~75 °C
 
 AJ-SR04M can be operated in five modes. 
 Mode selection happens by putting resistance over R19 pads.
@@ -39,15 +47,16 @@ To use the sensor, first set up an :ref:`uart` with a baud rate of 9600 and conn
     # Example configuration entry
     uart:
       id: uart_bus
-      tx_pin: D7
-      rx_pin: D6
-      baud_rate: 9600
-      stop_bits: 1
+      tx_pin: D7 # Transmit pin
+      rx_pin: D6 # Receive pin
+      baud_rate: 9600 # Baud rate
+      stop_bits: 1 # Num of stop bits
     
     sensor:
       - platform: aj_sr04m
-        name: "Distance"
-        update_interval: 2s
+        name: "Distance" # Name of sensor in frontend
+        id: sensor_distance # Sensor ID to use in ESPHome
+        update_interval: 2s # Interval to check sensor
 
 Configuration variables:
 ------------------------
