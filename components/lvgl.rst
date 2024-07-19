@@ -40,7 +40,7 @@ Some widgets integrate also as native ESPHome components:
     * - LVGL Widget
       - ESPHome component
 
-    * - ``btn``
+    * - ``button``
       - :doc:`Switch </components/switch/lvgl>`, :doc:`Binary Sensor </components/binary_sensor/lvgl>`
 
     * - ``switch``, ``checkbox``
@@ -295,7 +295,7 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 - **transform_height** (*Optional*, int16 or percentage): Transformation height of the widget (eg. stretching)
 - **transform_pivot_x** (*Optional*, int16): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
 - **transform_pivot_y** (*Optional*, int16): Vertical anchor point of the transformation. Relative to the widget's top left corner.
-- **transform_zoom** (*Optional*, 0.1-10):  Transformation zoom of the widget (eg. resizing)
+- **transform_scale** (*Optional*, 0.1-10):  Transformation zoom of the widget (eg. resizing)
 - **translate_x** (*Optional*, int16 or percentage): Movement of the widget with this value in horizontal direction.
 - **translate_y** (*Optional*, int16 or percentage): Movement of the widget with this value in vertical direction.
 
@@ -306,7 +306,7 @@ Themes
 
 The widgets support lots of :ref:`lvgl-styling` to customize their appearance and behavior.
 
-You can configure a global theme for all widgets at the top level with the ``theme`` configuration variable. In the example below, all the ``arc``, ``slider`` and ``btn`` widgets will, by default, use the styles and properties defined here. A combination of styles and :ref:`states <lvgl-wgtprop-state>` can be chosen for every widget.
+You can configure a global theme for all widgets at the top level with the ``theme`` configuration variable. In the example below, all the ``arc``, ``slider`` and ``button`` widgets will, by default, use the styles and properties defined here. A combination of styles and :ref:`states <lvgl-wgtprop-state>` can be chosen for every widget.
 
 .. code-block:: yaml
 
@@ -318,7 +318,7 @@ You can configure a global theme for all widgets at the top level with the ``the
         slider:
           scroll_on_focus: true
           group: general
-        btn:
+        button:
           scroll_on_focus: true
           group: general
           border_width: 2
@@ -571,7 +571,7 @@ To apply styles to the states, you need to specify them one level above, for exa
 
 .. code-block:: yaml
 
-    - btn:
+    - button:
         checkable: true
         state:
           checked: true # here you activate the state to be used at boot
@@ -750,7 +750,7 @@ The ``textarea`` can be also integrated as :doc:`Text </components/text/lvgl>` o
 
 .. _lvgl-wgt-btn:
 
-``btn``
+``button``
 *******
 
 Simple push (momentary) or toggle (two-states) button. 
@@ -774,7 +774,7 @@ A notable state is ``checked`` (boolean) which can have different styles applied
 .. code-block:: yaml
 
     # Example widget:
-    - btn:
+    - button:
         x: 10
         y: 10
         width: 50
@@ -786,7 +786,7 @@ To have a button with a text label on it, add a child :ref:`lvgl-wgt-lbl` widget
 .. code-block:: yaml
 
     # Example toggle button with text:
-    - btn:
+    - button:
         x: 10
         y: 10
         width: 70
@@ -799,7 +799,7 @@ To have a button with a text label on it, add a child :ref:`lvgl-wgt-lbl` widget
               text: "Light"
 
     # Example trigger:
-    - btn:
+    - button:
         ...
         on_value:
           then:
@@ -807,18 +807,18 @@ To have a button with a text label on it, add a child :ref:`lvgl-wgt-lbl` widget
                 format: "Button checked state: %d"
                 args: [ x ]
 
-The ``btn`` can be also integrated as a :doc:`Binary Sensor </components/binary_sensor/lvgl>` or as a :doc:`Switch </components/switch/lvgl>` component.
+The ``button`` can be also integrated as a :doc:`Binary Sensor </components/binary_sensor/lvgl>` or as a :doc:`Switch </components/switch/lvgl>` component.
 
 See :ref:`lvgl-cook-binent` for an example illustrating how to use a checkable button to act on a Home Assistant service.
 
 .. _lvgl-wgt-bmx:
 
-``btnmatrix``
+``buttonmatrix``
 *************
 
 The button matrix widget is a lightweight way to display multiple buttons in rows and columns. It's lightweight because the buttons are not actually created but instead simply drawn on the fly. This reduces the memory footprint of each button from approximately 200 bytes (for both the button and its label widget) down to only eight bytes.
 
-.. figure:: /components/images/lvgl_btnmatrix.png
+.. figure:: /components/images/lvgl_buttonmatrix.png
     :align: center
 
 **Configuration variables:**
@@ -848,7 +848,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
 **Actions:**
 
 - ``lvgl.button.update`` :ref:`action <actions-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options.
-- ``lvgl.btnmatrix.update`` :ref:`action <actions-action>` updates the item styles and properties specified in the specific ``state``, ``items`` options.
+- ``lvgl.buttonmatrix.update`` :ref:`action <actions-action>` updates the item styles and properties specified in the specific ``state``, ``items`` options.
 
 **Triggers:**
 
@@ -860,7 +860,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
 .. code-block:: yaml
 
     # Example widget:
-    - btnmatrix:
+    - buttonmatrix:
         x: 10
         y: 40
         width: 220
@@ -903,7 +903,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
             selected: true
             control:
               checkable: false
-        - lvgl.btnmatrix.update:
+        - lvgl.buttonmatrix.update:
             id: b_matrix
             state:
               disabled: true
@@ -911,7 +911,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
               bg_color: 0xf0f0f0
 
     # Example trigger:
-    - btnmatrix:
+    - buttonmatrix:
         ...
         rows:
           - buttons:
@@ -1572,12 +1572,12 @@ Images are the basic widgets used to display images.
 - **src** (**Required**, :ref:`image <display-image>`): The ID of an existing image configuration.
 - **offset_x** (*Optional*): Add a horrizontal offset to the image position. 
 - **offset_y** (*Optional*): Add a vertical offset to the image position. 
-- **zoom** (*Optional*, 0.1-10): Zoom of the image.
+- **scale** (*Optional*, 0.1-10): Zoom of the image.
 - **angle** (*Optional*, 0-360): Rotation of the image. Defaults to ``0.0``. Needs ``pivot_x`` and ``pivot_y`` to be specified.
 - **pivot_x** (*Optional*): Horizontal position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
 - **pivot_y** (*Optional*): Vertical position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
-- **antialias** (*Optional*): The quality of the angle or zoom transformation. When anti-aliasing is enabled, the transformations are higher quality but slower. Defaults to ``false``.
-- **mode** (*Optional*): Either ``REAL`` or  ``VIRTUAL``. With ``VIRTUAL``, when the image is zoomed or rotated, the real coordinates of the image object are not changed. The larger content simply overflows the object's boundaries. It also means the layouts are not affected the by the transformations. With ``REAL``, if the width/height of the object is set to ``SIZE_CONTENT``, the object's size will be set to the zoomed and rotated size. If an explicit size is set, the overflowing content will be cropped. Defaults to ``VIRTUAL``.
+- **antialias** (*Optional*): The quality of the angle or scale transformation. When anti-aliasing is enabled, the transformations are higher quality but slower. Defaults to ``false``.
+- **mode** (*Optional*): Either ``REAL`` or  ``VIRTUAL``. With ``VIRTUAL``, when the image is scaled or rotated, the real coordinates of the image object are not changed. The larger content simply overflows the object's boundaries. It also means the layouts are not affected the by the transformations. With ``REAL``, if the width/height of the object is set to ``SIZE_CONTENT``, the object's size will be set to the scaled and rotated size. If an explicit size is set, the overflowing content will be cropped. Defaults to ``VIRTUAL``.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
 **Actions:**
@@ -2309,7 +2309,7 @@ These triggers can be applied directly to any widget in the LVGL configuration, 
 .. code-block:: yaml
 
     # Example triggers:
-    - btn:
+    - button:
         ...
         on_short_click:
           then:

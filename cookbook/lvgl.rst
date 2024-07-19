@@ -84,7 +84,7 @@ If you'd like to control a remote light which appears as an entity in Home Assis
         pages:
           - id: room_page
             widgets:
-              - btn:
+              - button:
                   id: light_btn
                   align: CENTER
                   width: 100
@@ -494,7 +494,7 @@ First we import from Home Assistant the current target temperature of the climat
                   width: SIZE_CONTENT
                   height: SIZE_CONTENT
                   widgets:
-                    - btn:
+                    - button:
                         id: spin_down
                         on_click:
                           - lvgl.spinbox.decrement: spinbox_id
@@ -519,7 +519,7 @@ First we import from Home Assistant the current target temperature of the climat
                                 data:
                                   temperature: !lambda return x;
                                   entity_id: climate.room_thermostat
-                    - btn:
+                    - button:
                         id: spin_up
                         on_click:
                           - lvgl.spinbox.increment: spinbox_id
@@ -603,7 +603,7 @@ Just as in the previous examples, we need to get the state of the cover first. W
                   width: 70
                   text: "My room"
                   text_align: CENTER
-              - btn:
+              - button:
                   x: 10
                   y: 30
                   width: 70
@@ -619,7 +619,7 @@ Just as in the previous examples, we need to get the state of the cover first. W
                           service: cover.open
                           data:
                             entity_id: cover.myroom
-              - btn:
+              - button:
                   x: 10
                   y: 103
                   width: 70
@@ -635,7 +635,7 @@ Just as in the previous examples, we need to get the state of the cover first. W
                           service: cover.stop
                           data:
                             entity_id: cover.myroom
-              - btn:
+              - button:
                   x: 10
                   y: 178
                   width: 70
@@ -671,7 +671,7 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
       theme:
         label:
           text_font: my_font # set all your labels to use your custom defined font
-        btn:
+        button:
           bg_color: 0x2F8CD8
           bg_grad_color: 0x005782
           bg_grad_dir: VER
@@ -679,20 +679,20 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
           border_color: 0x0077b3
           border_width: 1
           text_color: 0xFFFFFF
-          pressed: # set some btn colors to be different in pressed state
+          pressed: # set some button colors to be different in pressed state
             bg_color: 0x006699
             bg_grad_color: 0x00334d
-          checked: # set some btn colors to be different in checked state
+          checked: # set some button colors to be different in checked state
             bg_color: 0x1d5f96
             bg_grad_color: 0x03324A
             text_color: 0xfff300
-        btnmatrix:
+        buttonmatrix:
           bg_opa: TRANSP
           border_color: 0x0077b3
           border_width: 0
           text_color: 0xFFFFFF
           pad_all: 0
-          items: # set all your btnmatrix buttons to use your custom defined styles and font
+          items: # set all your buttonmatrix buttons to use your custom defined styles and font
             bg_color: 0x2F8CD8
             bg_grad_color: 0x005782
             bg_grad_dir: VER
@@ -779,7 +779,7 @@ For the navigation bar we can use a :ref:`lvgl-wgt-bmx`. Note how the *header_fo
       ...
       top_layer:
         widgets:
-          - btnmatrix:
+          - buttonmatrix:
               align: bottom_mid
               styles: header_footer
               pad_all: 0
@@ -935,7 +935,7 @@ This example illustrates a control panel for three covers, made up of labels and
                   widgets:
                     - label:
                         text: "East"
-                    - btn:
+                    - button:
                         id: but_cov_up_east
                         width: 70 # choose the button dimensions so 
                         height: 68 # they fill the columns nincely as they flow
@@ -944,7 +944,7 @@ This example illustrates a control panel for three covers, made up of labels and
                               id: cov_up_east
                               align: CENTER
                               text: "\U000F005D" # mdi:arrow-up
-                    - btn:
+                    - button:
                         id: but_cov_stop_east
                         width: 70
                         height: 68
@@ -953,7 +953,7 @@ This example illustrates a control panel for three covers, made up of labels and
                               id: cov_stop_east
                               align: CENTER
                               text: "\U000F04DB" # mdi:stop
-                    - btn:
+                    - button:
                         id: but_cov_down_east
                         width: 70
                         height: 68
@@ -965,7 +965,7 @@ This example illustrates a control panel for three covers, made up of labels and
 
                     - label:
                         text: "South"
-                    - btn:
+                    - button:
                         id: but_cov_up_south
                         width: 70
                         height: 68
@@ -974,7 +974,7 @@ This example illustrates a control panel for three covers, made up of labels and
                               id: cov_up_south
                               align: CENTER
                               text: "\U000F005D"
-                    - btn:
+                    - button:
                         id: but_cov_stop_south
                         width: 70
                         height: 68
@@ -983,7 +983,7 @@ This example illustrates a control panel for three covers, made up of labels and
                               id: cov_stop_south
                               align: CENTER
                               text: "\U000F04DB"
-                    - btn:
+                    - button:
                         id: but_cov_down_south
                         width: 70
                         height: 68
@@ -995,7 +995,7 @@ This example illustrates a control panel for three covers, made up of labels and
 
                     - label:
                         text: "West"
-                    - btn:
+                    - button:
                         id: but_cov_up_west
                         width: 70
                         height: 68
@@ -1004,7 +1004,7 @@ This example illustrates a control panel for three covers, made up of labels and
                               id: cov_up_west
                               align: CENTER
                               text: "\U000F005D"
-                    - btn:
+                    - button:
                         id: but_cov_stop_west
                         width: 70
                         height: 68
@@ -1013,7 +1013,7 @@ This example illustrates a control panel for three covers, made up of labels and
                               id: cov_stop_west
                               align: CENTER
                               text: "\U000F04DB"
-                    - btn:
+                    - button:
                         id: but_cov_down_west
                         width: 70
                         height: 68
@@ -1059,7 +1059,7 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                         grid_cell_row_pos: 0 # the corresponding cell
                         grid_cell_x_align: STRETCH
                         grid_cell_y_align: STRETCH
-                    - btn:
+                    - button:
                         id: but_cov_up_east
                         grid_cell_column_pos: 0
                         grid_cell_row_pos: 1
@@ -1070,7 +1070,7 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                               id: cov_up_east
                               align: CENTER
                               text: "\U000F005D"
-                    - btn:
+                    - button:
                         id: but_cov_stop_east
                         grid_cell_column_pos: 0
                         grid_cell_row_pos: 2
@@ -1081,7 +1081,7 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                               id: cov_stop_east
                               align: CENTER
                               text: "\U000F04DB"
-                    - btn:
+                    - button:
                         id: but_cov_down_east
                         grid_cell_column_pos: 0
                         grid_cell_row_pos: 3
@@ -1099,7 +1099,7 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                         grid_cell_row_pos: 0
                         grid_cell_x_align: STRETCH
                         grid_cell_y_align: STRETCH
-                    - btn:
+                    - button:
                         id: but_cov_up_south
                         grid_cell_column_pos: 1
                         grid_cell_row_pos: 1
@@ -1110,7 +1110,7 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                               id: cov_up_south
                               align: CENTER
                               text: "\U000F005D"
-                    - btn:
+                    - button:
                         id: but_cov_stop_south
                         grid_cell_column_pos: 1
                         grid_cell_row_pos: 2
@@ -1121,7 +1121,7 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                               id: cov_stop_south
                               align: CENTER
                               text: "\U000F04DB"
-                    - btn:
+                    - button:
                         id: but_cov_down_south
                         grid_cell_column_pos: 1
                         grid_cell_row_pos: 3
@@ -1139,7 +1139,7 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                         grid_cell_row_pos: 0
                         grid_cell_x_align: STRETCH
                         grid_cell_y_align: STRETCH
-                    - btn:
+                    - button:
                         id: but_cov_up_west
                         grid_cell_column_pos: 2
                         grid_cell_row_pos: 1
@@ -1150,7 +1150,7 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                               id: cov_up_west
                               align: CENTER
                               text: "\U000F005D"
-                    - btn:
+                    - button:
                         id: but_cov_stop_west
                         grid_cell_column_pos: 2
                         grid_cell_row_pos: 2
@@ -1161,7 +1161,7 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                               id: cov_stop_west
                               align: CENTER
                               text: "\U000F04DB"
-                    - btn:
+                    - button:
                         id: but_cov_down_west
                         grid_cell_column_pos: 2
                         grid_cell_row_pos: 3
@@ -1363,7 +1363,7 @@ If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like t
         pages:
           - id: room_page
             widgets:
-              - btn:
+              - button:
                   x: 110
                   y: 40
                   width: 90
@@ -1732,7 +1732,7 @@ If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change c
                       align: CENTER
                       text: "Enter code and \uF00C"
                       text_align: CENTER
-            - btnmatrix:
+            - buttonmatrix:
                 id: lvgl_keypad
                 x: 20
                 y: 85
