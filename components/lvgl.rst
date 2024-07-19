@@ -258,9 +258,9 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 - **opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire widget. Inherited from parent. Defaults to ``COVER``.
 - **bg_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the widget background.
 - **opa_layered** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire layer the widget is on. Inherited from parent. Defaults to ``COVER``.
-- **bg_img_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the background image (if such option is supported) of the widget.
-- **bg_img_recolor** (*Optional*, :ref:`color <lvgl-color>`): Color to mix with every pixel of the background image (if such option is supported) of the widget.
-- **bg_img_recolor_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the recoloring. 
+- **bg_image_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the background image (if such option is supported) of the widget.
+- **bg_image_recolor** (*Optional*, :ref:`color <lvgl-color>`): Color to mix with every pixel of the background image (if such option is supported) of the widget.
+- **bg_image_recolor_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the recoloring. 
 - **border_width** (*Optional*, int16): Set the width of the border in pixels. Defaults to ``0``.
 - **border_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw borders of the widget. Defaults to ``0`` (black).
 - **border_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the borders of the widget.  Defaults to ``COVER``.
