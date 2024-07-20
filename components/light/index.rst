@@ -43,8 +43,6 @@ Configuration variables:
 - **flash_transition_length** (*Optional*, :ref:`config-time`): The transition length to use when flash
   is called. Defaults to ``0s``.
 - **restore_mode** (*Optional*): Control how the light attempts to restore state on bootup.
-  For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
-  :doc:`esphome section </components/esphome>`.
 
     - ``RESTORE_DEFAULT_OFF`` - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
