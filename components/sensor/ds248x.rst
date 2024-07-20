@@ -115,7 +115,7 @@ Sensors
 
 .. _ds248x-sensor:
 
-The ``ds248x`` hub allows you to use DS18B20 and similar sensors.
+The ``ds248x`` hub allows you to use [DS18B20](https://www.analog.com/en/products/ds18b20.html) and similar sensors.
 
 To initialize a sensor, first supply either ``address`` **or** ``index`` to identify the sensor.
 
@@ -178,7 +178,7 @@ the scanning will happen even with no sensors connected. For example with this c
     # Example without sensors
     ds248x:
         type: ds2482-800
-        address: 0x1f
+        address: 0x18
         active_pullup: true
         strong_pullup: false
         bus_sleep: false
