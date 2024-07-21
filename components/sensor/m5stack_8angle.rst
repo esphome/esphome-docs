@@ -8,8 +8,8 @@ Rotary Encoder Sensor
 Component/Hub
 -------------
 
-The ``m5stack_8angle`` platform allows to use the [m5angle](https://docs.m5stack.com/en/unit/UNIT%208Angle) input device with ESPHome. 
-It has 8 knobs, a switch and can individually drive 9 RGB LEDs. 
+The ``m5stack_8angle`` platform allows to use the [m5angle](https://docs.m5stack.com/en/unit/UNIT%208Angle) input device with ESPHome.
+It has 8 knobs, a switch and can individually drive 9 RGB LEDs.
 
 .. figure:: images/m5stack_8angle.jpg
     :align: center
@@ -17,7 +17,7 @@ It has 8 knobs, a switch and can individually drive 9 RGB LEDs.
 
     The m5stack_8angle unit.
 
-The ``m5stack_8angle`` component communicates through an :ref:`I²C <i2c>` bus and uses a default address of 0x43. 
+The ``m5stack_8angle`` component communicates through an :ref:`I²C <i2c>` bus and uses a default address of 0x43.
 
 .. code-block:: yaml
 
@@ -29,7 +29,6 @@ The ``m5stack_8angle`` component communicates through an :ref:`I²C <i2c>` bus a
       scan: false
       id: bus_external
       frequency: 400kHz
-          
     m5stack_8angle:
         i2c_id: bus_external
         id: m5stack_8angle_base
@@ -39,7 +38,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <i2c>` if you need
-- **address** (*Optional*, int): Manually specify the I²C address of the device. Defaults to ``0x43``. 
+- **address** (*Optional*, int): Manually specify the I²C address of the device. Defaults to ``0x43``.
 
 
 Knob's position sensor
@@ -58,14 +57,14 @@ The position of the 8 knobs can be made available as sensors with values between
       - platform: m5stack_8angle
         m5stack_8angle_id: m5stack_8angle_base
         channel: 2
-        name: "Knob 2"   
+        name: "Knob 2"
 
 Configuration variables:
 ************************
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``10s``.
 - **bit_depth** (*Optional*, one of ``12 bit`` or ``8 bit``) determines the precision of the analog readout, defaults to ``8bit``.
-- **raw** (*Optional*, boolean) if true, the sensor returns the raw readout value of the knob. 
+- **raw** (*Optional*, boolean) if true, the sensor returns the raw readout value of the knob.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 
@@ -101,7 +100,6 @@ The 9 LEDs can be used a addressable light output.
         name: "Lights"
         effects:
             - addressable_rainbow:
-          
 
 Configuration variables:
 ************************
@@ -112,11 +110,11 @@ Read knob's positions and switch state in Lambdas
 -------------------------------------------------
 
 You can trigger the readout of the position of an individual knob through ``float value = id(...)->read_knob_pos(index);`` and of the switch through ``int value = id(...)->read_switch();``.
-A negative return value indicates a failure to read the state. 
+A negative return value indicates a failure to read the state.
 
 .. code-block:: yaml
 
-    # Example configuration entry for having the LEDs indicate the knobs' position 
+    # Example configuration entry for having the LEDs indicate the knobs' position
     light:
       - platform: m5stack_8angle
         m5stack_8angle_id: m5stack_8angle_base
@@ -139,9 +137,9 @@ A negative return value indicates a failure to read the state.
                           }
                         }
                         if (parent->read_switch() > 0)
-                            hsv.hue = 200;   
+                            hsv.hue = 200;
                         else
-                            hsv.hue = 0; 
+                            hsv.hue = 0;
                         it[8] = hsv;
 
 See Also
