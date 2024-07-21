@@ -1,8 +1,8 @@
-Rotary Encoder Sensor
-=====================
+M5Stack Unit 8 Angle
+====================
 
 .. seo::
-    :description: Setting up the ``m5stack_8angle`` input device with 8 knobs.
+    :description: Setting up the M5Stack Unit 8 Angle input device with 8 knobs.
     :image: m5stack_8angle.png
 
 Component/Hub
