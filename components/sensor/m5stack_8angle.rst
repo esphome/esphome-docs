@@ -22,15 +22,7 @@ The ``m5stack_8angle`` component communicates through an :ref:`I²C <i2c>` bus a
 .. code-block:: yaml
 
     # Example configuration entry
-    
-    i2c:
-      sda: 26
-      scl: 32
-      scan: false
-      id: bus_external
-      frequency: 400kHz
     m5stack_8angle:
-        i2c_id: bus_external
         id: m5stack_8angle_base
 
 Configuration variables:
