@@ -18,8 +18,8 @@ This component can't be used with the :doc:`/components/wifi` or the :doc:`/comp
 
     modem:
       id: atmodem
-      rx_pin: 26
-      tx_pin: 27
+      rx_pin: GPIO26
+      tx_pin: GPIO27
       model: SIM7600  
       apn: orange
       pin_code: "0000"
