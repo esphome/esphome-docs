@@ -169,7 +169,7 @@ All 7-Segment Characters
 ------------------------------ ------------------------------
 |max692100|                    *(space)*
 ------------------------------ ------------------------------
-|max692180|                    ``.``
+|max692180|                    ``.``, ``,``
 ------------------------------ ------------------------------
 |max6921B0|                    ``!``
 ------------------------------ ------------------------------
@@ -203,7 +203,7 @@ All 7-Segment Characters
 ------------------------------ ------------------------------
 |max692107|                    ``}``, ``T``, ``t``
 ------------------------------ ------------------------------
-|max692120|                    ``\```
+|max692120|                    `````
 ------------------------------ ------------------------------
 |max692102|                    ``'``
 ------------------------------ ------------------------------
@@ -213,15 +213,9 @@ All 7-Segment Characters
 ------------------------------ ------------------------------
 |max692165|                    ``?``
 ------------------------------ ------------------------------
-|max692110|                    ``,``, ``i``
+|max692110|                    ``i``
 ------------------------------ ------------------------------
 |max692149|                    ``%``
------------------------------- ------------------------------
-|max692140|                    ``*``
------------------------------- ------------------------------
-|max692148|                    ``:``
------------------------------- ------------------------------
-|max692158|                    ``;``
 ------------------------------ ------------------------------
 |max692177|                    ``A``, ``a``
 ------------------------------ ------------------------------
@@ -243,13 +237,9 @@ All 7-Segment Characters
 ------------------------------ ------------------------------
 |max692167|                    ``P``, ``p``
 ------------------------------ ------------------------------
-|max6921FE|                    ``Q``
------------------------------- ------------------------------
 |max692105|                    ``R``, ``r``
 ------------------------------ ------------------------------
-|max69213E|                    ``U``, ``V``
------------------------------- ------------------------------
-|max69213F|                    ``W``
+|max69213E|                    ``U``
 ------------------------------ ------------------------------
 |max692127|                    ``Y``, ``y``
 ------------------------------ ------------------------------
@@ -259,8 +249,6 @@ All 7-Segment Characters
 ------------------------------ ------------------------------
 |max692109|                    ``=``
 ------------------------------ ------------------------------
-|max692106|                    ``|``
------------------------------- ------------------------------
 |max69210D|                    ``c``
 ------------------------------ ------------------------------
 |max692117|                    ``h``
@@ -268,8 +256,6 @@ All 7-Segment Characters
 |max69211D|                    ``o``
 ------------------------------ ------------------------------
 |max69211C|                    ``u``, ``v``
------------------------------- ------------------------------
-|max69218E|                    ``~``
 ============================== ==============================
 
 .. |max692100| image:: images/max6921/seg00.svg
@@ -322,12 +308,6 @@ All 7-Segment Characters
     :class: component-image segment
 .. |max692149| image:: images/max6921/seg49.svg
     :class: component-image segment
-.. |max692140| image:: images/max6921/seg40.svg
-    :class: component-image segment
-.. |max692148| image:: images/max6921/seg48.svg
-    :class: component-image segment
-.. |max692158| image:: images/max6921/seg58.svg
-    :class: component-image segment
 .. |max692177| image:: images/max6921/seg77.svg
     :class: component-image segment
 .. |max69211F| image:: images/max6921/seg1F.svg
@@ -348,13 +328,9 @@ All 7-Segment Characters
     :class: component-image segment
 .. |max692167| image:: images/max6921/seg67.svg
     :class: component-image segment
-.. |max6921FE| image:: images/max6921/segFE.svg
-    :class: component-image segment
 .. |max692105| image:: images/max6921/seg05.svg
     :class: component-image segment
 .. |max69213E| image:: images/max6921/seg3E.svg
-    :class: component-image segment
-.. |max69213F| image:: images/max6921/seg3F.svg
     :class: component-image segment
 .. |max692127| image:: images/max6921/seg27.svg
     :class: component-image segment
@@ -364,8 +340,6 @@ All 7-Segment Characters
     :class: component-image segment
 .. |max692109| image:: images/max6921/seg09.svg
     :class: component-image segment
-.. |max692106| image:: images/max6921/seg06.svg
-    :class: component-image segment
 .. |max69210D| image:: images/max6921/seg0D.svg
     :class: component-image segment
 .. |max692117| image:: images/max6921/seg17.svg
@@ -373,8 +347,6 @@ All 7-Segment Characters
 .. |max69211D| image:: images/max6921/seg1D.svg
     :class: component-image segment
 .. |max69211C| image:: images/max6921/seg1C.svg
-    :class: component-image segment
-.. |max69218E| image:: images/max6921/seg8E.svg
     :class: component-image segment
 
 .. note::
