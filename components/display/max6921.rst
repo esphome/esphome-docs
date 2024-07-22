@@ -16,7 +16,7 @@ As the chip refresh is very time-critical, the ESP8266 is not supported (the ref
 
 .. figure:: images/max6921/7-segment-display.svg
     :align: center
-    :width: 75.0%
+    :width: 100.0%
 
     7-Segment Display Example.
 
@@ -74,44 +74,44 @@ Configuration variables:
     - **seg_p_pin** (*Optional*, int): MAX6921 OUTx pin to control segment ``point``. Range is ``0`` to ``19``.
   - **pos_to_out_map** (**Required**): The mapping of MAX6921 output pins to the appropriate character position pins of the display.
 
-    - **pos_0_pin** (**Required**, int): MAX6921 OUTx pin to select position ``1``. Range is ``0`` to ``19``.
-    - **pos_1_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``2``. Range is ``0`` to ``19``.
-    - **pos_2_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``3``. Range is ``0`` to ``19``.
-    - **pos_3_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``4``. Range is ``0`` to ``19``.
-    - **pos_4_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``5``. Range is ``0`` to ``19``.
-    - **pos_5_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``6``. Range is ``0`` to ``19``.
-    - **pos_6_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``7``. Range is ``0`` to ``19``.
-    - **pos_7_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``8``. Range is ``0`` to ``19``.
-    - **pos_8_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``9``. Range is ``0`` to ``19``.
-    - **pos_9_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``10``. Range is ``0`` to ``19``.
-    - **pos_10_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``11``. Range is ``0`` to ``19``.
-    - **pos_11_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``12``. Range is ``0`` to ``19``.
-    - **pos_12_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``13``. Range is ``0`` to ``19``.
+    - **pos_0_pin** (**Required**, int): MAX6921 OUTx pin to select position ``0``. Range is ``0`` to ``19``.
+    - **pos_1_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``1``. Range is ``0`` to ``19``.
+    - **pos_2_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``2``. Range is ``0`` to ``19``.
+    - **pos_3_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``3``. Range is ``0`` to ``19``.
+    - **pos_4_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``4``. Range is ``0`` to ``19``.
+    - **pos_5_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``5``. Range is ``0`` to ``19``.
+    - **pos_6_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``6``. Range is ``0`` to ``19``.
+    - **pos_7_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``7``. Range is ``0`` to ``19``.
+    - **pos_8_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``8``. Range is ``0`` to ``19``.
+    - **pos_9_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``9``. Range is ``0`` to ``19``.
+    - **pos_10_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``10``. Range is ``0`` to ``19``.
+    - **pos_11_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``11``. Range is ``0`` to ``19``.
+    - **pos_12_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``12``. Range is ``0`` to ``19``.
 - **brightness** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness with which the MAX6921 should drive the outputs. Defaults to ``100%``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``500ms``.
-- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the MAX7219.
-  See :ref:`display-max7219_lambda` for more information.
+- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
+  See :ref:`display-max6921_lambda` for more information.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 
-.. _display-max7219_lambda:
+.. _display-max6921_lambda:
 
 Rendering Lambda
 ----------------
 
-The MAX7219 has a similar API to the fully fledged :ref:`display-engine`, but it's only a subset as the MAX7219
+The MAX6921 has a similar API to the fully fledged :ref:`display-engine`, but it's only a subset as the MAX6921
 7-segment displays don't have a concept of individual pixels. In the lambda you're passed a variable called ``it``
-as with all other displays. In this case however, ``it`` is an MAX7219 instance (see API Reference).
+as with all other displays. In this case however, ``it`` is an MAX6921 instance (see API Reference).
 
-The most basic operation with the MAX7219 is wiring a simple number to the screen as in the configuration example
+The most basic operation with the MAX6921 is wiring a simple number to the screen as in the configuration example
 at the top of this page. But even though you're passing in a string (here ``"01234567"``), ESPHome converts it
-into a representation that the MAX7219 can understand: The exact pixels that should be turned on. And of course,
-not all characters can be represented. You can see a full list of characters :ref:`below <display-max7219_characters>`.
+into a representation that the MAX6921 can understand: The exact pixels that should be turned on. And of course,
+not all characters can be represented. You can see a full list of characters :ref:`below <display-max6921_characters>`.
 
 Each of the three methods (``print``, ``printf`` and ``strftime``) all optionally take a position argument at the
 beginning which can be used to print the text at a specific position. This argument is ``0`` by default which
-means the first character of the first MAX7219. For example to start the first character of your text at
-the end of the first MAX7219, you would write ``it.print(7, "0");``.
+means the first character of the display. For example to start the first character of your text at
+the end (right side) of a 8 position display, you would write ``it.print(7, "0");``.
 
 Also note that the ``.`` (dot) character is special because when ESPHome encounters it in the string the dot
 segment of the previous position will be enabled.
@@ -119,8 +119,8 @@ segment of the previous position will be enabled.
 .. code-block:: yaml
 
     display:
-      - platform: max7219
-        # ...
+      - platform: max6921
+        # configure 8-position display...
         lambda: |-
           // Print 0 at position 0 (left)
           it.print("0");
@@ -145,14 +145,10 @@ segment of the previous position will be enabled.
           it.strftime("%H.%M.%S", id(esptime).now());
           // Result for 10:06:42 -> "10.06.42  "
 
-          // Change the display intnsity based on another id.
-          // Value should be from 0-15.
-          it.set_intensity(id(my_brightness));
-
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
 :ref:`display-strftime` for an introduction into the ``strftime`` time formatting.
 
-.. _display-max7219_characters:
+.. _display-max6921_characters:
 
 All 7-Segment Characters
 ------------------------
@@ -169,216 +165,216 @@ All 7-Segment Characters
     </style>
 
 ============================== ==============================
-**MAX7219 Representation**     **Character**
+**MAX6921 Representation**     **Character**
 ------------------------------ ------------------------------
-|max721900|                    *(space)*
+|max692100|                    *(space)*
 ------------------------------ ------------------------------
-|max721980|                    ``.``
+|max692180|                    ``.``
 ------------------------------ ------------------------------
-|max7219B0|                    ``!``
+|max6921B0|                    ``!``
 ------------------------------ ------------------------------
-|max72197E|                    ``0``, ``O``
+|max69217E|                    ``0``, ``O``
 ------------------------------ ------------------------------
-|max721930|                    ``1``, ``I``
+|max692130|                    ``1``, ``I``
 ------------------------------ ------------------------------
-|max72196D|                    ``2``, ``Z``
+|max69216D|                    ``2``, ``Z``
 ------------------------------ ------------------------------
-|max721979|                    ``3``
+|max692179|                    ``3``
 ------------------------------ ------------------------------
-|max721933|                    ``4``
+|max692133|                    ``4``
 ------------------------------ ------------------------------
-|max72195B|                    ``5``, ``S``, ``s``
+|max69215B|                    ``5``, ``S``, ``s``
 ------------------------------ ------------------------------
-|max72195F|                    ``6``
+|max69215F|                    ``6``
 ------------------------------ ------------------------------
-|max721970|                    ``7``
+|max692170|                    ``7``
 ------------------------------ ------------------------------
-|max72197F|                    ``8``
+|max69217F|                    ``8``
 ------------------------------ ------------------------------
-|max721973|                    ``9``
+|max692173|                    ``9``
 ------------------------------ ------------------------------
-|max721937|                    ``H``
+|max692137|                    ``H``
 ------------------------------ ------------------------------
-|max72194E|                    ``(``, ``[``, ``C``
+|max69214E|                    ``(``, ``[``, ``C``
 ------------------------------ ------------------------------
-|max721931|                    ``{``
+|max692131|                    ``{``
 ------------------------------ ------------------------------
-|max721978|                    ``)``, ``]``
+|max692178|                    ``)``, ``]``
 ------------------------------ ------------------------------
-|max721907|                    ``}``, ``T``, ``t``
+|max692107|                    ``}``, ``T``, ``t``
 ------------------------------ ------------------------------
-|max721920|                    ``\```
+|max692120|                    ``\```
 ------------------------------ ------------------------------
-|max721902|                    ``'``
+|max692102|                    ``'``
 ------------------------------ ------------------------------
-|max721922|                    ``"``
+|max692122|                    ``"``
 ------------------------------ ------------------------------
-|max72196F|                    ``@``
+|max69216F|                    ``@``
 ------------------------------ ------------------------------
-|max721965|                    ``?``
+|max692165|                    ``?``
 ------------------------------ ------------------------------
-|max721910|                    ``,``, ``i``
+|max692110|                    ``,``, ``i``
 ------------------------------ ------------------------------
-|max721949|                    ``%``
+|max692149|                    ``%``
 ------------------------------ ------------------------------
-|max721940|                    ``*``
+|max692140|                    ``*``
 ------------------------------ ------------------------------
-|max721948|                    ``:``
+|max692148|                    ``:``
 ------------------------------ ------------------------------
-|max721958|                    ``;``
+|max692158|                    ``;``
 ------------------------------ ------------------------------
-|max721977|                    ``A``, ``a``
+|max692177|                    ``A``, ``a``
 ------------------------------ ------------------------------
-|max72191F|                    ``B``, ``b``
+|max69211F|                    ``B``, ``b``
 ------------------------------ ------------------------------
-|max72193D|                    ``D``, ``d``
+|max69213D|                    ``D``, ``d``
 ------------------------------ ------------------------------
-|max72194F|                    ``E``, ``e``
+|max69214F|                    ``E``, ``e``
 ------------------------------ ------------------------------
-|max721947|                    ``F``, ``f``
+|max692147|                    ``F``, ``f``
 ------------------------------ ------------------------------
-|max72195E|                    ``G``, ``g``
+|max69215E|                    ``G``, ``g``
 ------------------------------ ------------------------------
-|max72193C|                    ``J``, ``j``
+|max69213C|                    ``J``, ``j``
 ------------------------------ ------------------------------
-|max72190E|                    ``L``, ``l``
+|max69210E|                    ``L``, ``l``
 ------------------------------ ------------------------------
-|max721915|                    ``N``, ``n``
+|max692115|                    ``N``, ``n``
 ------------------------------ ------------------------------
-|max721967|                    ``P``, ``p``
+|max692167|                    ``P``, ``p``
 ------------------------------ ------------------------------
-|max7219FE|                    ``Q``
+|max6921FE|                    ``Q``
 ------------------------------ ------------------------------
-|max721905|                    ``R``, ``r``
+|max692105|                    ``R``, ``r``
 ------------------------------ ------------------------------
-|max72193E|                    ``U``, ``V``
+|max69213E|                    ``U``, ``V``
 ------------------------------ ------------------------------
-|max72193F|                    ``W``
+|max69213F|                    ``W``
 ------------------------------ ------------------------------
-|max721927|                    ``Y``, ``y``
+|max692127|                    ``Y``, ``y``
 ------------------------------ ------------------------------
-|max721901|                    ``-``
+|max692101|                    ``-``
 ------------------------------ ------------------------------
-|max721908|                    ``_``
+|max692108|                    ``_``
 ------------------------------ ------------------------------
-|max721909|                    ``=``
+|max692109|                    ``=``
 ------------------------------ ------------------------------
-|max721906|                    ``|``
+|max692106|                    ``|``
 ------------------------------ ------------------------------
-|max72190D|                    ``c``
+|max69210D|                    ``c``
 ------------------------------ ------------------------------
-|max721917|                    ``h``
+|max692117|                    ``h``
 ------------------------------ ------------------------------
-|max72191D|                    ``o``
+|max69211D|                    ``o``
 ------------------------------ ------------------------------
-|max72191C|                    ``u``, ``v``
+|max69211C|                    ``u``, ``v``
 ------------------------------ ------------------------------
-|max72198E|                    ``~``
+|max69218E|                    ``~``
 ============================== ==============================
 
-.. |max721900| image:: images/max7219/seg00.svg
+.. |max692100| image:: images/max6921/seg00.svg
     :class: component-image segment
-.. |max721980| image:: images/max7219/seg80.svg
+.. |max692180| image:: images/max6921/seg80.svg
     :class: component-image segment
-.. |max7219B0| image:: images/max7219/segB0.svg
+.. |max6921B0| image:: images/max6921/segB0.svg
     :class: component-image segment
-.. |max72197E| image:: images/max7219/seg7E.svg
+.. |max69217E| image:: images/max6921/seg7E.svg
     :class: component-image segment
-.. |max721930| image:: images/max7219/seg30.svg
+.. |max692130| image:: images/max6921/seg30.svg
     :class: component-image segment
-.. |max72196D| image:: images/max7219/seg6D.svg
+.. |max69216D| image:: images/max6921/seg6D.svg
     :class: component-image segment
-.. |max721979| image:: images/max7219/seg79.svg
+.. |max692179| image:: images/max6921/seg79.svg
     :class: component-image segment
-.. |max721933| image:: images/max7219/seg33.svg
+.. |max692133| image:: images/max6921/seg33.svg
     :class: component-image segment
-.. |max72195B| image:: images/max7219/seg5B.svg
+.. |max69215B| image:: images/max6921/seg5B.svg
     :class: component-image segment
-.. |max72195F| image:: images/max7219/seg5F.svg
+.. |max69215F| image:: images/max6921/seg5F.svg
     :class: component-image segment
-.. |max721970| image:: images/max7219/seg70.svg
+.. |max692170| image:: images/max6921/seg70.svg
     :class: component-image segment
-.. |max72197F| image:: images/max7219/seg7F.svg
+.. |max69217F| image:: images/max6921/seg7F.svg
     :class: component-image segment
-.. |max721973| image:: images/max7219/seg73.svg
+.. |max692173| image:: images/max6921/seg73.svg
     :class: component-image segment
-.. |max721937| image:: images/max7219/seg37.svg
+.. |max692137| image:: images/max6921/seg37.svg
     :class: component-image segment
-.. |max72194E| image:: images/max7219/seg4E.svg
+.. |max69214E| image:: images/max6921/seg4E.svg
     :class: component-image segment
-.. |max721931| image:: images/max7219/seg31.svg
+.. |max692131| image:: images/max6921/seg31.svg
     :class: component-image segment
-.. |max721978| image:: images/max7219/seg78.svg
+.. |max692178| image:: images/max6921/seg78.svg
     :class: component-image segment
-.. |max721907| image:: images/max7219/seg07.svg
+.. |max692107| image:: images/max6921/seg07.svg
     :class: component-image segment
-.. |max721920| image:: images/max7219/seg20.svg
+.. |max692120| image:: images/max6921/seg20.svg
     :class: component-image segment
-.. |max721902| image:: images/max7219/seg02.svg
+.. |max692102| image:: images/max6921/seg02.svg
     :class: component-image segment
-.. |max721922| image:: images/max7219/seg22.svg
+.. |max692122| image:: images/max6921/seg22.svg
     :class: component-image segment
-.. |max72196F| image:: images/max7219/seg6F.svg
+.. |max69216F| image:: images/max6921/seg6F.svg
     :class: component-image segment
-.. |max721965| image:: images/max7219/seg65.svg
+.. |max692165| image:: images/max6921/seg65.svg
     :class: component-image segment
-.. |max721910| image:: images/max7219/seg10.svg
+.. |max692110| image:: images/max6921/seg10.svg
     :class: component-image segment
-.. |max721949| image:: images/max7219/seg49.svg
+.. |max692149| image:: images/max6921/seg49.svg
     :class: component-image segment
-.. |max721940| image:: images/max7219/seg40.svg
+.. |max692140| image:: images/max6921/seg40.svg
     :class: component-image segment
-.. |max721948| image:: images/max7219/seg48.svg
+.. |max692148| image:: images/max6921/seg48.svg
     :class: component-image segment
-.. |max721958| image:: images/max7219/seg58.svg
+.. |max692158| image:: images/max6921/seg58.svg
     :class: component-image segment
-.. |max721977| image:: images/max7219/seg77.svg
+.. |max692177| image:: images/max6921/seg77.svg
     :class: component-image segment
-.. |max72191F| image:: images/max7219/seg1F.svg
+.. |max69211F| image:: images/max6921/seg1F.svg
     :class: component-image segment
-.. |max72193D| image:: images/max7219/seg3D.svg
+.. |max69213D| image:: images/max6921/seg3D.svg
     :class: component-image segment
-.. |max72194F| image:: images/max7219/seg4F.svg
+.. |max69214F| image:: images/max6921/seg4F.svg
     :class: component-image segment
-.. |max721947| image:: images/max7219/seg47.svg
+.. |max692147| image:: images/max6921/seg47.svg
     :class: component-image segment
-.. |max72195E| image:: images/max7219/seg5E.svg
+.. |max69215E| image:: images/max6921/seg5E.svg
     :class: component-image segment
-.. |max72193C| image:: images/max7219/seg3C.svg
+.. |max69213C| image:: images/max6921/seg3C.svg
     :class: component-image segment
-.. |max72190E| image:: images/max7219/seg0E.svg
+.. |max69210E| image:: images/max6921/seg0E.svg
     :class: component-image segment
-.. |max721915| image:: images/max7219/seg15.svg
+.. |max692115| image:: images/max6921/seg15.svg
     :class: component-image segment
-.. |max721967| image:: images/max7219/seg67.svg
+.. |max692167| image:: images/max6921/seg67.svg
     :class: component-image segment
-.. |max7219FE| image:: images/max7219/segFE.svg
+.. |max6921FE| image:: images/max6921/segFE.svg
     :class: component-image segment
-.. |max721905| image:: images/max7219/seg05.svg
+.. |max692105| image:: images/max6921/seg05.svg
     :class: component-image segment
-.. |max72193E| image:: images/max7219/seg3E.svg
+.. |max69213E| image:: images/max6921/seg3E.svg
     :class: component-image segment
-.. |max72193F| image:: images/max7219/seg3F.svg
+.. |max69213F| image:: images/max6921/seg3F.svg
     :class: component-image segment
-.. |max721927| image:: images/max7219/seg27.svg
+.. |max692127| image:: images/max6921/seg27.svg
     :class: component-image segment
-.. |max721901| image:: images/max7219/seg01.svg
+.. |max692101| image:: images/max6921/seg01.svg
     :class: component-image segment
-.. |max721908| image:: images/max7219/seg08.svg
+.. |max692108| image:: images/max6921/seg08.svg
     :class: component-image segment
-.. |max721909| image:: images/max7219/seg09.svg
+.. |max692109| image:: images/max6921/seg09.svg
     :class: component-image segment
-.. |max721906| image:: images/max7219/seg06.svg
+.. |max692106| image:: images/max6921/seg06.svg
     :class: component-image segment
-.. |max72190D| image:: images/max7219/seg0D.svg
+.. |max69210D| image:: images/max6921/seg0D.svg
     :class: component-image segment
-.. |max721917| image:: images/max7219/seg17.svg
+.. |max692117| image:: images/max6921/seg17.svg
     :class: component-image segment
-.. |max72191D| image:: images/max7219/seg1D.svg
+.. |max69211D| image:: images/max6921/seg1D.svg
     :class: component-image segment
-.. |max72191C| image:: images/max7219/seg1C.svg
+.. |max69211C| image:: images/max6921/seg1C.svg
     :class: component-image segment
-.. |max72198E| image:: images/max7219/seg8E.svg
+.. |max69218E| image:: images/max6921/seg8E.svg
     :class: component-image segment
 
 .. note::
@@ -387,11 +383,3 @@ All 7-Segment Characters
     by user `h2g2bob <https://commons.wikimedia.org/wiki/User:H2g2bob>`__ under
     `Creative Commons BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0/deed.de>`__ and modified
     for this documentation.
-
-See Also
---------
-
-- :doc:`index`
-- :apiref:`max7219/max7219.h`
-- `MAX7219 Library <https://github.com/nickgammon/MAX7219>`__ by `Nick Gammon <https://github.com/nickgammon>`__
-- :ghedit:`Edit`
