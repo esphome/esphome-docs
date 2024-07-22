@@ -66,6 +66,7 @@ won't work. This issue can be worked around by executing the operations separate
         id: my_ota
         password: "Old password"
 
+The "id: my_ota" in the OTA block is important. This is referenced in the lambda.
 After this trick has been used to change the password, the ``on_boot`` trigger may be removed and the old password
 replaced with the new password in the ``ota:`` section.
 
@@ -73,6 +74,16 @@ Adding a Password
 *****************
 
 If OTA is already enabled without a password, simply add a ``password:`` line to the existing ``ota:`` config block.
+
+Removing a Password
+*******************
+
+-  If you know your password but want to remove it, enter an empty string: ``id(my_ota).set_auth_password("");`` instead of changing.
+-  If you no longer know your password and the web server has been activated:
+
+   - Remove the OTA password from the configuration
+   - Build a new image locally.
+   - Execute the OTA update directly via the ESP web server.
 
 See Also
 --------

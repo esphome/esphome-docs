@@ -7,6 +7,30 @@ ESPHome 2024.7.0 - 17th July 2024
     :author_twitter: @jesserockz
 
 
+microWakeWord
+-------------
+
+The `micro_wake_word` component has been updated to "version 2".
+This brings the capability to configure multiple models per device and has a ``vad`` model for
+voice activity detection.
+
+The configuration has a breaking change to support these new features.
+
+.. code-block:: yaml
+
+    micro_wake_word:
+      model: okay_nabu
+
+needs to be changed to the following:
+
+.. code-block:: yaml
+
+    micro_wake_word:
+      models:
+        - okay_nabu
+
+Please see the :doc:`Documentation </components/micro_wake_word>` for the full configuration.
+
 Full list of changes
 --------------------
 
