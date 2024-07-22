@@ -829,6 +829,7 @@ Display Hardware Platforms
     WSPICOLCD, components/display/ili9xxx, ili9488.svg
     Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
+    MAX6921, components/display/max6921, max6921.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     MAX7219, components/display/max7219, max7219.jpg
     Nextion, components/display/nextion, nextion.jpg
