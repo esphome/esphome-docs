@@ -81,7 +81,7 @@ Configuration variables:
   frequency of the ENS160 which is up to 1 second.
 
 - **address** (*Optional*, int): *I²C only.* Manually specify the I²C address of
-  the sensor. Defaults to ``0x53``. Another address can be ``0x52``.
+  the sensor. Defaults to ``0x52``. Another address can be ``0x53``.
 
 - **cs_pin** (*Required*, :ref:`Pin Schema <config-pin_schema>`): *SPI only.* The Chip Select pin.
 
