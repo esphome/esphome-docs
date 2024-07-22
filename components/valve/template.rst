@@ -52,6 +52,12 @@ Configuration variables:
   requests the valve to be stopped.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode, any command sent to
   the template valve will immediately update the reported state and no lambda needs to be used. Defaults to ``false``.
+- **restore_mode** (*Optional*, enum): Control how the valve attempts to restore state on bootup.
+
+  - ``NO_RESTORE`` (Default): Do not save or restore state.
+  - ``RESTORE``: Attempts to restore the state on startup, but doesn't instruct the valve to return to that state.
+  - ``RESTORE_AND_CALL``: Attempts to restore the state on startup and instructs the valve to return to the restored state.
+
 - **assumed_state** (*Optional*, boolean): Whether the true state of the valve is not known. This will make the Home
   Assistant frontend show buttons for both OPEN and CLOSE actions, instead of hiding one of them. Defaults to ``false``.
 - **has_position** (*Optional*, boolean): Whether this valve will publish its position as a floating point number.
