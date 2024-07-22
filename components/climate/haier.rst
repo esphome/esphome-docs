@@ -100,6 +100,12 @@ This component requires a :ref:`uart` to be setup.
               level: INFO
               format: "Alarm deactivated. Code: %d. Message: \"%s\""
               args: [ code, message]
+      on_status_message:
+        then:
+          - logger.log:
+              level: INFO
+              format: "New status message received, size=%d, subcmd=%02X%02X"
+              args: [ 'data_size', 'data[0]', 'data[1]' ]
 
 
 Configuration variables:
@@ -112,7 +118,9 @@ Configuration variables:
 - **wifi_signal** (*Optional*, boolean): If true - send wifi signal level to AC.
 - **answer_timeout** (*Optional*, :ref:`config-time`): Responce timeout. The default value is 200ms.
 - **alternative_swing_control** (*Optional*, boolean): (supported by smartAir2 only) If true - use alternative values to control swing mode. Use only if the original control method is not working for your AC.
+- **status_message_header_size** (*Optional*, int): (supported only by hOn) Define the header size of the status message. Can be used to handle some protocol variations. Use only if you are sure what you are doing. The default value: 0.
 - **control_packet_size** (*Optional*, int): (supported only by hOn) Define the size of the control packet. Can help with some newer models of ACs that use bigger packets. The default value: 10.
+- **sensors_packet_size** (*Optional*, int): (supported only by hOn) Define the size of the sensor packet of the status message. Can help with some models of ACs that have bigger sensor packet. The default value: 22, minimum value: 18.
 - **control_method** (*Optional*, list): (supported only by hOn) Defines control method (should be supported by AC). Supported values: MONITOR_ONLY - no control, just monitor status, SET_GROUP_PARAMETERS - set all AC parameters with one command (default method), SET_SINGLE_PARAMETER - set each parameter individually (this method is supported by some new ceiling ACs like AD71S2SM3FA)
 - **display** (*Optional*, boolean): Can be used to set the AC display off.
 - **beeper** (*Optional*, boolean): Can be used to disable beeping on commands from AC. Supported only by hOn protocol.
@@ -121,6 +129,7 @@ Configuration variables:
 - **supported_presets** (*Optional*, list): Can be used to disable some presets. Possible values for smartair2 are: AWAY, BOOST, COMFORT. Possible values for hOn are: AWAY, ECO, BOOST, SLEEP. AWAY preset can be enabled only in HEAT mode, it is disabled by default
 - **on_alarm_start** (*Optional*, :ref:`Automation <automation>`): (supported only by hOn) Automation to perform when AC activates a new alarm. See :ref:`haier-on_alarm_start`
 - **on_alarm_end** (*Optional*, :ref:`Automation <automation>`): (supported only by hOn) Automation to perform when AC deactivates a new alarm. See :ref:`haier-on_alarm_end`
+- **on_status_message** (*Optional*, :ref:`Automation <automation>`): Automation to perform when status message received from AC. See :ref:`haier-on_status_message`
 - All other options from :ref:`Climate <config-climate>`.
 
 Automations
@@ -131,7 +140,7 @@ Automations
 ``on_alarm_start`` Trigger
 **************************
 
-This automation will be triggered when a new alarm is activated by AC. The error code of the alarm will be given in the variable "code" (type uint8_t), error message in the variable "message" (type char*). Those variables can be used in :ref:`lambdas <config-lambda>`
+This automation will be triggered when a new alarm is activated by AC. The error code of the alarm will be given in the variable ``code`` (``uint8_t``), error message in the variable ``message`` (``const char *``). Those variables can be used in :ref:`lambdas <config-lambda>`
 
 .. code-block:: yaml
 
@@ -142,14 +151,14 @@ This automation will be triggered when a new alarm is activated by AC. The error
             - logger.log:
                 level: WARN
                 format: "Alarm activated. Code: %d. Message: \"%s\""
-                args: [ code, message]
+                args: [ 'code', 'message' ]
 
 .. _haier-on_alarm_end:
 
 ``on_alarm_end`` Trigger
 ************************
 
-This automation will be triggered when a previously activated alarm is deactivated by AC. The error code of the alarm will be given in the variable "code" (type uint8_t), error message in the variable "message" (type char*). Those variables can be used in :ref:`lambdas <config-lambda>`
+This automation will be triggered when a previously activated alarm is deactivated by AC. The error code of the alarm will be given in the variable ``code`` (``uint8_t``), error message in the variable ``message`` (``const char *``). Those variables can be used in :ref:`lambdas <config-lambda>`
 
 .. code-block:: yaml
 
@@ -160,7 +169,26 @@ This automation will be triggered when a previously activated alarm is deactivat
             - logger.log:
                 level: INFO
                 format: "Alarm deactivated. Code: %d. Message: \"%s\""
-                args: [ code, message]
+                args: [ 'code', 'message' ]
+
+.. _haier-on_status_message:
+
+``on_status_message`` Trigger
+*****************************
+
+This automation will be triggered when component receives new status packet from AC. Raw message binary (without header and checksum) will be provided in the variable ``data`` (``const char *``), message length in the variable ``data_size`` (``uint8_t``). Those variables can be used in :ref:`lambdas <config-lambda>`
+This trigger can be used to support some features that unique for the model and not supported by others.
+
+.. code-block:: yaml
+
+    climate:
+      - protocol: hOn
+        on_status_message:
+          then:
+            - logger.log:
+                level: INFO
+                format: "New status message received, size=%d, subcmd=%02X%02X"
+                args: [ 'data_size', 'data[0]', 'data[1]' ]
 
 ``climate.haier.power_on`` Action
 *********************************
@@ -315,6 +343,8 @@ See Also
 - `haier-esphome <https://github.com/paveldn/haier-esphome>`__
 - :doc:`Haier Climate Sensors </components/sensor/haier>`
 - :doc:`Haier Climate Binary Sensors </components/binary_sensor/haier>`
+- :doc:`Haier Climate Text Sensors </components/text_sensor/haier>`
+- :doc:`Haier Climate Buttons </components/button/haier>`
 - :doc:`/components/climate/index`
 - :apiref:`haier/climate/haier.h`
 - :ghedit:`Edit`

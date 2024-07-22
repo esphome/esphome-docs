@@ -34,13 +34,15 @@ For all projects
 - Your project is powered by an ESP32 or *supported* ESP32 variant such as the S2, S3, C3, etc.
 - Your ESPHome configuration is open source, available for end users to modify/update
 - Users should be able to apply updates if your project sells ready-made devices
-- Your project supports adoption via the ``dashboard_import`` feature of ESPHome (see :doc:`Sharing </guides/creators>`). In particular:
+- Your project supports adoption via the ``dashboard_import`` feature of ESPHome (see
+  :doc:`Sharing </guides/creators>`). In particular:
+
     - There are **no** references to secrets or passwords
     - Network configuration must assume defaults (no static IPs or DNS configured)
-    - It **must** compile successfully without any user changes after adopting it.
-    - All configuration is contained within a single YAML file. Fully remote packages are permitted if using ``import_full_config: true``.
+    - The configuration **must** be valid, compile and run successfully *without any user changes* after adopting it.
+    - Use of remote packages in the YAML is permitted only if the above criteria are met.
 
-- Your product name cannot contain **ESPHome** except in the case of *ending with* **for ESPHome**
+- Your product name cannot contain "**ESPHome**" except in the case of *ending with* "**for ESPHome**"
 
 When your project matches all requirements of the Made for ESPHome program,
 you can apply for permission to carry the logo by emailing esphome@nabucasa.com
