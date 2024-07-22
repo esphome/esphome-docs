@@ -31,6 +31,15 @@ needs to be changed to the following:
 
 Please see the :doc:`Documentation </components/micro_wake_word>` for the full configuration.
 
+Release 2024.7.1 - July 22
+--------------------------
+
+- Prevent rename from deleting new config :esphomepr:`7104` by :ghuser:`acortelyou`
+- [i2s_microphone] Partially revert #7092 so microphone volume doesn't change :esphomepr:`7109` by :ghuser:`kahrendt`
+- [heatpumpir] Fix BK72XX Compile error with IRremoteESP8266 :esphomepr:`6955` by :ghuser:`dianlight`
+- [http_request] allow basic auth for idf  :esphomepr:`7086` by :ghuser:`oarcher`
+- Fixes sml parser to process extended length lists with a number of items that is dividable by 16 :esphomepr:`6148` by :ghuser:`irgendwienet`
+
 Full list of changes
 --------------------
 
