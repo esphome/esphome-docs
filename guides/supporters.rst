@@ -40,6 +40,7 @@ Contributors
 - `Antonio (@acarvajalperez) <https://github.com/acarvajalperez>`__
 - `aceindy (@aceindy) <https://github.com/aceindy>`__
 - `Avula Chandra Kiran Reddy (@ackr-8) <https://github.com/ackr-8>`__
+- `Alex Cortelyou (@acortelyou) <https://github.com/acortelyou>`__
 - `acshef (@acshef) <https://github.com/acshef>`__
 - `Zhenyu Wu (@Adam5Wu) <https://github.com/Adam5Wu>`__
 - `adamgreg (@adamgreg) <https://github.com/adamgreg>`__
@@ -495,6 +496,7 @@ Contributors
 - `DrRob (@DrRob) <https://github.com/DrRob>`__
 - `drug123 (@drug123) <https://github.com/drug123>`__
 - `Drzony (@drzony) <https://github.com/drzony>`__
+- `Dmitry Savinkin (@dsavinkin) <https://github.com/dsavinkin>`__
 - `Dmitrii Shcherbakov (@dshcherb) <https://github.com/dshcherb>`__
 - `Daniel Müller (@dtmuller) <https://github.com/dtmuller>`__
 - `Tom Soer (@dtx3k) <https://github.com/dtx3k>`__
@@ -1551,10 +1553,12 @@ Contributors
 - `Jan Čermák (@sairon) <https://github.com/sairon>`__
 - `samnewman86 (@samnewman86) <https://github.com/samnewman86>`__
 - `Sam Turner (@samturner3) <https://github.com/samturner3>`__
+- `Samuel Tardieu (@samueltardieu) <https://github.com/samueltardieu>`__
 - `Sender (@sanderlv) <https://github.com/sanderlv>`__
 - `Sanjay Govind (@sanjay900) <https://github.com/sanjay900>`__
 - `Marcin (@Santanachia) <https://github.com/Santanachia>`__
 - `sascha lammers (@sascha432) <https://github.com/sascha432>`__
+- `Sašo Domadenik (@sasodoma) <https://github.com/sasodoma>`__
 - `Davide Perini (@sblantipodi) <https://github.com/sblantipodi>`__
 - `sbur83 (@sbur83) <https://github.com/sbur83>`__
 - `Søren Christian Aarup (@scaarup) <https://github.com/scaarup>`__
@@ -1709,6 +1713,7 @@ Contributors
 - `TheJulianJES (@TheJulianJES) <https://github.com/TheJulianJES>`__
 - `Jozef Zuzelka (@TheKuko) <https://github.com/TheKuko>`__
 - `Mateusz Soszyński (@TheLastGimbus) <https://github.com/TheLastGimbus>`__
+- `Daniel (@themorgantown) <https://github.com/themorgantown>`__
 - `Bart (@TheNameIsBart) <https://github.com/TheNameIsBart>`__
 - `Andrew Quested (@thenameiwantedwastaken) <https://github.com/thenameiwantedwastaken>`__
 - `Zixuan Wang (@TheNetAdmin) <https://github.com/TheNetAdmin>`__
@@ -1910,4 +1915,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated July 17, 2024.*
+*This page was last updated July 22, 2024.*
