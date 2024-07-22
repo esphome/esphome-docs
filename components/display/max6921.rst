@@ -14,6 +14,12 @@ to have an :ref:`SPI bus <spi>` in your configuration with **clk_pin** and **mos
 
 As the chip refresh is very time-critical, the ESP8266 is not supported (the refresh routine uses a 2nd CPU core)!
 
+.. figure:: images/max6921/7-segment-display.svg
+    :align: center
+    :width: 75.0%
+
+    7-Segment Display Example.
+
 .. code-block:: yaml
 
     # Example configuration entry for IV18 VFD tube
