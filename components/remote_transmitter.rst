@@ -490,6 +490,28 @@ Configuration variables:
 - **level** (**Required**, int): The Nexa level code to send, see dumper output for more info.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+.. _remote_transmitter-transmit_onkyori:
+
+``remote_transmitter.transmit_onkyori`` Action
+************************************************
+
+This :ref:`action <config-action>` sends an Onkyo RI remote code to a receiving device.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_onkyori:
+          data: 0xD9
+
+Onkyo RI Protocol
+^^^^^^^^^^^^^^^^^
+
+The Onkyo RI protocol is reasonably well documented via the lirc project `here <https://lirc.sourceforge.net/remotes/onkyo/Remote_Interactive>`__ and graphically `here <http://fredboboss.free.fr/articles/onkyo_ri.php>`__. Additional codes are available at `docbender/Onkyo-RI <https://github.com/docbender/Onkyo-RI>`__.
+
+Information on connecting Onkyo RI devices can be found `here <https://support.onkyousa.com/hc/en-us/articles/7634572156692-Connecting-Onkyo-equipment-with-RI-terminal>`__ on Onkyo's site.
+
+Onkyo RI is 0v (low) - 5v (high), and thus requires a level shifter when used with GPIOs on most ESP32 devices (such as the `Sparkfun Logic Level Converter (BOB-12009) <https://www.sparkfun.com/products/12009>`__.
+
 .. _remote_transmitter-transmit_panasonic:
 
 ``remote_transmitter.transmit_panasonic`` Action
