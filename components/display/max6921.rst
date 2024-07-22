@@ -118,6 +118,10 @@ segment of the previous position will be enabled.
 
 .. code-block:: yaml
 
+    time:
+      - platform: homeassistant
+        id: esptime
+
     display:
       - platform: max6921
         # configure 8-position display...
@@ -351,3 +355,66 @@ All 7-Segment Characters
     by user `h2g2bob <https://commons.wikimedia.org/wiki/User:H2g2bob>`__ under
     `Creative Commons BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0/deed.de>`__ and modified
     for this documentation.
+
+.. _max6921-set_text_action:
+
+``max9621.set_text`` Action
+***************************
+
+This action shows a text on the display with the given ID when executed.
+One use case would be, for example, to display the current time by default (fixed configuration via ``it``) and to interrupt it briefly using ``set_text`` action. 
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - max9621.set_text:
+            id: iv18
+            text: "0123"
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the MAX6921.
+- **position** (*Optional*, int, :ref:`templatable <config-templatable>`): The display position. Range is ``0`` to ``13``.
+- **align** (*Optional*, string, :ref:`templatable <config-templatable>`): The text alignment. Defaults to ``center``.
+
+  - ``left``: align text to the left
+  - ``center``: align text to the center
+  - ``right``: align text to the right
+
+- **duration** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The time duration of showing text. Defaults to ``0ms`` (endless).
+  If ``cycle_num`` is given too, the first occurrence ends the effect.
+- **effect** (*Optional*, string, :ref:`templatable <config-templatable>`): The text effect. Defaults to ``none``.
+
+  - ``none``: Show text (cut if too long)
+  - ``blink``: Blink text (cut if too long)
+  - ``scroll_left``: Scroll text left (start with 1st character at right position)
+- **cycle_num** (*Optional*, int, :ref:`templatable <config-templatable>`): The number of text effect cycles (applicable to effects: ``blink``). Range is ``0`` to ``255``. Defaults to ``0`` (endless). If ``duration`` is given too, the first occurrence ends the effect.
+- **update_interval** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The effect update interval. Defaults to ``150ms``.
+
+
+.. _max6921-set_demo_mode_action:
+
+``max9621.set_demo_mode`` Action
+********************************
+
+This action starts a demo mode on the display with the given ID when executed.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - max9621.set_demo_mode:
+            id: iv18
+            mode: "scroll_font"
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the MAX6921.
+- **mode** (**Required**, string, :ref:`templatable <config-templatable>`): The demo mode.
+
+  - ``off``: Switch off any running demo mode
+  - ``scroll_font``: Scroll left the entire font
+- **cycle_num** (*Optional*, int, :ref:`templatable <config-templatable>`): The number of demo mode cycles. Range is ``0`` to ``255``. Defaults to ``0`` (endless).
+- **update_interval** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The demo mode update interval. Defaults to ``150ms``.
+
