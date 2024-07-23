@@ -16,7 +16,7 @@ For more information on BLE services and characteristics, see
     esp32_ble_tracker:
 
     ble_client:
-      - mac_address: FF:FF:20:00:0F:15
+      - mac_address: XX:XX:XX:XX:XX:XX
         id: itag_black
 
     text_sensor:
