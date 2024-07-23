@@ -37,9 +37,11 @@ Configuration variables:
   - ``SIM7000``
   - ``SIM7600``
 
-- **rx_pin** (**Required**, integer): The pin number of the ``RX`` on the esp side (connected to the ``TX`` pin on the modem side).
-- **tx_pin** (**Required**, integer): The pin number of the ``TX`` on the esp side (connected to the ``RX`` pin on the modem side).
+- **rx_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``RX`` on the esp side (connected to the ``TX`` pin on the modem side).
+- **tx_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``TX`` on the esp side (connected to the ``RX`` pin on the modem side).
 - **apn** (**Required**, string): Operator apn.
+- **power_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``PWK``, to allow power handling. Needs ``status_pin``.
+- **status_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``STATUS``, to be able to know the power state.
 - **pin_code** (*Optional*, string): The pin code of the sim card.
 - **init_at** (*Optional*, list): A list of ``AT`` commands that will be sent to the modem after the connection
 - **on_not_responding** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the modem doesn't respond.
@@ -48,6 +50,17 @@ Configuration variables:
 - **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the modem lost it's IP.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+
+.. note::
+
+    On Lilygo devices, the ``power_pin`` is inverted. 
+
+    .. code-block:: yaml
+
+        modem:
+          power_pin: 
+            number: GPIO04
+            inverted: True
 
 .. note::
 
@@ -69,6 +82,10 @@ Configuration examples
       tx_pin: 27
       model: SIM7600  
       apn: orange
+      status_pin: GPIO34
+      power_pin: 
+        number: GPIO04
+        inverted: True
       pin_code: "0000"
       enable_on_boot: True
       init_at:
@@ -76,13 +93,7 @@ Configuration examples
         - AT+CGNSSMODE=15,1 # GNSS all navigation systems
         - AT+CGPS=1 # GPS on
       on_not_responding:
-        # Triggered if the modem is not responding.
-        # assuming tha the gpio switch 'modem_power' is connected to the modem pwrkey, we will powercycle the modem 
-        - logger.log: modem powercyle
-        - switch.turn_off: modem_power
-        - delay: 15s
-        - switch.turn_on: modem_power
-        - delay: 15s
+        - logger.log: "modem not responding"
       on_connect:
         - logger.log: "modem got IP"
       on_disconnect:
@@ -127,8 +138,8 @@ For example, to send an ``AT`` command, and get the result:
 
     ESP_LOGI("", "result: %s", id(atmodem).send_at("ATI").c_str());
 
-- ``.enable()``: Enable and start the connection.
-- ``.disable()``: Disconnect. 
+- ``.enable()``: Enable and start the connection. Poweron the modem if needed and ``power_pin`` defined.
+- ``.disable()``: Disconnect. Also poweroff the modem if ``power_pin`` defined. 
 
 Performance and stability
 -------------------------
@@ -153,7 +164,7 @@ See Also
 - :doc:`/components/wireguard`
 - `SIM7600 AT command list <https://simcom.ee/documents/SIM7600C/SIM7500_SIM7600%20Series_AT%20Command%20Manual_V1.01.pdf>`__
 - `SIM7600 Hardware design <https://simcom.ee/documents/SIM7600E/SIM7600%20Series%20Hardware%20Design_V1.03.pdf>`__
-- `esp modem`
+- `esp modem <https://docs.espressif.com/projects/esp-protocols/esp_modem/docs/latest/index.html>`__
 - :ghedit:`Edit`
 
 
