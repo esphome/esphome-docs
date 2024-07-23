@@ -53,7 +53,7 @@ Configuration variables:
 
 .. note::
 
-    On Lilygo devices, the ``power_pin`` is inverted. 
+    On some modem like Lilygo devices, the ``power_pin`` is inverted. Some modem needs also the ``fligth_pin`` to be high.
 
     .. code-block:: yaml
 
@@ -61,6 +61,12 @@ Configuration variables:
           power_pin: 
             number: GPIO04
             inverted: True
+
+        switch:
+          id: flight_mode
+          internal: True
+          pin: GPIO25
+          restore_mode: ALWAYS_ON
 
 .. note::
 
