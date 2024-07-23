@@ -30,6 +30,9 @@ providers. A node may be both a provider and a consumer. Optional security is pr
         - binary_sensor_id1
       sensors:
         - sensor_id1
+        - id: sensor_id2
+          broadcast_id: different_id
+
       providers:
         - name: some-device-name
           encryption: "REPLACEME with some key"
@@ -53,7 +56,11 @@ Configuration variables:
 - **port** (*Optional*, int): The destination UDP port number to use. Defaults to ``18511``.
 - **addresses** (*Optional*, list of IPv4 addresses): One or more IP addresses to broadcast data to. Defaults to ``255.255.255.255``
   which is the local network broadcast address.
-- **sensors** (*Optional*, list): A list of sensor IDs to be broadcast.
+- **sensors** (*Optional*, list): A list of sensor IDs to be broadcast. Each entry may be just the sensor id, or may set a different id to be broadcast.
+
+  - **id** (**Required**, :ref:`config-id`): The id of the sensor to be used
+  - **broadcast_id** (*Optional*, :ref:`config-id`): The id to be used for this sensor in the broadcast. Defaults to the same as the internal id.
+
 - **binary_sensors** (*Optional*, list): A list of binary sensor IDs to be broadcast.
 - **encryption** (*Optional*, string): The encryption key to use when broadcasting. Default is no encryption. This may be
   any string, and will be hashed to form a 256 bit key.
@@ -91,14 +98,14 @@ Encryption alone ensures that data cannot be read in transit and protects agains
 against replay attacks (where a threat actor records a transmission and replays it later, e.g. to repeat an action.)
 
 A rolling code can be enabled which mitigates replay attacks - each transmission contains a 64 bit value which is
-guaranteed to monotonically increase, so the consumer will reject any data d which contains a rolling code
+guaranteed to monotonically increase, so the consumer will reject any data which contains a rolling code
 already seen. The rolling code also ensures that the data in every packet is different, which makes brute-force
 attacks on the encryption much more difficult. This is enabled in the provider configuration and adds minor overhead.
 
 .. note::
 
-    The rolling code's top 32 bits is incremented and written to flash *once* at reboot on the provider node. 
-    It's also incremented and written to flash when the counting, lower 32 bits overflows, which can only happen after
+    The rolling code's upper 32 bit field is incremented and written to flash *once* at reboot on the provider node.
+    It's also incremented and written to flash when the lower 32 bit field overflows, which can only happen after
     a very long time. The consumer side does not store the d rolling codes in flash.
 
 For further protection a ``ping-pong`` (or challenge-response) facility is available, which can be enabled in the
