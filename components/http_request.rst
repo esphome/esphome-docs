@@ -22,7 +22,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **follow_redirects** (*Optional*, boolean): Enable following HTTP redirects. Defaults to ``true``.
 - **redirect_limit** (*Optional*, integer): Maximum amount of redirects to follow when enabled. Defaults to ``3``.
-- **timeout** (*Optional*, :ref:`config-time`): Timeout for request. Defaults to ``5s``.
+- **timeout** (*Optional*, :ref:`config-time`): Timeout for request. Defaults to ``4.5s``.
 - **useragent** (*Optional*, string): User-Agent header for requests. Defaults to
   ``ESPHome/<version> (https://esphome.io)`` where ``<version>`` is the version of ESPHome the device is running.
   For example: ``ESPHome/2024.6.0 (https://esphome.io)``
