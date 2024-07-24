@@ -30,7 +30,7 @@ movement count and measurement sequence number are also tracked.
 
     sensor:
     - platform: ruuvitag
-      mac_address: FF:56:D3:2F:7D:E8
+      mac_address: XX:XX:XX:XX:XX:XX
       humidity:
         name: "RuuviTag Humidity"
       temperature:
@@ -167,11 +167,11 @@ print a message like this one:
 
 .. code::
 
-    Got ruuvi RuuviTag (FF:56:D3:2F:7D:E8): Humidity: 67.5%, Temperature: 22.97°C,
+    Got ruuvi RuuviTag (XX:XX:XX:XX:XX:XX): Humidity: 67.5%, Temperature: 22.97°C,
     Pressure: 977.09hPa, Acceleration X: 0.005G, Acceleration Y: 0.017G, Acceleration Z: 1.066G,
     Battery Voltage: 3.223V
 
-Then just copy the address (``FF:56:D3:2F:7D:E8``) into a new
+Then just copy the address (``XX:XX:XX:XX:XX:XX``) into a new
 ``sensor.ruuvitag`` platform entry like in the configuration example at the top.
 
 .. note::
