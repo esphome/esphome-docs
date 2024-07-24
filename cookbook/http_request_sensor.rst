@@ -23,8 +23,6 @@ On the client nodes we need an :doc:`/components/http_request` with an ``id`` se
 .. code-block:: yaml
 
     http_request:
-      useragent: esphome/device
-      id: http_request_id
 
     sensor:
       - platform: template
