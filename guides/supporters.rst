@@ -126,6 +126,7 @@ Contributors
 - `Anthony (@AnthonyMaiorani) <https://github.com/AnthonyMaiorani>`__
 - `Rémi K. (@antibill51) <https://github.com/antibill51>`__
 - `Antonio Fiol (@antonio-fiol) <https://github.com/antonio-fiol>`__
+- `Aodren Auffrédou-Heinicke (@aodrenah) <https://github.com/aodrenah>`__
 - `Andy Barratt (@apbarratt) <https://github.com/apbarratt>`__
 - `Andrey Bodrov (@apbodrov) <https://github.com/apbodrov>`__
 - `Adriaan Peeters (@apeeters) <https://github.com/apeeters>`__
@@ -454,6 +455,7 @@ Contributors
 - `dgtal1 (@dgtal1) <https://github.com/dgtal1>`__
 - `Dan Halbert (@dhalbert) <https://github.com/dhalbert>`__
 - `Dustin L. Howett (@DHowett) <https://github.com/DHowett>`__
+- `Lucio Tarantino (@dianlight) <https://github.com/dianlight>`__
 - `diesel437 (@diesel437) <https://github.com/diesel437>`__
 - `Alain Turbide (@Dilbert66) <https://github.com/Dilbert66>`__
 - `Mark  (@Diramu) <https://github.com/Diramu>`__
@@ -524,6 +526,7 @@ Contributors
 - `Eduardo Pérez (@eduperez) <https://github.com/eduperez>`__
 - `Edward Firmo (@edwardtfn) <https://github.com/edwardtfn>`__
 - `Eenoo (@Eenoo) <https://github.com/Eenoo>`__
+- `IDuzTheGamez (@eff3ry) <https://github.com/eff3ry>`__
 - `Eli Fidler (@efidler) <https://github.com/efidler>`__
 - `egandro (@egandro) <https://github.com/egandro>`__
 - `Erwin Kooi (@egeltje) <https://github.com/egeltje>`__
@@ -782,6 +785,7 @@ Contributors
 - `Ingurum (@Ingurum) <https://github.com/Ingurum>`__
 - `Marc J (@InvncibiltyCloak) <https://github.com/InvncibiltyCloak>`__
 - `IoT-devices LLC (@iotdevicesdev) <https://github.com/iotdevicesdev>`__
+- `irgendwienet (@irgendwienet) <https://github.com/irgendwienet>`__
 - `Ivo Roefs (@ironirc) <https://github.com/ironirc>`__
 - `irtimaled (@irtimaled) <https://github.com/irtimaled>`__
 - `Ingo Theiss (@itn3rd77) <https://github.com/itn3rd77>`__
@@ -1604,6 +1608,7 @@ Contributors
 - `SiliconAvatar (@SiliconAvatar) <https://github.com/SiliconAvatar>`__
 - `sillyfrog (@sillyfrog) <https://github.com/sillyfrog>`__
 - `Mark Lopez (@Silvenga) <https://github.com/Silvenga>`__
+- `simonjowett (@simonjowett) <https://github.com/simonjowett>`__
 - `James Chaloupka (@SirGoodenough) <https://github.com/SirGoodenough>`__
 - `Maximilian Ertl (@Sirs0ri) <https://github.com/Sirs0ri>`__
 - `SirSydom (@SirSydom) <https://github.com/SirSydom>`__
@@ -1915,4 +1920,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated July 22, 2024.*
+*This page was last updated July 25, 2024.*
