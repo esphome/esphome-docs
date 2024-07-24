@@ -36,7 +36,7 @@ Configuration variables:
   experiencing device reboots due to watchdog timeouts;** doing so may prevent the device from rebooting due to a
   legitimate problem. **Only available on ESP32 and RP2040**.
 
-**For the ESP-IDF:**
+**For the ESP32 when using ESP-IDF:**
 
 - **buffer_size_rx** (*Optional*, integer): Change HTTP receive buffer size. Defaults to ``512``.
 - **buffer_size_tx** (*Optional*, integer): Change HTTP transmit buffer size. Defaults to ``512``.
