@@ -10,7 +10,7 @@
     :image: logo.svg
 
 .. image:: /images/logo-text.svg
-    :class: dark-invert
+    :class: logo
 
 ESPHome is a system to control your microcontrollers by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
@@ -61,7 +61,7 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/automations.html">
+                    <a class="reference" href="/automations/index.html">
                         Automations
                     </a>
                 </li>
@@ -131,6 +131,7 @@ Supported Microcontrollers
     RP2040, components/rp2040, rp2040.svg
     BK72xx, components/libretiny, bk72xx.svg
     RTL87xx, components/libretiny, rtl87xx.svg
+    host, components/host, host.svg, dark-invert
 
 Microcontroller Peripherals
 ---------------------------
@@ -141,6 +142,19 @@ Peripherals which directly support the operation of the microcontroller's proces
 
     PSRAM, components/psram, psram.svg
     Deep Sleep, components/deep_sleep, hotel.svg, dark-invert
+
+ESPHome Automations
+-------------------
+
+*"When this happens, I want it to do that..."*
+
+Automations are how we customize ESPHome devices to respond/behave exactly how you want them to.
+
+.. imgtable::
+
+    Overview, automations/index, description.svg, dark-invert
+    "Actions, Triggers, Conditions", automations/actions, description.svg, dark-invert
+    Templates, automations/templates, description.svg, dark-invert
 
 ESPHome Components
 ------------------
@@ -154,8 +168,11 @@ ESPHome-specific components or components supporting ESPHome device provisioning
     Copy, components/copy, content-copy.svg, dark-invert
     Demo, components/demo, description.svg, dark-invert
     External Components, components/external_components, external_components.svg, dark-invert
+    Globals, components/globals, description.svg, dark-invert
     Improv via BLE, components/esp32_improv, improv.svg, dark-invert
     Improv via Serial, components/improv_serial, improv.svg, dark-invert
+    Interval, components/interval, description.svg, dark-invert
+    Script, components/script, description.svg, dark-invert
 
 Network Hardware
 ----------------
@@ -195,22 +212,43 @@ Management and Monitoring
 
     Debug, components/debug, bug-report.svg, dark-invert
     Logger, components/logger, file-document-box.svg, dark-invert
-    OTA Updates, components/ota, system-update.svg, dark-invert
     Prometheus, components/prometheus, prometheus.svg
     Safe Mode, components/safe_mode, restart-alert.svg
     Web Server, components/web_server, http.svg, dark-invert
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg, dark-invert
+
+Update Installation
+-------------------
+
+Install updates over-the-air (OTA).
+
+.. imgtable::
+
+    OTA Core, components/ota/index, system-update.svg, dark-invert
+    OTA Updates, components/ota/esphome, system-update.svg, dark-invert
+    OTA Updates via HTTP Request, components/ota/http_request, system-update.svg, dark-invert
+
+Update Management
+-----------------
+
+Create update entities simplifying management of OTA updates.
+
+.. imgtable::
+
+    Update Core, components/update/index, system-update.svg, dark-invert
+    Managed Updates, components/update/http_request, system-update.svg, dark-invert
 
 Hardware Peripheral Interfaces/Busses
 -------------------------------------
 
 .. imgtable::
 
-    CAN Bus, components/canbus, canbus.svg
+    CAN Bus, components/canbus/index, canbus.svg
     I²C Bus, components/i2c, i2c.svg
     I²S Audio, components/i2s_audio, i2s_audio.svg
     SPI Bus, components/spi, spi.svg
     UART, components/uart, uart.svg
+    1-Wire, components/one_wire, one-wire.svg
 
 I/O Expanders/Multiplexers
 --------------------------
@@ -229,6 +267,15 @@ I/O Expanders/Multiplexers
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     WeiKai SPI/I²C UART/IO Expander, components/weikai, wk2168.jpg
     XL9535, components/xl9535, xl9535.svg
+
+CAN Bus
+-------
+
+.. imgtable::
+
+    CAN Bus, components/canbus/index, canbus.svg
+    ESP32 CAN, components/canbus/esp32_can, esp32.svg
+    MCP2515, components/canbus/mcp2515, mcp2515.svg
 
 Sensor Components
 -----------------
@@ -390,7 +437,7 @@ Environmental
     BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Pressure
     BMP388 and BMP390, components/sensor/bmp3xx, bmp388.jpg, Temperature & Pressure
     BMP581, components/sensor/bmp581, bmp581.jpg, Temperature & Pressure
-    Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
+    Dallas DS18B20, components/sensor/dallas_temp, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
     DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
@@ -441,10 +488,17 @@ Light
 .. imgtable::
 
     AM43, components/sensor/am43, am43.jpg, Lux
+    APDS9306, components/sensor/apds9306, apds9306.png, Lux
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
+    LTR303, components/sensor/ltr_als_ps, ltr303.jpg, Lux
+    LTR329, components/sensor/ltr_als_ps, ltr329.jpg, Lux
     LTR390, components/sensor/ltr390, ltr390.jpg, Lux & UV
+    LTR553, components/sensor/ltr_als_ps, ltr-ps.jpg, Lux & Proximity
+    LTR556, components/sensor/ltr_als_ps, ltr-ps.jpg, Lux & Proximity
+    LTR559, components/sensor/ltr_als_ps, ltr559.jpg, Lux & Proximity
+    LTR659, components/sensor/ltr_als_ps, ltr-ps.jpg, Proximity
     MAX44009, components/sensor/max44009, max44009.svg, Lux
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
@@ -482,6 +536,7 @@ Miscellaneous
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Integration, components/sensor/integration, sigma.svg, dark-invert
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
+    M5Stack Unit 8 Angle, components/sensor/m5stack_8angle, m5stack_8angle.png
     MicroNova pellet stove, components/micronova, pellet.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
@@ -800,6 +855,7 @@ Display Hardware Platforms
     TM1638, components/display/tm1638, tm1638.jpg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
+    Host SDL2 display, components/display/sdl, sdl.png
 
 Touchscreen Components
 ----------------------
@@ -1082,6 +1138,7 @@ If you'd like to share configurations for specific devices, please contribute to
     :hidden:
 
     web-api/index
+    automations/index
     components/index
     cookbook/index
     guides/index

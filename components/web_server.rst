@@ -16,7 +16,6 @@ will take up *a lot* of memory and may decrease stability, especially on ESP8266
 
     Web server version 1
 
-
 .. figure:: /components/images/web_server-v2.png
     :align: center
     :width: 86.0%
@@ -24,6 +23,13 @@ will take up *a lot* of memory and may decrease stability, especially on ESP8266
     Web server version 2
 
 
+.. figure:: /components/images/web_server-v3.png
+    :align: center
+    :width: 86.0%
+
+    Web server version 3
+
+    
 To navigate to the web server in your browser, either use the IP address of the node or
 use ``<node_name>.local/`` (note the trailing forward slash) via mDNS.
 
@@ -64,7 +70,7 @@ Configuration variables:
 - **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Defaults to ``true``. Cannot be used with the ``esp-idf`` framework.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **local** (*Optional*, boolean): Include supporting javascript locally allowing it to work without internet access. Defaults to ``false``.
-- **version** (*Optional*, string): ``1`` or ``2``. Version 1 displays as a table. Version 2 uses web components and has more functionality. Defaults to ``2``.
+- **version** (*Optional*, string): ``1``, ``2`` or ``3``. Version 1 displays as a table. Version 2 uses web components and has more functionality. Version 3 uses HA-Styling. Defaults to ``2``.
 
 To conserve flash size, the CSS and JS files used on the root page to show a simple user
 interface are hosted by esphome.io. If you want to use your own service, use the
@@ -134,8 +140,82 @@ V2 embeds the css within the js file so is not required, however you could inclu
       js_url: ""
       version: 2
 
+
 Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
 
+
+.. _config-webserver-version-3-options:
+
+Version 3 features
+---------------------------
+
+Number in slider mode
+*********************
+.. figure:: /components/images/web_server/number-slider-popup.png
+    :align: left
+    :width: 100.0%
+
+
+You can change the value by moving the slider.
+If you wish to enter a precise number you can click and hold the current value. A popup input field will appear where you can enter a number and confirm your input by pressing the enter key.
+
+.. figure:: /components/images/web_server/number-slider-popup-input-field.png
+    :align: left
+    :width: 100.0%
+
+
+Expand Controls and Logs
+************************
+.. figure:: /components/images/web_server/tab-header-expand-cloapsed.png
+    :align: left
+    :width: 100.0%
+
+
+By double-clicking on any group header you can expand the controls to fill up the whole screen.
+You can do the same for the logs.
+
+.. figure:: /components/images/web_server/tab-header-expand-controls-expanded.png
+    :align: center
+    :width: 100.0%
+
+    Expanded Controls
+
+
+.. figure:: /components/images/web_server/tab-header-expand-logs-expanded.png
+    :align: center
+    :width: 100.0%
+
+    Expanded Logs
+
+
+Sensor value graph
+******************
+.. figure:: /components/images/web_server/sensor-history-graph.png
+    :align: left
+    :width: 100.0%
+
+By clicking on any sensor it will expand a graph with the historical values for that sensor.
+
+.. _config-webserver-sorting:
+
+Entity sorting
+--------------
+
+``web_server`` version 3 supports the sorting of the entitys.
+You can set a ``web_server_sorting_weight`` on each entity.
+Smaller numbers will be displayed first, defaults to 50.
+Example ``sensor`` configuration.
+``My Sensor 2`` is displayed first, then ``My Sensor 1``
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: template
+        name: "My Sensor 1"
+        web_server_sorting_weight: 10
+      - platform: template
+        name: "My Sensor 2"
+        web_server_sorting_weight: -1
 
 See Also
 --------

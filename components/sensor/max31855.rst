@@ -46,7 +46,6 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`dallas`
 - :doc:`dht`
 - :doc:`adc`
 - :doc:`max6675`
