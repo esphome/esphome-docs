@@ -305,6 +305,7 @@ Configuration variables:
   Defaults to a randomly generated ID if this message is not a reply or retransmission.
 - **data** (**Optional**, 0-7 bytes list): The code to send.
   Usually you only need to copy this directly from the dumper output. Defaults to ``[]``
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. note::
 
@@ -331,6 +332,7 @@ Configuration variables:
 - **data** (**Required**, list): The command to send, A length of 2-35 bytes can be specified for one packet.
 - **carrier_frequency** (*Optional*, float): Set a frequency to send the signal
   with for infrared signals. Defaults to ``38000Hz``.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
 
