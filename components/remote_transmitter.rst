@@ -148,7 +148,7 @@ First, connect the RF module to a pin on the ESP and set up a remote_receiver in
       tolerance: 50%
       filter: 250us
       idle: 4ms
-      buffer_size: 2kb
+      buffer_size: 2kb # only for ESP8266
 
 Compile and upload the code. While viewing the log output from the ESP,
 press a button on an RF remote you want to capture (one at a time).
@@ -177,10 +177,7 @@ You should see log output like below:
           pin: GPIOXX
           dump:
             - rc_switch
-          tolerance: 50%
-          filter: 250us
-          idle: 4ms
-          buffer_size: 2kb
+          ...
 
 If the codec is already implemented in ESPHome, you will see the decoded value directly -
 otherwise you will see the raw data dump (which you can use just as well). You have
