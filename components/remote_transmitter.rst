@@ -351,7 +351,9 @@ Configuration variables:
 
 - **address** (**Required**, int): The 8-bit ID to send, see dumper output for more info.
 - **command** (**Required**, int): The command to send, see dumper output for more info.
-- All other options from :ref:`remote_transmitter-transmit_action`... _remote_transmitter-transmit_canalsat:
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+.. _remote_transmitter-transmit_canalsat:
 
 ``remote_transmitter.transmit_canalsat`` **Action**
 
@@ -420,6 +422,7 @@ Configuration variables:
 
 - **first** (**Required**, :ref:`templatable <config-templatable>`, uint32_t): The first 24-bit Coolix code to send, see dumper output for more info.
 - **second** (*Optional*, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_dish:
 
@@ -501,6 +504,7 @@ This :ref:`action <config-action>` sends a JVC infrared remote code to a remote 
 Configuration variables:
 
 - **data** (**Required**, int): The JVC code to send, see dumper output for more info.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_keeloq:
 
@@ -1017,7 +1021,6 @@ Configuration variables:
 - **rc_code_1** (**Required**, int): The remote control code to send, see dumper output for more details.
 - **rc_code_2** (*Optional*, int): The secondary remote control code to send; some codes are sent in
   two parts.
-
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_mirage:
