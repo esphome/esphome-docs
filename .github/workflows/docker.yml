@@ -25,7 +25,7 @@ jobs:
           repo: cloudcannon/pagefind
       -
         name: Checkout source code
-        uses: actions/checkout@v4.1.6
+        uses: actions/checkout@v4.1.7
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -47,7 +47,7 @@ jobs:
       -
         name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true

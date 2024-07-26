@@ -7,7 +7,8 @@ Time Based Cover
 
 The ``time_based`` cover platform allows you to create covers with position control that do not
 have any position feedback. The state of the cover is thus always an assumed one, the current
-position is approximated with the time the cover has been moving in a direction.
+position is approximated with the time the cover has been moving in a direction. The state
+of the cover can be restored at node reboot.
 
 .. figure:: images/more-info-ui.png
     :align: center
@@ -71,12 +72,6 @@ Configuration variables:
     The stop button on the UI is always enabled even when the cover is stopped and each press
     on the button will cause the ``stop_action`` to be performed.
 
-.. note::
-
-    The state of the cover can be restored from flash after a node reboot, with 
-    ``esp8266_restore_from_flash: true`` option set. 
-    See :doc:`esp8266_restore_from_flash </components/esphome>` for details.
-
 Handle stop_action:
 ------------------------
 For some cover controllers, separate switches for UP and DOWN action are used while a stop is issued when sending a counter command.
@@ -86,13 +81,16 @@ This can be handled at the **stop_action** by using the following lambda functio
 
     stop_action: 
       - lambda: !lambda |-
-          if (id(cover).last_operation() == CoverOperation::COVER_OPERATION_OPENING) {
+          if (id(cover).get_last_operation() == CoverOperation::COVER_OPERATION_OPENING) {
             // Cover is currently opening
             id(cover_button_down).press();
-          } else if (id(cover).last_operation() == CoverOperation::COVER_OPERATION_CLOSING) {
+          } else if (id(cover).get_last_operation() == CoverOperation::COVER_OPERATION_CLOSING) {
             // Cover is currently closing
             id(cover_button_up).press();
           }
+
+Be aware that ``get_last_operation`` will only return the last opening or closing operation, but not the last idle operation. 
+This issue is tracked `here <https://github.com/esphome/issues/issues/4252#issuecomment-2132727377>`_.
 
 See Also
 --------
