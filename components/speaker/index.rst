@@ -62,6 +62,19 @@ Configuration variables:
 
 .. _speaker-conditions:
 
+.. _speaker-finish:
+
+``speaker.finish`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action will stop playing audio data from the speaker until all data has been played.
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The speaker to control. Defaults to the only one in YAML.
+
+.. _speaker-conditions:
+
 Speaker Conditions
 ---------------------
 
@@ -74,6 +87,17 @@ your configuration YAML.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This condition will check if the speaker is currently playing audio data.
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The speaker to check. Defaults to the only one in YAML.
+
+.. _speaker-is_playing:
+
+``speaker.is_stopped`` Condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This condition will check if the speaker is really stopped.
 
 Configuration variables:
 
