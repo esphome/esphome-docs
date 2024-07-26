@@ -40,12 +40,13 @@ Configuration variables:
 - **rx_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``RX`` on the esp side (connected to the ``TX`` pin on the modem side).
 - **tx_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``TX`` on the esp side (connected to the ``RX`` pin on the modem side).
 - **apn** (**Required**, string): Operator apn.
+- **pin_code** (*Optional*, string): The pin code of the sim card.
+- **enable_on_boot** (*Optional*, boolean): If enabled, the PPPoS interface will be enabled on boot. Defaults to ``true``.
+- **enable_cmux** (*Optional*, boolean): If enabled, CMUX will be enabled. In this mode, the modem will be able to answer `AT` commands while connected. Defaults to ``false``.
+- **init_at** (*Optional*, list): A list of ``AT`` commands that will be sent to the modem after the connection.
 - **power_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``PWK``, to allow power handling. Needs ``status_pin``.
 - **status_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``STATUS``, to be able to know the power state.
-- **pin_code** (*Optional*, string): The pin code of the sim card.
-- **init_at** (*Optional*, list): A list of ``AT`` commands that will be sent to the modem after the connection
 - **on_not_responding** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the modem doesn't respond.
-- **enable_on_boot** (*Optional*, boolean): If enabled, the PPPoS interface will be enabled on boot. Defaults to ``true``.
 - **on_connect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the modem get an IP.
 - **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the modem lost it's IP.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
