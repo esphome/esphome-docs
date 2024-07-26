@@ -92,7 +92,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): The speaker to check. Defaults to the only one in YAML.
 
-.. _speaker-is_playing:
+.. _speaker-is_stopped:
 
 ``speaker.is_stopped`` Condition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
