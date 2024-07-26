@@ -61,7 +61,7 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/automations.html">
+                    <a class="reference" href="/automations/index.html">
                         Automations
                     </a>
                 </li>
@@ -143,6 +143,19 @@ Peripherals which directly support the operation of the microcontroller's proces
     PSRAM, components/psram, psram.svg
     Deep Sleep, components/deep_sleep, hotel.svg, dark-invert
 
+ESPHome Automations
+-------------------
+
+*"When this happens, I want it to do that..."*
+
+Automations are how we customize ESPHome devices to respond/behave exactly how you want them to.
+
+.. imgtable::
+
+    Overview, automations/index, description.svg, dark-invert
+    "Actions, Triggers, Conditions", automations/actions, description.svg, dark-invert
+    Templates, automations/templates, description.svg, dark-invert
+
 ESPHome Components
 ------------------
 
@@ -155,8 +168,11 @@ ESPHome-specific components or components supporting ESPHome device provisioning
     Copy, components/copy, content-copy.svg, dark-invert
     Demo, components/demo, description.svg, dark-invert
     External Components, components/external_components, external_components.svg, dark-invert
+    Globals, components/globals, description.svg, dark-invert
     Improv via BLE, components/esp32_improv, improv.svg, dark-invert
     Improv via Serial, components/improv_serial, improv.svg, dark-invert
+    Interval, components/interval, description.svg, dark-invert
+    Script, components/script, description.svg, dark-invert
 
 Network Hardware
 ----------------
@@ -196,12 +212,21 @@ Management and Monitoring
 
     Debug, components/debug, bug-report.svg, dark-invert
     Logger, components/logger, file-document-box.svg, dark-invert
-    OTA Updates, components/ota, system-update.svg, dark-invert
-    OTA Updates via HTTP Request, components/ota_http_request, system-update.svg, dark-invert
     Prometheus, components/prometheus, prometheus.svg
     Safe Mode, components/safe_mode, restart-alert.svg
     Web Server, components/web_server, http.svg, dark-invert
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg, dark-invert
+
+Update Installation
+-------------------
+
+Install updates over-the-air (OTA).
+
+.. imgtable::
+
+    OTA Core, components/ota/index, system-update.svg, dark-invert
+    OTA Updates, components/ota/esphome, system-update.svg, dark-invert
+    OTA Updates via HTTP Request, components/ota/http_request, system-update.svg, dark-invert
 
 Update Management
 -----------------
@@ -218,7 +243,7 @@ Hardware Peripheral Interfaces/Busses
 
 .. imgtable::
 
-    CAN Bus, components/canbus, canbus.svg
+    CAN Bus, components/canbus/index, canbus.svg
     I²C Bus, components/i2c, i2c.svg
     I²S Audio, components/i2s_audio, i2s_audio.svg
     SPI Bus, components/spi, spi.svg
@@ -242,6 +267,15 @@ I/O Expanders/Multiplexers
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     WeiKai SPI/I²C UART/IO Expander, components/weikai, wk2168.jpg
     XL9535, components/xl9535, xl9535.svg
+
+CAN Bus
+-------
+
+.. imgtable::
+
+    CAN Bus, components/canbus/index, canbus.svg
+    ESP32 CAN, components/canbus/esp32_can, esp32.svg
+    MCP2515, components/canbus/mcp2515, mcp2515.svg
 
 Sensor Components
 -----------------
@@ -454,6 +488,7 @@ Light
 .. imgtable::
 
     AM43, components/sensor/am43, am43.jpg, Lux
+    APDS9306, components/sensor/apds9306, apds9306.png, Lux
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
@@ -501,6 +536,7 @@ Miscellaneous
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Integration, components/sensor/integration, sigma.svg, dark-invert
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
+    M5Stack Unit 8 Angle, components/sensor/m5stack_8angle, m5stack_8angle.png
     MicroNova pellet stove, components/micronova, pellet.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
@@ -1101,6 +1137,7 @@ If you'd like to share configurations for specific devices, please contribute to
     :hidden:
 
     web-api/index
+    automations/index
     components/index
     cookbook/index
     guides/index

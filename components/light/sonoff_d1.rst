@@ -71,6 +71,7 @@ This component is useless for devices other than Sonoff D1 dimmer.
 
     # Make sure you can upload new firmware OTA
     ota:
+      platform: esphome
 
     # D1 dimmer uses hardware serial port on the default pins @ 9600 bps
     uart:

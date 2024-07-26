@@ -6,12 +6,14 @@ Components
     :glob:
 
     binary_sensor/index
+    canbus/index
     climate/index
     cover/index
     fan/index
     light/index
     number/index
     datetime/index
+    ota/index
     output/index
     select/index
     sensor/index

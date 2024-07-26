@@ -31,7 +31,7 @@ and delegates status updates to individual platform components.
     esp32_ble_tracker:
 
     ble_client:
-      - mac_address: C4:4F:33:00:00:01
+      - mac_address: XX:XX:XX:XX:XX:XX
         id: bedjet_ble_id1
 
     bedjet:

@@ -68,7 +68,7 @@ Configuration variables:
   responds to a command, it'll be marked online again.
 
 - **server_registers** (*Optional*): A list of registers that are responded to when acting as a server.
-  - **start_address** (**Required**, integer): start address of the first register in a range
+  - **address** (**Required**, integer): start address of the first register in a range
   - **value_type** (*Optional*): datatype of the mod_bus register data. The default data type for ModBUS is a 16 bit integer in big endian format (MSB first)
 
       - ``U_WORD``: unsigned 16 bit integer from 1 register = 16bit
@@ -86,9 +86,12 @@ Configuration variables:
 
     Defaults to ``U_WORD``.
 
-  - **lambda** (**Required**, :ref:`lambda <config-lambda>`):
+  - **read_lambda** (**Required**, :ref:`lambda <config-lambda>`):
     Lambda that returns the value of this register.
 
+Automations:
+
+- **on_command_sent** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a modbus command has been sent. See :ref:`modbus_controller-on_command_sent`
 
 Example Client
 --------------
@@ -175,9 +178,9 @@ The following code allows a ModBUS client to read a sensor value from your ESPHo
       - modbus_id: modbus_server
         address: 0x4
         server_registers:
-          - start_address: 0x0002
+          - address: 0x0002
             value_type: S_DWORD_R
-            lambda: |-
+            read_lambda: |-
               return id(evse_voltage_l1).state;
 
     sensor:
@@ -720,6 +723,28 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
               - multiply: 0.01
 
 .. _modbusseealso:
+
+.. _modbus_controller-automations:
+
+Automation
+----------
+
+.. _modbus_controller-on_command_sent:
+
+``on_command_sent``
+*******************
+
+This automation will be triggered when a command has been sent by the `modbus_controller`. In :ref:`Lambdas <config-lambda>` 
+you can get the function code in ``function_code`` and the register address in ``address``.
+
+.. code-block:: yaml
+
+    modbus_controller:
+      - id: modbus_con
+        # ...
+        on_command_sent:
+          then:
+            - number.increment: modbus_commands
 
 See Also
 --------
