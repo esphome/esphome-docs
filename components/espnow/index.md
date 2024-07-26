@@ -3,7 +3,7 @@ espnow communication Component
 
 .. seo::
     :description: Instructions for setting up the esphome component in ESPHome.
-    :image: esp-now-logo.webp
+    :image: esp-now-logo.png
 
 .. note::
 
