@@ -1,5 +1,5 @@
 espnow communication Component
-================
+==============================
 
 .. seo::
     :description: Instructions for setting up the esphome component in ESPHome.
@@ -22,7 +22,7 @@ and transmit data package via the `espnow.send` action, by broatcasting to every
 .. _config-button:
 
 ESP-NOW Configuration
--------------------------
+---------------------
 
 .. code-block:: yaml
 
@@ -61,7 +61,7 @@ espnow Automation
 .. _espnow-on_package_receiveds:
 
 ``on_package_receiveds``
-************
+***********************
 
 This automation will be triggered when a data package is received. You can get the package data via the "it" variable. see :ref:`espnow-ESPNowPackage`.
 
@@ -79,7 +79,7 @@ Configuration variables: see :ref:`Automation <automation>`.
 .. _espnow-on_package_send:
 
 ``on_package_receiveds``
-************
+************************
 
 This automation will be triggered when a data package is Send. You can get the package data via the "it" variable. see :ref:`espnow-ESPNowPackage`.
 The status flag will tell of it was success. When the package was not sent properly it will try at a later moment again. It will try this for 5 times then
@@ -98,7 +98,7 @@ Configuration variables: see :ref:`Automation <automation>`.
 .. _espnow-on_package_send:
 
 ``on_package_send``
-************
+******************
 
 This automation will be triggered when a data package is Send. You can get the package data via the "it" variable. see :ref:`espnow-ESPNowPackage`.
 The status flag will tell of it was success. When the package was not sent properly it will try at a later moment again. It will try this for 5 times then
@@ -117,7 +117,7 @@ Configuration variables: see :ref:`Automation <automation>`.
 .. _espnow-on_new_peer:
 
 ``on_new_peer``
-************
+***************
 
 This automation will be triggered when a data package is received from an unknown device. This trigger will only be fired when ``auto_add_peer`` is **false**.
 To the sending MAC addres can be found the package data via the "it" variable. see :ref:`espnow-ESPNowPackage`.
@@ -159,7 +159,7 @@ we will add an prefix and checksum code to the data.
 .. espnow-add_peer:
 
 ``espnow.add.peer`` Action
-***********************
+**************************
 
 This is an :ref:`Action <config-action>` to add a new peer to the internal allowed peers list.
 
@@ -180,7 +180,7 @@ Configuration variables:
 .. espnow-del_peer:
 
 ``espnow.del.peer`` Action
-***********************
+**************************
 
 This is an :ref:`Action <config-action>` to remove a known peer from the internal allowed peers list.
 
