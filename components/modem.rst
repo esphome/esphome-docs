@@ -36,6 +36,7 @@ Configuration variables:
   - ``SIM800``
   - ``SIM7000``
   - ``SIM7600``
+  - ``GENERIC``
 
 - **rx_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``RX`` on the esp side (connected to the ``TX`` pin on the modem side).
 - **tx_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``TX`` on the esp side (connected to the ``RX`` pin on the modem side).
