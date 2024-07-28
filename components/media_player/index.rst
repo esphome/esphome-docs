@@ -8,6 +8,12 @@ Media Player Components
 The ``media_player`` domain includes all platforms that implement media player
 functionality.
 
+Component Implementations of media player may optionally have the following traits:
+* supports pause
+* supports next/previous track
+* supports turn off/on
+* supports grouping
+
 .. note::
 
     ESPHome media players require Home Assistant 2022.6 or newer.
@@ -92,7 +98,8 @@ Configuration variables:
 ``media_player.pause`` Action
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This action pauses the current playback.
+This action pauses the current playback. 
+Only use with a media_player that supports pause.
 
 .. _media_player-stop:
 
@@ -106,7 +113,8 @@ This action stops the current playback.
 ``media_player.toggle`` Action
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This action will pause or resume the current playback.
+This action will pause or resume the current playback. 
+Only use with a media_player that supports pause.
 
 .. _media_player-volume_up:
 
@@ -147,6 +155,38 @@ Configuration variables:
 
 **volume** (**Required**, percentage): The volume to set the media player to.
 
+.. _media_player-next_track:
+
+``media_player.next_track`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action stops the current track and plays the next track in the playlist. 
+Only use with a media_player component that supports next/previous track.
+      
+.. _media_player-previous_track:
+
+``media_player.previous_track`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action stops the current track and plays the previous track in the playlist. 
+Only use with a media_player component that supports next/previous track.
+      
+.. _media_player-turn_on:
+
+``media_player.turn_on`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Turns on the media player.
+Only use with a media player component that supports turn off/on.
+      
+.. _media_player-turn_off:
+
+``media_player.turn_off`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Turns off the media player.
+Only use with a media player component that supports turn off/on
+
 .. _media_player-on_state_trigger:
 
 ``media_player.on_state`` Trigger
@@ -184,6 +224,7 @@ This trigger is activated each time then the media player is started playing.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This trigger is activated every time the media player pauses playback.
+Only triggered if media_component supports pause.
 
 .. code-block:: yaml
 
@@ -207,6 +248,53 @@ This trigger is activated every time the media player finishes playing.
         # ...
         on_idle:
           - logger.log: "Playback finished!"
+
+.. _media_player-on_announcement_trigger:
+
+``media_player.on_announcement`` Trigger
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This trigger is activated each time then the media player is playing an announcement. 
+
+.. code-block:: yaml
+
+    media_player:
+      - platform: i2s_audio  # or any other platform
+        # ...
+        on_announcement:
+          - logger.log: "Announcement started!"
+
+.. _media_player-on_turn_off_trigger:
+
+``media_player.on_turn_off`` Trigger
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This trigger is activated each time then the media player is turned off. 
+Only triggered with a media player component that supports turn off/on.
+
+.. code-block:: yaml
+
+    media_player:
+      - platform: i2s_audio  # or any other platform
+        # ...
+        on_turn_off:
+          - logger.log: "Player turned off!"
+
+.. _media_player-on_turn_on_trigger:
+
+``media_player.on_turn_on`` Trigger
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This trigger is activated each time then the media player is turned on. 
+Only triggered with a media player component that supports turn off/on.
+
+.. code-block:: yaml
+
+    media_player:
+      - platform: i2s_audio  # or any other platform
+        # ...
+        on_turn_on:
+          - logger.log: "Player turned on!"
 
 .. _media_player-is_idle_condition:
 
@@ -237,6 +325,67 @@ This condition checks if the media player is playing media.
       if:
         condition:
           media_player.is_playing:
+
+.. _media_player-is_paused_condition:
+
+``media_player.is_paused`` Condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This condition checks if the media player is paused. 
+Only occurs if media_component supports pause.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      if:
+        condition:
+          media_player.is_paused:
+
+.. _media_player-is_announcing_condition:
+
+``media_player.is_announcing`` Condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This condition checks if the media player is announcing. 
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      if:
+        condition:
+          media_player.is_announcing:
+
+.. _media_player-is_off_condition:
+
+``media_player.is_off`` Condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This condition checks if the media player is off. 
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      if:
+        condition:
+          media_player.is_off::
+
+.. _media_player-is_on_condition:
+
+``media_player.is_on`` Condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This condition checks if the media player is on. 
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      if:
+        condition:
+          media_player.is_on:
 
 Play media in order
 -------------------
