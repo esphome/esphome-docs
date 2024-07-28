@@ -10,7 +10,7 @@ This ESPHome component enables *wired* Ethernet connections for ESP32s.
 
 Ethernet for ESP8266 is not supported.
 
-This component and the Wi-Fi component may **not** be used simultaneously, even if both are physically available.
+This component can use the Wi-Fi component only in Acces Point mode (no STA).
 
 .. code-block:: yaml
 
@@ -30,7 +30,12 @@ This component and the Wi-Fi component may **not** be used simultaneously, even 
 
 .. code-block:: yaml
 
-    # Example configuration entry for SPI chips
+    # Example configuration entry for SPI chips, with WiFi AP
+    wifi:
+      ap:
+        ssid: myap
+        password: mypassword
+
     ethernet:
       type: W5500
       clk_pin: GPIOXX
@@ -292,6 +297,7 @@ See Also
 
 - :doc:`network`
 - :doc:`text_sensor/ethernet_info`
+- :doc:`wifi`
 - :apiref:`ethernet/ethernet_component.h`
 - `ESP32 Ethernet PHY connection info <https://pcbartists.com/design/embedded/esp32-ethernet-phy-schematic-design/>`__
 - :ghedit:`Edit`
