@@ -158,7 +158,7 @@ Configuration variables:
 .. _media_player-next_track:
 
 ``media_player.next_track`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This action stops the current track and plays the next track in the playlist. 
 Only use with a media_player component that supports next/previous track.
@@ -166,7 +166,7 @@ Only use with a media_player component that supports next/previous track.
 .. _media_player-previous_track:
 
 ``media_player.previous_track`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This action stops the current track and plays the previous track in the playlist. 
 Only use with a media_player component that supports next/previous track.
@@ -174,7 +174,7 @@ Only use with a media_player component that supports next/previous track.
 .. _media_player-turn_on:
 
 ``media_player.turn_on`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Turns on the media player.
 Only use with a media player component that supports turn off/on.
@@ -182,7 +182,7 @@ Only use with a media player component that supports turn off/on.
 .. _media_player-turn_off:
 
 ``media_player.turn_off`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Turns off the media player.
 Only use with a media player component that supports turn off/on
@@ -252,7 +252,7 @@ This trigger is activated every time the media player finishes playing.
 .. _media_player-on_announcement_trigger:
 
 ``media_player.on_announcement`` Trigger
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This trigger is activated each time then the media player is playing an announcement. 
 
@@ -267,7 +267,7 @@ This trigger is activated each time then the media player is playing an announce
 .. _media_player-on_turn_off_trigger:
 
 ``media_player.on_turn_off`` Trigger
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This trigger is activated each time then the media player is turned off. 
 Only triggered with a media player component that supports turn off/on.
@@ -283,7 +283,7 @@ Only triggered with a media player component that supports turn off/on.
 .. _media_player-on_turn_on_trigger:
 
 ``media_player.on_turn_on`` Trigger
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This trigger is activated each time then the media player is turned on. 
 Only triggered with a media player component that supports turn off/on.
@@ -329,7 +329,7 @@ This condition checks if the media player is playing media.
 .. _media_player-is_paused_condition:
 
 ``media_player.is_paused`` Condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This condition checks if the media player is paused. 
 Only occurs if media_component supports pause.
@@ -345,7 +345,7 @@ Only occurs if media_component supports pause.
 .. _media_player-is_announcing_condition:
 
 ``media_player.is_announcing`` Condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This condition checks if the media player is announcing. 
 
@@ -360,9 +360,10 @@ This condition checks if the media player is announcing.
 .. _media_player-is_off_condition:
 
 ``media_player.is_off`` Condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This condition checks if the media player is off. 
+Only occurs if media_component supports on/off.
 
 .. code-block:: yaml
 
@@ -375,9 +376,10 @@ This condition checks if the media player is off.
 .. _media_player-is_on_condition:
 
 ``media_player.is_on`` Condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This condition checks if the media player is on. 
+Only occurs if media_component supports on/off.
 
 .. code-block:: yaml
 
