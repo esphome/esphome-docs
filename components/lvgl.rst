@@ -295,7 +295,7 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 - **transform_height** (*Optional*, int16 or percentage): Transformation height of the widget (eg. stretching)
 - **transform_pivot_x** (*Optional*, int16): Horizontal anchor point of the transformation. Relative to the widget's top left corner.
 - **transform_pivot_y** (*Optional*, int16): Vertical anchor point of the transformation. Relative to the widget's top left corner.
-- **transform_scale** (*Optional*, 0.1-10):  Transformation zoom of the widget (eg. resizing)
+- **transform_zoom** (*Optional*, 0.1-10):  Transformation zoom of the widget (eg. resizing)
 - **translate_x** (*Optional*, int16 or percentage): Movement of the widget with this value in horizontal direction.
 - **translate_y** (*Optional*, int16 or percentage): Movement of the widget with this value in vertical direction.
 
@@ -847,8 +847,8 @@ The button matrix widget is a lightweight way to display multiple buttons in row
 
 **Actions:**
 
-- ``lvgl.button.update`` :ref:`action <actions-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options.
 - ``lvgl.buttonmatrix.update`` :ref:`action <actions-action>` updates the item styles and properties specified in the specific ``state``, ``items`` options.
+- ``lvgl.matrixbutton.update`` :ref:`action <actions-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options.
 
 **Triggers:**
 
