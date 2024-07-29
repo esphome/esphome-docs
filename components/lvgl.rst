@@ -75,16 +75,16 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **display_id** (**Required**, :ref:`config-id`): The ID of a display configuration.
 - **touchscreens** (*Optional*, list): A list of touchscreens interacting with the LVGL widgets on the display.
     - **touchscreen_id** (**Required**, :ref:`config-id`): ID of a touchscreen configuration related to a display.
-    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
-    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
+    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, delay after which the ``on_long_pressed`` :ref:`interaction trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
+    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`interaction trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``.
 - **rotary_encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display.
     - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
     - **enter_button** (**Required**, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``ENTER`` key.
     - **sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder`; or a list with buttons for left/right interaction with the widgets:
         - **left_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``LEFT`` key.
         - **right_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``RIGHT`` key.
-    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the rotary encoder, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``. Can be disabled with ``never``.
-    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the rotary encoder, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``. Can be disabled with ``never``.
+    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the rotary encoder, delay after which the ``on_long_pressed`` :ref:`interaction trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``. Can be disabled with ``never``.
+    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the rotary encoder, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`interaction trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``. Can be disabled with ``never``.
 - **keypads** (*Optional*, list): A list of keypads interacting with the LVGL widgets on the display.
     - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
     - **up** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``UP`` key.
@@ -99,8 +99,8 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **prev** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``PREV`` key.
     - **home** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``HOME`` key.
     - **end** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``END`` key.
-    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the keypad, delay after which the ``on_long_pressed`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``. Can be disabled with ``never``.
-    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the keypad, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`event trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``. Can be disabled with ``never``.
+    - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the keypad, delay after which the ``on_long_pressed`` :ref:`interaction trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``. Can be disabled with ``never``.
+    - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the keypad, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`interaction trigger <lvgl-event-trg>` will be called. Defaults to ``100ms``. Can be disabled with ``never``.
 
     .. tip::
 
@@ -658,6 +658,10 @@ A label is the basic widget type that is used to display text.
         -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
         -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the format message.
 
+**Triggers:**
+
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers. 
+
 **Example:**
 
 .. code-block:: yaml
@@ -713,6 +717,7 @@ The textarea is an extended label widget which displays a cursor and allows the 
 
 - ``on_value`` :ref:`trigger <actions-trigger>` is activated on every keystroke.
 - ``on_ready`` :ref:`trigger <actions-trigger>` is activated when ``one_line`` is configured as ``true`` and the newline character is received (Enter/Ready key on the keyboard).
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers. 
 
 For both triggers above, when triggered, the variable ``text`` (``std::string`` type) is available for use in lambdas within these triggers and it will contain the entire contents of the textarea.
 
@@ -769,6 +774,7 @@ A notable state is ``checked`` (boolean) which can have different styles applied
 **Triggers:**
 
 - ``on_value`` :ref:`trigger <actions-trigger>` is activated after clicking. If ``checkable`` is ``true``, the boolean variable ``x``, representing the checked state, may be used by lambdas within this trigger.
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers. 
 
 **Example:**
 
@@ -853,8 +859,8 @@ The button matrix widget is a lightweight way to display multiple buttons in row
 
 **Triggers:**
 
-- ``on_value`` and :ref:`universal <lvgl-event-trg>` triggers can be configured for each button, is activated after clicking. If ``checkable`` is ``true``, the boolean variable ``x``, representing the checked state, may be used by lambdas within this trigger.
-- The :ref:`universal <lvgl-event-trg>` LVGL event triggers can be configured for the main widget, they pass the ID of the pressed button (or null if nothing pressed) as variable ``x`` (a pointer to a ``uint16_t`` which holds the index number of the button). 
+- ``on_value`` and :ref:`interaction <lvgl-event-trg>` triggers can be configured for each button, is activated after clicking. If ``checkable`` is ``true``, the boolean variable ``x``, representing the checked state, may be used by lambdas within this trigger.
+- The :ref:`interaction <lvgl-event-trg>` LVGL event triggers can be configured for the main widget, they pass the ID of the pressed button (or null if nothing pressed) as variable ``x`` (a pointer to a ``uint16_t`` which holds the index number of the button). 
 
 **Example:**
 
@@ -958,6 +964,7 @@ The switch looks like a little slider and can be used to turn something on and o
 **Triggers:**
 
 - ``on_value`` :ref:`trigger <actions-trigger>` is activated when toggling the switch. The boolean variable ``x``, representing the switch's state, may be used by lambdas within this trigger.
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers which also return the value in ``x``. 
 
 **Example:**
 
@@ -1007,6 +1014,7 @@ The checkbox widget is made internally from a *tick box* and a label. When the c
 **Triggers:**
 
 ``on_value`` :ref:`trigger <actions-trigger>` is activated when toggling the checkbox. The boolean variable ``x``, representing the checkbox's state, may be used by lambdas within this trigger.
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers which also return the value in ``x``. 
 
 **Example:**
 
@@ -1075,8 +1083,9 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <actions-trigger>` is activated only when you select an item from the list. The new selected index is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the selected index in ``x``. 
+- ``on_value`` :ref:`trigger <actions-trigger>` is activated only when you select an item from the list. The new selected index is returned in the variable ``x``. The :ref:`interaction <lvgl-event-trg>` LVGL event triggers also apply, and they also return the selected index in ``x``. 
 - ``on_cancel`` :ref:`trigger <actions-trigger>` is also activated when you close the dropdown without selecting an item from the list. The currently selected index is returned in the variable ``x``.
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers which also return the value in ``x``. 
 
 **Example:**
 
@@ -1142,7 +1151,8 @@ Roller allows you to simply select one option from a list by scrolling.
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <actions-trigger>` is activated when you select an item from the list. The new selected index is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the selected index in ``x``. 
+- ``on_value`` :ref:`trigger <actions-trigger>` is activated when you select an item from the list. The new selected index is returned in the variable ``x``. 
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers which also return the selected index in ``x``. 
 
 **Example:**
 
@@ -1205,6 +1215,10 @@ Not only the end, but also the start value of the bar can be set, which changes 
 
 - ``lvgl.bar.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
+**Triggers:**
+
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers. 
+
 **Example:**
 
 .. code-block:: yaml
@@ -1256,7 +1270,8 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <actions-trigger>` is activated when the knob changes the value of the slider. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
+- ``on_value`` :ref:`trigger <actions-trigger>` is activated when the knob changes the value of the slider. The new value is returned in the variable ``x``. 
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers which also return the value in ``x``. 
 
 **Example:**
 
@@ -1291,7 +1306,7 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 .. note::
 
-    The ``on_value`` trigger is sent as the slider is dragged or changed with keys. The event is sent *continuously* while the slider is being dragged; this generally has a negative effect on performance. To mitigate this, consider using a :ref:`universal event trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
+    The ``on_value`` trigger is sent as the slider is dragged or changed with keys. The event is sent *continuously* while the slider is being dragged; this generally has a negative effect on performance. To mitigate this, consider using a :ref:`universal interaction trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
 The ``slider`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
@@ -1338,7 +1353,8 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <actions-trigger>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
+- ``on_value`` :ref:`trigger <actions-trigger>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. 
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers which also return the value in ``x``. 
 
 **Example:**
 
@@ -1373,7 +1389,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 .. note::
 
-    The ``on_value`` trigger is sent as the arc knob is dragged or changed with keys. The event is sent *continuously* while the arc knob is being dragged; this generally has a negative effect on performance. To mitigate this, consider using a :ref:`universal event trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
+    The ``on_value`` trigger is sent as the arc knob is dragged or changed with keys. The event is sent *continuously* while the arc knob is being dragged; this generally has a negative effect on performance. To mitigate this, consider using a :ref:`universal interaction trigger <lvgl-event-trg>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
 The ``arc`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
@@ -1412,7 +1428,8 @@ The spinbox contains a numeric value (as text) which can be increased or decreas
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <actions-trigger>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. The :ref:`universal <lvgl-event-trg>` LVGL event triggers also apply, and they also return the value in ``x``. 
+- ``on_value`` :ref:`trigger <actions-trigger>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. 
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers which also return the value in ``x``. 
 
 **Example:**
 
@@ -1518,6 +1535,10 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
 
 - ``lvgl.indicator.update`` :ref:`action <actions-action>` updates indicator options except ``src``, which cannot be updated at runtime. :ref:`lvgl.widget.update <lvgl-objupd-act>` action can used for the common styles, states or flags of the meter widget (not the indicators).
 
+**Triggers:**
+
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers. 
+
 **Example:**
 
 .. code-block:: yaml
@@ -1585,6 +1606,10 @@ Images are the basic widgets used to display images.
 
 - ``lvgl.image.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. Updating the ``src`` option changes the image at runtime.
 
+**Triggers:**
+
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers. 
+
 **Example:**
 
 .. code-block:: yaml
@@ -1635,6 +1660,10 @@ The animation image is similar to the normal ``image`` widget. The main differen
 - ``lvgl.animimg.start`` :ref:`action <actions-action>` starts the animation playback if it was displayed with ``auto_start`` false or after ``repeat_count`` expired.
 - ``lvgl.animimg.stop`` :ref:`action <actions-action>` stops the animation playback.
 - ``lvgl.animimg.update`` :ref:`action <actions-action>` can be used to change ``repeat_count`` and ``duration``, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` and ``auto_start`` cannot be updated at runtime.
+
+**Triggers:**
+
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers. 
 
 **Example:**
 
@@ -1715,6 +1744,10 @@ The LED widgets are either circular or rectangular widgets whose brightness can 
 
 - ``lvgl.led.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
+**Triggers:**
+
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers. 
+
 **Example:**
 
 .. code-block:: yaml
@@ -1765,6 +1798,10 @@ The Spinner widget is a spinning arc over a ring.
 
 - ``lvgl.spinner.update`` :ref:`action <actions-action>` updates the widget styles and properties for the *indicator* part (anything other than the properties that apply commonly to all widgets), just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
 
+**Triggers:**
+
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers. 
+
 **Example:**
 
 .. code-block:: yaml
@@ -1800,6 +1837,10 @@ You can use it as a parent container for other widgets. By default, it catches t
 **Configuration variables:**
 
 - Style options from :ref:`lvgl-styling`.
+
+**Triggers:**
+
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers. 
 
 **Example:**
 
@@ -1845,6 +1886,7 @@ The tabs are indexed (zero based) in the order they appear in the configuration 
 **Triggers:**
 
 - ``on_value`` :ref:`trigger <actions-trigger>` is activated when displayed tab changes. The new value is returned in the variable ``tab`` as the ID of the now-visible tab. 
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers. 
 
 **Example:**
 
@@ -1912,6 +1954,7 @@ If the Tile view is screen sized, the user interface resembles what you may have
 **Triggers:**
 
 - ``on_value`` :ref:`trigger <actions-trigger>` is activated when displayed tile changes. The new value is returned in the variable ``tile`` as the ID of the now-visible tile. 
+- :ref:`interaction <lvgl-event-trg>` LVGL event triggers. 
 
 **Example:**
 
@@ -2305,7 +2348,7 @@ ESPHome implements as universal triggers the following interaction events genera
 - ``on_focus``:  The widget is focused.
 - ``on_defocus``: The widget is unfocused.
 
-These triggers can be applied directly to any widget in the LVGL configuration, given that the widget itself supports generating such events. For the widgets having a value, the triggers return the current value in variable ``x``; this variable may be used in lambdas defined within those triggers.
+These triggers can be applied directly to any widget in the LVGL configuration, *given that the widget itself supports generating such events*. For the widgets having a value, the triggers return the current value in variable ``x``; this variable may be used in lambdas defined within those triggers.
 
 .. code-block:: yaml
 
