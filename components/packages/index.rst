@@ -10,7 +10,7 @@ configuration modularization. You'll likely want to break your configuration int
 it into reusable pieces which can subsequently be used by many/all devices. Only unique pieces of your configuration
 remain in any given device's YAML configuration file.
 
-This can be accomplished with ESPHome's "packages" feature.
+This can be accomplished with ESPHome's ``packages`` feature.
 
 All definitions from packages will be merged with your device's main configuration in a non-destructive way. This
 allows overriding (parts of) configuration contained in the package(s). Substitutions in your main configuration will
