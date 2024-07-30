@@ -254,8 +254,8 @@ Configuration variables:
 - **repeat** (*Optional*): Optionally set the code to be repeated a number of times.
   Defaults to sending the code only once.
 
-  - **times** (int): The number of times to repeat the code.
-  - **wait_time** (:ref:`config-time`): The time to wait between repeats.
+  - **times** (:ref:`templatable <config-templatable>`, int): The number of times to repeat the code.
+  - **wait_time** (:ref:`templatable <config-templatable>`, :ref:`config-time`): The time to wait between repeats (in µs as a result of a :ref:`lambda <config-lambda>`).
 
 - **transmitter_id** (*Optional*, :ref:`config-id`): The remote transmitter to send the
   remote code with. Defaults to the first one defined in the configuration.
