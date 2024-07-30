@@ -61,7 +61,7 @@ This component requires a :ref:`uart` to be setup.
     climate:
       - platform: haier
         id: haier_ac
-        protocol: hOn
+        protocol: hon
         name: Haier AC
         uart_id: ac_port
         wifi_signal: true
