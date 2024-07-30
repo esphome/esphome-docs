@@ -340,7 +340,7 @@ Relay management commands received from an authorized sender:
     sim800l:
       on_sms_received:
         - lambda: |-
-            if ( (id(sms_sender).state == "+79991234567") && ( (id(sms_message).state == "relay_1_on") OR (id(sms_message).state == "Relay_1_on") ) ) {
+            if ( (id(sms_sender).state == "+79991234567") && ( (id(sms_message).state == "relay_1_on") || (id(sms_message).state == "Relay_1_on") ) ) {
               id(relay_1).turn_on();
             }
     switch:
