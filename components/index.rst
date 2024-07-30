@@ -34,4 +34,6 @@ Components
     text/index
     update/index
     valve/index
+    packages/index
+    substitutions/index
     *

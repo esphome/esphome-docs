@@ -174,6 +174,17 @@ ESPHome-specific components or components supporting ESPHome device provisioning
     Interval, components/interval, description.svg, dark-invert
     Script, components/script, description.svg, dark-invert
 
+ESPHome Configuration
+---------------------
+
+Streamline your ESPHome configuration and/or use components provided by other contributors.
+
+.. imgtable::
+
+    External Components, components/external_components, external_components.svg, dark-invert
+    Packages, components/packages/index, description.svg, dark-invert
+    Substitutions, components/substitutions/index, description.svg, dark-invert
+
 Network Hardware
 ----------------
 
