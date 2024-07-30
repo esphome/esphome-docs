@@ -105,8 +105,8 @@ Remote/Git Packages
 -------------------
 
 Packages can also be loaded from a Git repository by utilizing the correct configuration syntax.
-:ref:`config-substitutions` can be used inside the remote packages which allows users to override
-them locally with their own subsitution value.
+:doc:`/components/substitutions/index` can be used inside the remote packages which allows users to override
+them locally with their own substitution value.
 
 .. note::
 
