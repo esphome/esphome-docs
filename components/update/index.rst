@@ -50,7 +50,7 @@ Configuration variables:
   Defaults to ``false``.
 
 ``update.is_available`` Condition
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This condition checks if an update is available for the device.
 
