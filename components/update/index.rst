@@ -33,7 +33,7 @@ Configuration variables:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Specifying an ``id`` without a ``name`` will
   implicitly set this to true.
-- **on_update_available** (*Optional*, :ref:`config-automation`): An automation to run when an update is available.
+- **on_update_available** (*Optional*, :ref:`Action <config-action>`): An automation to perform when an update is available.
 
 Automations
 -----------
