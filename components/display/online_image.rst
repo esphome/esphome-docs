@@ -17,17 +17,48 @@ With this component you can define images that will be downloaded, decoded and d
 
     This component requires a fair amount of RAM; both for downloading the image, and for storing the decoded image. It might work on devices without PSRAM, but there is no guarantee.
 
-This component has an implicit dependency to :doc:`/components/http_request`; the configuration options you set to the ``http_request`` component will also apply here.
+This component has a dependency to :doc:`/components/http_request`; the configuration options you set to the ``http_request`` component will also apply here.
 
 .. code-block:: yaml
 
+    http_request:
+
     online_image:
       - url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png"
+        format: png
         id: my_online_image
         on_download_finished:
           component.update: my_display
 
-By default this is configured to not automatically update/download the image; in order to do the initial download, you can either:
+And then later in code:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        id: my_display
+        # ...
+        lambda: |-
+          // Draw the image my_online_image at position [x=0,y=0]
+          it.image(0, 0, id(my_online_image));
+
+For monochrome displays the ``image`` method accepts two additional color parameters which can
+be supplied to specify the color used to draw bright and dark pixels respectively.
+In this case the image will be internally converted to a grayscale image and then to monochrome
+based on an internally defined threshold.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        id: my_display
+        # ...
+        lambda: |-
+          // Draw the image my_image at position [x=0,y=0]
+          // with front color "OFF" and back color "ON"
+          it.image(0, 0, id(my_online_image), COLOR_OFF, COLOR_ON);
+
+By default ``online_image`` is configured to not automatically update/download the image; in order to do the initial download, you can either:
  - Add a ``component.update <image_id>`` in the ``on_connect:`` action on the :doc:`/components/wifi` component.
  - Explicitly set an ``update_interval``.
  - Call ``component.update <image_id>`` in an :doc:`/components/interval` block.
@@ -35,9 +66,9 @@ By default this is configured to not automatically update/download the image; in
 
 .. code-block:: yaml
 
-  wifi:
-    on_connect:
-      - component.update: my_online_image
+    wifi:
+      on_connect:
+        - component.update: my_online_image
 
 Configuration variables:
 ------------------------
@@ -71,37 +102,6 @@ Automations:
 A good example for that is to update the display component after the download succeeded.
 
 - **on_error** (*Optional*, :ref:`Automation <automation>`): An automation to perform when an error happened during download or decode.
-
-And then later in code:
-
-.. code-block:: yaml
-
-    display:
-      - platform: ...
-        id: my_display
-        # ...
-        lambda: |-
-          // Draw the image my_online_image at position [x=0,y=0]
-          it.image(0, 0, id(my_online_image));
-
-For monochrome displays the ``image`` method accepts two additional color param
-ters which can
-be supplied to specify the color used to draw bright and dark pixels respective
-y.
-In this case the image will be internally converted to a grayscale image and th
-n to monochrome
-based on an internally defined threshold.
-
-.. code-block:: yaml
-
-    display:
-      - platform: ...
-        id: my_display
-        # ...
-        lambda: |-
-          // Draw the image my_image at position [x=0,y=0]
-          // with front color "OFF" and back color "ON"
-          it.image(0, 0, id(my_online_image), COLOR_OFF, COLOR_ON);
 
 Actions:
 --------
