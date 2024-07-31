@@ -2188,9 +2188,13 @@ These :ref:`actions <actions-action>` are shorthands for toggling the ``hidden``
 
     on_...:
       then:
-        - lvgl.widget.hide: my_label_id
+        - lvgl.widget.hide: my_label_id                # a single widget
+        - lvgl.widget.show: [my_button_1, my_button_2] # a list of widgets
         - delay: 0.5s
-        - lvgl.widget.show: my_label_id
+        - lvgl.widget.show: 
+            -id: my_label_id
+        - lvgl.widget.hide: 
+            - id: [my_button_1, my_button_2]
 
 ``lvgl.widget.disable``, ``lvgl.widget.enable``
 ***********************************************
@@ -2210,8 +2214,8 @@ These :ref:`actions <actions-action>` are shorthands for toggling the ``disabled
     - on_...:
         then:
           - lvgl.widget.enable:
-              - my_button_1
-              - my_button_2
+              - id: my_button_1
+              - id: my_button_2
 
 .. _lvgl-rfrsh-act:
 
