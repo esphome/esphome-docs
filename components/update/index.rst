@@ -33,6 +33,31 @@ Configuration variables:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Specifying an ``id`` without a ``name`` will
   implicitly set this to true.
+- **on_update_available** (*Optional*, :ref:`Action <config-action>`): An automation to perform when an update is available.
+
+Automations
+-----------
+
+``update.perform`` Action
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This action allows you to trigger the update entity to start the update process.
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the update entity.
+- **force_update** (*Optional*, boolean): Perform the update even if the device is already running the same version.
+  Defaults to ``false``.
+
+``update.is_available`` Condition
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This condition checks if an update is available for the device.
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the update entity.
+
 
 See Also
 --------
