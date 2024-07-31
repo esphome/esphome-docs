@@ -22,7 +22,6 @@ unless it's truly exceptional, etc.
 
 Blog Posts & Videos
 -------------------
-- `An IoT clock designed for children <https://github.com/chrisns/childrens-clock>`__ by :ghuser:`chrisns`
 - `Build a cheap air quality sensor <https://www.pieterbrinkman.com/2021/02/03/build-a-cheap-air-quality-meter-using-esphome-home-assistant-and-a-particulate-matter-sensor/>`__ by `Pieter <http://www.pieterbrinkman.com>`__
 - `Track your water usage using a proximity sensor <https://www.pieterbrinkman.com/2022/02/02/build-a-cheap-water-usage-sensor-using-esphome-home-assistant-and-a-proximity-sensor/>`__ by `Pieter <http://www.pieterbrinkman.com>`__
 - `Collecting Temperature Data from ELA Bluetooth Puck with ESPHome <https://blog.weinreich.org/posts/2020/2020-12-14-esphome-ble-ela/>`__ by `lairsdragon <https://www.weinreich.org/>`__
@@ -59,6 +58,7 @@ Blog Posts & Videos
 - `Converting a Carro Home DC Fan to ESPHome <https://1projectaweek.com/blog/2022/2/8/converting-a-carro-home-dc-fan-to-esp-home>`__ by `Bill Church <https://1projectaweek.com>`__
 - `Automated Coffee Bean Roaster <https://hackaday.io/project/186852-automated-coffee-bean-roaster>`__ by `brooksben11 <https://hackaday.io/brooksben11>`__
 - `Droplet Smart Irrigation System <https://github.com/PricelessToolkit/Droplet>`__ by `PricelessToolkit <https://github.com/PricelessToolkit>`__
+- `An IoT clock designed for children <https://github.com/chrisns/childrens-clock>`__ by :ghuser:`chrisns`
 
 Custom Components & Code
 ------------------------
