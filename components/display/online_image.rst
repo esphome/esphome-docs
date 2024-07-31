@@ -4,7 +4,7 @@ Online Image Component
 ======================
 
 .. seo::
-    :description: Instructions for setting up fonts in ESPHome.
+    :description: Instructions for displaying images downloaded at runtime in ESPHome.
     :image: image-sync-outline.svg
 
 With this component you can define images that will be downloaded, decoded and drawn at runtime.
