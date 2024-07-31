@@ -493,7 +493,8 @@ See Also
 - :doc:`index`
 - :doc:`/components/remote_transmitter`
 - :doc:`/components/rf_bridge`
+- :ref:`remote-setting-up-infrared`
+- :ref:`remote-setting-up-rf`
 - `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
-- `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote/remote_receiver.h`
 - :ghedit:`Edit`

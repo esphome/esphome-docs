@@ -184,3 +184,9 @@ in the frontend. Click on it and you should see the remote signal being transmit
     as valid. Also the interval between repetitions can be important. Check that the pace of
     repetition logs are consistent between the remote controller and the transmitter node.
     You can adjust the ``repeat:`` settings accordingly.
+
+See Also
+--------
+
+- :doc:`/components/remote_receiver`
+- :doc:`/components/remote_transmitter`
