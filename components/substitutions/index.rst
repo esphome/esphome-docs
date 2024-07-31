@@ -12,20 +12,15 @@ substitute expressions in as required.
 .. code-block:: yaml
 
     substitutions:
-      devicename: livingroom
-      upper_devicename: Livingroom
-
-    esphome:
-      name: $devicename
-      # ...
+      bme280_temperature_offset: "-1.0"
 
     sensor:
-    - platform: dht
-      # ...
-      temperature:
-        name: ${upper_devicename} Temperature
-      humidity:
-        name: ${upper_devicename} Humidity
+      - platform: bme280_i2c
+        temperature:
+          name: BME280 Temperature
+          filters:
+            - offset: ${bme280_temperature_offset}
+
 
 In the top-level ``substitutions`` section, you can put as many key-value pairs as you want. Before
 validating your configuration, ESPHome will automatically replace all occurrences of substitutions
@@ -43,45 +38,6 @@ Two substitution passes are performed allowing compound replacements.
 
     something:
       test: ${bar_${foo}_value}
-
-.. _YAML-insertion-operator:
-
-YAML insertion operator
------------------------
-
-Additionally, you can use the YAML insertion operator ``<<`` syntax to create a single YAML file from which a number
-of nodes inherit:
-
-.. code-block:: yaml
-
-    # In common.yaml
-    esphome:
-      name: $devicename
-      # ...
-
-    sensor:
-    - platform: dht
-      # ...
-      temperature:
-        name: ${upper_devicename} Temperature
-      humidity:
-        name: ${upper_devicename} Humidity
-
-.. code-block:: yaml
-
-    # In nodemcu1.yaml
-    substitutions:
-      devicename: nodemcu1
-      upper_devicename: NodeMCU 1
-
-    <<: !include common.yaml
-
-.. tip::
-
-    To hide these base files from the dashboard, you can
-
-    - Place them in a subdirectory (dashboard only shows files in top-level directory)
-    - Prepend a dot to the filename, like ``.base.yaml``
 
 .. _substitute-include-variables:
 
@@ -126,51 +82,76 @@ ESPHome's ``!include`` accepts a list of variables that can be substituted withi
 Command line substitutions
 --------------------------
 
-You can define or override substitutions from the command line by adding e.g. ``-s KEY VALUE``
-which overrides substitution KEY and gives it value VALUE. This can be issued multiple times,
-so e.g. with the following ``example.yaml`` file:
+You can define or override substitutions from the command line by adding the ``-s`` switch with arguments ``KEY`` and
+``VALUE``. This will override the substitution ``KEY`` and assign it the value ``VALUE``. This switch can be included
+multiple times. Consider the following ``example.yaml`` file:
 
 .. code-block:: yaml
 
     substitutions:
-      name: default
-      platform: ESP8266
+      name: my_default_name
 
     esphome:
       name: $name
-      platform: $platform
-      board: $board
 
-and the following command:
+...and the following command:
 
 .. code-block:: bash
 
-    esphome -s name device01 -s board esp01_1m example.yaml config
+    esphome -s name my_device01 config example.yaml
 
-You will get something like the following output (please note the unchanged ``platform``,
-added ``board``, and overridden ``name`` substitutions):
+You will get something like the following output:
 
 .. code-block:: yaml
 
     substitutions:
-      name: device01
-      platform: ESP8266
-      board: esp01_1m
-    esphome:
-      name: device01
-      platform: ESP8266
-      board: esp01_1m
-      includes: []
-      libraries: []
-      esp8266_restore_from_flash: false
-      build_path: device01
-      platformio_options: {}
-      arduino_version: espressif8266@2.2.3
+      name: my_device01
 
-We can observe here that command line substitutions take precedence over the ones in
-your configuration file. This can be used to create generic 'template' configuration
-files (like the ``example.yaml`` above) which can be used for multiple devices,
-using substitutions which are provided on the command line.
+    esphome:
+      name: my_device01
+      # ...
+
+Command line substitutions take precedence over those in your configuration file. This can be used to create generic
+"template" configuration files (like ``example.yaml`` above) which can be used by multiple devices, leveraging
+substitutions which are provided on the command line.
+
+.. _YAML-insertion-operator:
+
+Bonus: YAML insertion operator
+------------------------------
+
+Additionally, you can use the YAML insertion operator ``<<`` syntax to create a single YAML file from which a number
+of nodes inherit:
+
+.. code-block:: yaml
+
+    # In common.yaml
+    esphome:
+      name: $devicename
+      # ...
+
+    sensor:
+    - platform: dht
+      # ...
+      temperature:
+        name: Temperature
+      humidity:
+        name: Humidity
+
+.. code-block:: yaml
+
+    # In nodemcu1.yaml
+    substitutions:
+      devicename: nodemcu1
+
+    <<: !include common.yaml
+
+.. tip::
+
+    To hide these base files from the dashboard, you can
+
+    - Place them in a subdirectory (dashboard only shows files in top-level directory)
+    - Prepend a dot to the filename, like ``.base.yaml``
 
 See Also
 --------

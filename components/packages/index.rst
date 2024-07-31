@@ -19,6 +19,9 @@ override substitutions with the same name in a package.
 Dictionaries are merged key-by-key. Lists of components are merged by component ID (if specified). Other lists are
 merged by concatenation. All other configuration values are replaced with the later value.
 
+ESPHome uses ``!include`` to "bring in" packages; this is a syntax brought over from
+`Home Assistant's YAML configuration directives <https://www.home-assistant.io/docs/configuration/splitting_configuration/>`__.
+
 Local Packages
 --------------
 
@@ -31,10 +34,6 @@ definitions from main configuration file.
 .. code-block:: yaml
 
     # In config.yaml
-    substitutions:
-      node_name: mydevice
-      device_verbose_name: "My Device"
-
     packages:
       wifi: !include common/wifi.yaml
       device_base: !include common/device_base.yaml
@@ -44,17 +43,8 @@ definitions from main configuration file.
         - service: start_laundry
           then:
             - switch.turn_on: relay
-            - delay: 3h
-            - switch.turn_off: relay
 
-    sensor:
-      - platform: mhz19
-        co2:
-          name: "CO2"
-        temperature:
-          name: "Temperature"
-        update_interval: 60s
-        automatic_baseline_calibration: false
+    # any additional configuration...
 
 .. code-block:: yaml
 
@@ -78,10 +68,7 @@ definitions from main configuration file.
     i2c:
       sda: GPIOXX
       scl: GPIOXX
-      scan: true
-      frequency: 100kHz
 
-    # Enable logging
     logger:
       level: ${log_level}
 
@@ -89,15 +76,6 @@ definitions from main configuration file.
       encryption:
         key: !secret api_encryption_key
       reboot_timeout: 1h
-
-    sensor:
-      - <<: !include common/sensor/uptime.config.yaml
-      - <<: !include common/sensor/wifi_signal.config.yaml
-    binary_sensor:
-      - <<: !include common/binary_sensor/connection_status.config.yaml
-
-    switch:
-      - <<: !include common/switch/restart_switch.config.yaml
 
 .. _config-git_packages:
 
@@ -115,22 +93,28 @@ them locally with their own substitution value.
 
 .. code-block:: yaml
 
+    # Git repo examples
     packages:
-      # Git repo examples
-      remote_package:
-        url: https://github.com/esphome/non-existant-repo
-        ref: main # optional
-        files: [file1.yml, file2.yml]
-        refresh: 1d # optional
-
-      # A single file can be expressed using `file` or `files` as a string
-      remote_package_two:
-        url: https://github.com/esphome/non-existant-repo
-        file: file1.yml # cannot be combined with `files`
-        # files: file1.yml
-
       # shorthand form github://username/repository/[folder/]file-path.yml[@branch-or-tag]
-      remote_package_three: github://esphome/non-existant-repo/file1.yml@main
+      remote_package_shorthand: github://esphome/non-existant-repo/file1.yml@main
+
+      remote_package_files:
+        url: https://github.com/esphome/non-existant-repo
+        files: [file1.yml, file2.yml]  # optional; if not specified, all files will be included
+        ref: main  # optional
+        refresh: 1d  # optional
+
+Configuration variables:
+------------------------
+
+For each package:
+
+- **url** (**Required**, string): The URL for the repository.
+- **username** (*Optional*, string): Username to be used for authentication, if required.
+- **password** (*Optional*, string): Password to be used for authentication, if required.
+- **files** (*Optional*, list of strings): List of files to include. If omitted, all files in the repo are included.
+- **ref** (*Optional*, string): The Git ref(erence) to be used when pulling content from the repository.
+- **refresh** (*Optional*, :ref:`config-time`): The interval at which the content from the repository should be refreshed.
 
 Packages as Templates
 ---------------------
@@ -153,60 +137,19 @@ As an example, if the configuration needed to support three garage doors using t
         file: garage-door.yaml
         vars:
           door_name: Left
-          door_location: left
-          open_switch_gpio: 25
-          close_switch_gpio: 26
-      middle_garage_door: !include
-        file: garage-door.yaml
         vars:
           door_name: Middle
-          door_location: middle
-          open_switch_gpio: 27
-          close_switch_gpio: 29
-      right_garage_door: !include
-        file: garage-door.yaml
         vars:
           door_name: Right
-          door_location: right
-          open_switch_gpio: 15
-          close_switch_gpio: 18
-          open_duration: "1min"
-          close_duration: "50s"
 
 
 .. code-block:: yaml
 
     # In garage-door.yaml
-    defaults:
-      open_duration: "2.1min"
-      close_duration: "2min"
-
     switch:
-      - id: open_${door_location}_door_switch
-        name: ${door_name} Garage Door Open Switch
+      - name: ${door_name} Garage Door Switch
         platform: gpio
-        pin: ${open_switch_gpio}
-
-      - id: close_${door_location}_door_switch
-        name: ${door_name} Garage Door Close Switch
-        platform: gpio
-        pin: ${close_switch_gpio}
-
-    cover:
-      - platform: time_based
-        name: ${door_name} Garage Door
-
-        open_action:
-          - switch.turn_on: open_${door_location}_door_switch
-        open_duration: ${open_duration}
-
-        close_action:
-          - switch.turn_on: close_${door_location}_door_switch
-        close_duration: ${close_duration}
-
-        stop_action:
-          - switch.turn_off: open_${door_location}_door_switch
-          - switch.turn_off: close_${door_location}_door_switch
+        # ...
 
 Extend
 ------
@@ -215,6 +158,16 @@ To make changes or add additional configuration to included configurations, ``!e
 ``config_id`` is the ID of the configuration to modify.
 
 For example, to set a specific update interval on a common uptime sensor that is shared between configurations:
+
+.. code-block:: yaml
+
+    # In common.yaml
+    captive_portal:
+
+    sensor:
+      - platform: uptime
+        id: uptime_sensor
+        update_interval: 1min
 
 .. code-block:: yaml
 
@@ -236,7 +189,7 @@ For example, to remove a common uptime sensor that is shared between configurati
 .. code-block:: yaml
 
     packages:
-      common: !include common.yaml
+      common: !include common.yaml  # see above
 
     sensor:
       - id: !remove uptime_sensor
@@ -246,7 +199,7 @@ To remove captive portal for a specific device:
 .. code-block:: yaml
 
     packages:
-      common: !include common.yaml
+      common: !include common.yaml  # see above
 
     captive_portal: !remove
 
