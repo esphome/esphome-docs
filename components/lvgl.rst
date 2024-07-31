@@ -861,7 +861,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
     - **id** (**Required**): The ID or a list of IDs of buttonmatrix widget which you want update.
 
 - ``lvgl.matrixbutton.update`` :ref:`action <actions-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options.
-    - **id** (**Required**): The ID or a list of IDs of matrix button which you want update.
+    - **id** (**Required**): The ID or a list of IDs of matrix buttons which you want update.
 
 **Triggers:**
 
