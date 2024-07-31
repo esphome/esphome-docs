@@ -27,6 +27,8 @@ via text sensors.
             name: ESP IP Address 4
         dns_address:
           name: ESP DNS Address
+        mac_address:
+          name: ESP MAC Address
 
 
 Configuration variables:
@@ -37,6 +39,8 @@ Configuration variables:
 - **address_0-address_4** (*Optional*): With dual stack (IPv4 and IPv6) the device will have at least two IP addresses -- often more. To report all addresses the configuration may have up to five sub-sensors. All options from
   :ref:`Text Sensor <config-text_sensor>`.
 - **dns_address** (*Optional*): Expose the DNS Address of the ESP as text sensor.
+  :ref:`Text Sensor <config-text_sensor>`.
+- **mac_address** (*Optional*): Expose the MAC Address of the ESP as text sensor.
   :ref:`Text Sensor <config-text_sensor>`.
 
 See Also

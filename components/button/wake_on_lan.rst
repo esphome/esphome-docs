@@ -14,7 +14,7 @@ by specifying its MAC address.
     button:
       - platform: wake_on_lan
         name: "Start the Server"
-        target_mac_address: E9:48:B8:CA:58:A1
+        target_mac_address: XX:XX:XX:XX:XX:XX
 
 Configuration variables:
 ------------------------

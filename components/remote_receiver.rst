@@ -23,6 +23,8 @@ which will trigger when they hear their own configured signal.
       pin: GPIOXX
       dump: all
 
+Multiple remote receivers can be configured as a list of dict definitions in remote_receiver.
+
 Configuration variables:
 ------------------------
 
@@ -59,6 +61,7 @@ Configuration variables:
   - **samsung36**: Decode and dump Samsung36 infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
   - **toshiba_ac**: Decode and dump Toshiba AC infrared codes.
+  - **mirage**: Decode and dump Mirage infrared codes.
 
 - **tolerance** (*Optional*, int, :ref:`config-time` or mapping): The percentage or time that the remote signal lengths can
   deviate in the decoding process.  Defaults to ``25%``.
@@ -189,6 +192,9 @@ Automations:
 - **on_toshiba_ac** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Toshiba AC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ToshibaAcData`
   is passed to the automation for use in lambdas.
+- **on_mirage** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Mirage remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::MirageData`
+  is passed to the automation for use in lambdas.
 
 .. code-block:: yaml
 
@@ -230,6 +236,8 @@ Configuration variables:
 
 - **name** (**Required**, string): The name for the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **receiver_id** (*Optional*, :ref:`config-id`): The remote receiver to receive the
+  remote code with. Required if multiple receivers configured.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Remote code selection (exactly one of these has to be included):
@@ -429,6 +437,11 @@ Remote code selection (exactly one of these has to be included):
 
   - **rc_code_1** (**Required**, int): The remote control code to trigger on, see dumper output for more details.
   - **rc_code_2** (*Optional*, int): The second part of the remote control code to trigger on, see dumper output for more details.
+
+- **mirage**: Trigger on a Mirage remote code with the given code.
+
+  - **code** (**Required**, 14-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_mirage`
+    for more info. Usually you only need to copy this directly from the dumper output.
 
 .. note::
 
