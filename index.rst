@@ -808,7 +808,10 @@ Display Components
     Display Core, components/display/index, folder-open.svg, dark-invert
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
     Font Renderer, components/display/fonts, format-font.svg, dark-invert
-
+    Graph, components/display/graph, chart-line.svg, dark-invert
+    QR Code, components/display/qr_code, qr-code.svg, dark-invert
+    Image, components/display/images, image-outline.svg, dark-invert
+    Animation, components/display/animation, image-multiple-outline.svg, dark-invert
     Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.png
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
 
