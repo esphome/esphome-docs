@@ -112,7 +112,7 @@ For each package:
 - **url** (**Required**, string): The URL for the repository.
 - **username** (*Optional*, string): Username to be used for authentication, if required.
 - **password** (*Optional*, string): Password to be used for authentication, if required.
-- **files** (*Optional*, list of strings): List of files to include. If omitted, all files in the repo are included.
+- **files** (**Required**, list of strings): List of files to include.
 - **ref** (*Optional*, string): The Git ref(erence) to be used when pulling content from the repository.
 - **refresh** (*Optional*, :ref:`config-time`): The interval at which the content from the repository should be refreshed.
 
