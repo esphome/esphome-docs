@@ -658,6 +658,7 @@ A label is the basic widget type that is used to display text.
     - **text** (**Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
         -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
         -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the format message.
+    - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
 
@@ -859,9 +860,11 @@ The button matrix widget is a lightweight way to display multiple buttons in row
 
 - ``lvgl.buttonmatrix.update`` :ref:`action <actions-action>` updates the item styles and properties specified in the specific ``state``, ``items`` options.
     - **id** (**Required**): The ID or a list of IDs of buttonmatrix widgets which you want update.
+    - Widget styles or properties from ``state``, ``items`` options above, which you want update.
 
 - ``lvgl.matrixbutton.update`` :ref:`action <actions-action>` updates the button styles and properties specified in the specific ``control``, ``width`` and ``selected`` options.
     - **id** (**Required**): The ID or a list of IDs of matrix buttons which you want update.
+    - Widget styles or properties from ``control``, ``width`` and ``selected`` options above, which you want update.
 
 **Triggers:**
 
@@ -1017,6 +1020,7 @@ The checkbox widget is made internally from a *tick box* and a label. When the c
     - **text** (**Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
         -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
         -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the format message.
+    - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
 
@@ -1088,6 +1092,7 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
 
 - ``lvgl.dropdown.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
     - **id** (**Required**): The ID or a list of IDs of dropdown widgets which you want update.
+    - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
 
@@ -1157,6 +1162,7 @@ Roller allows you to simply select one option from a list by scrolling.
 
 - ``lvgl.roller.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
     - **id** (**Required**): The ID or a list of IDs of roller widgets which you want update.
+    - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
 
@@ -1224,6 +1230,7 @@ Not only the end, but also the start value of the bar can be set, which changes 
 
 - ``lvgl.bar.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
     - **id** (**Required**): The ID or a list of IDs of bar widgets which you want update.
+    - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
 
@@ -1278,6 +1285,7 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 - ``lvgl.slider.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
     - **id** (**Required**): The ID or a list of IDs of slider widgets which you want update.
+    - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
 
@@ -1362,6 +1370,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 - ``lvgl.arc.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
     - **id** (**Required**): The ID or a list of IDs of arc widgets which you want update.
+    - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
 
@@ -1436,12 +1445,13 @@ The spinbox contains a numeric value (as text) which can be increased or decreas
 
 - ``lvgl.spinbox.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
     - **id** (**Required**): The ID or a list of IDs of spinbox widgets which you want update.
-
-- ``lvgl.spinbox.decrement`` :ref:`action <actions-action>` decreases the value by one ``step`` configured above.
-    - **id** (**Required**): The ID or a list of IDs of spinbox widgets which you want update.
+    - Widget styles or properties from the specific options above, which you want update.
 
 - ``lvgl.spinbox.increment`` :ref:`action <actions-action>` increases the value by one ``step`` configured above.
-    - **id** (**Required**): The ID or a list of IDs of spinbox widgets which you want update.
+    - **id** (**Required**): The ID of the spinbox widget which you want to increment.
+
+- ``lvgl.spinbox.decrement`` :ref:`action <actions-action>` decreases the value by one ``step`` configured above.
+    - **id** (**Required**): The ID of the spinbox widget which you want to decrement.
 
 **Triggers:**
 
@@ -1624,6 +1634,7 @@ Images are the basic widgets used to display images.
 
 - ``lvgl.image.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. Updating the ``src`` option changes the image at runtime.
     - **id** (**Required**): The ID or a list of IDs of image widgets which you want update.
+    - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
 
@@ -1677,13 +1688,14 @@ The animation image is similar to the normal ``image`` widget. The main differen
 **Actions:**
 
 - ``lvgl.animimg.start`` :ref:`action <actions-action>` starts the animation playback if it was displayed with ``auto_start`` false or after ``repeat_count`` expired.
-    - **id** (**Required**): The ID or a list of IDs of animimg widgets which you want update.
+    - **id** (**Required**): The ID or a list of IDs of animimg widgets which you want start.
 
 - ``lvgl.animimg.stop`` :ref:`action <actions-action>` stops the animation playback.
-    - **id** (**Required**): The ID or a list of IDs of animimg widgets which you want update.
+    - **id** (**Required**): The ID or a list of IDs of animimg widgets which you want stop.
 
 - ``lvgl.animimg.update`` :ref:`action <actions-action>` can be used to change ``repeat_count`` and ``duration``, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags. ``src`` and ``auto_start`` cannot be updated at runtime.
     - **id** (**Required**): The ID or a list of IDs of animimg widgets which you want update.
+    - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
 
@@ -1768,6 +1780,7 @@ The LED widgets are either circular or rectangular widgets whose brightness can 
 
 - ``lvgl.led.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
     - **id** (**Required**): The ID or a list of IDs of led widgets which you want update.
+    - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
 
@@ -1823,6 +1836,7 @@ The Spinner widget is a spinning arc over a ring.
 
 - ``lvgl.spinner.update`` :ref:`action <actions-action>` updates the widget styles and properties for the *indicator* part (anything other than the properties that apply commonly to all widgets), just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
     - **id** (**Required**): The ID or a list of IDs of spinner widgets which you want update.
+    - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
 
@@ -2097,6 +2111,7 @@ For styling, the ``keyboard`` widget uses the same settings as :ref:`lvgl-wgt-bm
 
 - ``lvgl.keyboard.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-objupd-act>` action is used for the common styles, states or flags.
     - **id** (**Required**): The ID or a list of IDs of keyboard widgets which you want update.
+    - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
 
