@@ -20,7 +20,7 @@ which is 19200bps.
 .. figure:: images/rf_bridge-full.jpg
     :align: center
     :width: 60.0%
-    
+
     Sonoff RF Bridge 433, version R1 or R2 V1.0
 
 .. code-block:: yaml
