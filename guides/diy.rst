@@ -59,6 +59,7 @@ Blog Posts & Videos
 - `Automated Coffee Bean Roaster <https://hackaday.io/project/186852-automated-coffee-bean-roaster>`__ by `brooksben11 <https://hackaday.io/brooksben11>`__
 - `Droplet Smart Irrigation System <https://github.com/PricelessToolkit/Droplet>`__ by `PricelessToolkit <https://github.com/PricelessToolkit>`__
 - `Garage door opener controller for devices with optical encoder <https://github.com/serg987/ESPHomeGarageDoorOpener>`__ by :ghuser:`serg987`
+- `An IoT clock designed for children <https://github.com/chrisns/childrens-clock>`__ by :ghuser:`chrisns`
 
 Custom Components & Code
 ------------------------
