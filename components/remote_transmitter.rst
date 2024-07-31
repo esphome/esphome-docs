@@ -900,9 +900,9 @@ See Also
 
 - :doc:`index`
 - :doc:`/components/remote_receiver`
-- :doc:`/components/rf_bridge`
 - :ref:`remote-setting-up-infrared`
 - :ref:`remote-setting-up-rf`
+- :doc:`/components/rf_bridge`
 - :ref:`lambda_magic_rf_queues`
 - `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
 - :apiref:`remote_transmitter/remote_transmitter.h`
