@@ -50,6 +50,7 @@ Base Touchscreen Configuration
 Configuration variables:
 ************************
 - **display** (*Required*, :ref:`config-id`): The display to use this touchscreen with.
+- **address** (*Optional* int): The I²C address of the touchscreen driver.
 - **transform** (*Optional*): Transform the touchscreen presentation using hardware. All defaults are ``false``.
 
     - **swap_xy** (*Optional*, boolean): If true, exchange the x and y axes.
