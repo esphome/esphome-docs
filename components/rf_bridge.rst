@@ -21,6 +21,8 @@ which is 19200bps.
     :align: center
     :width: 60.0%
 
+    Sonoff RF Bridge 433, version R1 or R2 V1.0
+
 .. code-block:: yaml
 
     # Example configuration entry
