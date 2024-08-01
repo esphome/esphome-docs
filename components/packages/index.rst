@@ -52,17 +52,15 @@ definitions from main configuration file.
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      domain: .yourdomain.lan
-      fast_connect: true
 
 .. code-block:: yaml
 
     # In device_base.yaml
     esphome:
       name: ${node_name}
-      platform: ESP32
+
+    esp32:
       board: wemos_d1_mini32
-      build_path: ./build/${node_name}
 
     # I²C Bus
     i2c:
@@ -70,12 +68,10 @@ definitions from main configuration file.
       scl: GPIOXX
 
     logger:
-      level: ${log_level}
 
     api:
       encryption:
         key: !secret api_encryption_key
-      reboot_timeout: 1h
 
 .. _config-git_packages:
 
