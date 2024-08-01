@@ -2,9 +2,9 @@ Remote Transmitter
 ==================
 
 .. seo::
-    :description: Instructions for setting up switches that send out pre-defined sequences of IR or RF signals
+    :description: Instructions for setting up configurations that send out pre-defined sequences of IR or RF signals
     :image: remote.svg
-    :keywords: Infrared, IR, RF, Remote, TX
+    :keywords: Infrared, IR, RF, Remote, TX, 433, Blaster
 
 The ``remote_transmitter`` component lets you send digital packets to control
 devices in your home. For example this includes infrared data or 433MHz RF signals.
@@ -71,8 +71,8 @@ Configuration variables:
 - **repeat** (*Optional*): Optionally set the code to be repeated a number of times.
   Defaults to sending the code only once.
 
-  - **times** (int): The number of times to repeat the code.
-  - **wait_time** (:ref:`config-time`): The time to wait between repeats.
+  - **times** (:ref:`templatable <config-templatable>`, int): The number of times to repeat the code.
+  - **wait_time** (:ref:`templatable <config-templatable>`, :ref:`config-time`): The time to wait between repeats (in µs as a result of a :ref:`lambda <config-lambda>`).
 
 - **transmitter_id** (*Optional*, :ref:`config-id`): The remote transmitter to send the
   remote code with. Defaults to the first one defined in the configuration.
@@ -82,8 +82,7 @@ Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 
 
 .. _remote_transmitter-transmit_abbwelcome:
 
-``remote_transmitter.transmit_abbwelcome`` Action
-*************************************************
+``remote_transmitter.transmit_abbwelcome`` **Action**
 
 This :ref:`action <config-action>` sends a ABB-Welcome message to the intercom bus. The
 message type, addresses, address length and data can vary a lot between ABB-Welcome
@@ -123,6 +122,7 @@ Configuration variables:
   Defaults to a randomly generated ID if this message is not a reply or retransmission.
 - **data** (**Optional**, 0-7 bytes list): The code to send.
   Usually you only need to copy this directly from the dumper output. Defaults to ``[]``
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. note::
 
@@ -132,8 +132,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_aeha:
 
-``remote_transmitter.transmit_aeha`` Action
-*********************************************
+``remote_transmitter.transmit_aeha`` **Action**
 
 This :ref:`action <config-action>` sends a AEHA code to a remote transmitter.
 
@@ -150,13 +149,13 @@ Configuration variables:
 - **data** (**Required**, list): The command to send, A length of 2-35 bytes can be specified for one packet.
 - **carrier_frequency** (*Optional*, float): Set a frequency to send the signal
   with for infrared signals. Defaults to ``38000Hz``.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
 
 .. _remote_transmitter-transmit_byronsx:
 
-``remote_transmitter.transmit_byronsx`` Action
-**********************************************
+``remote_transmitter.transmit_byronsx`` **Action**
 
 This :ref:`action <config-action>` sends a Byron Doorbell RF protocol code to a remote transmitter.
 
@@ -171,10 +170,11 @@ Configuration variables:
 
 - **address** (**Required**, int): The 8-bit ID to send, see dumper output for more info.
 - **command** (**Required**, int): The command to send, see dumper output for more info.
-- All other options from :ref:`remote_transmitter-transmit_action`... _remote_transmitter-transmit_canalsat:
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
-``remote_transmitter.transmit_canalsat`` Action
-***********************************************
+.. _remote_transmitter-transmit_canalsat:
+
+``remote_transmitter.transmit_canalsat`` **Action**
 
 This :ref:`action <config-action>` sends a CanalSat infrared remote code to a remote transmitter.
 
@@ -200,8 +200,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_canalsatld:
 
-``remote_transmitter.transmit_canalsatld`` Action
-*************************************************
+``remote_transmitter.transmit_canalsatld`` **Action**
 
 This :ref:`action <config-action>` sends a CanalSatLD infrared remote code to a remote transmitter.
 
@@ -227,8 +226,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_coolix:
 
-``remote_transmitter.transmit_coolix`` Action
-*********************************************
+``remote_transmitter.transmit_coolix`` **Action**
 
 This :ref:`action <config-action>` sends one or two (stricted or not) 24-bit Coolix infrared remote codes to a remote transmitter.
 
@@ -243,11 +241,11 @@ Configuration variables:
 
 - **first** (**Required**, :ref:`templatable <config-templatable>`, uint32_t): The first 24-bit Coolix code to send, see dumper output for more info.
 - **second** (*Optional*, :ref:`templatable <config-templatable>`, uint32_t): The second 24-bit Coolix code to send, see dumper output for more info.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_dish:
 
-``remote_transmitter.transmit_dish`` Action
-*******************************************
+``remote_transmitter.transmit_dish`` **Action**
 
 This :ref:`action <config-action>` sends a Dish Network infrared remote code to a remote transmitter.
 
@@ -268,8 +266,7 @@ You can find a list of commands in the `LIRC project <https://sourceforge.net/p/
 
 .. _remote_transmitter-transmit_dooya:
 
-``remote_transmitter.transmit_dooya`` Action
-**********************************************
+``remote_transmitter.transmit_dooya`` **Action**
 
 This :ref:`action <config-action>` sends a Dooya RF remote code to a remote transmitter.
 
@@ -292,8 +289,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_drayton:
 
-``remote_transmitter.transmit_drayton`` Action
-**********************************************
+``remote_transmitter.transmit_drayton`` **Action**
 
 This :ref:`action <config-action>` sends a Draton Digistat RF remote code to a remote transmitter.
 
@@ -314,8 +310,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_jvc:
 
-``remote_transmitter.transmit_jvc`` Action
-******************************************
+``remote_transmitter.transmit_jvc`` **Action**
 
 This :ref:`action <config-action>` sends a JVC infrared remote code to a remote transmitter.
 
@@ -328,11 +323,11 @@ This :ref:`action <config-action>` sends a JVC infrared remote code to a remote 
 Configuration variables:
 
 - **data** (**Required**, int): The JVC code to send, see dumper output for more info.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_keeloq:
 
-``remote_transmitter.transmit_keeloq`` Action
-**********************************************
+``remote_transmitter.transmit_keeloq`` **Action**
 
 This :ref:`action <config-action>` sends KeeLoq RF remote code to a remote transmitter.
 
@@ -358,8 +353,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_haier:
 
-``remote_transmitter.transmit_haier`` Action
-********************************************
+``remote_transmitter.transmit_haier`` **Action**
 
 This :ref:`action <config-action>` sends a 104-bit Haier code to a remote transmitter. 8-bits of checksum added automatically.
 
@@ -376,8 +370,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_lg:
 
-``remote_transmitter.transmit_lg`` Action
-*****************************************
+``remote_transmitter.transmit_lg`` **Action**
 
 This :ref:`action <config-action>` sends an LG infrared remote code to a remote transmitter.
 
@@ -396,8 +389,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_magiquest:
 
-``remote_transmitter.transmit_magiquest`` Action
-************************************************
+``remote_transmitter.transmit_magiquest`` **Action**
 
 This :ref:`action <config-action>` sends a MagiQuest wand code to a remote transmitter.
 
@@ -416,8 +408,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_midea:
 
-``remote_transmitter.transmit_midea`` Action
-********************************************
+``remote_transmitter.transmit_midea`` **Action**
 
 This :ref:`action <config-action>` sends a 40-bit Midea code to a remote transmitter. 8-bits of checksum added automatically.
 
@@ -438,8 +429,7 @@ Configuration variables:
 - **code** (**Required**, list, :ref:`templatable <config-templatable>`): The 40-bit Midea code to send as a list of hex or integers.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
-``remote_transmitter.transmit_nec`` Action
-******************************************
+``remote_transmitter.transmit_nec`` **Action**
 
 This :ref:`action <config-action>` sends an NEC infrared remote code to a remote transmitter.
 
@@ -466,8 +456,7 @@ Configuration variables:
 - **command_repeats** (*Optional*, int): The number of times the command bytes are sent in one transmission. Defaults to `1`.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
-``remote_transmitter.transmit_nexa`` Action
-*******************************************
+``remote_transmitter.transmit_nexa`` **Action**
 
 This :ref:`action <config-action>` a Nexa RF remote code to a remote transmitter.
 
@@ -492,8 +481,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_panasonic:
 
-``remote_transmitter.transmit_panasonic`` Action
-************************************************
+``remote_transmitter.transmit_panasonic`` **Action**
 
 This :ref:`action <config-action>` sends a Panasonic infrared remote code to a remote transmitter.
 
@@ -512,8 +500,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_pioneer:
 
-``remote_transmitter.transmit_pioneer`` Action
-**********************************************
+``remote_transmitter.transmit_pioneer`` **Action**
 
 This :ref:`action <config-action>` sends a Pioneer infrared remote code to a remote transmitter.
 
@@ -543,8 +530,7 @@ are largely shared among devices within a given class.
 
 .. _remote_transmitter-transmit_pronto:
 
-``remote_transmitter.transmit_pronto`` Action
-*********************************************
+``remote_transmitter.transmit_pronto`` **Action**
 
 This :ref:`action <config-action>` sends a raw code to a remote transmitter specified in Pronto format.
 
@@ -562,8 +548,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_raw:
 
-``remote_transmitter.transmit_raw`` Action
-******************************************
+``remote_transmitter.transmit_raw`` **Action**
 
 This :ref:`action <config-action>` sends a raw code to a remote transmitter.
 
@@ -590,8 +575,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_rc5:
 
-``remote_transmitter.transmit_rc5`` Action
-******************************************
+``remote_transmitter.transmit_rc5`` **Action**
 
 This :ref:`action <config-action>` sends an RC5 infrared remote code to a remote transmitter.
 
@@ -610,8 +594,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_rc6:
 
-``remote_transmitter.transmit_rc6`` Action
-******************************************
+``remote_transmitter.transmit_rc6`` **Action**
 
 This :ref:`action <config-action>` sends an RC6 infrared remote code to a remote transmitter.
 
@@ -630,8 +613,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_rc_switch_raw:
 
-``remote_transmitter.transmit_rc_switch_raw`` Action
-****************************************************
+``remote_transmitter.transmit_rc_switch_raw`` **Action**
 
 This :ref:`action <config-action>` sends a raw RC-Switch code to a
 remote transmitter.
@@ -650,28 +632,9 @@ Configuration variables:
   for more information.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
-.. _remote_transmitter-rc_switch-protocol:
-
-RC Switch Protocol
-^^^^^^^^^^^^^^^^^^
-
-All RC Switch ``protocol`` settings have these settings:
-
-- Either the value is an integer, then the inbuilt protocol definition with the given number
-  is used.
-- Or a key-value mapping is given, then there are these settings:
-
-  - **pulse_length** (**Required**, int): The pulse length of the protocol - how many microseconds
-    one pulse should last for.
-  - **sync** (*Optional*): The number of high/low pulses for the sync header, defaults to ``[1, 31]``
-  - **zero** (*Optional*): The number of high/low pulses for a zero bit, defaults to ``[1, 3]``
-  - **one** (*Optional*): The number of high/low pulses for a one bit, defaults to ``[3, 1]``
-  - **inverted** (*Optional*, boolean): If this protocol is inverted. Defaults to ``false``.
-
 .. _remote_transmitter-transmit_rc_switch_type_a:
 
-``remote_transmitter.transmit_rc_switch_type_a`` Action
-*******************************************************
+``remote_transmitter.transmit_rc_switch_type_a`` **Action**
 
 This :ref:`action <config-action>` sends a type A RC-Switch code to a
 remote transmitter.
@@ -696,8 +659,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_rc_switch_type_b:
 
-``remote_transmitter.transmit_rc_switch_type_b`` Action
-*******************************************************
+``remote_transmitter.transmit_rc_switch_type_b`` **Action**
 
 This :ref:`action <config-action>` sends a type B RC-Switch code to a
 remote transmitter.
@@ -722,8 +684,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_rc_switch_type_c:
 
-``remote_transmitter.transmit_rc_switch_type_c`` Action
-*******************************************************
+``remote_transmitter.transmit_rc_switch_type_c`` **Action**
 
 This :ref:`action <config-action>` sends a type C RC-Switch code to a
 remote transmitter.
@@ -750,8 +711,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_rc_switch_type_d:
 
-``remote_transmitter.transmit_rc_switch_type_d`` Action
-*******************************************************
+``remote_transmitter.transmit_rc_switch_type_d`` **Action**
 
 This :ref:`action <config-action>` sends a type D RC-Switch code to a
 remote transmitter.
@@ -776,8 +736,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_roomba:
 
-``remote_transmitter.transmit_roomba`` Action
-*********************************************
+``remote_transmitter.transmit_roomba`` **Action**
 
 This :ref:`action <config-action>` sends a Roomba infrared remote code to a remote transmitter.
 
@@ -799,8 +758,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_samsung:
 
-``remote_transmitter.transmit_samsung`` Action
-**********************************************
+``remote_transmitter.transmit_samsung`` **Action**
 
 This :ref:`action <config-action>` sends a Samsung infrared remote code to a remote transmitter.
 It transmits codes up to 64 bits in length in a single packet.
@@ -823,8 +781,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_samsung36:
 
-``remote_transmitter.transmit_samsung36`` Action
-************************************************
+``remote_transmitter.transmit_samsung36`` **Action**
 
 This :ref:`action <config-action>` sends a Samsung36 infrared remote code to a remote transmitter.
 It transmits the ``address`` and ``command`` in two packets separated by a "space".
@@ -844,8 +801,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_sony:
 
-``remote_transmitter.transmit_sony`` Action
-*******************************************
+``remote_transmitter.transmit_sony`` **Action**
 
 This :ref:`action <config-action>` a Sony infrared remote code to a remote transmitter.
 
@@ -864,8 +820,7 @@ Configuration variables:
 
 .. _remote_transmitter-transmit_toshiba_ac:
 
-``remote_transmitter.transmit_toshiba_ac`` Action
-*************************************************
+``remote_transmitter.transmit_toshiba_ac`` **Action**
 
 This :ref:`action <config-action>` sends a Toshiba AC infrared remote code to a remote transmitter.
 
@@ -885,13 +840,11 @@ Configuration variables:
 - **rc_code_1** (**Required**, int): The remote control code to send, see dumper output for more details.
 - **rc_code_2** (*Optional*, int): The secondary remote control code to send; some codes are sent in
   two parts.
-
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_mirage:
 
-``remote_transmitter.transmit_mirage`` Action
-*********************************************
+``remote_transmitter.transmit_mirage`` **Action**
 
 This :ref:`action <config-action>` sends a 112-bit Mirage code to a remote transmitter. 8-bits of checksum added automatically.
 
@@ -905,6 +858,24 @@ Configuration variables:
 
 - **code** (**Required**, list): The 14 byte Mirage code to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
+
+.. _remote_transmitter-rc_switch-protocol:
+
+RC Switch Protocol
+******************
+
+All RC Switch ``protocol`` settings have these settings:
+
+- Either the value is an integer, then the inbuilt protocol definition with the given number
+  is used.
+- Or a key-value mapping is given, then there are these settings:
+
+  - **pulse_length** (**Required**, int): The pulse length of the protocol - how many microseconds
+    one pulse should last for.
+  - **sync** (*Optional*): The number of high/low pulses for the sync header, defaults to ``[1, 31]``
+  - **zero** (*Optional*): The number of high/low pulses for a zero bit, defaults to ``[1, 3]``
+  - **one** (*Optional*): The number of high/low pulses for a one bit, defaults to ``[3, 1]``
+  - **inverted** (*Optional*, boolean): If this protocol is inverted. Defaults to ``false``.
 
 Lambda calls
 ************
@@ -924,202 +895,15 @@ See the full API Reference for more info.
       call.set_send_times(2);
       call.perform();
 
-
-.. _remote-setting-up-infrared:
-
-Setting up Infrared Devices
----------------------------
-
-In this guide an infrared device will be set up with ESPHome. First, the remote code
-will be captured with an IR receiver module (like `this one <https://www.sparkfun.com/products/10266>`__).
-We will use ESPHome's dumping ability to output the decoded remote code directly.
-
-Then we will set up a new remote transmitter with an infrared LED (like
-`this one <https://learn.sparkfun.com/tutorials/ir-communication/all>`__) to transmit the
-code when a switch is triggered.
-
-First, connect the infrared receiver module to a pin on your board and set up a
-remote_receiver instance:
-
-.. code-block:: yaml
-
-    remote_receiver:
-      pin: GPIOXX
-      dump: all
-
-Compile and upload the code. While viewing the log output from the ESP,
-press a button on an infrared remote you want to capture (one at a time).
-
-You should see log output like below:
-
-.. code-block:: text
-
-    # If the codec is known:
-    [D][remote.panasonic] Received Panasonic: address=0x4004 command=0x8140DFA2
-
-    # Or raw output if it's not known yet
-    # The values may fluctuate a bit, but as long as they're similar it's ok
-    [D][remote.raw] Received Raw: 4088, -1542, 1019, -510, 513, -1019, 510, -509, 511, -510, 1020,
-    [D][remote.raw]   -1020, 1022, -1019, 510, -509, 511, -510, 511, -509, 511, -510,
-    [D][remote.raw]   1020, -1019, 510, -511, 1020, -510, 512, -508, 510, -1020, 1022
-
-If the codec is already implemented in ESPHome, you will see the decoded value directly -
-otherwise you will see the raw data dump (which you can use just as well). You have
-just successfully captured your first infrared code.
-
-Now let's use this information to emulate a button press from the ESP. First, wire up the
-IR diode to a new pin on the ESP and configure a global ``remote_transmitter`` instance:
-
-.. code-block:: yaml
-
-    remote_transmitter:
-      pin: GPIOXX
-      # Infrared remotes use a 50% carrier signal
-      carrier_duty_percent: 50%
-
-This will allow us to send any data we want via the IR LED. To replicate the codes we decoded
-earlier, create a new template switch that sends the infrared code when triggered:
-
-.. code-block:: yaml
-
-    switch:
-      - platform: template
-        name: Panasonic Power Button
-        turn_on_action:
-          - remote_transmitter.transmit_panasonic:
-              address: 0x4004
-              command: 0x8140DFA2
-
-    # Or for raw code
-    switch:
-      - platform: template
-        name: Raw Code Power Button
-        turn_on_action:
-          - remote_transmitter.transmit_raw:
-              carrier_frequency: 38kHz
-              code: [4088, -1542, 1019, -510, 513, -1019, 510, -509, 511, -510, 1020,
-                     -1020, 1022, -1019, 510, -509, 511, -510, 511, -509, 511, -510,
-                     1020, -1019, 510, -511, 1020, -510, 512, -508, 510, -1020, 1022]
-
-Recompile again, when you power up the device the next time you will see a new switch
-in the frontend. Click on it and you should see the remote signal being transmitted. Done!
-
-.. _remote-setting-up-rf:
-
-Setting Up RF Devices
----------------------
-
-The ``remote_transmitter`` and ``remote_receiver`` components can also be used to send
-and receive 433MHz RF signals. This guide will discuss setting up a 433MHz receiver to
-capture a device's remote codes. After that we will set up a 433MHz transmitter to replicate
-the remote code with the press of a switch in the frontend.
-
-First, connect the RF module to a pin on the ESP and set up a remote_receiver instance:
-
-.. code-block:: yaml
-
-    remote_receiver:
-      pin: GPIOXX
-      dump: all
-      # Settings to optimize recognition of RF devices
-      tolerance: 50%
-      filter: 250us
-      idle: 4ms
-      buffer_size: 2kb
-
-Compile and upload the code. While viewing the log output from the ESP,
-press a button on an RF remote you want to capture (one at a time).
-
-You should see log output like below:
-
-.. code-block:: text
-
-    # If the codec is known:
-    [D][remote.rc_switch] Received RCSwitch: protocol=2 data='100010000000000010111110'
-
-    # Or raw output if it's not known yet
-    # The values may fluctuate a bit, but as long as they're similar it's ok
-    [D][remote.raw] Received Raw: 4088, -1542, 1019, -510, 513, -1019, 510, -509, 511, -510, 1020,
-    [D][remote.raw]   -1020, 1022, -1019, 510, -509, 511, -510, 511, -509, 511, -510,
-    [D][remote.raw]   1020, -1019, 510, -511, 1020, -510, 512, -508, 510, -1020, 1022
-
-.. note::
-
-    If the log output is flooded with "Received Raw" messages, you can also disable raw
-    remote code reporting and rely on rc_switch to decode the values.
-
-    .. code-block:: yaml
-
-        remote_receiver:
-          pin: GPIOXX
-          dump:
-            - rc_switch
-          tolerance: 50%
-          filter: 250us
-          idle: 4ms
-          buffer_size: 2kb
-
-If the codec is already implemented in ESPHome, you will see the decoded value directly -
-otherwise you will see the raw data dump (which you can use just as well). You have
-just successfully captured your first RF code.
-
-Now let's use this information to emulate a button press from the ESP. First, wire up the
-RF transmitter to a new pin on the ESP and configure a global ``remote_transmitter`` instance:
-
-.. code-block:: yaml
-
-    remote_transmitter:
-      pin: GPIOXX
-      # RF uses a 100% carrier signal
-      carrier_duty_percent: 100%
-
-This will allow us to send any data we want via the RF transmitter. To replicate the codes we decoded
-earlier, create a new template switch that sends the RF code when triggered:
-
-.. code-block:: yaml
-
-    switch:
-      - platform: template
-        name: RF Power Button
-        optimistic: true
-        turn_on_action:
-          - remote_transmitter.transmit_rc_switch_raw:
-              code: '100010000000000010111110'
-              protocol: 2
-              repeat:
-                times: 10
-                wait_time: 0s
-
-
-    # Or for raw code
-    switch:
-      - platform: template
-        name: Raw Code Power Button
-        turn_on_action:
-          - remote_transmitter.transmit_raw:
-              code: [4088, -1542, 1019, -510, 513, -1019, 510, -509, 511, -510, 1020,
-                     -1020, 1022, -1019, 510, -509, 511, -510, 511, -509, 511, -510,
-                     1020, -1019, 510, -511, 1020, -510, 512, -508, 510, -1020, 1022]
-
-Recompile again, when you power up the device the next time you will see a new switch
-in the frontend. Click on it and you should see the remote signal being transmitted. Done!
-
-.. note::
-
-    Some devices require that the transmitted code be repeated for the signal to be picked up
-    as valid. Also the interval between repetitions can be important. Check that the pace of
-    repetition logs are consistent between the remote controller and the transmitter node.
-    You can adjust the ``repeat:`` settings accordingly.
-
-
-
 See Also
 --------
 
 - :doc:`index`
 - :doc:`/components/remote_receiver`
+- :ref:`remote-setting-up-infrared`
+- :ref:`remote-setting-up-rf`
+- :doc:`/components/rf_bridge`
 - :ref:`lambda_magic_rf_queues`
 - `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
-- `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote_transmitter/remote_transmitter.h`
 - :ghedit:`Edit`
