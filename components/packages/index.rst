@@ -25,7 +25,7 @@ ESPHome uses ``!include`` to "bring in" packages; this is a syntax brought over 
 Local Packages
 --------------
 
-Consider the following example where the author put common pieces of configuration (like Wi-Fi and I²C) into base files
+Consider the following example where the author put common pieces of configuration (like Wi-Fi and API) into base files
 and then extends it with some device-specific configuration in the main configuration.
 
 Note how the piece of configuration describing ``api`` component in ``device_base.yaml`` gets merged with the services
@@ -61,11 +61,6 @@ definitions from main configuration file.
 
     esp32:
       board: wemos_d1_mini32
-
-    # I²C Bus
-    i2c:
-      sda: GPIOXX
-      scl: GPIOXX
 
     logger:
 
