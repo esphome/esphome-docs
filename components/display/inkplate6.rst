@@ -144,6 +144,7 @@ Wi-Fi, API, and OTA configuration.
     captive_portal:
 
     ota:
+      platform: esphome
 
     api:
 
