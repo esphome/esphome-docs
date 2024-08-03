@@ -29,7 +29,7 @@ A new dialog will open. Click on **Manual download** option.
 
   .. figure:: images/dashboard-install-manual.png
 
-Finally, choose **modern format** in the last dialog.
+Finally, choose **factory format** (formerly "modern format") in the last dialog.
 
   .. figure:: images/dashboard-install-manual-modern.png
 
