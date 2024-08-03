@@ -82,6 +82,19 @@ Configuration:
 - **volume_multiplier** (*Optional*, float): Volume multiplier to apply to the assist pipeline.
   Must be larger than 0. Defaults to 1 (disabled).
 
+- **on_timer_started** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a voice assistant
+  timer has started. The timer is available as ``timer`` of type :apistruct:`voice_assistant::Timer`.
+- **on_timer_finished** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a voice assistant
+  timer has finished. The timer is available as ``timer`` of type :apistruct:`voice_assistant::Timer`.
+- **on_timer_cancelled** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a voice assistant
+  timer has been cancelled. The timer is available as ``timer`` of type :apistruct:`voice_assistant::Timer`.
+- **on_timer_updated** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a voice assistant
+  timer has been updated (paused/resumed/duration changed). The timer is available as ``timer`` of type :apistruct:`voice_assistant::Timer`.
+- **on_timer_tick** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the voice assistant timers
+  tick is triggered.
+  This is called every **1 second** while there are timers on this device.
+  The timers are available as ``timers`` which is a ``std::vector`` (array) of type :apistruct:`voice_assistant::Timer`.
+
 .. _voice_assistant-actions:
 
 Voice Assistant Actions

@@ -132,9 +132,10 @@ Add indoor air quality (IAQ) calculation and IAQ label, based on the values in t
         name: "BME680 Indoor Air Quality"
         id: iaq
         icon: "mdi:gauge"
-        # caulculation: comp_gas = log(R_gas[ohm]) + 0.04 log(Ohm)/%rh * hum[%rh]    
+        # calculation: comp_gas = log(R_gas[ohm]) + 0.04 log(Ohm)/%rh * hum[%rh]    
         lambda: |-
           return log(id(gas_resistance).state) + 0.04 *  id(humidity).state;
+        state_class: "measurement"
     text_sensor:
       - platform: template
         name: "BME680 IAQ Classification"

@@ -32,10 +32,6 @@ Configuration variables:
   ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``. Defaults to the variant that is detected from the board; if
   a board that's unknown to ESPHome is used, this option is mandatory.
 
-.. note::
-
-    Support for ESP32 variants such as the S2, S3 and C3 is still in development and there could be issues.
-
 GPIO Pin Numbering
 ------------------
 

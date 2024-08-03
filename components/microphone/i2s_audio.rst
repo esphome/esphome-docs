@@ -46,6 +46,7 @@ Configuration variables:
   will be scaled down to 16bit before being forwarded.
   One of ``16bit`` or ``32bit``. Defaults to ``16bit``.
 - **use_apll** (*Optional*, boolean): I2S using APLL as main I2S clock, enable it to get accurate clock. Defaults to ``false``.
+- **i2s_mode** (*Optional*, enum): The I²S mode to use. One of ``primary`` or ``secondary``. Defaults to ``primary``.
 - **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this microphone.
 - All other options from :ref:`Microphone <config-microphone>`
 
