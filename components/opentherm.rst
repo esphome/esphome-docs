@@ -203,6 +203,8 @@ The boiler can also report several numerical values, which are available through
 - ``t_flow_ch2``: Flow water temperature CH2 circuit (°C)
 - ``t_dhw2``: Domestic hot water temperature 2 (°C)
 - ``t_exhaust``: Boiler exhaust temperature (°C)
+- ``fan_speed``: Boiler fan speed (RPM)
+- ``flame_current``: Boiler flame current (µA)
 - ``burner_starts``: Number of starts burner
 - ``ch_pump_starts``: Number of starts CH pump
 - ``dhw_pump_valve_starts``: Number of starts DHW pump/valve
