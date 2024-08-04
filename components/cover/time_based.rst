@@ -7,7 +7,8 @@ Time Based Cover
 
 The ``time_based`` cover platform allows you to create covers with position control that do not
 have any position feedback. The state of the cover is thus always an assumed one, the current
-position is approximated with the time the cover has been moving in a direction.
+position is approximated with the time the cover has been moving in a direction. The state
+of the cover can be restored at node reboot.
 
 .. figure:: images/more-info-ui.png
     :align: center
@@ -70,12 +71,6 @@ Configuration variables:
 
     The stop button on the UI is always enabled even when the cover is stopped and each press
     on the button will cause the ``stop_action`` to be performed.
-
-.. note::
-
-    The state of the cover can be restored from flash after a node reboot, with 
-    ``esp8266_restore_from_flash: true`` option set. 
-    See :doc:`esp8266_restore_from_flash </components/esphome>` for details.
 
 Handle stop_action:
 ------------------------
