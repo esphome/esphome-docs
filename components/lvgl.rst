@@ -18,8 +18,6 @@ The graphic display should be configured with ``auto_clear_enabled: false`` and 
 
 For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly preferred), a :doc:`/components/sensor/rotary_encoder` or a custom keypad made up from discrete :doc:`Binary Sensors </components/binary_sensor/index>` can be used.
 
-Check out a few detailed examples :ref:`in the Cookbook <lvgl-cook>` to see a couple ways to integrate LVGL through ESPHome with your environment.
-
 Basics
 ------
 
@@ -149,8 +147,6 @@ The following configuration variables apply to the main ``lvgl`` component, in o
                 align: CENTER
                 text: 'Hello World!'
 
-See :ref:`lvgl-cook-navigator` in the Cookbook for an example illustrating how to easily implement a page navigation bar at the bottom of the screen.
-
 .. _lvgl-color:
 
 Colors
@@ -179,8 +175,6 @@ You can use :ref:`fonts configured normally<display-fonts>`, the glyphs will be 
 .. tip::
 
     For best results, set ``bpp: 4`` to get the glyphs rendered with proper anti-aliasing.
-
-Check out :ref:`lvgl-cook-icontext`, :ref:`lvgl-cook-iconstat` and :ref:`lvgl-cook-iconbatt` in the Cookbook for examples illustrating how to use icons and text with TrueType/OpenType fonts.
 
 **Library fonts**
 
@@ -381,8 +375,6 @@ So the precedence happens like this: state based styles override the locally spe
 
 Feel free to experiment to discover inheritance and precedence of the styles based on states between the nested widgets.
 
-:ref:`lvgl-cook-theme` The Cookbook contains an example illustrating how to easily implement a gradient style for your widgets.
-
 .. _lvgl-layouts:
 
 Layouts
@@ -391,8 +383,6 @@ Layouts
 Layouts aim to position widgets automatically, eliminating the need to specify ``x`` and ``y`` coordinates to position each widget. This is a great way to simplify your configuration as it allows you to omit alignment options.
 
 The layout configuration options are applied to any parent widget or page, influencing the appearance of the children. The position and size calculated by the layout overwrites the *normal* ``x``, ``y``, ``width``, and ``height`` settings of the children.
-
-Checkout :ref:`lvgl-cook-flex`, :ref:`lvgl-cook-grid` and :ref:`lvgl-cook-weather` in the Cookbook for examples illustrating how to automate widget positioning, potentially reducing the size of your device's YAML configuration, and saving you from lots of manual calculations.
 
 The ``hidden``, ``ignore_layout`` and ``floating`` :ref:`flags <lvgl-objupdflag-act>` can be used on widgets to ignore them in layout calculations.
 
@@ -580,8 +570,6 @@ To apply styles to the states, you need to specify them one level above, for exa
 
 The state itself can be can be changed by interacting with the widget, or through :ref:`actions <lvgl-objupd-act>` with ``lvgl.widget.update``.
 
-See :ref:`lvgl-cook-cover` for a cookbook example illustrating how to use styling and properties to show different states of a Home Assistant entity.
-
 .. _lvgl-objupdflag-act:
 
 In addition to visual styling, each widget supports some boolean **flags** to influence the behavior:
@@ -613,7 +601,7 @@ In addition to visual styling, each widget supports some boolean **flags** to in
 
 .. note::
 
-    LVGL only supports **integers** for numeric ``value``. Visualizer widgets can't display floats directly, but they allow scaling by 10s. Some examples in the :doc:`Cookbook </cookbook/lvgl>` cover how to do that.
+    LVGL only supports **integers** for numeric ``value``. Visualizer widgets can't display floats directly, but they allow scaling by 10s.
 
 .. _lvgl-wgt-lbl:
 
@@ -1604,8 +1592,6 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
             id: temperature_needle
             value: 3
 
-See :ref:`lvgl-cook-gauge`, :ref:`lvgl-cook-thermometer` and :ref:`lvgl-cook-clock` in the Cookbook for examples illustrating how to effectively use this widget.
-
 .. _lvgl-wgt-img:
 
 ``image``
@@ -1719,8 +1705,6 @@ The animation image is similar to the normal ``image`` widget. The main differen
             repeat_count: 100
             duration: 300ms
 
-See :ref:`lvgl-cook-animbatt` in the Cookbook for a more detailed example.
-
 .. _lvgl-wgt-lin:
 
 ``line``
@@ -1808,8 +1792,6 @@ The ``led`` can be also integrated as :doc:`Light </components/light/lvgl>` comp
 .. note::
 
     If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup, according to its ``restore_mode`` setting.
-
-Check out :ref:`lvgl-cook-keypad` in the Cookbook for an example illustrating how to change the ``led`` styling properties from an automation.
 
 .. _lvgl-wgt-spi:
 
@@ -2194,8 +2176,6 @@ This powerful :ref:`action <actions-action>` allows changing/updating any widget
             id: my_label_id
             hidden: true
 
-Check out in the Cookbook :ref:`lvgl-cook-binent` for an example illustrating how to use a template to update the state.
-
 .. _lvgl-objupd-shorthands:
 
 ``lvgl.widget.hide``, ``lvgl.widget.show``
@@ -2466,7 +2446,6 @@ See :ref:`lvgl-cook-idlescreen` for an example illustrating how to implement scr
 See Also
 --------
 
-- :doc:`Examples in the Cookbook </cookbook/lvgl>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/number/lvgl`
