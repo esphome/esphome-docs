@@ -11,7 +11,7 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
 .. note::
 
-    Many of the examples below call services in Home Assistant; however, Home Assistant does not allow such service calls by default. For each ESPHome device which will call services, you must explicitly enable this setting in Home Assistant. This may be done when the device is initially adopted or by using the `Configure` option in the "devices" list of the ESPHome integration.
+    Many of the examples below call service actions in Home Assistant; however, Home Assistant does not allow such action calls by default. For each ESPHome device which will call actions, you must explicitly enable this setting in Home Assistant. This may be done when the device is initially adopted or by using the `Configure` option in the "devices" list of the ESPHome integration.
 
 .. note::
 
@@ -63,7 +63,7 @@ Remote light button
 .. figure:: images/lvgl_cook_remligbut.png
     :align: right
 
-If you'd like to control a remote light which appears as an entity in Home Assistant from a checkable (toggle) :ref:`lvgl-wgt-btn`, first you need to import the light state into ESPHome, and then control it using a service call:
+If you'd like to control a remote light which appears as an entity in Home Assistant from a checkable (toggle) :ref:`lvgl-wgt-btn`, first you need to import the light state into ESPHome, and then control it using a action call:
 
 .. code-block:: yaml
 
@@ -95,8 +95,8 @@ If you'd like to control a remote light which appears as an entity in Home Assis
                         align: CENTER
                         text: 'Remote light'
                   on_click:
-                    - homeassistant.service:
-                        service: light.toggle
+                    - homeassistant.action:
+                        action: light.toggle
                         data: 
                           entity_id: light.remote_light
 
@@ -139,15 +139,15 @@ We can use a sensor to retrieve the current brightness of a light, which is stor
                   min_value: 0
                   max_value: 255
                   on_release:
-                    - homeassistant.service:
-                        service: light.turn_on
+                    - homeassistant.action:
+                        action: light.turn_on
                         data:
                           entity_id: light.your_dimmer
                           brightness: !lambda return int(x);
 
-Note that Home Assistant expects an integer at the ``brightness`` parameter of the ``light.turn_on`` service call, and since ESPHome uses floats, ``x`` needs to be converted.
+Note that Home Assistant expects an integer at the ``brightness`` parameter of the ``light.turn_on`` action call, and since ESPHome uses floats, ``x`` needs to be converted.
 
-This is applicable to service calls like ``fan.set_percentage`` or ``valve.set_valve_position``, too; the only difference is that ``max_value`` has to be ``100``.
+This is applicable to action calls like ``fan.set_percentage`` or ``valve.set_valve_position``, too; the only difference is that ``max_value`` has to be ``100``.
 
 .. _lvgl-cook-volume:
 
@@ -159,7 +159,7 @@ Media player volume slider
 
 Similarly, you can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the volume level of a media player, which uses float values.
 
-With a sensor we retrieve the current volume level of the media player, which is stored in Home Assistant as an attribute of the entity, and is a float value between ``0`` (min) and ``1`` (max). Since LVGL only handles integers, it's convenient to set the slider's possible values to be between ``0`` and ``100``. Thus a conversion is needed back and forth, meaning that when we read the value from Home Assistant we have to multiply it by ``100``, and when we set the volume through the service call, we have to divide it by ``100``:
+With a sensor we retrieve the current volume level of the media player, which is stored in Home Assistant as an attribute of the entity, and is a float value between ``0`` (min) and ``1`` (max). Since LVGL only handles integers, it's convenient to set the slider's possible values to be between ``0`` and ``100``. Thus a conversion is needed back and forth, meaning that when we read the value from Home Assistant we have to multiply it by ``100``, and when we set the volume through the action call, we have to divide it by ``100``:
 
 .. code-block:: yaml
 
@@ -189,8 +189,8 @@ With a sensor we retrieve the current volume level of the media player, which is
                   max_value: 100
                   adv_hittest: true
                   on_value:
-                    - homeassistant.service:
-                        service: media_player.volume_set
+                    - homeassistant.action:
+                        action: media_player.volume_set
                         data:
                           entity_id: media_player.your_room
                           volume_level: !lambda return (x / 100);
@@ -465,7 +465,7 @@ Climate control
 .. figure:: images/lvgl_cook_climate.png
     :align: center
 
-First we import from Home Assistant the current target temperature of the climate component, and we update the value of the spinbox with it whenever it changes. We use two buttons labeled with minus and plus to control the spinbox, and whenever we change its value, we just simply call a Home Assistant service to set the new target temperature of the climate.
+First we import from Home Assistant the current target temperature of the climate component, and we update the value of the spinbox with it whenever it changes. We use two buttons labeled with minus and plus to control the spinbox, and whenever we change its value, we just simply call a Home Assistant action to set the new target temperature of the climate.
 
 .. code-block:: yaml
 
@@ -514,8 +514,8 @@ First we import from Home Assistant the current target temperature of the climat
                         decimal_places: 1
                         on_value:
                           then:
-                            - homeassistant.service:
-                                service: climate.set_temperature
+                            - homeassistant.action:
+                                action: climate.set_temperature
                                 data:
                                   temperature: !lambda return x;
                                   entity_id: climate.room_thermostat
@@ -615,8 +615,8 @@ Just as in the previous examples, we need to get the state of the cover first. W
                         text: "\uF077"
                   on_press:
                     then:
-                      - homeassistant.service:
-                          service: cover.open
+                      - homeassistant.action:
+                          action: cover.open
                           data:
                             entity_id: cover.myroom
               - button:
@@ -631,8 +631,8 @@ Just as in the previous examples, we need to get the state of the cover first. W
                         text: STOP
                   on_press:
                     then:
-                      - homeassistant.service:
-                          service: cover.stop
+                      - homeassistant.action:
+                          action: cover.stop
                           data:
                             entity_id: cover.myroom
               - button:
@@ -647,8 +647,8 @@ Just as in the previous examples, we need to get the state of the cover first. W
                         text: "\uF078"
                   on_press:
                     then:
-                      - homeassistant.service:
-                          service: cover.close
+                      - homeassistant.action:
+                          action: cover.close
                           data:
                             entity_id: cover.myroom
 
@@ -1377,8 +1377,8 @@ If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like t
                         text_font: mdi_42
                         text: "\U000F0336" # mdi-lightbulb-outline
                   on_short_click:
-                    - homeassistant.service:
-                        service: light.toggle
+                    - homeassistant.action:
+                        action: light.toggle
                         data: 
                           entity_id: light.remote_light
 
@@ -1987,7 +1987,7 @@ The weather condition icons we use are from MDI. We import just the ones corresp
 
 If you look carefully at the ``grid_columns`` variable, you'll notice that there are two thinner columns at left and right (``FR(10)``). Reason is to add some space to the labels from the edges. And that's why we had to use ``grid_cell_column_span`` for the widgets in the first row, to take up the space of multiple columns.
 
-These labels will appear in Home Assistant as `editable text components <https://www.home-assistant.io/integrations/text/>`__, which makes it very easy to update them with the ``text.set_value`` service. For this purpose, we add the following `automations <https://www.home-assistant.io/docs/automation/>`__ to Home Assistant:
+These labels will appear in Home Assistant as `editable text components <https://www.home-assistant.io/integrations/text/>`__, which makes it very easy to update them with the ``text.set_value`` action. For this purpose, we add the following `automations <https://www.home-assistant.io/docs/automation/>`__ to Home Assistant:
 
 .. code-block:: yaml
 
@@ -2000,7 +2000,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
           entity_id: binary_sensor.your_esphome_node_status_sensor
           to: 'on'
       action:
-        - service: text.set_value
+        - action: text.set_value
           target:
             entity_id: 
               - text.your_esphome_node_fr_cond_icon
@@ -2027,7 +2027,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
               } %}
               {{ d.get( states('sensor.openweathermap_forecast_condition') ) }}
 
-        - service: text.set_value
+        - action: text.set_value
           target:
             entity_id: 
               - text.your_esphome_node_fr_cond_name
@@ -2063,7 +2063,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
           entity_id: binary_sensor.your_esphome_node_status_sensor
           to: 'on'
       action:
-        - service: text.set_value
+        - action: text.set_value
           target:
             entity_id: 
               - text.your_esphome_node_fr_tempap
@@ -2079,7 +2079,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
           entity_id: binary_sensor.your_esphome_node_status_sensor
           to: 'on'
       action:
-        - service: text.set_value
+        - action: text.set_value
           target:
             entity_id: 
               - text.your_esphome_node_fr_temphi
@@ -2095,7 +2095,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
           entity_id: binary_sensor.your_esphome_node_status_sensor
           to: 'on'
       action:
-        - service: text.set_value
+        - action: text.set_value
           target:
             entity_id: 
               - text.your_esphome_node_fr_templo
@@ -2111,7 +2111,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
           entity_id: binary_sensor.your_esphome_node_status_sensor
           to: 'on'
       action:
-        - service: text.set_value
+        - action: text.set_value
           target:
             entity_id: 
               - text.your_esphome_node_wd_out_now
