@@ -807,8 +807,6 @@ To have a button with a text label on it, add a child :ref:`lvgl-wgt-lbl` widget
 
 The ``button`` can be also integrated as a :doc:`Binary Sensor </components/binary_sensor/lvgl>` or as a :doc:`Switch </components/switch/lvgl>` component.
 
-See :ref:`lvgl-cook-binent` for an example illustrating how to use a checkable button to act on a Home Assistant service.
-
 .. _lvgl-wgt-bmx:
 
 ``buttonmatrix``
@@ -939,7 +937,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
 
 .. tip::
 
-    The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations. Check out  :ref:`lvgl-cook-keypad` for an example.
+    The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations.
 
 .. _lvgl-wgt-swi:
 
@@ -982,8 +980,6 @@ The switch looks like a little slider and can be used to turn something on and o
                 args: [ x ]
 
 The ``switch`` can be also integrated as a :doc:`Switch </components/switch/lvgl>` component.
-
-See :ref:`lvgl-cook-relay` for an example how to use a switch to act on a local component.
 
 .. _lvgl-wgt-chk:
 
@@ -1045,7 +1041,7 @@ The checkbox widget is made internally from a *tick box* and a label. When the c
 
 .. note::
 
-    In case you configure ``default_font`` in the main section to a custom font, the checkmark will not be shown correctly when the checkbox is in the checked state. See :ref:`lvgl-cook-ckboxmark` how to easily resolve this.
+    In case you configure ``default_font`` in the main section to a custom font, the checkmark will not be shown correctly when the checkbox is in the checked state.
 
 The ``checkbox`` can be also integrated as a :doc:`Switch </components/switch/lvgl>` component.
 
@@ -1316,8 +1312,6 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 The ``slider`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
-See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples illustrating how to use a slider to control entities in Home Assistant.
-
 .. _lvgl-wgt-arc:
 
 ``arc``
@@ -1401,8 +1395,6 @@ If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can 
 
 The ``arc`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
-See :ref:`lvgl-cook-bright` and :ref:`lvgl-cook-volume` for examples illustrating how to use a slider (or an arc) to control entities in Home Assistant.
-
 .. _lvgl-wgt-spb:
 
 ``spinbox``
@@ -1479,8 +1471,6 @@ The spinbox contains a numeric value (as text) which can be increased or decreas
                 args: [ x ]
 
 The ``spinbox`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
-
-See :ref:`lvgl-cook-climate` for an example illustrating how to implement a thermostat control using the spinbox.
 
 .. _lvgl-wgt-mtr:
 
@@ -2240,7 +2230,7 @@ This :ref:`action <actions-action>` redraws the entire screen, or optionally onl
 
 This :ref:`action <actions-action>` pauses the activity of LVGL, including rendering.
 
-- **show_snow** (*Optional*, boolean): When paused, display random colored pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel. See :ref:`lvgl-cook-antiburn` for an example illustrating how to use this.
+- **show_snow** (*Optional*, boolean): When paused, display random colored pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel.
 
 .. code-block:: yaml
 
@@ -2438,8 +2428,6 @@ The ``on_idle`` :ref:`triggers <automation>` are activated when inactivity time 
           then:
             - light.turn_off: display_backlight
             - lvgl.pause:
-
-See :ref:`lvgl-cook-idlescreen` for an example illustrating how to implement screen saving with idle settings.
 
 .. _lvgl-seealso:
 
