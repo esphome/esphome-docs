@@ -43,8 +43,6 @@ Configuration variables:
 - **flash_transition_length** (*Optional*, :ref:`config-time`): The transition length to use when flash
   is called. Defaults to ``0s``.
 - **restore_mode** (*Optional*): Control how the light attempts to restore state on bootup.
-  For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
-  :doc:`esphome section </components/esphome>`.
 
     - ``RESTORE_DEFAULT_OFF`` - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
@@ -703,14 +701,14 @@ the strip and shifts them forward every ``add_led_interval``.
                 - red: 100%
                   green: 100%
                   blue: 100%
-                  num_leds: 1
+                  num_leds: 5
+                  gradient: true
                 - red: 0%
                   green: 0%
                   blue: 0%
                   num_leds: 1
               add_led_interval: 100ms
               reverse: false
-              gradient: false
 
 Configuration variables:
 

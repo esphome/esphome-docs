@@ -282,6 +282,49 @@ div.body p, div.body dd, div.body li, div.body blockquote {
     display: none;
 }
 
+/* New branding changes */
+
+div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body h6, div.sphinxsidebar h3, div.sphinxsidebar h4, div.admonition p.admonition-title {
+  font-family: Figtree, system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+  font-weight: 600;
+}
+
+div.body h1 {
+  font-size: 2.5rem;
+}
+
+body {
+  font-family: "Instrument Sans", system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+  line-height: 1.5;
+  letter-spacing: 0.01rem;
+}
+
+div.body p, div.body dd, div.body li {
+  line-height: 1.6;
+}
+
+div.sphinxsidebar h3 {
+  line-height: 1.25;
+}
+
+div.sphinxsidebar li {
+  line-height: 1.5;
+  margin-bottom: .25rem;
+}
+
+div.sphinxsidebar input {
+  font-family: "Instrument Sans", system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+.pagefind-ui__form {
+  margin-bottom: 1rem;
+}
+
+
+img.logo {
+  content: url("/_static/logo-text-on-light.svg");
+}
+
 @media screen and (max-width: 875px) {
   /* hide search result thumbnails on mobile */
   .pagefind-modular-list-thumb {
@@ -317,7 +360,11 @@ div.body p, div.body dd, div.body li, div.body blockquote {
     background-color: #212121;
   }
 
-  img.dark-invert, img.logo {
+  img.logo {
+    content: url("/_static/logo-text-on-dark.svg");
+  }
+  
+  img.dark-invert {
     filter: invert(1);
   }
 

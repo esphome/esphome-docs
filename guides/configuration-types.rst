@@ -358,7 +358,7 @@ Consider the following example where the author put common pieces of configurati
 I²C into base files and extends it with some device specific configurations in the main config.
 
 Note how the piece of configuration describing ``api`` component in ``device_base.yaml`` gets
-merged with the services definitions from main config file.
+merged with the actions definitions from main config file.
 
 .. code-block:: yaml
 
@@ -372,8 +372,8 @@ merged with the services definitions from main config file.
       device_base: !include common/device_base.yaml
 
     api:
-      services:
-        - service: start_laundry
+      actions:
+        - action: start_laundry
           then:
             - switch.turn_on: relay
             - delay: 3h
@@ -554,8 +554,8 @@ For example to set a specific update interval on a common uptime sensor that is 
       common: !include common.yaml
 
     sensor:
-    - id: !extend uptime_sensor
-      update_interval: 10s
+      - id: !extend uptime_sensor
+        update_interval: 10s
 
 Remove
 ------
