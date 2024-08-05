@@ -71,8 +71,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 
 **Configuration variables:**
 
-- **displays** (**Required**, list): A list of displays where LVGL should perform rendering based on its configuration. This may be omitted if there is a single display configured, which will be used automatically.
-    - **display_id** (**Required**, :ref:`config-id`): The ID of a display configuration.
+- **displays** (*Optional*, list, :ref:`config-id`): A list of display IDs where LVGL should perform rendering based on its configuration. This may be omitted if there is a single display configured, which will be used automatically.
 - **touchscreens** (*Optional*, list): A list of touchscreens interacting with the LVGL widgets on the display.
     - **touchscreen_id** (**Required**, :ref:`config-id`): ID of a touchscreen configuration related to a display.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, delay after which the ``on_long_pressed`` :ref:`interaction trigger <lvgl-event-trg>` will be called. Defaults to ``400ms``.
@@ -941,14 +940,14 @@ The button matrix widget is a lightweight way to display multiple buttons in row
                   - logger.log:
                       format: "Button 2 checked: %d"
                       args: [ x ]
-        on_press: # Triggers for the matrix, to determine which button was pressed
+        on_press: # Triggers for the matrix, to determine which button was pressed.
           logger.log:
             format: "Matrix button pressed: %d"
-            args: ["*x"]
+            args: ["x"]  # If x is 65535, it was the container, (or through a disabled button).
         on_click:
           logger.log:
             format: "Matrix button clicked: %d, is button_2 = %u"
-            args: ["*x", "id(button_2) == x"]
+            args: ["x", "id(button_2) == x"]
 
 .. tip::
 
@@ -1915,7 +1914,7 @@ The tabs are indexed (zero based) in the order they appear in the configuration 
     - **name** (**Required**): The text to be shown on the button corresponding to the tab.
     - **id** (*Optional*): An ID for the tab itself.
     - **widgets** (**Required**, list): A list of :ref:`lvgl-widgets` to be drawn on the tab, as children.
-- **tab_style** (*Optional*): Style settings for the tabs
+- **tab_style** (*Optional*): Style settings for the tabs.
     - **items** (*Optional*, list): Settings for the items *part*, the buttons all use the text and typical background style properties except translations and transformations.
 
 **Actions:**
