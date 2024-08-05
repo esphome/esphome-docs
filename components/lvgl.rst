@@ -1559,7 +1559,7 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
 
 **Actions:**
 
-- ``lvgl.indicator.update`` :ref:`action <actions-action>` updates indicator options except ``src``, which cannot be updated at runtime. :ref:`lvgl.widget.update <lvgl-objupd-act>` action can used for the common styles, states or flags of the meter widget (not the indicators).
+- ``lvgl.indicator.update`` :ref:`action <actions-action>` updates indicator options except ``src``, which cannot be updated at runtime. :ref:`lvgl.widget.update <lvgl-objupd-act>` action can be used for the common styles, states or flags of the meter widget (not the indicators).
     - **id** (**Required**): The ID or a list of IDs of line or image indicators which you want update.
 
 **Triggers:**
