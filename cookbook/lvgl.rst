@@ -1287,7 +1287,7 @@ Restore checkbox mark
 
 If you configure a custom font as the ``default_font`` used by LVGL and this font does not contain the `FontAwesome <https://fontawesome.com/>`__ symbols, you may observe that some widgets won't display correctly; specifically :ref:`lvgl-wgt-chk` won't show the checkmark when it's checked.
 
-This issue can be easily worked around by importing only the ckeckmark symbol in the desired size, and applying it through :ref:`lvgl-cook-theme` to all the checkboxes in the configuration:
+To work around this issue, simply import only the checkmark symbol in the desired size and apply it through :ref:`lvgl-cook-theme` to all the checkboxes in the configuration:
 
 .. code-block:: yaml
 
