@@ -883,7 +883,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
         items:
           pressed:
             bg_color: 0xFFFF00
-        id: b_matrix
+        id: matrix_id
         rows:
           - buttons:
             - id: button_1
@@ -913,14 +913,14 @@ The button matrix widget is a lightweight way to display multiple buttons in row
     # Example action:
     on_...:
       then:
-        - lvgl.button.update:
+        - lvgl.matrixbutton.update:
             id: button_1
             width: 1
             selected: true
             control:
               checkable: false
         - lvgl.buttonmatrix.update:
-            id: b_matrix
+            id: matrix_id
             state:
               disabled: true
             items:
@@ -1915,6 +1915,8 @@ The tabs are indexed (zero based) in the order they appear in the configuration 
     - **name** (**Required**): The text to be shown on the button corresponding to the tab.
     - **id** (*Optional*): An ID for the tab itself.
     - **widgets** (**Required**, list): A list of :ref:`lvgl-widgets` to be drawn on the tab, as children.
+- **tab_style** (*Optional*): Style settings for the tabs
+    - **items** (*Optional*, list): Settings for the items *part*, the buttons all use the text and typical background style properties except translations and transformations.
 
 **Actions:**
 
@@ -1936,6 +1938,11 @@ The tabs are indexed (zero based) in the order they appear in the configuration 
     - tabview:
         id: tabview_id
         position: top
+        tab_style:
+          border_color: 0x00FF00
+          border_width: 6
+          items:
+            text_color: 0x0000FF
         tabs:
           - name: Dog
             id: tabview_tab_1
