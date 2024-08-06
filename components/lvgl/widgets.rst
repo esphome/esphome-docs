@@ -1801,8 +1801,5 @@ See Also
 - :doc:`/components/light/lvgl`
 - :doc:`/components/text/lvgl`
 - :doc:`/components/text_sensor/lvgl`
-- :doc:`/components/display/index`
-- :doc:`/components/touchscreen/index`
-- :doc:`/components/sensor/rotary_encoder`
 - `LVGL docs <https://docs.lvgl.io/>`__
 - :ghedit:`Edit`

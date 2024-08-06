@@ -76,7 +76,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **touchscreen_id** (**Required**, :ref:`config-id`): ID of a touchscreen configuration related to a display.
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, delay after which the ``on_long_pressed`` :ref:`interaction trigger <lvgl-automation-triggers>` will be called. Defaults to ``400ms``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`interaction trigger <lvgl-automation-triggers>` will be called. Defaults to ``100ms``.
-- **rotary_encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display.
+- **encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display.
     - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
     - **enter_button** (**Required**, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``ENTER`` key.
     - **sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder`; or a list with buttons for left/right interaction with the widgets:
@@ -691,14 +691,6 @@ See Also
     *
 
 - :doc:`LVGL Examples in the Cookbook </cookbook/lvgl>`
-- :doc:`/components/binary_sensor/lvgl`
-- :doc:`/components/sensor/lvgl`
-- :doc:`/components/number/lvgl`
-- :doc:`/components/switch/lvgl`
-- :doc:`/components/select/lvgl`
-- :doc:`/components/light/lvgl`
-- :doc:`/components/text/lvgl`
-- :doc:`/components/text_sensor/lvgl`
 - :doc:`/components/display/index`
 - :doc:`/components/touchscreen/index`
 - :doc:`/components/sensor/rotary_encoder`

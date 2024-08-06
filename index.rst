@@ -832,6 +832,8 @@ Display Components
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
     LVGL Graphics, components/lvgl/index, lvgl.png
 
+.. _display-hw:
+
 Display Hardware Platforms
 --------------------------
 
