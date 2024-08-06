@@ -1,7 +1,7 @@
 .. _lvgl-widgets:
 
-Widgets
-=======
+LVGL Widgets
+============
 
 At the next level of the LVGL object hierarchy are the widgets, which support styling directly. They can have sub-parts, which may be styled separately. Usually styles are inherited, but this depends on widget specifics or functionality. The widget and its parts have states, and different styling can be set for different states.
 

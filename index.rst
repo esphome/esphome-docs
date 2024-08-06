@@ -830,7 +830,7 @@ Display Components
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
     Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.png
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
-    LVGL Graphics, components/lvgl, lvgl.png
+    LVGL Graphics, components/lvgl/index, lvgl.png
 
 Display Hardware Platforms
 --------------------------
