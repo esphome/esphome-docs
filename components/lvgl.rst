@@ -101,7 +101,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 
     .. tip::
 
-        When using binary sensors (from physical keys) to interact with LVGL, if there are only 3 keys available, they are best used when configured as a rotary encoder, where ``LEFT`` and ``RIGHT`` act like the rotary wheel, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-event-trg>`. With 4 or more keys, a keypad configuration suits better. For example a 5-key keypad might use ``PREV``, ``NEXT``, ``UP``, ``DOWN`` and ``ENTER``: ``PREV``/``NEXT`` can select a widget within the group, ``UP``/``DOWN`` changes the value, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-event-trg>`.
+        When using binary sensors (from physical keys) to interact with LVGL, if there are only three keys available, they are best used when configured as a rotary encoder, where ``LEFT`` and ``RIGHT`` act like the rotary wheel, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-event-trg>`. With four or more keys, a keypad configuration is generally more appropriate. For example, a keypad consisting of five keys might use ``PREV``, ``NEXT``, ``UP``, ``DOWN`` and ``ENTER``; ``PREV``/``NEXT`` are used to select a widget within the group, ``UP``/``DOWN`` changes the selected value and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-event-trg>`.
         
         The ``long_press_time`` and ``long_press_repeat_time`` can be fine-tuned also by setting them to ``never`` and using the ``autorepeat`` filter on each binary sensor separately.
 
