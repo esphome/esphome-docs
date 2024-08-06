@@ -547,6 +547,7 @@ Miscellaneous
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Integration, components/sensor/integration, sigma.svg, dark-invert
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
+    LVGL widget, components/sensor/lvgl, lvgl_c_num.png
     M5Stack Unit 8 Angle, components/sensor/m5stack_8angle, m5stack_8angle.png
     MicroNova pellet stove, components/micronova, pellet.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
@@ -662,6 +663,7 @@ Touchscreen
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
+    LVGL widget, components/binary_sensor/lvgl, lvgl_c_bns.png
 
 Presence Detection
 ******************
@@ -741,6 +743,7 @@ Light Components
     H-bridge Light, components/light/hbridge, brightness-medium.svg, dark-invert
     Light Partition, components/light/partition, color_lens.svg, dark-invert
     LightWaveRF, components/lightwaverf, brightness-medium.svg
+    LVGL widget, components/light/lvgl, lvgl_c_lig.png
     Monochromatic Light, components/light/monochromatic, brightness-medium.svg, dark-invert
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg, dark-invert
     RGB Light, components/light/rgb, rgb.png
@@ -769,6 +772,7 @@ Switch Components
     Factory Reset Switch, components/switch/factory_reset, restart-alert.svg, dark-invert
     Generic Output Switch, components/switch/output, upload.svg, dark-invert
     GPIO Switch, components/switch/gpio, pin.svg, dark-invert
+    LVGL Widget, components/switch/lvgl, lvgl_c_swi.png
     Modbus Switch, components/switch/modbus_controller, modbus.png
     Nextion Switch, components/switch/nextion, nextion.jpg
     Restart Switch, components/switch/restart, restart.svg, dark-invert
@@ -826,6 +830,7 @@ Display Components
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
     Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.png
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
+    LVGL Graphics, components/lvgl, lvgl.png
 
 Display Hardware Platforms
 --------------------------
@@ -905,14 +910,7 @@ Text Components
 
     Text Core, components/text/index, folder-open.svg, dark-invert
     Template Text, components/text/template, description.svg, dark-invert
-
-Valve Components
-----------------
-
-.. imgtable::
-
-    Valve Core, components/valve/index, folder-open.svg, dark-invert
-    Template Valve, components/valve/template, description.svg, dark-invert
+    LVGL textarea Text, components/text/lvgl, lvgl_c_txt.png
 
 Text Sensor Components
 ----------------------
@@ -925,6 +923,7 @@ Text Sensor Components
     Ethernet Info, components/text_sensor/ethernet_info, ethernet.svg, dark-invert
     Home Assistant, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
     LibreTiny, components/text_sensor/libretiny, libretiny.svg
+    LVGL textarea Text Sensor, components/text_sensor/lvgl, lvgl_c_txt.png
     Modbus Text Sensor, components/text_sensor/modbus_controller, modbus.png
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
@@ -933,6 +932,14 @@ Text Sensor Components
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg, dark-invert
     WireGuard, components/wireguard, wireguard_custom_logo.svg
     WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg, dark-invert
+
+Valve Components
+----------------
+
+.. imgtable::
+
+    Valve Core, components/valve/index, folder-open.svg, dark-invert
+    Template Valve, components/valve/template, description.svg, dark-invert
 
 Climate Components
 ------------------
@@ -958,6 +965,7 @@ Number Components
 
     Number Core, components/number/index, folder-open.svg, dark-invert
     Template Number, components/number/template, description.svg, dark-invert
+    LVGL widget Number, components/number/lvgl, lvgl_c_num.png
     Modbus Number, components/number/modbus_controller, modbus.png
     Tuya Number, components/number/tuya, tuya.png
 
@@ -968,6 +976,7 @@ Select Components
 
     Select Core, components/select/index, folder-open.svg, dark-invert
     Template Select, components/select/template, description.svg, dark-invert
+    LVGL widget Select, components/select/lvgl, lvgl_c_sel.png
     Modbus Select, components/select/modbus_controller, modbus.png
     Tuya Select, components/select/tuya, tuya.png
 
@@ -1117,7 +1126,6 @@ Custom Components
     Custom Sensor, components/sensor/custom, language-cpp.svg, dark-invert
     Custom Switch, components/switch/custom, language-cpp.svg, dark-invert
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg, dark-invert
-
     Custom I²C Component, custom/i2c, language-cpp.svg, dark-invert
     Custom SPI Component, custom/spi, language-cpp.svg, dark-invert
     Custom UART Component, custom/uart, language-cpp.svg, dark-invert
@@ -1130,6 +1138,7 @@ Cookbook
 .. imgtable::
 
     Lambda Magic: Tips and Tricks, cookbook/lambda_magic, head-lightbulb-outline.svg, dark-invert
+    LVGL Graphic recipes, cookbook/lvgl, lvgl.png
     Garage Door Template Cover, cookbook/garage-door, garage-variant.svg, dark-invert
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
