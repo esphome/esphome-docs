@@ -22,6 +22,81 @@ This component has a dependency to :doc:`/components/http_request`; the configur
 .. code-block:: yaml
 
     online_image:
+      - url: "https://example.com/example.png"
+        format: png
+        id: my_online_image
+
+Configuration variables
+-----------------------
+
+- **url** (**Required**, url): The URL where the image will be downloaded from.
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
+  in your display code.
+- **format** (**Required**): The format that the image is encoded with.
+
+  - ``PNG``: The image on the server is encoded in PNG format.
+- **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
+  and preserve the aspect ratio.
+- **type** (*Optional*): Specifies how to encode image internally. Defaults to ``BINARY``.
+
+  - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
+    per pixel, 8 pixels per byte.
+  - ``TRANSPARENT_BINARY``: One color, any pixel that is fully transparent will not be drawn, and any other pixel
+    will be the on color. Uses 1 bit per pixel, 8 pixels per byte.
+  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
+  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+  - ``RGBA``: Full RGB color stored. Uses 4 bytes per pixel. Any pixel with an alpha value < 127 will not be drawn.
+- **use_transparency** (*Optional*, boolean): If set the alpha channel of the input image will be taken into account,
+  and pixels with alpha < 127 will not be drawn. For image types without explicit alpha channel,
+  the color (0, 0, 1) (very dark blue) will be mapped to black, to be able to store transparency information
+  within the image. Explicitly transparent types (``TRANSPARENT_BINARY`` and ``RGBA``) default to ``true`` and cannot be set to ``false``; other types default to ``false``.
+- **update_interval** (*Optional*, int): Redownload the image when the specified time has elapsed. Defaults to ``never`` (i.e. the update component action needs to be called manually).
+
+Automations
+-----------
+
+- **on_download_finished** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the image has been successfully downloaded.
+
+A good example for that is to update the display component after the download succeeded.
+
+- **on_error** (*Optional*, :ref:`Automation <automation>`): An automation to perform when an error happened during download or decode.
+
+Actions
+-------
+
+**online_image.set_url**: Change the URL where the image is downloaded from. The image needs to be manually updated afterwards.
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The image to update the URL for.
+- **url** (**Required**, url): The new URL to download the image from.
+
+.. code-block:: yaml
+
+    on_...:
+      - online_image.set_url:
+          id: my_online_image
+          url: "https://www.example.com/new_image.png"
+      - component.update: my_online_image
+
+**online_image.release**: Release the memory currently used by an image. Can be used if different display pages need different images, to avoid wasting memory on an image that is currently not being displayed.
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The image to update the URL for.
+
+.. code-block:: yaml
+
+    on_...:
+      - online_image.release: my_online_image
+
+Examples
+--------
+
+.. code-block:: yaml
+
+    online_image:
       - url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png"
         format: png
         id: my_online_image
@@ -68,68 +143,10 @@ By default ``online_image`` is configured to not automatically update/download t
       on_connect:
         - component.update: my_online_image
 
-Configuration variables:
-------------------------
-
-- **url** (**Required**, url): The URL where the image will be downloaded from.
-- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
-  in your display code.
-- **format** (**Required**): The format that the image is encoded with.
-
-  - ``PNG``: The image on the server is encoded in PNG format.
-- **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
-  and preserve the aspect ratio.
-- **type** (*Optional*): Specifies how to encode image internally. Defaults to ``BINARY``.
-
-  - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
-    per pixel, 8 pixels per byte.
-  - ``TRANSPARENT_BINARY``: One color, any pixel that is fully transparent will not be drawn, and any other pixel
-    will be the on color. Uses 1 bit per pixel, 8 pixels per byte.
-  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
-  - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
-  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
-  - ``RGBA``: Full RGB color stored. Uses 4 bytes per pixel. Any pixel with an alpha value < 127 will not be drawn.
-- **use_transparency** (*Optional*, boolean): If set the alpha channel of the input image will be taken into account, 
-  and pixels with alpha < 127 will not be drawn. For image types without explicit alpha channel, 
-  the color (0, 0, 1) (very dark blue) will be mapped to black, to be able to store transparency information 
-  within the image. Explicitly transparent types (``TRANSPARENT_BINARY`` and ``RGBA``) default to ``true`` and cannot be set to ``false``; other types default to ``false``.
-- **update_interval** (*Optional*, int): Redownload the image when the specified time has elapsed. Defaults to ``never`` (i.e. the update component action needs to be called manually).
-
-Automations:
-------------
-
-- **on_download_finished** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the image has been successfully downloaded.
-
-A good example for that is to update the display component after the download succeeded.
-
-- **on_error** (*Optional*, :ref:`Automation <automation>`): An automation to perform when an error happened during download or decode.
-
-Actions:
+See Also
 --------
 
-**online_image.set_url**: Change the URL where the image is downloaded from. The image needs to be manually updated afterwards.
-
-Configuration variables:
-
-- **id** (**Required**, :ref:`config-id`): The image to update the URL for.
-- **url** (**Required**, url): The new URL to download the image from.
-
-.. code-block:: yaml
-
-    on_...:
-      - online_image.set_url:
-          id: my_online_image
-          url: "https://www.example.com/new_image.png"
-      - component.update: my_online_image
-
-**online_image.release**: Release the memory currently used by an image. Can be used if different display pages need different images, to avoid wasting memory on an image that is currently not being displayed.
-
-Configuration variables:
-
-- **id** (**Required**, :ref:`config-id`): The image to update the URL for.
-
-.. code-block:: yaml
-
-    on_...:
-      - online_image.release: my_online_image
-
+- :apiref:`online_image/online_image.h`
+- :doc:`Image Component <image>`
+- :doc:`Animation Component <animation>`
+- :ghedit:`Edit`
