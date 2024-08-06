@@ -83,6 +83,7 @@ Next, create a ``font:`` section in your configuration:
     display:
       # ...
 
+
 Configuration variables:
 ------------------------
 

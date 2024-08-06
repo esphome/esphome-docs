@@ -1,4 +1,4 @@
-.. _lvgl-sns:
+.. _lvgl-sensor:
 
 LVGL Sensor
 ===========

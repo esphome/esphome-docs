@@ -1,4 +1,6 @@
+
 .. _lvgl-binary-sensor:
+
 
 LVGL Binary Sensor
 ==================

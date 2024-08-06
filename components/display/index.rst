@@ -12,6 +12,7 @@ engine. Fundamentally, there are these types of displays:
   :doc:`LCD displays <lcd_display>`.
 - Serial displays like :doc:`nextion` that have their own processors for graphics rendering.
 - Graphical binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper <waveshare_epaper>`,
+
   :doc:`OLED <ssd1306>` or :doc:`TFT <ili9xxx>` displays.
 
 For graphical displays, which offer the greatest flexibility, there are two options: 
@@ -610,6 +611,7 @@ See Also
 --------
 
 - :apiref:`display/display_buffer.h`
+- :ref:`LVGL <lvgl-main>`
 - :ref:`Fonts <display-fonts>`
 - :ref:`Graph Component <display-graphs>`
 - :ref:`QR Code Component <display-qrcode>`
