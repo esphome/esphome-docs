@@ -12,8 +12,8 @@ and requires :ref:`LVGL <lvgl-main>` to be configured.
 
 Supported widget is :ref:`lvgl-wgt-led`. A single light supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome light component.
 
-Configuration options:
-----------------------
+Configuration variables:
+------------------------
 
 - **widget** (**Required**): The ID of a ``led`` widget configured in LVGL, which will reflect the state of the light.
 - All other options from :ref:`light <config-light>`.
