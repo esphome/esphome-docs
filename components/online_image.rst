@@ -21,8 +21,6 @@ This component has a dependency to :doc:`/components/http_request`; the configur
 
 .. code-block:: yaml
 
-    http_request:
-
     online_image:
       - url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png"
         format: png
