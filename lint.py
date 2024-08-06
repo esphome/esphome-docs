@@ -395,7 +395,7 @@ def lint_directive_formatting(fname, content):
     include=["*.rst"],
     exclude=[
         "components/web_server.rst",
-        "components/images.rst",
+        "components/image.rst",
     ],
 )
 def lint_esphome_io_link(fname, match):
