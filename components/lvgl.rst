@@ -12,7 +12,7 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 
 .. figure:: /components/images/lvgl_main_screenshot.png
 
-In order to be able to drive a :ref:`display <display-hw>` with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended for bigger displays.
+To use LVGL with a :ref:`display <display-hw>` in ESPHome, you'll need an ESP32 or supported ESP32 variant. PSRAM is not a strict requirement but it is generally recommended, especially for color displays with resolutions larger than approximately 240x240 pixels.
 
 The graphic display should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set.
 
