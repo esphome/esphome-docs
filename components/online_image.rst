@@ -89,7 +89,10 @@ Configuration variables:
   - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
   - ``RGBA``: Full RGB color stored. Uses 4 bytes per pixel. Any pixel with an alpha value < 127 will not be drawn.
-- **use_transparency** (*Optional*, boolean): If set the alpha channel of the input image will be taken into account, and pixels with alpha < 127 will not be drawn. For image types without explicit alpha channel, the color (0, 0, 1) (very dark blue) will be mapped to black, to be able to store transparency information within the image. Explicitly transparent types (``TRANSPARENT_BINARY`` and ``RGBA``) default to ``True`` and cannot be set to ``False``; other types default to ``False``.
+- **use_transparency** (*Optional*, boolean): If set the alpha channel of the input image will be taken into account, 
+  and pixels with alpha < 127 will not be drawn. For image types without explicit alpha channel, 
+  the color (0, 0, 1) (very dark blue) will be mapped to black, to be able to store transparency information 
+  within the image. Explicitly transparent types (``TRANSPARENT_BINARY`` and ``RGBA``) default to ``true`` and cannot be set to ``false``; other types default to ``false``.
 - **update_interval** (*Optional*, int): Redownload the image when the specified time has elapsed. Defaults to ``never`` (i.e. the update component action needs to be called manually).
 
 Automations:
