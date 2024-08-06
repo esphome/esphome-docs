@@ -44,7 +44,7 @@ Configuration variables:
 - **pin_code** (*Optional*, string): The pin code of the sim card.
 - **enable_on_boot** (*Optional*, boolean): If enabled, the PPPoS interface will be enabled on boot. Defaults to ``true``.
 - **enable_cmux** (*Optional*, boolean): If enabled, CMUX will be enabled. In this mode, the modem will be able to answer `AT` commands while connected. Defaults to ``false``.
-- **enable_gnss** (*Optional*, boolean): If enabled, GNSS will be powered on, so sensors will be able to get location information. Defaults to ``false``.
+- **enable_gnss** (*Optional*, boolean): If enabled, GNSS will be powered on, so :doc:`/components/sensor/modem` will be able to get location information. Defaults to ``false``.
 - **init_at** (*Optional*, list): A list of ``AT`` commands that will be sent to the modem after the connection.
 - **power_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``PWK``, to allow power handling. Needs ``status_pin``.
 - **status_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``STATUS``, to be able to know the power state.
@@ -169,6 +169,8 @@ See Also
 --------
 
 - :doc:`network`
+- :doc:`/components/text_sensor/modem`
+- :doc:`/components/sensor/modem`
 - :doc:`/components/mqtt`
 - :doc:`/components/wireguard`
 - `SIM7600 AT command list <https://simcom.ee/documents/SIM7600C/SIM7500_SIM7600%20Series_AT%20Command%20Manual_V1.01.pdf>`__
