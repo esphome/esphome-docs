@@ -1791,7 +1791,7 @@ These triggers can be applied directly to any widget in the LVGL configuration, 
 See Also
 --------
 
-- :doc:`/components/lvgl`
+- :ref:`LVGL Main component <lvgl-main>`
 - :doc:`LVGL Examples in the Cookbook </cookbook/lvgl>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`
