@@ -48,7 +48,7 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Noblex                                | ``noblex``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
-| TCL112, Fuego                         | ``tcl112``          | yes                  |
+| Electrolux, TCL, Fuego                | ``tcl112``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Toshiba<toshiba>`               | ``toshiba``         | yes                  |
 +---------------------------------------+---------------------+----------------------+
@@ -199,6 +199,10 @@ These air conditioners support two protocols: Midea and Coolix. Therefore, when 
 .. _mitsubishi:
 
 ``mitsubishi`` **Climate**:
+
+.. note::
+
+    - When using this component with Mitsubishi units that only support cooling mode, the Off command may not work. Set **supports_heat** to ``false`` to resolve that issue.
 
 - **set_fan_mode** (*Optional*, string): Select the fan modes desired or that are supported on your remote. Defaults to ``3levels``
 

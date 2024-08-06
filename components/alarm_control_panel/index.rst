@@ -49,6 +49,7 @@ Configuration variables:
 - **on_chime** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when a zone has been marked as chime in the configuration, and it changes from closed to open. 
   See :ref:`alarm_control_panel_on_chime_trigger`.
+- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 - If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 
