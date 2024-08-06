@@ -174,6 +174,17 @@ ESPHome-specific components or components supporting ESPHome device provisioning
     Interval, components/interval, description.svg, dark-invert
     Script, components/script, description.svg, dark-invert
 
+ESPHome Configuration
+---------------------
+
+Streamline your ESPHome configuration and/or use components provided by other contributors.
+
+.. imgtable::
+
+    External Components, components/external_components, external_components.svg, dark-invert
+    Packages, components/packages, description.svg, dark-invert
+    Substitutions, components/substitutions, description.svg, dark-invert
+
 Network Hardware
 ----------------
 
@@ -677,7 +688,6 @@ Miscellaneous
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Pylontech Batteries, components/pylontech, pylontech.jpg
     Qwiic PIR Motion, components/binary_sensor/qwiic_pir, qwiic_pir.jpg
-    Remote Receiver, components/remote_receiver, remote.svg, dark-invert
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
     WireGuard, components/wireguard, wireguard_custom_logo.svg
@@ -812,8 +822,13 @@ Display Components
 .. imgtable::
 
     Display Core, components/display/index, folder-open.svg, dark-invert
+    Font Renderer, components/font, format-font.svg, dark-invert
+    Graph, components/graph, chart-line.svg, dark-invert
+    QR Code, components/qr_code, qr-code.svg, dark-invert
+    Image, components/image, image-outline.svg, dark-invert
+    Animation, components/animation, image-multiple-outline.svg, dark-invert
+    Online Image, components/online_image, image-sync-outline.svg, dark-invert
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
-    Font Renderer, components/display/fonts, format-font.svg, dark-invert
     Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.png
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
     LVGL Graphics, components/lvgl, lvgl.png
