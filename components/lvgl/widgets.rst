@@ -1666,7 +1666,7 @@ For styling, the ``keyboard`` widget uses the same settings as :ref:`lvgl-widget
     The Keyboard widget in ESPHome doesn't support popovers or custom layouts.
 
 Actions
-=======
+-------
 
 As outlined in the sections above, each widget type supports several of its own, unique actions.
 Several universal actions are also available for all widgets, these are outlined below.
@@ -1744,7 +1744,7 @@ These :ref:`actions <actions-action>` are shorthands for toggling the ``disabled
               - id: my_button_2
 
 Triggers
-========
+--------
 
 .. _lvgl-automation-triggers:
 
@@ -1789,7 +1789,7 @@ These triggers can be applied directly to any widget in the LVGL configuration, 
                 brightness: !lambda return x / 100;
 
 See Also
-========
+--------
 
 - :doc:`/components/lvgl`
 - :doc:`LVGL Examples in the Cookbook </cookbook/lvgl>`
