@@ -1893,7 +1893,7 @@ The tabs are indexed (zero-based) in the order they appear in the configuration 
 
 - ``lvgl.tabview.select`` :ref:`action <actions-action>` jumps the view to the desired tab:
     - **id** (**Required**): The ID of the tabview which receives this action.
-    - **index** (**Required**): The the zero based index of the tab to which to jump. 
+    - **index** (**Required**): The (zero-based) index of the tab to which to jump. 
     - **animated** (*Optional*, boolean): To animate the movement. Defaults to ``false``.
 
 **Triggers:**
