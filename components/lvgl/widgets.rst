@@ -1665,13 +1665,13 @@ For styling, the ``keyboard`` widget uses the same settings as :ref:`lvgl-widget
 
     The Keyboard widget in ESPHome doesn't support popovers or custom layouts.
 
+.. _lvgl-automation-actions:
+
 Actions
 -------
 
 As outlined in the sections above, each widget type supports several of its own, unique actions.
 Several universal actions are also available for all widgets, these are outlined below.
-
-.. _lvgl-automation-actions:
 
 ``lvgl.widget.update``
 **********************

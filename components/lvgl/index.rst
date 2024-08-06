@@ -499,6 +499,7 @@ LVGL supports a list of :ref:`lvgl-widgets` which can be used to draw interactiv
 Actions
 -------
 
+Widgets support :ref:`general or specific <lvgl-automation-actions>` actions.
 Several actions are available for LVGL, these are outlined below.
 
 .. _lvgl-rfrsh-act:
@@ -652,6 +653,8 @@ This :ref:`condition <common_conditions>` checks if LVGL is in the paused state 
 
 Triggers
 --------
+
+Widget level :ref:`interaction triggers <lvgl-automation-triggers>` can be configured universally, or depending on the widtget functionality.
 
 .. _lvgl-onidle-trg:
 
