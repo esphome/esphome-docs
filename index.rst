@@ -831,7 +831,7 @@ Display Components
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
     Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.png
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
-    LVGL Graphics, components/lvgl, lvgl.png
+    LVGL Graphics, components/lvgl/index, lvgl.png
 
 .. _display-hw:
 
@@ -906,14 +906,6 @@ Cover Components
     Time-Based Cover, components/cover/time_based, timer.svg, dark-invert
     Tuya Cover, components/cover/tuya, tuya.png
 
-Valve Components
-----------------
-
-.. imgtable::
-
-    Valve Core, components/valve/index, folder-open.svg, dark-invert
-    Template Valve, components/valve/template, description.svg, dark-invert
-
 Text Components
 ---------------
 
@@ -943,6 +935,14 @@ Text Sensor Components
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg, dark-invert
     WireGuard, components/wireguard, wireguard_custom_logo.svg
     WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg, dark-invert
+
+Valve Components
+----------------
+
+.. imgtable::
+
+    Valve Core, components/valve/index, folder-open.svg, dark-invert
+    Template Valve, components/valve/template, description.svg, dark-invert
 
 Climate Components
 ------------------
@@ -1129,7 +1129,6 @@ Custom Components
     Custom Sensor, components/sensor/custom, language-cpp.svg, dark-invert
     Custom Switch, components/switch/custom, language-cpp.svg, dark-invert
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg, dark-invert
-
     Custom I²C Component, custom/i2c, language-cpp.svg, dark-invert
     Custom SPI Component, custom/spi, language-cpp.svg, dark-invert
     Custom UART Component, custom/uart, language-cpp.svg, dark-invert

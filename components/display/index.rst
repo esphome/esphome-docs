@@ -8,9 +8,11 @@ Display Component
 The ``display`` component houses ESPHome's powerful rendering and display
 engine. Fundamentally, there are these types of displays:
 
-- Character displays like :doc:`7-Segment <max7219>` or :doc:`LCD <lcd_display>`.
+- Character displays like :doc:`7-Segment displays <max7219>` or
+  :doc:`LCD displays <lcd_display>`.
 - Serial displays like :doc:`nextion` that have their own processors for graphics rendering.
-- Graphical displays which can toggle ON/OFF any pixel, like :doc:`E-Paper <waveshare_epaper>`,
+- Graphical binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper <waveshare_epaper>`,
+
   :doc:`OLED <ssd1306>` or :doc:`TFT <ili9xxx>` displays.
 
 For graphical displays, which offer the greatest flexibility, there are two options: 
