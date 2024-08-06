@@ -684,12 +684,7 @@ See :ref:`lvgl-cook-idlescreen` for an example illustrating how to implement scr
 See Also
 --------
 
-.. toctree::
-    :maxdepth: 1
-    :glob:
-
-    *
-
+- :doc:`/components/lvgl/widgets`
 - :doc:`LVGL Examples in the Cookbook </cookbook/lvgl>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`
