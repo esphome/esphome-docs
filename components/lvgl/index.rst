@@ -10,7 +10,7 @@ LVGL Graphics
 `LVGL <https://lvgl.io/>`__ (Light and Versatile Graphics Library) is a free and open-source 
 embedded graphics library to create beautiful UIs for any MCU, MPU and display type. ESPHome supports `LVGL version 8 <https://docs.lvgl.io/8.4/>`__.
 
-.. figure:: /components/images/lvgl_main_screenshot.png
+.. figure:: /components/lvgl/images/lvgl_main_screenshot.png
 
 In order to be able to drive a :ref:`display <display-hw>` with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended for bigger displays.
 
@@ -210,7 +210,7 @@ The binary will only include any of the above if used in the configuration.
 
 You can display the embedded symbols among the text by their codepoint address preceded by ``\u``. For example: ``\uF00C``:
 
-.. figure:: /components/images/lvgl_symbols.png
+.. figure:: /components/lvgl/images/lvgl_symbols.png
     :align: center
 
 .. note::
@@ -233,7 +233,7 @@ Style properties
 
 LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing>`__. A widget's *box* is built from the following parts:
 
-.. figure:: /components/images/lvgl_boxmodel.png
+.. figure:: /components/lvgl/images/lvgl_boxmodel.png
     :align: center
 
 - *bounding box*: the box defined with ``width`` and ``height`` of the widgets (pixels or parent content area percentage; not drawn, just for calculations).
