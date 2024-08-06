@@ -32,7 +32,7 @@ Configuration variables:
 - **dump** (*Optional*, list): Decode and dump these remote codes in the logs (at log.level=DEBUG).
   Set to ``all`` to dump all available codecs:
 
-  - **abbwelcome**: Decode and dump ABB-Welcome codes. Messages are sent via copper wires. See :ref:`remote_transmitter-transmit_abbwelcome`
+  - **abbwelcome**: Decode and dump ABB-Welcome codes. Messages are sent via copper wires. See :ref:`transmitter description <remote_transmitter-transmit_abbwelcome>` for more details.
   - **aeha**: Decode and dump AEHA infrared codes.
   - **byronsx**: Decode and dump Byron SX doorbell RF codes.
   - **canalsat**: Decode and dump CanalSat infrared codes.
@@ -242,17 +242,14 @@ Configuration variables:
 
 Remote code selection (exactly one of these has to be included):
 
-- **abbwelcome**: Trigger on a decoded ABB-Welcome code with the given data.
+- **abbwelcome**: Trigger on a decoded ABB-Welcome code with the given data, see the :ref:`transmitter description <remote_transmitter-transmit_abbwelcome>` for more info.
 
-  - **source_address** (**Required**, int): The source address to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
-    for more info.
-  - **destination_address** (**Required**, int): The destination address to trigger on, see
-    :ref:`remote_transmitter-transmit_abbwelcome` for more info.
+  - **source_address** (**Required**, int): The source address to trigger on.
+  - **destination_address** (**Required**, int): The destination address to trigger on.
   - **three_byte_address** (**Optional**, boolean): The length of the source and destination address. ``false`` means two bytes
     and ``true`` means three bytes. Defaults to ``false``.
   - **retransmission** (**Optional**, boolean): ``true`` if the message was re-transmitted. Defaults to ``false``.
-  - **message_type** (**Required**, int): The message type to trigger on, see :ref:`remote_transmitter-transmit_abbwelcome`
-    for more info.
+  - **message_type** (**Required**, int): The message type to trigger on.
   - **message_id** (**Optional**, int): The random message ID to trigger on, see dumper output for more info. Defaults to any ID.
   - **data** (**Optional**, 0-7 bytes list): The code to listen for. Usually you only need to copy this directly from the
     dumper output. Defaults to ``[]``
@@ -260,7 +257,7 @@ Remote code selection (exactly one of these has to be included):
 - **aeha**: Trigger on a decoded AEHA remote code with the given data.
 
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
-  - **data** (**Required**, 3-35 bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_aeha`
+  - **data** (**Required**, 3-35 bytes list): The code to listen for, see :ref:`transmitter description <remote_transmitter-transmit_aeha>`
     for more info. Usually you only need to copy this directly from the dumper output.
 
 - **byronsx**: Trigger on a decoded Byron SX Doorbell RF remote code with the given data.
@@ -317,7 +314,7 @@ Remote code selection (exactly one of these has to be included):
 
 - **haier**: Trigger on a Haier remote code with the given code.
 
-  - **code** (**Required**, 13-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_haier`
+  - **code** (**Required**, 13-bytes list): The code to listen for, see :ref:`transmitter description <remote_transmitter-transmit_haier>`
     for more info. Usually you only need to copy this directly from the dumper output.
 
 - **lg**: Trigger on a decoded LG remote code with the given data.
@@ -332,7 +329,7 @@ Remote code selection (exactly one of these has to be included):
 
 - **midea**: Trigger on a Midea remote code with the given code.
 
-  - **code** (**Required**, 5-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_midea`
+  - **code** (**Required**, 5-bytes list): The code to listen for, see :ref:`transmitter description <remote_transmitter-transmit_midea>`
     for more info. Usually you only need to copy first 5 bytes directly from the dumper output.
 
 - **nec**: Trigger on a decoded NEC remote code with the given data.
@@ -359,14 +356,14 @@ Remote code selection (exactly one of these has to be included):
 
 - **pronto**: Trigger on a Pronto remote code with the given code.
 
-  - **data** (**Required**, string): The code to listen for, see :ref:`remote_transmitter-transmit_raw`
+  - **data** (**Required**, string): The code to listen for, see :ref:`transmitter description <remote_transmitter-transmit_raw>`
     for more info. Usually you only need to copy this directly from the dumper output.
   - **delta** (**Optional**, integer): This parameter allows you to manually specify the allowed difference
     between what Pronto code is specified, and what IR signal has been sent by the remote control.
 
 - **raw**: Trigger on a raw remote code with the given code.
 
-  - **code** (**Required**, list): The code to listen for, see :ref:`remote_transmitter-transmit_raw`
+  - **code** (**Required**, list): The code to listen for, see :ref:`transmitter description <remote_transmitter-transmit_raw>`
     for more info. Usually you only need to copy this directly from the dumper output.
 
 - **rc5**: Trigger on a decoded RC5 remote code with the given data.
@@ -440,7 +437,7 @@ Remote code selection (exactly one of these has to be included):
 
 - **mirage**: Trigger on a Mirage remote code with the given code.
 
-  - **code** (**Required**, 14-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_mirage`
+  - **code** (**Required**, 14-bytes list): The code to listen for, see :ref:`transmitter description <remote_transmitter-transmit_mirage>`
     for more info. Usually you only need to copy this directly from the dumper output.
 
 .. note::
@@ -495,8 +492,9 @@ See Also
 
 - :doc:`index`
 - :doc:`/components/remote_transmitter`
+- :ref:`remote-setting-up-infrared`
+- :ref:`remote-setting-up-rf`
 - :doc:`/components/rf_bridge`
 - `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
-- `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote/remote_receiver.h`
 - :ghedit:`Edit`
