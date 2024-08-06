@@ -182,8 +182,8 @@ Streamline your ESPHome configuration and/or use components provided by other co
 .. imgtable::
 
     External Components, components/external_components, external_components.svg, dark-invert
-    Packages, components/packages/index, description.svg, dark-invert
-    Substitutions, components/substitutions/index, description.svg, dark-invert
+    Packages, components/packages, description.svg, dark-invert
+    Substitutions, components/substitutions, description.svg, dark-invert
 
 Network Hardware
 ----------------
