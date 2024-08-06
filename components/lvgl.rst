@@ -1876,7 +1876,7 @@ The tab view object can be used to organize content in tabs. The tab buttons are
 .. figure:: /components/images/lvgl_tabview.png
     :align: center
 
-The tabs are indexed (zero based) in the order they appear in the configuration file. A new tab can be selected either by clicking on a tab button, by sliding horizontally on the content or via ``lvgl.tabview.select`` :ref:`action <actions-action>`, specifying its index.
+The tabs are indexed (zero-based) in the order they appear in the configuration file. A new tab can be selected either by clicking on a tab button, by sliding horizontally on the content or via the ``lvgl.tabview.select`` :ref:`action <actions-action>`, specifying the tab's index.
 
 **Configuration variables:**
 
