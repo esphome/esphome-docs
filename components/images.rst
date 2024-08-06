@@ -65,10 +65,11 @@ Configuration variables:
 .. note::
 
     To use images you will need to have the python ``pillow`` package installed.
-    If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should already be
-    installed.
-    Additionally, if you want to use SVG images (including MDI images), you will additionally need to have the python ``cairosvg`` package installed.
-    
+    Additionally, if you want to use SVG images (including MDI images), you will
+    additionally need to have the python ``cairosvg`` package installed.
+
+    If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should already be installed.
+
     Use ``pip install "esphome[displays]"`` to install these optional dependencies with
     the versions that ESPHome requires.
 
