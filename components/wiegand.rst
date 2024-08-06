@@ -1,3 +1,5 @@
+.. _wiegand:
+
 Wiegand keypad and tag reader
 =============================
 
