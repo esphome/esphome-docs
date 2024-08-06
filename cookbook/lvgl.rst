@@ -22,7 +22,7 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 Local light switch
 ------------------
 
-.. figure:: /components/images/lvgl_switch.png
+.. figure:: /components/lvgl/images/lvgl_switch.png
     :align: left
 
 The easiest way to integrate an LVGL :ref:`lvgl-wgt-swi` widget and a switch or light is with :ref:`automations <automation>`: 
