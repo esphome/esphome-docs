@@ -12,7 +12,7 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 
 .. figure:: /components/lvgl/images/lvgl_main_screenshot.png
 
-In order to be able to drive a :ref:`display <display-hw>` with LVGL under ESPHome you need an MCU from the ESP32 family. Although PSRAM is not a strict requirement, it is recommended for bigger displays.
+To use LVGL with a :ref:`display <display-hw>` in ESPHome, you'll need an ESP32 or supported ESP32 variant. PSRAM is not a strict requirement but it is generally recommended, especially for color displays with resolutions larger than approximately 240x240 pixels.
 
 The graphic display should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set.
 
@@ -103,7 +103,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 
     .. tip::
 
-        When using binary sensors (from physical keys) to interact with LVGL, if there are only 3 keys available, they are best used when configured as a rotary encoder, where ``LEFT`` and ``RIGHT`` act like the rotary wheel, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-automation-triggers>`. With 4 or more keys, a keypad configuration suits better. For example a 5-key keypad might use ``PREV``, ``NEXT``, ``UP``, ``DOWN`` and ``ENTER``: ``PREV``/``NEXT`` can select a widget within the group, ``UP``/``DOWN`` changes the value, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-automation-triggers>`.
+        When using binary sensors (from physical keys) to interact with LVGL, if there are only three keys available, they are best used when configured as a rotary encoder, where ``LEFT`` and ``RIGHT`` act like the rotary wheel, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-automation-triggers>`. With four or more keys, a keypad configuration is generally more appropriate. For example, a keypad consisting of five keys might use ``PREV``, ``NEXT``, ``UP``, ``DOWN`` and ``ENTER``; ``PREV``/``NEXT`` are used to select a widget within the group, ``UP``/``DOWN`` changes the selected value and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-automation-triggers>`.
         
         The ``long_press_time`` and ``long_press_repeat_time`` can be fine-tuned also by setting them to ``never`` and using the ``autorepeat`` filter on each binary sensor separately.
 
