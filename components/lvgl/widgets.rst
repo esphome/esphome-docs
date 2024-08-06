@@ -7,7 +7,7 @@ At the next level of the LVGL object hierarchy are the widgets, which support st
 
 Widgets can have children, which can be any other widgets. Think of this as a nested structure. The child widgets move with the parent and, if the parent is hidden, its children will also be hidden.
 
-By default, LVGL draws new widgets on top of old widgets, including their children. When widgets have children, property inheritance takes place. Some properties (typically those related to text and opacity) can be inherited from the parent widgets's styles. When the property is inheritable, the parent will be searched for an object which specifies a value for the property. The parents will use their own :ref:`state <lvgl-wgtprop-state>` to determine the value. For example, if a button is pressed and the text color is defined by the "pressed" state, this "pressed" text color will be used. 
+By default, LVGL draws new widgets on top of old widgets, including their children. When widgets have children, property inheritance takes place. Some properties (typically those related to text and opacity) can be inherited from the parent widgets's styles. When the property is inheritable, the parent will be searched for an object which specifies a value for the property. The parents will use their own :ref:`state <lvgl-widgetproperty-state>` to determine the value. For example, if a button is pressed and the text color is defined by the "pressed" state, this "pressed" text color will be used. 
 
 Common properties
 -----------------
@@ -36,7 +36,7 @@ The properties below are common to all widgets.
     Similarly to CSS, LVGL also supports ``min_width``, ``max_width``, ``min_height`` and ``max_height``. These are limits preventing a widget's size from becoming smaller/larger than these values. They are especially useful if the size is set by percentage or ``SIZE_CONTENT``.
 
 - **min_width**, **max_width**, **min_height**, **max_height** (*Optional*, int16 or percentage): Sets a minimal/maximal width or a minimal/maximal height. Pixel and percentage values can be used. Percentage values are relative to the dimensions of the parent's content area. Defaults to ``0%``.
-- **scrollbar_mode** (*Optional*, string): If a child widget is outside its parent content area (the size without padding), the parent can become scrollable (see the ``scrollable`` :ref:`flag <lvgl-objupdflag-act>`). The widget can either be scrolled horizontally or vertically in one stroke. Scroll bars can appear depending on the setting:
+- **scrollbar_mode** (*Optional*, string): If a child widget is outside its parent content area (the size without padding), the parent can become scrollable (see the ``scrollable`` :ref:`flag <lvgl-widget-flags>`). The widget can either be scrolled horizontally or vertically in one stroke. Scroll bars can appear depending on the setting:
     - ``"OFF"``: Never show the scroll bars (use the double quotes!).
     - ``"ON"``: Always show the scroll bars (use the double quotes!).
     - ``"ACTIVE"``: Show scroll bars while a widget is being scrolled.
@@ -58,7 +58,7 @@ The properties below are common to all widgets.
 - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
 - **widgets** (*Optional*, list): A list of LVGL widgets to be drawn as children of this widget. Same configuration option as at the main component.
 
-.. _lvgl-wgtprop-state:
+.. _lvgl-widgetproperty-state:
 
 - **state** (*Optional*, dict): Widgets or their (sub)parts can have have states, which support separate styling. These state styles inherit from the theme, but can be locally set or overridden within style definitions. Can be one of:
     - **default** (*Optional*, boolean): Normal, released state.
@@ -87,7 +87,7 @@ The state itself can be can be changed by interacting with the widget, or throug
 
 See :ref:`lvgl-cookbook-cover` for a cookbook example illustrating how to use styling and properties to show different states of a Home Assistant entity.
 
-.. _lvgl-objupdflag-act:
+.. _lvgl-widget-flags:
 
 In addition to visual styling, each widget supports some boolean **flags** to influence the behavior:
 
@@ -274,7 +274,7 @@ Simple push (momentary) or toggle (two-states) button.
 
 **Configuration variables:**
 
-- **checkable** (*Optional*, boolean): A significant :ref:`flag <lvgl-objupdflag-act>` to make a toggle button (which remains pressed in ``checked`` state). Defaults to ``false``.
+- **checkable** (*Optional*, boolean): A significant :ref:`flag <lvgl-widget-flags>` to make a toggle button (which remains pressed in ``checked`` state). Defaults to ``false``.
 - Style options from :ref:`lvgl-styling` for the background of the button. Uses the typical background style properties.
 
 A notable state is ``checked`` (boolean) which can have different styles applied.
@@ -864,7 +864,7 @@ The arc consists of a background and a foreground arc. The indicator foreground 
 - **indicator** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. Draws *another arc using the arc style* properties. Its padding values are interpreted relative to the background arc.
 - any :ref:`Styling <lvgl-styling>` and state-based option to override styles inherited from parent. The arc's size and position will respect the padding style properties.
 
-If the ``adv_hittest`` :ref:`flag <lvgl-objupdflag-act>` is enabled the arc can be clicked through in the middle. Clicks are recognized only on the ring of the background arc.
+If the ``adv_hittest`` :ref:`flag <lvgl-widget-flags>` is enabled the arc can be clicked through in the middle. Clicks are recognized only on the ring of the background arc.
 
 .. note::
 
@@ -1676,10 +1676,10 @@ Several universal actions are also available for all widgets, these are outlined
 ``lvgl.widget.update``
 **********************
 
-This powerful :ref:`action <actions-action>` allows changing/updating any widget's common :ref:`style property <lvgl-styling>`, state (templatable) or :ref:`flag <lvgl-objupdflag-act>` on the fly.
+This powerful :ref:`action <actions-action>` allows changing/updating any widget's common :ref:`style property <lvgl-styling>`, state (templatable) or :ref:`flag <lvgl-widget-flags>` on the fly.
 
 - **id** (**Required**): The ID or a list of IDs of widgets configured in LVGL which you want update.
-- The widget's common :ref:`style property <lvgl-styling>`, state (templatable) or :ref:`flag <lvgl-objupdflag-act>`.
+- The widget's common :ref:`style property <lvgl-styling>`, state (templatable) or :ref:`flag <lvgl-widget-flags>`.
 
 .. code-block:: yaml
 
@@ -1706,7 +1706,7 @@ Check out in the Cookbook :ref:`lvgl-cookbook-binent` for an example illustratin
 ``lvgl.widget.hide``, ``lvgl.widget.show``
 ******************************************
 
-These :ref:`actions <actions-action>` are shorthands for toggling the ``hidden`` :ref:`flag <lvgl-objupdflag-act>` of any widget.
+These :ref:`actions <actions-action>` are shorthands for toggling the ``hidden`` :ref:`flag <lvgl-widget-flags>` of any widget.
 
 - **id** (**Required**): The ID or a list of IDs of widgets configured in LVGL which you want to hide or show.
 

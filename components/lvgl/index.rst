@@ -304,7 +304,7 @@ Themes
 
 The widgets support lots of :ref:`lvgl-styling` to customize their appearance and behavior.
 
-You can configure a global theme for all widgets at the top level with the ``theme`` configuration variable. In the example below, all the ``arc``, ``slider`` and ``button`` widgets will, by default, use the styles and properties defined here. A combination of styles and :ref:`states <lvgl-wgtprop-state>` can be chosen for every widget.
+You can configure a global theme for all widgets at the top level with the ``theme`` configuration variable. In the example below, all the ``arc``, ``slider`` and ``button`` widgets will, by default, use the styles and properties defined here. A combination of styles and :ref:`states <lvgl-widgetproperty-state>` can be chosen for every widget.
 
 .. code-block:: yaml
 
@@ -357,7 +357,7 @@ And then you apply these selected styles to two labels, and only change very spe
           styles: date_style
           y: +20
 
-Additionally, you can change the styles based on the :ref:`state <lvgl-wgtprop-state>` property of the widgets or their parts. If you want to set a property for all states (e.g. red background color) just set it for the default state at the root of the widget. If the widget can't find a property for its current state it will fall back to this.
+Additionally, you can change the styles based on the :ref:`state <lvgl-widgetproperty-state>` property of the widgets or their parts. If you want to set a property for all states (e.g. red background color) just set it for the default state at the root of the widget. If the widget can't find a property for its current state it will fall back to this.
 
 In the example below, you have an ``arc`` with some styles set here. Note how you change the ``arc_color`` of the ``indicator`` part, based on state changes:
 
@@ -392,7 +392,7 @@ The layout configuration options are applied to any parent widget or page, influ
 
 Checkout :ref:`lvgl-cookbook-flex`, :ref:`lvgl-cookbook-grid` and :ref:`lvgl-cookbook-weather` in the Cookbook for examples illustrating how to automate widget positioning, potentially reducing the size of your device's YAML configuration, and saving you from lots of manual calculations.
 
-The ``hidden``, ``ignore_layout`` and ``floating`` :ref:`flags <lvgl-objupdflag-act>` can be used on widgets to ignore them in layout calculations.
+The ``hidden``, ``ignore_layout`` and ``floating`` :ref:`flags <lvgl-widget-flags>` can be used on widgets to ignore them in layout calculations.
 
 **Configuration variables:**
 
