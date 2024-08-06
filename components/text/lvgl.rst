@@ -1,4 +1,4 @@
-.. _lvgl-txt:
+.. _lvgl-text:
 
 LVGL Text
 =========

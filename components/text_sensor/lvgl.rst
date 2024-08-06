@@ -1,4 +1,4 @@
-.. _lvgl-txs:
+.. _lvgl-text-sensor:
 
 LVGL Text Sensor
 ================

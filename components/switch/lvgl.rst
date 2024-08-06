@@ -1,4 +1,4 @@
-.. _lvgl-swi:
+.. _lvgl-switch:
 
 LVGL Switch
 ===========

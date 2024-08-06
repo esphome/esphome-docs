@@ -1,4 +1,4 @@
-.. _lvgl-lgh:
+.. _lvgl-light:
 
 LVGL Light
 ==========

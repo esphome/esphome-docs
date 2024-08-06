@@ -1,4 +1,4 @@
-.. _lvgl-cook:
+.. _lvgl-cookbook:
 
 LVGL: Tips and Tricks
 =====================
@@ -17,7 +17,7 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
     The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen with dimensions of ``240x320px``; if your display's dimensions differ, you'll need to adjust them in order to obtain the expected results.
 
-.. _lvgl-cook-relay:
+.. _lvgl-cookbook-relay:
 
 Local light switch
 ------------------
@@ -55,7 +55,7 @@ The easiest way to integrate an LVGL :ref:`lvgl-widget-switch` widget and a swit
                   on_click:
                     light.toggle: local_light
 
-.. _lvgl-cook-binent:
+.. _lvgl-cookbook-binent:
 
 Remote light button
 -------------------
@@ -100,7 +100,7 @@ If you'd like to control a remote light which appears as an entity in Home Assis
                         data: 
                           entity_id: light.remote_light
 
-.. _lvgl-cook-bright:
+.. _lvgl-cookbook-bright:
 
 Light brightness slider
 -----------------------
@@ -149,7 +149,7 @@ Note that Home Assistant expects an integer at the ``brightness`` parameter of t
 
 This is applicable to action calls like ``fan.set_percentage`` or ``valve.set_valve_position``, too; the only difference is that ``max_value`` has to be ``100``.
 
-.. _lvgl-cook-volume:
+.. _lvgl-cookbook-volume:
 
 Media player volume slider
 --------------------------
@@ -201,7 +201,7 @@ The ``adv_hittest`` option ensures that accidental touches to the screen won't c
 
     Keep in mind that ``on_value`` is triggered *continuously* by the slider while it's being dragged. This generally has a negative effect on performance. For example, you shouldn't use this trigger to set the target temperature of a heat pump via Modbus, or set the position of motorized covers, because it will likely cause malfunctions. To mitigate this, consider using a universal widget trigger like ``on_release`` to get the ``x`` variable once after the interaction has completed.
 
-.. _lvgl-cook-gauge:
+.. _lvgl-cookbook-gauge:
 
 Semicircle gauge
 ----------------
@@ -301,7 +301,7 @@ The trick here is to have a parent :ref:`lvgl-widget-obj` which contains the oth
 
     The ``obj`` used to hide the middle part of the meter indicator line has ``radius`` equal to half of the ``width`` and ``height``. This results in a circle - which is actually a square with extra large rounded corners. 
 
-.. _lvgl-cook-thermometer:
+.. _lvgl-cookbook-thermometer:
 
 Thermometer
 -----------
@@ -455,7 +455,7 @@ If you change the size of the widget, to obtain a uniform gradient, be sure to i
 
     You can omit the ``obj`` used to hide the middle part of meter indicator line by using a bitmap ``image`` indicator as needle, were only the part hanging above the ticks scale is visible, the rest is transparent.
 
-.. _lvgl-cook-climate:
+.. _lvgl-cookbook-climate:
 
 Climate control
 ---------------
@@ -527,7 +527,7 @@ First we import from Home Assistant the current target temperature of the climat
                           - label:
                               text: "+"
 
-.. _lvgl-cook-cover:
+.. _lvgl-cookbook-cover:
 
 Cover status and control
 ------------------------
@@ -652,7 +652,7 @@ Just as in the previous examples, we need to get the state of the cover first. W
                           data:
                             entity_id: cover.myroom
 
-.. _lvgl-cook-theme:
+.. _lvgl-cookbook-theme:
 
 Theme and style definitions
 ---------------------------
@@ -759,7 +759,7 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
 
 Note that style definitions can contain common properties too, like positioning and sizing.
 
-.. _lvgl-cook-navigator:
+.. _lvgl-cookbook-navigator:
 
 Page navigation footer
 ----------------------
@@ -805,9 +805,9 @@ For the navigation bar we can use a :ref:`lvgl-widget-buttonmatrix`. Note how th
                       then:
                         lvgl.page.next:
 
-For this example to appear correctly, use the theme and style options from :ref:`above <lvgl-cook-theme>` and LVGL's own library :ref:`fonts <lvgl-fonts>`.
+For this example to appear correctly, use the theme and style options from :ref:`above <lvgl-cookbook-theme>` and LVGL's own library :ref:`fonts <lvgl-fonts>`.
 
-.. _lvgl-cook-statico:
+.. _lvgl-cookbook-statico:
 
 API connection status icon
 --------------------------
@@ -854,7 +854,7 @@ Of note:
 - The widget starts *hidden* at boot and it's only shown when triggered by connection with the API.
 - Alignment of the widget: since the *align* option is given, the *x* and *y* options are used to position the widget relative to the calculated position.
 
-.. _lvgl-cook-titlebar:
+.. _lvgl-cookbook-titlebar:
 
 Title bar for each page
 -----------------------
@@ -896,9 +896,9 @@ To put a title bar behind the status icon, we need to add it to each page, also 
                       text_color: 0xFFFFFF
             ...
 
-For this example to work, use the theme and style options from :ref:`above <lvgl-cook-theme>`.
+For this example to work, use the theme and style options from :ref:`above <lvgl-cookbook-theme>`.
 
-.. _lvgl-cook-flex:
+.. _lvgl-cookbook-flex:
 
 Flex layout positioning
 -----------------------
@@ -908,7 +908,7 @@ Flex layout positioning
 .. figure:: images/lvgl_cook_flex_layout.png
     :align: center
 
-This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefer fully-featured individual buttons, as they offer a wider range of customization possibilities as seen in the :ref:`lvgl-cook-cover` example. Here we use the **Flex** layout:
+This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefer fully-featured individual buttons, as they offer a wider range of customization possibilities as seen in the :ref:`lvgl-cookbook-cover` example. Here we use the **Flex** layout:
 
 .. code-block:: yaml
 
@@ -1023,9 +1023,9 @@ This example illustrates a control panel for three covers, made up of labels and
                               align: CENTER
                               text: "\U000F0045"
 
-This saved you from a considerable amount of manual calculation of widget positioning which would otherwise be required to place them manually with ``x`` and ``y``! You only need to determine a common width and height for your widgets to distribute them on the page as you prefer. (:ref:`lvgl-cook-icontext` below shows how to use custom icons.)
+This saved you from a considerable amount of manual calculation of widget positioning which would otherwise be required to place them manually with ``x`` and ``y``! You only need to determine a common width and height for your widgets to distribute them on the page as you prefer. (:ref:`lvgl-cookbook-icontext` below shows how to use custom icons.)
 
-.. _lvgl-cook-grid:
+.. _lvgl-cookbook-grid:
 
 Grid layout positioning
 -----------------------
@@ -1173,9 +1173,9 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                               align: CENTER
                               text: "\U000F0045"
 
-The big advantage here is that whenever you need to add, for example, an extra column of buttons for a new cover, you just simply append it to the ``grid_columns`` variable, and add the corresponding widgets as above. With ``STRETCH`` their sizes and positions will automatically be calculated to fill in the cells, while the parent's ``pad_all``, ``pad_row`` and ``pad_column`` can help with spacing between them. See :ref:`lvgl-cook-weather` further down this page for another example relying on **Grid**.
+The big advantage here is that whenever you need to add, for example, an extra column of buttons for a new cover, you just simply append it to the ``grid_columns`` variable, and add the corresponding widgets as above. With ``STRETCH`` their sizes and positions will automatically be calculated to fill in the cells, while the parent's ``pad_all``, ``pad_row`` and ``pad_column`` can help with spacing between them. See :ref:`lvgl-cookbook-weather` further down this page for another example relying on **Grid**.
 
-.. _lvgl-cook-btlg:
+.. _lvgl-cookbook-btlg:
 
 ESPHome boot screen
 -------------------
@@ -1232,7 +1232,7 @@ To display a boot image with a spinner animation which disappears automatically 
               on_press:
                 - lvgl.widget.hide: boot_screen
 
-.. _lvgl-cook-icontext:
+.. _lvgl-cookbook-icontext:
 
 MDI icons in text
 -----------------
@@ -1280,14 +1280,14 @@ In the example below, we use the default set of glyphs from RobotoCondensed-Regu
     - To use the desired icon, prepend the copied codepoint with ``\U000``. The Unicode character escape sequence has to start with capital ``\U`` and have exactly 8 hexadecimal digits.
     - To translate the escape sequence into the real glyph, make sure you enclose your strings in double quotes.    
 
-.. _lvgl-cook-ckboxmark:
+.. _lvgl-cookbook-ckboxmark:
 
 Restore checkbox mark
 ---------------------
 
 If you configure a custom font as the ``default_font`` used by LVGL and this font does not contain the `FontAwesome <https://fontawesome.com/>`__ symbols, you may observe that some widgets won't display correctly; specifically :ref:`lvgl-widget-checkbox` won't show the checkmark when it's checked.
 
-To work around this issue, simply import only the checkmark symbol in the desired size and apply it through :ref:`lvgl-cook-theme` to all the checkboxes in the configuration:
+To work around this issue, simply import only the checkmark symbol in the desired size and apply it through :ref:`lvgl-cookbook-theme` to all the checkboxes in the configuration:
 
 .. code-block:: yaml
 
@@ -1310,7 +1310,7 @@ To work around this issue, simply import only the checkmark symbol in the desire
 
 You could of course simply apply one of the built-in ``montserrat_`` packs, but that would not be beneficial on the binary size - it would uselessly include the entire set of glyphs in the flash.
 
-.. _lvgl-cook-iconstat:
+.. _lvgl-cookbook-iconstat:
 
 Toggle state icon button
 ------------------------
@@ -1318,9 +1318,9 @@ Toggle state icon button
 .. figure:: images/lvgl_cook_font_binstat.png
     :align: left
 
-A common use case for icons is a status display. For example, a checkable (toggle) button will display different icons based on the status of a light or switch. To put an icon on a button you use a :ref:`lvgl-widget-label` widget as the child of the :ref:`lvgl-widget-button`. The coloring can already be different thanks to the :ref:`lvgl-cook-theme` where you can set a different color for the ``checked`` state. Additionally, by using a ``text_sensor`` to import the state from Home Assistant, we can not only track the ``on`` state, but also the ``unavailable`` or ``unknown`` states to apply *disabled styles* for these cases.
+A common use case for icons is a status display. For example, a checkable (toggle) button will display different icons based on the status of a light or switch. To put an icon on a button you use a :ref:`lvgl-widget-label` widget as the child of the :ref:`lvgl-widget-button`. The coloring can already be different thanks to the :ref:`lvgl-cookbook-theme` where you can set a different color for the ``checked`` state. Additionally, by using a ``text_sensor`` to import the state from Home Assistant, we can not only track the ``on`` state, but also the ``unavailable`` or ``unknown`` states to apply *disabled styles* for these cases.
 
-If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like this:
+If we take our previous :ref:`lvgl-cookbook-binent` example, we can modify it like this:
 
 .. code-block:: yaml
 
@@ -1382,7 +1382,7 @@ If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like t
                         data: 
                           entity_id: light.remote_light
 
-.. _lvgl-cook-iconbatt:
+.. _lvgl-cookbook-iconbatt:
 
 Battery status icon
 -------------------
@@ -1465,7 +1465,7 @@ Another example for using MDI icons is to display battery percentage in 10 steps
                   text_font: battery_icons_20
                   text: "\U000F0091" # start with mdi-battery-unknown
 
-.. _lvgl-cook-animbatt:
+.. _lvgl-cookbook-animbatt:
 
 Battery charging animation
 --------------------------
@@ -1557,7 +1557,7 @@ To have an animation illustrating a battery charging, you can use :ref:`lvgl-wid
 
     Use ``x``, ``y``, ``align`` widget properties for precise positioning.
 
-.. _lvgl-cook-clock:
+.. _lvgl-cookbook-clock:
 
 An analog clock
 ---------------
@@ -1683,7 +1683,7 @@ The script runs at the beginning of every minute to update the line positions fo
                 static const char * const day_names[] = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
                 return day_names[id(time_comp).now().day_of_week - 1];
 
-.. _lvgl-cook-keypad:
+.. _lvgl-cookbook-keypad:
 
 A numeric input keypad
 ----------------------
@@ -1826,7 +1826,7 @@ Of note:
 - Changing the background color of the buttons in ``pressed`` state.
 - Use of the ``key_code`` configuration to send a different character to ``key_collector`` instead of the displayed symbol.
 
-.. _lvgl-cook-weather:
+.. _lvgl-cookbook-weather:
 
 Weather forecast panel
 ----------------------
@@ -2120,7 +2120,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
               
 The automations will be triggered to update the labels every time the corresponding entities change, and when the ESPHome comes alive - the reason you also need the :doc:`/components/binary_sensor/status`. Note that you'll need to adjust the entity IDs corresponding to your ESPHome node depedning on how you :ref:`configured it to use its name<esphome-configuration_variables>`.
 
-.. _lvgl-cook-idlescreen:
+.. _lvgl-cookbook-idlescreen:
 
 Turn off screen when idle
 -------------------------
@@ -2166,7 +2166,7 @@ LVGL has a notion of screen inactivity -- in other words, the time since the las
         step: 5
         mode: box
 
-.. _lvgl-cook-antiburn:
+.. _lvgl-cookbook-antiburn:
 
 Prevent burn-in of LCD
 ----------------------

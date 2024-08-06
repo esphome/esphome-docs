@@ -1,4 +1,4 @@
-.. _lvgl-sel:
+.. _lvgl-select:
 
 LVGL Select
 ===========
