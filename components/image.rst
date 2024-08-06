@@ -9,6 +9,8 @@ Images
 
 Use this component to store graphical images on the device, you can then draw the images on compatible displays.
 
+For showing images downloaded at runtime, take a look at the :ref:`Online Image <online_image>` component.
+
 .. code-block:: yaml
 
     image:
@@ -121,4 +123,3 @@ be supplied to modify the color used to represent the on and off bits respective
 
 You can also use this to invert images in two color displays, use ``COLOR_OFF`` then ``COLOR_ON``
 as the additional parameters.
-
