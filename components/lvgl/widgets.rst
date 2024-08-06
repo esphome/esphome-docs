@@ -123,7 +123,7 @@ In addition to visual styling, each widget supports some boolean **flags** to in
 .. _lvgl-widget-label:
 
 ``label``
----------
+*********
 
 A label is the basic widget type that is used to display text.
 
@@ -199,7 +199,7 @@ The ``label`` can be also integrated as :doc:`Text </components/text/lvgl>` or :
 .. _lvgl-widget-textarea:
 
 ``textarea``
-------------
+************
 
 The textarea is an extended label widget which displays a cursor and allows the user to input text. Long lines are wrapped and when the text becomes long enough the text area can be scrolled. It supports one line mode and password mode, where typed characters are replaced visually with bullets or asterisks.
 
@@ -265,7 +265,7 @@ The ``textarea`` can be also integrated as :doc:`Text </components/text/lvgl>` o
 .. _lvgl-widget-button:
 
 ``button``
-----------
+**********
 
 Simple push (momentary) or toggle (two-states) button. 
 
@@ -329,7 +329,7 @@ See :ref:`lvgl-cookbook-binent` for an example illustrating how to use a checkab
 .. _lvgl-widget-buttonmatrix:
 
 ``buttonmatrix``
-----------------
+****************
 
 The button matrix widget is a lightweight way to display multiple buttons in rows and columns. It's lightweight because the buttons are not actually created but instead simply drawn on the fly. This reduces the memory footprint of each button from approximately 200 bytes (for both the button and its label widget) down to only eight bytes.
 
@@ -461,7 +461,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
 .. _lvgl-widget-switch:
 
 ``switch``
-----------
+**********
 
 The switch looks like a little slider and can be used to turn something on and off.
 
@@ -505,7 +505,7 @@ See :ref:`lvgl-cookbook-relay` for an example how to use a switch to act on a lo
 .. _lvgl-widget-checkbox:
 
 ``checkbox``
-------------
+************
 
 The checkbox widget is made internally from a *tick box* and a label. When the checkbox is clicked the tick box's ``checked`` state will be toggled.
 
@@ -569,7 +569,7 @@ The ``checkbox`` can be also integrated as a :doc:`Switch </components/switch/lv
 .. _lvgl-widget-dropdown:
 
 ``dropdown``
-------------
+************
 
 The dropdown widget allows the user to select one value from a list.
 
@@ -645,7 +645,7 @@ The ``dropdown`` can be also integrated as :doc:`Select </components/select/lvgl
 .. _lvgl-widget-roller:
 
 ``roller``
-----------
+**********
 
 Roller allows you to simply select one option from a list by scrolling.
 
@@ -708,7 +708,7 @@ The ``roller`` can be also integrated as :doc:`Select </components/select/lvgl>`
 .. _lvgl-widget-bar:
 
 ``bar``
--------
+*******
 
 The bar widget has a background and an indicator foreground on it. The size of the indicator is set according to the current ``value`` of the bar.
 
@@ -765,7 +765,7 @@ The ``bar`` can be also integrated as :doc:`Number </components/number/lvgl>` or
 .. _lvgl-widget-slider:
 
 ``slider``
-----------
+**********
 
 The slider widget looks like a bar supplemented with a knob. The user can drag the knob to set a value. Just like bar, slider can be vertical or horizontal. The size of the indicator foreground and the knob position is set according to the current ``value`` of the slider.
 
@@ -838,7 +838,7 @@ See :ref:`lvgl-cookbook-bright` and :ref:`lvgl-cookbook-volume` for examples ill
 .. _lvgl-widget-arc:
 
 ``arc``
--------
+*******
 
 The arc consists of a background and a foreground arc. The indicator foreground can be touch-adjusted with a knob.
 
@@ -923,7 +923,7 @@ See :ref:`lvgl-cookbook-bright` and :ref:`lvgl-cookbook-volume` for examples ill
 .. _lvgl-widget-spinbox:
 
 ``spinbox``
------------
+***********
 
 The spinbox contains a numeric value (as text) which can be increased or decreased through actions. You can, for example, use buttons labeled with plus and minus to call actions which increase or decrease the value as required.
 
@@ -1002,7 +1002,7 @@ See :ref:`lvgl-cookbook-climate` for an example illustrating how to implement a 
 .. _lvgl-widget-meter:
 
 ``meter``
----------
+*********
 
 The meter widget can visualize data in very flexible ways. It can use arcs, needles, ticks, lines and/or labels.
 
@@ -1114,7 +1114,7 @@ See :ref:`lvgl-cookbook-gauge`, :ref:`lvgl-cookbook-thermometer` and :ref:`lvgl-
 .. _lvgl-widget-image:
 
 ``image``
----------
+*********
 
 Images are the basic widgets used to display images. 
 
@@ -1174,7 +1174,7 @@ Images are the basic widgets used to display images.
 .. _lvgl-widget-animimg:
 
 ``animimg``
------------
+***********
 
 The animation image is similar to the normal ``image`` widget. The main difference is that instead of one source image, you set a list of multiple source images. You can also specify a duration and a repeat count.
 
@@ -1229,7 +1229,7 @@ See :ref:`lvgl-cookbook-animbatt` in the Cookbook for a more detailed example.
 .. _lvgl-widget-line:
 
 ``line``
---------
+********
 
 The line widget is capable of drawing straight lines between a set of points.
 
@@ -1267,7 +1267,7 @@ By default, the Line widget width and height dimensions are set to ``SIZE_CONTEN
 .. _lvgl-widget-led:
 
 ``led``
--------
+*******
 
 The LED widgets are either circular or rectangular widgets whose brightness can be adjusted. As their brightness decreases, the colors become darker.
 
@@ -1319,7 +1319,7 @@ Check out :ref:`lvgl-cookbook-keypad` in the Cookbook for an example illustratin
 .. _lvgl-widget-spinner:
 
 ``spinner``
------------
+***********
 
 The Spinner widget is a spinning arc over a ring.
 
@@ -1369,7 +1369,7 @@ The Spinner widget is a spinning arc over a ring.
 .. _lvgl-widget-obj:
 
 ``obj``
--------
+*******
 
 The base object is just a simple, empty widget. By default, it's nothing more than a rounded rectangle:
 
@@ -1402,7 +1402,7 @@ You can use it as a parent container for other widgets. By default, it catches t
 .. _lvgl-widget-tabview:
 
 ``tabview``
------------
+***********
 
 The tab view object can be used to organize content in tabs. The tab buttons are internally generated with a :ref:`lvgl-widget-buttonmatrix`. 
 
@@ -1478,7 +1478,7 @@ The tabs are indexed (zero-based) in the order they appear in the configuration 
 .. _lvgl-widget-tileview:
 
 ``tileview``
-------------
+************
 
 The tileview is a container object whose elements, called tiles, can be arranged in grid form. A user can navigate between the tiles by dragging or swiping. Any direction can be disabled on the tiles individually to not allow moving from one tile to another.
 
@@ -1546,7 +1546,7 @@ If the Tile view is screen sized, the user interface resembles what you may have
 .. _lvgl-widget-msgbox:
 
 ``msgboxes``
-------------
+************
 
 The message boxes act as pop-ups. They are built from a background container, a title, an optional close button, a text and optional buttons.
 
@@ -1600,7 +1600,7 @@ The configured message boxes are hidden by default. One can show them with ``lvg
 .. _lvgl-widget-keyboard:
 
 ``keyboard``
-------------
+************
 
 The keyboard widget is a special Button matrix with predefined keymaps and other features to show an on-screen keyboard usable to type text into a :ref:`lvgl-widget-textarea`.
 

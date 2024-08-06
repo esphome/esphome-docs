@@ -1,4 +1,4 @@
-.. _lvgl-num:
+.. _lvgl-number:
 
 LVGL Number
 ===========
