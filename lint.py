@@ -396,7 +396,6 @@ def lint_directive_formatting(fname, content):
     exclude=[
         "components/web_server.rst",
         "components/image.rst",
-         "cookbook/lvgl.rst",
     ],
 )
 def lint_esphome_io_link(fname, match):
