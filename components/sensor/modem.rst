@@ -50,6 +50,10 @@ Configuration variables:
   :ref:`Text Sensor <config-text_sensor>`.
 - **altitude** (*Optional*): GNSS altitude, in meters. Require ``enable_gnss: True`` in :doc:`/components/modem`. All options from
   :ref:`Text Sensor <config-text_sensor>`.
+- **accuracy** (*Optional*): GNSS accuracy, in meters. Require ``enable_gnss: True`` in :doc:`/components/modem`. All options from
+  :ref:`Text Sensor <config-text_sensor>`.
+- **course** (*Optional*): GNSS course (COG), in degrees. Require ``enable_gnss: True`` in :doc:`/components/modem`. All options from
+  :ref:`Text Sensor <config-text_sensor>`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the device. Defaults to ``60s``.
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
