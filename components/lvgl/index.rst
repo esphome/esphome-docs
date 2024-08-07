@@ -18,7 +18,6 @@ The graphic display should be configured with ``auto_clear_enabled: false`` and 
 
 For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly preferred), a :doc:`/components/sensor/rotary_encoder` or a custom keypad made up from discrete :doc:`Binary Sensors </components/binary_sensor/index>` can be used.
 
-Check out a few detailed examples :ref:`in the Cookbook <lvgl-cookbook>` to see a couple ways to integrate LVGL through ESPHome with your environment.
 
 Basics
 ------
@@ -147,7 +146,6 @@ The following configuration variables apply to the main ``lvgl`` component, in o
                 align: CENTER
                 text: 'Hello World!'
 
-See :ref:`lvgl-cookbook-navigator` in the Cookbook for an example illustrating how to easily implement a page navigation bar at the bottom of the screen.
 
 .. _lvgl-color:
 
@@ -178,7 +176,6 @@ You can use :ref:`fonts configured normally<display-fonts>`, the glyphs will be 
 
     For best results, set ``bpp: 4`` to get the glyphs rendered with proper anti-aliasing.
 
-Check out :ref:`lvgl-cookbook-icontext`, :ref:`lvgl-cookbook-iconstat` and :ref:`lvgl-cookbook-iconbatt` in the Cookbook for examples illustrating how to use icons and text with TrueType/OpenType fonts.
 
 **Library fonts**
 
@@ -379,7 +376,6 @@ So the precedence happens like this: state based styles override the locally spe
 
 Feel free to experiment to discover inheritance and precedence of the styles based on states between the nested widgets.
 
-:ref:`lvgl-cookbook-theme` The Cookbook contains an example illustrating how to easily implement a gradient style for your widgets.
 
 .. _lvgl-layouts:
 
@@ -390,7 +386,6 @@ Layouts aim to position widgets automatically, eliminating the need to specify `
 
 The layout configuration options are applied to any parent widget or page, influencing the appearance of the children. The position and size calculated by the layout overwrites the *normal* ``x``, ``y``, ``width``, and ``height`` settings of the children.
 
-Checkout :ref:`lvgl-cookbook-flex`, :ref:`lvgl-cookbook-grid` and :ref:`lvgl-cookbook-weather` in the Cookbook for examples illustrating how to automate widget positioning, potentially reducing the size of your device's YAML configuration, and saving you from lots of manual calculations.
 
 The ``hidden``, ``ignore_layout`` and ``floating`` :ref:`flags <lvgl-widget-flags>` can be used on widgets to ignore them in layout calculations.
 
@@ -524,7 +519,7 @@ This :ref:`action <actions-action>` redraws the entire screen, or optionally onl
 
 This :ref:`action <actions-action>` pauses the activity of LVGL, including rendering.
 
-- **show_snow** (*Optional*, boolean): When paused, display random colored pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel. See :ref:`lvgl-cookbook-antiburn` for an example illustrating how to use this.
+- **show_snow** (*Optional*, boolean): When paused, display random colored pixels across the entire screen in order to minimize screen burn-in, to relief the tension put on each individual pixel.
 
 .. code-block:: yaml
 
@@ -680,7 +675,6 @@ The ``on_idle`` :ref:`triggers <automation>` are activated when inactivity time 
             - light.turn_off: display_backlight
             - lvgl.pause:
 
-See :ref:`lvgl-cookbook-idlescreen` for an example illustrating how to implement screen saving with idle settings.
 
 .. _lvgl-seealso:
 
@@ -693,7 +687,6 @@ See Also
 
     *
 
-- :doc:`LVGL Examples in the Cookbook </cookbook/lvgl>`
 - :doc:`/components/display/index`
 - :doc:`/components/touchscreen/index`
 - :doc:`/components/sensor/rotary_encoder`

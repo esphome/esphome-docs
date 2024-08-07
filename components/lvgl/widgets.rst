@@ -85,7 +85,6 @@ To apply styles to the states, you need to specify them one level above, for exa
 
 The state itself can be can be changed by interacting with the widget, or through :ref:`actions <lvgl-automation-actions>` with ``lvgl.widget.update``.
 
-See :ref:`lvgl-cookbook-cover` for a cookbook example illustrating how to use styling and properties to show different states of a Home Assistant entity.
 
 .. _lvgl-widget-flags:
 
@@ -118,7 +117,7 @@ In addition to visual styling, each widget supports some boolean **flags** to in
 
 .. note::
 
-    LVGL only supports **integers** for numeric ``value``. Visualizer widgets can't display floats directly, but they allow scaling by 10s. Some examples in the :doc:`Cookbook </cookbook/lvgl>` cover how to do that.
+    LVGL only supports **integers** for numeric ``value``. Visualizer widgets can't display floats directly, but they allow scaling by 10s.
 
 .. _lvgl-widget-label:
 
@@ -324,7 +323,6 @@ To have a button with a text label on it, add a child :ref:`lvgl-widget-label` w
 
 The ``button`` can be also integrated as a :doc:`Binary Sensor </components/binary_sensor/lvgl>` or as a :doc:`Switch </components/switch/lvgl>` component.
 
-See :ref:`lvgl-cookbook-binent` for an example illustrating how to use a checkable button to act on a Home Assistant service.
 
 .. _lvgl-widget-buttonmatrix:
 
@@ -456,7 +454,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
 
 .. tip::
 
-    The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations. Check out  :ref:`lvgl-cookbook-keypad` for an example.
+    The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations.
 
 .. _lvgl-widget-switch:
 
@@ -500,7 +498,6 @@ The switch looks like a little slider and can be used to turn something on and o
 
 The ``switch`` can be also integrated as a :doc:`Switch </components/switch/lvgl>` component.
 
-See :ref:`lvgl-cookbook-relay` for an example how to use a switch to act on a local component.
 
 .. _lvgl-widget-checkbox:
 
@@ -562,7 +559,7 @@ The checkbox widget is made internally from a *tick box* and a label. When the c
 
 .. note::
 
-    In case you configure ``default_font`` in the main section to a custom font, the checkmark will not be shown correctly when the checkbox is in the checked state. See :ref:`lvgl-cookbook-ckboxmark` how to easily resolve this.
+    In case you configure ``default_font`` in the main section to a custom font, the checkmark will not be shown correctly when the checkbox is in the checked state.
 
 The ``checkbox`` can be also integrated as a :doc:`Switch </components/switch/lvgl>` component.
 
@@ -833,7 +830,6 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 The ``slider`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
-See :ref:`lvgl-cookbook-bright` and :ref:`lvgl-cookbook-volume` for examples illustrating how to use a slider to control entities in Home Assistant.
 
 .. _lvgl-widget-arc:
 
@@ -918,7 +914,6 @@ If the ``adv_hittest`` :ref:`flag <lvgl-widget-flags>` is enabled the arc can be
 
 The ``arc`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
-See :ref:`lvgl-cookbook-bright` and :ref:`lvgl-cookbook-volume` for examples illustrating how to use a slider (or an arc) to control entities in Home Assistant.
 
 .. _lvgl-widget-spinbox:
 
@@ -997,7 +992,6 @@ The spinbox contains a numeric value (as text) which can be increased or decreas
 
 The ``spinbox`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
-See :ref:`lvgl-cookbook-climate` for an example illustrating how to implement a thermostat control using the spinbox.
 
 .. _lvgl-widget-meter:
 
@@ -1109,7 +1103,6 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
             id: temperature_needle
             value: 3
 
-See :ref:`lvgl-cookbook-gauge`, :ref:`lvgl-cookbook-thermometer` and :ref:`lvgl-cookbook-clock` in the Cookbook for examples illustrating how to effectively use this widget.
 
 .. _lvgl-widget-image:
 
@@ -1224,7 +1217,6 @@ The animation image is similar to the normal ``image`` widget. The main differen
             repeat_count: 100
             duration: 300ms
 
-See :ref:`lvgl-cookbook-animbatt` in the Cookbook for a more detailed example.
 
 .. _lvgl-widget-line:
 
@@ -1314,7 +1306,6 @@ The ``led`` can be also integrated as :doc:`Light </components/light/lvgl>` comp
 
     If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup, according to its ``restore_mode`` setting.
 
-Check out :ref:`lvgl-cookbook-keypad` in the Cookbook for an example illustrating how to change the ``led`` styling properties from an automation.
 
 .. _lvgl-widget-spinner:
 
@@ -1699,7 +1690,6 @@ This powerful :ref:`action <actions-action>` allows changing/updating any widget
             id: my_label_id
             hidden: true
 
-Check out in the Cookbook :ref:`lvgl-cookbook-binent` for an example illustrating how to use a template to update the state.
 
 .. _lvgl-automation-shorthands:
 
@@ -1792,7 +1782,6 @@ See Also
 --------
 
 - :ref:`LVGL Main component <lvgl-main>`
-- :doc:`Examples in the Cookbook </cookbook/lvgl>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/number/lvgl`
