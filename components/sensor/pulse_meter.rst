@@ -91,8 +91,8 @@ trying to match.
 .. code-block:: yaml
 
     api:
-      services:
-        - service: set_total
+      actions:
+        - action: set_total
           variables:
             new_total: int
           then:

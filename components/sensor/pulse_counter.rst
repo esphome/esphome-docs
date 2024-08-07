@@ -111,10 +111,10 @@ trying to match.
 
 .. code-block:: yaml
 
-    # Set pulse counter total from home assistant using this service call:
+    # Set pulse counter total from home assistant using this action:
     api:
-      services:
-        - service: set_pulse_total
+      actions:
+        - action: set_pulse_total
           variables:
             new_pulse_total: int
           then:

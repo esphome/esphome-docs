@@ -610,6 +610,7 @@ See Also
 - :ref:`QR Code Component <display-qrcode>`
 - :ref:`Image Component <display-image>`
 - :ref:`Animation Component <display-animation>`
+- :ref:`Online Image <online_image>`
 - :ghedit:`Edit`
 
 .. toctree::
