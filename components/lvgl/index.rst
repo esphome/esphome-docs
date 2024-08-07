@@ -117,11 +117,11 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 - **theme** (*Optional*, list): A list of styles to be applied to all widgets. See :ref:`below <lvgl-theme>` for more details. 
 - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the root display. May not be used if ``pages`` (below) is configured.
 - **pages** (*Optional*, list): A list of page IDs. Each page acts as a parent for widgets placed on it. May not be used with ``widgets`` (above). Options for each page:
-    - **skip** (*Optional*, boolean): Option to skip this page when navigating between them with :ref:`lvgl-pgnx-act`.
+    - **skip** (*Optional*, boolean): Option to skip this page when navigating between them with :ref:`lvgl-page-next-previous-action`.
     - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
     - All other options from :ref:`lvgl-styling` to be applied to this page.
-- **page_wrap** (*Optional*, boolean): Wrap from the last to the first page when navigating between them with :ref:`lvgl-pgnx-act`. Defaults to ``true``.
+- **page_wrap** (*Optional*, boolean): Wrap from the last to the first page when navigating between them with :ref:`lvgl-page-next-previous-action`. Defaults to ``true``.
 - **top_layer** (*Optional*, list): A special kind of *Always on Top* page, which acts as a parent for widgets placed on it. It's shown above all the pages, which may be useful for widgets which always need to be visible.
     - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
     - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
@@ -154,7 +154,7 @@ Colors
 
 Colors can be specified anywhere in the LVGL configuration either by referencing a preconfigured :ref:`ESPHome color <config-color>` ID or by representing the color in the common hexadecimal notation. For example, ``0xFF0000`` would be red.
 
-.. _lvgl-opa:
+.. _lvgl-opacity:
 
 Opacity
 *******
@@ -249,16 +249,16 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 - **bg_grad_dir** (*Optional*, dict): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``. Defaults to ``NONE``.
 - **bg_main_stop** (*Optional*, 0-255): Specify where the gradient should start: ``0`` = upper left, ``128`` = in the center, ``255`` = lower right. Defaults to ``0``.
 - **bg_grad_stop** (*Optional*, 0-255): Specify where the gradient should stop: ``0`` = upper left, ``128`` = in the center, ``255`` = lower right. Defaults to ``255``.
-- **opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire widget. Inherited from parent. Defaults to ``COVER``.
-- **bg_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the widget background.
-- **opa_layered** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the entire layer the widget is on. Inherited from parent. Defaults to ``COVER``.
+- **opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the entire widget. Inherited from parent. Defaults to ``COVER``.
+- **bg_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the widget background.
+- **opa_layered** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the entire layer the widget is on. Inherited from parent. Defaults to ``COVER``.
 - **bg_image_src** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to show as the background of the widget.
-- **bg_image_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the background image of the widget.
+- **bg_image_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the background image of the widget.
 - **bg_image_recolor** (*Optional*, :ref:`color <lvgl-color>`): Color to mix with every pixel of the background image of the widget.
-- **bg_image_recolor_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the recoloring of the background image of the widget.
+- **bg_image_recolor_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the recoloring of the background image of the widget.
 - **border_width** (*Optional*, int16): Set the width of the border in pixels. Defaults to ``0``.
 - **border_color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw borders of the widget. Defaults to ``0`` (black).
-- **border_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the borders of the widget.  Defaults to ``COVER``.
+- **border_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the borders of the widget.  Defaults to ``COVER``.
 - **border_post** (*Optional*, boolean): If ``true`` the border will be drawn after all children of the widget have been drawn. Defaults to ``false``.
 - **border_side** (*Optional*, list): Select which borders of the widgets to show (multiple can be specified as a YAML list, defaults to ``NONE``):
     - ``NONE``
@@ -271,7 +271,7 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 - **clip_corner** (*Optional*, boolean): If set to ``true``, overflowing content will be clipped off by the widget's rounded corners (``radius`` > ``0``).
 - **outline_width** (*Optional*, int16): Set the width of the outline in pixels. Defaults to ``0``.
 - **outline_color** (*Optional*, :ref:`color <lvgl-color>`): Color used to draw an outline around the widget. Defaults to ``0`` (black).
-- **outline_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the outline of the widget. Defaults to ``COVER``.
+- **outline_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the outline of the widget. Defaults to ``COVER``.
 - **outline_pad** (*Optional*, int16): Distance between the outline and the widget itself. Defaults to ``0``.
 - **pad_all** (*Optional*, int16): Set the padding in all directions, in pixels.
 - **pad_top** (*Optional*, int16): Set the padding on the top, in pixels.
@@ -283,7 +283,7 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 - **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): Color used to create a drop shadow under the widget. Defaults to ``0`` (black).
 - **shadow_ofs_x** (*Optional*, int16): Horizontal offset of the shadow, in pixels. Defaults to ``0``.
 - **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels. Defaults to ``0``.
-- **shadow_opa** (*Optional*, :ref:`opacity <lvgl-opa>`): Opacity of the shadow. Defaults to ``COVER``.
+- **shadow_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the shadow. Defaults to ``COVER``.
 - **shadow_spread** (*Optional*, int16): Spread of the shadow, in pixels. Defaults to ``0``.
 - **shadow_width** (*Optional*, int16): Width of the shadow, in pixels. Defaults to ``0``.
 - **transform_angle** (*Optional*, 0-360): Transformation angle of the widget (eg. rotation)
@@ -497,7 +497,7 @@ Actions
 Widgets support :ref:`general or specific <lvgl-automation-actions>` actions.
 Several actions are available for LVGL, these are outlined below.
 
-.. _lvgl-rfrsh-act:
+.. _lvgl-redraw-action:
 
 ``lvgl.widget.redraw``
 **********************
@@ -512,7 +512,7 @@ This :ref:`action <actions-action>` redraws the entire screen, or optionally onl
       then:
         - lvgl.widget.redraw:
 
-.. _lvgl-pause-act:
+.. _lvgl-pause-action:
 
 ``lvgl.pause``
 **************
@@ -528,7 +528,7 @@ This :ref:`action <actions-action>` pauses the activity of LVGL, including rende
         - lvgl.pause:
             show_snow: true
 
-.. _lvgl-resume-act:
+.. _lvgl-resume-action:
 
 ``lvgl.resume``
 ***************
@@ -556,7 +556,7 @@ This :ref:`action <actions-action>` allows changing/updating the ``disp_bg_color
         - lvgl.update:
             disp_bg_image: cat_image
 
-.. _lvgl-pgnx-act:
+.. _lvgl-page-next-previous-action:
 
 ``lvgl.page.next``, ``lvgl.page.previous``
 ******************************************
@@ -580,7 +580,7 @@ This :ref:`action <actions-action>` changes the page to the next/previous based 
             animation: OUT_RIGHT
             time: 300ms
 
-.. _lvgl-pgsh-act:
+.. _lvgl-page-show-action:
 
 ``lvgl.page.show``
 ******************
@@ -602,12 +602,12 @@ This :ref:`action <actions-action>` shows a specific page (including pages with 
       then:
         - lvgl.page.show: secret_page  # shorthand version
 
-.. _lvgl-cond:
+.. _lvgl-conditions:
 
 Conditions
 ----------
 
-.. _lvgl-idle-cond:
+.. _lvgl-is-idle-condition:
 
 ``lvgl.is_idle``
 ****************
@@ -629,7 +629,7 @@ This :ref:`condition <common_conditions>` checks if the amount of time specified
                   id: display_backlight
                   transition_length: 3s
 
-.. _lvgl-paused-cond:
+.. _lvgl-is-paused-condition:
 
 ``lvgl.is_paused``
 ******************
@@ -651,7 +651,7 @@ Triggers
 
 Widget level :ref:`interaction triggers <lvgl-automation-triggers>` can be configured universally, or depending on the widtget functionality.
 
-.. _lvgl-onidle-trg:
+.. _lvgl-on-idle-trigger:
 
 ``lvgl.on_idle``
 ****************
@@ -675,8 +675,6 @@ The ``on_idle`` :ref:`triggers <automation>` are activated when inactivity time 
             - light.turn_off: display_backlight
             - lvgl.pause:
 
-
-.. _lvgl-seealso:
 
 See Also
 --------
