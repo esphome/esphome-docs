@@ -48,7 +48,7 @@ Tips for using ESPHome
                payload: double
 
 
-   For even more configuration templating, take a look at :ref:`config-substitutions`.
+   For even more configuration templating, take a look at :doc:`/components/substitutions`.
 
 2. If you want to see how ESPHome interprets your configuration, run
 
@@ -66,7 +66,7 @@ Tips for using ESPHome
 
 5. You can view the full list of command line interface options here: :doc:`/guides/cli`
 
-6. Use :ref:`substitutions <config-substitutions>` to reduce repetition in your configuration files.
+6. Use :doc:`/components/substitutions` to reduce repetition in your configuration files.
 
 .. |secret| replace:: ``!secret``
 .. _secret: https://www.home-assistant.io/docs/configuration/secrets/
