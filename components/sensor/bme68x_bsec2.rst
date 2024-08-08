@@ -155,6 +155,8 @@ Text Sensor
 
 The sensor's accuracy can be reported in text format.
 
+.. code-block:: yaml
+
     text_sensor:
       - platform: bme68x_bsec2_i2c
         iaq_accuracy:
