@@ -33,16 +33,11 @@ The easiest way to integrate an LVGL :ref:`lvgl-widget-switch` widget and a swit
       - platform: ...
         id: local_light
         name: 'Local light'
-        on_turn_on:
+        on_state:
           - lvgl.widget.update:
               id: light_switch
               state:
-                checked: true
-        on_turn_off:
-          - lvgl.widget.update:
-              id: light_switch
-              state:
-                checked: false
+                checked: !lambda return id(local_light).current_values.is_on();
 
     lvgl:
         ...
