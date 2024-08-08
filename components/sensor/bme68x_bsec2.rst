@@ -54,54 +54,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
       sample_rate: LP
       voltage: 3.3V
 
-    sensor:
-      - platform: bme68x_bsec2_i2c
-        temperature:
-          name: "BME68x Temperature"
-        pressure:
-          name: "BME68x Pressure"
-        humidity:
-          name: "BME68x Humidity"
-        iaq:
-          name: "BME68x IAQ"
-          id: iaq
-        co2_equivalent:
-          name: "BME68x CO2 Equivalent"
-        breath_voc_equivalent:
-          name: "BME68x Breath VOC Equivalent"
 
-    text_sensor:
-      - platform: bme68x_bsec2_i2c
-        iaq_accuracy:
-          name: "BME68x IAQ Accuracy"
-
-      - platform: template
-        name: "BME68x IAQ Classification"
-        lambda: |-
-          if ( int(id(iaq).state) <= 50) {
-            return {"Excellent"};
-          }
-          else if (int(id(iaq).state) >= 51 && int(id(iaq).state) <= 100) {
-            return {"Good"};
-          }
-          else if (int(id(iaq).state) >= 101 && int(id(iaq).state) <= 150) {
-            return {"Lightly polluted"};
-          }
-          else if (int(id(iaq).state) >= 151 && int(id(iaq).state) <= 200) {
-            return {"Moderately polluted"};
-          }
-          else if (int(id(iaq).state) >= 201 && int(id(iaq).state) <= 250) {
-            return {"Heavily polluted"};
-          }
-          else if (int(id(iaq).state) >= 251 && int(id(iaq).state) <= 350) {
-            return {"Severely polluted"};
-          }
-          else if (int(id(iaq).state) >= 351) {
-            return {"Extremely polluted"};
-          }
-          else {
-            return {"error"};
-          }
 
 Configuration variables:
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -130,6 +83,24 @@ Configuration variables:
 
 Sensor
 ------
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: bme68x_bsec2_i2c
+        temperature:
+          name: "BME68x Temperature"
+        pressure:
+          name: "BME68x Pressure"
+        humidity:
+          name: "BME68x Humidity"
+        iaq:
+          name: "BME68x IAQ"
+          id: iaq
+        co2_equivalent:
+          name: "BME68x CO2 Equivalent"
+        breath_voc_equivalent:
+          name: "BME68x Breath VOC Equivalent"
 
 Configuration variables:
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -184,6 +155,11 @@ Text Sensor
 
 The sensor's accuracy can be reported in text format.
 
+    text_sensor:
+      - platform: bme68x_bsec2_i2c
+        iaq_accuracy:
+          name: "BME68x IAQ Accuracy"
+
 Configuration variables:
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -218,6 +194,39 @@ from several publications on breath analysis studies.  The BSEC2 software librar
 +-----------+---------------------+
 |   > 351   | Extremely polluted  |
 +-----------+---------------------+
+
+This can be represented by a template text sensor such as below
+
+.. code-block:: yaml
+
+    text_sensor:
+      - platform: template
+        name: "BME68x IAQ Classification"
+        lambda: |-
+          if ( int(id(iaq).state) <= 50) {
+            return {"Excellent"};
+          }
+          else if (int(id(iaq).state) >= 51 && int(id(iaq).state) <= 100) {
+            return {"Good"};
+          }
+          else if (int(id(iaq).state) >= 101 && int(id(iaq).state) <= 150) {
+            return {"Lightly polluted"};
+          }
+          else if (int(id(iaq).state) >= 151 && int(id(iaq).state) <= 200) {
+            return {"Moderately polluted"};
+          }
+          else if (int(id(iaq).state) >= 201 && int(id(iaq).state) <= 250) {
+            return {"Heavily polluted"};
+          }
+          else if (int(id(iaq).state) >= 251 && int(id(iaq).state) <= 350) {
+            return {"Severely polluted"};
+          }
+          else if (int(id(iaq).state) >= 351) {
+            return {"Extremely polluted"};
+          }
+          else {
+            return {"error"};
+          }
 
 The selected b-VOC gasses are as follows:
 
