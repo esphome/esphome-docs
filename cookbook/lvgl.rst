@@ -1,4 +1,4 @@
-.. _lvgl-cook:
+.. _lvgl-cookbook:
 
 LVGL: Tips and Tricks
 =====================
@@ -17,15 +17,15 @@ Here are a couple recipes for various interesting things you can do with :ref:`l
 
     The examples below assume you've set up LVGL correctly with your display and its input device, and you have the knowledge to set up various components in ESPHome. Some examples use absolute positioning for a screen with dimensions of ``240x320px``; if your display's dimensions differ, you'll need to adjust them in order to obtain the expected results.
 
-.. _lvgl-cook-relay:
+.. _lvgl-cookbook-relay:
 
 Local light switch
 ------------------
 
-.. figure:: /components/images/lvgl_switch.png
+.. figure:: /components/lvgl/images/lvgl_switch.png
     :align: left
 
-The easiest way to integrate an LVGL :ref:`lvgl-wgt-swi` widget and a switch or light is with :ref:`automations <automation>`: 
+The easiest way to integrate an LVGL :ref:`lvgl-widget-switch` widget and a switch or light is with :ref:`automations <automation>`: 
 
 .. code-block:: yaml
 
@@ -55,7 +55,7 @@ The easiest way to integrate an LVGL :ref:`lvgl-wgt-swi` widget and a switch or 
                   on_click:
                     light.toggle: local_light
 
-.. _lvgl-cook-binent:
+.. _lvgl-cookbook-binent:
 
 Remote light button
 -------------------
@@ -63,7 +63,7 @@ Remote light button
 .. figure:: images/lvgl_cook_remligbut.png
     :align: right
 
-If you'd like to control a remote light which appears as an entity in Home Assistant from a checkable (toggle) :ref:`lvgl-wgt-btn`, first you need to import the light state into ESPHome, and then control it using a action call:
+If you'd like to control a remote light which appears as an entity in Home Assistant from a checkable (toggle) :ref:`lvgl-widget-button`, first you need to import the light state into ESPHome, and then control it using a action call:
 
 .. code-block:: yaml
 
@@ -100,7 +100,7 @@ If you'd like to control a remote light which appears as an entity in Home Assis
                         data: 
                           entity_id: light.remote_light
 
-.. _lvgl-cook-bright:
+.. _lvgl-cookbook-bright:
 
 Light brightness slider
 -----------------------
@@ -108,7 +108,7 @@ Light brightness slider
 .. figure:: images/lvgl_cook_volume.png
     :align: left
 
-You can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the brightness of a dimmable light.
+You can use a :ref:`slider <lvgl-widget-slider>` or an :ref:`arc <lvgl-widget-arc>` to control the brightness of a dimmable light.
 
 We can use a sensor to retrieve the current brightness of a light, which is stored in Home Assistant as an attribute of the entity, as an integer value between ``0`` (min) and ``255`` (max). It's convenient to set the slider's ``min_value`` and ``max_value`` accordingly.
 
@@ -149,7 +149,7 @@ Note that Home Assistant expects an integer at the ``brightness`` parameter of t
 
 This is applicable to action calls like ``fan.set_percentage`` or ``valve.set_valve_position``, too; the only difference is that ``max_value`` has to be ``100``.
 
-.. _lvgl-cook-volume:
+.. _lvgl-cookbook-volume:
 
 Media player volume slider
 --------------------------
@@ -157,7 +157,7 @@ Media player volume slider
 .. figure:: images/lvgl_cook_volume.png
     :align: right
 
-Similarly, you can use a :ref:`slider <lvgl-wgt-sli>` or an :ref:`arc <lvgl-wgt-arc>` to control the volume level of a media player, which uses float values.
+Similarly, you can use a :ref:`slider <lvgl-widget-slider>` or an :ref:`arc <lvgl-widget-arc>` to control the volume level of a media player, which uses float values.
 
 With a sensor we retrieve the current volume level of the media player, which is stored in Home Assistant as an attribute of the entity, and is a float value between ``0`` (min) and ``1`` (max). Since LVGL only handles integers, it's convenient to set the slider's possible values to be between ``0`` and ``100``. Thus a conversion is needed back and forth, meaning that when we read the value from Home Assistant we have to multiply it by ``100``, and when we set the volume through the action call, we have to divide it by ``100``:
 
@@ -195,23 +195,23 @@ With a sensor we retrieve the current volume level of the media player, which is
                           entity_id: media_player.your_room
                           volume_level: !lambda return (x / 100);
 
-The ``adv_hittest`` option ensures that accidental touches to the screen won't cause sudden volume changes (more details in the :ref:`slider doc <lvgl-wgt-sli>`).
+The ``adv_hittest`` option ensures that accidental touches to the screen won't cause sudden volume changes (more details in the :ref:`slider doc <lvgl-widget-slider>`).
 
 .. note::
 
     Keep in mind that ``on_value`` is triggered *continuously* by the slider while it's being dragged. This generally has a negative effect on performance. For example, you shouldn't use this trigger to set the target temperature of a heat pump via Modbus, or set the position of motorized covers, because it will likely cause malfunctions. To mitigate this, consider using a universal widget trigger like ``on_release`` to get the ``x`` variable once after the interaction has completed.
 
-.. _lvgl-cook-gauge:
+.. _lvgl-cookbook-gauge:
 
 Semicircle gauge
 ----------------
 
-A gauge similar to what Home Assistant shows in the Energy Dashboard can accomplished with :ref:`lvgl-wgt-mtr` and :ref:`lvgl-wgt-lbl` widgets:
+A gauge similar to what Home Assistant shows in the Energy Dashboard can accomplished with :ref:`lvgl-widget-meter` and :ref:`lvgl-widget-label` widgets:
 
 .. figure:: images/lvgl_cook_gauge.png
     :align: center
 
-The trick here is to have a parent :ref:`lvgl-wgt-obj` which contains the other widgets as children. We place a :ref:`lvgl-wgt-mtr` in the middle, which is made from an indicator ``line`` and two ``arc`` widgets. We use another, smaller :ref:`lvgl-wgt-obj` on top of it to hide the indicator's central parts and place some :ref:`lvgl-wgt-lbl` widgets to display numeric information:
+The trick here is to have a parent :ref:`lvgl-widget-obj` which contains the other widgets as children. We place a :ref:`lvgl-widget-meter` in the middle, which is made from an indicator ``line`` and two ``arc`` widgets. We use another, smaller :ref:`lvgl-widget-obj` on top of it to hide the indicator's central parts and place some :ref:`lvgl-widget-label` widgets to display numeric information:
 
 .. code-block:: yaml
 
@@ -301,17 +301,17 @@ The trick here is to have a parent :ref:`lvgl-wgt-obj` which contains the other 
 
     The ``obj`` used to hide the middle part of the meter indicator line has ``radius`` equal to half of the ``width`` and ``height``. This results in a circle - which is actually a square with extra large rounded corners. 
 
-.. _lvgl-cook-thermometer:
+.. _lvgl-cookbook-thermometer:
 
 Thermometer
 -----------
 
-A thermometer with a precise gauge also made from a :ref:`lvgl-wgt-mtr` widget and a numeric display using :ref:`lvgl-wgt-lbl`:
+A thermometer with a precise gauge also made from a :ref:`lvgl-widget-meter` widget and a numeric display using :ref:`lvgl-widget-label`:
 
 .. figure:: images/lvgl_cook_thermometer.png
     :align: center
 
-Whenever a new value comes from the sensor, we update the needle indicator as well as the text in the :ref:`lvgl-wgt-lbl`. Since LVGL only handles integer values on the :ref:`lvgl-wgt-mtr` scale, but the sensor's value is a ``float``, we use the same approach as in the examples above; we multiply the sensor's values by ``10`` and feed this value to the :ref:`lvgl-wgt-mtr`. It's essentially two scales on top of each other: one to set the needle based on the multiplied value and the other to show sensor's original value in the :ref:`lvgl-wgt-lbl`.
+Whenever a new value comes from the sensor, we update the needle indicator as well as the text in the :ref:`lvgl-widget-label`. Since LVGL only handles integer values on the :ref:`lvgl-widget-meter` scale, but the sensor's value is a ``float``, we use the same approach as in the examples above; we multiply the sensor's values by ``10`` and feed this value to the :ref:`lvgl-widget-meter`. It's essentially two scales on top of each other: one to set the needle based on the multiplied value and the other to show sensor's original value in the :ref:`lvgl-widget-label`.
 
 .. code-block:: yaml
 
@@ -455,12 +455,12 @@ If you change the size of the widget, to obtain a uniform gradient, be sure to i
 
     You can omit the ``obj`` used to hide the middle part of meter indicator line by using a bitmap ``image`` indicator as needle, were only the part hanging above the ticks scale is visible, the rest is transparent.
 
-.. _lvgl-cook-climate:
+.. _lvgl-cookbook-climate:
 
 Climate control
 ---------------
 
-:ref:`lvgl-wgt-spb` is the ideal widget to control a thermostat:
+:ref:`lvgl-widget-spinbox` is the ideal widget to control a thermostat:
 
 .. figure:: images/lvgl_cook_climate.png
     :align: center
@@ -527,7 +527,7 @@ First we import from Home Assistant the current target temperature of the climat
                           - label:
                               text: "+"
 
-.. _lvgl-cook-cover:
+.. _lvgl-cookbook-cover:
 
 Cover status and control
 ------------------------
@@ -652,7 +652,7 @@ Just as in the previous examples, we need to get the state of the cover first. W
                           data:
                             entity_id: cover.myroom
 
-.. _lvgl-cook-theme:
+.. _lvgl-cookbook-theme:
 
 Theme and style definitions
 ---------------------------
@@ -747,7 +747,7 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
           bg_grad_color: 0x005782
           bg_grad_dir: VER
           bg_opa: COVER
-          border_width: 0
+          border_opa: TRANSP
           radius: 0
           pad_all: 0
           pad_row: 0
@@ -759,7 +759,7 @@ In this example we prepare a set of gradient styles in the *theme*, and make som
 
 Note that style definitions can contain common properties too, like positioning and sizing.
 
-.. _lvgl-cook-navigator:
+.. _lvgl-cookbook-navigator:
 
 Page navigation footer
 ----------------------
@@ -771,7 +771,7 @@ If using multiple pages, a navigation bar can be useful at the bottom of the scr
 
 To save from repeating the same widgets on each page, there's the *top_layer* which is the *Always on Top* transparent page above all the pages. Everything you put on this page will be on top of all the others. 
 
-For the navigation bar we can use a :ref:`lvgl-wgt-bmx`. Note how the *header_footer* style definition is being applied to the widget and its children objects, and how a few more styles are configured manually at the main widget:
+For the navigation bar we can use a :ref:`lvgl-widget-buttonmatrix`. Note how the *header_footer* style definition is being applied to the widget and its children objects, and how a few more styles are configured manually at the main widget:
 
 .. code-block:: yaml
 
@@ -805,9 +805,9 @@ For the navigation bar we can use a :ref:`lvgl-wgt-bmx`. Note how the *header_fo
                       then:
                         lvgl.page.next:
 
-For this example to appear correctly, use the theme and style options from :ref:`above <lvgl-cook-theme>` and LVGL's own library :ref:`fonts <lvgl-fonts>`.
+For this example to appear correctly, use the theme and style options from :ref:`above <lvgl-cookbook-theme>` and LVGL's own library :ref:`fonts <lvgl-fonts>`.
 
-.. _lvgl-cook-statico:
+.. _lvgl-cookbook-statico:
 
 API connection status icon
 --------------------------
@@ -854,7 +854,7 @@ Of note:
 - The widget starts *hidden* at boot and it's only shown when triggered by connection with the API.
 - Alignment of the widget: since the *align* option is given, the *x* and *y* options are used to position the widget relative to the calculated position.
 
-.. _lvgl-cook-titlebar:
+.. _lvgl-cookbook-titlebar:
 
 Title bar for each page
 -----------------------
@@ -896,9 +896,9 @@ To put a title bar behind the status icon, we need to add it to each page, also 
                       text_color: 0xFFFFFF
             ...
 
-For this example to work, use the theme and style options from :ref:`above <lvgl-cook-theme>`.
+For this example to work, use the theme and style options from :ref:`above <lvgl-cookbook-theme>`.
 
-.. _lvgl-cook-flex:
+.. _lvgl-cookbook-flex:
 
 Flex layout positioning
 -----------------------
@@ -908,7 +908,7 @@ Flex layout positioning
 .. figure:: images/lvgl_cook_flex_layout.png
     :align: center
 
-This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefer fully-featured individual buttons, as they offer a wider range of customization possibilities as seen in the :ref:`lvgl-cook-cover` example. Here we use the **Flex** layout:
+This example illustrates a control panel for three covers, made up of labels and discrete buttons. Although a button matrix could also be suitable for this, you might still prefer fully-featured individual buttons, as they offer a wider range of customization possibilities as seen in the :ref:`lvgl-cookbook-cover` example. Here we use the **Flex** layout:
 
 .. code-block:: yaml
 
@@ -1023,9 +1023,9 @@ This example illustrates a control panel for three covers, made up of labels and
                               align: CENTER
                               text: "\U000F0045"
 
-This saved you from a considerable amount of manual calculation of widget positioning which would otherwise be required to place them manually with ``x`` and ``y``! You only need to determine a common width and height for your widgets to distribute them on the page as you prefer. (:ref:`lvgl-cook-icontext` below shows how to use custom icons.)
+This saved you from a considerable amount of manual calculation of widget positioning which would otherwise be required to place them manually with ``x`` and ``y``! You only need to determine a common width and height for your widgets to distribute them on the page as you prefer. (:ref:`lvgl-cookbook-icontext` below shows how to use custom icons.)
 
-.. _lvgl-cook-grid:
+.. _lvgl-cookbook-grid:
 
 Grid layout positioning
 -----------------------
@@ -1173,14 +1173,14 @@ But there's even more! With the **Grid** layout, you don't need to specify width
                               align: CENTER
                               text: "\U000F0045"
 
-The big advantage here is that whenever you need to add, for example, an extra column of buttons for a new cover, you just simply append it to the ``grid_columns`` variable, and add the corresponding widgets as above. With ``STRETCH`` their sizes and positions will automatically be calculated to fill in the cells, while the parent's ``pad_all``, ``pad_row`` and ``pad_column`` can help with spacing between them. See :ref:`lvgl-cook-weather` further down this page for another example relying on **Grid**.
+The big advantage here is that whenever you need to add, for example, an extra column of buttons for a new cover, you just simply append it to the ``grid_columns`` variable, and add the corresponding widgets as above. With ``STRETCH`` their sizes and positions will automatically be calculated to fill in the cells, while the parent's ``pad_all``, ``pad_row`` and ``pad_column`` can help with spacing between them. See :ref:`lvgl-cookbook-weather` further down this page for another example relying on **Grid**.
 
-.. _lvgl-cook-btlg:
+.. _lvgl-cookbook-btlg:
 
 ESPHome boot screen
 -------------------
 
-To display a boot image with a spinner animation which disappears automatically after a few moments or on touch of the screen you can use the *top layer*. The trick is to put a base :ref:`lvgl-wgt-obj` full screen and child :ref:`lvgl-wgt-img` widget in its middle as the last item of the widgets list, so they draw on top of all the others. To make it automatically disappear afer boot, you use ESPHome's ``on_boot`` trigger:
+To display a boot image with a spinner animation which disappears automatically after a few moments or on touch of the screen you can use the *top layer*. The trick is to put a base :ref:`lvgl-widget-obj` full screen and child :ref:`lvgl-widget-image` widget in its middle as the last item of the widgets list, so they draw on top of all the others. To make it automatically disappear afer boot, you use ESPHome's ``on_boot`` trigger:
 
 .. code-block:: yaml
 
@@ -1232,7 +1232,7 @@ To display a boot image with a spinner animation which disappears automatically 
               on_press:
                 - lvgl.widget.hide: boot_screen
 
-.. _lvgl-cook-icontext:
+.. _lvgl-cookbook-icontext:
 
 MDI icons in text
 -----------------
@@ -1280,14 +1280,14 @@ In the example below, we use the default set of glyphs from RobotoCondensed-Regu
     - To use the desired icon, prepend the copied codepoint with ``\U000``. The Unicode character escape sequence has to start with capital ``\U`` and have exactly 8 hexadecimal digits.
     - To translate the escape sequence into the real glyph, make sure you enclose your strings in double quotes.    
 
-.. _lvgl-cook-ckboxmark:
+.. _lvgl-cookbook-ckboxmark:
 
 Restore checkbox mark
 ---------------------
 
-If you configure a custom font as the ``default_font`` used by LVGL and this font does not contain the `FontAwesome <https://fontawesome.com/>`__ symbols, you may observe that some widgets won't display correctly; specifically :ref:`lvgl-wgt-chk` won't show the checkmark when it's checked.
+If you configure a custom font as the ``default_font`` used by LVGL and this font does not contain the `FontAwesome <https://fontawesome.com/>`__ symbols, you may observe that some widgets won't display correctly; specifically :ref:`lvgl-widget-checkbox` won't show the checkmark when it's checked.
 
-To work around this issue, simply import only the checkmark symbol in the desired size and apply it through :ref:`lvgl-cook-theme` to all the checkboxes in the configuration:
+To work around this issue, simply import only the checkmark symbol in the desired size and apply it through :ref:`lvgl-cookbook-theme` to all the checkboxes in the configuration:
 
 .. code-block:: yaml
 
@@ -1310,7 +1310,7 @@ To work around this issue, simply import only the checkmark symbol in the desire
 
 You could of course simply apply one of the built-in ``montserrat_`` packs, but that would not be beneficial on the binary size - it would uselessly include the entire set of glyphs in the flash.
 
-.. _lvgl-cook-iconstat:
+.. _lvgl-cookbook-iconstat:
 
 Toggle state icon button
 ------------------------
@@ -1318,9 +1318,9 @@ Toggle state icon button
 .. figure:: images/lvgl_cook_font_binstat.png
     :align: left
 
-A common use case for icons is a status display. For example, a checkable (toggle) button will display different icons based on the status of a light or switch. To put an icon on a button you use a :ref:`lvgl-wgt-lbl` widget as the child of the :ref:`lvgl-wgt-btn`. The coloring can already be different thanks to the :ref:`lvgl-cook-theme` where you can set a different color for the ``checked`` state. Additionally, by using a ``text_sensor`` to import the state from Home Assistant, we can not only track the ``on`` state, but also the ``unavailable`` or ``unknown`` states to apply *disabled styles* for these cases.
+A common use case for icons is a status display. For example, a checkable (toggle) button will display different icons based on the status of a light or switch. To put an icon on a button you use a :ref:`lvgl-widget-label` widget as the child of the :ref:`lvgl-widget-button`. The coloring can already be different thanks to the :ref:`lvgl-cookbook-theme` where you can set a different color for the ``checked`` state. Additionally, by using a ``text_sensor`` to import the state from Home Assistant, we can not only track the ``on`` state, but also the ``unavailable`` or ``unknown`` states to apply *disabled styles* for these cases.
 
-If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like this:
+If we take our previous :ref:`lvgl-cookbook-binent` example, we can modify it like this:
 
 .. code-block:: yaml
 
@@ -1382,7 +1382,7 @@ If we take our previous :ref:`lvgl-cook-binent` example, we can modify it like t
                         data: 
                           entity_id: light.remote_light
 
-.. _lvgl-cook-iconbatt:
+.. _lvgl-cookbook-iconbatt:
 
 Battery status icon
 -------------------
@@ -1465,7 +1465,7 @@ Another example for using MDI icons is to display battery percentage in 10 steps
                   text_font: battery_icons_20
                   text: "\U000F0091" # start with mdi-battery-unknown
 
-.. _lvgl-cook-animbatt:
+.. _lvgl-cookbook-animbatt:
 
 Battery charging animation
 --------------------------
@@ -1473,7 +1473,7 @@ Battery charging animation
 .. figure:: images/lvgl_cook_animimg_batt.gif
     :align: left
 
-To have an animation illustrating a battery charging, you can use :ref:`lvgl-wgt-aim` with a set of :ref:`images rendered from MDI <display-image>` showing battery levels:
+To have an animation illustrating a battery charging, you can use :ref:`lvgl-widget-animimg` with a set of :ref:`images rendered from MDI <display-image>` showing battery levels:
 
 .. code-block:: yaml
 
@@ -1557,17 +1557,17 @@ To have an animation illustrating a battery charging, you can use :ref:`lvgl-wgt
 
     Use ``x``, ``y``, ``align`` widget properties for precise positioning.
 
-.. _lvgl-cook-clock:
+.. _lvgl-cookbook-clock:
 
 An analog clock
 ---------------
 
-Using the :ref:`lvgl-wgt-mtr` and :ref:`lvgl-wgt-lbl` widgets, we can create an analog clock which shows the date too.
+Using the :ref:`lvgl-widget-meter` and :ref:`lvgl-widget-label` widgets, we can create an analog clock which shows the date too.
 
 .. figure:: images/lvgl_cook_clock.png
     :align: center
 
-The :ref:`lvgl-wgt-mtr` has three scales: one for minutes ticks and hand, ranged between ``0`` and ``60``; one for the hour ticks and the labels as majors, ranged between ``1`` and ``12``; and a higher resolution scale for the hour hand, ranged between ``0`` and ``720``, to be able to naturally position the hand in between the hours. The second scale doesn't have an indicator, while the third scale doesn't have ticks nor labels.
+The :ref:`lvgl-widget-meter` has three scales: one for minutes ticks and hand, ranged between ``0`` and ``60``; one for the hour ticks and the labels as majors, ranged between ``1`` and ``12``; and a higher resolution scale for the hour hand, ranged between ``0`` and ``720``, to be able to naturally position the hand in between the hours. The second scale doesn't have an indicator, while the third scale doesn't have ticks nor labels.
 
 The script runs at the beginning of every minute to update the line positions for each hand as well as the respective text.
 
@@ -1683,17 +1683,17 @@ The script runs at the beginning of every minute to update the line positions fo
                 static const char * const day_names[] = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
                 return day_names[id(time_comp).now().day_of_week - 1];
 
-.. _lvgl-cook-keypad:
+.. _lvgl-cookbook-keypad:
 
 A numeric input keypad
 ----------------------
 
-The :ref:`lvgl-wgt-bmx` widget can work together with the :ref:`key_collector` to collect the button presses as key press sequences. It sends the ``text`` of the buttons (or ``key_code`` where configured) to the key collector.
+The :ref:`lvgl-widget-buttonmatrix` widget can work together with the :ref:`key_collector` to collect the button presses as key press sequences. It sends the ``text`` of the buttons (or ``key_code`` where configured) to the key collector.
 
 .. figure:: images/lvgl_cook_keypad.png
     :align: center
 
-If you key in the correct sequence, the :ref:`lvgl-wgt-led` widget will change color accordingly:
+If you key in the correct sequence, the :ref:`lvgl-widget-led` widget will change color accordingly:
 
 .. code-block:: yaml
 
@@ -1826,7 +1826,7 @@ Of note:
 - Changing the background color of the buttons in ``pressed`` state.
 - Use of the ``key_code`` configuration to send a different character to ``key_collector`` instead of the displayed symbol.
 
-.. _lvgl-cook-weather:
+.. _lvgl-cookbook-weather:
 
 Weather forecast panel
 ----------------------
@@ -2120,7 +2120,7 @@ These labels will appear in Home Assistant as `editable text components <https:/
               
 The automations will be triggered to update the labels every time the corresponding entities change, and when the ESPHome comes alive - the reason you also need the :doc:`/components/binary_sensor/status`. Note that you'll need to adjust the entity IDs corresponding to your ESPHome node depedning on how you :ref:`configured it to use its name<esphome-configuration_variables>`.
 
-.. _lvgl-cook-idlescreen:
+.. _lvgl-cookbook-idlescreen:
 
 Turn off screen when idle
 -------------------------
@@ -2166,7 +2166,7 @@ LVGL has a notion of screen inactivity -- in other words, the time since the las
         step: 5
         mode: box
 
-.. _lvgl-cook-antiburn:
+.. _lvgl-cookbook-antiburn:
 
 Prevent burn-in of LCD
 ----------------------

@@ -174,6 +174,17 @@ ESPHome-specific components or components supporting ESPHome device provisioning
     Interval, components/interval, description.svg, dark-invert
     Script, components/script, description.svg, dark-invert
 
+ESPHome Configuration
+---------------------
+
+Streamline your ESPHome configuration and/or use components provided by other contributors.
+
+.. imgtable::
+
+    External Components, components/external_components, external_components.svg, dark-invert
+    Packages, components/packages, description.svg, dark-invert
+    Substitutions, components/substitutions, description.svg, dark-invert
+
 Network Hardware
 ----------------
 
@@ -677,7 +688,6 @@ Miscellaneous
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Pylontech Batteries, components/pylontech, pylontech.jpg
     Qwiic PIR Motion, components/binary_sensor/qwiic_pir, qwiic_pir.jpg
-    Remote Receiver, components/remote_receiver, remote.svg, dark-invert
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
     WireGuard, components/wireguard, wireguard_custom_logo.svg
@@ -812,11 +822,16 @@ Display Components
 .. imgtable::
 
     Display Core, components/display/index, folder-open.svg, dark-invert
+    Font Renderer, components/font, format-font.svg, dark-invert
+    Graph, components/graph, chart-line.svg, dark-invert
+    QR Code, components/qr_code, qr-code.svg, dark-invert
+    Image, components/image, image-outline.svg, dark-invert
+    Animation, components/animation, image-multiple-outline.svg, dark-invert
+    Online Image, components/online_image, image-sync-outline.svg, dark-invert
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
-    Font Renderer, components/display/fonts, format-font.svg, dark-invert
     Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.png
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
-    LVGL Graphics, components/lvgl, lvgl.png
+    LVGL Graphics, components/lvgl/index, lvgl.png
 
 .. _display-hw:
 
@@ -891,14 +906,6 @@ Cover Components
     Time-Based Cover, components/cover/time_based, timer.svg, dark-invert
     Tuya Cover, components/cover/tuya, tuya.png
 
-Valve Components
-----------------
-
-.. imgtable::
-
-    Valve Core, components/valve/index, folder-open.svg, dark-invert
-    Template Valve, components/valve/template, description.svg, dark-invert
-
 Text Components
 ---------------
 
@@ -928,6 +935,14 @@ Text Sensor Components
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg, dark-invert
     WireGuard, components/wireguard, wireguard_custom_logo.svg
     WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg, dark-invert
+
+Valve Components
+----------------
+
+.. imgtable::
+
+    Valve Core, components/valve/index, folder-open.svg, dark-invert
+    Template Valve, components/valve/template, description.svg, dark-invert
 
 Climate Components
 ------------------
@@ -1114,7 +1129,6 @@ Custom Components
     Custom Sensor, components/sensor/custom, language-cpp.svg, dark-invert
     Custom Switch, components/switch/custom, language-cpp.svg, dark-invert
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg, dark-invert
-
     Custom I²C Component, custom/i2c, language-cpp.svg, dark-invert
     Custom SPI Component, custom/spi, language-cpp.svg, dark-invert
     Custom UART Component, custom/uart, language-cpp.svg, dark-invert
@@ -1127,7 +1141,7 @@ Cookbook
 .. imgtable::
 
     Lambda Magic: Tips and Tricks, cookbook/lambda_magic, head-lightbulb-outline.svg, dark-invert
-    LVGL Graphic recipes, cookbook/lvgl, lvgl.png
+    LVGL Recipes, cookbook/lvgl, lvgl.png
     Garage Door Template Cover, cookbook/garage-door, garage-variant.svg, dark-invert
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg

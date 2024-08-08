@@ -9,7 +9,6 @@ Font Renderer Component
 
 ESPHome's graphical rendering engine also has a powerful font drawer which integrates seamlessly into the system. You have the option to use **any** OpenType/TrueType (``.ttf``, ``.otf``, ``.woff``) font file at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Portable_Compiled_Format>`_ and `BDF <https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`_ bitmap fonts.
 
-
 These fonts can be used in ESPHome's :ref:`own rendering engine <display-engine>` or in the :ref:`LVGL Graphics <lvgl-main>` component.
 
 To use fonts you can either
