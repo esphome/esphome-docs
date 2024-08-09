@@ -43,8 +43,6 @@ Configuration variables:
 
 - **change_address_to** (*Optional*, hex-address): This should only be added to change the i2c address
   on the EPROM of the relay. Afterwards the address will be permanently changed.
-    Default I2C Address: 0x11 or 0x12
-    Available I2C Address: 0x00 ~ 0x7F
 
 - All other options from I2C devices.
 
