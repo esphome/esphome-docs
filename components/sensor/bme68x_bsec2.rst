@@ -87,7 +87,7 @@ Sensor
 .. code-block:: yaml
 
     sensor:
-      - platform: bme68x_bsec2_i2c
+      - platform: bme68x_bsec2
         temperature:
           name: "BME68x Temperature"
         pressure:
@@ -105,7 +105,7 @@ Sensor
 Configuration variables:
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-- **bme68x_bsec2_i2c_id** (*Optional*, :ref:`config-id`): The ID of the ``bme68x_bsec2_i2c`` component sensors will refer
+- **bme68x_bsec2_id** (*Optional*, :ref:`config-id`): The ID of the ``bme68x_bsec2_i2c`` component sensors will refer
   to. Useful when multiple devices are present in your configuration.
 
 - **temperature** (*Optional*): Configuration for the temperature sensor.
@@ -158,14 +158,14 @@ The sensor's accuracy can be reported in text format.
 .. code-block:: yaml
 
     text_sensor:
-      - platform: bme68x_bsec2_i2c
+      - platform: bme68x_bsec2
         iaq_accuracy:
           name: "BME68x IAQ Accuracy"
 
 Configuration variables:
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-- **bme68x_bsec2_i2c_id** (*Optional*, :ref:`config-id`): The ID of the ``bme68x_bsec2_i2c`` component the text sensor
+- **bme68x_bsec2_id** (*Optional*, :ref:`config-id`): The ID of the ``bme68x_bsec2_i2c`` component the text sensor
   will refer to. Useful when multiple devices are present in your configuration.
 - **iaq_accuracy** (*Optional*): Configuration for the IAQ accuracy sensor. Shows: ``Stabilizing``, ``Uncertain``,
   ``Calibrating``, ``Calibrated``.
