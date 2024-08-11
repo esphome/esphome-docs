@@ -1,5 +1,3 @@
-.. _lvgl-text:
-
 LVGL Text
 =========
 

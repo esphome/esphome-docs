@@ -1,5 +1,3 @@
-.. _lvgl-sensor:
-
 LVGL Sensor
 ===========
 

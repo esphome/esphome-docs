@@ -1,5 +1,3 @@
-.. _lvgl-widgets:
-
 LVGL Widgets
 ============
 
@@ -1456,7 +1454,7 @@ The tabs are indexed (zero-based) in the order they appear in the configuration 
 - **tabs** (**Required**, list): A list with (any number of) tabs to be added to tabview.
     - **name** (**Required**): The text to be shown on the button corresponding to the tab.
     - **id** (*Optional*): An ID for the tab itself.
-    - **widgets** (**Required**, list): A list of :ref:`lvgl-widgets` to be drawn on the tab, as children.
+    - **widgets** (**Required**, list): A list of :doc:`/components/lvgl/widgets` to be drawn on the tab, as children.
 - **tab_style** (*Optional*): Style settings for the tabs.
     - **items** (*Optional*, list): Settings for the items *part*, the buttons all use the text and typical background style properties except translations and transformations.
 
@@ -1595,7 +1593,7 @@ If the Tile view is screen sized, the user interface resembles what you may have
     - **row** (**Required**): Horizontal position of the tile in the tileview grid.
     - **dir** (*Optional*): Enable moving to adjacent tiles in the given direction by swiping/dragging. One (or multiple as YAML list) of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
     - **id** (*Optional*): A tile ID to be used with the ``lvgl.tileview.select`` action.
-    - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the tile, as children.
+    - **widgets** (*Optional*, list): A list of :doc:`/components/lvgl/widgets` to be drawn on the tile, as children.
 
 **Actions:**
 

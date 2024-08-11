@@ -1,5 +1,3 @@
-.. _lvgl-select:
-
 LVGL Select
 ===========
 

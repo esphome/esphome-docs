@@ -1,5 +1,3 @@
-.. _lvgl-text-sensor:
-
 LVGL Text Sensor
 ================
 

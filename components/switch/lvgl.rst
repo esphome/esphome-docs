@@ -1,5 +1,3 @@
-.. _lvgl-switch:
-
 LVGL Switch
 ===========
 

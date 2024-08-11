@@ -1,5 +1,3 @@
-.. _lvgl-light:
-
 LVGL Light
 ==========
 
