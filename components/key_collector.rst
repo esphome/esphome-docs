@@ -58,8 +58,8 @@ Configuration variables:
   the ``end_keys`` was pressed. Defaults to ``false``.
 - **back_keys** (*Optional*, string): Keys used to delete the last pressed key. Like *Backspace* on a keyboard.
 - **clear_keys** (*Optional*, string): Keys used to entirely clear the sequence, all the pressed keys.
-- **allowed_keys** (*Optional*, string): Keys allowed to be used. If not specified, then any otherwise
-  unused keys will be allowed. 
+- **allowed_keys** (*Optional*, string): Keys allowed to be used. If not specified, then any otherwise 
+  unused keys will be allowed.
 - **timeout** (*Optional*, :ref:`config-time`): Timeout after which to cancel building the sequence and delete all the keys.
 
 At least one of ``end_keys`` or ``max_length`` have to be specified. The rest are optional.
