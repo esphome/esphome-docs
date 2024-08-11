@@ -944,7 +944,6 @@ Text Sensor Components
     WireGuard, components/wireguard, wireguard_custom_logo.svg
     WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg, dark-invert
 
-
 Climate Components
 ------------------
 
@@ -1130,6 +1129,7 @@ Custom Components
     Custom Sensor, components/sensor/custom, language-cpp.svg, dark-invert
     Custom Switch, components/switch/custom, language-cpp.svg, dark-invert
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg, dark-invert
+
     Custom I²C Component, custom/i2c, language-cpp.svg, dark-invert
     Custom SPI Component, custom/spi, language-cpp.svg, dark-invert
     Custom UART Component, custom/uart, language-cpp.svg, dark-invert
