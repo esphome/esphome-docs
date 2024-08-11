@@ -1,5 +1,3 @@
-.. _lvgl-main:
-
 LVGL Graphics
 =============
 

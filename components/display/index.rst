@@ -15,10 +15,10 @@ engine. Fundamentally, there are these types of displays:
 
   :doc:`OLED <ssd1306>` or :doc:`TFT <ili9xxx>` displays.
 
-For graphical displays, which offer the greatest flexibility, there are two options: 
+For graphical displays, which offer the greatest flexibility, there are two options:
 
 - ESPHome's :ref:`own rendering engine <display-engine>`
-- :ref:`LVGL <lvgl-main>` - Light and Versatile Graphics Library
+- :doc:`LVGL </components/lvgl/index>` - Light and Versatile Graphics Library
 
 .. _display-engine:
 
@@ -611,7 +611,7 @@ See Also
 --------
 
 - :apiref:`display/display_buffer.h`
-- :ref:`LVGL <lvgl-main>`
+- :doc:`LVGL </components/lvgl/index>`
 - :ref:`Fonts <display-fonts>`
 - :ref:`Graph Component <display-graphs>`
 - :ref:`QR Code Component <display-qrcode>`
