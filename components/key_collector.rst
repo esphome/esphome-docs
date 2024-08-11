@@ -6,8 +6,8 @@ Key collector component
 .. seo::
     :description: Key collector component
 
-The ``key_collector`` component collects key presses from components 
-like :ref:`matrix_keypad`, :ref:`Wiegand keypad <wiegand>`
+The ``key_collector`` component collects key presses from components
+like :ref:`matrix_keypad`, :doc:`Wiegand keypad </components/wiegand>`
 or LVGL :ref:`Button Matrix <lvgl-widget-buttonmatrix>`, :ref:`Keyboard <lvgl-widget-keyboard>`
 widgets. It allows you to process key sequences and treat them as one, for
 example to allow inputting of a PIN code or a passkey. The component outputs
@@ -35,7 +35,7 @@ Component
               format: "input progress: '%s', started by '%c'"
               args: [ 'x.c_str()', "(start == 0 ? '~' : start)" ]
         on_result:
-          - logger.log: 
+          - logger.log:
               format: "input result: '%s', started by '%c', ended by '%c'"
               args: [ 'x.c_str()', "(start == 0 ? '~' : start)", "(end == 0 ? '~' : end)" ]
         on_timeout:
@@ -49,14 +49,14 @@ Configuration variables:
 - **source_id** (*Optional*, :ref:`config-id`): The ID of the key input device.
 - **min_length** (*Optional*, integer): The minimal length of the desired key sequence. Below
   this, ``on_result`` automation will not trigger even if any of the ``end_keys`` was pressed.
-- **max_length** (*Optional*, integer): The maximum length of the desired key sequence, after 
+- **max_length** (*Optional*, integer): The maximum length of the desired key sequence, after
   which the sequence will trigger the ``on_result`` automation witout having to press any of the ``end_keys``
 - **end_keys** (*Optional*, string): Keys used to *enter* the sequence.
 - **end_key_required** (*Optional*, boolean): Only trigger ``on_result`` automation when one of
   the ``end_keys`` was pressed. Defaults to ``false``.
 - **back_keys** (*Optional*, string): Keys used to delete the last pressed key. Like *Backspace* on a keyboard.
 - **clear_keys** (*Optional*, string): Keys used to entirely clear the sequence, all the pressed keys.
-- **allowed_keys** (*Optional*, string): Keys allowed to be used. If not specified, then any otherwise 
+- **allowed_keys** (*Optional*, string): Keys allowed to be used. If not specified, then any otherwise
   unused keys will be allowed.
 - **timeout** (*Optional*, :ref:`config-time`): Timeout after which to cancel building the sequence and delete all the keys.
 
@@ -72,7 +72,7 @@ Automations:
   and ``start`` holds the start key that activated this sequence or else ``0``.
   Useful if you want to have a display showing the current value or number of key presses,
   or a speaker beeping when keys are being pressed.
-- **on_result** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
+- **on_result** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the sequence has been finished (eg. ``max_length`` has been reached or one of
   the ``end_keys`` was pressed). The finalized key sequence is placed in a ``vector<uint8_t>`` variable ``x``,
   ``start`` holds the start key that activated this sequence or else ``0``, and
