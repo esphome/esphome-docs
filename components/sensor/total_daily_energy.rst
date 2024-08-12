@@ -33,7 +33,7 @@ daily energy usage in ``Wh`` or ``kWh``.
         power:
           id: my_power
 
-    # Enable time component to reset energy at midnight
+    # Enable time component to reset energy at midnight, or save lifetime energy in restore mode
     time:
       - platform: homeassistant
         id: homeassistant_time
@@ -50,6 +50,10 @@ Configuration variables:
   Defaults to ``true``.
 - **method** (*Optional*, string): The method to use for calculating the total daily energy. One of
   ``trapezoid``, ``left`` or ``right``. Defaults to ``right``.
+- **mode** (*Optional*, string): The mode to use for handling the energy value. One of
+  ``daily`` or ``lifetime``. Defaults to ``daily`` which will reset every midnight.  For 
+  ``lifetime`` mode it's recommended to set ``restore: true`` to preserve the value across
+  power cycle or reboot.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 Converting from W to kW
