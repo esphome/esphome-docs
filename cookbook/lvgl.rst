@@ -7,7 +7,7 @@ LVGL: Tips and Tricks
     :description: Recipes for common use cases of LVGL Displays with ESPHome
     :image: /images/lvgl.png
 
-Here are a couple recipes for various interesting things you can do with :ref:`lvgl-main` in ESPHome.
+Here are a couple recipes for various interesting things you can do with :doc:`/components/lvgl/index` in ESPHome.
 
 .. note::
 
@@ -2232,7 +2232,7 @@ You can combine it with the previous example to turn off the backlight, so the u
 See Also
 --------
 
-- :ref:`lvgl-main`
+- :doc:`/components/lvgl/index`
 - :ref:`config-lambda`
 - :ref:`automation`
 - :ref:`key_collector`
