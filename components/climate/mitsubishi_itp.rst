@@ -146,7 +146,7 @@ A button can be added to reset the filter change status:
       filter_reset_button:
         name: "Filter Reset"
 
-Temerature Sources
+Temperature Sources
 ------------------------
 The Mitsubishi ITP component can use other ESPHome sensors to report current temperature (*in Celsius!*) to the heat pump.  **IMPORTANT:** This component does not poll the sensors explicitly, but rather subscribes to update events on the sensors.  If no updates have been received for 7 minutes, the equipment will be switched back to its internal temperature sensor.  This means that even if the temperature hasn't changed, the sensors need to publish updates.  This may require the use of e.g. ``force_update: true`` to make sure updates are sent regularly.
 
@@ -155,12 +155,12 @@ To enable the Temperature Source select component, add it to the configuration:
 .. code-block:: yaml
 
     select:
-        - platform: mitsubishi_itp
-          temperature_source:
-            name: "Temperature Source"
-            sources:
-              # List of temperature sensor ids
-              # 'Thermostat' will be automatically included if configured
+      - platform: mitsubishi_itp
+        temperature_source:
+          name: "Temperature Source"
+          sources:
+            # List of temperature sensor ids
+            # 'Thermostat' will be automatically included if configured
 
 One particularly useful way to get additional temperature data is by having Home Assistant send the data to the device via a service.  Here is an example configuration for that scenario:
 
