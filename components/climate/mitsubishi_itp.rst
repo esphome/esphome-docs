@@ -37,7 +37,6 @@ Configuration variables:
 - **name** (*Optional*, string): The name for this heat pump.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **update_interval** (*Optional*, :ref:`config-time`): How long to wait between polling the equipment for state and updating Home Assistant.
-- **temperature_sources** (*Optional*): A list of sensor :ref:`config-id` s reporting temperatures **in Celsius**; used to populate the temperature source select component.
 - **supported_modes** (*Optional*): List of modes supported by this climate device.  A combination of
 
   - ``OFF`` - The device is manually set to off, the device is inactive.
@@ -61,9 +60,9 @@ Supported Basic Sensors
 
 .. note::
 
-    Not all sensors are available on all equipment.
+    Not all sensors are available on all equipment.  SEE :ref:`NOTES <sensor_notes>`.
 
-The Mitsubishi ITP device has several supported sensors that can be added.  Each sensor must be explicitly added in the config file, and supports the usual sensor options (see: :ref:`config-sensor`).  The configuration snippet below contains all the basic sensors and a brief description of each.  SEE :ref:`NOTES <sensor_notes>` FOR ADDITIONAL INFORMATION.
+The Mitsubishi ITP device has several supported sensors that can be added.  Each sensor must be explicitly added in the config file, and supports the usual sensor options (see: :ref:`config-sensor`).  The configuration snippet below contains all the basic sensors and a brief description of each.
 
 .. code-block:: yaml
 
