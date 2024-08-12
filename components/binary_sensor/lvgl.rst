@@ -1,7 +1,3 @@
-
-.. _lvgl-binary-sensor:
-
-
 LVGL Binary Sensor
 ==================
 
@@ -10,7 +6,7 @@ LVGL Binary Sensor
     :image: ../images/lvgl_c_bns.png
 
 The ``lvgl`` binary sensor platform creates a binary sensor from an LVGL widget
-and requires :ref:`LVGL <lvgl-main>` to be configured.
+and requires :doc:`LVGL </components/lvgl/index>` to be configured.
 
 Supported widget is :ref:`lvgl-widget-button`. A single binary sensor supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome binary sensor component.
 
@@ -31,7 +27,7 @@ Example:
 
 See Also
 --------
-- :ref:`LVGL Main component <lvgl-main>`
+- :doc:`LVGL Main component </components/lvgl/index>`
 - :ref:`Button widget <lvgl-widget-button>`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/number/lvgl`

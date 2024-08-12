@@ -1,5 +1,3 @@
-.. _lvgl-main:
-
 LVGL Graphics
 =============
 
@@ -7,7 +5,7 @@ LVGL Graphics
     :description: LVGL - ESPHome Displays showing contents created with Light and Versatile Graphics Library
     :image: /images/lvgl.png
 
-`LVGL <https://lvgl.io/>`__ (Light and Versatile Graphics Library) is a free and open-source 
+`LVGL <https://lvgl.io/>`__ (Light and Versatile Graphics Library) is a free and open-source
 embedded graphics library to create beautiful UIs for any MCU, MPU and display type. ESPHome supports `LVGL version 8 <https://docs.lvgl.io/8.4/>`__.
 
 .. figure:: /components/lvgl/images/lvgl_main_screenshot.png
@@ -16,14 +14,14 @@ To use LVGL with a :ref:`display <display-hw>` in ESPHome, you'll need an ESP32 
 
 The graphic display should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set.
 
-For interactivity, a :ref:`Touchscreen <touchscreen-main>` (capacitive highly preferred), a :doc:`/components/sensor/rotary_encoder` or a custom keypad made up from discrete :doc:`Binary Sensors </components/binary_sensor/index>` can be used.
+For interactivity, a :doc:`Touchscreen </components/touchscreen/index>` (capacitive highly preferred), a :doc:`/components/sensor/rotary_encoder` or a custom keypad made up from discrete :doc:`Binary Sensors </components/binary_sensor/index>` can be used.
 
 Check out the detailed examples in :ref:`the Cookbook <lvgl-cookbook>` which demonstrate a number of ways you can integrate your environment with LVGL and ESPHome.
 
 Basics
 ------
 
-In LVGL, graphical elements like buttons, labels, sliders, etc. are called widgets or objects. See :ref:`lvgl-widgets` for a complete list of widgets supported within ESPHome. Not all LVGL widgets are implemented, just those commonly used to support home automation needs/tasks.
+In LVGL, graphical elements like buttons, labels, sliders, etc. are called widgets or objects. See :doc:`/components/lvgl/widgets` for a complete list of widgets supported within ESPHome. Not all LVGL widgets are implemented, just those commonly used to support home automation needs/tasks.
 
 Every widget has a parent object where it is created. For example, if a label is created on a button, the button is the parent of the label. Complex widgets internally consist of several smaller/simpler widgets; these are known as parts, each of which can have separate properties from the main widget.
 
@@ -77,7 +75,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, delay after which the ``on_long_pressed`` :ref:`interaction trigger <lvgl-automation-triggers>` will be called. Defaults to ``400ms``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`interaction trigger <lvgl-automation-triggers>` will be called. Defaults to ``100ms``.
 - **encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display.
-    - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
+    - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :doc:`common properties </components/lvgl/widgets>` of the widgets for more information on groups.
     - **enter_button** (**Required**, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``ENTER`` key.
     - **sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder`; or a list with buttons for left/right interaction with the widgets:
         - **left_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``LEFT`` key.
@@ -85,7 +83,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **long_press_time** (*Optional*, :ref:`Time <config-time>`): For the rotary encoder, delay after which the ``on_long_pressed`` :ref:`interaction trigger <lvgl-automation-triggers>` will be called. Defaults to ``400ms``. Can be disabled with ``never``.
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the rotary encoder, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`interaction trigger <lvgl-automation-triggers>` will be called. Defaults to ``100ms``. Can be disabled with ``never``.
 - **keypads** (*Optional*, list): A list of keypads interacting with the LVGL widgets on the display.
-    - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :ref:`common properties <lvgl-widgets>` of the widgets for more information on groups.
+    - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :doc:`common properties </components/lvgl/widgets>` of the widgets for more information on groups.
     - **up** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``UP`` key.
     - **down** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``DOWN`` key.
     - **right** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``RIGHT`` key.
@@ -104,28 +102,28 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     .. tip::
 
         When using binary sensors (from physical keys) to interact with LVGL, if there are only three keys available, they are best used when configured as a rotary encoder, where ``LEFT`` and ``RIGHT`` act like the rotary wheel, and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-automation-triggers>`. With four or more keys, a keypad configuration is generally more appropriate. For example, a keypad consisting of five keys might use ``PREV``, ``NEXT``, ``UP``, ``DOWN`` and ``ENTER``; ``PREV``/``NEXT`` are used to select a widget within the group, ``UP``/``DOWN`` changes the selected value and ``ENTER`` generates an ``on_press`` :ref:`trigger <lvgl-automation-triggers>`.
-        
+
         The ``long_press_time`` and ``long_press_repeat_time`` can be fine-tuned also by setting them to ``never`` and using the ``autorepeat`` filter on each binary sensor separately.
 
 - **color_depth** (*Optional*, string): The color deph at which the contents are generated. Currently only ``16`` is supported (RGB565, 2 bytes/pixel), which is the default value.
-- **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM, the recommended value is ``25%``. 
+- **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM, the recommended value is ``25%``.
 - **log_level** (*Optional*, string): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
 - **byte_order** (*Optional*, int16): The byte order of the data LVGL outputs; either ``big_endian`` or ``little_endian``. Defaults to ``big_endian``.
 - **disp_bg_color** (*Optional*, :ref:`color <lvgl-color>`): Solid color used to fill the background. Can be changed at runtime with the ``lvgl.update`` action.
 - **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as background wallpaper. To change the image at runtime use the ``lvgl.update`` action. Also see :ref:`lvgl-widget-image` for a note regarding supported image formats.
 - **default_font** (*Optional*, ID): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
-- **style_definitions** (*Optional*, list): A batch of style definitions to use in LVGL widget's ``styles`` configuration. See :ref:`below <lvgl-theme>` for more details. 
-- **theme** (*Optional*, list): A list of styles to be applied to all widgets. See :ref:`below <lvgl-theme>` for more details. 
-- **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the root display. May not be used if ``pages`` (below) is configured.
+- **style_definitions** (*Optional*, list): A batch of style definitions to use in LVGL widget's ``styles`` configuration. See :ref:`below <lvgl-theme>` for more details.
+- **theme** (*Optional*, list): A list of styles to be applied to all widgets. See :ref:`below <lvgl-theme>` for more details.
+- **widgets** (*Optional*, list): A list of :doc:`/components/lvgl/widgets` to be drawn on the root display. May not be used if ``pages`` (below) is configured.
 - **pages** (*Optional*, list): A list of page IDs. Each page acts as a parent for widgets placed on it. May not be used with ``widgets`` (above). Options for each page:
     - **skip** (*Optional*, boolean): Option to skip this page when navigating between them with :ref:`lvgl-page-next-previous-action`.
     - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
-    - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
+    - **widgets** (*Optional*, list): A list of :doc:`/components/lvgl/widgets` to be drawn on the page.
     - All other options from :ref:`lvgl-styling` to be applied to this page.
 - **page_wrap** (*Optional*, boolean): Wrap from the last to the first page when navigating between them with :ref:`lvgl-page-next-previous-action`. Defaults to ``true``.
 - **top_layer** (*Optional*, list): A special kind of *Always on Top* page, which acts as a parent for widgets placed on it. It's shown above all the pages, which may be useful for widgets which always need to be visible.
     - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
-    - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the page.
+    - **widgets** (*Optional*, list): A list of :doc:`/components/lvgl/widgets` to be drawn on the page.
     - All other options from :ref:`lvgl-styling` to be applied to this page.
 - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
 - All other options from :ref:`lvgl-styling` to be applied to all widgets directly.
@@ -168,7 +166,7 @@ Various parts of the widgets (like background, borders etc.) support opacity. It
 Fonts
 *****
 
-Two font choices are available: 
+Two font choices are available:
 
 **ESPHome fonts**
 
@@ -216,7 +214,7 @@ You can display the embedded symbols among the text by their codepoint address p
 .. note::
 
     The ``text_font`` parameter affects the size of symbols, since all the built-in font arrays based on Montserrat include these symbols at the respective sizes. If you set ``text_font`` on a widget to a custom ESPHome font, these symbols will likely not display, unless you include them manually from a FontAwesome OpenType file.
-    
+
     For escape sequences to work, you have to put them in strings enclosed in double quotes.
 
 In addition to the above, the following special fonts are available from LVGL as built-in:
@@ -239,10 +237,10 @@ LVGL follows CSS's `border-box model <https://developer.mozilla.org/en-US/docs/W
 - *bounding box*: the box defined with ``width`` and ``height`` of the widgets (pixels or parent content area percentage; not drawn, just for calculations).
 - *border*: the border line, drawn on the inner side of the bounding box (pixels).
 - *outline*: the outline, drawn on the outer side of the bounding box (pixels).
-- *padding*: space to keep between the border of the widget and its content or children (*I don't want my children too close to my sides, so keep this space*). 
+- *padding*: space to keep between the border of the widget and its content or children (*I don't want my children too close to my sides, so keep this space*).
 - *content*: the content area which is the size of the bounding box reduced by the border width and padding (it's what's referenced as the ``SIZE_CONTENT`` option of certain widgets).
 
-You can adjust the appearance of widgets by changing their foreground, background, border color and/or font. Some widgets allow for more complex styling, effectively changing all or part of their appearance. 
+You can adjust the appearance of widgets by changing their foreground, background, border color and/or font. Some widgets allow for more complex styling, effectively changing all or part of their appearance.
 
 **Styling variables:**
 
@@ -429,7 +427,7 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
     - **flex_align_main** (*Optional*, string): Determines how to distribute the items in their track on the *main* axis. For example, flush the items to the right on with ``flex_flow: ROW_WRAP`` (known as *justify-content* in CSS). Possible options below.
     - **flex_align_cross** (*Optional*, string): Determines how to distribute the items in their track on the *cross* axis. For example, if the items have different height place them to the bottom of the track (known as *align-items* in CSS). Possible options below.
     - **flex_align_track** (*Optional*, string): Determines how to distribute the tracks (known as *align-content* in CSS). Possible options below.
-    
+
     Values for use with  ``flex_align_main``, ``flex_align_cross``, ``flex_align_track``:
 
         - ``START``: means left horizontally and top vertically (default).
@@ -463,7 +461,7 @@ It can arrange items into a 2D "table" that has rows or columns (tracks). The it
     - **grid_column_align** (*Optional*, string): How to align the column. Works only when ``grid_columns`` is given in pixels. Possible options below.
     - **pad_row** (*Optional*, int16): Set the padding between the rows, in pixels.
     - **pad_column** (*Optional*, int16): Set the padding between the columns, in pixels.
-    
+
 In a grid layout, *all the widgets placed on the grid* will get some additional configuration variables to help with placement:
 
     - **grid_cell_row_pos** (**Required**, int16): Position of the widget, in which row to appear (0 based count).
@@ -494,7 +492,7 @@ Values for use with ``grid_column_align``, ``grid_row_align``, ``grid_cell_x_ali
 Widgets
 *******
 
-LVGL supports a list of :ref:`lvgl-widgets` which can be used to draw interactive objects on the screen.
+LVGL supports a list of :doc:`/components/lvgl/widgets` which can be used to draw interactive objects on the screen.
 
 Actions
 -------
@@ -661,7 +659,7 @@ Widget level :ref:`interaction triggers <lvgl-automation-triggers>` can be confi
 ``lvgl.on_idle``
 ****************
 
-LVGL has a notion of screen inactivity -- in other words, the time since the last user interaction with the screen is tracked. This can be used to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter. 
+LVGL has a notion of screen inactivity -- in other words, the time since the last user interaction with the screen is tracked. This can be used to dim the display backlight or turn it off after a moment of inactivity (like a screen saver). Every use of an input device (touchscreen, rotary encoder) counts as an activity and resets the inactivity counter.
 
 The ``on_idle`` :ref:`triggers <automation>` are activated when inactivity time becomes longer than the specified ``timeout``. You can configure any desired number of timeouts with different actions.
 

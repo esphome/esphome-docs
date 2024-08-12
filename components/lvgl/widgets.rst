@@ -1,5 +1,3 @@
-.. _lvgl-widgets:
-
 LVGL Widgets
 ============
 
@@ -7,7 +5,7 @@ At the next level of the LVGL object hierarchy are the widgets, which support st
 
 Widgets can have children, which can be any other widgets. Think of this as a nested structure. The child widgets move with the parent and, if the parent is hidden, its children will also be hidden.
 
-By default, LVGL draws new widgets on top of old widgets, including their children. When widgets have children, property inheritance takes place. Some properties (typically those related to text and opacity) can be inherited from the parent widgets's styles. When the property is inheritable, the parent will be searched for an object which specifies a value for the property. The parents will use their own :ref:`state <lvgl-widgetproperty-state>` to determine the value. For example, if a button is pressed and the text color is defined by the "pressed" state, this "pressed" text color will be used. 
+By default, LVGL draws new widgets on top of old widgets, including their children. When widgets have children, property inheritance takes place. Some properties (typically those related to text and opacity) can be inherited from the parent widgets's styles. When the property is inheritable, the parent will be searched for an object which specifies a value for the property. The parents will use their own :ref:`state <lvgl-widgetproperty-state>` to determine the value. For example, if a button is pressed and the text color is defined by the "pressed" state, this "pressed" text color will be used.
 
 Common properties
 -----------------
@@ -17,13 +15,13 @@ The properties below are common to all widgets.
 **Configuration variables:**
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **x** (*Optional*, int16 or percentage): Horizontal position of the widget. 
+- **x** (*Optional*, int16 or percentage): Horizontal position of the widget.
 - **y** (*Optional*, int16 or percentage): Vertical position of the widget.
 
 .. note::
 
-    By default, the ``x`` and ``y`` coordinates are measured from the *top left corner* of the parent's content area. :ref:`Important <lvgl-styling>`: content area starts *after the padding* thus if the parent has a non-zero padding value, position will be shifted with that. Percentage values are calculated from the parent's content area size. 
-    
+    By default, the ``x`` and ``y`` coordinates are measured from the *top left corner* of the parent's content area. :ref:`Important <lvgl-styling>`: content area starts *after the padding* thus if the parent has a non-zero padding value, position will be shifted with that. Percentage values are calculated from the parent's content area size.
+
     If specifying ``align``, ``x`` and ``y`` can be used as an offset to the calculated position (can also be negative). They are ignored if :ref:`lvgl-layouts` are used on the parent.
 
 - **height** (*Optional*): Height of the widget in pixels or a percentage, or ``SIZE_CONTENT``.
@@ -32,7 +30,7 @@ The properties below are common to all widgets.
 .. note::
 
     The size settings support a special value: ``SIZE_CONTENT``. It means the widget's size in the respective direction will be set to the size of its children. Note that only children on the right and bottom sides will be considered and children on the top and left remain cropped. This limitation makes the behavior more predictable. Widgets with ``hidden`` or ``floating`` flags will be ignored by the ``SIZE_CONTENT`` calculation.
-    
+
     Similarly to CSS, LVGL also supports ``min_width``, ``max_width``, ``min_height`` and ``max_height``. These are limits preventing a widget's size from becoming smaller/larger than these values. They are especially useful if the size is set by percentage or ``SIZE_CONTENT``.
 
 - **min_width**, **max_width**, **min_height**, **max_height** (*Optional*, int16 or percentage): Sets a minimal/maximal width or a minimal/maximal height. Pixel and percentage values can be used. Percentage values are relative to the dimensions of the parent's content area. Defaults to ``0%``.
@@ -52,7 +50,7 @@ The properties below are common to all widgets.
 .. figure:: /components/lvgl/images/lvgl_align.png
     :align: center
 
-- **group** (*Optional*, string): The name of the group of widgets which will interact with a  :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused widget which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device.
+- **group** (*Optional*, string): The name of the group of widgets which will interact with a  :doc:`/components/sensor/rotary_encoder`. In every group there is always one focused widget which receives the encoder actions. You need to associate an input device with a group. An input device can send key events to only one group but a group can receive data from more than one input device. If no group is specified for a widget or an encoder, an unnamed default group will be assigned, so in most cases where only one encoder is used it will not be necessary to explicitly specify a group.
 - **layout** (*Optional*): See :ref:`lvgl-layouts` for details. Defaults to ``NONE``.
 - **styles** (*Optional*, :ref:`config-id`): The ID of a *style definition* from the main component configuration to override the theme styles.
 - **theme** (*Optional*, list): A list of styles to apply to the widget and children. Same configuration option as at the main component.
@@ -152,7 +150,7 @@ The animation image is similar to the normal ``image`` widget. The main differen
 
 **Triggers:**
 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
 
 **Example:**
 
@@ -208,7 +206,7 @@ If the ``adv_hittest`` :ref:`flag <lvgl-widget-flags>` is enabled the arc can be
 
 .. note::
 
-    The zero degree position is at the middle right (3 o'clock) of the widget and the degrees increase in a clockwise direction from there. Angles are specified in the ``0``-``360`` range. 
+    The zero degree position is at the middle right (3 o'clock) of the widget and the degrees increase in a clockwise direction from there. Angles are specified in the ``0``-``360`` range.
 
 **Actions:**
 
@@ -218,8 +216,8 @@ If the ``adv_hittest`` :ref:`flag <lvgl-widget-flags>` is enabled the arc can be
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <actions-trigger>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the value in ``x``. 
+- ``on_value`` :ref:`trigger <actions-trigger>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``.
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the value in ``x``.
 
 **Example:**
 
@@ -293,7 +291,7 @@ Not only the end, but also the start value of the bar can be set, which changes 
 
 **Triggers:**
 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
 
 **Example:**
 
@@ -322,7 +320,7 @@ The ``bar`` can be also integrated as :doc:`Number </components/number/lvgl>` or
 ``button``
 ----------
 
-Simple push (momentary) or toggle (two-states) button. 
+Simple push (momentary) or toggle (two-states) button.
 
 .. figure:: /components/lvgl/images/lvgl_button.png
     :align: center
@@ -337,7 +335,7 @@ A notable state is ``checked`` (boolean) which can have different styles applied
 **Triggers:**
 
 - ``on_value`` :ref:`trigger <actions-trigger>` is activated after clicking. If ``checkable`` is ``true``, the boolean variable ``x``, representing the checked state, may be used by lambdas within this trigger.
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
 
 **Example:**
 
@@ -399,7 +397,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
         - **key_code** (*Optional*, string): One character be sent as the key code to a :ref:`key_collector` instead of ``text`` when the button is pressed.
         - **selected** (*Optional*, boolean): Set the button as the most recently released or focused. Defaults to ``false``.
         - **text** (*Optional*): Text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display on the button.
-        - **width** (*Optional*): Width relative to the other buttons in the same row. Must be a value between ``1`` and ``15``; the default is ``1`` (for example, given a line with two buttons, one with ``width: 1`` and another one with ``width: 2``, the first will be ``33%`` wide while the second will be ``66%`` wide). 
+        - **width** (*Optional*): Width relative to the other buttons in the same row. Must be a value between ``1`` and ``15``; the default is ``1`` (for example, given a line with two buttons, one with ``width: 1`` and another one with ``width: 2``, the first will be ``33%`` wide while the second will be ``66%`` wide).
         - **control** (*Optional*): Binary flags to control behavior of the buttons (all ``false`` by default):
             - **checkable** (*Optional*, boolean): Enable toggling of a button, ``checked`` state will be added/removed as the button is clicked.
             - **checked** (*Optional*, boolean): Make the button checked. Apply ``checked`` styles to the button.
@@ -428,7 +426,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
 **Triggers:**
 
 - ``on_value`` and :ref:`interaction <lvgl-automation-triggers>` triggers can be configured for each button, is activated after clicking. If ``checkable`` is ``true``, the boolean variable ``x``, representing the checked state, may be used by lambdas within this trigger.
-- The :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers can be configured for the main widget, they pass the ID of the pressed button (or null if nothing pressed) as variable ``x`` (a pointer to a ``uint16_t`` which holds the index number of the button). 
+- The :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers can be configured for the main widget, they pass the ID of the pressed button (or null if nothing pressed) as variable ``x`` (a pointer to a ``uint16_t`` which holds the index number of the button).
 
 **Example:**
 
@@ -540,7 +538,7 @@ The checkbox widget is made internally from a *tick box* and a label. When the c
 **Triggers:**
 
 ``on_value`` :ref:`trigger <actions-trigger>` is activated when toggling the checkbox. The boolean variable ``x``, representing the checkbox's state, may be used by lambdas within this trigger.
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the value in ``x``. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the value in ``x``.
 
 **Example:**
 
@@ -598,7 +596,7 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
 - **indicator** (*Optional*, list): Settings for the the parent of ``symbol``. Supports a list of :ref:`styles <lvgl-styling>` to customize.
 - **options** (**Required**, list): The list of available options in the drop-down.
 - **scrollbar** (*Optional*, list): Settings for the scrollbar *part*. Supports a list of :ref:`styles <lvgl-styling>` to customize. The scrollbar background, border, shadow properties and width (for its own width) and right padding for the spacing on the right.
-- **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
+- **selected_index** (*Optional*, int8): The index of the item you wish to be selected.
 - **selected** (*Optional*, list): Settings for the selected item in the list. Supports a list of :ref:`styles <lvgl-styling>` to customize.
 - **symbol** (*Optional*, dict): A symbol (typically an chevron) is shown in dropdown list. If ``dir`` of the drop-down list is ``LEFT`` the symbol will be shown on the left, otherwise on the right. Choose a different :ref:`symbol <lvgl-fonts>` from those built-in or from your own customized font.
 - Style options from :ref:`lvgl-styling` for the background of the button and the list. Uses the typical background properties and :ref:`lvgl-widget-label` text properties for the text on it. ``max_height`` can be used to limit the height of the list. ``text_font`` can be used to set the font of the button part, including the symbol.
@@ -611,9 +609,9 @@ The Dropdown widget is built internally from a *button* part and a *list* part (
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <actions-trigger>` is activated only when you select an item from the list. The new selected index is returned in the variable ``x``. The :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers also apply, and they also return the selected index in ``x``. 
+- ``on_value`` :ref:`trigger <actions-trigger>` is activated only when you select an item from the list. The new selected index is returned in the variable ``x``. The :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers also apply, and they also return the selected index in ``x``.
 - ``on_cancel`` :ref:`trigger <actions-trigger>` is also activated when you close the dropdown without selecting an item from the list. The currently selected index is returned in the variable ``x``.
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the value in ``x``. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the value in ``x``.
 
 **Example:**
 
@@ -658,7 +656,7 @@ The ``dropdown`` can be also integrated as :doc:`Select </components/select/lvgl
 ``image``
 ---------
 
-Images are the basic widgets used to display images. 
+Images are the basic widgets used to display images.
 
 .. figure:: /components/lvgl/images/lvgl_image.png
     :align: center
@@ -668,8 +666,8 @@ Images are the basic widgets used to display images.
 - **angle** (*Optional*, 0-360): Rotation of the image. Defaults to ``0.0``. Needs ``pivot_x`` and ``pivot_y`` to be specified.
 - **antialias** (*Optional*): The quality of the angle or scale transformation. When anti-aliasing is enabled, the transformations are higher quality but slower. Defaults to ``false``.
 - **mode** (*Optional*): Either ``REAL`` or  ``VIRTUAL``. With ``VIRTUAL``, when the image is scaled or rotated, the real coordinates of the image object are not changed. The larger content simply overflows the object's boundaries. It also means the layouts are not affected the by the transformations. With ``REAL``, if the width/height of the object is set to ``SIZE_CONTENT``, the object's size will be set to the scaled and rotated size. If an explicit size is set, the overflowing content will be cropped. Defaults to ``VIRTUAL``.
-- **offset_x** (*Optional*): Add a horrizontal offset to the image position. 
-- **offset_y** (*Optional*): Add a vertical offset to the image position. 
+- **offset_x** (*Optional*): Add a horrizontal offset to the image position.
+- **offset_y** (*Optional*): Add a vertical offset to the image position.
 - **pivot_x** (*Optional*): Horizontal position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
 - **pivot_y** (*Optional*): Vertical position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
 - **scale** (*Optional*, 0.1-10): Zoom of the image.
@@ -684,7 +682,7 @@ Images are the basic widgets used to display images.
 
 **Triggers:**
 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
 
 **Example:**
 
@@ -775,7 +773,7 @@ For styling, the ``keyboard`` widget uses the same settings as :ref:`lvgl-widget
 
 .. tip::
 
-    The Keyboard widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations. 
+    The Keyboard widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations.
 
 .. note::
 
@@ -794,16 +792,16 @@ A label is the basic widget type that is used to display text.
 **Configuration variables:**
 
 - **long_mode** (*Optional*, list): By default, the width and height of the label is set to ``SIZE_CONTENT``. Therefore, the size of the label is automatically expanded to the text size. Otherwise, if the ``width`` or ``height`` are explicitly set (or set by :ref:`lvgl-layouts`), the lines wider than the label's width can be manipulated according to the long mode policies below. These policies can be applied if the height of the text is greater than the height of the label.
-    - ``WRAP``: Wrap lines which are too long. If the height is ``SIZE_CONTENT``, the label's height will be expanded, otherwise the text will be clipped (default). 
+    - ``WRAP``: Wrap lines which are too long. If the height is ``SIZE_CONTENT``, the label's height will be expanded, otherwise the text will be clipped (default).
     - ``DOT``: Replaces the last 3 characters from bottom right corner of the label with dots.
     - ``SCROLL``: If the text is wider than the label, scroll the text horizontally back and forth. If it's higher, scroll vertically. Text will scroll in only one direction; horizontal scrolling has higher precedence.
     - ``SCROLL_CIRCULAR``: If the text is wider than the label, continuously scroll the text horizontally. If it's higher, scroll vertically. Text will scroll in only one direction; horizontal scrolling has higher precedence.
     - ``CLIP``: Simply clip the parts of the text outside the label.
-- **recolor** (*Optional*, boolean): Enable recoloring of button text with ``#``. This makes it possible to set the color of characters in the text individually by prefixing the text to be re-colored with a ``#RRGGBB`` hexadecimal color code followed by a *space*, and finally closed with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``. 
+- **recolor** (*Optional*, boolean): Enable recoloring of button text with ``#``. This makes it possible to set the color of characters in the text individually by prefixing the text to be re-colored with a ``#RRGGBB`` hexadecimal color code followed by a *space*, and finally closed with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``.
 - **scrollbar** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scroll bar that is shown when the text is larger than the widget's size.
 - **selected** (*Optional*, list): Settings for the the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
 - **text_align** (*Optional*, dict): Alignment of the text in the widget - it doesn't align the object itself, only the lines inside the object. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``. Inherited from parent. Defaults to ``AUTO``, which detects the text base direction and uses left or right alignment accordingly.
-- **text_color** (*Optional*, :ref:`color <lvgl-color>`): Color to render the text in. Inherited from parent. Defaults to ``0`` (black). 
+- **text_color** (*Optional*, :ref:`color <lvgl-color>`): Color to render the text in. Inherited from parent. Defaults to ``0`` (black).
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified as YAML list). Inherited from parent. Defaults to ``NONE``.
 - **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID of the font used to render the text or symbol. Inherited from parent.
 - **text_letter_space** (*Optional*, int16): Extra character spacing of the text. Inherited from parent. Defaults to ``0``.
@@ -818,7 +816,7 @@ A label is the basic widget type that is used to display text.
 
 **Actions:**
 
-- ``lvgl.label.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-automation-actions>` action is used for the common styles, states or flags. 
+- ``lvgl.label.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-automation-actions>` action is used for the common styles, states or flags.
     - **id** (**Required**): The ID or a list of IDs of label widgets which you want update.
     - **text** (**Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
         -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
@@ -827,7 +825,7 @@ A label is the basic widget type that is used to display text.
 
 **Triggers:**
 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
 
 **Example:**
 
@@ -881,7 +879,7 @@ The LED widgets are either circular or rectangular widgets whose brightness can 
 
 **Triggers:**
 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
 
 **Example:**
 
@@ -962,7 +960,7 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
 - **scales** (**Required**, list): A list with (any number of) scales to be added to the meter.
     - **angle_range** (**Required**): The angle between start and end of the tick scale. Defaults to ``270``.
     - **indicators** (**Required**, list): A list with indicators to be added to the scale. Multiple of each can be added. Their values are interpreted in the range of the scale:
-        - **arc** (*Optional*): Add a background arc the scale: 
+        - **arc** (*Optional*): Add a background arc the scale:
             - **color**: :ref:`Color <lvgl-color>` to draw the arc. Defaults to ``0`` (black).
             - **end_value**: The value in the scale range to end drawing the arc to.
             - **r_mod**: Adjust the position of the arc from the scale radius with this amount (can be negative). Defaults to ``0``.
@@ -973,7 +971,7 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **pivot_x**: Horizontal position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
             - **pivot_y**: Vertical position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
-            - **src**:  The ID of an existing image configuration, representing a needle pointing to the right like ``-o--->``. 
+            - **src**:  The ID of an existing image configuration, representing a needle pointing to the right like ``-o--->``.
             - **value**: The value in the scale range to show at start.
         - **line** (*Optional*): Add a needle line to the scale. By default, the length of the line is the same as the scale's radius:
             - **color**: :ref:`Color <lvgl-color>` for the needle line. Defaults to ``0`` (black).
@@ -991,7 +989,7 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
             - **width**: Modifies the ``width`` of the tick lines.
     - **range_from** (**Required**): The minimum value of the tick scale. Defaults to ``0``.
     - **range_to** (**Required**): The maximum value of the tick scale. Defaults to ``100``.
-    - **rotation** (*Optional*): The rotation angle offset of the tick scale. 
+    - **rotation** (*Optional*): The rotation angle offset of the tick scale.
     - **ticks** (**Required**, list): A scale can have minor and major ticks and labels on the major ticks. To add the minor ticks:
         - **color** (*Optional*, :ref:`color <lvgl-color>`): Color to draw the ticks. Required if ``count`` is greater than ``0``. Defaults to ``0x808080``.
         - **count** (**Required**): How many ticks to be on the scale. Defaults to ``12``.
@@ -1008,7 +1006,7 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
 
 .. note::
 
-    The zero degree position is at the middle right (3 o'clock) of the widget and the degrees increase in a clockwise direction from there. Angles are specified in the ``0``-``360`` range. 
+    The zero degree position is at the middle right (3 o'clock) of the widget and the degrees increase in a clockwise direction from there. Angles are specified in the ``0``-``360`` range.
 
 **Actions:**
 
@@ -1017,7 +1015,7 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
 
 **Triggers:**
 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
 
 **Example:**
 
@@ -1079,7 +1077,7 @@ The text will be broken into multiple lines automatically and the height will be
         - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties.
     - **buttons** (**Required**, dict): A list of buttons to show at the bottom of the message box:
         - **text** (**Required**, string):  The text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display on the button.
-    - **close_button** (**Required**, boolean): Controls the appearance of the close button to the top right of the message box. 
+    - **close_button** (**Required**, boolean): Controls the appearance of the close button to the top right of the message box.
     - **title** (**Required**, string): A string to display at the top of the message box.
 
 **Actions:**
@@ -1131,7 +1129,7 @@ You can use it as a parent container for other widgets. By default, it catches t
 
 **Triggers:**
 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
 
 **Example:**
 
@@ -1161,10 +1159,10 @@ Roller allows you to simply select one option from a list by scrolling.
 - **anim_time** (*Optional*, :ref:`Time <config-time>`): When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in this amount of time.
 - **mode** (*Optional*, dict): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
 - **options** (**Required**, list): The list of available options in the roller.
-- **selected_index** (*Optional*, int8): The index of the item you wish to be selected. 
+- **selected_index** (*Optional*, int8): The index of the item you wish to be selected.
 - **selected** (*Optional*, list): Settings for the selected *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the :ref:`lvgl-widget-label` text style properties to change the appearance of the text in the selected area.
 - **visible_row_count** (*Optional*, int8): The number of visible rows.
-- Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and :ref:`lvgl-widget-label` style properties. ``text_line_space`` adjusts the space between the options. 
+- Style options from :ref:`lvgl-styling`. The background of the roller uses all the typical background properties and :ref:`lvgl-widget-label` style properties. ``text_line_space`` adjusts the space between the options.
 
 **Actions:**
 
@@ -1174,8 +1172,8 @@ Roller allows you to simply select one option from a list by scrolling.
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <actions-trigger>` is activated when you select an item from the list. The new selected index is returned in the variable ``x``. 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the selected index in ``x``. 
+- ``on_value`` :ref:`trigger <actions-trigger>` is activated when you select an item from the list. The new selected index is returned in the variable ``x``.
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the selected index in ``x``.
 
 **Example:**
 
@@ -1240,8 +1238,8 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <actions-trigger>` is activated when the knob changes the value of the slider. The new value is returned in the variable ``x``. 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the value in ``x``. 
+- ``on_value`` :ref:`trigger <actions-trigger>` is activated when the knob changes the value of the slider. The new value is returned in the variable ``x``.
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the value in ``x``.
 
 **Example:**
 
@@ -1301,7 +1299,7 @@ The spinbox contains a numeric value (as text) which can be increased or decreas
 - **range_to** (*Optional*, float): The maximum value allowed to set the spinbox to. Defaults to ``100``.
 - **rollover** (*Optional*, boolean): While increasing or decreasing the value, if either the minimum or maximum value is reached with this option enabled, the value will change to the other limit. If disabled, the value will remain at the minimum or maximum value. Defaults to ``false``.
 - **step** (*Optional*, float): The granularity with which the value can be set. Defaults to ``1.0``.
-- **value** (**Required**, float): Actual value to be shown by the spinbox at start. 
+- **value** (**Required**, float): Actual value to be shown by the spinbox at start.
 
 .. note::
 
@@ -1321,8 +1319,8 @@ The spinbox contains a numeric value (as text) which can be increased or decreas
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <actions-trigger>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``. 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the value in ``x``. 
+- ``on_value`` :ref:`trigger <actions-trigger>` is activated when the knob changes the value of the arc. The new value is returned in the variable ``x``.
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the value in ``x``.
 
 **Example:**
 
@@ -1389,7 +1387,7 @@ The Spinner widget is a spinning arc over a ring.
 
 **Triggers:**
 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
 
 **Example:**
 
@@ -1430,7 +1428,7 @@ The switch looks like a little slider and can be used to turn something on and o
 **Triggers:**
 
 - ``on_value`` :ref:`trigger <actions-trigger>` is activated when toggling the switch. The boolean variable ``x``, representing the switch's state, may be used by lambdas within this trigger.
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the value in ``x``. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers which also return the value in ``x``.
 
 **Example:**
 
@@ -1460,7 +1458,7 @@ See :ref:`lvgl-cookbook-relay` for an example which demonstrates how to use a sw
 ``tabview``
 -----------
 
-The tab view object can be used to organize content in tabs. The tab buttons are internally generated with a :ref:`lvgl-widget-buttonmatrix`. 
+The tab view object can be used to organize content in tabs. The tab buttons are internally generated with a :ref:`lvgl-widget-buttonmatrix`.
 
 .. figure:: /components/lvgl/images/lvgl_tabview.png
     :align: center
@@ -1471,10 +1469,10 @@ The tabs are indexed (zero-based) in the order they appear in the configuration 
 
 - **position** (*Optional*, string): Position of the tab selector buttons. One of ``TOP``, ``BOTTOM``, ``LEFT``, ``RIGHT``. Defaults to ``TOP``.
 - **size** (*Optional*, percentage): The height (in case of ``TOP``, ``BOTTOM``) or width (in case of ``LEFT``, ``RIGHT``) tab buttons. Defaults to ``10%``.
-- **tabs** (**Required**, list): A list with (any number of) tabs to be added to tabview.  
+- **tabs** (**Required**, list): A list with (any number of) tabs to be added to tabview.
     - **name** (**Required**): The text to be shown on the button corresponding to the tab.
     - **id** (*Optional*): An ID for the tab itself.
-    - **widgets** (**Required**, list): A list of :ref:`lvgl-widgets` to be drawn on the tab, as children.
+    - **widgets** (**Required**, list): A list of :doc:`/components/lvgl/widgets` to be drawn on the tab, as children.
 - **tab_style** (*Optional*): Style settings for the tabs.
     - **items** (*Optional*, list): Settings for the items *part*, the buttons all use the text and typical background style properties except translations and transformations.
 
@@ -1482,13 +1480,13 @@ The tabs are indexed (zero-based) in the order they appear in the configuration 
 
 - ``lvgl.tabview.select`` :ref:`action <actions-action>` jumps the view to the desired tab:
     - **id** (**Required**): The ID of the tabview which receives this action.
-    - **index** (**Required**): The (zero-based) index of the tab to which to jump. 
+    - **index** (**Required**): The (zero-based) index of the tab to which to jump.
     - **animated** (*Optional*, boolean): To animate the movement. Defaults to ``false``.
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <actions-trigger>` is activated when displayed tab changes. The new value is returned in the variable ``tab`` as the ID of the now-visible tab. 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers. 
+- ``on_value`` :ref:`trigger <actions-trigger>` is activated when displayed tab changes. The new value is returned in the variable ``tab`` as the ID of the now-visible tab.
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
 
 **Example:**
 
@@ -1546,7 +1544,7 @@ The textarea is an extended label widget which displays a cursor and allows the 
 - **accepted_chars** (*Optional*, string): You can set a list of accepted characters, so other characters will be ignored.
 - **max_length** (*Optional*, int): Limit the maximum number of characters to this value.
 - **one_line** (*Optional*, boolean): The text area can be limited to only allow a single line of text. In this case the height will set automatically to fit only one line, line break characters will be ignored, and word wrap will be disabled.
-- **password_mode** (*Optional*, boolean): The text area supports password mode. By default, if the ``•`` (bullet, ``0x2022``) glyph exists in the font, the entered characters are converted to it after some time or when a new character is entered. If ``•`` is missing from the font, ``*`` (asterisk) will be used. 
+- **password_mode** (*Optional*, boolean): The text area supports password mode. By default, if the ``•`` (bullet, ``0x2022``) glyph exists in the font, the entered characters are converted to it after some time or when a new character is entered. If ``•`` is missing from the font, ``*`` (asterisk) will be used.
 - **placeholder_text** (*Optional*, string): A placeholder text can be specified, which is displayed when the Text area is empty.
 - any :ref:`Styling <lvgl-styling>` and state-based option for the background of the textarea. Uses all the typical background style properties and the text/label related style properties for the text.
 
@@ -1560,7 +1558,7 @@ The textarea is an extended label widget which displays a cursor and allows the 
 
 - ``on_value`` :ref:`trigger <actions-trigger>` is activated on every keystroke.
 - ``on_ready`` :ref:`trigger <actions-trigger>` is activated when ``one_line`` is configured as ``true`` and the newline character is received (Enter/Ready key on the keyboard).
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers. 
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
 
 For both triggers above, when triggered, the variable ``text`` (``std::string`` type) is available for use in lambdas within these triggers and it will contain the entire contents of the textarea.
 
@@ -1608,12 +1606,12 @@ If the Tile view is screen sized, the user interface resembles what you may have
 
 **Configuration variables:**
 
-- **tiles** (**Required**, list): A list with (any number of) tiles to be added to tileview.  
+- **tiles** (**Required**, list): A list with (any number of) tiles to be added to tileview.
     - **column** (**Required**): Vertical position of the tile in the tileview grid.
     - **row** (**Required**): Horizontal position of the tile in the tileview grid.
     - **dir** (*Optional*): Enable moving to adjacent tiles in the given direction by swiping/dragging. One (or multiple as YAML list) of ``LEFT``, ``RIGHT``, ``TOP``, ``BOTTOM``, ``HOR``, ``VER``, ``ALL``. Defaults to ``ALL``.
     - **id** (*Optional*): A tile ID to be used with the ``lvgl.tileview.select`` action.
-    - **widgets** (*Optional*, list): A list of :ref:`lvgl-widgets` to be drawn on the tile, as children.
+    - **widgets** (*Optional*, list): A list of :doc:`/components/lvgl/widgets` to be drawn on the tile, as children.
 
 **Actions:**
 
@@ -1626,8 +1624,8 @@ If the Tile view is screen sized, the user interface resembles what you may have
 
 **Triggers:**
 
-- ``on_value`` :ref:`trigger <actions-trigger>` is activated when displayed tile changes. The new value is returned in the variable ``tile`` as the ID of the now-visible tile. 
-- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers. 
+- ``on_value`` :ref:`trigger <actions-trigger>` is activated when displayed tile changes. The new value is returned in the variable ``tile`` as the ID of the now-visible tile.
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
 
 **Example:**
 
@@ -1696,7 +1694,7 @@ This powerful :ref:`action <actions-action>` allows changing/updating any widget
             bg_color: 0xFF0000
             state:
               disabled: true
- 
+
     # Example for updating flag:
     on_...:
       then:
@@ -1722,9 +1720,9 @@ These :ref:`actions <actions-action>` are shorthands for toggling the ``hidden``
         - lvgl.widget.hide: my_label_id                # a single widget
         - lvgl.widget.show: [my_button_1, my_button_2] # a list of widgets
         - delay: 0.5s
-        - lvgl.widget.show: 
+        - lvgl.widget.show:
             -id: my_label_id
-        - lvgl.widget.hide: 
+        - lvgl.widget.hide:
             - id: [my_button_1, my_button_2]
 
 ``lvgl.widget.disable``, ``lvgl.widget.enable``
@@ -1796,7 +1794,7 @@ These triggers can be applied directly to any widget in the LVGL configuration, 
 See Also
 --------
 
-- :ref:`LVGL Main component <lvgl-main>`
+- :doc:`LVGL Main component </components/lvgl/index>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`
 - :doc:`/components/number/lvgl`

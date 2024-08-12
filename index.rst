@@ -915,6 +915,14 @@ Text Components
     Template Text, components/text/template, description.svg, dark-invert
     LVGL textarea Text, components/text/lvgl, lvgl_c_txt.png
 
+Valve Components
+----------------
+
+.. imgtable::
+
+    Valve Core, components/valve/index, folder-open.svg, dark-invert
+    Template Valve, components/valve/template, description.svg, dark-invert
+
 Text Sensor Components
 ----------------------
 
@@ -935,14 +943,6 @@ Text Sensor Components
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg, dark-invert
     WireGuard, components/wireguard, wireguard_custom_logo.svg
     WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg, dark-invert
-
-Valve Components
-----------------
-
-.. imgtable::
-
-    Valve Core, components/valve/index, folder-open.svg, dark-invert
-    Template Valve, components/valve/template, description.svg, dark-invert
 
 Climate Components
 ------------------
@@ -1129,6 +1129,7 @@ Custom Components
     Custom Sensor, components/sensor/custom, language-cpp.svg, dark-invert
     Custom Switch, components/switch/custom, language-cpp.svg, dark-invert
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg, dark-invert
+
     Custom I²C Component, custom/i2c, language-cpp.svg, dark-invert
     Custom SPI Component, custom/spi, language-cpp.svg, dark-invert
     Custom UART Component, custom/uart, language-cpp.svg, dark-invert

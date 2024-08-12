@@ -6,8 +6,8 @@ Key collector component
 .. seo::
     :description: Key collector component
 
-The ``key_collector`` component collects key presses from components 
-like :ref:`matrix_keypad`, :ref:`Wiegand keypad <wiegand>`
+The ``key_collector`` component collects key presses from components
+like :ref:`matrix_keypad`, :doc:`Wiegand keypad </components/wiegand>`
 or LVGL :ref:`Button Matrix <lvgl-widget-buttonmatrix>`, :ref:`Keyboard <lvgl-widget-keyboard>`
 widgets. It allows you to process key sequences and treat them as one, for
 example to allow inputting of a PIN code or a passkey. The component outputs
@@ -42,6 +42,8 @@ Component
           - logger.log:
               format: "input timeout: '%s', started by '%c'"
               args: [ 'x.c_str()', "(start == 0 ? '~' : start)" ]
+
+
 
 Configuration variables:
 

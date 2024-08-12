@@ -1,5 +1,3 @@
-.. _lvgl-text:
-
 LVGL Text
 =========
 
@@ -7,7 +5,7 @@ LVGL Text
     :description: Instructions for setting up an LVGL Text component.
     :image: ../images/lvgl_c_txt.png
 
-The ``lvgl`` text platform creates an editable text component from an LVGL textual widget and requires :ref:`LVGL <lvgl-main>` to be configured.
+The ``lvgl`` text platform creates an editable text component from an LVGL textual widget and requires :doc:`LVGL </components/lvgl/index>` to be configured.
 
 Supported widgets are :ref:`lvgl-widget-label` and :ref:`lvgl-widget-textarea`. A single text supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome text component.
 
@@ -32,7 +30,7 @@ Example:
 
 See Also
 --------
-- :ref:`LVGL Main component <lvgl-main>`
+- :doc:`LVGL Main component </components/lvgl/index>`
 - :ref:`Label widget <lvgl-widget-label>`
 - :ref:`Textarea widget <lvgl-widget-textarea>`
 - :doc:`/components/binary_sensor/lvgl`

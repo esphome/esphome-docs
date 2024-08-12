@@ -1,5 +1,3 @@
-.. _lvgl-light:
-
 LVGL Light
 ==========
 
@@ -8,7 +6,7 @@ LVGL Light
     :image: ../images/lvgl_c_lig.png
 
 The ``lvgl`` light platform creates a light from an LVGL widget
-and requires :ref:`LVGL <lvgl-main>` to be configured.
+and requires :doc:`LVGL </components/lvgl/index>` to be configured.
 
 Supported widget is :ref:`lvgl-widget-led`. A single light supports only a single widget; in other words, it's not possible to have multiple widgets associated with a single ESPHome light component.
 
@@ -34,7 +32,7 @@ Example:
 
 See Also
 --------
-- :ref:`LVGL Main component <lvgl-main>`
+- :doc:`LVGL Main component </components/lvgl/index>`
 - :ref:`LED widget <lvgl-widget-led>`
 - :doc:`/components/binary_sensor/lvgl`
 - :doc:`/components/sensor/lvgl`

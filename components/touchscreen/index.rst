@@ -1,5 +1,3 @@
-.. _touchscreen-main:
-
 Touchscreen Components
 ======================
 
