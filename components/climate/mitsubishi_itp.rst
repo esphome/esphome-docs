@@ -13,21 +13,21 @@ The ``mitsubishi_itp`` component creates a climate device for controlling a Mits
 
 .. code-block:: yaml
 
-  # Example minimal configuration entry
+    # Example minimal configuration entry
 
-  climate:
-    - platform: mitsubishi_itp
-      name: "Climate"
-      uart_heatpump: hp_uart
+    climate:
+      - platform: mitsubishi_itp
+        name: "Climate"
+        uart_heatpump: hp_uart
 
-  uart:
-    - id: hp_uart
-      baud_rate: 2400 # Some devices may require 9600
-      parity: EVEN
-      rx_pin:
-          number: GPIO7
-      tx_pin:
-          number: GPIO6
+    uart:
+      - id: hp_uart
+        baud_rate: 2400 # Some devices may require 9600
+        parity: EVEN
+        rx_pin:
+            number: GPIO7
+        tx_pin:
+            number: GPIO6
 
 Configuration variables:
 ------------------------
@@ -67,54 +67,54 @@ The Mitsubishi ITP device has several supported sensors that can be added.  Each
 
 .. code-block:: yaml
 
-  binary_sensor:
-    - platform: mitsubishi_itp
-      defrost:
-        # Reports if system is in defrost
-        name: "Defost"
-      filter_status:
-        # Reports if filter needs to be replaced (false = OK)
-        name: "Filter Status"
-      isee_status:
-        # Reports if i-see is enabled
-        name: "i-see Status"
-      preheat:
-        # Reports if system is preheating
-        name: "Preheat"
-      standby:
-        # Reports if system is in standby
-        name: "Standby"
+    binary_sensor:
+      - platform: mitsubishi_itp
+        defrost:
+          # Reports if system is in defrost
+          name: "Defost"
+        filter_status:
+          # Reports if filter needs to be replaced (false = OK)
+          name: "Filter Status"
+        isee_status:
+          # Reports if i-see is enabled
+          name: "i-see Status"
+        preheat:
+          # Reports if system is preheating
+          name: "Preheat"
+        standby:
+          # Reports if system is in standby
+          name: "Standby"
 
-  sensor:
-    - platform: mitsubishi_itp
-      compressor_frequency:
-        # Frequency in Hz of compressor (only some equipment)
-        name: "Compressor Frequency"
-      outdoor_temperature:
-        # Outdoor temperature as reported by equipment
-        name: "Outdoor Temperature"
+    sensor:
+      - platform: mitsubishi_itp
+        compressor_frequency:
+          # Frequency in Hz of compressor (only some equipment)
+          name: "Compressor Frequency"
+        outdoor_temperature:
+          # Outdoor temperature as reported by equipment
+          name: "Outdoor Temperature"
 
-      # Only available if a thermostat is connected
-      thermostat_humidity:
-        # Humidity reported by thermostat (only with enhanced_mhk)
-        name: "Thermostat Humidity"
-      thermostat_temperature:
-        # Temperature reported by thermostat
-        name: "Thermostat Temperature"
+        # Only available if a thermostat is connected
+        thermostat_humidity:
+          # Humidity reported by thermostat (only with enhanced_mhk)
+          name: "Thermostat Humidity"
+        thermostat_temperature:
+          # Temperature reported by thermostat
+          name: "Thermostat Temperature"
 
-  text_sensor:
-    - platform: mitsubishi_itp
-      actual_fan:
-        # Actual current fan speed (vs. set speed)
-        name: "Actual Fan"
-      error_code:
-        # Reports diagnostic error code
-        name: "Error Code"
-      
-      # Only available if a thermostat is connected
-      thermostat_battery:
-        # Thermostat battery status (only with enhanced_mhk)
-        name: "Thermostat Battery"
+    text_sensor:
+      - platform: mitsubishi_itp
+        actual_fan:
+          # Actual current fan speed (vs. set speed)
+          name: "Actual Fan"
+        error_code:
+          # Reports diagnostic error code
+          name: "Error Code"
+        
+        # Only available if a thermostat is connected
+        thermostat_battery:
+          # Thermostat battery status (only with enhanced_mhk)
+          name: "Thermostat Battery"
 
 .. _sensor_notes:
 
@@ -129,12 +129,12 @@ On units with vertical or horizontal vane control, the following components can 
 
 .. code-block:: yaml
 
-  select:
-    - platform: mitsubishi_itp
-      vane_position:
-        name: "Vane Position"
-      horizontal_vane_position:
-        name: "H. Vane Position"
+    select:
+      - platform: mitsubishi_itp
+        vane_position:
+          name: "Vane Position"
+        horizontal_vane_position:
+          name: "H. Vane Position"
 
 Filter Reset
 ------------------------
@@ -142,10 +142,10 @@ A button can be added to reset the filter change status:
 
 .. code-block:: yaml
 
-  button:
-  - platform: mitsubishi_itp
-    filter_reset_button:
-      name: "Filter Reset"
+    button:
+    - platform: mitsubishi_itp
+      filter_reset_button:
+        name: "Filter Reset"
 
 Temerature Sources
 ------------------------
@@ -155,59 +155,59 @@ To enable the Temperature Source select component, add it to the configuration:
 
 .. code-block:: yaml
 
-  select:
-      - platform: mitsubishi_itp
-        temperature_source:
-          name: "Temperature Source"
-          sources:
-            # List of temperature sensor ids
-            # 'Thermostat' will be automatically included if configured
+    select:
+        - platform: mitsubishi_itp
+          temperature_source:
+            name: "Temperature Source"
+            sources:
+              # List of temperature sensor ids
+              # 'Thermostat' will be automatically included if configured
 
 One particularly useful way to get additional temperature data is by having Home Assistant send the data to the device via a service.  Here is an example configuration for that scenario:
 
 .. code-block:: yaml
 
-  esphome:
-    name: office-heatpump
+    esphome:
+      name: office-heatpump
 
-  api:
-    services:
-      - service: report_temperature
-          variables:
-            current_temperature_C: float
-          then:
-            - sensor.template.publish:
-                id: home_assistant_temperature
-                state: !lambda "return current_temperature_C;"
+    api:
+      services:
+        - service: report_temperature
+            variables:
+              current_temperature_C: float
+            then:
+              - sensor.template.publish:
+                  id: home_assistant_temperature
+                  state: !lambda "return current_temperature_C;"
 
-  sensor:
-    - platform: template
-      id: home_assistant_temperature
-      internal: true
-      name: "Home Assistant"
-      update_interval: never # Only updated by service
+    sensor:
+      - platform: template
+        id: home_assistant_temperature
+        internal: true
+        name: "Home Assistant"
+        update_interval: never # Only updated by service
 
-  select:
+    select:
+        - platform: mitsubishi_itp
+          temperature_source:
+            name: "Temperature Source"
+            sources:
+              - home_assistant_temperature
+
+    climate:
       - platform: mitsubishi_itp
-        temperature_source:
-          name: "Temperature Source"
-          sources:
-            - home_assistant_temperature
-
-  climate:
-    - platform: mitsubishi_itp
-      name: "Climate"
-      uart_heatpump: hp_uart
+        name: "Climate"
+        uart_heatpump: hp_uart
 
 
 An automation in Home Assistant can then be configured with an action like the following to report a temperature to the device:
 
 .. code-block:: yaml
 
-  action:
-    - service: esphome.office_heatpump_report_temperature
-      data:
-        current_temperature_C: "{{float(states('sensor.office_temperature'))}}"
+    action:
+      - service: esphome.office_heatpump_report_temperature
+        data:
+          current_temperature_C: "{{float(states('sensor.office_temperature'))}}"
 
 Enhanced MHK Mode
 ------------------------
@@ -215,16 +215,16 @@ When connected to an MHK2 thermostat, Mitsubishi ITP can attempt to emulate a Mi
 
 .. code-block:: yaml
 
-  time:
-    - platform: homeassistant
-      id: homeassistant_time
-      timezone: America/Los_Angeles
+    time:
+      - platform: homeassistant
+        id: homeassistant_time
+        timezone: America/Los_Angeles
 
-  climate:
-    - platform: mitsubishi_itp
-      name: "Climate"
-      uart_heatpump: hp_uart
-      enhanced_mhk: true
+    climate:
+      - platform: mitsubishi_itp
+        name: "Climate"
+        uart_heatpump: hp_uart
+        enhanced_mhk: true
 
 This mode will:
 
