@@ -442,6 +442,7 @@ Environmental
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     BME280, components/sensor/bme280, bme280.jpg, Temperature & Humidity & Pressure
+    BME68x via BSEC2, components/sensor/bme68x_bsec2, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BME680, components/sensor/bme680, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
