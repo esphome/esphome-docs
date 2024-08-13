@@ -12,23 +12,14 @@ with Home Assistant. Min, Max and Step are not configurable for this platform be
 
     # Example configuration entry
     number:
-        - platform: homeassistant
-            name: "Home Assistant number"
-            entity_id: light.my_light
+      - platform: homeassistant
+        id: my_ha_number
+        entity_id: number.my_number
 
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the number.
 - **entity_id** (**Required**, string): The Home Assistant entity ID of the number to synchronize with.
-- **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
-    Lambda to be evaluated every update interval to get the current value of the number.
-- **set_action** (*Optional*, :ref:`Action <config-action>`): The action that should
-    be performed when the remote (like Home Assistant's frontend) requests to set the
-    number value. The new value is available to lambdas in the ``x`` variable.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval on which to update the number
-    by executing the ``lambda``. Defaults to ``60s``.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Number <config-number>`.
 
 ``number.set`` Action
