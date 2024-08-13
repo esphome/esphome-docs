@@ -53,8 +53,26 @@ Configuration variables:
 - **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the modem lost it's IP.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+.. note::
+
+    **Modem disconnection**
+
+    The modem component is not able to check the internet connection by itself. You will have to rely on an other component 
+    (like :doc:`/components/mqtt` or :doc:`/components/api`) to check if the network has disconnect, and use the `reconnect()` method.
+
+    .. code-block:: yaml
+
+      modem:
+        id: atmodem
+
+      mqtt:
+        on_disconnect:
+          - lambda: id(atmodem).reconnect();
+
 
 .. note::
+
+    **Lilygo devices**
 
     On some modem like Lilygo devices, the ``power_pin`` is inverted. Some modem needs also the ``fligth_pin`` to be high.
 
@@ -72,6 +90,8 @@ Configuration variables:
           restore_mode: ALWAYS_ON
 
 .. note::
+
+    **No NMEA for GNSS**
 
     Internally, the modem component use the CMUX protocol to comminicate with the modem. 
     This create two virtual channels: one for ``AT`` commands, and one for data.
@@ -98,9 +118,7 @@ Configuration examples
       pin_code: "0000"
       enable_on_boot: True
       init_at:
-        # enable GNSS
-        - AT+CGNSSMODE=15,1 # GNSS all navigation systems
-        - AT+CGPS=1 # GPS on
+        - AT+CGMM  # module name
       on_not_responding:
         - logger.log: "modem not responding"
       on_connect:
