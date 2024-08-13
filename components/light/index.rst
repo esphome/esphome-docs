@@ -321,9 +321,9 @@ Configuration variables:
   The relative brightness to dim the light by.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition.
 - **brightness_limits** (*Optional*): Limits in the brightness range.
-    - **min_brightness** (*Optional*, percentage): The minimum brightness to dim the light to. Defaults to 0%.
-    - **max_brightness** (*Optional*, percentage): The maximum brightness to dim the light to. Defaults to 100%.
-    - **limit_mode** (*Optional*): What to do when the current brightness is outside of the limit range. Defaults to CLAMP.
+    - **min_brightness** (*Optional*, percentage): The minimum brightness to dim the light to. Defaults to ``0%``.
+    - **max_brightness** (*Optional*, percentage): The maximum brightness to dim the light to. Defaults to ``100%``.
+    - **limit_mode** (*Optional*): What to do when the current brightness is outside of the limit range. Defaults to ``CLAMP``.
       Valid limit modes are:
     
         - ``CLAMP``: Clamp the brightness to the limit range.
