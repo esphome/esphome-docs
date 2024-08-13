@@ -13,7 +13,7 @@ states and allow **control** via your Home Assistant instance using the :doc:`na
     # Example configuration entry
     switch:
       - platform: homeassistant
-        name: "Switch from Home Assistant"
+        id: my_cool_switch_from_ha
         entity_id: switch.my_cool_switch
 
 Configuration variables:
