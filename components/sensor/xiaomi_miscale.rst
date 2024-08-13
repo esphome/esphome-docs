@@ -26,7 +26,7 @@ Miscale (left) measures weight only. Miscale2 (right) measures weight and impeda
 
     sensor:
       - platform: xiaomi_miscale
-        mac_address: '5C:CA:D3:70:D4:A2'
+        mac_address: XX:XX:XX:XX:XX:XX
         weight:
           name: "Xiaomi Mi Scale Weight"
         impedance:
@@ -59,7 +59,7 @@ You have to replace the numbers in the lambdas to determine your weight which is
 
     sensor:
       - platform: xiaomi_miscale
-        mac_address: '5C:CA:D3:70:D4:A2'
+        mac_address: XX:XX:XX:XX:XX:XX
         weight:
           name: "Xiaomi Mi Scale Weight"
           id: weight_miscale

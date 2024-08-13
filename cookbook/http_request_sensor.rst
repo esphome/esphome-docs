@@ -23,8 +23,6 @@ On the client nodes we need an :doc:`/components/http_request` with an ``id`` se
 .. code-block:: yaml
 
     http_request:
-      useragent: esphome/device
-      id: http_request_id
 
     sensor:
       - platform: template
@@ -35,7 +33,7 @@ On the client nodes we need an :doc:`/components/http_request` with an ``id`` se
 Pulling the data
 ****************
 
-To automate the request for data, we use an :ref:`interval` requesting the URL pointing to the sensor id for which the state is needed. See :ref:`api-rest` on how to build up the URL for your sensors.
+To automate the request for data, we use an :doc:`/components/interval` requesting the URL pointing to the sensor id for which the state is needed. See :ref:`api-rest` on how to build up the URL for your sensors.
 
 In the example below we request the value of a sensor from the server node, and after parsing the resulted JSON string we publish it to the local template sensor:
 
@@ -118,6 +116,6 @@ See Also
 - :doc:`/components/web_server`
 - :doc:`/components/http_request`
 - :doc:`/components/sensor/template`
-- :ref:`interval`
+- :doc:`/components/interval`
 - :ref:`api-rest`
 - :ghedit:`Edit`

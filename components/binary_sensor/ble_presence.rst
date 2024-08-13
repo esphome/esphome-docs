@@ -10,7 +10,7 @@ The ``ble_presence`` binary sensor platform lets you track the presence of a Blu
 .. warning::
 
     The BLE software stack on the ESP32 consumes a significant amount of RAM on the device.
-    
+
     **Crashes are likely to occur** if you include too many additional components in your device's
     configuration. Memory-intensive components such as :doc:`/components/voice_assistant` and other
     audio components are most likely to cause issues.
@@ -27,7 +27,7 @@ The ``ble_presence`` binary sensor platform lets you track the presence of a Blu
     binary_sensor:
       # Presence based on MAC address
       - platform: ble_presence
-        mac_address: AC:37:43:77:5F:4C
+        mac_address: XX:XX:XX:XX:XX:XX
         name: "ESP32 BLE Tracker Google Home Mini"
         min_rssi: -80dB
       # Presence based on Identity Resolving Key (IRK)
@@ -96,7 +96,7 @@ the logs to see discovered Bluetooth Low Energy devices.
 
 Using the configuration above, first you should see a ``Starting scan...`` debug message at
 boot-up. Then, when a BLE device is discovered, you should see messages like
-``Found device AC:37:43:77:5F:4C`` together with some information about their
+``Found device XX:XX:XX:XX:XX:XX`` together with some information about their
 address type and advertised name. If you don't see these messages, your device is unfortunately
 currently not supported.
 

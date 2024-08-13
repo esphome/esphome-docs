@@ -13,8 +13,6 @@ The ``http_request`` component lets you make HTTP/HTTPS requests. To do so, you 
 
     # Example configuration entry
     http_request:
-      useragent: esphome/device
-      timeout: 10s
 
 .. _http_request-configuration_variables:
 
@@ -24,7 +22,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **follow_redirects** (*Optional*, boolean): Enable following HTTP redirects. Defaults to ``true``.
 - **redirect_limit** (*Optional*, integer): Maximum amount of redirects to follow when enabled. Defaults to ``3``.
-- **timeout** (*Optional*, :ref:`config-time`): Timeout for request. Defaults to ``5s``.
+- **timeout** (*Optional*, :ref:`config-time`): Timeout for request. Defaults to ``4.5s``.
 - **useragent** (*Optional*, string): User-Agent header for requests. Defaults to
   ``ESPHome/<version> (https://esphome.io)`` where ``<version>`` is the version of ESPHome the device is running.
   For example: ``ESPHome/2024.6.0 (https://esphome.io)``
@@ -37,6 +35,11 @@ Configuration variables:
   May be useful on slow connections or connections with high latency. **Do not change this value unless you are
   experiencing device reboots due to watchdog timeouts;** doing so may prevent the device from rebooting due to a
   legitimate problem. **Only available on ESP32 and RP2040**.
+
+**For the ESP32 when using ESP-IDF:**
+
+- **buffer_size_rx** (*Optional*, integer): Change HTTP receive buffer size. Defaults to ``512``.
+- **buffer_size_tx** (*Optional*, integer): Change HTTP transmit buffer size. Defaults to ``512``.
 
 **For the ESP8266:**
 
@@ -88,8 +91,8 @@ This :ref:`action <config-action>` sends a GET request.
               - logger.log:
                   format: 'Response status: %d, Duration: %u ms'
                   args:
-                    - status_code
-                    - duration_ms
+                    - response->status_code
+                    - response->duration_ms
       # Short form
       - http_request.get: https://esphome.io
 
@@ -159,7 +162,7 @@ This :ref:`action <config-action>` sends a request.
 This automation will be triggered when the HTTP request is complete.
 The following variables are available for use in :ref:`lambdas <config-lambda>`:
 
-- ``response`` as a ``HttpContainer`` object which contains ``content_length``, ``status_code`` and ``duration_ms``.
+- ``response`` as a pointer to ``HttpContainer`` object which contains ``content_length``, ``status_code`` and ``duration_ms``.
 - ``body`` as ``std::string`` which contains the response body when ``capture_response``
   (see :ref:`http_request-get_action`) is set to ``true``.
 
@@ -174,8 +177,10 @@ The following variables are available for use in :ref:`lambdas <config-lambda>`:
                 - logger.log:
                     format: "Response status: %d, Duration: %u ms"
                     args:
-                      - response.status_code
-                      - response.duration_ms
+                      - response->status_code
+                      - response->duration_ms
+                - lambda: |-
+                    ESP_LOGD(TAG, "Response status: %d, Duration: %u ms", response->status_code, response->duration_ms);
 
 
 .. _http_request-examples:

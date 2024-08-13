@@ -118,8 +118,8 @@ The developer tools in Home Assistant can be used to trigger the update. The bel
   .. code-block:: yaml
 
       api:
-        services:
-          - service: update_nextion
+        actions:
+          - action: update_nextion
             then:
               - lambda: 'id(nextion1)->upload_tft();'
 
@@ -154,8 +154,8 @@ The developer tools in Home Assistant can be used to trigger the update. The bel
 
         # Enable Home Assistant API
         api:
-          services:
-            - service: set_nextion_sensor
+          actions:
+            - action: set_nextion_sensor
               variables:
                 nextion_type: int
                 name: string
@@ -163,7 +163,7 @@ The developer tools in Home Assistant can be used to trigger the update. The bel
               then:
                 - lambda: |-
                     id(nextion1).set_nextion_sensor_state(nextion_type,name,state);
-            - service: set_nextion_text
+            - action: set_nextion_text
               variables:
                 name: string
                 state: string

@@ -106,7 +106,7 @@ Configuration options:
 See Also
 --------
 
-- :doc:`/guides/automations`
+- :doc:`/automations/index`
 - :doc:`/components/lock/index`
 - :doc:`/components/binary_sensor/index`
 - :apiref:`template/lock/template_lock.h`
