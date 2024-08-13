@@ -36,12 +36,12 @@ will probably want some sort of averaging or throttle filter on the sensors.
 
     sensor:
       - platform: cse7766
-        current:
-          name: "Sonoff Pow R2 Current"
-          filters:
-            - throttle_average: ${update_interval}
         voltage:
           name: "Sonoff Pow R2 Voltage"
+          filters:
+            - throttle_average: ${update_interval}
+        current:
+          name: "Sonoff Pow R2 Current"
           filters:
             - throttle_average: ${update_interval}
         power:
@@ -56,6 +56,10 @@ will probably want some sort of averaging or throttle filter on the sensors.
           name: "Sonoff Pow R2 Apparent Power"
           filters:
             - throttle_average: ${update_interval}
+        reactive_power:
+          name: "Sonoff Pow R2 Reactive Power"
+          filters:
+            - throttle_average: ${update_interval}
         power_factor:
           name: "Sonoff Pow R2 Power Factor"
           filters:
@@ -67,13 +71,13 @@ will probably want some sort of averaging or throttle filter on the sensors.
 Configuration variables:
 ------------------------
 
+- **voltage** (*Optional*): Use the voltage value of the sensor in V (RMS).
+  All options from :ref:`Sensor <config-sensor>`.
 - **current** (*Optional*): Use the current value of the sensor in amperes. All options from
   :ref:`Sensor <config-sensor>`.
 - **power** (*Optional*): Use the (active) power value of the sensor in watts. All options from
   :ref:`Sensor <config-sensor>`.
-- **voltage** (*Optional*): Use the voltage value of the sensor in V (RMS).
-  All options from :ref:`Sensor <config-sensor>`.
-- **energy** (*Optional*): Use the total energy value of the sensor in Wh.
+- **energy** (*Optional*): Use the total (active) energy value of the sensor in Wh.
   All options from :ref:`Sensor <config-sensor>`.
 - **apparent_power** (*Optional*): Use the apparent power value of the sensor in VA.
   All options from :ref:`Sensor <config-sensor>`.
