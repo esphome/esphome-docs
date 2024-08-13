@@ -25,7 +25,7 @@ to the device over the ESP32's BLE peripheral.
     esp32_ble_tracker:
 
     ble_client:
-      - mac: AA:BB:CC:DD:EE:FF
+      - mac: XX:XX:XX:XX:XX:XX
         id: am43_device
 
     sensor:

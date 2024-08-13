@@ -24,7 +24,7 @@ The ``b_parasite`` sensor platform tracks b-parasite's Bluetooth Low Energy (BLE
 
     sensor:
       - platform: b_parasite
-        mac_address: F0:CA:F0:CA:01:01
+        mac_address: XX:XX:XX:XX:XX:XX
         humidity:
           name: 'b-parasite Air Humidity'
         temperature:

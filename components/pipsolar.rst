@@ -320,7 +320,7 @@ target level of the output.
       then:
       - output.pipsolar.set_level:
           id: my_pipsolar_output
-          level: 48.0
+          value: 48.0
 
 
 Configuration options:

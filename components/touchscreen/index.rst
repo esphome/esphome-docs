@@ -300,6 +300,9 @@ Configuration variables:
 - **y_min** (**Required**, int): Top coordinate of the screen area to be detected as the virtual button.
 - **y_max** (**Required**, int): Bottom coordinate of the screen area to be detected as the virtual button.
 - **page_id** (*Optional*, :ref:`config-id`): Only trigger this binary sensor if the display is showing this page.
+  Cannot be used with ``pages``.
+- **pages** (*Optional*, list of :ref:`config-id`): Only trigger this binary sensor if the display is showing one of these pages.
+  Cannot be used with ``page_id``.
 
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 

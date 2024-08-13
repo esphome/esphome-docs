@@ -6,7 +6,7 @@ SCD4X CO₂, Temperature and Relative Humidity Sensor
     :image: scd4x.jpg
 
 The ``scd4x`` sensor platform  allows you to use your Sensirion SCD4X CO₂
-(`datasheet <https://sensirion.com/media/documents/C4B87CE6/627C2DCD/CD_DS_SCD40_SCD41_Datasheet_D1.pdf>`__) sensors with ESPHome.
+(`datasheet <https://sensirion.com/media/documents/E0F04247/631EF271/CD_DS_SCD40_SCD41_Datasheet_D1.pdf>`__) sensors with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/scd4x.jpg
@@ -105,13 +105,13 @@ As of April 2022 the average fresh air Co² concentration is 419 ppm.
             value: 419   # outside average April 2022
             id: my_scd41
 
-value can also be a template, for example to define a Home Assistant calibration service:
+value can also be a template, for example to define a Home Assistant calibration action:
 
 .. code-block:: yaml
 
     api:
-      services:
-        - service: calibrate_co2_value
+      actions:
+        - action: calibrate_co2_value
           variables:
             co2_ppm: int
           then:
@@ -166,8 +166,8 @@ This example creates a service `set_ambient_pressure` that can be called from Ho
 .. code-block:: yaml
 
     api:
-      services:
-        - service: set_ambient_pressure
+      actions:
+        - action: set_ambient_pressure
           variables:
             pressure_mbar: int
           then:
