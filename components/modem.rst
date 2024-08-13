@@ -62,12 +62,12 @@ Configuration variables:
 
     .. code-block:: yaml
 
-      modem:
-        id: atmodem
-
-      mqtt:
-        on_disconnect:
-          - lambda: id(atmodem).reconnect();
+        modem:
+          id: atmodem
+  
+        mqtt:
+          on_disconnect:
+            - lambda: id(atmodem).reconnect();
 
 
 .. note::
