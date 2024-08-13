@@ -75,6 +75,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`interaction trigger <lvgl-automation-triggers>` will be called. Defaults to ``100ms``.
 - **encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display.
     - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :doc:`common properties </components/lvgl/widgets>` of the widgets for more information on groups.
+    - **initial_focus** (*Optional*, :ref:`config-id`): An optional ID for a widget to be given focus on startup (especially useful if there is only one focusable widget.)
     - **enter_button** (**Required**, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``ENTER`` key.
     - **sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder`; or a list with buttons for left/right interaction with the widgets:
         - **left_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``LEFT`` key.
