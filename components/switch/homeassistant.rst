@@ -19,9 +19,7 @@ states and allow **control** via your Home Assistant instance using the :doc:`na
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the binary sensor.
 - **entity_id** (**Required**, string): The entity ID to import / control from Home Assistant.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Switch <config-switch>`.
 
 See Also
