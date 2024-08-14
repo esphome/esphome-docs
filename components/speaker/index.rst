@@ -63,7 +63,7 @@ Configuration variables:
 .. _speaker-finish:
 
 ``speaker.finish`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This action will stop playing audio data from the speaker after all data **is** played. 
 
@@ -93,7 +93,7 @@ Configuration variables:
 .. _speaker-is_stopped:
 
 ``speaker.is_stopped`` Condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This condition will check if the speaker is fully stopped audio data and is in idle mode.
 
