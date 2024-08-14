@@ -24,7 +24,8 @@ Base Text Sensor Configuration
 
 Configuration variables:
 
-- **name** (**Required**, string): The name for the sensor.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name for the sensor. At least one of **id** and **name** must be specified.
 
   .. note::
 

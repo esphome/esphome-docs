@@ -26,7 +26,8 @@ All light configuration schemas inherit these options.
 
 Configuration variables:
 
-- **name** (**Required**, string): The name of the light.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name of the light. At least one of **id** and **name** must be specified.
 
   .. note::
 
