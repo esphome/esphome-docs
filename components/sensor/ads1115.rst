@@ -97,6 +97,7 @@ Configuration variables:
   - ``16 bits``
   - ``12 bits``
 
+- All other options from :ref:`Sensor <config-sensor>`.
 
 Multiplexer and Gain
 --------------------
