@@ -111,10 +111,8 @@ This component requires a :ref:`uart` to be setup.
 Configuration variables:
 ------------------------
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **uart_id** (*Optional*, :ref:`config-id`): ID of the UART port to communicate with AC.
 - **protocol** (*Optional*, string): Defines communication protocol with AC. Possible values: ``hon`` or ``smartair2``. The default value is ``smartair2``.
-- **name** (**Required**, string): The name of the climate device.
 - **wifi_signal** (*Optional*, boolean): If ``true`` - send wifi signal level to AC.
 - **answer_timeout** (*Optional*, :ref:`config-time`): Responce timeout. The default value is ``200ms``.
 - **alternative_swing_control** (*Optional*, boolean): (supported by smartAir2 only) If ``true`` - use alternative values to control swing mode. Use only if the original control method is not working for your AC.
