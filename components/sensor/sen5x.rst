@@ -88,6 +88,8 @@ Configuration variables:
 
 - **humidity** (*Optional*): Relative Humidity. Note only available with Sen54 or Sen55. The sensor will be ignored on unsupported models.
 
+  - All options from :ref:`Sensor <config-sensor>`.
+
 - **voc** (*Optional*): VOC Index. Note only available with Sen54 or Sen55. The sensor will be ignored on unsupported models.
 
   - **algorithm_tuning** (*Optional*): The VOC algorithm can be customized by tuning 6 different parameters. For more details see `Engineering Guidelines for SEN5x <https://sensirion.com/media/documents/25AB572C/62B463AA/Sensirion_Engineering_Guidelines_SEN5x.pdf>`__
