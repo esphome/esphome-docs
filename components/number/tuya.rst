@@ -64,8 +64,6 @@ For instance, assume we have a pH sensor that reads from 0.00 to 15.00 with a sc
 Configuration variables:
 ------------------------
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (**Required**, string): The name of the switch.
 - **number_datapoint** (**Required**, int): The datapoint id number of the number.
 - **min_value** (**Required**, float): The minimum value this number can be.
 - **max_value** (**Required**, float): The maximum value this number can be.
