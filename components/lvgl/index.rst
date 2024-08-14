@@ -266,8 +266,8 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
     - ``LEFT``
     - ``RIGHT``
     - ``INTERNAL``
-- **radius** (*Optional*, uint16): The radius to be used to form the widget's rounded corners. 0 = no radius (square corners); 65535 = pill shaped widget (true circle if it has same width and height).
 - **clip_corner** (*Optional*, boolean): If set to ``true``, overflowing content will be clipped off by the widget's rounded corners (``radius`` > ``0``).
+- **color_filter_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the color filter. Currently color filters are applied only by the default LVGL theme, this option allows the effect of those to be disabled by setting to ``TRANSP``.
 - **outline_width** (*Optional*, int16): Set the width of the outline in pixels. Defaults to ``0``.
 - **outline_color** (*Optional*, :ref:`color <lvgl-color>`): Color used to draw an outline around the widget. Defaults to ``0`` (black).
 - **outline_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the outline of the widget. Defaults to ``COVER``.
@@ -279,6 +279,7 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 - **pad_right** (*Optional*, int16): Set the padding on the right, in pixels.
 - **pad_row** (*Optional*, int16): Set the padding between the rows of the children elements, in pixels.
 - **pad_column** (*Optional*, int16): Set the padding between the columns of the children elements, in pixels.
+- **radius** (*Optional*, uint16): The radius to be used to form the widget's rounded corners. 0 = no radius (square corners); 65535 = pill shaped widget (true circle if it has same width and height).
 - **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): Color used to create a drop shadow under the widget. Defaults to ``0`` (black).
 - **shadow_ofs_x** (*Optional*, int16): Horizontal offset of the shadow, in pixels. Defaults to ``0``.
 - **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels. Defaults to ``0``.
