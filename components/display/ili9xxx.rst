@@ -21,6 +21,7 @@ With this display driver you can control the following displays:
   - M5STACK
   - S3BOX
   - S3BOX_LITE
+  - ST7735
   - ST7796
   - ST7789V
   - TFT 2.4
@@ -72,7 +73,7 @@ Configuration variables:
   - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R``, ``S3BOX``, ``S3BOX_LITE``, ``WSPICOLCD``
   - ``ILI9341``, ``ILI9342``, ``ILI9486``, ``ILI9488``, ``ILI9488_A`` (alternative gamma configuration for ILI9488)
   - ``ILI9481``, ``ILI9481-18`` (18 bit mode)
-  - ``ST7789V``, ``ST7796``
+  - ``ST7789V``, ``ST7796``, ``ST7735``
   - ``GC9A01A``, ``CUSTOM``
 
 

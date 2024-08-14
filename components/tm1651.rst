@@ -133,14 +133,14 @@ You also can control this component with lambda expressions
 .. code-block:: yaml
 
     api:
-      services:
-        - service: battery_level
+      actions:
+        - action: battery_level
           variables:
             level: int
           then:
             - lambda: |-
                 id(tm1651_battery).set_level(level);
-        - service: battery_brightness
+        - action: battery_brightness
           variables:
             brightness: int
           then:
