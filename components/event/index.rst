@@ -48,7 +48,7 @@ Configuration variables:
 
 One of ``id`` or ``name`` is required.
 
-- **id** (*Optioanl*, :ref:`config-id`): Manually specify the ID used for code generation. At least one of **id** and **name** must be specified.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. At least one of **id** and **name** must be specified.
 - **name** (*Optional*, string): The name for the event. At least one of **id** and **name** must be specified.
 
   .. note::
