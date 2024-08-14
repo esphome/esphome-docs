@@ -1,4 +1,4 @@
-At least one of **id** and **name** must be specified.Climate Component
+Climate Component
 =================
 
 .. seo::
