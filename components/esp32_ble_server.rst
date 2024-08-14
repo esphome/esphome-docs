@@ -79,7 +79,7 @@ Characteristics expose data and control for a BLE service. Characteristics can h
           - id: test_characteristic
             uuid: cad48e28-7fbe-41cf-bae9-d77a6c233423
             read: true
-            value: !lambda 'return to_vector("Hello, World!");'
+            value: !lambda 'return ByteBuffer::wrap("Hello, World!");'
             descriptors:
               - uuid: 2901
                 value: "Hello, World Descriptor!"
@@ -95,7 +95,7 @@ Configuration variables:
 - **broadcast** (*Optional*, boolean): If the characteristic should be broadcasted. Defaults to ``false``.
 - **indicate** (*Optional*, boolean): If the characteristic should be indicated. Defaults to ``false``.
 - **write_no_response** (*Optional*, boolean): If the characteristic should be writable without a response. Defaults to ``false``.
-- **value** (*Optional*, string, int, float, boolean, list of bytes, :ref:`templatable <config-templatable>`): The initial value of the characteristic. It is computed every time the characteristic is read. If a :ref:`templatable <config-templatable>` it must return a list of bytes (you may use the `to_vector` helper function to convert other types to a list of bytes).
+- **value** (*Optional*, string, int, float, boolean, list of bytes, :ref:`templatable <config-templatable>`): The value of the characteristic. It is computed every time the characteristic is read. If a :ref:`templatable <config-templatable>` is provided, it must return a ``ByteBuffer`` (you may use the ``ByteBuffer::wrap`` helper function to convert basic types to a ``ByteBuffer``). The ``ByteBuffer`` sent will be in little-endian byte order by default.
 - **descriptors** (*Optional*, list of :ref:`esp32_ble_server-descriptor`): A list of descriptors to expose in this characteristic.
 - **on_write** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the characteristic is written to. The characteristic must have the ``write`` property. See :ref:`esp32_ble_server-characteristic-on_write`.
 
