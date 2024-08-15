@@ -45,6 +45,7 @@ Configuration variables:
 - **pin_code** (*Optional*, string): The pin code of the sim card.
 - **enable_on_boot** (*Optional*, boolean): If enabled, the PPPoS interface will be enabled on boot. Defaults to ``true``.
 - **enable_cmux** (*Optional*, boolean): If enabled, CMUX will be enabled. In this mode, the modem will be able to answer `AT` commands while connected. Defaults to ``false``.
+- **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting after connecting attempt fail. Defaults to ``10min``.
 - **init_at** (*Optional*, list): A list of ``AT`` commands that will be sent to the modem after the connection.
 - **power_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``PWK``, to allow power handling. Needs ``status_pin``.
 - **status_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for ``STATUS``, to be able to know the power state.
@@ -64,7 +65,7 @@ Configuration variables:
 
         modem:
           id: atmodem
-  
+
         mqtt:
           on_disconnect:
             - lambda: id(atmodem).reconnect();
