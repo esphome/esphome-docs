@@ -97,6 +97,14 @@ Button
         clear_offset_calibration:
           name: "Chip1 - Clear Offset Calibration"
 
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The ID of the atm90e32 defined above. Required if there are multiple atm90e32 configured.
+- **run_offset_calibration** (*Optional*): A button to run the offset calibration.
+  All options from :ref:`Button <config-button>`.
+- **clear_offset_calibration** (*Optional*): A button to clear the offset calibration.
+  All options from :ref:`Button <config-button>`.
+
 Calibration
 -----------
 
