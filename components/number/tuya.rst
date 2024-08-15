@@ -81,8 +81,6 @@ This block allows to specify the missing datapoint type and, optionally, the val
 Configuration variables:
 ------------------------
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (**Required**, string): The name of the switch.
 - **number_datapoint** (**Required**, int): The datapoint id number of the number.
 - **min_value** (**Required**, float): The minimum value this number can be.
 - **max_value** (**Required**, float): The maximum value this number can be.
