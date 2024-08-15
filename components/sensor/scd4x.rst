@@ -99,13 +99,13 @@ As of April 2022 the average fresh air Co² concentration is 419 ppm.
             value: 419   # outside average April 2022
             id: my_scd41
 
-value can also be a template, for example to define a Home Assistant calibration service:
+value can also be a template, for example to define a Home Assistant calibration action:
 
 .. code-block:: yaml
 
     api:
-      services:
-        - service: calibrate_co2_value
+      actions:
+        - action: calibrate_co2_value
           variables:
             co2_ppm: int
           then:
@@ -160,8 +160,8 @@ This example creates a service `set_ambient_pressure` that can be called from Ho
 .. code-block:: yaml
 
     api:
-      services:
-        - service: set_ambient_pressure
+      actions:
+        - action: set_ambient_pressure
           variables:
             pressure_mbar: int
           then:
