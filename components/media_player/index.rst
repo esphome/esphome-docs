@@ -25,7 +25,8 @@ Base Media Player Configuration
 
 Configuration variables:
 
-- **name** (**Required**, string): The name of the media player.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name of the media player. At least one of **id** and **name** must be specified.
 
   .. note::
 
