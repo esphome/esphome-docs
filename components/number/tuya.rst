@@ -89,7 +89,7 @@ Configuration variables:
 - **datapoint_hidden** (*Optional*): Specify information required for hidden datapoints.
 
   - **datapoint_type** (**Required**, string): The datapoint type, one of *int*, *uint*, *enum*.
-  - **initial_value** (**Required**, float): The value to be written at initialization. Must be between ``min_value`` and ``max_value``.
+  - **initial_value** (*Optional*, float): The value to be written at initialization. Must be between ``min_value`` and ``max_value``.
 
 - All other options from :ref:`Number <config-number>`.
 
