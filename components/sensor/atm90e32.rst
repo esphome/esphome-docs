@@ -89,13 +89,13 @@ Button
 
 .. code-block:: yaml
 
-  button:
-    - platform: atm90e32
-      id: chip1
-      run_offset_calibration:
-        name: "Chip1 - Run Offset Calibration"
-      clear_offset_calibration:
-        name: "Chip1 - Clear Offset Calibration"
+    button:
+      - platform: atm90e32
+        id: chip1
+        run_offset_calibration:
+          name: "Chip1 - Run Offset Calibration"
+        clear_offset_calibration:
+          name: "Chip1 - Clear Offset Calibration"
 
 Calibration
 -----------
@@ -336,12 +336,12 @@ Additional Examples
         update_interval: 60s
 
     button:
-    - platform: atm90e32
-      id: chip1
-      run_offset_calibration:
-        name: "Chip1 - Run Offset Calibration"
-      clear_offset_calibration:
-        name: "Chip1 - Clear Offset Calibration"
+      - platform: atm90e32
+        id: chip1
+        run_offset_calibration:
+          name: "Chip1 - Run Offset Calibration"
+        clear_offset_calibration:
+          name: "Chip1 - Clear Offset Calibration"
 
 
 .. code-block:: yaml
