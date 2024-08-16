@@ -21,7 +21,7 @@ ESPHome 2024.8.0 - 21st August 2024
     M5Stack Unit 8 Angle, components/sensor/m5stack_8angle, m5stack_8angle.png
     LYWSD02MMC, components/sensor/xiaomi_ble.html#lywsd02mmc, xiaomi_mijia_logo.jpg
 
-Light and Versitile Embedded Graphics Library
+Light and Versatile Embedded Graphics Library
 ---------------------------------------------
 
 Or LVGL for short, has been worked on by :ghuser:`clydebarrow` (and multiple other users doing testing and documentation etc)
