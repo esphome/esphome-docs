@@ -67,10 +67,8 @@ The ``midea`` component creates a Midea air conditioner climate device.
 Configuration variables:
 ------------------------
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`../uart` if you want
   to use multiple UART buses.
-- **name** (**Required**, string): The name of the climate device.
 - **transmitter_id** (*Optional*, :ref:`config-id`): Defined and used automatically when using :doc:`../remote_transmitter` component for IR commands transmit.
 - **period** (*Optional*, :ref:`config-time`): Minimal period between requests to the appliance. Defaults to ``1s``.
 - **timeout** (*Optional*, :ref:`config-time`): Request response timeout until next request attempt. Defaults to ``2s``.
@@ -86,21 +84,15 @@ Configuration variables:
 - **outdoor_temperature** (*Optional*): The information for the outdoor temperature
   sensor.
 
-  - **name** (**Required**, string): The name of the sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 - **power_usage** (*Optional*): The information for the current power consumption
   sensor.
 
-  - **name** (**Required**, string): The name of the sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 - **humidity_setpoint** (*Optional*): The information for the humidity indoor
   sensor (experimental).
 
-  - **name** (**Required**, string): The name of the sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 - All other options from :ref:`Climate <config-climate>`.
 
 Automations

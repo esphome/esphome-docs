@@ -30,7 +30,8 @@ All valve config schemas inherit from this schema - you can set these keys for v
 
 Configuration variables:
 
-- **name** (**Required**, string): The name for the valve.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name for the valve. At least one of **id** and **name** must be specified.
 
   .. note::
 
