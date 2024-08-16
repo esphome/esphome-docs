@@ -72,6 +72,9 @@ Configuration variables:
 -  **ibeacon_minor** (*Optional*, int): The iBeacon minor identifier of the beacon that needs
    to be tracked. Usually used to identify beacons within an iBeacon group.
 -  **min_rssi** (*Optional*, int): at which minimum RSSI level would the component report the device be present.
+   Only one of `min_rssi` and `min_rssi_number_id` can be specified.
+-  **min_rssi_number_id** (*Optional*, :ref:`config-id`): An ID of a number entity, controlling the minimum RSSI level in which 
+   the component would report the device to be present. Only one of `min_rssi` and `min_rssi_number_id` can be specified.
 -  **timeout** (*Optional*, :ref:`config-time`): The delay after last detecting the device before publishing not present state.
    The default is 5 minutes.
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
