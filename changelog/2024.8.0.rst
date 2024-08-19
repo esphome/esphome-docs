@@ -33,7 +33,7 @@ some awesome dashboards being made with it.
 Online Image
 ------------
 
-The new :doc:`online_image </components/online_image>` component allows your ESPHome device to download
+:ghuser:`guillempages` created a new :doc:`online_image </components/online_image>` component that allows your ESPHome device to download
 images from the internet while it is running and show them on your display. This can also be combined with the new LVGL
 component to show dynamic images for your dashboard.
 
@@ -89,6 +89,10 @@ Beta Changes
 - Fix overflow in ESPColorCorrection object :esphomepr:`7268` by :ghuser:`g-kiss`
 - [validation] Allow ``maybe_simple_value`` to not have default key in complex value :esphomepr:`7294` by :ghuser:`jesserockz`
 - [network] Always allow ``enable_ipv6: false`` :esphomepr:`7291` by :ghuser:`dwmw2`
+- Revert "[validation] Allow ``maybe_simple_value`` to not have default key in complex value" :esphomepr:`7305` by :ghuser:`jesserockz`
+- [lvgl] Bug fixes  :esphomepr:`7300` by :ghuser:`clydebarrow`
+- [speaker] Fix header includes :esphomepr:`7304` by :ghuser:`nielsnl68`
+- [microphone] Fix header includes :esphomepr:`7310` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -232,6 +236,10 @@ All changes
 - Fix overflow in ESPColorCorrection object :esphomepr:`7268` by :ghuser:`g-kiss`
 - [validation] Allow ``maybe_simple_value`` to not have default key in complex value :esphomepr:`7294` by :ghuser:`jesserockz`
 - [network] Always allow ``enable_ipv6: false`` :esphomepr:`7291` by :ghuser:`dwmw2`
+- Revert "[validation] Allow ``maybe_simple_value`` to not have default key in complex value" :esphomepr:`7305` by :ghuser:`jesserockz`
+- [lvgl] Bug fixes  :esphomepr:`7300` by :ghuser:`clydebarrow`
+- [speaker] Fix header includes :esphomepr:`7304` by :ghuser:`nielsnl68`
+- [microphone] Fix header includes :esphomepr:`7310` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
