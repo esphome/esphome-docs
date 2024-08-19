@@ -616,12 +616,11 @@ The required config options take one of two forms:
 - **id** (**Required**): The ID of the widget to be given focus.
 - **freeze** (*Optional*, boolean): If true will lock the focus to this widget.
 - **editing** (*Optional*, boolean): Sets the editing mode of the widget, i.e. encoder rotation will change the value
-of the widget, not move the focus. Defaults to false.
+  of the widget, not move the focus. Defaults to false.
 
 or
 
-- **group** (*Optional*): The ID of the group within which to move the focus. The default group will be used if not
-specified
+- **group** (*Optional*): The ID of the group within which to move the focus. The default group will be used if not specified
 - **direction** (**Required**): Should be one of ``next`` or ``previous``.
 - **freeze** (*Optional*, boolean): If true will lock the focus to the now selected widget.
 
