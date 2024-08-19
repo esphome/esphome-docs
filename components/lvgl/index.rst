@@ -602,6 +602,53 @@ This :ref:`action <actions-action>` shows a specific page (including pages with 
       then:
         - lvgl.page.show: secret_page  # shorthand version
 
+.. _lvgl-widget-focus-action:
+
+``lvgl.widget.focus``
+*********************
+
+This :ref:`action <actions-action>` moves the input focus to the nominated widget. Used mainly with encoder inputs
+to select a specific widget to receive input events. It may also allow the focus to be frozen on that widget,
+or can be used to move the focus to the next or previous widget in the focus group.
+
+The required config options take one of two forms:
+
+- **id** (**Required**): The ID of the widget to be given focus.
+- **freeze** (*Optional*, boolean): If true will lock the focus to this widget.
+- **editing** (*Optional*, boolean): Sets the editing mode of the widget, i.e. encoder rotation will change the value
+of the widget, not move the focus. Defaults to false.
+
+or
+
+- **group** (*Optional*): The ID of the group within which to move the focus. The default group will be used if not
+specified
+- **direction** (**Required**): Should be one of ``next`` or ``previous``.
+- **freeze** (*Optional*, boolean): If true will lock the focus to the now selected widget.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - lvgl.widget.focus:
+            id: my_button
+            freeze: true
+
+    on_...:
+      then:
+        - lvgl.widget.focus: my_button
+
+    on_...:
+      then:
+        - lvgl.widget.focus:
+            group: encoder_group
+            direction: next
+            freeze: true
+
+    on_...:
+      then:
+        - lvgl.widget.focus: previous
+
+
 .. _lvgl-conditions:
 
 Conditions
