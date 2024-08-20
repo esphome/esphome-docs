@@ -43,8 +43,6 @@ Configuration variables:
 
 - **power_id** (**Required**, :ref:`config-id`): The ID of the power sensor
   to integrate over time.
-- **name** (**Required**, string): The name of the sensor.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **restore** (*Optional*, boolean): Whether to store the intermediate result on the device so
   that the value can be restored upon power cycle or reboot.
   Defaults to ``true``.
