@@ -93,6 +93,10 @@ Beta Changes
 - [lvgl] Bug fixes  :esphomepr:`7300` by :ghuser:`clydebarrow`
 - [speaker] Fix header includes :esphomepr:`7304` by :ghuser:`nielsnl68`
 - [microphone] Fix header includes :esphomepr:`7310` by :ghuser:`jesserockz`
+- Fix RP2040 Neopixel flickering issue :esphomepr:`7307` by :ghuser:`deCodeIt`
+- add the ability to add more idf components to an existing setup :esphomepr:`7302` by :ghuser:`nielsnl68`
+- Fix waveshare 2.13" epaper stride calculation error :esphomepr:`7303` by :ghuser:`serialx`
+- [rtttl] fix STOPPED state :esphomepr:`7323` by :ghuser:`NewoPL`
 
 All changes
 ^^^^^^^^^^^
@@ -240,6 +244,10 @@ All changes
 - [lvgl] Bug fixes  :esphomepr:`7300` by :ghuser:`clydebarrow`
 - [speaker] Fix header includes :esphomepr:`7304` by :ghuser:`nielsnl68`
 - [microphone] Fix header includes :esphomepr:`7310` by :ghuser:`jesserockz`
+- Fix RP2040 Neopixel flickering issue :esphomepr:`7307` by :ghuser:`deCodeIt`
+- add the ability to add more idf components to an existing setup :esphomepr:`7302` by :ghuser:`nielsnl68`
+- Fix waveshare 2.13" epaper stride calculation error :esphomepr:`7303` by :ghuser:`serialx`
+- [rtttl] fix STOPPED state :esphomepr:`7323` by :ghuser:`NewoPL`
 
 Past Changelogs
 ---------------
