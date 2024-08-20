@@ -40,6 +40,9 @@ Configuration variables:
   - ``wav``: The file is imported as a WAV file. This will convert the WAV file to a raw PCM format
     and remove the WAV header.
 
+  If the ``format`` is not specified, ESPHome will use `magic <https://pypi.org/project/python-magic/>`__ to try to work out if it is a
+  type that has preprocessing available.
+
 Example
 -------
 

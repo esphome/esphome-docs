@@ -1107,6 +1107,7 @@ Miscellaneous Components
 
     ESP32 Camera, components/esp32_camera, camera.svg, dark-invert
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
+    File, components/file, description.svg, dark-invert
     GPS, components/gps, crosshairs-gps.svg, dark-invert
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg, dark-invert
     Modbus Controller, components/modbus_controller, modbus.png
