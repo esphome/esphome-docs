@@ -429,6 +429,7 @@ Contributors
 - `DeadEnd (@DeadEnded) <https://github.com/DeadEnded>`__
 - `Debashish Sahu (@debsahu) <https://github.com/debsahu>`__
 - `declanshanaghy (@declanshanaghy) <https://github.com/declanshanaghy>`__
+- `Ali Jafri (@deCodeIt) <https://github.com/deCodeIt>`__
 - `Maximilian (@DeerMaximum) <https://github.com/DeerMaximum>`__
 - `definitio (@definitio) <https://github.com/definitio>`__
 - `deftdawg (@deftdawg) <https://github.com/deftdawg>`__
@@ -1932,4 +1933,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated August 19, 2024.*
+*This page was last updated August 21, 2024.*
