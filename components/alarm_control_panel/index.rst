@@ -19,7 +19,8 @@ Base Alarm Control Panel Configuration
 
 Configuration variables:
 
-- **name** (**Required**, string): The name of the alarm control panel.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name of the alarm control panel. At least one of **id** and **name** must be specified.
 
   .. note::
 
@@ -47,7 +48,7 @@ Configuration variables:
 - **on_ready** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the logical 'and' of all the zone sensors change state. See :ref:`alarm_control_panel_on_ready_trigger`.
 - **on_chime** (*Optional*, :ref:`Action <config-action>`): An automation to perform
-  when a zone has been marked as chime in the configuration, and it changes from closed to open. 
+  when a zone has been marked as chime in the configuration, and it changes from closed to open.
   See :ref:`alarm_control_panel_on_chime_trigger`.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 - If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
