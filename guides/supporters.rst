@@ -429,6 +429,7 @@ Contributors
 - `DeadEnd (@DeadEnded) <https://github.com/DeadEnded>`__
 - `Debashish Sahu (@debsahu) <https://github.com/debsahu>`__
 - `declanshanaghy (@declanshanaghy) <https://github.com/declanshanaghy>`__
+- `Ali Jafri (@deCodeIt) <https://github.com/deCodeIt>`__
 - `Maximilian (@DeerMaximum) <https://github.com/DeerMaximum>`__
 - `definitio (@definitio) <https://github.com/definitio>`__
 - `deftdawg (@deftdawg) <https://github.com/deftdawg>`__
@@ -643,6 +644,7 @@ Contributors
 - `frspp (@frspp) <https://github.com/frspp>`__
 - `Florian Trück (@ftrueck) <https://github.com/ftrueck>`__
 - `functionpointer (@functionpointer) <https://github.com/functionpointer>`__
+- `Gábor Kiss (@g-kiss) <https://github.com/g-kiss>`__
 - `mr G1K (@G1K) <https://github.com/G1K>`__
 - `Aljaž Srebrnič (@g5pw) <https://github.com/g5pw>`__
 - `Alex Hermann (@gaaf) <https://github.com/gaaf>`__
@@ -1931,4 +1933,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated August 14, 2024.*
+*This page was last updated August 21, 2024.*

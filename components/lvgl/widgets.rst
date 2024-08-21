@@ -116,6 +116,67 @@ In addition to visual styling, each widget supports some boolean **flags** to in
 
     LVGL only supports **integers** for numeric ``value``. Visualizer widgets can't display floats directly, but they allow scaling by 10s.
 
+Widget-specific properties
+--------------------------
+
+Some widgets have properties that are specific to that widget. For example ``label`` has a ``text`` property. The properties
+specific to a widget are described in each section below. Some of these properties may also be updated with a corresponding
+``lvgl.<widget_type>.update`` action, e.g. ``lvgl.label.update`` allows updating not only the common style properties,
+but also the ``text`` property of a label.
+
+
+.. _text-property:
+
+Text property
+-------------
+
+Several widgets have a ``text`` property, and the possible ways this can be specified are common to all ``text`` properties.
+The text may be a Unicode string or other constant convertible to a string; if the string is enclosed in double quotes ``""`` then
+standard escape sequences sucn as newline ``\n`` and Unicode codepoints will be translated.
+The text value may also be a lambda returning a ``std::string`` or may be
+specified with a ``format`` property utilising ``printf`` style formatting. There is also a ``time_format`` option
+which allows use of `strftime <http://www.cplusplus.com/reference/ctime/strftime/>`_ formats.
+
+
+**Examples:**
+
+.. code-block:: yaml
+
+    # Example label
+    - label:
+        id: label_id
+        text: "Text string"
+    - checkbox:
+        id: checkbox_id
+        text: "\uF00C"  # Unicode check-mark
+
+
+    on_...:
+      - lvgl.label.update:
+          id: label_id
+          text:
+            format: "%d bells, %d things"
+            args: [x, 10]  # x is a value from the enclosing trigger.
+      - lvgl.label.update:
+          id: label_id
+          text: !lambda return id(text_sensor).state;
+      - lvgl.label.update:
+          id: label_id
+          text:
+            time_format: "%c"   # uses default time component
+      - lvgl.checkbox.update:
+          id: checkbox_id
+          text:
+            time_format: "%c"
+            time: sntp_id
+      - lvgl.label.update:
+          id: label_id
+          text:
+            time_format: "%c"
+            time: !lambda return id(sntp_id).utcnow();
+
+
+
 .. _lvgl-widget-animimg:
 
 ``animimg``
@@ -388,7 +449,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
         - **id** (*Optional*): An ID for the button in the matrix.
         - **key_code** (*Optional*, string): One character be sent as the key code to a :ref:`key_collector` instead of ``text`` when the button is pressed.
         - **selected** (*Optional*, boolean): Set the button as the most recently released or focused. Defaults to ``false``.
-        - **text** (*Optional*): Text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display on the button.
+        - **text** (*Optional*, :ref:`text-property`): Text to display on the button.
         - **width** (*Optional*): Width relative to the other buttons in the same row. Must be a value between ``1`` and ``15``; the default is ``1`` (for example, given a line with two buttons, one with ``width: 1`` and another one with ``width: 2``, the first will be ``33%`` wide while the second will be ``66%`` wide).
         - **control** (*Optional*): Binary flags to control behavior of the buttons (all ``false`` by default):
             - **checkable** (*Optional*, boolean): Enable toggling of a button, ``checked`` state will be added/removed as the button is clicked.
@@ -522,9 +583,7 @@ The checkbox widget is made internally from a *tick box* and a label. When the c
 
 - ``lvgl.checkbox.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-automation-actions>` action is used for the common styles, states or flags.
     - **id** (**Required**): The ID or a list of IDs of checkbox widgets which you want update.
-    - **text** (**Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
-        -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
-        -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the format message.
+    - **text** (*Optional*, :ref:`text-property`): Text to display beside the checkbox.
     - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
@@ -799,7 +858,7 @@ A label is the basic widget type that is used to display text.
 - **text_letter_space** (*Optional*, int16): Extra character spacing of the text. Inherited from parent. Defaults to ``0``.
 - **text_line_space** (*Optional*, int16): Line spacing of the text. Inherited from parent. Defaults to ``0``.
 - **text_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the text. Inherited from parent. Defaults to ``COVER``.
-- **text** (**Required**, string): The text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display. To display an empty label, specify ``""``.
+- **text** (*Optional*, :ref:`text-property`): Text to display on the label.
 - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties. The padding values can be used to add space between the text and the background.
 
 .. note::
@@ -810,9 +869,7 @@ A label is the basic widget type that is used to display text.
 
 - ``lvgl.label.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-automation-actions>` action is used for the common styles, states or flags.
     - **id** (**Required**): The ID or a list of IDs of label widgets which you want update.
-    - **text** (**Required**, :ref:`templatable <config-templatable>`, string): The ``text`` option in this action can contain static text, a :ref:`lambda <config-lambda>` outputting a string or can be formatted using ``printf``-style formatting (see :ref:`display-printf`).
-        -  **format** (*Optional*, string): The format for the message in :ref:`printf-style <display-printf>`.
-        -  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the format message.
+    - **text** (*Optional*, :ref:`text-property`): Text to display on the button.
     - Widget styles or properties from the specific options above, which you want update.
 
 **Triggers:**
@@ -1060,13 +1117,14 @@ The text will be broken into multiple lines automatically and the height will be
 **Configuration variables:**
 
 - **msgboxes** (*Optional*, dict): A list of message boxes to use. This option has to be added to the top level of the LVGL component configuration.
-    - **body** (**Required**, dict): The content of the body of the message box:
-        - **text** (**Required**, string):  The string to be displayed in the body of the message box. Can be shorthanded if no further options are specified.
-        - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties.
-    - **buttons** (**Required**, dict): A list of buttons to show at the bottom of the message box:
-        - **text** (**Required**, string):  The text (or built-in :ref:`symbol <lvgl-fonts>` codepoint) to display on the button.
-    - **close_button** (**Required**, boolean): Controls the appearance of the close button to the top right of the message box.
     - **title** (**Required**, string): A string to display at the top of the message box.
+    - **body** (*Optional*, dict): The content of the body of the message box:
+        - **text** (*Optional*, :ref:`text-property`): The text to display in the body of the message box.
+        - Style options from :ref:`lvgl-styling`. Uses all the typical background properties and the text properties.
+    - **buttons** (*Optional*, list): A list of buttons to show at the bottom of the message box:
+        - **text** (*Optional*, :ref:`text-property`): Text to display on the button.
+        - See :ref:`lvgl-widget-buttonmatrix` for other options for the buttons.
+    - **close_button** (*Optional*, boolean): Controls the appearance of the close button to the top right of the message box.
 
 **Actions:**
 
@@ -1527,14 +1585,15 @@ The textarea is an extended label widget which displays a cursor and allows the 
 - **max_length** (*Optional*, int): Limit the maximum number of characters to this value.
 - **one_line** (*Optional*, boolean): The text area can be limited to only allow a single line of text. In this case the height will set automatically to fit only one line, line break characters will be ignored, and word wrap will be disabled.
 - **password_mode** (*Optional*, boolean): The text area supports password mode. By default, if the ``•`` (bullet, ``0x2022``) glyph exists in the font, the entered characters are converted to it after some time or when a new character is entered. If ``•`` is missing from the font, ``*`` (asterisk) will be used.
-- **placeholder_text** (*Optional*, string): A placeholder text can be specified, which is displayed when the Text area is empty.
+- **text** (*Optional*, :ref:`text-property`): Initial contents of the textarea.
+- **placeholder_text** (*Optional*, :ref:`text-property`): A placeholder text can be specified, which is displayed when the Text area is empty.
 - any :ref:`Styling <lvgl-styling>` and state-based option for the background of the textarea. Uses all the typical background style properties and the text/label related style properties for the text.
 
 **Actions:**
 
 - ``lvgl.textarea.update`` :ref:`action <actions-action>` updates the widget's ``text`` property, to replace the entire text content.
     - **id** (**Required**): The ID or a list of IDs of textarea widgets which you want update.
-    - **text** (**Required**): The new text content to be displayed.
+    - **text** (*Optional*, :ref:`text-property`): The text to replace the textarea content.
 
 **Triggers:**
 

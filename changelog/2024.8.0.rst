@@ -21,7 +21,7 @@ ESPHome 2024.8.0 - 21st August 2024
     M5Stack Unit 8 Angle, components/sensor/m5stack_8angle, m5stack_8angle.png
     LYWSD02MMC, components/sensor/xiaomi_ble.html#lywsd02mmc, xiaomi_mijia_logo.jpg
 
-Light and Versitile Embedded Graphics Library
+Light and Versatile Embedded Graphics Library
 ---------------------------------------------
 
 Or LVGL for short, has been worked on by :ghuser:`clydebarrow` (and multiple other users doing testing and documentation etc)
@@ -33,14 +33,14 @@ some awesome dashboards being made with it.
 Online Image
 ------------
 
-The new :doc:`online_image </components/online_image>` component allows your ESPHome device to download
+:ghuser:`guillempages` created a new :doc:`online_image </components/online_image>` component that allows your ESPHome device to download
 images from the internet while it is running and show them on your display. This can also be combined with the new LVGL
 component to show dynamic images for your dashboard.
 
 Home Assistant Switch & Number
 ------------------------------
 
-New platforms have been aded for ``switch`` and ``number`` to allow importing of state and controlling
+New platforms have been added for ``switch`` and ``number`` to allow importing of state and controlling
 of switches and numbers that exist in Home Assistant (or another device via Home Assistant).
 This greatly simplifies controlling remote entities and will hopefully be extended to other platforms.
 
@@ -79,6 +79,24 @@ Breaking Changes
 ^^^^^^^^^^^^^^^^
 
 - Remove deprecated argument parser :esphomepr:`7151` by :ghuser:`jesserockz` (breaking-change)
+
+Beta Changes
+^^^^^^^^^^^^
+
+- remove extra number from pronto :esphomepr:`7263` by :ghuser:`ssieb`
+- [api] Bump noise-c library version :esphomepr:`7288` by :ghuser:`clydebarrow`
+- fix some small rtttl issues :esphomepr:`6817` by :ghuser:`nielsnl68`
+- Fix overflow in ESPColorCorrection object :esphomepr:`7268` by :ghuser:`g-kiss`
+- [validation] Allow ``maybe_simple_value`` to not have default key in complex value :esphomepr:`7294` by :ghuser:`jesserockz`
+- [network] Always allow ``enable_ipv6: false`` :esphomepr:`7291` by :ghuser:`dwmw2`
+- Revert "[validation] Allow ``maybe_simple_value`` to not have default key in complex value" :esphomepr:`7305` by :ghuser:`jesserockz`
+- [lvgl] Bug fixes  :esphomepr:`7300` by :ghuser:`clydebarrow`
+- [speaker] Fix header includes :esphomepr:`7304` by :ghuser:`nielsnl68`
+- [microphone] Fix header includes :esphomepr:`7310` by :ghuser:`jesserockz`
+- Fix RP2040 Neopixel flickering issue :esphomepr:`7307` by :ghuser:`deCodeIt`
+- add the ability to add more idf components to an existing setup :esphomepr:`7302` by :ghuser:`nielsnl68`
+- Fix waveshare 2.13" epaper stride calculation error :esphomepr:`7303` by :ghuser:`serialx`
+- [rtttl] fix STOPPED state :esphomepr:`7323` by :ghuser:`NewoPL`
 
 All changes
 ^^^^^^^^^^^
@@ -216,6 +234,20 @@ All changes
 - [micro_wake_word] Bump ESPMicroSpeechFeatures version to 1.1.0 :esphomepr:`7249` by :ghuser:`kahrendt`
 - Implement the finish() method and action. implement the is_stopped condition :esphomepr:`7255` by :ghuser:`nielsnl68`
 - Correct offset calibration  :esphomepr:`7228` by :ghuser:`descipher` (new-integration)
+- remove extra number from pronto :esphomepr:`7263` by :ghuser:`ssieb`
+- [api] Bump noise-c library version :esphomepr:`7288` by :ghuser:`clydebarrow`
+- fix some small rtttl issues :esphomepr:`6817` by :ghuser:`nielsnl68`
+- Fix overflow in ESPColorCorrection object :esphomepr:`7268` by :ghuser:`g-kiss`
+- [validation] Allow ``maybe_simple_value`` to not have default key in complex value :esphomepr:`7294` by :ghuser:`jesserockz`
+- [network] Always allow ``enable_ipv6: false`` :esphomepr:`7291` by :ghuser:`dwmw2`
+- Revert "[validation] Allow ``maybe_simple_value`` to not have default key in complex value" :esphomepr:`7305` by :ghuser:`jesserockz`
+- [lvgl] Bug fixes  :esphomepr:`7300` by :ghuser:`clydebarrow`
+- [speaker] Fix header includes :esphomepr:`7304` by :ghuser:`nielsnl68`
+- [microphone] Fix header includes :esphomepr:`7310` by :ghuser:`jesserockz`
+- Fix RP2040 Neopixel flickering issue :esphomepr:`7307` by :ghuser:`deCodeIt`
+- add the ability to add more idf components to an existing setup :esphomepr:`7302` by :ghuser:`nielsnl68`
+- Fix waveshare 2.13" epaper stride calculation error :esphomepr:`7303` by :ghuser:`serialx`
+- [rtttl] fix STOPPED state :esphomepr:`7323` by :ghuser:`NewoPL`
 
 Past Changelogs
 ---------------
