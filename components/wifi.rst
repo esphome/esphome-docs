@@ -335,15 +335,17 @@ This action turns on the WiFi interface on demand.
 This action stores an SSID and password in persistent memory so that the next time the WiFi interface is enabled, it will connect to the stored access point.
 
 .. code-block:: yaml
+
     on_...:
       then:
         - wifi.save_ap_settings:
             ssid: "MyHomeNetwork"
             password: "VerySafePassword"
+
 Configuration variables:
 
-- **ssid** (*Required*, string): The name of the WiFi access point.
-- **password** (*Required*, string): The password of the WiFi access point. Leave empty for no password.
+- **ssid** (*Required*, string, :ref:`templatable <config-templatable>`): The name of the WiFi access point.
+- **password** (*Required*, string, :ref:`templatable <config-templatable>`): The password of the WiFi access point. Leave empty for no password.
 
 
 .. _wifi-connected_condition:
