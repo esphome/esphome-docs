@@ -330,7 +330,7 @@ This action turns on the WiFi interface on demand.
 .. _wifi-save_ap_settings:
 
 ``wifi.save_ap_settings`` Action
-----------------------
+--------------------------------
 
 This action stores an SSID and password in persistent memory so that the next time the WiFi interface is enabled, it will connect to the stored access point.
 
