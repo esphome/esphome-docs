@@ -145,7 +145,7 @@ All changes
 - LVGL stage 2 :esphomepr:`7129` by :ghuser:`clydebarrow`
 - [pid] Add get_min_integral() and get_max_integral() :esphomepr:`7162` by :ghuser:`FreeBear-nc`
 - [code-quality] Organise bluetooth related imports :esphomepr:`7155` by :ghuser:`jesserockz`
-- http_request watchdog as a component :esphomepr:`7161` by :ghuser:`oarcher` (new-integration)
+- http_request watchdog as a component :esphomepr:`7161` by :ghuser:`oarcher`
 - [touchscreen] Allow binary sensor to have multiple pages in config :esphomepr:`7112` by :ghuser:`jesserockz`
 - [matrix_keypad] Add `pin->setup()` to rows and cols :esphomepr:`7163` by :ghuser:`AAllport`
 - [update] Implement ``update.perform`` action and ``update.is_available`` condition :esphomepr:`7165` by :ghuser:`jesserockz` (new-feature)
@@ -165,7 +165,7 @@ All changes
 - [lvgl] Stage 5 :esphomepr:`7191` by :ghuser:`clydebarrow`
 - socket: socket::set_sockaddr() for IPv4 addresses in IPv6 builds :esphomepr:`7196` by :ghuser:`dwmw2`
 - Adds MQTT component to Alarm Control panel component :esphomepr:`7188` by :ghuser:`heythisisnate`
-- [lvgl] Final stage :esphomepr:`7184` by :ghuser:`clydebarrow` (new-integration)
+- [lvgl] Final stage :esphomepr:`7184` by :ghuser:`clydebarrow`
 - Move ``CONF_BACKGROUND_COLOR`` and ``CONF_FOREGROUND_COLOR`` to const.py :esphomepr:`7202` by :ghuser:`jesserockz`
 - [helpers] Set default flags of ExternalRAMAllocator to ALLOW_FAILURE :esphomepr:`7201` by :ghuser:`jesserockz`
 - Add runtime online image support :esphomepr:`4710` by :ghuser:`guillempages` (new-integration)
@@ -223,7 +223,7 @@ All changes
 - Implement ByteBuffer :esphomepr:`6878` by :ghuser:`clydebarrow`
 - Add min and max brightness parameters for Light dim_relative Action :esphomepr:`6971` by :ghuser:`PaoloTK`
 - [homeassistant] Native switch entity import and control :esphomepr:`7018` by :ghuser:`Links2004` (new-platform)
-- [homeassistant] Native number entity import and control :esphomepr:`6455` by :ghuser:`landonr` (new-integration)
+- [homeassistant] Native number entity import and control :esphomepr:`6455` by :ghuser:`landonr` (new-platform)
 - [lvgl] Rework events to avoid feedback loops :esphomepr:`7262` by :ghuser:`clydebarrow`
 - Add `color_filter_opa` style property :esphomepr:`7276` by :ghuser:`clydebarrow`
 - [code-quality] fix clang-tidy wake_on_lan :esphomepr:`7275` by :ghuser:`tomaszduda23`
@@ -233,7 +233,7 @@ All changes
 - support illuminance for airthings wave plus device :esphomepr:`5203` by :ghuser:`MadMonkey87`
 - [micro_wake_word] Bump ESPMicroSpeechFeatures version to 1.1.0 :esphomepr:`7249` by :ghuser:`kahrendt`
 - Implement the finish() method and action. implement the is_stopped condition :esphomepr:`7255` by :ghuser:`nielsnl68`
-- Correct offset calibration  :esphomepr:`7228` by :ghuser:`descipher` (new-integration)
+- Correct offset calibration  :esphomepr:`7228` by :ghuser:`descipher` (new-platform)
 - remove extra number from pronto :esphomepr:`7263` by :ghuser:`ssieb`
 - [api] Bump noise-c library version :esphomepr:`7288` by :ghuser:`clydebarrow`
 - fix some small rtttl issues :esphomepr:`6817` by :ghuser:`nielsnl68`
