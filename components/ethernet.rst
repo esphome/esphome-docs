@@ -55,6 +55,7 @@ Configuration variables:
   - ``KSZ8081`` (RMII)
   - ``KSZ8081RNA`` (RMII)
   - ``W5500`` (SPI)
+  - ``ENC28J60`` (SPI)
 
 RMII configuration variables:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -113,7 +114,8 @@ Advanced common configuration variables:
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-
+- **full_duplex** (*Optional*, boolean): Only applicable to the `ENC28J60`. Set to `true`
+  to force the chip into full-duplex (see note below).
 
 .. note::
 
@@ -126,6 +128,12 @@ Advanced common configuration variables:
 .. note::
 
     SPI based chips do *not* use :doc:`spi`. This means that SPI pins can't be shared with other devices.
+
+.. note::
+
+    ENC28J60 is not recommended due to the high power usage, being 10mbit only, and the lack of
+    auto duplex negotiation. If `full_duplex` is set to `true`, then you need to manually set the
+    duplex mode of the other device where the `ENC28J60` is going to be plugged into.
 
 Configuration examples
 ----------------------
