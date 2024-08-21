@@ -1599,6 +1599,7 @@ Contributors
 - `Jason Sepinsky (@Sepinsky) <https://github.com/Sepinsky>`__
 - `Sergey Popov (@Sergey-SRG) <https://github.com/Sergey-SRG>`__
 - `Sergio (@sergio303) <https://github.com/sergio303>`__
+- `Sung-jin Brian Hong (@serialx) <https://github.com/serialx>`__
 - `Sergio Mayoral Martínez (@sermayoral) <https://github.com/sermayoral>`__
 - `sethcohn (@sethcohn) <https://github.com/sethcohn>`__
 - `Seth Girvan (@sethgirvan) <https://github.com/sethgirvan>`__
