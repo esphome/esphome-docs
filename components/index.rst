@@ -6,6 +6,7 @@ Components
     :glob:
 
     binary_sensor/index
+    canbus/index
     climate/index
     cover/index
     fan/index
@@ -25,6 +26,7 @@ Components
     touchscreen/index
     lock/index
     display_menu/index
+    lvgl/index
     media_player/index
     microphone/index
     speaker/index

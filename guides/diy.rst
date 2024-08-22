@@ -61,6 +61,7 @@ Blog Posts & Videos
 - `Stepper motor blinds <https://github.com/tronikos/esphome-blinds>`__ by :ghuser:`tronikos`
 - `Read your water meter or gas meter using a triple-axis magnetometer <https://github.com/tronikos/esphome-magnetometer-water-gas-meter>`__ by :ghuser:`tronikos`
 - `Garage door opener controller for devices with optical encoder <https://github.com/serg987/ESPHomeGarageDoorOpener>`__ by :ghuser:`serg987`
+- `An IoT clock designed for children <https://github.com/chrisns/childrens-clock>`__ by :ghuser:`chrisns`
 
 Custom Components & Code
 ------------------------
