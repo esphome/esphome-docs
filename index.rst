@@ -970,6 +970,7 @@ Number Components
 
     Number Core, components/number/index, folder-open.svg, dark-invert
     Template Number, components/number/template, description.svg, dark-invert
+    Home Assistant, components/number/homeassistant, home-assistant.svg, dark-invert
     LVGL widget Number, components/number/lvgl, lvgl_c_num.png
     Modbus Number, components/number/modbus_controller, modbus.png
     Tuya Number, components/number/tuya, tuya.png
@@ -1042,6 +1043,7 @@ Components specifically for interacting with Home Assistant.
     Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg, dark-invert
     Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg, dark-invert
     micro Wake Word, components/micro_wake_word, voice-assistant.svg, dark-invert
+    Number, components/number/homeassistant, home-assistant.svg, dark-invert
     Sensor, components/sensor/homeassistant, home-assistant.svg, dark-invert
     Switch, components/switch/homeassistant, home-assistant.svg, dark-invert
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
