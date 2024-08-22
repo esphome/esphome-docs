@@ -442,6 +442,7 @@ Environmental
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     BME280, components/sensor/bme280, bme280.jpg, Temperature & Humidity & Pressure
+    BME68x via BSEC2, components/sensor/bme68x_bsec2, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BME680, components/sensor/bme680, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
@@ -499,6 +500,7 @@ Light
 .. imgtable::
 
     AM43, components/sensor/am43, am43.jpg, Lux
+    APDS9306, components/sensor/apds9306, apds9306.png, Lux
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
@@ -546,6 +548,8 @@ Miscellaneous
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Integration, components/sensor/integration, sigma.svg, dark-invert
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
+    LVGL widget, components/sensor/lvgl, lvgl_c_num.png
+    M5Stack Unit 8 Angle, components/sensor/m5stack_8angle, m5stack_8angle.png
     MicroNova pellet stove, components/micronova, pellet.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
@@ -660,6 +664,7 @@ Touchscreen
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     TT21100, components/touchscreen/tt21100, esp32-s3-korvo-2-lcd.png
+    LVGL widget, components/binary_sensor/lvgl, lvgl_c_bns.png
 
 Presence Detection
 ******************
@@ -739,6 +744,7 @@ Light Components
     H-bridge Light, components/light/hbridge, brightness-medium.svg, dark-invert
     Light Partition, components/light/partition, color_lens.svg, dark-invert
     LightWaveRF, components/lightwaverf, brightness-medium.svg
+    LVGL widget, components/light/lvgl, lvgl_c_lig.png
     Monochromatic Light, components/light/monochromatic, brightness-medium.svg, dark-invert
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg, dark-invert
     RGB Light, components/light/rgb, rgb.png
@@ -767,6 +773,7 @@ Switch Components
     Factory Reset Switch, components/switch/factory_reset, restart-alert.svg, dark-invert
     Generic Output Switch, components/switch/output, upload.svg, dark-invert
     GPIO Switch, components/switch/gpio, pin.svg, dark-invert
+    LVGL Widget, components/switch/lvgl, lvgl_c_swi.png
     Modbus Switch, components/switch/modbus_controller, modbus.png
     Nextion Switch, components/switch/nextion, nextion.jpg
     Restart Switch, components/switch/restart, restart.svg, dark-invert
@@ -774,6 +781,7 @@ Switch Components
     Shutdown Switch, components/switch/shutdown, power_settings.svg, dark-invert
     Tuya Switch, components/switch/tuya, tuya.png
     UART Switch, components/switch/uart, uart.svg
+    Home Assistant, components/switch/homeassistant, home-assistant.svg, dark-invert
 
 Button Components
 -----------------
@@ -821,9 +829,13 @@ Display Components
     QR Code, components/qr_code, qr-code.svg, dark-invert
     Image, components/image, image-outline.svg, dark-invert
     Animation, components/animation, image-multiple-outline.svg, dark-invert
+    Online Image, components/online_image, image-sync-outline.svg, dark-invert
     Display Menu Core, components/display_menu/index, folder-open.svg, dark-invert
     Graphical Display Menu, components/display_menu/graphical_display_menu, graphical_display_menu.png
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
+    LVGL Graphics, components/lvgl/index, lvgl.png
+
+.. _display-hw:
 
 Display Hardware Platforms
 --------------------------
@@ -903,6 +915,7 @@ Text Components
 
     Text Core, components/text/index, folder-open.svg, dark-invert
     Template Text, components/text/template, description.svg, dark-invert
+    LVGL textarea Text, components/text/lvgl, lvgl_c_txt.png
 
 Valve Components
 ----------------
@@ -923,6 +936,7 @@ Text Sensor Components
     Ethernet Info, components/text_sensor/ethernet_info, ethernet.svg, dark-invert
     Home Assistant, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
     LibreTiny, components/text_sensor/libretiny, libretiny.svg
+    LVGL textarea Text Sensor, components/text_sensor/lvgl, lvgl_c_txt.png
     Modbus Text Sensor, components/text_sensor/modbus_controller, modbus.png
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
@@ -956,6 +970,8 @@ Number Components
 
     Number Core, components/number/index, folder-open.svg, dark-invert
     Template Number, components/number/template, description.svg, dark-invert
+    Home Assistant, components/number/homeassistant, home-assistant.svg, dark-invert
+    LVGL widget Number, components/number/lvgl, lvgl_c_num.png
     Modbus Number, components/number/modbus_controller, modbus.png
     Tuya Number, components/number/tuya, tuya.png
 
@@ -966,6 +982,7 @@ Select Components
 
     Select Core, components/select/index, folder-open.svg, dark-invert
     Template Select, components/select/template, description.svg, dark-invert
+    LVGL widget Select, components/select/lvgl, lvgl_c_sel.png
     Modbus Select, components/select/modbus_controller, modbus.png
     Tuya Select, components/select/tuya, tuya.png
 
@@ -1026,7 +1043,9 @@ Components specifically for interacting with Home Assistant.
     Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg, dark-invert
     Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg, dark-invert
     micro Wake Word, components/micro_wake_word, voice-assistant.svg, dark-invert
+    Number, components/number/homeassistant, home-assistant.svg, dark-invert
     Sensor, components/sensor/homeassistant, home-assistant.svg, dark-invert
+    Switch, components/switch/homeassistant, home-assistant.svg, dark-invert
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
     Voice Assistant, components/voice_assistant, voice-assistant.svg, dark-invert
 
