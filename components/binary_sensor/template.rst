@@ -36,12 +36,8 @@ Possible return values of the lambda:
 Configuration variables:
 ------------------------
 
--  **name** (**Required**, string): The name of the binary sensor.
 -  **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
    Lambda to be evaluated repeatedly to get the current state of the binary sensor.
--  **id** (*Optional*,
-   :ref:`config-id`): Manually specify
-   the ID used for code generation.
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _binary_sensor-template-publish_action:

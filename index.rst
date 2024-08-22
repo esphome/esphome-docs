@@ -781,6 +781,7 @@ Switch Components
     Shutdown Switch, components/switch/shutdown, power_settings.svg, dark-invert
     Tuya Switch, components/switch/tuya, tuya.png
     UART Switch, components/switch/uart, uart.svg
+    Home Assistant, components/switch/homeassistant, home-assistant.svg, dark-invert
 
 Button Components
 -----------------
@@ -1042,6 +1043,7 @@ Components specifically for interacting with Home Assistant.
     Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg, dark-invert
     micro Wake Word, components/micro_wake_word, voice-assistant.svg, dark-invert
     Sensor, components/sensor/homeassistant, home-assistant.svg, dark-invert
+    Switch, components/switch/homeassistant, home-assistant.svg, dark-invert
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
     Voice Assistant, components/voice_assistant, voice-assistant.svg, dark-invert
 

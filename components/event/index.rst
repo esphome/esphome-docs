@@ -48,8 +48,8 @@ Configuration variables:
 
 One of ``id`` or ``name`` is required.
 
-- **id** (**Required**, :ref:`config-id`): Manually specify the ID used for code generation, allowing for further customization or interaction with this event within ESPHome scripts or lambda functions.
-- **name** (**Required**, string): The name for the event.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name for the event. At least one of **id** and **name** must be specified.
 
   .. note::
 

@@ -54,7 +54,6 @@ The ``ble_presence`` binary sensor platform lets you track the presence of a Blu
 Configuration variables:
 ------------------------
 
--  **name** (**Required**, string): The name of the binary sensor.
 -  **mac_address** (*Optional*, MAC Address): The MAC address to track for this
    binary sensor. Note that exactly one of ``mac_address``, ``irk``, ``service_uuid`` or ``ibeacon_uuid``
    must be present.
@@ -72,8 +71,6 @@ Configuration variables:
    same building.
 -  **ibeacon_minor** (*Optional*, int): The iBeacon minor identifier of the beacon that needs
    to be tracked. Usually used to identify beacons within an iBeacon group.
--  **id** (*Optional*, :ref:`config-id`): Manually specify
-   the ID used for code generation.
 -  **min_rssi** (*Optional*, int): at which minimum RSSI level would the component report the device be present.
 -  **timeout** (*Optional*, :ref:`config-time`): The delay after last detecting the device before publishing not present state.
    The default is 5 minutes.
