@@ -89,6 +89,9 @@ Configuration variables:
   - **read_lambda** (**Required**, :ref:`lambda <config-lambda>`):
     Lambda that returns the value of this register.
 
+Automations:
+
+- **on_command_sent** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a modbus command has been sent. See :ref:`modbus_controller-on_command_sent`
 
 Example Client
 --------------
@@ -720,6 +723,28 @@ The response is mapped to the sensor based on ``register_count`` and offset in b
               - multiply: 0.01
 
 .. _modbusseealso:
+
+.. _modbus_controller-automations:
+
+Automation
+----------
+
+.. _modbus_controller-on_command_sent:
+
+``on_command_sent``
+*******************
+
+This automation will be triggered when a command has been sent by the `modbus_controller`. In :ref:`Lambdas <config-lambda>` 
+you can get the function code in ``function_code`` and the register address in ``address``.
+
+.. code-block:: yaml
+
+    modbus_controller:
+      - id: modbus_con
+        # ...
+        on_command_sent:
+          then:
+            - number.increment: modbus_commands
 
 See Also
 --------
