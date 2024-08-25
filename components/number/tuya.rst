@@ -61,6 +61,23 @@ For instance, assume we have a pH sensor that reads from 0.00 to 15.00 with a sc
       max_value: 15.00
       multiply: 100
 
+Hidden datapoints:
+------------------
+The above configurations will work fine as long as Tuya device publishes the datapoint value (along with its type) at initialization.
+However this is not always the case. To be able to use such "hidden" datapoints as Number, you need to specify additional ``datapoint_hidden`` configuration block.
+This block allows to specify the missing datapoint type and, optionally, the value that should be written to the datapoint at initialization.
+
+.. code-block:: yaml
+
+    - platform: "tuya"
+      name: "Alarm at maximum"
+      number_datapoint: 116
+      min_value: 0
+      max_value: 100
+      datapoint_hidden:
+        datapoint_type: int
+        initial_value: 85
+
 Configuration variables:
 ------------------------
 
@@ -69,6 +86,10 @@ Configuration variables:
 - **max_value** (**Required**, float): The maximum value this number can be.
 - **step** (*Optional*, float): The granularity with which the number can be set. Defaults to 1.
 - **multiply** (*Optional*, float): multiply the new value with this factor before sending the requests.
+- **datapoint_hidden** (*Optional*): Specify information required for hidden datapoints.
+
+  - **datapoint_type** (**Required**, string): The datapoint type, one of *int*, *uint*, *enum*.
+  - **initial_value** (*Optional*, float): The value to be written at initialization. Must be between ``min_value`` and ``max_value``.
 
 - All other options from :ref:`Number <config-number>`.
 
