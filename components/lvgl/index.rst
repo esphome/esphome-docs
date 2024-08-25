@@ -655,8 +655,9 @@ This :ref:`condition <common_conditions>` checks if the amount of time specified
     on_...:
       then:
         - if:
-            condition: lvgl.is_idle
-              timeout: 5s
+            condition:
+              lvgl.is_idle:
+                timeout: 5s
             then:
               - light.turn_off:
                   id: display_backlight
