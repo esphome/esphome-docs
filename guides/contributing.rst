@@ -725,7 +725,6 @@ All Python modules have some magic symbols that will automatically be loaded by 
   validation will only permit the given number of entries.
 - ``CONFLICTS_WITH``: Mark a list of components as conflicting with this component. If the user has one of them in
   their config, a validation error will be generated.
-- ``ESP_PLATFORMS``: Provide a list of allowed ESP types this component works with.
 - ``CODEOWNERS``: GitHub usernames or team names of people that are responsible for this component. You should add at
   least your GitHub username here, as well as anyone who helped you to write code that is being included.
 
