@@ -578,7 +578,7 @@ Consider a YAML configuration file containing the following:
 In both cases, ESPHome will automatically look for corresponding entries in the "components" folder and find the
 directory with the given name. In this example, the first entry causes ESPHome to look for the
 ``esphome/components/hello1/__init__.py`` file and the second entry tells ESPHome to look for
-``esphome/components/hello2/sensor.py``.
+``esphome/components/hello2/sensor.py`` or ``esphome/components/hello2/sensor/__init__.py``.
 
 Let's leave what's written in those files for :ref:`the next section <config_validation>`, but for now you should also
 know that, whenever a component is loaded, all the C++ source files in the folder of the component are automatically
