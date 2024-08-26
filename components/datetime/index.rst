@@ -29,7 +29,8 @@ All datetime in ESPHome have a name and an optional icon.
 
 Configuration variables:
 
-- **name** (**Required**, string): The name for the datetime.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name for the datetime. At least one of **id** and **name** must be specified.
 
   .. note::
 

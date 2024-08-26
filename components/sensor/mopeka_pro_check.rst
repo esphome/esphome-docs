@@ -9,7 +9,7 @@ Mopeka Pro Check BLE Sensor
 The ``mopeka_pro_check`` sensor platform lets you track the output of Mopeka Pro
 Check LP, Mopeka Pro Plus, Mopeka Pro Universal or Lippert Propane Tank Sensors,   Bluetooth Low
 Energy devices using the :doc:`/components/esp32_ble_tracker`. This component
-will track the tank level, distance, temperature, and battery percentage of a 
+will track the tank level, distance, temperature, and battery percentage of a
 device every time the sensor sends out a BLE broadcast.
 
 .. warning::
@@ -21,7 +21,7 @@ device every time the sensor sends out a BLE broadcast.
       + Lippert Propane Tank Sensor, part number 2021130655
 
     Sensors are calibrated for propane only.
-      
+
     See :doc:`/components/sensor/mopeka_std_check` for original Mopeka Check sensors support.
 
 .. figure:: images/mopeka_pro_check.jpg
@@ -32,7 +32,7 @@ device every time the sensor sends out a BLE broadcast.
 .. figure:: images/mopeka_pro_check_lippert.jpg
     :align: center
 
-    Lippert™ Propane Tank Sensor 
+    Lippert™ Propane Tank Sensor
 
 The original Mopeka Check sensors are not supported.
 
@@ -46,7 +46,7 @@ Mopeka Pro Check LP over BLE:
     sensor:
       # Example using 20lb vertical propane tank.
       - platform: mopeka_pro_check
-        mac_address: D3:75:F2:DC:16:91
+        mac_address: XX:XX:XX:XX:XX:XX
         tank_type: 20LB_V
         temperature:
             name: "Propane test temp"
@@ -59,7 +59,7 @@ Mopeka Pro Check LP over BLE:
 
       # Custom example - user defined empty / full points
       - platform: mopeka_pro_check
-        mac_address: D3:75:F2:DC:16:91
+        mac_address: XX:XX:XX:XX:XX:XX
         tank_type: CUSTOM
         custom_distance_full: 40cm
         custom_distance_empty: 10mm
@@ -137,9 +137,9 @@ For all sensors found the ``mopeka_ble`` component will print a message like thi
 
 .. code::
 
-    [20:43:26][I][mopeka_ble:074]: MOPEKA PRO (NRF52) SENSOR FOUND: D3:75:F2:DC:16:91
+    [20:43:26][I][mopeka_ble:074]: MOPEKA PRO (NRF52) SENSOR FOUND: XX:XX:XX:XX:XX:XX
 
-Then just copy the address (``D3:75:F2:DC:16:91``) into a new
+Then just copy the address (``XX:XX:XX:XX:XX:XX``) into a new
 ``sensor.mopeka_pro_check`` platform entry like in the configuration example at the top.
 
 .. note::

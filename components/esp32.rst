@@ -18,7 +18,7 @@ Configuration variables:
 
 - **board** (**Required**, string): The PlatformIO board ID that should
   be used. Choose the appropriate board from
-  `this list <https://registry.platformio.org/packages/platforms/platformio/espressif32/boards>`__ (the icon next to the name
+  `this list <https://registry.platformio.org/platforms/platformio/espressif32/boards?version=5.3.0>`__ (the icon next to the name
   can be used to copy the board ID). *This only affects pin aliases, flash size and some internal settings*, if unsure
   choose a generic board from Espressif such as ``esp32dev``.
 - **framework** (*Optional*): Options for the underlying framework used by ESPHome.
@@ -31,10 +31,6 @@ Configuration variables:
 - **variant** (*Optional*, string): The variant of the ESP32 that is used on this board. One of ``esp32``,
   ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``. Defaults to the variant that is detected from the board; if
   a board that's unknown to ESPHome is used, this option is mandatory.
-
-.. note::
-
-    Support for ESP32 variants such as the S2, S3 and C3 is still in development and there could be issues.
 
 GPIO Pin Numbering
 ------------------
