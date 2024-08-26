@@ -34,6 +34,7 @@ Configuration variables
       "ESP32-C3", "0, 1"
 
 - **chipset** (**Required**, enum): The chipset to apply known timings from. Not used if specifying the timings manually, see below.
+    - ``WS2811``
     - ``WS2812``
     - ``SK6812``
     - ``APA106``
