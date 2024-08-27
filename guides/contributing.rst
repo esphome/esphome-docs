@@ -479,6 +479,8 @@ here are some tips:
   whatever reason) accept...and then you have to go back and re-do it all to get your PR merged. It's easier to make
   corrections early-on -- and we want to help you!
 
+.. _prs-are-being-drafted-when-changes-are-needed:
+
 Why Was My PR was Marked as a Draft?
 ************************************
 
