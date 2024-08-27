@@ -506,17 +506,67 @@ Before you click the "Ready for review" button, ensure that:
 Once you've clicked the "Ready for review" button, the PR will return to a normal state again and our bot will
 automatically notify the reviewers who requested the changes that the PR is ready to go!
 
-Catching Up with Reality
-************************
+Updating Your Branches
+**********************
 
-Sometimes other commits have been made to the same files you edited. Your changes need to be re-applied on top of the
-latest changes with a "rebase". More info `here <https://developers.home-assistant.io/docs/en/development_catching_up.html>`__.
+Sometimes you'll want (or need) to bring changes that were made in ESPHome's ``dev`` branch back into your (local copy
+of a) branch.
+
+The examples that follow in this section assume that you have:
+
+- already used ``git remote`` to add ``upstream`` as shown earlier, and
+- your feature branch (the branch from which you created your PR) currently checked out
+
+.. _feature_branches:
+
+Feature Branches
+^^^^^^^^^^^^^^^^
+
+There are a couple of ways you can update your (local) feature branch. The easiest is by clicking the "Update branch"
+button in GitHub:
+
+.. image:: images/update_branch.png
+    :align: center
+    :width: 80.0%
+    :class: light-invert
+
+...then run ``git pull`` to pull these changes back down from GitHub.
+
+If you prefer to do it the command-line/terminal way, you can do this, instead:
 
 .. code-block:: bash
 
-    # Fetch the latest upstream changes and apply them
+    # Fetch the latest upstream changes
+    git fetch upstream dev
+    # Merge in the changes we fetched above
+    git merge upstream/dev
+
+Your Local Copy of ``dev``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As you create new branches for your work, you'll want to be sure they include all of the latest changes from ESPHome's
+``dev`` branch -- it's not a good practice to create a new feature branch from an outdated ``dev`` branch.
+
+For this reason, you'll periodically want to update your local ``dev`` branch. A more detailed explanation can be found
+`here <https://developers.home-assistant.io/docs/en/development_catching_up.html>`__, but here's the TL;DR:
+
+.. code-block:: bash
+
+    # Fetch the latest upstream changes
     git fetch upstream dev
     git rebase upstream/dev
+
+Note that you can use this procedure for other branches, too, such as ``next`` or ``current`` from ``esphome-docs``.
+
+.. warning::
+
+    Using ``git rebase`` will result in your changes having to be *force-pushed* back up to GitHub.
+
+    **Do not force-push** your branch once your PR is being reviewed; GitHub allows reviewers to mark files a "viewed"
+    and, when you force-push, this history **is lost**, forcing your reviewer to re-review files they may have already
+    reviewed!
+
+    If you must update your branch, use a method described in :ref:`feature_branches`, instead.
 
 .. _contributing_to_esphome:
 
@@ -648,24 +698,24 @@ This method is also automatically loaded and invoked by the ESPHome core. Here's
 
     import esphome.codegen as cg
 
-    def to_code(config):
+    async def to_code(config):
         var = cg.new_Pvariable(config[CONF_ID])
-        yield cg.register_component(var)
+        await cg.register_component(var, config)
 
         cg.add(var.set_my_required_key(config[CONF_MY_REQUIRED_KEY]))
 
 The details of ESPHome code generation is out-of-scope for this document. However, ESPHome's code generation is 99%
 syntactic sugar - and (again) it's probably best to study similar components and just copy what they do.
 
-There's one important concept for the ``to_code`` method: coroutines with ``yield``.
+There's one important concept for the ``to_code`` method: coroutines with ``await``.
 
 The problem that necessitates coroutines is this: in ESPHome, components can declare (via ``cg.Pvariable``) and access
 variables (``cg.get_variable()``) -- but sometimes, when one part of the codebase requests a variable, it has not been
 declared yet because the code for the component creating the variable has not yet run.
 
-To allow for ID references, ESPHome uses so-called ``coroutines``. When you see a ``yield`` statement in a ``to_code``
+To allow for ID references, ESPHome uses so-called ``coroutines``. When you see an ``await`` statement in a ``to_code``
 method, ESPHome will call the provided method and, if that method needs to wait for a variable to be declared first,
-``yield`` will wait until that variable has been declared. After that, ``yield`` returns and the method will execute on
+``await`` will wait until that variable has been declared. After that, ``await`` returns and the method will execute on
 the next line.
 
 Next, there's a special method - ``cg.add`` - that you will often use. ``cg.add()`` performs a very simple task: Any
@@ -697,14 +747,28 @@ The next method that will be called with your component is ``loop()`` (or ``upda
 :apiclass:`PollingComponent`). These methods should retrieve the latest data from your component and publish them with
 the provided methods.
 
-.. note::
-
-    **Code in** ``loop()``, ``update()`` **and** ``setup()`` **must not block**. Specifically, methods like ``delay()``
-    should be avoided and **delays longer than 10 ms are not permitted**. The reason for this is that ESPHome uses a
-    single-threaded loop for all components -- if your component blocks, it will delay the whole loop, negatively
-    impacting other components. This can result in a variety of problems such as network connections being lost.
-
 Finally, your component must have a ``dump_config`` method that prints the complete user configuration.
+
+A Note About Delays in Code
+***************************
+
+**Code in** ``loop()``, ``update()`` **and** ``setup()`` **must not block**.
+
+Methods like ``delay()`` should be avoided and **delays longer than 10 ms are not permitted**. Because ESPHome uses a
+single-threaded loop for all components, if your component blocks, it will delay the whole loop, negatively impacting
+other components. This can result in a variety of problems such as network connections being lost.
+
+If your code **must** wait for something to happen (for example, your sensor requires hundreds of milliseconds to
+initialize and/or take a reading), then you'll need to implement a state machine to facilitate this. For example, your
+code can send the "take reading" command, return, and, when the next iteration of ``loop()`` or ``update()`` is called,
+it then attempts to read back the measurement from the sensor.
+
+``loop()`` is called every 16 ms (assuming no other components delay this, which may happen from time to time) and
+``update()`` is called at an interval defined in the user configuration for the component, but only for
+:apiclass:`PollingComponent`.
+
+For any :apiclass:`Component` (which is nearly everything), the well-known ``set_timeout`` method is also available;
+this can be a handy alternative to implemeting a state machine.
 
 Extras
 ******
