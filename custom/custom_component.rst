@@ -86,8 +86,8 @@ Native API Custom Component
 ---------------------------
 
 If you want to communicate directly with Home Assistant via the :doc:`native API </components/api>`
-you can use the :apiclass:`api::CustomAPIDevice` class to declare services that can be executed from
-Home Assistant, as well as starting services in Home Assistant.
+you can use the :apiclass:`api::CustomAPIDevice` class to declare actions that can be performed from
+Home Assistant, as well as performing actions in Home Assistant.
 
 .. code-block:: cpp
 
