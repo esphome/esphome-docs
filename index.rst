@@ -781,6 +781,7 @@ Switch Components
     Shutdown Switch, components/switch/shutdown, power_settings.svg, dark-invert
     Tuya Switch, components/switch/tuya, tuya.png
     UART Switch, components/switch/uart, uart.svg
+    Home Assistant, components/switch/homeassistant, home-assistant.svg, dark-invert
 
 Button Components
 -----------------
@@ -970,6 +971,7 @@ Number Components
 
     Number Core, components/number/index, folder-open.svg, dark-invert
     Template Number, components/number/template, description.svg, dark-invert
+    Home Assistant, components/number/homeassistant, home-assistant.svg, dark-invert
     LVGL widget Number, components/number/lvgl, lvgl_c_num.png
     Modbus Number, components/number/modbus_controller, modbus.png
     Tuya Number, components/number/tuya, tuya.png
@@ -1042,7 +1044,9 @@ Components specifically for interacting with Home Assistant.
     Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg, dark-invert
     Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg, dark-invert
     micro Wake Word, components/micro_wake_word, voice-assistant.svg, dark-invert
+    Number, components/number/homeassistant, home-assistant.svg, dark-invert
     Sensor, components/sensor/homeassistant, home-assistant.svg, dark-invert
+    Switch, components/switch/homeassistant, home-assistant.svg, dark-invert
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
     Voice Assistant, components/voice_assistant, voice-assistant.svg, dark-invert
 

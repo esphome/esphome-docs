@@ -75,6 +75,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
     - **long_press_repeat_time** (*Optional*, :ref:`Time <config-time>`): For the touchscreen, repeated interval after ``long_press_time``, when ``on_long_pressed_repeat`` :ref:`interaction trigger <lvgl-automation-triggers>` will be called. Defaults to ``100ms``.
 - **encoders** (*Optional*, list): A list of rotary encoders interacting with the LVGL widgets on the display.
     - **group** (*Optional*, string): A name for a group of widgets which will interact with the the input device. See the :doc:`common properties </components/lvgl/widgets>` of the widgets for more information on groups.
+    - **initial_focus** (*Optional*, :ref:`config-id`): An optional ID for a widget to be given focus on startup (especially useful if there is only one focusable widget.)
     - **enter_button** (**Required**, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``ENTER`` key.
     - **sensor** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/sensor/rotary_encoder`; or a list with buttons for left/right interaction with the widgets:
         - **left_button** (*Optional*, :ref:`config-id`): The ID of a :doc:`Binary Sensor </components/binary_sensor/index>`, to be used as ``LEFT`` key.
@@ -265,8 +266,8 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
     - ``LEFT``
     - ``RIGHT``
     - ``INTERNAL``
-- **radius** (*Optional*, uint16): The radius to be used to form the widget's rounded corners. 0 = no radius (square corners); 65535 = pill shaped widget (true circle if it has same width and height).
 - **clip_corner** (*Optional*, boolean): If set to ``true``, overflowing content will be clipped off by the widget's rounded corners (``radius`` > ``0``).
+- **color_filter_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the color filter. Currently color filters are applied only by the default LVGL theme, this option allows the effect of those to be disabled by setting to ``TRANSP``.
 - **outline_width** (*Optional*, int16): Set the width of the outline in pixels. Defaults to ``0``.
 - **outline_color** (*Optional*, :ref:`color <lvgl-color>`): Color used to draw an outline around the widget. Defaults to ``0`` (black).
 - **outline_opa** (*Optional*, :ref:`opacity <lvgl-opacity>`): Opacity of the outline of the widget. Defaults to ``COVER``.
@@ -278,6 +279,7 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 - **pad_right** (*Optional*, int16): Set the padding on the right, in pixels.
 - **pad_row** (*Optional*, int16): Set the padding between the rows of the children elements, in pixels.
 - **pad_column** (*Optional*, int16): Set the padding between the columns of the children elements, in pixels.
+- **radius** (*Optional*, uint16): The radius to be used to form the widget's rounded corners. 0 = no radius (square corners); 65535 = pill shaped widget (true circle if it has same width and height).
 - **shadow_color** (*Optional*, :ref:`color <lvgl-color>`): Color used to create a drop shadow under the widget. Defaults to ``0`` (black).
 - **shadow_ofs_x** (*Optional*, int16): Horizontal offset of the shadow, in pixels. Defaults to ``0``.
 - **shadow_ofs_y** (*Optional*, int16): Vertical offset of the shadow, in pixels. Defaults to ``0``.
@@ -434,11 +436,27 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
 
     - **pad_row** (*Optional*, int16): Set the padding between the rows, in pixels.
     - **pad_column** (*Optional*, int16): Set the padding between the columns, in pixels.
-    - **flex_grow** (*Optional*, int16): Flex grow can be used to make one or more children fill the available space on the track. When more children have grow parameters, the available space will be distributed proportionally to the grow values. Defaults to ``0``, which disables growing.
+    - **flex_grow** (*Optional*, int16): Can be used to make one or more children fill the available space on the track. When one or more children have ``flex_grow`` set, the available space will be distributed proportionally to the grow values. Defaults to ``0``, which disables growing.
+
+.. code-block:: yaml
+
+    # Example flex layout
+
+    - obj:
+        layout:
+          type: flex
+          pad_row: 4
+          pad_column: 4px
+          flex_align_main: center
+          flex_align_cross: start
+          flex_align_track: end
+        widgets:
+          - animimg:
+              flex_grow: 1
 
 **Grid**
 
-The Grid layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
+The Grid layout in LVGL is a subset implementation of `CSS Grid <https://css-tricks.com/snippets/css/complete-guide-grid//>`__.
 
 It can arrange items into a 2D "table" that has rows or columns (tracks). The item(s) can span through multiple columns or rows. The track's size can be set in pixels, to the largest item of the track (``CONTENT``) or in "free units" to distribute the free space proportionally.
 
@@ -479,6 +497,23 @@ Values for use with ``grid_column_align``, ``grid_row_align``, ``grid_cell_x_ali
         - ``SPACE_EVENLY``: items are distributed so that the spacing between any two items (and the space to the edges) is equal.
         - ``SPACE_AROUND``: items are evenly distributed in the track with equal space around them. Note that visually the spaces aren’t equal, since all the items have equal space on both sides. The first item will have one unit of space against the container edge, but two units of space between the next item because that next item has its own spacing that applies.
         - ``SPACE_BETWEEN``: items are evenly distributed in the track: first item is on the start line, last item on the end line.
+
+.. code-block:: yaml
+
+    # Example grid layout
+
+    - obj:
+        layout:
+          type: grid
+          grid_row_align: end
+          grid_rows: [25px, fr(1), content]
+          grid_columns: [40, fr(1), fr(1)]
+          pad_row: 6px
+          pad_column: 0
+        widgets:
+          - image:
+              grid_cell_row_pos: 0
+              grid_cell_column_pos: 0
 
 .. tip::
 
@@ -620,8 +655,9 @@ This :ref:`condition <common_conditions>` checks if the amount of time specified
     on_...:
       then:
         - if:
-            condition: lvgl.is_idle
-              timeout: 5s
+            condition:
+              lvgl.is_idle:
+                timeout: 5s
             then:
               - light.turn_off:
                   id: display_backlight

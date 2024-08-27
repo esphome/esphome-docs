@@ -26,7 +26,8 @@ All light configuration schemas inherit these options.
 
 Configuration variables:
 
-- **name** (**Required**, string): The name of the light.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name of the light. At least one of **id** and **name** must be specified.
 
   .. note::
 
@@ -318,6 +319,15 @@ Configuration variables:
 - **relative_brightness** (**Required**, :ref:`templatable <config-templatable>`, percentage):
   The relative brightness to dim the light by.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition.
+- **brightness_limits** (*Optional*): Limits in the brightness range.
+    - **min_brightness** (*Optional*, percentage): The minimum brightness to dim the light to. Defaults to ``0%``.
+    - **max_brightness** (*Optional*, percentage): The maximum brightness to dim the light to. Defaults to ``100%``.
+    - **limit_mode** (*Optional*): What to do when the current brightness is outside of the limit range. Defaults to ``CLAMP``.
+      Valid limit modes are:
+    
+        - ``CLAMP``: Clamp the brightness to the limit range.
+        - ``DO_NOTHING``: No dimming if the brightness is outside the limit range.
+
 
 .. note::
 
@@ -338,6 +348,8 @@ Configuration variables:
                         id: light_1
                         relative_brightness: 5%
                         transition_length: 0.1s
+                        brightness_limits:
+                            max_brightness: 90%
                     - delay: 0.1s
 
 .. _light-addressable_set_action:
