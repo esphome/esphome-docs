@@ -134,6 +134,7 @@ Example configuration
           name: 'Total_Energy'
         total_power:
           name: 'Total_Power'
+
 6 Channel
 ^^^^^^^^^^^^^^^^^^
 
@@ -194,6 +195,7 @@ Example configuration
           name: 'Total_Energy'
         total_power:
           name: 'Total_Power'
+
 See Also
 --------
 
