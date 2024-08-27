@@ -5,8 +5,7 @@ Contributing
     :description: Getting started guide for contributing to the ESPHome project
     :image: github-circle.svg
 
-We welcome contributions to the ESPHome suite of code and documentation! All the code for the projects is hosted on
-GitHub:
+We welcome contributions to the ESPHome suite of code and documentation! All of the project code is hosted on GitHub:
 
 - `ESPHome <https://github.com/esphome/esphome>`__ (Project Source Code)
 - `ESPHome-Docs <https://github.com/esphome/esphome-docs>`__ (The documentation which you're reading here)
@@ -45,8 +44,8 @@ something like this:
     :width: 80.0%
     :alt: a screenshot of an rST file opened in GitHub, with the edit button circled
 
-Click the edit button to start making changes. If you're not sure about some element of syntax, see the quick-start
-:ref:`rst-syntax` guide.
+Click the edit button to start making changes. If you're unsure about syntax, see the quick-start :ref:`rst-syntax`
+guide.
 
 Once you've made your changes, give them a useful name and press "Propose changes". At this point, you've made the
 changes on your own personal copy of the docs in GitHub, but you still need to submit them to us.
@@ -112,8 +111,8 @@ Build
 
         docker run --rm -v "${PWD}/":/workspaces/esphome-docs -p 8000:8000 -it ghcr.io/esphome/esphome-docs
 
-    With ``PWD`` referring to the root of the ``esphome-docs`` git repository. Then go to ``<CONTAINER_IP>:8000`` in
-    your browser.
+    ...with ``PWD`` referring to the root of the ``esphome-docs`` git repository. Then, to see the preview, go to
+    ``<CONTAINER_IP>:8000`` in your browser.
 
     This way, you don't have to install the dependencies to build the documentation.
 
