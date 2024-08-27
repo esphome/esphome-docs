@@ -112,7 +112,7 @@ Build
         docker run --rm -v "${PWD}/":/workspaces/esphome-docs -p 8000:8000 -it ghcr.io/esphome/esphome-docs
 
     ...with ``PWD`` referring to the root of the ``esphome-docs`` git repository. Then, to see the preview, go to
-    ``<CONTAINER_IP>:8000`` in your browser.
+    ``<HOST_IP>:8000`` in your browser.
 
     This way, you don't have to install the dependencies to build the documentation.
 
