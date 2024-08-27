@@ -1,5 +1,5 @@
 Belling BL0906 Energy Monitor
-====================
+=============================
 
 .. seo::
     :description: Instructions for setting up BL0906 energy monitor for the Athom Energy Meter
