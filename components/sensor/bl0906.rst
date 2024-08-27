@@ -1,4 +1,4 @@
-Belling BL0906 Energy Monitor
+Belling BL0906 Energy Monitor 
 ====================
 
 .. seo::
@@ -23,7 +23,7 @@ The `Athom EM2 Energy Meter <https://www.athom.tech/blank-1/2-ch-energy-meter-ma
     :align: center
     :width: 50.0%
 
-     Athom Single Phase 2 channels Real Time Whole House Energy Meter.
+    Athom Single Phase 2 channels Real Time Whole House Energy Meter.
 
 The `Athom EM6 Energy Meter <https://www.athom.tech/blank-1/6-ch-energy-meter-made-for-esphome>`__ can read 1 voltage channel and 6 Current channels.
 
