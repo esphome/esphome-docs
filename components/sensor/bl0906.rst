@@ -1,4 +1,4 @@
-Belling BL0906 Energy Monitor 
+Belling BL0906 Energy Monitor
 ====================
 
 .. seo::
