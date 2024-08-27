@@ -100,7 +100,7 @@ Configuration variables:
   to use multiple UART buses.
 
 Example configuration
--------------------
+---------------------
 2 Channel
 ^^^^^^^^^^^^^^^^^^
 .. code-block:: yaml
