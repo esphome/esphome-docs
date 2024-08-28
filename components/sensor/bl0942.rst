@@ -59,6 +59,8 @@ Configuration variables:
   sensor. Defaults to ``60s``.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
+- **line_frequency** (*Optional*, string): The nominal AC line frequency of the supply voltage. One of ``50Hz``, ``60Hz``. Defaults to ``50Hz``.
+- **address** (*Optional*, int): The address of the BL0942 from its strapping pins. Defaults to ``0``.
 
 See Also
 --------
