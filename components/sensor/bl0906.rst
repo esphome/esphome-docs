@@ -21,7 +21,7 @@ The `Athom EM2 Energy Meter <https://www.athom.tech/blank-1/2-ch-energy-meter-ma
 
 .. figure:: images/athom-em2.png
     :align: center
-    :width: 50.0%
+    :width: 20.0%
 
     Athom Single Phase 2 channels Real Time Whole House Energy Meter.
 
@@ -29,7 +29,7 @@ The `Athom EM6 Energy Meter <https://www.athom.tech/blank-1/6-ch-energy-meter-ma
 
 .. figure:: images/athom-em6.png
     :align: center
-    :width: 50.0%
+    :width: 30.0%
 
     Athom Single Phase 6 channels Real Time Whole House Energy Meter.
 
