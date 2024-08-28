@@ -35,6 +35,9 @@ Advanced settings:
 -  **tx_buffer_size** (*Optional*, int): The size of the buffer used
    for log messages. Decrease this if you’re having memory problems.
    Defaults to ``512``.
+-  **rx_buffer_size** (*Optional*, int): The size of the read buffer,
+   used for reading from console. Currently it affects only USB_SERIAL_JTAG
+   hardware uart (see below). Defaults to ``512``.
 -  **hardware_uart** (*Optional*, string): The Hardware UART to use for logging. The default varies depending on
    the specific processor/chip and framework you are using. See the :ref:`table below <logger-default_hardware_interfaces>`.
 -  **esp8266_store_log_strings_in_flash** (*Optional*, boolean): If set to false, disables storing
