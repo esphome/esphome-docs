@@ -36,7 +36,7 @@ The `Athom EM6 Energy Meter <https://www.athom.tech/blank-1/6-ch-energy-meter-ma
 Configuration variables:
 ------------------------
 
-- **frequency** (*Optional*): The AC line frequency of the supply voltage. One of ``50Hz``, ``60Hz``. All options from
+- **frequency** (*Optional*): The AC line frequency of the supply voltage. All options from
   :ref:`Sensor <config-sensor>`.
 - **temperature** (*Optional*): Chip internal temperature. All options from
   :ref:`Sensor <config-sensor>`.
