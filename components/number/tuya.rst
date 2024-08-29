@@ -68,7 +68,7 @@ However this is not always the case. To be able to use such "hidden" datapoints 
 This block allows to specify the missing datapoint type and, optionally, the value that should be written to the datapoint at initialization.
 
 TuyaMCU restores the state of all its datapoints after reboot, but with the hidden datapoints there is no way to know what their values are.
-Therefore there is also an option to store them alson on esphome side and they will be set at initialization. To use this feature, set the ``restore_value`` yaml key to True.
+Therefore there is also an option to store them on the ESPHome side and they will be set at initialization. To use this feature, set the ``restore_value`` yaml key to True.
 
 .. code-block:: yaml
 
@@ -94,7 +94,7 @@ Configuration variables:
 
   - **datapoint_type** (**Required**, string): The datapoint type, one of *int*, *uint*, *enum*.
   - **initial_value** (*Optional*, float): The value to be written at initialization. Must be between ``min_value`` and ``max_value``.
-  - **restore_value** (*Optional*, boolean): Saves and loads the state to RTC/Flash. The default is False.
+  - **restore_value** (*Optional*, boolean): Saves and loads the state to RTC/Flash. Defaults to ``false``.
 
 - All other options from :ref:`Number <config-number>`.
 
