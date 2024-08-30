@@ -86,7 +86,7 @@ Reliability
 
 UDP, like any other network protocol, does not provide a guarantee that data will be delivered, but unlike TCP it does not
 even provide any indication whether data has been successfully delivered or not. When any of the configured sensors changes state,
-the component will broadcast that sensor's state, but since this may not be d by a consumer, the UDP component
+the component will broadcast that sensor's state, but since this may not be delivered to a consumer, the UDP component
 also broadcasts *all* sensor data on a timed schedule, set by ``update_interval``. Even this does not guarantee
 delivery, but in practice unless the network has failed, updates will eventually be d, albeit possibly after
 some delay.
