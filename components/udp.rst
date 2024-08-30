@@ -62,6 +62,10 @@ Configuration variables:
   - **broadcast_id** (*Optional*, :ref:`config-id`): The id to be used for this sensor in the broadcast. Defaults to the same as the internal id.
 
 - **binary_sensors** (*Optional*, list): A list of binary sensor IDs to be broadcast.
+
+  - **id** (**Required**, :ref:`config-id`): The id of the binary sensor to be used
+  - **broadcast_id** (*Optional*, string): The id to be used for this binary sensor in the broadcast. Defaults to the same as the internal id.
+
 - **encryption** (*Optional*, string): The encryption key to use when broadcasting. Default is no encryption. This may be
   any string, and will be hashed to form a 256 bit key.
 - **rolling_code_enable** (*Optional*, boolean): Enables a rolling code to be included in all broadcasts. Requires ``encryption`` to be set. Defaults to ``false``. Can be set only on the provider side.
