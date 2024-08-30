@@ -28,7 +28,7 @@ Local Packages
 Consider the following example where the author put common pieces of configuration (like Wi-Fi and API) into base files
 and then extends it with some device-specific configuration in the main configuration.
 
-Note how the piece of configuration describing ``api`` component in ``device_base.yaml`` gets merged with the services
+Note how the piece of configuration describing ``api`` component in ``device_base.yaml`` gets merged with the actions
 definitions from main configuration file.
 
 .. code-block:: yaml
@@ -39,8 +39,8 @@ definitions from main configuration file.
       device_base: !include common/device_base.yaml
 
     api:
-      services:
-        - service: start_laundry
+      actions:
+        - action: start_laundry
           then:
             - switch.turn_on: relay
 
