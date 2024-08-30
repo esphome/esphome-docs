@@ -59,7 +59,7 @@ Configuration variables:
 - **sensors** (*Optional*, list): A list of sensor IDs to be broadcast. Each entry may be just the sensor id, or may set a different id to be broadcast.
 
   - **id** (**Required**, :ref:`config-id`): The id of the sensor to be used
-  - **broadcast_id** (*Optional*, :ref:`config-id`): The id to be used for this sensor in the broadcast. Defaults to the same as the internal id.
+  - **broadcast_id** (*Optional*, string): The id to be used for this sensor in the broadcast. Defaults to the same as the internal id.
 
 - **binary_sensors** (*Optional*, list): A list of binary sensor IDs to be broadcast.
 
