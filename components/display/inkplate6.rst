@@ -180,7 +180,7 @@ Wi-Fi, API, and OTA configuration.
       - platform: adc
         id: battery_voltage
         update_interval: never
-        attenuation: 11db
+        attenuation: 12db
         pin: 35
       - platform: template
         name: "Inkplate Battery Voltage"

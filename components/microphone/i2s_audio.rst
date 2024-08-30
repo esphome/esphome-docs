@@ -44,7 +44,7 @@ Configuration variables:
 - **sample_rate** (*Optional*, positive integer): I2S sample rate. Defaults to ``16000``.
 - **bits_per_sample** (*Optional*, enum): The bit depth of the audio samples. Note that while set to ``32bit``, the samples
   will be scaled down to 16bit before being forwarded.
-  One of ``16bit`` or ``32bit``. Defaults to ``16bit``.
+  One of ``16bit`` or ``32bit``. Defaults to ``32bit``.
 - **use_apll** (*Optional*, boolean): I2S using APLL as main I2S clock, enable it to get accurate clock. Defaults to ``false``.
 - **i2s_mode** (*Optional*, enum): The I²S mode to use. One of ``primary`` or ``secondary``. Defaults to ``primary``.
 - **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this microphone.
