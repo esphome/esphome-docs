@@ -204,6 +204,7 @@ Network Protocols
     HTTP Request, components/http_request, connection.svg, dark-invert
     mDNS, components/mdns, radio-tower.svg, dark-invert
     WireGuard, components/wireguard, wireguard_custom_logo.svg
+    UDP, components/udp, udp.svg
 
 Bluetooth/BLE
 -------------
@@ -1156,7 +1157,6 @@ Cookbook
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
-    Share data directly between ESPHome nodes, cookbook/http_request_sensor, connection.svg, dark-invert
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
