@@ -721,7 +721,7 @@ Images are the basic widgets used to display images.
 - **offset_y** (*Optional*): Add a vertical offset to the image position.
 - **pivot_x** (*Optional*): Horizontal position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
 - **pivot_y** (*Optional*): Vertical position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
-- **scale** (*Optional*, 0.1-10): Zoom of the image.
+- **zoom** (*Optional*, 0.1-10): Zoom of the image.
 - **src** (**Required**, :ref:`image <display-image>`): The ID of an existing image configuration.
 - Some style options from :ref:`lvgl-styling` for the background rectangle that uses the typical background style properties and the image itself using the image style properties.
 
