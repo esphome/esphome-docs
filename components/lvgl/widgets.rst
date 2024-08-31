@@ -1124,7 +1124,8 @@ The text will be broken into multiple lines automatically and the height will be
     - **buttons** (*Optional*, list): A list of buttons to show at the bottom of the message box:
         - **text** (*Optional*, :ref:`text-property`): Text to display on the button.
         - See :ref:`lvgl-widget-buttonmatrix` for other options for the buttons.
-    - **close_button** (*Optional*, boolean): Controls the appearance of the close button to the top right of the message box.
+    - **button_style** (*Optional*, dict): A style to apply to the buttons. Uses all the typical style properties. Buttons cannot be individually styled since they are part of a ``buttonmatrix``.
+    - **close_button** (*Optional*, boolean): Controls the presence of the close button to the top right of the message box. Defaults to true
 
 **Actions:**
 
