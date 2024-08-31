@@ -43,7 +43,6 @@ Possible return values for the optional lambda:
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the cover.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated repeatedly to get the current state of the cover.
 - **open_action** (*Optional*, :ref:`Action <config-action>`): The action that should
@@ -71,7 +70,6 @@ Configuration variables:
   be performed when the remote (like Home Assistant's frontend) requests the cover be set to a specific
   position. The desired position is available in the lambda in the ``pos`` variable.
   Useless if `has_position` is not set to ``true``.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 
 .. _cover-template-publish_action:

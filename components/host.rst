@@ -23,17 +23,23 @@ configure wifi - network will automatically be available using the host computer
 
     # Example configuration entry
     host:
-      mac_address: "98:35:69:ab:f6:79"
+      mac_address: "06:35:69:ab:f6:79"
 
 Configuration variables:
 ------------------------
 
 - **mac_address** (**Optional**, MAC address): A dummy MAC address to use when communicating with HA.
 
+Build and run
+-------------
+
+The ``esphome run yourfile.yaml`` command will compile and automatically run the build file on the ``host`` platform.
+
 
 See Also
 --------
 
+- :ref:`SDL display <sdl>`
 - :doc:`esphome`
 - :doc:`/components/time/host`
 - :ghedit:`Edit`

@@ -128,16 +128,23 @@ With this you can use automations or lambda to set switch or sensor states.
 
         if (readch > 0) {
           switch (readch) {
-            case '\n': // Ignore new-lines
-              break;
-            case '\r': // Return on CR
+            case '\n': 
+            case '\r': // Return on CR or newline
+              buffer[pos] = 0; // Just to be sure, set last character 0
               rpos = pos;
               pos = 0;  // Reset position index ready for next time
               return rpos;
             default:
-              if (pos < len-1) {
+              if ((pos < len-1) && ( readch < 127 )) { // Filter on <127 to make sure it is a character
                 buffer[pos++] = readch;
                 buffer[pos] = 0;
+              }
+              else
+              {
+                buffer[pos] = 0; // Just to be sure, set last character 0
+                rpos = pos;
+                pos = 0;  // Reset position index ready for next time
+                return rpos;
               }
           }
         }
