@@ -55,7 +55,7 @@ Pin configuration variables:
 - **number** (**Required**, int): The pin number. Valid numbers are 0-7.
 - **inverted** (*Optional*, boolean): If all read and written values
   should be treated as inverted. Defaults to ``false``.
-- **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT`` or ``OUTPUT``.
+- **mode** (*Optional*, string): A pin mode to set the pin at. One of ``INPUT`` or ``OUTPUT``.
 
 
 See Also
