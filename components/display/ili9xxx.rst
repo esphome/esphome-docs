@@ -61,9 +61,8 @@ beyond the basic SPI connections, and a reasonable amount of RAM, it is not well
         model: ili9341
         dc_pin: GPIOXX
         reset_pin: GPIOXX
-        lambda: |-
-          it.fill(COLOR_BLACK);
-          it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_LEFT, "Hello World!");
+        invert_colors: false
+        show_test_card: true
 
 Configuration variables:
 ************************
@@ -101,7 +100,7 @@ Configuration variables:
     - **offset_width** (*Optional*, int): Specify an offset for the x-direction of the display, typically used when an LCD is smaller than the maximum supported by the driver chip. Default is 0
     - **offset_height** (*Optional*, int): Specify an offset for the y-direction of the display. Default is 0.
 
-- **invert_colors** (*Optional*): With this boolean option you can invert the display colors.
+- **invert_colors** (**Required**): Specifies whether the display colors should be inverted. Options are ``true`` or ``false`` - if you are unsure, use ``false`` and change if the colors are not as expected.
 - **pixel_mode** (*Optional*): Allows forcing the display into 18 or 16 bit mode. Options are ``18bit`` or ``16bit``. If unspecified, the pixel mode will be determined by the model choice. Not all displays will work in both modes.
 - **rotation** (*Optional*): Rotate the display presentation in software. Choose one of ``0°``, ``90°``, ``180°``, or ``270°``. This option cannot be used with ``transform``.
 - **transform** (*Optional*): Transform the display presentation using hardware. All defaults are ``false``. This option cannot be used with ``rotation``.
@@ -265,6 +264,7 @@ This config rotates the display into landscape mode using the driver chip.
           mirror_x: false
           mirror_y: true
         color_order: bgr
+        invert_colors: true
         data_rate: 80MHz
         cs_pin: GPIOXX
         dc_pin: GPIO13
