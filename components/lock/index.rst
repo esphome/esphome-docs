@@ -21,7 +21,8 @@ Base Lock Configuration
 
 Configuration variables:
 
-- **name** (**Required**, string): The name of the lock.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name of the lock. At least one of **id** and **name** must be specified.
 
   .. note::
 
