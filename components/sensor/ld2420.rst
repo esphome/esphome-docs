@@ -160,7 +160,6 @@ Platform
 Configuration variables:
 ************************
 
-**ld2420** (*Required*): Component platform.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART this ld2420 will utilize.
 
