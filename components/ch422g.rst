@@ -6,7 +6,7 @@ CH422G I/O Expander
     :image: ch422g.svg
 
 
-The CH422G component allows you to use **CH422G** I/O expander in ESPHome. 
+The CH422G component allows you to use the **CH422G** I/O expander in ESPHome. 
 It uses an :ref:`I²C Bus <i2c>` for communication.
 
 Once configured, you can use any of the 8 available GPIO pins for your projects.
