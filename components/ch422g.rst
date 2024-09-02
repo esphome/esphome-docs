@@ -10,9 +10,7 @@ The CH422G component allows you to use **CH422G** I/O expander in ESPHome.
 It uses :ref:`I²C Bus <i2c>` for communication.
 
 Once configured, you can use any of the **8** available GPIO pins for your projects.
-Within ESPHome they emulate a real internal GPIO pin
-and can therefore be used with many of ESPHome's components such as the GPIO
-Binary Sensor or GPIO Switch.
+Within ESPHome they can be used in place of internal GPIO pins in many of ESPHome's components such as the GPIO Binary Sensor or GPIO Switch. They are not usable for PWM or other situations requiring an internal GPIO pin.
 
 .. note::
 
