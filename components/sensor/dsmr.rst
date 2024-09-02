@@ -259,8 +259,6 @@ Configuration variables:
 - **telegram** (*Optional*): The (decrypted) unparsed telegram, marked as internal sensor. 
   Can also be used to trigger an action based on the last values. 
 
-  - **name** (**Required**, string): The name for the telegram text sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 Belgium
