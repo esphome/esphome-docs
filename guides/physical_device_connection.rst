@@ -6,7 +6,7 @@ installation, which requires connecting your ESP device to a computer using a
 cable.
 
 **You only need to do this once per device.** Once you've flashed ESPHome on a
-device, you can use :doc:`the OTA updater </components/ota>` to upload new
+device, you can use :doc:`/components/ota/index` to upload new
 versions or configuration changes wirelessly.
 
 ESPHome runs on a wide variety of devices, so it's hard to list any specific
@@ -24,8 +24,8 @@ requires you do something different to connect your computer to the ESP in
 order to flash it.
 
 You only need to physically connect to it once. Once you've flashed your device
-and connected it to your WiFi, you can use the `OTA (over-the-air) update
-component </components/ota.html>`_ to install software remotely.
+and connected it to your WiFi, you can use :doc:`/components/ota/index` to
+install software remotely.
 
 Programming a ESP-based device is done by connecting the serial port on the
 ESP8266/ESP32 to your computer through a USB to serial adapter. Some devices
