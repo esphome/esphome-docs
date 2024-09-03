@@ -65,6 +65,11 @@ Release 2024.8.2 - September 3
 - Enable IPv6 when manual IPv4 is enabled :esphomepr:`7381` by :ghuser:`HeMan`
 - [core] Only clean build files with esp-idf :esphomepr:`7388` by :ghuser:`jesserockz`
 
+Release 2024.8.3 - September 3
+------------------------------
+
+- Bump Dockerfile dependencies :esphomepr:`7386` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
