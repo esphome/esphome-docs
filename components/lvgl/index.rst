@@ -10,7 +10,7 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 
 .. figure:: /components/lvgl/images/lvgl_main_screenshot.png
 
-To use LVGL with a :ref:`display <display-hw>` in ESPHome, you'll need an ESP32 or supported ESP32 variant. PSRAM is not a strict requirement but it is generally recommended, especially for color displays with resolutions larger than approximately 240x240 pixels.
+To use LVGL with a :ref:`display <display-hw>` in ESPHome, you'll need an ESP32 or RP2040. PSRAM is not a strict requirement but it is generally recommended, especially for large color displays.
 
 The graphic display should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set.
 
@@ -640,6 +640,56 @@ This :ref:`action <actions-action>` shows a specific page (including pages with 
       then:
         - lvgl.page.show: secret_page  # shorthand version
 
+.. _lvgl-widget-focus-action:
+
+``lvgl.widget.focus``
+*********************
+
+This :ref:`action <actions-action>` moves the input focus to the nominated widget. Used mainly with encoder inputs
+to select a specific widget to receive input events. It may also allow the focus to be frozen on that widget,
+or can be used to move the focus to the next or previous widget in the focus group.
+
+The required config options take one of several forms:
+
+- **id** (**Required**): The ID of the widget to be given focus.
+- **freeze** (*Optional*, boolean): If true will lock the focus to this widget.
+- **editing** (*Optional*, boolean): Sets the editing mode of the widget, i.e. encoder rotation will change the value
+  of the widget, not move the focus. Defaults to false.
+
+or
+
+- **action** (**Required**): Should be one of ``next``, ``previous``, ``mark`` or ``restore``.
+- **group** (*Optional*): The ID of the group within which to move the focus. The default group will be used if not specified
+- **freeze** (*Optional*, boolean): If true will lock the focus to the now selected widget.
+
+
+The ``next`` and ``previous`` actions will move the focus to the next or previous widget within the group.
+The ``mark`` action will save the currently focused widget within the group, and restore it when the ``restore`` action is triggered.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - lvgl.widget.focus:
+            id: my_button
+            freeze: true
+
+    on_...:
+      then:
+        - lvgl.widget.focus: my_button
+
+    on_...:
+      then:
+        - lvgl.widget.focus:
+            group: encoder_group
+            direction: next
+            freeze: true
+
+    on_...:
+      then:
+        - lvgl.widget.focus: previous
+
+
 .. _lvgl-conditions:
 
 Conditions
@@ -660,8 +710,9 @@ This :ref:`condition <common_conditions>` checks if the amount of time specified
     on_...:
       then:
         - if:
-            condition: lvgl.is_idle
-              timeout: 5s
+            condition:
+              lvgl.is_idle:
+                timeout: 5s
             then:
               - light.turn_off:
                   id: display_backlight

@@ -162,6 +162,7 @@ The Daikin ARC remotes (``daikin_arc`` climate, ``daikin_arc417``, ``daikin_arc4
   - ``yaa``
   - ``yac``
   - ``yac1fb9``
+  - ``yx1ff``
 
 .. code-block:: yaml
 
@@ -248,7 +249,7 @@ These air conditioners support two protocols: Midea and Coolix. Therefore, when 
 
 .. note::
 
-    - While they are identified as separate models here, the ``RAC-PT1411HWRU-C`` and ``RAC-PT1411HWRU-C`` are
+    - While they are identified as separate models here, the ``RAC-PT1411HWRU-C`` and ``RAC-PT1411HWRU-F`` are
       in fact the same physical model/unit. They are separated here only because different IR codes are used
       depending on the desired unit of measurement. This only affects how temperature is displayed on the unit itself.
 

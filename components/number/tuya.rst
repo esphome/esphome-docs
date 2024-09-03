@@ -67,6 +67,9 @@ The above configurations will work fine as long as Tuya device publishes the dat
 However this is not always the case. To be able to use such "hidden" datapoints as Number, you need to specify additional ``datapoint_hidden`` configuration block.
 This block allows to specify the missing datapoint type and, optionally, the value that should be written to the datapoint at initialization.
 
+TuyaMCU restores the state of all its datapoints after reboot, but with the hidden datapoints there is no way to know what their values are.
+Therefore there is also an option to store them on the ESPHome side and they will be set at initialization. To use this feature, set the ``restore_value`` yaml key to True.
+
 .. code-block:: yaml
 
     - platform: "tuya"
@@ -77,6 +80,7 @@ This block allows to specify the missing datapoint type and, optionally, the val
       datapoint_hidden:
         datapoint_type: int
         initial_value: 85
+        restore_value: yes
 
 Configuration variables:
 ------------------------
@@ -90,6 +94,7 @@ Configuration variables:
 
   - **datapoint_type** (**Required**, string): The datapoint type, one of *int*, *uint*, *enum*.
   - **initial_value** (*Optional*, float): The value to be written at initialization. Must be between ``min_value`` and ``max_value``.
+  - **restore_value** (*Optional*, boolean): Saves and loads the state to RTC/Flash. Defaults to ``false``.
 
 - All other options from :ref:`Number <config-number>`.
 

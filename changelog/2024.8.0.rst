@@ -50,6 +50,26 @@ Thank you for your support
 We would like to thank all Home Assistant Cloud subscribers for their support. It allows `Nabu Casa <https://nabucasa.com/>`__ to
 employ two developers to maintain and further develop the ESPHome project.
 
+Release 2024.8.1 - August 28
+----------------------------
+
+- [lvgl] Bug fixes :esphomepr:`7338` by :ghuser:`clydebarrow`
+- [core] Clean build if the loaded integrations changed :esphomepr:`7344` by :ghuser:`clydebarrow`
+- [lvgl] Fix race condition involving numbers, switches etc. :esphomepr:`7345` by :ghuser:`clydebarrow`
+- [api] Fix sending the ``once`` flag on ha entity subscription :esphomepr:`7357` by :ghuser:`jesserockz`
+
+Release 2024.8.2 - September 3
+------------------------------
+
+- [datetime] Fix templated args :esphomepr:`7368` by :ghuser:`jesserockz`
+- Enable IPv6 when manual IPv4 is enabled :esphomepr:`7381` by :ghuser:`HeMan`
+- [core] Only clean build files with esp-idf :esphomepr:`7388` by :ghuser:`jesserockz`
+
+Release 2024.8.3 - September 3
+------------------------------
+
+- Bump Dockerfile dependencies :esphomepr:`7386` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
