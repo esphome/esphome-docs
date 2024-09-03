@@ -10,10 +10,6 @@ StatsD
 StatsD is a `protocol <https://github.com/statsd/statsd/blob/master/docs/metric_types.md>`_ to send metrics to a Daemon to store and aggregate them.
 Today there are many monitoring solutions that support receiving metrics via the StatsD protocol.
 
-.. note::
-
-    This component will only work with Arduino for the ESP8266 since the `esphome::socket` implementation does not support UDP.
-    ESP32 will work fine with or without Arduino as Framework.
 
 .. code-block:: yaml
 
