@@ -45,3 +45,9 @@ Sensor list
 
 - **id** (**Required**, :ref:`config-id`): The ID of the sensor.
 - **name** (**Required**, name): The Name of the metric the sensor value is send as. (Prefix is added to this name).
+
+See Also
+--------
+
+- :apiref:`statsd/statsd.h`
+- :ghedit:`Edit`
