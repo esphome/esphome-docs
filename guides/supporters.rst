@@ -870,6 +870,7 @@ Contributors
 - `Jérôme Laban (@jeromelaban) <https://github.com/jeromelaban>`__
 - `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__
 - `Jessica Hamilton (@jessicah) <https://github.com/jessicah>`__
+- `Andrzej Skowroński (@jesterret) <https://github.com/jesterret>`__
 - `J.G.Aguado (@JGAguado) <https://github.com/JGAguado>`__
 - `James Szalay (@jgissend10) <https://github.com/jgissend10>`__
 - `Joel Goguen (@jgoguen) <https://github.com/jgoguen>`__
@@ -1088,6 +1089,7 @@ Contributors
 - `Luke Fitzgerald (@lwfitzgerald) <https://github.com/lwfitzgerald>`__
 - `Lewis Juggins (@lwis) <https://github.com/lwis>`__
 - `Alex Peters (@Lx) <https://github.com/Lx>`__
+- `lyj (@lyj0309) <https://github.com/lyj0309>`__
 - `Linar Yusupov (@lyusupov) <https://github.com/lyusupov>`__
 - `Michael Klamminger (@m1ch) <https://github.com/m1ch>`__
 - `M3C-Owx (@M3C-Owx) <https://github.com/M3C-Owx>`__
@@ -1159,6 +1161,7 @@ Contributors
 - `Christian (@max246) <https://github.com/max246>`__
 - `Max Bachmann (@maxbachmann) <https://github.com/maxbachmann>`__
 - `Maximilian Gerhardt (@maxgerhardt) <https://github.com/maxgerhardt>`__
+- `Michael Banther (@mbanth) <https://github.com/mbanth>`__
 - `mbo18 (@mbo18) <https://github.com/mbo18>`__
 - `Jack McCrea (@McCrea) <https://github.com/McCrea>`__
 - `mckaymatthew (@mckaymatthew) <https://github.com/mckaymatthew>`__
@@ -1323,6 +1326,7 @@ Contributors
 - `Zvonimir Haramustek (@nitko12) <https://github.com/nitko12>`__
 - `Nixspers (@Nixspers) <https://github.com/Nixspers>`__
 - `Dennis (@Nizzle) <https://github.com/Nizzle>`__
+- `nkinnan (@nkinnan) <https://github.com/nkinnan>`__
 - `Nikolay Kitanov (@nkitanov) <https://github.com/nkitanov>`__
 - `nldroid (@nldroid) <https://github.com/nldroid>`__
 - `Nicolas Liaudat (@nliaudat) <https://github.com/nliaudat>`__
@@ -1683,6 +1687,7 @@ Contributors
 - `Stefan (@stefanroelofs) <https://github.com/stefanroelofs>`__
 - `stegm (@stegm) <https://github.com/stegm>`__
 - `Stephen Papierski (@stephenpapierski) <https://github.com/stephenpapierski>`__
+- `Stephen Armitage (@stevearmitage) <https://github.com/stevearmitage>`__
 - `Steve Baxter (@stevebaxter) <https://github.com/stevebaxter>`__
 - `Steven Hack (@steven-hack) <https://github.com/steven-hack>`__
 - `Stewart (@stewiem2000) <https://github.com/stewiem2000>`__
@@ -1714,6 +1719,7 @@ Contributors
 - `SyXavier (@SyXavier) <https://github.com/SyXavier>`__
 - `Szewcson (@Szewcson) <https://github.com/Szewcson>`__
 - `Peter (@szpeter80) <https://github.com/szpeter80>`__
+- `Piotr Szulc (@szupi-ipuzs) <https://github.com/szupi-ipuzs>`__
 - `Teemu Mikkonen (@T3m3z) <https://github.com/T3m3z>`__
 - `Taigar2015 (@Taigar2015) <https://github.com/Taigar2015>`__
 - `Stefan Dragnev (@tailsu) <https://github.com/tailsu>`__
@@ -1961,4 +1967,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated August 28, 2024.*
+*This page was last updated September 3, 2024.*
