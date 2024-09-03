@@ -25,7 +25,7 @@ Today there are many monitoring solutions that support receiving metrics via the
       id: some_sensor
 
 
-This example will generate a metric named `esphome.test1.wifi.signal` with the value of the `wifi_signal` sensor.
+This example will generate a metric named `test1.sensor` with the value of the `some_sensor` sensor.
 
 
 Configuration variables:
