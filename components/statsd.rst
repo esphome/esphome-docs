@@ -15,17 +15,14 @@ Today there are many monitoring solutions that support receiving metrics via the
 
     # Example configuration entry
     statsd:
-      host: 192.168.178.20
-      prefix: esphome
+      host: REPLACEME
       sensors:
-        id: wlan_signal
-        name: test1.wifi.signal
+        id: some_sensor
+        name: test1.sensor
 
     sensor:
-      platform: wifi_signal
-      id: wlan_signal
-      name: "WiFi Signal"
-      update_interval: 10s
+      platform: ...
+      id: some_sensor
 
 
 This example will generate a metric named `esphome.test1.wifi.signal` with the value of the `wifi_signal` sensor.
