@@ -43,5 +43,5 @@ Configuration variables:
 Sensor list
 -----------
 
-- **id** (**Required**, id): The ID of the sensor.
+- **id** (**Required**, :ref:`config-id`): The ID of the sensor.
 - **name** (**Required**, name): The Name of the metric the sensor value is send as. (Prefix is added to this name).
