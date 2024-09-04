@@ -41,6 +41,10 @@ extensions = [
     "seo",
     "components",
     "sitemap",
+    
+    'sphinx.ext.viewcode',
+    'sphinx_tabs.tabs',
+    'sphinx-prompt',
     'sphinx_toolbox.collapse',
 ]
 
