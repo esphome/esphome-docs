@@ -27,19 +27,19 @@ WiFi:
 Debug:
 ------
 
+- :doc:`/components/sensor/internal_temperature`
 - :doc:`/components/sensor/uptime`
 - :doc:`/components/debug`
-- :doc:`/components/sensor/internal_temperature`
 - :doc:`/components/text_sensor/version`
 
 Misc.:
 ------
 
-- :doc:`/components/copy`
 - :doc:`/components/binary_sensor/esp32_touch`
+- :doc:`/components/copy`
 
 See Also
 --------
 
-- :ref:`sensor`
+- :ref:`config-sensor`
 - :ghedit:`Edit`
