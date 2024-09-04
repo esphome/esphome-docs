@@ -43,9 +43,3 @@ See Also
 
 - :ref:`config-sensor`
 - :ghedit:`Edit`
-
-.. toctree::
-    :maxdepth: 1
-    :glob:
-
-    *
