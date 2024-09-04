@@ -263,12 +263,6 @@ adhere to the following order:
       
           This section is open by default.
       
-      .. collapse:: A Different Label
-          :class: custom-summary
-          :name: summary0
-      
-          Something else that might escape notice.
-      
       .. collapse:: A long code block
       
           .. code-block:: python
@@ -283,12 +277,6 @@ adhere to the following order:
       :open:
 
       This section is open by default.
-
-  .. collapse:: A Different Label
-      :class: custom-summary
-      :name: summary0
-
-      Something else that might escape notice.
 
   .. collapse:: A long code block
 
