@@ -20,7 +20,7 @@ This component contains platform-specific options for the NRF52 platform.
 Configuration variables:
 ------------------------
 
-- **board** (*Required*, string): The board type. Valid options are ``adafruit_feather_nrf52840`` and ``adafruit_itsybitsy_nrf52840``.
+- **board** (*Required*, string): The board type. Valid options are ``adafruit_feather_nrf52840`` and ``adafruit_itsybitsy_nrf52840``. Other boards should work with those configuration as well.
 
 Getting Started
 ---------------
