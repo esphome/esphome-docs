@@ -79,47 +79,30 @@ Module Pinouts
 .. code-block:: yaml
 
     # Example configuration entry
-
-    uart:
-      id: my_uart
-      ...
-
     ld2420:
-      id: my_ld
-      uart_id: my_uart
 
     text_sensor:
       - platform: ld2420
-        ld2420_id: my_ld
-
         fw_version:
           name: LD2420 Firmware
 
     sensor:
       - platform: ld2420
-        ld2420_id: my_ld
-
         moving_distance:
           name : Moving Distance
 
     binary_sensor:
       - platform: ld2420
-        ld2420_id: my_ld
-
         has_target:
           name: Presence
 
     select:
       - platform: ld2420
-        ld2420_id: my_ld
-
         operating_mode:
           name: Operating Mode
 
     number:
       - platform: ld2420
-        ld2420_id: my_ld
-
         presence_timeout:
           name: Detection Presence Timeout
         min_gate_distance:
@@ -136,8 +119,6 @@ Module Pinouts
 
     button:
       - platform: ld2420
-        ld2420_id: my_ld
-
         apply_config:
           name: Apply Config
         factory_reset:
@@ -154,14 +135,11 @@ Platform
 .. code-block:: yaml
 
     ld2420:
-      id: my_ld
-      uart_id: my_uart
 
 Configuration variables:
 ************************
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART this ld2420 will utilize.
+**ld2420** (*Required*): Component platform.
 
 
 Select
@@ -173,8 +151,6 @@ Select
 
     select:
       - platform: ld2420
-        ld2420_id: my_ld
-
         operating_mode:
           name: Operating Mode
 
@@ -203,7 +179,6 @@ you to choose the active mode.
 Configuration variables:
 ************************
 
-- **ld2420_id** (*Optional*): Specify which ld2420 to use for this platform section.
 - **operating_mode** (*Required*): Provisions the operating mode select component.
   May contain any options from :ref:`Select <config-select>`.
 
@@ -214,8 +189,6 @@ Number
 
     number:
       - platform: ld2420
-        ld2420_id: my_ld
-
         presence_timeout:
           name: Detection Presence Timeout
         min_gate_distance:
@@ -249,7 +222,6 @@ Number
 Configuration variables:
 ************************
 
-- **ld2420_id** (*Optional*): Specify which ld2420 to use for this platform section.
 - **presence_timeout** (*Optional*): The time in seconds during which the occupied state (presence) will persist after
   presence is no longer detected. Any energy detection within the time window restarts the countdown from this value.
   Defaults to 120s. **Required** when ``min_gate_distance`` and ``max_gate_distance`` is specified. May contain any
@@ -295,8 +267,6 @@ Button
 
     button:
       - platform: ld2420
-        ld2420_id: my_ld
-
         apply_config:
           name: Apply Config
         factory_reset:
@@ -311,7 +281,6 @@ Four button components are available enabling configuration controls for editing
 Configuration variables:
 ************************
 
-- **ld2420_id** (*Optional*): Specify which ld2420 to use for this platform section.
 - **apply_config** (*Optional*): Saves both manual config tuning or the auto calibrate still and move threshold config
   settings. May contain any options from :ref:`Button <config-button>`.
 - **restart_module** (*Optional*): Reboots the LD2420 modules. May contain any options from :ref:`Button <config-button>`.
@@ -405,8 +374,6 @@ between the sensor and an object moving within its field of detection.
 
     sensor:
       - platform: ld2420
-        ld2420_id: my_ld
-
         moving_distance:
           name : Moving Distance
 
@@ -414,7 +381,6 @@ between the sensor and an object moving within its field of detection.
 Configuration variables:
 ************************
 
-- **ld2420_id** (*Optional*): Specify which ld2420 to use for this platform section.
 - **moving_distance** (*Optional*): Distance between the sensor and the detected moving target. May contain any options
   from :ref:`Sensor <config-sensor>`.
 
@@ -427,15 +393,12 @@ The ``ld2420`` binary sensor allows you to use your :doc:`ld2420` to sense prese
 
     binary_sensor:
       - platform: ld2420
-        ld2420_id: my_ld
-
         has_target:
           name: Presence
 
 Configuration variables:
 ************************
 
-- **ld2420_id** (*Optional*): Specify which ld2420 to use for this platform section.
 - **has_target** (*Optional*): If a target is detected with either still or in movement **has_target** will be set true
   for the duration of the **presence_time_window** setting. May contain any options from
   :ref:`Binary Sensor <config-binary_sensor>`.
@@ -449,15 +412,12 @@ The ``ld2420`` text sensor provides version information for the :doc:`ld2420`.
 
     text_sensor:
       - platform: ld2420
-        ld2420_id: my_ld
-
         fw_version:
           name: LD2420 Firmware
 
 Configuration variables:
 ************************
 
-- **ld2420_id** (*Optional*): Specify which ld2420 to use for this platform section.
 - **fw_version** (*Optional*): Allows you to retrieve the :doc:`ld2420` firmware version. May contain any options from
   :ref:`Text Sensor <config-text_sensor>`.
 
