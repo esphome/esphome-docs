@@ -77,6 +77,7 @@ Configuration variables:
 - **pclk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The PCLK pin.
 - **hsync_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Horizontal sync pin.
 - **vsync_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Vertical sync pin.
+- **enable_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The ENABLE pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **hsync_pulse_width** (*Optional*, int): The horizontal sync pulse width.
 - **hsync_front_porch** (*Optional*, int): The horizontal front porch length.

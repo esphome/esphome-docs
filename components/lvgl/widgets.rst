@@ -1807,8 +1807,14 @@ ESPHome implements as universal triggers the following interaction events genera
 - ``on_scroll``: The widget was scrolled.
 - ``on_focus``:  The widget is focused.
 - ``on_defocus``: The widget is unfocused.
+- ``on_all_events``: Will be triggered on any event sent to the widget - this is useful for debugging.
 
 These triggers can be applied directly to any widget in the LVGL configuration, *given that the widget itself supports generating such events*. For the widgets having a value, the triggers return the current value in variable ``x``; this variable may be used in lambdas defined within those triggers.
+
+Each trigger also deliver an ``event`` parameter, which is a pointer to the LVGL C type ``lv_event_t``. This may be used in lambdas defined within those triggers. Refer to the `LVGL documentation <https://docs.lvgl.io/8.4/overview/event.html/>`_ for more information.
+
+There are additional triggers for pages - each page may have an ``on_load`` and ``on_unload`` trigger. These will be called
+when the page becomes active or inactive respectively.
 
 .. code-block:: yaml
 
