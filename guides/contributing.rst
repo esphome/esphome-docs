@@ -251,6 +251,53 @@ adhere to the following order:
 
       Note that a blank line is *required* after every ``code-block`` directive.
 
+- **Collapsible block**: To add a collapsible section, use the ``collapse`` directive:
+
+  .. code-block:: rst
+      .. collapse:: Details
+      
+          Something small enough to escape casual notice.
+      
+      .. collapse:: Open
+          :open:
+      
+          This section is open by default.
+      
+      .. collapse:: A Different Label
+          :class: custom-summary
+          :name: summary0
+      
+          Something else that might escape notice.
+      
+      .. collapse:: A long code block
+      
+          .. code-block:: python
+      
+              print("Not really")
+  .. collapse:: Details
+
+      Something small enough to escape casual notice.
+
+  .. collapse:: Open
+      :open:
+
+      This section is open by default.
+
+  .. collapse:: A Different Label
+      :class: custom-summary
+      :name: summary0
+
+      Something else that might escape notice.
+
+  .. collapse:: A long code block
+
+      .. code-block:: python
+  
+          print("Not really")
+  .. note::
+
+      Note that a blank line is *required* after every ``collapse`` directive.
+
 - **Images**: Use the ``figure`` directive to display an image:
 
   .. code-block:: rst
