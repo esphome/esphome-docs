@@ -10,15 +10,21 @@ This component contains platform-specific options for the RP2040 platform.
 - **Collapsible section**: To add a collapsible section, use the ``collapse`` directive:
 
   .. code-block:: rst
+
       .. collapse:: Details
+
           Something small enough to escape casual notice.
       
       .. collapse:: Open
+
           :open:
+
           This section is open by default.
       
       .. collapse:: A long code block
+
           .. code-block:: python
+
               print("Not really")
   
   .. collapse:: Details
@@ -39,7 +45,6 @@ This component contains platform-specific options for the RP2040 platform.
   .. note::
 
       Note that a blank line is *required* after every ``collapse`` directive.
-
 
 .. class:: details
 
