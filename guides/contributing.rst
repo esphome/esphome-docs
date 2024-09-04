@@ -251,7 +251,7 @@ adhere to the following order:
 
       Note that a blank line is *required* after every ``code-block`` directive.
 
-- **Collapsible block**: To add a collapsible section, use the ``collapse`` directive:
+- **Collapsible section**: To add a collapsible section, use the ``collapse`` directive:
 
   .. code-block:: rst
       .. collapse:: Details
@@ -274,6 +274,7 @@ adhere to the following order:
           .. code-block:: python
       
               print("Not really")
+  
   .. collapse:: Details
 
       Something small enough to escape casual notice.
@@ -294,6 +295,7 @@ adhere to the following order:
       .. code-block:: python
   
           print("Not really")
+  
   .. note::
 
       Note that a blank line is *required* after every ``collapse`` directive.
