@@ -254,11 +254,13 @@ adhere to the following order:
 - **Collapsible section**: To add a collapsible section, use the ``collapse`` directive:
 
   .. code-block:: rst
+      
       .. collapse:: Details
       
           Something small enough to escape casual notice.
       
       .. collapse:: Open
+
           :open:
       
           This section is open by default.
@@ -274,6 +276,7 @@ adhere to the following order:
       Something small enough to escape casual notice.
 
   .. collapse:: Open
+
       :open:
 
       This section is open by default.
@@ -287,6 +290,7 @@ adhere to the following order:
   .. note::
 
       Note that a blank line is *required* after every ``collapse`` directive.
+
 
 - **Images**: Use the ``figure`` directive to display an image:
 
