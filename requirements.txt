@@ -1,2 +1,6 @@
-sphinx==5.0.1
-sphinx-autobuild==2021.3.14
+docutils
+sphinx
+sphinx-autobuild
+sphinx-tabs
+sphinx-prompt
+sphinx-toolbox
