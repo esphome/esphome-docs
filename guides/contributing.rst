@@ -254,21 +254,21 @@ adhere to the following order:
 - **Collapsible section**: To add a collapsible section, use the ``collapse`` directive:
 
   .. code-block:: rst
-      
+
       .. collapse:: Details
-      
+
           Something small enough to escape casual notice.
       
       .. collapse:: Open
 
           :open:
-      
+
           This section is open by default.
       
       .. collapse:: A long code block
-      
+
           .. code-block:: python
-      
+
               print("Not really")
   
   .. collapse:: Details
@@ -284,7 +284,7 @@ adhere to the following order:
   .. collapse:: A long code block
 
       .. code-block:: python
-  
+
           print("Not really")
   
   .. note::
