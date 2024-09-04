@@ -1,6 +1,6 @@
 docutils
 sphinx
 sphinx-autobuild
-sphinx_tabs.tabs
+sphinx-tabs
 sphinx-prompt
-sphinx_toolbox.collapse
+sphinx-toolbox
