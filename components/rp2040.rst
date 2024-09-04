@@ -44,5 +44,3 @@ See Also
 
 - :doc:`esphome`
 - :ghedit:`Edit`
-
-
