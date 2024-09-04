@@ -39,8 +39,8 @@ This component contains platform-specific options for the RP2040 platform.
 
   .. collapse:: A long code block
 
-      .. code-block:: python
-        
+      .. code-block::
+
           print("Not really")
   
   .. note::
