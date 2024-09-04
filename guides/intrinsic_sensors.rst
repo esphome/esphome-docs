@@ -14,16 +14,19 @@ Here is the list of sensors in each category:
 
 Bluetooth:
 ----------
+
 - :doc:`components/text_sensor/ble_scanner`
 - :doc:`components/sensor/ble_rssi`
 
 WiFi:
 -----
+
 - :doc:`components/text_sensor/wifi_info`
 - :doc:`components/sensor/wifi_signal`
 
 Debug:
 ------
+
 - :doc:`components/sensor/uptime`
 - :doc:`components/debug`
 - :doc:`components/sensor/internal_temperature`
@@ -31,14 +34,14 @@ Debug:
 
 Misc.:
 ------
+
 - :doc:`components/copy`
 - :doc:`components/binary_sensor/esp32_touch`
 
 See Also
 --------
+
 - :ref:`config-sensor`
-..
-  - :ref:`sensor-filters`
 - :ghedit:`Edit`
 
 .. toctree::
