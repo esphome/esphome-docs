@@ -10,7 +10,7 @@ embedded graphics library to create beautiful UIs for any MCU, MPU and display t
 
 .. figure:: /components/lvgl/images/lvgl_main_screenshot.png
 
-To use LVGL with a :ref:`display <display-hw>` in ESPHome, you'll need an ESP32 or supported ESP32 variant. PSRAM is not a strict requirement but it is generally recommended, especially for color displays with resolutions larger than approximately 240x240 pixels.
+To use LVGL with a :ref:`display <display-hw>` in ESPHome, you'll need an ESP32 or RP2040. PSRAM is not a strict requirement but it is generally recommended, especially for large color displays.
 
 The graphic display should be configured with ``auto_clear_enabled: false`` and ``update_interval: never``, and should not have any ``lambda`` set.
 
@@ -436,11 +436,27 @@ It can arrange items into rows or columns (tracks), handle wrapping, adjust spac
 
     - **pad_row** (*Optional*, int16): Set the padding between the rows, in pixels.
     - **pad_column** (*Optional*, int16): Set the padding between the columns, in pixels.
-    - **flex_grow** (*Optional*, int16): Flex grow can be used to make one or more children fill the available space on the track. When more children have grow parameters, the available space will be distributed proportionally to the grow values. Defaults to ``0``, which disables growing.
+    - **flex_grow** (*Optional*, int16): Can be used to make one or more children fill the available space on the track. When one or more children have ``flex_grow`` set, the available space will be distributed proportionally to the grow values. Defaults to ``0``, which disables growing.
+
+.. code-block:: yaml
+
+    # Example flex layout
+
+    - obj:
+        layout:
+          type: flex
+          pad_row: 4
+          pad_column: 4px
+          flex_align_main: center
+          flex_align_cross: start
+          flex_align_track: end
+        widgets:
+          - animimg:
+              flex_grow: 1
 
 **Grid**
 
-The Grid layout in LVGL is a subset implementation of `CSS Flexbox <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__.
+The Grid layout in LVGL is a subset implementation of `CSS Grid <https://css-tricks.com/snippets/css/complete-guide-grid//>`__.
 
 It can arrange items into a 2D "table" that has rows or columns (tracks). The item(s) can span through multiple columns or rows. The track's size can be set in pixels, to the largest item of the track (``CONTENT``) or in "free units" to distribute the free space proportionally.
 
@@ -481,6 +497,23 @@ Values for use with ``grid_column_align``, ``grid_row_align``, ``grid_cell_x_ali
         - ``SPACE_EVENLY``: items are distributed so that the spacing between any two items (and the space to the edges) is equal.
         - ``SPACE_AROUND``: items are evenly distributed in the track with equal space around them. Note that visually the spaces aren’t equal, since all the items have equal space on both sides. The first item will have one unit of space against the container edge, but two units of space between the next item because that next item has its own spacing that applies.
         - ``SPACE_BETWEEN``: items are evenly distributed in the track: first item is on the start line, last item on the end line.
+
+.. code-block:: yaml
+
+    # Example grid layout
+
+    - obj:
+        layout:
+          type: grid
+          grid_row_align: end
+          grid_rows: [25px, fr(1), content]
+          grid_columns: [40, fr(1), fr(1)]
+          pad_row: 6px
+          pad_column: 0
+        widgets:
+          - image:
+              grid_cell_row_pos: 0
+              grid_cell_column_pos: 0
 
 .. tip::
 
@@ -602,6 +635,56 @@ This :ref:`action <actions-action>` shows a specific page (including pages with 
       then:
         - lvgl.page.show: secret_page  # shorthand version
 
+.. _lvgl-widget-focus-action:
+
+``lvgl.widget.focus``
+*********************
+
+This :ref:`action <actions-action>` moves the input focus to the nominated widget. Used mainly with encoder inputs
+to select a specific widget to receive input events. It may also allow the focus to be frozen on that widget,
+or can be used to move the focus to the next or previous widget in the focus group.
+
+The required config options take one of several forms:
+
+- **id** (**Required**): The ID of the widget to be given focus.
+- **freeze** (*Optional*, boolean): If true will lock the focus to this widget.
+- **editing** (*Optional*, boolean): Sets the editing mode of the widget, i.e. encoder rotation will change the value
+  of the widget, not move the focus. Defaults to false.
+
+or
+
+- **action** (**Required**): Should be one of ``next``, ``previous``, ``mark`` or ``restore``.
+- **group** (*Optional*): The ID of the group within which to move the focus. The default group will be used if not specified
+- **freeze** (*Optional*, boolean): If true will lock the focus to the now selected widget.
+
+
+The ``next`` and ``previous`` actions will move the focus to the next or previous widget within the group.
+The ``mark`` action will save the currently focused widget within the group, and restore it when the ``restore`` action is triggered.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - lvgl.widget.focus:
+            id: my_button
+            freeze: true
+
+    on_...:
+      then:
+        - lvgl.widget.focus: my_button
+
+    on_...:
+      then:
+        - lvgl.widget.focus:
+            group: encoder_group
+            direction: next
+            freeze: true
+
+    on_...:
+      then:
+        - lvgl.widget.focus: previous
+
+
 .. _lvgl-conditions:
 
 Conditions
@@ -622,8 +705,9 @@ This :ref:`condition <common_conditions>` checks if the amount of time specified
     on_...:
       then:
         - if:
-            condition: lvgl.is_idle
-              timeout: 5s
+            condition:
+              lvgl.is_idle:
+                timeout: 5s
             then:
               - light.turn_off:
                   id: display_backlight

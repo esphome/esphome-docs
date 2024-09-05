@@ -204,6 +204,7 @@ Network Protocols
     HTTP Request, components/http_request, connection.svg, dark-invert
     mDNS, components/mdns, radio-tower.svg, dark-invert
     WireGuard, components/wireguard, wireguard_custom_logo.svg
+    UDP, components/udp, udp.svg
 
 Bluetooth/BLE
 -------------
@@ -266,6 +267,7 @@ I/O Expanders/Multiplexers
 
 .. imgtable::
 
+    CH422G, components/ch422g, ch422g.svg
     MAX6956 - I²C Bus, components/max6956, max6956.jpg
     MCP230XX - I²C Bus, components/mcp230xx, mcp230xx.svg
     MCP23SXX - SPI Bus, components/mcp23Sxx, mcp230xx.svg
@@ -401,6 +403,7 @@ Electricity
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E26, components/sensor/atm90e26, atm90e26.jpg, Voltage & Current & Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
+    BL0906, components/sensor/bl0906, bl0906.png, Voltage & Current & Power & Energy
     BL0939, components/sensor/bl0939, bl0939.png, Voltage & Current & Power & Energy
     BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
     BL0942, components/sensor/bl0942, bl0942.png, Voltage & Current & Power
@@ -970,6 +973,7 @@ Number Components
 
     Number Core, components/number/index, folder-open.svg, dark-invert
     Template Number, components/number/template, description.svg, dark-invert
+    Home Assistant, components/number/homeassistant, home-assistant.svg, dark-invert
     LVGL widget Number, components/number/lvgl, lvgl_c_num.png
     Modbus Number, components/number/modbus_controller, modbus.png
     Tuya Number, components/number/tuya, tuya.png
@@ -1042,6 +1046,7 @@ Components specifically for interacting with Home Assistant.
     Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg, dark-invert
     Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg, dark-invert
     micro Wake Word, components/micro_wake_word, voice-assistant.svg, dark-invert
+    Number, components/number/homeassistant, home-assistant.svg, dark-invert
     Sensor, components/sensor/homeassistant, home-assistant.svg, dark-invert
     Switch, components/switch/homeassistant, home-assistant.svg, dark-invert
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
@@ -1153,7 +1158,6 @@ Cookbook
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
-    Share data directly between ESPHome nodes, cookbook/http_request_sensor, connection.svg, dark-invert
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
