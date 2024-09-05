@@ -386,14 +386,6 @@ Configuration variables:
 This action shows a text on the display with the given ID when executed.
 One use case would be, for example, to display the current time by default (fixed configuration via ``it``) and to interrupt it briefly using ``set_text`` action. 
 
-.. code-block:: yaml
-
-    on_...:
-      then:
-        - max9621.set_text:
-            id: iv18
-            text: "0123"
-
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the MAX6921.
@@ -405,14 +397,62 @@ Configuration variables:
   - ``right``: align text to the right
 
 - **duration** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The time duration of showing text. Defaults to ``0ms`` (endless).
-  If ``cycle_num`` is given too, the first occurrence ends the effect.
+  If ``effect_cycle_num`` is given too, the first occurrence ends the effect.
 - **effect** (*Optional*, string, :ref:`templatable <config-templatable>`): The text effect. Defaults to ``none``.
 
   - ``none``: Show text (cut if too long)
   - ``blink``: Blink text (cut if too long)
   - ``scroll_left``: Scroll text left (start with 1st character at right position)
-- **cycle_num** (*Optional*, int, :ref:`templatable <config-templatable>`): The number of text effect cycles (applicable to effects: ``blink``). Range is ``0`` to ``255``. Defaults to ``0`` (endless). If ``duration`` is given too, the first occurrence ends the effect.
+- **effect_cycle_num** (*Optional*, int, :ref:`templatable <config-templatable>`): The number of text effect cycles (applicable to effects: ``blink``). Range is ``0`` to ``255``. Defaults to ``0`` (endless). If ``duration`` is given too, the first occurrence ends the effect.
+- **repeat_interval** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The action repeat interval. Defaults to ``0ms`` (no repeats). A non-zero value requires a non-zero ``duration`` or ``effect_cycle_num`` as well.
+- **repeat_num** (*Optional*, int, :ref:`templatable <config-templatable>`): The number of action repeats. Range is ``0`` to ``255``. Defaults to ``0`` (endless). A non-zero value requires a non-zero ``repeat_interval`` as well.
 - **update_interval** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The effect update interval. Defaults to ``150ms``.
+
+Examples
+^^^^^^^^
+
+*Display text ``0123`` for 3 seconds*
+
+.. code-block:: yaml
+
+  on_...:
+    then:
+      - max9621.set_text:
+          id: iv18
+          text: "0123"
+          duration: 3s
+
+*Display content of a :doc:`homeassistant text sensor </components/text_sensor/homeassistant>` for 1 second, repeat every 5 seconds. The text sensor can be updated with a temperature sensor value via automation, for instance.*
+
+.. code-block:: yaml
+
+  number:
+    # repeat interval frontend
+    - platform: template
+      name: "IV18 Repeat Interval"
+      id: iv18_repeat_interval
+      min_value: 0
+      max_value: 60
+      restore_value: True
+      step: 1
+      unit_of_measurement: "s"
+      mode: slider
+      optimistic: True
+
+  text_sensor:
+    # text input frontend
+    - platform: homeassistant
+      id: iv18_text
+      entity_id: input_text.iv18
+      on_value:
+        then:
+          - max6921.set_text:
+              id: iv18
+              text: !lambda "return x.c_str();"
+              align: center
+              duration: 1s
+              repeat_num: 0
+              repeat_interval: !lambda return id(iv18_repeat_interval).state * 1000;
 
 
 .. _max6921-set_demo_mode_action:
