@@ -415,44 +415,44 @@ Examples
 
 .. code-block:: yaml
 
-  on_...:
-    then:
-      - max9621.set_text:
-          id: iv18
-          text: "0123"
-          duration: 3s
+    on_...:
+      then:
+        - max9621.set_text:
+            id: iv18
+            text: "0123"
+            duration: 3s
 
 *Display content of a :doc:`homeassistant text sensor </components/text_sensor/homeassistant>` for 1 second, repeat every 5 seconds. The text sensor can be updated with a temperature sensor value via automation, for instance.*
 
 .. code-block:: yaml
 
-  number:
-    # repeat interval frontend
-    - platform: template
-      name: "IV18 Repeat Interval"
-      id: iv18_repeat_interval
-      min_value: 0
-      max_value: 60
-      restore_value: True
-      step: 1
-      unit_of_measurement: "s"
-      mode: slider
-      optimistic: True
+    number:
+      # repeat interval frontend
+      - platform: template
+        name: "IV18 Repeat Interval"
+        id: iv18_repeat_interval
+        min_value: 0
+        max_value: 60
+        restore_value: True
+        step: 1
+        unit_of_measurement: "s"
+        mode: slider
+        optimistic: True
 
-  text_sensor:
-    # text input frontend
-    - platform: homeassistant
-      id: iv18_text
-      entity_id: input_text.iv18
-      on_value:
-        then:
-          - max6921.set_text:
-              id: iv18
-              text: !lambda "return x.c_str();"
-              align: center
-              duration: 1s
-              repeat_num: 0
-              repeat_interval: !lambda return id(iv18_repeat_interval).state * 1000;
+    text_sensor:
+      # text input frontend
+      - platform: homeassistant
+        id: iv18_text
+        entity_id: input_text.iv18
+        on_value:
+          then:
+            - max6921.set_text:
+                id: iv18
+                text: !lambda "return x.c_str();"
+                align: center
+                duration: 1s
+                repeat_num: 0
+                repeat_interval: !lambda return id(iv18_repeat_interval).state * 1000;
 
 
 .. _max6921-set_demo_mode_action:
