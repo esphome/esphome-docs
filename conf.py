@@ -41,10 +41,10 @@ extensions = [
     "seo",
     "components",
     "sitemap",
-    'sphinx.ext.viewcode',
-    'sphinx_tabs.tabs',
-    'sphinx-prompt',
-    'sphinx_toolbox.collapse',
+    "sphinx.ext.viewcode",
+    "sphinx_tabs.tabs",
+    "sphinx-prompt",
+    "sphinx_toolbox.collapse",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
