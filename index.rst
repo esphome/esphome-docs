@@ -204,6 +204,7 @@ Network Protocols
     HTTP Request, components/http_request, connection.svg, dark-invert
     mDNS, components/mdns, radio-tower.svg, dark-invert
     WireGuard, components/wireguard, wireguard_custom_logo.svg
+    StatsD, components/statsd, connection.svg
     UDP, components/udp, udp.svg
 
 Bluetooth/BLE
@@ -225,6 +226,7 @@ Management and Monitoring
     Debug, components/debug, bug-report.svg, dark-invert
     Logger, components/logger, file-document-box.svg, dark-invert
     Prometheus, components/prometheus, prometheus.svg
+    StatsD, components/statsd, connection.svg
     Safe Mode, components/safe_mode, restart-alert.svg
     Web Server, components/web_server, http.svg, dark-invert
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg, dark-invert
