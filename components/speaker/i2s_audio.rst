@@ -24,7 +24,7 @@ This platform only works on ESP32 based chips.
       - platform: i2s_audio
         dac_type: external
         i2s_dout_pin: GPIOXX
-        mode: mono
+        mode: stereo
 
 Configuration variables:
 ------------------------
