@@ -40,11 +40,8 @@ extensions = [
     "github",
     "seo",
     "components",
-    "sitemap",
+    "sitemap",    
     
-    'sphinx.ext.viewcode',
-    'sphinx_tabs.tabs',
-    'sphinx-prompt',
     'sphinx_toolbox.collapse',
 ]
 
