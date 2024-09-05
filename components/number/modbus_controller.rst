@@ -10,8 +10,6 @@ When the Number is updated a modbus write command is created sent to the device.
 Configuration variables:
 ------------------------
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (**Required**, string): The name of the sensor.
 - **address** (**Required**, int): start address of the first register in a range (can be decimal or hexadecimal).
 - **value_type** (**Required**): datatype of the modbus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first):
 

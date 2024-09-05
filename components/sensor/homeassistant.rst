@@ -39,11 +39,9 @@ Entity state attributes can also be imported:
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the sensor.
 - **entity_id** (**Required**, string): The entity ID to import from Home Assistant.
 - **attribute** (*Optional*, string): The name of the state attribute to import from the
   specified entity. The entity state is used when this option is omitted.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 
