@@ -2,5 +2,5 @@ docutils==0.20.1
 sphinx==7.1.2
 sphinx-autobuild==2021.3.14
 sphinx-tabs==3.4.5
-sphinx-prompt==1.9.0
+sphinx-prompt==1.7.0
 sphinx-toolbox==3.8.0
