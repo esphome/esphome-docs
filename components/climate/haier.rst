@@ -65,7 +65,6 @@ This component requires a :ref:`uart` to be setup.
         name: Haier AC
         uart_id: ac_port
         wifi_signal: true
-        beeper: true
         display: true
         visual:
           min_temperature: 16 °C
@@ -85,7 +84,6 @@ This component requires a :ref:`uart` to be setup.
         - BOTH
       supported_presets:
         - AWAY
-        - ECO
         - BOOST
         - SLEEP
       on_alarm_start:
@@ -124,7 +122,7 @@ Configuration variables:
 - **beeper** (*Optional*, boolean): Can be used to disable beeping on commands from AC. Supported only by hOn protocol.
 - **supported_modes** (*Optional*, list): Can be used to disable some of AC modes. Possible values: ``'OFF'``, ``HEAT_COOL``, ``COOL``, ``HEAT``, ``DRY``, ``FAN_ONLY``.
 - **supported_swing_modes** (*Optional*, list): Can be used to disable some swing modes if your AC does not support it. Possible values: ``'OFF'``, ``VERTICAL``, ``HORIZONTAL``, ``BOTH``.
-- **supported_presets** (*Optional*, list): Can be used to disable some presets. Possible values for smartair2 are: ``AWAY``, ``BOOST``, ``COMFORT``. Possible values for hOn are: ``AWAY``, ``ECO``, ``BOOST``, ``SLEEP``. ``AWAY`` preset can be enabled only in ``HEAT`` mode, it is disabled by default.
+- **supported_presets** (*Optional*, list): Can be used to disable some presets. Possible values for smartair2 are: ``AWAY``, ``BOOST``, ``COMFORT``. Possible values for hOn are: ``AWAY``, ``BOOST``, ``SLEEP``. ``AWAY`` preset can be enabled only in ``HEAT`` mode, it is disabled by default.
 - **on_alarm_start** (*Optional*, :ref:`Automation <automation>`): (supported only by hOn) Automation to perform when AC activates a new alarm. See :ref:`haier-on_alarm_start`.
 - **on_alarm_end** (*Optional*, :ref:`Automation <automation>`): (supported only by hOn) Automation to perform when AC deactivates a new alarm. See :ref:`haier-on_alarm_end`.
 - **on_status_message** (*Optional*, :ref:`Automation <automation>`): Automation to perform when status message received from AC. See :ref:`haier-on_status_message`.
@@ -343,6 +341,7 @@ See Also
 - :doc:`Haier Climate Binary Sensors </components/binary_sensor/haier>`
 - :doc:`Haier Climate Text Sensors </components/text_sensor/haier>`
 - :doc:`Haier Climate Buttons </components/button/haier>`
+- :doc:`Haier Climate Switches </components/switch/haier>`
 - :doc:`/components/climate/index`
 - :apiref:`haier/climate/haier.h`
 - :ghedit:`Edit`
