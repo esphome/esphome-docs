@@ -504,7 +504,7 @@ Often, the easiest way to help review PRs is by testing. Many (but not all) PRs 
 
 ...you just need to update the PR number and component name(s) in the YAML accordingly.
 
-If you test a PR, please *leave a comment indicating your results on the PR!* If it doesn't work, be sure to include
+If you test a PR, please *share your results by leaving a comment on the PR!* If it doesn't work, be sure to include
 any messages from the compiler and/or device logs so the author can troubleshoot the issue. *Comments which state no
 more than "it doesn't work" are not helpful!*
 
