@@ -778,6 +778,7 @@ Switch Components
     Factory Reset Switch, components/switch/factory_reset, restart-alert.svg, dark-invert
     Generic Output Switch, components/switch/output, upload.svg, dark-invert
     GPIO Switch, components/switch/gpio, pin.svg, dark-invert
+    H-bridge Switch, components/switch/hbridge, hbridge-relay.jpg
     LVGL Widget, components/switch/lvgl, lvgl_c_swi.png
     Modbus Switch, components/switch/modbus_controller, modbus.png
     Nextion Switch, components/switch/nextion, nextion.jpg
