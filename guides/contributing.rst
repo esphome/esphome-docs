@@ -493,6 +493,9 @@ Put another way, when a PR has several "This worked for me!" comments on it, we 
 what it's supposed to, even if some other, underlying aspects might still need some fine-tuning to be consistent with
 the rest of the codebase.
 
+Testing
+^^^^^^^
+
 Often, the easiest way to help review PRs is by testing. Many (but not all) PRs can be used as
 :doc:`/components/external_components` and can easily be added into your configuration for testing, like this:
 
@@ -507,6 +510,9 @@ Often, the easiest way to help review PRs is by testing. Many (but not all) PRs 
 If you test a PR, please *share your results by leaving a comment on the PR!* If it doesn't work, be sure to include
 any messages from the compiler and/or device logs so the author can troubleshoot the issue. *Comments which state no
 more than "it doesn't work" are not helpful!*
+
+Code Review
+^^^^^^^^^^^
 
 Beyond basic functionality (*"does it work?"*), here are a few other items we check for when reviewing PRs:
 
