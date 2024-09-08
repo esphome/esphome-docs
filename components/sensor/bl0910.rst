@@ -62,8 +62,7 @@ Calculate the reference values from the app note magic values here using python:
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
-- **update_interval** (*Optional*, :ref:`config-time`): The duration of each scan on clamp on.
-                         Only one channel will be scanned at a time.
+- **update_interval** (*Optional*, :ref:`config-time`): Update interval of the sensor.
 - **current_reference** (**Required**): Multiplier value to calculate the current value from the raw sensor value.
 - **voltage_reference** (**Required**): Multiplier value to calculate the voltage value from the raw sensor value.
 - **power_reference** (**Required**): Multiplier value to calculate the power value from the raw sensor value.
@@ -79,7 +78,7 @@ Calculate the reference values from the app note magic values here using python:
 
     sensor:
     - platform: bl0910
-        update_interval: 500ms
+        update_interval: 1000ms
         cs_pin: GPIO21
 
         # In mode 0, channel 11 is the voltage reference
