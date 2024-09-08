@@ -52,10 +52,10 @@ Calculate the reference values from the app note magic values here using python:
     PREF = (40.4125 * BURDEN1 * BURDEN2 * 1000.0 / CT_TURNS) / (1.097 * 1.097 * BURDEN3)
     EREF = (3600000.0 * 16.0 * PREF) / (4194304.0 * 0.032768 * 16.0)
 
-    print(f"iref: {IREF}")
-    print(f"uref: {UREF}")
-    print(f"pref: {PREF}")
-    print(f"eref: {EREF}")
+    print(f"current_reference: {IREF}")
+    print(f"voltage_reference: {UREF}")
+    print(f"power_reference: {PREF}")
+    print(f"energy_reference: {EREF}")
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
   is connected to.
@@ -64,10 +64,10 @@ Calculate the reference values from the app note magic values here using python:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
 - **update_interval** (*Optional*, :ref:`config-time`): The duration of each scan on clamp on.
                          Only one channel will be scanned at a time.
-- **iref** (**Required**): Multiplier value to calculate the current value from the raw sensor value.
-- **uref** (**Required**): Multiplier value to calculate the voltage value from the raw sensor value.
-- **pref** (**Required**): Multiplier value to calculate the power value from the raw sensor value.
-- **eref** (**Required**): Multiplier value to calculate the energy value from the raw sensor value.
+- **current_reference** (**Required**): Multiplier value to calculate the current value from the raw sensor value.
+- **voltage_reference** (**Required**): Multiplier value to calculate the voltage value from the raw sensor value.
+- **power_reference** (**Required**): Multiplier value to calculate the power value from the raw sensor value.
+- **energy_reference** (**Required**): Multiplier value to calculate the energy value from the raw sensor value.
 
 .. code-block:: yaml
 
@@ -85,99 +85,99 @@ Calculate the reference values from the app note magic values here using python:
         # In mode 0, channel 11 is the voltage reference
         voltage_11:
             name: BL0910 RMS Voltage
-            uref: 10907.4335
+            voltage_reference: 10907.4335
         current_1:
             name: BL0910 Current 1
-            iref: 36774.5366
+            current_reference: 36774.5366
         current_2:
             name: BL0910 Current 2
-            iref: 36774.5366
+            current_reference: 36774.5366
         current_3:
             name: BL0910 Current 3
-            iref: 36774.5366
+            current_reference: 36774.5366
         current_4:
             name: BL0910 Current 4
-            iref: 36774.5366
+            current_reference: 36774.5366
         current_5:
             name: BL0910 Current 5
-            iref: 36774.5366
+            current_reference: 36774.5366
         current_6:
             name: BL0910 Current 6
-            iref: 36774.5366
+            current_reference: 36774.5366
         current_7:
             name: BL0910 Current 7
-            iref: 36774.5366
+            current_reference: 36774.5366
         current_8:
             name: BL0910 Current 8
-            iref: 36774.5366
+            current_reference: 36774.5366
         current_9:
             name: BL0910 Current 9
-            iref: 36774.5366
+            current_reference: 36774.5366
         current_10:
             name: BL0910 Current 10
-            iref: 36774.5366
+            current_reference: 36774.5366
 
         active_power_1:
             name: BL0910 Active Power 1
-            pref: 95.6569
+            power_reference: 95.6569
         active_power_2:
             name: BL0910 Active Power 2
-            pref: 95.6569
+            power_reference: 95.6569
         active_power_3:
             name: BL0910 Active Power 3
-            pref: 95.6569
+            power_reference: 95.6569
         active_power_4:
             name: BL0910 Active Power 4
-            pref: 95.6569
+            power_reference: 95.6569
         active_power_5:
             name: BL0910 Active Power 5
-            pref: 95.6569
+            power_reference: 95.6569
         active_power_6:
             name: BL0910 Active Power 6
-            pref: 95.6569
+            power_reference: 95.6569
         active_power_7:
             name: BL0910 Active Power 7
-            pref: 95.6569
+            power_reference: 95.6569
         active_power_8:
             name: BL0910 Active Power 8
-            pref: 95.6569
+            power_reference: 95.6569
         active_power_9:
             name: BL0910 Active Power 9
-            pref: 95.6569
+            power_reference: 95.6569
         active_power_10:
             name: BL0910 Active Power 10
-            pref: 95.6569
+            power_reference: 95.6569
 
         energy_1:
             name: BL0910 Energy 1
-            eref: 2505.5844
+            energy_reference: 2505.5844
         energy_2:
             name: BL0910 Energy 2
-            eref: 2505.5844
+            energy_reference: 2505.5844
         energy_3:
             name: BL0910 Energy 3
-            eref: 2505.5844
+            energy_reference: 2505.5844
         energy_4:
             name: BL0910 Energy 4
-            eref: 2505.5844
+            energy_reference: 2505.5844
         energy_5:
             name: BL0910 Energy 5
-            eref: 2505.5844
+            energy_reference: 2505.5844
         energy_6:
             name: BL0910 Energy 6
-            eref: 2505.5844
+            energy_reference: 2505.5844
         energy_7:
             name: BL0910 Energy 7
-            eref: 2505.5844
+            energy_reference: 2505.5844
         energy_8:
             name: BL0910 Energy 8
-            eref: 2505.5844
+            energy_reference: 2505.5844
         energy_9:
             name: BL0910 Energy 9
-            eref: 2505.5844
+            energy_reference: 2505.5844
         energy_10:
             name: BL0910 Energy 10
-            eref: 2505.5844
+            energy_reference: 2505.5844
 
         power_factor_1:
             name: BL0910 PowerFactor 1
