@@ -19,7 +19,7 @@ Lite-On Ambient Light & Proximity Sensors
 
     LTR-501 Sensor in Home Assistant UI.
 
-The ``ltr501`` sensor platform allows you to use family of several LiteOn ambient light and proximity sensors
+The ``ltr501`` sensor platform allows you to use a range of LiteOn ambient light and proximity sensors
 with ESPHome.
 
 The supported family of sensors includes:
@@ -27,7 +27,7 @@ The supported family of sensors includes:
 - Ambient Light Sensor **LTR-301ALS**
 - Integrated Ambient Light and Proximity Sensors **LTR-501ALS** and **LTR-558ALS**
 
-The LTR-501 device is available on breakout board from `Olimex`_.
+The LTR-501 device is available on a breakout board from `Olimex`_.
 
 The sensors are very similar and share the same datasheet. The :ref:`I²C Bus <i2c>` is required to be set up in your 
 configuration for this sensor to work. I²C address is ``0x23``. 
@@ -40,18 +40,18 @@ the device up to your ear. They might be useful for automated turning on or off 
 Ambient light sensing
 ---------------------
 
-Sensor platform provides a linear response over a wide dynamic range from 0.01 lux to 64k lux and is well suited 
-to applications under high ambient brightness. There are two gain settings (1X, 150X) available for user to configure. 
+These sensors have a linear response over a wide dynamic range from 0.01 lux to 64k lux and are well suited
+to applications under high ambient brightness. There are two gain settings (1X, 150X) available for use. 
 Use higher gain for dimmer areas.
 
-Devices consists of two photodiodes: *CH0* diode that is sensitive to both visible and infrared light and 
-*CH1* diode that is sensitive only to infrared light.
+These devices consist of two photodiodes: a *CH0* diode that is sensitive to both visible and infrared light and 
+a *CH1* diode that is sensitive only to infrared light.
 
-**Note**: Important to note, that these sensors do not have internal data checking and do not provide any errors if 
-data is not reliable. Sensor can be easily saturated if gain is too high or integration time is too long. In this
-case readings can be very strange. It's recommended to use automatic mode with starting gain of 1X (default) and starting
-integration time of 100ms (default) or even 50ms (if sensor is in very bright environment). Automatic mode with starting 
-gain of 150X is not recommended, use it only if you are sure brightness will never exceed 200-300 lx.
+**Note**: These sensors do not have internal data checking and do not indicate any errors if 
+data is not reliable. The sensors can be easily saturated if the gain is too high or the integration time is too long. In this
+case, readings can be very strange. It's recommended to use automatic mode with a starting gain of 1X (default) and a starting
+integration time of 100ms (default) or even 50ms (if the sensor is in a very bright environment). Automatic mode with starting 
+gain of 150X is not recommended; use it only if you are sure brightness will never exceed 200-300 lx.
 
 
 Ambient light illuminance calculation
@@ -109,11 +109,11 @@ The following table lists possible gain and integration time combinations:
 Proximity sensing
 -----------------
 
-Proximity sensor has built-in emitter and detector. The sensor detects reflected IR light from the emitter and
-gives a raw count value inversely exponential to the distance. Drop in the count value means an object is getting
-further away from the sensor, and vice versa. Neither of the datasheets provides any information on how to convert
-the raw count value to distance. The only way to do it is to test the sensor yourself and select the threshold
-according to your needs and environment. Exact numbers will depend on the type of the object, its color and 
+The proximity sensor has a built-in emitter and detector. The sensor detects reflected IR light from the emitter and
+gives a raw count value inversely exponential to the distance. A decrease in the count value means an object is getting
+further away from the sensor (and vice-versa). Neither of the datasheets provide any information on how to convert
+the raw count value to distance. The only way to do so is to test the sensor yourself and select the threshold
+according to your needs and environment. Exact values will depend on the type of the object, its color and 
 reflectivity.
 
 
@@ -122,13 +122,8 @@ Example configuration
 
 .. code-block:: yaml
 
-    i2c:
-      # ...
-
     sensor:
       - platform: ltr501
-        address: 0x23
-        update_interval: 60s
         type: ALS_PS  # .. or ALS or PS
         ambient_light: "Ambient light"
         # PS only section
@@ -143,6 +138,7 @@ Example configuration
 
 Configuration variables
 -----------------------
+
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Default is ``0x23``.
 - **type** (*Optional*, string): The type of the sensor. Valid values are ``ALS_PS`` *(default)* for 
@@ -172,11 +168,12 @@ Configuration variables
 
 Sensors
 ^^^^^^^
-This component offers five sensors for ALS-enabled devices and one sensor for PS-enabled devices.
-You can configure all or any subset of the sensors. Each configured sensor is reported separately 
-on each ``update_interval``. **name** option is required for the sensor. All other options from 
-:ref:`Sensor <config-sensor>`. If you don't need to configure any other sensor options, you can 
-use the simplified syntax for the sensor: ``ambient_light: "Ambient light"``, for example.
+
+This component offers five sensors for ALS-equipped devices and one sensor for PS-equipped devices.
+You can configure all or any subset of these sensors. Each configured sensor is reported separately
+on each ``update_interval``. Each is an ESPHome :ref:`sensor <config-sensor>` and may be configured
+accordingly; if you don’t need to configure additional :ref:`sensor <config-sensor>` variables, you
+may simply use the shorthand syntax for the sensor. For example: ``ambient_light: "Ambient light"``
 
 - **ambient_light** (*Optional*): Illuminance of ambient light, close to human eye spectre, lx.
 - **infrared_counts** (*Optional*): Sensor counts from the IR-sensitive sensor (*CH1*), counts.
