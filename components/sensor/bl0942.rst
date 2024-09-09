@@ -26,6 +26,7 @@ to some pins on your board and the baud rate set to 4800 with 1 stop bit.
     sensor:
       - platform: bl0942
         uart_id: uart_bus
+        reset: false
         voltage_reference: 15968
         current_reference: 124180
         power_reference: 309.1
@@ -42,7 +43,6 @@ to some pins on your board and the baud rate set to 4800 with 1 stop bit.
           name: 'BL0942 Energy'
         frequency:
           name: "BL0942 Frequency"
-          accuracy_decimals: 2
 
         update_interval: 60s
 
@@ -65,6 +65,7 @@ Configuration variables:
   to use multiple UART buses.
 - **line_frequency** (*Optional*, string): The nominal AC line frequency of the supply voltage. One of ``50Hz``, ``60Hz``. Defaults to ``50Hz``.
 - **address** (*Optional*, int): The address of the BL0942 from its strapping pins. Defaults to ``0``.
+- **reset** (*Optional*, boolean): Whether to reset the BL0942 chip on startup. Defaults to ``true`` which resets the charge counter to zero and potentially loses data.
 - **current_reference** (*Optional*, float): The calibration parameter for current readings. Defaults to ``251213.46469622``.
 - **voltage_reference** (*Optional*, float): The calibration parameter for voltage readings. Defaults to ``15873.35944299``.
 - **power_reference** (*Optional*, float): The calibration parameter for power readings. Defaults to ``596.0`` unless either ``current_reference`` or ``voltage_reference`` are explicitly set, in which case it is calculated. See :ref:`bl0942-calibration` for more details.
