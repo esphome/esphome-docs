@@ -26,7 +26,8 @@ Base Fan Configuration
 
 Configuration variables:
 
-- **name** (**Required**, string): The name of the fan.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name of the fan. At least one of **id** and **name** must be specified.
 
   .. note::
 
@@ -70,6 +71,7 @@ MQTT options:
 - **speed_command_topic** (*Optional*, string): The topic to receive
   speed commands on (options: LOW, MEDIUM, HIGH).
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 Automation triggers:
 
