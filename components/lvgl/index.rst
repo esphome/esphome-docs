@@ -113,6 +113,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 - **disp_bg_image** (*Optional*, :ref:`image <display-image>`):  The ID of an existing image configuration, to be used as background wallpaper. To change the image at runtime use the ``lvgl.update`` action. Also see :ref:`lvgl-widget-image` for a note regarding supported image formats.
 - **default_font** (*Optional*, ID): The ID of the :ref:`font <lvgl-fonts>` used by default to render the text or symbols. Defaults to LVGL's internal ``montserrat_14`` if not specified.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use in LVGL widget's ``styles`` configuration. See :ref:`below <lvgl-theme>` for more details.
+- **gradients** (*Optional*, list): A list of gradient definitions to use in *bg_grad* styles. See :ref:`below <lvgl-gradients>` for more details.
 - **theme** (*Optional*, list): A list of styles to be applied to all widgets. See :ref:`below <lvgl-theme>` for more details.
 - **widgets** (*Optional*, list): A list of :doc:`/components/lvgl/widgets` to be drawn on the root display. May not be used if ``pages`` (below) is configured.
 - **pages** (*Optional*, list): A list of page IDs. Each page acts as a parent for widgets placed on it. May not be used with ``widgets`` (above). Options for each page:
@@ -243,6 +244,7 @@ You can adjust the appearance of widgets by changing their foreground, backgroun
 **Styling variables:**
 
 - **bg_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the background of the widget. Defaults to ``0xFFFFFF`` (white).
+- **bg_grad** (*Optional*, :ref:`gradient <lvgl-gradients>`): A gradient to apply to the background.
 - **bg_grad_color** (*Optional*, :ref:`color <lvgl-color>`): Color to make the background gradually fade to. Defaults to ``0`` (black).
 - **bg_dither_mode** (*Optional*, dict): Set dithering of the background gradient. One of ``NONE``, ``ORDERED``, ``ERR_DIFF``. Defaults to ``NONE``.
 - **bg_grad_dir** (*Optional*, dict): Choose the direction of the background gradient: ``NONE``, ``HOR``, ``VER``. Defaults to ``NONE``.
@@ -518,6 +520,46 @@ Values for use with ``grid_column_align``, ``grid_row_align``, ``grid_cell_x_ali
 .. tip::
 
     To visualize real, calculated sizes of transparent widgets you can temporarily set ``outline_width: 1`` on them.
+
+.. _lvgl-gradients:
+
+Gradients
+*********
+
+A gradient is a sequence of colors which can be applied to an object using the ``bg_grad`` style option. Gradients are defined in the *gradients* section of the LVGL configuration by providing two or more color stop points.
+ Each entry has the following options:
+
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the gradient later.
+- **direction** (*Optional*, string): The direction of the gradient. Possible options are ``none`` (the default) ``hor`` or ``ver``.
+- **dither** (*Optional*, string): A dithering selection. Possible options are ``none`` (the default) ``err_diff`` or ``ordered``.
+- **stops** (**Required**, list): A list of at least 2 color stop points. Each stop point has the following options:
+    - **color** (**Required**, :ref:`Color <lvgl-color>`): The color of the stop point.
+    - **position** (**Required**, float): The position of the stop point. Must be a float between 0.0 and 1.0, a percentage between 0% and 100%, or an integer between 0 and 255.
+
+.. code-block:: yaml
+
+    # Example gradient showing full hue range.
+
+      gradients:
+        - id: color_bar
+          direction: hor
+          dither: none
+          stops:
+            - color: 0xFF0000
+              position: 0
+            - color: 0xFFFF00
+              position: 42
+            - color: 0x00FF00
+              position: 84
+            - color: 0x00FFFF
+              position: 127
+            - color: 0x0000FF
+              position: 169
+            - color: 0xFF00FF
+              position: 212
+            - color: 0xFF0000
+              position: 255
+
 
 Widgets
 *******
