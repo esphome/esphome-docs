@@ -293,6 +293,13 @@ if logs are shown remotely.
 User-defined Actions
 --------------------
 
+.. note::
+
+    **Actions** were previously called **Services**. ESPHome changed the name in line with
+    `Home Assistant <https://developers.home-assistant.io/blog/2024/07/16/service-actions/>`__
+    but will continue to support YAML with ``services`` for the foreseeable future. Documentation
+    will only refer to **Actions**.
+
 It is also possible to get data from Home Assistant to ESPHome with user-defined actions.
 When you declare actions in your ESPHome YAML file, they will automatically show up in
 Home Assistant and you can call them directly.
