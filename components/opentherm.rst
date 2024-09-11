@@ -6,7 +6,7 @@ OpenTherm
     :image: ../components/images/opentherm-shield.png
     :keywords: OpenTherm
 
-OpenTherm (OT) is a standard communications protocol used in central heating systems for the communication between a central heating appliances and a thermostatic controller.
+OpenTherm (OT) is a standard communications protocol used in central heating systems for the communication between central heating appliances and a thermostatic controller.
 As a standard, OpenTherm is independent of any single manufacturer. A controller from manufacturer A can in principle be used to control a boiler from manufacturer B.
 
 Since OpenTherm doesn't operate in a standard voltage range, special hardware is required. You can choose from several ready-made adapters or roll your own:
@@ -23,7 +23,7 @@ Since OpenTherm doesn't operate in a standard voltage range, special hardware is
 
 .. note::
 
-    This component acts only as an OpenTherm master (i.e. a thermostat or controller) and not as a slave or gateway. You can no longer use your existing thermostat if you control your boiler through ESPHome with this component.
+    This component acts only as an OpenTherm master (for example, a thermostat or controller) and not as a slave or gateway. Your existing thermostat is not usable while you use ESPHome with this component to control your boiler.
 
 Quick glossary
 --------------
@@ -34,13 +34,13 @@ Quick glossary
 Hub
 ---
 
-First of all you need to define the OpenTherm hub in your configuration. Note that most OpenTherm adapters label ``in`` and ``out`` pins relative to themselves, and this component labels its ``in`` and ``out`` pins relative to ESP board. So usually your bridge's ``in`` pin becomes hub's ``out`` pin and vice versa.
+First, you need to define the OpenTherm hub in your configuration. Note that most OpenTherm adapters label ``in`` and ``out`` pins relative to themselves; this component labels its ``in`` and ``out`` pins relative to the microcontroller ESPHome runs on. As such, your bridge's ``in`` pin becomes the hub's ``out`` pin and vice-versa.
 
 .. code-block:: yaml
 
     opentherm:
-      in_pin: 4
-      out_pin: 5
+      in_pin: GPIOXX
+      out_pin: GPIOXX
 
 Configuration variables:
 ************************
@@ -53,7 +53,7 @@ Configuration variables:
 Note abut sync mode
 *******************
 
-By default this component adheres to ESPHome recommendations and doesn't block the loop while communicating with the boiler. Unfortunately, some other components (like Dallas temperature sensors) don't play well with this behaviour, and may cause a lot of lost frames and protocol warnings from OpenTherm. Since OpenTherm is resilient by design and transmits its messages in a constant loop, these dropped frames don't really matter. But if you want to decrease the number of protocol warnings in your logs, you can enable ``sync_mode``, which blocks ESPHome loop until a single conversation with the boiler is complete. This can greatly reduce the number of dropped frames, but usually doesn't eliminate them entirely. You also need to add a logging directive to your config, so that ESPHome doesn't complain about a single component hogging the loop for too long:
+The use of some components (like Dallas temperature sensors) may result in lost frames and protocol warnings from OpenTherm. Since OpenTherm is resilient by design and transmits its messages in a constant loop, these dropped frames don't usually cause any problems. Still, if you want to decrease the number of protocol warnings in your logs, you can enable ``sync_mode`` which will block ESPHome's main application loop until a single conversation with the boiler is complete. This can greatly reduce the number of dropped frames, but usually won't eliminate them entirely. With ``sync_mode`` enabled, in some cases, ESPHome's main application loop may be blocked for longer than is recommended, resulting in warnings in the logs. If this bothers you, you can adjust ESPHome's log level by adding the following to your configuration:
 
 .. code-block:: yaml
 
@@ -111,8 +111,8 @@ This is especially useful in combination with the PID Climate component:
 
     climate:
       - platform: pid
-      heat_output: setpoint
-      # ...
+        heat_output: setpoint
+        # ...
 
 For the output and number variants, there are four more properties you can configure beyond those included in the output and number components by default:
 
@@ -135,7 +135,16 @@ The following inputs are available:
 Switch
 ******
 
-For five status codes, switches are available to toggle them manually. The same values can be set in the hub configuration, like so:
+
+Switches are available to allow manual toggling of any of the following five status codes:
+
+- ``ch_enable``: Central Heating enabled
+- ``dhw_enable``: Domestic Hot Water enabled
+- ``cooling_enable``: Cooling enabled
+- ``otc_active``: Outside temperature compensation active
+- ``ch2_active``: Central Heating 2 active
+
+If you do not wish to have switches, the same values can be permanently set in the hub configuration, like so:
 
 .. code-block:: yaml
 
@@ -143,25 +152,19 @@ For five status codes, switches are available to toggle them manually. The same 
       ch_enable: true
       dhw_enable: true
 
-This can be used to set the value without the need for a switch if you'd never want to toggle it after the initial configuration.
-The default values for these configuration options are listed below.
+This is useful when you'd never want to toggle it after the initial configuration.
 
-For enabling of central heating and cooling, the enable-flag is only sent to the boiler if the following conditions are met:
+The default values for these configuration variables are listed below.
+
+To enable central heating and cooling, the flag is only sent to the boiler if the following conditions are met:
+
 - the flag is set to true in the hub configuration,
-- the switch is on, if it is configured,
-- the setpoint or cooling control value is not 0, if it is configured.
+- the switch is on (if configured),
+- the setpoint or cooling control value is not 0 (if configured)
 
 For domestic hot water and outside temperature compensation, only the first two conditions are necessary.
 
-The last point ensures that central heating is not enabled if no heating is requested as indicated by a setpoint of 0. If you use a number as the setpoint input and use a minimum value higher than 0, you NEED to use the ch_enable switch to turn off your central heating. In that case the flag will be set to true in the hub configuration, and setpoint is always larger than 0, so including a switch is the only way you can turn off central heating. (This also holds for cooling and CH2.)
-
-The following switches are available:
-
-- ``ch_enable``: Central Heating enabled
-- ``dhw_enable``: Domestic Hot Water enabled
-- ``cooling_enable``: Cooling enabled
-- ``otc_active``: Outside temperature compensation active
-- ``ch2_active``: Central Heating 2 active
+The last point ensures that central heating is not enabled if no heating is requested as indicated by a setpoint of 0. If you use a number as the setpoint input and use a minimum value higher than 0, you **must** use the ``ch_enable`` switch to turn off your central heating. In such a case, the flag will be set to true in the hub configuration and the setpoint is always larger than 0, so including a switch is the only way you can turn off central heating. (This also holds for cooling and CH2.)
 
 Binary sensor
 *************
@@ -232,24 +235,9 @@ Minimal example with numeric input
     # An extremely minimal configuration which only enables you to set the boiler's
     # water temperature setpoint as a number.
 
-    esphome:
-      name: thermostat-number-minimal
-
-    esp8266:
-      board: d1_mini
-
-    logger:
-
-    api:
-    ota:
-    wifi:
-      ap:
-        ssid: "Thermostat"
-        password: "MySecretThemostat"
-
     opentherm:
-      in_pin: 21
-      out_pin: 26
+      in_pin: GPIOXX
+      out_pin: GPIOXX
 
     number:
       - platform: opentherm
@@ -273,24 +261,9 @@ Basic PID thermostat
     # This configuration should meet most needs and is the recommended starting
     # point if you just want a thermostat with an external temperature sensor.
 
-    esphome:
-      name: thermostat-pid-basic
-
-    esp8266:
-      board: d1_mini
-
-    logger:
-
-    api:
-    ota:
-    wifi:
-      ap:
-        ssid: "Thermostat"
-        password: "MySecretThemostat"
-
     opentherm:
-      in_pin: 21
-      out_pin: 26
+      in_pin: GPIOXX
+      out_pin: GPIOXX
       ch_enable: true
       dhw_enable: true
 
