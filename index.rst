@@ -204,6 +204,8 @@ Network Protocols
     HTTP Request, components/http_request, connection.svg, dark-invert
     mDNS, components/mdns, radio-tower.svg, dark-invert
     WireGuard, components/wireguard, wireguard_custom_logo.svg
+    StatsD, components/statsd, connection.svg
+    UDP, components/udp, udp.svg
 
 Bluetooth/BLE
 -------------
@@ -224,6 +226,7 @@ Management and Monitoring
     Debug, components/debug, bug-report.svg, dark-invert
     Logger, components/logger, file-document-box.svg, dark-invert
     Prometheus, components/prometheus, prometheus.svg
+    StatsD, components/statsd, connection.svg
     Safe Mode, components/safe_mode, restart-alert.svg
     Web Server, components/web_server, http.svg, dark-invert
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg, dark-invert
@@ -266,6 +269,7 @@ I/O Expanders/Multiplexers
 
 .. imgtable::
 
+    CH422G, components/ch422g, ch422g.svg
     MAX6956 - I²C Bus, components/max6956, max6956.jpg
     MCP230XX - I²C Bus, components/mcp230xx, mcp230xx.svg
     MCP23SXX - SPI Bus, components/mcp23Sxx, mcp230xx.svg
@@ -401,6 +405,7 @@ Electricity
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E26, components/sensor/atm90e26, atm90e26.jpg, Voltage & Current & Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
+    BL0906, components/sensor/bl0906, bl0906.png, Voltage & Current & Power & Energy
     BL0939, components/sensor/bl0939, bl0939.png, Voltage & Current & Power & Energy
     BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
     BL0942, components/sensor/bl0942, bl0942.png, Voltage & Current & Power
@@ -504,11 +509,14 @@ Light
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
+    LTR301, components/sensor/ltr501, ltr501.jpg, Lux
     LTR303, components/sensor/ltr_als_ps, ltr303.jpg, Lux
     LTR329, components/sensor/ltr_als_ps, ltr329.jpg, Lux
     LTR390, components/sensor/ltr390, ltr390.jpg, Lux & UV
+    LTR501, components/sensor/ltr501, ltr501.jpg, Lux & Proximity
     LTR553, components/sensor/ltr_als_ps, ltr-ps.jpg, Lux & Proximity
     LTR556, components/sensor/ltr_als_ps, ltr-ps.jpg, Lux & Proximity
+    LTR558, components/sensor/ltr501, ltr501.jpg, Lux & Proximity
     LTR559, components/sensor/ltr_als_ps, ltr559.jpg, Lux & Proximity
     LTR659, components/sensor/ltr_als_ps, ltr-ps.jpg, Proximity
     MAX44009, components/sensor/max44009, max44009.svg, Lux
@@ -1155,7 +1163,6 @@ Cookbook
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     EHMTX a matrix status/text display, cookbook/ehmtx, ehmtx.jpg
-    Share data directly between ESPHome nodes, cookbook/http_request_sensor, connection.svg, dark-invert
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
