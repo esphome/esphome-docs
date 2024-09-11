@@ -37,8 +37,6 @@ to have an :ref:`spi bus <spi>` in your configuration with both **miso_pin** and
       - platform: max31856
         name: BBQ Temperature
         icon: mdi:hamburger
-        mains_filter: 50Hz
-        thermocouple_type: S
         cs_pin: GPIOXX
 
 Configuration variables:
