@@ -71,6 +71,16 @@ Next, create a ``font:`` section in your configuration:
               "\U000F05D4", # mdi-airplane-landing
               ]
 
+      - file:
+          type: gfonts
+          family: Roboto
+        id: roboto_european_core
+        size: 16
+        glyphsets:
+          - GF_Latin_Core
+          - GF_Greek_Core
+          - GF_Cyrillic_Core
+
       - file: "https://github.com/IdreesInc/Monocraft/releases/download/v3.0/Monocraft.ttf"
         id: web_font
         size: 20
@@ -124,9 +134,20 @@ Configuration variables:
   If you want to use the same font in different sizes, create two font objects. Note: *size* is ignored
   by bitmap fonts. Defaults to ``20``.
 - **bpp** (*Optional*, int): The bit depth of the rendered font from OpenType/TrueType, for anti-aliasing. Can be ``1``, ``2``, ``4``, ``8``. Defaults to ``1``.
-- **glyphs** (*Optional*, list): A list of characters you plan to use. Only the characters you specify
-  here will be compiled into the binary. Adjust this if you need some special characters or want to
-  reduce the size of the binary if you don't plan to use some glyphs. You can also specify glyphs by their codepoint (see below). Defaults to ``!"%()+=,-_.:°/?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
+- **glyphsets** (*Optional*, list): A list of glyphsets you plan to use. The Google Fonts definition
+  of glyphsets is used here, but this setting can be used with any font. Defaults to
+  ``GF_Latin_Kernel``, which contains the basic characters and necessary punctuation and symbols for
+  the English language. ``GF_Latin_Core`` is a more extended set that includes glyphs for the
+  languages of Europe and the Americas with over 5 million speakers. Other options include
+  ``GF_Arabic_Core``, ``GF_Cyrillic_Core``, ``GF_Greek_Core``, their ``Plus`` variants, as well as
+  ``GF_Latin_African`` and ``GF_Latin_Vietnamese``. See the `Google Fonts Glyphset documentation
+  <https://github.com/googlefonts/glyphsets/blob/main/GLYPHSETS.md>`_ for an extensive list of all
+  possible sets, along with their names and the languages supported by each of those sets.
+- **glyphs** (*Optional*, list): A list of characters you plan to use, in addition to the characters
+  defined by the `glyphsets` option above. Adjust this list if you need some special characters or
+  want to reduce the size of the binary if you don't plan to use certain glyphs. This can be a list of
+  either single characters (``a, b, c``) or strings of characters (``abc, def``). You can also specify
+  glyphs by their codepoint (see below).
 - **extras** (*Optional*, enum): A list of font glyph configurations you'd like to include within this font, from other OpenType/TrueType files (eg. icons from other font, but at the same size as the main font):
 
   - **file** (**Required**, string): The path of the font file with the extra glyphs.
@@ -159,4 +180,5 @@ See Also
 - :doc:`/components/lvgl/index`
 - `MDI cheatsheet <https://pictogrammers.com/library/mdi/>`_
 - `MDI font repository <https://github.com/Pictogrammers/pictogrammers.github.io/tree/main/%40mdi/font/>`_
+- `Google Fonts Glyphsets <https://github.com/googlefonts/glyphsets/blob/main/GLYPHSETS.md>`_
 - :ghedit:`Edit`
