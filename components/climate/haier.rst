@@ -53,7 +53,7 @@ Newer Haier models using a module called ESP32-for-Haier. It is an ESP32 single-
 
 Also, you can use any other ESP32, ESP8266, or an RPI pico W board. In this case, you will need to cut the original wire or make a connector yourself (the board has a JST SM04B-GHS-TB connector)
 
-This component requires a :ref:`uart` to be setup.
+This component requires a :ref:`UART bus <uart>` to be setup.
 
 .. code-block:: yaml
 
@@ -343,5 +343,5 @@ See Also
 - :doc:`Haier Climate Buttons </components/button/haier>`
 - :doc:`Haier Climate Switches </components/switch/haier>`
 - :doc:`/components/climate/index`
-- :apiref:`haier/climate/haier.h`
+- :apiref:`haier/climate/haier_base.h`
 - :ghedit:`Edit`
