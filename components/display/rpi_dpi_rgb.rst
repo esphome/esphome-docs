@@ -343,15 +343,15 @@ CrowPanel 7.0" 800x480 Touch display
             - 45        #r5
           green:
             - 9         #g0
-            - 46         #g1
+            - 46        #g1
             - 3         #g2
-            - 8        #g3
+            - 8         #g3
             - 16        #g4
             - 1         #g5
           blue:
-            - 15         #b1
+            - 15        #b1
             - 7         #b2
-            - 6        #b3
+            - 6         #b3
             - 5         #b4
             - 4         #b5
 
