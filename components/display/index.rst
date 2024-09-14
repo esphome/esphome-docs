@@ -20,6 +20,22 @@ For graphical displays, which offer the greatest flexibility, there are two opti
 - ESPHome's :ref:`own rendering engine <display-engine>`
 - :doc:`LVGL </components/lvgl/index>` - Light and Versatile Graphics Library
 
+.. _display-configuration:
+
+Configuration variables:
+************************
+
+All display components inherit these configuration variables.
+
+- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
+  See :ref:`display-engine` for more information.
+- **auto_clear_enabled** (*Optional*, boolean): If the display should be cleared before each update. Defaults to ``true``.
+- **show_test_card** (*Optional*, boolean): If the display should show a test card. Defaults to ``false``. If set, will override any code set in the ``lambda`` config option.
+- **lambda:** (*Optional*, :ref:`Lambda <config-lambda>`): A lambda that will be called every time the display is updated.
+- **rotation** (*Optional*, integer): The rotation of the display in degrees, one of 0, 90, 180 or 270. Defaults to ``0``.
+- **pages** (*Optional*, dict): Pages configuration - see below.
+
+
 .. _display-engine:
 
 Display Rendering Engine

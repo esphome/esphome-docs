@@ -60,13 +60,13 @@ beyond the basic SPI connections, and a reasonable amount of RAM, it is not well
       - platform: ili9xxx
         model: ili9341
         dc_pin: GPIOXX
-        reset_pin: GPIOXX
-        lambda: |-
-          it.fill(COLOR_BLACK);
-          it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_LEFT, "Hello World!");
+        show_test_card: true
+
 
 Configuration variables:
 ************************
+
+All options from the :ref:`base display configuration<display-configuration>` are available.
 
 - **model** (**Required**): The model of the display. Options are:
 
@@ -79,12 +79,16 @@ Configuration variables:
 
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
-- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
-  See :ref:`display-engine` for more information.
+- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+
+
+.. note::
+
+    A DC pin is always required, the CS pin and RESET pin will only be needed if the specific board has those
+    pins wired to GPIOs.
+
+
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
-- **auto_clear_enabled** (*Optional*, boolean): Whether to automatically clear the display in each loop (''true'', default),
-  or to keep the existing display content (must overwrite explicitly, e.g., only on data change).
-- **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **color_palette** (*Optional*): The type of color pallet that will be used in the ESP's internal 8-bits-per-pixel buffer.  This can be used to improve color depth quality of the image.  For example if you know that the display will only be showing grayscale images, the clarity of the display can be improved by targeting the available colors to monochrome only.  Options are:
 
