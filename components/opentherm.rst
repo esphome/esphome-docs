@@ -94,46 +94,46 @@ There are three ways to set an input value:
 
 - As an input sensor, defined in the hub configuration:
 
-.. code-block:: yaml
+  .. code-block:: yaml
 
-    opentherm:
-      t_set: setpoint_sensor
+      opentherm:
+        t_set: setpoint_sensor
 
-    sensor:
-      - platform: homeassistant
-        id: setpoint_sensor
-        entity_id: sensor.boiler_setpoint
+      sensor:
+        - platform: homeassistant
+          id: setpoint_sensor
+          entity_id: sensor.boiler_setpoint
 
-This can be useful if you have an external thermostat-like device that provides the setpoint as a sensor.
+  This can be useful if you have an external thermostat-like device that provides the setpoint as a sensor.
 
 - As a number:
 
-.. code-block:: yaml
-
-    number:
-      - platform: opentherm
-        t_set:
-          name: Boiler Setpoint
-
-This is useful if you want full control over your boiler and want to manually set all values.
+  .. code-block:: yaml
+  
+      number:
+        - platform: opentherm
+          t_set:
+            name: Boiler Setpoint
+  
+  This is useful if you want full control over your boiler and want to manually set all values.
 
 - As an output:
 
-.. code-block:: yaml
-
-    output:
-      - platform: opentherm
-      t_set:
-        id: setpoint
-
-This is especially useful in combination with the PID Climate component:
-
-.. code-block:: yaml
-
-    climate:
-      - platform: pid
-        heat_output: setpoint
-        # ...
+  .. code-block:: yaml
+  
+      output:
+        - platform: opentherm
+        t_set:
+          id: setpoint
+  
+  This is especially useful in combination with the PID Climate component:
+  
+  .. code-block:: yaml
+  
+      climate:
+        - platform: pid
+          heat_output: setpoint
+          # ...
 
 For the output and number variants, there are four more properties you can configure beyond those included in the
 output and number components by default:

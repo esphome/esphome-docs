@@ -257,13 +257,13 @@ Hardware Peripheral Interfaces/Busses
 
 .. imgtable::
 
+    1-Wire, components/one_wire, one-wire.svg
     CAN Bus, components/canbus/index, canbus.svg
     I²C Bus, components/i2c, i2c.svg
     I²S Audio, components/i2s_audio, i2s_audio.svg
+    OpenTherm, components/opentherm, opentherm.png
     SPI Bus, components/spi, spi.svg
     UART, components/uart, uart.svg
-    1-Wire, components/one_wire, one-wire.svg
-    OpenTherm, components/opentherm, opentherm.png
 
 I/O Expanders/Multiplexers
 --------------------------
