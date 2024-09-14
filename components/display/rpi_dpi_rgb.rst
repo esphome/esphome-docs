@@ -28,7 +28,7 @@ ESP-IDF. PSRAM is a requirement due to the size of the display buffer.
 
     Waveshare ESP32-S3 Touch 4.3
 
-.. figure:: images/CrowPanel_5.0"_800x480_Touch_display.png
+.. figure:: images/CrowPanel_5.0"_800x480_Touch_display.jpg
     :align: center
     :width: 75.0%
 
