@@ -273,6 +273,7 @@ Minimal example with numeric input
     opentherm:
       in_pin: GPIOXX
       out_pin: GPIOXX
+      ch_enable: true
 
     number:
       - platform: opentherm
@@ -299,8 +300,11 @@ Basic PID thermostat
     opentherm:
       in_pin: GPIOXX
       out_pin: GPIOXX
-      ch_enable: true
-      dhw_enable: true
+      dhw_enable: true    # Note that when we specify an input in hub config with a static value, it can't be
+                          # changed without uploading new firmware. If you want to be able to turn things on or off,
+                          # use a switch (see the ch_enable switch below).
+                          # Also note that when we define an input as a switch (or use other platform), we don't need
+                          # to set it at hub level.
 
     output:
       - platform: opentherm
