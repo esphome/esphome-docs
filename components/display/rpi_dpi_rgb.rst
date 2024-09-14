@@ -4,7 +4,7 @@ RPI_DPI_RGB Display Driver
 .. seo::
     :description: Instructions for setting up 16 bit "RPI_DPI_RGB" parallel displays
     :image: waveshare_touch-s3.jpg
-    :image: CrowPanel_5.0_800x480_Touch_display.png
+    :image: CrowPanel_5.0_800x480_Touch_display.jpg
     
 .. _rpi_dpi_rgb:
 
@@ -29,7 +29,7 @@ ESP-IDF. PSRAM is a requirement due to the size of the display buffer.
 
     Waveshare ESP32-S3 Touch 4.3
 
-.. figure:: images/CrowPanel_5.0_800x480_Touch_display.png
+.. figure:: images/CrowPanel_5.0_800x480_Touch_display.jpg
     :align: center
     :width: 75.0%
 
