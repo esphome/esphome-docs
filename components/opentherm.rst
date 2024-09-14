@@ -6,14 +6,16 @@ OpenTherm
     :image: ../components/images/opentherm-shield.png
     :keywords: OpenTherm
 
-OpenTherm (OT) is a standard communications protocol used in central heating systems for the communication between central heating appliances and a thermostatic controller.
-As a standard, OpenTherm is independent of any single manufacturer. A controller from manufacturer A can in principle be used to control a boiler from manufacturer B.
+OpenTherm (OT) is a standard communications protocol used in central heating systems for the communication between
+central heating appliances and a thermostatic controller. As a standard, OpenTherm is independent of any single
+manufacturer. A controller from manufacturer A can in principle be used to control a boiler from manufacturer B.
 
-Since OpenTherm doesn't operate in a standard voltage range, special hardware is required. You can choose from several ready-made adapters or roll your own:
+Since OpenTherm doesn't operate in a standard voltage range, special hardware is required. You can choose from several
+ready-made adapters or roll your own:
 
 - `DIYLESS Master OpenTherm Shield <https://diyless.com/product/master-opentherm-shield>`__
 - `Ihor Melnyk's OpenTherm Adapter <http://ihormelnyk.com/opentherm_adapter>`__
-- `Jiří Praus' OpenTherm Gateway Arduino Shield <https://www.tindie.com/products/jiripraus/opentherm-gateway-arduino-shield/>`__ .
+- `Jiří Praus' OpenTherm Gateway Arduino Shield <https://www.tindie.com/products/jiripraus/opentherm-gateway-arduino-shield/>`__
 
 .. figure:: images/opentherm-shield.png
     :align: center
@@ -23,7 +25,8 @@ Since OpenTherm doesn't operate in a standard voltage range, special hardware is
 
 .. note::
 
-    This component acts only as an OpenTherm master (for example, a thermostat or controller) and not as a slave or gateway. Your existing thermostat is not usable while you use ESPHome with this component to control your boiler.
+    This component acts only as an OpenTherm master (for example, a thermostat or controller) and not as a slave or
+    gateway. Your existing thermostat is not usable while you use ESPHome with this component to control your boiler.
 
 Quick glossary
 --------------
@@ -34,7 +37,9 @@ Quick glossary
 Hub
 ---
 
-First, you need to define the OpenTherm hub in your configuration. Note that most OpenTherm adapters label ``in`` and ``out`` pins relative to themselves; this component labels its ``in`` and ``out`` pins relative to the microcontroller ESPHome runs on. As such, your bridge's ``in`` pin becomes the hub's ``out`` pin and vice-versa.
+First, you need to define the OpenTherm hub in your configuration. Note that most OpenTherm adapters label ``in`` and
+``out`` pins relative to themselves; this component labels its ``in`` and ``out`` pins relative to the microcontroller
+ESPHome runs on. As such, your bridge's ``in`` pin becomes the hub's ``out`` pin and vice-versa.
 
 .. code-block:: yaml
 
@@ -45,26 +50,42 @@ First, you need to define the OpenTherm hub in your configuration. Note that mos
 Configuration variables:
 ************************
 
-- **in_pin** (**Required**, number): The pin of the OpenTherm hardware bridge which is usually labeled ``out`` on the board.
-- **out_pin** (**Required**, number): The pin of the OpenTherm hardware bridge which is usually labeled ``in`` on the board.
-- **sync_mode** (**Optional**, boolean, default **false**): Synchronous communication mode prevents other components from disabling interrupts while we are talking to the boiler. Enable if you experience a lot of random intermittent invalid response errors (very likely to happen while using Dallas temperature sensors).
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.  Required if you have multiple busses.
+- **in_pin** (**Required**, number): The pin of the OpenTherm hardware bridge which is usually labeled ``out`` on the
+  board.
+- **out_pin** (**Required**, number): The pin of the OpenTherm hardware bridge which is usually labeled ``in`` on the
+  board.
+- **sync_mode** (**Optional**, boolean, default **false**): Synchronous communication mode prevents other components
+  from disabling interrupts while we are talking to the boiler. Enable if you experience a lot of random intermittent
+  invalid response errors (very likely to happen while using Dallas temperature sensors).
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.  Required if you have
+  multiple busses.
 
 Note abut sync mode
 *******************
 
-The use of some components (like Dallas temperature sensors) may result in lost frames and protocol warnings from OpenTherm. Since OpenTherm is resilient by design and transmits its messages in a constant loop, these dropped frames don't usually cause any problems. Still, if you want to decrease the number of protocol warnings in your logs, you can enable ``sync_mode`` which will block ESPHome's main application loop until a single conversation with the boiler is complete. This can greatly reduce the number of dropped frames, but usually won't eliminate them entirely. With ``sync_mode`` enabled, in some cases, ESPHome's main application loop may be blocked for longer than is recommended, resulting in warnings in the logs. If this bothers you, you can adjust ESPHome's log level by adding the following to your configuration:
+The use of some components (like Dallas temperature sensors) may result in lost frames and protocol warnings from
+OpenTherm. Since OpenTherm is resilient by design and transmits its messages in a constant loop, these dropped frames
+don't usually cause any problems. Still, if you want to decrease the number of protocol warnings in your logs, you can
+enable ``sync_mode`` which will block ESPHome's main application loop until a single conversation with the boiler is
+complete. This can greatly reduce the number of dropped frames, but usually won't eliminate them entirely. With
+``sync_mode`` enabled, in some cases, ESPHome's main application loop may be blocked for longer than is recommended,
+resulting in warnings in the logs. If this bothers you, you can adjust ESPHome's log level by adding the following to
+your configuration:
 
 .. code-block:: yaml
 
     logger:
-        logs:
-            component: ERROR
+      logs:
+        component: ERROR
 
 Usage as a thermostat
 ---------------------
 
-The most important function for a thermostat is to set the boiler temperature setpoint. This component has three ways to provide this input: using a Home Assistant sensor from which the setpoint can be read, using a :doc:`/components/number/index`, or defining an output to which other components can write. For most users, the last option is the most useful one, as it can be combined with the :doc:`/components/climate/pid` component to create a thermostat that works as you would expect a thermostat to work. See :ref:`thermostat-pid-basic` for an example.
+The most important function for a thermostat is to set the boiler temperature setpoint. This component has three ways
+to provide this input: using a Home Assistant sensor from which the setpoint can be read, using a
+:doc:`/components/number/index`, or defining an output to which other components can write. For most users, the last
+option is the most useful one, as it can be combined with the :doc:`/components/climate/pid` component to create a
+thermostat that works as you would expect a thermostat to work. See :ref:`thermostat-pid-basic` for an example.
 
 Numerical input
 ***************
@@ -114,17 +135,23 @@ This is especially useful in combination with the PID Climate component:
         heat_output: setpoint
         # ...
 
-For the output and number variants, there are four more properties you can configure beyond those included in the output and number components by default:
+For the output and number variants, there are four more properties you can configure beyond those included in the
+output and number components by default:
 
-- ``min_value`` (float): The minimum value. For a number this is the minimum value you are allowed to input. For an output this is the number that will be sent to the boiler when the output is at 0%.
-- ``max_value`` (float): The maximum value. For a number this is the maximum value you are allowed to input. For an output this is the number that will be sent to the boiler when the output is at 100%.
-- ``auto_max_value`` (boolean): Automatically configure the maximum value to a value reported by the boiler. Not available for all inputs.
-- ``auto_min_value`` (boolean): Automatically configure the minimum value to a value reported by the boiler. Not available for all inputs.
+- ``min_value`` (float): The minimum value. For a number this is the minimum value you are allowed to input. For an
+  output this is the number that will be sent to the boiler when the output is at 0%.
+- ``max_value`` (float): The maximum value. For a number this is the maximum value you are allowed to input. For an
+  output this is the number that will be sent to the boiler when the output is at 100%.
+- ``auto_max_value`` (boolean): Automatically configure the maximum value to a value reported by the boiler. Not
+  available for all inputs.
+- ``auto_min_value`` (boolean): Automatically configure the minimum value to a value reported by the boiler. Not
+  available for all inputs.
 
 The following inputs are available:
 
 - ``t_set``: Control setpoint: temperature setpoint for the boiler's supply water (°C)
-- ``t_set_ch2``: Control setpoint 2: temperature setpoint for the boiler's supply water on the second heating circuit (°C)
+- ``t_set_ch2``: Control setpoint 2: temperature setpoint for the boiler's supply water on the second heating circuit
+  (°C)
 - ``cooling_control``: Cooling control signal (%)
 - ``t_dhw_set``: Domestic hot water temperature setpoint (°C)
 - ``max_t_set``: Maximum allowable CH water setpoint (°C)
@@ -164,12 +191,18 @@ To enable central heating and cooling, the flag is only sent to the boiler if th
 
 For domestic hot water and outside temperature compensation, only the first two conditions are necessary.
 
-The last point ensures that central heating is not enabled if no heating is requested as indicated by a setpoint of 0. If you use a number as the setpoint input and use a minimum value higher than 0, you **must** use the ``ch_enable`` switch to turn off your central heating. In such a case, the flag will be set to true in the hub configuration and the setpoint is always larger than 0, so including a switch is the only way you can turn off central heating. (This also holds for cooling and CH2.)
+The last point ensures that central heating is not enabled if no heating is requested as indicated by a setpoint of 0.
+If you use a number as the setpoint input and use a minimum value higher than 0, you **must** use the ``ch_enable``
+switch to turn off your central heating. In such a case, the flag will be set to true in the hub configuration and the
+setpoint is always larger than 0, so including a switch is the only way you can turn off central heating. (This also
+holds for cooling and CH2.)
 
 Binary sensor
 *************
 
-The component can report boiler status on several binary sensors. The *Status* sensors are updated in each message cycle, while the others are only set during initialization, as they are unlikely to change without restarting the boiler.
+The component can report boiler status on several binary sensors. The *Status* sensors are updated in each message
+cycle, while the others are only set during initialization, as they are unlikely to change without restarting the
+boiler.
 
 - ``fault_indication``: Status: Fault indication
 - ``ch_active``: Status: Central Heating active
@@ -192,7 +225,9 @@ The component can report boiler status on several binary sensors. The *Status* s
 Sensor
 ******
 
-The boiler can also report several numerical values, which are available through sensors. Your boiler may not support all of these values, in which case there won't be any value published to that sensor. The following sensors are available:
+The boiler can also report several numerical values, which are available through sensors. Your boiler may not support
+all of these values, in which case there won't be any value published to that sensor. The following sensors are
+available:
 
 - ``rel_mod_level``: Relative modulation level (%)
 - ``ch_pressure``: Water pressure in CH circuit (bar)
@@ -325,8 +360,9 @@ Basic PID thermostat
 References
 ----------
 
-This component was forked from Arthur Rump's ``esphome-opentherm`` component, which now seems to be abandoned. I replaced the underlying OpenTherm library with
-code form Jiří Praus. I also did a lot of refactoring to bring the code closer to ESPHome coding standard.
+This component was forked from Arthur Rump's ``esphome-opentherm`` component, which now seems to be abandoned. I
+replaced the underlying OpenTherm library with code form Jiří Praus. I also did a lot of refactoring to bring the code
+closer to ESPHome coding standard.
 
 - `Original Arthur Rump's repository <https://github.com/arthurrump/esphome-opentherm>`__
 - `arduino-opentherm project by Jiří Praus <https://github.com/jpraus/arduino-opentherm>`__
