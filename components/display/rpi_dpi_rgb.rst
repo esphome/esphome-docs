@@ -19,9 +19,9 @@ This driver has been tested with the following displays:
 
   - Waveshare ESP32-S3-Touch-LCD-4.3
   - Makerfabs 4.3" display (Sunton)
-  - CrowPanel 4.3" 480x272 Touch display
-  - CrowPanel 5.0" 800x480 Touch display
-  - CrowPanel 7.0" 800x480 Touch display
+  - CrowPanel 4.3" 480x272 Touch Display
+  - CrowPanel 5.0" 800x480 Touch Display
+  - CrowPanel 7.0" 800x480 Touch Display
 
 Usage
 -----
@@ -38,19 +38,19 @@ ESP-IDF. PSRAM is a requirement due to the size of the display buffer.
     :align: center
     :width: 75.0%
 
-    CrowPanel 4.3" 480x272 Touch display
+    CrowPanel 4.3" 480x272 Touch Display
 
 .. figure:: images/CrowPanel_5.0-HMI_ESP32_Display_800x480_RGB.jpg
     :align: center
     :width: 75.0%
 
-    CrowPanel 5.0" 800x480 Touch display
+    CrowPanel 5.0" 800x480 Touch Display
 
 .. figure:: images/CrowPanel_7.0-HMI_ESP32_Display_800x480_RGB.jpg
     :align: center
     :width: 75.0%
 
-    CrowPanel 7.0" 800x480 Touch display
+    CrowPanel 7.0" 800x480 Touch Display
 
 .. code-block:: yaml
 
@@ -226,7 +226,7 @@ Makerfabs 4.3" 800x480 display
             - 9         #b4
             - 1         #b5
 
-CrowPanel 4.3" 480x272 Touch display
+CrowPanel 4.3" 480x272 Touch Display
 ******************************
 
 .. code-block:: yaml
@@ -273,7 +273,7 @@ CrowPanel 4.3" 480x272 Touch display
             - 9         #b4
             - 1         #b5
 
-CrowPanel 5.0" 800x480 Touch display
+CrowPanel 5.0" 800x480 Touch Display
 ******************************
 
 .. code-block:: yaml
@@ -314,7 +314,7 @@ CrowPanel 5.0" 800x480 Touch display
             - 9         #b4
             - 1         #b5
 
-CrowPanel 7.0" 800x480 Touch display
+CrowPanel 7.0" 800x480 Touch Display
 ******************************
 
 .. code-block:: yaml
