@@ -109,27 +109,27 @@ There are three ways to set an input value:
 - As a number:
 
   .. code-block:: yaml
-  
+
       number:
         - platform: opentherm
           t_set:
             name: Boiler Setpoint
-  
+
   This is useful if you want full control over your boiler and want to manually set all values.
 
 - As an output:
 
   .. code-block:: yaml
-  
+
       output:
         - platform: opentherm
         t_set:
           id: setpoint
-  
+
   This is especially useful in combination with the PID Climate component:
-  
+
   .. code-block:: yaml
-  
+
       climate:
         - platform: pid
           heat_output: setpoint
