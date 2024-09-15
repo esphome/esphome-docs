@@ -39,6 +39,12 @@ Breaking Changes
 - Move I2S config settings the the base i2sAudio files. Phase 1 :esphomepr:`7183` by :ghuser:`nielsnl68` (breaking-change)
 - [i2s_audio] Add more options to speakers and microphones :esphomepr:`7306` by :ghuser:`pyos` (breaking-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- [voice-assistant] Dont error on ``no_wake_word`` timeout error with streaming wake word :esphomepr:`7435` by :ghuser:`jesserockz`
+- Improve manufacturer data tracing to identify BLE devices a bit easie… :esphomepr:`7332` by :ghuser:`tomer-w`
+
 All changes
 ^^^^^^^^^^^
 
@@ -127,6 +133,8 @@ All changes
 - [uponor_smatrix] Modifies sending algorithm :esphomepr:`7326` by :ghuser:`skasi7`
 - User configurable frame buffer. :esphomepr:`7360` by :ghuser:`ajwahab`
 - [Modbus Controller] Added preference to change command retries :esphomepr:`7312` by :ghuser:`0x3333`
+- [voice-assistant] Dont error on ``no_wake_word`` timeout error with streaming wake word :esphomepr:`7435` by :ghuser:`jesserockz`
+- Improve manufacturer data tracing to identify BLE devices a bit easie… :esphomepr:`7332` by :ghuser:`tomer-w`
 
 Past Changelogs
 ---------------
