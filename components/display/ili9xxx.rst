@@ -66,7 +66,7 @@ beyond the basic SPI connections, and a reasonable amount of RAM, it is not well
 Configuration variables:
 ************************
 
-All options from the :ref:`base display configuration<display-configuration>` are available.
+All :ref:`graphical display configuration<display-configuration>` options are available, plus the following.
 
 - **model** (**Required**): The model of the display. Options are:
 
@@ -88,8 +88,6 @@ All options from the :ref:`base display configuration<display-configuration>` ar
     pins wired to GPIOs.
 
 
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **color_palette** (*Optional*): The type of color pallet that will be used in the ESP's internal 8-bits-per-pixel buffer.  This can be used to improve color depth quality of the image.  For example if you know that the display will only be showing grayscale images, the clarity of the display can be improved by targeting the available colors to monochrome only.  Options are:
 
   - ``NONE`` (default)
