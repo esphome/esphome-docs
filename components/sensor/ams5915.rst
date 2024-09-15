@@ -37,9 +37,10 @@ Example Configuration:
 
 .. code-block:: yaml
 
+    # Example configuration entry
     sensor:      
       - platform: ams5915
-        model: "AMS5915_1000_D_B"@
+        model: "AMS5915_1000_D_B"
         temperature:
           name: "ams5915 Temperature"
         pressure:
