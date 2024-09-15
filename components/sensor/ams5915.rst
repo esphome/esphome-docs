@@ -37,13 +37,13 @@ Example Configuration:
 
 .. code-block:: yaml
 
-  sensor:      
-    - platform: ams5915
-      model: "AMS5915_1000_D_B"
-      temperature:
-        name: "ams5915 Temperature"
-      pressure:
-        name: "ams5915 Pressure"
+    sensor:      
+      - platform: ams5915
+        model: "AMS5915_1000_D_B"@
+        temperature:
+          name: "ams5915 Temperature"
+        pressure:
+          name: "ams5915 Pressure"
 
 Available Models/Types:
 ***********************
