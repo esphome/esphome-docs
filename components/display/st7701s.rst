@@ -130,6 +130,8 @@ The ``init_sequence`` requires a list of elements, one of which may be a single 
 sequence (the default and currently the only sequence is 1), the remainder must be byte arrays providing additional
 init commands, each consisting of a command byte followed by zero or more data bytes.
 
+A delay may be specified with ``delay <N>ms``
+
 These will be collected and sent to the display via SPI during initialisation.
 
 Example configurations
@@ -165,6 +167,7 @@ Seeed Sensecap Indicator
         pclk_pin: 21
         init_sequence:
           - 1 # select canned init sequence number 1
+          - delay 5ms
           - [ 0xE0, 0x1F ]  # Set sunlight readable enhancement
         data_pins:
           red:
