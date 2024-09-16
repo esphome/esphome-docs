@@ -1812,6 +1812,7 @@ Contributors
 - `tomaszduda23 (@tomaszduda23) <https://github.com/tomaszduda23>`__
 - `Tom Brien (@TomBrien) <https://github.com/TomBrien>`__
 - `Thomas Combriat (@tomcombriat) <https://github.com/tomcombriat>`__
+- `Tomer (@tomer-w) <https://github.com/tomer-w>`__
 - `TomFahey (@TomFahey) <https://github.com/TomFahey>`__
 - `Tom Hartogs (@TomHartogs) <https://github.com/TomHartogs>`__
 - `TomKong666 (@TomKong666) <https://github.com/TomKong666>`__
