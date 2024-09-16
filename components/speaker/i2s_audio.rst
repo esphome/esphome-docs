@@ -42,6 +42,18 @@ Configuration variables:
 - **use_apll** (*Optional*, boolean): I2S using APLL as main I2S clock, enable it to get accurate clock. Defaults to ``false``.
 - **i2s_mode** (*Optional*, enum): The I²S mode to use. One of ``primary`` (clock driven by the host) or ``secondary`` (clock driven by the attached device). Defaults to ``primary``.
 - **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this speaker.
+- **i2s_comm_fmt** (*Optional*, enum): The I²S communication standard format used by this speaker.
+
+  - ``stand_i2s``
+  - ``stand_msb``
+  - ``stand_pcm_short``
+  - ``stand_pcm_long``
+  - ``stand_max``
+  - ``i2s_msb``
+  - ``i2s_lsb``
+  - ``pcm``
+  - ``pcm_short``
+  - ``pcm_long``
 - **timeout** (*Optional*, :ref:`config-time`): How long to wait after finishing playback before releasing the bus. Defaults to ``100ms``.
 
 External DAC
