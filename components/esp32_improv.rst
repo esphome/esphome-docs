@@ -37,8 +37,125 @@ Configuration variables:
   to be re-authorized. Defaults to ``1min``.
 - **status_indicator** (*Optional*, :ref:`config-id`): An :doc:`output <output/index>` to display feedback to the user.
 - **identify_duration** (*Optional*, :ref:`config-time`): The amount of time to identify for. Defaults to ``10s``.
-- **wifi_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before starting the improv service after Wi-Fi
-  is no longer connected. Defaults to ``1min``.
+- **wifi_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before starting the Improv service
+  after Wi-Fi is no longer connected. Defaults to ``1min``.
+- **on_authorized** (*Optional*, :ref:`Automation<automation>`): An action to be performed upon authorization. See
+  :ref:`improv-on_authorized`.
+- **on_awaiting_authorization** (*Optional*, :ref:`Automation<automation>`): An action to be performed when Improv is
+  waiting for authorization. See :ref:`improv-on_awaiting_authorization`.
+- **on_provisioned** (*Optional*, :ref:`Automation<automation>`): An action to be performed when provisioning has
+  completed. See :ref:`improv-on_provisioned`.
+- **on_provisioning** (*Optional*, :ref:`Automation<automation>`): An action to be performed when the device begins the
+  provisioning process. See :ref:`improv-on_provisioning`.
+- **on_stopped** (*Optional*, :ref:`Automation<automation>`): An action to be performed when Improv has stopped.
+  See :ref:`improv-on_stopped`.
+- **on_state_change** (*Optional*, :ref:`Automation<automation>`): An action to be performed when an Improv state
+  change happens. See :ref:`improv-on_state_change`.
+
+.. _improv-automations:
+
+Improv Automations
+------------------
+
+The ESP32 Improv component provides various :ref:`automations <automation>` that can be used to provide feedback during
+the Improv provisioning process.
+
+.. _improv-on_authorized:
+
+``on_authorized``
+*****************
+
+This automation will be triggered upon authorization (usually by pressing a button on the device, if configured -- see
+``authorizer`` above).
+
+.. code-block:: yaml
+
+    esp32_improv:
+      on_authorized:
+        then:
+          - logger.log: "Improv authorized"
+
+.. _improv-on_awaiting_authorization:
+
+``on_awaiting_authorization``
+*****************************
+
+This automation will be triggered when the device is waiting for authorization (usually by pressing a button on the
+device, if configured -- see ``authorizer`` above).
+
+.. code-block:: yaml
+
+    esp32_improv:
+      on_awaiting_authorization:
+        then:
+          - logger.log: "Improv awaiting authorization"
+
+.. _improv-on_provisioned:
+
+``on_provisioned``
+******************
+
+This automation will be triggered when provisioning has completed.
+
+.. code-block:: yaml
+
+    esp32_improv:
+      on_provisioned:
+        then:
+          - logger.log: "Improv provisioned"
+
+.. _improv-on_provisioning:
+
+``on_provisioning``
+*******************
+
+This automation will be triggered when provisioning begins.
+
+.. code-block:: yaml
+
+    esp32_improv:
+      on_provisioning:
+        then:
+          - logger.log: "Improv provisioning"
+
+.. _improv-on_stopped:
+
+``on_stopped``
+**************
+
+This automation will be triggered when Improv has stopped.
+
+.. code-block:: yaml
+
+    esp32_improv:
+      on_stopped:
+        then:
+          - logger.log: "Improv stopped"
+
+.. _improv-on_state_change:
+
+``on_state_change``
+*******************
+
+This automation will be triggered on every state change. You can get the actual state with variable ``state``, which
+will contain one of values for the ``improv::State`` enum. These values are:
+
+-  ``improv::STATE_STOPPED``
+-  ``improv::STATE_AWAITING_AUTHORIZATION``
+-  ``improv::STATE_AUTHORIZED``
+-  ``improv::STATE_PROVISIONING``
+-  ``improv::STATE_PROVISIONED``
+
+.. code-block:: yaml
+
+    esp32_improv:
+      on_state_change:
+        then:
+          - if:
+              condition:
+                lambda: return state == improv::STATE_AUTHORIZED;
+              then:
+                - logger.log: "Improv state is STATE_AUTHORIZED"
 
 Status Indicator
 ----------------
