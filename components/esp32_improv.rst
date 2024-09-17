@@ -49,8 +49,8 @@ Configuration variables:
   provisioning process. See :ref:`improv-on_provisioning`.
 - **on_stopped** (*Optional*, :ref:`Automation<automation>`): An action to be performed when Improv has stopped.
   See :ref:`improv-on_stopped`.
-- **on_state_change** (*Optional*, :ref:`Automation<automation>`): An action to be performed when an Improv state
-  change happens. See :ref:`improv-on_state_change`.
+- **on_state** (*Optional*, :ref:`Automation<automation>`): An action to be performed when an Improv state change
+  happens. See :ref:`improv-on_state`.
 
 .. _improv-automations:
 
@@ -132,10 +132,10 @@ This automation will be triggered when Improv has stopped.
         then:
           - logger.log: "Improv stopped"
 
-.. _improv-on_state_change:
+.. _improv-on_state:
 
-``on_state_change``
-*******************
+``on_state``
+************
 
 This automation will be triggered on every state change. You can get the actual state with variable ``state``, which
 will contain one of values for the ``improv::State`` enum. These values are:
@@ -149,7 +149,7 @@ will contain one of values for the ``improv::State`` enum. These values are:
 .. code-block:: yaml
 
     esp32_improv:
-      on_state_change:
+      on_state:
         then:
           - if:
               condition:
