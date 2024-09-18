@@ -39,8 +39,8 @@ Configuration variables:
 - **identify_duration** (*Optional*, :ref:`config-time`): The amount of time to identify for. Defaults to ``10s``.
 - **wifi_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before starting the Improv service
   after Wi-Fi is no longer connected. Defaults to ``1min``.
-- **on_start** (*Optional*, :ref:`Automation<automation>`): An action to be performed when Improv is
-  waiting for authorization and/or upon authorization. See :ref:`improv-on_start`.
+- **on_start** (*Optional*, :ref:`Automation<automation>`): An action to be performed when Improv is waiting for
+  authorization and/or upon authorization. See :ref:`improv-on_start`.
 - **on_provisioned** (*Optional*, :ref:`Automation<automation>`): An action to be performed when provisioning has
   completed. See :ref:`improv-on_provisioned`.
 - **on_provisioning** (*Optional*, :ref:`Automation<automation>`): An action to be performed when the device begins the
@@ -128,6 +128,15 @@ will contain one of values for the ``improv::State`` enum. These values are:
 -  ``improv::STATE_AUTHORIZED``
 -  ``improv::STATE_PROVISIONING``
 -  ``improv::STATE_PROVISIONED``
+
+A second variable, ``error``, is also available, which may indicate the Improv error state, if any. It will be one of:
+
+-  ``improv::ERROR_NONE``
+-  ``improv::ERROR_INVALID_RPC``
+-  ``improv::ERROR_UNKNOWN_RPC``
+-  ``improv::ERROR_UNABLE_TO_CONNECT``
+-  ``improv::ERROR_NOT_AUTHORIZED``
+-  ``improv::ERROR_UNKNOWN``
 
 .. code-block:: yaml
 
