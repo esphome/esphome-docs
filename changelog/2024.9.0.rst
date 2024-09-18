@@ -46,6 +46,9 @@ Beta Changes
 - Improve manufacturer data tracing to identify BLE devices a bit easie… :esphomepr:`7332` by :ghuser:`tomer-w`
 - Add sample_bytes to media player supported format :esphomepr:`7451` by :ghuser:`synesthesiam`
 - [docker] Bump git from 1:2.39.2-1.1 to 1:2.39.5-0+deb12u1 :esphomepr:`7452` by :ghuser:`jesserockz`
+- Add voice assistant configuration messages :esphomepr:`7445` by :ghuser:`synesthesiam`
+- Dont replace project name spaces with underlines :esphomepr:`7455` by :ghuser:`jesserockz`
+- Add voice assistant methods for configuration :esphomepr:`7459` by :ghuser:`synesthesiam`
 
 All changes
 ^^^^^^^^^^^
@@ -139,6 +142,9 @@ All changes
 - Improve manufacturer data tracing to identify BLE devices a bit easie… :esphomepr:`7332` by :ghuser:`tomer-w`
 - Add sample_bytes to media player supported format :esphomepr:`7451` by :ghuser:`synesthesiam`
 - [docker] Bump git from 1:2.39.2-1.1 to 1:2.39.5-0+deb12u1 :esphomepr:`7452` by :ghuser:`jesserockz`
+- Add voice assistant configuration messages :esphomepr:`7445` by :ghuser:`synesthesiam`
+- Dont replace project name spaces with underlines :esphomepr:`7455` by :ghuser:`jesserockz`
+- Add voice assistant methods for configuration :esphomepr:`7459` by :ghuser:`synesthesiam`
 
 Past Changelogs
 ---------------
