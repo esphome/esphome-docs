@@ -1120,7 +1120,7 @@ Miscellaneous Components
 Custom Components
 -----------------
 
-**Note: Custom Components are deprecated in favor of** :doc:`components/external_components`!
+**Note:** :ref:`Custom Components are deprecated<a_note_about_custom_components>` in favor of :doc:`components/external_components`!
 
 .. imgtable::
 
