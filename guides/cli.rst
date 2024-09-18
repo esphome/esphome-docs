@@ -39,6 +39,7 @@ ESPHome's command line interface always has the following format
 .. option:: -v|--verbose
 
     Enable verbose esphome logs.
+    Can also be enabled via environment variable ``ESPHOME_VERBOSE=true``.
 
 ``--quiet`` Option
 ------------------
@@ -140,7 +141,7 @@ The ``esphome upload <CONFIG>`` validates the configuration and uploads the most
 .. program:: esphome clean-mqtt
 
 The ``esphome clean-mqtt <CONFIG>`` cleans retained MQTT discovery messages from the MQTT broker.
-See :ref:`mqtt-using_with_home_assistant`.
+See :ref:`mqtt-using_with_home_assistant_entities`.
 
 .. option:: --topic TOPIC
 
