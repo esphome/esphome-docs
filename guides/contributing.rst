@@ -455,29 +455,88 @@ check fails, please look at the Github Actions log and fix all errors that appea
 
 **When will my PR be reviewed/merged?**
 
-ESPHome is a big project; we encourage everybody to test, review and comment on PRs. Despite this, reviews can (and
-often do) take some time.
+ESPHome is a big project; :ref:`we encourage everybody to test, review and comment on PRs.<can_i_help_review>` Despite
+this, reviews can (and often do) take some time.
 
 **But howwww looonnnggg???**
 
 Small PRs are easier to review and are often reviewed first. If you want your PR to be reviewed (and merged) quickly,
 here are some tips:
 
-- We would rather review ten ten-line PRs than one 100-line PR.
-- Be sure to follow all :ref:`codebase_standards` as you make changes -- when reviewers have to spend time
-  commenting on/correcting your PR because you didn't name variables correctly or didn't prefix member variable
-  accesses with ``this->``, it wastes time we could be using to review other PRs which *do* follow the standards.
+- *Keep PRs as small and as focused as possible.* Smaller PRs tend to be easier to understand and take less time to
+  review. Large PRs (many hundreds or thousands of lines) by their nature (of being large) tend to keep changing which
+  means reviewers have to revisit them over and over as they evolve. This isn't a tenable practice for project
+  maintainers. Break your work into multiple, smaller PRs and link these PRs together with comments in the description
+  so reviewers can follow the work more easily.
+- The above bullet paraphrased: *we would rather review ten ten-line PRs than one 100-line PR.*
+- *Be sure to follow all* :ref:`codebase_standards`. When reviewers have to spend time commenting on/correcting your PR
+  because you didn't name variables correctly or didn't prefix member variable accesses with ``this->``, it wastes time
+  we could be using to review other PRs which *do* follow the standards.
 - If you wish to take on a big project, such as refactoring a substantial section of the codebase or integrating
   another open source project with ESPHome, please discuss this with us on `Discord <https://discord.gg/KhAMKrd>`__ or
   `create a discussion on GitHub <https://github.com/esphome/esphome/discussions>`__ **before** you do all the work and
   attempt to submit a massive PR.
-- While we realize it's not *always* possible, avoid submitting PRs which are thousands of lines in size. Such PRs are
-  simply too complex and take excessive amounts of time to review. Break your work into multiple, smaller PRs to make
-  the changes more tenable for reviewers.
 - If you are not sure about how you should proceed with some changes, **please**
-  `discuss it with us on Discord <https://discord.gg/KhAMKrd>`__ before you go do a bunch of work that we can't (for
+  `discuss it with us on Discord <https://discord.gg/KhAMKrd>`__ *before* you go do a bunch of work that we can't (for
   whatever reason) accept...and then you have to go back and re-do it all to get your PR merged. It's easier to make
   corrections early-on -- and we want to help you!
+
+.. _can_i_help_review:
+
+Can I Help Review PRs?
+**********************
+
+**YES! PLEASE!!!**
+
+While only maintainers can *merge* PRs, we value feedback from the community and it *is considered* as we review them.
+Put another way, when a PR has several "This worked for me!" comments on it, we know that the author's work is doing
+what it's supposed to, even if some other, underlying aspects might still need some fine-tuning to be consistent with
+the rest of the codebase.
+
+Testing
+^^^^^^^
+
+Often, the easiest way to help review PRs is by testing. Many (but not all) PRs can be used as
+:doc:`/components/external_components` and can easily be added into your configuration for testing, like this:
+
+.. code-block:: yaml
+
+    external_components:
+      - source: github://pr#2639
+        components: [ rtttl ]
+
+...you just need to update the PR number and component name(s) in the YAML accordingly.
+
+If you test a PR, please *share your results by leaving a comment on the PR!* If it doesn't work, be sure to include
+any messages from the compiler and/or device logs so the author can troubleshoot the issue. *Comments which state no
+more than "it doesn't work" are not helpful!*
+
+Code Review
+^^^^^^^^^^^
+
+Beyond basic functionality (*"does it work?"*), here are a few other items we check for when reviewing PRs:
+
+- Are file names & paths appropriate for/consistent with the codebase?
+- Are namespace names consistent with the component/platform?
+- Do all ``#define`` macro names match the namespace?
+- Are all :ref:`codebase_standards` adhered to?
+- Are there any calls to ``delay()`` with a duration longer than 10 milliseconds?
+- Are any class methods doing work that they shouldn't be? For example, let's consider the ``dump_config()`` method:
+
+  - This method is intended to do **nothing** other than *print values* that were retrieved earlier (in ``setup()``).
+  - If this method has (for example) a ``this->read(...)`` call in it, it does not pass review and needs to be changed.
+
+- Is the component/platform doing *exactly what it's supposed to*? Consider the example of a new serial bus interface a
+  contributor has implemented:
+
+  - The author has implemented this component with an action called ``superbus.send``.
+  - The author has concerns about too much traffic on the bus, so they have implemented a check in this action which
+    blocks duplicate message transmissions on the bus. The effect is that, if ``superbus.send`` is called repeatedly
+    with the same message, only the first call will actually send the message on the bus.
+
+  This behavior is not consistent with what ESPHome users expect. If the action ``superbus.send`` is called, it should
+  *always* send the message, regardless of the content. If there are concerns about (in this example) bus
+  utilization, perhaps messages can be queued instead of dropped/ignored.
 
 .. _prs-are-being-drafted-when-changes-are-needed:
 
@@ -563,7 +622,7 @@ Note that you can use this procedure for other branches, too, such as ``next`` o
 
     Using ``git rebase`` will result in your changes having to be *force-pushed* back up to GitHub.
 
-    **Do not force-push** your branch once your PR is being reviewed; GitHub allows reviewers to mark files a "viewed"
+    **Do not force-push** your branch once your PR is being reviewed; GitHub allows reviewers to mark files as "viewed"
     and, when you force-push, this history **is lost**, forcing your reviewer to re-review files they may have already
     reviewed!
 
@@ -587,6 +646,8 @@ includes only the code needed to perform as defined in the configuration file.
 The C++ part of the codebase is what's actually running on the microcontroller; this is called the "runtime". This part
 of the codebase should first set up the communication interface to a sensor/component/etc. and then communicate with
 the ESPHome core via the defined interfaces (like ``Sensor``, ``BinarySensor`` and ``Switch``, among others).
+
+.. _directory_structure:
 
 Directory Structure
 *******************
@@ -683,6 +744,8 @@ A few notes on validation:
   obscure shorthand. As an example, ``scrn_btn_inpt`` is indeed shorter but more difficult to understand, particularly
   for new users; avoid naming keys and variables in this way.
 
+.. _code_generation:
+
 Code Generation
 ***************
 
@@ -723,6 +786,8 @@ Next, there's a special method - ``cg.add`` - that you will often use. ``cg.add(
 C++ declared in the parentheses of ``cg.add()`` will be added to the generated code. Note that, if you do not call
 "add" to insert a piece of code explicitly, it will not be added to the ``main.cpp`` file!
 
+.. _runtime:
+
 Runtime
 *******
 
@@ -750,6 +815,8 @@ the provided methods.
 
 Finally, your component must have a ``dump_config`` method that prints the complete user configuration.
 
+.. _delays_in_code:
+
 A Note About Delays in Code
 ***************************
 
@@ -770,6 +837,66 @@ it then attempts to read back the measurement from the sensor.
 
 For any :apiclass:`Component` (which is nearly everything), the well-known ``set_timeout`` method is also available;
 this can be a handy alternative to implemeting a state machine.
+
+.. _a_note_about_custom_components:
+
+A Note About Custom Components
+******************************
+
+*"I read that custom components are deprecated...so now what do I do???"*
+
+ESPHome's "custom component" mechanism is a holdover from Home Assistant's feature by the same name. It existed before
+:doc:`/components/external_components` and offered a way to "hack in" support for devices which were not officially
+supported by ESPHome.
+
+ESPHome has since deprecated this feature in favor of :doc:`/components/external_components` for several reasons:
+
+- Custom components are very fragile:
+
+  - There is no validation. You can easily configure a custom component incorrectly and there will be no warning.
+  - Types are not checked. You might incorrectly pass a variable of an incorrect type or unit to a custom component
+    resulting in compiler errors, unexpected behavior and/or crashes.
+  - Custom components are difficult to use. You have to manually copy all of the custom component's files into *just
+    the right location* on your system or else you will receive compiler errors and the component won't work.
+  - Custom components almost always require C++ code changes when you want them to work even *slightly* differently
+    than the original author intended.
+
+- :doc:`/components/external_components` initially require a bit more effort by the developer but are ultimately more
+  robust and easier to use and share:
+
+  - Just like any other ESPHome component/platform:
+  
+    - They are configured entirely in YAML.
+    - Their YAML configuration is validated.
+
+  - They do not require the user to:
+
+    - Manually copy files onto their system.
+    - Touch/edit any C++ code.
+
+  - They tend to be more flexible since they are configured in YAML (as opposed to editing C++ code to make changes).
+
+**So what is the difference between custom components and** :doc:`/components/external_components`?
+
+Custom components are typically (more or less) just the :ref:`runtime` part of an ESPHome component/platform. On the
+other hand, :doc:`/components/external_components` are just like any other ESPHome component -- the only difference is
+that they are *external* in the sense that they are not "officially" a part of ESPHome.
+
+In terms of implementation, custom components just lack the Python part of an ESPHome component, specifically:
+
+- :ref:`config_validation`
+- :ref:`code_generation`
+
+As such, most custom components can be made into :doc:`/components/external_components` simply by adding the required
+Python parts to make the custom component into a proper, complete ESPHome component.
+
+We encourage all custom component developers to extend their custom component(s) into proper
+:doc:`/components/external_components`; doing so will make your custom component easier to share and use. As you do so,
+be sure to have a look at the the :ref:`contributing_to_esphome` section above as it walks through ESPHome (component)
+architecture. In addition, it's often helpful to take a look at other, similar
+`components <https://github.com/esphome/esphome/tree/dev/esphome/components>`__ and adapt them to fit the needs of your
+custom component. For common hardware devices such as :doc:`sensors</components/sensor/index>`, this is often a
+reasonably trivial exercise and `we are happy to help you along! <https://discord.gg/KhAMKrd>`__
 
 Extras
 ******
@@ -818,8 +945,8 @@ ESPHome's maintainers work hard to maintain a high standard for its code. We try
 
 - Components should dump their configuration using ``ESP_LOGCONFIG`` at startup in ``dump_config()``.
 - ESPHome uses a unified formatting tool for all source files (but this tool can be difficult to install).
-  When creating a new PR in GitHub, see the Github Actions output to see what formatting needs to be changed
-  and what potential problems are detected.
+  When creating a new PR in GitHub, be sure to check the Github Actions output to see what formatting needs to be
+  changed and what potential problems are detected.
 - Use of external libraries should be kept to a minimum:
 
   - If the component you're developing has a simple communication interface, please consider implementing the library
@@ -834,6 +961,12 @@ ESPHome's maintainers work hard to maintain a high standard for its code. We try
 - Components **must** use the provided abstractions like ``sensor``, ``switch``, etc. Components specifically should
   **not** directly access other components -- for example, to publish to MQTT topics.
 - Implementations for new devices should contain reference links for the datasheet and other sample implementations.
+- If you have used ``delay()`` or constructed code which blocks for a duration longer than ten milliseconds, be sure to
+  read :ref:`delays_in_code`.
+- Comments in code should be used as appropriate, such as to help explain some complexity or to provide a brief summary
+  of what a class, method, etc. is doing. PRs which include large blocks of commented-out code will not be accepted.
+  Single lines of commented code may be useful from time to time (for example, to call out something which was
+  deliberately omitted for some reason) but should generally be avoided.
 - Please test your changes :)
 
 .. note::

@@ -509,11 +509,14 @@ Light
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     AS7341, components/sensor/as7341, as7341.jpg, Spectral Color Sensor
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
+    LTR301, components/sensor/ltr501, ltr501.jpg, Lux
     LTR303, components/sensor/ltr_als_ps, ltr303.jpg, Lux
     LTR329, components/sensor/ltr_als_ps, ltr329.jpg, Lux
     LTR390, components/sensor/ltr390, ltr390.jpg, Lux & UV
+    LTR501, components/sensor/ltr501, ltr501.jpg, Lux & Proximity
     LTR553, components/sensor/ltr_als_ps, ltr-ps.jpg, Lux & Proximity
     LTR556, components/sensor/ltr_als_ps, ltr-ps.jpg, Lux & Proximity
+    LTR558, components/sensor/ltr501, ltr501.jpg, Lux & Proximity
     LTR559, components/sensor/ltr_als_ps, ltr559.jpg, Lux & Proximity
     LTR659, components/sensor/ltr_als_ps, ltr-ps.jpg, Proximity
     MAX44009, components/sensor/max44009, max44009.svg, Lux
@@ -1125,7 +1128,7 @@ Miscellaneous Components
 Custom Components
 -----------------
 
-**Note: Custom Components are deprecated in favor of** :doc:`components/external_components`!
+**Note:** :ref:`Custom Components are deprecated<a_note_about_custom_components>` in favor of :doc:`components/external_components`!
 
 .. imgtable::
 
@@ -1152,6 +1155,7 @@ Cookbook
 .. imgtable::
 
     Lambda Magic: Tips and Tricks, cookbook/lambda_magic, head-lightbulb-outline.svg, dark-invert
+    LVGL Recipes, cookbook/lvgl, lvgl.png
     Garage Door Template Cover, cookbook/garage-door, garage-variant.svg, dark-invert
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg

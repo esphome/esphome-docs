@@ -40,7 +40,7 @@ The properties below are common to all widgets.
     - ``"ACTIVE"``: Show scroll bars while a widget is being scrolled.
     - ``"AUTO"``: Show scroll bars when the content is large enough to be scrolled (default).
 
-- **align** (*Optional*, dict): Alignment of the of the widget relative to the parent. A child widget is clipped to its parent boundaries. One of the values *not* starting with ``OUT_`` (see picture below).
+- **align** (*Optional*, enum): Alignment of the of the widget relative to the parent. A child widget is clipped to its parent boundaries. One of the values *not* starting with ``OUT_`` (see picture below).
 - **align_to** (*Optional*, list): Alignment of the of the widget relative to another widget on the same level:
     - **id** (**Required**): The ID of a widget *to* which you want to align.
     - **align** (**Required**, string): Desired alignment (one of the values starting with ``OUT_``).
@@ -83,6 +83,8 @@ To apply styles to the states, you need to specify them one level above, for exa
 
 The state itself can be can be changed by interacting with the widget, or through :ref:`actions <lvgl-automation-actions>` with ``lvgl.widget.update``.
 
+See :ref:`lvgl-cookbook-cover` for a cookbook example which demonstrates how to use styling and properties to show different states of a Home Assistant entity.
+
 .. _lvgl-widget-flags:
 
 In addition to visual styling, each widget supports some boolean **flags** to influence the behavior:
@@ -114,7 +116,41 @@ In addition to visual styling, each widget supports some boolean **flags** to in
 
 .. note::
 
-    LVGL only supports **integers** for numeric ``value``. Visualizer widgets can't display floats directly, but they allow scaling by 10s.
+    LVGL only supports **integers** for numeric ``value``. Visualizer widgets can't display floats directly, but they allow scaling by 10s. Some examples in the :doc:`Cookbook </cookbook/lvgl>` cover how to do that.
+
+.. _lvgl-widget-parts:
+
+Widget parts
+------------
+
+Widgets can have multiple parts, each of which can be styled independently. For example, a checkbox has a *main* part that styles the background and text label, and an *indicator* part that styles the tick box. All widgets have a *main* part, the available parts for other widgets are specified in the widget description.
+
+The possible parts are:
+
+- **main** (*Optional*, dict): The main part of the widget, i.e. the background. Any style properties applied at the top level of the widget are assumed to apply to this part, but may also be specified under the *main* config key.
+- **scrollbar** (*Optional*, dict): The scrollbar styles.
+- **indicator** (*Optional*, dict): The indicator part of the widget. The indicator part may be used to show tick boxes or other visual indicators in slider, bar or arc.
+- **knob** (*Optional*, dict): The knob part of the widget e.g. a draggable item in slider, bar or arc.
+- **selected** (*Optional*, dict): The currently selected part of the widget, e.g. text or the selected item in a roller.
+- **items** (*Optional*, dict): The items part of the widget, e.g. the items in a roller.
+- **ticks** (*Optional*, dict): Ticks on scales for a meter.
+- **cursor** (*Optional*, dict): The cursor part of the widget, e.g. the cursor in a spinbox.
+
+.. code-block:: yaml
+
+    # Example slider with knob and indicator styling
+    - slider:
+        # main (background) styles
+        bg_opa: cover
+        bg_grad: color_bar
+        radius: 0
+        indicator:
+          bg_opa: transp    # Makes the indicator part invisible
+        knob:
+          radius: 1
+          width: 4
+          height: 10%
+          bg_color: 0x000000
 
 Widget-specific properties
 --------------------------
@@ -230,6 +266,8 @@ The animation image is similar to the normal ``image`` widget. The main differen
             repeat_count: 100
             duration: 300ms
 
+See :ref:`lvgl-cookbook-animbatt` in the Cookbook for a more detailed example.
+
 .. _lvgl-widget-arc:
 
 ``arc``
@@ -311,7 +349,9 @@ If the ``adv_hittest`` :ref:`flag <lvgl-widget-flags>` is enabled the arc can be
 
     The ``on_value`` trigger is sent as the arc knob is dragged or changed with keys. The event is sent *continuously* while the arc knob is being dragged; this generally has a negative effect on performance. To mitigate this, consider using a :ref:`universal interaction trigger <lvgl-automation-triggers>` like ``on_release``, to get the ``x`` variable once after the interaction has completed.
 
-The ``arc`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
+The ``arc`` can be also integrated as a :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
+
+See :ref:`lvgl-cookbook-bright` and :ref:`lvgl-cookbook-volume` for examples which demonstrate how to use a slider (or an arc) to control entities in Home Assistant.
 
 .. _lvgl-widget-bar:
 
@@ -431,6 +471,8 @@ To have a button with a text label on it, add a child :ref:`lvgl-widget-label` w
                 args: [ x ]
 
 The ``button`` can be also integrated as a :doc:`Binary Sensor </components/binary_sensor/lvgl>` or as a :doc:`Switch </components/switch/lvgl>` component.
+
+See :ref:`lvgl-cookbook-binent` for an example which demonstrates how to use a checkable button to act on a Home Assistant service.
 
 .. _lvgl-widget-buttonmatrix:
 
@@ -562,7 +604,7 @@ The button matrix widget is a lightweight way to display multiple buttons in row
 
 .. tip::
 
-    The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations.
+    The Button Matrix widget supports the :ref:`key_collector` to collect the button presses as key press sequences for further automations. Check out :ref:`lvgl-cookbook-keypad` for an example.
 
 .. _lvgl-widget-checkbox:
 
@@ -622,7 +664,7 @@ The checkbox widget is made internally from a *tick box* and a label. When the c
 
 .. note::
 
-    In case you configure ``default_font`` in the main section to a custom font, the checkmark will not be shown correctly when the checkbox is in the checked state.
+    In case you configure ``default_font`` in the main section to a custom font, the checkmark will not be shown correctly when the checkbox is in the checked state. See :ref:`lvgl-cookbook-ckboxmark` for how to easily resolve this.
 
 The ``checkbox`` can be also integrated as a :doc:`Switch </components/switch/lvgl>` component.
 
@@ -776,8 +818,8 @@ For styling, the ``keyboard`` widget uses the same settings as :ref:`lvgl-widget
 
 **Configuration variables:**
 
-- **textarea** (*Optional*): The ID of the ``textarea`` from which to receive the keystrokes.
-- **mode** (*Optional*, dict): Keyboard layout to use. Each ``TEXT_`` layout contains a button to allow the user to iterate through the ``TEXT_`` layouts.
+- **textarea** (*Optional*): The ID of a ``textarea`` to associate with the keyboard. If provided, all key entries are recorded in the ``textarea``.
+- **mode** (*Optional*, enum): Keyboard layout to use. Each ``TEXT_`` layout contains a button to allow the user to iterate through the ``TEXT_`` layouts.
     - ``TEXT_LOWER``: Display lower case letters (default).
     - ``TEXT_UPPER``: Display upper case letters.
     - ``TEXT_SPECIAL``: Display special characters.
@@ -785,9 +827,9 @@ For styling, the ``keyboard`` widget uses the same settings as :ref:`lvgl-widget
 
 **Actions:**
 
-- ``lvgl.keyboard.update`` :ref:`action <actions-action>` updates the widget styles and properties from the specific options above, just like the :ref:`lvgl.widget.update <lvgl-automation-actions>` action is used for the common styles, states or flags.
-    - **id** (**Required**): The ID or a list of IDs of keyboard widgets which you want update.
-    - Widget styles or properties from the specific options above, which you want update.
+- ``lvgl.keyboard.update`` :ref:`action <actions-action>` updates the properties from the specific options above, plus any from :ref:`lvgl.widget.update <lvgl-automation-actions>`.
+    - **id** (**Required**): The ID or a list of IDs of keyboard widgets which you want to update.
+    - Styles or properties to be updated.
 
 **Triggers:**
 
@@ -851,7 +893,7 @@ A label is the basic widget type that is used to display text.
 - **recolor** (*Optional*, boolean): Enable recoloring of button text with ``#``. This makes it possible to set the color of characters in the text individually by prefixing the text to be re-colored with a ``#RRGGBB`` hexadecimal color code followed by a *space*, and finally closed with a single hash ``#`` tag. For example: ``Write a #FF0000 red# word``.
 - **scrollbar** (*Optional*, list): Settings for the indicator *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The scroll bar that is shown when the text is larger than the widget's size.
 - **selected** (*Optional*, list): Settings for the the style of the selected text. Only ``text_color`` and ``bg_color`` style properties can be used.
-- **text_align** (*Optional*, dict): Alignment of the text in the widget - it doesn't align the object itself, only the lines inside the object. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``. Inherited from parent. Defaults to ``AUTO``, which detects the text base direction and uses left or right alignment accordingly.
+- **text_align** (*Optional*, enum): Alignment of the text in the widget - it doesn't align the object itself, only the lines inside the object. One of ``LEFT``, ``CENTER``, ``RIGHT``, ``AUTO``. Inherited from parent. Defaults to ``AUTO``, which detects the text base direction and uses left or right alignment accordingly.
 - **text_color** (*Optional*, :ref:`color <lvgl-color>`): Color to render the text in. Inherited from parent. Defaults to ``0`` (black).
 - **text_decor** (*Optional*, list): Choose decorations for the text: ``NONE``, ``UNDERLINE``, ``STRIKETHROUGH`` (multiple can be specified as YAML list). Inherited from parent. Defaults to ``NONE``.
 - **text_font**: (*Optional*, :ref:`font <lvgl-fonts>`):  The ID of the font used to render the text or symbol. Inherited from parent.
@@ -954,6 +996,8 @@ The ``led`` can be also integrated as :doc:`Light </components/light/lvgl>` comp
 
     If configured as a light component, ``color`` and ``brightness`` are overridden by the light at startup, according to its ``restore_mode`` setting.
 
+Check out :ref:`lvgl-cookbook-keypad` in the Cookbook for an example which demonstrates how to change the ``led`` styling properties from an automation.
+
 .. _lvgl-widget-line:
 
 ``line``
@@ -1050,6 +1094,9 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
             - **width**: Tick line width in pixels. Defaults to ``5``.
         - Style options from :ref:`lvgl-styling` for the tick *lines* and *labels* using the :ref:`lvgl-widget-line` and :ref:`lvgl-widget-label` text style properties.
 - Style options from :ref:`lvgl-styling` for the background of the meter, using the typical background properties.
+- **ticks** (*Optional*, dict): Styling options for the ticks *part*, which will be applied to the tick lines and labels using standard *line* and *label* styles.
+- **indicator** (*Optional*, dict): Styling options for the indicator *part*, which will be applied to the needle line or image using standard *line* and *image* styles.
+- **items** (*Optional*, dict): Settings for the items *part*, which will be applied to arcs.
 
 .. note::
 
@@ -1102,6 +1149,8 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
             id: temperature_needle
             value: 3
 
+See :ref:`lvgl-cookbook-gauge`, :ref:`lvgl-cookbook-thermometer` and :ref:`lvgl-cookbook-clock` in the Cookbook for examples which demonstrate how to effectively use this widget.
+
 .. _lvgl-widget-msgbox:
 
 ``msgboxes``
@@ -1116,7 +1165,7 @@ The text will be broken into multiple lines automatically and the height will be
 
 **Configuration variables:**
 
-- **msgboxes** (*Optional*, dict): A list of message boxes to use. This option has to be added to the top level of the LVGL component configuration.
+- **msgboxes** (*Optional*, list): A list of message boxes to use. This option is available only at the top level of the LVGL component configuration. Each list entry may have the following options:
     - **title** (**Required**, string): A string to display at the top of the message box.
     - **body** (*Optional*, dict): The content of the body of the message box:
         - **text** (*Optional*, :ref:`text-property`): The text to display in the body of the message box.
@@ -1129,7 +1178,7 @@ The text will be broken into multiple lines automatically and the height will be
 
 **Actions:**
 
-The configured message boxes are hidden by default. One can show them with ``lvgl.widget.show`` and ``lvgl.widget.hide`` :ref:`actions <lvgl-automation-shorthands>`.
+The configured message boxes are hidden by default. They can be shown and hidden using ``lvgl.widget.show`` and ``lvgl.widget.hide`` respectively :ref:`actions <lvgl-automation-shorthands>`.
 
 **Example:**
 
@@ -1204,7 +1253,7 @@ Roller allows you to simply select one option from a list by scrolling.
 **Configuration variables:**
 
 - **anim_time** (*Optional*, :ref:`Time <config-time>`): When the Roller is scrolled and doesn't stop exactly on an option it will scroll to the nearest valid option automatically in this amount of time.
-- **mode** (*Optional*, dict): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
+- **mode** (*Optional*, enum): Option to make the roller circular. ``NORMAL`` or ``INFINITE``, defaults to ``NORMAL``.
 - **options** (**Required**, list): The list of available options in the roller.
 - **selected_index** (*Optional*, int8): The index of the item you wish to be selected.
 - **selected** (*Optional*, list): Settings for the selected *part* to show the value. Supports a list of :ref:`styles <lvgl-styling>` and state-based styles to customize. The selected option in the middle. Besides the typical background properties it uses the :ref:`lvgl-widget-label` text style properties to change the appearance of the text in the selected area.
@@ -1325,6 +1374,8 @@ Normally, the slider can be adjusted either by dragging the knob, or by clicking
 
 The ``slider`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
 
+See :ref:`lvgl-cookbook-bright` and :ref:`lvgl-cookbook-volume` for examples which demonstrate how to use a slider to control entities in Home Assistant.
+
 .. _lvgl-widget-spinbox:
 
 ``spinbox``
@@ -1400,7 +1451,9 @@ The spinbox contains a numeric value (as text) which can be increased or decreas
                 format: "Spinbox value is %f"
                 args: [ x ]
 
-The ``spinbox`` can be also integrated as :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
+The ``spinbox`` can be also integrated as a :doc:`Number </components/number/lvgl>` or :doc:`Sensor </components/sensor/lvgl>` component.
+
+See :ref:`lvgl-cookbook-climate` for an example which demonstrates how to implement a thermostat control using the spinbox.
 
 .. _lvgl-widget-spinner:
 
@@ -1494,6 +1547,8 @@ The switch looks like a little slider and can be used to turn something on and o
 
 The ``switch`` can be also integrated as a :doc:`Switch </components/switch/lvgl>` component.
 
+See :ref:`lvgl-cookbook-relay` for an example which demonstrates how to use a switch to act on a local component.
+
 .. _lvgl-widget-tabview:
 
 ``tabview``
@@ -1508,14 +1563,14 @@ The tabs are indexed (zero-based) in the order they appear in the configuration 
 
 **Configuration variables:**
 
-- **position** (*Optional*, string): Position of the tab selector buttons. One of ``TOP``, ``BOTTOM``, ``LEFT``, ``RIGHT``. Defaults to ``TOP``.
+- **position** (*Optional*, enum): Position of the tab selector buttons. One of ``TOP``, ``BOTTOM``, ``LEFT``, ``RIGHT``. Defaults to ``TOP``.
 - **size** (*Optional*, percentage): The height (in case of ``TOP``, ``BOTTOM``) or width (in case of ``LEFT``, ``RIGHT``) tab buttons. Defaults to ``10%``.
 - **tabs** (**Required**, list): A list with (any number of) tabs to be added to tabview.
     - **name** (**Required**): The text to be shown on the button corresponding to the tab.
     - **id** (*Optional*): An ID for the tab itself.
     - **widgets** (**Required**, list): A list of :doc:`/components/lvgl/widgets` to be drawn on the tab, as children.
 - **tab_style** (*Optional*): Style settings for the tabs.
-    - **items** (*Optional*, list): Settings for the items *part*, the buttons all use the text and typical background style properties except translations and transformations.
+    - **items** (*Optional*, dict): Settings for the items *part*, the buttons all use the text and typical background style properties except translations and transformations.
 
 **Actions:**
 
@@ -1744,6 +1799,7 @@ This powerful :ref:`action <actions-action>` allows changing/updating any widget
             id: my_label_id
             hidden: true
 
+Check out in the Cookbook :ref:`lvgl-cookbook-binent` for an example which demonstrates how to use a template to update the state.
 
 .. _lvgl-automation-shorthands:
 
