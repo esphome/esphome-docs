@@ -33,22 +33,22 @@ in which case this is not needed.
 Configuration variables:
 ------------------------
 
-- **broker** (**Required**, string): The host of your MQTT broker.
-- **port** (*Optional*, int): The port to connect to. Defaults to 1883.
-- **username** (*Optional*, string): The username to use for
+- **broker** (**Required**, string, :ref:`templatable <config-templatable>`): The host of your MQTT broker.
+- **port** (*Optional*, int, :ref:`templatable <config-templatable>`): The port to connect to. Defaults to 1883.
+- **username** (*Optional*, string, :ref:`templatable <config-templatable>`): The username to use for
   authentication. Empty (the default) means no authentication.
-- **password** (*Optional*, string): The password to use for
+- **password** (*Optional*, string, :ref:`templatable <config-templatable>`): The password to use for
   authentication. Empty (the default) means no authentication.
-- **client_id** (*Optional*, string): The client id to use for opening
+- **client_id** (*Optional*, string, :ref:`templatable <config-templatable>`): The client id to use for opening
   connections. See :ref:`mqtt-defaults` for more information.
-- **discover_ip** (*Optional*, boolean): If Home Assistant automatic device
+- **discover_ip** (*Optional*, boolean, :ref:`templatable <config-templatable>`): If Home Assistant automatic device
   discovery should be enabled. Defaults to ``true``.
-- **discovery** (*Optional*, boolean): If Home Assistant automatic entity
+- **discovery** (*Optional*, boolean, :ref:`templatable <config-templatable>`): If Home Assistant automatic entity
   discovery should be enabled. Defaults to ``true``.
-- **discovery_retain** (*Optional*, boolean): Whether to retain MQTT
+- **discovery_retain** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Whether to retain MQTT
   discovery messages so that entities are added automatically on Home
   Assistant restart. Defaults to ``true``.
-- **discovery_prefix** (*Optional*, string): The prefix to use for Home
+- **discovery_prefix** (*Optional*, string, :ref:`templatable <config-templatable>`): The prefix to use for Home
   Assistant’s MQTT discovery. Should not contain trailing slash.
   Defaults to ``homeassistant``.
 - **discovery_unique_id_generator** (*Optional*, string): The unique_id generator
