@@ -39,10 +39,8 @@ Configuration variables:
 - **identify_duration** (*Optional*, :ref:`config-time`): The amount of time to identify for. Defaults to ``10s``.
 - **wifi_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before starting the Improv service
   after Wi-Fi is no longer connected. Defaults to ``1min``.
-- **on_authorized** (*Optional*, :ref:`Automation<automation>`): An action to be performed upon authorization. See
-  :ref:`improv-on_authorized`.
-- **on_awaiting_authorization** (*Optional*, :ref:`Automation<automation>`): An action to be performed when Improv is
-  waiting for authorization. See :ref:`improv-on_awaiting_authorization`.
+- **on_start** (*Optional*, :ref:`Automation<automation>`): An action to be performed when Improv is
+  waiting for authorization and/or upon authorization. See :ref:`improv-on_start`.
 - **on_provisioned** (*Optional*, :ref:`Automation<automation>`): An action to be performed when provisioning has
   completed. See :ref:`improv-on_provisioned`.
 - **on_provisioning** (*Optional*, :ref:`Automation<automation>`): An action to be performed when the device begins the
@@ -60,35 +58,20 @@ Improv Automations
 The ESP32 Improv component provides various :ref:`automations <automation>` that can be used to provide feedback during
 the Improv provisioning process.
 
-.. _improv-on_authorized:
+.. _improv-on_start:
 
-``on_authorized``
-*****************
-
-This automation will be triggered upon authorization (usually by pressing a button on the device, if configured -- see
-``authorizer`` above).
-
-.. code-block:: yaml
-
-    esp32_improv:
-      on_authorized:
-        then:
-          - logger.log: "Improv authorized"
-
-.. _improv-on_awaiting_authorization:
-
-``on_awaiting_authorization``
-*****************************
+``on_start``
+************
 
 This automation will be triggered when the device is waiting for authorization (usually by pressing a button on the
-device, if configured -- see ``authorizer`` above).
+device, if configured -- see ``authorizer`` above) and/or upon authorization.
 
 .. code-block:: yaml
 
     esp32_improv:
-      on_awaiting_authorization:
+      on_start:
         then:
-          - logger.log: "Improv awaiting authorization"
+          - logger.log: "Improv awaiting authorization/authorized"
 
 .. _improv-on_provisioned:
 
