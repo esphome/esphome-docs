@@ -60,6 +60,9 @@ Configuration variables:
 - **wake_up_page** (*Optional*, int): Sets the page to display after waking up
 - **auto_wake_on_touch** (*Optional*, boolean): Sets if Nextion should auto-wake from sleep when touch press occurs.
 - **exit_reparse_on_start** (*Optional*, boolean): Request the Nextion exit Active Reparse Mode before setup of the display. Defaults to ``false``.
+- **skip_connection_handshake** (*Optional*, boolean): Sets whether the initial display connection handshake process is skipped.
+  When set to ``true``, the connection will be established without performing the handshake. This can be useful when using Nextion Simulator.
+  Defaults to ``false``.
 - **on_setup** (*Optional*, :ref:`Action <config-action>`): An action to be performed after ESPHome connects to the Nextion. See :ref:`Nextion Automation <nextion-on_setup>`.
 - **on_sleep** (*Optional*, :ref:`Action <config-action>`): An action to be performed when the Nextion goes to sleep. See :ref:`Nextion Automation <nextion-on_sleep>`.
 - **on_wake** (*Optional*, :ref:`Action <config-action>`): An action to be performed when the Nextion wakes up. See :ref:`Nextion Automation <nextion-on_sleep>`.
