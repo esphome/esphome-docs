@@ -85,15 +85,15 @@ Nested tabs example:
 
             .. tab:: The Sun
 
-            The closest star to us.
+                The closest star to us.
 
             .. tab:: Proxima Centauri
 
-            The second closest star to us.
+                The second closest star to us.
 
             .. tab:: Polaris
 
-            The North Star.
+                The North Star.
 
     .. tab:: Moons
 
@@ -101,11 +101,11 @@ Nested tabs example:
 
             .. tab:: The Moon
 
-            Orbits the Earth
+                Orbits the Earth
 
             .. tab:: Titan
 
-            Orbits Jupiter
+                Orbits Jupiter
 
 Group tabs example:
 
