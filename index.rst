@@ -64,15 +64,15 @@ Basic tabs example:
 
     .. tab:: Apples
 
-      Apples are green, or sometimes red.
+        Apples are green, or sometimes red.
 
     .. tab:: Pears
 
-      Pears are green.
+        Pears are green.
 
     .. tab:: Oranges
 
-      Oranges are orange.
+        Oranges are orange.
 Nested tabs example:
 .. tabs::
 
@@ -109,102 +109,102 @@ Group tabs example:
 
     .. group-tab:: Linux
 
-      Linux tab content - tab set 1
+        Linux tab content - tab set 1
 
     .. group-tab:: Mac OSX
 
-      Mac OSX tab content - tab set 1
+        Mac OSX tab content - tab set 1
 
     .. group-tab:: Windows
 
-      Windows tab content - tab set 1
+        Windows tab content - tab set 1
 
 .. tabs::
 
     .. group-tab:: Linux
 
-      Linux tab content - tab set 2
+        Linux tab content - tab set 2
 
     .. group-tab:: Mac OSX
 
-      Mac OSX tab content - tab set 2
+        Mac OSX tab content - tab set 2
 
     .. group-tab:: Windows
 
-      Windows tab content - tab set 2
+        Windows tab content - tab set 2
 
 Code tabs example:
 .. tabs::
 
     .. code-tab:: c
 
-         C Main Function
+        C Main Function
 
     .. code-tab:: c++
 
-         C++ Main Function
+        C++ Main Function
 
     .. code-tab:: py
 
-         Python Main Function
+        Python Main Function
 
     .. code-tab:: java
 
-         Java Main Function
+        Java Main Function
 
     .. code-tab:: julia
 
-         Julia Main Function
+        Julia Main Function
 
     .. code-tab:: fortran
 
-         Fortran Main Function
+        Fortran Main Function
 
     .. code-tab:: r R
 
-         R Main Function
+        R Main Function
 
 .. tabs::
 
     .. code-tab:: c
 
-         int main(const int argc, const char **argv) {
-         return 0;
-         }
+        int main(const int argc, const char **argv) {
+        return 0;
+        }
 
     .. code-tab:: c++
 
-         int main(const int argc, const char **argv) {
-         return 0;
-         }
+        int main(const int argc, const char **argv) {
+        return 0;
+        }
 
     .. code-tab:: py
 
-         def main():
+        def main():
             return
 
     .. code-tab:: java
 
-         class Main {
+        class Main {
             public static void main(String[] args) {
             }
-         }
+        }
 
     .. code-tab:: julia
 
-         function main()
-         end
+        function main()
+        end
 
     .. code-tab:: fortran
 
-         PROGRAM main
-         END PROGRAM main
+        PROGRAM main
+        END PROGRAM main
 
     .. code-tab:: r R
 
-         main <- function() {
+        main <- function() {
             return(0)
-         }
+        }
 
 
 
