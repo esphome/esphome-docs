@@ -70,6 +70,7 @@ Nested tabs example:
 
    .. tab:: Stars
       .. tabs::
+
          .. tab:: The Sun
             The closest star to us.
          .. tab:: Proxima Centauri
@@ -78,6 +79,7 @@ Nested tabs example:
             The North Star.
    .. tab:: Moons
       .. tabs::
+
          .. tab:: The Moon
             Orbits the Earth
          .. tab:: Titan
