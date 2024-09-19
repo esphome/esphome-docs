@@ -60,6 +60,7 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
 [Tabs documentation](https://sphinx-tabs.readthedocs.io/en/latest/)
 
 Basic tabs example:
+
 .. tabs::
 
     .. tab:: Apples
@@ -75,6 +76,7 @@ Basic tabs example:
         Oranges are orange.
 
 Nested tabs example:
+
 .. tabs::
 
     .. tab:: Stars
@@ -106,6 +108,7 @@ Nested tabs example:
             Orbits Jupiter
 
 Group tabs example:
+
 .. tabs::
 
     .. group-tab:: Linux
@@ -135,6 +138,7 @@ Group tabs example:
         Windows tab content - tab set 2
 
 Code tabs example:
+
 .. tabs::
 
     .. code-tab:: c
