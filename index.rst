@@ -57,6 +57,7 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
 
 Simple tabs example:
 .. tabs::
+
    .. tab:: Apples
       Apples are green, or sometimes red.
    .. tab:: Pears
@@ -66,6 +67,7 @@ Simple tabs example:
 
 Nested tabs example:
 .. tabs::
+
    .. tab:: Stars
       .. tabs::
          .. tab:: The Sun
@@ -83,6 +85,7 @@ Nested tabs example:
 
 Group tabs example:
 .. tabs::
+
    .. group-tab:: Linux
       Linux tab content - tab set 1
    .. group-tab:: Mac OSX
@@ -91,6 +94,7 @@ Group tabs example:
       Windows tab content - tab set 1
 This tab list will auto-select it's tab based on the previous tab list
 .. tabs::
+
    .. group-tab:: Linux
       Linux tab content - tab set 2
    .. group-tab:: Mac OSX
@@ -100,6 +104,7 @@ This tab list will auto-select it's tab based on the previous tab list
 
 Code tabs example:
 .. tabs::
+
    .. code-tab:: c
          C Main Function
    .. code-tab:: c++
@@ -115,6 +120,7 @@ Code tabs example:
    .. code-tab:: r R
          R Main Function
 .. tabs::
+
    .. code-tab:: c
          int main(const int argc, const char **argv) {
          return 0;
