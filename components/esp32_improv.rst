@@ -45,8 +45,8 @@ Configuration variables:
   completed. See :ref:`improv-on_provisioned`.
 - **on_provisioning** (*Optional*, :ref:`Automation<automation>`): An action to be performed when the device begins the
   provisioning process. See :ref:`improv-on_provisioning`.
-- **on_stopped** (*Optional*, :ref:`Automation<automation>`): An action to be performed when Improv has stopped.
-  See :ref:`improv-on_stopped`.
+- **on_stop** (*Optional*, :ref:`Automation<automation>`): An action to be performed when Improv has stopped.
+  See :ref:`improv-on_stop`.
 - **on_state** (*Optional*, :ref:`Automation<automation>`): An action to be performed when an Improv state change
   happens. See :ref:`improv-on_state`.
 
@@ -101,17 +101,17 @@ This automation will be triggered when provisioning begins.
         then:
           - logger.log: "Improv provisioning"
 
-.. _improv-on_stopped:
+.. _improv-on_stop:
 
-``on_stopped``
-**************
+``on_stop``
+***********
 
 This automation will be triggered when Improv has stopped.
 
 .. code-block:: yaml
 
     esp32_improv:
-      on_stopped:
+      on_stop:
         then:
           - logger.log: "Improv stopped"
 
@@ -120,23 +120,26 @@ This automation will be triggered when Improv has stopped.
 ``on_state``
 ************
 
-This automation will be triggered on every state change. You can get the actual state with variable ``state``, which
-will contain one of values for the ``improv::State`` enum. These values are:
+This automation will be triggered on every state change.
 
--  ``improv::STATE_STOPPED``
--  ``improv::STATE_AWAITING_AUTHORIZATION``
--  ``improv::STATE_AUTHORIZED``
--  ``improv::STATE_PROVISIONING``
--  ``improv::STATE_PROVISIONED``
+Two variables are available for use in :ref:`lambdas<config-lambda>` within this automation. They are:
 
-A second variable, ``error``, is also available, which may indicate the Improv error state, if any. It will be one of:
+- ``state``, an ``enum`` named ``improv::State``, having one of the following values:
 
--  ``improv::ERROR_NONE``
--  ``improv::ERROR_INVALID_RPC``
--  ``improv::ERROR_UNKNOWN_RPC``
--  ``improv::ERROR_UNABLE_TO_CONNECT``
--  ``improv::ERROR_NOT_AUTHORIZED``
--  ``improv::ERROR_UNKNOWN``
+  -  ``improv::STATE_STOPPED``
+  -  ``improv::STATE_AWAITING_AUTHORIZATION``
+  -  ``improv::STATE_AUTHORIZED``
+  -  ``improv::STATE_PROVISIONING``
+  -  ``improv::STATE_PROVISIONED``
+
+- ``error``, an ``enum`` named ``improv::Error``, having one of the following values:
+
+  -  ``improv::ERROR_NONE``
+  -  ``improv::ERROR_INVALID_RPC``
+  -  ``improv::ERROR_UNKNOWN_RPC``
+  -  ``improv::ERROR_UNABLE_TO_CONNECT``
+  -  ``improv::ERROR_NOT_AUTHORIZED``
+  -  ``improv::ERROR_UNKNOWN``
 
 .. code-block:: yaml
 
