@@ -21,7 +21,6 @@ not work.
     # Example configuration entry
     tca9555:
       - id: 'TCA9555_hub'
-        address: 0x21
 
     # Individual outputs
     switch:
@@ -31,10 +30,6 @@ not work.
           tca9555: tca9555_hub
           # Use pin number 0
           number: 0
-          # One of INPUT or OUTPUT
-          mode:
-            output: true
-          inverted: false
 
 Configuration variables:
 ************************
