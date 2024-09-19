@@ -44,7 +44,7 @@ Configuration variables:
 - **i2s_audio_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`I²S Audio <i2s_audio>` you wish to use for this speaker.
 - **i2s_comm_fmt** (*Optional*, enum): The I²S communication standard format used by this speaker.
 
-  - ``stand_i2s``
+  - ``stand_i2s`` (Default)
   - ``stand_msb``
   - ``stand_pcm_short``
   - ``stand_pcm_long``
