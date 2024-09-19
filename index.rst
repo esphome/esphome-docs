@@ -73,6 +73,7 @@ Basic tabs example:
     .. tab:: Oranges
 
         Oranges are orange.
+
 Nested tabs example:
 .. tabs::
 
