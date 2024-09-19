@@ -19,7 +19,7 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
 ..
    ========= REMOVE BEFORE MERGE ============
 
-[Collapse documentation]()
+[Collapse documentation](https://sphinx-toolbox.readthedocs.io/en/stable/extensions/collapse.html)
 
 .. collapse:: Details
     Something small enough to escape casual notice.
