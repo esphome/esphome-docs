@@ -62,145 +62,145 @@ ESPHome is a system to control your microcontrollers by simple yet powerful conf
 Basic tabs example:
 .. tabs::
 
-   .. tab:: Apples
+    .. tab:: Apples
 
       Apples are green, or sometimes red.
 
-   .. tab:: Pears
+    .. tab:: Pears
 
       Pears are green.
 
-   .. tab:: Oranges
+    .. tab:: Oranges
 
       Oranges are orange.
 Nested tabs example:
 .. tabs::
 
-   .. tab:: Stars
+    .. tab:: Stars
 
-      .. tabs::
+        .. tabs::
 
-         .. tab:: The Sun
+            .. tab:: The Sun
 
             The closest star to us.
 
-         .. tab:: Proxima Centauri
+            .. tab:: Proxima Centauri
 
             The second closest star to us.
 
-         .. tab:: Polaris
+            .. tab:: Polaris
 
             The North Star.
 
-   .. tab:: Moons
+    .. tab:: Moons
 
-      .. tabs::
+        .. tabs::
 
-         .. tab:: The Moon
+            .. tab:: The Moon
 
             Orbits the Earth
 
-         .. tab:: Titan
+            .. tab:: Titan
 
             Orbits Jupiter
 
 Group tabs example:
 .. tabs::
 
-   .. group-tab:: Linux
+    .. group-tab:: Linux
 
       Linux tab content - tab set 1
 
-   .. group-tab:: Mac OSX
+    .. group-tab:: Mac OSX
 
       Mac OSX tab content - tab set 1
 
-   .. group-tab:: Windows
+    .. group-tab:: Windows
 
       Windows tab content - tab set 1
 
 .. tabs::
 
-   .. group-tab:: Linux
+    .. group-tab:: Linux
 
       Linux tab content - tab set 2
 
-   .. group-tab:: Mac OSX
+    .. group-tab:: Mac OSX
 
       Mac OSX tab content - tab set 2
 
-   .. group-tab:: Windows
+    .. group-tab:: Windows
 
       Windows tab content - tab set 2
 
 Code tabs example:
 .. tabs::
 
-   .. code-tab:: c
+    .. code-tab:: c
 
          C Main Function
 
-   .. code-tab:: c++
+    .. code-tab:: c++
 
          C++ Main Function
 
-   .. code-tab:: py
+    .. code-tab:: py
 
          Python Main Function
 
-   .. code-tab:: java
+    .. code-tab:: java
 
          Java Main Function
 
-   .. code-tab:: julia
+    .. code-tab:: julia
 
          Julia Main Function
 
-   .. code-tab:: fortran
+    .. code-tab:: fortran
 
          Fortran Main Function
 
-   .. code-tab:: r R
+    .. code-tab:: r R
 
          R Main Function
 
 .. tabs::
 
-   .. code-tab:: c
+    .. code-tab:: c
 
          int main(const int argc, const char **argv) {
          return 0;
          }
 
-   .. code-tab:: c++
+    .. code-tab:: c++
 
          int main(const int argc, const char **argv) {
          return 0;
          }
 
-   .. code-tab:: py
+    .. code-tab:: py
 
          def main():
             return
 
-   .. code-tab:: java
+    .. code-tab:: java
 
          class Main {
             public static void main(String[] args) {
             }
          }
 
-   .. code-tab:: julia
+    .. code-tab:: julia
 
          function main()
          end
 
-   .. code-tab:: fortran
+    .. code-tab:: fortran
 
          PROGRAM main
          END PROGRAM main
 
-   .. code-tab:: r R
+    .. code-tab:: r R
 
          main <- function() {
             return(0)
