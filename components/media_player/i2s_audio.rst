@@ -8,6 +8,9 @@ I²S Audio Media Player
 The ``i2s_audio`` media player platform allows you to play media from webservers and web streams
 via the :doc:`/components/i2s_audio`. This platform only works on ESP32 based chips.
 
+Component has the following optional traits:
+* supports pause
+
 .. code-block:: yaml
 
     # Example configuration entry
