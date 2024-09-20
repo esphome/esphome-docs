@@ -22,6 +22,20 @@ Configuration variables:
 - **entity_id** (**Required**, string): The entity ID to import / control from Home Assistant.
 - All other options from :ref:`Switch <config-switch>`.
 
+Supported domains
+-----------------
+
+The following entity domains from Home Assistant are supported by this platform.
+
+- ``automation``
+- ``fan``
+- ``humidifier``
+- ``input_boolean``
+- ``light``
+- ``remote``
+- ``siren``
+- ``switch``
+
 See Also
 --------
 
