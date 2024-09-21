@@ -45,6 +45,7 @@ Configuration variables:
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Chip Select pin of the SPI interface.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 - **mains_filter** (*Optional*, string): The mains power frequency to reject (``50 Hz`` or ``60 Hz``). Defaults to ``60 Hz``.
+- **thermocouple_type** (*Optional*, string): The type of thermocouple used. MAX31856 supports: B, E, J, K, N, R, S, and T . Defaults to ``K``.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want to use multiple SPI buses.
 - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -52,7 +53,6 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`dallas`
 - :doc:`dht`
 - :doc:`adc`
 - :doc:`max6675`
