@@ -213,7 +213,7 @@ This trigger is activated every time the media player finishes playing.
 ``media_player.on_announcement`` Trigger
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This trigger is activated every time the media player is announcing.
+This trigger is activated every time the media player plays an announcement.
 
 .. code-block:: yaml
 
