@@ -48,17 +48,19 @@ Configuration variables:
 
     .. code-block:: yaml
 
-        # Example configuration entry
-        i2c:
-          - id: bus_a
-            sda: GPIOXX
-            scl: GPIOXX
-            scan: true
-          - id: bus_b
-            sda: GPIOXX
-            scl: GPIOXX
-            scan: true
+      # Example configuration entry
+      i2c:
+        - id: bus_a
+          sda: GPIOXX
+          scl: GPIOXX
+          scan: true
+        - id: bus_b
+          sda: GPIOXX
+          scl: GPIOXX
+          scan: true
+
        # Sensors should be specified as follows
+      sensor:
        - platform: bme680
          i2c_id: bus_b
          address: 0x76
