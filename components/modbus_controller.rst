@@ -69,6 +69,8 @@ Configuration variables:
   slaves, this avoids waiting for timeouts allowing to read other slaves in the same bus. When the slave
   responds to a command, it'll be marked online again.
 
+- **max_cmd_retries** (*Optional*, integer): How many times a command will be retried if no response is received. It doesn't include the initial transmition. Defaults to 4.
+
 - **server_registers** (*Optional*): A list of registers that are responded to when acting as a server.
   - **address** (**Required**, integer): start address of the first register in a range
   - **value_type** (*Optional*): datatype of the mod_bus register data. The default data type for ModBUS is a 16 bit integer in big endian format (MSB first)
