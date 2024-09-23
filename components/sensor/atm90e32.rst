@@ -79,6 +79,31 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
+- **enable_offset_calibration** (*Optional*, boolean): If true it enables fine grained offset noise 0 level calibration for voltage and
+  current sensors. Buttons are required to operate the calibration feature. With multiple atm90e32 sensors each one is enabled
+  individually and it's buttons are mapped using an id value pair. e.g. ``id: chip1`` when more than one is defined. Offset calibration should only be used
+  when DC supply noise causes non 0 current or voltage readings. Calibration can only be performed when all voltage and current inputs are at a 0 value.
+
+Button
+------
+
+.. code-block:: yaml
+
+    button:
+      - platform: atm90e32
+        id: chip1
+        run_offset_calibration:
+          name: "Chip1 - Run Offset Calibration"
+        clear_offset_calibration:
+          name: "Chip1 - Clear Offset Calibration"
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The ID of the atm90e32 defined above. Required if there are multiple atm90e32 configured.
+- **run_offset_calibration** (*Optional*): A button to run the offset calibration.
+  All options from :ref:`Button <config-button>`.
+- **clear_offset_calibration** (*Optional*): A button to clear the offset calibration.
+  All options from :ref:`Button <config-button>`.
 
 Calibration
 -----------
@@ -258,6 +283,7 @@ Additional Examples
     sensor:
       - platform: atm90e32
         cs_pin: 5
+        id: chip1 #Optional
         phase_a:
           voltage:
             name: "EMON Line Voltage A"
@@ -287,8 +313,10 @@ Additional Examples
         current_phases: 3
         gain_pga: 1X
         update_interval: 60s
+        enable_offset_calibration: True
       - platform: atm90e32
         cs_pin: 4
+        id: chip2 #Optional 
         phase_a:
           current:
             name: "EMON CT4 Current"
@@ -314,6 +342,14 @@ Additional Examples
         current_phases: 3
         gain_pga: 1X
         update_interval: 60s
+
+    button:
+      - platform: atm90e32
+        id: chip1
+        run_offset_calibration:
+          name: "Chip1 - Run Offset Calibration"
+        clear_offset_calibration:
+          name: "Chip1 - Clear Offset Calibration"
 
 
 .. code-block:: yaml
