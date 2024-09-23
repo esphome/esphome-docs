@@ -149,6 +149,11 @@ Configuration variables:
   want to reduce the size of the binary if you don't plan to use certain glyphs. Both single
   characters (``a, b, c``) or strings of characters (``abc, def``) are acceptable options. You can
   also specify glyphs by their codepoint (see below).
+- **ignore_missing_glyphs** (*Optional*, boolean): By default, warnings are generated for any glyph
+  that is included in the defined **glyphsets** but not present in the configured font. Use this
+  setting to suppress those warnings. Please note that the absence of any manually defined glyphs
+  (specified via the **glyphs** option) will always be treated as an error and will not be influenced
+  by this setting.
 - **extras** (*Optional*, enum): A list of font glyph configurations you'd like to include within this font, from other OpenType/TrueType files (eg. icons from other font, but at the same size as the main font):
 
   - **file** (**Required**, string): The path of the font file with the extra glyphs.
