@@ -46,6 +46,12 @@ Did you know that Jesse and Keith both are employed at `Nabu Casa <https://nabuc
 Yep, that's possible thanks to everyone who subscribes to Home Assistant Cloud. Thank you!
 
 
+Release 2024.9.1 - September 23
+-------------------------------
+
+- Copy active wake words to message :esphomepr:`7481` by :ghuser:`synesthesiam`
+
+
 Full list of changes
 --------------------
 
