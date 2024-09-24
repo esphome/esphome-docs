@@ -54,7 +54,9 @@ Configuration variables:
 
 - **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the ``modbus`` hub.
 
-- **address** (**Required**, :ref:`config-id`): The Modbus address of the slave device
+- **address** (**Required**, :ref:`config-id`): The Modbus address of the slave device.
+
+- **allow_duplicate_commands** (*Optional*, boolean): Whether to allow duplicate commands in the queue. Defaults to ``false``.
 
 - **command_throttle** (*Optional*, :ref:`config-time`): minimum time in between 2 requests to the device. Default is ``0ms``.
   Some Modbus slave devices limit the rate of requests from the master, so this allows the interval between requests to be altered.
@@ -66,6 +68,8 @@ Configuration variables:
   marked as offline, you can specify how many updates will be skipped while it is offline. If using a bus with multiple
   slaves, this avoids waiting for timeouts allowing to read other slaves in the same bus. When the slave
   responds to a command, it'll be marked online again.
+
+- **max_cmd_retries** (*Optional*, integer): How many times a command will be retried if no response is received. It doesn't include the initial transmition. Defaults to 4.
 
 - **server_registers** (*Optional*): A list of registers that are responded to when acting as a server.
   - **address** (**Required**, integer): start address of the first register in a range
