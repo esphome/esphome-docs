@@ -10,7 +10,7 @@ The SX127X component allows you to configure the SX1276, SX1277, SX1278 and SX12
 
 .. figure:: images/sx127x-full.jpg
     :align: center
-    :width: 60.0%
+    :width: 40.0%
 
 .. code-block:: yaml
 
@@ -48,12 +48,131 @@ Configuration variables:
 - **pa_power** (**Optional**, int): Transmitter power, range is 0 to 17 dBm.
 - **frequency** (**Required**, int): Frequency in Hz of the transceiver.
 - **modulation** (**Required**, enum): Modulation can be ``OOK`` or ``FSK``.
-- **rx_start** (**Optional**, bool): Start the receiver on boot or after transmit. 
+- **rx_start** (**Optional**, bool): Start the receiver on boot or after transmit.
 - **rx_bandwidth** (**Optional**, enum): Receive bandwidth can be ``2_6kHz``, ``3_1kHz``, ``3_9kHz``, ``5_2kHz``, ``6_3kHz``, ``7_8kHz``, ``10_4kHz``, ``12_5kHz``, ``15_6kHz``, ``20_8kHz``, ``25_0kHz``, ``31_3kHz``, ``41_7kHz``, ``50_0kHz``, ``62_5kHz``, ``83_3kHz``, ``100_0kHz``, ``125_0kHz``, ``166_7kHz``, ``200_0kHz`` or ``250_0kHz``.
-- **rx_floor** (**Optional**, float): When receiving OOK data rx_floor should be set appropriately for your environment / device / antenna. If the floor is set too high (ie closer to 0) the radio will ignore everything. If the floor is set too low (ie closer to -128) noise will overwhelm remote receiver. A good starting point is -90 dBm. 
+- **rx_floor** (**Optional**, float): When receiving OOK data rx_floor should be set appropriately for your environment / device / antenna. If the floor is set too high (ie closer to 0) the radio will ignore everything. If the floor is set too low (ie closer to -128) noise will overwhelm remote receiver. A good starting point is -90 dBm.
 - **fsk_fdev** (**Optional**, int): Transmitter frequency deviation, valid values range from 0 to 100,000 Hz.
 - **fsk_shaping** (**Optional**, enum): Transmitter data shaping, valid values are ``BT_0_3``, ``BT_0_5``, ``BT_1_0`` or ``NONE``.
-- **fsk_ramp** (**Optional**, enum): Transmitter PA ramp, valid values are ``10us``, ``12us``, ``15us``, ``20us``, ``25us``, ``31us``, ``40us``, ``50us``, ``62us``, ``100us``, ``125us``, ``250us``, ``500us``, ``1000us``, ``2000us`` or ``3400us``. 
+- **fsk_ramp** (**Optional**, enum): Transmitter PA ramp, valid values are ``10us``, ``12us``, ``15us``, ``20us``, ``25us``, ``31us``, ``40us``, ``50us``, ``62us``, ``100us``, ``125us``, ``250us``, ``500us``, ``1000us``, ``2000us`` or ``3400us``.
+
+.. note::
+
+    The config can be changed at runtime using lambdas. The api can be found here :apiref:`sx127x/sx127x.h`. Settings, except for mode changes, will only be applied after calling configure.
+
+As a Receiver
+----------------
+
+The radio will output demodulated data onto a GPIO, typically :doc:`remote_receiver </components/remote_receiver>` is used to handle this. Remote Receiver can either decode the signal itself or pass the raw data to another component (or lambda).
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sx127x:
+      nss_pin: GPIO18
+      rst_pin: GPIO23
+      frequency: 433920000
+      modulation: OOK
+      rx_start: true
+      rx_bandwidth: 50_0kHz
+      rx_floor: -90
+
+    remote_receiver:
+      pin: GPIO32
+      dump: raw
+
+As a Transmitter
+----------------
+
+The radio expects raw data to be sent on a GPIO, typically :doc:`remote_transmitter </components/remote_transmitter>` is used to handle this. The radio transmitter must be enabled before transmit and disabled after. Ideally this is done using the remote transmitter triggers on_transmit and on_complete.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sx127x:
+      id: sx127x_id
+      nss_pin: GPIO18
+      rst_pin: GPIO23
+      frequency: 433920000
+      modulation: OOK
+      pa_pin: BOOST
+      pa_power: 17
+      rx_start: false
+
+    remote_transmitter:
+      pin: GPIO32
+      carrier_duty_percent: 100%
+      on_transmit:
+        then:
+          - lambda: 'id(sx127x_id)->set_mode_tx();'
+      on_complete:
+        then:
+          - lambda: 'id(sx127x_id)->set_mode_standby();'
+
+    interval:
+      - interval: 30sec
+        then:
+          - remote_transmitter.transmit_raw:
+              code: [614, -614, 600, -614, 614, -614, 601, -614]
+
+As a Transmitter & Receiver
+----------------
+
+The radio can be used as both a transmitter and receiver. The same GPIO is used for both rx and tx. In order to make things work the gpio mode and radio mode must be set appropriately. Ideally this is done using the remote transmitter triggers on_transmit and on_complete.
+
+.. note::
+
+    Currently a workaround is needed to make this work. Remote transmitter setup must be called again after a GPIO mode change. Upgrading to a newer versions of the RMT driver will resolve this issue.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sx127x:
+      id: sx127x_id
+      nss_pin: GPIO18
+      rst_pin: GPIO23
+      pa_pin: BOOST
+      pa_power: 15
+      frequency: 433920000
+      rx_bandwidth: 50_0kHz
+      rx_floor: -90
+      rx_start: true
+      modulation: OOK
+
+    remote_receiver:
+      id: rx_id
+      pin:
+        id: rx_gpio_id
+        number: GPIO32
+        allow_other_uses: true
+      dump: raw
+
+    remote_transmitter:
+      id: tx_id
+      pin:
+        id: tx_gpio_id
+        number: GPIO32
+        allow_other_uses: true
+      carrier_duty_percent: 100%
+      on_transmit:
+        then:
+          - lambda: |-
+              id(sx127x_id)->set_mode_standby();
+              id(tx_gpio_id)->pin_mode(gpio::FLAG_OUTPUT);
+              id(sx127x_id)->set_mode_tx();
+              id(tx_id)->setup();  // workaround
+      on_complete:
+        then:
+          - lambda: |-
+              id(sx127x_id)->set_mode_standby();
+              id(rx_gpio_id)->pin_mode(gpio::FLAG_INPUT);
+              id(sx127x_id)->set_mode_rx();
+
+    interval:
+      - interval: 30sec
+        then:
+          - remote_transmitter.transmit_raw:
+              code: [614, -614, 600, -614, 614, -614, 601, -614]
+
 
 See Also
 --------
