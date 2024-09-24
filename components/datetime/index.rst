@@ -121,7 +121,7 @@ The ``date`` provided can be in one of 3 formats:
         id: my_datetime_date
         date: !lambda |-
           // Return an ESPTime struct
-          return {.day_of_month: 4, .month: 12, .year: 2023};
+          return {.day_of_month = 4, .month = 12, .year = 2023};
 
 Configuration variables:
 
@@ -192,7 +192,7 @@ The ``time`` provided can be in one of 3 formats:
         id: my_datetime_time
         time: !lambda |-
           // Return an ESPTime struct
-          return {.second: 56, .minute: 34, .hour: 12};
+          return {.second = 56, .minute = 34, .hour = 12};
 
 Configuration variables:
 
@@ -266,7 +266,7 @@ The ``datetime`` provided can be in one of 3 formats:
         id: my_datetime
         datetime: !lambda |-
           // Return an ESPTime struct
-          return {.second: 56, .minute: 34, .hour: 12, .day_of_month: 31, .month: 12, .year: 2024};
+          return {.second = 56, .minute = 34, .hour = 12, .day_of_month = 31, .month = 12, .year = 2024};
 
 Configuration variables:
 
