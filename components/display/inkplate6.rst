@@ -1,5 +1,5 @@
 Inkplate 5, 6, 10 and 6 Plus
-=========================
+============================
 
 .. seo::
     :description: Instructions for setting up Inkplate E-Paper displays in ESPHome.
