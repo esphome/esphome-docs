@@ -59,8 +59,8 @@ Configuration variables:
 
     The config can be changed at runtime using lambdas. The api can be found here :apiref:`sx127x/sx127x.h`. Settings, except for mode changes, will only be applied after calling configure.
 
-As a Receiver
-----------------
+As a Receiver:
+--------------
 
 The radio will output demodulated data onto a GPIO, typically :doc:`remote_receiver </components/remote_receiver>` is used to handle this. Remote Receiver can either decode the signal itself or pass the raw data to another component (or lambda).
 
@@ -80,8 +80,8 @@ The radio will output demodulated data onto a GPIO, typically :doc:`remote_recei
       pin: GPIO32
       dump: raw
 
-As a Transmitter
-----------------
+As a Transmitter:
+-----------------
 
 The radio expects raw data to be sent on a GPIO, typically :doc:`remote_transmitter </components/remote_transmitter>` is used to handle this. The radio transmitter must be enabled before transmit and disabled after. Ideally this is done using the remote transmitter triggers on_transmit and on_complete.
 
@@ -114,8 +114,8 @@ The radio expects raw data to be sent on a GPIO, typically :doc:`remote_transmit
           - remote_transmitter.transmit_raw:
               code: [614, -614, 600, -614, 614, -614, 601, -614]
 
-As a Transmitter & Receiver
-----------------
+As a Transmitter & Receiver:
+----------------------------
 
 The radio can be used as both a transmitter and receiver. The same GPIO is used for both rx and tx. In order to make things work the gpio mode and radio mode must be set appropriately. Ideally this is done using the remote transmitter triggers on_transmit and on_complete.
 
