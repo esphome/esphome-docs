@@ -63,10 +63,10 @@ Automations:
       ...
       on_transmit:
         then:
-          - lambda: 'id(radio_id)->start_tx();'
+          - switch.turn_on: tx_enable
       on_complete:
         then:
-          - lambda: 'id(radio_id)->stop_tx();'
+          - switch.turn_off: tx_enable
 
 .. _remote_transmitter-transmit_action:
 
