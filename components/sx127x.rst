@@ -57,7 +57,7 @@ Configuration variables:
 
 .. note::
 
-    The config can be changed at runtime using lambdas. The api can be found here :apiref:`sx127x/sx127x.h`. Settings, except for mode changes, will only be applied after calling configure.
+    The config can be changed at runtime using lambdas. Settings, except for mode changes, will only be applied after calling configure. See :apiref:`sx127x/sx127x.h`.
 
 As a Receiver:
 --------------
@@ -121,7 +121,7 @@ The radio can be used as both a transmitter and receiver. The same GPIO is used 
 
 .. note::
 
-    Currently a workaround is needed to make this work. Remote transmitter setup must be called again after a GPIO mode change. Upgrading to a newer versions of the RMT driver will resolve this issue.
+    A workaround is currently needed in remote transmitter. Setup must be called again after any gpio mode change and before transmitting.
 
 .. code-block:: yaml
 
