@@ -48,10 +48,8 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options.
   Set to ``""`` to remove the default entity category.
-- **time_id** (**Required**, :ref:`config-id`): The ID of the time entity. Automatically set
-  to the ID of a time component if only a single one is defined. **Note:** Some implementors of the datetime component may 
-  choose not to link a time source, treating the datetime like a regular writable sensor and instead updating it directly - in 
-  which case this property will not be available.
+- **time_id** (**Optional**, :ref:`config-id`): The ID of the time entity. Automatically set
+  to the ID of a time component if only a single one is defined.
 - If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 MQTT Options:
@@ -61,7 +59,7 @@ MQTT Options:
 Time and DateTime Options:
 
 - **on_time** (*Optional*, :ref:`automation`): Automation to run when the current datetime or time matches the current state.
-  Only valid on ``time`` or ``datetime`` types.
+  Only valid on ``time`` or ``datetime`` types.  Use of on_time causes time_id to be required.
 
 Automation
 ----------
