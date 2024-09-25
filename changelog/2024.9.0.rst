@@ -17,6 +17,40 @@ ESPHome 2024.9.0 - 18th September 2024
     BMP280 SPI, components/sensor/bmp280, bmp280.jpg
     LTR501 & LTR301 & LTR558, components/sensor/ltr501, ltr501.jpg
 
+UDP & StatsD Components
+-----------------------
+
+This release brings two new data driven components to ESPHome.
+
+The first is the :doc:`UDP Component </components/udp>` which allows direct communication between ESPHome
+devices over the local network. To start off, only sensor and binary sensor data can be transmitted, and
+hopefully more entity types will be supported in the future.
+
+Next is the :doc:`StatsD Component </components/statsd>` which allows you to send sensor data
+directly to a statsd server for monitoring.
+
+
+Breaking Changes
+----------------
+
+There are a few breaking changes this release that will require changes in YAML if you are
+using the affected components. Please make sure to check the list below for details about each one.
+The documentation is always the best place to find the most up-to-date information on configuration for
+any given component found in ESPHome.
+
+
+Thank you for your support
+--------------------------
+
+Did you know that Jesse and Keith both are employed at `Nabu Casa <https://nabucasa.com/>`__ to work full-time on ESPHome?
+Yep, that's possible thanks to everyone who subscribes to Home Assistant Cloud. Thank you!
+
+
+Release 2024.9.1 - September 23
+-------------------------------
+
+- Copy active wake words to message :esphomepr:`7481` by :ghuser:`synesthesiam`
+
 
 Full list of changes
 --------------------

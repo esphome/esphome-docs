@@ -55,6 +55,7 @@ Configuration variables:
   - ``KSZ8081`` (RMII)
   - ``KSZ8081RNA`` (RMII)
   - ``W5500`` (SPI)
+  - ``OPENETH`` (QEMU, ESP-IDF only)
 
 RMII configuration variables:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -286,6 +287,14 @@ Configuration examples
       clk_mode: GPIO0_IN
       phy_addr: 0
       power_pin: GPIO12
+
+
+**QEMU qemu-system-xtensa**:
+
+.. code-block:: yaml
+
+    ethernet:
+      type: OPENETH
 
 See Also
 --------

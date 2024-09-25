@@ -540,7 +540,7 @@ Beyond basic functionality (*"does it work?"*), here are a few other items we ch
 
 .. _prs-are-being-drafted-when-changes-are-needed:
 
-Why Was My PR was Marked as a Draft?
+Why was my PR marked as a draft?
 ************************************
 
 If your PR was reviewed and changes were requested, our bot will automatically mark your PR as a draft. This means that
