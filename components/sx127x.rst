@@ -34,11 +34,6 @@ The SX127X component allows you to configure the SX1276, SX1277, SX1278 and SX12
       fsk_shaping: NONE
       fsk_ramp: 40us
 
-    remote_transmitter:
-      id: tx_id
-      pin: GPIO32
-      carrier_duty_percent: 100%
-
 Configuration variables:
 ------------------------
 
