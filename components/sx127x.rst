@@ -121,7 +121,7 @@ The radio can be used as both a transmitter and receiver. The same GPIO is used 
 
 .. note::
 
-    A workaround is currently needed in remote transmitter. Setup must be called again after any gpio mode change and before transmitting.
+    A workaround is currently needed in remote transmitter. Setup must be called again before transmitting after a gpio mode change.
 
 .. code-block:: yaml
 
