@@ -16,13 +16,13 @@ The SX127X component allows you to configure the SX1276, SX1277, SX1278 and SX12
 
     # Example configuration entry
     spi:
-      clk_pin: GPIO5
-      mosi_pin: GPIO27
-      miso_pin: GPIO19
+      clk_pin: GPIO36
+      mosi_pin: GPIO37
+      miso_pin: GPIO35
 
     sx127x:
-      nss_pin: GPIO18
-      rst_pin: GPIO23
+      nss_pin: GPIO6
+      rst_pin: GPIO5
       frequency: 433920000
       modulation: OOK
       rx_start: true
@@ -63,8 +63,8 @@ The radio will output demodulated data onto a GPIO, typically :doc:`remote_recei
 
     # Example configuration entry
     sx127x:
-      nss_pin: GPIO18
-      rst_pin: GPIO23
+      nss_pin: GPIO6
+      rst_pin: GPIO5
       frequency: 433920000
       modulation: OOK
       rx_start: true
@@ -72,7 +72,7 @@ The radio will output demodulated data onto a GPIO, typically :doc:`remote_recei
       rx_floor: -90
 
     remote_receiver:
-      pin: GPIO32
+      pin: GPIO10
       dump: raw
 
 As a Transmitter:
@@ -85,8 +85,8 @@ The radio expects raw data to be sent on a GPIO, typically :doc:`remote_transmit
     # Example configuration entry
     sx127x:
       id: sx127x_id
-      nss_pin: GPIO18
-      rst_pin: GPIO23
+      nss_pin: GPIO6
+      rst_pin: GPIO5
       frequency: 433920000
       modulation: OOK
       rx_start: false
@@ -94,7 +94,7 @@ The radio expects raw data to be sent on a GPIO, typically :doc:`remote_transmit
       pa_power: 17
 
     remote_transmitter:
-      pin: GPIO32
+      pin: GPIO10
       carrier_duty_percent: 100%
       on_transmit:
         then:
@@ -119,8 +119,8 @@ The radio can be used as both a transmitter and receiver. The same GPIO is used 
     # Example configuration entry
     sx127x:
       id: sx127x_id
-      nss_pin: GPIO18
-      rst_pin: GPIO23
+      nss_pin: GPIO6
+      rst_pin: GPIO5
       frequency: 433920000
       modulation: OOK
       rx_start: true
@@ -133,7 +133,7 @@ The radio can be used as both a transmitter and receiver. The same GPIO is used 
       id: rx_id
       pin:
         id: rx_gpio_id
-        number: GPIO32
+        number: GPIO10
         allow_other_uses: true
       dump: raw
 
@@ -141,7 +141,7 @@ The radio can be used as both a transmitter and receiver. The same GPIO is used 
       id: tx_id
       pin:
         id: tx_gpio_id
-        number: GPIO32
+        number: GPIO10
         allow_other_uses: true
       carrier_duty_percent: 100%
       on_transmit:
