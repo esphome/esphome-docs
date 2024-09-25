@@ -10,7 +10,7 @@ The SX127X component allows you to configure the SX1276, SX1277, SX1278 and SX12
 
 .. figure:: images/sx127x-full.jpg
     :align: center
-    :width: 40.0%
+    :width: 50.0%
 
 .. code-block:: yaml
 
@@ -119,10 +119,6 @@ As a Transmitter & Receiver:
 
 The radio can be used as both a transmitter and receiver. The same GPIO is used for both rx and tx. In order to make things work the gpio mode and radio mode must be set appropriately. Ideally this is done using the remote transmitter triggers on_transmit and on_complete.
 
-.. note::
-
-    A workaround is currently needed in remote transmitter. Setup must be called again before transmitting after a gpio mode change.
-
 .. code-block:: yaml
 
     # Example configuration entry
@@ -173,6 +169,9 @@ The radio can be used as both a transmitter and receiver. The same GPIO is used 
           - remote_transmitter.transmit_raw:
               code: [614, -614, 600, -614, 614, -614, 601, -614]
 
+.. note::
+
+    A workaround is currently needed in remote transmitter. Setup must be called again before transmitting after a gpio mode change.
 
 See Also
 --------
