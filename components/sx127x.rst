@@ -6,7 +6,7 @@ SX127X Component
     :image: sx127x.jpg
 
 The SX127X component allows you to configure the SX1276, SX1277, SX1278 and SX1279 transceivers
-(`datasheet <https://www.semtech.com/products/wireless-rf/lora-connect/sx1278#documentation>`__) in ESPHome. Transceivers are connected via the :ref:`SPI Bus <spi>`. Supported frequencies range from 137 MHz to 1020 MHz. Supported modulations include OOK, FSK, GFSK, MSK and GMSK.
+(`datasheet <https://www.semtech.com/products/wireless-rf/lora-connect/sx1278#documentation>`__) in ESPHome. Transceivers are connected via the :ref:`SPI Bus <spi>`. Supported frequencies range from 137 MHz to 1020 MHz. Supported modulations include OOK, FSK, GFSK, MSK and GMSK. The LoRa modem is not supported by this component, only the FSK/OOK modem.
 
 .. figure:: images/sx127x-full.jpg
     :align: center
