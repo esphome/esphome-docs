@@ -18,6 +18,13 @@ For interactivity, a :doc:`Touchscreen </components/touchscreen/index>` (capacit
 
 Check out the detailed examples in :ref:`the Cookbook <lvgl-cookbook>` which demonstrate a number of ways you can integrate your environment with LVGL and ESPHome.
 
+To get started, it is sufficient to add a display and an empty LVGL configuration. If neither ``pages`` nor ``widgets`` is specified, then a default "hello world" page will be shown.
+
+.. code-block:: yaml
+
+    # Example minimal configuration entry
+    lvgl:
+
 Basics
 ------
 
@@ -155,6 +162,8 @@ Colors
 ******
 
 Colors can be specified anywhere in the LVGL configuration either by referencing a preconfigured :ref:`ESPHome color <config-color>` ID or by representing the color in the common hexadecimal notation. For example, ``0xFF0000`` would be red.
+
+You may also use any of the `standard CSS color names <https://developer.mozilla.org/en-US/docs/Web/CSS/named-color>`__, e.g. ``springgreen``.
 
 .. _lvgl-opacity:
 

@@ -391,6 +391,7 @@ Contributors
 - `damanti-me (@damanti-me) <https://github.com/damanti-me>`__
 - `Justin Grover (@dancingcactus) <https://github.com/dancingcactus>`__
 - `Dan C Williams (@dancwilliams) <https://github.com/dancwilliams>`__
+- `Dan Greco (@dangreco) <https://github.com/dangreco>`__
 - `Daniel Bjørnbakk (@danibjor) <https://github.com/danibjor>`__
 - `Daniel Baulig (@DanielBaulig) <https://github.com/DanielBaulig>`__
 - `Daniel D'Abate (@danieldabate) <https://github.com/danieldabate>`__
@@ -478,6 +479,7 @@ Contributors
 - `Andrea Casini (@ditadipolvere08) <https://github.com/ditadipolvere08>`__
 - `Johann V. (@divinitas) <https://github.com/divinitas>`__
 - `dj-bauer (@dj-bauer) <https://github.com/dj-bauer>`__
+- `djsf (@dj-sf) <https://github.com/dj-sf>`__
 - `Dominic Pearman (@djpearman) <https://github.com/djpearman>`__
 - `djtef (@djtef) <https://github.com/djtef>`__
 - `djwlindenaar (@djwlindenaar) <https://github.com/djwlindenaar>`__
@@ -1812,6 +1814,7 @@ Contributors
 - `tomaszduda23 (@tomaszduda23) <https://github.com/tomaszduda23>`__
 - `Tom Brien (@TomBrien) <https://github.com/TomBrien>`__
 - `Thomas Combriat (@tomcombriat) <https://github.com/tomcombriat>`__
+- `Tomer (@tomer-w) <https://github.com/tomer-w>`__
 - `TomFahey (@TomFahey) <https://github.com/TomFahey>`__
 - `Tom Hartogs (@TomHartogs) <https://github.com/TomHartogs>`__
 - `TomKong666 (@TomKong666) <https://github.com/TomKong666>`__
@@ -1980,4 +1983,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated September 16, 2024.*
+*This page was last updated September 23, 2024.*
