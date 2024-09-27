@@ -34,7 +34,6 @@ Connect power pins (``VCC``/``GND``) and I2C (``SDA``/``SCL``). If using externa
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name for the ADC.
 - **gain** (*Optional*, enum): ADC gain.
 
     - ``1``
