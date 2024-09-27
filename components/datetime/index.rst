@@ -29,7 +29,8 @@ All datetime in ESPHome have a name and an optional icon.
 
 Configuration variables:
 
-- **name** (**Required**, string): The name for the datetime.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name for the datetime. At least one of **id** and **name** must be specified.
 
   .. note::
 
@@ -120,7 +121,7 @@ The ``date`` provided can be in one of 3 formats:
         id: my_datetime_date
         date: !lambda |-
           // Return an ESPTime struct
-          return {.day_of_month: 4, .month: 12, .year: 2023};
+          return {.day_of_month = 4, .month = 12, .year = 2023};
 
 Configuration variables:
 
@@ -191,7 +192,7 @@ The ``time`` provided can be in one of 3 formats:
         id: my_datetime_time
         time: !lambda |-
           // Return an ESPTime struct
-          return {.second: 56, .minute: 34, .hour: 12};
+          return {.second = 56, .minute = 34, .hour = 12};
 
 Configuration variables:
 
@@ -265,7 +266,7 @@ The ``datetime`` provided can be in one of 3 formats:
         id: my_datetime
         datetime: !lambda |-
           // Return an ESPTime struct
-          return {.second: 56, .minute: 34, .hour: 12, .day_of_month: 31, .month: 12, .year: 2024};
+          return {.second = 56, .minute = 34, .hour = 12, .day_of_month = 31, .month = 12, .year = 2024};
 
 Configuration variables:
 

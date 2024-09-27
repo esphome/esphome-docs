@@ -7,8 +7,7 @@ Getting Started with ESPHome and Home Assistant
 
 In this guide we’ll go through how to install ESPHome on a device using the ESPHome Dashboard, installed as a Home Assistant add-on.
 
-But first, here's a very quick introduction to how ESPHome works:
-ESPHome is a *tool* which aims to make managing your ESP boards as simple as possible. It reads in a YAML configuration file and creates custom firmware which it installs on your ESP device. Devices or sensors added in ESPHome's configuration will automatically show up in Home Assistant's UI.
+First, here's a very quick introduction to how ESPHome works. ESPHome is a tool that aims to simplify managing your supported devices. It reads a YAML configuration file, creates custom firmware, and can install it on your device. Any devices or sensors defined in the ESPHome configuration will automatically appear in Home Assistant's user interface.
 
 Installing ESPHome Dashboard
 ----------------------------

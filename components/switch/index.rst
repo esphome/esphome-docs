@@ -22,7 +22,8 @@ Base Switch Configuration
 
 Configuration variables:
 
-- **name** (**Required**, string): The name of the switch.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name of the switch. At least one of **id** and **name** must be specified.
 
   .. note::
 

@@ -28,7 +28,8 @@ All cover config schemas inherit from this schema - you can set these keys for c
 
 Configuration variables:
 
-- **name** (**Required**, string): The name for the cover.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name for the cover. At least one of **id** and **name** must be specified.
 
   .. note::
 
