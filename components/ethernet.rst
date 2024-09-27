@@ -89,12 +89,44 @@ SPI configuration variables:
 - **mosi_pin** (**Required**, :ref:`config-pin`): The SPI MOSI pin.
 - **miso_pin** (**Required**, :ref:`config-pin`): The SPI MISO pin.
 - **cs_pin** (**Required**, :ref:`config-pin`): The SPI chip select pin.
-- **interrupt_pin** (*Optional*, :ref:`config-pin`): The interrupt pin.
+- **interrupt_pin** (**Required**, :ref:`config-pin`): The interrupt pin.
 - **reset_pin** (*Optional*, :ref:`config-pin`): The reset pin.
 - **clock_speed** (*Optional*, float): The SPI clock speed.
   Any frequency between `8Mhz` and `80Mhz` is allowed, but the nearest integer division
   of `80Mhz` is used, i.e. `16Mhz` (`80Mhz` / 5) is used when `15Mhz` is configured.
   Default: `26.67Mhz`.
+
+If you want to use esp-idf framework with latest version, ESPHome provides SPI polling mode support.
+SPI polling mode (no interrupt pin) support is provided by following frameworks:
+
+- ESP-IDF 5.3 or later
+- ESP-IDF 5.2.1 and later 5.2.x versions
+- ESP-IDF 5.1.4
+- Arduino-ESP32 3.0.0 or later (**Caution**: PlatformIO does not support this!)
+
+When building with frameworks that support SPI polling mode, following configuration variables are provided.
+
+- **interrupt_pin** (*Optional*, :ref:`config-pin`): The interrupt pin.
+- **polling_interval** (*Optional*, :ref:`config-time`): If ``interrupt_pin`` is not set,
+  set the time interval for periodic checks. Minimum is 1ms, Defaults to 10ms.
+
+If both ``interrupt_pin``  and  ``polling_interval``  are set, ``polling_interval``  is silently ignored.
+
+.. note::
+
+    ``interrupt_pin`` is **required** and ``polling_interval`` is **invalid**
+    when building with a framework that **does not** support SPI polling mode.
+    In contrast, both ``interrupt_pin`` and ``polling_interval`` are *optional*
+    when building with a framework that supports SPI polling mode.
+    Because of the above, changing the framework may cause configuration errors.
+
+    +--------------------------------------------------+-------------------+----------------------+
+    | variables                                        | ``interrupt_pin`` | ``polling_interval`` |
+    +==================================================+===================+======================+
+    | framework that does not support SPI polling mode | **Required**      | **Invalid**          |
+    +--------------------------------------------------+-------------------+----------------------+
+    | framework that supports SPI polling mode         | Optional          | Optional             |
+    +--------------------------------------------------+-------------------+----------------------+
 
 Advanced common configuration variables:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
