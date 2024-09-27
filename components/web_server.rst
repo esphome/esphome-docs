@@ -180,13 +180,13 @@ Example configuration:
       - platform: template
         ...
         web_server:
-          sorting_group: sorting_group_time_settings
+          sorting_group_id: sorting_group_time_settings
 
     number:
       - platform: template
       ...
         web_server:
-          sorting_group: sorting_group_number_settings
+          sorting_group_id: sorting_group_number_settings
 
 
 .. _config-webserver-sorting:
