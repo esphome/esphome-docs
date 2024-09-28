@@ -1008,8 +1008,8 @@ Audio DAC Components
 
 .. imgtable::
 
-    Audio DAC Core, components/audio_dac/index, i2s_audio.svg
-    AIC3204, components/audio_dac/aic3204, i2s_audio.svg
+    Audio DAC Core, components/audio_dac/index, audio_dac.svg
+    AIC3204, components/audio_dac/aic3204, aic3204.svg
 
 Media Player Components
 -----------------------
