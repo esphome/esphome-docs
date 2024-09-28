@@ -1003,6 +1003,14 @@ Lock Components
     Template Lock, components/lock/template, description.svg, dark-invert
     Generic Output Lock, components/lock/output, upload.svg, dark-invert
 
+Audio DAC Components
+--------------------
+
+.. imgtable::
+
+    Audio DAC Core, components/audio_dac/index, i2s_audio.svg
+    AIC3204, components/audio_dac/aic3204, i2s_audio.svg
+
 Media Player Components
 -----------------------
 
