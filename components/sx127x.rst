@@ -10,19 +10,19 @@ The SX127X component allows you to configure the SX1276, SX1277, SX1278 and SX12
 
 .. figure:: images/sx127x-full.jpg
     :align: center
-    :width: 50.0%
+    :width: 40.0%
 
 .. code-block:: yaml
 
     # Example configuration entry
     spi:
-      clk_pin: GPIO36
-      mosi_pin: GPIO37
-      miso_pin: GPIO35
+      clk_pin: GPIO5
+      mosi_pin: GPIO27
+      miso_pin: GPIO19
 
     sx127x:
-      nss_pin: GPIO6
-      rst_pin: GPIO5
+      nss_pin: GPIO18
+      rst_pin: GPIO23
       frequency: 433920000
       modulation: OOK
       rx_start: true
@@ -63,8 +63,8 @@ The radio will output demodulated data onto a GPIO, typically :doc:`remote_recei
 
     # Example configuration entry
     sx127x:
-      nss_pin: GPIO6
-      rst_pin: GPIO5
+      nss_pin: GPIO18
+      rst_pin: GPIO23
       frequency: 433920000
       modulation: OOK
       rx_start: true
@@ -72,8 +72,12 @@ The radio will output demodulated data onto a GPIO, typically :doc:`remote_recei
       rx_floor: -90
 
     remote_receiver:
-      pin: GPIO10
+      pin: GPIO32
       dump: raw
+
+.. note::
+
+    The GPIO used by remote receiver must be DIO2 not DIO0.
 
 As a Transmitter:
 -----------------
@@ -85,8 +89,8 @@ The radio expects raw data to be sent on a GPIO, typically :doc:`remote_transmit
     # Example configuration entry
     sx127x:
       id: sx127x_id
-      nss_pin: GPIO6
-      rst_pin: GPIO5
+      nss_pin: GPIO18
+      rst_pin: GPIO23
       frequency: 433920000
       modulation: OOK
       rx_start: false
@@ -94,7 +98,7 @@ The radio expects raw data to be sent on a GPIO, typically :doc:`remote_transmit
       pa_power: 17
 
     remote_transmitter:
-      pin: GPIO10
+      pin: GPIO32
       carrier_duty_percent: 100%
       on_transmit:
         then:
@@ -109,6 +113,10 @@ The radio expects raw data to be sent on a GPIO, typically :doc:`remote_transmit
           - remote_transmitter.transmit_raw:
               code: [614, -614, 600, -614, 614, -614, 601, -614]
 
+.. note::
+
+    The GPIO used by remote transmitter must be DIO2 not DIO0.
+
 As a Transmitter & Receiver:
 ----------------------------
 
@@ -119,8 +127,8 @@ The radio can be used as both a transmitter and receiver. The same GPIO is used 
     # Example configuration entry
     sx127x:
       id: sx127x_id
-      nss_pin: GPIO6
-      rst_pin: GPIO5
+      nss_pin: GPIO18
+      rst_pin: GPIO23
       frequency: 433920000
       modulation: OOK
       rx_start: true
@@ -133,7 +141,7 @@ The radio can be used as both a transmitter and receiver. The same GPIO is used 
       id: rx_id
       pin:
         id: rx_gpio_id
-        number: GPIO10
+        number: GPIO32
         allow_other_uses: true
       dump: raw
 
@@ -141,7 +149,7 @@ The radio can be used as both a transmitter and receiver. The same GPIO is used 
       id: tx_id
       pin:
         id: tx_gpio_id
-        number: GPIO10
+        number: GPIO32
         allow_other_uses: true
       carrier_duty_percent: 100%
       on_transmit:
