@@ -20,18 +20,22 @@ As the chip refresh is very time-critical, the ESP8266 is not supported (the ref
 
     7-Segment Display Example.
 
+
+Example configuration for a IV18 VFD tube
+-----------------------------------------
+
 .. code-block:: yaml
 
-    # Example configuration entry for IV18 VFD tube
+    # SPI bus for MAX6921 communication
     spi:
       clk_pin: GPIO18
       mosi_pin: GPIO23
     
+    # MAX6921 configuration for a IV18 VFD tube
     display:
       - platform: max6921
         id: iv18
         load_pin: GPIO5
-        blank_pin: GPIO17
         out_pin_mapping:
             seg_to_out_map:
                 seg_a_pin: 0
@@ -55,11 +59,44 @@ As the chip refresh is very time-critical, the ESP8266 is not supported (the ref
         lambda: |-
           it.print("01234567");
 
-Configuration variables:
-------------------------
+    # ESP32 LEDC (PWM) output to control the display brightness
+    output:
+      - platform: ledc
+        pin: GPIO17
+        inverted: true
+        frequency: 9765
+        channel: 0
+        id: iv18_brightness_pwm
+
+    # Monochromatic light to control the display brightness
+    light:
+      - platform: monochromatic
+        name: "IV18 Brightness Control"
+        output: iv18_brightness_pwm
+        restore_mode: ALWAYS_ON
+
+    # Frontend to control the display brightness
+    number:
+      - platform: template
+        name: "IV18 Brightness"
+        min_value: 0
+        max_value: 100
+        initial_value: 100
+        restore_value: True
+        step: 1
+        unit_of_measurement: "%"
+        optimistic: True
+        on_value:
+          then:
+            - output.set_level:
+                id: iv18_brightness_pwm
+                level: !lambda "return x/100.0;"
+
+
+Configuration variables
+-----------------------
 
 - **load_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin is used to update the output latch with data from shift register (see MAX6921 datasheet).
-- **blank_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin is used to control the display brightness by PWM (see MAX6921 datasheet).
 - **out_pin_mapping** (**Required**): The mapping of MAX6921 output pins to the appropriate display pins.
 
   - **seg_to_out_map** (**Required**): The mapping of MAX6921 output pins to the appropriate 7-segment pins of any display character.
@@ -87,7 +124,6 @@ Configuration variables:
     - **pos_10_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``10``. Range is ``0`` to ``19``.
     - **pos_11_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``11``. Range is ``0`` to ``19``.
     - **pos_12_pin** (*Optional*, int): MAX6921 OUTx pin to select position ``12``. Range is ``0`` to ``19``.
-- **brightness** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness with which the MAX6921 should drive the outputs. Defaults to ``100%``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``500ms``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-max6921_lambda` for more information.
@@ -355,27 +391,6 @@ All 7-Segment Characters
     by user `h2g2bob <https://commons.wikimedia.org/wiki/User:H2g2bob>`__ under
     `Creative Commons BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0/deed.de>`__ and modified
     for this documentation.
-
-
-.. _max6921-set_brightness_action:
-
-``max9621.set_brightness`` Action
-*********************************
-
-This action sets the display brightness.
-
-.. code-block:: yaml
-
-    on_...:
-      then:
-        - max9621.set_brightness:
-            id: iv18
-            brightness: 80%
-
-Configuration variables:
-
-- **id** (**Required**, :ref:`config-id`): The ID of the MAX6921.
-- **brightness** (**Required**, percentage, :ref:`templatable <config-templatable>`): The brightness with which the MAX6921 should drive the outputs.
 
 
 .. _max6921-set_text_action:
