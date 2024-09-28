@@ -272,7 +272,7 @@ I/O Expanders/Multiplexers
     CH422G, components/ch422g, ch422g.svg, dark-invert
     MAX6956 - I²C Bus, components/max6956, max6956.jpg
     MCP230XX - I²C Bus, components/mcp230xx, mcp230xx.svg, dark-invert
-    MCP23SXX - SPI Bus, components/mcp23Sxx, mcp230xx.svg, dark-invert
+    MCP23SXX - SPI Bus, components/mcp23Sxx, mcp23sxx.svg, dark-invert
     PCA6416A, components/pca6416a, pca6416a.svg, dark-invert
     PCA9554, components/pca9554, pca9554a.jpg
     PCF8574, components/pcf8574, pcf8574.jpg
