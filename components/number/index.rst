@@ -30,7 +30,8 @@ All numbers in ESPHome have a name and an optional icon.
 
 Configuration variables:
 
-- **name** (**Required**, string): The name for the number.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name for the number. At least one of **id** and **name** must be specified.
 
   .. note::
 
@@ -57,6 +58,7 @@ Configuration variables:
 - **device_class** (*Optional*, string): The device class for the number.
   See https://www.home-assistant.io/integrations/number/#device-class
   for a list of available options.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 Automations:
 
@@ -68,6 +70,7 @@ Automations:
 MQTT Options:
 
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
 
 Number Automation
 -----------------

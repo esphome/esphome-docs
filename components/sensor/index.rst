@@ -73,6 +73,7 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options.
   Set to ``""`` to remove the default entity category.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 Automations:
 
@@ -293,6 +294,27 @@ Rounds the value to the given decimal places.
     - platform: ...
       filters:
         - round: 1 # will round to 1 decimal place
+
+
+
+``round_to_multiple_of``
+************************
+
+Rounds the value to the nearest multiple. Takes a float greater than zero.
+
+.. code-block:: yaml
+
+    - platform: ...
+      filters:
+        - round_to_multiple_of: 10
+        # 123 -> 120
+        # 126 -> 130
+
+    - platform: ...
+      filters:
+        - round_to_multiple_of: 0.25
+        # 3.1415 -> 3.25
+        # 1.6180 -> 1.5
 
 
 ``quantile``
@@ -644,7 +666,7 @@ with ``x``.
 .. code-block:: yaml
 
     sensor:
-      - platform: dallas
+      - platform: dht
         # ...
         on_value:
           then:
@@ -672,7 +694,7 @@ So for example ``above: 5`` with no below would mean the range from 5 to positiv
 .. code-block:: yaml
 
     sensor:
-      - platform: dallas
+      - platform: dht
         # ...
         on_value_range:
           - below: 5.0
@@ -704,7 +726,7 @@ trigger with ``x``.
 .. code-block:: yaml
 
     sensor:
-      - platform: dallas
+      - platform: dht
         # ...
         on_raw_value:
           then:

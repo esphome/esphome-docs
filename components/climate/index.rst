@@ -46,7 +46,8 @@ All climate platforms in ESPHome inherit from the climate configuration schema. 
 
 Configuration variables:
 
-- **name** (**Required**, string): The name of the climate device.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name of the climate device. At least one of **id** and **name** must be specified.
 
   .. note::
 
@@ -127,6 +128,7 @@ MQTT options:
 - **target_humidity_command_topic** (*Optional*, string): The topic to receive
   target humidity commands on.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 Climate Automation
 ------------------
