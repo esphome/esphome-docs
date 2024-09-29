@@ -15,37 +15,15 @@ To use this sensor, you need to setup a voltage sensor source (:doc:`ADC sensor 
 
 .. code-block:: yaml
 
-    # Example configuration entry
-    output:
-      - platform: gpio
-        id: dust_sensor_led
-        pin: 5
-        inverted: true
-
     sensor:
-      - platform: adc
-        id: adc_sensor
-        pin: A0
-        internal: true
-        update_interval: never
-
       - platform: gp2y1010au0f
         name: 'Indoor PM2.5'
-        sensor: adc_sensor
-        adc_voltage_offset: 0.2
-        adc_voltage_multiplier: 3.3
-        output: dust_sensor_led
-        update_interval: 10s
-        filters:
-          - sliding_window_moving_average:
-              window_size: 3
-              send_every: 3
+        sensor: REPLACEME
+        output: REPLACEME
 
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the sensor.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **sensor** (**Required**, :ref:`config-id`): The ADC sensor to measure the sensor's output voltage pulses from.
 - **adc_voltage_offset** (*Optional*, float): The voltage offset of the ADC sensor used for calibration. Defaults to ``0``.
 - **adc_voltage_multiplier** (*Optional*, float): The voltage multiplier of the ADC sensor used for calibration. Defaults to ``1.0``.
