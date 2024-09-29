@@ -332,11 +332,11 @@ Air Quality
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
     SEN0321, components/sensor/sen0321, sen0321.jpg, Ozone
-    SEN5x, components/sensor/sen5x, sen54.jpg, Temperature & Humidity & Volatile organics and NOx
+    SEN5x, components/sensor/sen5x, sen54.jpg, Temperature & Humidity & Volatile organics & NOx
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SFA30, components/sensor/sfa30, sfa30.jpg, Formaldehyde
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
-    SGP4x, components/sensor/sgp4x, sgp40.jpg, Volatile organics and NOx
+    SGP4x, components/sensor/sgp4x, sgp40.jpg, Volatile organics & NOx
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
     SPS30, components/sensor/sps30, sps30.jpg, Particulate
     T6613/15, components/sensor/t6615, t6615.jpg, CO2
@@ -558,7 +558,7 @@ Miscellaneous
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
     LVGL widget, components/sensor/lvgl, lvgl_c_num.png
     M5Stack Unit 8 Angle, components/sensor/m5stack_8angle, m5stack_8angle.png
-    MicroNova pellet stove, components/micronova, micronova.svg
+    MicroNova pellet stove, components/micronova, micronova.svg, dark-invert
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
