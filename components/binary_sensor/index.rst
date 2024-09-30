@@ -220,6 +220,41 @@ the beginning of the delay period.
 When using a lambda call, you should return the delay value in milliseconds.
 **Useful for debouncing binary switches**.
 
+``glitch``
+**************
+
+A filter that skips first N state transitions within a specified duration and lets everything else through.
+Useful for binary sensors on the :doc:`remote_receiver </components/remote_receiver>` platform to avoid false inputs
+when operating in a noisy radio environment. These sensors briefly become ON and then OFF again every time a specified
+code is received. Usually transmitter sends the code multiple times as long as the button is pressed at a rate about
+20 codes per second. So if we skip one or two and still receive the code then we can be sure it is not a glitch.
+If no state transitions happen within the specified duration, then the filter resets to its initial state.
+
+For example let's consider the following configuration:
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: remote-receiver
+        id: remote_button
+        # ...
+        filters:
+          - glitch:
+              count: 4
+              duration: 200ms
+          - settle: 500ms
+
+If we hold the button on our remote it will send the code repeatedly. Let's say it sent the code 5 times. This will
+result in 10 sensor state transitions: there are 2 transitions each time the sensor is triggered by a signal:
+from 0 to 1 and then almost immediately from 1 to 0. With the config above glitch filter will skip first 4 transitions
+so the next filter in chain (``settle``) will think there were only 3 times the code was sent. The end result is 1 event.
+If however there was a false signal received, it will result in just 2 transitions and will get discarded by the filter.
+
+Configuration variables:
+
+- **count** (*Optional*, number): How many sensor transitions to skip. Defaults to ``2``.
+- **duration** (*Optional*, :ref:`config-time`): Delay to proceed to the next timing. Defaults to ``250ms``.
+
 Binary Sensor Automation
 ------------------------
 
