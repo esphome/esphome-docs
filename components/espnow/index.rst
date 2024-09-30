@@ -136,25 +136,24 @@ Configuration variables: see :ref:`Automation <automation>`.
 This is an :ref:`Action <config-action>` for sending a data package over the espnow protocol.
 
 .. code-block:: yaml
-
- globals:
-   - id: custom_peer
-     type: uint64_t
-     restore_value: yes
-     initial_value: '66:55:44:33:22:11'
-
- binary_sensor:
-   - platform: gpio
-     pin: D2
-     on_click:
-      - espnow.send:
-          peer: 11:22:33:44:55:66
-          data: "The big angry wolf awakes"
-      - espnow.send: 
-          data: [0x00, 0x00, 0x34, 0x5d]
-          peer: !lambda: "return id(custom_peer);"
-      - espnow.send: 0x20DF10EF
-
+    
+    globals:
+      - id: custom_peer
+        type: uint64_t
+        restore_value: yes
+        initial_value: '66:55:44:33:22:11'
+    
+    binary_sensor:
+      - platform: gpio
+        pin: D2
+        on_click:
+         - espnow.send:
+             peer: 11:22:33:44:55:66
+             data: "The big angry wolf awakes"
+         - espnow.send: 
+             data: [0x00, 0x00, 0x34, 0x5d]
+             peer: !lambda: "return id(custom_peer);"
+         - espnow.send: 0x20DF10EF
 
 Configuration variables:
 
