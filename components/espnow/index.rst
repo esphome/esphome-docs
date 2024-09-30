@@ -136,7 +136,7 @@ Configuration variables: see :ref:`Automation <automation>`.
 This is an :ref:`Action <config-action>` for sending a data package over the espnow protocol.
 
 .. code-block:: yaml
-    
+
     globals:
       - id: custom_peer
         type: uint64_t
@@ -216,5 +216,3 @@ See Also
 .. toctree::
     :maxdepth: 1
     :glob:
-
-    *
