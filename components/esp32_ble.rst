@@ -11,7 +11,7 @@ can run.
 .. warning::
 
     The BLE software stack on the ESP32 consumes a significant amount of RAM on the device.
-    
+
     **Crashes are likely to occur** if you include too many additional components in your device's
     configuration. Memory-intensive components such as :doc:`/components/voice_assistant` and other
     audio components are most likely to cause issues.
@@ -35,6 +35,25 @@ Configuration variables:
     - ``display_yes_no`` - A display to show PIN codes and buttons to confirm or deny the connection
 
 - **enable_on_boot** (*Optional*, boolean): If enabled, the BLE interface will be enabled on boot. Defaults to ``true``.
+
+- **max_key_size** (*Optional*, int 7..16): Maximum Encryption key size to support.  Prefer not specified (the ESP32 default) unless your device needs special handling.
+
+- **min_key_size** (*Optional*, int 7..16): Minimum Encryption key size requirement from Peer.  Prefer not specified (the ESP32 default) unless your device needs special handling.
+
+- **auth_req_mode** (*Optional*, enum): The Authentication Request mode flags.
+
+    - ``no_bond``      - No Bonding
+    - ``bond``         - Bonding
+    - ``mitm``         - MITM only
+    - ``bond_mitm``    - Bonding with MITM
+    - ``sc_only``      - Secure only
+    - ``sc_bond``      - Secure with bonding
+    - ``sc_mitm``      - Secure with MITM
+    - ``sc_mitm_bond`` - Secure with MITM and bonding
+
+  See `ESP32 SDK Documentation <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/bluetooth/esp_gap_ble.html#c.ESP_LE_AUTH_NO_BOND>`_ for details on these flags.
+
+  Prefer not specified (the default) unless your device needs special handling.
 
 ``ble.disable`` Action
 -----------------------
