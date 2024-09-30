@@ -48,10 +48,9 @@ When your project meets the requirements
 ----------------------------------------
 
 - You can apply for permission to carry the logo by emailing esphome@nabucasa.com.
-- Create a new pull request in our
-  `esphome-devices <https://github.com/esphome/esphome-devices/pulls?q=sort%3Aupdated-desc+is%3Apr+is%3Aopen>`__
-  repository to add your device on the `devices website <https://devices.esphome.io>`__. We will review and merge this
-  PR upon confirming that your project meets all of the requirements listed above. 
+- Create a new pull request in our `esphome-devices <https://github.com/esphome/esphome-devices/pulls>`__ repository to
+  add your device on the `devices website <https://devices.esphome.io>`__. We will review and merge this PR upon
+  confirming that your project meets all of the requirements listed above. 
 
 Logos
 -----
