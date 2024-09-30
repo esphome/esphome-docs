@@ -126,11 +126,11 @@ Supported Microcontrollers
 
 .. imgtable::
 
-    ESP32, components/esp32, esp32.svg, dark-invert
-    ESP8266, components/esp8266, esp8266.svg, dark-invert
-    RP2040, components/rp2040, rp2040.svg, dark-invert
-    BK72xx, components/libretiny, bk72xx.svg, dark-invert
-    RTL87xx, components/libretiny, rtl87xx.svg, dark-invert
+    ESP32, components/esp32, esp32.svg
+    ESP8266, components/esp8266, esp8266.svg
+    RP2040, components/rp2040, rp2040.svg
+    BK72xx, components/libretiny, bk72xx.svg
+    RTL87xx, components/libretiny, rtl87xx.svg
     Host, components/host, host.svg, dark-invert
 
 Microcontroller Peripherals
@@ -140,7 +140,7 @@ Peripherals which directly support the operation of the microcontroller's proces
 
 .. imgtable::
 
-    PSRAM, components/psram, psram.svg, dark-invert
+    PSRAM, components/psram, psram.svg
     Deep Sleep, components/deep_sleep, hotel.svg, dark-invert
 
 ESPHome Automations
@@ -205,7 +205,7 @@ Network Protocols
     mDNS, components/mdns, radio-tower.svg, dark-invert
     WireGuard, components/wireguard, wireguard_custom_logo.svg, dark-invert
     StatsD, components/statsd, connection.svg, dark-invert
-    UDP, components/udp, udp.svg, dark-invert
+    UDP, components/udp, udp.svg
 
 Bluetooth/BLE
 -------------
@@ -228,7 +228,7 @@ Management and Monitoring
     Prometheus, components/prometheus, prometheus.svg
     StatsD, components/statsd, connection.svg, dark-invert
     Safe Mode, components/safe_mode, restart-alert.svg, dark-invert
-    Web Server, components/web_server, http.svg, dark-invert
+    Web Server, components/web_server, http.svg
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg, dark-invert
 
 Update Installation
@@ -257,23 +257,23 @@ Hardware Peripheral Interfaces/Busses
 
 .. imgtable::
 
-    CAN Bus, components/canbus/index, canbus.svg, dark-invert
+    CAN Bus, components/canbus/index, canbus.svg
     I²C Bus, components/i2c, i2c.svg
-    I²S Audio, components/i2s_audio, i2s_audio.svg, dark-invert
-    SPI Bus, components/spi, spi.svg, dark-invert
-    UART, components/uart, uart.svg, dark-invert
-    1-Wire, components/one_wire, one-wire.svg, dark-invert
+    I²S Audio, components/i2s_audio, i2s_audio.svg
+    SPI Bus, components/spi, spi.svg
+    UART, components/uart, uart.svg
+    1-Wire, components/one_wire, one-wire.svg
 
 I/O Expanders/Multiplexers
 --------------------------
 
 .. imgtable::
 
-    CH422G, components/ch422g, ch422g.svg, dark-invert
+    CH422G, components/ch422g, ch422g.svg
     MAX6956 - I²C Bus, components/max6956, max6956.jpg
-    MCP230XX - I²C Bus, components/mcp230xx, mcp230xx.svg, dark-invert
-    MCP23SXX - SPI Bus, components/mcp23Sxx, mcp23sxx.svg, dark-invert
-    PCA6416A, components/pca6416a, pca6416a.svg, dark-invert
+    MCP230XX - I²C Bus, components/mcp230xx, mcp230xx.svg
+    MCP23SXX - SPI Bus, components/mcp23Sxx, mcp23sxx.svg
+    PCA6416A, components/pca6416a, pca6416a.svg
     PCA9554, components/pca9554, pca9554a.jpg
     PCF8574, components/pcf8574, pcf8574.jpg
     SN74HC165, components/sn74hc165, sn74hc595.jpg
@@ -281,16 +281,16 @@ I/O Expanders/Multiplexers
     SX1509, components/sx1509, sx1509.jpg
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     WeiKai SPI/I²C UART/IO Expander, components/weikai, wk2168.jpg
-    XL9535, components/xl9535, xl9535.svg, dark-invert
+    XL9535, components/xl9535, xl9535.svg
 
 CAN Bus
 -------
 
 .. imgtable::
 
-    CAN Bus, components/canbus/index, canbus.svg, dark-invert
-    ESP32 CAN, components/canbus/esp32_can, esp32.svg, dark-invert
-    MCP2515, components/canbus/mcp2515, mcp2515.svg, dark-invert
+    CAN Bus, components/canbus/index, canbus.svg
+    ESP32 CAN, components/canbus/esp32_can, esp32.svg
+    MCP2515, components/canbus/mcp2515, mcp2515.svg
 
 Sensor Components
 -----------------
@@ -319,14 +319,14 @@ Air Quality
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
     EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
     ENS160, components/sensor/ens160, ens160.jpg, CO2 & Air Quality
-    GCJA5, components/sensor/gcja5, gcja5.svg, Particulate, dark-invert
+    GCJA5, components/sensor/gcja5, gcja5.svg, Particulate
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     iAQ-Core, components/sensor/iaqcore, iaqcore.jpg, CO2 & Volatile organics
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MiCS-4514, components/sensor/mics_4514, mics_4514.jpg, Gas concentration
     PM1006 Sensor, components/sensor/pm1006, pm1006.jpg, Particulate
     PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg, Particulate
-    PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate, dark-invert
+    PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
     RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png, Radon
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
@@ -401,8 +401,8 @@ Electricity
 
 .. imgtable::
 
-    ADE7880, components/sensor/ade7880, ade7880.svg, Voltage & Current & Power, dark-invert
-    ADE7953, components/sensor/ade7953, ade7953.svg, Power, dark-invert
+    ADE7880, components/sensor/ade7880, ade7880.svg, Voltage & Current & Power
+    ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E26, components/sensor/atm90e26, atm90e26.jpg, Voltage & Current & Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
     BL0906, components/sensor/bl0906, bl0906.png, Voltage & Current & Power & Energy
@@ -410,12 +410,12 @@ Electricity
     BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
     BL0942, components/sensor/bl0942, bl0942.png, Voltage & Current & Power
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
-    CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power, dark-invert
-    CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power, dark-invert
+    CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power
+    CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg, Alternating Current (AC)
     Daly BMS, components/sensor/daly_bms, daly_bms.jpg, Voltage & Current & Power
-    DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter, dark-invert
-    HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power, dark-invert
+    DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
+    HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
     INA219, components/sensor/ina219, ina219.jpg, Direct Current (DC)
     INA226, components/sensor/ina226, ina226.jpg, Direct Current (DC) & Power
     INA228, components/sensor/ina2xx, ina228.jpg, DC Voltage & Current & Power & Charge
@@ -429,7 +429,7 @@ Electricity
     MAX9611, components/sensor/max9611, max9611.jpg, Voltage & Current & Power & Temperature
     PZEM AC, components/sensor/pzemac, pzem-ac.jpg, Voltage & Current & Power
     PZEM DC, components/sensor/pzemdc, pzem-dc.jpg, Voltage & Current & Power
-    PZEM004T, components/sensor/pzem004t, pzem004t.svg, Voltage & Current & Power, dark-invert
+    PZEM004T, components/sensor/pzem004t, pzem004t.svg, Voltage & Current & Power
     SDM Meter, components/sensor/sdm_meter, sdm220m.jpg, Modbus energy monitor
     Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg, Modbus energy monitor
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg, Electrical counter
@@ -519,7 +519,7 @@ Light
     LTR558, components/sensor/ltr501, ltr501.jpg, Lux & Proximity
     LTR559, components/sensor/ltr_als_ps, ltr559.jpg, Lux & Proximity
     LTR659, components/sensor/ltr_als_ps, ltr-ps.jpg, Proximity
-    MAX44009, components/sensor/max44009, max44009.svg, Lux, dark-invert
+    MAX44009, components/sensor/max44009, max44009.svg, Lux
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
     TSL2591, components/sensor/tsl2591, tsl2591.jpg, Lux
@@ -558,7 +558,7 @@ Miscellaneous
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
     LVGL widget, components/sensor/lvgl, lvgl_c_num.png
     M5Stack Unit 8 Angle, components/sensor/m5stack_8angle, m5stack_8angle.png
-    MicroNova pellet stove, components/micronova, micronova.svg, dark-invert
+    MicroNova pellet stove, components/micronova, micronova.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Person Sensor (SEN21231), components/sensor/sen21231, sen21231.png
@@ -624,7 +624,7 @@ Core
 
     Binary Sensor Core, components/binary_sensor/index, folder-open.svg, dark-invert
     Template Binary Sensor, components/binary_sensor/template, description.svg, dark-invert
-    GPIO, components/binary_sensor/gpio, gpio.svg, dark-invert
+    GPIO, components/binary_sensor/gpio, gpio.svg
     Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg, dark-invert
     Status, components/binary_sensor/status, server-network.svg, dark-invert
 
@@ -710,28 +710,28 @@ Output Components
     Template Output, components/output/template, description.svg, dark-invert
     AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg, dark-invert
     BLE Binary Output, components/output/ble_client, bluetooth.svg, dark-invert
-    BP1658CJ, components/output/bp1658cj, bp1658cj.svg, dark-invert
-    BP5758D, components/output/bp5758d, bp5758d.svg, dark-invert
-    DAC7678, components/output/dac7678, dac7678.svg, dark-invert
+    BP1658CJ, components/output/bp1658cj, bp1658cj.svg
+    BP5758D, components/output/bp5758d, bp5758d.svg
+    DAC7678, components/output/dac7678, dac7678.svg
     EMC2101, components/emc2101, emc2101.jpg
-    ESP32 DAC, components/output/esp32_dac, dac.svg, dark-invert
+    ESP32 DAC, components/output/esp32_dac, dac.svg
     ESP32 LEDC, components/output/ledc, pwm.png
     ESP8266 Software PWM, components/output/esp8266_pwm, pwm.png
-    GP8403, components/output/gp8403, gp8403.svg, dark-invert
-    GPIO Output, components/output/gpio, gpio.svg, dark-invert
+    GP8403, components/output/gp8403, gp8403.svg
+    GPIO Output, components/output/gpio, gpio.svg
     LibreTiny PWM, components/output/libretiny_pwm, pwm.png
     MCP4725, components/output/mcp4725, mcp4725.jpg
     MCP4728, components/output/mcp4728, mcp4728.jpg
-    MCP47A1, components/output/mcp47a1, mcp47a1.svg, dark-invert
+    MCP47A1, components/output/mcp47a1, mcp47a1.svg
     Modbus Output, components/output/modbus_controller, modbus.png
-    MY9231/MY9291, components/output/my9231, my9231.svg, dark-invert
+    MY9231/MY9291, components/output/my9231, my9231.svg
     PCA9685, components/output/pca9685, pca9685.jpg
     Sigma-Delta Output, components/output/sigma_delta_output, sigma-delta.svg, dark-invert
     Slow PWM, components/output/slow_pwm, pwm.png
-    SM16716, components/output/sm16716, sm16716.svg, dark-invert
-    SM2135, components/output/sm2135, sm2135.svg, dark-invert
-    SM2235, components/output/sm2235, sm2235.svg, dark-invert
-    SM2335, components/output/sm2335, sm2335.svg, dark-invert
+    SM16716, components/output/sm16716, sm16716.svg
+    SM2135, components/output/sm2135, sm2135.svg
+    SM2235, components/output/sm2235, sm2235.svg
+    SM2335, components/output/sm2335, sm2335.svg
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     TLC5947, components/output/tlc5947, tlc5947.jpg
     TLC5971, components/output/tlc5971, tlc5971.jpg
@@ -780,7 +780,7 @@ Switch Components
     BLE Client Switch, components/switch/ble_client, bluetooth.svg, dark-invert
     Factory Reset Switch, components/switch/factory_reset, restart-alert.svg, dark-invert
     Generic Output Switch, components/switch/output, upload.svg, dark-invert
-    GPIO Switch, components/switch/gpio, gpio.svg, dark-invert
+    GPIO Switch, components/switch/gpio, gpio.svg
     LVGL Widget, components/switch/lvgl, lvgl_c_swi.png
     Modbus Switch, components/switch/modbus_controller, modbus.png
     Nextion Switch, components/switch/nextion, nextion.jpg
@@ -788,7 +788,7 @@ Switch Components
     Safe Mode Switch, components/switch/safe_mode, restart-alert.svg, dark-invert
     Shutdown Switch, components/switch/shutdown, power_settings.svg, dark-invert
     Tuya Switch, components/switch/tuya, tuya.png
-    UART Switch, components/switch/uart, uart.svg, dark-invert
+    UART Switch, components/switch/uart, uart.svg
     Home Assistant, components/switch/homeassistant, home-assistant.svg, dark-invert
 
 Button Components
@@ -803,7 +803,7 @@ Button Components
     Restart Button, components/button/restart, restart.svg, dark-invert
     Safe Mode Button, components/button/safe_mode, restart-alert.svg, dark-invert
     Shutdown Button, components/button/shutdown, power_settings.svg, dark-invert
-    UART Button, components/button/uart, uart.svg, dark-invert
+    UART Button, components/button/uart, uart.svg
     Wake-on-LAN, components/button/wake_on_lan, power_settings.svg, dark-invert
 
 Event Components
@@ -851,13 +851,13 @@ Display Hardware Platforms
 .. imgtable::
 
     Addressable Light, components/display/addressable_light, addressable_light.jpg
-    ILI9xxx, components/display/ili9xxx, ili9341.jpg, dark-invert
-    ILI9341, components/display/ili9xxx, ili9341.svg, dark-invert
-    ILI9342, components/display/ili9xxx, ili9342.svg, dark-invert
-    ILI9481, components/display/ili9xxx, ili9481.svg, dark-invert
-    ILI9486, components/display/ili9xxx, ili9341.jpg, dark-invert
-    ILI9488, components/display/ili9xxx, ili9488.svg, dark-invert
-    WSPICOLCD, components/display/ili9xxx, ili9488.svg, dark-invert
+    ILI9xxx, components/display/ili9xxx, ili9341.jpg
+    ILI9341, components/display/ili9xxx, ili9341.svg
+    ILI9342, components/display/ili9xxx, ili9342.svg
+    ILI9481, components/display/ili9xxx, ili9481.svg
+    ILI9486, components/display/ili9xxx, ili9341.jpg
+    ILI9488, components/display/ili9xxx, ili9488.svg
+    WSPICOLCD, components/display/ili9xxx, ili9488.svg
     Inkplate, components/display/inkplate6, inkplate6.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
@@ -877,7 +877,7 @@ Display Hardware Platforms
     ST7701S, components/display/st7701s, indicator.jpg
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
-    ST7796, components/display/ili9xxx, st7796.svg, dark-invert
+    ST7796, components/display/ili9xxx, st7796.svg
     ST7920, components/display/st7920, st7920.jpg
     TM1621, components/display/tm1621, tm1621.jpg
     TM1637, components/display/tm1637, tm1637.jpg
@@ -894,7 +894,7 @@ Touchscreen Components
     Touchscreen Core, components/touchscreen/index, folder-open.svg, dark-invert
     CST226, components/touchscreen/cst226, t4-s3.jpg
     CST816, components/touchscreen/cst816, cst816.jpg
-    EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus, dark-invert
+    EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
     FT63X6, components/touchscreen/ft63x6, wt32-sc01.png
     GT911, components/touchscreen/gt911, esp32_s3_box_3.png
     Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
@@ -943,7 +943,7 @@ Text Sensor Components
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg, dark-invert
     Ethernet Info, components/text_sensor/ethernet_info, ethernet.svg, dark-invert
     Home Assistant, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
-    LibreTiny, components/text_sensor/libretiny, libretiny.svg, dark-invert
+    LibreTiny, components/text_sensor/libretiny, libretiny.svg
     LVGL textarea Text Sensor, components/text_sensor/lvgl, lvgl_c_txt.png
     Modbus Text Sensor, components/text_sensor/modbus_controller, modbus.png
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
@@ -1010,7 +1010,7 @@ Media Player Components
 
     Media Player Core, components/media_player/index, folder-open.svg, dark-invert
     DFPlayer, components/dfplayer, dfplayer.svg, dark-invert
-    I2S Audio, components/media_player/i2s_audio, i2s_audio.svg, dark-invert
+    I2S Audio, components/media_player/i2s_audio, i2s_audio.svg
 
 Microphone Components
 ---------------------
@@ -1018,7 +1018,7 @@ Microphone Components
 .. imgtable::
 
     Microphone Core, components/microphone/index, microphone.svg, dark-invert
-    I2S Microphone, components/microphone/i2s_audio, i2s_audio.svg, dark-invert
+    I2S Microphone, components/microphone/i2s_audio, i2s_audio.svg
 
 Speaker Components
 ------------------
@@ -1026,7 +1026,7 @@ Speaker Components
 .. imgtable::
 
     Speaker Core, components/speaker/index, speaker.svg, dark-invert
-    I2S Speaker, components/speaker/i2s_audio, i2s_audio.svg, dark-invert
+    I2S Speaker, components/speaker/i2s_audio, i2s_audio.svg
 
 Time Components
 ---------------
@@ -1082,7 +1082,7 @@ Energy/Solar Management
     PipSolar-compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Power Supply, components/power_supply, power.svg, dark-invert
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
-    SML, components/sml, sml.svg, dark-invert
+    SML, components/sml, sml.svg
     SUN-GTIL2 inverter, components/sun_gtil2, sun_1000g2.png
 
 Electromechanical
@@ -1094,8 +1094,8 @@ Electromechanical
     Grove TB6612FNG, components/grove_tb6612fng, motor.png, dark-invert
     Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
     RTTTL Buzzer, components/rtttl, buzzer.jpg
-    Servo, components/servo, servo.svg, dark-invert
-    Stepper, components/stepper/index, stepper.svg, dark-invert
+    Servo, components/servo, servo.svg
+    Stepper, components/stepper/index, stepper.svg
 
 Wireless Communication
 ----------------------
