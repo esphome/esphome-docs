@@ -60,12 +60,9 @@ Configuration variables:
   the devices where this device may communicate with.
 
 Automations:
-- **on_receive** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  data package is received. See :ref:`espnow-on_package_receiveds`.
-- **on_new_peer** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  data package is received from an unknown peer. See :ref:`espnow-on_new_peer`.
-- **on_sent** (*Optional*, :ref:`Automation <automation>`): An automation to perform to
-  confirm that the dat package was send correctly or not. See :ref:`espnow-on_package_send`.
+- **on_receive** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a data package is received. See :ref:`espnow-on_package_receiveds`.
+- **on_new_peer** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a data package is received from an unknown peer. See :ref:`espnow-on_new_peer`.
+- **on_sent** (*Optional*, :ref:`Automation <automation>`): An automation to perform to confirm that the dat package was send correctly or not. See :ref:`espnow-on_package_send`.
 
 espnow Automation
 -----------------
