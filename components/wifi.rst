@@ -8,8 +8,8 @@ WiFi Component
 
 This core ESPHome component sets up WiFi connections to access points
 for you. You need to have a network configuration (either Wifi or Ethernet)
-or ESPHome will fail in the config validation stage. You also can't have both Wifi
-and Ethernet setup in same time (even if your ESP has both wired).
+or ESPHome will fail in the config validation stage. If the :doc:`/components/ethernet` is used, 
+you can't use this component to connect to an existing WiFi network (STA), but you can setup an acces point (AP) that will use the ethernet connection to reach internet.
 
 It’s recommended to provide a static IP for your node, as it can
 dramatically improve connection times.
@@ -33,6 +33,18 @@ dramatically improve connection times.
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
+
+.. code-block:: yaml
+
+    # Setup a WiFi AP that will use an existing ethernet connection
+    wifi:
+      ap:
+        ssid: mywifiap
+        password: mypassword
+
+    ethernet:
+      type: ...
+       
 
 .. _wifi-configuration_variables:
 
