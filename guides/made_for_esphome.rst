@@ -44,11 +44,19 @@ For all projects
 
 - Your product name cannot contain "**ESPHome**" except in the case of *ending with* "**for ESPHome**"
 
-When your project matches all requirements of the Made for ESPHome program,
-you can apply for permission to carry the logo by emailing esphome@nabucasa.com
+When your project meets the requirements
+----------------------------------------
+
+- You can apply for permission to carry the logo by emailing esphome@nabucasa.com.
+- Create a new pull request in our
+  `esphome-devices <https://github.com/esphome/esphome-devices/pulls?q=sort%3Aupdated-desc+is%3Apr+is%3Aopen>`__
+  repository to add your device on the `devices website <https://devices.esphome.io>`__. We will review and merge this
+  PR upon confirming that your project meets all of the requirements listed above. 
 
 Logos
 -----
+
+After your project is approved, you may use these logos on your product and/or its packaging.
 
 .. raw:: html
 
