@@ -1,0 +1,214 @@
+Belling 0910 BL0910 Ten-phase energy measurement chip
+=====================================================
+
+.. seo::
+    :description: Instructions for setting up 0910 power monitors.
+    :keywords: 0910
+
+.. note::
+
+    This sensor was written as a project making my own 60 channel clamp monitoring device.
+    Project can be found here:
+    https://github.com/jimmyw/energymeter/
+
+Configuration variables:
+------------------------
+
+The communication with this component is done via a :ref:`SPI <spi>`.
+You must therefore have a ``spi:`` entry in your configuration
+
+Example reference values values
+All magic values are calculated from the BL0910 app note:
+https://www.belling.com.cn/media/file_object/bel_product/BL0910/datasheet/BL0910%20APP%20Note_V1.02.pdf
+
+
+Calculate the reference values from the app note magic values here using python:
+
+.. code-block:: python
+
+    # Example 1: Plugging values from the app note into the formulas:
+    BURDEN1 = (5.1 + 5.1)
+    BURDEN2 = 100.0
+    BURDEN3 = 100.0
+    CT_TURNS = 2000.0
+
+    # Example 2: https://github.com/jimmyw/energymeter/blob/main/energymeter.pdf
+    BURDEN1 = 10.2 # ohm(R2 + R3)
+    BURDEN2 = 100.0 # ohm (R68)
+    BURDEN3 = 110.0 # kohm (R63 + R64 + R65 + R66 + R67)
+    CT_TURNS = 3000.0
+
+    # Example 3: https://github.com/JustNoot/10CH-Energy-Meter/blob/main/Schematic_10ch_power_meter_2024-05-11.pdf
+    BURDEN1 = 33 # ohm (R2)
+    BURDEN2 = 120.0 # ohm (R33)
+    BURDEN3 = 132.0 # kohm (R36 + R37 + R38 + R39 + R40 + R41)
+    CT_TURNS = 2000.0
+
+    # Note, Some CT clamps have additional resistors in series with the burden resistor, so you need to add those to the burden resistor value.
+
+    # Calculate the reference values from the app note magic values:
+    IREF = (12875.0 * BURDEN1) / (1.097 * CT_TURNS / 1000.0)
+    UREF = (13162.0 * BURDEN2) / (1.097 * BURDEN3)
+    PREF = (40.4125 * BURDEN1 * BURDEN2 * 1000.0 / CT_TURNS) / (1.097 * 1.097 * BURDEN3)
+    EREF = (3600000.0 * 16.0 * PREF) / (4194304.0 * 0.032768 * 16.0)
+
+    print(f"current_reference: {IREF}")
+    print(f"voltage_reference: {UREF}")
+    print(f"power_reference: {PREF}")
+    print(f"energy_reference: {EREF}")
+
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
+  is connected to.
+- **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
+  to use multiple SPI buses.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
+- **update_interval** (*Optional*, :ref:`config-time`): Update interval of the sensor.
+- **current_reference** (**Required**): Multiplier value to calculate the current value from the raw sensor value.
+- **voltage_reference** (**Required**): Multiplier value to calculate the voltage value from the raw sensor value.
+- **power_reference** (**Required**): Multiplier value to calculate the power value from the raw sensor value.
+- **energy_reference** (**Required**): Multiplier value to calculate the energy value from the raw sensor value.
+
+.. code-block:: yaml
+
+    spi:
+    clk_pin: GPIO18
+    mosi_pin: GPIO23
+    miso_pin: GPIO19
+
+
+    sensor:
+    - platform: bl0910
+        update_interval: 1000ms
+        cs_pin: GPIO21
+
+        # In mode 0, channel 11 is the voltage reference
+        voltage_11:
+            name: BL0910 RMS Voltage
+            voltage_reference: 10907.4335
+        current_1:
+            name: BL0910 Current 1
+            current_reference: 36774.5366
+        current_2:
+            name: BL0910 Current 2
+            current_reference: 36774.5366
+        current_3:
+            name: BL0910 Current 3
+            current_reference: 36774.5366
+        current_4:
+            name: BL0910 Current 4
+            current_reference: 36774.5366
+        current_5:
+            name: BL0910 Current 5
+            current_reference: 36774.5366
+        current_6:
+            name: BL0910 Current 6
+            current_reference: 36774.5366
+        current_7:
+            name: BL0910 Current 7
+            current_reference: 36774.5366
+        current_8:
+            name: BL0910 Current 8
+            current_reference: 36774.5366
+        current_9:
+            name: BL0910 Current 9
+            current_reference: 36774.5366
+        current_10:
+            name: BL0910 Current 10
+            current_reference: 36774.5366
+
+        active_power_1:
+            name: BL0910 Active Power 1
+            power_reference: 95.6569
+        active_power_2:
+            name: BL0910 Active Power 2
+            power_reference: 95.6569
+        active_power_3:
+            name: BL0910 Active Power 3
+            power_reference: 95.6569
+        active_power_4:
+            name: BL0910 Active Power 4
+            power_reference: 95.6569
+        active_power_5:
+            name: BL0910 Active Power 5
+            power_reference: 95.6569
+        active_power_6:
+            name: BL0910 Active Power 6
+            power_reference: 95.6569
+        active_power_7:
+            name: BL0910 Active Power 7
+            power_reference: 95.6569
+        active_power_8:
+            name: BL0910 Active Power 8
+            power_reference: 95.6569
+        active_power_9:
+            name: BL0910 Active Power 9
+            power_reference: 95.6569
+        active_power_10:
+            name: BL0910 Active Power 10
+            power_reference: 95.6569
+
+        energy_1:
+            name: BL0910 Energy 1
+            energy_reference: 2505.5844
+        energy_2:
+            name: BL0910 Energy 2
+            energy_reference: 2505.5844
+        energy_3:
+            name: BL0910 Energy 3
+            energy_reference: 2505.5844
+        energy_4:
+            name: BL0910 Energy 4
+            energy_reference: 2505.5844
+        energy_5:
+            name: BL0910 Energy 5
+            energy_reference: 2505.5844
+        energy_6:
+            name: BL0910 Energy 6
+            energy_reference: 2505.5844
+        energy_7:
+            name: BL0910 Energy 7
+            energy_reference: 2505.5844
+        energy_8:
+            name: BL0910 Energy 8
+            energy_reference: 2505.5844
+        energy_9:
+            name: BL0910 Energy 9
+            energy_reference: 2505.5844
+        energy_10:
+            name: BL0910 Energy 10
+            energy_reference: 2505.5844
+
+        power_factor_1:
+            name: BL0910 PowerFactor 1
+        power_factor_2:
+            name: BL0910 PowerFactor 2
+        power_factor_3:
+            name: BL0910 PowerFactor 3
+        power_factor_4:
+            name: BL0910 PowerFactor 4
+        power_factor_5:
+            name: BL0910 PowerFactor 5
+        power_factor_6:
+            name: BL0910 PowerFactor 6
+        power_factor_7:
+            name: BL0910 PowerFactor 7
+        power_factor_8:
+            name: BL0910 PowerFactor 8
+        power_factor_9:
+            name: BL0910 PowerFactor 9
+        power_factor_10:
+            name: BL0910 PowerFactor 10
+
+        frequency:
+            name: BL0910 Frequency
+        temperature:
+            name: BL0910 Temperature
+
+
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :apiref:`0910/0910.h`
+- :ghedit:`Edit`
