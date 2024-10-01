@@ -34,4 +34,5 @@ Configuration variables:
 See Also
 --------
 
+- :ref:`logger`
 - :ghedit:`Edit`
