@@ -48,12 +48,12 @@ avoid these shorter exposure times unless there's a specific use case.
     # Example configuration entry
     sensor:
       - platform: tcs34725
-        red_channel:
-          name: "TCS34725 Red Channel"
-        green_channel:
-          name: "TCS34725 Green Channel"
-        blue_channel:
-          name: "TCS34725 Blue Channel"
+        red_channel_irradiance:
+          name: "TCS34725 Red Channel Irradiance"
+        green_channel_irradiance:
+          name: "TCS34725 Green Channel Irradiance"
+        blue_channel_irradiance:
+          name: "TCS34725 Blue Channel Irradiance"
         sensor_saturation:
           name: "TCS34725 Sensor Saturation"
         illuminance:
@@ -67,11 +67,11 @@ avoid these shorter exposure times unless there's a specific use case.
 Configuration variables:
 ------------------------
 
-- **red_channel** (*Optional*): Always 0.0
+- **red_channel_irradiance** (*Optional*): Irradiance of the red light received by the sensor in µW/cm².
   All options from :ref:`Sensor <config-sensor>`.
-- **green_channel** (*Optional*): Always 0.0
+- **green_channel_irradiance** (*Optional*): Irradiance of the green light received by the sensor in µW/cm².
   All options from :ref:`Sensor <config-sensor>`.
-- **blue_channel** (*Optional*): Always 0.0
+- **blue_channel_irradiance** (*Optional*): Irradiance of the blue light received by the sensor in µW/cm².
   All options from :ref:`Sensor <config-sensor>`.
 - **sensor_saturation** (*Optional*): The saturation of the sensor with light in percent. All options from
   :ref:`Sensor <config-sensor>`.
