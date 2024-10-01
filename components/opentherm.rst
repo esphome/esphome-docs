@@ -150,26 +150,69 @@ output and number components by default:
 The following inputs are available:
 
 - ``t_set``: Control setpoint: temperature setpoint for the boiler's supply water (°C)
+
+  * Default ``min_value``: 0
+  * Default ``max_value``: 100
+  * Supports ``auto_max_value``
 - ``t_set_ch2``: Control setpoint 2: temperature setpoint for the boiler's supply water on the second heating circuit
   (°C)
+
+  * Default ``min_value``: 0
+  * Default ``max_value``: 100
+  * Supports ``auto_max_value``
 - ``cooling_control``: Cooling control signal (%)
+
+  * Default ``min_value``: 0
+  * Default ``max_value``: 100
 - ``t_dhw_set``: Domestic hot water temperature setpoint (°C)
+
+  * Default ``min_value``: 0
+  * Default ``max_value``: 127
+  * Supports ``auto_min_value``
+  * Supports ``auto_max_value``
 - ``max_t_set``: Maximum allowable CH water setpoint (°C)
+
+  * Default ``min_value``: 0
+  * Default ``max_value``: 127
+  * Supports ``auto_min_value``
+  * Supports ``auto_max_value``
 - ``t_room_set``: Current room temperature setpoint (informational) (°C)
+
+  * Default ``min_value``: -40
+  * Default ``max_value``: 127
 - ``t_room_set_ch2``: Current room temperature setpoint on CH2 (informational) (°C)
+
+  * Default ``min_value``: -40
+  * Default ``max_value``: 127
 - ``t_room``: Current sensed room temperature (informational) (°C)
+
+  * Default ``min_value``: -40
+  * Default ``max_value``: 127
+- ``max_rel_mod_level``: Maximum relative modulation level (%)
+
+  * Default ``min_value``: 0
+  * Default ``max_value``: 100
+  * Supports ``auto_min_value``
+- ``otc_hc_ratio``: OTC heat curve ratio (°C)
+
+  * Default ``min_value``: 0
+  * Default ``max_value``: 127
+  * Supports ``auto_min_value``
+  * Supports ``auto_max_value``
 
 Switch
 ******
 
 
-Switches are available to allow manual toggling of any of the following five status codes:
+Switches are available to allow manual toggling of any of the following seven status codes:
 
 - ``ch_enable``: Central Heating enabled
 - ``dhw_enable``: Domestic Hot Water enabled
 - ``cooling_enable``: Cooling enabled
 - ``otc_active``: Outside temperature compensation active
 - ``ch2_active``: Central Heating 2 active
+- ``summer_mode_active``: Summer mode active
+- ``dhw_block``: Block DHW
 
 If you do not wish to have switches, the same values can be permanently set in the hub configuration, like so:
 
@@ -257,6 +300,12 @@ available:
 - ``max_t_set_lb``: Lower bound for adjustment of max CH setpoint (°C)
 - ``t_dhw_set``: Domestic hot water temperature setpoint (°C)
 - ``max_t_set``: Maximum allowable CH water setpoint (°C)
+- ``opentherm_version_device``: Version of OpenTherm implemented by device
+- ``device_type``: Device product type
+- ``device_version``: Device product version
+- ``device_id``: Device ID code
+- ``otc_hc_ratio_ub``: OTC heat curve ratio upper bound
+- ``otc_hc_ratio_lb``: OTC heat curve ratio lower bound
 
 
 Examples
