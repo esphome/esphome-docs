@@ -60,7 +60,7 @@ Configuration variables:
     See :ref:`Oversampling Options <bme280-oversampling>`.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **humidity** (*Optional*): The information for the pressure sensor.
+- **humidity** (*Optional*): The information for the humidity sensor.
 
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
     See :ref:`Oversampling Options <bme280-oversampling>`.
