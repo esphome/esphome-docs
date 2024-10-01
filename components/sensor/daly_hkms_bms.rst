@@ -50,45 +50,29 @@ A sensor platform to read BMS data
 .. code-block:: yaml
 
     sensor:
-      - platform: daly_bms
+      - platform: daly_hkms_bms
+        daly_hkms_bms_id: bms_id
         voltage:
           name: "Battery Voltage"
         current:
           name: "Battery Current"
         battery_level:
           name: "Battery Level"
-        max_cell_voltage:
-          name: "Max Cell Voltage"
-        max_cell_voltage_number:
-          name: "Max Cell Voltage Number"
-        min_cell_voltage:
-          name: "Min Cell Voltage"
-        min_cell_voltage_number:
-          name: "Min Cell Voltage Number"
-        max_temperature:
-          name: "Max Temperature"
-        max_temperature_probe_number:
-          name: "Max Temperature Probe Number"
-        min_temperature:
-          name: "Min Temperature"
-        min_temperature_probe_number:
-          name: "Min Temperature Probe Number"
         remaining_capacity:
           name: "Remaining Capacity"
-        cells_number:
-          name: "Cells Number"
-        temperature_1:
-          name: "Temperature 1"
-        temperature_2:
-          name: "Temperature 2"
-        cell_1_voltage:
-          name: "Cell 1 Voltage"
-        cell_2_voltage:
-          name: "Cell 2 Voltage"
-        cell_3_voltage:
-          name: "Cell 3 Voltage"
-        cell_4_voltage:
-          name: "Cell 4 Voltage"
+        cycles:
+          name: "Battery Cycles"
+        temperature_mos:
+          name: "Temperature MOS"
+        max_temperature:
+          name: "Temperature Max"
+        min_temperature:
+          name: "Temperature Min"
+        max_cell_voltage:
+          name: "Cell Voltage Max"
+        min_cell_voltage:
+          name: "Cell Voltage Min"
+
 
 Configuration variables:
 ************************
@@ -100,30 +84,6 @@ Configuration variables:
   All options from :ref:`Sensor <config-sensor>`.
 
 - **battery_level** (*Optional*): Battery level in % (SoC).
-  All options from :ref:`Sensor <config-sensor>`.
-
-- **max_cell_voltage** (*Optional*): The cell of the battery with the higher voltage.
-  All options from :ref:`Sensor <config-sensor>`.
-
-- **max_cell_voltage_number** (*Optional*): The cell number of the battery with the higher voltage.
-  All options from :ref:`Sensor <config-sensor>`.
-
-- **min_cell_voltage** (*Optional*): The cell of the battery with the lower voltage.
-  All options from :ref:`Sensor <config-sensor>`.
-
-- **min_cell_voltage_number** (*Optional*): The cell number of the battery with the lower voltage.
-  All options from :ref:`Sensor <config-sensor>`.
-
-- **max_temperature** (*Optional*): The higher temperature measured from the temperature sensors.
-  All options from :ref:`Sensor <config-sensor>`.
-
-- **max_temperature_probe_number** (*Optional*): The sensor number which has measured the higher temperature.
-  All options from :ref:`Sensor <config-sensor>`.
-
-- **min_temperature** (*Optional*): The lower temperature measured from the temperature sensors.
-  All options from :ref:`Sensor <config-sensor>`.
-
-- **min_temperature_probe_number** (*Optional*): The sensor number which has measured the lower temperature.
   All options from :ref:`Sensor <config-sensor>`.
 
 - **remaining_capacity** (*Optional*): The capacity in Ah left in the battery.
@@ -141,13 +101,37 @@ Configuration variables:
 - **temps_number** (*Optional*): The number of temperature sensors.
   All options from :ref:`Sensor <config-sensor>`.
 
+- **max_temperature** (*Optional*): The higher temperature measured from the temperature sensors.
+  All options from :ref:`Sensor <config-sensor>`.
+
+- **max_temperature_probe_number** (*Optional*): The sensor number which has measured the higher temperature.
+  All options from :ref:`Sensor <config-sensor>`.
+
+- **min_temperature** (*Optional*): The lower temperature measured from the temperature sensors.
+  All options from :ref:`Sensor <config-sensor>`.
+
+- **min_temperature_probe_number** (*Optional*): The sensor number which has measured the lower temperature.
+  All options from :ref:`Sensor <config-sensor>`.
+
 - **temperature_1** (*Optional*): The first temperature sensor. There can be up to 8 temperature sensors.
   All options from :ref:`Sensor <config-sensor>`.
 
 - **cells_number** (*Optional*): The number of cells in series in the battery pack.
   All options from :ref:`Sensor <config-sensor>`.
 
-- **cell_1_voltage** (*Optional*): The voltage of cell number 1. Cell number can be from 1 to 16.
+- **max_cell_voltage** (*Optional*): The cell of the battery with the highest voltage.
+  All options from :ref:`Sensor <config-sensor>`.
+
+- **max_cell_voltage_number** (*Optional*): The cell number of the battery with the highest voltage.
+  All options from :ref:`Sensor <config-sensor>`.
+
+- **min_cell_voltage** (*Optional*): The cell of the battery with the lowest voltage.
+  All options from :ref:`Sensor <config-sensor>`.
+
+- **min_cell_voltage_number** (*Optional*): The cell number of the battery with the lowest voltage.
+  All options from :ref:`Sensor <config-sensor>`.
+
+- **cell_1_voltage** (*Optional*): The voltage of cell number 1. Cell number can be from 1 to 48.
   All options from :ref:`Sensor <config-sensor>`.
 
 Text Sensor
