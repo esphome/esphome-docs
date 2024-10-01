@@ -44,6 +44,7 @@ Configuration variables:
 - **decryption_key** (*Optional*, string, :ref:`templatable <config-templatable>`, 32 characters, case insensitive): The key to decrypt the
   telegrams. Used in Lux only.
 - **gas_mbus_id** (*Optional*, int): The id of the gas meter. Defaults to ``1``.
+- **thermal_mbus_id** (*Optional*, int): The id of the thermal energy meter. Defaults to ``3``.
 - **crc_check** (*Optional*, boolean): Specifies if the CRC check must be done. This is required to be set to false for
   older DSMR versions as they do not provide a CRC. Defaults to ``true``.
 - **max_telegram_length** (*Optional*, integer): The size of the buffer used for reading DSMR telegrams. Increase
@@ -174,6 +175,10 @@ Configuration variables:
   - All options from :ref:`Sensor <config-sensor>`.
 
 - **gas_delivered** (*Optional*): Gas Consumed.
+
+  - All options from :ref:`Sensor <config-sensor>`.
+
+- **thermal_delivered** (*Optional*): Thermal energy delivered.
 
   - All options from :ref:`Sensor <config-sensor>`.
 
