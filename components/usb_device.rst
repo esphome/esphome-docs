@@ -18,7 +18,7 @@ USB Device Configuration
 Binary Sensor
 -------------
 
-A binary sensor platform to read USB devices status
+A binary sensor platform to read USB devices status e.g. cdc logger
 
 Configuration variables:
 ************************
