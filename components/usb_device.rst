@@ -1,6 +1,8 @@
 USB Device
 ==========
 
+ESP32S2 and ESP32S3 allow to develop USB devices. One of the examples of USB device is `USB_CDC` logger.
+
 .. seo::
     :description: Instructions for setting up USB Device in ESPHome.
 
@@ -18,7 +20,7 @@ USB Device Configuration
 Binary Sensor
 -------------
 
-A binary sensor platform to read USB devices status e.g. cdc logger
+A binary sensor platform to read USB devices status
 
 Configuration variables:
 ************************
