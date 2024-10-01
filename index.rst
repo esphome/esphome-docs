@@ -701,6 +701,7 @@ Miscellaneous
     Resol VBus, components/vbus, resol_deltasol_bs_plus.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
     WireGuard, components/wireguard, wireguard_custom_logo.svg, dark-invert
+    USB Device, components/usb_device, usb-port.svg
 
 Output Components
 -----------------
