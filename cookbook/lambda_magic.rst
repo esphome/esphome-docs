@@ -61,6 +61,11 @@ You can send such UDP commands from ESPHome using a Lambda in a script.
 
 .. code-block:: yaml
 
+    esphome:
+      ...
+      includes: # only needed in case of ESP8266
+        - WiFiUdp.h
+
     script:
     - id: send_udp
       parameters:
@@ -68,6 +73,15 @@ You can send such UDP commands from ESPHome using a Lambda in a script.
         host: string
         port: int
       then:
+        # in case of ESP8266:
+        - lambda: |-
+              WiFiUDP Udp;
+              Udp.beginPacket(host.c_str(), port);
+              Udp.write(msg.c_str());
+              Udp.endPacket();
+              ESP_LOGD("lambda", "Sent %s to %s:%d", msg.c_str(), host.c_str(), port);
+
+        # in case of ESP32:
         - lambda: |-
               int sock = ::socket(AF_INET, SOCK_DGRAM, 0);
               struct sockaddr_in destination, source;
@@ -76,15 +90,15 @@ You can send such UDP commands from ESPHome using a Lambda in a script.
               destination.sin_port = htons(port);
               destination.sin_addr.s_addr = inet_addr(host.c_str());
 
-              // you can remove the next 4 lines if you don't want to set the source port for outgoing packets
+              // you can remove the next 4 lines if you don't need to set the source port for outgoing packets
               source.sin_family = AF_INET;
               source.sin_addr.s_addr = htonl(INADDR_ANY);
               source.sin_port = htons(64998);  // the source port number
               bind(sock, (struct sockaddr*)&source, sizeof(source));
 
               int n_bytes = ::sendto(sock, msg.c_str(), msg.length(), 0, reinterpret_cast<sockaddr*>(&destination), sizeof(destination));
-              ESP_LOGD("lambda", "Sent %s to %s:%d in %d bytes", msg.c_str(), host.c_str(), port, n_bytes);
               ::close(sock);
+              ESP_LOGD("lambda", "Sent %s to %s:%d in %d bytes", msg.c_str(), host.c_str(), port, n_bytes);
 
     button:
     - platform: template
@@ -97,7 +111,7 @@ You can send such UDP commands from ESPHome using a Lambda in a script.
             host: "192.168.1.10"
             port: 5000
 
-Tested on both `arduino` and `esp-idf` platforms.
+Tested on ESP32 ``arduino`` and ``esp-idf`` platforms. In case of ESP8266 get ``WiFiUdp.h`` from `here <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/WiFiUdp.h>`__ and place it in your configuration directory.
 
 .. _lambda_magic_uart_text_sensor:
 
