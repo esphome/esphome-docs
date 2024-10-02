@@ -149,6 +149,10 @@ Additional options:
   The open/close duration includes one instance of this delay, as it is the total amount of time from
   issuing a command to reaching endstop.
   Defaults to ``0s``.
+- **overshoot_duration** (*Optional*, :ref:`config-time`): After the cover reaches max opened or closed position (0% or 100%),
+  keep it moving for this duration before stopping. Intended to reset any accumulated error when doing multiple partial
+  open/close actions. Does nothing if endstops are used.
+  Defaults to ``0s``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to publish updated position information to the UI while the cover is moving.
   Defaults to ``1s``.
