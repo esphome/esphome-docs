@@ -25,7 +25,7 @@ This overcomes the reality that measured battery voltage does not correlate well
 
 .. figure:: images/max17043.jpg
     :align: center
-    :width: 40.0%
+    :width: 60.0%
 
     DFRobot DFR0563 Gravity I2C 3.7V Li battery fuel gauge.
 
