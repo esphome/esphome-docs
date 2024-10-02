@@ -571,6 +571,7 @@ Miscellaneous
     uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png, pH & Temperature
     WireGuard, components/wireguard, wireguard_custom_logo.svg, dark-invert
     GDK101, components/sensor/gdk101, gdk101.jpg, Radiation
+    MAX17043, components/sensor/max17043, max17043.jpg, Battery
 
 Motion
 ******
