@@ -181,12 +181,6 @@ Configuration variables:
 - **balancing_active** (*Optional*): Whether the BMS is currently balancing the cells.
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
 
-
-Control BMS
------------
-
-TODO
-
 UART Connection
 ---------------
 
