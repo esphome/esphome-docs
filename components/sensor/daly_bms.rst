@@ -9,6 +9,8 @@ The ``daly_bms`` sensor platform allows you to use a Daly Smart BMS
 (`more info <https://dalyelec.en.made-in-china.com/>`__)
 with ESPHome.
 
+**Be aware**, newer Daly BMS (H/K/M/S-Series) use another protocol based on Modbus, available via the :doc:`/components/sensor/daly_hkms_bms` component.
+
 The BMS communicates via :ref:`UART <uart>`.
 
 .. figure:: images/daly_bms_example.png

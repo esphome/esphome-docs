@@ -9,6 +9,8 @@ The ``daly_hkms_bms`` sensor platform allows you to use a Daly H/K/M/S-Series Sm
 (`more info <https://dalyelec.en.made-in-china.com/>`__)
 with ESPHome.
 
+Older Daly BMS use a custom UART-based protocol available via the :doc:`/components/sensor/daly_bms` component.
+
 .. figure:: images/daly_k-series_bms_example.png
     :align: center
     :width: 100.0%
