@@ -26,7 +26,8 @@ All light configuration schemas inherit these options.
 
 Configuration variables:
 
-- **name** (**Required**, string): The name of the light.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name of the light. At least one of **id** and **name** must be specified.
 
   .. note::
 
@@ -43,8 +44,6 @@ Configuration variables:
 - **flash_transition_length** (*Optional*, :ref:`config-time`): The transition length to use when flash
   is called. Defaults to ``0s``.
 - **restore_mode** (*Optional*): Control how the light attempts to restore state on bootup.
-  For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
-  :doc:`esphome section </components/esphome>`.
 
     - ``RESTORE_DEFAULT_OFF`` - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
@@ -77,12 +76,13 @@ Advanced options:
   a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 .. _light-toggle_action:
 
@@ -319,6 +319,15 @@ Configuration variables:
 - **relative_brightness** (**Required**, :ref:`templatable <config-templatable>`, percentage):
   The relative brightness to dim the light by.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition.
+- **brightness_limits** (*Optional*): Limits in the brightness range.
+    - **min_brightness** (*Optional*, percentage): The minimum brightness to dim the light to. Defaults to ``0%``.
+    - **max_brightness** (*Optional*, percentage): The maximum brightness to dim the light to. Defaults to ``100%``.
+    - **limit_mode** (*Optional*): What to do when the current brightness is outside of the limit range. Defaults to ``CLAMP``.
+      Valid limit modes are:
+    
+        - ``CLAMP``: Clamp the brightness to the limit range.
+        - ``DO_NOTHING``: No dimming if the brightness is outside the limit range.
+
 
 .. note::
 
@@ -339,6 +348,8 @@ Configuration variables:
                         id: light_1
                         relative_brightness: 5%
                         transition_length: 0.1s
+                        brightness_limits:
+                            max_brightness: 90%
                     - delay: 0.1s
 
 .. _light-addressable_set_action:
@@ -515,7 +526,7 @@ Configuration variables:
 Random Effect
 *************
 
-This effect makes a transition (of length ``transition_length``) to a randomly-chosen color every ``update_interval``.
+This effect makes a transition (of length ``transition_length``) to a randomly-chosen color and/or brightness (e.g. monochromatic) every ``update_interval``.
 
 .. code-block:: yaml
 
@@ -583,6 +594,7 @@ Configuration variables:
   - **cold_white** (*Optional*, percentage): The cold white channel of the light, if applicable. Defaults to ``100%``.
   - **warm_white** (*Optional*, percentage): The warm white channel of the light, if applicable. Defaults to ``100%``.
   - **duration** (**Required**, :ref:`config-time`): The duration this color should be active.
+  - **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``0s``.
 
 See `light.turn_on <light-turn_on_action>` for more information on the various color fields.
 
@@ -701,14 +713,14 @@ the strip and shifts them forward every ``add_led_interval``.
                 - red: 100%
                   green: 100%
                   blue: 100%
-                  num_leds: 1
+                  num_leds: 5
+                  gradient: true
                 - red: 0%
                   green: 0%
                   blue: 0%
                   num_leds: 1
               add_led_interval: 100ms
               reverse: false
-              gradient: false
 
 Configuration variables:
 

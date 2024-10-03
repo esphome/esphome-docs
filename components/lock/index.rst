@@ -8,10 +8,6 @@ Lock Component
 The ``lock`` domain includes all platforms that should function like a lock
 with lock/unlock actions.
 
-.. note::
-
-    ESPHome lock components requires Home Assistant 2022.3 or newer
-
 .. _config-lock:
 
 Base Lock Configuration
@@ -25,7 +21,8 @@ Base Lock Configuration
 
 Configuration variables:
 
-- **name** (**Required**, string): The name of the lock.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name of the lock. At least one of **id** and **name** must be specified.
 
   .. note::
 
@@ -48,6 +45,7 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Set to ``""`` to remove the default entity category.
 - If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
+- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
 
 .. _lock-lock_action:
 

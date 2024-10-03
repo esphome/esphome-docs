@@ -29,7 +29,7 @@ A new dialog will open. Click on **Manual download** option.
 
   .. figure:: images/dashboard-install-manual.png
 
-Finally, choose **modern format** in the last dialog.
+Finally, choose **factory format** (formerly "modern format") in the last dialog.
 
   .. figure:: images/dashboard-install-manual-modern.png
 
@@ -42,7 +42,7 @@ From your configuration files folder, run
 
 :: 
 
-  esphome <MY_DEVICE>.yaml compile
+  esphome compile <MY_DEVICE>.yaml
   
 replacing ``<MY_DEVICE>.yaml`` with your configuration file and navigate to the ``<MY_DEVICE>/.pioenvs/<MY_DEVICE>/`` folder. 
 
