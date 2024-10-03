@@ -79,6 +79,9 @@ A sensor platform to read BMS data
 Configuration variables:
 ************************
 
+- **daly_hkms_bms_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the daly_hkms_bms hub if you want
+  to use multiple BMS.
+
 - **voltage** (*Optional*): Voltage of the battery pack connected to Daly BMS.
   All options from :ref:`Sensor <config-sensor>`.
 
@@ -151,6 +154,9 @@ Text sensor that indicates the status of BMS.
 Configuration variables:
 ************************
 
+- **daly_hkms_bms_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the daly_hkms_bms hub if you want
+  to use multiple BMS.
+
 - **status** (*Optional*): The BMS Status (Charging, Discharging, Stationary).
   All options from :ref:`Text Sensor <config-text_sensor>`.
 
@@ -170,6 +176,9 @@ Binary sensor that indicates the status of MOS.
 
 Configuration variables:
 ************************
+
+- **daly_hkms_bms_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the daly_hkms_bms hub if you want
+  to use multiple BMS.
 
 - **charging_mos_enabled** (*Optional*): The BMS charging MOS status to enable the recharge of the battery.
   All options from :ref:`Binary Sensor <config-binary_sensor>`.
