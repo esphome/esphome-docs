@@ -23,28 +23,12 @@ Configuration
 .. code-block:: yaml
 
     # Example configuration entry
-    i2c:
-
     sensor:
       - platform: tem3200
         raw_pressure:
           name: "Raw Pressure"
-          id: raw_pressure
-
         temperature:
           name: Temperature
-
-      - platform: copy
-        source_id: raw_pressure
-        name: Pressure
-        state_class: measurement
-        device_class: pressure
-        unit_of_measurement: psi
-
-        filters:
-          - calibrate_linear:
-            - 1000 -> 0.0
-            - 15000 -> 100.0
 
 
 Configuration variables
