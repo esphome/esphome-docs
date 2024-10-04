@@ -75,7 +75,7 @@ Estimated
 *********
 
 On page 1 of the `product application note <https://www.amphenol-sensors.com/hubfs/I2C%20NPI-19%20product%20application%20Note.pdf>`__
-the value ``1638`` maps to approximately ``10%`` of the maximum value of the sesnor (e.g. ``0.5`` psi for a ``5`` psi sensor);
+the value ``1638`` maps to approximately ``10%`` of the maximum value of the sensor (e.g. ``0.5`` psi for a ``5`` psi sensor);
 the value ``14746`` maps to approximately ``90%`` of the maximum value of the sensor (e.g. ``4.5`` psi for a ``5``  psi sensor).
 Use ``calibrate_linear`` filter to map these sensor values:
 
