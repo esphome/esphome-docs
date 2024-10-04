@@ -8,7 +8,7 @@ espnow communication Component
 .. note::
 
     To enables the option to interact with other esp32 devices over the Espressif's ESP-NOW protocol, see
-    :doc:`there documentation <https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/network/esp_now.html>`.
+    `there documentation <https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/network/esp_now.html>`__
 
 This commponent allows ESPHome to communicate with esp32 devices in a simple and unsustricted way. You can receive using an event handler and
 and transmit data package via the `espnow.send` action, by broatcasting to every device or a specific device in your network.
