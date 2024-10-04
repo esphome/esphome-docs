@@ -41,7 +41,7 @@ ESP-NOW Configuration
       on_sent: 
         - logger.log:
             format: "Received: %s%s"
-            args: [ packet.payload_as_bytes(), status?"":" [Failed]"]
+            args: [ packet.get_payload(), status?"":" [Failed]"]
       on_new_peer:
         - logger.log:
             format: "Peer %012llx is a new user. It will be added."
@@ -70,7 +70,7 @@ espnow Automation
 .. _espnow-on_receive:
 
 ``on_receive``
-***********************
+**************
 
 This automation will be triggered when a data package is received. You can get the package data via the "it" variable. see :ref:`espnow-ESPNowPackage`.
 
@@ -88,7 +88,7 @@ Configuration variables: see :ref:`Automation <automation>`.
 .. _espnow-on_sent:
 
 ``on_sent``
-************************
+***********
 
 This automation will be triggered when a data package is Sent. You can get the package data via the "packet" variable. see :ref:`espnow-ESPNowPackage`.
 The status flag will tell of it was success. When the package was not sent properly it will try to send it at a later moment again. It will try this for 
