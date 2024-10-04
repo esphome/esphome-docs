@@ -23,28 +23,12 @@ Configuration
 .. code-block:: yaml
 
     # Example configuration entry
-    i2c:
-
     sensor:
       - platform: npi19
         raw_pressure:
           name: "Raw Pressure"
-          id: raw_pressure
-
         temperature:
           name: Temperature
-
-      - platform: copy
-        source_id: raw_pressure
-        name: Pressure
-        state_class: measurement
-        device_class: pressure
-        unit_of_measurement: psi
-
-        filters:
-          - calibrate_linear:
-            - 1638 -> 0.5
-            - 14746 -> 4.5
 
 
 Configuration variables
