@@ -19,7 +19,7 @@ and transmit data package via the `espnow.send` action, by broatcasting to every
     The best solution is to minimalice the broadcasting as much as possible and use it only for identification purposes.
 
 
-.. _config-button:
+.. _config-espnow:
 
 ESP-NOW Configuration
 ---------------------
