@@ -2,12 +2,10 @@ OpenThread Component
 =====================
 
 .. seo::
-    :description: Instructions for setting up [OpenThread](https://openthread.io/) component.
+    :description: Instructions for setting up OpenThread component.
     :image: folder-open.svg
 
-Text sensors are a lot like normal :doc:`sensors </components/sensor/index>`.
-But where the "normal" sensors only represent sensors that output **numbers**, this
-component can represent any *text*.
+[OpenThread](https://openthread.io/) component.
 
 .. _config-text_sensor:
 
