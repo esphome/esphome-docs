@@ -30,18 +30,10 @@ Base Text Sensor Configuration
 
 Configuration variables:
 
-- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
-- **name** (*Optional*, string): The name for the sensor. At least one of **id** and **name** must be specified.
-
-  .. note::
-
-      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
-      you want the text sensor to use that name, you can set ``name: None``.
-
-- **channel** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
-- **network_name** (*Optional*, string): TODO
-- **network_key** (*Optional*, boolean): TODO
-- **panid** (*Optional*, boolean): TODO
-- **extpanid** (*Optional*, boolean): TODO
-- **pskc** (*Optional*, boolean): OpenThread pskc. The PSKc is used to authenticate an external Thread Commissioner to a Thread network.
+- **channel** (int): Manually set the icon to use for the sensor in the frontend.
+- **network_name** (string): TODO
+- **network_key** (string): TODO
+- **panid** (int): TODO
+- **extpanid** (int): TODO
+- **pskc** (string): OpenThread pskc. The PSKc is used to authenticate an external Thread Commissioner to a Thread network.
 
