@@ -203,6 +203,15 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): The ID of the espnow component to set.
 - **peer** (**Required**, Peer Address): The Peer address that needs to be added to the list of allowed peers.
 
+.. espnow-espnowpackage
+
+packet structor 
+***************
+
+.. TODO::
+
+this section needs to be extended with the structure. But it is not set in stone yet.
+
 
 See Also
 --------
