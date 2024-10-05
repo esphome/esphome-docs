@@ -2,7 +2,7 @@ OpenThread Component
 =====================
 
 .. seo::
-    :description: Instructions for setting up OpenThread component that represent their state as a string of text.
+    :description: Instructions for setting up [OpenThread](https://openthread.io/) component.
     :image: folder-open.svg
 
 Text sensors are a lot like normal :doc:`sensors </components/sensor/index>`.
