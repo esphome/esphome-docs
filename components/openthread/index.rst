@@ -12,6 +12,8 @@ OpenThread Component
 Base Text Sensor Configuration
 ------------------------------
 
+[OpenThread](https://openthread.io/) component.
+
 .. code-block:: yaml
 
     # Example OpenThread component configuration
@@ -29,9 +31,9 @@ Base Text Sensor Configuration
 Configuration variables:
 
 - **channel** (int): Manually set the icon to use for the sensor in the frontend.
-- **network_name** (string): TODO
-- **network_key** (string): TODO
+- **network_name** (string): OpenThread network name
+- **network_key** (string): OpenThread network key
 - **panid** (int): TODO
 - **extpanid** (int): TODO
-- **pskc** (string): OpenThread pskc. The PSKc is used to authenticate an external Thread Commissioner to a Thread network.
+- **pskc** (string): OpenThread pskc: the PSKc is used to authenticate an external Thread Commissioner to a Thread network.
 
