@@ -208,7 +208,7 @@ Configuration variables:
 packet structor 
 ***************
 
-.. todo::
+.. warning::
 
     This section needs to be extended with the structure. But it is not set in stone yet.
 
