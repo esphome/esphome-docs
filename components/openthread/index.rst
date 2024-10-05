@@ -30,10 +30,10 @@ Base Text Sensor Configuration
 
 Configuration variables:
 
-- **channel** (int): Manually set the icon to use for the sensor in the frontend.
-- **network_name** (string): OpenThread network name
+- **channel** (int): Channel number
+- **network_name** (string): A human-readable Network Name
 - **network_key** (string): OpenThread network key
-- **panid** (int): TODO
-- **extpanid** (int): TODO
-- **pskc** (string): OpenThread pskc: the PSKc is used to authenticate an external Thread Commissioner to a Thread network.
+- **panid** (int): 2-byte Personal Area Network ID (PAN ID)
+- **extpanid** (int): 8-byte Extended Personal Area Network ID (XPAN ID)
+- **pskc** (string): PSKc is used to authenticate an external Thread Commissioner to a Thread network.p
 
