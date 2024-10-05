@@ -7,7 +7,7 @@ OpenThread Component
 
 [OpenThread](https://openthread.io/) component.
 
-.. _config-text_sensor:
+.. _config-openthread:
 
 Base Text Sensor Configuration
 ------------------------------
