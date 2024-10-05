@@ -30,7 +30,7 @@ Base Text Sensor Configuration
 
 Configuration variables:
 
-- **channel** (int): Channel number
+- **channel** (int): Channel number from 11 to 26
 - **network_name** (string): A human-readable Network Name
 - **network_key** (string): OpenThread network key
 - **panid** (int): 2-byte Personal Area Network ID (PAN ID)
