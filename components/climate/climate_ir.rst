@@ -164,6 +164,7 @@ The Daikin ARC remotes (``daikin_arc`` climate, ``daikin_arc417``, ``daikin_arc4
   - ``yaa``
   - ``yac``
   - ``yac1fb9``
+  - ``yx1ff``
 
 .. code-block:: yaml
 
