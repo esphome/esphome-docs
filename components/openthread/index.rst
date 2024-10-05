@@ -5,14 +5,14 @@ OpenThread Component
     :description: Instructions for setting up OpenThread component.
     :image: folder-open.svg
 
-[OpenThread](https://openthread.io/) component.
 
 .. _config-openthread:
 
 Base Text Sensor Configuration
 ------------------------------
 
-[OpenThread](https://openthread.io/) component.
+OpenThread component.
+https://openthread.io
 
 .. code-block:: yaml
 
@@ -33,7 +33,7 @@ Configuration variables:
 - **channel** (int): Channel number from 11 to 26
 - **network_name** (string): A human-readable Network Name
 - **network_key** (string): OpenThread network key
-- **panid** (int): 2-byte Personal Area Network ID (PAN ID)
-- **extpanid** (int): 8-byte Extended Personal Area Network ID (XPAN ID)
-- **pskc** (string): PSKc is used to authenticate an external Thread Commissioner to a Thread network.p
+- **panid** (hex): 2-byte Personal Area Network ID (PAN ID)
+- **extpanid** (string): 8-byte Extended Personal Area Network ID (XPAN ID)
+- **pskc** (string): PSKc is used to authenticate an external Thread Commissioner to a Thread network
 
