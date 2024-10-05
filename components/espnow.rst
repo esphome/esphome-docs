@@ -72,7 +72,7 @@ espnow Automation
 ``on_receive``
 **************
 
-This automation will be triggered when a data package is received. You can get the package data via the "it" variable. see :ref:`espnow-ESPNowPackage`.
+This automation will be triggered when a data package is received. You can get the package data via the "it" variable. see :ref:`espnow-espnowpackage`.
 
 .. code-block:: yaml
 
@@ -90,7 +90,7 @@ Configuration variables: see :ref:`Automation <automation>`.
 ``on_sent``
 ***********
 
-This automation will be triggered when a data package is Sent. You can get the package data via the "packet" variable. see :ref:`espnow-ESPNowPackage`.
+This automation will be triggered when a data package is Sent. You can get the package data via the "packet" variable. see :ref:`espnow-espnowpackage`.
 The status flag will tell of it was success. When the package was not sent properly it will try to send it at a later moment again. It will try this for 
 5 times then none of the package will be send until it received a new data package from that device.
 
@@ -110,7 +110,7 @@ Configuration variables: see :ref:`Automation <automation>`.
 ***************
 
 This automation will be triggered when a data package is received from an unknown device. This trigger will only be fired when ``auto_add_peer`` is **false**.
-To the sending peer addres can be found the package data via the "packet" variable. see :ref:`espnow-ESPNowPackage`.
+To the sending peer addres can be found the package data via the "packet" variable. see :ref:`espnow-espnowpackage`.
 To allow the the new device to be handled correctly you need to add it as a *new peer* with the ``espnow.add.peer`` action.
 
 .. code-block:: yaml
@@ -125,7 +125,7 @@ To allow the the new device to be handled correctly you need to add it as a *new
 Configuration variables: see :ref:`Automation <automation>`.
 
 
-.. espnow-send_action:
+.. _espnow-send_action:
 
 ``espnow.send`` Action
 ***********************
@@ -161,7 +161,7 @@ Configuration variables:
 You can send data as string, as an array of bytes or as integer (Litle Ending). The maximal bytes that can be send is 240 bytes; 10 less then the offical protocol;
 we will add an prefix and checksum code to the data.
 
-.. espnow-add_peer:
+.. _espnow-add_peer:
 
 ``espnow.add.peer`` Action
 **************************
@@ -184,7 +184,7 @@ Configuration variables:
 - **peer** (**Required**, Peer Address): The Peer address that needs to be added to the list of allowed peers.
 
 
-.. espnow-del_peer:
+.. _espnow-del_peer:
 
 ``espnow.del.peer`` Action
 **************************
@@ -203,7 +203,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): The ID of the espnow component to set.
 - **peer** (**Required**, Peer Address): The Peer address that needs to be added to the list of allowed peers.
 
-.. espnow-espnowpackage
+.. _espnow-espnowpackage
 
 packet structor 
 ***************
