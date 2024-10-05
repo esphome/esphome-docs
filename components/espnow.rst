@@ -208,9 +208,9 @@ Configuration variables:
 packet structor 
 ***************
 
-.. TODO::
+.. todo::
 
-this section needs to be extended with the structure. But it is not set in stone yet.
+    This section needs to be extended with the structure. But it is not set in stone yet.
 
 
 See Also
