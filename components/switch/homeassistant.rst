@@ -14,6 +14,11 @@ states and allow **control** via your Home Assistant instance using the :doc:`na
     in Home Assistant, this component still requires you to register the node under Home Assistant. See:
     :ref:`connecting-your-device-to-home-assistant`.
 
+.. warning::
+
+    In order for this component to work, you'll need to allow the device to perform Home Assistant actions by
+    going to the ESPHome integration, clicking 'Configure' on the device and enabling it. 
+
 .. code-block:: yaml
 
     # Example configuration entry
