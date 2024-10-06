@@ -3,7 +3,7 @@ OpenThread Component
 
 .. seo::
     :description: Instructions for setting up OpenThread component.
-    :image: images/openthread.png
+    :image: openthread.png
 
 `Thread <https://www.threadgroup.org>`__ is a low-power mesh networking standard for IoT devices. The low-power aspect is important for battery-powered smart home devices. However, it’s also low-bandwidth, making it ideal for applications that don’t send a lot of data, like switches or motion sensors.
 
