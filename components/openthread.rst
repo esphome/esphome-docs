@@ -5,14 +5,17 @@ OpenThread Component
     :description: Instructions for setting up OpenThread component.
     :image: folder-open.svg
 
+The purpose of this component is to allow ESPHome nodes to communicate over a Thread network. It permits the state of sensors and binary sensors to be send to Home Assistant via 6LoWPAN packets.
 
 .. _config-openthread:
 
-Base Text Sensor Configuration
-------------------------------
-
 OpenThread component.
 https://openthread.io
+
+Configuration examples
+----------------------
+
+This example show how to configure Thread Dataset for a node.
 
 .. code-block:: yaml
 
@@ -33,7 +36,7 @@ Configuration variables:
 - **channel** (int): Channel number from 11 to 26
 - **network_name** (string): A human-readable Network Name
 - **network_key** (string): OpenThread network key
-- **panid** (hex): 2-byte Personal Area Network ID (PAN ID)
+- **panid** (string): 2-byte Personal Area Network ID (PAN ID)
 - **extpanid** (string): 8-byte Extended Personal Area Network ID (XPAN ID)
 - **pskc** (string): PSKc is used to authenticate an external Thread Commissioner to a Thread network
 
