@@ -13,7 +13,7 @@ The purpose of this component is to allow ESPHome nodes to communicate over a Th
 
 .. note::
 
-You will need a `Thread border router <https://www.home-assistant.io/integrations/thread#about-thread-border-routers>`__ to connect your node to a Thread network.
+    You will need a `Thread border router <https://www.home-assistant.io/integrations/thread#about-thread-border-routers>`__ to connect your node to a Thread network.
 
 .. _config-openthread:
 
