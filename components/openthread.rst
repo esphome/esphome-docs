@@ -18,7 +18,7 @@ The purpose of this component is to allow ESPHome nodes to communicate over a Th
 
 Usage
 -----
-This component requires an ESP32 (ESP32-C6 or ESP-H2 because they have Thread radio chip) and the use of
+This component requires an ESP32 (ESP32-C6 or ESP32-H2 because they have Thread radio chip) and the use of
 ESP-IDF.
 
 .. code-block:: yaml
