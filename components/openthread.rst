@@ -6,6 +6,7 @@ OpenThread Component
     :image: folder-open.svg
 
 The purpose of this component is to allow ESPHome nodes to communicate over a Thread network. It permits the state of sensors and binary sensors to be send to Home Assistant via 6LoWPAN packets.
+You will need a Thread border router to connect your node to a Thread network.
 
 .. _config-openthread:
 
