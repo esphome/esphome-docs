@@ -21,13 +21,6 @@ Usage
 This component requires an ESP32 (ESP32-C6 or ESP-H2 because they have Thread radio chip) and the use of
 ESP-IDF.
 
-.. figure:: images/waveshare_touch-s3.jpg
-    :align: center
-    :width: 75.0%
-
-    Waveshare ESP32-S3 Touch 4.3
-
-
 .. _config-openthread:
 
 
