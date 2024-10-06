@@ -56,13 +56,16 @@ Configuration variables:
 - **volume** (**Required**, percentage, :ref:`templatable <config-templatable>`): The desired volume level for the
   output from 0% to 100%.
 
-See Also
---------
+Platforms
+---------
 
 .. toctree::
     :maxdepth: 1
     :glob:
 
     *
+
+See Also
+--------
 
 - :ghedit:`Edit`
