@@ -5,13 +5,15 @@ OpenThread Component
     :description: Instructions for setting up OpenThread component.
     :image: folder-open.svg
 
-The purpose of this component is to allow ESPHome nodes to communicate over a Thread network. It permits the state of sensors and binary sensors to be send to Home Assistant via 6LoWPAN packets.
-You will need a `Thread border router <https://www.home-assistant.io/integrations/thread#about-thread-border-routers>`__ to connect your node to a Thread network.
+`Thread <https://www.threadgroup.org>`__ is a low-power mesh networking standard for IoT devices. The low-power aspect is important for battery-powered smart home devices. However, it’s also low-bandwidth, making it ideal for applications that don’t send a lot of data, like switches or motion sensors.
 
+Thread uses the same RF technology as Zigbee (IEEE 802.15.4) but provides IP connectivity similar to Wi-Fi. Unlike Zigbee, Thread by itself does not allow controlling devices: It is just a communication protocol. To control the Thread devices, a higher-level protocol is required: Matter or Apple HomeKit or `ESPHome API <https://esphome.io/components/api.html>`__ .
+
+The purpose of this component is to allow ESPHome nodes to communicate over a Thread network. It permits the state of sensors and binary sensors to be send to Home Assistant via 6LoWPAN packets. This OpenThread component relies on `OpenThread <https://openthread.io>`__ which is an open-source implementation of Thread .
+You will need a `Thread border router <https://www.home-assistant.io/integrations/thread#about-thread-border-routers>`__ to connect your node to a Thread network.
 
 .. _config-openthread:
 
-This OpenThread component relies on `OpenThread <https://openthread.io>`__ which is an open-source implementation of Thread .
 
 Configuration examples
 ----------------------
