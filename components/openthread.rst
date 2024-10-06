@@ -8,10 +8,10 @@ OpenThread Component
 The purpose of this component is to allow ESPHome nodes to communicate over a Thread network. It permits the state of sensors and binary sensors to be send to Home Assistant via 6LoWPAN packets.
 You will need a `Thread border router <https://www.home-assistant.io/integrations/thread#about-thread-border-routers>`__ to connect your node to a Thread network.
 
+
 .. _config-openthread:
 
-OpenThread component.
-https://openthread.io
+This OpenThread component relies on `OpenThread <https://openthread.io>`__ which is an open-source implementation of Thread .
 
 Configuration examples
 ----------------------
