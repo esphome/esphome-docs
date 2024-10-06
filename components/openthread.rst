@@ -15,6 +15,19 @@ The purpose of this component is to allow ESPHome nodes to communicate over a Th
 
     You will need a `Thread border router <https://www.home-assistant.io/integrations/thread#about-thread-border-routers>`__ to connect your node to a Thread network.
 
+
+Usage
+-----
+This component requires an ESP32 (ESP32-C6 or ESP-H2 because they have Thread radio chip) and the use of
+ESP-IDF.
+
+.. figure:: images/waveshare_touch-s3.jpg
+    :align: center
+    :width: 75.0%
+
+    Waveshare ESP32-S3 Touch 4.3
+
+
 .. _config-openthread:
 
 
