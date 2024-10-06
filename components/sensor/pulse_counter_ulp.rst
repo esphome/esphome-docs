@@ -1,5 +1,5 @@
 Pulse Counter ULP Sensor
-====================
+========================
 
 .. seo::
     :description: Instructions for setting up pulse counter ULP sensors.
@@ -22,7 +22,7 @@ This sensor is only available on the ESP32 using the IDF framework.
         name: "Pulse Counter ULP"
 
 Configuration variables
-------------------------
+-----------------------
 
 - **pin** (**Required**, :ref:`config-pin`): The pin to count pulses on. This must be a valid RTC_GPIO pin.
 - **count_mode** (*Optional*): Configure how the counter should behave
