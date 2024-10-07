@@ -42,8 +42,6 @@ an ``i2c:`` section in your config for this integration to work.
           name: "Carbon Monoxide"
         tvoc:
           name: "Volatile Organic Compounds"
-        address: 0x08
-        update_interval: 60s
 
 Configuration variables:
 ------------------------
