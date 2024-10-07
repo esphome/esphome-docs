@@ -321,6 +321,7 @@ Air Quality
     ENS160, components/sensor/ens160, ens160.jpg, CO2 & Air Quality
     GCJA5, components/sensor/gcja5, gcja5.svg, Particulate
     GP2Y1010AU0F, components/sensor/gp2y1010au0f, gp2y1010au0f.png, Particulate
+    Grove Multichannel Gas V2, components/sensor/grove_gas_mc_v2, grove-gas-mc-v2.png, NO2 & CO & Ethanol & Volatile organics
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     iAQ-Core, components/sensor/iaqcore, iaqcore.jpg, CO2 & Volatile organics
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
