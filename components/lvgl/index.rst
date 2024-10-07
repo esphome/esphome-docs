@@ -114,6 +114,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
         The ``long_press_time`` and ``long_press_repeat_time`` can be fine-tuned also by setting them to ``never`` and using the ``autorepeat`` filter on each binary sensor separately.
 
     .. tip::
+
         When using an encoder input device the navigation works as follows:
 
         - By turning the encoder you can focus on the next/previous object.
