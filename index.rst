@@ -339,6 +339,7 @@ Analogue
     CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
     MCP3204 / MCP3208, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
+    NAU7802, components/sensor/nau7802, nau7802.jpg, ADC
     Resistance, components/sensor/resistance, omega.svg, dark-invert
 
 Bluetooth Low Energy (BLE)
