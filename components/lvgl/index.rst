@@ -113,6 +113,16 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 
         The ``long_press_time`` and ``long_press_repeat_time`` can be fine-tuned also by setting them to ``never`` and using the ``autorepeat`` filter on each binary sensor separately.
 
+    .. tip::
+        When using an encoder input device the navigation works as follows:
+
+        - By turning the encoder you can focus on the next/previous object.
+        - When you press the encoder on a simple object (like a button), it will be clicked.
+        - If you press the encoder on a complex object (like a list, message box, etc.) the object will go to edit mode whereby you can adjust the value of the object by turning the encoder.
+        - To leave edit mode, long press the button.
+
+
+
 - **color_depth** (*Optional*, string): The color deph at which the contents are generated. Currently only ``16`` is supported (RGB565, 2 bytes/pixel), which is the default value.
 - **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM, the recommended value is ``25%``.
 - **log_level** (*Optional*, string): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
