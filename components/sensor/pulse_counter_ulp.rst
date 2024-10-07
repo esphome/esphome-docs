@@ -36,17 +36,17 @@ Configuration variables
     Defaults to ``DISABLE``.
 
 - **sleep_duration** (*Optional*, :ref:`config-time`): How long the ULP program
-will sleep for between reads. Higher values will reduce battery consumption at
-the cost of missing shorter pulses. The shortest pulse that can be measured has
-a width of ``sleep_duration * (debounce + 1)``. Defaults to ``20ms``.
+  will sleep for between reads. Higher values will reduce battery consumption at
+  the cost of missing shorter pulses. The shortest pulse that can be measured has
+  a width of ``sleep_duration * (debounce + 1)``. Defaults to ``20ms``.
 - **debounce** (*Optional*, int): Number of consecutive high or low inputs the
-ULP program needs to see to change state. Higher values will reduce the chance
-for false positives at the cost of missing shorter pulses. The shortest pulse
-that can be measured has a width of ``sleep_duration * (debounce + 1)``.
-Defaults to ``3``.
+  ULP program needs to see to change state. Higher values will reduce the chance
+  for false positives at the cost of missing shorter pulses. The shortest pulse
+  that can be measured has a width of ``sleep_duration * (debounce + 1)``.
+  Defaults to ``3``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check
-the sensor while awake. The sensor will not update while in deep sleep, but will
-update on wake regardless of ``update_interval``. Defaults to ``60s``.
+  the sensor while awake. The sensor will not update while in deep sleep, but will
+  update on wake regardless of ``update_interval``. Defaults to ``60s``.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 .. note::
