@@ -1057,20 +1057,21 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
             - **r_mod**: Adjust the position of the arc from the scale radius with this amount (can be negative). Defaults to ``0``.
             - **start_value**: The value in the scale range to start drawing the arc from.
             - **width**: Arc width in pixels. Defaults to ``4``.
-            - Style options for the *arc* using the :ref:`lvgl-widget-arc` style properties.
+            - **opa**: Opacity of the arc. Defaults to 100%.
         - **image** (*Optional*): Add a rotating needle image to the scale:
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **pivot_x**: Horizontal position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
             - **pivot_y**: Vertical position of the pivot point of rotation, in pixels, relative to the top left corner of the image.
             - **src**:  The ID of an existing image configuration, representing a needle pointing to the right like ``-o--->``.
             - **value**: The value in the scale range to show at start.
+            - **opa**: Opacity of the image. Defaults to 100%.
         - **line** (*Optional*): Add a needle line to the scale. By default, the length of the line is the same as the scale's radius:
             - **color**: :ref:`Color <lvgl-color>` for the needle line. Defaults to ``0`` (black).
             - **id**: Manually specify the :ref:`config-id` used for updating the indicator value at runtime.
             - **r_mod**: Adjust the length of the needle from the scale radius with this amount (can be negative). Defaults to ``0``.
             - **value**: The value in the scale range to show at start.
             - **width**: Needle line width in pixels. Defaults to ``4``.
-            - Style options for the *needle line* using the :ref:`lvgl-widget-line` style properties, as well as the background properties from :ref:`lvgl-styling` to draw a square (or circle) on the pivot of the needles. Padding makes the square larger.
+            - **opa**: Opacity of the needle. Defaults to 100%.
         - **tick_style** (**Optional**): Add tick style modifications:
             - **color_end**: :ref:`Color <lvgl-color>` for the gradient end of the ticks.
             - **color_start**: :ref:`Color <lvgl-color>` for the gradient start of the ticks.
@@ -1104,8 +1105,12 @@ The meter widget can visualize data in very flexible ways. It can use arcs, need
 
 **Actions:**
 
-- ``lvgl.indicator.update`` :ref:`action <actions-action>` updates indicator options except ``src``, which cannot be updated at runtime. :ref:`lvgl.widget.update <lvgl-automation-actions>` action can be used for the common styles, states or flags of the meter widget (not the indicators).
-    - **id** (**Required**): The ID or a list of IDs of line or image indicators which you want update.
+- ``lvgl.indicator.update`` :ref:`action <actions-action>` updates indicator options as below. :ref:`lvgl.widget.update <lvgl-automation-actions>` action can be used for the common styles, states or flags of the meter widget.
+    - **id** (**Required**): The ID or a list of IDs of indicators to update.
+    - **end_value** (*Optional*): The value in the scale range to end drawing the arc to.
+    - **start_value** (*Optional*): The value in the scale range to start drawing the arc from.
+    - **opa** (*Optional*): Opacity of the indicator.
+
 
 **Triggers:**
 
