@@ -43,7 +43,6 @@ Possible return values for the optional lambda:
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the cover.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated repeatedly to get the current state of the cover.
 - **open_action** (*Optional*, :ref:`Action <config-action>`): The action that should
@@ -52,6 +51,8 @@ Configuration variables:
   be performed when the remote requests the cover to be closed.
 - **stop_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote requests the cover to be stopped.
+- **toggle_action** (*Optional*, :ref:`Action <config-action>`): The action that should
+  be performed when the remote requests to toggle the the cover.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
   any command sent to the template cover will immediately update the reported state and no lambda
   needs to be used. Defaults to ``false``.
@@ -60,7 +61,6 @@ Configuration variables:
   of hiding one of them. Defaults to ``false``.
 - **has_position** (*Optional*, boolean): Whether this cover will publish its position as a floating point number.
   By default (``false``), the cover only publishes OPEN/CLOSED position.
-  Parameter useless if you set the POSITION_ACTION (is set to TRUE).
 - **tilt_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests the cover be set to a specific
   tilt position. The desired tilt is available in the lambda in the ``tilt`` variable.
@@ -69,7 +69,7 @@ Configuration variables:
 - **position_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests the cover be set to a specific
   position. The desired position is available in the lambda in the ``pos`` variable.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+  Useless if `has_position` is not set to ``true``.
 - All other options from :ref:`Cover <config-cover>`.
 
 .. _cover-template-publish_action:

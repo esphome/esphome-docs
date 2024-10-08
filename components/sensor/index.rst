@@ -50,7 +50,7 @@ Configuration variables:
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
 - **device_class** (*Optional*, string): The device class for the
-  sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-device-classes
+  sensor. See https://www.home-assistant.io/integrations/sensor/#device-class
   for a list of available options. Set to ``""`` to remove the default device class of a sensor.
 - **state_class** (*Optional*, string): The state class for the
   sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
@@ -68,11 +68,12 @@ Configuration variables:
   significantly increase the database size. Defaults to ``false``.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  for a list of available options.
   Set to ``""`` to remove the default entity category.
+- If Webserver enabled and version 3 is selected, All other options from Webserver Component.. See :ref:`Webserver Version 3 <config-webserver-version-3-options>`.
 
 Automations:
 
@@ -293,6 +294,27 @@ Rounds the value to the given decimal places.
     - platform: ...
       filters:
         - round: 1 # will round to 1 decimal place
+
+
+
+``round_to_multiple_of``
+************************
+
+Rounds the value to the nearest multiple. Takes a float greater than zero.
+
+.. code-block:: yaml
+
+    - platform: ...
+      filters:
+        - round_to_multiple_of: 10
+        # 123 -> 120
+        # 126 -> 130
+
+    - platform: ...
+      filters:
+        - round_to_multiple_of: 0.25
+        # 3.1415 -> 3.25
+        # 1.6180 -> 1.5
 
 
 ``quantile``
@@ -570,7 +592,7 @@ However, if the last value passed through was 100 only values greater than 120 o
 ``or``
 ******
 
-Pass forward a value with the first child filter that returns. Above example
+Pass forward a value with the first child filter that returns. Below example
 will only pass forward values that are *either* at least 1s old or are if the absolute
 difference is at least 5.0.
 
@@ -603,7 +625,7 @@ To prevent values from being published, return ``{}``:
 .. code-block:: yaml
 
     filters:
-      - lambda: !lambda |-
+      - lambda: |-
           if (x < 10) return {};
           return x-10;
 
@@ -644,7 +666,7 @@ with ``x``.
 .. code-block:: yaml
 
     sensor:
-      - platform: dallas
+      - platform: dht
         # ...
         on_value:
           then:
@@ -672,7 +694,7 @@ So for example ``above: 5`` with no below would mean the range from 5 to positiv
 .. code-block:: yaml
 
     sensor:
-      - platform: dallas
+      - platform: dht
         # ...
         on_value_range:
           - below: 5.0
@@ -704,7 +726,7 @@ trigger with ``x``.
 .. code-block:: yaml
 
     sensor:
-      - platform: dallas
+      - platform: dht
         # ...
         on_raw_value:
           then:

@@ -60,6 +60,17 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): The speaker to control. Defaults to the only one in YAML.
 
+.. _speaker-finish:
+
+``speaker.finish`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action will stop playing audio data from the speaker after all data **is** played. 
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The speaker to control. Defaults to the only one in YAML.
+
 .. _speaker-conditions:
 
 Speaker Conditions
@@ -79,6 +90,21 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): The speaker to check. Defaults to the only one in YAML.
 
+.. _speaker-is_stopped:
+
+``speaker.is_stopped`` Condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This condition will check if the speaker is fully stopped audio data and is in idle mode.
+
+.. note:
+
+Between the time ``speaker.is_playing`` is false and ``speaker.is_stopped`` is true the 'speaker' component is closing down structures that where used to play the data correctly. *It better to check if the speaker is stopped then that if it plays.*
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The speaker to check. Defaults to the only one in YAML.
+
 
 Platforms
 ---------
@@ -92,4 +118,6 @@ Platforms
 See Also
 --------
 
+- :doc:`/guides/audio_clips_for_i2s`
+- :doc:`/components/speaker/i2s_audio`
 - :ghedit:`Edit`
