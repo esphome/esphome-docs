@@ -549,6 +549,56 @@ Configuration example:
         battery_level:
           name: "Mi Motion Sensor Battery Level"
 
+JTYJGD03MI - BLE Smoke Sensor
+******************************
+
+BLE optical smoke sensor from Xiaomi/Honeywell. 
+
+Important :
+
++ works only with the BLE version (not the Zigbee one)
+
++ device needs to be registered on the Chinese Xiaomi registration portal. European or American portal do not propose this model.
+
++ BLE communication is encrypted, so you need to retrieve the BindKey from the Xiaomi portal 
+
+.. figure:: images/xiaomi_jtyjgd03.png
+    :align: center
+    :width: 60.0%
+
+Configuration example:
+
+.. code-block:: yaml
+
+    xiaomi_jtyjgd03mi:
+
+      - id: smoke_one
+        mac_address: 18:C2:3C:31:77:7B
+        bindkey: 520d1864d53ce8010101010101010101
+
+    binary_sensor:
+
+      - platform: xiaomi_jtyjgd03mi
+        id: smoke_one
+        button:
+          name:  "smoke button"
+          id: button_smoke
+        smoke:
+          name: "smoke detection"
+          id: detection_smoke
+
+    sensor:
+      - platform: ble_rssi
+        mac_address: 18:C2:3C:31:77:7B
+        name: "smoke rssi"
+
+      - platform: xiaomi_jtyjgd03mi
+        id: smoke_one
+        battery_level:
+          name: "smoke battery"
+          unit_of_measurement: "%" 
+          accuracy_decimals: 0
+
 
 
 Setting Up Devices
