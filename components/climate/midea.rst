@@ -22,6 +22,15 @@ The ``midea`` component creates a Midea air conditioner climate device.
 
     Control is possible with a custom dongle. Example of hardware implementation is `IoT Uni Dongle <https://github.com/dudanov/iot-uni-dongle>`_ or `Midea SLWF-01pro <https://smartlight.me/smart-home-devices/wifi-devices/wifi-dongle-air-conditioners-midea-idea-electrolux-for-home-assistant>`_ (`CloudFree <https://cloudfree.shop/product/ductless-hvac-wi-fi-module/>`_, `Tindie <https://www.tindie.com/products/smartlightme/wifi-dongle-for-air-conditioners-midea-electrolux>`_).
 
+The Midea air conditioner requires UART communication at **5V logic levels**. It is **not compatible with 3.3V logic levels**. Use a logic level shifter if building your own dongle. 
+
+.. code-block:: yaml
+
+    uart:
+      tx_pin: GPIO16      # TX Pin for sending data (Serial 2 on ESP32)
+      rx_pin: GPIO17      # RX Pin for receiving data (Serial 2 on ESP32)
+      baud_rate: 9600     # Communication baud rate
+
 .. code-block:: yaml
 
     # Example configuration entry
