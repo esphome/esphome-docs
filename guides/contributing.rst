@@ -540,7 +540,7 @@ Beyond basic functionality (*"does it work?"*), here are a few other items we ch
 
 .. _prs-are-being-drafted-when-changes-are-needed:
 
-Why Was My PR was Marked as a Draft?
+Why was my PR marked as a draft?
 ************************************
 
 If your PR was reviewed and changes were requested, our bot will automatically mark your PR as a draft. This means that
@@ -647,6 +647,8 @@ The C++ part of the codebase is what's actually running on the microcontroller; 
 of the codebase should first set up the communication interface to a sensor/component/etc. and then communicate with
 the ESPHome core via the defined interfaces (like ``Sensor``, ``BinarySensor`` and ``Switch``, among others).
 
+.. _directory_structure:
+
 Directory Structure
 *******************
 
@@ -742,6 +744,8 @@ A few notes on validation:
   obscure shorthand. As an example, ``scrn_btn_inpt`` is indeed shorter but more difficult to understand, particularly
   for new users; avoid naming keys and variables in this way.
 
+.. _code_generation:
+
 Code Generation
 ***************
 
@@ -781,6 +785,8 @@ the next line.
 Next, there's a special method - ``cg.add`` - that you will often use. ``cg.add()`` performs a very simple task: Any
 C++ declared in the parentheses of ``cg.add()`` will be added to the generated code. Note that, if you do not call
 "add" to insert a piece of code explicitly, it will not be added to the ``main.cpp`` file!
+
+.. _runtime:
 
 Runtime
 *******
@@ -831,6 +837,66 @@ it then attempts to read back the measurement from the sensor.
 
 For any :apiclass:`Component` (which is nearly everything), the well-known ``set_timeout`` method is also available;
 this can be a handy alternative to implemeting a state machine.
+
+.. _a_note_about_custom_components:
+
+A Note About Custom Components
+******************************
+
+*"I read that custom components are deprecated...so now what do I do???"*
+
+ESPHome's "custom component" mechanism is a holdover from Home Assistant's feature by the same name. It existed before
+:doc:`/components/external_components` and offered a way to "hack in" support for devices which were not officially
+supported by ESPHome.
+
+ESPHome has since deprecated this feature in favor of :doc:`/components/external_components` for several reasons:
+
+- Custom components are very fragile:
+
+  - There is no validation. You can easily configure a custom component incorrectly and there will be no warning.
+  - Types are not checked. You might incorrectly pass a variable of an incorrect type or unit to a custom component
+    resulting in compiler errors, unexpected behavior and/or crashes.
+  - Custom components are difficult to use. You have to manually copy all of the custom component's files into *just
+    the right location* on your system or else you will receive compiler errors and the component won't work.
+  - Custom components almost always require C++ code changes when you want them to work even *slightly* differently
+    than the original author intended.
+
+- :doc:`/components/external_components` initially require a bit more effort by the developer but are ultimately more
+  robust and easier to use and share:
+
+  - Just like any other ESPHome component/platform:
+  
+    - They are configured entirely in YAML.
+    - Their YAML configuration is validated.
+
+  - They do not require the user to:
+
+    - Manually copy files onto their system.
+    - Touch/edit any C++ code.
+
+  - They tend to be more flexible since they are configured in YAML (as opposed to editing C++ code to make changes).
+
+**So what is the difference between custom components and** :doc:`/components/external_components`?
+
+Custom components are typically (more or less) just the :ref:`runtime` part of an ESPHome component/platform. On the
+other hand, :doc:`/components/external_components` are just like any other ESPHome component -- the only difference is
+that they are *external* in the sense that they are not "officially" a part of ESPHome.
+
+In terms of implementation, custom components just lack the Python part of an ESPHome component, specifically:
+
+- :ref:`config_validation`
+- :ref:`code_generation`
+
+As such, most custom components can be made into :doc:`/components/external_components` simply by adding the required
+Python parts to make the custom component into a proper, complete ESPHome component.
+
+We encourage all custom component developers to extend their custom component(s) into proper
+:doc:`/components/external_components`; doing so will make your custom component easier to share and use. As you do so,
+be sure to have a look at the the :ref:`contributing_to_esphome` section above as it walks through ESPHome (component)
+architecture. In addition, it's often helpful to take a look at other, similar
+`components <https://github.com/esphome/esphome/tree/dev/esphome/components>`__ and adapt them to fit the needs of your
+custom component. For common hardware devices such as :doc:`sensors</components/sensor/index>`, this is often a
+reasonably trivial exercise and `we are happy to help you along! <https://discord.gg/KhAMKrd>`__
 
 Extras
 ******

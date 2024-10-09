@@ -209,6 +209,21 @@ This trigger is activated every time the media player finishes playing.
         on_idle:
           - logger.log: "Playback finished!"
 
+.. _media_player-on_announcement_trigger:
+
+``media_player.on_announcement`` Trigger
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This trigger is activated every time the media player plays an announcement.
+
+.. code-block:: yaml
+
+    media_player:
+      - platform: i2s_audio  # or any other platform
+        # ...
+        on_announcement:
+          - logger.log: "Announcing!"
+
 .. _media_player-is_idle_condition:
 
 ``media_player.is_idle`` Condition
