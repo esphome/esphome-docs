@@ -141,18 +141,18 @@ Example configuration
 Configuration variables:
 ------------------------
 
-- **frequency** (*Optional*, float): Between 76MHz and 108MHz. Step size is 0.05MHz
+- **frequency** (*Optional*, float): Between 76 and 108MHz. Step size is 0.05MHz
 - **frequency_deviation** (*Optional*, float): Between 0 and 147.9KHz. Step size is 0.58KHz.
 - **mute** (*Optional*, bool): Mute audio if True.
 - **mono** (*Optional*, bool): Mono audio if True.
 - **tx_enable** (*Optional*, bool): Transmission enabled.
-- **tx_pilot** (*Optional*, int): Between 7% and 15% (of 75KHz).
+- **tx_pilot** (*Optional*, int): Between 7 and 15 (% of 75KHz).
 - **t1m_sel** (*Optional*, enum): Turn transmission off after (Never, 58s, 59s, 60s) if there is no input.
 - **priv_en** (*Optional*, bool): Enabled the privacy mode (audio scramble and RDS encryption).
-- **pre_emphasis** (*Optional*, enum): Pre-emphasis time constant. 50us or 75us.
+- **pre_emphasis** (*Optional*, enum): Pre-emphasis time constant. (50us, 75us)
 - **xtal_source** (*Optional*, enum): Select the reference clock source. (CRYSTAL, DIGITAL_CLOCK, SINGLE_END_SIN_WAVE, DIFFERENTIAL_SIN_WAVE)
 - **xtal_current** (*Optional*, float): Crystal oscillator current control. Between 0 and 400uA.
-- **xtal_frequency** (*Optional*, enum): Crystal frequency. 12MHz or 24MHz.
+- **xtal_frequency** (*Optional*, enum): Crystal frequency. (12MHz, 24MHz)
 - **input_impedance** (*Optional*, enum): Input impedance for both L/R channels. (5kOhm, 10kOhm, 20kOhm, 40kOhm)
 - **input_gain** (*Optional*, int): Input buffer gain. (0dB - 5dB) 
 - **digital_gain** (*Optional*, int): Digital buffer gain. (0dB - 2dB) 
