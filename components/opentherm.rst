@@ -398,7 +398,7 @@ Basic PID thermostat
       - platform: opentherm
         ch_enable:
           name: "Boiler Central Heating enabled"
-          mode: restore_default_on
+          restore_mode: RESTORE_DEFAULT_ON
 
     climate:
       - platform: pid
