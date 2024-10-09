@@ -7,7 +7,11 @@ QN8027 FM Transmitter
     :keywords: qn8027
 
 The QN8027 has an I²C interface, can transmit in the 76-108 MHz FM range and supports RDS. Every feature
-from the (`datasheet <>'__) is implemented and exposed through different components (sensor, switch, select, number, text).
+from the datasheet is implemented and exposed through different components (sensor, switch, select, number, text). 
+
+(`Datasheet <https://github.com/gabest11/datasheet/blob/main/QN8027%20v1.10.pdf>'__)
+
+(`Hardware Application Note <https://github.com/gabest11/datasheet/blob/main/QN8027%20Hardware%20Application%20Note%20v0.25.pdf>'__)
 
 Only a few developement boards are available, it is more common in commercial FM transmitters, mostly for cars.
 
