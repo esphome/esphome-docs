@@ -560,7 +560,10 @@ Important :
 
 + device needs to be registered on the Chinese Xiaomi registration portal. European or American portal do not propose this model.
 
-+ BLE communication is encrypted, so you need to retrieve the BindKey from the Xiaomi portal 
++ BLE communication is encrypted, so you need to retrieve the BindKey from the Xiaomi portal
+
++ 2 binary sensors are available: smoke detection and button and 1 sensor : battery level
+
 
 .. figure:: images/xiaomi_jtyjgd03.png
     :align: center
