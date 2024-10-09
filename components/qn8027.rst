@@ -1,0 +1,166 @@
+QN8027 FM Transmitter
+=====================
+
+.. seo::
+    :description: Instructions for setting up QN8027 FM Transmitter
+    :image: qn8027.jpg
+    :keywords: qn8027
+
+The QN8027 has an I²C interface, can transmit in the 76-108 MHz FM range and supports RDS. Every feature
+from the (`datasheet <>'__) is implemented and exposed through different components (sensor, switch, select, number, text).
+
+Only a few developement boards are available, it is more common in commercial FM transmitters, mostly for cars.
+
+.. figure:: images/qn8027-full.jpg
+    :align: center
+    :width: 50.0%
+
+    Board example.
+
+Example configuration
+---------------------
+
+.. code-block:: yaml
+
+    i2c:
+      sda: GPIO10
+      scl: GPIO9
+      scan: True
+    
+    i2s_audio:
+      i2s_lrclk_pin: GPIO4
+      i2s_bclk_pin: GPIO6
+    
+    media_player:
+      - platform: i2s_audio
+        name: "Media Player"
+        dac_type: external
+        i2s_dout_pin: GPIO5
+        mode: stereo
+      
+    qn8027:
+      id: fm_transmitter
+      frequency: 87.50
+      frequency_deviation: 74.82
+      mute: False
+      mono: False
+      tx_enable: True
+      tx_pilot: 9
+      t1m_sel: 60s
+      priv_en: False
+      pre_emphasis: 75us
+      xtal_source: crystal
+      xtal_current: 100
+      xtal_frequency: 24MHz
+      input_impedance: 20kOhm
+      input_gain: 3
+      digital_gain: 0
+      power_target: 117.5
+      rds_enable: True
+      rds_frequency_deviation: 2.1
+      rds_station: qn8027
+      rds_text: sample text
+      fsm:
+        name: FSM Status
+      aud_pk:
+        name: Audio Peek
+      chip_id:
+        name: Chip ID
+    
+    number:
+      - platform: qn8027
+        frequency:
+          id: fm_frequency
+          name: Frequency
+        frequency_deviation:
+          name: Frequency Deviation
+        tx_pilot:
+          name: Tx Pilot
+        xtal_current:
+          name: Xtal Current
+        input_gain:
+          name: Input Gain
+        digital_gain:
+          name: Digital Gain
+        power_target:
+          name: Power Target
+        rds_frequency_deviation:
+          name: RDS Frequency Deviation
+    
+    switch:
+      - platform: qn8027
+        mute:
+          name: Mute
+        mono:
+          name: Mono
+        tx_enable:
+          name: Tx Enable
+        priv_en:
+          name: Privacy Enable
+        rds_enable:
+          name: RDS Enable
+    
+    select:
+      - platform: qn8027
+        t1m_sel:
+          name: PA off delay
+        pre_emphasis:
+          name: Pre-emphasis
+        xtal_source:
+          name: Xtal Source
+        xtal_frequency:
+          name: Xtal Frequency
+        input_impedance:
+          name: Input Impedance
+    
+    text:
+      - platform: qn8027
+        rds_station:
+          name: RDS Station
+        rds_text:
+          name: RDS Text
+    
+    api:
+      services:
+        - service: 'set_url'
+          variables:
+            url: string
+          then:
+            - media_player.play_media: !lambda 'return url.c_str();'
+        - service: 'set_frequency'
+          variables:
+            x: float
+          then:
+            # few different ways to change frequency
+            - number.set: 
+                id: fm_frequency
+                value: !lambda 'return x;'
+            - qn8027.set_frequency: !lambda 'return x;'
+            - lambda: !lambda 'id(fm_transmitter).set_frequency(x);'
+    
+Configuration variables:
+------------------------
+
+- **frequency** (*Optional*, float): Between 76MHz and 108MHz. Step size is 0.05MHz
+- **frequency_deviation** (*Optional*, float): Between 0 and 147.9KHz. Step size is 0.58KHz.
+- **mute** (*Optional*, bool): Mute audio if True.
+- **mono** (*Optional*, bool): Mono audio if True.
+- **tx_enable** (*Optional*, bool): Transmission enabled.
+- **tx_pilot** (*Optional*, int): Between 7% and 15% (of 75KHz).
+- **t1m_sel** (*Optional*, enum): Turn transmission off after (Never, 58s, 59s, 60s) if there is no input.
+- **priv_en** (*Optional*, bool): Enabled the privacy mode (audio scramble and RDS encryption).
+- **pre_emphasis** (*Optional*, enum): Pre-emphasis time constant. 50us or 75us.
+- **xtal_source** (*Optional*, enum): Select the reference clock source. (CRYSTAL, DIGITAL_CLOCK, SINGLE_END_SIN_WAVE, DIFFERENTIAL_SIN_WAVE)
+- **xtal_current** (*Optional*, float): Crystal oscillator current control. Between 0 and 400uA.
+- **xtal_frequency** (*Optional*, enum): Crystal frequency. 12MHz or 24MHz.
+- **input_impedance** (*Optional*, enum): Input impedance for both L/R channels. (5kOhm, 10kOhm, 20kOhm, 40kOhm)
+- **input_gain** (*Optional*, int): Input buffer gain. (0dB - 5dB) 
+- **digital_gain** (*Optional*, int): Digital buffer gain. (0dB - 2dB) 
+- **power_target** (*Optional*, float): Output power target. Between 83.4dBuV and 117.5dBuV. Step size is 0.62dBuV.
+- **rds_enable** (*Optional*, bool): RDS enabled if True.
+- **rds_frequency_deviation** (*Optional*, float): Between 0 and 44.45KHz. Step size is 0.35KHz.
+- **rds_station** (*Optional*, string): Station name. Max 8 characters.
+- **rds_text** (*Optional*, string): Additional RDS text. Max 64 characters.
+- **fsm** (*Optional*, text_sensor): Status sensor.
+- **aud_pk** (*Optional*, float): Audio Peek sensor. Reported in mV.
+- **chip_id** (*Optional*, text_sensor): The detected chip id sensor.
