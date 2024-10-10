@@ -188,4 +188,8 @@ Diagnostic sensors:
 Advanced:
 ------------------------
 
-- **reg30** (*Optional*, int): Sensor for an undocumented register. Hardware Application Note: "To judge whether the inductor has covered the full span, reg30 can be used. Set the RF frequency of 76MHz and read the reg30 value, then set RF frequency of 108MHz and read reg30 value, if both two reg30 values are in range 0x1f~0x00, it means the inductor can cover the full span. Otherwise, it is necessary to change the inductor value to cover the full span"
+- **reg30** (*Optional*, int): Sensor for an undocumented register.
+
+.. note::
+
+    Hardware Application Note: "To judge whether the inductor has covered the full span, reg30 can be used. Set the RF frequency of 76MHz and read the reg30 value, then set RF frequency of 108MHz and read reg30 value, if both two reg30 values are in range 0x1f~0x00, it means the inductor can cover the full span. Otherwise, it is necessary to change the inductor value to cover the full span"
