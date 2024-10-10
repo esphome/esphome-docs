@@ -171,7 +171,7 @@ Configuration variables:
 - **power_target** (*Optional*, float): Output power target. Between 83.4dBuV and 117.5dBuV. Step size is 0.62dBuV.
 
 RDS configuration variables:
-------------------------
+----------------------------
 
 - **rds_enable** (*Optional*, bool): RDS enabled if True.
 - **rds_frequency_deviation** (*Optional*, float): Between 0 and 44.45KHz. Step size is 0.35KHz.
@@ -179,14 +179,14 @@ RDS configuration variables:
 - **rds_text** (*Optional*, string): Additional RDS text. Max 64 characters.
 
 Diagnostic sensors:
-------------------------
+-------------------
 
 - **fsm** (*Optional*, text_sensor): Status sensor.
 - **aud_pk** (*Optional*, float): Audio Peek sensor. Reported in mV.
 - **chip_id** (*Optional*, text_sensor): The detected chip id sensor.
 
 Advanced:
-------------------------
+---------
 
 - **reg30** (*Optional*, int): Sensor for an undocumented register.
 
