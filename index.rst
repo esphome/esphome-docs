@@ -1109,6 +1109,7 @@ Wireless communication that is **not Wi-Fi.**
     Remote Transmitter, components/remote_transmitter, remote.svg, dark-invert
     RF Bridge, components/rf_bridge, rf_bridge.jpg
     SIM800L, components/sim800l, sim800l.jpg
+    QN8027 FM Transmitter, components/qn8027, qn8027.jpg
 
 Miscellaneous Components
 ------------------------
