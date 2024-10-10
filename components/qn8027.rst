@@ -21,6 +21,12 @@ Only a few developement boards are available, it is more common in commercial FM
 
     Board example. The one does not come with the amplifier circuit, range is about 1 meter.
 
+.. figure:: images/qn8027-wiring-diagram.png
+    :align: center
+    :width: 50.0%
+
+    Wiring diagram.
+
 Example configuration
 ---------------------
 
