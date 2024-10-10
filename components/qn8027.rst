@@ -144,11 +144,11 @@ Example configuration
             x: float
           then:
             # few different ways to change frequency
-            - number.set: 
+            - number.set: # set frequancy through the number component, this also shows up in Home Assistant
                 id: fm_frequency
                 value: !lambda 'return x;'
-            - qn8027.set_frequency: !lambda 'return x;'
-            - lambda: !lambda 'id(fm_transmitter).set_frequency(x);'
+            - qn8027.set_frequency: !lambda 'return x;' # this is the elegant way to do scripting
+            - lambda: !lambda 'id(fm_transmitter).set_frequency(x);' # this is the less elegant way, but any member of the c++ class is accessible
     
 Configuration variables:
 ------------------------
@@ -169,11 +169,23 @@ Configuration variables:
 - **input_gain** (*Optional*, int): Input buffer gain. (0dB - 5dB) 
 - **digital_gain** (*Optional*, int): Digital buffer gain. (0dB - 2dB) 
 - **power_target** (*Optional*, float): Output power target. Between 83.4dBuV and 117.5dBuV. Step size is 0.62dBuV.
+
+RDS configuration variables:
+------------------------
+
 - **rds_enable** (*Optional*, bool): RDS enabled if True.
 - **rds_frequency_deviation** (*Optional*, float): Between 0 and 44.45KHz. Step size is 0.35KHz.
 - **rds_station** (*Optional*, string): Station name. Max 8 characters.
 - **rds_text** (*Optional*, string): Additional RDS text. Max 64 characters.
+
+Advanced configuration variables:
+------------------------
+
+- **reg30** (*Optional*, int): Sensor for an undocumented register. Hardware Application Note: "To judge whether the inductor has covered the full span, reg30 can be used. Set the RF frequency of 76MHz and read the reg30 value, then set RF frequency of 108MHz and read reg30 value, if both two reg30 values are in range 0x1f~0x00, it means the inductor can cover the full span. Otherwise, it is necessary to change the inductor value to cover the full span"
+
+Diagnostic sensors:
+------------------------
+
 - **fsm** (*Optional*, text_sensor): Status sensor.
 - **aud_pk** (*Optional*, float): Audio Peek sensor. Reported in mV.
 - **chip_id** (*Optional*, text_sensor): The detected chip id sensor.
-- **reg30** (*Optional*, int): Sensor for an undocumented register. Hardware Application Note: "To judge whether the inductor has covered the full span, reg30 can be used. Set the RF frequency of 76MHz and read the reg30 value, then set RF frequency of 108MHz and read reg30 value, if both two reg30 values are in range 0x1f~0x00, it means the inductor can cover the full span. Otherwise, it is necessary to change the inductor value to cover the full span"
