@@ -6,7 +6,7 @@ sen0501 and sen0500 Environmental Sensor
     :image: sen0501.jpg
     :keywords: sen0501, sen0500, DFRobot, Fermion, Gravity
 
-The ``sen0501`` sensor platform allows you to use your DFRobot Gravity sen0501
+The ``sen0501_i2c`` sensor platform allows you to use your DFRobot Gravity sen0501
 (`product wiki <https://wiki.dfrobot.com/SKU_SEN0501_Gravity_Multifunctional_Environmental_Sensor>`__,
 `DFRobot0501`_) or DFRobot Fermion sen0500 (`product wiki <https://wiki.dfrobot.com/SKU_SEN0500_Fermion_Multifunctional_Environmental_Sensor>`__,
 `DFRobot0500`_) environmental sensor with ESPHome. :ref:`I²C <i2c>` is
@@ -14,8 +14,8 @@ required to be set up in your configuration for either of these sensors to work.
 
 .. note::
 
-    Both the sen0501 and the sen0500 have the capability of switching between I²C and UART protocols. 
-    However, the ``sen0501`` sensor platform for ESPHome is only setup to deal with communication using I²C at the current time.
+    Both the sen0501 and the sen0500 have the capability of switching between I²C and UART protocols.
+    However, the ``sen0501_i2c`` sensor platform for ESPHome is only setup to deal with communication using I²C at the current time.
     Therefore, please ensure that the I²C protocol is selected on the respective board before proceeding.
 
 .. figure:: images/sen0501.jpg
@@ -37,7 +37,7 @@ required to be set up in your configuration for either of these sensors to work.
 
     # Example configuration entry
     sensor:
-      - platform: sen0501
+      - platform: sen0501_i2c
         temperature:
             name: "Temperature"
         humidity:
@@ -53,7 +53,7 @@ required to be set up in your configuration for either of these sensors to work.
 
 .. note::
 
-    The sensor ``-platform:`` will always be ``sen0501``, regardless of whether you use the sen0501 or sen0500 board.
+    The sensor ``-platform:`` will always be ``sen0501_i2c``, regardless of whether you use the sen0501 or sen0500 board.
 
 Configuration variables:
 ------------------------
@@ -82,6 +82,6 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`sen0501/sen0501.h`
+- :apiref:`sen0501/sen0501_i2c.h`
 - `DFRobot sen0501/sen0500 library <https://github.com/DFRobot/DFRobot_EnvironmentalSensor>`__ by `DFRobot <https://www.dfrobot.com/>`__
 - :ghedit:`Edit`
