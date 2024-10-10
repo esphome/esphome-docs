@@ -33,19 +33,19 @@ Example configuration
 .. code-block:: yaml
 
     i2c:
-      sda: GPIO10
-      scl: GPIO9
+      sda: 10
+      scl: 9
       scan: True
     
     i2s_audio:
-      i2s_lrclk_pin: GPIO4
-      i2s_bclk_pin: GPIO6
+      i2s_lrclk_pin: 4
+      i2s_bclk_pin: 6
     
     media_player:
       - platform: i2s_audio
         name: "Media Player"
         dac_type: external
-        i2s_dout_pin: GPIO5
+        i2s_dout_pin: 5
         mode: stereo
       
     qn8027:
