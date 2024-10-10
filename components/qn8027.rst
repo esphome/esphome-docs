@@ -144,7 +144,7 @@ Example configuration
             x: float
           then:
             # few different ways to change frequency
-            - number.set: # set frequency through the number component, this also shows up in Home Assistant
+            - number.set: # set frequency through the number component, this also shows up in Home Assistant UI
                 id: fm_frequency
                 value: !lambda 'return x;'
             - qn8027.set_frequency: !lambda 'return x;' # this is the elegant way to do scripting
