@@ -18,10 +18,6 @@ sensor to work.
 
     TC74 Temperature Sensor.
 
-.. figure:: images/temperature.png
-    :align: center
-    :width: 80.0%
-
 .. code-block:: yaml
 
     # Example configuration entry
