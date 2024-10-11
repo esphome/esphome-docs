@@ -15,7 +15,7 @@ You can use the ESP32 software or hardware serial to use this MR60FDA2, its defa
 
 .. figure:: images/seeed_mr60fda2.jpg
     :align: center
-    :width: 60.0%
+    :width: 50.0%
 
     Seeed Studio MR60FDA2 60GHz mmWave Fall Detection Sensor Kit with XIAO ESP32C6
 
