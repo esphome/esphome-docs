@@ -191,8 +191,8 @@ time period.
 ``if`` Action
 *************
 
-This action first evaluated a certain condition (``if:``) and then either
-executes the ``then:`` branch or the ``else:`` branch depending on the output of the condition.
+This action first evaluates the ``condition:`` and then either
+executes the ``then:`` branch if the condition returns true or the ``else:`` branch if the condition returns false.
 
 After the chosen branch (``then`` or ``else``) is done with execution, the next action is performed.
 
