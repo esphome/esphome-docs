@@ -49,7 +49,11 @@ Sensors
 *******
 
 - **battery_voltage** (*Optional*, float): The voltage measured at the LIPO battery.
+
+  - All other options from :ref:`Sensor <config-sensor>`.
 - **battery_level** (*Optional*, float): The percentage of battery remaining using the ModelGauge™ battery-modelling scheme.
+
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 Hardware design considerations
 ******************************
@@ -81,8 +85,7 @@ For example:
 
     on_...:
       then:
-        - lambda: |-
-            id(max17043_id).sleep_mode();
+        - max17043.sleep_mode: max17043_id
         - deep_sleep.enter:
             id: deep_sleep_1
             sleep_duration: 20min
