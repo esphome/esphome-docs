@@ -161,7 +161,7 @@ Configuration variables:
 - **tx_pilot** (*Optional*, int): Between 7 and 15 (% of 75KHz).
 - **t1m_sel** (*Optional*, enum): Turn transmission off after (Never, 58s, 59s, 60s) if there is no input.
 - **priv_en** (*Optional*, bool): Enabled the privacy mode (audio scramble and RDS encryption).
-- **pre_emphasis** (*Optional*, enum): Pre-emphasis time constant. (50us, 75us)
+- **pre_emphasis** (*Optional*, enum): Pre-emphasis time constant. (50us => Europe, Australia, 75us => USA, Japan)
 - **xtal_source** (*Optional*, enum): Select the reference clock source. (CRYSTAL, DIGITAL_CLOCK, SINGLE_END_SIN_WAVE, DIFFERENTIAL_SIN_WAVE)
 - **xtal_current** (*Optional*, float): Crystal oscillator current control. Between 0 and 400uA.
 - **xtal_frequency** (*Optional*, enum): Crystal frequency. (12MHz, 24MHz)
