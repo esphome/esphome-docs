@@ -75,7 +75,7 @@ Current consumption during device sleep mode is extremely low (maximum of 3µA c
 The driver enables the user to put the device to sleep just before deep sleep commences using the `sleep_mode` action.
 When the ESP comes out of deep sleep the driver clears the MAX17043 sleep bit.
 
-For example,
+For example:
 
 .. code-block:: yaml
 
