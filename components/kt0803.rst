@@ -20,7 +20,7 @@ TODO
     :align: center
     :width: 50.0%
 
-    Example board
+    Example board from ELECHOUSE
 
 .. figure:: images/kt0803-wiring-diagram.png
     :align: center
