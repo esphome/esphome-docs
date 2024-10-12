@@ -1,5 +1,5 @@
 Seeed Studio MR60BHA2 60GHz mmWave Breathing and Heartbeat Detection Sensor Kit
-==================================
+===============================================================================
 
 .. seo::
     :description: Instructions for setting up Seeed Studio MR60BHA2 60GHz mmWave Breathing and Heartbeat Detection Sensor Kit.
