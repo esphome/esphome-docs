@@ -21,6 +21,8 @@ submit a feature request (see FAQ).
 +=======================================+=====================+======================+
 | Ballu                                 | ``ballu``           | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| Old Ballu (BSC-09H)                   | ``ballu_old``       |                      |
++---------------------------------------+---------------------+----------------------+
 | Coolix                                | ``coolix``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Daikin                                | ``daikin``          | yes                  |
@@ -377,6 +379,7 @@ See Also
 - :doc:`/components/remote_transmitter`
 - :doc:`/components/sensor/index`
 - :apiref:`ballu.h <ballu/ballu.h>`,
+  :apiref:`ballu_old.h <ballu_old/ballu_old.h>`,
   :apiref:`climate_ir_lg.h <climate_ir_lg/climate_ir_lg.h>`
   :apiref:`coolix.h <coolix/coolix.h>`,
   :apiref:`daikin.h <daikin/daikin.h>`
