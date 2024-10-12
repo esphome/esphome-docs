@@ -1,8 +1,8 @@
-Seeed Studio MR60FDA2 mmWave (Kit)
+Seeed Studio MR60FDA2 60GHz mmWave Fall Detection Sensor Kit
 ==================================
 
 .. seo::
-    :description: Instructions for setting up MR60FDA2 mmWave (Kit).
+    :description: Instructions for setting up Seeed Studio MR60FDA2 60GHz mmWave Fall Detection Sensor Kit.
     :image: seeed_mr60fda2.jpg
 
 Component/Hub
@@ -122,5 +122,5 @@ See Also
 - `Official Using Documents for Seeed Studio MR60FDA2 60GHz mmWave Fall Detection Sensor Kit with XIAO ESP32C6 <https://wiki.seeedstudio.com/getting_started_with_mr60fda2_mmwave_kit/>`_
 - `Product Detail Page for Seeed Studio MR60FDA2 60GHz mmWave Fall Detection Sensor Kit with XIAO ESP32C6 <https://www.seeedstudio.com/MR60FDA2-60GHz-mmWave-Sensor-Fall-Detection-Module-p-5946.html>`_
 - `Source of inspiration for implementation <https://github.com/limengdu/MR60FDA2_ESPHome_external_components>`_
-- :apiref:`seeed_mr24hpc1/seeed_mr24hpc1.h`
+- :apiref:`seeed_mr60fda2/seeed_mr60fda2.h`
 - :ghedit:`Edit`
