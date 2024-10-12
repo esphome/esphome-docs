@@ -898,6 +898,7 @@ Touchscreen Components
 .. imgtable::
 
     Touchscreen Core, components/touchscreen/index, folder-open.svg, dark-invert
+    AXS15231, components/touchscreen/axs15231, cst816.jpg
     CST226, components/touchscreen/cst226, t4-s3.jpg
     CST816, components/touchscreen/cst816, cst816.jpg
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
