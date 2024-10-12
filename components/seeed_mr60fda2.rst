@@ -1,5 +1,5 @@
 Seeed Studio MR60FDA2 60GHz mmWave Fall Detection Sensor Kit
-==================================
+============================================================
 
 .. seo::
     :description: Instructions for setting up Seeed Studio MR60FDA2 60GHz mmWave Fall Detection Sensor Kit.
