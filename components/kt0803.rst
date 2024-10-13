@@ -183,24 +183,24 @@ pga                  x [#]_  x       x       -15           -15 - 12 (dB)
 rfgain               x       x       x       108           95.5 - 108 (dbUV)
 mute                 x       x       x       False
 mono                         x       x       False
-pre_emphasis         x       x       x       75us          50us 75us (50ns => Europe, Australia, 75us => USA, Japan)
-pilot_tone_amplitude x       x       x       Low           Low or High
-bass_boost_control           x       x       Disabled      Disabled 5dB 11dB 17dB
+pre_emphasis         x       x       x       75us          50us, 75us (50ns => Europe, Australia, 75us => USA, Japan)
+pilot_tone_amplitude x       x       x       Low           Low, High
+bass_boost_control           x       x       Disabled      Disabled, 5dB, 11dB, 17dB
 alc_enable                           x       False         
 auto_pa_down                         x       True          
 pa_down                      x       x       False
 standby_enable                       x       False
-alc_attack_time                      x       25us          25us 50us 75us 100us 125us 175us 200us 50ms 100ms 150ms 200ms 250ms 300ms 350ms 400ms
-alc_decay_time                       x       25us          25us 50us 75us 100us 125us 175us 200us 50ms 100ms 150ms 200ms 250ms 300ms 350ms 400ms
+alc_attack_time                      x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
+alc_decay_time                       x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
 pa_bias                      x       x       True
-audio_limiter_level
-switch_mode
-silence_detection
-silence_high
-silence_low
-silence_duration
-silence_high_counter
-silence_low_counter
+audio_limiter_level          x               0.875         0.6875, 0.75, 0.875, 0.9625
+switch_mode                  x       x       Mute          Mute, PA Off
+silence_detection            x       x       False
+silence_high                 x       x       32mV          
+silence_low                  x       x       8mV
+silence_duration             x       x       100ms
+silence_high_counter         x       x       15
+silence_low_counter          x       x       1
 alc_gain
 xtal_sel
 au_enhance
