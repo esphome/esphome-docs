@@ -159,7 +159,7 @@ Advanced settings:
 
 - **frequency_deviation** (*Optional*, enum): Frequency deviation detection.
 - **pga** (*Optional*, float): Programmable-gain amplifier (PGA) gain control.
-- **rfgain** (*Optional*, float): PA (Power amplifier) power to set up transmission range.
+- **rfgain** (*Optional*, float): PA (Power amplifier) power to set up transmission range. Invalid values will be rounded-up to the next valid.
 - **pa_bias** (*Optional*, boolean): PA bias current enhancement.
 - **pre_emphasis** (*Optional*, enum): Pre-emphasis time-constant.
 - **pilot_tone_amplitude** (*Optional*, enum): Pilot tone amplitude adjustment.
