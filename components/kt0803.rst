@@ -209,41 +209,41 @@ Feature matrix
 parameter / chip id  KT0803  KT0803K/M KT0803L default       values
 ==================== ======= ========= ======= ============= ===============================================================================================================
 frequency            x       x         x       87.50         70 - 108 (MHz)
-pga                  x       x         x       -15           -15 - 12 (dB) [2]_
-rfgain               x       x         x       108           95.5, 96.5, 97.5, 98.2, 98.9, 100, 101.5, 102.8, 105.1, 105.6, 106.2, 106.5, 107, 107.4, 107.7, 108 (dbUV) [3]_
+frequency_deviation          x         x       75kHz         75kHz, 112.5kHz, 150kHz, 187.5kHz [2]_
 mute                 x       x         x       False
 mono                         x         x       False
+pga                  x       x         x       -15           -15 - 12 (dB) [3]_
+rfgain               x       x         x       108           95.5, 96.5, 97.5, 98.2, 98.9, 100, 101.5, 102.8, 105.1, 105.6, 106.2, 106.5, 107, 107.4, 107.7, 108 (dbUV) [4]_
+pa_bias                      x         x       True          
 pre_emphasis         x       x         x       75us          50us, 75us (50ns => Europe, Australia, 75us => USA, Japan)
 pilot_tone_amplitude x       x         x       Low           Low, High
 bass_boost_control           x         x       Disabled      Disabled, 5dB, 11dB, 17dB
-alc_enable                             x       False         
 auto_pa_down                           x       True          
 pa_down                      x         x       False
 standby_enable                         x       False
-alc_attack_time                        x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
-alc_decay_time                         x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
-pa_bias                      x         x       True          [4]_
 audio_limiter_level          x                 0.875         0.6875, 0.75, 0.875, 0.9625
 switch_mode                  x         x       Mute          Mute, PA Off
 silence_detection            x         x       False
+silence_duration             x         x       100ms         50ms, 100ms, 200ms, 400ms, 1s, 2s, 4s, 8s, 16s, 24s, 32s, 40s, 48s, 56s, 60s, 64s [5]_
 silence_high                 x         x       32mV          0.5mV, 1mV, 2mV, 4mV, 8mV, 16mV, 32mV, 64mV
 silence_low                  x         x       8mV           0.25mV, 0.5mV, 1mV, 2mV, 4mV, 8mV, 16mV, 32mV
-silence_duration             x         x       100ms         50ms, 100ms, 200ms, 400ms, 1s, 2s, 4s, 8s, 16s, 24s, 32s, 40s, 48s, 56s, 60s, 64s [4]_
 silence_high_counter         x         x       15            15, 31, 63, 127, 255, 511, 1023, 2047
 silence_low_counter          x         x       1             1, 2, 4, 8, 16, 32, 64, 128
-alc_gain                               x       -3            -15, -12, -9, -6, -3, 0, 3, 6 (dB)
-xtal_sel                               x       32.768kHz     32.768kHz, 7.6MHz
 au_enhance                             x       False         
-frequency_deviation          x         x       75kHz         75kHz, 112.5kHz, 150kHz, 187.5kHz [5]_
-ref_clk                                x       32.768kHz     32.768kHz, 6.5MHz, 7.6MHz, 12MHz, 13MHz, 15.2MHz, 19.2MHz, 24MHz, 26MHz
 xtal_enable                            x       True          
+xtal_sel                               x       32.768kHz     32.768kHz, 7.6MHz
 ref_clk_enable                         x       False
-alc_high                               x       0.6           0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.01
+ref_clk                                x       32.768kHz     32.768kHz, 6.5MHz, 7.6MHz, 12MHz, 13MHz, 15.2MHz, 19.2MHz, 24MHz, 26MHz
+alc_enable                             x       False         
+alc_gain                               x       -3            -15, -12, -9, -6, -3, 0, 3, 6 (dB)
+alc_attack_time                        x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
+alc_decay_time                         x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
 alc_hold_time                          x       5s            50ms, 100ms, 150ms, 200ms, 1s, 5s, 10s, 15s
+alc_high                               x       0.6           0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.01
 alc_low                                x       0.25          0.25, 0.20, 0.15, 0.10, 0.05, 0.03, 0.02, 0.01, 0.005, 0.001, 0.0005, 0.0001
 ==================== ======= ========= ======= ============= ===============================================================================================================
 
-.. [2] KT0803 -12, -8, -4, 0, 4, 8, 12dB (lower two bits are ignored)
-.. [3] pa_bias modifies the values of rfgain (105.1 => 107.2, 105.6 => 108, 106.2 => 108.7, 106.5 => 109.5, 107 => 110.3, 107.4 => 111, 107.7 => 111.7, 108 => 112.5), but only internally, parameters stay the same.
-.. [4] KT0803K/M 50ms, 100ms, 200ms, 400ms, 1s, 2s, 4s, 8s only
-.. [5] KT0803L 75kHz, 112.5kHz
+.. [2] KT0803L 75kHz, 112.5kHz
+.. [3] KT0803 -12, -8, -4, 0, 4, 8, 12dB (lower two bits are ignored)
+.. [4] pa_bias modifies the values of rfgain (105.1 => 107.2, 105.6 => 108, 106.2 => 108.7, 106.5 => 109.5, 107 => 110.3, 107.4 => 111, 107.7 => 111.7, 108 => 112.5), but only internally, parameters stay the same.
+.. [5] KT0803K/M 50ms, 100ms, 200ms, 400ms, 1s, 2s, 4s, 8s only
