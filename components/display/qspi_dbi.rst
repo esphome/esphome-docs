@@ -202,7 +202,7 @@ This rotates the display into landscape mode using software rotation.
 
     display:
       - platform: qspi_dbi
-        model: CUSTOM
+        model: axs15231
         data_rate: 40MHz
         dimensions:
           height: 480
@@ -212,8 +212,6 @@ This rotates the display into landscape mode using software rotation.
           ignore_strapping_warning: true
         auto_clear_enabled: false
         update_interval: never
-        draw_from_origin: true
-        rotation: 270
         init_sequence:
 
     i2c:
