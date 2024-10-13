@@ -163,7 +163,7 @@ Diagnostic sensors:
 -------------------
 
 - **pw_ok** (*Optional*, boolean): Power OK sensor. Basically says "the chip is functioning".
-- **slncid** (*Optional*, boolean): Silence Detected sensor. Becomes on when it detects silence on the input. How it detects silence can be configured with the silence_* parameters. If auto_pa_down is On, it also turns off the power amplifier to save energy.
+- **slncid** (*Optional*, boolean): Silence Detected sensor. Becomes On when it detects silence on the input. How it detects silence can be configured with the silence_* parameters. If auto_pa_down is On, it also turns off the power amplifier to save energy.
 
 Advanced:
 ---------
