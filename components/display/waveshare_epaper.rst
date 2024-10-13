@@ -105,6 +105,7 @@ Configuration variables:
   - ``4.20in-bV2`` - B/W rendering only
   - ``5.83in``
   - ``5.83inv2``
+  - ``5.83in-bv2`` - B/W rendering only
   - ``7.50in``
   - ``7.50in-bV2`` - also supports v3, B/W rendering only
   - ``7.50in-bV3`` - display with the '(V3)' sticker on the back, B/W rendering only
