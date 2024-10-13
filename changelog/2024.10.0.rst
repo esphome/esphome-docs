@@ -47,6 +47,14 @@ Breaking Changes
 - CSE7766 needs even parity :esphomepr:`7549` by :ghuser:`ssieb` (breaking-change)
 - [web_server] v3 entity grouping :esphomepr:`6833` by :ghuser:`RFDarter` (breaking-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- fix uart settings check :esphomepr:`7573` by :ghuser:`ssieb`
+- [web_server] Event component grouping :esphomepr:`7586` by :ghuser:`RFDarter`
+- [touchscreen] Fix coordinates when using rotation :esphomepr:`7591` by :ghuser:`clydebarrow`
+- Fix update sequence when update is set to false (#5225) :esphomepr:`7407` by :ghuser:`edge90`
+
 All changes
 ^^^^^^^^^^^
 
@@ -128,6 +136,10 @@ All changes
 - Bump actions/upload-artifact from 4.4.1 to 4.4.2 :esphomepr:`7569` by :ghuser:`dependabot[bot]`
 - Bump actions/cache from 4.1.0 to 4.1.1 :esphomepr:`7570` by :ghuser:`dependabot[bot]`
 - Bump actions/cache from 4.1.0 to 4.1.1 in /.github/actions/restore-python :esphomepr:`7571` by :ghuser:`dependabot[bot]`
+- fix uart settings check :esphomepr:`7573` by :ghuser:`ssieb`
+- [web_server] Event component grouping :esphomepr:`7586` by :ghuser:`RFDarter`
+- [touchscreen] Fix coordinates when using rotation :esphomepr:`7591` by :ghuser:`clydebarrow`
+- Fix update sequence when update is set to false (#5225) :esphomepr:`7407` by :ghuser:`edge90`
 
 Past Changelogs
 ---------------
