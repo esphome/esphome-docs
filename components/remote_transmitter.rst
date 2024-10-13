@@ -328,6 +328,31 @@ Configuration variables:
 - **command** (**Required**, int): The command to send, between 0 and 63 inclusive.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+.. _remote_transmitter-transmit_hob2hood:
+
+``remote_transmitter.transmit_hob2hood`` Action
+***********************************************
+
+This :ref:`action <config-action>` sends a Hob2Hood infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_hob2hood:
+          command: light_on
+
+Configuration variables:
+
+- **command** (**Required**, enum): The Hob2Hood command to send.
+
+  - ``light_off``
+  - ``light_on``
+  - ``fan_off``
+  - ``fan_low``
+  - ``fan_medium``
+  - ``fan_high``
+  - ``fan_max``
+
 .. _remote_transmitter-transmit_jvc:
 
 ``remote_transmitter.transmit_jvc`` **Action**
