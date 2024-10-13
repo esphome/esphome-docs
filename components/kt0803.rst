@@ -203,15 +203,16 @@ silence_high_counter         x         x       15            15, 31, 63, 127, 25
 silence_low_counter          x         x       1             1, 2, 4, 8, 16, 32, 64, 128
 alc_gain                               x       -3            -15, -12, -9, -6, -3, 0, 3, 6 (dB)
 xtal_sel                               x       32.768kHz     32.768kHz, 7.6MHz
-au_enhance
-frequency_deviation
-ref_clk
-xtal_enable
-ref_clk_enable
-alc_high
-alc_hold_time
-alc_low
+au_enhance                             x       False         
+frequency_deviation          x         x       75kHz         75kHz, 112.5kHz, 150kHz, 187.5kHz [#]_
+ref_clk                                x       32.768kHz     32.768kHz, 6.5MHz, 7.6MHz, 12MHz, 13MHz, 15.2MHz, 19.2MHz, 24MHz, 26MHz
+xtal_enable                            x       True          
+ref_clk_enable                         x       False
+alc_high                               x       0.6
+alc_hold_time                          x       5s
+alc_low                                x       0.25          0.25, 0.20, 0.15, 0.10, 0.05, 0.03, 0.02, 0.01, 0.005, 0.001, 0.0005, 0.0001
 ==================== ======= ========= ======= ============= ========================================================================================================
 
-.. [#] KT0803 can only do -12, -8, -4, 0, 4, 8, 12dB (lower two bits are ignored), others -15 to 12dB full range.
-.. [#] 16s and higher only for KT0803L
+.. [#] KT0803 -12, -8, -4, 0, 4, 8, 12dB (lower two bits are ignored)
+.. [#] KT0803K/M 50ms - 8s
+.. [#] KT0803L 75kHz, 112.5kHz
