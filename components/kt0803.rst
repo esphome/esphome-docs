@@ -175,15 +175,15 @@ TODO
 Feature set
 -----------
 
-==================== ======= ======= ======= ======= =============
-parameter / chip id  KT0803  KT0803K KT0803M KT0803L default
-==================== ======= ======= ======= ======= =============
-frequency            x       x       x       x       87.50
-pga                  x[#]_   x       x       x       0dB
-rfgain
-mute
-mono
-pre_emphasis
+==================== ======= ======= ======= ============= ==========================
+parameter / chip id  KT0803  KT0803K KT0803L default       range
+==================== ======= ======= ======= ============= ==========================
+frequency            x       x       x       87.50         70 - 108 MHz
+pga                  x [#]_  x       x       -15           -15 - 12 dB
+rfgain               x       x       x       108           95.5 - 108 dbUV
+mute                 x       x       x       False
+mono                         x       x       False
+pre_emphasis         x       x       x       75            50 or 75 us
 pilot_tone_amplitude
 bass_boost_control
 alc_enable
@@ -211,6 +211,6 @@ ref_clk_enable
 alc_high
 alc_hold_time
 alc_low
-==================== ======= ======= ======= ======= =============
+==================== ======= ======= ======= ============= ==========================
 
-.. [#] KT0803 can only do -12, -8, -4, 0, 4, 8, 12dB, others -15 to 12dB full range
+.. [#] KT0803 can only do -12, -8, -4, 0, 4, 8, 12dB (lower two bits are ignored), others -15 to 12dB full range.
