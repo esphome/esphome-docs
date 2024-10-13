@@ -175,40 +175,42 @@ TODO
 Feature set
 -----------
 
-=================== ====== ======= ======= ======= =============
-parameter / chip id KT0803 KT0803K KT0803M KT0803L default value
-=================== ====== ======= ======= ======= =============
-frequency: 87.5
-pga: -15
-rfgain: 108
-mute: False
-mono: False
-pre_emphasis: 75us
-pilot_tone_amplitude: Low
-bass_boost_control: Disabled
-alc_enable: False
-auto_pa_down: True
-pa_down: False
-standby_enable: False
-alc_attack_time: 25us
-alc_decay_time: 25us
-pa_bias: False
-audio_limiter_level: '0.875'
-switch_mode: Mute
-silence_detection: True
-silence_high: '32mV'
-silence_low: '8mV'
-silence_duration: '100ms'
-silence_high_counter: '15'
-silence_low_counter: '1'
-alc_gain: -3
-xtal_sel: '32.768kHz'
-au_enhance: False
-frequency_deviation: 75kHz
-ref_clk: '32.768kHz'
-xtal_enable: True
-ref_clk_enable: False
-alc_high: '0.6'
-alc_hold_time: 5s
-alc_low: '0.25'
-=================== ====== ======= ======= ======= =============
+==================== ======= ======= ======= ======= =============
+parameter / chip id  KT0803  KT0803K KT0803M KT0803L default
+==================== ======= ======= ======= ======= =============
+frequency            x       x       x       x       87.50
+pga                  x[#]_   x       x       x       0dB
+rfgain
+mute
+mono
+pre_emphasis
+pilot_tone_amplitude
+bass_boost_control
+alc_enable
+auto_pa_down
+pa_down
+standby_enable
+alc_attack_time
+alc_decay_time
+pa_bias
+audio_limiter_level
+switch_mode
+silence_detection
+silence_high
+silence_low
+silence_duration
+silence_high_counter
+silence_low_counter
+alc_gain
+xtal_sel
+au_enhance
+frequency_deviation
+ref_clk
+xtal_enable
+ref_clk_enable
+alc_high
+alc_hold_time
+alc_low
+==================== ======= ======= ======= ======= =============
+
+.. [#] KT0803 can only do -12, -8, -4, 0, 4, 8, 12dB, others -15 to 12dB full range
