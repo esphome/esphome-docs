@@ -24,12 +24,6 @@ This component implements the I²C interface for the KT0803 family of FM transmi
 
     Example board from ELECHOUSE
 
-.. figure:: images/kt0803-wiring-diagram.png
-    :align: center
-    :width: 75.0%
-
-    Wiring diagram
-
 Example configuration
 ---------------------
 
