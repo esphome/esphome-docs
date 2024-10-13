@@ -158,38 +158,42 @@ Configuration variables:
 
 - **chip_id** (**Required**, string): KT0803, KT0803K, KT0803M, KT0803L. No detection possible, the user has to select the chip type and with that the feature set.
 - **frequency** (*Optional*, float): Between 70 and 108MHz. Step size is 0.05MHz (0.1MHz for KT0803)
-- **frequency_deviation** (*Optional*, enum): 
-- **mute** (*Optional*, boolean): 
-- **mono** (*Optional*, boolean): 
-- **pga** (*Optional*, float): 
-- **rfgain** (*Optional*, float): 
-- **pa_bias** (*Optional*, boolean): 
-- **pre_emphasis** (*Optional*, enum): 
-- **pilot_tone_amplitude** (*Optional*, enum): 
-- **bass_boost_control** (*Optional*, enum): 
-- **auto_pa_down** (*Optional*, boolean): 
-- **pa_down** (*Optional*, boolean): 
-- **standby_enable** (*Optional*, boolean): 
-- **audio_limiter_level** (*Optional*, enum): 
-- **switch_mode** (*Optional*, enum): 
-- **silence_detection** (*Optional*, boolean): 
-- **silence_duration** (*Optional*, enum): 
-- **silence_high** (*Optional*, enum): 
-- **silence_low** (*Optional*, enum): 
-- **silence_high_counter** (*Optional*, enum): 
-- **silence_low_counter** (*Optional*, enum): 
-- **au_enhance** (*Optional*, boolean): 
-- **xtal_enable** (*Optional*, boolean): 
-- **xtal_sel** (*Optional*, enum): 
-- **ref_clk_enable** (*Optional*, boolean): 
-- **ref_clk** (*Optional*, enum): 
-- **alc_enable** (*Optional*, boolean): 
-- **alc_gain** (*Optional*, float): 
-- **alc_attack_time** (*Optional*, enum): 
-- **alc_decay_time** (*Optional*, enum): 
-- **alc_hold_time** (*Optional*, enum): 
-- **alc_high** (*Optional*, enum): 
-- **alc_low** (*Optional*, enum): 
+- **mute** (*Optional*, boolean): Mutes the audio, but not completely for some reason, still barely audible.
+- **mono** (*Optional*, boolean): Switches between stereo and mono.
+
+Advanced settings:
+------------------
+
+- **frequency_deviation** (*Optional*, enum): Frequency deviation detection.
+- **pga** (*Optional*, float): Programmable-gain amplifier (PGA) gain control.
+- **rfgain** (*Optional*, float): PA (Power amplifier) power to set up transmission range.
+- **pa_bias** (*Optional*, boolean): PA bias current enhancement.
+- **pre_emphasis** (*Optional*, enum): Pre-emphasis time-constant.
+- **pilot_tone_amplitude** (*Optional*, enum): Pilot tone amplitude adjustment.
+- **bass_boost_control** (*Optional*, enum): Bass boost control.
+- **auto_pa_down** (*Optional*, boolean): Automatic power down power amplifier when silence is detected.
+- **pa_down** (*Optional*, boolean): Power amplifier power down.
+- **standby_enable** (*Optional*, boolean): Chip standby control.
+- **audio_limiter_level** (*Optional*, enum): Internal audio limiter level control.
+- **switch_mode** (*Optional*, enum): Switching channel mode selection.
+- **silence_detection** (*Optional*, boolean): Silence detection enable.
+- **silence_duration** (*Optional*, enum): Silence detection Low level and High level duration time.
+- **silence_high** (*Optional*, enum): Silence detection High threshold.
+- **silence_low** (*Optional*, enum): Silence detection Low threshold.
+- **silence_high_counter** (*Optional*, enum): Silence detection High level counter threshold.
+- **silence_low_counter** (*Optional*, enum): Silence detection Low counter.
+- **au_enhance** (*Optional*, boolean): Audio frequency response enhancement enable.
+- **xtal_enable** (*Optional*, boolean): Crystal oscillator enable.
+- **xtal_sel** (*Optional*, enum): Software controlled crystal oscillator selection.
+- **ref_clk_enable** (*Optional*, boolean): Multiple reference clock selection enable. False = Disable multiple reference clock feature and reference clock or crystal oscillator can only select through SW1/SW2 pins. True = Enable multiple reference clock and user can select different reference clock through ref_clk.
+- **ref_clk** (*Optional*, enum): Reference clock selection.
+- **alc_enable** (*Optional*, boolean): Automatic level control enable
+- **alc_gain** (*Optional*, float): ALC compressed gain
+- **alc_attack_time** (*Optional*, enum): ALC attack time
+- **alc_decay_time** (*Optional*, enum): ALC decay time
+- **alc_hold_time** (*Optional*, enum): ALC hold time
+- **alc_high** (*Optional*, enum): ALC High threshold level
+- **alc_low** (*Optional*, enum): ALC Low threshold level
 
 Diagnostic sensors:
 -------------------
