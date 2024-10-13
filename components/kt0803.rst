@@ -192,7 +192,7 @@ pa_down                      x       x       False
 standby_enable                       x       False
 alc_attack_time                      x       25us          25us 50us 75us 100us 125us 175us 200us 50ms 100ms 150ms 200ms 250ms 300ms 350ms 400ms
 alc_decay_time                       x       25us          25us 50us 75us 100us 125us 175us 200us 50ms 100ms 150ms 200ms 250ms 300ms 350ms 400ms
-pa_bias
+pa_bias                      x       x       True
 audio_limiter_level
 switch_mode
 silence_detection
