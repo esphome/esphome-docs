@@ -175,34 +175,34 @@ TODO
 Feature set
 -----------
 
-==================== ======= ======= ======= ============= ========================================================================================================
-parameter / chip id  KT0803  KT0803K KT0803L default       values
-==================== ======= ======= ======= ============= ========================================================================================================
-frequency            x       x       x       87.50         70 - 108 (MHz)
-pga                  x [#]_  x       x       -15           -15 - 12 (dB)
-rfgain               x       x       x       108           95.5 - 108 (dbUV)
-mute                 x       x       x       False
-mono                         x       x       False
-pre_emphasis         x       x       x       75us          50us, 75us (50ns => Europe, Australia, 75us => USA, Japan)
-pilot_tone_amplitude x       x       x       Low           Low, High
-bass_boost_control           x       x       Disabled      Disabled, 5dB, 11dB, 17dB
-alc_enable                           x       False         
-auto_pa_down                         x       True          
-pa_down                      x       x       False
-standby_enable                       x       False
-alc_attack_time                      x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
-alc_decay_time                       x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
-pa_bias                      x       x       True
-audio_limiter_level          x               0.875         0.6875, 0.75, 0.875, 0.9625
-switch_mode                  x       x       Mute          Mute, PA Off
-silence_detection            x       x       False
-silence_high                 x       x       32mV          
-silence_low                  x       x       8mV
-silence_duration             x       x       100ms
-silence_high_counter         x       x       15
-silence_low_counter          x       x       1
-alc_gain
-xtal_sel
+==================== ======= ========= ======= ============= ========================================================================================================
+parameter / chip id  KT0803  KT0803K/M KT0803L default       values
+==================== ======= ========= ======= ============= ========================================================================================================
+frequency            x       x         x       87.50         70 - 108 (MHz)
+pga                  x [#]_  x         x       -15           -15 - 12 (dB)
+rfgain               x       x         x       108           95.5 - 108 (dbUV)
+mute                 x       x         x       False
+mono                         x         x       False
+pre_emphasis         x       x         x       75us          50us, 75us (50ns => Europe, Australia, 75us => USA, Japan)
+pilot_tone_amplitude x       x         x       Low           Low, High
+bass_boost_control           x         x       Disabled      Disabled, 5dB, 11dB, 17dB
+alc_enable                             x       False         
+auto_pa_down                           x       True          
+pa_down                      x         x       False
+standby_enable                         x       False
+alc_attack_time                        x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
+alc_decay_time                         x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
+pa_bias                      x         x       True
+audio_limiter_level          x                 0.875         0.6875, 0.75, 0.875, 0.9625
+switch_mode                  x         x       Mute          Mute, PA Off
+silence_detection            x         x       False
+silence_high                 x         x       32mV          0.5mV, 1mV, 2mV, 4mV, 8mV, 16mV, 32mV, 64mV
+silence_low                  x         x       8mV           0.25mV, 0.5mV, 1mV, 2mV, 4mV, 8mV, 16mV, 32mV
+silence_duration             x         x       100ms         50ms, 100ms, 200ms, 400ms, 1s, 2s, 4s, 8s, 16s, 24s, 32s, 40s, 48s, 56s, 60s, 64s [#]_
+silence_high_counter         x         x       15            15, 31, 63, 127, 255, 511, 1023, 2047
+silence_low_counter          x         x       1             1, 2, 4, 8, 16, 32, 64, 128
+alc_gain                               x       -3            -15, -12, -9, -6, -3, 0, 3, 6 (dB)
+xtal_sel                               x       32.768kHz     32.768kHz, 7.6MHz
 au_enhance
 frequency_deviation
 ref_clk
@@ -211,6 +211,7 @@ ref_clk_enable
 alc_high
 alc_hold_time
 alc_low
-==================== ======= ======= ======= ============= ========================================================================================================
+==================== ======= ========= ======= ============= ========================================================================================================
 
 .. [#] KT0803 can only do -12, -8, -4, 0, 4, 8, 12dB (lower two bits are ignored), others -15 to 12dB full range.
+.. [#] 16s and higher only for KT0803L
