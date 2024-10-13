@@ -921,6 +921,7 @@ Cover Components
     HE60R Cover, components/cover/he60r, he60r.jpg
     Time-Based Cover, components/cover/time_based, timer.svg, dark-invert
     Tuya Cover, components/cover/tuya, tuya.png
+    Motion Blinds Cover, components/cover/motion_blinds, window_blind_icon.svg
 
 Text Components
 ---------------
