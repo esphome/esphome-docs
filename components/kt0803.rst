@@ -6,7 +6,7 @@ KT0803 FM Transmitter
     :image: kt0803.jpg
     :keywords: kt0803
 
-This component implements the I²C interface for the KT0803 family of FM transmitters. KT0803, KT0803K, KT0803M, KT0803L are supported, altough you may only be able to find KT0803L on the depicted ELECHOUSE board. It comes with no amplifier. Frequency range is 70-108 MHz [#]_, no RDS. Every register can be controlled through different components (sensor, switch, select, number, text).
+This component implements the I²C interface for the KT0803 family of FM transmitters. KT0803, KT0803K, KT0803M, KT0803L are supported, although you may only be able to find KT0803L on the depicted ELECHOUSE board. It comes with no amplifier. Frequency range is 70-108 MHz [#]_, no RDS. Every register can be controlled through different components (sensor, switch, select, number, text).
 
 Datasheet
 ---------
