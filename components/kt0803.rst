@@ -186,12 +186,12 @@ mono                         x       x       False
 pre_emphasis         x       x       x       75us          50us 75us (50ns => Europe, Australia, 75us => USA, Japan)
 pilot_tone_amplitude x       x       x       Low           Low or High
 bass_boost_control           x       x       Disabled      Disabled 5dB 11dB 17dB
-alc_enable
-auto_pa_down
-pa_down
-standby_enable
-alc_attack_time
-alc_decay_time
+alc_enable                           x       False         
+auto_pa_down                         x       True          
+pa_down                      x       x       False
+standby_enable                       x       False
+alc_attack_time                      x       25us          25us 50us 75us 100us 125us 175us 200us 50ms 100ms 150ms 200ms 250ms 300ms 350ms 400ms
+alc_decay_time                       x       25us          25us 50us 75us 100us 125us 175us 200us 50ms 100ms 150ms 200ms 250ms 300ms 350ms 400ms
 pa_bias
 audio_limiter_level
 switch_mode
