@@ -124,6 +124,7 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 
 
 
+- **resume_on_input** (*Optional*, boolean): If LVGL is paused and the user interacts with the screen, resume the activity of LVGL. Defaults to ``true``. "Interacts" means to release a touch or button, or rotate an encoder.
 - **color_depth** (*Optional*, string): The color deph at which the contents are generated. Currently only ``16`` is supported (RGB565, 2 bytes/pixel), which is the default value.
 - **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM, the recommended value is ``25%``.
 - **draw_rounding** (*Optional*, int): An optional value to use for rounding draw areas to a specified boundary. Defaults to 2. Useful for displays that require draw windows to be on specified boundaries (usually powers of 2.)
@@ -641,6 +642,22 @@ This :ref:`action <actions-action>` resumes the activity of LVGL, including rend
     on_...:
       then:
         - lvgl.resume:
+
+
+.. _lvgl_on_pause_trigger:
+
+``lvgl.on_pause``
+*****************
+
+This :ref:`trigger <lvgl-automation-triggers>` is triggered when LVGL is paused. This can be used to perform any desired actions when the screen is locked, such as turning off the display backlight.
+
+.. _lvgl_on_resume_trigger:
+
+``lvgl.on_resume``
+******************
+
+This :ref:`trigger <lvgl-automation-triggers>` is triggered when LVGL is resumed. This can be used to perform any desired actions when the screen is unlocked, such as turning on the display backlight.
+
 
 ``lvgl.update``
 ***************
