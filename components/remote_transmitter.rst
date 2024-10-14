@@ -48,6 +48,26 @@ Configuration variables:
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation. Use this if you have multiple remote transmitters.
 
+Automations:
+------------
+
+- **on_transmit** (*Optional*, :ref:`Automation <automation>`): An automation to perform before
+  data is sent. Useful if the radio / IR hardware needs to change state or power on.
+- **on_complete** (*Optional*, :ref:`Automation <automation>`): An automation to perform after
+  data has been sent. Useful if the radio / IR hardware needs to change state or power off.
+
+.. code-block:: yaml
+
+    # Example automation
+    remote_transmitter:
+      ...
+      on_transmit:
+        then:
+          - switch.turn_on: tx_enable
+      on_complete:
+        then:
+          - switch.turn_off: tx_enable
+
 .. _remote_transmitter-transmit_action:
 
 Remote Transmitter Actions
