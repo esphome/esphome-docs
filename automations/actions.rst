@@ -217,10 +217,11 @@ turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
 
 Configuration variables:
 
+At least one of ``condition``, ``all`` or ``any`` must be provided.
+  
 - **condition** (*Optional*, :ref:`Condition <config-condition>`): The condition to check to determine which branch to take. If this is configured with a list of conditions then they must all be true for the condition to be true.
 - **all** (*Optional*, :ref:`Condition <config-condition>`): Takes a list of conditions, all of which must be true (and is therefore equivalent to ``condition``.)
 - **any** (*Optional*, :ref:`Condition <config-condition>`): Takes a list of conditions; if at least one is true, the condition will be true.
-  At least one of ``condition``, ``all`` or ``any`` must be provided.
 - **then** (*Optional*, :ref:`Action <config-action>`): The action to perform if the condition evaluates to true.
   Defaults to doing nothing.
 - **else** (*Optional*, :ref:`Action <config-action>`): The action to perform if the condition evaluates to false.
