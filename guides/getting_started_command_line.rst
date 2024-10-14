@@ -237,7 +237,7 @@ To start the ESPHome dashboard, simply start ESPHome with the following command
 
 After that, you will be able to access the dashboard through ``localhost:6052``.
 
-Logging level can be set with the env var `LOG_LEVEL` (default is `INFO`).
+Logging level can be set with the env var `ESPHOME_LOG_LEVEL` (default is `INFO`).
 
 .. figure:: images/dashboard_states.png
 
