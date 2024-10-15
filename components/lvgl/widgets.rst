@@ -1309,7 +1309,7 @@ Roller allows you to simply select one option from a list by scrolling.
         on_value:
           - logger.log:
               format: "Selected index is: %d, text is: %s"
-              args: [x, text]
+              args: [x, text.c_str()]
 
 The ``roller`` can be also integrated as :doc:`Select </components/select/lvgl>` component.
 
