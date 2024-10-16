@@ -163,8 +163,7 @@ When using the native API with Home Assistant, you can perform Home Assistant ac
           data_template:
             message: The humidity is {{ my_variable }}%.
           variables:
-            my_variable: |-
-              return id(my_sensor).state;
+            my_variable: !lambda 'return id(my_sensor).state;'
 
 Configuration variables:
 ````````````````````````
