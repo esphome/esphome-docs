@@ -39,6 +39,8 @@ Configuration variables:
   authentication. Empty (the default) means no authentication.
 - **password** (*Optional*, string): The password to use for
   authentication. Empty (the default) means no authentication.
+- **clean_session** (*Optional*, boolean): Whether the broker will clean
+  the MQTT session after disconnect. Defaults to ``false``.
 - **client_id** (*Optional*, string): The client id to use for opening
   connections. See :ref:`mqtt-defaults` for more information.
 - **discover_ip** (*Optional*, boolean): If Home Assistant automatic device
