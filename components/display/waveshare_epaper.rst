@@ -12,8 +12,7 @@ with ESPHome. The 2.13" `TTGO module <https://github.com/lewisxhe/TTGO-EPaper-Se
 on the board are supported as well. Depending on your specific revision of the TTGO board you might need to try out the ``-b73`` or ``-b1`` 
 version (see below).
 The 1.54" `Good Display gdew0154m09 <https://www.good-display.com/product/206.html>`__ 
-as used in the `M5Stack Core Ink <https://shop.m5stack.com/products/m5stack-esp32-core-ink-development-kit1-54-elnk-display>`__
-is also supported.
+as used in the `M5Stack Core Ink <https://shop.m5stack.com/products/m5stack-esp32-core-ink-development-kit1-54-elnk-display>`__ as well as the 7.5" `Good Display GDEY075Z08" Black/White/Red display <https://www.good-display.com/product/394.html>`__ are also supported.
 Similar modules sold by other vendors might also work but not have been tested yet. Currently only
 single-color E-Ink displays are implemented and of those only a few modules.
 
@@ -114,12 +113,23 @@ Configuration variables:
   - ``7.50in-hd-b`` - Can't use with an ESP8266 as it runs out of RAM
   - ``gdew029t5`` - GooDisplay GDEW029T5, as used on the AdaFruit MagTag (previously incorrectly referred to as GDEY029T94)
   - ``1.54in-m5coreink-m09`` - GoodDisplay gdew0154m09, as used in the M5Stack Core Ink
+  - ``7.5in-bgr-gd`` - GoodDisplay GDEY075Z08 7.5 inch, Black/White/Red Display. Supports segment-based partial updates.
   - ``13.3in-k`` - 13.3in, with the K model, 960x680, B/W rendering only
 
 .. warning::
 
-    The BUSY pin on the gdew0154m09 and Waveshare 7.50in V2 models must be inverted to prevent permanent display damage. Set the pin to 
+    The BUSY pin on the gdew0154m09, GDEY075Z08 (``7.5in-bgr-gd``) and Waveshare 7.50in V2 models must be inverted to prevent permanent display damage. Set the pin to 
     ``inverted: true`` in the config. 
+
+.. code-block:: yaml
+
+    display:
+      - platform: waveshare_epaper
+        model: 7.5in-bgr-gd
+        ...
+        busy_pin:
+          number: GPIO13
+          inverted: true
 
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
@@ -130,7 +140,7 @@ Configuration variables:
 - **full_update_every** (*Optional*, int): E-Paper displays have two modes of switching to the next image: A partial
   update that only changes the pixels that have changed and a full update mode that first clears the entire display
   and then re-draws the image. The former is much quicker and nicer, but every so often a full update needs to happen
-  because artifacts accumulate. On the ``1.54in``, ``1.54inv2``, ``2.13in``, ``2.13inv2``, ``2.90in`` and ``2.90inv2`` models, you have the option to only
+  because artifacts accumulate. On the ``1.54in``, ``1.54inv2``, ``2.13in``, ``2.13inv2``, ``2.90in``,``2.90inv2`` and ``7.5in-bgr-gd`` models, you have the option to only
   do a full-redraw every x-th time using this option. Defaults to ``30`` on the described models and a full update for
   all other models.
 - **reset_duration** (*Optional*, :ref:`config-time`): Duration for the display reset operation. Defaults to ``200ms``.
@@ -142,6 +152,8 @@ Configuration variables:
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **num_segments_x** (*Optional*, exclusive for ``7.5in-bgr-gd``): Allows to set the number of horizontal segments the display should be divided into when doing partial Updates. Can be between 1 and 100, but must be chosen such that 100 is divisible by it (so either 2, 4, 5, 10, 20, 25, 50 or 100). During Partial Updates, only the square over the top left and bottom right-most segments that have changed pixels will be redrawn. Defaults to 20.
+- **num_segmetns_y** (*Optional*, exclusive for ``7.5in-bgr-gd``): Allows to set the number of vertical segments the display should be divided into when doing partial Updates. Same as for *num_segments_x*.
 
 See Also
 --------
