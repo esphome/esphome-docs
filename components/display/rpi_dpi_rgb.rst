@@ -4,7 +4,10 @@ RPI_DPI_RGB Display Driver
 .. seo::
     :description: Instructions for setting up 16 bit "RPI_DPI_RGB" parallel displays
     :image: waveshare_touch-s3.jpg
-
+    :image: CrowPanel_4.3-HMI_ESP32_Display_480x272_RGB.jpg
+    :image: CrowPanel_5.0-HMI_ESP32_Display_800x480_RGB.jpg
+    :image: CrowPanel_7.0-HMI_ESP32_Display_800x480_RGB.jpg
+    
 .. _rpi_dpi_rgb:
 
 Models
@@ -16,6 +19,9 @@ This driver has been tested with the following displays:
 
   - Waveshare ESP32-S3-Touch-LCD-4.3
   - Makerfabs 4.3" display (Sunton)
+  - CrowPanel 4.3" 480x272 Touch Display
+  - CrowPanel 5.0" 800x480 Touch Display
+  - CrowPanel 7.0" 800x480 Touch Display
 
 Usage
 -----
@@ -28,6 +34,23 @@ ESP-IDF. PSRAM is a requirement due to the size of the display buffer.
 
     Waveshare ESP32-S3 Touch 4.3
 
+.. figure:: images/CrowPanel_4.3-HMI_ESP32_Display_480x272_RGB.jpg
+    :align: center
+    :width: 75.0%
+
+    CrowPanel 4.3" 480x272 Touch Display
+
+.. figure:: images/CrowPanel_5.0-HMI_ESP32_Display_800x480_RGB.jpg
+    :align: center
+    :width: 75.0%
+
+    CrowPanel 5.0" 800x480 Touch Display
+
+.. figure:: images/CrowPanel_7.0-HMI_ESP32_Display_800x480_RGB.jpg
+    :align: center
+    :width: 75.0%
+
+    CrowPanel 7.0" 800x480 Touch Display
 
 .. code-block:: yaml
 
@@ -204,7 +227,134 @@ Makerfabs 4.3" 800x480 display
             - 9         #b4
             - 1         #b5
 
+CrowPanel 4.3" 480x272 Touch Display
+******************************
 
+.. code-block:: yaml
+
+    display:
+      - platform: rpi_dpi_rgb
+        update_interval: never
+        auto_clear_enabled: false
+        id: rpi_display
+        color_order: RGB
+        invert_colors: True
+        dimensions:
+          width: 480
+          height: 272
+        de_pin: 40
+        hsync_pin: 39
+        vsync_pin: 41
+        pclk_pin: 42
+        pclk_frequency: 9MHz
+        hsync_back_porch: 43
+        hsync_front_porch: 8
+        hsync_pulse_width: 4
+        vsync_back_porch: 12
+        vsync_front_porch: 8
+        vsync_pulse_width: 4
+        data_pins:
+          red:
+            - 45        #r1
+            - 48        #r2
+            - 47        #r3
+            - 21        #r4
+            - 14        #r5
+          green:
+            - 5         #g0
+            - 6         #g1
+            - 7         #g2
+            - 15        #g3
+            - 16        #g4
+            - 4         #g5
+          blue:
+            - 8         #b1
+            - 3         #b2
+            - 46        #b3
+            - 9         #b4
+            - 1         #b5
+
+CrowPanel 5.0" 800x480 Touch Display
+******************************
+
+.. code-block:: yaml
+
+    display:
+      - platform: rpi_dpi_rgb
+        update_interval: never
+        auto_clear_enabled: false
+        id: rpi_display
+        color_order: RGB
+        invert_colors: True
+        dimensions:
+          width: 800
+          height: 480
+        de_pin: 40
+        hsync_pin: 39
+        vsync_pin: 41
+        pclk_pin: 0
+        pclk_frequency: 12MHz
+        data_pins:
+          red:
+            - 45        #r1
+            - 48        #r2
+            - 47        #r3
+            - 21        #r4
+            - 14        #r5
+          green:
+            - 5         #g0
+            - 6         #g1
+            - 7         #g2
+            - 15        #g3
+            - 16        #g4
+            - 4         #g5
+          blue:
+            - 8         #b1
+            - 3         #b2
+            - 46        #b3
+            - 9         #b4
+            - 1         #b5
+
+CrowPanel 7.0" 800x480 Touch Display
+******************************
+
+.. code-block:: yaml
+
+    display:
+      - platform: rpi_dpi_rgb
+        update_interval: never
+        auto_clear_enabled: false
+        id: rpi_display
+        color_order: RGB
+        invert_colors: True
+        dimensions:
+          width: 800
+          height: 480
+        de_pin: 41
+        hsync_pin: 39
+        vsync_pin: 40
+        pclk_pin: 0
+        pclk_frequency: 12MHz
+        data_pins:
+          red:
+            - 14        #r1
+            - 21        #r2
+            - 47        #r3
+            - 48        #r4
+            - 45        #r5
+          green:
+            - 9         #g0
+            - 46        #g1
+            - 3         #g2
+            - 8         #g3
+            - 16        #g4
+            - 1         #g5
+          blue:
+            - 15        #b1
+            - 7         #b2
+            - 6         #b3
+            - 5         #b4
+            - 4         #b5
 
 See Also
 --------
