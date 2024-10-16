@@ -6,9 +6,9 @@ Modem Component
     :image: modem.svg
     :keywords: Modem, ESP32
 
-This ESPHome component enables *cellular* modem connections for ESP32s.
+This ESPHome component enables *cellular* modem connections for ESP32.
 
-This component and the Wi-Fi component may **not** be used simultaneously, even if both are physically available.
+This component **not** be used in simultaneously with the Wi-Fi component, or in simultaneously with the Internet component, even if both are physically accessible.
 
 .. code-block:: yaml
 
@@ -34,10 +34,7 @@ Configuration variables:
 
   Supported modems are:
 
-  - ``BG96``
   - ``SIM800``
-  - ``SIM7000``
-  - ``SIM7070``
 
 - **tx_pin** (**Required**, :ref:`config-pin`): The TX pin of the modem.
 - **rx_pin** (**Required**, :ref:`config-pin`): The RX pin of the modem.
@@ -56,51 +53,29 @@ Configuration variables:
 .. note::
 
     The modem component requires at least a reset pin, a power pin, or a pwrkey pin to be configured.
-
+    
 Configuration examples
 ----------------------
 
-**Example configuration for a SIM800 modem**:
+**Example configuration for a LilyGo-T-Call-SIM800**:
 
 .. code-block:: yaml
 
     modem:
       type: SIM800
-      tx_pin: GPIO17
-      rx_pin: GPIO16
-      reset_pin: GPIO5
-      power_pin: GPIO4
-      pwrkey_pin: GPIO0
-      apn: "internet"
-      uart_event_task_stack_size: 2048
-      uart_event_task_priority: 5
-      uart_event_queue_size: 30
-      tx_buffer_size: 512
-      rx_buffer_size: 1024
+      tx_pin: 27
+      rx_pin: 26
+      # reset_pin: 5
+      power_pin: 23
+      pwrkey_pin: 4
 
-**Example configuration for a BG96 modem**:
+.. note::
 
-.. code-block:: yaml
-
-    modem:
-      type: BG96
-      tx_pin: GPIO17
-      rx_pin: GPIO16
-      reset_pin: GPIO5
-      power_pin: GPIO4
-      pwrkey_pin: GPIO0
-      apn: "internet"
-      uart_event_task_stack_size: 2048
-      uart_event_task_priority: 5
-      uart_event_queue_size: 30
-      tx_buffer_size: 512
-      rx_buffer_size: 1024
+    Оn some boards the reset pin does not work. For more details, refer to the [issue discussion](https://github.com/xinyuan-lilygo/lilygo-t-call-sim800/issues/238?ref=https://coder.social).
 
 See Also
 --------
 
 - :doc:`network`
-- :doc:`text_sensor/modem_info`
 - :apiref:`modem/modem_component.h`
-- `ESP32 Modem connection info <https://pcbartists.com/design/embedded/esp32-modem-connection-schematic-design/>`__
 - :ghedit:`Edit`
