@@ -20,6 +20,18 @@ ESPHome 2024.10.0 - 16th October 2024
     TE-M3200, components/sensor/tem3200, tem3200.jpg
 
 
+Web Server Grouping
+-------------------
+
+For those that use the :doc:`/components/web_server` with version 3, there is a new
+grouping feature that allows for custom/user defined groups of entities.
+
+This is also a breaking change as the previous ``web_server_sorting_weight`` has been moved into a new
+``web_server`` -> ``sorting_weight`` configuration entry for the entity.
+
+Please see :ref:`config-webserver-sorting` for the latest documentation on these features.
+
+
 Full list of changes
 --------------------
 
@@ -137,6 +149,7 @@ All changes
 - Bump actions/cache from 4.1.0 to 4.1.1 :esphomepr:`7570` by :ghuser:`dependabot[bot]`
 - Bump actions/cache from 4.1.0 to 4.1.1 in /.github/actions/restore-python :esphomepr:`7571` by :ghuser:`dependabot[bot]`
 - fix uart settings check :esphomepr:`7573` by :ghuser:`ssieb`
+- [CI] failures when installing using apt-get. :esphomepr:`7593` by :ghuser:`clydebarrow`
 - [web_server] Event component grouping :esphomepr:`7586` by :ghuser:`RFDarter`
 - [touchscreen] Fix coordinates when using rotation :esphomepr:`7591` by :ghuser:`clydebarrow`
 - Fix update sequence when update is set to false (#5225) :esphomepr:`7407` by :ghuser:`edge90`
