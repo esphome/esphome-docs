@@ -506,6 +506,13 @@ Environmental
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
     XGZP68xx Series, components/sensor/xgzp68xx, 6897d.jpg, Differential Pressure
 
+Health/Safety
+*************
+
+.. imgtable::
+
+    Seeed Studio MR60BHA2 mmWave, components/seeed_mr60bha2, seeed_mr60bha2.jpg, Breathing & heartbeat detection
+
 Light
 *****
 
