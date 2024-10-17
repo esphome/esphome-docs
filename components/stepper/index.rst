@@ -34,6 +34,12 @@ Configuration variables:
   moment to get up  to speed.
 - **deceleration** (*Optional*, float): The same as ``acceleration``, but for when the motor is decelerating
   shortly before reaching the set position. Defaults to ``inf`` (immediate deceleration).
+- **rotation** (*Optional*, enum): In certain situations, e.g. when you use a stepper motor to control
+  the hands of a clock, or when rotation in one direction is blocked, you want to limit the rotation of the
+  stepper motor in one direction only. **Note** that you need to take care of positioning the stepper motor
+  yourself, and that you could run into an infinite loop. Possible values: ``BOTH``, ``CLOCKWISE``,
+  ``COUNTERCLOCKWISE``. Defaults to ``BOTH`` (the stepper will move
+  to the target position in either direction, depending on which way it 'should' go).
 
 A4988 Component
 ---------------
@@ -53,6 +59,7 @@ Put this code into the configuration file on ESPHome for this device.
         sleep_pin: GPIOXX
         acceleration: inf
         deceleration: inf
+        rotation: COUNTERCLOCKWISE
 
 
 Configuration variables:
@@ -101,6 +108,7 @@ Put this code into the configuration file on ESPHome for this device.
         # Optional:
         acceleration: inf
         deceleration: inf
+        rotation: CLOCKWISE
 
 
 Configuration variables:
@@ -267,6 +275,23 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The ID of the stepper.
 - **deceleration** (**Required**, :ref:`templatable <config-templatable>`, float): The same as ``acceleration``,
   but for when the motor is decelerating shortly before reaching the set position.
+
+``stepper.set_rotation`` Action
+-----------------------------------
+
+This :ref:`Action <config-action>` allows you to set the rotation direction of a stepper at runtime.
+
+.. code-block:: yaml
+
+    on_...:
+      - stepper.set_rotation:
+          id: my_stepper
+          rotation: BOTH
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the stepper.
+- **rotation** (**Required**, :ref:`templatable <config-templatable>` enum): Set the rotation direction limit on the motor.
 
 .. _stepper-ha-config:
 
