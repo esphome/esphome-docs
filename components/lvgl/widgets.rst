@@ -1257,7 +1257,7 @@ Use this widget to generate and display a QR-code containing a string at run tim
 
 **Configuration variables:**
 
-- **text** (*Optional*, string): The string to be encoded in the QR.
+- **text** (**Required**, string): The string to be encoded in the QR.
 - **size** (**Required**, int16): Set the desired size of the QR-code (in pixels). QR-codes with less data are smaller, but they scaled by an integer number to best fit to the given size.
 - **light_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the light areas of the QR. Defaults to white.
 - **dark_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the dark areas of the QR. Defaults to black.
