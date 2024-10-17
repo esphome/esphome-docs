@@ -268,6 +268,26 @@ whose ``id`` is  set to ``player_volume``:
                 });
 
 
+You might want to check to see if a key exists to avoid null pointer exceptions.
+.. code-block:: yaml
+
+    on_...:
+    - http_request.get:
+        url: https://esphome.io
+        capture_response: true
+        on_response:
+          then:
+            - lambda: |-
+                json::parse_json(body, [](JsonObject root) -> bool {
+                    const char* vol = root["vol"] | "unknown";
+                    if (strcmp(vol,"unknown") == 0) {
+                      ESP_LOGD("csm","No 'vol' key in this json!");
+                      return false;
+                    }
+                    id(player_volume).publish_state(root["vol"]);
+                    return true;
+                });
+
 See Also
 --------
 
