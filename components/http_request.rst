@@ -269,6 +269,7 @@ whose ``id`` is  set to ``player_volume``:
 
 
 You might want to check to see if a key exists to avoid null pointer exceptions.
+
 .. code-block:: yaml
 
     on_...:
