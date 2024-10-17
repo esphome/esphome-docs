@@ -147,8 +147,8 @@ Example configuration
             - number.set: # set frequency through the number component, this also shows up in Home Assistant UI
                 id: fm_frequency
                 value: !lambda 'return x;'
-            - qn8027.set_frequency:
-                frequency: !lambda 'return x;' # this is the elegant way to do scripting
+            - qn8027.set_frequency: # this is the elegant way to do scripting
+                frequency: !lambda 'return x;'
             - lambda: !lambda 'id(fm_transmitter).set_frequency(x);' # this is the less elegant way, but any member of the c++ class is accessible
     
 Configuration variables:
