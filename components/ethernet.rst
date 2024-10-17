@@ -47,6 +47,7 @@ Configuration variables:
 
   Supported chipsets are:
 
+  - ``LAN867X`` (RMII)
   - ``LAN8720`` (RMII)
   - ``RTL8201`` (RMII)
   - ``DP83848`` (RMII)
@@ -127,6 +128,8 @@ Advanced common configuration variables:
 .. note::
 
     SPI based chips do *not* use :doc:`spi`. This means that SPI pins can't be shared with other devices.
+
+.. note:: LAN867X driver compatible with IDF v5.3.1 and above.
 
 Configuration examples
 ----------------------
@@ -295,6 +298,18 @@ Configuration examples
 
     ethernet:
       type: OPENETH
+
+**JetHub JXD E1-T1S series ESP32**:
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN867x
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      power_pin: GPIO17
+      clk_mode: GPIO0_IN
+      phy_addr: 0
 
 See Also
 --------
