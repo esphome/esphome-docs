@@ -1248,6 +1248,50 @@ You can use it as a parent container for other widgets. By default, it catches t
         widgets:
           - ...
 
+.. _lvgl-widget-qrcode:
+
+``qrcode``
+----------
+
+Use this widget to generate and display a QR-code containing a string at run time.
+
+**Configuration variables:**
+
+- **text** (**Required**, string): The string to be encoded in the QR.
+- **size** (**Required**, int16): Set the desired size of the QR-code (in pixels). QR-codes with less data are smaller, but they scaled by an integer number to best fit to the given size.
+- **light_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the light areas of the QR. Defaults to white.
+- **dark_color** (*Optional*, :ref:`color <lvgl-color>`): Color for the dark areas of the QR. Defaults to black.
+- Style options from :ref:`lvgl-styling`.
+
+**Actions:**
+
+- ``lvgl.qrcode.update`` :ref:`action <actions-action>` updates the widget's ``text`` property to display a new QR-code.
+    - **id** (**Required**): The ID of the qrcode widget to be updated.
+    - **text** (**Required**): The new text to be encoded and displayed.
+
+**Triggers:**
+
+- :ref:`interaction <lvgl-automation-triggers>` LVGL event triggers.
+
+**Example:**
+
+.. code-block:: yaml
+
+    # Example widget:
+    - qrcode:
+        id: lv_qr
+        size: 100
+        light_color: whitesmoke
+        dark_color: steelblue
+        text: esphome.io
+
+    # Example action:
+    on_...:
+      then:
+        - lvgl.qrcode.update:
+            id: lv_qr
+            text: home-assistant.io
+
 .. _lvgl-widget-roller:
 
 ``roller``
