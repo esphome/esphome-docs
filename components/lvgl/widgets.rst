@@ -1255,8 +1255,6 @@ You can use it as a parent container for other widgets. By default, it catches t
 
 Use this widget to generate and display a QR-code containing a string at run time.
 
-QR-codes with less data are smaller, but they scaled by an integer number to best fit to the given size.
-
 **Configuration variables:**
 
 - **text** (*Optional*, string): The string to be encoded in the QR.
