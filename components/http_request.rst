@@ -282,7 +282,7 @@ You might want to check to see if a key exists to avoid null pointer exceptions.
                 json::parse_json(body, [](JsonObject root) -> bool {
                     const char* vol = root["vol"] | "unknown";
                     if (strcmp(vol,"unknown") == 0) {
-                      ESP_LOGD("csm","No 'vol' key in this json!");
+                      ESP_LOGD(TAG,"No 'vol' key in this json!");
                       return false;
                     }
                     id(player_volume).publish_state(root["vol"]);
