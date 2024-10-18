@@ -177,7 +177,7 @@ Configuration variables:
 - **power_target** (*Optional*, float): Output power target. Between 83.4dBuV and 117.5dBuV. Step size is 0.62dBuV.
 
 XTAL configuration variables:
-----------------------------
+-----------------------------
 
 - **source** (*Optional*, enum): Select the reference clock source. (CRYSTAL, DIGITAL_CLOCK, SINGLE_END_SIN_WAVE, DIFFERENTIAL_SIN_WAVE)
 - **current** (*Optional*, float): Crystal oscillator current control. Between 0 and 400uA.
