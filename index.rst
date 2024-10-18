@@ -280,6 +280,7 @@ I/O Expanders/Multiplexers
     SN74HC595, components/sn74hc595, sn74hc595.jpg
     SX1509, components/sx1509, sx1509.jpg
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
+    TCA9555, components/tca9555, tca9555.svg
     WeiKai SPI/I²C UART/IO Expander, components/weikai, wk2168.jpg
     XL9535, components/xl9535, xl9535.svg
 
@@ -321,6 +322,7 @@ Air Quality
     ENS160, components/sensor/ens160, ens160.jpg, CO2 & Air Quality
     GCJA5, components/sensor/gcja5, gcja5.svg, Particulate
     GP2Y1010AU0F, components/sensor/gp2y1010au0f, gp2y1010au0f.png, Particulate
+    Grove Multichannel Gas V2, components/sensor/grove_gas_mc_v2, grove-gas-mc-v2.png, NO2 & CO & Ethanol & Volatile organics
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     iAQ-Core, components/sensor/iaqcore, iaqcore.jpg, CO2 & Volatile organics
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
@@ -355,6 +357,7 @@ Analogue
     CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
     MCP3204 / MCP3208, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
+    NAU7802, components/sensor/nau7802, nau7802.jpg, ADC
     Resistance, components/sensor/resistance, omega.svg, dark-invert
 
 Bluetooth Low Energy (BLE)
@@ -481,6 +484,7 @@ Environmental
     MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     MS8607, components/sensor/ms8607, ms8607.jpg, Temperature & Humidity & Pressure
+    NPI-19, components/sensor/npi19, npi19.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
     PMWCS3, components/sensor/pmwcs3, pmwcs3.jpg, Soil moisture & Temperature
     QMP6988, components/sensor/qmp6988, qmp6988_env3.png, Temperature & Pressure
@@ -495,7 +499,9 @@ Environmental
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
     SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     STS3X, components/sensor/sts3x, sts3x.jpg, Temperature
+    TC74, components/sensor/tc74, tc74.jpg, Temperature
     TEE501, components/sensor/tee501, TEE501.png, Temperature
+    TE-M3200, components/sensor/tem3200, tem3200.jpg, Temperature & Pressure
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP1075, components/sensor/tmp1075, tmp1075.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
@@ -554,12 +560,14 @@ Miscellaneous
     Duty Time, components/sensor/duty_time, timer-play-outline.svg, dark-invert
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     FS3000, components/sensor/fs3000, fs3000.jpg, Air velocity
+    GDK101, components/sensor/gdk101, gdk101.jpg, Radiation
     Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Integration, components/sensor/integration, sigma.svg, dark-invert
     Kuntze pool sensor, components/sensor/kuntze, kuntze.jpg
     LVGL widget, components/sensor/lvgl, lvgl_c_num.png
     M5Stack Unit 8 Angle, components/sensor/m5stack_8angle, m5stack_8angle.png
+    MAX17043, components/sensor/max17043, max17043.jpg, Battery
     MicroNova pellet stove, components/micronova, micronova.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
@@ -572,7 +580,6 @@ Miscellaneous
     uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png, EC & Temperature
     uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png, pH & Temperature
     WireGuard, components/wireguard, wireguard_custom_logo.svg, dark-invert
-    GDK101, components/sensor/gdk101, gdk101.jpg, Radiation
 
 Motion
 ******
@@ -867,7 +874,7 @@ Display Hardware Platforms
     Nextion, components/display/nextion, nextion.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
     PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
-    Quad SPI AMOLED, components/display/qspi_amoled, t4-s3.jpg
+    Quad SPI Displays, components/display/qspi_dbi, t4-s3.jpg
     RPI_DPI_RGB, components/display/rpi_dpi_rgb, waveshare_touch-s3.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1322, components/display/ssd1322, ssd1322.jpg
@@ -894,6 +901,7 @@ Touchscreen Components
 .. imgtable::
 
     Touchscreen Core, components/touchscreen/index, folder-open.svg, dark-invert
+    AXS15231, components/touchscreen/axs15231, axs15231.svg
     CST226, components/touchscreen/cst226, t4-s3.jpg
     CST816, components/touchscreen/cst816, cst816.jpg
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
@@ -1004,6 +1012,14 @@ Lock Components
     Lock Core, components/lock/index, folder-open.svg, dark-invert
     Template Lock, components/lock/template, description.svg, dark-invert
     Generic Output Lock, components/lock/output, upload.svg, dark-invert
+
+Audio DAC Components
+--------------------
+
+.. imgtable::
+
+    Audio DAC Core, components/audio_dac/index, audio_dac.svg
+    AIC3204, components/audio_dac/aic3204, aic3204.svg
 
 Media Player Components
 -----------------------
