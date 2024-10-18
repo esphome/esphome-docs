@@ -8,15 +8,15 @@ TCS34725 RGB Color Sensor
 
 The ``tcs34725`` sensor platform enables the integration of TCS34725 RGB color sensors
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/TCS34725.pdf>`__, `Adafruit`_)
-into ESPHome, providing precise data on color, color temperature, and illuminance. The
+into ESPHome, providing precise CIE1931 color, color temperature, and illuminance. The
 sensor requires a properly configured :ref:`I²C <i2c>` interface in your setup.
 
 This sensor supports adjustable exposure times ranging from 153.6 ms to 614.4 ms.
 Increasing the exposure time enhances light sensitivity, making the sensor more
 responsive to subtle lighting changes. However, longer exposure times also lower the
 maximum brightness the sensor can handle before overexposing. When this occurs, the
-sensor_saturation will reach 100%, and the sensor will stop providing illuminance or
-color temperature values.
+sensor_saturation will reach 100%, and the sensor will stop providing illuminance,
+color temperature, or CIE1931 color values.
 
 The gain setting can also be adjusted to increase light sensitivity, but it further
 reduces the brightness threshold before overexposure and may add more noise to the data.
@@ -48,6 +48,12 @@ avoid these shorter exposure times unless there's a specific use case.
     # Example configuration entry
     sensor:
       - platform: tcs34725
+        cie1931_x:
+          name: "TCS34725 CIE1931 X"
+        cie1931_y:
+          name: "TCS34725 CIE1931 Y"
+        cie1931_z:
+          name: "TCS34725 CIE1931 Z"
         red_channel_irradiance:
           name: "TCS34725 Red Channel Irradiance"
         green_channel_irradiance:
@@ -67,6 +73,12 @@ avoid these shorter exposure times unless there's a specific use case.
 Configuration variables:
 ------------------------
 
+- **cie1931_x** (*Optional*): CIE1931 color channel x (unnormalized)
+  All options from :ref:`Sensor <config-sensor>`.
+- **cie1931_y** (*Optional*): CIE1931 color channel y (unnormalized)
+  All options from :ref:`Sensor <config-sensor>`.
+- **cie1931_z** (*Optional*): CIE1931 color channel z (unnormalized)
+  All options from :ref:`Sensor <config-sensor>`.
 - **red_channel_irradiance** (*Optional*): Irradiance of the red light received by the sensor in µW/cm².
   All options from :ref:`Sensor <config-sensor>`.
 - **green_channel_irradiance** (*Optional*): Irradiance of the green light received by the sensor in µW/cm².
