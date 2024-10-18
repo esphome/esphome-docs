@@ -15,6 +15,7 @@ This driver has been tested with the following displays:
 
   - Lilygo T4-S3
   - Lilygo T-Display S3 AMOLED
+  - Lilygo T-Encoder PRO
 
 Usage
 -----
@@ -32,6 +33,12 @@ ESP-IDF. PSRAM is a requirement due to the size of the display buffer. A :ref:`q
     :width: 75.0%
 
     Lilygo T-Display S3 AMOLED
+
+.. figure:: images/lilygo-t-encoderpro.jpg
+    :align: center
+    :width: 50.0%
+
+    Lilygo T-Encoder PRO
 
 
 .. code-block:: yaml
@@ -177,6 +184,29 @@ Lilygo T-Display S3 AMOLED
         reset_pin: 17
         enable_pin: 38
 
+Lilygo T-Encoder PRO
+**************************
+
+.. code-block:: yaml
+
+    spi:
+      id: quad_spi
+      type: quad
+      clk_pin: 12
+      data_pins: [11, 13, 7, 14]
+
+    display:
+      - platform: qspi_amoled
+        model: RM67162
+        id: main_lcd
+        dimensions:
+          height: 390
+          width: 390
+        color_order: rgb
+        brightness: 255
+        cs_pin: 10
+        reset_pin: 4
+        enable_pin: 3
 
 See Also
 --------
