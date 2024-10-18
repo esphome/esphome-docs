@@ -162,7 +162,7 @@ Example configuration
 Configuration variables:
 ------------------------
 
-- **frequency** (*Optional*, float): Between 76 and 108MHz. Step size is 0.05MHz
+- **frequency** (*Optional*, float): Between 76 and 108MHz. Step size is 0.05MHz.
 - **deviation** (*Optional*, float): Between 0 and 147.9KHz. Step size is 0.58KHz.
 - **mute** (*Optional*, bool): Mute audio if True.
 - **mono** (*Optional*, bool): Mono audio if True.
