@@ -287,7 +287,7 @@ Audio Compressor configuration variables:
 -----------------------------------------
 
 - **enable** (*Optional*, boolean): Transmit audio dynamic range control enable.
-- **preset** (*Optional*, enum): Configures the compressor with predefined values. Minimal: -40, 50ms, 100ms, 15dB. Aggressive: -15, 0.5ms, 1000ms, 5dB.
+- **preset** (*Optional*, enum): Configures the compressor with predefined values. Minimal: -40dB, 50ms, 100ms, 15dB. Aggressive: -15dB, 0.5ms, 1000ms, 5dB.
 - **threshold** (*Optional*, float): Transmit audio dynamic range control threshold.
 - **attack** (*Optional*, enum): Transmit audio dynamic range control attack time.
 - **release** (*Optional*, enum): Transmit audio dynamic range control release time.
