@@ -32,43 +32,47 @@ Example configuration
       id: kt0803_transmitter
       chip_id: KT0803L
       frequency: 87.5
-      frequency_deviation: 75kHz
+      deviation: 75kHz
       mute: False
       mono: False
-      pga: -15
-      rfgain: 108
-      pa_bias: False
       pre_emphasis: 75us
+      pga: 0
+      rfgain: 108
       pilot_tone_amplitude: Low
       bass_boost_control: Disabled
       auto_pa_down: True
       pa_down: False
       standby_enable: False
+      pa_bias: False
       audio_limiter_level: '0.875'
       switch_mode: Mute
-      silence_detection: True
-      silence_duration: '100ms'
-      silence_high: '32mV'
-      silence_low: '8mV'
-      silence_high_counter: '15'
-      silence_low_counter: '1'
       au_enhance: False
-      xtal_enable: True
-      xtal_sel: '32.768kHz'
-      ref_clk_enable: False
-      ref_clk: '32.768kHz'
-      alc_enable: False
-      alc_gain: -3
-      alc_attack_time: 25us
-      alc_decay_time: 25us
-      alc_hold_time: 5s
-      alc_high: '0.6'
-      alc_low: '0.25'
-      pw_ok:
-        name: Power OK
-      slncid:
-        name: Silence Detected
-      update_interval: 3s
+      ref_clk:
+        enable: False
+        ref_clk: '32.768kHz'
+      xtal:
+        enable: True
+        sel: '32.768kHz'  
+      alc:
+        enable: False
+        gain: -3
+        attack_time: 25us
+        decay_time: 25us
+        hold_time: 5s
+        high: '0.6'
+        low: '0.25'
+      silence:
+        detection: True
+        duration: '100ms'
+        high: '32mV'
+        low: '8mV'
+        high_counter: '15'
+        low_counter: '1'
+      sensor:
+        pw_ok:
+          name: Power OK
+        slncid:
+          name: Silence Detected
     
     number:
       - platform: kt0803
@@ -79,8 +83,9 @@ Example configuration
           name: PGA Gain Control
         rfgain:
           name: RF Gain
-        alc_gain:
-          name: ALC Gain
+        alc:
+          gain:
+            name: ALC Gain
     
     switch:
       - platform: kt0803
@@ -88,28 +93,32 @@ Example configuration
           name: Mute
         mono:
           name: Mono
-        pa_bias:
-          name: PA Bias
         auto_pa_down:
           name: Automatic PA Power Down
         pa_down:
           name: PA Power Down
         standby_enable:
           name: Standby Enable
-        silence_detection:
-          name: Silence Detection
+        pa_bias:
+          name: PA Bias
         au_enhance:
           name: Audio Frequency Response Enhancement
-        xtal_enable:
-          name: Crystal Oscillator Enable 
-        ref_clk_enable:
-          name: Refence Clock Enable
-        alc_enable:
-          name: ALC Enable
+        ref_clk:
+          enable:
+            name: Refence Clock Enable
+        xtal:
+          enable:
+            name: Crystal Oscillator Enable 
+        alc:
+          enable:
+            name: ALC Enable
+        silence:
+          detection:
+            name: Silence Detection
     
     select:
       - platform: kt0803
-        frequency_deviation:
+        deviation:
           name: Frequency Deviation
         pre_emphasis:
           name: Pre-emphasis
@@ -121,30 +130,34 @@ Example configuration
           name: Audio Limiter Level
         switch_mode:
           name: Switching Channel Mode Selection
-        silence_duration:
-          name: Silence Duration
-        silence_high:
-          name: Silence High
-        silence_low:
-          name: Silence Low
-        silence_high_counter:
-          name: Silence High Counter
-        silence_low_counter:
-          name: Silence Low Counter
-        xtal_sel:
-          name: Xtal Selection
+        xtal:
+          sel:
+            name: Xtal Selection
         ref_clk:
-          name: Refence Clock
-        alc_attack_time:
-          name: ALC Attack Time
-        alc_decay_time:
-          name: ALC Decay Time
-        alc_hold_time:
-          name: ALC Hold Time
-        alc_high:
-          name: ALC High Threshold
-        alc_low:
-          name: ALC Low Threshold
+          ref_clk:
+            name: Refence Clock
+        alc:
+          attack_time:
+            name: ALC Attack Time
+          decay_time:
+            name: ALC Decay Time
+          hold_time:
+            name: ALC Hold Time
+          high:
+            name: ALC High Threshold
+          low:
+            name: ALC Low Threshold
+        silence:
+          duration:
+            name: Silence Duration
+          high:
+            name: Silence High
+          low:
+            name: Silence Low
+          high_counter:
+            name: Silence High Counter
+          low_counter:
+            name: Silence Low Counter
     
 Configuration variables:
 ------------------------
@@ -153,15 +166,15 @@ Configuration variables:
 - **frequency** (*Optional*, float): Between 70 and 108MHz. Step size is 0.05MHz (0.1MHz for KT0803)
 - **mute** (*Optional*, boolean): Mutes the audio, but not completely for some reason, still barely audible.
 - **mono** (*Optional*, boolean): Switches between stereo and mono.
+- **pre_emphasis** (*Optional*, enum): Pre-emphasis time-constant.
 
 Advanced settings:
 ------------------
 
-- **frequency_deviation** (*Optional*, enum): Frequency deviation detection.
+- **deviation** (*Optional*, enum): Frequency deviation detection.
 - **pga** (*Optional*, float): Programmable-gain amplifier (PGA) gain control.
 - **rfgain** (*Optional*, float): PA (Power amplifier) power to set up transmission range. Invalid values will be rounded-up to the next valid.
 - **pa_bias** (*Optional*, boolean): PA bias current enhancement.
-- **pre_emphasis** (*Optional*, enum): Pre-emphasis time-constant.
 - **pilot_tone_amplitude** (*Optional*, enum): Pilot tone amplitude adjustment.
 - **bass_boost_control** (*Optional*, enum): Bass boost control.
 - **auto_pa_down** (*Optional*, boolean): Automatic power down power amplifier when silence is detected.
@@ -169,24 +182,40 @@ Advanced settings:
 - **standby_enable** (*Optional*, boolean): Chip standby control.
 - **audio_limiter_level** (*Optional*, enum): Internal audio limiter level control.
 - **switch_mode** (*Optional*, enum): Switching channel mode selection.
-- **silence_detection** (*Optional*, boolean): Silence detection enable.
-- **silence_duration** (*Optional*, enum): Silence detection Low level and High level duration time.
-- **silence_high** (*Optional*, enum): Silence detection High threshold.
-- **silence_low** (*Optional*, enum): Silence detection Low threshold.
-- **silence_high_counter** (*Optional*, enum): Silence detection High level counter threshold.
-- **silence_low_counter** (*Optional*, enum): Silence detection Low counter.
 - **au_enhance** (*Optional*, boolean): Audio frequency response enhancement enable.
-- **xtal_enable** (*Optional*, boolean): Crystal oscillator enable.
-- **xtal_sel** (*Optional*, enum): Software controlled crystal oscillator selection.
-- **ref_clk_enable** (*Optional*, boolean): Multiple reference clock selection enable. False = Disable multiple reference clock feature and reference clock or crystal oscillator can only select through SW1/SW2 pins. True = Enable multiple reference clock and user can select different reference clock through ref_clk.
+
+Reference clock settings:
+-------------------------
+
+- **enable** (*Optional*, boolean): Multiple reference clock selection enable. False = Disable multiple reference clock feature and reference clock or crystal oscillator can only select through SW1/SW2 pins. True = Enable multiple reference clock and user can select different reference clock through ref_clk.
 - **ref_clk** (*Optional*, enum): Reference clock selection.
-- **alc_enable** (*Optional*, boolean): Automatic level control enable
-- **alc_gain** (*Optional*, float): ALC compressed gain
-- **alc_attack_time** (*Optional*, enum): ALC attack time
-- **alc_decay_time** (*Optional*, enum): ALC decay time
-- **alc_hold_time** (*Optional*, enum): ALC hold time
-- **alc_high** (*Optional*, enum): ALC High threshold level
-- **alc_low** (*Optional*, enum): ALC Low threshold level
+
+Crystal settings:
+-----------------
+
+- **enable** (*Optional*, boolean): Crystal oscillator enable.
+- **sel** (*Optional*, enum): Software controlled crystal oscillator selection.
+
+Automatic Level Control settings:
+-------------
+
+- **enable** (*Optional*, boolean): Automatic level control enable
+- **gain** (*Optional*, float): ALC compressed gain
+- **attack_time** (*Optional*, enum): ALC attack time
+- **decay_time** (*Optional*, enum): ALC decay time
+- **hold_time** (*Optional*, enum): ALC hold time
+- **high** (*Optional*, enum): ALC High threshold level
+- **low** (*Optional*, enum): ALC Low threshold level
+
+Silence Detection settings:
+---------------------------
+
+- **detection** (*Optional*, boolean): Silence detection enable.
+- **duration** (*Optional*, enum): Silence detection Low level and High level duration time.
+- **high** (*Optional*, enum): Silence detection High threshold.
+- **low** (*Optional*, enum): Silence detection Low threshold.
+- **high_counter** (*Optional*, enum): Silence detection High level counter threshold.
+- **low_counter** (*Optional*, enum): Silence detection Low counter.
 
 Diagnostic sensors:
 -------------------
@@ -201,13 +230,13 @@ Feature matrix
 parameter / chip id  KT0803  KT0803K/M KT0803L default       values
 ==================== ======= ========= ======= ============= ===============================================================================================================
 frequency            x       x         x       87.50         70 - 108 (MHz) 0.05 step size
-frequency_deviation          x         x       75kHz         75kHz, 112.5kHz, 150kHz, 187.5kHz [2]_
+deviation                    x         x       75kHz         75kHz, 112.5kHz, 150kHz, 187.5kHz [2]_
 mute                 x       x         x       False
 mono                         x         x       False
+pre_emphasis         x       x         x       75us          50us, 75us (50ns => Europe, Australia, 75us => USA, Japan)
 pga                  x       x         x       -15           -15 - 12 (dB) [3]_
 rfgain               x       x         x       108           95.5, 96.5, 97.5, 98.2, 98.9, 100, 101.5, 102.8, 105.1, 105.6, 106.2, 106.5, 107, 107.4, 107.7, 108 (dbUV) [4]_
 pa_bias                      x         x       True          
-pre_emphasis         x       x         x       75us          50us, 75us (50ns => Europe, Australia, 75us => USA, Japan)
 pilot_tone_amplitude x       x         x       Low           Low, High
 bass_boost_control           x         x       Disabled      Disabled, 5dB, 11dB, 17dB
 auto_pa_down                           x       True          
@@ -215,24 +244,24 @@ pa_down                      x         x       False
 standby_enable                         x       False
 audio_limiter_level          x                 0.875         0.6875, 0.75, 0.875, 0.9625
 switch_mode                  x         x       Mute          Mute, PA Off
-silence_detection            x         x       False
-silence_duration             x         x       100ms         50ms, 100ms, 200ms, 400ms, 1s, 2s, 4s, 8s, 16s, 24s, 32s, 40s, 48s, 56s, 60s, 64s [5]_
-silence_high                 x         x       32mV          0.5mV, 1mV, 2mV, 4mV, 8mV, 16mV, 32mV, 64mV
-silence_low                  x         x       8mV           0.25mV, 0.5mV, 1mV, 2mV, 4mV, 8mV, 16mV, 32mV
-silence_high_counter         x         x       15            15, 31, 63, 127, 255, 511, 1023, 2047
-silence_low_counter          x         x       1             1, 2, 4, 8, 16, 32, 64, 128
 au_enhance                             x       False         
-xtal_enable                            x       True          
-xtal_sel                               x       32.768kHz     32.768kHz, 7.6MHz
-ref_clk_enable                         x       False
-ref_clk                                x       32.768kHz     32.768kHz, 6.5MHz, 7.6MHz, 12MHz, 13MHz, 15.2MHz, 19.2MHz, 24MHz, 26MHz
-alc_enable                             x       False         
-alc_gain                               x       -3            -15, -12, -9, -6, -3, 0, 3, 6 (dB)
-alc_attack_time                        x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
-alc_decay_time                         x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
-alc_hold_time                          x       5s            50ms, 100ms, 150ms, 200ms, 1s, 5s, 10s, 15s
-alc_high                               x       0.6           0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.01
-alc_low                                x       0.25          0.25, 0.20, 0.15, 0.10, 0.05, 0.03, 0.02, 0.01, 0.005, 0.001, 0.0005, 0.0001
+ref_clk/enable                         x       False
+ref_clk/ref_clk                        x       32.768kHz     32.768kHz, 6.5MHz, 7.6MHz, 12MHz, 13MHz, 15.2MHz, 19.2MHz, 24MHz, 26MHz
+xtal/enable                            x       True          
+xtal/sel                               x       32.768kHz     32.768kHz, 7.6MHz
+alc/enable                             x       False         
+alc/gain                               x       -3            -15, -12, -9, -6, -3, 0, 3, 6 (dB)
+alc/attack_time                        x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
+alc/decay_time                         x       25us          25us, 50us, 75us, 100us, 125us, 175us, 200us, 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
+alc/hold_time                          x       5s            50ms, 100ms, 150ms, 200ms, 1s, 5s, 10s, 15s
+alc/high                               x       0.6           0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.01
+alc/low                                x       0.25          0.25, 0.20, 0.15, 0.10, 0.05, 0.03, 0.02, 0.01, 0.005, 0.001, 0.0005, 0.0001
+silence/detection            x         x       False
+silence/duration             x         x       100ms         50ms, 100ms, 200ms, 400ms, 1s, 2s, 4s, 8s, 16s, 24s, 32s, 40s, 48s, 56s, 60s, 64s [5]_
+silence/high                 x         x       32mV          0.5mV, 1mV, 2mV, 4mV, 8mV, 16mV, 32mV, 64mV
+silence/low                  x         x       8mV           0.25mV, 0.5mV, 1mV, 2mV, 4mV, 8mV, 16mV, 32mV
+silence/high_counter         x         x       15            15, 31, 63, 127, 255, 511, 1023, 2047
+silence/low_counter          x         x       1             1, 2, 4, 8, 16, 32, 64, 128
 ==================== ======= ========= ======= ============= ===============================================================================================================
 
 .. [2] KT0803L 75kHz, 112.5kHz
