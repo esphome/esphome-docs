@@ -310,7 +310,7 @@ Audio Signal Quality (asq):
 - **level_high** (*Optional*, float): Input audio level high threshold.
 - **duration_high** (*Optional*, float): Input audio level low duration.
 
-Enabling iall, ialh, overmod triggers the corresponding binary_sensors, based on the level and duration variables.
+Enabling iall, ialh, overmod triggers the corresponding binary_sensors, when the level is under/over for the set duration.
 
 RDS (rds):
 ----------
