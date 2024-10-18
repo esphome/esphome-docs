@@ -51,7 +51,7 @@ Example configuration
     qn8027:
       id: fm_transmitter
       frequency: 87.50 # 76-108MHz
-      frequency_deviation: 74.82
+      deviation: 74.82
       mute: False
       mono: False
       tx_enable: True
@@ -59,45 +59,50 @@ Example configuration
       t1m_sel: 60s # Never, 58s, 59s, 60s
       priv_en: False
       pre_emphasis: 75us # 50us, 75us
-      xtal_source: CRYSTAL # CRYSTAL, DIGITAL_CLOCK, SINGLE_END_SIN_WAVE, DIFFERENTIAL_SIN_WAVE
-      xtal_current: 100
-      xtal_frequency: 24MHz # 12MHz, 24MHz
       input_impedance: 20kOhm # 5kOhm, 10kOhm, 20kOhm, 40kOhm
       input_gain: 3 # 0dB - 5dB
       digital_gain: 0 # 0dB - 2dB
       power_target: 117.5
-      rds_enable: True
-      rds_frequency_deviation: 2.1
-      rds_station: qn8027 # max 8 characters
-      rds_text: sample text # max 64 characters
-      fsm:
-        name: FSM Status # RESET, CALI, IDLE, TX_RSTB, PA_CALIB, TRANSMIT, PA_OFF
-      aud_pk:
-        name: Audio Peek
-      chip_id:
-        name: Chip ID
-      reg30:
-        name: Reg30
+      xtal:
+        source: CRYSTAL # CRYSTAL, DIGITAL_CLOCK, SINGLE_END_SIN_WAVE, DIFFERENTIAL_SIN_WAVE
+        current: 100
+        frequency: 24MHz # 12MHz, 24MHz
+      rds:
+        enable: True
+        deviation: 2.1
+        station: qn8027 # max 8 characters
+        text: sample text # max 64 characters
+      sensor:
+        fsm:
+          name: FSM Status # RESET, CALI, IDLE, TX_RSTB, PA_CALIB, TRANSMIT, PA_OFF
+        aud_pk:
+          name: Audio Peek
+        chip_id:
+          name: Chip ID
+        reg30:
+          name: Reg30
 
     number:
       - platform: qn8027
         frequency:
           id: fm_frequency
           name: Frequency
-        frequency_deviation:
+        deviation:
           name: Frequency Deviation
         tx_pilot:
           name: Tx Pilot
-        xtal_current:
-          name: Xtal Current
         input_gain:
           name: Input Gain
         digital_gain:
           name: Digital Gain
         power_target:
           name: Power Target
-        rds_frequency_deviation:
-          name: RDS Frequency Deviation
+        xtal:
+          current:
+            name: Xtal Current
+        rds:
+          deviation:
+            name: RDS Frequency Deviation
     
     switch:
       - platform: qn8027
@@ -109,8 +114,9 @@ Example configuration
           name: Tx Enable
         priv_en:
           name: Privacy Enable
-        rds_enable:
-          name: RDS Enable
+        rds:
+          enable:
+            name: RDS Enable
     
     select:
       - platform: qn8027
@@ -118,19 +124,21 @@ Example configuration
           name: PA off delay
         pre_emphasis:
           name: Pre-emphasis
-        xtal_source:
-          name: Xtal Source
-        xtal_frequency:
-          name: Xtal Frequency
         input_impedance:
           name: Input Impedance
+        xtal:
+          source:
+            name: Xtal Source
+          frequency:
+            name: Xtal Frequency
     
     text:
       - platform: qn8027
-        rds_station:
-          name: RDS Station
-        rds_text:
-          name: RDS Text
+        rds:
+          station:
+            name: RDS Station
+          text:
+            name: RDS Text
     
     api:
       services:
@@ -155,7 +163,7 @@ Configuration variables:
 ------------------------
 
 - **frequency** (*Optional*, float): Between 76 and 108MHz. Step size is 0.05MHz
-- **frequency_deviation** (*Optional*, float): Between 0 and 147.9KHz. Step size is 0.58KHz.
+- **deviation** (*Optional*, float): Between 0 and 147.9KHz. Step size is 0.58KHz.
 - **mute** (*Optional*, bool): Mute audio if True.
 - **mono** (*Optional*, bool): Mono audio if True.
 - **tx_enable** (*Optional*, bool): Transmission enabled.
@@ -163,21 +171,25 @@ Configuration variables:
 - **t1m_sel** (*Optional*, enum): Turn transmission off after (Never, 58s, 59s, 60s) if there is no input.
 - **priv_en** (*Optional*, bool): Enabled the privacy mode (audio scramble and RDS encryption).
 - **pre_emphasis** (*Optional*, enum): Pre-emphasis time constant. (50us => Europe, Australia, 75us => USA, Japan)
-- **xtal_source** (*Optional*, enum): Select the reference clock source. (CRYSTAL, DIGITAL_CLOCK, SINGLE_END_SIN_WAVE, DIFFERENTIAL_SIN_WAVE)
-- **xtal_current** (*Optional*, float): Crystal oscillator current control. Between 0 and 400uA.
-- **xtal_frequency** (*Optional*, enum): Crystal frequency. (12MHz, 24MHz)
 - **input_impedance** (*Optional*, enum): Input impedance for both L/R channels. (5kOhm, 10kOhm, 20kOhm, 40kOhm)
 - **input_gain** (*Optional*, int): Input buffer gain. (0dB - 5dB) 
 - **digital_gain** (*Optional*, int): Digital buffer gain. (0dB - 2dB) 
 - **power_target** (*Optional*, float): Output power target. Between 83.4dBuV and 117.5dBuV. Step size is 0.62dBuV.
 
+XTAL configuration variables:
+----------------------------
+
+- **source** (*Optional*, enum): Select the reference clock source. (CRYSTAL, DIGITAL_CLOCK, SINGLE_END_SIN_WAVE, DIFFERENTIAL_SIN_WAVE)
+- **current** (*Optional*, float): Crystal oscillator current control. Between 0 and 400uA.
+- **frequency** (*Optional*, enum): Crystal frequency. (12MHz, 24MHz)
+
 RDS configuration variables:
 ----------------------------
 
-- **rds_enable** (*Optional*, bool): RDS enabled if True.
-- **rds_frequency_deviation** (*Optional*, float): Between 0 and 44.45KHz. Step size is 0.35KHz.
-- **rds_station** (*Optional*, string): Station name. Max 8 characters.
-- **rds_text** (*Optional*, string): Additional RDS text. Max 64 characters.
+- **enable** (*Optional*, bool): RDS enabled if True.
+- **deviation** (*Optional*, float): Between 0 and 44.45KHz. Step size is 0.35KHz.
+- **station** (*Optional*, string): Station name. Max 8 characters.
+- **text** (*Optional*, string): Additional RDS text. Max 64 characters.
 
 Diagnostic sensors:
 -------------------
