@@ -246,7 +246,7 @@ Configuration variables:
 - **mono** (*Optional*, boolean): Mono audio if True. Disables Left minus Right (Stereo) to be transmitted.
 - **pre_emphasis** (*Optional*, enum): Configures pre-emphasis time constant. (50us => Europe, Australia, 75us => USA, Japan)
 
-Tuner configuration variables:
+Tuner (tuner) configuration variables:
 ------------------------------
 
 - **frequency** (*Optional*, float): Selects the tune frequency.
@@ -254,13 +254,13 @@ Tuner configuration variables:
 - **power** (*Optional*, int): Sets the tune power in dBuV. Power may be set as high as 120 dBuV, however, voltage accuracy is not guaranteed.
 - **antcap** (*Optional*, float): This selects the value of the antenna tuning capacitor manually, or automatically if set to zero.
 
-Analog configuration variables:
+Analog (analog) configuration variables:
 -------------------------------
 
 - **level** (*Optional*, int): Maximum line amplitude level on the LIN/RIN pins in mVPK.
 - **attenuation** (*Optional*, enum): Line attenuation.
 
-Digital configuration variables:
+Digital (digital) configuration variables:
 --------------------------------
 
 - **sample_rate** (*Optional*, int): Digital input sample rate.
@@ -269,7 +269,7 @@ Digital configuration variables:
 - **mode** (*Optional*, enum): Digital mode.
 - **clock_edge** (*Optional*, enum): DCLK rising/falling edge.
 
-Pilot configuration variables:
+Pilot (pilot) configuration variables:
 ------------------------------
 
 - **enable** (*Optional*, boolean): Enables the pilot tone to be transmitted.
@@ -283,7 +283,7 @@ Reference Clock (refclk) configuration variables:
 - **source** (*Optional*, enum): Selects RCLK/DCLK pin as the clock source.
 - **prescaler** (*Optional*, int): Integer number used to divide the RCLK frequency down to REFCLK frequency.
 
-Audio Compressor configuration variables:
+Audio Compressor (compressor) configuration variables:
 -----------------------------------------
 
 - **enable** (*Optional*, boolean): Transmit audio dynamic range control enable.
@@ -293,7 +293,7 @@ Audio Compressor configuration variables:
 - **release** (*Optional*, enum): Transmit audio dynamic range control release time.
 - **gain** (*Optional*, float): Transmit audio dynamic range control gain.
 
-Audio Limiter configuration variables:
+Audio Limiter (limiter) configuration variables:
 --------------------------------------
 
 - **enable** (*Optional*, boolean): Audio limiter enable.
