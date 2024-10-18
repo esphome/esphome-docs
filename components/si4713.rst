@@ -246,22 +246,22 @@ Configuration variables:
 - **mono** (*Optional*, boolean): Mono audio if True. Disables Left minus Right (Stereo) to be transmitted.
 - **pre_emphasis** (*Optional*, enum): Configures pre-emphasis time constant. (50us => Europe, Australia, 75us => USA, Japan)
 
-Tuner (tuner) configuration variables:
-------------------------------
+Tuner (tuner):
+--------------
 
 - **frequency** (*Optional*, float): Selects the tune frequency.
 - **deviation** (*Optional*, float): Transmit audio frequency deviation.
 - **power** (*Optional*, int): Sets the tune power in dBuV. Power may be set as high as 120 dBuV, however, voltage accuracy is not guaranteed.
 - **antcap** (*Optional*, float): This selects the value of the antenna tuning capacitor manually, or automatically if set to zero.
 
-Analog (analog) configuration variables:
--------------------------------
+Analog (analog):
+----------------
 
 - **level** (*Optional*, int): Maximum line amplitude level on the LIN/RIN pins in mVPK.
 - **attenuation** (*Optional*, enum): Line attenuation.
 
-Digital (digital) configuration variables:
---------------------------------
+Digital (digital):
+------------------
 
 - **sample_rate** (*Optional*, int): Digital input sample rate.
 - **sample_bits** (*Optional*, enum): Digital audio sample precision.
@@ -269,8 +269,8 @@ Digital (digital) configuration variables:
 - **mode** (*Optional*, enum): Digital mode.
 - **clock_edge** (*Optional*, enum): DCLK rising/falling edge.
 
-Pilot (pilot) configuration variables:
-------------------------------
+Pilot (pilot):
+--------------
 
 - **enable** (*Optional*, boolean): Enables the pilot tone to be transmitted.
 - **frequency** (*Optional*, float): Stereo Pilot Frequency.
@@ -283,8 +283,8 @@ Reference Clock (refclk) configuration variables:
 - **source** (*Optional*, enum): Selects RCLK/DCLK pin as the clock source.
 - **prescaler** (*Optional*, int): Integer number used to divide the RCLK frequency down to REFCLK frequency.
 
-Audio Compressor (compressor) configuration variables:
------------------------------------------
+Audio Compressor (compressor):
+------------------------------
 
 - **enable** (*Optional*, boolean): Transmit audio dynamic range control enable.
 - **preset** (*Optional*, enum): Configures the compressor with predefined values. Minimal: -40dB, 50ms, 100ms, 15dB. Aggressive: -15dB, 0.5ms, 1000ms, 5dB.
@@ -293,14 +293,14 @@ Audio Compressor (compressor) configuration variables:
 - **release** (*Optional*, enum): Transmit audio dynamic range control release time.
 - **gain** (*Optional*, float): Transmit audio dynamic range control gain.
 
-Audio Limiter (limiter) configuration variables:
---------------------------------------
+Audio Limiter (limiter):
+------------------------
 
 - **enable** (*Optional*, boolean): Audio limiter enable.
 - **release_time** (*Optional*, float): Sets the limiter release time.
 
-Audio Signal Quality (asq) configuration variables:
----------------------------------------------------
+Audio Signal Quality (asq):
+---------------------------
 
 - **iall** (*Optional*, boolean): Input audio level detection low threshold enable.
 - **ialh** (*Optional*, boolean): Input audio level detection high threshold enable.
@@ -312,16 +312,25 @@ Audio Signal Quality (asq) configuration variables:
 
 Enabling iall, ialh, overmod triggers the corresponding binary_sensors, based on the level and duration variables.
 
-RDS (rds) configuration variables:
-----------------------------------
+RDS (rds):
+----------
 
 - **enable** (*Optional*, boolean): RDS Enable.
 - **deviation** (*Optional*, float): Transmit RDS frequency deviation.
 - **station** (*Optional*, float): Station name. Max 8 characters.
 - **text** (*Optional*, float): Additional RDS text. Max 64 characters.
 
-Sensors:
+Sensor (sensor):
 --------
 
-- TODO
+- **chip_id** (*Optional*, string): Detected chip id. (Si47xx)
+- **frequency** (*Optional*, float): Returns frequency being tuned.
+- **power** (*Optional*, float): Returns the transmit output voltage setting.
+- **antcap** (*Optional*, ): This byte will contain the current antenna tuning capacitor value.
+- **noise_level** (*Optional*, float): This byte will contain the receive level as the response to a TX Tune Measure command. The returned value will be the last RNL measurement (or 0 if no measurement has been performed) for the TX Tune Freq and TX
+Tune Power commands.
+- **iall** (*Optional*, boolean): Input audio level low threshold exceeded.
+- **ialh** (*Optional*, boolean): = Input audio level high threshold exceeded.
+- **overmod** (*Optional*, boolean): Output signal is above requested modulation level.
+- **inlevel** (*Optional*, float): The current audio input level measured in dBfs.
 
