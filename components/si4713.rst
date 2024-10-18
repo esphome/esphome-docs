@@ -47,6 +47,7 @@ Example configuration
     mono: False
     pre_emphasis: '75us'
     tuner:
+      enable: True
       frequency: 87.50
       deviation: 68.25
       power: 115
@@ -166,6 +167,9 @@ Example configuration
         name: Mute
       mono:
         name: Mono
+      tuner:
+        enable:
+          name: Power Enable
       pilot:
         enable:
           name: Pilot Tone Enable
@@ -249,6 +253,7 @@ Configuration variables:
 Tuner (tuner):
 --------------
 
+- **enable** (*Optional*, boolean): Enables transmission.
 - **frequency** (*Optional*, float): Selects the tune frequency.
 - **deviation** (*Optional*, float): Transmit audio frequency deviation.
 - **power** (*Optional*, int): Sets the tune power in dBuV. Power may be set as high as 120 dBuV, however, voltage accuracy is not guaranteed.
@@ -340,6 +345,7 @@ op_mode                 Analog  Analog, Digital
 mute                    False
 mono                    False  
 pre_emphasis            75us    50us, 75us, Disabled (50ns => Europe, Australia, 75us => USA, Japan)
+tuner / enable          True    
 tuner / frequency       87.50   70 to 108 (MHz) 0.05 step size
 tuner / deviation       68.25   0 to 90 (kHz)
 tuner / power           115     88 to 115 (dBuV) Power may be set as high as 120 dBuV. However, voltage accuracy is not guaranteed.
