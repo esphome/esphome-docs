@@ -69,7 +69,7 @@ Example configuration
       frequency: 32768
       source: 'RCLK'
       prescaler: 1
-    compressor:
+    acomp:
       enable: True
       preset: 'Custom'
       threshold: -40
@@ -140,7 +140,7 @@ Example configuration
           name: Reference Clock Frequency
         prescaler:
           name: Reference Clock Prescaler
-      compressor:
+      acomp:
         threshold:
           name: Dynamic Range Control Threshold
         gain:
@@ -173,7 +173,7 @@ Example configuration
       pilot:
         enable:
           name: Pilot Tone Enable
-      compressor:
+      acomp:
         enable:
           name: Dynamic Range Control Enable
       limiter:
@@ -216,7 +216,7 @@ Example configuration
       refclk:
         source:
           name: Reference Clock Source
-      compressor:
+      acomp:
         attack:
           name: Dynamic Range Control Attack Time
         release:
@@ -288,7 +288,7 @@ Reference Clock (refclk) configuration variables:
 - **source** (*Optional*, enum): Selects RCLK/DCLK pin as the clock source.
 - **prescaler** (*Optional*, int): Integer number used to divide the RCLK frequency down to REFCLK frequency.
 
-Audio Compressor (compressor):
+Audio Compressor (acomp):
 ------------------------------
 
 - **enable** (*Optional*, boolean): Transmit audio dynamic range control enable.
@@ -363,12 +363,12 @@ pilot / deviation       6.75    0 to 90 (kHz)
 refclk / frequency      32768   31130 to 34406 (Hz)
 refclk / source         RCLK    RCLK, DCLK
 refclk / prescaler      1       1 to 4095
-compressor / enable     True
-compressor / preset     Custom  Minimal, Aggressive, Custom
-compressor / threshold  -40     -40 to 0 (dB)
-compressor / attack     0.5ms   0.5ms, 1.0ms, 1.5ms, 2.0ms, 2.5ms, 3.0ms, 3.5ms, 4.0ms, 4.5ms, 5.0ms
-compressor / release    1000ms  100ms, 200ms, 350ms, 525ms, 1000ms
-compressor / gain       15      0 to 20 (dB)
+acomp / enable     True
+acomp / preset     Custom  Minimal, Aggressive, Custom
+acomp / threshold  -40     -40 to 0 (dB)
+acomp / attack     0.5ms   0.5ms, 1.0ms, 1.5ms, 2.0ms, 2.5ms, 3.0ms, 3.5ms, 4.0ms, 4.5ms, 5.0ms
+acomp / release    1000ms  100ms, 200ms, 350ms, 525ms, 1000ms
+acomp / gain       15      0 to 20 (dB)
 limiter / enable        True
 limiter / release_time  5.01    0.25 to 102.4, 512.0 divided by [5 to 2000] (ms)
 asq / iall              True
