@@ -333,3 +333,47 @@ Sensor (sensor):
 - **overmod** (*Optional*, boolean): Output signal is above requested modulation level.
 - **inlevel** (*Optional*, float): The current audio input level measured in dBfs.
 
+======================= ======= ============================================================================================================================================
+config variable         default values
+======================= ======= ============================================================================================================================================
+op_mode                 Analog  Analog, Digital
+mute                    False
+mono                    False
+pre_emphasis            75us    50us, 75us, Disabled (50ns => Europe, Australia, 75us => USA, Japan)
+tuner / frequency       87.50
+tuner / deviation       68.25
+tuner / power           115
+tuner / antcal          0
+analog / level          636
+analog / attenuation    60kOhm
+digital / sample_rate   48000
+digital / sample_bits   16
+digital / channels      Stereo
+digital / mode          I2S
+digital / clock_edge    Rising
+pilot / enable          True
+pilot / frequency       19.00
+pilot / deviation       6.75
+refclk / frequency      32768
+refclk / source:        RCLK
+refclk / prescaler      1
+compressor / enable     True
+compressor / preset     Custom
+compressor / threshold  -40
+compressor / attack     0.5ms
+compressor / release    1000ms
+compressor / gain       15
+limiter / enable        True
+limiter / release_time  5.01
+asq / iall              True
+asq / ialh              True
+asq / overmod           True
+asq / level_low         -50
+asq / duration_low      10000
+asq / level_high        -20
+asq / duration_high     5000
+rds / enable            True
+rds / deviation         2.0
+rds / station           
+rds / text              
+======================= ======= ============================================================================================================================================
