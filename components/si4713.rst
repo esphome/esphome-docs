@@ -240,11 +240,11 @@ Example configuration
 Configuration variables:
 ------------------------
 
-  - **reset_pin** (**Required**, :ref:`config-pin`): The device needs to be reset before use, connect the reset pin to this pin.
-  - **op_mode** (*Optional*, enum): Audio input mode.
-  - **mute** (*Optional*, boolean): Mute audio if True.
-  - **mono** (*Optional*, boolean): Mono audio if True. Disables Left minus Right (Stereo) to be transmitted.
-  - **pre_emphasis** (*Optional*, enum): Configures pre-emphasis time constant. (50us => Europe, Australia, 75us => USA, Japan)
+- **reset_pin** (**Required**, :ref:`config-pin`): The device needs to be reset before use, connect the reset pin to this pin.
+- **op_mode** (*Optional*, enum): Audio input mode.
+- **mute** (*Optional*, boolean): Mute audio if True.
+- **mono** (*Optional*, boolean): Mono audio if True. Disables Left minus Right (Stereo) to be transmitted.
+- **pre_emphasis** (*Optional*, enum): Configures pre-emphasis time constant. (50us => Europe, Australia, 75us => USA, Japan)
 
 Tuner configuration variables:
 ------------------------------
