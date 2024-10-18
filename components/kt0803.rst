@@ -197,7 +197,7 @@ Crystal settings:
 - **sel** (*Optional*, enum): Software controlled crystal oscillator selection.
 
 Automatic Level Control settings:
--------------
+---------------------------------
 
 - **enable** (*Optional*, boolean): Automatic level control enable
 - **gain** (*Optional*, float): ALC compressed gain
