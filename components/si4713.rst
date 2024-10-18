@@ -326,9 +326,8 @@ Sensor (sensor):
 - **chip_id** (*Optional*, string): Detected chip id. (Si47xx)
 - **frequency** (*Optional*, float): Returns frequency being tuned.
 - **power** (*Optional*, float): Returns the transmit output voltage setting.
-- **antcap** (*Optional*, ): This byte will contain the current antenna tuning capacitor value.
-- **noise_level** (*Optional*, float): This byte will contain the receive level as the response to a TX Tune Measure command. The returned value will be the last RNL measurement (or 0 if no measurement has been performed) for the TX Tune Freq and TX
-Tune Power commands.
+- **antcap** (*Optional*, float): This byte will contain the current antenna tuning capacitor value.
+- **noise_level** (*Optional*, float): This byte will contain the receive level as the response to a TX Tune Measure command. The returned value will be the last RNL measurement (or 0 if no measurement has been performed) for the TX Tune Freq and TX Tune Power commands.
 - **iall** (*Optional*, boolean): Input audio level low threshold exceeded.
 - **ialh** (*Optional*, boolean): = Input audio level high threshold exceeded.
 - **overmod** (*Optional*, boolean): Output signal is above requested modulation level.
