@@ -240,18 +240,88 @@ Example configuration
 Configuration variables:
 ------------------------
 
-- **frequency** (*Optional*, float): Between 76 and 108MHz. Step size is 0.05MHz
-- **mute** (*Optional*, boolean): Mutes the audio.
-- **mono** (*Optional*, boolean): Switches between stereo and mono. Linked to digital/channels in digital mode.
-- **pre_emphasis** (*Optional*, enum): Pre-emphasis time-constant.
+  - **reset_pin** (**Required**, :ref:`config-pin`): The device needs to be reset before use, connect the reset pin to this pin.
+  - **op_mode** (*Optional*, enum): Audio input mode.
+  - **mute** (*Optional*, boolean): Mute audio if True.
+  - **mono** (*Optional*, boolean): Mono audio if True. Disables Left minus Right (Stereo) to be transmitted.
+  - **pre_emphasis** (*Optional*, enum): Configures pre-emphasis time constant. (50us => Europe, Australia, 75us => USA, Japan)
 
-Advanced settings:
-------------------
+Tuner configuration variables:
+------------------------------
 
-- TODO
+- **frequency** (*Optional*, float): Selects the tune frequency.
+- **deviation** (*Optional*, float): Transmit audio frequency deviation.
+- **power** (*Optional*, int): Sets the tune power in dBuV. Power may be set as high as 120 dBuV, however, voltage accuracy is not guaranteed.
+- **antcap** (*Optional*, float): This selects the value of the antenna tuning capacitor manually, or automatically if set to zero.
+
+Analog configuration variables:
+-------------------------------
+
+- **level** (*Optional*, int): Maximum line amplitude level on the LIN/RIN pins in mVPK.
+- **attenuation** (*Optional*, enum): Line attenuation.
+
+Digital configuration variables:
+--------------------------------
+
+- **sample_rate** (*Optional*, int): Digital input sample rate.
+- **sample_bits** (*Optional*, enum): Digital audio sample precision.
+- **channels** (*Optional*, enum): Mono or Stereo audio mode.
+- **mode** (*Optional*, enum): Digital mode.
+- **clock_edge** (*Optional*, enum): DCLK rising/falling edge.
+
+Pilot configuration variables:
+------------------------------
+
+- **enable** (*Optional*, boolean): Enables the pilot tone to be transmitted.
+- **frequency** (*Optional*, float): Stereo Pilot Frequency.
+- **deviation** (*Optional*, float): Transmit pilot frequency deviation.
+
+Reference Clock (refclk) configuration variables:
+-------------------------------------------------
+
+- **frequency** (*Optional*, int): Frequency of Reference Clock.
+- **source** (*Optional*, enum): Selects RCLK/DCLK pin as the clock source.
+- **prescaler** (*Optional*, int): Integer number used to divide the RCLK frequency down to REFCLK frequency.
+
+Audio Compressor configuration variables:
+-----------------------------------------
+
+- **enable** (*Optional*, boolean): Transmit audio dynamic range control enable.
+- **preset** (*Optional*, enum): Configures the compressor with predefined values. Minimal: -40, 50ms, 100ms, 15dB. Aggressive: -15, 0.5ms, 1000ms, 5dB.
+- **threshold** (*Optional*, float): Transmit audio dynamic range control threshold.
+- **attack** (*Optional*, enum): Transmit audio dynamic range control attack time.
+- **release** (*Optional*, enum): Transmit audio dynamic range control release time.
+- **gain** (*Optional*, float): Transmit audio dynamic range control gain.
+
+Audio Limiter configuration variables:
+--------------------------------------
+
+- **enable** (*Optional*, boolean): Audio limiter enable.
+- **release_time** (*Optional*, float): Sets the limiter release time.
+
+Audio Signal Quality (asq) configuration variables:
+---------------------------------------------------
+
+- **iall** (*Optional*, boolean): Input audio level detection low threshold enable.
+- **ialh** (*Optional*, boolean): Input audio level detection high threshold enable.
+- **overmod** (*Optional*, boolean): Overmodulation detection enable.
+- **level_low** (*Optional*, float): Input audio level low threshold.
+- **duration_low** (*Optional*, float): Input audio level low duration.
+- **level_high** (*Optional*, float): Input audio level high threshold.
+- **duration_high** (*Optional*, float): Input audio level low duration.
+
+Enabling iall, ialh, overmod triggers the corresponding binary_sensors, based on the level and duration variables.
+
+RDS (rds) configuration variables:
+----------------------------------
+
+- **enable** (*Optional*, boolean): RDS Enable.
+- **deviation** (*Optional*, float): Transmit RDS frequency deviation.
+- **station** (*Optional*, float): Station name. Max 8 characters.
+- **text** (*Optional*, float): Additional RDS text. Max 64 characters.
 
 Sensors:
--------------------
+--------
 
 - TODO
 
