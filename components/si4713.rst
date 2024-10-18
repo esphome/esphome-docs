@@ -348,7 +348,7 @@ pre_emphasis            75us    50us, 75us, Disabled (50ns => Europe, Australia,
 tuner / enable          True    
 tuner / frequency       87.50   76 to 108 (MHz) 0.05 step size
 tuner / deviation       68.25   0 to 90 (kHz)
-tuner / power           115     88 to 115 (dBuV) Power may be set as high as 120 dBuV. However, voltage accuracy is not guaranteed.
+tuner / power           115     88 to 115 (dBuV) [1]_
 tuner / antcal          0       0 to 47.75 (pF)
 analog / level          636     0 to 1023 mVPK
 analog / attenuation    60kOhm  60kOhm, 74kOhm, 100kOhm, 396kOhm
@@ -383,3 +383,5 @@ rds / deviation         2.0     0 to 90 (kHz)
 rds / station           
 rds / text              
 ======================= ======= ============================================================================================================================================
+
+.. [1] Power may be set as high as 120 dBuV. However, voltage accuracy is not guaranteed.
