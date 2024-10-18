@@ -346,23 +346,23 @@ mute                    False
 mono                    False  
 pre_emphasis            75us    50us, 75us, Disabled (50ns => Europe, Australia, 75us => USA, Japan)
 tuner / enable          True    
-tuner / frequency       87.50   70 to 108 (MHz) 0.05 step size
+tuner / frequency       87.50   76 to 108 (MHz) 0.05 step size
 tuner / deviation       68.25   0 to 90 (kHz)
 tuner / power           115     88 to 115 (dBuV) Power may be set as high as 120 dBuV. However, voltage accuracy is not guaranteed.
 tuner / antcal          0       0 to 47.75 (pF)
-analog / level          636
-analog / attenuation    60kOhm
-digital / sample_rate   48000
-digital / sample_bits   16
-digital / channels      Stereo
-digital / mode          I2S
-digital / clock_edge    Rising
+analog / level          636     0 to 1023 mVPK
+analog / attenuation    60kOhm  60kOhm, 74kOhm, 100kOhm, 396kOhm
+digital / sample_rate   48000   32000 to 48000 (Hz)
+digital / sample_bits   16      8, 16, 20, 24 (bits)
+digital / channels      Stereo  Mono, Stereo
+digital / mode          I2S     Default, I2S, Left Justified, MSB at 1st, MSB at 2nd
+digital / clock_edge    Rising  Rising, Falling
 pilot / enable          True
-pilot / frequency       19.00
-pilot / deviation       6.75
-refclk / frequency      32768
-refclk / source:        RCLK
-refclk / prescaler      1
+pilot / frequency       19.00   0 to 19 (kHz)
+pilot / deviation       6.75    0 to 90 (kHz)
+refclk / frequency      32768   31130 to 34406 (Hz)
+refclk / source         RCLK    RCLK, DCLK
+refclk / prescaler      1       1 to 4095
 compressor / enable     True
 compressor / preset     Custom
 compressor / threshold  -40
@@ -379,7 +379,7 @@ asq / duration_low      10000
 asq / level_high        -20
 asq / duration_high     5000
 rds / enable            True
-rds / deviation         2.0
+rds / deviation         2.0     0 to 90 (kHz)
 rds / station           
 rds / text              
 ======================= ======= ============================================================================================================================================
