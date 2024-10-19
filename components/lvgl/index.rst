@@ -18,6 +18,13 @@ For interactivity, a :doc:`Touchscreen </components/touchscreen/index>` (capacit
 
 Check out the detailed examples in :ref:`the Cookbook <lvgl-cookbook>` which demonstrate a number of ways you can integrate your environment with LVGL and ESPHome.
 
+To get started, it is sufficient to add a display and an empty LVGL configuration. If neither ``pages`` nor ``widgets`` is specified, then a default "hello world" page will be shown.
+
+.. code-block:: yaml
+
+    # Example minimal configuration entry
+    lvgl:
+
 Basics
 ------
 
@@ -106,6 +113,17 @@ The following configuration variables apply to the main ``lvgl`` component, in o
 
         The ``long_press_time`` and ``long_press_repeat_time`` can be fine-tuned also by setting them to ``never`` and using the ``autorepeat`` filter on each binary sensor separately.
 
+    .. tip::
+
+        When using an encoder input device the navigation works as follows:
+
+        - By turning the encoder you can focus on the next/previous object.
+        - When you press the encoder on a simple object (like a button), it will be clicked.
+        - If you press the encoder on a complex object (like a list, message box, etc.) the object will go to edit mode whereby you can adjust the value of the object by turning the encoder.
+        - To leave edit mode, long press the button.
+
+
+
 - **color_depth** (*Optional*, string): The color deph at which the contents are generated. Currently only ``16`` is supported (RGB565, 2 bytes/pixel), which is the default value.
 - **buffer_size** (*Optional*, percentage): The percentage of screen size to allocate buffer memory. Default is ``100%`` (or ``1.0``). For devices without PSRAM, the recommended value is ``25%``.
 - **log_level** (*Optional*, string): Set the logger level specifically for the messages of the LVGL library: ``TRACE``, ``INFO``, ``WARN``, ``ERROR``, ``USER``, ``NONE``. Defaults to ``WARN``.
@@ -155,6 +173,8 @@ Colors
 ******
 
 Colors can be specified anywhere in the LVGL configuration either by referencing a preconfigured :ref:`ESPHome color <config-color>` ID or by representing the color in the common hexadecimal notation. For example, ``0xFF0000`` would be red.
+
+You may also use any of the `standard CSS color names <https://developer.mozilla.org/en-US/docs/Web/CSS/named-color>`__, e.g. ``springgreen``.
 
 .. _lvgl-opacity:
 
