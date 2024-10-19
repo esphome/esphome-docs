@@ -49,7 +49,7 @@ Example configuration
       au_enhance: False
       ref_clk:
         enable: False
-        ref_clk: '32.768kHz'
+        sel: '32.768kHz'
       xtal:
         enable: True
         sel: '32.768kHz'  
@@ -188,7 +188,7 @@ Reference clock settings:
 -------------------------
 
 - **enable** (*Optional*, boolean): Multiple reference clock selection enable. False = Disable multiple reference clock feature and reference clock or crystal oscillator can only select through SW1/SW2 pins. True = Enable multiple reference clock and user can select different reference clock through ref_clk.
-- **ref_clk** (*Optional*, enum): Reference clock selection.
+- **sel** (*Optional*, enum): Reference clock selection.
 
 Crystal settings:
 -----------------
@@ -246,7 +246,7 @@ audio_limiter_level          x                 0.875         0.6875, 0.75, 0.875
 switch_mode                  x         x       Mute          Mute, PA Off
 au_enhance                             x       False         
 ref_clk/enable                         x       False
-ref_clk/ref_clk                        x       32.768kHz     32.768kHz, 6.5MHz, 7.6MHz, 12MHz, 13MHz, 15.2MHz, 19.2MHz, 24MHz, 26MHz
+ref_clk/sel                            x       32.768kHz     32.768kHz, 6.5MHz, 7.6MHz, 12MHz, 13MHz, 15.2MHz, 19.2MHz, 24MHz, 26MHz
 xtal/enable                            x       True          
 xtal/sel                               x       32.768kHz     32.768kHz, 7.6MHz
 alc/enable                             x       False         
