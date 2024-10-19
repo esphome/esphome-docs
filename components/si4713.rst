@@ -363,12 +363,12 @@ pilot / deviation       6.75    0 to 90 (kHz)
 refclk / frequency      32768   31130 to 34406 (Hz)
 refclk / source         RCLK    RCLK, DCLK
 refclk / prescaler      1       1 to 4095
-acomp / enable     True
-acomp / preset     Custom  Minimal, Aggressive, Custom
-acomp / threshold  -40     -40 to 0 (dB)
-acomp / attack     0.5ms   0.5ms, 1.0ms, 1.5ms, 2.0ms, 2.5ms, 3.0ms, 3.5ms, 4.0ms, 4.5ms, 5.0ms
-acomp / release    1000ms  100ms, 200ms, 350ms, 525ms, 1000ms
-acomp / gain       15      0 to 20 (dB)
+acomp / enable          True
+acomp / preset          Custom  Minimal, Aggressive, Custom
+acomp / threshold       -40     -40 to 0 (dB)
+acomp / attack          0.5ms   0.5ms, 1.0ms, 1.5ms, 2.0ms, 2.5ms, 3.0ms, 3.5ms, 4.0ms, 4.5ms, 5.0ms
+acomp / release         1000ms  100ms, 200ms, 350ms, 525ms, 1000ms
+acomp / gain            15      0 to 20 (dB)
 limiter / enable        True
 limiter / release_time  5.01    0.25 to 102.4, 512.0 divided by [5 to 2000] (ms)
 asq / iall              True
