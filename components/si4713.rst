@@ -39,7 +39,7 @@ Example configuration
 
 .. code-block:: yaml
 
-    si4713:
+    si4713_i2c:
       id: fm_transmitter
       reset_pin: 10
       op_mode: Analog
@@ -113,7 +113,7 @@ Example configuration
           name: Input Audio Level
   
     number:
-      - platform: si4713
+      - platform: si4713_i2c
         tuner:
           frequency:
             id: si4713_frequency
@@ -162,7 +162,7 @@ Example configuration
             name: RDS Deviation
   
     switch:
-      - platform: si4713
+      - platform: si4713_i2c
         mute:
           name: Mute
         mono:
@@ -198,7 +198,7 @@ Example configuration
             name: GPIO3 Switch
   
     select:
-      - platform: si4713
+      - platform: si4713_i2c
         pre_emphasis:
           name: Pre-Emphasis
         analog:
@@ -225,7 +225,7 @@ Example configuration
             name: Dynamic Range Control Preset
   
     text:
-      - platform: si4713
+      - platform: si4713_i2c
         rds:
           station:
             name: RDS Station
@@ -233,10 +233,10 @@ Example configuration
             name: RDS Text
   
     output:
-      - platform: si4713
+      - platform: si4713_i2c
         id: "GPIO1"
         pin: 1
-      - platform: si4713
+      - platform: si4713_i2c
         id: "GPIO2"
         pin: 2
 
