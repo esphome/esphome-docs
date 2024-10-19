@@ -289,7 +289,7 @@ Reference Clock (refclk) configuration variables:
 - **prescaler** (*Optional*, int): Integer number used to divide the RCLK frequency down to REFCLK frequency.
 
 Audio Compressor (acomp):
-------------------------------
+-------------------------
 
 - **enable** (*Optional*, boolean): Transmit audio dynamic range control enable.
 - **preset** (*Optional*, enum): Configures the compressor with predefined values. Minimal: -40dB, 50ms, 100ms, 15dB. Aggressive: -15dB, 0.5ms, 1000ms, 5dB.
@@ -326,7 +326,7 @@ RDS (rds):
 - **text** (*Optional*, float): Additional RDS text. Max 64 characters.
 
 Sensor (sensor):
---------
+----------------
 
 - **chip_id** (*Optional*, string): Detected chip id. (Si47xx)
 - **frequency** (*Optional*, float): Returns frequency being tuned.
