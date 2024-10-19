@@ -134,7 +134,7 @@ Example configuration
           sel:
             name: Xtal Selection
         ref_clk:
-          ref_clk:
+          sel:
             name: Refence Clock
         alc:
           attack_time:
