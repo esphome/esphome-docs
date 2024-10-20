@@ -11,7 +11,7 @@ This component implements the I²C interface for the Si47xx family of FM transmi
 The chip has three GPOI pins. They can be configured as output. 
 
 - GPIO2 would be the interrupt pin, but this component does polling instead.
-- GPOI3 is the clock source, it connected to crystal oscillator or the digital clock. On the Adafruit board the crystal is hardwired, there other two I²S pins are not connected, digital input is not possible without hacking and soldering.
+- GPOI3 is the clock source, it connected to crystal oscillator or the digital clock. On the Adafruit board the crystal is hardwired, the other two I²S pins are not connected, digital input is not possible without hacking and soldering.
 
 Documents
 ---------
