@@ -33,5 +33,5 @@ See Also
 --------
 
 - :doc:`/components/i2c`
-- :apiref:`i2c/i2c.h`
+- :apiref:`i2c_device/i2c_device.h`
 - :ghedit:`Edit`
