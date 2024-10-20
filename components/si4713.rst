@@ -350,7 +350,7 @@ tuner / frequency       87.50   76 to 108 (MHz) 0.05 step size
 tuner / deviation       68.25   0 to 90 (kHz)
 tuner / power           115     88 to 115 (dBuV) [1]_
 tuner / antcal          0       0 to 47.75 (pF)
-analog / level          636     0 to 1023 mVPK
+analog / level          636     0 to 1023 mV\ :sub:`PK`
 analog / attenuation    60kOhm  60kOhm, 74kOhm, 100kOhm, 396kOhm
 digital / sample_rate   48000   32000 to 48000 (Hz)
 digital / sample_bits   16      8, 16, 20, 24 (bits)
