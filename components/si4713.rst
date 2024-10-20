@@ -13,15 +13,6 @@ The chip has three GPOI pins. They can be configured as output.
 - GPIO2 would be the interrupt pin, but this component does polling instead.
 - GPOI3 is the clock source, it connected to crystal oscillator or the digital clock. On the Adafruit board the crystal is hardwired, the other two I²S pins are not connected, digital input is not possible without hacking and soldering.
 
-Documents
----------
-
-`Si4712/13-B30 Datasheet <https://github.com/gabest11/datasheet/blob/main/Silicon_Labs-SI4712-B30-GMR-datasheet.pdf>`__ 
-
-`Si4712/13-B30 FM Radio Transmitter With Receive Power Scan <https://github.com/gabest11/datasheet/blob/main/Si4712-13-B30.pdf>`__ 
-
-`Si47xx Programming Guide <https://github.com/gabest11/datasheet/blob/main/SiLabs Programming guide AN332.pdf>`__
-
 .. figure:: images/si4713-full.jpg
     :align: center
     :width: 50.0%
@@ -33,6 +24,15 @@ Documents
     :width: 50.0%
 
     Adafruit Si4713 clone
+
+Documents
+---------
+
+`Si4712/13-B30 Datasheet <https://github.com/gabest11/datasheet/blob/main/Silicon_Labs-SI4712-B30-GMR-datasheet.pdf>`__ 
+
+`Si4712/13-B30 FM Radio Transmitter With Receive Power Scan <https://github.com/gabest11/datasheet/blob/main/Si4712-13-B30.pdf>`__ 
+
+`Si47xx Programming Guide <https://github.com/gabest11/datasheet/blob/main/SiLabs Programming guide AN332.pdf>`__
 
 Example configuration
 ---------------------
