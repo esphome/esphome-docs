@@ -98,7 +98,7 @@ Reads and writes on the device can be performed with lambdas. For example:
 Configuration variables:
 ------------------------
 
-- **address** (**Required**, int): I²C address of the device.
+- **address** (*Required*, int): I²C address of the device.
 
 See Also
 --------
