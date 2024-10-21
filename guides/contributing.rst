@@ -254,6 +254,7 @@ adhere to the following order:
 - **Collapsible section**: To add a collapsible section, use the ``collapse`` directive:
 
   .. code-block:: rst
+
       .. collapse:: Details
           Something small enough to escape casual notice.
       
