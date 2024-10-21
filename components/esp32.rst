@@ -121,7 +121,7 @@ worry about pin alias names or numbering...yay!
 
 Some notes about the pins on the original ESP32:
 
-- ``GPIO0`` is used to determine the boot mode on startup; note that **ESP32 variants use differnt pins to determine
+- ``GPIO0`` is used to determine the boot mode on startup; note that **ESP32 variants use different pins to determine
   the boot mode.** Bootstrapping pin(s) should **not** be pulled LOW on startup to avoid booting into flash mode when
   it's not desired. You can, however, still use the strapping pins as output pins.
 - ``GPIO34`` to ``GPIO39``: These pins **cannot** be used as outputs (yes, even though GPIO stands for "general purpose
