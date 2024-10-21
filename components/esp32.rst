@@ -68,10 +68,9 @@ This is the default framework for ESP32 chips at the moment.
 
     # Example configuration entry
     esp32:
-      board: nodemcu-32s
+      board: esp32dev
       framework:
         type: arduino
-        version: 2.0.0
 
 Configuration variables:
 ------------------------
@@ -89,6 +88,10 @@ Configuration variables:
   custom or patched version of the framework.
 - **platform_version** (*Optional*, string): The version of the
   `platformio/espressif32 <https://github.com/platformio/platform-espressif32/releases/>`__ package to use.
+- **advanced** (*Optional*, mapping): Advanced options for highly specific tweaks.
+
+  - **ignore_efuse_custom_mac** (*Optional*, boolean): Can be set to ``true`` for devices on which the burned-in custom
+    MAC address is not valid.
 
 .. _esp32-espidf_framework:
 
@@ -105,13 +108,6 @@ ESP32S3, ESP32C3 and single-core ESP32 chips.
       board: esp32-c3-devkitm-1
       framework:
         type: esp-idf
-        version: recommended
-        # Custom sdkconfig options
-        sdkconfig_options:
-          COMPILER_OPTIMIZATION_SIZE: y
-        # Advanced tweaking options
-        advanced:
-          ignore_efuse_mac_crc: false
 
 Configuration variables:
 ------------------------
