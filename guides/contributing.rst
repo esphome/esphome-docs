@@ -267,10 +267,12 @@ adhere to the following order:
 
       .. collapse:: Open
           :open:
+
           This section is expected to be open by default.
 
   .. collapse:: Open
       :open:
+
       This section is expected to be open by default.
 
   .. code-block:: rst
