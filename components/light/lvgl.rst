@@ -13,7 +13,7 @@ Supported widget is :ref:`lvgl-widget-led`. A single light supports only a singl
 Configuration variables:
 ------------------------
 
-- **widget** (**Required**): The ID of a ``led`` widget configured in LVGL, which will reflect the state of the light.
+- **led** (**Required**): The ID of a ``led`` widget configured in LVGL, which will reflect the state of the light.
 - All other options from :ref:`light <config-light>`.
 
 
@@ -23,7 +23,7 @@ Example:
 
     light:
       - platform: lvgl
-        widget: led_id
+        led: led_id
         name: LVGL light
 
 .. note::
