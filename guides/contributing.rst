@@ -130,7 +130,7 @@ Then, use the provided Makefile to build the changes and start a live-updating w
     # Start web server on port 8000
     make live-html
 
-Notes
+s
 *****
 
 - Use the English language (duh...)
@@ -268,12 +268,12 @@ adhere to the following order:
       .. collapse:: Open
           :open:
 
-          This section is expected to be open by default.
+          This section is open by default.
 
   .. collapse:: Open
       :open:
 
-      This section is expected to be open by default.
+      This section is open by default.
 
   .. code-block:: rst
 
@@ -299,7 +299,117 @@ adhere to the following order:
 
   .. note::
 
-      A blank line is *required* after every ``collapse`` directive.
+      - The ``:open:`` flag has to be immediately after the ``collapse`` directive without a blank line.
+      - A blank line is *required* after every ``collapse`` directive.
+
+- **Tabs**: To group content into tabs, use the ``tabs`` directive. The tabs directive to define a tab set.
+  Basic tabs are added using the ``tab`` directive (without s), which takes the tab’s label as an argument:
+
+  .. code-block:: rst
+
+      .. tabs::
+
+          .. tab:: Apples
+
+            Apples are green, or sometimes red.
+
+          .. tab:: Pears
+
+            Pears are green.
+
+          .. tab:: Oranges
+
+            Oranges are orange.
+
+  This will appear as
+
+  .. tabs::
+
+      .. tab:: Apples
+
+        Apples are green, or sometimes red.
+
+      .. tab:: Pears
+
+        Pears are green.
+
+      .. tab:: Oranges
+
+        Oranges are orange.
+
+  The contents of each tab can be displayed by clicking on the tab that you wish to show.
+  Clicking on the tab that is currently open will hide the tab’s content, leaving only the tab set labels visible.
+
+  Tabs can also be nested inside one another:
+
+  .. code-block:: rst
+
+      .. tabs::
+
+          .. tab:: Stars
+
+            .. tabs::
+
+                .. tab:: The Sun
+
+                  The closest star to us.
+
+                .. tab:: Proxima Centauri
+
+                  The second closest star to us.
+
+                .. tab:: Polaris
+
+                  The North Star.
+
+          .. tab:: Moons
+
+            .. tabs::
+
+                .. tab:: The Moon
+
+                  Orbits the Earth
+
+                .. tab:: Titan
+
+                  Orbits Jupiter
+
+  .. tabs::
+
+      .. tab:: Stars
+
+        .. tabs::
+
+            .. tab:: The Sun
+
+              The closest star to us.
+
+            .. tab:: Proxima Centauri
+
+              The second closest star to us.
+
+            .. tab:: Polaris
+
+              The North Star.
+
+      .. tab:: Moons
+
+        .. tabs::
+
+            .. tab:: The Moon
+
+              Orbits the Earth
+
+            .. tab:: Titan
+
+              Orbits Jupiter
+
+    .. note::
+
+      - A blank line is *required* after every ``tabs`` directive.
+      - The contents of each tab can be displayed by clicking on the tab that you wish to show.
+        Clicking on the tab that is currently open will hide the tab’s content, leaving only the tab set labels visible.
+      - For advanced features like tab-groupings refer to https://sphinx-tabs.readthedocs.io/en/latest/
 
 - **Images**: Use the ``figure`` directive to display an image:
 
