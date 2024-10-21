@@ -301,7 +301,7 @@ adhere to the following order:
 
   .. note::
 
-      - The ``:open:`` flag following the ``collapse`` directive has to be without a blank line.
+      - The ``:open:`` flag must immediately follow the ``collapse`` directive without a blank line between them.
       - A blank line is *required* after every ``collapse`` directive.
 
 - **Tabs**: To group content into tabs, use the ``tabs`` directive. The tabs directive defines a tab set.
