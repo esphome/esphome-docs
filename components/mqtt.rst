@@ -458,6 +458,8 @@ Configuration variables:
    be retained. Defaults to ``true``.
 -  **discovery** (*Optional*, boolean): Manually enable/disable
    discovery for a component. Defaults to the global default.
+-  **subscribe_qos** (*Optional*, int): The [Quality of Service](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/)
+   level advertised in discovery for subscribing (only if discovery is enabled). Defaults to 0.
 -  **availability** (*Optional*): Manually set what should be sent to
    Home Assistant for showing entity availability. Default derived from
    :ref:`global birth/last will message <mqtt-last_will_birth>`.
