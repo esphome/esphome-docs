@@ -130,7 +130,7 @@ Then, use the provided Makefile to build the changes and start a live-updating w
     # Start web server on port 8000
     make live-html
 
-s
+Notes
 *****
 
 - Use the English language (duh...)
@@ -265,18 +265,6 @@ adhere to the following order:
 
   .. code-block:: rst
 
-      .. collapse:: Open
-          :open:
-
-          This section is open by default.
-
-  .. collapse:: Open
-      :open:
-
-      This section is open by default.
-
-  .. code-block:: rst
-
       .. collapse:: A long code block
 
           .. code-block:: yaml
@@ -297,12 +285,26 @@ adhere to the following order:
               name: "Relay #42"
               pin: GPIOXX
 
+  The ``:open:`` flag can be used to have the section open by default.
+
+  .. code-block:: rst
+
+      .. collapse:: Open
+          :open:
+
+          This section is open by default.
+
+  .. collapse:: Open
+      :open:
+
+      This section is open by default.
+
   .. note::
 
-      - The ``:open:`` flag has to be immediately after the ``collapse`` directive without a blank line.
+      - The ``:open:`` flag following the ``collapse`` directive has to be without a blank line.
       - A blank line is *required* after every ``collapse`` directive.
 
-- **Tabs**: To group content into tabs, use the ``tabs`` directive. The tabs directive to define a tab set.
+- **Tabs**: To group content into tabs, use the ``tabs`` directive. The tabs directive defines a tab set.
   Basic tabs are added using the ``tab`` directive (without s), which takes the tab’s label as an argument:
 
   .. code-block:: rst
@@ -336,9 +338,6 @@ adhere to the following order:
       .. tab:: Oranges
 
           Oranges are orange.
-
-  The contents of each tab can be displayed by clicking on the tab that you wish to show.
-  Clicking on the tab that is currently open will hide the tab’s content, leaving only the tab set labels visible.
 
   Tabs can also be nested inside one another:
 
@@ -408,8 +407,8 @@ adhere to the following order:
 
       - A blank line is *required* after every ``tabs`` directive.
       - The contents of each tab can be displayed by clicking on the tab that you wish to show.
-        Clicking on the tab that is currently open will hide the tab’s content, leaving only the tab set labels visible.
-      - For advanced features like tab-groupings refer to https://sphinx-tabs.readthedocs.io/en/latest/
+        Clicking again on the tab that is currently open will hide its content, leaving only the tab set labels visible.
+      - For advanced features like tab-groupings, refer to https://sphinx-tabs.readthedocs.io/en/latest/
 
 - **Images**: Use the ``figure`` directive to display an image:
 
