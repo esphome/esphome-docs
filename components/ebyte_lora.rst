@@ -51,56 +51,56 @@ Configuration variables:
 - **addl** (*Optional*, int): ebyte ADDH. Defaults to 0.
 - **channel** (*Optional*, int): channel selection. Defaults to 13.
 - **uart_bps** (*Optional*, enum):  What speed you set UART to, no need to change. Defaults to ``UART_9600``
-    - ``UART_1200`` (1200 bps)
-    - ``UART_2400`` (2400 bps)
-    - ``UART_4800`` (4800 bps)
-    - ``UART_9600`` (4800 bps)
-    - ``UART_19200`` (19200 bps)
-    - ``UART_38400`` (38400 bps)
-    - ``UART_57600`` (57600 bps)
-    - ``UART_115200`` (115200 bps)
+  - ``UART_1200`` (1200 bps)
+  - ``UART_2400`` (2400 bps)
+  - ``UART_4800`` (4800 bps)
+  - ``UART_9600`` (4800 bps)
+  - ``UART_19200`` (19200 bps)
+  - ``UART_38400`` (38400 bps)
+  - ``UART_57600`` (57600 bps)
+  - ``UART_115200`` (115200 bps)
 - **uart_parity** (*Optional*, enum):  Parity to be used. Defaults to ``EBYTE_UART_8N1``
-    - ``EBYTE_UART_8N1`` (EBYTE_UART_8N1)
-    - ``EBYTE_UART_8O1`` (EBYTE_UART_8O1)
-    - ``EBYTE_UART_8E1`` (EBYTE_UART_8E1)
+  - ``EBYTE_UART_8N1`` (EBYTE_UART_8N1)
+  - ``EBYTE_UART_8O1`` (EBYTE_UART_8O1)
+  - ``EBYTE_UART_8E1`` (EBYTE_UART_8E1)
 - **transmission_power** (*Optional*, enum):  Power to transmit at. Defaults to ``TX_DEFAULT_MAX``
-    - ``TX_DEFAULT_MAX`` (Full power)
-    - ``TX_LOWER`` (Lower then full power)
-    - ``TX_EVEN_LOWER`` (Even lower then full power db)
-    - ``TX_LOWEST`` (Lowest db)
+  - ``TX_DEFAULT_MAX`` (Full power)
+  - ``TX_LOWER`` (Lower then full power)
+  - ``TX_EVEN_LOWER`` (Even lower then full power db)
+  - ``TX_LOWEST`` (Lowest db)
 - **air_data_rate** (*Optional*, enum):  The air rate, must be the same for all nodes, higher rate is smaller delay and shorter distance. Defaults to ``AIR_2_4KB``
-    - ``AIR_2_4KB`` (2.4k)
-    - ``AIR_4_8KB`` (4.8k)
-    - ``AIR_9_6KB`` (9.6k)
-    - ``AIR_19_2KB`` (19.2k)
-    - ``AIR_38_4KB`` (38.4k)
-    - ``AIR_62_5KB`` (62.4k)
-  - **sub_packet** (*Optional*, enum):  The data sent is less then this length then it will always output it in one go. Defaults to ``SUB_200B``
-    - ``SUB_200B`` (200 bytes)
-    - ``SUB_128B`` (128 bytes)
-    - ``SUB_64B`` (64 bytes)
-    - ``SUB_32B`` (32 bytes)
-  - **wor_period** (*Optional*, enum):  WOR cycle, not implemented. Defaults to ``WOR_4000``
-    - ``WOR_500`` (EBYTE_UART_8O1)
-    - ``WOR_1000`` (WOR_4000)
-    - ``WOR_1500`` (EBYTE_UART_8N1)
-    - ``WOR_2000`` (EBYTE_UART_8O1)
-    - ``WOR_2500`` (WOR_4000)
-    - ``WOR_3000`` (EBYTE_UART_8N1)
-    - ``WOR_3500`` (EBYTE_UART_8O1)
-    - ``WOR_4000`` (WOR_4000)
-    - **transmission_mode** (*Optional*, enum):  Fixed or Transparent transmission, fixed is not implemented yet. Defaults to ``TRANSPARENT``
-    - ``TRANSPARENT`` (Transparent mode)
-    - ``FIXED`` (Fixed mode)
-    - **enable_rssi** (*Optional*, enum): Send a RSSI byte as last byte, keep the same on all nodes. Defaults to ``EBYTE_ENABLED``
-    - ``EBYTE_ENABLED`` (Enable this setting)
-    - ``EBYTE_DISABLED`` (Disable this setting)
-    - **enable_lbt** (*Optional*, enum): monitoring before sending data, which might help with interference. Defaults to ``EBYTE_DISABLED``
-    - ``EBYTE_ENABLED`` (Enable this setting)
-    - ``EBYTE_DISABLED`` (Disable this setting)
-    - **rssi_noise** (*Optional*, enum):  Makes it possible to see ambient noise, not yet implemented . Defaults to ``EBYTE_DISABLED``
-    - ``EBYTE_ENABLED`` (Enable this setting)
-    - ``EBYTE_DISABLED`` (Disable this setting)
+  - ``AIR_2_4KB`` (2.4k)
+  - ``AIR_4_8KB`` (4.8k)
+  - ``AIR_9_6KB`` (9.6k)
+  - ``AIR_19_2KB`` (19.2k)
+  - ``AIR_38_4KB`` (38.4k)
+  - ``AIR_62_5KB`` (62.4k)
+- **sub_packet** (*Optional*, enum):  The data sent is less then this length then it will always output it in one go. Defaults to ``SUB_200B``
+  - ``SUB_200B`` (200 bytes)
+  - ``SUB_128B`` (128 bytes)
+  - ``SUB_64B`` (64 bytes)
+  - ``SUB_32B`` (32 bytes)
+- **wor_period** (*Optional*, enum):  WOR cycle, not implemented. Defaults to ``WOR_4000``
+  - ``WOR_500`` (EBYTE_UART_8O1)
+  - ``WOR_1000`` (WOR_4000)
+  - ``WOR_1500`` (EBYTE_UART_8N1)
+  - ``WOR_2000`` (EBYTE_UART_8O1)
+  - ``WOR_2500`` (WOR_4000)
+  - ``WOR_3000`` (EBYTE_UART_8N1)
+  - ``WOR_3500`` (EBYTE_UART_8O1)
+  - ``WOR_4000`` (WOR_4000)
+- **transmission_mode** (*Optional*, enum):  Fixed or Transparent transmission, fixed is not implemented yet. Defaults to ``TRANSPARENT``
+  - ``TRANSPARENT`` (Transparent mode)
+  - ``FIXED`` (Fixed mode)
+- **enable_rssi** (*Optional*, enum): Send a RSSI byte as last byte, keep the same on all nodes. Defaults to ``EBYTE_ENABLED``
+  - ``EBYTE_ENABLED`` (Enable this setting)
+  - ``EBYTE_DISABLED`` (Disable this setting)
+- **enable_lbt** (*Optional*, enum): monitoring before sending data, which might help with interference. Defaults to ``EBYTE_DISABLED``
+  - ``EBYTE_ENABLED`` (Enable this setting)
+  - ``EBYTE_DISABLED`` (Disable this setting)
+  - **rssi_noise** (*Optional*, enum):  Makes it possible to see ambient noise, not yet implemented . Defaults to ``EBYTE_DISABLED``
+  - ``EBYTE_ENABLED`` (Enable this setting)
+  - ``EBYTE_DISABLED`` (Disable this setting)
 - **sensors** (*Optional*, list): A list of sensor IDs to be broadcast. Each entry may be just the sensor id, or may set a different id to be broadcast.
 
   - **id** (**Required**, :ref:`config-id`): The id of the sensor to be used
