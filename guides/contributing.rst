@@ -311,15 +311,15 @@ adhere to the following order:
 
           .. tab:: Apples
 
-            Apples are green, or sometimes red.
+              Apples are green, or sometimes red.
 
           .. tab:: Pears
 
-            Pears are green.
+              Pears are green.
 
           .. tab:: Oranges
 
-            Oranges are orange.
+              Oranges are orange.
 
   This will appear as
 
@@ -327,15 +327,15 @@ adhere to the following order:
 
       .. tab:: Apples
 
-        Apples are green, or sometimes red.
+          Apples are green, or sometimes red.
 
       .. tab:: Pears
 
-        Pears are green.
+          Pears are green.
 
       .. tab:: Oranges
 
-        Oranges are orange.
+          Oranges are orange.
 
   The contents of each tab can be displayed by clicking on the tab that you wish to show.
   Clicking on the tab that is currently open will hide the tab’s content, leaving only the tab set labels visible.
@@ -348,63 +348,63 @@ adhere to the following order:
 
           .. tab:: Stars
 
-            .. tabs::
+              .. tabs::
 
-                .. tab:: The Sun
+                  .. tab:: The Sun
 
-                  The closest star to us.
+                      The closest star to us.
 
-                .. tab:: Proxima Centauri
+                  .. tab:: Proxima Centauri
 
-                  The second closest star to us.
+                      The second closest star to us.
 
-                .. tab:: Polaris
+                  .. tab:: Polaris
 
-                  The North Star.
+                      The North Star.
 
           .. tab:: Moons
 
-            .. tabs::
+              .. tabs::
 
-                .. tab:: The Moon
+                  .. tab:: The Moon
 
-                  Orbits the Earth
+                      Orbits the Earth
 
-                .. tab:: Titan
+                  .. tab:: Titan
 
-                  Orbits Jupiter
+                      Orbits Jupiter
 
   .. tabs::
 
       .. tab:: Stars
 
-        .. tabs::
+          .. tabs::
 
-            .. tab:: The Sun
+              .. tab:: The Sun
 
-              The closest star to us.
+                  The closest star to us.
 
-            .. tab:: Proxima Centauri
+              .. tab:: Proxima Centauri
 
-              The second closest star to us.
+                  The second closest star to us.
 
-            .. tab:: Polaris
+              .. tab:: Polaris
 
-              The North Star.
+                  The North Star.
 
       .. tab:: Moons
 
-        .. tabs::
+          .. tabs::
 
-            .. tab:: The Moon
+              .. tab:: The Moon
 
-              Orbits the Earth
+                  Orbits the Earth
 
-            .. tab:: Titan
+              .. tab:: Titan
 
-              Orbits Jupiter
+                  Orbits Jupiter
 
-    .. note::
+  .. note::
 
       - A blank line is *required* after every ``tabs`` directive.
       - The contents of each tab can be displayed by clicking on the tab that you wish to show.
