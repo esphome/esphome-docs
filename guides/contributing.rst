@@ -275,8 +275,6 @@ adhere to the following order:
 
   .. collapse:: Open
 
-      :open:
-
       This section is expected to be open by default.
 
   .. collapse:: A long code block
