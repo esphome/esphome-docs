@@ -258,30 +258,42 @@ adhere to the following order:
       .. collapse:: Details
 
           Something small enough to escape casual notice.
-      
-      .. collapse:: Open
-
-          This section is expected to be open by default.
-      
-      .. collapse:: A long code block
-
-          .. code-block:: python
-
-              print("Not really")
 
   .. collapse:: Details
 
       Something small enough to escape casual notice.
 
-  .. collapse:: Open
+  .. code-block:: rst
 
+      .. collapse:: Open
+          :open:
+          This section is expected to be open by default.
+
+  .. collapse:: Open
+      :open:
       This section is expected to be open by default.
+
+  .. code-block:: rst
+
+      .. collapse:: A long code block
+
+          .. code-block:: yaml
+
+              # Sample configuration entry
+              switch:
+                - platform: gpio
+                  name: "Relay #42"
+                  pin: GPIOXX
 
   .. collapse:: A long code block
 
-      .. code-block:: python
+      .. code-block:: yaml
 
-          print("Not really")
+          # Sample configuration entry
+          switch:
+            - platform: gpio
+              name: "Relay #42"
+              pin: GPIOXX
 
   .. note::
 
