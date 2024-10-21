@@ -71,6 +71,31 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): The speaker to control. Defaults to the only one in YAML.
 
+.. _speaker-volume_set:
+
+``speaker.volume_set`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action will set the volume of the speaker.
+
+.. code-block::
+
+    on_...:
+      # Simple
+      - speaker.volume_set: 50%
+
+      # Full
+      - speaker.volume_set:
+          id: speaker_id
+          volume: 50%
+
+      # Simple with lambda
+      -  speaker.volume_set: !lambda "return 0.5;"
+
+Configuration variables:
+
+**volume** (**Required**, percentage): The volume to set the speaker to.
+
 .. _speaker-conditions:
 
 Speaker Conditions
