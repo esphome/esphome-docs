@@ -65,6 +65,7 @@ You can also publish a state to a Nextion text sensor from elsewhere in your YAM
 with the ``text_sensor.nextion.publish`` action.
 
 .. code-block:: yaml
+
     # Example configuration entry
     text_sensor:
       - platform: nextion
@@ -85,6 +86,7 @@ with the ``text_sensor.nextion.publish`` action.
           # These are optional. Defaults to true.
           publish_state: true
           send_to_nextion: true
+
 Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the Nextion text sensor.
@@ -97,6 +99,7 @@ Configuration options:
     This action can also be written in lambdas:
 
     .. code-block:: cpp
+        
         id(nextion_text).set_state("Hello World");
         id(nextion_text).set_state("Hello World", true);
         id(nextion_text).set_state("Hello World", true, true);

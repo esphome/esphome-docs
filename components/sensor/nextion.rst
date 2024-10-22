@@ -105,6 +105,7 @@ You can also publish a state to a Nextion sensor from elsewhere in your YAML fil
 with the ``sensor.nextion.publish`` action.
 
 .. code-block:: yaml
+
     # Example configuration entry
     sensor:
       - platform: nextion
@@ -125,6 +126,7 @@ with the ``sensor.nextion.publish`` action.
           # These are optional. Defaults to true.
           publish_state: true
           send_to_nextion: true
+
 Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the Nextion sensor.
@@ -137,6 +139,7 @@ Configuration options:
     This action can also be written in lambdas:
 
     .. code-block:: cpp
+
         id(nextion_sensor).set_state(100.0);
         id(nextion_sensor).set_state(100.0, true);
         id(nextion_sensor).set_state(100.0, true, true);

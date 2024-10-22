@@ -91,12 +91,13 @@ should be prefixed with the page name (page0/page1).
 .. _binary_sensor-nextion-publish_action:
 
 ``binary_sensor.nextion.publish`` Action
----------------------------------------
+------------------------------------------
 
 You can also publish a state to a Nextion binary sensor from elsewhere in your YAML file
 with the ``binary_sensor.nextion.publish`` action.
 
 .. code-block:: yaml
+
     # Example configuration entry
     binary_sensor:
       - platform: nextion
@@ -117,6 +118,7 @@ with the ``binary_sensor.nextion.publish`` action.
           # These are optional. Defaults to true.
           publish_state: true
           send_to_nextion: true
+
 Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the Nextion switch.
@@ -129,6 +131,7 @@ Configuration options:
     This action can also be written in lambdas:
 
     .. code-block:: cpp
+      
         id(nextion_bsensor).set_state(true);
         id(nextion_bsensor).set_state(true, true);
         id(nextion_bsensor).set_state(true, true, true);

@@ -69,6 +69,7 @@ You can also publish a state to a Nextion switch from elsewhere in your YAML fil
 with the ``switch.nextion.publish`` action.
 
 .. code-block:: yaml
+
     # Example configuration entry
     sensor:
       - platform: nextion
@@ -89,6 +90,7 @@ with the ``switch.nextion.publish`` action.
           # These are optional. Defaults to true.
           publish_state: true
           send_to_nextion: true
+
 Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the Nextion switch.
@@ -101,6 +103,7 @@ Configuration options:
     This action can also be written in lambdas:
 
     .. code-block:: cpp
+      
         id(nextion_switch).set_state(true);
         id(nextion_switch).set_state(true, true);
         id(nextion_switch).set_state(true, true, true);
