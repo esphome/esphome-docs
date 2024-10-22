@@ -132,7 +132,7 @@ Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the Nextion sensor.
 - **state** (**Required**, string, :ref:`templatable <config-templatable>`): The float state to publish.
-- **publish_state** (**Optional**, bool, :ref:`templatable <config-templatable>`): Publish the new state to Home Assistant. Default is true.
+- **publish_state** (**Optional**, bool, :ref:`templatable <config-templatable>`): Publish new state to Home Assistant. Default is true.
 - **send_to_nextion** (**Optional**, bool, :ref:`templatable <config-templatable>`): Publish new state to Nextion display which will update component. Default is true.
 
 .. note::
@@ -155,7 +155,7 @@ some more advanced functions (see the full :apiref:`nextion/sensor/nextion_senso
 
 .. _nextion_sensor_set_state:
 
-- ``set_state(bool value, bool publish, bool send_to_nextion)``: Set the state to **value**. Publish the new state to Home Assistant. Send_to_Nextion is to publish the state to the Nextion.
+- ``set_state(bool value, bool publish, bool send_to_nextion)``: Set the state to **value**. Publish new state to Home Assistant. Send_to_Nextion is to publish the state to the Nextion.
 
 .. _nextion_sensor_update:
 
