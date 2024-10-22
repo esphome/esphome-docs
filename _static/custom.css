@@ -360,6 +360,15 @@ img.logo {
     background-color: #212121;
   }
 
+  .sphinx-tabs-panel {
+    background: #212121;
+  }
+  
+  .sphinx-tabs-tab {
+    background: #212121 !important;
+    margin: 0 !important;
+  }
+
   img.logo {
     content: url("/_static/logo-text-on-dark.svg");
   }
