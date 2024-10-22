@@ -6,16 +6,30 @@ TCS34725 RGB Color Sensor
     :image: tcs34725.jpg
     :keywords: tcs34725
 
-The ``tcs34725`` sensor platform allows you to use your TCS34725 RGB color sensors
-(`datasheet <https://cdn-shop.adafruit.com/datasheets/TCS34725.pdf>`__,
-`Adafruit`_), color temperature and illuminance sensors with ESPHome. The :ref:`I²C <i2c>` is
-required to be set up in your configuration for this sensor to work.
+The ``tcs34725`` sensor platform enables the integration of TCS34725 RGB color sensors
+(`datasheet <https://cdn-shop.adafruit.com/datasheets/TCS34725.pdf>`__, `Adafruit`_)
+into ESPHome, providing precise data on color, color temperature, and illuminance. The
+sensor requires a properly configured :ref:`I²C <i2c>` interface in your setup.
 
-Note: If the `integration_time` is set too long for the light conditions, the sensor will overexpose.
-In this case the sensor may not show 100% on its clear channel. With an `integration_time` of `614ms`
-and a `gain` of `1x` the sensor will max out at around 4100 lx. In this case the individual color
-channels will show `100%`, the clear channel `25%`. The illumination in lux is shown as `0` as well
-as the color temperature in kelvin will show `0`.
+This sensor supports adjustable exposure times ranging from 153.6 ms to 614.4 ms.
+Increasing the exposure time enhances light sensitivity, making the sensor more
+responsive to subtle lighting changes. However, longer exposure times also lower the
+maximum brightness the sensor can handle before overexposing. When this occurs, the
+sensor_saturation will reach 100%, and the sensor will stop providing illuminance or
+color temperature values.
+
+The gain setting can also be adjusted to increase light sensitivity, but it further
+reduces the brightness threshold before overexposure and may add more noise to the data.
+
+Setting the exposure time to `auto` will adjust the exposure time between 153.6 and
+614.4 ms and also adjust the gain, as necessary.
+
+Note: The sensor also allows for exposure times below 153.6 ms. However, shorter
+exposure times don’t decrease the sensor’s sensitivity; instead, they reduce the
+resolution of the data. Exposure times below 50 ms can cause ripple effects from the
+power grid’s frequency, which may interfere with the sensor data. It’s recommended to
+avoid these shorter exposure times unless there's a specific use case.
+
 
 .. figure:: images/tcs34725-full.jpg
     :align: center
@@ -34,14 +48,14 @@ as the color temperature in kelvin will show `0`.
     # Example configuration entry
     sensor:
       - platform: tcs34725
-        red_channel:
-          name: "TCS34725 Red Channel"
-        green_channel:
-          name: "TCS34725 Green Channel"
-        blue_channel:
-          name: "TCS34725 Blue Channel"
-        clear_channel:
-          name: "TCS34725 Clear Channel"
+        red_channel_irradiance:
+          name: "TCS34725 Red Channel Irradiance"
+        green_channel_irradiance:
+          name: "TCS34725 Green Channel Irradiance"
+        blue_channel_irradiance:
+          name: "TCS34725 Blue Channel Irradiance"
+        sensor_saturation:
+          name: "TCS34725 Sensor Saturation"
         illuminance:
           name: "TCS34725 Illuminance"
         color_temperature:
@@ -53,16 +67,16 @@ as the color temperature in kelvin will show `0`.
 Configuration variables:
 ------------------------
 
-- **red_channel** (*Optional*): Value of the red color channel relative to the clear channel, as a percentage.
+- **red_channel_irradiance** (*Optional*): Irradiance of the red light received by the sensor in µW/cm².
   All options from :ref:`Sensor <config-sensor>`.
-- **green_channel** (*Optional*): Value of the green color channel relative to the clear channel, as a percentage.
+- **green_channel_irradiance** (*Optional*): Irradiance of the green light received by the sensor in µW/cm².
   All options from :ref:`Sensor <config-sensor>`.
-- **blue_channel** (*Optional*): Value of the blue color channel relative to the clear channel, as a percentage.
+- **blue_channel_irradiance** (*Optional*): Irradiance of the blue light received by the sensor in µW/cm².
   All options from :ref:`Sensor <config-sensor>`.
-- **clear_channel** (*Optional*): Value of the clear (without a color filter) channel, relative to the maximum value for
-  the chosen integration time. All options from :ref:`Sensor <config-sensor>`.
-- **illuminance** (*Optional*): Get the total illuminance of the sensor in lx.
-- **color_temperature** (*Optional*): Get the calculated color temperature of the light in Kelvin.
+- **sensor_saturation** (*Optional*): The saturation of the sensor with light in percent. All options from
+  :ref:`Sensor <config-sensor>`.
+- **illuminance** (*Optional*): Uncalibrated illuminance in Lux.
+- **color_temperature** (*Optional*): Uncalibrated color temperature in Kelvin.
 - **gain** (*Optional*): Set the gain for the internal ADCs to work better in certain low-light conditions. Valid
   values are ``1x`` (default), ``4x``, ``16x``, ``60x`` (highest gain). Will be overwritten if auto integration time 
   is used
@@ -72,14 +86,8 @@ Configuration variables:
 - **glass_attenuation_factor** (*Optional*): The attenuation factor of glass if it's behind some glass facia. 
   Default is ``1.0`` means ``100%`` transmissivity. ``2`` means ``50%`` transmissivity etc.
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x29``.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. Defaults to ``60s``.
-
-For many applications, you can use AUTO timing or leave integration time empty to have the ESP select a suitable gain 
-setting based on the previous measurement. If light levels change dramatically this may cause the next reading to saturate,
-after which the gain will adjust down and subsequent readings will be in range.
-If auto is used in a dynamic environment an update rate of 1 second is best. Filters can be used to throttle the output and 
-prevent updates of marginal changes like:
+- **update_interval** (*Optional*, :ref:`config-time`): The time between updates are fetched from the sensor. Defaults
+  to ``60s``.
 
 .. code-block:: yaml
 
@@ -87,11 +95,8 @@ prevent updates of marginal changes like:
     name: "TCS34725 Illuminance"
     filters:
       - or:
-          - delta: 50
+          - delta: 5
           - throttle: 60sec  
-
-When using integration times lower than 154ms the accuracy of the sensor drops with no further gain in possible light 
-accumulation. Use faster timings only if fast readout is necessary with stable light conditions recommended.
 
 See Also
 --------
