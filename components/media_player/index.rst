@@ -25,7 +25,14 @@ Base Media Player Configuration
 
 Configuration variables:
 
-- **name** (**Required**, string): The name of the media player.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name of the media player. At least one of **id** and **name** must be specified.
+
+  .. note::
+
+      If you have a :ref:`friendly_name <esphome-configuration_variables>` set for your device and
+      you want the media player to use that name, you can set ``name: None``.
+
 - **icon** (*Optional*, icon): Manually set the icon to use for the
   media player in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
@@ -201,6 +208,21 @@ This trigger is activated every time the media player finishes playing.
         # ...
         on_idle:
           - logger.log: "Playback finished!"
+
+.. _media_player-on_announcement_trigger:
+
+``media_player.on_announcement`` Trigger
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This trigger is activated every time the media player plays an announcement.
+
+.. code-block:: yaml
+
+    media_player:
+      - platform: i2s_audio  # or any other platform
+        # ...
+        on_announcement:
+          - logger.log: "Announcing!"
 
 .. _media_player-is_idle_condition:
 

@@ -44,10 +44,22 @@ is close to GND (DOWNSTREAM) or it is closer to VCC (UPSTREAM).
         id: source_sensor
         pin: A0
 
+Note:
+------------------------
+Some boards like NodeMCUv2 needs to multiply ADC reading by 3.3 to provide accurate result because they have built-in voltage divider on ADC pin (https://arduino.stackexchange.com/a/71952)
+
+.. code-block:: yaml
+
+    # Example source sensor:
+      - platform: adc
+        id: source_sensor
+        pin: A0
+        filters:
+          - multiply: 3.3
+
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name for the sensor.
 - **sensor** (**Required**, :ref:`config-id`): The sensor to read the voltage values from
   to convert to resistance readings.
 - **configuration** (**Required**, string): The type of circuit, one of ``DOWNSTREAM`` or
@@ -55,7 +67,6 @@ Configuration variables:
 - **resistor** (**Required**, float): The value of the resistor with a constant value.
 
 - **reference_voltage** (*Optional*, float): The reference voltage. Defaults to ``3.3V``.
-- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 See Also

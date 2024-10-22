@@ -6,12 +6,12 @@ Key collector component
 .. seo::
     :description: Key collector component
 
-The ``key_collector`` component collects key presses from
-components like :ref:`matrix_keypad` or ``wiegand``. It allows you to process
-key sequences and treat them as one, for example to allow inputting of 
-a PIN code or a passkey. The component outputs the result of the keypress
-sequence as a variable usable in automations.
-
+The ``key_collector`` component collects key presses from components
+like :ref:`matrix_keypad`, :doc:`Wiegand keypad </components/wiegand>`
+or LVGL :ref:`Button Matrix <lvgl-widget-buttonmatrix>`, :ref:`Keyboard <lvgl-widget-keyboard>`
+widgets. It allows you to process key sequences and treat them as one, for
+example to allow inputting of a PIN code or a passkey. The component outputs
+the result of the keypress sequence as a variable usable in automations.
 
 Component
 ---------
@@ -83,12 +83,16 @@ Automations:
   if the timeout happens. The current sequence of pressed keys is placed in a ``vector<uint8_t>`` variable ``x``
   and ``start`` holds the start key that activated this sequence or else ``0``.
 
+Lambda:
+-------
+
+- **send_key(uint8_t key)**: Send a key to the collector directly.
 
 See Also
 --------
 
 - :doc:`/components/matrix_keypad`
-
-.. - :doc:`/components/wiegand`
-
+- :doc:`/components/wiegand`
+- :ref:`LVGL Button Matrix widget <lvgl-widget-buttonmatrix>`
+- :ref:`LVGL Keyboard widget <lvgl-widget-keyboard>`
 - :ghedit:`Edit`

@@ -2,10 +2,10 @@ Web Server API
 ==============
 
 .. seo::
-    :description: Migration guide for installing ESPHome on ESPs running ESPEasy.
-    :image: espeasy.svg
+    :description: Information on Web Server APIs, including Event Source APIs and REST APIs.
+    :image: logo-text.svg
 
-Since version 1.3, ESPHome includes a built-in web server that can be used to view states
+ESPHome includes a built-in web server that can be used to view states
 and send commands. In addition to the web-frontend available under the root index of the
 web server, there's also two other features the web server currently offers: A real time event
 source and REST API.
@@ -23,6 +23,8 @@ mDNS with ``<name>.local/``. So for example to navigate to the web server of a n
 While it's currently recommended to use ESPHome directly through Home Assistant, if you want
 to integrate ESPHome with an external or self-built application you can use two available
 APIs: the real-time event source API and REST API.
+
+.. _api-event-source:
 
 Event Source API
 ~~~~~~~~~~~~~~~~
@@ -55,6 +57,8 @@ states so that the client can catch up with reality.
 
 The payloads of these state events are also the same as the payloads of the REST API GET calls.
 I would recommend just opening the network debug panel of your web browser to see what's sent.
+
+.. _api-rest:
 
 REST API
 --------
@@ -178,6 +182,7 @@ creating a POST request at ``/light/<id>/turn_on?brightness=128&transition=2`` w
 -  **flash**: Flash the color provided by the other properties for a duration in seconds.
 -  **transition**: Transition to the specified color values in this duration in seconds.
 -  **effect**: Set an effect for the light.
+-  **color_temp**: Set the color temperature of the light, in mireds.
 
 ``turn_off`` optional URL parameters:
 
@@ -234,12 +239,13 @@ stopped midway. An example GET request for ``/cover/front_window_blinds`` might 
 
 -  **id**: The ID of the cover, prefixed with ``cover-``.
 -  **state**: ``OPEN`` or ``CLOSED``. Any position other than 0.0 is considered open.
--  **value**: Current cover position as a float number.
+-  **value**: Current cover position as a float number. If the cover component does not support cover position reporting, then this will either be 1.0 when open or 0.0 when closed.
 -  **current_operation**: ``OPENING``, ``CLOSING`` or ``IDLE``.
 -  **tilt**: (only if supported by this cover component) tilt angle from 0.0 to 1.0.
+-  **position**: (only if supported by this cover component) Current cover position as a float number.
 
 POST requests on the other hand allow performing actions on the cover, the available
-methods being ``open``, ``close``, ``stop`` and ``set``. The following parameters
+methods being ``open``, ``close``, ``stop``, ``toggle`` and ``set``. The following parameters
 can be used:
 
 -  **position**: The target position for a ``set`` call. The ``open`` method implies
@@ -262,6 +268,22 @@ a GET request to ``/select/house_mode`` could yield this payload:
       "id": "select-house_mode",
       "state": "party",
       "value": "party"
+    }
+
+The detail parameter can be used to include available options in the response:
+
+- **detail**: Set to ``all`` to include a list of available options.
+
+For example GET ``/select/house_mode?detail=all`` could yield this payload:
+
+.. code-block:: json
+
+    {
+      "id": "select-house_mode",
+      "name": "House Mode",
+      "state": "party",
+      "value": "party",
+      "option": ["party","sleep","relax","home","away"]
     }
 
 POST requests on the other hand allow setting the select, the available
@@ -297,3 +319,11 @@ method is ``set``. The following parameter can be used:
    minimum and maximum range of the number otherwise it will be ignored.
 
 For example POST ``/number/desired_delay/set?value=24`` will set the number to 24.
+
+See Also
+--------
+
+- :doc:`/components/web_server`
+- :doc:`/components/prometheus`
+- :doc:`/components/http_request`
+- :ghedit:`Edit`

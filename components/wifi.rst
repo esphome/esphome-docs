@@ -68,14 +68,14 @@ Configuration variables:
   - **manual_ip** (*Optional*): Manually set the IP options for the AP. Same options as
     manual_ip for station mode.
   - **ap_timeout** (*Optional*, :ref:`config-time`): The time after which to enable the
-    configured fallback hotspot. Defaults to ``1min``.
+    configured fallback hotspot. Can be disabled by setting this to ``0s``, which requires manually starting the AP by other means (eg: from a button press). Defaults to ``1min``.
 
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.
 - **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   WiFi connection exists. Can be disabled by setting this to ``0s``, but note that the low level IP stack currently
-  seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``15min``.
+  seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``15min``. Does not apply when in access point mode.
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
   See :ref:`wifi-power_save_mode`
 
@@ -84,9 +84,14 @@ Configuration variables:
   first. This is required for hidden networks and can significantly improve connection times. Defaults to ``off``.
   The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
   better ones are available.
+- **passive_scan** (*Optional*, boolean): If enabled, then the device will perform WiFi scans in a passive fashion. Defaults to ``false``.
 
 - **enable_btm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11v BSS Transition Management support.
 - **enable_rrm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11k Radio Resource Management support.
+
+- **on_connect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a connection is established.
+- **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the connection is dropped.
+- **enable_on_boot** (*Optional*, boolean): If enabled, the WiFi interface will be enabled on boot. Defaults to ``true``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
@@ -155,8 +160,8 @@ You can do so with the ``manual_ip:`` option in the WiFi configuration.
 After putting a manual IP in your configuration, the ESP will no longer need to negotiate
 a dynamic IP address with the router, thus improving the time until connection.
 
-Additionally, this can help with :doc:`Over-The-Air updates <ota>` if for example the
-home network doesn't allow for ``.local`` addresses. When a manual IP is in your configuration,
+Additionally, this can help with :doc:`/components/ota/index` if for example the
+network doesn't allow for ``.local`` addresses. When a manual IP is in your configuration,
 the OTA process will automatically choose that as the target for the upload.
 
 .. note::
@@ -188,7 +193,7 @@ power saving mode.
 Connecting to Multiple Networks
 -------------------------------
 
-Starting with version 1.10.0, you can give ESPHome a number of WiFi networks to connect to.
+You can give ESPHome a number of WiFi networks to connect to.
 ESPHome will then attempt to connect to the one with the highest signal strength.
 
 To enable this mode, remove the ``ssid`` and ``password`` options from your wifi configuration
@@ -250,6 +255,7 @@ These are advanced settings and you will usually need to consult your enterprise
         eap:
           username: bob
           password: VerySafePassword
+          ttls_phase_2: mschapv2
       - ssid: EAP-TLS_EnterpriseNetwork
         eap:
           identity: bob
@@ -268,6 +274,59 @@ Configuration variables:
 - **certificate** (*Optional*, string): Path to a PEM encoded certificate to use for EAP-TLS authentication.
 - **key** (*Optional*, string): Path to a PEM encoded private key matching ``certificate`` for EAP-TLS authentication.
   Optionally encrypted with ``password``.
+- **ttls_phase_2** (*Optional*, string): The Phase 2 Authentication Method for EAP-TTLS.
+  Can be ``pap``, ``eap``, ``mschap``, ``mschapv2`` or ``chap``, defaults to ``mschapv2``.
+
+.. _wifi-on_connect_disconnect:
+
+``on_connect`` / ``on_disconnect`` Trigger
+------------------------------------------
+
+This trigger is activated when a WiFi connection is established or dropped.
+
+.. code-block:: yaml
+
+    wifi:
+      # ...
+      on_connect:
+        - switch.turn_on: switch1
+      on_disconnect:
+        - switch.turn_off: switch1
+
+.. _wifi-on_disable:
+
+``wifi.disable`` Action
+-----------------------
+
+This action turns off the WiFi interface on demand.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - wifi.disable:
+
+.. note::
+
+    Be aware that if you disable WiFi, the API timeout will need to be disabled otherwise the device will reboot.
+
+.. _wifi-on_enable:
+
+``wifi.enable`` Action
+----------------------
+
+This action turns on the WiFi interface on demand.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - wifi.enable:
+
+.. note::
+
+    The configuration option ``enable_on_boot`` can be set to ``false`` if you do not want wifi to be enabled on boot.
+
 
 .. _wifi-connected_condition:
 
@@ -285,6 +344,31 @@ This :ref:`Condition <config-condition>` checks if the WiFi client is currently 
         then:
           - logger.log: WiFi is connected!
 
+
+The lambda equivalent for this is ``id(wifi_id).is_connected()``.
+
+
+.. _wifi-enabled_condition:
+
+``wifi.enabled`` Condition
+--------------------------
+
+This :ref:`Condition <config-condition>` checks if WiFi is currently enabled or not.
+
+.. code-block:: yaml
+
+    on_...:
+      - if:
+          condition: wifi.enabled
+          then:
+            - wifi.disable:
+          else:
+            - wifi.enable:
+
+
+The lambda equivalent for this is ``!id(wifi_id).is_disabled()``.
+
+
 See Also
 --------
 
@@ -293,5 +377,6 @@ See Also
 - :doc:`sensor/wifi_signal`
 - :doc:`network`
 - :doc:`/components/ethernet`
+- :doc:`api`
 - :apiref:`wifi/wifi_component.h`
 - :ghedit:`Edit`

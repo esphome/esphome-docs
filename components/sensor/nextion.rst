@@ -54,7 +54,6 @@ See :doc:`/components/display/nextion` for setting up the display
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the sensor.
 - **nextion_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Nextion display.
 - **component_name** (*Optional*, string): Manually specify the name of the Nextion component.
 - **variable_name** (*Optional*, string): Manually specify the name of the Nextion variable.
@@ -151,7 +150,7 @@ some more advanced functions (see the full :apiref:`nextion/sensor/nextion_senso
 
 .. _nextion_sensor_set_state:
 
-- ``set_state(bool value, bool publish, bool send_to_nextion)``: Set the state to **value**. Publish the new state to HASS. Send_to_Nextion is to publish the state to the Nextion.
+- ``set_state(bool value, bool publish, bool send_to_nextion)``: Set the state to **value**. Publish new state to Home Assistant. Send_to_Nextion is to publish the state to the Nextion.
 
 .. _nextion_sensor_update:
 

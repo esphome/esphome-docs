@@ -21,9 +21,10 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
 - **timezone** (*Optional*, string): Manually tell ESPHome what time zone to use with `this format
-  <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated)
+  <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__
+  (warning: the format is quite complicated, see `examples <https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv>`__)
   or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form
-  <Region>/<City>. ESPHome tries to automatically infer the time zone string based on the time zone of the computer
+  :code:`<Region>/<City>`. ESPHome tries to automatically infer the time zone string based on the time zone of the computer
   that is running ESPHome, but this might not always be accurate.
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
@@ -39,12 +40,19 @@ This :ref:`Condition <config-condition>` checks if time has been set and is vali
 
 .. code-block:: yaml
 
+    # Example configuration
     on_...:
       if:
         condition:
           time.has_time:
         then:
           - logger.log: Time has been set and is valid!
+    
+    # Example lambda
+    lambda: |-
+        if (id(my_time).now().is_valid()) {
+          //do something here
+        }
 
 .. _time-on_time:
 
@@ -83,7 +91,7 @@ evaluates if the automation should run.
               - light.turn_on: my_light
 
           # Cron syntax, trigger every 5 minutes
-          - cron: '* /5 * * * *'
+          - cron: '00 /5 * * * *'
             then:
               - switch.toggle: my_switch
 
@@ -172,6 +180,15 @@ In the ``seconds:``, ``minutes:``, ... fields you can use the following operator
               - minutes: /5
                 then:
                   - switch.toggle: my_switch
+
+.. note::
+
+    ``on_time`` does not re-schedule events for times that are skipped or duplicated due to local Daylight
+    Saving Time or other local time-adjustments like leap seconds. In regions with Daylight Saving Time, this
+    means that events located between 01:00 - 02:00 may trigger twice, and events scheduled between 02:00 - 03:00 may
+    be skipped once a year. This differs from `cron <https://man7.org/linux/man-pages/man8/cron.8.html>`__ behavior
+    despite allowing the use of similar `crontab` syntax. Similarly, triggers on days of the month that do not exist
+    ("every 31st of the month") will be skipped when those dates do not exist.
 
 .. _time-on_time_sync:
 

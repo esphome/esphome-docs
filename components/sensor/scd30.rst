@@ -6,7 +6,7 @@ SCD30 CO₂, Temperature and Relative Humidity Sensor
     :image: scd30.jpg
 
 The ``scd30`` sensor platform allows you to use your Sensirion SCD30 CO₂
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9.5_CO2/Sensirion_CO2_Sensors_SCD30_Datasheet.pdf>`__) sensors with ESPHome.
+(`datasheet <https://sensirion.com/media/documents/4EAF6AF8/61652C3C/Sensirion_CO2_Sensors_SCD30_Datasheet.pdf>`__) sensors with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/scd30.jpg
@@ -36,21 +36,15 @@ Configuration variables:
 
 - **co2** (*Optional*): The information for the CO₂ sensor.
 
-  - **name** (**Required**, string): The name for the CO₂eq sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 - **temperature** (*Optional*): The information for the Temperature sensor.
 
-  - **name** (**Required**, string): The name for the temperature sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 - **humidity** (*Optional*): The information for the Humidity sensor.
 
-  - **name** (**Required**, string): The name for the humidity sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 - **temperature_offset** (*Optional*, float): Temperature and humidity
   offsets may occur when operating the sensor in end-customer
@@ -90,7 +84,7 @@ Manual calibration:
           then:
             - scd30.force_recalibration_with_reference:
                 value: !lambda 'return id(co2_cal).state;'
-    
+
     number:
       - platform: template
         name: "CO2 calibration value"
@@ -108,6 +102,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :doc:`dht`
 - :doc:`dht12`
 - :doc:`hdc1080`

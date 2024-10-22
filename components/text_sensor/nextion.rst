@@ -32,7 +32,6 @@ See :doc:`/components/display/nextion` for setting up the display
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the sensor.
 - **nextion_id** (*Optional*, :ref:`config-id`): The ID of the Nextion display.
 - **component_name** (*Optional*, string): The name of the Nextion component.
 - **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_text_sensor_protocol` this should not be used
@@ -65,6 +64,7 @@ You can also publish a state to a Nextion text sensor from elsewhere in your YAM
 with the ``text_sensor.nextion.publish`` action.
 
 .. code-block:: yaml
+    
     # Example configuration entry
     text_sensor:
       - platform: nextion
@@ -97,10 +97,11 @@ Configuration options:
     This action can also be written in lambdas:
 
     .. code-block:: cpp
+
         id(nextion_text).set_state("Hello World");
         id(nextion_text).set_state("Hello World", true);
         id(nextion_text).set_state("Hello World", true, true);
-        
+
 .. _nextion_text_sensor_lambda_calls:
 
 Lambda Calls
@@ -111,7 +112,7 @@ some more advanced functions (see the full :apiref:`nextion/text_sensor/nextion_
 
 .. _nextion_text_sensor_set_state:
 
-- ``set_state(bool value, bool publish, bool send_to_nextion)``: Set the state to **value**. Publish the new state to HASS. Send_to_Nextion is to publish the state to the Nextion.
+- ``set_state(bool value, bool publish, bool send_to_nextion)``: Set the state to **value**. Publish new state to Home Assistant. Send_to_Nextion is to publish the state to the Nextion.
 
 .. _nextion_text_sensor_update:
 

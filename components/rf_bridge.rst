@@ -6,8 +6,8 @@ RF Bridge Component
     :image: rf_bridge.jpg
     :keywords: RF Bridge
 
-The ``RF Bridge`` Component provides the ability to send and receive 433MHz remote codes without hardware
-hacking the circuit board to bypass the ``efm8bb1`` MCU. This component implements the communication protocol
+The ``RF Bridge`` Component provides the ability to send and receive 433MHz remote codes using the
+embedded EFM8BB1 microcontroller. This component implements the communication protocol
 that the original ``efm8bb1`` firmware implements. The device is connected via the
 :doc:`UART bus </components/uart>`. The uart bus must be configured at the same speed of the module
 which is 19200bps.
@@ -20,6 +20,8 @@ which is 19200bps.
 .. figure:: images/rf_bridge-full.jpg
     :align: center
     :width: 60.0%
+
+    Sonoff RF Bridge 433, version R1 or R2 V1.0
 
 .. code-block:: yaml
 
@@ -345,8 +347,8 @@ Home Assistant as events and will also setup a service so you can send codes wit
 .. code-block:: yaml
 
     api:
-      services:
-        - service: send_rf_code
+      actions:
+        - action: send_rf_code
           variables:
             sync: int
             low: int
@@ -358,7 +360,7 @@ Home Assistant as events and will also setup a service so you can send codes wit
                 low: !lambda 'return low;'
                 high: !lambda 'return high;'
                 code: !lambda 'return code;'
-        - service: learn
+        - action: learn
           then:
             - rf_bridge.learn
 
@@ -391,7 +393,7 @@ To trigger the automation from Home Assistant you can invoke the service with th
     automation:
       # ...
       action:
-      - service: esphome.rf_bridge_send_rf_code
+      - action: esphome.rf_bridge_send_rf_code
         data:
           sync: 0x700
           low: 0x800
@@ -402,5 +404,9 @@ See Also
 --------
 
 - :apiref:`rf_bridge/rf_bridge.h`
+- :ref:`lambda_magic_rf_queues`
+- `RF-Bridge-EFM8BB1 <https://github.com/Portisch/RF-Bridge-EFM8BB1>`__ by `Portisch <https://github.com/Portisch>`__
 - :doc:`/components/uart`
+- :doc:`/components/remote_receiver`
+- :doc:`/components/remote_transmitter`
 - :ghedit:`Edit`

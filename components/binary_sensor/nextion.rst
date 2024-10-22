@@ -39,7 +39,6 @@ See :doc:`/components/display/nextion` for setting up the display
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the sensor.
 - **nextion_id** (*Optional*, :ref:`config-id`): The ID of the Nextion display.
 - **component_name** (*Optional*, string): The name of the Nextion component.
 - **variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considered to be **on**
@@ -143,7 +142,7 @@ more advanced functions (see the full :apiref:`nextion/binary_sensor/nextion_bin
 
 .. _nextion_binary_sensor_set_state:
 
-- ``set_state(bool value, bool publish, bool send_to_nextion)``: Set the state to **value**. Publish the new state to HASS. Send_to_Nextion is to publish the state to the Nextion.
+- ``set_state(bool value, bool publish, bool send_to_nextion)``: Set the state to **value**. Publish new state to Home Assistant. Send_to_Nextion is to publish the state to the Nextion.
 
 .. _nextion_binary_sensor_update:
 

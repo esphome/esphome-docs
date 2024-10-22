@@ -15,7 +15,7 @@ Peacefair PZEM-00X DC Energy Monitor
 The ``pzemdc`` sensor platform allows you to use various DC Peacefair PZEM energy monitors
 with ESPHome. The supported models are: PZEM-003, PZEM-014, PZEM-016 and PZEM-017.
 
-The communication with this integration is done over a :ref:`UART bus <uart>`.
+The communication with this component is via a :ref:`UART <uart>`.
 You must therefore have a ``uart:`` entry in your configuration with both the TX and RX pins set
 to some pins on your board and the baud rate set to 9600.
 
@@ -61,6 +61,20 @@ Configuration variables:
   sensor. Defaults to ``60s``.
 - **address** (*Optional*, int): The address of the sensor if multiple sensors are attached to
   the same UART bus. You will need to set the address of each device manually. Defaults to ``1``.
+
+.. _pzemdc-reset_energy_action:
+
+``pzemdc.reset_energy`` Action
+******************************
+
+This action resets the total energy value of the pzemdc device with the given ID when executed.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - pzemdc.reset_energy: pzemdc_1
+
 
 See Also
 --------

@@ -7,8 +7,7 @@ Getting Started with ESPHome and Home Assistant
 
 In this guide we’ll go through how to install ESPHome on a device using the ESPHome Dashboard, installed as a Home Assistant add-on.
 
-But first, here's a very quick introduction to how ESPHome works:
-ESPHome is a *tool* which aims to make managing your ESP boards as simple as possible. It reads in a YAML configuration file and creates custom firmware which it installs on your ESP device. Devices or sensors added in ESPHome's configuration will automatically show up in Home Assistant's UI.
+First, here's a very quick introduction to how ESPHome works. ESPHome is a tool that aims to simplify managing your supported devices. It reads a YAML configuration file, creates custom firmware, and can install it on your device. Any devices or sensors defined in the ESPHome configuration will automatically appear in Home Assistant's user interface.
 
 Installing ESPHome Dashboard
 ----------------------------
@@ -78,7 +77,14 @@ in ``/config/esphome/garage-door.yaml``.
 
 .. note::
 
-    Since Home Assistant add-ons run as individual containers, accessing these through command line is not very straightforward, but it's possible. To do that, install Home Assistant's SSH addon, configure a username and a password, and disable `Protection Mode` (please assess the risks you take with that). Then, for example to access the logs form a device through an SSH client, log in, and you can use a command like `docker exec -it addon_15ef4d2f_esphome esphome logs /config/esphome/garage-door.yaml`. See :doc:`getting_started_command_line` for more.
+    Since Home Assistant add-ons run as individual containers, accessing these through
+    command line is not very straightforward, but it's possible. To do that,
+    install Home Assistant's SSH addon, configure a username and a password,
+    and disable `Protection Mode` (please assess the risks you take with that).
+    Then, for example to access the logs from a device through an SSH client,
+    log in, and you can use a command like
+    `docker exec -it addon_15ef4d2f_esphome esphome logs /config/esphome/garage-door.yaml`.
+    See :doc:`getting_started_command_line` for more.
 
 Now go ahead and use one of the :ref:`devices guides <devices>` to extend your configuration.
 
@@ -94,10 +100,12 @@ to the configuration like this:
     switch:
       - platform: gpio
         name: "Living Room Dehumidifier"
-        pin: 5
+        pin: GPIO5
 
 In above example, we're simply adding a switch that's called "Living Room Dehumidifier" (could control
 anything really, for example lights) and is connected to the pin ``GPIO5``.
+
+.. _connecting-your-device-to-home-assistant:
 
 Connecting your device to Home Assistant
 ----------------------------------------
@@ -137,7 +145,7 @@ Sensor </components/binary_sensor/gpio>`.
             pullup: true
 
 This time when installing, you don’t need to have the device plugged in
-through USB again. The upload will happen wirelessly (:doc:`"over the air" </components/ota>`).
+through USB again. The upload will happen wirelessly (:doc:`"over the air" </components/ota/index>`).
 
 .. figure:: /components/binary_sensor/images/gpio-ui.png
     :align: center

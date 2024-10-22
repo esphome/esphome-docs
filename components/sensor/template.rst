@@ -32,13 +32,10 @@ Possible return values for the lambda:
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the sensor.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the sensor
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to publish the value of the
-  sensor, either the result of the lambda function or if no lambda function the last value
-  published using the publish action. Set to ``never`` to disable updates. Defaults to ``60s``.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Set to ``never`` to disable updates. Defaults to ``60s``.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 .. _sensor-template-publish_action:

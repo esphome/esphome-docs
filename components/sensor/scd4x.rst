@@ -6,7 +6,7 @@ SCD4X CO₂, Temperature and Relative Humidity Sensor
     :image: scd4x.jpg
 
 The ``scd4x`` sensor platform  allows you to use your Sensirion SCD4X CO₂
-(`datasheet <https://sensirion.com/media/documents/C4B87CE6/627C2DCD/CD_DS_SCD40_SCD41_Datasheet_D1.pdf>`__) sensors with ESPHome.
+(`datasheet <https://sensirion.com/media/documents/E0F04247/631EF271/CD_DS_SCD40_SCD41_Datasheet_D1.pdf>`__) sensors with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/scd4x.jpg
@@ -31,22 +31,16 @@ Configuration variables:
 
 - **co2** (*Optional*): The information for the CO₂ sensor.
 
-  - **name** (**Required**, string): The name for the CO₂eq sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 - **temperature** (*Optional*): The information for the Temperature sensor.
 
-  - **name** (**Required**, string): The name for the temperature sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 
 - **humidity** (*Optional*): The information for the Humidity sensor.
 
-  - **name** (**Required**, string): The name for the humidity sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 - **temperature_offset** (*Optional*, float):  The temperature offset can depend
   on various factors such as the SCD4x measurement mode, self-heating of close
@@ -105,15 +99,19 @@ As of April 2022 the average fresh air Co² concentration is 419 ppm.
             value: 419   # outside average April 2022
             id: my_scd41
 
-value can be a template
+value can also be a template, for example to define a Home Assistant calibration action:
 
 .. code-block:: yaml
 
-    on_...:
-      then:
-        - scd4x._perform_forced_calibration_action:
-            value: !lambda "{ return 419 };"
-            id: my_scd41
+    api:
+      actions:
+        - action: calibrate_co2_value
+          variables:
+            co2_ppm: int
+          then:
+          - scd4x.perform_forced_calibration:
+              value: !lambda 'return co2_ppm;'
+              id: my_scd41
 
 
 .. _factory_reset_action:
@@ -129,45 +127,60 @@ This :ref:`action <config-action>` triggers a factory reset of the sensor. Calib
       then:
         - scd4x.factory_reset: my_scd41
 
-Automation
------------------
+Pressure compensation
+---------------------
 
-Ambient pressure compensation compensation can be changed from :ref:`lambdas <config-lambda>`
+A static ambient pressure value can be set with `ambient_pressure_compensation` or `altitude_compensation`. It can also be changed dynamically with :ref:`lambdas <config-lambda>` using `set_ambient_pressure_compensation(<mBar>)`, or by pointing `ambient_pressure_compensation_source` to a local pressure sensor.
 
+Example with a local sensor
+***************************
 
-``set_ambient_pressure_compensation(  <pressure in bar)``
-
-
-
-Example
-*******
-
-Note: that the pressure from bme280 is in hPa and must be converted to bar.
+Note: remember your pressure sensor needs to output in mBar
 
 .. code-block:: yaml
 
     sensor:
-      - platform: scd4x
-        id: scd41
-        i2c_id: bus_a
-        co2:
-            name: co2
-            id: co2
+      - platform: bme280
+        pressure:
+          name: "Ambient Pressure"
+          id: bme_pressure
 
-        - platform: bme280
-          pressure:
-            name: "BME280-Pressure"
-            id: bme280_pressure
-            oversampling: 1x
-          on_value:
-            then:
-                - lambda: "id(scd41)->set_ambient_pressure_compensation(x / 1000.0);"
+      - platform: scd4x
+        measurement_mode: low_power_periodic
+        ambient_pressure_compensation_source: bme_pressure
+        temperature_offset: 0
+        co2:
+          name: "CO2 level"
+
+Example with a remote sensor
+****************************
+
+This example creates a service `set_ambient_pressure` that can be called from Home Assistant:
+
+.. code-block:: yaml
+
+    api:
+      actions:
+        - action: set_ambient_pressure
+          variables:
+            pressure_mbar: int
+          then:
+            - lambda: "id(my_scd41)->set_ambient_pressure_compensation(pressure_mbar);"
+
+    sensor:
+      - platform: scd4x
+        id: my_scd41
+        measurement_mode: low_power_periodic
+        temperature_offset: 0
+        co2:
+          name: "CO2 level"
 
 
 See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :doc:`scd30`
 - :apiref:`scd4x/scd4x.h`
 - :ghedit:`Edit`

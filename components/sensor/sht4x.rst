@@ -6,7 +6,7 @@ SHT4X Temperature and Humidity Sensor
     :image: sht4x.jpg
 
 The ``sht4x`` sensor platform  allows you to use your SHT4X temperature and humidity sensor
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Datasheets/Sensirion_Humidity_Sensors_SHT4x_Datasheet.pdf>`__, `Adafruit`_) with ESPHome.
+(`datasheet <https://sensirion.com/media/documents/33FD6951/63E1087C/Datasheet_SHT4x_1.pdf>`__, `Adafruit`_) with ESPHome.
 
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
@@ -30,15 +30,11 @@ Configuration variables:
 
 - **temperature** (*Optional*): Temperature.
 
-  - **name** (**Required**, string): The name of the sensor.
-  - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 - **humidity** (*Optional*): Relative Humidity.
 
-  - **name** (**Required**, string): The name of the sensor.
-  - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 - **precision** (*Optional*, string): The measurement precision, either ``High``, ``Med`` or ``Low``. Default is ``High``.
 - **heater_max_duty** (*Optional*, float): The maximum duty cycle of the heater (limited to ``0.05``). Default is ``0.0``, i.e. heater off.
@@ -58,7 +54,7 @@ The heater can be enabled by setting ``heater_max_duty`` up to a maximum duty cy
 of ``5%`` (``0.05``). This runs the heater on a regular interval. While the heater
 is in operation the sensor disables measurements so no updates will be published.
 
-See the (`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Datasheets/Sensirion_Humidity_Sensors_SHT4x_Datasheet.pdf>`__)
+See the (`datasheet <https://sensirion.com/media/documents/33FD6951/63E1087C/Datasheet_SHT4x_1.pdf>`__)
 for more information about heater operation.
 
 See Also
@@ -67,5 +63,6 @@ See Also
 - :doc:`/components/sensor/sht3xd`
 - :doc:`/components/sensor/shtcx`
 - :ref:`sensor-filters`
+- :doc:`absolute_humidity`
 - :apiref:`sht4x/sht4x.h`
 - :ghedit:`Edit`
