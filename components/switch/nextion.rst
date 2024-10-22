@@ -100,13 +100,7 @@ Configuration options:
 
 .. note::
 
-    This action can also be written in lambdas:
-
-    .. code-block:: cpp
-      
-        id(nextion_switch).set_state(true);
-        id(nextion_switch).set_state(true, true);
-        id(nextion_switch).set_state(true, true, true);
+    This action can also be written in lambdas. See :ref:`nextion_switch_lambda_calls`
 
 .. _nextion_switch_lambda_calls:
 

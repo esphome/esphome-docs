@@ -128,13 +128,7 @@ Configuration options:
 
 .. note::
 
-    This action can also be written in lambdas:
-
-    .. code-block:: cpp
-      
-        id(nextion_bsensor).set_state(true);
-        id(nextion_bsensor).set_state(true, true);
-        id(nextion_bsensor).set_state(true, true, true);
+    This action can also be written in lambdas. See :ref:`nextion_binary_sensor_lambda_calls`
 
 .. _nextion_binary_sensor_lambda_calls:
 

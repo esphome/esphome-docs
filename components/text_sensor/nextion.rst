@@ -96,13 +96,7 @@ Configuration options:
 
 .. note::
 
-    This action can also be written in lambdas:
-
-    .. code-block:: cpp
-        
-        id(nextion_text).set_state("Hello World");
-        id(nextion_text).set_state("Hello World", true);
-        id(nextion_text).set_state("Hello World", true, true);
+    This action can also be written in lambdas. See :ref:`nextion_text_sensor_lambda_calls`
         
 .. _nextion_text_sensor_lambda_calls:
 
