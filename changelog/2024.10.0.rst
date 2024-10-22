@@ -47,6 +47,16 @@ The :doc:`/components/sensor/cse7766` now requires even parity in configuration.
 but the majority of newer chips seem to require it and the older ones work fine with it set as well so to make it consistent across all devices
 the component now requires it.
 
+Release 2024.10.1 - October 22
+------------------------------
+
+- [config] Fix crash with empty substitutions block :esphomepr:`7612` by :ghuser:`clydebarrow`
+- Fix broken ibeacon_uuid config in ble_rssi :esphomepr:`7640` by :ghuser:`lennart-k`
+- auto-load preferences :esphomepr:`7642` by :ghuser:`ssieb`
+- [wifi] Support custom MAC on Arduino, too :esphomepr:`7644` by :ghuser:`kbx81`
+- [config] Ensure user-supplied build flags don't get silently overwritten :esphomepr:`7622` by :ghuser:`clydebarrow`
+- [lvgl] Remove states from style definitions (Bugfix) :esphomepr:`7645` by :ghuser:`clydebarrow`
+- Move setting global voice assistant to constructor :esphomepr:`7630` by :ghuser:`synesthesiam`
 
 Full list of changes
 --------------------
