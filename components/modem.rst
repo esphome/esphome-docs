@@ -40,7 +40,7 @@ Configuration variables:
     The modem component requires at least a reset pin, a power pin, or a pwrkey pin to be configured.
 
 Advanced common configuration variables:
-----------------------
+------------------------
 
 - **apn** (*Optional*, string): The Access Point Name (APN) for the modem. Default is "internet".
 - **uart_event_task_stack_size** (*Optional*, int): The stack size for the UART event task. Default is 2048.
