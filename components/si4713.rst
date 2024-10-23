@@ -94,7 +94,17 @@ Example configuration
         text: sample text
       sensor:
         chip_id:
-          name: Chip ID
+          name: Chip Part Number
+        chip_revision:
+          name: Chip Revision
+        chip_firmware:
+          name: Chip Firmware Revision
+        chip_component:
+          name: Chip Component Revision
+        chip_library:
+          name: Chip Library Revision
+        chip_patch:
+          name: Chip Patch ID
         frequency:
           name: Frequency
         power:
@@ -328,7 +338,12 @@ RDS (rds):
 Sensor (sensor):
 ----------------
 
-- **chip_id** (*Optional*, string): Detected chip id. (Si47xx)
+- **chip_id** (*Optional*, string): Chip Part Number. (example: Si4713)
+- **chip_revision** (*Optional*, string): Chip Revision. (example: B)
+- **chip_firmware** (*Optional*, string): Chip Firmware Revision. (example: 3.0)
+- **chip_component** (*Optional*, string): Chip Component Revision. (example: 3.0)
+- **chip_library** (*Optional*, string): Chip Library Revision. (example: R8)
+- **chip_patch** (*Optional*, string): Chip Patch ID. (example: 0)
 - **frequency** (*Optional*, float): Returns frequency being tuned.
 - **power** (*Optional*, float): Returns the transmit output voltage setting.
 - **antcap** (*Optional*, float): This byte will contain the current antenna tuning capacitor value.
