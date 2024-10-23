@@ -285,7 +285,12 @@ enable the tracker only while the native API is connected. The following config 
         - esp32_ble_tracker.start_scan:
            continuous: true
       on_client_disconnected:
-        - esp32_ble_tracker.stop_scan:
+        - if:
+            condition:
+              - not:
+                  api.connected:
+            then:
+              - esp32_ble_tracker.stop_scan:
 
 See Also
 --------
