@@ -725,6 +725,7 @@ Output Components
     ESP32 DAC, components/output/esp32_dac, dac.svg
     ESP32 LEDC, components/output/ledc, pwm.png
     ESP8266 Software PWM, components/output/esp8266_pwm, pwm.png
+    GP8211, components/output/gp8211, gp8211.jpg
     GP8403, components/output/gp8403, gp8403.svg
     GPIO Output, components/output/gpio, gpio.svg
     LibreTiny PWM, components/output/libretiny_pwm, pwm.png
