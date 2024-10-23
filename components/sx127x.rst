@@ -30,29 +30,94 @@ The SX127X component allows you to configure the SX1276, SX1277, SX1278 and SX12
       rx_floor: -90
       pa_pin: BOOST
       pa_power: 17
+      shaping: NONE
       fsk_fdev: 5000
-      fsk_shaping: NONE
       fsk_ramp: 40us
 
 Configuration variables:
 ------------------------
 
-- **rst_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Reset pin.
-- **nss_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): SPI chip select pin.
+- **rst_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): SX reset pin.
+- **nss_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): SPI select pin.
+- **dio0_pin** (**Optional**, :ref:`Pin Schema <config-pin_schema>`): Digital IO pin 0.
+- **dio2_pin** (**Optional**, :ref:`Pin Schema <config-pin_schema>`): Digital IO pin 2.
 - **frequency** (**Required**, int): Frequency in Hz of the transceiver.
 - **modulation** (**Required**, enum): Modulation can be ``OOK`` or ``FSK``.
+- **payload_length** (**Optional**, int): If set to a length greater than zero packet mode is enabled, otherwise continuous mode is used. In packet mode, packets are received with the on_packet trigger and sent via the send_packet automation. In continuous mode raw data appears on dio2 and is handled by remote receiver / transmitter.
+- **bitrate** (**Optional**, int): Bitrate of the signal. Required by packet mode and recommended in continuous mode, example 4800.
+- **sync_value** (**Optional**, list): Synchronization bytes found after the preamble and before the payload. Required by packet mode.
+- **preamble_size** (**Optional**, int): Length of the preamble in bytes. Preamble detector is disabled if the size is 0.
+- **preamble_polarity** (**Optional**, int): Polarity of the preamble, either 0xAA or 0x55.
+- **preamble_errors** (**Optional**, int): Number of chip errors tolerated over the preamble, 4 chips per bit.
 - **rx_start** (**Optional**, bool): Start the receiver on boot or after transmit.
 - **rx_bandwidth** (**Optional**, enum): Receive bandwidth can be ``2_6kHz``, ``3_1kHz``, ``3_9kHz``, ``5_2kHz``, ``6_3kHz``, ``7_8kHz``, ``10_4kHz``, ``12_5kHz``, ``15_6kHz``, ``20_8kHz``, ``25_0kHz``, ``31_3kHz``, ``41_7kHz``, ``50_0kHz``, ``62_5kHz``, ``83_3kHz``, ``100_0kHz``, ``125_0kHz``, ``166_7kHz``, ``200_0kHz`` or ``250_0kHz``.
 - **rx_floor** (**Optional**, float): When receiving OOK data rx_floor should be set appropriately for your environment / device / antenna. If the floor is set too high (ie closer to 0) the radio will ignore everything. If the floor is set too low (ie closer to -128) noise will overwhelm remote receiver. A good starting point is -90 dBm.
+- **rx_duration** (**Optional**, int or :ref:`config-time`): TODO
 - **pa_pin** (**Optional**, enum): Transmitter output, can be ``BOOST`` or ``RFO``.
 - **pa_power** (**Optional**, int): Transmitter power, range is 0 to 17 dBm.
+- **shaping** (**Optional**, enum): Transmitter data shaping, valid values for OOK are ``CUTOFF_BR_X_2``, ``CUTOFF_BR_X_1`` or ``NONE``, valid values for FSK are ``GAUSSIAN_BT_0_3``, ``GAUSSIAN_BT_0_5``, ``GAUSSIAN_BT_1_0`` or ``NONE``. Note only recommended in packet mode as the data has to be syncronized with the data clock.
 - **fsk_fdev** (**Optional**, int): Transmitter frequency deviation, valid values range from 0 to 100,000 Hz.
-- **fsk_shaping** (**Optional**, enum): Transmitter data shaping, valid values are ``BT_0_3``, ``BT_0_5``, ``BT_1_0`` or ``NONE``.
 - **fsk_ramp** (**Optional**, enum): Transmitter PA ramp, valid values are ``10us``, ``12us``, ``15us``, ``20us``, ``25us``, ``31us``, ``40us``, ``50us``, ``62us``, ``100us``, ``125us``, ``250us``, ``500us``, ``1000us``, ``2000us`` or ``3400us``.
 
 .. note::
 
     The config can be changed at runtime using lambdas. Settings, except for mode changes, will only be applied after calling configure. See :apiref:`sx127x/sx127x.h`.
+
+Automations:
+------------
+
+- **on_packet** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a packet has been decoded. A variable x of type std::vector<uint8_t> is passed to the automation for use in lambdas.
+
+.. code-block:: yaml
+
+    sx127x:
+      ...
+      on_packet:
+        then:
+          - lambda: |-
+              ESP_LOGD("lambda", "packet %s", format_hex(x).c_str());
+
+Actions:
+--------
+
+SX127X has a number of :ref:`actions <config-action>`
+
+``sx127x.set_mode_tx``
+
+This :ref:`action <config-action>` sets the SX127X mode to tx, use ``sx127x.send_packet`` in packet mode.
+
+.. code-block:: yaml
+
+    on_...:
+      - sx127x.set_mode_tx
+
+``sx127x.set_mode_rx``
+
+This :ref:`action <config-action>` sets the SX127X mode to rx.
+
+.. code-block:: yaml
+
+    on_...:
+      - sx127x.set_mode_rx
+
+``sx127x.set_mode_standby``
+
+This :ref:`action <config-action>` sets the SX127X mode to standby.
+
+.. code-block:: yaml
+
+    on_...:
+      - sx127x.set_mode_standby
+
+``sx127x.send_packet``
+
+This :ref:`action <config-action>` sends a packet, SX127X needs to be in packet mode.
+
+.. code-block:: yaml
+
+    on_...:
+      - sx127x.send_packet:
+          data: [0x1F, 0x3E, 0x06, 0x5F, 0x4F, 0x5F, 0xAC, 0xB1]
 
 As a Receiver:
 --------------
