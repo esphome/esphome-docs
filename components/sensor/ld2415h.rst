@@ -1,0 +1,205 @@
+LD2415H 24Ghz mmWave Radar Sensor
+=================================
+
+.. seo::
+    :description: Instructions for setting up LD2415H sensors.
+    :image: ld2415h.png
+    :keywords: LD2415H
+
+Component
+---------
+.. _ld2415h-component:
+
+The ``ld2415h`` sensor platform allows you to use the Hi-Link HLK-LD2415H velocity radar sensor 
+with ESPHome to track the velocity of objects.  The sensor utilizes millimeter wave radar to 
+measure the velocity of objects within it's field of view.
+
+The :ref:`UART <uart>` is required to be set up in your configuration for this sensor to work.
+
+Select, and number components provide real-time configuration of the sensor during operation.
+
+
+.. figure:: images/ld2415h.front.png
+    :align: center
+    :width: 50.0%
+
+    Front of the HLK-LD2415H velocity radar sensor.
+
+.. figure:: images/ld2415h.back.png
+    :align: center
+    :width: 50.0%
+
+    Back of the HLK-LD2415H velocity radar sensor.
+
+.. figure:: images/ld2415h.sensor.ui.png
+    :align: center
+    :width: 50.0%
+
+    ld2415h sensor UI.
+
+.. figure:: images/ld2415h.configuration.ui.png
+    :align: center
+    :width: 50.0%
+
+    ld2415h configuration UI.
+
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    uart:
+      tx_pin: 36
+      rx_pin: 34
+      baud_rate: 9600
+
+    ld2415h:
+      id: speedometer
+
+    sensor:
+      - platform: ld2415h
+        speed:
+          name: Speed
+          filters:
+            - timeout:
+                timeout: 1s
+                value: 0
+            - delta: 0.1
+
+    number:
+      - platform: ld2415h
+        min_speed_threshold:
+          name: Min Speed Threshold
+        compensation_angle:
+          name: Compensation Angle
+        sensitivity:
+          name: Sensitivity
+        vibration_correction:
+          name: Vibration Correction
+        relay_trigger_duration:
+          name: Relay Trigger Duration
+        relay_trigger_speed:
+          name: Relay Trigger Speed
+
+    select:
+      - platform: ld2415h
+        sample_rate:
+          name: Sample Rate
+        tracking_mode:
+          name: Tracking Mode
+
+Platform
+--------
+
+.. code-block:: yaml
+
+    ld2415h:
+
+Configuration variables:
+************************
+
+**ld2415h** (*Required*): Component platform.
+
+
+Number
+------
+
+.. code-block:: yaml
+
+    number:
+      - platform: ld2415h
+        min_speed_threshold:
+          name: Min Speed Threshold
+        compensation_angle:
+          name: Compensation Angle
+        sensitivity:
+          name: Sensitivity
+        vibration_correction:
+          name: Vibration Correction
+        relay_trigger_duration:
+          name: Relay Trigger Duration
+        relay_trigger_speed:
+          name: Relay Trigger Speed
+
+Configuration variables:
+************************
+
+- **min_speed_threshold** (*Required*): Represents the minimum speed reported by the sensor. This allows you to filter out reports
+  of slow moving objects.
+- **compensation_angle** (*Required*): Compensation angle between the center of the radar beam axis and the travel direction of 
+  objects.  This will compensate for angle not being perpendicular to the direction of travel of objects.
+- **sensitivity** (*Required*): This adjusts the level of anti-interference compensation.  Higher values will result in fewer
+  erroneous reports.
+- **vibration_correction** (*Required*): Vibration anti-interference coefficient used to reject false positives.  For example if 
+  the sensor is mounted to swaying pole.
+- **relay_trigger_duration** (*Required*): The relay closure time when an object's speed exceeds the trigger speed.
+- **relay_trigger_speed** (*Required*): The speed at which the relay will trigger.
+
+
+Select
+------
+
+.. code-block:: yaml
+
+    select:
+      - platform: ld2415h
+        sample_rate:
+          name: Sample Rate
+        tracking_mode:
+          name: Tracking Mode
+
+**Sample Rates:**
+
+The select component allows you to choose between three sample rates: **~22 fps**, **~11 fps** and **~6 fps**.
+
+**Tracking Modes:**
+
+The UI provides three tracking modes: **Approaching and Restreating**, **Approaching** and **Restreating**.
+The select component allows you to choose the active mode.
+
+- **Approaching and Restreating**: This is the default mode. It will report the speed of any object moving toward or 
+  away from the sensor.
+- **Approaching**: In this mode the sensor will only report the speed of objects moving toward the sensor.
+- **Restreating**: In this mode the sensor will only report the speed of objects moving away from the sensor.
+
+Configuration variables:
+************************
+
+- **sample_rate** (*Required*): Provisions the sample rate select component.
+  May contain any options from :ref:`Select <config-select>`.
+
+- **tracking_mode** (*Required*): Provisions the tracking mode select component.
+  May contain any options from :ref:`Select <config-select>`.
+
+Sensor
+------
+
+The ``ld2415h`` sensor allows you to use your :doc:`ld2415h` to log the speed of objects moving within its field of
+detection.  The sensor Antenna angle is 40° horizontal with a 16° pitch and can sense objects in front or behind.
+The sensor will not report speeds below 1 KM/H.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: ld2415h
+        speed:
+          name: Speed
+
+Configuration variables:
+************************
+
+- **speed** (*Optional*): The speed of the fastest moving object detected by the sensor. May contain any options
+  from :ref:`Sensor <config-sensor>`.
+
+
+Important Information
+---------------------
+
+This sensor does not maintain state between power cycles.  Because it is subject to environmental interference, 
+it is recommended to configure the sensor after installation.
+
+See Also
+--------
+
+- Official Datasheet/Manuals are available from Hi-Link's website: `https://www.hlktech.net/index.php?id=1219`
+- :ghedit:`Edit`
