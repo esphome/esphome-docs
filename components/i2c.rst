@@ -64,12 +64,11 @@ Configuration variables:
          address: 0x76
          # ...
 
-For I²C multiplexing see :doc:`/components/tca9548a`.
+For I2C multiplexing see :doc:`/components/tca9548a`.
 
 See Also
 --------
 
 - :doc:`/components/tca9548a`
-- :doc:`/components/i2c_device`
 - :apiref:`i2c/i2c.h`
 - :ghedit:`Edit`
