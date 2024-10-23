@@ -52,11 +52,11 @@ Advanced common configuration variables:
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading. Defaults to ``.local``.
 
 Configuration examples
-----------------------
+
 
 **Example configuration for a LilyGo-T-Call-SIM800**:
 
-Using the template, the receipt of RSSI, BER and modem supply voltage is implemented
+This example demonstrates how to implement RSSI, BER, and modem supply voltage monitoring using templates
 
 .. code-block:: yaml
 
