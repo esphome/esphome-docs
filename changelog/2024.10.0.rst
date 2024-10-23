@@ -58,6 +58,13 @@ Release 2024.10.1 - October 22
 - [lvgl] Remove states from style definitions (Bugfix) :esphomepr:`7645` by :ghuser:`clydebarrow`
 - Move setting global voice assistant to constructor :esphomepr:`7630` by :ghuser:`synesthesiam`
 
+Release 2024.10.2 - October 24
+------------------------------
+
+- Humanized the missing MQTT log topic error message :esphomepr:`7634` by :ghuser:`solarkennedy`
+- [lvgl] Some properties were not templatable (Bugfix) :esphomepr:`7655` by :ghuser:`clydebarrow`
+- [voice_assistant] Bugfix: Fix crash on start :esphomepr:`7662` by :ghuser:`kahrendt`
+
 Full list of changes
 --------------------
 

@@ -1062,6 +1062,7 @@ Contributors
 - `Benny de Leeuw (@leeuwte) <https://github.com/leeuwte>`__
 - `Thayne (@Legot) <https://github.com/Legot>`__
 - `lein1013 (@lein1013) <https://github.com/lein1013>`__
+- `Lennart (@lennart-k) <https://github.com/lennart-k>`__
 - `Leonardo La Rocca (@leoli51) <https://github.com/leoli51>`__
 - `leoshusar (@leoshusar) <https://github.com/leoshusar>`__
 - `Leo Winter (@LeoWinterDE) <https://github.com/LeoWinterDE>`__
@@ -1668,6 +1669,7 @@ Contributors
 - `Shreyas Karnik (@shreyaskarnik) <https://github.com/shreyaskarnik>`__
 - `Sherman K (@shrmnk) <https://github.com/shrmnk>`__
 - `shuchitak (@shuchitak) <https://github.com/shuchitak>`__
+- `Shivam Maurya (@shvmm) <https://github.com/shvmm>`__
 - `sibowler (@sibowler) <https://github.com/sibowler>`__
 - `signix (@signix) <https://github.com/signix>`__
 - `SiliconAvatar (@SiliconAvatar) <https://github.com/SiliconAvatar>`__
@@ -2004,4 +2006,4 @@ Contributors
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 - `Zynth-dev (@Zynth-dev) <https://github.com/Zynth-dev>`__
 
-*This page was last updated October 22, 2024.*
+*This page was last updated October 24, 2024.*
