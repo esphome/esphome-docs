@@ -12,7 +12,8 @@ This component **not** be used in simultaneously with the Wi-Fi component, or in
 
 .. code-block:: yaml
 
-    # Example configuration entry for a modem LilyGo board SIM800L_IP5306_VERSION_20200811
+    # Example configuration entry for a modem LilyGo
+    # board SIM800L_IP5306_VERSION_20200811
     modem:
       type: SIM800
       tx_pin: 27
@@ -60,7 +61,8 @@ This example demonstrates how to implement RSSI, BER, and modem supply voltage m
 
 .. code-block:: yaml
 
-    # Example configuration entry for a modem LilyGo board SIM800L_IP5306_VERSION_20200811
+    # Example configuration entry for a modem LilyGo
+    # board SIM800L_IP5306_VERSION_20200811
     modem:
       type: SIM800  
       id: some_id
