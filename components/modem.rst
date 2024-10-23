@@ -90,7 +90,7 @@ This example demonstrates how to implement RSSI, BER, and modem supply voltage m
 
 .. note::
 
-    Оn some boards the reset pin does not work. For more details, refer to the [issue discussion](https://github.com/xinyuan-lilygo/lilygo-t-call-sim800/issues/238?ref=https://coder.social).
+    On some boards the reset pin does not work. For more details, refer to the `issue discussion <https://github.com/xinyuan-lilygo/lilygo-t-call-sim800/issues/238>`_.
 
 See Also
 --------
