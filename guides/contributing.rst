@@ -777,6 +777,8 @@ For this reason, you'll periodically want to update your local ``dev`` branch. A
 
 Note that you can use this procedure for other branches, too, such as ``next`` or ``current`` from ``esphome-docs``.
 
+.. _force_push:
+
 .. warning::
 
     Using ``git rebase`` will result in your changes having to be *force-pushed* back up to GitHub.
