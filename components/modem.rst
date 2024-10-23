@@ -12,20 +12,13 @@ This component **not** be used in simultaneously with the Wi-Fi component, or in
 
 .. code-block:: yaml
 
-    # Example configuration entry for a modem
+    # Example configuration entry for a modem LilyGo board SIM800L_IP5306_VERSION_20200811
     modem:
       type: SIM800
-      tx_pin: GPIOXX
-      rx_pin: GPIOXX
-      reset_pin: GPIOXX
-      power_pin: GPIOXX
-      pwrkey_pin: GPIOXX
-      apn: "internet"
-      uart_event_task_stack_size: 2048
-      uart_event_task_priority: 5
-      uart_event_queue_size: 30
-      tx_buffer_size: 512
-      rx_buffer_size: 1024
+      tx_pin: 27
+      rx_pin: 26
+      power_pin: 23
+      pwrkey_pin: 4
 
 Configuration variables:
 ------------------------
@@ -41,6 +34,14 @@ Configuration variables:
 - **reset_pin** (*Optional*, :ref:`config-pin`): The reset pin of the modem.
 - **power_pin** (*Optional*, :ref:`config-pin`): The power pin of the modem.
 - **pwrkey_pin** (*Optional*, :ref:`config-pin`): The power key pin of the modem.
+
+.. note::
+
+    The modem component requires at least a reset pin, a power pin, or a pwrkey pin to be configured.
+
+Advanced common configuration variables:
+----------------------
+
 - **apn** (*Optional*, string): The Access Point Name (APN) for the modem. Default is "internet".
 - **uart_event_task_stack_size** (*Optional*, int): The stack size for the UART event task. Default is 2048.
 - **uart_event_task_priority** (*Optional*, int): The priority for the UART event task. Default is 5.
@@ -50,24 +51,42 @@ Configuration variables:
 - **use_address** (*Optional*, string): Manually override what address to use to connect to the ESP. Defaults to auto-generated value.
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading. Defaults to ``.local``.
 
-.. note::
-
-    The modem component requires at least a reset pin, a power pin, or a pwrkey pin to be configured.
-    
 Configuration examples
 ----------------------
 
 **Example configuration for a LilyGo-T-Call-SIM800**:
 
+Using the template, the receipt of RSSI, BER and modem supply voltage is implemented
+
 .. code-block:: yaml
 
+    # Example configuration entry for a modem LilyGo board SIM800L_IP5306_VERSION_20200811
     modem:
-      type: SIM800
+      type: SIM800  
+      id: some_id
       tx_pin: 27
       rx_pin: 26
       # reset_pin: 5
       power_pin: 23
       pwrkey_pin: 4
+    sensor:
+      - platform: template
+        name: "Modem voltage"
+        unit_of_measurement: "V"
+        lambda: "return id(some_id).get_modem_voltage()/1000.0;"
+        update_interval: 5s
+      - platform: template
+        name: "Modem rssi"
+        unit_of_measurement: "dBm"
+        lambda: "return id(some_id).get_rssi();"
+        accuracy_decimals: 0
+        update_interval: 5s
+      - platform: template
+        name: "Modem ber"
+        unit_of_measurement: "%"
+        lambda: "return id(some_id).get_ber();"
+        accuracy_decimals: 0
+        update_interval: 5s
 
 .. note::
 
