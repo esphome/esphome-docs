@@ -53,7 +53,7 @@ Advanced common configuration variables:
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading. Defaults to ``.local``.
 
 Configuration examples
-
+------------------------
 
 **Example configuration for a LilyGo-T-Call-SIM800**:
 
