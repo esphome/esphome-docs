@@ -66,7 +66,7 @@ Configuration variables:
 Automations:
 ------------
 
-- **on_packet** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a packet has been decoded. A variable x of type std::vector<uint8_t> is passed to the automation for use in lambdas.
+- **on_packet** (*Optional*, :ref:`Automation <automation>`): An automation to perform in packet mode when a packet has been decoded. A variable x of type std::vector<uint8_t> is passed to the automation for use in lambdas.
 
 .. code-block:: yaml
 
@@ -80,18 +80,16 @@ Automations:
 Actions:
 --------
 
-SX127X has a number of :ref:`actions <config-action>`
+**sx127x.set_mode_tx**
 
-``sx127x.set_mode_tx``
-
-This :ref:`action <config-action>` sets the SX127X mode to tx, use ``sx127x.send_packet`` in packet mode.
+This :ref:`action <config-action>` sets the SX127X mode to tx, SX127X needs to be in continuous mode.
 
 .. code-block:: yaml
 
     on_...:
       - sx127x.set_mode_tx
 
-``sx127x.set_mode_rx``
+**sx127x.set_mode_rx**
 
 This :ref:`action <config-action>` sets the SX127X mode to rx.
 
@@ -100,7 +98,7 @@ This :ref:`action <config-action>` sets the SX127X mode to rx.
     on_...:
       - sx127x.set_mode_rx
 
-``sx127x.set_mode_standby``
+**sx127x.set_mode_standby**
 
 This :ref:`action <config-action>` sets the SX127X mode to standby.
 
@@ -109,7 +107,7 @@ This :ref:`action <config-action>` sets the SX127X mode to standby.
     on_...:
       - sx127x.set_mode_standby
 
-``sx127x.send_packet``
+**sx127x.send_packet**
 
 This :ref:`action <config-action>` sends a packet, SX127X needs to be in packet mode.
 
@@ -118,6 +116,10 @@ This :ref:`action <config-action>` sends a packet, SX127X needs to be in packet 
     on_...:
       - sx127x.send_packet:
           data: [0x1F, 0x3E, 0x06, 0x5F, 0x4F, 0x5F, 0xAC, 0xB1]
+
+Configuration variables:
+
+- **data** (**Required**, list): The packet to send, length should match the configured payload_length.
 
 As a Receiver:
 --------------
