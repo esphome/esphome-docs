@@ -263,32 +263,14 @@ whose ``id`` is  set to ``player_volume``:
           then:
             - lambda: |-
                 json::parse_json(body, [](JsonObject root) -> bool {
-                    id(player_volume).publish_state(root["vol"]);
-                    return true;
-                });
-
-
-It's important to test if a key exists before using it to avoid null pointer exceptions.
-
-.. code-block:: yaml
-
-    on_...:
-    - http_request.get:
-        url: https://esphome.io
-        capture_response: true
-        on_response:
-          then:
-            - lambda: |-
-                json::parse_json(body, [](JsonObject root) -> bool {
-                    const char* vol = root["vol"];
-                    if (vol) {
-                        id(player_volume).publish_state(vol);
+                    if (root["vol"]) {
+                        id(player_volume).publish_state(root["vol"]);
+                        return true;
                     }
                     else {
                       ESP_LOGD(TAG,"No 'vol' key in this json!");
                       return false;
                     }
-                    return true;
                 });
 
 See Also
