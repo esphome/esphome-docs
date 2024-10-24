@@ -66,6 +66,8 @@ Configuration variables:
   :ref:`rc522-on_tag`.
 - **on_tag_removed** (*Optional*, :ref:`Automation <automation>`): An automation to perform after a tag is removed. See
   :ref:`rc522-on_tag_removed`.
+- **gain** (*Optional*): Gain value that is supported by this controller. Valid values are 18dB, 
+  23dB, 18dB_a, 23dB_a, 33dB, 38dB, 43dB, 48dB. Higher values should affect the scan distance for tags.
 
 Over I²C
 --------
