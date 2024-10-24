@@ -48,20 +48,39 @@ with the following:
 
 Mac
 ---
+Install Homebrew using the followng command. If you have it installed already, skip the next two steps.
 
-There are no tested installation instructions for Mac. ESPHome does support
-Mac & will run with no problem.
+.. code-block:: console
 
-Contributions are welcome!
+    $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-The process will likely be similar to Windows. You can install Python from the
-official site, and then install ESPHome with ``pip3 install esphome``.  You can
-then test that things are properly installed with the following:
+Run these commands in your terminal to add Homebrew to your PATH:
+
+.. code-block:: console
+
+    $ echo >> /Users/ymulgaonkar/.zprofile
+    $ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/[username]/.zprofile
+    $ eval "$(/opt/homebrew/bin/brew shellenv)"
+
+Ensure you have Homebrew installed by running this command:
+
+.. code-block:: console
+
+    $ brew --version
+    Homebrew 4.4.2
+
+Now install ESPHome with this command:
+
+.. code-block:: console
+    
+    $ brew install esphome  
+
+Confirm your installation by running:
 
 .. code-block:: console
 
     $ esphome version
-    Version: 2021.12.3
+    Version: 2024.10.1
 
 Linux
 -----
