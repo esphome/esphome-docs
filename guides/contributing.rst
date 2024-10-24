@@ -864,7 +864,7 @@ and the ESPHome core will copy them with no additional code required by the comp
 
     ESPHome also has a ``custom_components`` mechanism like `Home Assistant does
     <https://developers.home-assistant.io/docs/creating_component_index>`__. Note, however, that
-    **custom componenets are deprecated** in favor of :doc:`/components/external_components`.
+    **custom components are deprecated** in favor of :doc:`/components/external_components`.
 
 .. _config_validation:
 
