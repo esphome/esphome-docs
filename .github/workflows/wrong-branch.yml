@@ -1,0 +1,96 @@
+name: Wrong Branch
+
+on:
+  pull_request:
+    types: [labeled, unlabeled]
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add wrong-base-branch label
+        id: add-wrong-base-branch-label
+        uses: actions/github-script@v7.0.1
+        if: contains(github.event.pull_request.labels.*.name, 'current') && contains(github.event.pull_request.labels.*.name, 'has-parent')
+        with:
+          script: |
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['wrong-base-branch']
+            });
+
+      - name: Remove wrong-base-branch label
+        id: remove-wrong-base-branch-label
+        uses: actions/github-script@v7.0.1
+        if: |
+          contains(github.event.pull_request.labels.*.name, 'wrong-base-branch') &&
+            (
+              (contains(github.event.pull_request.labels.*.name, 'current') && !contains(github.event.pull_request.labels.*.name, 'has-parent'))
+              ||
+              (contains(github.event.pull_request.labels.*.name, 'next') && contains(github.event.pull_request.labels.*.name, 'has-parent'))
+            )
+        with:
+          script: |
+            await github.rest.issues.removeLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              name: 'wrong-base-branch'
+            });
+
+      - name: Has wrong-base-branch label
+        if: contains(github.event.pull_request.labels.*.name, 'wrong-base-branch') || steps.add-wrong-base-branch-label.outcome == 'success'
+        uses: actions/github-script@v7.0.1
+        with:
+          script: core.setFailed('This PR has the wrong-base-branch label');
+
+      - if: failure() && contains(github.event.pull_request.labels.*.name, 'current')
+        name: Review PR to change to next
+        uses: actions/github-script@v7.0.1
+        with:
+          script: |
+            await github.rest.pulls.createReview({
+              pull_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              event: 'REQUEST_CHANGES',
+              body: "As this is a feature matched with a PR in https://github.com/esphome/esphome, please target your PR to the 'next' branch and rebase."
+            });
+
+      - if: failure() && contains(github.event.pull_request.labels.*.name, 'next')
+        name: Review PR to change to current
+        uses: actions/github-script@v7.0.1
+        with:
+          script: |
+            await github.rest.pulls.createReview({
+              pull_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              event: 'REQUEST_CHANGES',
+              body: "Please target your PR to the 'current' branch and rebase."
+            });
+
+      - if: success()
+        name: Dismiss review
+        uses: actions/github-script@v7.0.1
+        with:
+          script: |
+            let reviews = await github.rest.pulls.listReviews({
+              pull_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            for (let review of reviews.data) {
+              if (review.user.login === 'github-actions[bot]' && review.state === 'CHANGES_REQUESTED') {
+                await github.rest.pulls.dismissReview({
+                  pull_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  review_id: review.id,
+                  message: 'Target branch is correct.'
+                });
+              }
+            }
