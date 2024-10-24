@@ -1123,6 +1123,7 @@ Wireless communication that is **not Wi-Fi.**
     Remote Transmitter, components/remote_transmitter, remote.svg, dark-invert
     RF Bridge, components/rf_bridge, rf_bridge.jpg
     SIM800L, components/sim800l, sim800l.jpg
+    Si4713, components/si4713, si4713.jpg
 
 Miscellaneous Components
 ------------------------
