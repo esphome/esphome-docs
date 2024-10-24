@@ -268,7 +268,7 @@ whose ``id`` is  set to ``player_volume``:
                 });
 
 
-You might want to check to see if a key exists to avoid null pointer exceptions.
+It's important to test if a key exists before using it to avoid null pointer exceptions.
 
 .. code-block:: yaml
 
@@ -280,12 +280,14 @@ You might want to check to see if a key exists to avoid null pointer exceptions.
           then:
             - lambda: |-
                 json::parse_json(body, [](JsonObject root) -> bool {
-                    const char* vol = root["vol"] | "unknown";
-                    if (strcmp(vol,"unknown") == 0) {
+                    const char* vol = root["vol"];
+                    if (vol) {
+                        id(player_volume).publish_state(vol);
+                    }
+                    else {
                       ESP_LOGD(TAG,"No 'vol' key in this json!");
                       return false;
                     }
-                    id(player_volume).publish_state(root["vol"]);
                     return true;
                 });
 
