@@ -14,9 +14,7 @@ or sensors defined in the ESPHome configuration will automatically appear in Hom
 Installing ESPHome Device Compiler
 ----------------------------------
 
-The ESPHome Device Compiler can be installed as a Home Assistant add-on, which you can find in the add-on store in the Supervisor panel. Open it using the following button then click on INSTALL:
-
-If you do not have the official ESPHome add-on repository added you can add with this button:
+To install the ESPHome Device Compiler in Home Assistant, click the following button to open the ESPHome add-on page and hit the INSTALL button:
 
 .. raw:: html
 
@@ -24,7 +22,9 @@ If you do not have the official ESPHome add-on repository added you can add with
         <img src="https://my.home-assistant.io/badges/supervisor_addon.svg" alt="Open your Home Assistant instance and show the user interface of the ESPHome add-on." />
     </a>
 
-After that, wait a bit until it is installed (this can take a while). Click "Start" and then click "Open Web UI". If you see "502: Bad Gateway" it is currently starting, and you can refresh the page after a couple of seconds.
+If you run a Home Assistant installation that does not have access to add-ons, take a look at the other installation methods here.
+
+It can take a bit until the add-on is installed. Once done, click "Start" and then click "Open Web UI".
 
 .. figure:: images/hassio_addon.png
     :align: center
