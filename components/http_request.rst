@@ -263,10 +263,15 @@ whose ``id`` is  set to ``player_volume``:
           then:
             - lambda: |-
                 json::parse_json(body, [](JsonObject root) -> bool {
-                    id(player_volume).publish_state(root["vol"]);
-                    return true;
+                    if (root["vol"]) {
+                        id(player_volume).publish_state(root["vol"]);
+                        return true;
+                    }
+                    else {
+                      ESP_LOGD(TAG,"No 'vol' key in this json!");
+                      return false;
+                    }
                 });
-
 
 See Also
 --------
