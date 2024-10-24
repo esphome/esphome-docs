@@ -54,7 +54,6 @@ See :doc:`/components/display/nextion` for setting up the display
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the sensor.
 - **nextion_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Nextion display.
 - **component_name** (*Optional*, string): Manually specify the name of the Nextion component.
 - **variable_name** (*Optional*, string): Manually specify the name of the Nextion variable.

@@ -73,7 +73,7 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options.
   Set to ``""`` to remove the default entity category.
-- If Webserver enabled, ``web_server_sorting_weight`` can be set. See :ref:`Webserver Entity Sorting <config-webserver-sorting>`.
+- If Webserver enabled and version 3 is selected, All other options from Webserver Component.. See :ref:`Webserver Version 3 <config-webserver-version-3-options>`.
 
 Automations:
 
@@ -294,6 +294,27 @@ Rounds the value to the given decimal places.
     - platform: ...
       filters:
         - round: 1 # will round to 1 decimal place
+
+
+
+``round_to_multiple_of``
+************************
+
+Rounds the value to the nearest multiple. Takes a float greater than zero.
+
+.. code-block:: yaml
+
+    - platform: ...
+      filters:
+        - round_to_multiple_of: 10
+        # 123 -> 120
+        # 126 -> 130
+
+    - platform: ...
+      filters:
+        - round_to_multiple_of: 0.25
+        # 3.1415 -> 3.25
+        # 1.6180 -> 1.5
 
 
 ``quantile``

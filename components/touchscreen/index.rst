@@ -292,14 +292,15 @@ buttons.
 Configuration variables:
 ************************
 
-- **name** (*Optional*, string): The name for the binary sensor.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **touchscreen_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the touchscreen.
 - **x_min** (**Required**, int): Left coordinate of the screen area to be detected as the virtual button.
 - **x_max** (**Required**, int): Right coordinate of the screen area to be detected as the virtual button.
 - **y_min** (**Required**, int): Top coordinate of the screen area to be detected as the virtual button.
 - **y_max** (**Required**, int): Bottom coordinate of the screen area to be detected as the virtual button.
 - **page_id** (*Optional*, :ref:`config-id`): Only trigger this binary sensor if the display is showing this page.
+  Cannot be used with ``pages``.
+- **pages** (*Optional*, list of :ref:`config-id`): Only trigger this binary sensor if the display is showing one of these pages.
+  Cannot be used with ``page_id``.
 
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
