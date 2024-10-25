@@ -1122,6 +1122,7 @@ Wireless communication that is **not Wi-Fi.**
 .. imgtable::
 
     IR Remote Climate, components/climate/climate_ir, air-conditioner-ir.svg, dark-invert
+    QESAN BLE Remote, components/qesan_ble_remote, qesan_ble_remote.png
     Remote Receiver, components/remote_receiver, remote.svg, dark-invert
     Remote Transmitter, components/remote_transmitter, remote.svg, dark-invert
     RF Bridge, components/rf_bridge, rf_bridge.jpg
