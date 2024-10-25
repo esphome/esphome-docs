@@ -924,6 +924,7 @@ Cover Components
     HE60R Cover, components/cover/he60r, he60r.jpg
     Time-Based Cover, components/cover/time_based, timer.svg, dark-invert
     Tuya Cover, components/cover/tuya, tuya.png
+    Home Assistant, components/cover/homeassistant, home-assistant.svg, dark-invert
 
 Text Components
 ---------------
@@ -1073,6 +1074,7 @@ Components specifically for interacting with Home Assistant.
     Switch, components/switch/homeassistant, home-assistant.svg, dark-invert
     Text Sensor, components/text_sensor/homeassistant, home-assistant.svg, dark-invert
     Voice Assistant, components/voice_assistant, voice-assistant.svg, dark-invert
+    Cover, components/cover/homeassistant, home-assistant.svg, dark-invert
 
 
 Alarm Control Panel Components
