@@ -97,7 +97,9 @@ replaced with the new password in the `ota:` section.
 
 ### Adding a Password
 
-If OTA is already enabled without a password, simply add a `password:` line to the existing `ota:` config block.
+If OTA is already enabled without a password, simply add a `password:` line to the existing `ota:` config block. If
+the device has an API encryption key, use [Encryption](#encryption) instead; a password next to an API key only serves
+older uploaders and warns at validation.
 
 ### Removing a Password
 
