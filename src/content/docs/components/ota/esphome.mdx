@@ -158,8 +158,8 @@ flash or the web server OTA platform.
 
 An OTA `password:` next to an API key only serves older clients and costs about 3.5 KB of flash on an ESP8266, so
 validation warns. A key provisioned at runtime by Home Assistant (an API `encryption:` block without a `key:`) makes
-the device offer too, but the CLI cannot use a key it does not have, so those uploads stay plaintext unless the OTA
-block gets its own `key:`.
+the device offer too, but the CLI cannot use a key it does not have, so those uploads stay plaintext until either
+`api: encryption:` gets a `key:` in the yaml or the OTA `encryption:` block gets its own.
 
 ## Updating the partition table on ESP32
 
