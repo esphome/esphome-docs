@@ -288,21 +288,19 @@ api:
 
 ota:
   - platform: esphome
-    password: !secret device1_ota_password
+    encryption:
 
 ```
 
 **secrets.yaml:**
 
 ```yaml
-# Each device should have unique keys and passwords
+# Each device should have unique keys and passwords; the API key also encrypts OTA
 device1_api_key: "uKh1234567890abcdefghijklmnopqrstuvwxyz="
-device1_ota_password: "strong-unique-password-device1"
 device1_web_username: "device1_admin"
 device1_web_password: "strong-unique-web-password-device1"
 
 device2_api_key: "aBc9876543210xyzqrstuvwxyzabcdefghijkl="
-device2_ota_password: "strong-unique-password-device2"
 device2_web_username: "device2_admin"
 device2_web_password: "strong-unique-web-password-device2"
 
@@ -312,7 +310,7 @@ wifi_password: "your-wifi-password"
 
 ```
 
-**Important:** Even when using `secrets.yaml`, **each device must have unique API encryption keys, OTA passwords, and web server credentials**. Never reuse these across devices. Only WiFi credentials can be shared.
+**Important:** Even when using `secrets.yaml`, **each device must have unique API encryption keys (which also secure OTA), OTA passwords where still used, and web server credentials**. Never reuse these across devices. Only WiFi credentials can be shared.
 
 ### Version Control
 
@@ -504,10 +502,10 @@ api:
   encryption:
     key: !secret secure_device_api_key
 
-# OTA with password (REQUIRED)
+# OTA encrypted with the API key (REQUIRED)
 ota:
   - platform: esphome
-    password: !secret secure_device_ota_password
+    encryption:
 
 # Disable web server if not needed
 # web_server:
@@ -552,10 +550,10 @@ api:
   # Optional: Restrict to specific Home Assistant instance
   # reboot_timeout: 15min
 
-# OTA with password
+# OTA encrypted with the API key
 ota:
   - platform: esphome
-    password: !secret production_device_ota_password
+    encryption:
   # Optional: Require safe_mode for troubleshooting
   # safe_mode: true
 
@@ -594,8 +592,8 @@ Depending on your jurisdiction and use case, you may need to comply with:
 1. **Investigate** other devices on the same network
 1. **Rotate credentials**:
 
-   - API encryption keys
-   - OTA passwords
+   - API encryption keys (a device that requires OTA encryption only accepts its current key, so a new key goes in with the serial flash below)
+   - OTA passwords, where still used
    - Web server credentials
    - WiFi passwords (if device had access)
 
