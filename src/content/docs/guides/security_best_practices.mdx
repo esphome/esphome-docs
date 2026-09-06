@@ -442,7 +442,8 @@ mqtt:
   # For ESP32 with esp-idf: Use TLS with certificate authority
   # certificate_authority: ca_cert.pem
 
-# Without api: encryption there is no API key to reuse, so give OTA its own
+# Without api: encryption there is no API key to reuse, so give OTA its own.
+# A deployed device cannot receive this block over the air, see the OTA docs.
 ota:
   - platform: esphome
     encryption:
