@@ -21,7 +21,7 @@ expected. This is automatically enabled by this component, but it may be disable
 # Example configuration entry, encrypted with the API key (recommended)
 api:
   encryption:
-    key: !secret api_encryption_key
+    key: !secret device_name__encryption_key
 
 ota:
   - platform: esphome
@@ -32,7 +32,7 @@ ota:
 # Example configuration entry, password only (no API encryption key)
 ota:
   - platform: esphome
-    password: !secret ota_password
+    password: !secret device_name__ota_password
 ```
 
 ## Configuration variables
@@ -120,7 +120,7 @@ the API key, so there is one key per device and nothing else to manage:
 ```yaml
 api:
   encryption:
-    key: !secret device_name_key
+    key: !secret device_name__encryption_key
 
 ota:
   - platform: esphome
@@ -138,7 +138,7 @@ mqtt:
 ota:
   - platform: esphome
     encryption:
-      key: !secret device_name_ota_key
+      key: !secret device_name__ota_key
 ```
 
 > [!WARNING]

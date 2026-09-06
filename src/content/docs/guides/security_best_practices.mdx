@@ -88,7 +88,7 @@ reuses the API key, so no extra secret is needed:
 ```yaml
 api:
   encryption:
-    key: !secret device_name_key
+    key: !secret device_name__encryption_key
 
 ota:
   - platform: esphome
@@ -114,7 +114,7 @@ If you cannot use encryption, at least set an OTA password:
 ```yaml
 ota:
   - platform: esphome
-    password: !secret device_name_ota_password
+    password: !secret device_name__ota_password
 ```
 
 Use a strong, unique password, store it in `secrets.yaml`, never share it across devices, and rotate it after a
@@ -448,7 +448,7 @@ mqtt:
 ota:
   - platform: esphome
     encryption:
-      key: !secret device_name_ota_key
+      key: !secret device_name__ota_key
 
 ```
 
