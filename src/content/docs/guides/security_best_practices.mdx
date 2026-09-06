@@ -278,7 +278,7 @@ If you have extreme security requirements, you can physically disable USB/serial
 
 ### Using secrets.yaml
 
-Use `secrets.yaml` to avoid storing sensitive information in your configuration files, especially if you share your configs in a public Git repository. The per device names below follow the `<hostname>__<base>` shape the Device Builder uses when it stores a secret for a device, so the examples match what it writes to `secrets.yaml`:
+Use `secrets.yaml` to avoid storing sensitive information in your configuration files, especially if you share your configs in a public Git repository. The per device names below follow the `<hostname>__<base>` shape the Device Builder uses when it stores a secret for a device, with hyphens in the hostname written as underscores, so the examples match what it writes to `secrets.yaml`:
 
 ```yaml
 # Example: device1.yaml
