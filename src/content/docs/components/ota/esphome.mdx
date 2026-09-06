@@ -129,7 +129,17 @@ ota:
 
 Only give the OTA block its own `key:` when there is no static API key to use, for example a device that talks MQTT
 and has no `api:` block, or one whose API key is provisioned at runtime by Home Assistant. Generate a key with the on
-demand generator in the [API component documentation](/components/api#configuration-variables).
+demand generator in the [API component documentation](/components/api#configuration-variables):
+
+```yaml
+mqtt:
+  broker: !secret mqtt_broker
+
+ota:
+  - platform: esphome
+    encryption:
+      key: !secret device_name_ota_key
+```
 
 > [!WARNING]
 > Add `encryption:` under `ota:` once the device runs ESPHome 2026.9.0 or newer with `api: encryption:`, and keep it

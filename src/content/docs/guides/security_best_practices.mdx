@@ -444,6 +444,12 @@ mqtt:
   # For ESP32 with esp-idf: Use TLS with certificate authority
   # certificate_authority: ca_cert.pem
 
+# Without api: encryption there is no API key to reuse, so give OTA its own
+ota:
+  - platform: esphome
+    encryption:
+      key: !secret device_name_ota_key
+
 ```
 
 **Best practices:**
