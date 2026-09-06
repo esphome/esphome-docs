@@ -264,8 +264,9 @@ can make the running firmware offer encryption, and the OTA key then has to arri
 #### Notes
 
 - Step 1 relies on the CLI falling back to plaintext when the device does not offer encryption. That fallback is
-  removed in ESPHome 2027.3.0, so a device still on firmware older than 2026.9.0 must be updated before then; after
-  that, update it by serial flash or through the [web server OTA platform](/components/ota/web_server/).
+  planned to go away no earlier than ESPHome 2027.3.0, the release notes will announce the release that drops it, so
+  update devices on firmware older than 2026.9.0 while it exists; after that, update them by serial flash or through
+  the [web server OTA platform](/components/ota/web_server/).
 - An OTA `password:` next to an API key only serves older clients and costs about 3.5 KB of flash on an ESP8266, so
   validation warns.
 
