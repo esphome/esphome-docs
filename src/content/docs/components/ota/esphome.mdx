@@ -46,7 +46,7 @@ ota:
 
 - **encryption** (*Optional*): Encrypt the OTA update with the same Noise protocol the [native API](/components/api) uses. See [Encryption](#encryption) below. Cannot be combined with **password**.
 
-  - **key** (*Optional*, string): The base64 encryption key. Omit it so the [API encryption key](/components/api#configuration-variables) is used and one key protects the device; only set it when there is no static API encryption key, for example a device that uses MQTT without `api:`. Next to a static API key it must be the same key, a different one is rejected at validation.
+  - **key** (*Optional*, string): The base64 encryption key. Omit it so the [API encryption key](/components/api#configuration-variables) is used and one key protects the device; only set it when there is no `api:` block at all, for example a device that uses MQTT. Next to a static API key it must be the same key, a different one is rejected at validation.
 
 - **password** (*Optional*, string): The password to use for updates. Not recommended for new devices, use **encryption** instead. Cannot be combined with **encryption**.
 - **allow_partition_access** (*Optional*, boolean): Only on `esp32`. Allow updating more partition types. Used for updating the partition table and the bootloader. Defaults to `false`.
@@ -137,11 +137,9 @@ ota:
     encryption:
 ```
 
-Only give the OTA block its own `key:` when there is no `api:` block at all, for example a device that talks MQTT. A
-device whose API key is provisioned at runtime by Home Assistant keeps one key: the provisioned key goes into the
-yaml and the OTA block inherits it, see
-[Enabling Encryption on an Existing Device](#enabling-encryption-on-an-existing-device). Generate a key with the on
-demand generator in the [API component documentation](/components/api#configuration-variables):
+Only give the OTA block its own `key:` when there is no `api:` block at all, for example a device that talks MQTT.
+Generate a key with the on demand generator in the
+[API component documentation](/components/api#configuration-variables):
 
 ```yaml
 mqtt:
@@ -152,6 +150,10 @@ ota:
     encryption:
       key: !secret device_name__ota_esphome_key
 ```
+
+By contrast, a device whose API key is provisioned at runtime by Home Assistant keeps one key: the provisioned key goes
+into the yaml and the OTA block inherits it, see
+[Enabling Encryption on an Existing Device](#enabling-encryption-on-an-existing-device).
 
 > [!WARNING]
 > A device flashed by serial can carry `encryption:` from the start. A device updated over the air gets it once it
@@ -193,12 +195,12 @@ logger:
 Over the air, the block goes into the config only after the device runs firmware that offers encryption, because with
 the block in place the CLI never sends plaintext. Which steps apply depends on whether the device uses the native API.
 
-#### Devices With an API Encryption Key
+#### Devices With the Native API
 
-1. Build and install with ESPHome 2026.9.0 or newer, with the config as it is and without the block. Keep any
-   existing `password:`. If the device still runs older firmware this install is plaintext, with a warning; the
-   firmware it lands offers OTA encryption with the API key. A device that already runs 2026.9.0 or newer with the
-   key can skip to step 2.
+1. Build and install with ESPHome 2026.9.0 or newer, with the config as it is and without the block. If `api:` has
+   no `encryption:` yet, add one with a key now. Keep any existing `password:`. If the device still runs older
+   firmware or had no key, this install is plaintext, with a warning; the firmware it lands offers OTA encryption
+   with the API key. A device that already runs 2026.9.0 or newer with the key can skip to step 2.
 
    ```yaml
    api:
@@ -230,7 +232,8 @@ such a device, that locks Home Assistant out after the next install.
 #### Devices Without the Native API
 
 MQTT devices, and anything else without an `api:` block, use an `api:` block once as a stepping stone: only an API key
-can make the running firmware offer encryption, and the OTA key then has to arrive over an encrypted upload.
+can make the running firmware offer encryption, and the OTA key then has to arrive over an encrypted upload. A device
+that has `api:` follows the path above instead.
 
 1. Generate a key with the [on demand generator](/components/api#configuration-variables). Add a temporary `api:`
    block with it and `reboot_timeout: 0s`, since a device with `api:` and no client would otherwise reboot every 15
