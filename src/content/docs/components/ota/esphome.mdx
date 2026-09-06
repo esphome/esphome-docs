@@ -121,11 +121,11 @@ and has no `api:` block, or one whose API key is provisioned at runtime by Home 
 demand generator in the [API component documentation](/components/api#configuration-variables).
 
 > [!WARNING]
-> Do not add `encryption:` under `ota:` until the device already runs ESPHome 2026.9.0 or newer with
-> `api: encryption:`. A device on older firmware cannot offer encryption, and with the block in the config the CLI
-> refuses to send plaintext, so the install stops with
-> `the device did not offer encryption; refusing to send the image in plaintext`. Install once without the block
-> first, then add it; a device that is already unreachable this way needs a serial flash.
+> Add `encryption:` under `ota:` once the device runs ESPHome 2026.9.0 or newer with `api: encryption:`, and keep it
+> from then on. Older firmware cannot offer encryption, and with the block in the config the CLI refuses to send
+> plaintext, so an install against it stops with
+> `the device did not offer encryption; refusing to send the image in plaintext`. If that happens, remove the block,
+> install once, and add it back; or flash the device by serial.
 
 Encryption cannot be combined with a password; the key already authenticates the uploader, so remove the `password:`
 line when you add `encryption:`. Adding the [web server OTA platform](/components/ota/web_server) next to it is allowed
