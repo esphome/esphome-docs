@@ -153,9 +153,9 @@ ota:
 
 > [!WARNING]
 > A device flashed by serial can carry `encryption:` from the start. A device updated over the air gets it once it
-> runs firmware that offers encryption, and keeps it from then on. Older firmware cannot offer
-> encryption, and with the block in the config the CLI refuses to send
-> plaintext, so an install against it stops with
+> runs ESPHome 2026.9.0 or newer with an encryption key it can offer, and keeps it from then on. Firmware without
+> such a key cannot offer encryption, and with the block in the config the CLI refuses to send plaintext, so an
+> install against it stops with
 > `the device did not offer encryption; refusing to send the image in plaintext`. See
 > [Enabling Encryption on an Existing Device](#enabling-encryption-on-an-existing-device) for the way around it.
 
@@ -188,14 +188,15 @@ logger:
 
 ### Enabling Encryption on an Existing Device
 
-The block goes into the config only after the device runs firmware that offers encryption, because with the block in
-place the CLI never sends plaintext. Which steps apply depends on whether the device uses the native API.
+Over the air, the block goes into the config only after the device runs firmware that offers encryption, because with
+the block in place the CLI never sends plaintext. Which steps apply depends on whether the device uses the native API.
 
 #### Devices with an API encryption key
 
-1. Install ESPHome 2026.9.0 or newer with the config as it is, without the block. Keep any existing `password:`. If the
-   device still runs older firmware this install is plaintext, with a warning; the firmware it lands offers OTA
-   encryption with the API key.
+1. Build and install with ESPHome 2026.9.0 or newer, with the config as it is and without the block. Keep any
+   existing `password:`. If the device still runs older firmware this install is plaintext, with a warning; the
+   firmware it lands offers OTA encryption with the API key. A device that already runs 2026.9.0 or newer with the
+   key can skip to step 2.
 
    ```yaml
    api:
@@ -229,9 +230,11 @@ such a device, that locks Home Assistant out after the next install.
 MQTT devices, and anything else without an `api:` block, use an `api:` block once as a stepping stone: only an API key
 can make the running firmware offer encryption, and the OTA key then has to arrive over an encrypted upload.
 
-1. Generate a key. Add a temporary `api:` block with it and `reboot_timeout: 0s`, since a device with `api:` and no
-   client would otherwise reboot every 15 minutes. Keep any existing `password:` and install. If the device still runs
-   older firmware this install is plaintext, with a warning; the firmware it lands offers OTA encryption with that key.
+1. Generate a key with the [on demand generator](/components/api#configuration-variables). Add a temporary `api:`
+   block with it and `reboot_timeout: 0s`, since a device with `api:` and no client would otherwise reboot every 15
+   minutes. Keep any existing `password:`, then build and install with ESPHome 2026.9.0 or newer. The running firmware
+   has no key to offer, so this install is always plaintext, with a warning; the firmware it lands offers OTA
+   encryption with that key.
 
    ```yaml
    mqtt:
@@ -264,9 +267,10 @@ can make the running firmware offer encryption, and the OTA key then has to arri
 #### Notes
 
 - Step 1 relies on the CLI falling back to plaintext when the device does not offer encryption. That fallback is
-  planned to go away no earlier than ESPHome 2027.3.0, the release notes will announce the release that drops it, so
-  update devices on firmware older than 2026.9.0 while it exists; after that, update them by serial flash or through
-  the [web server OTA platform](/components/ota/web_server/).
+  planned to go away no earlier than ESPHome 2027.3.0, the release notes will announce the release that drops it. Do
+  step 1 while it exists, both for devices on firmware older than 2026.9.0 and for devices without the native API,
+  whose firmware has no key to offer at any version; after that, the block arrives by serial flash or through the
+  [web server OTA platform](/components/ota/web_server/).
 - An OTA `password:` next to an API key only serves older clients and costs about 3.5 KB of flash on an ESP8266, so
   validation warns.
 
