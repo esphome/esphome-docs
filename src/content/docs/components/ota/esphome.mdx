@@ -18,7 +18,18 @@ expected. This is automatically enabled by this component, but it may be disable
 [Safe Mode](/components/safe_mode/) for details.
 
 ```yaml
-# Example configuration entry
+# Example configuration entry, encrypted with the API key (recommended)
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  - platform: esphome
+    encryption:
+```
+
+```yaml
+# Example configuration entry, password only (no API encryption key)
 ota:
   - platform: esphome
     password: !secret ota_password
