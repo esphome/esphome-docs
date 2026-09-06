@@ -198,7 +198,8 @@ the block in place the CLI never sends plaintext. Which steps apply depends on w
 #### Devices With the Native API
 
 1. Build and install with ESPHome 2026.9.0 or newer, with the config as it is and without the block. If `api:` has
-   no `encryption:` yet, add one with a key now. Keep any existing `password:`. If the device still runs older
+   no `encryption:` yet, add one with a key now; a device already added to Home Assistant needs that key entered
+   there after this install. Keep any existing `password:`. If the device still runs older
    firmware or had no key, this install is plaintext, with a warning; the firmware it lands offers OTA encryption
    with the API key. A device that already runs 2026.9.0 or newer with the key can skip to step 2.
 
