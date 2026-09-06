@@ -100,7 +100,7 @@ ota:
 - Prefer encryption over a password; a password only authenticates the uploader, it does not keep the image confidential
 - Reuse the API encryption key so there is a single unique key per device
 - Never reuse keys across devices
-- Enable encryption before the device leaves a trusted network; on 2026.9.0 or newer with an API key the upload that adds the block is already encrypted, older firmware takes one last plaintext upload
+- Enable encryption before the device leaves a trusted network. On 2026.9.0 or newer with an API key the upload that adds the block is already encrypted; on older firmware install once without the block first, see [Enabling encryption on an existing device](/components/ota/esphome/#enabling-encryption-on-an-existing-device)
 
 **Without OTA encryption:** Anyone on your local network can:
 

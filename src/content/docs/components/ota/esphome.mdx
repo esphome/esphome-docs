@@ -124,8 +124,8 @@ demand generator in the [API component documentation](/components/api#configurat
 > Add `encryption:` under `ota:` once the device runs ESPHome 2026.9.0 or newer with `api: encryption:`, and keep it
 > from then on. Older firmware cannot offer encryption, and with the block in the config the CLI refuses to send
 > plaintext, so an install against it stops with
-> `the device did not offer encryption; refusing to send the image in plaintext`. If that happens, remove the block,
-> install once, and add it back; or flash the device by serial.
+> `the device did not offer encryption; refusing to send the image in plaintext`. See
+> [Enabling encryption on an existing device](#enabling-encryption-on-an-existing-device) for the way around it.
 
 Encryption cannot be combined with a password; the key already authenticates the uploader, so remove the `password:`
 line when you add `encryption:`. Adding the [web server OTA platform](/components/ota/web_server) next to it is allowed
@@ -153,13 +153,15 @@ A device on ESPHome 2026.9.0 or newer with an API encryption key already offers 
 that key whenever the device offers; the `encryption:` block is what makes the device require it. Add the block, remove
 any `password:`, and install. If the device still runs older firmware, install once without the block first: until
 ESPHome 2027.3.0 that upload falls back to plaintext with a warning and lands a firmware that offers, then add the
-block. From 2027.3.0 the CLI no longer falls back, so update firmware older than 2026.9.0 before then, or by serial
-flash or the web server OTA platform.
+block. From 2027.3.0 the CLI no longer falls back to plaintext, so a device still on firmware older than 2026.9.0
+must be updated before then; after that, update it by serial flash or through the
+[web server OTA platform](/components/ota/web_server).
 
 An OTA `password:` next to an API key only serves older clients and costs about 3.5 KB of flash on an ESP8266, so
 validation warns. A key provisioned at runtime by Home Assistant (an API `encryption:` block without a `key:`) makes
 the device offer too, but the CLI cannot use a key it does not have, so those uploads stay plaintext until either
-`api: encryption:` gets a `key:` in the yaml or the OTA `encryption:` block gets its own.
+`api: encryption:` gets a `key:` in the yaml or the OTA `encryption:` block gets its own, which gives that device two
+keys: the provisioned API key and the OTA key in the config.
 
 ## Updating the partition table on ESP32
 
