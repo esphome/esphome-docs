@@ -17,6 +17,9 @@ In addition to OTA updates, ESPHome also supports a "safe mode" to help with rec
 expected. This is automatically enabled by this component, but it may be disabled if desired. See
 [Safe Mode](/components/safe_mode/) for details.
 
+The recommended form reuses the [native API](/components/api/) encryption key, so one key protects the device; on a
+device that is already installed, read [Encryption](#encryption) before adding the block.
+
 ```yaml
 # Example configuration entry, encrypted with the API key (recommended)
 api:
@@ -27,6 +30,8 @@ ota:
   - platform: esphome
     encryption:
 ```
+
+Without an API encryption key, a password authenticates the uploader but does not keep the image confidential:
 
 ```yaml
 # Example configuration entry, password only (no API encryption key)
@@ -152,32 +157,36 @@ Encryption cannot be combined with a password; the key already authenticates the
 line when you add `encryption:`. Adding the [web server OTA platform](/components/ota/web_server) next to it is allowed
 but warns during validation, since that endpoint accepts the same firmware image over plaintext HTTP. The captive
 portal's update page (`captive_portal:` without that platform) exists only while the fallback AP is active and is the
-intended recovery path, so it does not warn.
+intended recovery path for a device that cannot join Wi-Fi, so it does not warn.
 
 > [!IMPORTANT]
 > Once a device runs firmware with `encryption:` enabled it refuses plaintext OTA updates, and the CLI refuses to send
 > a plaintext image when `encryption:` is configured. This is intentional; a downgrade to plaintext would be an
 > unauthenticated upload. If the key is lost, recover the device with a serial flash, or through the
-> [web server OTA platform](/components/ota/web_server) if the config has it.
+> [web server OTA platform](/components/ota/web_server/) if the config has it.
 
-To troubleshoot a failing encrypted handshake, build with the logger at `VERY_VERBOSE`; the messages come from the
-shared `noise` component, and the per component `logs:` map can only lower a level below `level:`, so a `noise:`
-entry there does nothing on its own:
+To troubleshoot a failing encrypted handshake, build with the logger at `VERY_VERBOSE` so the shared `noise`
+component's messages are compiled in; a `logs:` entry alone cannot raise a level above `level:`. `initial_level`
+keeps every other component at its usual volume:
 
 ```yaml
 logger:
   level: VERY_VERBOSE
+  initial_level: DEBUG
+  logs:
+    noise: VERY_VERBOSE
 ```
 
 ### Enabling encryption on an existing device
 
 A device on ESPHome 2026.9.0 or newer with an API encryption key already offers OTA encryption, and `esphome run` uses
 that key whenever the device offers; the `encryption:` block is what makes the device require it. Add the block, remove
-any `password:`, and install. If the device still runs older firmware, install once without the block first: until
-ESPHome 2027.3.0 that upload falls back to plaintext with a warning and lands a firmware that offers, then add the
-block. From 2027.3.0 the CLI no longer falls back to plaintext, so a device still on firmware older than 2026.9.0
+any `password:`, and install; the encrypted handshake authenticates that upload, so the password is not needed for it.
+If the device still runs older firmware, install once without the block first, keeping any existing `password:` and
+with `api: encryption: key:` set: until ESPHome 2027.3.0 that upload falls back to plaintext with a warning and lands
+a firmware that offers, then add the block and drop the password. From 2027.3.0 the CLI no longer falls back to plaintext, so a device still on firmware older than 2026.9.0
 must be updated before then; after that, update it by serial flash or through the
-[web server OTA platform](/components/ota/web_server).
+[web server OTA platform](/components/ota/web_server/).
 
 An OTA `password:` next to an API key only serves older clients and costs about 3.5 KB of flash on an ESP8266, so
 validation warns. A key provisioned at runtime by Home Assistant (an API `encryption:` block without a `key:`) makes

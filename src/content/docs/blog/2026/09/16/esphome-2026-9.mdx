@@ -179,10 +179,13 @@ without adding per-connection RAM ([#18526](https://github.com/esphome/esphome/p
 ([#18489](https://github.com/esphome/esphome/pull/18489)), using the same protocol the native API already
 uses. Until now the firmware image travelled over the network in plaintext, so a passive listener on the LAN
 could capture the WiFi credentials and API encryption key embedded in the image; the SHA256 password only
-authenticated the client, it did not make the transfer confidential. With an `encryption:` block on the OTA
-platform the whole session is encrypted, and both the device and the CLI fail closed so an attacker cannot
-strip encryption and force a plaintext upload. A bare `encryption:` inherits the `api` encryption key, and a
-password and encryption are mutually exclusive because the key already authenticates the uploader. This work
+authenticated the client, it did not make the transfer confidential. A device with an `api` encryption key
+now offers OTA encryption with that key and the CLI uses it whenever the device offers, so enabling it on an
+installed device is an ordinary update ([#18979](https://github.com/esphome/esphome/pull/18979)). An
+`encryption:` block on the OTA platform is what makes the device require it: both the device and the CLI then
+fail closed so an attacker cannot strip encryption and force a plaintext upload. A bare `encryption:` inherits
+the `api` encryption key, and a password and encryption are mutually exclusive because the key already
+authenticates the uploader. This work
 sits on top of a new shared `noise` component ([#18490](https://github.com/esphome/esphome/pull/18490)) that
 lifts the noise-c dependency, HWRNG binding, error strings, PSK context, encryption key validation and the
 handshake responder out of the api component so both api and ota can share them; there is no user
