@@ -31,7 +31,9 @@ ota:
     encryption:
 ```
 
-Without an API encryption key, a password authenticates the uploader but does not keep the image confidential:
+The secret names on this page follow the `<hostname>__<base>` shape the Device Builder writes to `secrets.yaml`, see
+[Using secrets.yaml](/guides/security_best_practices/#using-secretsyaml). Without an API encryption key, a password
+authenticates the uploader but does not keep the image confidential:
 
 ```yaml
 # Example configuration entry, password only (no API encryption key)
@@ -186,8 +188,8 @@ any `password:`, and install; the encrypted handshake authenticates that upload,
 If the device still runs older firmware, install once without the block first, keeping any existing `password:` and
 with `api: encryption: key:` set: until ESPHome 2027.3.0 that upload falls back to plaintext with a warning and lands
 a firmware that offers, then add the block and drop the password. From 2027.3.0 the CLI no longer falls back to
-plaintext, so a device still on firmware older than 2026.9.0 must be updated before then; after that, update it by
-serial flash or through the
+plaintext when it has a key to use, so a device with an API encryption key still on firmware older than 2026.9.0 must
+be updated before then; after that, update it by serial flash or through the
 [web server OTA platform](/components/ota/web_server/).
 
 An OTA `password:` next to an API key only serves older clients and costs about 3.5 KB of flash on an ESP8266, so
