@@ -196,11 +196,15 @@ be updated before then; after that, update it by serial flash or through the
 [web server OTA platform](/components/ota/web_server/).
 
 An OTA `password:` next to an API key only serves older clients and costs about 3.5 KB of flash on an ESP8266, so
-validation warns. A key provisioned at runtime by Home Assistant (an API `encryption:` block without a `key:`) makes
-the device offer too, but the CLI cannot use a key it does not have, so those uploads stay plaintext until either
-`api: encryption:` carries that provisioned key in the yaml (the Device Builder writes it there when Home Assistant
-hands it over; a freshly generated key would lock Home Assistant out after the next install) or the OTA `encryption:`
-block gets its own `key:`, which gives that device two keys: the provisioned API key and the OTA key in the config.
+validation warns.
+
+A key provisioned at runtime by Home Assistant (an API `encryption:` block without a `key:`) makes the device offer
+too, but the CLI cannot use a key it does not have, so those uploads stay plaintext until one of these is done:
+
+- Put the key Home Assistant provisioned into `api: encryption: key:`. The Device Builder writes it there when Home
+  Assistant hands it over; do not generate a fresh one, that locks Home Assistant out after the next install.
+- Give the OTA `encryption:` block its own `key:`, which leaves the device with two keys: the provisioned API key and
+  the OTA key in the config.
 
 ## Updating the partition table on ESP32
 

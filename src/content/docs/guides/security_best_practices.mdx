@@ -54,7 +54,7 @@ If you enable the [web server](/components/web_server) for device monitoring and
 web_server:
   port: 80
   auth:
-    username: !secret device_name__web_server_username
+    username: device-name-admin
     password: !secret device_name__web_password
 
 ```
@@ -278,7 +278,7 @@ If you have extreme security requirements, you can physically disable USB/serial
 
 ### Using secrets.yaml
 
-Use `secrets.yaml` to avoid storing sensitive information in your configuration files, especially if you share your configs in a public Git repository. The per device names below follow the `<hostname>__<base>` shape the Device Builder uses when it stores a secret for a device, with hyphens in the hostname written as underscores, so the examples match what it writes to `secrets.yaml`:
+Use `secrets.yaml` to avoid storing sensitive information in your configuration files, especially if you share your configs in a public Git repository. The per device names below follow the `<hostname>__<base>` shape the Device Builder uses when it stores a secret for a device, with hyphens in the hostname written as underscores, so the examples match what it writes to `secrets.yaml`; the web server username is not a secret, so it stays in the config:
 
 ```yaml
 # Example: device1.yaml
@@ -297,11 +297,9 @@ ota:
 ```yaml
 # Each device should have unique keys and passwords; the API key also encrypts OTA
 device1__encryption_key: "uKh1234567890abcdefghijklmnopqrstuvwxyz="
-device1__web_server_username: "device1_admin"
 device1__web_password: "strong-unique-web-password-device1"
 
 device2__encryption_key: "aBc9876543210xyzqrstuvwxyzabcdefghijkl="
-device2__web_server_username: "device2_admin"
 device2__web_password: "strong-unique-web-password-device2"
 
 # WiFi credentials can be shared across devices
@@ -517,7 +515,7 @@ ota:
 # web_server:
 #   port: 80
 #   auth:
-#     username: !secret secure_device__web_server_username
+#     username: secure-device-admin
 #     password: !secret secure_device__web_password
 
 logger:
