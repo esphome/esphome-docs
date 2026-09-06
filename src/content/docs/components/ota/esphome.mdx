@@ -168,7 +168,8 @@ intended recovery path for a device that cannot join Wi-Fi, so it does not warn.
 > a plaintext image when `encryption:` is configured. This is intentional; a downgrade to plaintext would be an
 > unauthenticated upload. If the key is lost, recover the device with a serial flash, or through the
 > [web server OTA platform](/components/ota/web_server/) if the config has it. Changing the key is not an OTA
-> operation either: the device only accepts the key it is running, so a new key goes in the same two ways.
+> operation yet either: the device only accepts the key it is running and the CLI presents the key in the config,
+> so a new key goes in the same two ways until the tooling can compile with the new key and upload with the old.
 
 To troubleshoot a failing encrypted handshake, build with the logger at `VERY_VERBOSE` so the shared `noise`
 component's messages are compiled in; a `logs:` entry alone cannot raise a level above `level:`. `initial_level`
