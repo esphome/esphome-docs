@@ -46,7 +46,7 @@ ota:
 
 - **encryption** (*Optional*): Encrypt the OTA update with the same Noise protocol the [native API](/components/api) uses. See [Encryption](#encryption) below. Cannot be combined with **password**.
 
-  - **key** (*Optional*, string): The base64 encryption key. Omit it so the [API encryption key](/components/api#configuration-variables) is used and one key protects the device; only set it when there is no static API encryption key, for example a device that uses MQTT without `api:`.
+  - **key** (*Optional*, string): The base64 encryption key. Omit it so the [API encryption key](/components/api#configuration-variables) is used and one key protects the device; only set it when there is no static API encryption key, for example a device that uses MQTT without `api:`. Next to a static API key it must be the same key, a different one is rejected at validation.
 
 - **password** (*Optional*, string): The password to use for updates. Not recommended for new devices, use **encryption** instead. Cannot be combined with **encryption**.
 - **allow_partition_access** (*Optional*, boolean): Only on `esp32`. Allow updating more partition types. Used for updating the partition table and the bootloader. Defaults to `false`.
@@ -206,6 +206,11 @@ too, but the CLI cannot use a key it does not have, so those uploads stay plaint
   Assistant hands it over; do not generate a fresh one, that locks Home Assistant out after the next install.
 - Give the OTA `encryption:` block its own `key:`, which leaves the device with two keys: the provisioned API key and
   the OTA key in the config.
+
+A device without a static API key cannot get its own OTA `key:` over the air: its running firmware either offers no
+encryption at all (an MQTT device) or offers with the provisioned API key rather than the OTA key the CLI would
+present, and with the block in the config the CLI does not send plaintext. Put the block in by serial flash or through
+the [web server OTA platform](/components/ota/web_server/); after that, installs are encrypted with the OTA key.
 
 ## Updating the partition table on ESP32
 
