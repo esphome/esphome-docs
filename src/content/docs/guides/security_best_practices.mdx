@@ -28,7 +28,7 @@ The [native API](/components/api) is the primary communication method between ES
 ```yaml
 api:
   encryption:
-    key: !secret device_name_api_key
+    key: !secret device_name__encryption_key
 
 ```
 
@@ -54,8 +54,8 @@ If you enable the [web server](/components/web_server) for device monitoring and
 web_server:
   port: 80
   auth:
-    username: !secret device_name_web_username
-    password: !secret device_name_web_password
+    username: !secret device_name__web_server_username
+    password: !secret device_name__web_password
 
 ```
 
@@ -190,7 +190,7 @@ wifi:
   # Optional: Fallback AP with password (only if needed)
   ap:
     ssid: "Fallback-AP"
-    password: !secret fallback_password
+    password: !secret device_name__ap_password
 
 ```
 
@@ -284,7 +284,7 @@ Use `secrets.yaml` to avoid storing sensitive information in your configuration 
 # Example: device1.yaml
 api:
   encryption:
-    key: !secret device1_api_key
+    key: !secret device1__encryption_key
 
 ota:
   - platform: esphome
@@ -296,13 +296,13 @@ ota:
 
 ```yaml
 # Each device should have unique keys and passwords; the API key also encrypts OTA
-device1_api_key: "uKh1234567890abcdefghijklmnopqrstuvwxyz="
-device1_web_username: "device1_admin"
-device1_web_password: "strong-unique-web-password-device1"
+device1__encryption_key: "uKh1234567890abcdefghijklmnopqrstuvwxyz="
+device1__web_server_username: "device1_admin"
+device1__web_password: "strong-unique-web-password-device1"
 
-device2_api_key: "aBc9876543210xyzqrstuvwxyzabcdefghijkl="
-device2_web_username: "device2_admin"
-device2_web_password: "strong-unique-web-password-device2"
+device2__encryption_key: "aBc9876543210xyzqrstuvwxyzabcdefghijkl="
+device2__web_server_username: "device2_admin"
+device2__web_password: "strong-unique-web-password-device2"
 
 # WiFi credentials can be shared across devices
 wifi_ssid: "YourNetworkName"
@@ -416,7 +416,7 @@ wifi:
   # ... your normal wifi config ...
   ap:
     ssid: "Device-Fallback"
-    password: !secret device_name_fallback_password  # ALWAYS SET THIS
+    password: !secret device_name__ap_password  # ALWAYS SET THIS
 
 ```
 
@@ -439,8 +439,8 @@ If using [MQTT](/components/mqtt) instead of the native API:
 ```yaml
 mqtt:
   broker: !secret mqtt_broker
-  username: !secret mqtt_username
-  password: !secret mqtt_password
+  username: !secret device_name__mqtt_username
+  password: !secret device_name__mqtt_password
   # For ESP32 with esp-idf: Use TLS with certificate authority
   # certificate_authority: ca_cert.pem
 
@@ -501,12 +501,12 @@ wifi:
   # Fallback hotspot with password
   ap:
     ssid: "Secure-Device-Fallback"
-    password: !secret secure_device_fallback_password
+    password: !secret secure_device__ap_password
 
 # API with encryption (REQUIRED)
 api:
   encryption:
-    key: !secret secure_device_api_key
+    key: !secret secure_device__encryption_key
 
 # OTA encrypted with the API key (REQUIRED)
 ota:
@@ -517,8 +517,8 @@ ota:
 # web_server:
 #   port: 80
 #   auth:
-#     username: !secret secure_device_web_username
-#     password: !secret secure_device_web_password
+#     username: !secret secure_device__web_server_username
+#     password: !secret secure_device__web_password
 
 logger:
   level: INFO
@@ -552,7 +552,7 @@ wifi:
 # API with encryption
 api:
   encryption:
-    key: !secret production_device_api_key
+    key: !secret production_device__encryption_key
   # Optional: Restrict to specific Home Assistant instance
   # reboot_timeout: 15min
 
