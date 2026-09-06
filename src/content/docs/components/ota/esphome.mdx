@@ -139,12 +139,13 @@ intended recovery path, so it does not warn.
 > unauthenticated upload. If the key is lost, recover the device with a serial flash, or through the
 > [web server OTA platform](/components/ota/web_server) if the config has it.
 
-To troubleshoot a failing encrypted handshake, raise the log level of the shared `noise` component:
+To troubleshoot a failing encrypted handshake, build with the logger at `VERY_VERBOSE`; the messages come from the
+shared `noise` component, and the per component `logs:` map can only lower a level below `level:`, so a `noise:`
+entry there does nothing on its own:
 
 ```yaml
 logger:
-  logs:
-    noise: VERY_VERBOSE
+  level: VERY_VERBOSE
 ```
 
 ### Enabling encryption on an existing device
