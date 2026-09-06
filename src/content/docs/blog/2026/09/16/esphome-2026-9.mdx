@@ -49,6 +49,7 @@ import ImgTable from "@components/ImgTable.astro";
   ["DS1603L", "/components/sensor/ds1603l/", "ds1603l.jpg", "Acoustic distance"],
   ["Mk2PVRouter", "/components/sensor/mk2pvrouter/", "mk2pvrouter.jpg", "Surplus Energy Diverter"],
   ["Snapshot", "/components/display/snapshot/", "file-image-outline.svg", "dark-invert"],
+  ["Template Climate", "/components/climate/template/", "description.svg", "dark-invert"],
   // ["Component Name", "/components/path/", "image.png"],
 ]} />
 
@@ -323,6 +324,10 @@ Six new components join the tree:
   [@iago-veiga](https://github.com/iago-veiga) exposes a Tuya-MCU electric water heater as a single
   `water_heater` entity, collapsing the previous template-plus-lambda pattern into one block
   ([#17323](https://github.com/esphome/esphome/pull/17323))
+- **[template climate](/components/climate/template/)** by [@rsre](https://github.com/rsre) builds a full
+  climate entity out of ESPHome primitives, with per-field set actions, an `on_control` trigger, an optimistic
+  mode that applies commands locally, and a `climate.template.publish` action for reporting the device's own
+  state ([#14455](https://github.com/esphome/esphome/pull/14455))
 - **[lvgl list widget](/components/lvgl/widgets/#list)** by [@clydebarrow](https://github.com/clydebarrow)
   adds a scrollable container designed to be filled at runtime, with `add_text`, `add`, `remove` and `clear`
   actions plus `on_add`/`on_remove` triggers ([#18018](https://github.com/esphome/esphome/pull/18018))
