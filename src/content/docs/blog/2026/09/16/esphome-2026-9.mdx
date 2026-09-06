@@ -180,8 +180,9 @@ without adding per-connection RAM ([#18526](https://github.com/esphome/esphome/p
 uses. Until now the firmware image travelled over the network in plaintext, so a passive listener on the LAN
 could capture the WiFi credentials and API encryption key embedded in the image; the SHA256 password only
 authenticated the client, it did not make the transfer confidential. A device with an `api` encryption key
-now offers OTA encryption with that key and the CLI uses it whenever the device offers, so enabling it on an
-installed device is an ordinary update ([#18979](https://github.com/esphome/esphome/pull/18979)). An
+now offers OTA encryption with that key and the CLI uses it whenever the device offers, so once a device runs
+this release, enabling encryption is an ordinary update; the update that brings older firmware to this release
+still travels in plaintext ([#18979](https://github.com/esphome/esphome/pull/18979)). An
 `encryption:` block on the OTA platform is what makes the device require it: both the device and the CLI then
 fail closed so an attacker cannot strip encryption and force a plaintext upload. A bare `encryption:` inherits
 the `api` encryption key, and a password and encryption are mutually exclusive because the key already
