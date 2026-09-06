@@ -152,7 +152,7 @@ ota:
 > encryption, and with the block in the config the CLI refuses to send
 > plaintext, so an install against it stops with
 > `the device did not offer encryption; refusing to send the image in plaintext`. See
-> [Enabling encryption on an existing device](#enabling-encryption-on-an-existing-device) for the way around it.
+> [Enabling Encryption on an Existing Device](#enabling-encryption-on-an-existing-device) for the way around it.
 
 Encryption cannot be combined with a password; the key already authenticates the uploader, so remove the `password:`
 line when you add `encryption:`. Adding the [web server OTA platform](/components/ota/web_server/) next to it is allowed
