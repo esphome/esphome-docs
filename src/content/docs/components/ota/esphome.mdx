@@ -269,8 +269,8 @@ Without `api:` the running firmware cannot offer encryption, so an `api:` block 
 - The step 1 upload is plaintext, the running firmware has no key to offer, and validation warns about the password
   next to the key; both are expected and end with step 2. That plaintext fallback is planned to go away no earlier
   than ESPHome 2027.3.0, so do step 1 before then.
-- Step 1 grows the build by the API server and the noise library. On a device with 1 MB of flash, leave out components
-  you do not need for that one build.
+- The step 1 build is larger, it includes the API server and the noise library. On a device with 1 MB of flash, leave
+  out components you do not need for that one build.
 - Home Assistant asks for the key after step 1 if one was added, and discovers the temporary `api:` device on the
   second path; ignore that, it disappears after step 2.
 
