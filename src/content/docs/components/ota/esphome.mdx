@@ -215,11 +215,14 @@ Each step ends with an install and a check of the device log; do not start step 
    ```
 
    Install with ESPHome 2026.9.0 or newer. If the device runs older firmware or had no key, this upload is plaintext
-   and the CLI says so with a warning. When the device has booted, its log must show
+   and the CLI says so with a warning. Adding a key to a config that had none pulls in the noise library, so on a
+   device with 1 MB of flash check that the build still fits first; one that no longer fits over the air can only be
+   flashed by serial. When the device has booted, its log must show
    `Encryption: offered, plaintext accepted`. A device that already runs 2026.9.0 or newer with the key shows this
    already and can start at step 2.
 
-2. **Require encryption.** Add `encryption:` under the OTA platform and remove the `password:`.
+2. **Require encryption.** Add `encryption:` under the OTA platform and remove the `password:`; the encrypted
+   handshake authenticates the upload, so the password the running firmware still has is not needed.
 
    ```yaml
    api:
@@ -266,11 +269,13 @@ that has `api:` follows the path above instead. As above, do not start step 2 un
 
    Install with ESPHome 2026.9.0 or newer. The running firmware has no key to offer, so this upload is always plaintext
    and the CLI says so with a warning. The temporary block adds the API server and the noise library to this one
-   build, so on a device with 1 MB of flash check that the build still fits first. When the device has booted, its log
-   must show `Encryption: offered, plaintext accepted`.
+   build, so on a device with 1 MB of flash check that the build still fits first; one that no longer fits over the
+   air can only be flashed by serial. When the device has booted, its log must show
+   `Encryption: offered, plaintext accepted`.
 
 2. **Move the key to the OTA platform and require encryption.** Remove the `api:` block, add `encryption:` under the
-   OTA platform with the same key, and remove the `password:`.
+   OTA platform with the same key, and remove the `password:`; the encrypted handshake authenticates the upload, so
+   the password the running firmware still has is not needed.
 
    ```yaml
    mqtt:
