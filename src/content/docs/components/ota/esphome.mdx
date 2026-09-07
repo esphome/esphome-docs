@@ -251,7 +251,8 @@ that has `api:` follows the path above instead. As above, do not start step 2 un
 1. **Install a firmware that offers encryption.** Generate a key with the
    [on demand generator](/components/api#configuration-variables). Add a temporary `api:` block with it and
    `reboot_timeout: 0s`, since a device with `api:` and no client would otherwise reboot every 15 minutes. Keep any
-   existing `password:`.
+   existing `password:`. Home Assistant will discover the device while this build runs; ignore that, it disappears
+   again after step 2.
 
    ```yaml
    mqtt:
