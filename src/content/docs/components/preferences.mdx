@@ -1,11 +1,11 @@
 ---
-description: "Instructions for setting up how ESPHome stores state which persists across device reboots."
+description: "Instructions for setting up how ESPHome stores state that persists across device reboots."
 title: "Preferences"
 ---
 import APIRef from '@components/APIRef.astro';
 
-This component is used to store data which is persisted across device reboots, e.g. the latest state of a light or
-the accumulated energy used by an appliance. The data is normally stored in flash memory; the
+This component is used to store data that persists across device reboots, e.g. the latest state of a light or the
+accumulated energy used by an appliance. The data is normally stored in flash memory; the
 [host](/components/host/) platform stores it in a file instead, and on ESP32 it can optionally be kept in RTC memory.
 
 ```yaml
