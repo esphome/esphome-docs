@@ -29,18 +29,16 @@ preferences:
 
 ## Flash Wear
 
-As flash memory has a limited number of write cycles, this setting helps to reduce the number of flash writes
-due to quickly changing components. In the past, when components such as `light`, `switch`, `fan` and `globals`
-were changed, the state was immediately committed to flash. The result of this was that the last state of these
-components would always restore to its last state on power loss, however, this has the cost of potentially quickly
-damaging the flash if these components are quickly changed.
+As flash memory has a limited number of write cycles, `flash_write_interval` reduces the number of flash writes
+caused by rapidly changing components. In the past, when components such as `light`, `switch`, `fan` and `globals`
+were changed, the state was immediately committed to flash. This meant those components always restored their most
+recent state after power loss, but at the cost of potentially damaging the flash when they changed frequently.
 
-A safety feature has thus been implemented to mitigate issues resulting from the limited number of flash write cycles:
-the state is first stored in memory before being flushed to flash after the `flash_write_interval` has passed. This
-results in fewer flash writes, preserving the flash health.
+To mitigate this, the state is now first stored in memory and only flushed to flash once the `flash_write_interval`
+has passed. This results in fewer flash writes, preserving the flash health.
 
 This behavior can be modified by setting `flash_write_interval` to `0s` to commit the changes to flash as soon as
-possible, however, be aware that this may lead to increased flash wearing and a shortened device lifespan!
+possible. Be aware that this may lead to increased flash wearing and a shortened device lifespan!
 
 For [ESP8266](/components/esp8266/), `restore_from_flash` must also be set to `true` for states to be written to flash.
 
