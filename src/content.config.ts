@@ -21,6 +21,13 @@ export const collections = {
            * and can be published before the post. See CrosspostBadges.astro.
            */
           crosspostCover: z.string().optional(),
+          /**
+           * Anchors on this page that no longer resolve because the section they
+           * pointed at moved to its own page, mapped to the URL that now covers it.
+           * Keys omit the leading "#". A URL fragment is never sent to the server,
+           * so Netlify cannot redirect these. See AnchorRedirects.astro.
+           */
+          anchorRedirects: z.record(z.string(), z.string()).optional(),
         }),
     }),
   }),

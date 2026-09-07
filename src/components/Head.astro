@@ -1,30 +1,12 @@
 ---
+import AnchorRedirects from "./AnchorRedirects.astro";
 import Default from "@astrojs/starlight/components/Head.astro";
 import PlausibleAnalytics from "./PlausibleAnalytics.astro";
 ---
 
 <Default {...Astro.props}><slot /></Default>
 
-<!--
-  Redirects for anchors that no longer exist because the section they pointed at moved to its own page.
-  Fragments are never sent to the server, so Netlify redirects cannot do this - it has to happen client-side.
-  Keyed by pathname (no trailing slash), then by hash. Add an entry here whenever a documented section moves.
-  `is:inline` is required: a bundled script is deferred and would redirect after the wrong page has rendered.
--->
-<script is:inline>
-  (() => {
-    const ANCHOR_REDIRECTS = {
-      "/components/esphome": {
-        "#preferences-component": "/components/preferences/",
-        "#preferences-flash_write_interval": "/components/preferences/",
-      },
-    };
-
-    if (!location.hash) return;
-    const target = ANCHOR_REDIRECTS[location.pathname.replace(/\/$/, "")]?.[location.hash];
-    if (target) location.replace(target);
-  })();
-</script>
+<AnchorRedirects />
 
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
