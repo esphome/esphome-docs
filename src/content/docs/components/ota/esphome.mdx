@@ -217,8 +217,8 @@ Each step ends with an install and a check of the device log; do not start step 
    Install with ESPHome 2026.9.0 or newer. Validation warns about the password next to the key; that is expected
    here and goes away in step 2. If the device runs older firmware or had no key, this upload is plaintext and the CLI
    says so with a warning. Adding a key to a config that had none pulls in the noise library, so on a
-   device with 1 MB of flash check that the build still fits first; one that no longer fits over the air can only be
-   flashed by serial. When the device has booted, its log must show
+   device with 1 MB of flash check that the build still fits first; if it does not, leave out components the device
+   does not need for this one build and put them back in step 2. When the device has booted, its log must show
    `Encryption: offered, plaintext accepted`. A device that already runs 2026.9.0 or newer with the key shows this
    already and can start at step 2.
 
@@ -272,9 +272,9 @@ that has `api:` follows the path above instead. As above, do not start step 2 un
    Install with ESPHome 2026.9.0 or newer. Validation warns about the password next to the key; that is expected
    here and goes away in step 2. The running firmware has no key to offer, so this upload is always plaintext and the
    CLI says so with a warning. The temporary block adds the API server and the noise library to this one
-   build, so on a device with 1 MB of flash check that the build still fits first; one that no longer fits over the
-   air can only be flashed by serial. When the device has booted, its log must show
-   `Encryption: offered, plaintext accepted`.
+   build, so on a device with 1 MB of flash check that the build still fits first. If it does not, leave out
+   components the stepping stone does not need, `mqtt:` included, for this one build and put them back in step 2.
+   When the device has booted, its log must show `Encryption: offered, plaintext accepted`.
 
 2. **Move the key to the OTA platform and require encryption.** Remove the `api:` block, add `encryption:` under the
    OTA platform with the same key, and remove the `password:`; the encrypted handshake authenticates the upload, so
