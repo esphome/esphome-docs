@@ -198,6 +198,9 @@ apply depends on whether the device uses the native API.
 
 #### Devices With the Native API
 
+A key provisioned by Home Assistant must already be in the yaml; the Device Builder writes it there. Never generate a
+fresh key for such a device, that locks Home Assistant out.
+
 1. **Install a firmware that offers encryption.** Keep the config as it is; if `api:` has no `encryption:` yet, add
    one with a key. Install with ESPHome 2026.9.0 or newer, then check the device log for
    `Encryption: offered, plaintext accepted`. A device that already shows this starts at step 2.
@@ -224,9 +227,6 @@ apply depends on whether the device uses the native API.
      - platform: esphome
        encryption:
    ```
-
-A key provisioned by Home Assistant must already be in the yaml; the Device Builder writes it there. Never generate a
-fresh key for such a device, that locks Home Assistant out.
 
 #### Devices Without the Native API
 
@@ -268,7 +268,8 @@ Without `api:` the running firmware cannot offer encryption, so an `api:` block 
 
 - The step 1 upload is plaintext, the running firmware has no key to offer, and validation warns about the password
   next to the key; both are expected and end with step 2. That plaintext fallback is planned to go away no earlier
-  than ESPHome 2027.3.0, so do step 1 before then.
+  than ESPHome 2027.3.0, so do step 1 before then; after that the block arrives by serial flash or through the
+  [web server OTA platform](/components/ota/web_server/).
 - The step 1 build is larger, it includes the API server and the noise library. On a device with 1 MB of flash, leave
   out components you do not need for that one build.
 - Home Assistant asks for the key after step 1 if one was added, and discovers the temporary `api:` device on the
