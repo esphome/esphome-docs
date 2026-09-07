@@ -177,43 +177,20 @@ cards.forEach((card, index) => {
   .community-cards .masonry {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    align-items: flex-start;
-    height: 416px;
     gap: var(--cc-gap);
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 1rem;
-    margin-inline: calc(var(--container-gutters, 24px) / -2);
-    padding-inline: calc(var(--container-gutters, 24px) / 2);
   }
 
-  @media only screen and (min-width: 640px) and (max-width: 1139px) {
+  @media only screen and (min-width: 500px) and (max-width: 1139px) {
     .community-cards .masonry {
       display: block;
       column-count: 2;
       column-gap: var(--cc-gap);
-      height: auto;
-      overflow: visible;
-      scroll-snap-type: none;
-      padding: 0;
-      margin-inline: 0;
     }
   }
 
   @media only screen and (min-width: 1140px) {
     .community-cards .masonry {
       flex-direction: row;
-      align-content: stretch;
-      align-items: stretch;
-      height: auto;
-      overflow: visible;
-      scroll-snap-type: none;
-      padding: 0;
-      margin-inline: 0;
     }
   }
 
@@ -250,16 +227,14 @@ cards.forEach((card, index) => {
     }
   }
 
-  @media only screen and (max-width: 639.98px) {
+  @media only screen and (max-width: 499.98px) {
     .community-cards .community-card__link {
-      width: clamp(220px, 75vw, 280px);
+      /* Cards are emitted column-major for the wide masonry, so restore source order when stacked. */
       order: var(--source-order, 0);
-      scroll-snap-align: center;
-      scroll-snap-stop: always;
     }
   }
 
-  @media only screen and (min-width: 640px) and (max-width: 1139px) {
+  @media only screen and (min-width: 500px) and (max-width: 1139px) {
     .community-cards .community-card__link {
       break-inside: avoid;
       margin-bottom: var(--cc-gap);
