@@ -192,8 +192,9 @@ logger:
 
 ### Enabling Encryption on an Existing Device
 
-Over the air, the block goes into the config only after the device runs firmware that offers encryption, because with
-the block in place the CLI never sends plaintext. Which steps apply depends on whether the device uses the native API.
+Add `encryption:` under the OTA platform only once the device runs firmware that offers encryption. With that line in
+the config the CLI never sends plaintext, so an over the air install against older firmware is refused. Which steps
+apply depends on whether the device uses the native API.
 
 #### Devices With the Native API
 
