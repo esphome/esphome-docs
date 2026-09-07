@@ -198,11 +198,10 @@ apply depends on whether the device uses the native API.
 
 #### Devices With the Native API
 
-Each step ends with an install and a check of the device log; do not start step 2 until the check in step 1 passes.
+Do not start step 2 until the check in step 1 passes.
 
-1. **Install a firmware that offers encryption.** Leave the config as it is, without `encryption:` under the OTA
-   platform, and keep any existing `password:`. If `api:` has no `encryption:` yet, add one with a key now; a device
-   already added to Home Assistant needs that key entered there after this install.
+1. **Install a firmware that offers encryption.** Keep the config as it is: any `password:` stays, and nothing is
+   added under the OTA platform. If `api:` has no `encryption:` yet, add one with a key.
 
    ```yaml
    api:
@@ -214,16 +213,10 @@ Each step ends with an install and a check of the device log; do not start step 
        password: !secret device_name__ota_password
    ```
 
-   Install with ESPHome 2026.9.0 or newer. Validation warns about the password next to the key; that is expected
-   here and goes away in step 2. If the device runs older firmware or had no key, this upload is plaintext and the CLI
-   says so with a warning. Adding a key to a config that had none pulls in the noise library, so on a
-   device with 1 MB of flash check that the build still fits first; if it does not, leave out components the device
-   does not need for this one build and put them back in step 2. When the device has booted, its log must show
-   `Encryption: offered, plaintext accepted`. A device that already runs 2026.9.0 or newer with the key shows this
-   already and can start at step 2.
+   Install with ESPHome 2026.9.0 or newer. Check: after the boot the device log shows
+   `Encryption: offered, plaintext accepted`. A device that already shows this can start at step 2.
 
-2. **Require encryption.** Add `encryption:` under the OTA platform and remove the `password:`; the encrypted
-   handshake authenticates the upload, so the password the running firmware still has is not needed.
+2. **Require encryption.** Add `encryption:` under the OTA platform and remove the `password:`.
 
    ```yaml
    api:
@@ -235,24 +228,28 @@ Each step ends with an install and a check of the device log; do not start step 
        encryption:
    ```
 
-   Install. The CLI reports `Encrypted connection established`, and after the boot the device log shows
-   `Encryption: required`. From now on the device refuses plaintext uploads.
+   Install. Check: the CLI reports `Encrypted connection established` and the device log shows
+   `Encryption: required`.
 
-A key provisioned at runtime by Home Assistant (an API `encryption:` block without a `key:`) has to be in the yaml
-before step 1: the Device Builder writes it there when Home Assistant hands it over. Do not generate a fresh key for
-such a device, that locks Home Assistant out after the next install.
+What to expect on this path:
+
+- A key provisioned by Home Assistant (an API `encryption:` block without a `key:`) must be in the yaml before step 1;
+  the Device Builder writes it there. Never generate a fresh key for such a device, that locks Home Assistant out.
+- If step 1 added a key, Home Assistant asks for it after that install.
+- The step 1 upload is plaintext when the running firmware has no key to offer; the CLI warns. Validation also warns
+  about the password next to the key until step 2 removes it.
+- Adding a key pulls in the noise library. On a device with 1 MB of flash, check the build fits; if not, leave out
+  components the device does not need for that one build and put them back in step 2.
 
 #### Devices Without the Native API
 
-MQTT devices, and anything else without an `api:` block, use an `api:` block once as a stepping stone: only an API key
-can make the running firmware offer encryption, and the OTA key then has to arrive over an encrypted upload. A device
-that has `api:` follows the path above instead. As above, do not start step 2 until the check in step 1 passes.
+MQTT devices, and anything else without an `api:` block, use one as a stepping stone: only an API key makes the running
+firmware offer encryption, and the OTA key then arrives over an encrypted upload. Do not start step 2 until the check
+in step 1 passes.
 
 1. **Install a firmware that offers encryption.** Generate a key with the
    [on demand generator](/components/api#configuration-variables). Add a temporary `api:` block with it and
-   `reboot_timeout: 0s`, since a device with `api:` and no client would otherwise reboot every 15 minutes. Keep any
-   existing `password:`. Home Assistant will discover the device while this build runs; ignore that, it disappears
-   again after step 2.
+   `reboot_timeout: 0s`. Any `password:` stays.
 
    ```yaml
    mqtt:
@@ -269,18 +266,11 @@ that has `api:` follows the path above instead. As above, do not start step 2 un
        password: !secret device_name__ota_password
    ```
 
-   Install with ESPHome 2026.9.0 or newer. Validation warns about the password next to the key; that is expected
-   here and goes away in step 2. The running firmware has no key to offer, so this upload is always plaintext and the
-   CLI says so with a warning. The temporary block adds the API server and the noise library to this one
-   build, so on a device with 1 MB of flash check that the build still fits first. If it does not, leave out
-   components the stepping stone does not need for this one build and put them back in step 2; that can include
-   `mqtt:` (its entities are unavailable until step 2), unless the CLI finds the device through MQTT rather than
-   mDNS, in which case keep it and set `use_address` to the device's IP instead. When the device has booted, its log
-   must show `Encryption: offered, plaintext accepted`.
+   Install with ESPHome 2026.9.0 or newer. Check: after the boot the device log shows
+   `Encryption: offered, plaintext accepted`.
 
-2. **Move the key to the OTA platform and require encryption.** Remove the `api:` block, add `encryption:` under the
-   OTA platform with the same key, and remove the `password:`; the encrypted handshake authenticates the upload, so
-   the password the running firmware still has is not needed.
+2. **Move the key to the OTA platform and require encryption.** Remove the `api:` block, add `encryption:` with the
+   same key under the OTA platform, and remove the `password:`.
 
    ```yaml
    mqtt:
@@ -292,11 +282,22 @@ that has `api:` follows the path above instead. As above, do not start step 2 un
          key: !secret device_name__ota_esphome_key
    ```
 
-   Install. The CLI reports `Encrypted connection established`, and after the boot the device log shows
-   `Encryption: required`. That key is now the device's OTA key.
+   Install. Check: the CLI reports `Encrypted connection established` and the device log shows
+   `Encryption: required`.
+
+What to expect on this path:
+
+- `reboot_timeout: 0s` is needed because a device with `api:` and no client otherwise reboots every 15 minutes.
+- Home Assistant discovers the device while the step 1 build runs; ignore it, it disappears after step 2.
+- The step 1 upload is always plaintext, the running firmware has no key to offer; the CLI warns. Validation also
+  warns about the password next to the key until step 2 removes it.
+- The temporary block adds the API server and the noise library. On a device with 1 MB of flash, check the build
+  fits; if not, leave out components the device does not need for that one build and put them back in step 2. Keep
+  `mqtt:` if the CLI finds the device through MQTT rather than mDNS, or set `use_address` to the device's IP.
 
 #### Notes
 
+- The password can go in step 2 because the encrypted handshake authenticates that upload.
 - Step 1 relies on the CLI falling back to plaintext when the device does not offer encryption. That fallback is
   planned to go away no earlier than ESPHome 2027.3.0, the release notes will announce the release that drops it. Do
   step 1 while it exists for every device whose running firmware has no key to offer: older than 2026.9.0, on
