@@ -273,8 +273,10 @@ that has `api:` follows the path above instead. As above, do not start step 2 un
    here and goes away in step 2. The running firmware has no key to offer, so this upload is always plaintext and the
    CLI says so with a warning. The temporary block adds the API server and the noise library to this one
    build, so on a device with 1 MB of flash check that the build still fits first. If it does not, leave out
-   components the stepping stone does not need, `mqtt:` included, for this one build and put them back in step 2.
-   When the device has booted, its log must show `Encryption: offered, plaintext accepted`.
+   components the stepping stone does not need for this one build and put them back in step 2; that can include
+   `mqtt:` (its entities are unavailable until step 2), unless the CLI finds the device through MQTT rather than
+   mDNS, in which case keep it and set `use_address` to the device's IP instead. When the device has booted, its log
+   must show `Encryption: offered, plaintext accepted`.
 
 2. **Move the key to the OTA platform and require encryption.** Remove the `api:` block, add `encryption:` under the
    OTA platform with the same key, and remove the `password:`; the encrypted handshake authenticates the upload, so
