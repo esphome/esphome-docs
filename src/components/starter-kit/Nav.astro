@@ -32,13 +32,15 @@
           >
         </div>
       </div>
-      <div class="nav-links-ctas">
-        <a href="#buy" class="btn esk-btn" data-context="navbar">Buy now</a>
-      </div>
-      <div class="burger">
-        <input type="checkbox" id="burger-toggle" aria-label="Toggle navigation menu" />
-        <label for="burger-toggle"></label>
-        <div class="burger-icon"></div>
+      <div class="nav-actions">
+        <div class="nav-links-ctas">
+          <a href="#buy" class="btn esk-btn" data-context="navbar">Buy now</a>
+        </div>
+        <div class="burger">
+          <input type="checkbox" id="burger-toggle" aria-label="Toggle navigation menu" />
+          <label for="burger-toggle"></label>
+          <div class="burger-icon"></div>
+        </div>
       </div>
     </div>
     <div class="mobile-nav">
@@ -181,6 +183,13 @@
         .logo-wrapper {
           min-width: 0;
           flex-shrink: 1;
+        }
+
+        .nav-actions {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          flex-shrink: 0;
         }
 
         .nav-links {
