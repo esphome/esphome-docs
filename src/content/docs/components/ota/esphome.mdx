@@ -198,11 +198,11 @@ apply depends on whether the device uses the native API.
 
 #### Devices With the Native API
 
-1. Build and install with ESPHome 2026.9.0 or newer, with the config as it is and without the block. If `api:` has
-   no `encryption:` yet, add one with a key now; a device already added to Home Assistant needs that key entered
-   there after this install. Keep any existing `password:`. If the device still runs older
-   firmware or had no key, this install is plaintext, with a warning; the firmware it lands offers OTA encryption
-   with the API key. A device that already runs 2026.9.0 or newer with the key can skip to step 2.
+Each step ends with an install and a check of the device log; do not start step 2 until the check in step 1 passes.
+
+1. **Install a firmware that offers encryption.** Leave the config as it is, without `encryption:` under the OTA
+   platform, and keep any existing `password:`. If `api:` has no `encryption:` yet, add one with a key now; a device
+   already added to Home Assistant needs that key entered there after this install.
 
    ```yaml
    api:
@@ -214,8 +214,12 @@ apply depends on whether the device uses the native API.
        password: !secret device_name__ota_password
    ```
 
-2. Add `encryption:` under the OTA platform, remove the `password:`, and install. This install is encrypted with the
-   API key, and from now on the device refuses plaintext uploads.
+   Install with ESPHome 2026.9.0 or newer. If the device runs older firmware or had no key, this upload is plaintext
+   and the CLI says so with a warning. When the device has booted, its log must show
+   `Encryption: offered, plaintext accepted`. A device that already runs 2026.9.0 or newer with the key shows this
+   already and can start at step 2.
+
+2. **Require encryption.** Add `encryption:` under the OTA platform and remove the `password:`.
 
    ```yaml
    api:
@@ -227,6 +231,9 @@ apply depends on whether the device uses the native API.
        encryption:
    ```
 
+   Install. The CLI reports `Encrypted connection established`, and after the boot the device log shows
+   `Encryption: required`. From now on the device refuses plaintext uploads.
+
 A key provisioned at runtime by Home Assistant (an API `encryption:` block without a `key:`) has to be in the yaml
 before step 1: the Device Builder writes it there when Home Assistant hands it over. Do not generate a fresh key for
 such a device, that locks Home Assistant out after the next install.
@@ -235,14 +242,12 @@ such a device, that locks Home Assistant out after the next install.
 
 MQTT devices, and anything else without an `api:` block, use an `api:` block once as a stepping stone: only an API key
 can make the running firmware offer encryption, and the OTA key then has to arrive over an encrypted upload. A device
-that has `api:` follows the path above instead.
+that has `api:` follows the path above instead. As above, do not start step 2 until the check in step 1 passes.
 
-1. Generate a key with the [on demand generator](/components/api#configuration-variables). Add a temporary `api:`
-   block with it and `reboot_timeout: 0s`, since a device with `api:` and no client would otherwise reboot every 15
-   minutes. Keep any existing `password:`, then build and install with ESPHome 2026.9.0 or newer. The running firmware
-   has no key to offer, so this install is always plaintext, with a warning; the firmware it lands offers OTA
-   encryption with that key. The temporary block adds the API server and the noise library to this one build, so on a
-   device with 1 MB of flash check that the build still fits before installing.
+1. **Install a firmware that offers encryption.** Generate a key with the
+   [on demand generator](/components/api#configuration-variables). Add a temporary `api:` block with it and
+   `reboot_timeout: 0s`, since a device with `api:` and no client would otherwise reboot every 15 minutes. Keep any
+   existing `password:`.
 
    ```yaml
    mqtt:
@@ -259,8 +264,13 @@ that has `api:` follows the path above instead.
        password: !secret device_name__ota_password
    ```
 
-2. Remove the `api:` block, give the OTA platform `encryption:` with the same key, remove the `password:`, and
-   install. This install is encrypted with that key, which is now the device's OTA key.
+   Install with ESPHome 2026.9.0 or newer. The running firmware has no key to offer, so this upload is always plaintext
+   and the CLI says so with a warning. The temporary block adds the API server and the noise library to this one
+   build, so on a device with 1 MB of flash check that the build still fits first. When the device has booted, its log
+   must show `Encryption: offered, plaintext accepted`.
+
+2. **Move the key to the OTA platform and require encryption.** Remove the `api:` block, add `encryption:` under the
+   OTA platform with the same key, and remove the `password:`.
 
    ```yaml
    mqtt:
@@ -271,6 +281,9 @@ that has `api:` follows the path above instead.
        encryption:
          key: !secret device_name__ota_esphome_key
    ```
+
+   Install. The CLI reports `Encrypted connection established`, and after the boot the device log shows
+   `Encryption: required`. That key is now the device's OTA key.
 
 #### Notes
 
