@@ -12,14 +12,15 @@ const { anchorRedirects } = Astro.locals.starlightRoute.entry.data;
 const table = JSON.stringify(anchorRedirects ?? {}).replace(/</g, "\\u003c");
 
 // Resolving through `URL` keeps a target's own query string and anchor intact; a query on the
-// dead link is carried over so that campaign parameters survive the redirect.
+// dead link is carried over so that campaign parameters survive the redirect. Targets are
+// constrained to site-relative paths by the collection schema, so this cannot leave the origin.
 const script =
   anchorRedirects && Object.keys(anchorRedirects).length > 0
     ? `const t = ${table}[location.hash.slice(1)];
 if (t) {
   const u = new URL(t, location.origin);
   if (!u.search) u.search = location.search;
-  location.replace(u);
+  location.replace(u.href);
 }`
     : null;
 ---
