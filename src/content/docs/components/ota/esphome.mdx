@@ -198,10 +198,9 @@ apply depends on whether the device uses the native API.
 
 #### Devices With the Native API
 
-Do not start step 2 until the check in step 1 passes.
-
-1. **Install a firmware that offers encryption.** Keep the config as it is: any `password:` stays, and nothing is
-   added under the OTA platform. If `api:` has no `encryption:` yet, add one with a key.
+1. **Install a firmware that offers encryption.** Keep the config as it is; if `api:` has no `encryption:` yet, add
+   one with a key. Install with ESPHome 2026.9.0 or newer, then check the device log for
+   `Encryption: offered, plaintext accepted`. A device that already shows this starts at step 2.
 
    ```yaml
    api:
@@ -213,10 +212,8 @@ Do not start step 2 until the check in step 1 passes.
        password: !secret device_name__ota_password
    ```
 
-   Install with ESPHome 2026.9.0 or newer. Check: after the boot the device log shows
-   `Encryption: offered, plaintext accepted`. A device that already shows this can start at step 2.
-
-2. **Require encryption.** Add `encryption:` under the OTA platform and remove the `password:`.
+2. **Require encryption.** Add `encryption:` under the OTA platform, remove the `password:`, and install. Check the
+   device log for `Encryption: required`.
 
    ```yaml
    api:
@@ -228,28 +225,16 @@ Do not start step 2 until the check in step 1 passes.
        encryption:
    ```
 
-   Install. Check: the CLI reports `Encrypted connection established` and the device log shows
-   `Encryption: required`.
-
-What to expect on this path:
-
-- A key provisioned by Home Assistant (an API `encryption:` block without a `key:`) must be in the yaml before step 1;
-  the Device Builder writes it there. Never generate a fresh key for such a device, that locks Home Assistant out.
-- If step 1 added a key, Home Assistant asks for it after that install.
-- The step 1 upload is plaintext when the running firmware has no key to offer; the CLI warns. Validation also warns
-  about the password next to the key until step 2 removes it.
-- Adding a key pulls in the noise library. On a device with 1 MB of flash, check the build fits; if not, leave out
-  components the device does not need for that one build and put them back in step 2.
+A key provisioned by Home Assistant must already be in the yaml; the Device Builder writes it there. Never generate a
+fresh key for such a device, that locks Home Assistant out.
 
 #### Devices Without the Native API
 
-MQTT devices, and anything else without an `api:` block, use one as a stepping stone: only an API key makes the running
-firmware offer encryption, and the OTA key then arrives over an encrypted upload. Do not start step 2 until the check
-in step 1 passes.
+Without `api:` the running firmware cannot offer encryption, so an `api:` block is used once as a stepping stone.
 
-1. **Install a firmware that offers encryption.** Generate a key with the
-   [on demand generator](/components/api#configuration-variables). Add a temporary `api:` block with it and
-   `reboot_timeout: 0s`. Any `password:` stays.
+1. **Install a firmware that offers encryption.** Add a temporary `api:` block with a generated key and
+   `reboot_timeout: 0s`. Install with ESPHome 2026.9.0 or newer, then check the device log for
+   `Encryption: offered, plaintext accepted`.
 
    ```yaml
    mqtt:
@@ -266,11 +251,8 @@ in step 1 passes.
        password: !secret device_name__ota_password
    ```
 
-   Install with ESPHome 2026.9.0 or newer. Check: after the boot the device log shows
-   `Encryption: offered, plaintext accepted`.
-
-2. **Move the key to the OTA platform and require encryption.** Remove the `api:` block, add `encryption:` with the
-   same key under the OTA platform, and remove the `password:`.
+2. **Move the key to the OTA platform.** Remove the `api:` block, put the same key under `ota: encryption:`, remove
+   the `password:`, and install. Check the device log for `Encryption: required`.
 
    ```yaml
    mqtt:
@@ -282,29 +264,15 @@ in step 1 passes.
          key: !secret device_name__ota_esphome_key
    ```
 
-   Install. Check: the CLI reports `Encrypted connection established` and the device log shows
-   `Encryption: required`.
-
-What to expect on this path:
-
-- `reboot_timeout: 0s` is needed because a device with `api:` and no client otherwise reboots every 15 minutes.
-- Home Assistant discovers the device while the step 1 build runs; ignore it, it disappears after step 2.
-- The step 1 upload is always plaintext, the running firmware has no key to offer; the CLI warns. Validation also
-  warns about the password next to the key until step 2 removes it.
-- The temporary block adds the API server and the noise library. On a device with 1 MB of flash, check the build
-  fits; if not, leave out components the device does not need for that one build and put them back in step 2. Keep
-  `mqtt:` if the CLI finds the device through MQTT rather than mDNS, or set `use_address` to the device's IP.
-
 #### Notes
 
-- The password can go in step 2 because the encrypted handshake authenticates that upload.
-- Step 1 relies on the CLI falling back to plaintext when the device does not offer encryption. That fallback is
-  planned to go away no earlier than ESPHome 2027.3.0, the release notes will announce the release that drops it. Do
-  step 1 while it exists for every device whose running firmware has no key to offer: older than 2026.9.0, on
-  2026.9.0 or newer without an API encryption key, or without the native API at all; after that, the block arrives by
-  serial flash or through the [web server OTA platform](/components/ota/web_server/).
-- An OTA `password:` next to an API key only serves older clients and costs about 3.5 KB of flash on an ESP8266, so
-  validation warns.
+- The step 1 upload is plaintext, the running firmware has no key to offer, and validation warns about the password
+  next to the key; both are expected and end with step 2. That plaintext fallback is planned to go away no earlier
+  than ESPHome 2027.3.0, so do step 1 before then.
+- Step 1 grows the build by the API server and the noise library. On a device with 1 MB of flash, leave out components
+  you do not need for that one build.
+- Home Assistant asks for the key after step 1 if one was added, and discovers the temporary `api:` device on the
+  second path; ignore that, it disappears after step 2.
 
 ## Updating the partition table on ESP32
 
