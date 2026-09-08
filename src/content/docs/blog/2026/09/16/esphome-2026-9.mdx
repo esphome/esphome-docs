@@ -1,14 +1,14 @@
 ---
-title: "ESPHome 2026.9.0: {TAGLINE}"
-description: "{DESCRIPTION}"
+title: "ESPHome 2026.9.0: Faster builds and encrypted OTA"
+description: "ESPHome 2026.9.0 parallelizes PlatformIO installs, lays the groundwork for a native ESP8266 toolchain, adds Noise-encrypted OTA updates, and frees ESP8266 RAM."
 date: 2026-09-16
 authors:
   - jesse
 tags:
   - Releases
-excerpt: "{DESCRIPTION}"
+excerpt: "ESPHome 2026.9.0 parallelizes PlatformIO installs, lays the groundwork for a native ESP8266 toolchain, adds Noise-encrypted OTA updates, and frees ESP8266 RAM."
 cover:
-  alt: "ESPHome 2026.9.0: {TAGLINE}"
+  alt: "ESPHome 2026.9.0: Faster builds and encrypted OTA"
   image: "https://assets.openhomefoundation.org/opengraph?url=https://esphome.io/blog/2026/09/16/esphome-2026-9"
 head:
   - tag: meta
@@ -26,7 +26,7 @@ head:
   - tag: meta
     attrs:
       property: "og:image:title2"
-      content: "{TAGLINE}"
+      content: "Faster builds and encrypted OTA"
   - tag: meta
     attrs:
       property: "og:image:author"
@@ -49,6 +49,7 @@ import ImgTable from "@components/ImgTable.astro";
   ["DS1603L", "/components/sensor/ds1603l/", "ds1603l.jpg", "Acoustic distance"],
   ["Mk2PVRouter", "/components/sensor/mk2pvrouter/", "mk2pvrouter.jpg", "Surplus Energy Diverter"],
   ["Snapshot", "/components/display/snapshot/", "file-image-outline.svg", "dark-invert"],
+  ["Template Climate", "/components/climate/template/", "description.svg", "dark-invert"],
   // ["Component Name", "/components/path/", "image.png"],
 ]} />
 
@@ -66,7 +67,9 @@ Improv provisioning to Ethernet-only boards, teaches WiFi provisioning to shut d
 when the window closes, and rewrites IR transmission on Beken and Realtek chips to run from a hardware timer
 interrupt instead of a busy-wait. The multi-release modbus overhaul continues with a heap-free write path, a
 consolidated range-join option, and continuous polling. Six new components (ds1603l, d01, sfa40, mk2pvrouter,
-snapshot, noise) and roughly a dozen feature additions to existing components round out the release.
+snapshot, noise) and roughly a dozen feature additions to existing components round out the release. The bundled
+Device Builder masks credentials in the YAML diff view, boots ESP32-C6 boards after a browser flash, and lets paired
+build servers recover from an address change on their own.
 {/* RELEASE_OVERVIEW_END */}
 
 ## Upgrade Checklist
@@ -116,7 +119,7 @@ build path for those users.
 ## Build System Parallelization
 
 The install phase of a PlatformIO build was serial from top to bottom, which showed up most sharply on
-Raspberry Pi class hardware and inside the Home Assistant add-on. This release parallelizes it end to end.
+Raspberry Pi class hardware and inside the Home Assistant App. This release parallelizes it end to end.
 [@bdraco](https://github.com/bdraco) added a shared batch download runner with one combined progress bar
 ([#18662](https://github.com/esphome/esphome/pull/18662)), a prefetch subprocess that resolves and downloads
 PlatformIO packages in parallel into PlatformIO's own cache
@@ -173,16 +176,59 @@ the camera image reader is created lazily instead of per connection
 ([#18421](https://github.com/esphome/esphome/pull/18421)), and API message-type storage widened to `uint16_t`
 without adding per-connection RAM ([#18526](https://github.com/esphome/esphome/pull/18526)).
 
+## ESPHome Device Builder
+
+This is a smaller cycle for the bundled [ESPHome Device Builder](https://github.com/esphome/device-builder), and
+most of it already reached you through the 2026.8.x patch releases; this section covers everything since the 2026.8.0
+release notes.
+
+The YAML diff view used to render credentials in plain text the moment you flipped the diff toggle. It now masks the
+same sensitive values the editor does, with a reveal toggle
+([frontend#1664](https://github.com/esphome/device-builder-frontend/pull/1664)). A WiFi password containing `#`
+made every WiFi write append a second `wifi_password:` line to `secrets.yaml`; the writer now handles quoted values,
+heals an already duplicated file, and reports a broken `secrets.yaml` as your file to fix rather than an internal
+error ([#2624](https://github.com/esphome/device-builder/pull/2624),
+[frontend#1673](https://github.com/esphome/device-builder-frontend/pull/1673)).
+
+On ESPHome Web, flashing an ESP32-C6, H2 or P4 left the chip in the ROM bootloader instead of booting the new
+firmware, so Improv never answered. The reset after flashing now boots the firmware
+([frontend#1679](https://github.com/esphome/device-builder-frontend/pull/1679)), and **Prepare for first use** gained
+an **Erase the device first** option so a board that ran other firmware does not come up with stale WiFi credentials
+([frontend#1680](https://github.com/esphome/device-builder-frontend/pull/1680)).
+
+A paired build server that moves to a new IP on another subnet used to be reachable again only by editing the
+endpoint by hand. After five minutes of silence it now dials back to announce its new address, so the pairing heals
+itself ([#2650](https://github.com/esphome/device-builder/pull/2650)).
+
+In the editor, dot-prefixed top-level keys, the documented way to park YAML anchors, no longer render as bogus cards
+or get deleted when you edit the section above them through the structured form
+([frontend#1689](https://github.com/esphome/device-builder-frontend/pull/1689),
+[#2652](https://github.com/esphome/device-builder/pull/2652)), and the add-component form stops demanding pins and
+dimensions that the selected display model already predefines
+([#2648](https://github.com/esphome/device-builder/pull/2648)). [@Daniel085](https://github.com/Daniel085) brought
+the device comment back to the tile card
+([frontend#1671](https://github.com/esphome/device-builder-frontend/pull/1671)).
+
+Under the hood, out-of-band edit detection uses a versioned whole-file fingerprint, so a future algorithm change can
+never again trigger a fleet-wide regeneration on upgrade ([#2617](https://github.com/esphome/device-builder/pull/2617)),
+the Docker container reaps orphaned processes when running as PID 1
+([#2636](https://github.com/esphome/device-builder/pull/2636)), and version history ignores the fake executable bit
+Samba puts on files edited from Windows ([#2646](https://github.com/esphome/device-builder/pull/2646)).
+
 ## Encrypted OTA Updates
 
 [@bdraco](https://github.com/bdraco) adds Noise (ChaCha20-Poly1305) encryption to the `esphome` OTA platform
 ([#18489](https://github.com/esphome/esphome/pull/18489)), using the same protocol the native API already
 uses. Until now the firmware image travelled over the network in plaintext, so a passive listener on the LAN
 could capture the WiFi credentials and API encryption key embedded in the image; the SHA256 password only
-authenticated the client, it did not make the transfer confidential. With an `encryption:` block on the OTA
-platform the whole session is encrypted, and both the device and the CLI fail closed so an attacker cannot
-strip encryption and force a plaintext upload. A bare `encryption:` inherits the `api` encryption key, and a
-password and encryption are mutually exclusive because the key already authenticates the uploader. This work
+authenticated the client, it did not make the transfer confidential. A device with an `api` encryption key
+now offers OTA encryption with that key and the CLI uses it whenever the device offers, so once a device runs
+this release, enabling encryption is an ordinary update; the update that brings older firmware to this release
+still travels in plaintext ([#18979](https://github.com/esphome/esphome/pull/18979)). An
+`encryption:` block on the OTA platform is what makes the device require it: both the device and the CLI then
+fail closed so an attacker cannot strip encryption and force a plaintext upload. A bare `encryption:` inherits
+the `api` encryption key, and a password and encryption are mutually exclusive because the key already
+authenticates the uploader. This work
 sits on top of a new shared `noise` component ([#18490](https://github.com/esphome/esphome/pull/18490)) that
 lifts the noise-c dependency, HWRNG binding, error strings, PSK context, encryption key validation and the
 handshake responder out of the api component so both api and ota can share them; there is no user
@@ -278,6 +324,10 @@ Six new components join the tree:
   [@iago-veiga](https://github.com/iago-veiga) exposes a Tuya-MCU electric water heater as a single
   `water_heater` entity, collapsing the previous template-plus-lambda pattern into one block
   ([#17323](https://github.com/esphome/esphome/pull/17323))
+- **[template climate](/components/climate/template/)** by [@rsre](https://github.com/rsre) builds a full
+  climate entity out of ESPHome primitives, with per-field set actions, an `on_control` trigger, an optimistic
+  mode that applies commands locally, and a `climate.template.publish` action for reporting the device's own
+  state ([#14455](https://github.com/esphome/esphome/pull/14455))
 - **[lvgl list widget](/components/lvgl/widgets/#list)** by [@clydebarrow](https://github.com/clydebarrow)
   adds a scrollable container designed to be filled at runtime, with `add_text`, `add`, `remove` and `clear`
   actions plus `on_add`/`on_remove` triggers ([#18018](https://github.com/esphome/esphome/pull/18018))
