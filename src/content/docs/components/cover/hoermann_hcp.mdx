@@ -282,6 +282,45 @@ bus scan from the motor's menu.
   required if you have more than one. It can also be given directly, as
   `- hoermann_hcp.announce_pause: my_hub_id`.
 
+### `hoermann_hcp.vent` Action
+
+This [action](/automations/actions#all-actions) moves the door to its built-in vent position, the same
+as pressing the `vent` button. Use it when an automation needs the position and you do not want a
+button entity for it.
+
+```yaml
+on_...:
+  then:
+    - hoermann_hcp.vent
+```
+
+The command is dropped, with a warning in the log, if the motor's bus controller is not connected or
+has not yet fetched a previous command.
+
+#### Configuration variables
+
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the `hoermann_hcp` hub, only
+  required if you have more than one. It can also be given directly, as `- hoermann_hcp.vent: my_hub_id`.
+
+### `hoermann_hcp.half_open` Action
+
+This [action](/automations/actions#all-actions) moves the door to its built-in half-open position, the
+same as pressing the `half_open` button.
+
+```yaml
+on_...:
+  then:
+    - hoermann_hcp.half_open
+```
+
+The command is dropped under the same conditions as `hoermann_hcp.vent`.
+
+#### Configuration variables
+
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the `hoermann_hcp` hub, only
+  required if you have more than one. It can also be given directly, as
+  `- hoermann_hcp.half_open: my_hub_id`.
+
 ## See Also
 
 - [Cover Component](/components/cover/)
