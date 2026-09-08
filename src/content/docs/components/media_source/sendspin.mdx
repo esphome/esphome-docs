@@ -38,7 +38,7 @@ media_player:
 - **codecs** (*Optional*, list of strings): The audio codecs advertised to the Sendspin server, in
   order of preference. Each entry is one of `flac`, `opus`, or `pcm`, and a codec may only be listed
   once. Defaults to `[flac, opus, pcm]`, or `[flac, pcm]` when `sample_rate` is not `48000`, since
-  Opus only supports 48 kHz audio.
+  `opus` only supports 48 kHz audio.
 - **buffer_size** (*Optional*, positive integer): The size of the audio buffer in bytes. Must be at
   least `25000`. Defaults to `1000000`.
 - **fixed_delay** (*Optional*, [Time](/guides/configuration-types#time)): A constant, known playback
