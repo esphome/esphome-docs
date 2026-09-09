@@ -59,8 +59,9 @@ text_sensor:
 ```
 
 - **alpha3_id** (**Required**, [ID](/guides/configuration-types/#id)): The ID of the ALPHA3 component.
-- **ready** (*Optional*, [Binary Sensor](/components/binary_sensor/)): `true` after BLE connection, address
-  discovery, and pump identity validation complete.
+- **ready** (*Optional*, [Binary Sensor](/components/binary_sensor/)): `true` after the BLE connection is authenticated
+  and notification setup is complete. Control commands remain unavailable until address discovery and pump identity
+  validation also complete.
 - **realized_operation** (*Optional*, [Text Sensor](/components/text_sensor/)): The operation currently realized by
   the pump.
 - **active_control_source** (*Optional*, [Text Sensor](/components/text_sensor/)): The source currently controlling
