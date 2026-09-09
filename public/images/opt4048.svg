@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <rect width="300" height="300" rx="24" fill="#1a1a1a"/>
+  <circle cx="150" cy="118" r="52" fill="none" stroke="#f5f0e6" stroke-width="10"/>
+  <circle cx="150" cy="118" r="18" fill="#e8c36a"/>
+  <text x="150" y="230" text-anchor="middle" fill="#f5f0e6"
+        font-family="ui-sans-serif, system-ui, sans-serif" font-size="36" font-weight="700">
+    OPT4048
+  </text>
+</svg>

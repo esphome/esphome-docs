@@ -1,0 +1,124 @@
+---
+description: "Instructions for setting up the TI OPT4048 tristimulus XYZ color sensor in ESPHome."
+title: "OPT4048 Tristimulus Color Sensor"
+---
+
+import APIRef from '@components/APIRef.astro';
+
+The `opt4048` sensor platform allows you to use the Texas Instruments OPT4048
+([datasheet](https://www.ti.com/lit/ds/symlink/opt4048.pdf),
+[Adafruit](https://www.adafruit.com/product/6334)) high-precision tristimulus XYZ color
+sensor with ESPHome. The [I²C Bus](/components/i2c) is required to be set up in your
+configuration for this sensor to work.
+
+The OPT4048 has four channels whose spectral responses are engineered to match the CIE 1931
+tristimulus curves (X, Y, Z) plus a wideband W channel. From those readings the component
+publishes illuminance, CIE 1931 chromaticity (`x`, `y`), and correlated colour temperature
+using the formulas from the datasheet and McCamy's approximation.
+
+```yaml
+# Example configuration entry
+sensor:
+  - platform: opt4048
+    id: opt4048_hub
+    illuminance:
+      name: "Illuminance"
+    x:
+      name: "CIE x"
+    y:
+      name: "CIE y"
+    color_temperature:
+      name: "Color Temperature"
+```
+
+## Configuration variables
+
+- **illuminance** (*Optional*): Illuminance in lux, derived from the Y channel.
+  All options from [Sensor](/components/sensor).
+- **x** (*Optional*): CIE 1931 chromaticity x.
+  All options from [Sensor](/components/sensor).
+- **y** (*Optional*): CIE 1931 chromaticity y.
+  All options from [Sensor](/components/sensor).
+- **color_temperature** (*Optional*): Correlated colour temperature in kelvin (McCamy).
+  All options from [Sensor](/components/sensor).
+- **channel_x** (*Optional*): Raw decoded ADC code for the X channel.
+  All options from [Sensor](/components/sensor).
+- **channel_y** (*Optional*): Raw decoded ADC code for the Y channel.
+  All options from [Sensor](/components/sensor).
+- **channel_z** (*Optional*): Raw decoded ADC code for the Z channel.
+  All options from [Sensor](/components/sensor).
+- **channel_w** (*Optional*): Raw decoded ADC code for the wideband W channel.
+  All options from [Sensor](/components/sensor).
+- **range** (*Optional*, string): Full-scale range. One of `2.2klux`, `4.5klux`, `9klux`,
+  `18klux`, `36klux`, `72klux`, `144klux`, `auto`. Defaults to `auto`.
+- **conversion_time** (*Optional*, string): Conversion time per channel. One of `600us`, `1ms`,
+  `1.8ms`, `3.4ms`, `6.5ms`, `12.7ms`, `25ms`, `50ms`, `100ms`, `200ms`, `400ms`, `800ms`.
+  Defaults to `100ms`. A full frame reads all four channels, so the one-shot wait is four
+  times this value.
+- **mode** (*Optional*, string): Operating mode. One of `oneshot` (default), `auto_oneshot`,
+  `continuous`, `powerdown`.
+- **quick_wake** (*Optional*, boolean): Keep analogue circuits biased between one-shot
+  conversions. Defaults to `false`.
+- **fault_count** (*Optional*, int): Consecutive threshold faults required before the flag is
+  set. One of `1`, `2`, `4`, `8`. Defaults to `1`.
+- **threshold_low** (*Optional*, int): Low threshold as a raw ADC code. The chip
+  stores this as a 12-bit mantissa with an implicit 8-bit shift, so the resolution is
+  256 counts.
+- **threshold_high** (*Optional*, int): High threshold as a raw ADC code. Same encoding
+  as **threshold_low**.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval
+  to poll the sensor. Defaults to `60s`.
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used
+  for code generation. Needed if you also publish the status flags as binary sensors.
+- **threshold_channel** (*Optional*, string): Channel compared against the thresholds. One of
+  `x`, `y`, `z`, `w`. Defaults to `y`.
+- **interrupt_latch** (*Optional*, boolean): Latch interrupt flags until the status register is
+  read. Defaults to `true`.
+- **interrupt_polarity** (*Optional*, string): INT pin polarity. One of `high`, `low`.
+  Defaults to `high`.
+- **interrupt_direction** (*Optional*, string): Which threshold comparison asserts INT. `high`
+  for above the high threshold, `low` for below the low threshold. Defaults to `high`.
+- **interrupt_config** (*Optional*, string): INT pin behaviour. One of `smbus_alert`,
+  `data_ready_next`, `data_ready_all`. Defaults to `data_ready_all`.
+- **interrupt_pin** (*Optional*, [Pin](/guides/configuration-types#pin)): Optional GPIO connected
+  to the sensor INT pin. The pin is configured as an input; conversion ready is also published
+  from the status register.
+- All other options for I²C devices described at [I²C Bus](/components/i2c).
+  The default address is `0x44` (ADDR to GND). ADDR to VDD is `0x45`; ADDR to SDA is `0x46`.
+
+## Binary sensors
+
+Status flags can be published as binary sensors:
+
+```yaml
+binary_sensor:
+  - platform: opt4048
+    opt4048_id: opt4048_hub
+    conversion_ready:
+      name: "Conversion Ready"
+    overload:
+      name: "Overload"
+    threshold_low:
+      name: "Threshold Low"
+    threshold_high:
+      name: "Threshold High"
+```
+
+- **opt4048_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the
+  `opt4048` sensor hub. Inferred automatically when only one hub is defined.
+- **conversion_ready** (*Optional*): Conversion-ready flag.
+  All options from [Binary Sensor](/components/binary_sensor).
+- **overload** (*Optional*): Overflow / overload flag.
+  All options from [Binary Sensor](/components/binary_sensor).
+- **threshold_low** (*Optional*): Measurement below the low threshold.
+  All options from [Binary Sensor](/components/binary_sensor).
+- **threshold_high** (*Optional*): Measurement above the high threshold.
+  All options from [Binary Sensor](/components/binary_sensor).
+
+## See Also
+
+- [Sensor Filters](/components/sensor#sensor-filters)
+- [OPT3001 Ambient Light Sensor](/components/sensor/opt3001/)
+- [TCS34725 RGB Color Sensor](/components/sensor/tcs34725/)
+- [VEML7700 Ambient Light Sensor](/components/sensor/veml7700/)
+- <APIRef text="opt4048.h" path="opt4048/opt4048.h" />
