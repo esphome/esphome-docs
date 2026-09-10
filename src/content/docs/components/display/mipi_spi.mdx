@@ -258,15 +258,22 @@ A touchscreen, if present, must be configured separately. See the [Touchscreen](
 
 ## Waveshare ESP32-S3-Touch-LCD-1.46
 
-This board uses a 412×412 SPD2010 panel over quad SPI. The model defaults to RGB565, SPI mode 3, 40MHz,
+This board uses a 412×412 SPD2010 panel over quad SPI. The model defaults to RGB565, SPI mode 0, 40MHz,
 and four-pixel draw rounding. Keep `draw_rounding: 4` when using LVGL. Hardware mirroring is supported;
 axis swapping requires software rotation.
 
 The LCD reset signal is on pin 1 of the board's [PCA9554 GPIO expander](/components/pca9554/).
-Configure that expander with ID `board_expander` and address `0x20` on the board's I²C bus
-(SDA GPIO11, SCL GPIO10). Configure the display as follows:
+The display model selects that pin automatically when a single PCA9554 is configured. Declare the
+expander on the board's I²C bus and configure the display as follows:
 
 ```yaml
+i2c:
+  sda: GPIO11
+  scl: GPIO10
+
+pca9554:
+  - id: board_expander
+
 spi:
   type: quad
   clk_pin: GPIO40
@@ -276,11 +283,9 @@ display:
   - platform: mipi_spi
     model: WAVESHARE-ESP32-S3-TOUCH-LCD-1.46
     id: main_display
-    reset_pin:
-      pca9554: board_expander
-      number: 1
 ```
 
-The model uses GPIO21 for chip select. Provide the hardware reset pin as shown; this model skips software reset.
+The PCA9554 defaults to address `0x20`. The display model uses GPIO21 for chip select and PCA9554 pin 1
+for hardware reset; the driver manages the required reset and sleep-out sequencing.
 The backlight is controlled separately on GPIO5. For touch input, use the
 [SPD2010 touchscreen](/components/touchscreen/spd2010/).
