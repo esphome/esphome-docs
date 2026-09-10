@@ -67,10 +67,11 @@ encryption costs in flash by close to half on every platform, brings Improv prov
 boards, teaches WiFi provisioning to shut down the AP and captive portal when the window closes, and rewrites
 IR transmission on Beken and Realtek chips to run from a hardware timer interrupt instead of a busy-wait. The
 multi-release modbus overhaul continues with a heap-free write path, a consolidated range-join option, and
-continuous polling. Seven new components (ds1603l, d01, sfa40, mk2pvrouter, snapshot, noise, template climate)
-and roughly a dozen feature additions to existing components round out the release. The bundled Device Builder
+continuous polling. Six new components (ds1603l, d01, sfa40, mk2pvrouter, snapshot, noise) and
+around twenty feature additions to existing components round out the release. The bundled Device Builder
 masks credentials in the YAML diff view, boots ESP32-C6 boards after a browser flash, and lets paired build
-servers recover from an address change on their own. {/* RELEASE_OVERVIEW_END */}
+servers recover from an address change on their own.
+{/* RELEASE_OVERVIEW_END */}
 
 ## Upgrade Checklist
 
@@ -137,7 +138,7 @@ after an sdkconfig change (~2.2s on desktop, several times more on SBCs). Platfo
 registry library is a private package before it looks at its own cache, and that check sleeps half a second
 under the account client's rate limit before failing at once on any machine without a PlatformIO login;
 ESPHome never uses private packages, so it now answers the check itself, which takes a no-op rebuild of a
-six-library config from 2.9 s to 0.4 s ([#18823](https://github.com/esphome/esphome/pull/18823)). When two
+six-library config from 2.9s to 0.4s ([#18823](https://github.com/esphome/esphome/pull/18823)). When two
 builds want the same archive at once the
 waiting one shows the other's download progress instead of sitting at 0%
 ([#18983](https://github.com/esphome/esphome/pull/18983)).
@@ -271,8 +272,8 @@ in this release, static RAM being the image's own data, not per-connection heap:
 | ESP32 AtomU (IDF) | 65.9 KB | 37.7 KB | 56 B | 32 B |
 | Pico W (RP2040) | 65.5 KB | 34.7 KB | 48 B | 24 B |
 
-A Noise handshake drops from about 580 ms to about 300 ms on the ESP8266 and from 63 ms to 46 ms on the
-ESP32; an encrypted API connect to a d1 mini goes from a 377 ms median to 139 ms. Nothing to configure.
+A Noise handshake drops from about 580ms to about 300ms on the ESP8266 and from 63ms to 46ms on the
+ESP32; an encrypted API connect to a d1 mini goes from a 377ms median to 139ms. Nothing to configure.
 
 ## Improv Serial Beyond WiFi
 
@@ -337,7 +338,7 @@ requested state instead of the inverted one. Users of `custom_command`, `registe
 
 ## New Components And Hardware Support
 
-Seven new components join the tree:
+Six new components join the tree:
 
 - **[ds1603l](/components/sensor/ds1603l/)** by [@JakeLC15](https://github.com/JakeLC15) - a UART ultrasonic
   liquid-level sensor with configurable min/max level and volume mapping
@@ -357,10 +358,6 @@ Seven new components join the tree:
 - **noise** by [@bdraco](https://github.com/bdraco) - a shared internal Noise
   primitives component that api and the new encrypted OTA both consume; no user configuration
   ([#18490](https://github.com/esphome/esphome/pull/18490))
-- **[template climate](/components/climate/template/)** by [@rsre](https://github.com/rsre) - a climate
-  platform whose mode, targets, fan, swing and presets are plain state driven from lambdas and actions, so a
-  UART or I²C thermostat can be exposed without the template-plus-lambda workarounds
-  ([#14455](https://github.com/esphome/esphome/pull/14455))
 
 ## New Features In Existing Components
 
@@ -446,9 +443,10 @@ because holding the shared radio for over a second at a time starves WiFi and ca
 separately from the upload window and reports total OTA time
 ([#18582](https://github.com/esphome/esphome/pull/18582)), so users see why there is a silent pause after the
 handshake instead of interpreting it as a stall. On a lossy link an OTA upload could give up moments before a
-lost chunk acknowledgement was retransmitted; the device now waits 105 s for data and the CLI 160 s for an
+lost chunk acknowledgement was retransmitted; the device now waits 105s for data and the CLI 160s for an
 acknowledgement, so a retry always finds the device free
 ([#19041](https://github.com/esphome/esphome/pull/19041)).
+
 On the ESP8266, LEAmDNS could free the same packet buffer twice when an mDNS packet arrived while a send was
 failing, corrupting the heap right as Home Assistant connected; its main loop calls are now guarded against
 that re-entrancy ([#18990](https://github.com/esphome/esphome/pull/18990)). Stack traces on the ESP32-S3 are no
@@ -476,6 +474,7 @@ PRs [#18338](https://github.com/esphome/esphome/pull/18338) through
 `from __future__ import annotations`, every annotation is evaluated at import time, so the sweep also had to
 add every missing import for the names it introduced; an all-modules import check pins that. No behaviour
 changes.
+
 ## Other Fixes
 
 Audio on ESP32 got a round of fixes: a speaker start request that arrived while the previous task was still
