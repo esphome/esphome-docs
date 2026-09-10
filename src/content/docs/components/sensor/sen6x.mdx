@@ -32,6 +32,7 @@ The [I²C Bus](/components/i2c) is required to be set up in your configuration f
 # Example configuration entry
 sensor:
   - platform: sen6x
+    id: my_sen6x
     type: SEN69C
     pm_1_0:
       name: PM <1µm Weight concentration
@@ -185,8 +186,11 @@ sensor:
     CO₂ reading. Allowed values are in range 700..1200.
   - **ambient_pressure_compensation_source** (*Optional*, [ID](/guides/configuration-types#id)): A pressure sensor
     (in hPa) whose value updates the ambient pressure compensation on every update cycle. Values outside
-    700..1200 hPa are ignored with a warning.
+    700..1200 hPa are ignored with a warning. Can be combined with `ambient_pressure_compensation`, which then
+    applies until the source reports a valid value.
   - All other options from [Sensor](/components/sensor).
+
+  Options that are not set are not written to the device.
 
 - **formaldehyde** (*Optional*): The Formaldehyde (HCHO) concentration in ppb. Note: only available with SEN68 or
   SEN69C. The sensor will be ignored on unsupported models.
@@ -201,7 +205,8 @@ sensor:
   - **time_constant** (*Optional*, int): Time constant in seconds. Defaults to `0`.
 
 - **temperature_acceleration** (*Optional*): Parameters for the RH/T engine's temperature acceleration mode, from
-  Sensirion's "SEN6x Temperature Acceleration and Compensation Instructions" document.
+  Sensirion's [SEN6x Temperature Acceleration and Compensation](https://sensirion.com/media/documents/C964FCC8/69709EC3/PS_AN_SEN6x_Temperature_Compensation_and_Acceleration_Application_No.pdf)
+  application note.
 
   - **k** (*Optional*, float): Filter constant K. Defaults to `20.0`.
   - **p** (*Optional*, float): Filter constant P. Defaults to `20.0`.
@@ -221,7 +226,7 @@ sensor:
 > The sensor needs about a minute "warm-up". The VOC and NOx gas index algorithm needs a
 > number of samples before the values stabilize. The warm-up period can be changed with `startup_delay`.
 
-## Binary sensor
+## Binary Sensor
 
 The `sen6x` binary sensor platform exposes the device status register as diagnostic entities. The register is
 read and cleared once per update cycle, so each entity reports whether a problem occurred since the last update.
