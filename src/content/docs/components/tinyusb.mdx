@@ -39,6 +39,45 @@ tinyusb:
 - **usb_product_str** (*Optional*, string): Product name string descriptor. Defaults to `"ESPHome"`.
 - **usb_serial_str** (*Optional*, string): Serial number string descriptor. If not specified, the device's MAC address
   will be used.
+- **on_mount** (*Optional*, [Automation](/automations)): An automation to perform when a USB host has connected to the
+  device and finished setting it up. See [Reacting to a USB host](#reacting-to-a-usb-host).
+- **on_unmount** (*Optional*, [Automation](/automations)): An automation to perform when the USB host disconnects.
+  See [Reacting to a USB host](#reacting-to-a-usb-host).
+
+## Reacting to a USB host
+
+The `on_mount` and `on_unmount` automations run when a computer (or any other USB host) connects to the device and
+finishes setting it up, and when it disconnects again. A connection to a charger or a power-only cable does not count
+as a host, so these automations tell you whether something is actually able to talk to the device over USB. Both run
+on the main loop, so any action can be used.
+
+```yaml
+tinyusb:
+  on_mount:
+    - logger.log: USB host connected
+  on_unmount:
+    - logger.log: USB host disconnected
+```
+
+A device that powers up without a host never sees an `on_unmount`, so use the `tinyusb.is_mounted` condition when the
+initial state matters:
+
+```yaml
+esphome:
+  on_boot:
+    - if:
+        condition:
+          tinyusb.is_mounted:
+        then:
+          - logger.log: Booted with a USB host connected
+```
+
+### `tinyusb.is_mounted` Condition
+
+This condition passes while a USB host has the device connected and set up.
+
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the `tinyusb` component. Only needed if you
+  have given it an ID yourself.
 
 ## Notes
 
