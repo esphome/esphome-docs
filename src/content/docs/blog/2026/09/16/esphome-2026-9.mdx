@@ -65,7 +65,7 @@ flash.
 Beyond the platform work, this release adds Noise (ChaCha20-Poly1305) encryption for OTA updates, cuts what
 encryption costs in flash by close to half on every platform, brings Improv provisioning to Ethernet-only
 boards, teaches WiFi provisioning to shut down the AP and captive portal when the window closes, and rewrites
-IR transmission on Beken and Realtek chips to run from a hardware timer interrupt instead of a busy-wait. The
+IR transmission on the BK7238 and RTL8720C to run from a hardware timer interrupt instead of a busy-wait. The
 multi-release modbus overhaul continues with a heap-free write path, a consolidated range-join option, and
 continuous polling. Six new components (ds1603l, d01, sfa40, mk2pvrouter, snapshot, noise) and
 around twenty feature additions to existing components round out the release. The bundled Device Builder
