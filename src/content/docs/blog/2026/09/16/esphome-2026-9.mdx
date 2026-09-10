@@ -264,8 +264,9 @@ made them faster in most cases ([#18989](https://github.com/esphome/esphome/pull
 The ESP8266 and RP2040 now run X25519 on 13-bit limb arithmetic that needs no 64-bit products, the Ed25519
 base point table shrank from 30 KB to 12 KB on every platform, the SHA256 transform is compact on every
 platform and, on the ESP32 and RP2040, two to three times faster when cold, and on the ESP8266 the
-ChaCha20-Poly1305 transport is a quarter cheaper per packet with its constants out of DRAM. What turning on API encryption costs in 2026.8.0 and
-in this release, static RAM being the image's own data, not per-connection heap:
+ChaCha20-Poly1305 transport is a quarter cheaper per packet with its constants out of DRAM. What turning on
+API encryption costs in 2026.8.0 and in this release, static RAM being the image's own data, not
+per-connection heap:
 
 | Board | Flash 2026.8.0 | Flash 2026.9.0 | Static RAM 2026.8.0 | Static RAM 2026.9.0 |
 | --- | --- | --- | --- | --- |
