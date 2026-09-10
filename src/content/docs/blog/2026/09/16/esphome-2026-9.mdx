@@ -133,10 +133,12 @@ leg, and the CI compile-test image now compresses with multithreaded zstd instea
 ([#18812](https://github.com/esphome/esphome/pull/18812)), taking another 40s off the pipeline. ESP-IDF native
 builds also now cache the discovered component list inside the extracted framework directory
 ([#18752](https://github.com/esphome/esphome/pull/18752)), skipping a full CMake configure pass on every rebuild
-after an sdkconfig change (~2.2s on desktop, several times more on SBCs). Every compile also paid PlatformIO's
-private package authorization probe, a fixed 2.5 s of throttle sleep for a request that never leaves the
-machine; ESPHome now answers it directly, taking a no-op rebuild from 2.9 s to 0.4 s
-([#18823](https://github.com/esphome/esphome/pull/18823)), and when two builds want the same archive at once the
+after an sdkconfig change (~2.2s on desktop, several times more on SBCs). PlatformIO also checks whether each
+registry library is a private package before it looks at its own cache, and that check sleeps half a second
+under the account client's rate limit before failing at once on any machine without a PlatformIO login;
+ESPHome never uses private packages, so it now answers the check itself, which takes a no-op rebuild of a
+six-library config from 2.9 s to 0.4 s ([#18823](https://github.com/esphome/esphome/pull/18823)). When two
+builds want the same archive at once the
 waiting one shows the other's download progress instead of sitting at 0%
 ([#18983](https://github.com/esphome/esphome/pull/18983)).
 
