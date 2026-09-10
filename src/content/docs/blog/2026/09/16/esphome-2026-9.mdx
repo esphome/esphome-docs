@@ -223,17 +223,18 @@ the Docker container reaps orphaned processes when running as PID 1
 ([#2636](https://github.com/esphome/device-builder/pull/2636)), and version history ignores the fake executable bit
 Samba puts on files edited from Windows ([#2646](https://github.com/esphome/device-builder/pull/2646)).
 
-Later builds keep an explicit OTA encryption key in step with the API key
-([#2665](https://github.com/esphome/device-builder/pull/2665)) and nudge devices that already offer OTA
-encryption toward `ota: encryption:` ([frontend#1714](https://github.com/esphome/device-builder-frontend/pull/1714)),
-render the catalog picker only while its dialog is open and mount one picker per automation editor and one
-navigator per page, which makes large automations noticeably lighter
+Later builds keep OTA encryption in step with the API key: rewriting a static API key replaces a duplicated
+`ota: encryption: key:` with the bare block that inherits it
+([#2665](https://github.com/esphome/device-builder/pull/2665)), and devices that already offer OTA encryption are
+nudged toward `ota: encryption:` ([frontend#1714](https://github.com/esphome/device-builder-frontend/pull/1714)).
+The catalog picker renders only while its dialog is open, with one picker per automation editor and one
+navigator per page
 ([frontend#1698](https://github.com/esphome/device-builder-frontend/pull/1698),
 [frontend#1710](https://github.com/esphome/device-builder-frontend/pull/1710),
-[frontend#1715](https://github.com/esphome/device-builder-frontend/pull/1715)), resolve platform-scoped
-component triggers by the instance's platform ([#2671](https://github.com/esphome/device-builder/pull/2671),
-[frontend#1720](https://github.com/esphome/device-builder-frontend/pull/1720)), and serialise non-string keys in
-the JSON config endpoint ([#2660](https://github.com/esphome/device-builder/pull/2660)).
+[frontend#1715](https://github.com/esphome/device-builder-frontend/pull/1715)), platform-scoped component
+triggers resolve by the instance's platform ([#2671](https://github.com/esphome/device-builder/pull/2671),
+[frontend#1720](https://github.com/esphome/device-builder-frontend/pull/1720)), and the JSON config endpoint
+serialises non-string keys ([#2660](https://github.com/esphome/device-builder/pull/2660)).
 
 ## Encrypted OTA Updates
 
@@ -262,8 +263,8 @@ made them faster in most cases ([#18989](https://github.com/esphome/esphome/pull
 [#19030](https://github.com/esphome/esphome/pull/19030), [#19062](https://github.com/esphome/esphome/pull/19062)).
 The ESP8266 and RP2040 now run X25519 on 13-bit limb arithmetic that needs no 64-bit products, the Ed25519
 base point table shrank from 30 KB to 12 KB on every platform, the SHA256 transform is compact on every
-platform and two to three times faster when cold, and on the ESP8266 the ChaCha20-Poly1305 transport is a
-quarter cheaper per packet with its constants out of DRAM. What turning on API encryption costs in 2026.8.0 and
+platform and, on the ESP32 and RP2040, two to three times faster when cold, and on the ESP8266 the
+ChaCha20-Poly1305 transport is a quarter cheaper per packet with its constants out of DRAM. What turning on API encryption costs in 2026.8.0 and
 in this release, static RAM being the image's own data, not per-connection heap:
 
 | Board | Flash 2026.8.0 | Flash 2026.9.0 | Static RAM 2026.8.0 | Static RAM 2026.9.0 |
@@ -424,7 +425,8 @@ Six new components join the tree:
   ([#18717](https://github.com/esphome/esphome/pull/18717))
 - **[esp32_hosted](/components/esp32_hosted/)** by [@jesserockz](https://github.com/jesserockz) gains ESP-NOW on
   the ESP32-P4: the host forwards every `esp_now_*` call to the co-processor over esp-hosted, so `espnow:` works
-  unchanged on boards like the M5Stack Tab5 ([#17712](https://github.com/esphome/esphome/pull/17712))
+  unchanged on boards like the M5Stack Tab5 once the co-processor runs the matching esp-hosted firmware
+  ([#17712](https://github.com/esphome/esphome/pull/17712))
 - **[esp32_ble](/components/esp32_ble/)** by [@jesserockz](https://github.com/jesserockz) reference counts
   advertising, so a device that only uses `esp32_improv` stops advertising once provisioning ends instead of
   showing up in every phone's Bluetooth list forever ([#18943](https://github.com/esphome/esphome/pull/18943))
@@ -449,8 +451,9 @@ acknowledgement, so a retry always finds the device free
 
 On the ESP8266, LEAmDNS could free the same packet buffer twice when an mDNS packet arrived while a send was
 failing, corrupting the heap right as Home Assistant connected; its main loop calls are now guarded against
-that re-entrancy ([#18990](https://github.com/esphome/esphome/pull/18990)). Stack traces on the ESP32-S3 are no
-longer garbled when the UART clock runs from APB ([#17939](https://github.com/esphome/esphome/pull/17939)), and
+that re-entrancy ([#18990](https://github.com/esphome/esphome/pull/18990)). The logger's UART on the ESP32-S3
+now runs from the XTAL clock, which stops the garbled stack traces the APB clock produced
+([#17939](https://github.com/esphome/esphome/pull/17939)), and
 the `debug` component reports the reboot source after a watchdog-flavoured `esp_restart()` and no longer prints
 an empty source ([#17537](https://github.com/esphome/esphome/pull/17537)).
 
@@ -480,14 +483,16 @@ changes.
 Audio on ESP32 got a round of fixes: a speaker start request that arrived while the previous task was still
 stopping is kept instead of dropped ([#19027](https://github.com/esphome/esphome/pull/19027)), the I2S driver is
 no longer started a second time while the bus lock is still held, which cost a one second delay before playback
-([#19045](https://github.com/esphome/esphome/pull/19045)), an MP3 stream whose format changes mid-stream is
-reconfigured instead of treated as a decoder failure ([#19028](https://github.com/esphome/esphome/pull/19028)),
-buffer validity checks across the audio components use a lock and null test instead of `use_count()`
+([#19045](https://github.com/esphome/esphome/pull/19045)), the MP3 decoder treats a mid-stream format notice as
+the recoverable status it is instead of ending playback
+([#19028](https://github.com/esphome/esphome/pull/19028)), the audio components check their buffers through a
+locked pointer or a null test instead of `use_count()`
 ([#19046](https://github.com/esphome/esphome/pull/19046)), and a running `StaticTask` is suspended before its
 stack is freed, closing a use-after-free ([#19048](https://github.com/esphome/esphome/pull/19048)).
 
 Elsewhere, MQTT light discovery publishes `brightness: true` again so Home Assistant sends brightness and colour
-separately ([#18950](https://github.com/esphome/esphome/pull/18950)), `dallas_temp` filters the 85 °C reading a
+as separate fields instead of folding one into the other
+([#18950](https://github.com/esphome/esphome/pull/18950)), `dallas_temp` filters the 85 °C reading a
 DS18B20 returns after a reset ([#17877](https://github.com/esphome/esphome/pull/17877)), `ble_client` nodes that
 never read services now report established so the client releases its discovered services
 ([#17920](https://github.com/esphome/esphome/pull/17920)), `tuya` builds without a network component
@@ -633,8 +638,9 @@ contributions, and to everyone who reported issues, tested pre-releases, and hel
   vast majority) are unaffected; setting `ignore_efuse_custom_mac: true` under `esp32: advanced:` disables the
   behavior. [#18452](https://github.com/esphome/esphome/pull/18452)
 - **ESP8266**: Arduino framework versions before 3.0.0 are rejected at validation. Those builds have failed since
-  ESPHome moved to C++20 in 2025.7, so nothing that compiled changes; remove the `framework: version:` pin or move it to
-  3.1.2. [#18917](https://github.com/esphome/esphome/pull/18917)
+  ESPHome moved to C++20 in 2025.7, so nothing that compiled changes, but the check also covers `config`, `logs` and
+  `upload`, so a YAML still pinned below 3.0.0 needs the `framework: version:` pin removed or moved to 3.1.2 before
+  those commands work again. [#18917](https://github.com/esphome/esphome/pull/18917)
 - **ESP32 Hosted**: Now requires ESP-IDF 5.3 or newer. The legacy fallback to esp_hosted 2.0.11 (which had a known
   double-free crash on ESP32-P4 + C6) has been removed and older ESP-IDF versions now fail validation with a clear
   error. Configs that pin an ESP-IDF version below 5.3 alongside `esp32_hosted` must remove the pin or bump it to
