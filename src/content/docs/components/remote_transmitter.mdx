@@ -64,6 +64,14 @@ remote_transmitter:
 | ESP32-S3      | 192 symbols      | 48 symbols |
 
 - **clock_resolution** (*Optional*, int): The clock resolution used by the RMT peripheral in Hz. Defaults to `1000000`.
+- **queue_depth** (*Optional*, int): Number of transmissions the RMT hardware can hold at once when `non_blocking`
+  is enabled. A transmit that arrives while the hardware is busy is queued instead of blocking the main loop, and
+  queued transmissions are sent back to back. Each slot keeps its own encoded copy of the last transmission it sent.
+  Defaults to `4`.
+- **max_pending** (*Optional*, int): Total number of transmissions accepted while the hardware is busy, including
+  the `queue_depth` slots. Transmissions beyond `queue_depth` wait in a backlog that only uses memory while it holds
+  something. Once `max_pending` is reached, further transmits are dropped with a warning until the backlog drains.
+  Defaults to twice `queue_depth`.
 - **use_dma** (*Optional*, boolean): Enable DMA on variants that support it. If enabled `rmt_symbols` controls
   the DMA buffer size and can be set to a large value.
 
