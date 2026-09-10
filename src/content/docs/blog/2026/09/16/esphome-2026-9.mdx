@@ -139,9 +139,8 @@ registry library is a private package before it looks at its own cache, and that
 under the account client's rate limit before failing at once on any machine without a PlatformIO login;
 ESPHome never uses private packages, so it now answers the check itself, which takes a no-op rebuild of a
 six-library config from 2.9s to 0.4s ([#18823](https://github.com/esphome/esphome/pull/18823)). When two
-builds want the same archive at once the
-waiting one shows the other's download progress instead of sitting at 0%
-([#18983](https://github.com/esphome/esphome/pull/18983)).
+builds want the same archive at once, the waiting one shows the other's download progress instead of
+sitting at 0% ([#18983](https://github.com/esphome/esphome/pull/18983)).
 
 ## ESP8266 RAM Savings
 
@@ -455,9 +454,9 @@ On the ESP8266, LEAmDNS could free the same packet buffer twice when an mDNS pac
 failing, corrupting the heap right as Home Assistant connected; its main loop calls are now guarded against
 that re-entrancy ([#18990](https://github.com/esphome/esphome/pull/18990)). The logger's UART on the ESP32-S3
 now runs from the XTAL clock, which stops the garbled stack traces the APB clock produced
-([#17939](https://github.com/esphome/esphome/pull/17939)), and
-the `debug` component reports the reboot source after a watchdog-flavoured `esp_restart()` and no longer prints
-an empty source ([#17537](https://github.com/esphome/esphome/pull/17537)).
+([#17939](https://github.com/esphome/esphome/pull/17939)), and the `debug` component reports the reboot source
+after a watchdog-flavoured `esp_restart()` and no longer prints an empty source
+([#17537](https://github.com/esphome/esphome/pull/17537)).
 
 ## ESP32 Custom eFuse MAC Applied Consistently
 
