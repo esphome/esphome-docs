@@ -297,16 +297,18 @@ configured with an access point and no station credentials.
 
 ## ISR-Driven IR Transmission On LibreTiny
 
-[@kbx81](https://github.com/kbx81) rewrites `remote_transmitter` on Beken BK7231N/BK7238 and Realtek RTL8720C
+[@kbx81](https://github.com/kbx81) rewrites `remote_transmitter` on the Beken BK7238 and Realtek RTL8720C
 to pace the IR envelope with a hardware timer interrupt chain instead of a priority-boosted busy-wait
 ([#18648](https://github.com/esphome/esphome/pull/18648),
 [#18660](https://github.com/esphome/esphome/pull/18660)). Interrupts stay enabled throughout, so WiFi and
 lwIP tasks run normally during long transmissions and `remote_receiver` decodes the device's own frames off
-the air during a send. `non_blocking:` is now supported on both families (previously ESP32-RMT only): the
+the air during a send. `non_blocking:` is now supported on those two chips (previously ESP32-RMT only): the
 send returns immediately after arming the chain and `on_complete` fires from `loop()`. Bench measurements on
 an RM4 Pro (RTL8720CF) show 25.01-25.09ms repeat gaps for a configured 25ms (tighter than the busy-wait's
 25.02-25.05ms) and 27 captured transmissions all bit-perfect; an FK UFO-R4 (BK7238) measured 16-30us
-duty-apply latency and 39/39 bit-perfect NEC envelopes.
+duty-apply latency and 39/39 bit-perfect NEC envelopes. The BK7231N keeps the bit-bang implementation it had
+before, since its SDK snapshot lacks the PWM driver interface the interrupt chain needs
+([#18958](https://github.com/esphome/esphome/pull/18958)).
 
 ## Modbus Controller Overhaul
 
@@ -472,8 +474,6 @@ PRs [#18338](https://github.com/esphome/esphome/pull/18338) through
 `from __future__ import annotations`, every annotation is evaluated at import time, so the sweep also had to
 add every missing import for the names it introduced; an all-modules import check pins that. No behaviour
 changes.
-{/* FEATURE_HIGHLIGHTS_END */}
-
 ## Other Fixes
 
 Audio on ESP32 got a round of fixes: a speaker start request that arrived while the previous task was still
@@ -499,10 +499,12 @@ re-asserts the temperature unit on every poll ([#17141](https://github.com/espho
 ([#18968](https://github.com/esphome/esphome/pull/18968)), and the removed `udp` options moved to
 `packet_transport` no longer appear in the generated schema ([#19032](https://github.com/esphome/esphome/pull/19032)).
 
+{/* FEATURE_HIGHLIGHTS_END */}
+
 ## Thank You, Contributors
 
 {/* CONTRIBUTORS_START */}
-This release includes 275 pull requests from over 30 contributors. A huge thank you to everyone who made 2026.9.0
+This release includes 275 pull requests from over 40 contributors. A huge thank you to everyone who made 2026.9.0
 possible:
 
 - [@exciton](https://github.com/exciton) - 25 PRs including the multi-release Modbus overhaul: PollingDevice-based
@@ -517,7 +519,7 @@ possible:
   benchmark reliability fixes
 - [@kbx81](https://github.com/kbx81) - 9 PRs including the provisioning window shutdown behavior, `improv_serial`
   support for Ethernet and non-WiFi interfaces, the ESP32 custom eFuse base-MAC fix, and ISR-driven `remote_transmitter`
-  on RTL8720C and BK7231N/BK7238
+  on RTL8720C and BK7238
 - [@guillempages](https://github.com/guillempages) - 8 PRs including `runtime_image` format auto-detection, QOI
   decoding, MIME types, decoder retention, and BMP dimension validation, plus the portable `str_contains_ignore_case`
   helper
@@ -561,9 +563,6 @@ contributions, and to everyone who reported issues, tested pre-releases, and hel
 {/* BREAKING_CHANGES_USERS_START */}
 ### Component Changes
 
-- **Remote Transmitter**: The hardware PWM path on LibreTiny is limited to BK7238; BK7231N returns to the bit-bang
-  implementation it used before 2026.9, and `non_blocking: true` is rejected there at validation.
-  [#18958](https://github.com/esphome/esphome/pull/18958)
 - **Modbus Controller**: `custom_command` renamed to `custom_pdu` and now takes the PDU only (function code + data), not
   a full frame. The controller's `address:` and CRC are appended automatically. Configs whose first byte matched the
   controller's `address:` are auto-migrated with a deprecation warning until 2027.3.0; frames targeting a different unit
