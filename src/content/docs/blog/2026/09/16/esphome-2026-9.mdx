@@ -62,7 +62,8 @@ package phase drops from 36% of build time to 25% on CI benchmarks, and the dock
 ~100s to ~46s), and a sweep across 60 files pushes 211 conditional log string literals off ESP8266 RAM into
 flash.
 
-Beyond the platform work, this release adds Noise (ChaCha20-Poly1305) encryption for OTA updates, brings
+Beyond the platform work, this release adds Noise (ChaCha20-Poly1305) encryption for OTA updates, cuts what
+encryption costs in flash by close to half on every platform, brings
 Improv provisioning to Ethernet-only boards, teaches WiFi provisioning to shut down the AP and captive portal
 when the window closes, and rewrites IR transmission on Beken and Realtek chips to run from a hardware timer
 interrupt instead of a busy-wait. The multi-release modbus overhaul continues with a heap-free write path, a
@@ -233,6 +234,36 @@ sits on top of a new shared `noise` component ([#18490](https://github.com/espho
 lifts the noise-c dependency, HWRNG binding, error strings, PSK context, encryption key validation and the
 handshake responder out of the api component so both api and ota can share them; there is no user
 configuration for `noise` itself.
+
+## Smaller And Faster Encryption
+
+The two libraries behind API and OTA encryption, the esphome-libs forks of noise-c and libsodium, were
+reworked through the beta ([#18989](https://github.com/esphome/esphome/pull/18989),
+[#19030](https://github.com/esphome/esphome/pull/19030)), with a final bump tagged for this release
+([#19062](https://github.com/esphome/esphome/pull/19062)). On the ESP8266 the X25519 Diffie-Hellman now runs
+on BearSSL's 13-bit limb arithmetic, which needs none of the 64-bit products the LX106 has to emulate, so
+the handshake's DH step is twice as fast; the RP2040's Cortex-M0+ has the same gap and gets the same ladder.
+The Ed25519 base point table used for the ephemeral key shrank from 30 KB to 12 KB on every platform and no
+longer thrashes the flash cache, the SHA256 transform went from fully unrolled to four rounds per pass, which
+makes it two to three times faster when cold, and on the ESP8266 the ChaCha20-Poly1305 transport is a quarter
+cheaper per packet while the SHA256 and AEAD constants moved out of DRAM. The final bump computes the
+ephemeral key on the same 13-bit arithmetic on the ESP8266 and RP2040, so ref10's field and Edwards code
+leaves those images and the base point multiply gets a third faster, and the ESP32 links one copy of the
+field functions instead of two.
+
+What turning on API encryption costs, measured as the difference between `api:` with and without a key on
+the same build (logger, wifi, api, ota), 2026.8.0 against this release with the final bump:
+
+| Board | 2026.8.0 flash | 2026.9.0 flash | 2026.8.0 RAM | 2026.9.0 RAM |
+| --- | --- | --- | --- | --- |
+| ESP8266 d1 mini | 82796 B | 42912 B | 1376 B | 48 B |
+| ESP32 AtomU (IDF) | 67484 B | 38628 B | 56 B | 32 B |
+| Pico W (RP2040) | 67068 B | 35516 B | 48 B | 24 B |
+
+A Noise handshake in RAM goes from about 580 ms to about 300 ms on the ESP8266 at 80 MHz, from 63 ms to
+46 ms on the ESP32, and from about 260 ms to about 205 ms on the RP2040; 20 encrypted API connects to a d1
+mini from `aioesphomeapi` went from a 377 ms median to 139 ms. Every device with API or OTA encryption gets
+this automatically; there is nothing to configure.
 
 ## Improv Serial Beyond WiFi
 
