@@ -274,8 +274,9 @@ per-connection heap:
 | ESP32 AtomU (IDF) | 65.9 KB | 37.7 KB | 56 B | 32 B |
 | Pico W (RP2040) | 65.5 KB | 34.7 KB | 48 B | 24 B |
 
-A Noise handshake drops from about 580ms to about 300ms on the ESP8266 and from 63ms to 46ms on the
-ESP32; an encrypted API connect to a d1 mini goes from a 377ms median to 139ms. Nothing to configure.
+A Noise handshake drops from about 580ms to about 300ms on the ESP8266 and from 63ms to 46ms on the ESP32;
+the first of the three bumps alone took 20 encrypted API connects to a d1 mini from a 377ms median to 139ms.
+Nothing to configure.
 
 ## Improv Serial Beyond WiFi
 
