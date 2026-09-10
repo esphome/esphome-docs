@@ -62,53 +62,51 @@ tinyusb:
     - logger.log: USB host disconnected
 ```
 
+### When the automations run
+
+`on_mount` runs when a host has finished setting the device up, which is the moment it can start talking to it:
+
+- A few hundred milliseconds after power-on when a computer is already attached. Use `on_mount` for this rather than
+  checking `tinyusb.is_mounted` in `on_boot`, which runs too early.
+- When the cable is plugged into a running computer.
+
+`on_unmount` runs when the USB controller learns that the host has gone. That happens in only two cases:
+
+- The host deliberately shuts the device down over USB. Computers rarely do this.
+- The controller sees the USB VBUS (5 V) line drop. This requires `vbus_monitor_pin`.
+
+Nothing runs when:
+
+- The computer goes to sleep. As far as USB is concerned the host is still there, so this is correct.
+- The cable is unplugged from a device that has its own power supply and no `vbus_monitor_pin`. The controller only
+  sees the bus go quiet, which looks the same as a sleeping computer, so it keeps reporting a connected host. Plugging
+  the cable back in does not run `on_mount` either, because the controller never noticed the host leaving.
+  `tinyusb.is_mounted` keeps returning `true` in this state as well.
+
 > [!IMPORTANT]
-> If the device has its own power supply, the USB controller cannot tell an unplugged cable from a host that has
-> simply gone quiet unless it can see the VBUS (5 V) line. Connect VBUS to a GPIO through a suitable voltage divider
-> and set `vbus_monitor_pin`; without it, unplugging the cable fires nothing, and plugging it back in fires nothing
-> either. A device powered from the USB cable itself does not need this, since unplugging it turns the device off.
+> If the device has its own power supply and needs to notice the cable being unplugged, connect VBUS to a GPIO through
+> a suitable voltage divider and set `vbus_monitor_pin`.
 
-A device that powers up without a host never sees an `on_unmount`, so use the `tinyusb.is_mounted` condition when the
-initial state matters:
-
-```yaml
-esphome:
-  on_boot:
-    - if:
-        condition:
-          tinyusb.is_mounted:
-        then:
-          - logger.log: Booted with a USB host connected
-```
+A device powered only from its USB port does not have this problem. Unplugging the cable powers it off, and every
+power-on starts from a clean state: a computer runs `on_mount` shortly after boot, a charger never does. Such a device
+can tell the two apart with `on_mount` alone, without `on_unmount` or extra wiring.
 
 ### `tinyusb.is_mounted` Condition
 
-This condition passes while a USB host has the device connected and set up.
+This condition passes while a USB host has the device connected and set up. It reflects what the USB controller
+knows, so on a device with its own power supply and no `vbus_monitor_pin` it stays true after the cable is unplugged.
 
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the `tinyusb` component. Only needed if you
   have given it an ID yourself.
 
-## Notes
-
-### Vendor and Product IDs
-
-When specifying custom `usb_vendor_id` and `usb_product_id` values, be aware that:
-
-- USB Vendor IDs are officially assigned by the USB Implementers Forum (USB-IF).
-- Using unassigned or third-party vendor/product ID combinations may result in unexpected (host) behavior.
-- The default vendor ID `0x303A` is assigned to Espressif Systems.
-- For hobbyist and development purposes, you may use test IDs, but these should not be used in production devices.
-
-### Language Identifiers
-
-The `usb_lang_id` field uses USB Language IDs as defined by the USB specification. Common values include:
-
-- `0x0409` - English (United States) - Default
-- `0x0809` - English (United Kingdom)
-- `0x0407` - German (Germany)
-- `0x040C` - French (France)
-
-A more complete list can be found [here](https://github.com/brookebasile/USB-langids/blob/master/USB_LANGIDs.pdf).
+```yaml
+on_...:
+  - if:
+      condition:
+        tinyusb.is_mounted:
+      then:
+        - logger.log: A USB host is connected
+```
 
 ## See Also
 
