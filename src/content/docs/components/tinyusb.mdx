@@ -39,6 +39,9 @@ tinyusb:
 - **usb_product_str** (*Optional*, string): Product name string descriptor. Defaults to `"ESPHome"`.
 - **usb_serial_str** (*Optional*, string): Serial number string descriptor. If not specified, the device's MAC address
   will be used.
+- **vbus_monitor_pin** (*Optional*, [Pin](/guides/configuration-types#pin)): For a device that has its own power
+  supply, the GPIO that senses the USB VBUS (5 V) line. Required for `on_unmount` to fire when the cable is
+  unplugged; see [Reacting to a USB host](#reacting-to-a-usb-host). Not available on the ESP32-S31.
 - **on_mount** (*Optional*, [Automation](/automations)): An automation to perform when a USB host has connected to the
   device and finished setting it up. See [Reacting to a USB host](#reacting-to-a-usb-host).
 - **on_unmount** (*Optional*, [Automation](/automations)): An automation to perform when the USB host disconnects.
@@ -58,6 +61,12 @@ tinyusb:
   on_unmount:
     - logger.log: USB host disconnected
 ```
+
+> [!IMPORTANT]
+> If the device has its own power supply, the USB controller cannot tell an unplugged cable from a host that has
+> simply gone quiet unless it can see the VBUS (5 V) line. Connect VBUS to a GPIO through a suitable voltage divider
+> and set `vbus_monitor_pin`; without it, unplugging the cable fires nothing, and plugging it back in fires nothing
+> either. A device powered from the USB cable itself does not need this, since unplugging it turns the device off.
 
 A device that powers up without a host never sees an `on_unmount`, so use the `tinyusb.is_mounted` condition when the
 initial state matters:
