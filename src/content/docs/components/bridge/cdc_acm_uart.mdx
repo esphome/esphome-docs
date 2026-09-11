@@ -1,11 +1,11 @@
 ---
-description: "Instructions for setting up a USB UART Bridge on ESP32 variants in ESPHome"
-title: "USB UART Bridge"
+description: "Instructions for setting up a CDC-ACM UART Bridge on ESP32 variants in ESPHome"
+title: "CDC-ACM UART Bridge"
 ---
 import APIRef from '@components/APIRef.astro';
 
 
-The USB UART Bridge (the `usb_uart` platform of the `bridge` component) enables supported ESP32 microcontrollers to act
+The CDC-ACM UART Bridge (the `cdc_acm_uart` platform of the [Bridge](/components/bridge/) component) enables supported ESP32 microcontrollers to act
 as a USB-to-serial adapter, creating a bidirectional bridge between a UART interface and a USB CDC-ACM (Communications
 Device Class - Abstract Control Model) interface. This allows the microcontroller to appear as a virtual serial/COM
 port on a host computer while keeping the UART parameters in sync with the host.
@@ -25,7 +25,7 @@ This component bridges an existing UART to an existing USB CDC-ACM interface, so
 ```yaml
 # Example minimal configuration entry
 bridge:
-  - platform: usb_uart
+  - platform: cdc_acm_uart
     uart_id: uart_bus
     usb_cdc_acm_id: cdc_interface
 ```
@@ -43,10 +43,6 @@ bridge:
 - **rts_pin** (*Optional*, [Pin](/guides/configuration-types#pin)): GPIO pin that mirrors the host's RTS (Request to
   Send) line state. Combined with `dtr_pin`, this is commonly used to drive the bootloader/reset sequence of an
   attached device. As with `dtr_pin`, set `inverted: true` for a conventional active-low interface (`RTS#`).
-- **uart_rx_buffer_size** (*Optional*, int): Size of the internal buffer for data received from UART (going to USB).
-  Range: 64-65535. Defaults to `256`.
-- **uart_tx_buffer_size** (*Optional*, int): Size of the internal buffer for data received from USB (going to UART).
-  Range: 64-65535. Defaults to `256`.
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID for this component.
 
 > [!NOTE]
@@ -56,7 +52,7 @@ bridge:
 
 ## How It Works
 
-The USB UART Bridge creates a transparent data bridge between the UART and USB interfaces.
+The CDC-ACM UART Bridge creates a transparent data bridge between the UART and USB interfaces.
 
 ### Data Flow
 
@@ -96,7 +92,7 @@ wiring — and most auto-reset/bootloader circuits — set `inverted: true` on t
 
 ```yaml
 bridge:
-  - platform: usb_uart
+  - platform: cdc_acm_uart
     uart_id: uart_bus
     usb_cdc_acm_id: cdc_interface
     dtr_pin:
@@ -111,14 +107,9 @@ With `inverted: true`, the pin idles high at boot (de-asserted) and is driven lo
 
 ## Buffer Sizing
 
-The `uart_rx_buffer_size` and `uart_tx_buffer_size` parameters control the size of the internal buffers used for data
-transfer:
-
-- **Larger buffers**: Better for high-speed or bursty data transfers, but use more memory.
-- **Smaller buffers**: More memory-efficient, but may drop data if the bridge cannot keep up with the data rate.
-
-The default size of 256 bytes is suitable for most applications up to 115200 baud. For higher baud rates or
-applications with bursty data patterns, you may need to increase the buffer sizes.
+The bridge has no buffer settings of its own. Data is buffered by the USB CDC-ACM interface, so use its
+`rx_buffer_size` and `tx_buffer_size` (see [USB CDC-ACM](/components/usb_cdc_acm/)) to make room for higher baud rates
+or bursty traffic. The defaults of 256 bytes suit most applications up to 115200 baud.
 
 ## Pausing the bridge
 
@@ -137,7 +128,7 @@ the device while no computer is connected, and as a USB serial port when one is.
 
 ```yaml
 bridge:
-  - platform: usb_uart
+  - platform: cdc_acm_uart
     id: my_bridge
     uart_id: uart_bus
     usb_cdc_acm_id: cdc_interface
@@ -164,4 +155,4 @@ switch:
 - [UART](/components/uart/)
 - [TinyUSB](/components/tinyusb/)
 - [USB CDC-ACM](/components/usb_cdc_acm/)
-- <APIRef text="usb_uart_bridge.h" path="usb_uart/bridge/usb_uart_bridge.h" />
+- <APIRef text="cdc_acm_uart_bridge.h" path="cdc_acm_uart/bridge/cdc_acm_uart_bridge.h" />
