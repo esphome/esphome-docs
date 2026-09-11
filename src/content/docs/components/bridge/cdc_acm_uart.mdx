@@ -124,8 +124,8 @@ the attached device while other code is using it. This makes it possible to use 
 the device while no computer is connected, and as a USB serial port when one is.
 
 - `pause()`: Stop forwarding and restore the configured UART parameters.
-- `resume()`: Re-apply the host's parameters and start forwarding again. If a write from the host is still draining,
-  this happens once it has finished.
+- `resume()`: Re-apply the host's parameters (or the configured ones, if no computer has set any yet) and start
+  forwarding again. If a write from the host is still draining, this happens once it has finished.
 - `is_paused()`: Returns `true` once the bridge has stopped forwarding and the UART is free to use.
 
 ```yaml
