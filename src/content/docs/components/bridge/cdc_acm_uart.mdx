@@ -48,7 +48,9 @@ bridge:
 > [!NOTE]
 > A bridge requires exclusive use of both its UART and its USB CDC-ACM interface. Configurations where another
 > component (or another bridge) also uses either of them are rejected during validation, since two readers on the same
-> interface would each receive only fragments of the data.
+> interface would each receive only fragments of the data. For the same reason the bridged UART cannot use the UART
+> `debug` option: the bridge moves data below the UART component, so the debugger would see nothing and its
+> `dummy_receiver` would steal bytes.
 
 ## How It Works
 
