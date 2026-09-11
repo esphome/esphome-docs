@@ -102,6 +102,9 @@ remote_receiver:
   idle: 4ms
 ```
 
+A noisy receiver that truncates long codes may need `buffer_size` raised above its default; see the
+[remote_receiver](/components/remote_receiver) options.
+
 The `tolerance` setting defaults to `25%`. If a known protocol fails to decode, raise
 it in small steps. Avoid values close to `50%` — wide windows for adjacent timing slots
 within a protocol start to overlap, and the decoder can match the wrong symbol and emit
