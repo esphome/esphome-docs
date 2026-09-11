@@ -649,6 +649,13 @@ multi-threaded scalability (which is uncommon since ESPHome uses an event loop).
   validation scenarios that ESPHome doesn't typically use. Components that require PKCS#7 automatically enable it regardless
   of this setting. Disabling this saves code size. Defaults to `true` (PKCS#7 disabled to save flash).
 
+- **disable_mbedtls_tls** (*Optional*, boolean): Compile the TLS protocol out of mbedTLS entirely when no component in
+  the configuration uses it. Components that open TLS connections (`http_request`, `mqtt`, `audio`, Nextion TFT upload,
+  WiFi with `eap`) keep it automatically, as does any TLS related entry under `sdkconfig_options`. Hashes, AES and RSA
+  signature verification stay available either way. Set to `false` to always keep the TLS stack, for example for an
+  external component that uses mbedTLS directly. Defaults to `true` (TLS removed when unused, saving compile time and a
+  small amount of flash).
+
 - **disable_mbedtls_tls_server** (*Optional*, boolean): Build mbedTLS as a TLS client only, dropping the server-side
   handshake code. Nothing in ESPHome accepts TLS connections; components that do (OpenThread's DTLS commissioner)
   automatically re-enable it. Set to `false` if an external component runs an HTTPS server. Defaults to `true` (server
@@ -729,6 +736,7 @@ esp32:
       use_full_certificate_bundle: false  # Saves ~51 KB flash
       disable_mbedtls_peer_cert: true  # Saves ~4 KB heap per connection
       disable_mbedtls_pkcs7: true  # Saves code size
+      disable_mbedtls_tls: true  # Removes TLS entirely when nothing uses it
       disable_mbedtls_tls_server: true  # Saves ~7 KB flash
       disable_mbedtls_tls_extras: true  # Saves ~10 KB flash
 
