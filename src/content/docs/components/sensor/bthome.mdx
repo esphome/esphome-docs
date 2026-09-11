@@ -41,6 +41,10 @@ sensor:
     source_id: my_sensor_device
     type: battery
     name: "Device Battery"
+  - platform: bthome
+    source_id: my_sensor_device
+    type: signal_strength
+    name: "Device Signal Strength"
 ```
 
 ## Configuration variables
@@ -49,7 +53,9 @@ sensor:
 - **type** (**Required**, string): The BTHome sensor type to receive, such as `temperature`, `humidity`, etc. Must match one of the [supported sensor types](/components/bthome#supported-sensor-types). Type names are case-insensitive.
 - All other options from [Sensor](/components/sensor).
 
-The defaults for `unit_of_measurement`, `accuracy_decimals`, `device_class`, and `state_class` are automatically applied based on the chosen type, but can be overridden.
+The defaults for `unit_of_measurement`, `accuracy_decimals`, `device_class`, and `state_class` are automatically
+applied based on the chosen type, but can be overridden. The `signal_strength` type reads the RSSI of each accepted
+BLE advertisement and defaults to dBm with zero decimal places.
 
 ## Multiple sensors of the same type
 
