@@ -80,9 +80,14 @@ Multiple remote receivers can be configured as a list of dict definitions within
     to `100%` or `0` to `4294967295us`.
 
 - **buffer_size** (*Optional*, int): The size in bytes of the internal buffer for storing the remote codes. On ESP32
-  variants with RMT the default is four receive slots derived from `receive_symbols` (3136 bytes at the defaults), and
-  the value can be set explicitly down to two slots. On other platforms each buffered pulse takes 4 bytes; the default
-  is `4000b`, which holds 1000 pulses.
+  variants with RMT one receive slot is `receive_symbols` x 4 + 16 bytes; the default is four slots and an explicit
+  value can go down to two. On other platforms each buffered pulse takes 4 bytes; the default is `4000B`, which holds
+  1000 pulses.
+
+  > [!WARNING]
+  > Before 2026.10.0 the value was applied as a number of pulses on ESP8266, RP2040, LibreTiny, ESP32-C2 and
+  > ESP32-C61, four times the bytes requested. Multiply an explicit `buffer_size` on those platforms by 4 to keep the
+  > same capacity.
 
 - **filter** (*Optional*, [Time](/guides/configuration-types#time)): Filter any pulses that are shorter than this. Useful for removing
   glitches from noisy signals. Allowed values are in range `0` to `4294967295us`. Defaults to `50us`.
