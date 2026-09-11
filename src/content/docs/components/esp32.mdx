@@ -744,7 +744,8 @@ esp32:
 
       # C library options
       enable_full_printf: false  # Saves ~11 KB flash
-      enable_full_scanf: false  # Saves ~13 KB flash on Bluetooth builds
+      # enable_full_scanf is unset by default: Bluetooth builds get the small sscanf
+      # replacement (saves ~13 KB flash) unless a lambda scans a float
 
       # Debug options (disabled by default for production)
       disable_debug_stubs: true  # Saves code size
