@@ -648,9 +648,11 @@ The following options disable unused VFS features to save flash memory:
   At build time ESPHome scans lambda and `includes:` source for any float conversion (`%f`, `%e`, `%g`, `%a` and
   their variants) and keeps the C library version when it finds one. It cannot see inside external components.
   Set to `true` if an external component needs float parsing with `sscanf()`; otherwise such a call stops the
-  device with a message naming the format and this option. Set to `false` to keep the replacement even when user
-  code scans a float. Has no effect on the ESP32-C2 and ESP32-C6, whose ROM already provides `sscanf()`, or on the
-  Arduino framework. Defaults to automatic: the replacement, or the C library version when user code scans a float.
+  device with a message naming the format and this option. Set to `false` to keep the replacement even when a
+  lambda or include scans a float. The replacement only exists in Bluetooth builds on ESP-IDF 5.x (newlib); other
+  builds, the Arduino framework, and the ESP32-C2 and ESP32-C6 (whose ROM already provides `sscanf()`) use the C
+  library version and ignore this option. Defaults to automatic: the replacement, or the C library version when a
+  lambda or `includes:` file scans a float.
 
 Some options can be disabled to save flash memory without affecting typical ESPHome functionality. The performance
 options (defaulting to `true`) improve socket operation performance but can be disabled if you need better
