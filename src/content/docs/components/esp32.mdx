@@ -646,9 +646,10 @@ The following options disable unused VFS features to save flash memory:
   link newlib's whole scanf engine (about 13 KB of flash) into every Bluetooth build. ESPHome therefore supplies a
   small `sscanf()` that handles integer, character, string and scanset conversions but not floating point ones.
   At build time ESPHome scans lambda, `includes:` and external component source for any float conversion (`%f`,
-  `%e`, `%g`, `%a` and their variants) and keeps the C library version when it finds one. It cannot see a format
-  string that is built at runtime. Set to `true` if such code needs float parsing with `sscanf()`; otherwise the
-  call stops the device with a message naming the format and this option. Set to `false` to keep the replacement
+  `%e`, `%g`, `%a` and their variants) and keeps the C library version when it finds one; a format that is not a
+  string literal counts as one too. Set to `true` if code the scan cannot see, such as a library fetched at build
+  time, needs float parsing with `sscanf()`; otherwise the call stops the device with a message naming the format
+  and this option. Set to `false` to keep the replacement
   even when the scan finds a float conversion. The replacement only exists in Bluetooth builds on ESP-IDF 5.x
   (newlib); other builds and the Arduino framework use the C library version and ignore this option. The ESP32-C2
   and ESP32-C6 ignore it too, because their ROM already provides `sscanf()` at no flash cost. Defaults to
