@@ -43,11 +43,78 @@ bluetooth_proxy:
   connection slots to avoid stability and memory issues. The ESP32 default is `3`. Ethernet-based
   proxies can generally handle `4` slots reliably. The value must not exceed the total configured
   `max_connections` for [ESP32 BLE](/components/esp32_ble/).
+- **rssi_threshold** (*Optional*, int): Drop advertisements weaker than this, in dBm, before they
+  are sent to Home Assistant. Defaults to `-127`, which forwards everything. See
+  [Advertisement Filtering](#advertisement-filtering).
+- **drop_non_resolvable** (*Optional*, boolean): Drop non-resolvable private addresses. These
+  rotate and carry no identity at all, so they can never be matched to a device. Defaults to
+  `false`.
+- **irks** (*Optional*, list): Identity Resolving Keys, as 32 hex characters each, for devices of
+  yours that advertise with rotating resolvable private addresses (phones and watches). When this
+  list is non-empty, a resolvable private address that matches none of them is dropped. Defaults to
+  an empty list, which disables the check entirely.
+- **allow_espressif** (*Optional*, boolean): Exempt Espressif-OUI addresses from the `irks` check.
+  Defaults to `true`.
+- **mac_allowlist** (*Optional*, list): MAC addresses that bypass **every** filter, including
+  `rssi_threshold`. Use for beacons that must always be forwarded regardless of distance.
+- **service_uuid_allowlist** (*Optional*, list): Service UUIDs — 16-bit (`0xFFF6`) or full 128-bit
+  — that bypass **every** filter. Needed for devices in a pairing or commissioning mode, whose
+  address rotates and so cannot be added to `mac_allowlist` in advance.
+- **name_blocklist** (*Optional*, list): Substrings matched case-insensitively against the
+  advertised local name; a hit drops the advertisement.
+- **manufacturer_blocklist** (*Optional*, list): Bluetooth SIG company identifiers to drop
+  (for example `0x004C` for Apple).
+- **allow_homekit** (*Optional*, boolean): Exempt HomeKit accessories from
+  `manufacturer_blocklist`. Defaults to `true`.
 
 The Bluetooth proxy depends on the platform's BLE tracker component, so make sure to add that to your
 configuration: [ESP32 BLE Tracker](/components/esp32_ble_tracker/) on ESP32, the
 [RP2 BLE Tracker](/components/rp2_ble_tracker/) on RP2040/RP2350, or the
 [LN882H BLE Tracker](/components/ln882h_ble_tracker/) on LN882x.
+
+### Advertisement Filtering
+
+By default a proxy forwards every advertisement it hears. In a home with many BLE devices — or
+many proxies — most of that traffic cannot be used by any integration: passing phones and watches
+rotate their addresses every few minutes, and Apple Continuity traffic is not consumable. The
+options above let a proxy discard that traffic on-device, before it crosses the network.
+
+All of them are off by default, and the entire feature is compiled out unless at least one is
+configured, so a proxy that does not use them is unaffected.
+
+Filters are applied cheapest-first:
+
+1. `mac_allowlist` and `service_uuid_allowlist` — matches bypass everything below
+2. `rssi_threshold`
+3. `drop_non_resolvable`
+4. `irks` (unresolved resolvable private addresses)
+5. `name_blocklist` and `manufacturer_blocklist`
+
+```yaml
+bluetooth_proxy:
+  active: true
+  rssi_threshold: -85
+  drop_non_resolvable: true
+  manufacturer_blocklist:
+    - 0x004C  # Apple: AirPods, AirTags, Continuity
+  service_uuid_allowlist:
+    - 0xFFF6                                   # Matter commissioning
+    - "00467768-6228-2272-4663-277478268000"   # Improv Wi-Fi
+  irks:
+    - !secret irk_my_phone
+    - !secret irk_my_watch
+```
+
+:::caution[Filtering can hide devices you want]
+`drop_non_resolvable` and `irks` discard advertisements from rotating addresses. A device in
+pairing or commissioning mode advertises from exactly such an address, so enabling them can make
+it impossible for Home Assistant to discover — with no error to explain why. Add that device's
+service UUID to `service_uuid_allowlist` (`0xFFF6` for Matter commissioning, or the Improv Wi-Fi
+UUID) so those advertisements are always forwarded.
+
+Similarly, blocklisting `0x004C` to suppress Apple noise would also discard HomeKit-over-BLE
+accessories. `allow_homekit` (on by default) keeps them working.
+:::
 
 ### How Active Connections Work
 
