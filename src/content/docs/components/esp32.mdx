@@ -512,10 +512,10 @@ esp32:
   and this option is not yet enabled.
 
 - **flash_chip** (*Optional*, string): Keep only the SPI flash vendor driver the board needs. One of `generic`,
-  `gd`, `issi`, `mxic`, `winbond`, `boya`, `th`, or `mxic_opi` (ESP32-S3 with `flash_mode: opi` only). ESP-IDF links a driver for every
-  vendor it supports and picks one at boot from the flash ID; the others still take IRAM and about 124 bytes of
-  DRAM each. Naming the vendor drops the rest, roughly 1 KB of IRAM on the original ESP32 and 2 to 3 KB on the
-  ESP32-S3.
+  `gd`, `issi`, `mxic`, `winbond`, `boya`, `th`, or `mxic_opi` (ESP32-S3 with `flash_mode: opi` only). ESP-IDF
+  links a driver for every vendor it supports and picks one at boot from the flash ID; the others still take IRAM
+  and about 124 bytes of DRAM each. Naming the vendor drops the rest, roughly 1 KB of IRAM on the original ESP32
+  and 2 to 3 KB on the ESP32-S3.
 
   Leave it unset first: ESPHome logs a line at boot such as `Set flash_chip: gd under esp32 > framework > advanced`
   with the value to use.
