@@ -511,6 +511,17 @@ esp32:
   the bootloader is already compatible. ESPHome will log a suggestion at boot if it detects a compatible bootloader
   and this option is not yet enabled.
 
+- **flash_chip** (*Optional*, string): Keep only the SPI flash vendor driver the board needs. One of `generic`,
+  `gd`, `issi`, `mxic`, `winbond`, `boya`, `th`, or `mxic_opi` (ESP32-S3 only). ESP-IDF links a driver for every
+  vendor it supports and picks one at boot from the flash ID; the others still take IRAM and about 124 bytes of
+  DRAM each. Naming the vendor drops the rest, roughly 1 KB of IRAM on the original ESP32 and 2 to 3 KB on the
+  ESP32-S3.
+
+  Leave it unset first: ESPHome logs a line at boot such as `Flash driver gd in use. Set flash_chip: gd under
+  esp32 > framework > advanced` with the value to use. The value must match the flash on the board; ISSI and MXIC
+  chips and larger GigaDevice chips need their own driver for quad mode, and 32 MB Winbond and GigaDevice chips
+  need it for addressing. With a wrong value the generic driver is used and ESPHome logs a warning at boot.
+
 - **enable_idf_experimental_features** (*Optional*, boolean): Can be set to `true` to enable experimental features. Use of
   experimental features may cause instability or other issues.
 
@@ -745,6 +756,8 @@ esp32:
       disable_fatfs: true  # Saves code size (auto-enabled by SD card components)
       disable_regi2c_in_iram: true  # Saves IRAM
       adc_oneshot_in_iram: false  # Auto-enabled by ADC component
+
+      # flash_chip: gd  # Keep one flash vendor driver; the boot log names the value
 
       # ESP32 (original) only options
       # sram1_as_iram: true  # +40 KB IRAM (requires bootloader from ESP-IDF >= 5.1)
