@@ -517,10 +517,15 @@ esp32:
   DRAM each. Naming the vendor drops the rest, roughly 1 KB of IRAM on the original ESP32 and 2 to 3 KB on the
   ESP32-S3.
 
-  Leave it unset first: ESPHome logs a line at boot such as `Flash driver gd in use. Set flash_chip: gd under
-  esp32 > framework > advanced` with the value to use. The value must match the flash on the board; ISSI and MXIC
-  chips and larger GigaDevice chips need their own driver for quad mode, and 32 MB Winbond and GigaDevice chips
-  need it for addressing. With a wrong value the generic driver is used and ESPHome logs a warning at boot.
+  Leave it unset first: ESPHome logs a line at boot such as `Set flash_chip: gd under esp32 > framework > advanced`
+  with the value to use.
+
+  A wrong value falls back to the generic driver and ESPHome logs a warning at boot. In the default `dio` and
+  `dout` flash modes that is the whole effect; the generic driver works with every chip. In `qio` and `qout`
+  mode an ISSI or MXIC chip, or a larger GigaDevice chip, needs its own driver to enable quad mode, and flash
+  init can fail at startup; an OTA update then rolls back to the previous firmware, a USB flash needs to be
+  repeated with the right value. Winbond and GigaDevice chips above 16 MB are limited to 16 MB under the generic
+  driver.
 
 - **enable_idf_experimental_features** (*Optional*, boolean): Can be set to `true` to enable experimental features. Use of
   experimental features may cause instability or other issues.
