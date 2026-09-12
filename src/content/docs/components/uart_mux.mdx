@@ -42,7 +42,6 @@ bridge:
 
 uart_mux:
   - id: radio_mux
-    uart_id: radio_uart
     bridge_id: radio_bridge
     initial_route: local
 
@@ -52,18 +51,16 @@ zwave_proxy:
 
 ## Configuration variables
 
-- **uart_id** (**Required**, [ID](/guides/configuration-types#id)): The hardware UART to share. It must be the UART
-  used by the bridge given in `bridge_id`.
 - **bridge_id** (**Required**, [ID](/guides/configuration-types#id)): The [CDC-ACM UART Bridge](/components/bridge/cdc_acm_uart/)
-  that shares the UART.
+  whose UART is shared. The mux takes the UART from the bridge, so it is not configured here.
 - **initial_route** (*Optional*, string): Who gets the UART at boot: `bridge` or `local`. Defaults to `bridge`. See
   [Following a USB host](#following-a-usb-host) for when to use `local`.
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID for this component.
 
 > [!NOTE]
-> A bridge normally refuses to share its UART with any other component. A mux bound to that bridge is the one
-> exception, since it pauses the bridge before letting anything else use the bus. Other components must go through the
-> mux, not the UART itself, and the UART still cannot use the `debug` option.
+> A bridge refuses to share its UART with any other component, and that still holds with a mux in place: other
+> components must use the mux as their UART, never the hardware UART itself, and the UART still cannot use the `debug`
+> option.
 
 ## Routing
 
@@ -128,7 +125,6 @@ tinyusb:
 
 uart_mux:
   - id: radio_mux
-    uart_id: radio_uart
     bridge_id: radio_bridge
     initial_route: local
 ```
