@@ -247,7 +247,9 @@ on_...:
           then:
             - logger.log: "Cold"
         - if:
-            lambda: 'return id(some_sensor).state < 25;'
+            any:
+              - lambda: 'return id(some_sensor).state < 25;'
+              - binary_sensor.is_on: heater_running
           then:
             - logger.log: "Warm"
         - then:
@@ -259,8 +261,8 @@ on_...:
 Each entry in the list has:
 
 - **if** (*Optional*, [Condition](#all-conditions)): The condition to check. If this is a list of conditions, they
-  must all be true. Only the last choice may leave this out, and it is then performed when no other choice's
-  condition is true. At least one choice must have a condition.
+  must all be true. Use `any` if only one of them needs to be true. Only the last choice may leave this out, and it
+  is then performed when no other choice's condition is true. At least one choice must have a condition.
 
 - **then** (**Required**, [Action](#all-actions)): The actions to perform if this is the first choice whose condition
   is true.
