@@ -96,11 +96,10 @@ over-the-air updates are not supported with this bootloader. Choose `mcuboot`
 
 ### On-board LEDs
 
-All four on-board LEDs are active-low. ESPHome handles the inversion
-automatically for the built-in board, so logical `on`/`off` matches the printed
-labels. LED0 is a dedicated green LED on `P0.6`; LED1 is an RGB LED with red on
-`P0.8`, green on `P1.9` and blue on `P0.12` — turning on more than one channel
-at a time blends the colors.
+All four on-board LEDs are active-low, so set `inverted: true` on their pins to
+make logical `on`/`off` match the printed labels. LED0 is a dedicated green LED on
+`P0.6`; LED1 is an RGB LED with red on `P0.8`, green on `P1.9` and blue on `P0.12`
+— turning on more than one channel at a time blends the colors.
 
 ## GPIO Pin Numbering
 
@@ -249,7 +248,9 @@ logger:
 
 output:
   - platform: gpio
-    pin: P0.6
+    pin:
+      number: P0.6
+      inverted: true
     id: green_led
 
 interval:
