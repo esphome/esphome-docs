@@ -201,9 +201,21 @@ on_...:
     - light.turn_off: my_light
 ```
 
+A single condition can also be given directly under `if:`, without `condition:`. This is the same as the
+example above:
+
+```yaml
+    - if:
+        lambda: 'return id(some_sensor).state < 30;'
+        then:
+          - light.turn_on: my_light
+```
+
+To check more than one condition, use `condition`, `all` or `any`.
+
 #### Configuration variables
 
-At least one of `condition`, `all` or `any` must be provided.
+At least one of `condition`, `all` or `any`, or a single condition, must be provided.
 
 - **condition** (*Optional*, [Condition](#all-conditions)): The condition to check to determine which branch to take.
   If this is configured with a list of conditions then they must all be true for the condition to be true.
@@ -219,6 +231,40 @@ At least one of `condition`, `all` or `any` must be provided.
 
 - **else** (*Optional*, [Action](#all-actions)): The action to perform if the condition evaluates to false.
   Defaults to doing nothing.
+
+### `choose` Action
+
+This action takes a list of choices. Each choice has a condition and a list of actions. The conditions are checked
+in order, and the actions of the first choice whose condition is true are performed. The other choices are skipped.
+If no condition is true, nothing is done. To have a default choice, make the last one a condition that is always true.
+
+```yaml
+on_...:
+  then:
+    - choose:
+        - if:
+            lambda: 'return id(some_sensor).state < 10;'
+          then:
+            - logger.log: "Cold"
+        - if:
+            lambda: 'return id(some_sensor).state < 25;'
+          then:
+            - logger.log: "Warm"
+        - if:
+            lambda: 'return true;'
+          then:
+            - logger.log: "Hot"
+```
+
+#### Configuration variables
+
+Each entry in the list has:
+
+- **if** (**Required**, [Condition](#all-conditions)): The condition to check. If this is a list of conditions, they
+  must all be true.
+
+- **then** (**Required**, [Action](#all-actions)): The actions to perform if this is the first choice whose condition
+  is true.
 
 ### `lambda` Action
 
