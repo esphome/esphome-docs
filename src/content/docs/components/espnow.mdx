@@ -49,8 +49,8 @@ Automations:
   May be specified multiple times. See [`on_broadcast`](#espnow-on_broadcast). Only on ESP32.
 
 ## Automations
-All three triggers (`on_receive`, `on_unknown_peer`, and `on_broadcast`) expose the same three lambda variables describing
-the received packet:
+All three triggers (`on_receive`, `on_unknown_peer`, and `on_broadcast`; the last is ESP32 only) expose the same three
+lambda variables describing the received packet:
 
 - **info** (<APIStruct text="espnow::ESPNowRecvInfo" path="espnow::ESPNowRecvInfo" />): Information about the received
   packet. The most useful members are:
@@ -84,7 +84,8 @@ espnow:
 ### `on_receive`
 This automation is triggered when a directed (non-broadcast) packet is received from a peer that is registered in the
 internal peer list. Broadcast packets are dispatched to [`on_broadcast`](#espnow-on_broadcast) instead, and packets
-from unregistered peers are dispatched to [`on_unknown_peer`](#espnow-on_unknown_peer).
+from unregistered peers are dispatched to [`on_unknown_peer`](#espnow-on_unknown_peer). On the ESP8266 the SDK does
+not report the destination address, so broadcasts are delivered to `on_receive` as well.
 
 Multiple `on_receive` automations may be configured; each can optionally filter on the source address. They are
 evaluated in the order they are declared.
@@ -113,7 +114,8 @@ espnow:
 This automation is triggered when a packet is received from a device whose MAC address is not in the registered peer
 list. It gives the configuration an opportunity to inspect the packet and decide whether to register the sender as a
 peer (typically by calling the [`espnow.peer.add`](#espnow-peer-add-action) action). If the peer is added during the
-trigger, the same packet is then delivered to `on_receive` (or `on_broadcast`) before the next packet is processed.
+trigger, the same packet is then delivered to `on_receive` (or, on the ESP32, `on_broadcast` for broadcasts) before the
+next packet is processed.
 
 If no `on_unknown_peer` automation is configured, the packet is silently dropped unless `auto_add_peer` is set to
 `true`, in which case the sender is added to the peer list and the packet is delivered to `on_receive` or
@@ -271,8 +273,9 @@ on_...:
 ## Peers
 A peer is a device that this device is allowed to send to. Broadcast and unencrypted unicast data can be received from
 any device without explicitly adding it as a peer; however, only packets whose source address is in the registered peer
-list are delivered to the [`on_receive`](#espnow-on_receive) and [`on_broadcast`](#espnow-on_broadcast) triggers.
-Packets from any other device are first offered to [`on_unknown_peer`](#espnow-on_unknown_peer).
+list are delivered to the [`on_receive`](#espnow-on_receive) and [`on_broadcast`](#espnow-on_broadcast) triggers
+(`on_receive` alone on the ESP8266). Packets from any other device are first offered to
+[`on_unknown_peer`](#espnow-on_unknown_peer).
 
 If `auto_add_peer` is set to `false` and you have not added any peers, then only broadcasts can be sent and there
 will be an error when trying to send data to a non-broadcast address.
