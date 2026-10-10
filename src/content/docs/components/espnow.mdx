@@ -42,7 +42,8 @@ espnow:
 
 Automations:
 - **on_receive** (*Optional*, [Automation](/automations)): An automation to perform when a directed (non-broadcast) packet is
-  received from a registered peer. May be specified multiple times. See [`on_receive`](#espnow-on_receive).
+  received from a registered peer (on the ESP8266, broadcasts as well). May be specified multiple times. See
+  [`on_receive`](#espnow-on_receive).
 - **on_unknown_peer** (*Optional*, [Automation](/automations)): An automation to perform when a packet is received from a
   device that is not registered as a peer. See [`on_unknown_peer`](#espnow-on_unknown_peer).
 - **on_broadcast** (*Optional*, [Automation](/automations)): An automation to perform when a broadcast packet is received.
@@ -58,7 +59,8 @@ lambda variables describing the received packet:
   - `info.des_addr` — `uint8_t[6]` destination MAC address (will be `FF:FF:FF:FF:FF:FF` for broadcasts, and all
     zeros on the ESP8266, whose SDK does not report it).
   - `info.rx_ctrl` — pointer to a Wi-Fi `wifi_pkt_rx_ctrl_t` structure containing low-level reception details such as
-    `info.rx_ctrl->rssi` (signal strength in dBm; always `0` on the ESP8266).
+    `info.rx_ctrl->rssi` (signal strength in dBm). On the ESP8266 it points to a small structure with only `rssi` and
+    `timestamp`, and `rssi` is always `0` there.
 - **data**: A `const uint8_t *` pointer to the received payload.
 - **size**: A `uint16_t` giving the length of the payload in bytes.
 
