@@ -121,10 +121,11 @@ sensor:
   per-channel readings with each channel's own shunt. All options from [Sensor](/components/sensor/).
 - **sum_power** (*Optional*): Sum of the power of all configured channels, in watts, added up from the per-channel
   readings. All options from [Sensor](/components/sensor/).
-- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval to check the sensor. Defaults to `60s`.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): The interval to check the sensor.
+  Defaults to `60s`.
   In single-shot mode it has to be longer than one conversion of all channels, which is
-  `(bus time + shunt time) × adc_averaging × configured channels` rounded up to whole milliseconds, plus 5 ms of headroom;
-  the configuration fails otherwise.
+  `(bus time + shunt time) × adc_averaging × configured channels` rounded up to whole milliseconds, plus 5 ms of
+  headroom; the configuration fails otherwise.
 
 The chip is put into power-down mode when the device shuts down or enters deep sleep, so a battery-powered node does
 not keep it converting.
