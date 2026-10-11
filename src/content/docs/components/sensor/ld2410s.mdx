@@ -35,15 +35,11 @@ binary_sensor:
   - platform: ld2410s
     has_target:
       name: Presence
-    has_calibration_running:
-      name: Calibration Running
 ```
 
 ### Configuration Variables
 
 - **has_target** (*Optional*): True while the module detects a target.
-  All options from [Binary Sensor](/components/binary_sensor/).
-- **has_calibration_running** (*Optional*): True while the module's automatic threshold calibration is in progress.
   All options from [Binary Sensor](/components/binary_sensor/).
 - **ld2410s_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the `ld2410s`
   component, which is necessary if you have more than one.
