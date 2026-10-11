@@ -40,42 +40,67 @@ sensor:
 
 ### Optional Hardware Settings
 
-Existing temperature-only configurations work unchanged and do not write configuration or threshold registers
-at startup.
-Setting any option below enables hardware configuration.
-ESPHome then writes the configuration register and both threshold registers during setup, using the defaults below
-for omitted settings. These settings apply to TMP102 chips; do not enable them for LM75 sensors.
+Temperature-only configurations work unchanged and write no registers at startup. Setting any option below makes
+ESPHome write the configuration register and both threshold registers during setup, using the listed defaults for
+omitted settings. These settings apply to TMP102 chips; do not enable them for LM75 sensors.
 
-When hardware configuration is enabled, ESPHome checks the configuration and threshold registers before each update.
-If they differ from the accepted settings, for example after a chip-only power reset, ESPHome restores them and skips
-that update. A warning remains until a complete read succeeds. Do not use another controller to change these registers
-while ESPHome manages them.
+Before each update ESPHome reads the configuration register back. If it no longer matches, for example after the chip
+alone lost power, ESPHome rewrites the configuration and both thresholds, skips that update and sets the sensor's
+warning status until the next reading succeeds. Do not use another controller to change these registers while ESPHome
+manages them.
 
-- **extended_mode** (*Optional*, boolean): Use the 13-bit temperature format.
-  Defaults to `false` when configuring hardware.
-- **conversion_rate** (*Optional*, string): Chip conversion rate: `0.25Hz`, `1Hz`, `4Hz`, or `8Hz`.
-  Defaults to `4Hz` when configuring hardware. This is independent of `update_interval`.
+The defaults below are the chip's power-on values and apply only once any of these options is set.
+
+- **extended_mode** (*Optional*, boolean): Use the 13-bit temperature format. Defaults to `false`.
+- **conversion_rate** (*Optional*, string): Chip conversion rate: `0.25Hz`, `1Hz`, `4Hz`, or `8Hz`. Defaults to `4Hz`.
+  This is independent of `update_interval`.
 - **one_shot_mode** (*Optional*, boolean): Keep the chip in shutdown between readings and trigger one conversion
-  per update. Defaults to `false` when configuring hardware.
-- **alert_polarity** (*Optional*, string): ALERT pin polarity, `active_low` or `active_high`.
-  Defaults to `active_low` when configuring hardware.
-- **thermostat_mode** (*Optional*, string): `comparator` or `interrupt`.
-  Defaults to `comparator` when configuring hardware.
+  per update. Defaults to `false`.
+- **alert_polarity** (*Optional*, string): ALERT pin polarity, `active_low` or `active_high`. Defaults to `active_low`.
+- **thermostat_mode** (*Optional*, string): How the ALERT pin behaves. In `comparator` mode ALERT asserts when the
+  temperature rises above `temperature_high` and clears when it falls below `temperature_low`. In `interrupt` mode
+  ALERT asserts on crossing either threshold and stays asserted until a register is read; because ESPHome reads the
+  chip on every update, the pin clears at the next `update_interval` at the latest. Defaults to `comparator`.
 - **fault_queue** (*Optional*, int): Consecutive fault conversions required before ALERT changes: `1`, `2`, `4`, or `6`.
-  Defaults to `1` when configuring hardware.
-- **temperature_high** (*Optional*, temperature): Initial high threshold. Defaults to `80°C` when configuring hardware.
-- **temperature_low** (*Optional*, temperature): Initial low threshold. Defaults to `75°C` when configuring hardware.
+  Defaults to `1`.
+- **temperature_high** (*Optional*, temperature): High threshold. Defaults to `80°C`.
+- **temperature_low** (*Optional*, temperature): Low threshold. Defaults to `75°C`.
 
 Thresholds accept Celsius or Fahrenheit values, such as `30°C` or `86°F`. The low threshold must not exceed the high
 threshold. Supported thresholds range from `-55°C` to `127.9375°C` in normal mode, or `150°C` in extended mode.
 The chip stores thresholds in steps of `0.0625°C`; values are rounded to the nearest step, with exact half-steps
-rounded away from zero. Number states and saved values reflect the rounded hardware thresholds.
-Temperature sensor filters do not change thermostat thresholds or alert decisions.
+rounded away from zero. Temperature sensor filters do not change thermostat thresholds or alert decisions.
 
 In continuous mode, the chip makes conversions independently of ESPHome polling. In one-shot mode, ESPHome waits
 40 ms after triggering a conversion before reading it. Continuous-mode reads happen immediately and do not force
 a new conversion. Very short update intervals do not restart a pending one-shot conversion. Each reading uses the
 format flag in the temperature register, including when a sample still uses the previous mode's format.
+
+## Examples
+
+The thresholds drive the chip's ALERT pin only. Wire it to a GPIO and read it with a
+[GPIO binary sensor](/components/binary_sensor/gpio/) to use it in ESPHome.
+
+```yaml
+sensor:
+  - platform: tmp102
+    name: "Freezer Temperature"
+    one_shot_mode: true
+    thermostat_mode: comparator
+    alert_polarity: active_low
+    temperature_high: -15°C
+    temperature_low: -18°C
+
+binary_sensor:
+  - platform: gpio
+    name: "Freezer Too Warm"
+    pin:
+      number: GPIO4
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+```
 
 ## See Also
 
