@@ -285,21 +285,11 @@ climate:
     module. Temperature range is from 16 to 30; the swing setting is sent as a state instead of a toggle.
 
 The unit only has a power toggle, so the climate keeps track of whether it believes the unit is on. If the unit is
-switched with another remote, the next command may toggle the power instead of changing a setting.
+switched with another remote, the next command may toggle the power instead of changing a setting. The three frames
+of one transmission are separated by long gaps, so a [receiver](#ir-receiver_id) needs `idle: 50ms` to capture them.
 
 ```yaml
 # Example configuration entry
-remote_transmitter:
-  pin: GPIOXX
-  carrier_duty_percent: 50%
-
-remote_receiver:
-  id: rcvr
-  pin:
-    number: GPIOXX
-    inverted: true
-  idle: 50ms
-
 climate:
   - platform: whirlpool
     name: "AC"
