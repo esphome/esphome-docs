@@ -5,7 +5,7 @@ title: "LIS3DH Temperature Sensor"
 
 The `lis3dh` sensor platform provides access to the on-chip temperature sensor of a LIS3DH accelerometer
 ([datasheet](https://www.st.com/resource/en/datasheet/lis3dh.pdf)) with ESPHome.
-It requires a [`motion`](/components/motion) component to be configured with the `lis3dh` platform,
+It requires a [`motion`](/components/motion/) component to be configured with the `lis3dh` platform,
 which handles the accelerometer data and configures the device. See that component for more information.
 
 The LIS3DH temperature sensor is uncalibrated and reports only *relative* changes (roughly 1 °C per count).
@@ -26,7 +26,7 @@ sensor:
 ## Configuration variables
 
 - **type** (*Optional*, string): Must be set to `temperature`, or simply omitted.
-- All other options from [Sensor](/components/sensor).
+- All other options from [Sensor](/components/sensor/).
 
 ## See Also
 
