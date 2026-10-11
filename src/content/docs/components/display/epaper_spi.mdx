@@ -175,8 +175,14 @@ display:
 The 200x200 panels based on the SSD1681 (`Waveshare-1.54in-v2`, `GooDisplay-GDEY0154D67-1.54`, or `SSD1681` for
 another panel of that size) support partial refresh. Set `full_update_every` greater than `1` to enable it: only the
 pixels that changed since the previous update are driven, so a partial refresh is quick and does not flash the
-panel. While partial refresh is in use the panel is kept powered between updates; the full refresh every
-`full_update_every` updates clears any residue.
+panel. The full refresh every `full_update_every` updates clears any residue.
+
+The panel is put into deep sleep after every update and only a hardware reset wakes it, so `reset_pin` is required.
+
+> [!NOTE]
+> Partial refresh relies on a setting the panel maker stores in the controller (RAM ping-pong), which both named
+> panels have. If the generic `SSD1681` model gives garbled partial updates on another panel, that panel lacks it;
+> leave `full_update_every` at `1`.
 
 ```yaml
 display:
