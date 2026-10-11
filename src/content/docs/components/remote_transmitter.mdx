@@ -640,8 +640,10 @@ on_...:
 
 - **address** (**Required**, int, [templatable](/automations/templates)): The 16-bit address to send, see dumper output for more details.
 - **command** (**Required**, int, [templatable](/automations/templates)): The 16-bit NEC command to send.
-- **command_repeats** (*Optional*, int, [templatable](/automations/templates)): The number of times the command bytes are sent in one transmission.
-  Defaults to `1`.
+- **command_repeats** (*Optional*, int, [templatable](/automations/templates)): How many times the command is
+  sent in one transmission, from `1` to `10`. Values above `1` follow the frame with NEC repeat frames (a short
+  header burst every 108 ms), which is what a held button on a real remote sends. On platforms without an RMT
+  peripheral the whole transmission runs with interrupts disabled, so keep this small. Defaults to `1`.
 
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
