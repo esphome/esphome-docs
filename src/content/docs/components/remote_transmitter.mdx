@@ -642,8 +642,9 @@ on_...:
 - **command** (**Required**, int, [templatable](/automations/templates)): The 16-bit NEC command to send.
 - **command_repeats** (*Optional*, int, [templatable](/automations/templates)): How many times the command is
   sent in one transmission, from `1` to `10`. Values above `1` follow the frame with NEC repeat frames (a short
-  header burst every 108 ms), which is what a held button on a real remote sends. On platforms without an RMT
-  peripheral the whole transmission runs with interrupts disabled, so keep this small. Defaults to `1`.
+  header burst every 108 ms), which is what a held button on a real remote sends. With the software bit-bang
+  transmitter (platforms that are not ESP32 RMT, RTL8720C or BK7238) the whole transmission runs with interrupts
+  disabled, so keep this small there. Defaults to `1`.
 
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
