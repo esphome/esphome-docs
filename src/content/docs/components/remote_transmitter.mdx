@@ -553,7 +553,8 @@ on_...:
 ### `remote_transmitter.transmit_ira211` Action
 
 This [action](/automations/actions/#all-actions) sends a Siemens IRA211 infrared remote code to a remote transmitter.
-The IRA211 handheld remote sends `SYNC` with its full state and the other commands with only the fields they change.
+`SYNC` and `POWER` frames carry the full state (temperature, mode and fan); `TEMP_UP`, `TEMP_DOWN`, `MODE` and `FAN`
+carry only the field they change, so the other values are ignored for those commands.
 
 ```yaml
 on_...:
@@ -570,9 +571,10 @@ on_...:
   `TEMP_DOWN`, `MODE`, `FAN`, `POWER` or `SYNC`.
 - **temperature** (*Optional*, float, [templatable](/automations/templates/)): The target temperature in °C, from
   `5` to `35` in `0.5` steps. Defaults to `20`.
-- **mode** (*Optional*, string): The operating mode. One of `PROTECTION`, `TIMER` or `COMFORT`. Defaults to
-  `COMFORT`.
-- **fan_mode** (*Optional*, string): The fan speed. One of `AUTO`, `LOW`, `MEDIUM` or `HIGH`. Defaults to `AUTO`.
+- **mode** (*Optional*, string, [templatable](/automations/templates/)): The operating mode. One of `PROTECTION`,
+  `TIMER` or `COMFORT`. Defaults to `COMFORT`.
+- **fan_mode** (*Optional*, string, [templatable](/automations/templates/)): The fan speed. One of `AUTO`, `LOW`,
+  `MEDIUM` or `HIGH`. Defaults to `AUTO`.
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
 <span id="remote_transmitter-transmit_lg"></span>
