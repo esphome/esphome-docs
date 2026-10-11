@@ -49,8 +49,8 @@ binary_sensor:
 
 Presses one key, releasing any key pressed before. The key stays pressed until
 [`tinyusb_keyboard.release`](#tinyusb_keyboard-release-action) is called. Only the latest state is kept, so put a
-short [`delay`](/automations/actions/#delay-action) of at least `20ms` between consecutive key actions in one automation,
-otherwise a press can replace a release that the host has not received yet.
+short [`delay`](/automations/actions/#delay-action) of at least `20ms` between consecutive key actions in one
+automation, otherwise a press can replace a release that the host has not received yet.
 
 ```yaml
 - tinyusb_keyboard.press:
