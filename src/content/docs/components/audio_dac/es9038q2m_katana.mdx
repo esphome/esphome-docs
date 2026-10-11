@@ -3,6 +3,8 @@ title: "ES9038Q2M Katana"
 description: "Use Allo Katana-compatible ES9038Q2M DAC boards with ESPHome over the I²C control interface at address 0x30."
 ---
 
+import APIRef from '@components/APIRef.astro';
+
 The `es9038q2m_katana` platform allows ESPHome devices to control DAC boards that expose an
 ES9038Q2M through an Allo Katana-compatible control interface.
 
@@ -60,7 +62,7 @@ audio_dac:
 
 ## Automations
 
-All [Audio DAC automations](/components/audio_dac/) are supported by this platform.
+All [Audio DAC automations](/components/audio_dac/#automations) are supported by this platform.
 
 ## See Also
 
@@ -69,3 +71,4 @@ All [Audio DAC automations](/components/audio_dac/) are supported by this platfo
 - [I²S Audio Component](/components/i2s_audio/)
 - [I²S Audio Speaker](/components/speaker/i2s_audio/)
 - [Speaker Media Player](/components/media_player/speaker/)
+- <APIRef text="es9038q2m_katana.h" path="es9038q2m_katana/es9038q2m_katana.h" />
