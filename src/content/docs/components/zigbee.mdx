@@ -44,12 +44,13 @@ to the coordinator.
 ```yaml
 zigbee:
   id: my_zigbee
+  router: true
+  power_source: BATTERY
   on_join:
     then:
       - logger.log:
           format: "%s network."
           args: ['x ? "Joined" : "Rejoined"']
-  power_source: BATTERY
 ```
 
 ## Configuration variables
