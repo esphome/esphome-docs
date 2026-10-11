@@ -20,8 +20,8 @@ bq25186:
   id: bq25186_charger
   address: 0x6A
   update_interval: 60s
-  battery_regulation_voltage: 4200
-  fast_charge_current: 500
+  battery_regulation_voltage: 4.2V
+  fast_charge_current: 500mA
   charge_enabled: true
   vindpm_mode: 4.5v
 
@@ -63,8 +63,10 @@ switch:
 
 ### Charging configuration
 
-- **battery_regulation_voltage** (*Optional*, int): Battery regulation voltage in millivolts. Range: `3500` to `4650`. Default: `4200`.
-- **fast_charge_current** (*Optional*, int): Fast charge current in milliamps. Range: `5` to `1000`. Default: `10`.
+- **battery_regulation_voltage** (*Optional*, voltage): Battery regulation voltage, in 10 mV steps from `3.5V` to
+  `4.65V`. Default: `4.2V`.
+- **fast_charge_current** (*Optional*, current): Fast charge current from `5mA` to `1A`, in 1 mA steps up to `35mA` and
+  10 mA steps above. Default: `10mA`.
 - **charge_enabled** (*Optional*, boolean): Enable or disable charging. Default: `true`.
 - **flash_charging_mode** (*Optional*, boolean): Enable flash charging mode (behavior undocumented in the datasheet). Default: `false`.
 - **precharge_is_iterm** (*Optional*, boolean): Use precharge current as termination current. Default: `false`.
@@ -77,7 +79,9 @@ switch:
 - **recharge_threshold** (*Optional*, string): Recharge threshold. One of `100mv`, `200mv`. Default: `100mv`.
 - **double_timer_during_dpm** (*Optional*, boolean): Double the safety timer during DPM. Default: `false`.
 - **safety_timer** (*Optional*, string): Safety timer duration. One of `3h`, `6h`, `12h`, `disabled`. Default: `6h`.
-- **watchdog** (*Optional*, string): Watchdog configuration. One of `160s_software_reset`, `160s_hardware_reset`, `40s_hardware_reset`, `disabled`. Default: `160s_software_reset`.
+- **watchdog** (*Optional*, string): I2C watchdog. One of `160s_software_reset`, `160s_hardware_reset`,
+  `40s_hardware_reset`, `disabled`. Default: `disabled`. When enabled, the IC resets its registers if ESPHome does not
+  talk to it within the chosen time, which undoes the configuration applied on boot.
 - **watchdog_15s_enable** (*Optional*, boolean): Enable the 15s watchdog. Default: `false`.
 
 ### Power-path and push button configuration
@@ -189,8 +193,8 @@ esphome:
     then:
       - bq25186.apply_configuration:
           id: bq25186_charger
-          battery_regulation_voltage: 4100
-          fast_charge_current: 200
+          battery_regulation_voltage: 4.1V
+          fast_charge_current: 200mA
 ```
 
 ### See Also
