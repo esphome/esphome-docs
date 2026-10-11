@@ -55,7 +55,8 @@ The defaults below are the chip's power-on values and apply only once any of the
 - **conversion_rate** (*Optional*, string): Chip conversion rate: `0.25Hz`, `1Hz`, `4Hz`, or `8Hz`. Defaults to `4Hz`.
   This is independent of `update_interval`.
 - **one_shot_mode** (*Optional*, boolean): Keep the chip in shutdown between readings and trigger one conversion
-  per update. Defaults to `false`.
+  per update. The thresholds are then compared only once per `update_interval`, so ALERT can lag a crossing by up to
+  one interval, and `conversion_rate` has no effect. Defaults to `false`.
 - **alert_polarity** (*Optional*, string): ALERT pin polarity, `active_low` or `active_high`. Defaults to `active_low`.
 - **thermostat_mode** (*Optional*, string): How the ALERT pin behaves. In `comparator` mode ALERT asserts when the
   temperature rises above `temperature_high` and clears when it falls below `temperature_low`. In `interrupt` mode
@@ -95,7 +96,7 @@ binary_sensor:
   - platform: gpio
     name: "Freezer Too Warm"
     pin:
-      number: GPIO4
+      number: GPIOXX
       inverted: true
       mode:
         input: true
