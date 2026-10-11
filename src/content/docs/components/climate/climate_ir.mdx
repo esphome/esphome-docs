@@ -238,12 +238,14 @@ climate:
 
 ### `toshiba`
 
-- **model** (*Optional*, string): There are five valid models:
+- **model** (*Optional*, string): There are six valid models:
 
   - `GENERIC`  : Temperature range is from 17 to 30 (default)
   - `RAC-PT1411HWRU-C`  : Temperature range is from 16 to 30; unit displays temperature in degrees Celsius
   - `RAC-PT1411HWRU-F`  : Temperature range is from 16 to 30; unit displays temperature in degrees Fahrenheit
   - `RAS-2819T`  : Temperature range is from 18 to 30; supports two-packet IR protocol
+  - `RAS-B10N3KV2`  : Temperature range is from 17 to 30; the same commands as `GENERIC` with the IR timings of the
+    RAS-B13 remote family (RAS-B10N3KV2-E1 and similar); use it if your unit ignores `GENERIC`
   - `SEIYA`  : Temperature range is from 17 to 30; Seiya family units such as the RAS-B13E2KVG-E, with vertical,
     horizontal and both swing modes
 
