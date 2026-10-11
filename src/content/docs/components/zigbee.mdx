@@ -144,7 +144,7 @@ Only on `ESP32`:
 - **report** (*Optional*, enum): How the state is reported. One of `default`, `enable`, or `force`. `default` activates
   reporting of all reportable attributes with default settings and uses the configuration from the coordinator if
   possible. `enable` is the same but additionally activates manual reporting through the `zigbee.report` action.
-  `force`sends manual reports for every change to the coordinator and enables manual reporting. On `nRF52` the
+  `force` sends manual reports for every change to the coordinator and enables manual reporting. On `nRF52` the
   coordinator configuration is always used. Defaults to `default`.
 
 > [!NOTE]
@@ -161,7 +161,7 @@ Only on `ESP32`:
   on which endpoint, giving a more stable configuration and letting you manually combine entities that logically
   belong together. Only entities that map to different Zigbee clusters can be combined (for example
   a `binary_sensor` and a `sensor`); two entities of the same type, such as two sensors, cannot share an
-  endpoint unless `cluster: device_class` maps them to different clusters (for example a temperature and2
+  endpoint unless `cluster: device_class` maps them to different clusters (for example a temperature and
   a humidity sensor). If more than one entity on an endpoint has a Zigbee device type, set
   `use_device_type: true` on one of them.
 - **use_device_type** (*Optional*, boolean): Use the Zigbee Home Automation device type of this entity for the endpoint.
