@@ -57,8 +57,11 @@ sensor:
     in acceleration instead, which allows much smaller values.
     The value cannot exceed what the selected `accelerometer_range` can represent (about `2g` at `2G`,
     `4g` at `4G`, `7.9g` at `8G` and `23.6g` at `16G`).
-  - **duration** (*Optional*, int): The number of consecutive samples (in output-data-rate periods) the
-    threshold must be exceeded before the interrupt fires. Defaults to `0`. Range `0` to `127`.
+    Values of `1g` or less without `high_pass_filter` log a warning, since gravity alone may then keep the
+    interrupt asserted.
+  - **duration** (*Optional*, [Time](/guides/configuration-types#time)): How long the threshold must be
+    exceeded before the interrupt fires. It is rounded to whole samples at the selected `accelerometer_odr`
+    and can be at most 127 samples (for example `1270ms` at `100HZ`). Defaults to `0ms`.
   - **axes** (*Optional*, list): Which axes may trigger the interrupt, any of `x`, `y`, `z`.
     Defaults to all three.
   - **latched** (*Optional*, boolean): If `true`, the interrupt stays asserted until the interrupt source
