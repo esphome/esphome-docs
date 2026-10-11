@@ -34,7 +34,7 @@ Configuration variables:
 - **name** (*Optional*, string): The name for the cover. At least one of **id** and **name** must be specified.
 
 > [!NOTE]
-> If you have a [friendly_name](/components/esphome#esphome-configuration_variables) set for your device and
+> If you have a [friendly_name](/components/esphome#configuration-variables) set for your device and
 > you want the cover to use that name, you can set `name: None`.
 
 - **device_class** (*Optional*, string): The device class for the
@@ -181,14 +181,14 @@ on_...:
 Configuration variables:
 
 - **id** (**Required**, [ID](/guides/configuration-types#id)): The cover to control.
-- **stop** (*Optional*, boolean): Whether to stop the cover.
-- **state** (*Optional*, string): The state to set the cover to - one of `OPEN` or `CLOSE`.
-- **position** (*Optional*, float): The cover position to set.
+- **stop** (*Optional*, boolean, [templatable](/automations/templates)): Whether to stop the cover.
+- **state** (*Optional*, string, [templatable](/automations/templates)): The state to set the cover to - one of `OPEN` or `CLOSE`.
+- **position** (*Optional*, float, [templatable](/automations/templates)): The cover position to set.
 
   - `0.0` = `0%` = `CLOSED`
   - `1.0` = `100%` = `OPEN`
 
-- **tilt** (*Optional*, float): The tilt position to set. In range 0% - 100%.
+- **tilt** (*Optional*, float, [templatable](/automations/templates)): The tilt position to set. In range 0% - 100%.
 
 > [!NOTE]
 > This action can also be expressed in [lambdas](/automations/templates#config-lambda):

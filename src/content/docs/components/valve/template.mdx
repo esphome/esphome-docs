@@ -73,8 +73,6 @@ Possible return values for the optional lambda:
 
 - All other options from [Valve](/components/valve#config-valve).
 
-<span id="valve-template-publish_action"></span>
-
 ## `valve.template.publish` Action
 
 You can also publish a state to a template valve from elsewhere in your YAML filewith the `valve.template.publish` action.
@@ -104,10 +102,10 @@ Configuration options:
 - **state** (*Optional*, [templatable](/automations/templates)):
   The state to publish. One of `OPEN`, `CLOSED`. If using a lambda, use `VALVE_OPEN` or `VALVE_CLOSED`.
 
-- **position** (*Optional*, [templatable](/automations/templates), float):
+- **position** (*Optional*, float, [templatable](/automations/templates)):
   The position to publish, from 0 (CLOSED) to 1.0 (OPEN)
 
-- **current_operation** (*Optional*, [templatable](/automations/templates), string):
+- **current_operation** (*Optional*, string, [templatable](/automations/templates)):
   The current operation mode to publish. One of `IDLE`, `OPENING` and `CLOSING`. If using a lambda, use
   `VALVE_OPERATION_IDLE`, `VALVE_OPERATION_OPENING`, and `VALVE_OPERATION_CLOSING`.
 

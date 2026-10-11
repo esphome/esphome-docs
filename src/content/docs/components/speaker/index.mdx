@@ -21,8 +21,6 @@ Configuration variables:
 
 - **audio_dac** (*Optional*, [ID](/guides/configuration-types#id)): The [audio DAC](/components/audio_dac/) to use for volume control.
 
-<span id="speaker-actions"></span>
-
 ## Speaker Actions
 
 All `speaker` actions can be used without specifying an `id` if you have only one `speaker` in
@@ -51,7 +49,7 @@ on_...:
 Configuration variables:
 
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): The speaker to control. Defaults to the only one in YAML.
-- **data** (**Required**, list of bytes): The raw audio data to play.
+- **data** (**Required**, list of bytes, [templatable](/automations/templates)): The raw audio data to play.
 
 <span id="speaker-stop"></span>
 
@@ -116,8 +114,6 @@ on_...:
 Configuration variables:
 
 **volume** (**Required**, percentage): The volume to set the speaker to.
-
-<span id="speaker-conditions"></span>
 
 ## Speaker Conditions
 

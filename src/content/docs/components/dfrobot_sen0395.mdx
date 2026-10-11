@@ -74,11 +74,7 @@ dfrobot_sen0395:
 - **uart_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the [Uart](/components/uart/) if you want
   to use multiple UART buses.
 
-<span id="dfrobot_sen0395-binary_sensor"></span>
-
 ## Binary Sensor
-
-<span id="dfrobot_sen0395-via_gpio"></span>
 
 ### Via GPIO
 
@@ -99,13 +95,11 @@ binary_sensor:
       mode: INPUT_PULLDOWN
 ```
 
-<span id="dfrobot_sen0395-via_uart"></span>
-
 ### Via UART
 
 Connecting the sensor via the serial connection (UART) allows both changing its settings as well as reading its state.
 Note, however, that the UART peripheral cannot wake the processor; if you plan on sleeping the processor, you'll likely
-still need to use the [GPIO pin](#dfrobot_sen0395-via_gpio) approach described above (in addition to the UART).
+still need to use the [GPIO pin](#via-gpio) approach described above (in addition to the UART).
 
 First, setup a [Uart](/components/uart/) and [Hub Component](#dfrobot_sen0395-component) and then use its binary sensor platform
 to create individual binary sensors for each presence sensor.
@@ -122,8 +116,6 @@ binary_sensor:
   Required when multiple instances of the `dfrobot_sen0395` component are defined.
 
 - All other options from [Binary Sensor](/components/binary_sensor#config-binary_sensor).
-
-<span id="dfrobot_sen0395-switch"></span>
 
 ## Switch
 
@@ -155,8 +147,6 @@ switch:
     remain off.
 
 - All other options from [Switch](/components/switch#config-switch).
-
-<span id="dfrobot_sen0395-actions"></span>
 
 ## Actions
 
@@ -194,7 +184,7 @@ on_...:
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the mmWave sensor on which settings should be
   changed. If only one radar is defined, this is optional.
 
-- **factory_reset** (*Optional*, boolean): If set to true, a factory reset of the sensor will be performed (before
+- **factory_reset** (*Optional*, boolean, [templatable](/automations/templates)): If set to `true`, a factory reset of the sensor will be performed (before
   changing other options if present). Ignored if not set or set to `false`.
 
 - **detection_segments** (*Optional*, list): A list of detection segments. A segment specifies from where to where
@@ -228,15 +218,15 @@ on_...:
 
 - **output_latency** (*Optional*, dictionary):
 
-  - **delay_after_detect** (**Required**, [Time](/guides/configuration-types#time)): Time to wait before signaling that a person was
-    detected. Specify in steps of 25 ms. Factory default is 2.5s. Value is tempatable: Return seconds value
-    (100 ms = 0.1). Returning -1 keeps the value unchanged.
+  - **delay_after_detect** (**Required**, [Time](/guides/configuration-types#time), [templatable](/automations/templates)): Time to wait before signaling that a person was
+    detected. Specify in steps of 25 ms. Factory default is 2.5s.
+    Returning -1 keeps the value unchanged.
 
-  - **delay_after_disappear** (**Required**, [Time](/guides/configuration-types#time)): Time to wait before signaling that a person
-    is no longer detected. Specify in steps of 25 ms. Factory default is 10 s. Value is tempatable: Return seconds
-    value (100 ms = 0.1). Returning -1 keeps the value unchanged.
+  - **delay_after_disappear** (**Required**, [Time](/guides/configuration-types#time), [templatable](/automations/templates)): Time to wait before signaling that a person
+    is no longer detected. Specify in steps of 25 ms. Factory default is 10 s.
+    Returning -1 keeps the value unchanged.
 
-- **sensitivity** (*Optional*, int): Set the sensitivity of the sensor. Ranges from 0 to 9. Value is tempatable:
+- **sensitivity** (*Optional*, int, [templatable](/automations/templates)): Set the sensitivity of the sensor. Ranges from 0 to 9.
   Return 0-9. Returning -1 keeps the value unchanged.
 
 ### `dfrobot_sen0395.reset` Action
