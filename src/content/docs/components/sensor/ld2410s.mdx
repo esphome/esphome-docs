@@ -8,8 +8,7 @@ import APIRef from '@components/APIRef.astro';
 ## Component/Hub
 
 The `ld2410s` component allows you to use the HI-LINK LD2410S presence radar with ESPHome. It is a lower-power
-relative of the [LD2410](/components/sensor/ld2410/) that reports presence and target distance over a serial
-connection.
+relative of the [LD2410](/components/sensor/ld2410/) that reports presence over a serial connection.
 
 The [UART](/components/uart/) is required to be set up in your configuration for this sensor to work; `baud_rate`,
 `parity` and `stop_bits` **must be** respectively `115200`, `NONE` and `1`. Use of a hardware UART is recommended.
@@ -25,8 +24,8 @@ ld2410s:
   [UART Component](/components/uart/), which is necessary if you have multiple UARTs defined in your configuration.
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID for this component.
 
-At start the component switches the module to its minimal output mode, in which the module only reports presence
-and distance.
+At start the component switches the module to its minimal output mode, in which the module only reports presence.
+If the module stops sending data for five seconds the component raises a warning and runs the setup again.
 
 ## Binary Sensor
 
