@@ -112,15 +112,15 @@ climate:
 The `daikin` climate controls units that use the Daikin ARC43xxx remotes. The target temperature can be set in
 0.5 °C steps. The following presets are supported and map to the unit's own functions:
 
-| Preset     | Unit function                                   |
-| ---------- | ----------------------------------------------- |
-| `boost`    | Powerful, which the unit ends after 20 minutes |
-| `sleep`    | Quiet                                           |
-| `eco`      | Econo                                           |
-| `comfort`  | Comfort airflow                                 |
-| `activity` | Intelligent eye (presence sensor)               |
+| Preset     | Unit function                     |
+| ---------- | --------------------------------- |
+| `boost`    | Powerful                          |
+| `sleep`    | Quiet                             |
+| `eco`      | Econo                             |
+| `comfort`  | Comfort airflow                   |
+| `activity` | Intelligent eye (presence sensor) |
 
-The `boost` preset returns to `none` by itself when the unit's 20 minutes are over.
+The unit ends Powerful after 20 minutes, so the `boost` preset returns to `none` by itself.
 
 ```yaml
 # Example configuration entry
@@ -128,7 +128,6 @@ climate:
   - platform: daikin
     name: "Living Room AC"
     sensor: room_temperature
-    receiver_id: rcvr
 ```
 
 ### `daikin_brc`
