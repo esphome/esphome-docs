@@ -233,8 +233,7 @@ on_...:
 
 #### Configuration variables
 
-- **code** (**Required**, int, [templatable](/automations/templates)): The 24-bit code to send. Byte 3 must be `0x01` (settings frame) or `0x02` (fan frame); the
-  checksum byte is filled in for you, so 13 bytes are enough.
+- **code** (**Required**, int, [templatable](/automations/templates)): The 24-bit code to send.
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
 > [!NOTE]
@@ -740,7 +739,8 @@ on_...:
 #### Configuration variables
 
 - **code** (**Required**, list, [templatable](/automations/templates)): The 13- or 14-byte PD Pioneer code to send as a
-  list of hex or integers. See dumper output for more info.
+  list of hex or integers. The fourth byte must be `0x01` (settings frame) or `0x02` (fan frame); the checksum byte is
+  filled in for you, so 13 bytes are enough. See dumper output for more info.
 
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
