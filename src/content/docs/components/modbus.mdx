@@ -118,6 +118,9 @@ of the device that sends the requests, so that `on_no_response` answers in time;
 this. Otherwise a late reply to a read of the same device with
 the same function code and length cannot be told apart from the reply to a newer request.
 
+If an `on_request` block answers with `modbus.send_response` right away, place it after the blocks that only watch
+the bus, so that they see the request before the reply.
+
 ### Configuration Variables
 
 - **modbus_id** (*Optional*, [ID](/guides/configuration-types#id)): The hub with the `server` role that answers.
