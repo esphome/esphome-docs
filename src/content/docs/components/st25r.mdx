@@ -36,7 +36,9 @@ st25r_spi:
 - **cs_pin** (**Required**, [Pin Schema](/guides/configuration-types/#pin-schema)): The pin connected to the reader's
   chip select line.
 - **irq_pin** (*Optional*, [Pin Schema](/guides/configuration-types/#pin-schema)): The pin connected to the reader's
-  `IRQ` line. With it set, the reader reacts to the chip's interrupt instead of waiting for the next loop pass.
+  `IRQ` line. With it set, the reader only talks to the chip once it has signalled a response during a scan, and
+  that response wakes the main loop at once instead of waiting for its next pass. Tags are still looked for on
+  every `update_interval`.
 - **reset_pin** (*Optional*, [Pin Schema](/guides/configuration-types/#pin-schema)): The pin connected to the reader's
   reset line. The chip is reset through it at startup.
 - **rf_power** (*Optional*, int): Transmitter driver strength from `0` to `15`, where `15` is the strongest field.
