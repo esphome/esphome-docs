@@ -27,7 +27,8 @@ micro_wake_word:
 - **microphone** (*Optional*, [Microphone Source Configuration](/components/microphone#config-microphone-source)): The [microphone](/components/microphone/) settings to use for audio input.
 - **stop_after_detection** (*Optional*, boolean): Whether to stop the component after detecting a wake word. Defaults to `true`.
 - **task_stack_in_psram** (*Optional*, boolean): If `true`, allocate the inference task stack in PSRAM instead of internal RAM. Requires the [PSRAM](/components/psram/) component. Defaults to `false`.
-- **prefer_internal_ram** (*Optional*, boolean): If `true`, try to place each active model's tensor arena and built-in model weights in internal RAM. Defaults to `false`.
+- **prefer_internal_ram** (*Optional*, boolean): If `true`, try to place each active model's tensor arena and weights
+  in internal RAM. Defaults to `false`.
 - **models** (*Optional*, list): The models to use. Only the first model is enabled by default on the first boot. Each model's enabled state is then saved/restored to/from the flash.
   Defaults to an empty list, which builds the firmware without any wake word models.
 
@@ -78,11 +79,13 @@ The `probability_cutoff` and `sliding_window_size` are provided by the JSON file
 
 ## Memory Usage
 
-By default, microWakeWord uses its existing memory allocation and reads built-in model weights from their original
-location. Set `prefer_internal_ram: true` to try to place each active model's tensor arena and built-in model weights
-in internal RAM. This can reduce inference time on some ESP32 devices, but uses more internal RAM. If an internal
+By default, microWakeWord uses its existing memory allocation and reads model weights from their original location.
+Set `prefer_internal_ram: true` to try to place each active model's tensor arena and weights in internal RAM. This
+includes models downloaded while the device is running. A model whose weights are already in internal RAM is not
+copied again. This can reduce inference time on some ESP32 devices, but uses more internal RAM. If an internal
 allocation fails, ESPHome logs a warning and falls back to the default arena allocation or the model's original
-storage location. Memory allocated for a model is released when it is disabled.
+storage location. The optional fast copy and arena are released when the model is disabled; downloaded model data
+remains in its original storage so it can be enabled again.
 
 ## Actions
 
