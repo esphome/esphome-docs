@@ -185,14 +185,16 @@ display:
 
 A device that uses [deep sleep](/components/deep_sleep) between updates normally does a full update on every wake,
 because the driver starts with no memory of the update cycle. With `partial_update_after_deep_sleep: panel` the driver
-remembers where it was in the cycle, keeps the display's enable pin at its level through the sleep so the display stays
-powered, and the first update after the wake is a partial one.
+remembers where it was in the cycle, and the first update after the wake is a partial one.
 
-`panel` is only correct if the display keeps its power while the device sleeps. On a board that switches the
-display's supply off during sleep, use `rtc_memory` instead: the image on the display is kept in the ESP32's RTC memory,
-which survives deep sleep, and the first update after the wake writes it back to the display before updating partially.
-A 200x200 panel's image is 5000 bytes and fits as it is; larger images are compressed, and if one does not fit the next
-update is a full one.
+`panel` is only correct if the display keeps its power while the device sleeps. On an ESP32 the display's enable pins
+are set to [`hold_state: true`](/guides/configuration-types#pin-schema) for you, so they keep their level through the
+sleep. On an ESP8266, or with an enable pin on an I/O expander, the board itself must keep the display powered.
+
+On a board that switches the display's supply off during sleep, use `rtc_memory` instead: the image on the display is
+kept in the ESP32's RTC memory, which survives deep sleep, and the first update after the wake writes it back to the
+display before updating partially. A 200x200 panel's image is 5000 bytes and fits as it is; larger images are
+compressed, and if one does not fit the next update is a full one.
 
 ```yaml
 display:
