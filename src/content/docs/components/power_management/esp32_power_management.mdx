@@ -6,7 +6,7 @@ title: "ESP32 Power Management"
 import APIRef from '@components/APIRef.astro';
 
 
-The `esp32_pm` platform enables ESP-IDF's Power Management, which can perform Dynamic Frequency Scaling
+The `esp32_power_management` platform enables ESP-IDF's Power Management, which can perform Dynamic Frequency Scaling
 (DFS) and automatic Light Sleep to run the application at the lowest possible power consumption, given
 the requirements of the application's components.
 
@@ -18,14 +18,14 @@ framework.
 ```yaml
 # typical
 power_management:
-  - platform: esp32_pm
+  - platform: esp32_power_management
     enable_light_sleep: true
 ```
 
 ```yaml
 # full
 power_management:
-  - platform: esp32_pm
+  - platform: esp32_power_management
     max_frequency: 160MHZ
     min_frequency: 40MHZ
     enable_light_sleep: true
@@ -90,7 +90,7 @@ possible power consumption, given the requirements of application components. Fr
 express their requirements to ESP-IDF internally by creating, acquiring, and releasing power management
 locks.
 
-Using the esp32_pm platform comes at the cost of increased interrupt latency and can be upwards of 40 us.
+Using the esp32_power_management platform comes at the cost of increased interrupt latency and can be upwards of 40 us.
 
 When power_down_flash: True, device will try to power down flash when entering Light Sleep, which costs
 more time when device wakes up. Can only be enabled if there is no PSRAM configured. This option will
@@ -165,4 +165,4 @@ sensor:
 ## See Also
 
 - [Power Management Component](/components/power_management/)
-- <APIRef text="esp32_pm.h" path="esp32_pm/esp32_pm.h" />
+- <APIRef text="esp32_power_management.h" path="esp32_power_management/esp32_power_management.h" />
