@@ -13,6 +13,10 @@ discharge profiles without a sense resistor or relearn cycles. The MAX17048 moni
 two cells in series; the two chips are otherwise the same. It uses the [I²C Bus](/components/i2c/) for
 communication.
 
+> [!NOTE]
+> The component scales the cell voltage for the MAX17048. The MAX17049 reports two cells with a doubled voltage
+> step, so its `battery_voltage` reads at half the real value; a multiply filter of 2 corrects it.
+
 <Figure
   src="/images/max17048.jpg"
   alt="Adafruit MAX17048 LiPoly / LiIon fuel gauge and battery monitor"
