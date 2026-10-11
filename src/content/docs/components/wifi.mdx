@@ -154,7 +154,8 @@ wifi:
       be selected explicitly. After a power cycle the device cannot age the stored lease (see the note below), so it
       runs DHCP and re-captures the lease before the cache is useful again.
 
-    On the ESP32-C2 and C61 variants, which have no RTC memory, the cache is inactive unless `storage: flash` is set.
+    The ESP32-C2 and C61 variants have no RTC memory, so `storage: flash` must be set to use the cache on them.
+    Without it, the configuration is rejected.
 
   - **max_age** (*Optional*, [Time](/guides/configuration-types#time)): Do not re-use a cached lease older than this,
     regardless of the lease length the DHCP server granted. Defaults to the lease's own length.
@@ -163,6 +164,10 @@ wifi:
   > A cached lease is only re-applied after a deep-sleep wake or a software reboot, where the device can measure how
   > much time has passed; after a power cycle it cannot, so it falls back to a normal DHCP request. A user-configured
   > `manual_ip` always takes precedence and disables the cache.
+  >
+  > If the device is still awake when a cached lease reaches its renewal deadline (about half the lease by default),
+  > it requests a new address over DHCP. This drops the address for a moment, so open connections such as the native
+  > API or MQTT may drop and reconnect.
 
   > [!WARNING]
   > A cached lease is re-applied without checking that the address is still free. If the network behind the SSID
