@@ -11,8 +11,8 @@ The LP5562 component represents a Texas Instruments LP5562 4-channel (RGBW) LED 
 ([datasheet](https://web.archive.org/web/20240327023921/https://www.ti.com/lit/ds/symlink/lp5562.pdf)) in ESPHome. It
 uses [I²C Bus](/components/i2c/) for communication.
 
-To use the channels of this component, you first need to set up the global `lp5562` chip and specify its address
-and id, and then define the [individual output channels](#lp5562-output).
+To use the channels of this component, you first need to set up the global `lp5562` chip with an id, and then
+define the [individual output channels](#lp5562-output).
 
 ```yaml
 # Minimalistic configuration entry, single chip, single output
