@@ -52,8 +52,27 @@ speaker:
 
 - **buffer_duration** (*Optional*, [Time](/guides/configuration-types#time)): The duration of the internal ring buffer. Larger values can reduce stuttering but uses more memory. Defaults to `500ms`.
 - **timeout** (*Optional*, [Time](/guides/configuration-types#time)): How long to wait after finishing playback before releasing the bus. Set to `never` to never stop the speaker due to a timeout. Defaults to `500ms`. **Note:** With `spdif_mode: true` (see below), buffer underflows are filled with silence frames until the specified interval elapses; this maintains the SPDIF signal to prevent the receiver from detecting a loss of signal/source change, which may otherwise lengthen gaps of silence.
+- **on_audio_end** (*Optional*, [Automation](/automations/)): Actions to run after playback stops but before the I²S
+  output is released. Use this to mute an external codec or amplifier while I²S clocks still run. The clocks remain
+  active for 50 ms, so keep the shutdown sequence shorter than that. The automation runs after a forced stop, natural
+  buffer drain, or timeout, but not when the speaker restarts after a format change or driver error. This option is not
+  available in S/PDIF mode.
 - **spdif_mode** (*Optional*, boolean): Enable S/PDIF (Sony/Philips Digital Interface) mode for digital audio output. When enabled, the speaker outputs a SPDIF-encoded bitstream format suitable for optical (TOSLINK optical fiber connector) or coaxial digital audio transmission. Defaults to `false`.
 - All other options from [Speaker Component](/components/speaker#config-speaker).
+
+## Muting an External Codec Before Shutdown
+
+Some external codecs or amplifiers click when I²S clocks stop. If the hardware has a mute control, use `on_audio_end`
+to activate it before the clocks are released. Define the mute output separately for your hardware.
+
+```yaml
+speaker:
+  - platform: i2s_audio
+    dac_type: external
+    i2s_dout_pin: GPIOXX
+    on_audio_end:
+      - output.turn_on: codec_mute
+```
 
 ## SPDIF Mode
 
