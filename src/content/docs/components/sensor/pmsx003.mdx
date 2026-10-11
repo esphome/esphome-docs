@@ -58,6 +58,9 @@ value.
 
 The laser diode inside the PMSX003 has a lifetime of about 8000 hours, nearly one year.
 
+> [!NOTE]
+> Allow at least 30 seconds after power-on or wake-up for the fan to spin up before readings become reliable.
+
 If you wish to use the optional `update_interval` ensure you have a `tx_pin` set in the UART configuration and connected to the RECEIVE/RX pin
 (may also be called the TX pin, depending on the model) of the PMS. Setting `update_interval` to 120 seconds or higher may help extend the life span of the sensor.
 
@@ -78,7 +81,7 @@ sensor:
 
 All five Luftmy models share the same protocol, so they are all configured with `type: LUFTMY` — there is no
 per-model type. They report standard particle concentrations and particle counts, but no atmospheric
-concentrations. Luftmy rates them for a longer service life than the Plantower models.
+concentrations. Luftmy specifies the following rated service life per model.
 
 | Model  | Description                 | Rated Service Life |
 | ------ | --------------------------- | ------------------ |
@@ -99,10 +102,6 @@ sensor:
       name: "Particulate Matter <2.5µm Concentration"
     pm_10_0_std:
       name: "Particulate Matter <10.0µm Concentration"
-    pm_0_3um:
-      name: "Particulate Count >0.3µm"
-    pm_2_5um:
-      name: "Particulate Count >2.5µm"
 ```
 
 > [!NOTE]
@@ -162,13 +161,18 @@ sensor:
 
 - **update_interval** (*Optional*): Amount of time to wait between generating measurements. If this is longer than 30
   seconds, and if `tx_pin` is set in the UART configuration, the fan will be spun down between measurements. Default to `0s` (forward data as it's coming in from the sensor).
+  The PMS3003 has no passive mode and sends a shorter frame that carries no particle count data.
 
 - **uart_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the [UART Component](/components/uart) if you want
   to use multiple UART buses.
 
 ## Pinout Reference
 
-All models use the same UART settings: 9600 baud, 8N1, 3.3V TTL logic, 5V supply.
+All models use the same UART settings: 9600 baud, 8N1.
+
+> [!WARNING]
+> The logic pins (SET, RX/RXD, TX/TXD and RESET) are 3.3V only on all of these sensors, even though the
+> supply is 5V. Use a level shifter with 5V microcontrollers.
 
 ### Plantower 8-Pin (1.25mm Molex PicoBlade)
 
@@ -184,8 +188,6 @@ PMS1003, PMS3003, PMS5003, PMS5003S, PMS5003T, PMS5003ST, PMS6003 and PMS9003M.
 | 6   | RESET | Active-low reset (3.3V, internal pull-up)              |
 | 7   | NC    | Leave open                                             |
 | 8   | NC    | Leave open                                             |
-
-The PMS3003 has no passive mode and sends a shorter frame that carries no particle count data.
 
 ### Plantower 10-Pin (1.27mm 5×2 Header)
 
@@ -221,13 +223,6 @@ LD10, LD11, LD13, LD15 and LD16.
 
 The LD11 and LD15 multi-sensor variants add a secondary interface for temperature, humidity, VOC and HCHO
 readings, which ESPHome does not support. Their 8-pin particulate matter connector is unchanged.
-
-> [!WARNING]
-> The logic pins (SET, RX/RXD, TX/TXD and RESET) are 3.3V only on all of these sensors, even though the
-> supply is 5V. Use a level shifter with 5V microcontrollers.
-
-> [!NOTE]
-> Allow at least 30 seconds after power-on or wake-up for the fan to spin up before readings become reliable.
 
 ## See Also
 
