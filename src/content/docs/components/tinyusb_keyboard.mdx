@@ -28,7 +28,7 @@ tinyusb_keyboard:
 
 binary_sensor:
   - platform: gpio
-    pin: GPIO13
+    pin: GPIOXX
     name: "Shift + H"
     on_press:
       - tinyusb_keyboard.press:
@@ -39,7 +39,7 @@ binary_sensor:
       - tinyusb_keyboard.release: kb
 ```
 
-## Configuration variables
+## Configuration Variables
 
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID for this component.
 
