@@ -27,6 +27,7 @@ micro_wake_word:
 - **microphone** (*Optional*, [Microphone Source Configuration](/components/microphone#config-microphone-source)): The [microphone](/components/microphone/) settings to use for audio input.
 - **stop_after_detection** (*Optional*, boolean): Whether to stop the component after detecting a wake word. Defaults to `true`.
 - **task_stack_in_psram** (*Optional*, boolean): If `true`, allocate the inference task stack in PSRAM instead of internal RAM. Requires the [PSRAM](/components/psram/) component. Defaults to `false`.
+- **prefer_internal_ram** (*Optional*, boolean): If `true`, try to place each active model's tensor arena and built-in model weights in internal RAM. Defaults to `false`.
 - **models** (*Optional*, list): The models to use. Only the first model is enabled by default on the first boot. Each model's enabled state is then saved/restored to/from the flash.
   Defaults to an empty list, which builds the firmware without any wake word models.
 
@@ -77,10 +78,11 @@ The `probability_cutoff` and `sliding_window_size` are provided by the JSON file
 
 ## Memory Usage
 
-On ESP32, microWakeWord attempts to place the tensor arena and the weights of each active built-in model in internal
-RAM. This can reduce inference time, but each active model consumes internal RAM. If there is not enough room, ESPHome
-logs a warning and falls back to the default arena allocation or the model's original storage location. Memory used by
-a model is released when it is disabled. No configuration change is required.
+By default, microWakeWord uses its existing memory allocation and reads built-in model weights from their original
+location. Set `prefer_internal_ram: true` to try to place each active model's tensor arena and built-in model weights
+in internal RAM. This can reduce inference time on some ESP32 devices, but uses more internal RAM. If an internal
+allocation fails, ESPHome logs a warning and falls back to the default arena allocation or the model's original
+storage location. Memory allocated for a model is released when it is disabled.
 
 ## Actions
 
