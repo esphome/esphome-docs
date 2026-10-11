@@ -341,10 +341,11 @@ There is nothing to configure, and on a good link uploads stay on TCP.
 
 - Both the device firmware and the `esphome` command line need ESPHome 2026.11.0 or newer; with an older side the
   upload uses TCP as before.
-- It works on ESP8266, RP2, ESP32 and [LibreTiny](/components/libretiny/). It adds no RAM: the device opens the
-  UDP socket only for the update.
+- It works on ESP8266, RP2, ESP32, host, and the BK72xx and LN882x families of [LibreTiny](/components/libretiny/);
+  RTL87xx devices keep using TCP. It uses no extra RAM outside an update: the device opens the UDP socket only while
+  an upload runs.
 - The upload uses UDP on the same port number as the OTA [`port`](#configuration-variables). If a firewall blocks
-  it, the upload falls back to TCP after a few seconds.
+  it, the upload falls back to TCP after 5 seconds and the log shows `UDP blocked, using TCP`.
 - Encrypted uploads stay encrypted over UDP.
 
 ## Updating the partition table on ESP32
