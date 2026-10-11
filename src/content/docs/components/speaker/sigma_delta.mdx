@@ -1,0 +1,111 @@
+---
+description: "Play audio on a single GPIO pin with the ESP32 sigma-delta modulator and a simple RC filter."
+title: "Sigma-Delta Speaker"
+---
+
+The `sigma_delta` speaker platform plays audio on a single GPIO pin using the sigma-delta modulator
+built into the ESP32. A resistor and a capacitor on the pin turn the pulse stream into an analog
+audio signal. No external DAC or I²S codec is needed.
+
+The output is 8-bit, so expect a signal-to-noise ratio of roughly 30 to 40 dB. This is good enough
+for voice prompts, alerts and casual listening, but it is not suitable for high-quality music playback.
+
+This platform only works on ESP32-based chips with a sigma-delta modulator (all variants except the
+ESP32-C2 and ESP32-H2) using the [ESP-IDF framework](/components/esp32/#framework).
+
+> [!WARNING]
+> Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
+>
+> **Crashes are likely to occur** if you include too many additional components in your device's
+> configuration. In particular, Bluetooth/BLE components are known to cause issues when used in
+> combination with Voice Assistant and/or other audio components.
+
+```yaml
+# Example configuration entry
+speaker:
+  - platform: sigma_delta
+    id: sigma_delta_speaker
+    pin: GPIOXX
+```
+
+## Configuration Variables
+
+- **pin** (**Required**, [Pin Schema](/guides/configuration-types/#pin-schema)): The output GPIO pin
+  that carries the audio signal. The `inverted` pin option is supported.
+
+- **sample_rate** (*Optional*, positive integer): The sample rate the speaker plays at. Must be
+  between `8000` and `48000`. Audio at other sample rates is resampled to this rate by the audio
+  pipeline. Defaults to `44100`.
+
+- All other options from [Speaker Component](/components/speaker/#config-speaker).
+
+Any 8 to 32 bit mono or stereo audio stream is accepted. Stereo audio is mixed down to mono, and all
+audio is converted to the 8-bit pulse density used by the modulator, which runs at a fixed 1 MHz.
+Volume and mute are applied in software.
+
+## Hardware Setup
+
+An RC low-pass filter between the pin and the amplifier removes the high-frequency pulses and leaves
+the audio signal:
+
+```text
+GPIOXX --[1 kΩ]--+--> amplifier / headphones / speaker
+                 |
+               [10 nF]
+                 |
+                GND
+```
+
+- A 1 kΩ resistor with a 10 nF capacitor gives a cutoff frequency of about 16 kHz.
+- For a softer sound use a 22 nF capacitor (cutoff about 7 kHz). For a brighter sound use a 4.7 nF
+  capacitor (cutoff about 34 kHz).
+- For headphones, add a 100 Ω series resistor and a 10 µF capacitor in series to block DC.
+- A GPIO pin cannot drive a passive speaker directly. Connect the filter output to an amplifier
+  module for a speaker.
+
+Any output-capable GPIO pin can be used. Avoid strapping pins and pins already used by other hardware
+on the board:
+
+| Board                     | Tested pin      | Note                                                  |
+| ------------------------- | --------------- | ----------------------------------------------------- |
+| ESP32-C3 SuperMini / Zero | GPIO1           | GPIO2 also works. Do not use strapping pins 8 and 9.  |
+| ESP32-S3-BOX-3            | GPIO1 or GPIO14 | Do not use the display or touch pins (GPIO4/5/6/8).   |
+| ESP32 (original)          | Any output GPIO |                                                       |
+
+## Media Player Example
+
+A [Speaker Source Media Player](/components/media_player/speaker_source/) can feed the speaker, for
+example to play music streamed with [Sendspin](/components/media_source/sendspin/):
+
+```yaml
+sendspin:
+  id: sendspin_hub
+
+speaker:
+  - platform: sigma_delta
+    id: sigma_delta_speaker
+    pin: GPIOXX
+
+media_source:
+  - platform: sendspin
+    id: sendspin_source
+    buffer_size: 40000  # Smaller buffer for boards without PSRAM
+
+media_player:
+  - platform: speaker_source
+    id: main_player
+    media_pipeline:
+      speaker: sigma_delta_speaker
+      sources:
+        - sendspin_source
+```
+
+On boards without PSRAM, such as most ESP32-C3 boards, lower the Sendspin `buffer_size` as shown
+above; the default buffer does not fit in internal RAM.
+
+## See Also
+
+- [Speaker Component](/components/speaker/)
+- [Speaker Source Media Player](/components/media_player/speaker_source/)
+- [Media Player Components](/components/media_player/)
+- [Sigma-Delta Output](/components/output/sigma_delta_output/)
