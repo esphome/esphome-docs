@@ -8,8 +8,8 @@ params:
 ---
 
 The `modbus_monitor` component runs automations for the requests and responses that a [Modbus](/components/modbus/)
-hub handles. On a hub with the `server` role, that is each request the hub receives and the reply of another device
-to it. On a hub with the `client` role, that is each request the hub sends and the reply to it.
+hub handles. On a hub with the `server` role, that is each request the hub receives and the reply to it, sent by
+this hub or another device. On a hub with the `client` role, that is each request the hub sends and the reply to it.
 
 ```yaml
 # Example configuration entry
@@ -43,8 +43,8 @@ in it. Copy what you need first. Keep the automation short: it runs in the hub's
 ### Server Hub
 
 `on_request` runs for every frame the hub reads as a request, for any address and for broadcasts. For a request to
-one of this hub's [Modbus Server](/components/modbus_server/) devices, it runs after the device has answered or
-queued its answer. `on_response` runs for the reply of another device to a request the hub has seen.
+one of this hub's [Modbus Server](/components/modbus_server/) devices, it runs before the device answers.
+`on_response` runs for each reply the hub has sent and for the reply of another device to a request the hub has seen.
 
 > [!NOTE]
 > The hub tells a request from a reply by the order and shape of the frames. If a device does not answer, the next
