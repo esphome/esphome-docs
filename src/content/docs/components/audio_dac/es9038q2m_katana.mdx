@@ -1,6 +1,6 @@
 ---
 title: "ES9038Q2M Katana"
-description: "Use Allo Katana-compatible ES9038Q2M DAC boards with ESPHome over the I²C control interface at address 0x30."
+description: "Use Allo Katana-compatible ES9038Q2M DAC boards with ESPHome over their I²C control interface."
 ---
 
 import APIRef from '@components/APIRef.astro';
@@ -63,6 +63,11 @@ audio_dac:
 ## Automations
 
 All [Audio DAC automations](/components/audio_dac/#automations) are supported by this platform.
+
+> [!NOTE]
+> The volume maps linearly onto the control interface's 0.5 dB attenuation steps, so `100%` is 0 dB,
+> `50%` is about -64 dB and the lowest settings are inaudible. Most listening happens in the upper part of
+> the range.
 
 ## See Also
 
