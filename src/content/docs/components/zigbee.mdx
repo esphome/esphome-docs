@@ -45,7 +45,7 @@ to the coordinator.
 zigbee:
   id: my_zigbee
   router: true
-  power_source: BATTERY
+  power_source: MAINS_SINGLE_PHASE
   on_join:
     then:
       - logger.log:
@@ -71,14 +71,14 @@ zigbee:
   sleep behavior. One of `UNKNOWN`, `MAINS_SINGLE_PHASE`, `MAINS_THREE_PHASE`, `BATTERY`,
   `DC_SOURCE`, `EMERGENCY_MAINS_CONST`, or `EMERGENCY_MAINS_TRANSF`. Defaults to `DC_SOURCE`.
 
-- **version** (*Optional*, int): Application version number in range 0 to 255. Defaults to 0.
+- **version** (*Optional*, int): Application version number in range `0` to `255`. Defaults to `0`.
 
 - **model** (*Optional*, string): Model Identifier of the Zigbee device. Maximum length is 31 ASCII
   characters. Defaults to the ESPHome node name.
 
 - **manufacturer** (*Optional*, string): Manufacturer name of the Zigbee device. Change this only if you want
   to provide your own converter/quirks as it might break some default handling in ZHA or Zigbee2MQTT. Maximum
-  length is 31 ASCII characters. Defaults to the `esphome`.
+  length is 31 ASCII characters. Defaults to `esphome`.
 
 - **on_start** (*Optional*, [Automation](/automations#automation)): Automation to run when the Zigbee stack is fully
   initialized and can be interacted with. It will then try to (re-)join a network.
