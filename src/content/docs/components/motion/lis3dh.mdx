@@ -55,6 +55,8 @@ sensor:
     `1.1g`. By default this is compared against the total measured acceleration, which always includes the
     ~1 g of gravity, so it must be set above `1g`. Enable `high_pass_filter` to compare against the *change*
     in acceleration instead, which allows much smaller values.
+    The value cannot exceed what the selected `accelerometer_range` can represent (about `2g` at `2G`,
+    `4g` at `4G`, `7.9g` at `8G` and `23.6g` at `16G`).
   - **duration** (*Optional*, int): The number of consecutive samples (in output-data-rate periods) the
     threshold must be exceeded before the interrupt fires. Defaults to `0`. Range `0` to `127`.
   - **axes** (*Optional*, list): Which axes may trigger the interrupt, any of `x`, `y`, `z`.
