@@ -208,8 +208,7 @@ In addition to visual styling, each widget supports some boolean **flags** to in
   ignored in layout calculations. Defaults to `false`.
 - **ignore_layout** (*Optional*, boolean): the widget is simply ignored by the layouts. Its coordinates can be set as
   usual.
-- **layout_1** (*Optional*, boolean): custom flag, free to use by layouts. This is the same flag as
-  `flex_in_new_track`.
+- **layout_1** (*Optional*, boolean): older name for `flex_in_new_track`; use that name instead.
 - **layout_2** (*Optional*, boolean): custom flag, free to use by layouts.
 - **overflow_visible** (*Optional*, boolean): do not clip the children's content to the parent's boundary.
 - **press_lock** (*Optional*, boolean): keep the widget pressed even if the press slid from the widget.
@@ -676,9 +675,9 @@ button from approximately 200 bytes (for both the button and its label widget) d
       component](/components/key_collector#key_collector) instead of `text` when the button is pressed.
     - **selected** (*Optional*, boolean): Set the button as the most recently released or focused. Defaults to `false`.
     - **text** (*Optional*, [Text property](#text-property)): Text to display on the button.
-    - **width** (*Optional*): Width relative to the other buttons in the same row. Must be a value between `1` and `15`
-      ; the default is `1` (for example, given a line with two buttons, one with `width: 1` and another one with
-      `width: 2`, the first will be `33%` wide while the second will be `66%` wide).
+    - **width** (*Optional*): Width relative to the other buttons in the same row. Must be a value between `1` and
+      `15`; the default is `1` (for example, given a line with two buttons, one with `width: 1` and another one
+      with `width: 2`, the first will be `33%` wide while the second will be `66%` wide).
     - **control** (*Optional*): Binary flags to control behavior of the buttons (all `false` by default):
       - **checkable** (*Optional*, boolean): Enable toggling of a button, `checked` state will be added/removed as the
         button is clicked.
