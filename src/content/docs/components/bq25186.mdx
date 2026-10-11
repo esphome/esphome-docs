@@ -65,9 +65,9 @@ switch:
 ### Charging configuration
 
 - **battery_regulation_voltage** (*Optional*, voltage): Battery regulation voltage, in 10 mV steps from `3.5V` to
-  `4.65V`. Default: `4.2V`.
+  `4.65V`; a value between steps is rejected. Default: `4.2V`.
 - **fast_charge_current** (*Optional*, current): Fast charge current from `5mA` to `1A`, in 1 mA steps up to `35mA` and
-  10 mA steps above. Default: `10mA`.
+  10 mA steps from `40mA`; a value between steps is rejected. Default: `10mA`.
 - **charge_enabled** (*Optional*, boolean): Enable or disable charging. Default: `true`.
 - **flash_charging_mode** (*Optional*, boolean): Enable flash charging mode (behavior undocumented in the datasheet). Default: `false`.
 - **precharge_is_iterm** (*Optional*, boolean): Use precharge current as termination current. Default: `false`.
