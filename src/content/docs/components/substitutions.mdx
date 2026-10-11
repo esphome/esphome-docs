@@ -143,6 +143,26 @@ In addition to the Jinja expressions, ESPHome supports a number of built-in func
 - `ord` Returns the Unicode code point for a given character. Example: `ord("A") == 65`
 - `chr` Returns the character for a given Unicode code point. Example: `chr(65) == "A"`
 - `len` Returns the length of the string. Example: `len("Hello") == 5`
+- `this_file()` Returns the path of the YAML file the expression is written in, as an absolute
+  [`PurePath`](https://docs.python.org/3/library/pathlib.html#pure-paths). Example: `this_file().name`
+- `this_dir()` Returns the directory of that file, also as a `PurePath`. Example: `this_dir() / "my_switch.h"`
+
+`this_file()` and `this_dir()` follow the file being parsed, so inside an `!include`d file or a package they refer
+to that file, not to the main configuration. A substitution whose value calls them is expanded in the file that
+defines it, so `${here}` below gives the name of the main configuration's directory even when it is used from a
+package, and a `substitutions: !include vars.yaml` block resolves against `vars.yaml`. Because they are functions, a
+substitution named `this_file` or `this_dir` keeps its own meaning.
+
+```yaml
+substitutions:
+  here: ${ this_dir().name }
+
+esphome:
+  includes:
+    - ${ this_dir() / "my_switch.h" }
+  on_boot:
+    - logger.log: "running ${this_file().name} from ${here}"
+```
 
 ## Disabling Jinja and substitutions
 
