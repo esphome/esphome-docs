@@ -27,7 +27,7 @@ Infinity 2.0 WiFi controller, including:
 - APC Able Swing Gate Openers
 
 The controller is driven over a serial connection, so a
-[UART bus](/components/uart) component is required. The UART **must** be set to
+[UART bus](/components/uart/) component is required. The UART **must** be set to
 9600 baud, 8 data bits, no parity and 1 stop bit (9600 8N1), with both `tx_pin`
 and `rx_pin` connected.
 
@@ -52,14 +52,15 @@ cover:
 
 ## Configuration variables
 
-- **uart_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the
-  [UART bus](/components/uart) connected to the controller. Required if multiple
+- **uart_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the
+  [UART bus](/components/uart/) connected to the controller. Required if multiple
   UART buses are defined.
-- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): How
-  often to poll the controller for its status. Defaults to `500ms`.
-- All other options from [Cover](/components/cover#config-cover).
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How
+  often to poll the controller for its status. A partial position is reached by stopping
+  when a poll reports it, so a longer interval means a larger overshoot. Defaults to `500ms`.
+- All other options from [Cover](/components/cover/#config-cover).
 
-## Hardware connection
+## Hardware Connection
 
 The controller exposes its serial link on the connector marked **INTERFACE
 PORT** (it may also be labeled **ADI PORT**).
@@ -74,24 +75,10 @@ PORT** (it may also be labeled **ADI PORT**).
 />
 
 Connect the ESP's UART to this port: the ESP's TX and RX lines and a common
-ground. In the example schematic below, `GPIO25` is used for TX (`TXD`) and
-`GPIO32` for RX (`RXD`). A 47&nbsp;kΩ series resistor **must** be fitted in the
-RX line; without it the controller can fail to start on power-up. The matching
-configuration is:
-
-```yaml
-uart:
-  - id: gate_uart
-    baud_rate: 9600
-    tx_pin: GPIO25
-    rx_pin: GPIO32
-
-cover:
-  - platform: apc_proteous
-    id: gate
-    name: Gate
-    device_class: gate
-```
+ground. A 47&nbsp;kΩ series resistor **must** be fitted in the RX line; without
+it the controller can fail to start on power-up. The example schematic below
+uses `GPIO25` for TX (`TXD`) and `GPIO32` for RX (`RXD`); any UART-capable pins
+will do, so set `tx_pin` and `rx_pin` to match your wiring.
 
 <Figure
   src={apcWiringImg}
@@ -102,11 +89,7 @@ cover:
   height={288}
 />
 
-> [!NOTE]
-> The GPIO assignments above are only an example. Any UART-capable pins can be
-> used; set `tx_pin` and `rx_pin` to match your wiring.
-
-## Position control
+## Position Control
 
 The controller reports the gate position, so the cover supports open, close,
 stop and toggle commands as well as moving to a partial position. When a target
@@ -117,6 +100,6 @@ position reaches the target.
 ## See Also
 
 - [Cover Component](/components/cover/)
-- [UART Bus](/components/uart)
-- [Automation](/automations)
+- [UART Bus](/components/uart/)
+- [Automation](/automations/)
 - <APIRef text="apc_proteous_cover.h" path="apc_proteous/apc_proteous_cover.h" />
