@@ -166,9 +166,9 @@ text_sensor:
 
 ### `ufm01.clear_accumulated_flow` Action
 
-Clears the accumulated flow stored on the UFM-01. The action waits for the UART to be idle, sends the command, and
-continues the automation after the meter acknowledges it (or after a timeout). If a clear is already in progress,
-additional triggers are ignored and do not advance the automation chain.
+Clears the accumulated flow stored on the UFM-01. The command is sent once the UART is idle and the automation
+continues right away; the meter's acknowledgement, or a timeout, is logged. A request made while one is still pending
+joins it instead of sending a second command.
 
 ```yaml
 on_...:
