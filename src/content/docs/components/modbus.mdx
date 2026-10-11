@@ -113,8 +113,9 @@ modbus_monitor:
 ```
 
 Answer `on_response`, `on_error` and `on_no_response`: until a response is sent, the hub waits for it and can take
-the next request for the reply. Keep the client hub's `send_wait_time` well below the timeout of the device that
-sends the requests, so that `on_no_response` answers in time. Otherwise a late reply to a read of the same device with
+the next request for the reply. Keep the client hub's `turnaround_time` plus `send_wait_time` well below the timeout
+of the device that sends the requests, so that `on_no_response` answers in time; other traffic on that hub adds to
+this. Otherwise a late reply to a read of the same device with
 the same function code and length cannot be told apart from the reply to a newer request.
 
 ### Configuration Variables
