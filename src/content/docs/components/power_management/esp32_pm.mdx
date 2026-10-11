@@ -105,6 +105,9 @@ peripherals are supported and unsupported peripherals will basically be reset up
 observed on an esp32-c6 devkit that setting to False causes a crash within the first minute of
 operation.
 
+GPIO outputs are one case to watch: with power_down_peripherals: True, an output pin may not keep
+its level during light sleep. Set `hold_state: true` on any pin that must keep its state.
+
 In Light Sleep, peripherals are clock gated, and interrupts (from GPIOs and internal peripherals) will
 not be generated. Currently, there is **not** a companion component to provide functionality similar to
 Deep Sleep, but for Light Sleep. The difference between Light Sleep and Deep Sleep is that in Light
