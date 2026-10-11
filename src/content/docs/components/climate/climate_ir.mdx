@@ -240,9 +240,11 @@ climate:
 ### `climate_ir_siemens_ira211`
 
 The `climate_ir_siemens_ira211` climate controls Siemens RDG1xx and RDG2xx thermostats that are operated with the
-Siemens IRA211 handheld remote. It has no options beyond the common ones listed above. Cooling and heating follow
-`supports_cool` and `supports_heat`, and when `receiver_id` is set the climate state is tracked when the thermostat
-is operated with the original remote.
+Siemens IRA211 handheld remote. It has no options beyond the common ones listed above. The thermostat decides between
+heating and cooling itself, so with both `supports_cool` and `supports_heat` enabled the climate offers one
+`heat_cool` mode; the thermostat's `PROTECTION` mode is shown as `off`, and its `COMFORT` and `TIMER` modes as the
+`comfort` and `eco` presets. When `receiver_id` is set the climate state is tracked when the thermostat is operated
+with the original remote.
 
 ```yaml
 # Example configuration entry
