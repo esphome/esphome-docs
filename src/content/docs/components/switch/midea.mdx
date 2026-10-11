@@ -1,0 +1,31 @@
+---
+description: "Purifier switches for Midea climate devices."
+title: "Midea Climate Switches"
+---
+
+Adds a purifier switch (Air Magic/ionizer) to an existing
+[Midea climate](/components/climate/midea/), sharing its UART connection.
+
+```yaml
+switch:
+  - platform: midea
+    midea_id: midea_ac
+    purifier:
+      name: Purifier
+```
+
+## Configuration Variables
+
+- **midea_id** (**Required**, [ID](/guides/configuration-types/#id)): The Midea climate's ID.
+- **purifier** (*Optional*): The purifier switch.
+  - **status_max_age** (*Optional*, [Time](/guides/configuration-types/#time)): Status freshness limit.
+    Defaults to `15s`; range `1ms`–`2147483647ms`.
+  - **restore_mode** (*Optional*): `DISABLED` only (the default).
+  - All other [Switch options](/components/switch/), except `inverted`.
+
+> [!WARNING]
+> Support is model-dependent, not detected by `autoconf`. A remote button alone does not prove UART support.
+
+State follows AC feedback, including remote changes. The switch does not send startup or restore commands.
+Unknown/stale status, busy controls and unchanged requests reject the command; it is not replayed.
+If status updates stop, the last confirmed state remains, even while Home Assistant shows the switch as available.
