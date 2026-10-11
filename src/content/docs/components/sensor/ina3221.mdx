@@ -103,9 +103,9 @@ sensor:
   Defaults to `true`.
 - **adc_averaging** (*Optional*, int): Number of samples averaged per conversion. One of `1`, `4`, `16`, `64`, `128`,
   `256`, `512` or `1024`. Defaults to `1`.
-- **adc_time** (*Optional*, [Time](/guides/configuration-types#time)): Conversion time per sample. One of `140us`,
+- **adc_time** (*Optional*, [Time](/guides/configuration-types/#time)): Conversion time per sample. One of `140us`,
   `204us`, `332us`, `588us`, `1100us`, `2116us`, `4156us` or `8244us`. Defaults to `8244us`. Set separate times for the
-  two measurements with **bus_voltage** and **shunt_voltage** sub-keys.
+  two measurements with `bus_voltage` and `shunt_voltage` sub-keys.
 - **sum_shunt_voltage** (*Optional*): The chip's own sum of the shunt voltages of all configured channels, in V.
   All options from [Sensor](/components/sensor).
 - **sum_current** (*Optional*): Sum of the currents of all configured channels, in amperes.
@@ -114,7 +114,8 @@ sensor:
   All options from [Sensor](/components/sensor).
 - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval to check the sensor. Defaults to `60s`.
   In single-shot mode it has to be longer than one conversion of all channels, which is
-  `(bus time + shunt time) × adc_averaging × channels`; the configuration fails otherwise.
+  `(bus time + shunt time) × adc_averaging × channels` rounded up to whole milliseconds, plus 5 ms of headroom;
+  the configuration fails otherwise.
 
 The chip is put into power-down mode when the device shuts down or enters deep sleep, so a battery-powered node does
 not keep it converting.
