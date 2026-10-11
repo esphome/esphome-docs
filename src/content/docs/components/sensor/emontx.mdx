@@ -102,6 +102,7 @@ uart:
   tx_pin: GPIOXX
   baud_rate: 115200
   rx_buffer_size: 2048
+  tx_buffer_size: 2048  # ESP32 only: at least the largest block the flasher writes at once
 
 emontx:
   id: myemontx
@@ -123,11 +124,13 @@ switch:
       - emontx.resume: myemontx
 ```
 
-Turn the switch on before connecting to the serial proxy, and off again once you have disconnected.
+Turn the switch on before connecting to the serial proxy, and off again once you have disconnected. Writes
+larger than the UART's transmit buffer are cut short, so size `tx_buffer_size` as described for the
+[Serial Proxy](/components/serial_proxy/).
 
-#### Configuration variables
+#### Configuration Variables
 
-- **id** (*Required*, [ID](/guides/configuration-types#id)): The ID of the EmonTx hub.
+- **id** (*Required*, [ID](/guides/configuration-types/#id)): The ID of the EmonTx hub.
 
 ## Conditions
 
@@ -143,9 +146,9 @@ Check whether the EmonTx hub is currently paused.
       - logger.log: "EmonTx is paused"
 ```
 
-#### Configuration variables
+#### Configuration Variables
 
-- **id** (*Required*, [ID](/guides/configuration-types#id)): The ID of the EmonTx hub.
+- **id** (*Required*, [ID](/guides/configuration-types/#id)): The ID of the EmonTx hub.
 
 ## Quick Start
 
