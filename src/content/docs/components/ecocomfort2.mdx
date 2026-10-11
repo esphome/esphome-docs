@@ -1,30 +1,23 @@
 ---
-description: "Instructions for setting up the Fantini Cosmi Aspirvelo Air Ecocomfort 2.0 Smart VMC integration via BLE in ESPHome."
+description: "Instructions for controlling a Fantini Cosmi Ecocomfort 2.0 Smart ventilation unit over BLE in ESPHome."
 title: "Ecocomfort2"
 ---
 
-The `ecocomfort2` component allows you to control
-[Fantini Cosmi Aspirvelo Air Ecocomfort 2.0 Smart](https://www.fantinicosmi.it/prodotto/aspirvelo-air-ecocomfort-2-0-smart/) VMC
-(Mechanical Ventilation with Heat Recovery) units over BLE using an ESP32.
+The `ecocomfort2` component lets you control a
+[Fantini Cosmi Aspirvelo Air Ecocomfort 2.0 Smart](https://www.fantinicosmi.it/prodotto/aspirvelo-air-ecocomfort-2-0-smart/)
+heat recovery ventilation unit over BLE from an ESP32.
 
-The component uses a hub architecture: one `ecocomfort2` hub per VMC unit,
-with platform entities registered as children. A single ESP32 can control
-multiple VMC units simultaneously.
-
-This page documents the hub and the `fan` platform. Additional platforms
-(`sensor`, `binary_sensor`, `text_sensor`, `select`, `number`, `switch` and
-`button`) are added in follow-up releases.
-
-## Requirements
-
-- ESP32 device with BLE support
-- [BLE Tracker](/components/esp32_ble_tracker/) and
-  [BLE Client](/components/ble_client/) configured
-- VMC unit in pairing range
-
-## Hub Configuration
+The component has two parts: a hub that keeps the BLE connection to one unit, and a
+[Fan](/components/fan/) platform that controls the unit's air flow mode and speed. One ESP32 can control
+several units, with one hub per unit. Sensors and other entities for this unit come in later releases.
 
 ```yaml
+# Example configuration entry
+esp32_ble:
+  io_capability: none
+  auth_req_mode: sc_bond
+  max_key_size: 16
+
 esp32_ble_tracker:
 
 ble_client:
@@ -34,66 +27,79 @@ ble_client:
 ecocomfort2:
   - id: vmc_hub
     ble_client_id: vmc_ble
+
+fan:
+  - platform: ecocomfort2
+    name: "Ventilation"
+    ecocomfort2_id: vmc_hub
+```
+
+## BLE Pairing
+
+The unit only accepts an encrypted, bonded BLE connection. The [ESP32 BLE](/components/esp32_ble/) component
+must be configured with these settings, and the configuration is rejected otherwise:
+
+- `io_capability: none`
+- `auth_req_mode: sc_bond`
+- `max_key_size: 16`
+
+The first time the ESP32 connects, put the unit in pairing mode (see the unit's manual). The bond is stored
+on the ESP32 and is kept across reboots and OTA updates, so later connections need no pairing mode. If
+pairing does not finish within 10 seconds, the component disconnects and the BLE client tries again.
+
+See the [BLE Client](/components/ble_client/) page for how to find the MAC address of the unit.
+
+## Hub Configuration
+
+```yaml
+ecocomfort2:
+  - id: vmc_hub
+    ble_client_id: vmc_ble
 ```
 
 ### Configuration Variables
 
-- **id** (**Required**, [ID](/guides/configuration-types/#config-id)):
-  The ID of the hub.
-- **ble_client_id** (**Required**, [ID](/guides/configuration-types/#config-id)):
-  The ID of the BLE client connected to the VMC unit.
-- **update_interval** (*Optional*, [Time](/guides/configuration-types/#config-time)):
-  How often to poll the VMC unit for state updates. Defaults to `30s`.
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code generation.
+- **ble_client_id** (**Required**, [ID](/guides/configuration-types/#id)): The ID of the
+  [BLE Client](/components/ble_client/) connected to the unit.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How often the operating state is
+  read back from the unit. Defaults to `30s`.
 
-## Fan Platform
-
-The fan entity provides the main operating control for the VMC unit.
+## Fan
 
 ```yaml
 fan:
   - platform: ecocomfort2
-    name: "VMC Fan"
+    name: "Ventilation"
     ecocomfort2_id: vmc_hub
 ```
 
 ### Configuration Variables
 
-- **ecocomfort2_id** (**Required**, [ID](/guides/configuration-types/#config-id)):
-  The ID of the Ecocomfort2 hub.
-- All other options from [Fan](/components/fan/).
+- **ecocomfort2_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the `ecocomfort2` hub.
+  Only needed when more than one hub is configured.
+- All other options from [Fan](/components/fan/#base-fan-configuration).
 
-### Preset Modes
+### Speeds and Presets
 
-| Preset | Description |
-|--------|-------------|
-| In | Intake only |
-| Out | Exhaust only |
-| In-Out | Bidirectional ventilation |
-| Sensor | Sensor-driven automatic direction |
-| Auto | Fully automatic mode (speed and direction) |
+The fan has speeds `1` to `4`. The preset selects the air flow mode:
 
-Speed can be set from 1 to 4. In Auto mode, speed is managed by the VMC
-unit; changing speed manually switches to Sensor mode.
+- `In`: air flows in only.
+- `Out`: air flows out only.
+- `In-Out`: air flows in both directions.
+- `Sensor`: the unit sets the air flow direction from its sensors.
+- `Auto`: the unit controls the speed itself. Setting a speed while in `Auto` switches to `Sensor`.
 
-## BLE Pairing
+Setting only a speed keeps the current preset. Turning the fan off keeps the preset and speed, so turning it
+on again resumes them.
 
-The component requests BLE encryption automatically after connecting.
-If the VMC unit is already bonded (from a previous session), the encrypted
-link is restored without user interaction. BLE bonds persist across OTA
-updates.
-
-If pairing is required for the first time:
-
-1. Put the VMC unit into pairing mode (refer to the Ecocomfort 2.0 manual)
-2. The ESP32 will automatically attempt pairing on connect
-
-If authentication times out (10 seconds), the component disconnects and
-retries the full connection cycle automatically.
+The on/off state always comes from the unit after the first read back. The fan's `restore_mode` only brings
+back the last preset and speed after a reboot; set it to `NO_RESTORE` to skip that. After each change, the
+state is read back from the unit about 300 ms later.
 
 ## Multiple Units
 
-A single ESP32 can control multiple VMC units. Define one hub and one set
-of platform entities per unit:
+Add one BLE client, one hub and one fan for each unit:
 
 ```yaml
 ble_client:
@@ -110,15 +116,16 @@ ecocomfort2:
 
 fan:
   - platform: ecocomfort2
-    name: "VMC 1 Fan"
+    name: "Ventilation 1"
     ecocomfort2_id: vmc1
   - platform: ecocomfort2
-    name: "VMC 2 Fan"
+    name: "Ventilation 2"
     ecocomfort2_id: vmc2
 ```
 
 ## See Also
 
-- [BLE Client](/components/ble_client/)
+- [ESP32 BLE](/components/esp32_ble/)
 - [ESP32 BLE Tracker](/components/esp32_ble_tracker/)
+- [BLE Client](/components/ble_client/)
 - [Fan Component](/components/fan/)
