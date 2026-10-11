@@ -7,12 +7,8 @@ sidebar:
 
 import APIRef from '@components/APIRef.astro';
 
-
-The `power_management` component configures power-saving behavior for the device. Each supported
-platform registers its own `platform:` entry under this component, with its own set of configuration
-options.
-
-## Base Power Management Configuration
+The `power_management` component configures the power-saving behaviour of the device. Each supported
+platform registers its own `platform:` entry under this component, with its own configuration options.
 
 ```yaml
 # Example configuration entry
@@ -20,21 +16,16 @@ power_management:
   - platform: ...
 ```
 
-<span id="config-power-management"></span>
+## Configuration Variables
 
-**Configuration variables:**
-
-- **platform** (**Required**, [platform](#platforms-power-management)): One of the supported Power
-  Management [Platforms](#platforms-power-management).
-- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code
+- **platform** (**Required**, string): One of the supported [platforms](#platforms).
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code
   generation.
-
-<span id="platforms-power-management"></span>
 
 ## Platforms
 
-- [**ESP32**](/components/power_management/esp32_power_management/) Dynamic frequency scaling and automatic Light
-  Sleep for ESP-IDF
+- [**ESP32**](/components/power_management/esp32_power_management/): Dynamic frequency scaling and automatic
+  light sleep on the ESP32 family.
 
 ## See Also
 
