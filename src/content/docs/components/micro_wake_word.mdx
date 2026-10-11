@@ -28,7 +28,7 @@ micro_wake_word:
 - **stop_after_detection** (*Optional*, boolean): Whether to stop the component after detecting a wake word. Defaults to `true`.
 - **task_stack_in_psram** (*Optional*, boolean): If `true`, allocate the inference task stack in PSRAM instead of internal RAM. Requires the [PSRAM](/components/psram/) component. Defaults to `false`.
 - **prefer_internal_ram** (*Optional*, boolean): If `true`, try to place each active model's tensor arena and weights
-  in internal RAM. Defaults to `false`.
+  in internal RAM. See [Memory Usage](#memory-usage) for the RAM tradeoff. Defaults to `false`.
 - **models** (*Optional*, list): The models to use. Only the first model is enabled by default on the first boot. Each model's enabled state is then saved/restored to/from the flash.
   Defaults to an empty list, which builds the firmware without any wake word models.
 
@@ -84,8 +84,8 @@ Set `prefer_internal_ram: true` to try to place each active model's tensor arena
 includes models downloaded while the device is running. A model whose weights are already in internal RAM is not
 copied again. This can reduce inference time on some ESP32 devices, but uses more internal RAM. If an internal
 allocation fails, ESPHome logs a warning and falls back to the default arena allocation or the model's original
-storage location. The optional fast copy and arena are released when the model is disabled; downloaded model data
-remains in its original storage so it can be enabled again.
+storage location. When a model is disabled, ESPHome releases its tensor arena and any internal RAM copy of its weights.
+Downloaded model data remains in its original storage so the model can be enabled again.
 
 ## Actions
 
