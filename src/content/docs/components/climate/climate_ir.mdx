@@ -238,14 +238,19 @@ climate:
 
 ### `toshiba`
 
-- **model** (*Optional*, string): There are four valid models:
+- **model** (*Optional*, string): There are five valid models:
 
   - `GENERIC`  : Temperature range is from 17 to 30 (default)
   - `RAC-PT1411HWRU-C`  : Temperature range is from 16 to 30; unit displays temperature in degrees Celsius
   - `RAC-PT1411HWRU-F`  : Temperature range is from 16 to 30; unit displays temperature in degrees Fahrenheit
   - `RAS-2819T`  : Temperature range is from 18 to 30; supports two-packet IR protocol
+  - `SEIYA`  : Temperature range is from 17 to 30; Seiya family units such as the RAS-B13E2KVG-E, with vertical,
+    horizontal and both swing modes
 
 > [!NOTE]
+> - The `SEIYA` swing setting is a momentary command, as on the remote: the swing code is only sent when the
+>   swing mode changes, and a received swing command updates the reported mode without turning it off again on
+>   the next ordinary update.
 > - While they are identified as separate models here, the `RAC-PT1411HWRU-C` and `RAC-PT1411HWRU-F` are
 >   in fact the same physical model/unit. They are separated here only because different IR codes are used
 >   depending on the desired unit of measurement. This only affects how temperature is displayed on the unit itself.
