@@ -345,7 +345,7 @@ There is nothing to configure, and on a good link uploads stay on TCP.
   RTL87xx devices keep using TCP. It uses no extra RAM outside an update: the device opens the UDP socket only while
   an upload runs.
 - The upload uses UDP on the same port number as the OTA [`port`](#configuration-variables). If a firewall blocks
-  it, the upload falls back to TCP after 5 seconds and the log shows `UDP blocked, using TCP`.
+  it, the upload falls back to TCP after 15 seconds and the log shows `UDP blocked, using TCP`.
 - Encrypted uploads stay encrypted over UDP.
 
 ## Updating the partition table on ESP32
