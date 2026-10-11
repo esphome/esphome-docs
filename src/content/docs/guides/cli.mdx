@@ -67,7 +67,7 @@ option takes precedence.
 
 The `line` format is the same one compilers use, so editors, IDE terminals and CI tools can link each error to its
 place in the YAML file. Errors in a package or included file give the location in that file. Extra information
-is printed on following lines starting with `note:`, for example where a file with a YAML syntax error was included:
+is printed on following lines flagged with `note:`, for example where a file with a YAML syntax error was included:
 
 ```text
 common/wifi.yaml:3:11: error: expected ',' or ']', but got ':'
