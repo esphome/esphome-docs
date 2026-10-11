@@ -435,8 +435,7 @@ separated by `;`, for example:
 ```
 
 - A polygon has 3 to 23 points.
-- `x` ranges from -4860 to 4860 and `y` from 0 to 7560, in the radar's coordinates (same as the target X/Y
-  sensors).
+- Points are in the radar's coordinates, the same as the target X/Y sensors.
 - Spaces around numbers and a trailing `;` are allowed.
 - An empty value disables the zone, and its presence binary sensor becomes unknown.
 - An invalid value is rejected and the previous polygon is kept.
@@ -448,8 +447,8 @@ for [presence_timeout](#number) after the last target leaves it.
 > On ESP8266, polygons are kept in RTC memory by default, which survives a reboot but not a power loss. Set
 > [restore_from_flash](/components/esp8266#configuration-variables) to `true` to keep them across a power loss.
 > Either way, the space for saved settings is small and shared with other components, and each zone takes about
-> 100 bytes, so only a few zones may fit. When a polygon can't be saved, a warning is logged and the polygon is lost
-> on reboot.
+> 100 bytes, so only a few zones may fit. When a polygon can't be saved, it is rejected: a warning is logged and the
+> previous polygon is kept.
 
 > [!NOTE]
 > Polygons are checked against the raw target coordinates reported by the radar, before any sensor filter. A filter
