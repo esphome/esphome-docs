@@ -14,8 +14,9 @@ two cells in series; the two chips are otherwise the same. It uses the [I²C Bus
 communication.
 
 > [!NOTE]
-> The component scales the cell voltage for the MAX17048. The MAX17049 reports two cells with a doubled voltage
-> step, so its `battery_voltage` reads at half the real value; a multiply filter of 2 corrects it.
+> The voltage is scaled for the MAX17048. On a MAX17049, whose voltage step is doubled for its two cells,
+> `battery_voltage` is therefore the average voltage per cell rather than the pack voltage; a `multiply: 2` filter
+> gives the pack voltage.
 
 <Figure
   src="/images/max17048.jpg"
