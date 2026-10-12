@@ -15,8 +15,9 @@ the corrected temperature, assuming the vapor pressure is the same inside and ou
 
 Configuration variables:
 
-- **sensor_id** (**Required**, [ID](/guides/configuration-types/#id)): The temperature sensor whose state is
-  the corrected temperature.
+- **sensor_id** (**Required**, [ID](/guides/configuration-types/#id)): The temperature sensor that already
+  carries the same offset, so its state is the corrected temperature. Pointing it at the raw temperature gives
+  a wrong humidity without any warning.
 - **temperature_offset** (**Required**, float, [templatable](/automations/templates/#config-templatable)):
   The offset that was applied to the temperature sensor, in the sensor's unit.
 - **use_fahrenheit** (*Optional*, boolean): Set to `true` when the temperature sensor reports °F.
@@ -41,4 +42,5 @@ sensor:
             temperature_offset: -6
 ```
 
-Readings taken at a corrected temperature outside -40 to 50 °C pass through unchanged.
+While the temperature sensor has no reading yet, or reads outside -40 to 50 °C, the humidity passes through
+uncorrected and a warning is logged once. A `NaN` temperature drops the update, so the last corrected value stays.
