@@ -103,7 +103,7 @@ Shorthand notation also can be used.
 
 ```yaml
 binary_sensor:
-  - platform: lis2dw12_base
+  - platform: lis2dw12
     tap: Single tap          # shorthand notation for the sensor
     double_tap: Double tap   # -- "" --
     freefall: Freefall       # -- "" --
@@ -128,7 +128,7 @@ regular notation only the **name** is required. All options from [Sensor](/compo
 
 ```yaml
 sensor:
-  - platform: lis2dw12_base
+  - platform: lis2dw12
     acceleration_x: Accel X
     acceleration_y: Accel Y
     acceleration_z: Accel Z
@@ -147,7 +147,7 @@ Text sensor provides 6D orientation information. You can use shorthand notation 
 
 ```yaml
 text_sensor:
-  - platform: lis2dw12_base
+  - platform: lis2dw12
     orientation: Orientation
 ```
 
@@ -221,4 +221,4 @@ lis2dw12_i2c:  # or lis2dw12_spi
 ## See Also
 
 - [Sensor Filters](/components/sensor#sensor-filters)
-- <APIRef text="lis2dw12_base.h" path="lis2dw12_base/lis2dw12_base.h" />
+- <APIRef text="lis2dw12.h" path="lis2dw12/lis2dw12.h" />
