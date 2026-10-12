@@ -34,7 +34,7 @@ sensor:
     name: "LIS3DH Roll"
 ```
 
-## Configuration variables
+## Configuration Variables
 
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to `0x18`;
   on boards where the SDO/SA0 pin is tied high it is `0x19`.
@@ -43,7 +43,8 @@ sensor:
   measures stronger accelerations.
 - **accelerometer_odr** (*Optional*, string): The output data rate of the accelerometer. One of
   `1HZ`, `10HZ`, `25HZ`, `50HZ`, `100HZ`, `200HZ`, `400HZ`, `1620HZ`, `1344HZ`. Defaults to `100HZ`.
-  `1620HZ` is only available in `LOW_POWER` mode, and `1344HZ` becomes 5376 Hz in `LOW_POWER` mode.
+  `1620HZ` needs `operating_mode: LOW_POWER`, and `1344HZ` is rejected in that mode because the chip would
+  then run at 5376 Hz.
 - **operating_mode** (*Optional*, string): Selects the resolution, which also affects power usage. One of
   `LOW_POWER` (8-bit), `NORMAL` (10-bit), `HIGH_RESOLUTION` (12-bit). Defaults to `HIGH_RESOLUTION`.
 - **interrupt** (*Optional*): Configure the on-chip motion (activity) interrupt. When present, the LIS3DH
