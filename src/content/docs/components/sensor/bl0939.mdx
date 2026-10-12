@@ -44,7 +44,7 @@ sensor:
 > [!NOTE]
 > The configuration above should work for Sonoff Dual R3 v2.
 
-## Measurement modes
+## Measurement Modes
 
 The BL0939 datasheet describes two front end circuits, and each one needs its own scaling to turn the raw
 readings into volts, amperes, watts and kWh. Set `mode` to the circuit your board uses:
@@ -75,14 +75,14 @@ sensor:
 ```
 
 > [!NOTE]
-> If your board uses different shunt, CT, burden or divider values than the ones above, every reading will be off
-> by a fixed factor. Pick the mode that matches your circuit, then correct the readings with a `multiply`
-> [sensor filter](/components/sensor#sensor-filters).
+> If your board uses different shunt, CT, burden or divider values than the ones above, the voltage and current
+> readings are each off by their own fixed factor, and power and energy by the product of the two. Pick the mode
+> that matches your circuit, then correct each reading with a `multiply` [sensor filter](/components/sensor/#sensor-filters).
 
 ## Configuration variables
 
 - **mode** (*Optional*, string): The front end circuit of the board, which sets how raw readings are scaled.
-  See [Measurement modes](#measurement-modes). One of:
+  See [Measurement Modes](#measurement-modes). One of:
 
   <EnumValues values={[
     { value: "direct",              default: true, description: "Current shunts and a resistor voltage divider (Sonoff Dual R3 v2)." },
