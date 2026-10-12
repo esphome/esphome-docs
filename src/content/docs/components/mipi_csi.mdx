@@ -39,7 +39,8 @@ mipi_csi:
 - **name** (*Optional*, string): The name of the camera.
 - **sensor** (**Required**, string): The camera sensor model that is connected. Only the driver for
   this sensor is built into the firmware. One of the sensors listed under
-  [Supported sensors](#supported-sensors) below.
+  [Supported sensors](#supported-sensors) below, or the name of a sensor whose driver is provided by a
+  separate IDF component; see [Sensors From Other Components](#sensors-from-other-components).
 - **resolution** (*Optional*, string): The capture resolution, written as `WIDTHxHEIGHT`, for example
   `1280x720`. Must be one of the resolutions the selected sensor supports; see
   [Supported sensors](#supported-sensors). If omitted, the sensor keeps whatever resolution it starts
@@ -139,6 +140,26 @@ an up to date list.
 Sensors marked `RAW` output Bayer data and are processed by the ISP, which is where auto exposure and
 auto white balance run. `TC358743` and the `RGB`/`YUV` entries above output an already-demosaiced image
 and bypass those algorithms; their picture will not automatically adapt to the light in the room.
+
+### Sensors From Other Components
+
+Other sensors can be used if their driver is provided by a separate IDF component that registers it via
+`ESP_CAM_SENSOR_DETECT_FN`. Add that component through [`esp32` `components`](/components/esp32/#idf-components)
+and set `sensor` to its name. ESPHome then enables no built-in driver for it, so the component must enable its own
+driver, and the supported resolutions and formats depend on it.
+
+```yaml
+esp32:
+  framework:
+    components:
+      - name: my_sensor_driver
+        source: https://github.com/user/my_sensor_driver.git
+
+mipi_csi:
+  name: My Camera
+  sensor: MY_SENSOR
+  sccb_frequency: 400kHz
+```
 
 ## PSRAM bandwidth
 
