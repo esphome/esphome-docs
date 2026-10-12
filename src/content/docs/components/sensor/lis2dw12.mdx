@@ -99,7 +99,7 @@ SPI-specific:
 ## Binary Sensor
 
 Four binary sensors available for use. Internal 500 ms debounce is applied for all sensors.
-For every sensor **name** is required. All other options from
+Every sensor needs at least an **id** or a **name**. All other options from
 [Binary Sensor](/components/binary_sensor/#config-binary_sensor). Shorthand notation also can be used.
 
 ```yaml
@@ -127,7 +127,7 @@ binary_sensor:
 
 Acceleration data is available through sensors configuration.
 You can use shorthand notation like `acceleration_x: "Acceleration X"` or use regular notation. For
-regular notation only the **name** is required. All options from [Sensor](/components/sensor/).
+regular notation at least an **id** or a **name** is required. All options from [Sensor](/components/sensor/).
 
 ```yaml
 sensor:
@@ -160,8 +160,8 @@ text_sensor:
 
 - **lis2dw12_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the `lis2dw12_i2c` or
   `lis2dw12_spi` hub. Needed when more than one sensor is configured.
-- **orientation** (*Optional*): 6D orientation. Can be one of `X Up`, `X Down`,
-  `Y Up`, `Y Down`, `Z Up`, `Z Down`.
+- **orientation** (*Optional*): 6D orientation. One of `X Up`, `X Down`, `Y Up`, `Y Down`, `Z Up`, `Z Down`,
+  or `Unknown` while the chip has not settled on an axis.
 
 ## Automations
 
