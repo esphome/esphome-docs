@@ -197,7 +197,7 @@ handlers, never another action's.
   variable it carries depends on the action - see below.
 - **on_custom_response** (*Optional*, [Automation](/automations/)): Fires instead of `on_response` when the reply
   doesn't parse as a standard-conforming transaction for this function code. Lambda variables: `request`, `response`
-  (raw `std::span<const uint8_t>` PDUs) - the same shape `modbus_client.send`'s `on_response` uses, so a
+  (raw `std::span<const uint8_t>` PDUs), so a
   non-conforming device is still handleable. If left unconfigured, no handler runs for that transmission - the first
   non-conforming reply for this action logs a warning, and any after that log at verbose level instead.
 - **on_error** (*Optional*, [Automation](/automations/)): Fires on a Modbus exception response. Lambda variables:
