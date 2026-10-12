@@ -19,7 +19,7 @@ submit a feature request (see FAQ).
 | ----------------------------------------- | ---------------------------------- | ----------------- |
 | Ballu                                     | `ballu`                            | yes               |
 | Coolix                                    | `coolix`                           | yes               |
-| Daikin | `daikin`                           | yes |
+| [Daikin](#daikin) | `daikin`                           | yes |
 | [Daikin ARC](#daikin_arc) | `daikin_arc`                       | yes |
 | [Daikin BRC](#daikin_brc) | `daikin_brc`                       | yes |
 | [Delonghi](#delonghi_ir) | `delonghi`                         | yes |
@@ -32,13 +32,14 @@ submit a feature request (see FAQ).
 | [Mitsubishi](#mitsubishi) | `mitsubishi`                       | yes |
 | Noblex | `noblex`                           | yes |
 | [Samsung](#samsung) | `samsung`                          | yes |
+| [Siemens IRA211](#siemens_ira211) | `siemens_ira211`        | yes |
 | Electrolux, TCL, Fuego | `tcl112`                           | yes |
 | [Toshiba](#toshiba) | `toshiba`                          | yes |
 | [Whirlpool](#whirlpool) | `whirlpool`                        | yes |
 | Yashima | `yashima`                          | |
 | [Whynter](#whynter) | `whynter`                          | yes |
 | [ZH/LT-01](#zhlt01) | `zhlt01`                           | yes |
-| [Arduino-HeatpumpIR](#heatpumpir) library | `heatpumpir`                       | |
+| [Arduino-HeatpumpIR](#heatpumpir) library | `heatpumpir`                       | `mitsubishi_heavy_zmp` |
 
 This component requires that you have configured a [Remote Transmitter](/components/remote_transmitter/).
 
@@ -108,11 +109,36 @@ climate:
     advanced_commands_support: false
 ```
 
+### `daikin`
+
+The `daikin` climate controls units that use the Daikin ARC43xxx remotes. The target temperature can be set in
+0.5 °C steps. The following presets are supported and map to the unit's own functions:
+
+| Preset     | Unit function                     |
+| ---------- | --------------------------------- |
+| `boost`    | Powerful                          |
+| `sleep`    | Quiet                             |
+| `eco`      | Econo                             |
+| `comfort`  | Comfort airflow                   |
+| `activity` | Intelligent eye (presence sensor) |
+
+The unit ends Powerful after 20 minutes, so the `boost` preset returns to `none` by itself.
+
+```yaml
+# Example configuration entry
+climate:
+  - platform: daikin
+    name: "Living Room AC"
+    sensor: room_temperature
+```
+
 ### `daikin_brc`
 
 The Daikin BRC remotes are used by the ceiling cassette model of Daikin heatpumps.
 
 - **use_fahrenheit** (*Optional*, boolean): U.S. models of the Daikin BRC remote send the temperature in Fahrenheit, if your remote shows Fahrenheit and can not be changed to Celsius then set this to true. Defaults to `false`.
+- **sub_unit** (*Optional*, int): Which indoor unit this climate addresses on a system with several units on one
+  remote, `0` to `5`. A frame from the remote is only decoded when it is addressed to this unit. Defaults to `0`.
 
 ```yaml
 # Example configuration entry
@@ -121,6 +147,17 @@ climate:
     name: "AC"
     sensor: room_temperature
     use_fahrenheit: true
+```
+
+```yaml
+# Two indoor units driven from one transmitter
+climate:
+  - platform: daikin_brc
+    name: "Living Room"
+    sub_unit: 0
+  - platform: daikin_brc
+    name: "Kitchen"
+    sub_unit: 1
 ```
 
 <span id="delonghi_ir"></span>
@@ -214,6 +251,10 @@ climate:
 
 - **supports_dry** (*Optional*, boolean): Enables setting dry mode for this unit. Defaults to `false`.
 - **supports_fan_only** (*Optional*, boolean): Enables setting fan only mode for this unit. Confirm that mode is supported on your remote. Defaults to `false`.
+- **fahrenheit_compatibility** (*Optional*, boolean): Send the temperature codes a Mitsubishi remote set to Fahrenheit
+  uses. These codes add a half degree bit, so every whole degree from 61°F to 88°F reaches the unit unchanged instead
+  of rounding to the nearest Celsius step; targets outside that range are clamped to it. Enable this when you set the
+  target temperature in Fahrenheit, for example when Home Assistant uses imperial units. Defaults to `false`.
 
 - **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to `middle`.
 
@@ -221,6 +262,9 @@ climate:
 - **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Defaults to `middle`.
 
   - Options are: `down`, `middle-down`, `middle`, `middle-up`, `up`, `auto`
+- **vertical_vanes** (*Optional*, int): Set to `2` on units with separately controlled left and right vertical vanes, such
+  as the FH, FS and FX series, so both vanes receive the swing and default position commands. Both vanes always get the
+  same setting. Defaults to `1`.
 
 > [!NOTE]
 > - This climate IR component is also known to work with some Stiebel Eltron Units. It has been tested with Stiebel Eltron IR-Remote `KM07F` and unit `ACW 25 i`
@@ -257,16 +301,40 @@ climate:
     name: "Samsung AC"
 ```
 
+### `siemens_ira211`
+
+The `siemens_ira211` climate controls Siemens RDG1xx and RDG2xx thermostats that are operated with the
+Siemens IRA211 handheld remote. It has no options beyond the common ones listed above. The thermostat decides between
+heating and cooling itself, so with both `supports_cool` and `supports_heat` enabled the climate offers one
+`heat_cool` mode; the thermostat's `PROTECTION` mode is shown as `off`, and its `COMFORT` and `TIMER` modes as the
+`comfort` and `eco` presets. When `receiver_id` is set the climate state is tracked when the thermostat is operated
+with the original remote.
+
+```yaml
+# Example configuration entry
+climate:
+  - platform: siemens_ira211
+    name: "Siemens IRA211"
+    sensor: room_temperature
+```
+
 ### `toshiba`
 
-- **model** (*Optional*, string): There are four valid models:
+- **model** (*Optional*, string): There are six valid models:
 
   - `GENERIC`  : Temperature range is from 17 to 30 (default)
   - `RAC-PT1411HWRU-C`  : Temperature range is from 16 to 30; unit displays temperature in degrees Celsius
   - `RAC-PT1411HWRU-F`  : Temperature range is from 16 to 30; unit displays temperature in degrees Fahrenheit
   - `RAS-2819T`  : Temperature range is from 18 to 30; supports two-packet IR protocol
+  - `RAS-B10N3KV2`  : Temperature range is from 17 to 30; the same commands as `GENERIC` with the IR timings of the
+    RAS-B13 remote family (RAS-B10N3KV2-E1 and similar); use it if your unit ignores `GENERIC`
+  - `SEIYA`  : Temperature range is from 17 to 30; Seiya family units such as the RAS-B13E2KVG-E, with vertical,
+    horizontal and both swing modes
 
 > [!NOTE]
+> - The `SEIYA` swing setting is a momentary command, as on the remote: the swing code is only sent when the
+>   swing mode changes, and a received swing command updates the reported mode without turning it off again on
+>   the next ordinary update. No code to stop the swing is known, so an off setting is not offered.
 > - While they are identified as separate models here, the `RAC-PT1411HWRU-C` and `RAC-PT1411HWRU-F` are
 >   in fact the same physical model/unit. They are separated here only because different IR codes are used
 >   depending on the desired unit of measurement. This only affects how temperature is displayed on the unit itself.
@@ -364,6 +432,24 @@ This platform works with the `arduino` framework and ESP-IDF (on ESP32), and sho
 
 This platform utilises the library's generic one-size-fits-all API, which might not line up perfectly with all of the supported AC units. For example, some AC units have more fan speed options than what the generic API supports.
 
+The `mitsubishi_heavy_zj` and `mitsubishi_heavy_zmp` protocols expose **ECO** and **BOOST** climate presets. ECO maps to `FAN_5` (Econo / energy-saver mode) and BOOST maps to `FAN_4` (HiPower / turbo mode). On these protocols, `FAN_4` and `FAN_5` are operating modes rather than fan speeds — normal fan control uses `FAN_1` through `FAN_3`. Preset commands take priority over fan speed when both are set.
+
+The `mitsubishi_heavy_zmp` protocol can also decode frames from the physical remote, so the climate state follows
+the remote. Set up a receiver as shown in [Using a Receiver](#ir-receiver_id) and pass its ID as `receiver_id`;
+other protocols ignore received frames.
+
+```yaml
+climate:
+  - platform: heatpumpir
+    protocol: mitsubishi_heavy_zmp
+    name: "Heat Pump"
+    receiver_id: rcvr
+    horizontal_default: left
+    vertical_default: up
+    min_temperature: 18
+    max_temperature: 30
+```
+
 Additional configuration must be specified for this platform:
 
 - **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols:
@@ -407,6 +493,7 @@ Additional configuration must be specified for this platform:
 - <APIRef text="hitachi_ac344.h" path="hitachi_ac344/hitachi_ac344.h" />
 - <APIRef text="midea_ir.h" path="midea_ir/midea_ir.h" />
 - <APIRef text="mitsubishi.h" path="mitsubishi/mitsubishi.h" />
+- <APIRef text="siemens_ira211.h" path="siemens_ira211/siemens_ira211.h" />
 - <APIRef text="tcl112.h" path="tcl112/tcl112.h" />
 - <APIRef text="toshiba.h" path="toshiba/toshiba.h" />
 - <APIRef text="whirlpool.h" path="whirlpool/whirlpool.h" />
