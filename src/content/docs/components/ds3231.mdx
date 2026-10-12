@@ -1,0 +1,61 @@
+---
+title: "DS3231 Real-Time Clock"
+description: "Instructions for setting up the DS3231 real-time clock hub in ESPHome."
+---
+
+import { Image } from 'astro:assets';
+import APIRef from '@components/APIRef.astro';
+
+The `ds3231` component provides support for the Maxim/Analog Devices DS3231 real-time clock (RTC). The DS3231
+is a temperature-compensated RTC accurate to a few parts per million, and is found on inexpensive breakout
+boards such as the ZS-042.
+
+<Image src="/images/ds3231.jpg" width={300} height={300} layout="constrained" alt="DS3231 RTC breakout board" />
+
+This component is an I²C hub. It talks to the chip, and the on-die temperature is read with the
+[`sensor`](/components/sensor/ds3231/) platform. It does not yet provide a `time` platform, alarms or the
+square-wave and 32 kHz outputs.
+
+The [I²C](/components/i2c/) bus must be set up first.
+
+```yaml
+# Example configuration entry
+ds3231:
+  id: ds3231_hub
+```
+
+## Configuration Variables
+
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID to use for referencing this hub from
+  the sensor platform and actions.
+- **address** (*Optional*, int): The I²C address of the chip. Defaults to `0x68`.
+- **i2c_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the [I²C](/components/i2c/) bus
+  when using multiple buses.
+
+The chip has a fixed address, so more than one DS3231 needs separate I²C buses (or separate channels of an
+I²C multiplexer); give each chip its own entry with a distinct `id` and `i2c_id`.
+
+## `ds3231.force_temperature_conversion` Action
+
+Trigger an immediate temperature conversion instead of waiting for the chip's automatic 64-second cycle. The
+result is also used to re-tune the oscillator.
+
+```yaml
+on_...:
+  - ds3231.force_temperature_conversion: ds3231_hub
+```
+
+Configuration variables:
+
+- **id** (**Required**, [ID](/guides/configuration-types/#id)): The ID of the `ds3231` hub.
+
+## Hardware Notes
+
+- On common breakout boards (ZS-042 and similar) a separate AT24C32 EEPROM is fitted at address `0x57`. It is
+  not used by this component but will show up in an [I²C scan](/components/i2c/).
+
+## See Also
+
+- [I²C Bus](/components/i2c/)
+- [DS3231 Temperature Sensor](/components/sensor/ds3231/)
+- <APIRef text="ds3231/ds3231.h" path="ds3231/ds3231.h" />

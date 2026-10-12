@@ -414,6 +414,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["DHT", "/components/sensor/dht/", "dht.jpg", "Temperature & Humidity"],
   ["DHT12", "/components/sensor/dht12/", "dht12.jpg", "Temperature & Humidity"],
   ["DPS310/DPS368", "/components/sensor/dps310/", "dps310.jpg", "Temperature & Pressure"],
+  ["DS3231 RTC", "/components/sensor/ds3231/", "ds3231.jpg", "Temperature"],
   ["EMC2101", "/components/emc2101/", "emc2101.jpg", "Temperature"],
   ["ENS160", "/components/sensor/ens160/", "ens160.jpg", "CO2 & Air Quality"],
   ["ENS210", "/components/sensor/ens210/", "ens210.jpg", "Temperature & Humidity"],
@@ -482,6 +483,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["APDS9306", "/components/sensor/apds9306/", "apds9306.png", "Lux"],
   ["APDS9960", "/components/sensor/apds9960/", "apds9960.jpg", "Colour & Gesture"],
   ["AS7341", "/components/sensor/as7341/", "as7341.jpg", "Spectral Color Sensor"],
+  ["BH1745", "/components/sensor/bh1745/", "bh1745.jpg", "Lux & RGB colour"],
   ["BH1750", "/components/sensor/bh1750/", "bh1750.jpg", "Lux"],
   ["LTR301", "/components/sensor/ltr501/", "ltr501.jpg", "Lux"],
   ["LTR303", "/components/sensor/ltr_als_ps/", "ltr303.jpg", "Lux"],
@@ -565,7 +567,9 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["LD2412", "/components/sensor/ld2412/", "ld2412.jpg", "Motion & Presence"],
   ["LD2420", "/components/sensor/ld2420/", "ld2420.jpg", "Motion & Presence"],
   ["LD2450", "/components/sensor/ld2450/", "ld2450.png", "Motion & Presence"],
+  ["LD2460", "/components/sensor/ld2460/", "ld2460.jpg", "Motion & Presence"],
   ["LD6002B", "/components/sensor/ld6002b/", "ld6002b.png", "Motion & Presence"],
+  ["LIS2DW12", "/components/sensor/lis2dw12/", "lis2dw12.jpg", "Accelerometer"],
   ["LSM6DS", "/components/motion/lsm6ds/", "imu.svg", "Accelerometer & Gyroscope", "dark-invert"],
   ["Motion (IMU)", "/components/sensor/motion/", "imu.svg", "dark-invert"],
   ["MPU6050", "/components/sensor/mpu6050/", "mpu6050.jpg", "Accelerometer & Gyroscope"],
@@ -668,6 +672,7 @@ Often known as "tag" or "card" readers within the community.
   ["LD2412", "/components/sensor/ld2412/", "ld2412.jpg"],
   ["LD2420", "/components/sensor/ld2420/", "ld2420.jpg"],
   ["LD2450", "/components/sensor/ld2450/", "ld2450.png"],
+  ["LD2460", "/components/sensor/ld2460/", "ld2460.jpg"],
   ["LD6002B", "/components/sensor/ld6002b/", "ld6002b.png"],
   ["RD-03D", "/components/sensor/rd03d/", "rd03d.webp"],
   ["Seeed Studio MR24HPC1 mmWave", "/components/seeed_mr24hpc1/", "seeed-mr24hpc1.jpg"],
@@ -678,6 +683,7 @@ Often known as "tag" or "card" readers within the community.
 <ImgTable items={[
   ["Analog Threshold", "/components/binary_sensor/analog_threshold/", "analog_threshold.svg", "dark-invert"],
   ["BLE Presence", "/components/binary_sensor/ble_presence/", "bluetooth.svg", "dark-invert"],
+  ["HUSB238 USB PD Sink", "/components/husb238/", "husb238.jpg"],
   ["Hydreon Rain Sensor Binary Sensor", "/components/binary_sensor/hydreon_rgxx/", "hydreon_rg9.jpg"],
   ["Modbus Binary Sensor", "/components/binary_sensor/modbus_controller/", "modbus.png"],
   ["PipSolar - compatible PV Inverter", "/components/pipsolar/", "pipsolar.jpg"],
@@ -873,6 +879,7 @@ Often known as "tag" or "card" readers within the community.
   ["Fan Core", "/components/fan/", "folder-open.svg", "dark-invert"],
   ["Template Fan", "/components/fan/template/", "description.svg", "dark-invert"],
   ["Binary Fan", "/components/fan/binary/", "fan.svg", "dark-invert"],
+  ["Ecocomfort2 VMC", "/components/ecocomfort2/", "fan.svg", "dark-invert"],
   ["H-bridge Fan", "/components/fan/hbridge/", "fan.svg", "dark-invert"],
   ["Speed Fan", "/components/fan/speed/", "fan.svg", "dark-invert"],
   ["Tuya Fan", "/components/fan/tuya/", "tuya.png"],
@@ -1041,6 +1048,13 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["TLC5971", "/components/output/tlc5971/", "tlc5971.jpg"],
   ["X9C Potentiometer", "/components/output/x9c/", "x9c.jpg"],
   ["Zephyr PWM", "/components/output/zephyr_pwm/", "pwm.png"],
+]} />
+
+## Power Management Components
+
+<ImgTable items={[
+  ["Power Management Core", "/components/power_management/", "power_management.svg"],
+  ["ESP32 Power Management", "/components/power_management/esp32_power_management/", "esp32.svg"],
 ]} />
 
 ## Radio Frequency Components
