@@ -1,5 +1,5 @@
 ---
-description: "Instructions for setting up BL0939 power sensors for the Sonoff Dual R3 v2 and the Seeed Studio XIAO 2-Channel Wi-Fi AC Energy Meter"
+description: "Instructions for setting up BL0939 power sensors, as found on the Sonoff Dual R3 v2 and Seeed XIAO boards"
 title: "BL0939 Power Sensor"
 ---
 import APIRef from '@components/APIRef.astro';
@@ -86,8 +86,15 @@ sensor:
   See [Measurement Modes](#measurement-modes). One of:
 
   <EnumValues values={[
-    { value: "direct",              default: true, description: "Current shunts and a resistor voltage divider (Sonoff Dual R3 v2)." },
-    { value: "current_transformer", description: "CT clamps and a voltage transformer (Seeed Studio XIAO 2-Channel Wi-Fi AC Energy Meter)." },
+    {
+      value: "direct",
+      default: true,
+      description: "Current shunts and a resistor voltage divider (Sonoff Dual R3 v2).",
+    },
+    {
+      value: "current_transformer",
+      description: "CT clamps and a voltage transformer (Seeed Studio XIAO 2-Channel Wi-Fi AC Energy Meter).",
+    },
   ]} />
 
 - **voltage** (*Optional*): Use the voltage value of the sensor in V (RMS).
