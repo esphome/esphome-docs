@@ -47,7 +47,8 @@ sensor:
 
 - **current_input** (*Optional*): How the board feeds current into the chip. `shunt` for boards with shunt
   resistors such as the Sonoff Dual R3, or `current_transformer` for boards with a current transformer such
-  as the Sonoff POW CT. Defaults to `shunt`.
+  as the Sonoff POW CT. Defaults to `shunt`. The chip reports no load below about 10 mA with a shunt and below
+  about 50 mA with a current transformer.
 
 - **voltage** (*Optional*): Use the voltage value of the sensor in V (RMS).
   All options from [Sensor](/components/sensor).
