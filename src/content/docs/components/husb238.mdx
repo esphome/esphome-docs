@@ -12,8 +12,8 @@ is a USB Power Delivery (PD) controller that works as a sink, for power ratings 
 It is compatible with PD 3.0 and Type-C 1.4, and it also supports Apple Divider 3, BC1.2 SDP, CDP and DCP
 sources.
 
-The `husb238` component reads the chip status over the [I²C Bus](/components/i2c/). The chip uses the
-fixed I²C address `0x08`.
+The `husb238` component reads the chip status over the [I²C Bus](/components/i2c/). The chip answers
+only at I²C address `0x08`.
 
 <Figure
   src="/images/husb238.jpg"
@@ -27,13 +27,12 @@ fixed I²C address `0x08`.
 ```yaml
 # Example configuration entry
 husb238:
-  id: husb238_hub
 ```
 
 ## Configuration variables
 
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code generation.
-- **address** (*Optional*, int): The I²C address of the chip. Defaults to `0x08`.
+- **address** (*Optional*, int): The I²C address of the chip, which is `0x08` on every HUSB238. Defaults to `0x08`.
 - **i2c_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the
   [I²C Bus](/components/i2c/) if you are using multiple I²C buses.
 - **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): The interval to read the chip
@@ -41,14 +40,13 @@ husb238:
 
 ## Binary Sensor
 
-The `husb238` binary sensor platform reports whether a PD source is attached and which CC line is in use.
+The `husb238` binary sensor platform reports whether a USB-C source is attached and which CC line is in use.
 Both sensors are diagnostic entities by default.
 
 ```yaml
 binary_sensor:
   - platform: husb238
-    husb238_id: husb238_hub
-    attached: "PD Attached"
+    attached: "Source Attached"
     cc_direction:
       name: "CC Direction"
 ```
@@ -57,17 +55,14 @@ binary_sensor:
 
 - **husb238_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the `husb238` component.
   Only needed if you have more than one.
-- **attached** (*Optional*): On when a PD source is attached. Accepts either a name string or all options
-  from [Binary Sensor](/components/binary_sensor/#config-binary_sensor).
-- **cc_direction** (*Optional*): Shows which CC line is in use: off for CC1 (or when nothing is attached),
-  on for CC2. Accepts either a name string or all options from
+- **attached** (*Optional*): On while a USB-C source is attached, whether or not it negotiated PD. Accepts
+  either a name string or all options from [Binary Sensor](/components/binary_sensor/#config-binary_sensor).
+- **cc_direction** (*Optional*): Shows which CC line is in use: off for CC1, on for CC2. The state is unknown
+  while nothing is attached. Accepts either a name string or all options from
   [Binary Sensor](/components/binary_sensor/#config-binary_sensor).
-
-> [!NOTE]
-> Sensor, text sensor and select platforms for the HUSB238 will follow in later releases.
 
 ## See Also
 
 - [I²C Bus](/components/i2c/)
 - [Binary Sensor Component](/components/binary_sensor/)
-- <APIRef text="husb238/husb238.h" path="husb238/husb238.h" />
+- <APIRef text="husb238.h" path="husb238/husb238.h" />
