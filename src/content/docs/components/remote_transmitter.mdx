@@ -684,8 +684,6 @@ on_...:
       address: 42
       temperature: 34.5
       humidity: 51
-      battery_level: true
-      force_update: false
 ```
 
 #### Configuration variables
@@ -695,7 +693,8 @@ on_...:
   255. Each sensor has its own.
 - **temperature** (**Required**, float, [templatable](/automations/templates)): The temperature to send in °C, with a
   resolution of 0.1 °C, between -204.8 and 204.7.
-- **humidity** (**Required**, int, [templatable](/automations/templates)): The humidity to send in %, 0 to 255.
+- **humidity** (**Required**, int, [templatable](/automations/templates)): The humidity to send in %. The field is
+  8 bits wide, so values up to 255 are accepted.
 - **battery_level** (*Optional*, boolean, [templatable](/automations/templates)): The battery flag to send, `true` for
   a normal battery and `false` for a low one. Defaults to `true`.
 - **force_update** (*Optional*, boolean, [templatable](/automations/templates)): The forced transmission flag, `true`
