@@ -388,21 +388,32 @@ on_...:
 
 ### `remote_transmitter.transmit_drayton` Action
 
-This [action](/automations/actions#all-actions) sends a Draton Digistat RF remote code to a remote transmitter.
+This [action](/automations/actions#all-actions) sends a Drayton Digistat RF remote code to a remote transmitter.
 
 ```yaml
 on_...:
   - remote_transmitter.transmit_drayton:
       address: '0x6180'
-      channel: '0x12'
-      command: '0x02'
+      data: '0x8'
 ```
 
 #### Configuration variables
 
-- **address** (**Required**, int, [templatable](/automations/templates)): The 16-bit ID to send, see dumper output for more info.
-- **channel** (**Required**, int, [templatable](/automations/templates)): The switch/channel to send, between 0 and 127 inclusive.
-- **command** (**Required**, int, [templatable](/automations/templates)): The command to send, between 0 and 63 inclusive.
+Set `address` and either `data` or both `channel` and `command`.
+
+- **address** (**Required**, int, [templatable](/automations/templates)): The 16-bit address to send, see dumper
+  output for more info. It is the 12-bit thermostat ID followed by a 4-bit pairing field. The pairing field is
+  normally 0; setting bit 0 lets a receiver in pairing mode learn the ID.
+- **data** (*Optional*, int, [templatable](/automations/templates/)): The 4-bit data value to send. Range is `0` to
+  `0xF`. Bit `0x8` means the thermostat calls for heat and bit `0x2` means low battery, so `0x8` is On with the
+  battery OK and `0x0` is Off. The other two bits have not been seen set. The checksum is calculated and added for
+  you. Cannot be used with `channel` and `command`.
+- **channel** (*Optional*, int, [templatable](/automations/templates/)): The legacy 5-bit channel, the low 5 checksum
+  bits. Range is `0` to `0x1F`. Must be used together with `command`; kept for configurations written for the first
+  Drayton release.
+- **command** (*Optional*, int, [templatable](/automations/templates/)): The legacy 7-bit command, the 4 data bits
+  followed by the top 3 checksum bits. Range is `0` to `0x7F`. Must be used together with `channel`. The packet is
+  sent from `channel` and `command` as they are, with no checksum calculated.
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
 <span id="remote_transmitter-transmit_dyson"></span>
@@ -670,6 +681,38 @@ on_...:
 - **level** (**Required**, int, [templatable](/automations/templates)): The Nexa level code to send, see dumper output for more info.
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
+<span id="remote_transmitter-transmit_nexus"></span>
+
+### `remote_transmitter.transmit_nexus` Action
+
+This [action](/automations/actions#all-actions) sends a 36-bit Nexus temperature and humidity sensor code, as used
+by Digoo and similar 433 MHz weather sensors, to a remote transmitter.
+
+```yaml
+on_...:
+  - remote_transmitter.transmit_nexus:
+      channel: 1
+      address: 42
+      temperature: 34.5
+      humidity: 51
+```
+
+#### Configuration variables
+
+- **channel** (**Required**, int, [templatable](/automations/templates)): The channel to send, 1 to 4.
+- **address** (**Required**, int, [templatable](/automations/templates)): The 8-bit address (sensor ID) to send, 0 to
+  255. Each sensor has its own.
+- **temperature** (**Required**, float, [templatable](/automations/templates)): The temperature to send in °C, with a
+  resolution of 0.1 °C, between -204.8 and 204.7.
+- **humidity** (**Required**, int, [templatable](/automations/templates)): The humidity to send in %. The field is
+  8 bits wide, so values up to 255 are accepted.
+- **battery_level** (*Optional*, boolean, [templatable](/automations/templates)): The battery flag to send, `true` for
+  a normal battery and `false` for a low one. Defaults to `true`.
+- **force_update** (*Optional*, boolean, [templatable](/automations/templates)): The forced transmission flag, `true`
+  when the sensor sends because its button was pressed. Defaults to `false`.
+- All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action). Real sensors send each
+  frame about ten times, so set `repeat` with a similar count for receivers that expect it.
+
 <span id="remote_transmitter-transmit_onkyori"></span>
 
 ### `remote_transmitter.transmit_onkyori` Action
@@ -821,6 +864,28 @@ on_...:
 
 - **address** (**Required**, int, [templatable](/automations/templates)): The address to send, see dumper output for more details.
 - **command** (**Required**, int, [templatable](/automations/templates)): The RC5 command to send.
+- All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
+
+### `remote_transmitter.transmit_rc5x` Action
+
+This [action](/automations/actions#all-actions) sends an RC5X (Marantz Extended RC5) infrared remote code to a
+remote transmitter.
+
+```yaml
+on_...:
+  - remote_transmitter.transmit_rc5x:
+      address: 0x10
+      command: 0x00
+      extension: 0x06
+```
+
+#### Configuration variables
+
+- **address** (**Required**, int, [templatable](/automations/templates)): The address to send, see dumper output for more
+  details. Range is 0 to 0x1F.
+- **command** (**Required**, int, [templatable](/automations/templates)): The RC5X command to send. Range is 0 to 0x7F.
+- **extension** (**Required**, int, [templatable](/automations/templates)): The RC5X extension field to send. Range is 0
+  to 0x3F.
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
 <span id="remote_transmitter-transmit_rc6"></span>
@@ -1084,6 +1149,44 @@ on_...:
 
 - **data** (**Required**, int, [templatable](/automations/templates)): The Sony code to send, see dumper output for more info.
 - **nbits** (*Optional*, int, [templatable](/automations/templates)): The number of bits to send. Defaults to `12`.
+- All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
+
+<span id="remote_transmitter-transmit_somfy_rts"></span>
+
+### `remote_transmitter.transmit_somfy_rts` Action
+
+This [action](/automations/actions#all-actions) sends a Somfy RTS command, as used by Somfy blinds, shutters and
+awnings on 433.42 MHz, to a remote transmitter. ESPHome acts as one more remote: it has its own address and a rolling
+code that must grow by one with every command, so keep the code in a [global](/components/globals/) with
+`restore_value: true` and increment it in the lambda. Pair the device by holding the program button on an existing
+remote until the motor jogs, then sending `control: 0x8` from ESPHome. Real remotes send each frame several times,
+so use `repeat`.
+
+```yaml
+on_...:
+  - remote_transmitter.transmit_somfy_rts:
+      address: 0x123456
+      control: 0x2
+      key: 0xA0
+      rolling_code: !lambda return id(rolling_code)++;
+      repeat:
+        times: 3
+        wait_time: 30ms
+```
+
+#### Configuration variables
+
+- **address** (**Required**, int, [templatable](/automations/templates)): The 24-bit address ESPHome uses as a remote.
+  Pick any value and keep it.
+- **control** (**Required**, int, [templatable](/automations/templates)): The 4-bit command: `0x1` My (stop),
+  `0x2` Up, `0x4` Down, `0x8` Prog. Combinations such as `0x3` (My and Up) are sent as given.
+- **key** (**Required**, int, [templatable](/automations/templates)): The 8-bit encryption key byte; `0xA0` works
+  for most receivers.
+- **rolling_code** (**Required**, int, [templatable](/automations/templates)): The 16-bit rolling code. Each
+  command must use a higher code than the one before, or the receiver ignores it.
+- **control_in_key** (*Optional*, boolean, [templatable](/automations/templates)): Some remotes put the command in
+  the low nibble of the key byte instead of the control nibble. Set this if the device does not react; the low
+  nibble of `key` must then be `0`. Defaults to `false`.
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
 <span id="remote_transmitter-transmit_toshiba_ac"></span>
