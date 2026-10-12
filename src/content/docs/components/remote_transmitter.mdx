@@ -1090,28 +1090,39 @@ on_...:
 
 ### `remote_transmitter.transmit_somfy_rts` Action
 
-This [action](/automations/actions#all-actions) sends a somfy_rts command to a remote transmitter.
-It uses a rolling_code so the transmitter needs to be configured like a new remote for the receiving device.
-Configuring a new transmitter can be done with pressing the 'prog' button on the existing remote and sending a 'prog' message from the new
-transmitter.
+This [action](/automations/actions#all-actions) sends a Somfy RTS command, as used by Somfy blinds, shutters and
+awnings on 433.42 MHz, to a remote transmitter. ESPHome acts as one more remote: it has its own address and a rolling
+code that must grow by one with every command, so keep the code in a [global](/components/globals/) with
+`restore_value: true` and increment it in the lambda. Pair the device by holding the program button on an existing
+remote until the motor jogs, then sending `control: 0x8` from ESPHome. Real remotes send each frame several times,
+so use `repeat`.
 
 ```yaml
 on_...:
-  id: rmt_sender
-  address: 0x123456
-  control: 0x08
-  key: 0xA0
-  rolling_code: 123
-  control_in_key: false
+  - remote_transmitter.transmit_somfy_rts:
+      address: 0x123456
+      control: 0x2
+      key: 0xA0
+      rolling_code: !lambda return id(rolling_code)++;
+      repeat:
+        times: 3
+        wait_time: 30ms
 ```
 
 #### Configuration variables
 
-- **address** (**Required**, int, [templatable](/automations/templates/)): The address of the device to control.
-- **control** (**Required**, int, [templatable](/automations/templates/)): The control code to send to the device.
-- **key** (**Required**, int, [templatable](/automations/templates/)): The key to be used, most of the times 0xA0 works
-- **rolling_code** (**Required**, int, [templatable](/automations/templates/)): The rolling code to be used, use a variable stored in NVS storage.
-- **control_in_key** (**Optional**, bool, [templatable](/automations/templates/)): Set to true if the device doesnt seem to work, some implementations differ.
+- **address** (**Required**, int, [templatable](/automations/templates)): The 24-bit address ESPHome uses as a remote.
+  Pick any value and keep it.
+- **control** (**Required**, int, [templatable](/automations/templates)): The 4-bit command: `0x1` My (stop),
+  `0x2` Up, `0x4` Down, `0x8` Prog. Combinations such as `0x3` (My and Up) are sent as given.
+- **key** (**Required**, int, [templatable](/automations/templates)): The 8-bit encryption key byte; `0xA0` works
+  for most receivers.
+- **rolling_code** (**Required**, int, [templatable](/automations/templates)): The 16-bit rolling code. Each
+  command must use a higher code than the one before, or the receiver ignores it.
+- **control_in_key** (*Optional*, boolean, [templatable](/automations/templates)): Some remotes put the command in
+  the low nibble of the key byte instead of the control nibble. Set this if the device does not react; the low
+  nibble of `key` must then be `0`. Defaults to `false`.
+- All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
 <span id="remote_transmitter-transmit_toshiba_ac"></span>
 
