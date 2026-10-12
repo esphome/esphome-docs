@@ -537,8 +537,8 @@ on_...:
 - **code** (**Required**, int, [templatable](/automations/templates)): The 32-bit encrypted field to send.
 - **level** (*Optional*, boolean, [templatable](/automations/templates)): Low battery level status bit. Defaults to false.
 - **suffix** (*Optional*, int, [templatable](/automations/templates)): Extra bits sent after the 66-bit HCS301
-  word, lowest bit first, in the same PWM coding. Must fit in **suffix_bits**; a lambda value is cut to the
-  lowest **suffix_bits** bits at run time. Defaults to `0`.
+  word, lowest bit first, in the same PWM coding. A fixed value that does not fit in **suffix_bits** fails
+  validation; a lambda value is cut to the lowest **suffix_bits** bits at run time. Defaults to `0`.
 - **suffix_bits** (*Optional*, int, [templatable](/automations/templates)): How many suffix bits to send, from `0`
   to `16`; a lambda value above `16` is capped at `16`. Defaults to `0`, which sends only the 66-bit word.
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
