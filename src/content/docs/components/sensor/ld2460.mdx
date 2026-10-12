@@ -3,16 +3,13 @@ description: "Instructions for setting up the Hi-Link HLK-LD2460 multi-target tr
 title: "LD2460 Sensor"
 ---
 
-import { Image } from 'astro:assets';
 import Figure from '@components/Figure.astro';
 import APIRef from '@components/APIRef.astro';
 
 ## Component
 
-<span id="ld2460-component"></span>
-
-The `ld2460` component allows you to use the [Hi-Link HLK-LD2460](https://www.hlktech.net/) 24GHz 2T4R
-millimeter-wave radar module with ESPHome.
+The `ld2460` component allows you to use the Hi-Link HLK-LD2460 24GHz 2T4R millimeter-wave radar module with
+ESPHome. The module is made by [Hi-Link](https://www.hlktech.net/) (vendor website).
 
 The LD2460 is an intelligent multi-target trajectory tracking sensor module. It can simultaneously detect and track
 the trajectory and position of up to 5 moving human targets in real-time, measuring distance, angle, and 2D planar
@@ -20,10 +17,11 @@ coordinates ($X, Y$).
 
 The component currently offers the [sensor platform](#sensor) only.
 
-[HLK-LD2460 Official Manual and Communication Protocol](https://drive.google.com/drive/folders/1JkImVaRfSgP8taq5W4aW_bCxlcqeHVan)
+- [HLK-LD2460 serial protocol V1.0 (English translation)](https://revspace.nl/images/2/2c/HLK-LD2460%E4%B8%B2%E5%8F%A3%E5%8D%8F%E8%AE%AEV1.0_translated.pdf)
+- [HLK-LD2460 manuals and protocol on the vendor's Google Drive](https://drive.google.com/drive/folders/1JkImVaRfSgP8taq5W4aW_bCxlcqeHVan)
 
 <Figure
-  src="/images/ld2460.png"
+  src="/images/ld2460.jpg"
   alt="HLK-LD2460 radar module"
   caption="HLK-LD2460 24GHz 2T4R multi-target trajectory tracking radar module"
   layout="constrained"
@@ -53,10 +51,17 @@ ld2460:
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID for this LD2460 component.
 - **uart_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the
   [UART Component](/components/uart/) to use. Required if multiple UARTs are configured.
-- **on_data** (*Optional*, [Automation](/automations/)): An action or automation to perform after each periodic data
-  frame is received and decoded.
+- **on_data** (*Optional*, [Automation](/automations/)): An action or automation to perform after each report frame
+  is received and decoded. It passes no variables. The module sends report frames continuously while reporting is on,
+  so this runs very often; keep the automation short.
 
-<span id="ld2460-sensors"></span>
+```yaml
+ld2460:
+  id: ld2460_radar
+  on_data:
+    then:
+      - logger.log: "Frame received"
+```
 
 ## Sensor
 
@@ -77,15 +82,7 @@ sensor:
         name: "Target 1 Distance"
       angle:
         name: "Target 1 Angle"
-    target_2:
-      x:
-        name: "Target 2 X"
-      y:
-        name: "Target 2 Y"
-      distance:
-        name: "Target 2 Distance"
-      angle:
-        name: "Target 2 Angle"
+    # target_2 to target_5 follow the same shape
 ```
 
 ### Configuration Variables
@@ -96,9 +93,9 @@ sensor:
   All options from [Sensor](/components/sensor/).
 - **target_1**, **target_2**, **target_3**, **target_4**, **target_5** (*Optional*): Tracking data for one target.
   Each accepts the following sensors:
-  - **x** (*Optional*): Position along the X-axis in meters relative to the radar. Negative values are to the left,
-    positive values to the right. All options from [Sensor](/components/sensor/).
-  - **y** (*Optional*): Position along the Y-axis in meters relative to the radar.
+  - **x** (*Optional*): Position in meters across the face of the module (left and right), in 0.1 m steps. Negative
+    values are to the left, positive values to the right. All options from [Sensor](/components/sensor/).
+  - **y** (*Optional*): Position in meters straight out from the module, in 0.1 m steps.
     All options from [Sensor](/components/sensor/).
   - **distance** (*Optional*): Straight-line distance from the radar to the target ($\sqrt{X^2 + Y^2}$) in meters.
     All options from [Sensor](/components/sensor/).
@@ -111,8 +108,9 @@ When a target is no longer tracked, its sensors report an unknown state.
 The way the angle is calculated depends on how the module is mounted. The component reads the installation mode
 from the module at boot:
 
-- **Side** (wall mounted): the angle is measured from the line straight out from the radar, from -90° to 90°.
-- **Top** (ceiling mounted): the angle is measured around the radar, from 0° to 360°.
+- **Side** (wall mounted): 0° is straight out from the module (along +Y) and positive angles are towards +X.
+  The range is about -90° to 90°.
+- **Top** (ceiling mounted): 0° is along +X and the angle increases towards +Y. The range is 0° to 360°.
 
 ## See Also
 
