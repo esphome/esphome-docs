@@ -283,7 +283,7 @@ To enable signal demodulation, configure the signal carrier frequency and duty c
 
 - **on_rc5x** (*Optional*, [Automation](/automations)): An automation to perform when a
   RC5X (Marantz Extended RC5) remote code has been decoded. A variable `x` of type <APIStruct text="remote_base::RC5XData" path="remote_base::RC5XData" />
-  is passed to the automation for use in lambdas.
+  is passed to the automation for use in lambdas. It has the fields `address`, `command` and `extension`.
 
 - **on_rc6** (*Optional*, [Automation](/automations)): An automation to perform when a
   RC6 remote code has been decoded. A variable `x` of type <APIStruct text="remote_base::RC6Data" path="remote_base::RC6Data" />
@@ -573,9 +573,9 @@ Remote code selection (exactly one of these has to be included):
 
 - **rc5x**: Trigger on a decoded RC5X (Marantz Extended RC5) remote code with the given data.
 
-  - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
-  - **command** (**Required**, int): The RC5X command to listen for.
-  - **extension** (**Required**, int): The RC5X extension field to listen for.
+  - **address** (**Required**, int): The address to trigger on, see dumper output for more info. Range is 0 to 0x1F.
+  - **command** (**Required**, int): The RC5X command to listen for. Range is 0 to 0x7F.
+  - **extension** (**Required**, int): The RC5X extension field to listen for. Range is 0 to 0x3F.
 
 - **rc6**: Trigger on a decoded RC6 remote code with the given data.
 
