@@ -53,6 +53,12 @@ script:
   it is running. This happens when [script.stop](#script-stop-action) is used, or when a `restart` mode script is
   started again while it is still running. It is not performed when the script finishes normally.
 
+  - In `restart` mode, these actions run before the new run starts. If they execute the same script again,
+    only the newest run continues.
+  - In `parallel` mode, stopping the script performs these actions once, however many runs were stopped.
+  - In `queued` mode, stopping the script also removes the runs that are waiting. These actions are performed
+    once, for the run that was stopped.
+
   ```yaml
   script:
     - id: my_script
