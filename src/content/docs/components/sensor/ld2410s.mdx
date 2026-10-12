@@ -24,8 +24,9 @@ ld2410s:
   [UART Component](/components/uart/), which is necessary if you have multiple UARTs defined in your configuration.
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID for this component.
 
-At start the component switches the module to its minimal output mode, in which the module only reports presence.
-If the module stops sending data for five seconds the component raises a warning and runs the setup again.
+At start the component reads the module's firmware version and settings, then switches it to its minimal output
+mode, in which the module only reports presence and distance. If the module stops sending data for five seconds
+the component raises a warning and runs the setup again.
 
 ## Binary Sensor
 
@@ -40,6 +41,88 @@ binary_sensor:
 
 - **has_target** (*Optional*): True while the module detects a target.
   All options from [Binary Sensor](/components/binary_sensor/).
+- **ld2410s_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the `ld2410s`
+  component, which is necessary if you have more than one.
+
+## Sensor
+
+```yaml
+sensor:
+  - platform: ld2410s
+    distance:
+      name: Distance
+```
+
+### Configuration Variables
+
+- **distance** (**Required**): The distance to the detected target in cm, `0` while there is no target.
+  All options from [Sensor](/components/sensor/).
+- **ld2410s_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the `ld2410s`
+  component, which is necessary if you have more than one.
+
+## Text Sensor
+
+```yaml
+text_sensor:
+  - platform: ld2410s
+    version:
+      name: Firmware
+```
+
+### Configuration Variables
+
+- **version** (**Required**): The firmware version of the module, read once at start.
+  All options from [Text Sensor](/components/text_sensor/).
+- **ld2410s_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the `ld2410s`
+  component, which is necessary if you have more than one.
+
+## Number
+
+The module's settings are read at start and written back whenever one of them is changed.
+
+```yaml
+number:
+  - platform: ld2410s
+    max_distance:
+      name: Max Distance
+    min_distance:
+      name: Min Distance
+    no_delay:
+      name: No Delay
+    status_reporting_frequency:
+      name: Status Reporting Frequency
+    distance_reporting_frequency:
+      name: Distance Reporting Frequency
+```
+
+### Configuration Variables
+
+- **max_distance** (*Optional*): The farthest distance at which a target is detected, in steps of `0.7` m up to
+  `11.2` m. All options from [Number](/components/number/).
+- **min_distance** (*Optional*): The nearest distance at which a target is detected, in steps of `0.7` m.
+  All options from [Number](/components/number/).
+- **no_delay** (*Optional*): How long the module keeps reporting a target after it left, from `1` to `120` s.
+  All options from [Number](/components/number/).
+- **status_reporting_frequency** (*Optional*): How often the module reports presence, from `0.5` to `8` Hz.
+  All options from [Number](/components/number/).
+- **distance_reporting_frequency** (*Optional*): How often the module reports the distance, from `0.5` to
+  `8` Hz. All options from [Number](/components/number/).
+- **ld2410s_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the `ld2410s`
+  component, which is necessary if you have more than one.
+
+## Select
+
+```yaml
+select:
+  - platform: ld2410s
+    response_speed:
+      name: Response Speed
+```
+
+### Configuration Variables
+
+- **response_speed** (**Required**): How quickly the module reacts to a change, `Normal` or `Fast`.
+  All options from [Select](/components/select/).
 - **ld2410s_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the `ld2410s`
   component, which is necessary if you have more than one.
 
