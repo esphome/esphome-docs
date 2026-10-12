@@ -79,9 +79,11 @@ The `probability_cutoff` and `sliding_window_size` are provided by the JSON file
 
 ## Memory Usage
 
-By default, each model's tensor arena is allocated in PSRAM when the board has it, otherwise in internal RAM, and
-the model weights are read from wherever the model is stored (flash for models built into the firmware). Set
-`prefer_internal_ram: true` to try to place each active model's tensor arena and weights in internal RAM. This
+By default, each active model's tensor arena is allocated in PSRAM when available, otherwise in internal RAM.
+Built-in model weights are read from flash. Downloaded models keep their original weights in PSRAM when available,
+otherwise in internal RAM.
+
+Set `prefer_internal_ram: true` to try to place each active model's tensor arena and weights in internal RAM. This
 includes models downloaded while the device is running. A model whose weights are already in internal RAM is not
 copied again. This can reduce inference time on some ESP32 devices, but uses more internal RAM. If an internal
 allocation fails, ESPHome logs a warning and falls back to the default placement above. When a model is disabled,
