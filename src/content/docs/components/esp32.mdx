@@ -438,7 +438,8 @@ esp32:
 
 - **sdkconfig_options** (*Optional*, mapping): Custom sdkconfig
   [compiler options](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/kconfig.html#compiler-options)
-  to set in the ESP-IDF project.
+  to set in the ESP-IDF project. Entries whose names start with `OPENTHREAD_CONFIG_` are not Kconfig options and are
+  not written to the sdkconfig; see [OpenThread Core Options](/components/openthread/#openthread-core-options-esp32).
 
 - **log_level** (*Optional*, string): Log level of the framework, one of `ERROR` (default), `NONE`, `WARN`, `INFO`,
   `DEBUG` or `VERBOSE`.

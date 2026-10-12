@@ -176,6 +176,41 @@ esp32:
     log_level: INFO
 ```
 
+## OpenThread Core Options (ESP32)
+
+OpenThread has many compile-time options that ESP-IDF does not offer as Kconfig options, such as frame retry counts
+or optional features. On ESP32 they can be set with `sdkconfig_options` in the
+[ESP-IDF framework configuration](/components/esp32/#framework). The name decides where an entry goes:
+
+- `CONFIG_OPENTHREAD_*` names are ESP-IDF Kconfig options and are written to the sdkconfig, like any other
+  `sdkconfig_options` entry.
+- `OPENTHREAD_CONFIG_*` names are OpenThread options. They are not written to the sdkconfig. Instead, ESPHome writes
+  each one as `#define NAME VALUE` to a header file in the build directory and tells ESP-IDF to include it when
+  building OpenThread.
+
+Values must be strings, so quote numbers. The available options and their defaults are listed in the
+[OpenThread core configuration headers](https://github.com/openthread/openthread/tree/main/src/core/config).
+
+```yaml
+# Example OpenThread core options
+esp32:
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      # ESP-IDF Kconfig option, written to the sdkconfig
+      CONFIG_OPENTHREAD_JOINER: y
+      # OpenThread options, written to the OpenThread header
+      OPENTHREAD_CONFIG_COAP_BLOCKWISE_TRANSFER_ENABLE: "1"
+      OPENTHREAD_CONFIG_MAC_DEFAULT_MAX_FRAME_RETRIES_DIRECT: "5"
+```
+
+> [!WARNING]
+> Some OpenThread options are already set by ESP-IDF from a Kconfig option, for example
+> `OPENTHREAD_CONFIG_MLE_MAX_CHILDREN` from `CONFIG_OPENTHREAD_MLE_MAX_CHILDREN`. Setting one of these directly stops
+> the build with an `is redefined` error; set the matching `CONFIG_OPENTHREAD_*` option instead.
+
+`OPENTHREAD_CONFIG_*` entries are only used on ESP32 with the `openthread` component. Without it, they are ignored.
+
 ## See Also
 
 - [OpenThread Info Sensor](/components/sensor/openthread_info/)
