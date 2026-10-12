@@ -502,7 +502,7 @@ Remote code selection (exactly one of these has to be included):
   - **data** (**Required**, int): The LG code to trigger on, see dumper output for more info.
   - **nbits** (*Optional*, int): The number of bits of the remote code. Defaults to `28`.
 
-- **magiquest**: Trigger on a decoded MagiQuest wand remote code with the given wand ID.
+- **magiquest**: Trigger on a decoded MagiQuest wand remote code, optionally limited to one wand ID.
 
   - **wand_id** (*Optional*, int): The MagiQuest wand ID to trigger on, see dumper output for more info. If omitted,
     any wand triggers the sensor. Ids written down with ESPHome versions before 2026.11 keep working: they are the

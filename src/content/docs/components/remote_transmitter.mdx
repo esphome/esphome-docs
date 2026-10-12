@@ -584,8 +584,9 @@ on_...:
 
 #### Configuration variables
 
-- **wand_id** (**Required**, int, [templatable](/automations/templates/)): The wand ID to send, as a hex integer. See
-  the dumper output for your wand ID.
+- **wand_id** (**Required**, int, [templatable](/automations/templates/)): The wand ID to send, as a hex integer in
+  the old frame layout (see the note below): the id a dumper before 2026.11 printed, which is the id a current dumper
+  prints without its five lowest bits.
 - **magnitude** (*Optional*, int, [templatable](/automations/templates/)): The magnitude value to send, in the old
   frame layout (see the note below). If omitted, sends 0xFFFF (which the real wand never uses).
 
