@@ -3,6 +3,8 @@ description: "Instructions for controlling a Fantini Cosmi Ecocomfort 2.0 Smart 
 title: "Ecocomfort2"
 ---
 
+import APIRef from '@components/APIRef.astro';
+
 The `ecocomfort2` component lets you control a
 [Fantini Cosmi Aspirvelo Air Ecocomfort 2.0 Smart](https://www.fantinicosmi.it/prodotto/aspirvelo-air-ecocomfort-2-0-smart/)
 heat recovery ventilation unit over BLE from an ESP32.
@@ -31,13 +33,13 @@ ecocomfort2:
 fan:
   - platform: ecocomfort2
     name: "Ventilation"
-    ecocomfort2_id: vmc_hub
 ```
 
 ## BLE Pairing
 
 The unit only accepts an encrypted, bonded BLE connection. The [ESP32 BLE](/components/esp32_ble/) component
-must be configured with these settings, and the configuration is rejected otherwise:
+must be configured with these settings, and the configuration is rejected otherwise. `io_capability: none` is
+already the default, so it only matters that it is not changed:
 
 - `io_capability: none`
 - `auth_req_mode: sc_bond`
@@ -71,7 +73,6 @@ ecocomfort2:
 fan:
   - platform: ecocomfort2
     name: "Ventilation"
-    ecocomfort2_id: vmc_hub
 ```
 
 ### Configuration Variables
@@ -129,3 +130,5 @@ fan:
 - [ESP32 BLE Tracker](/components/esp32_ble_tracker/)
 - [BLE Client](/components/ble_client/)
 - [Fan Component](/components/fan/)
+- <APIRef text="ecocomfort2_hub.h" path="ecocomfort2/ecocomfort2_hub.h" />
+- <APIRef text="ecocomfort2_fan.h" path="ecocomfort2/ecocomfort2_fan.h" />
