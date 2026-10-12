@@ -160,7 +160,7 @@ binary_sensor:
 ```yaml
 text_sensor:
   - platform: ecocomfort2
-    firmware:
+    version:
       name: "Ventilation Firmware"
 ```
 
@@ -168,7 +168,7 @@ text_sensor:
 
 - **ecocomfort2_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the `ecocomfort2` hub.
   Only needed when more than one hub is configured.
-- **firmware** (**Required**): The firmware version of the unit, read once per connection.
+- **version** (**Required**): The firmware version of the unit, read once per connection.
   All options from [Text Sensor](/components/text_sensor/).
 
 ## Multiple Units
