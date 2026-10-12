@@ -84,8 +84,7 @@ Configuration variables:
 
 > [!NOTE]
 > TMC drivers are pin-compatible with the A4988, but instead of a `SLEEP` pin they expose an `ENABLE` pin.
-> When using a TMC driver with the `a4988` platform you therefore need to invert the `sleep_pin`. For the TMC2209,
-> the [TMC2209](/components/stepper/tmc2209/) platform also configures the driver over UART:
+> When using a TMC driver with the `a4988` platform you therefore need to invert the `sleep_pin`:
 >
 > ```yaml
 > stepper:
@@ -95,6 +94,9 @@ Configuration variables:
 >       number: GPIOXX
 >       inverted: true
 > ```
+>
+> For the TMC2209 there is also the [TMC2209](/components/stepper/tmc2209/) platform, which configures the driver
+> over UART.
 
 ## ULN2003 Component
 

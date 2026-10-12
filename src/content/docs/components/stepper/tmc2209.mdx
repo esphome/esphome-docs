@@ -77,7 +77,7 @@ addresses. Check the schematic of your driver module, as some boards tie these p
 - **hold_current** (*Optional*, current): The motor current at standstill, in A RMS.
 
 - **microsteps** (*Optional*, int): The number of microsteps per full step. One of `1`, `2`, `4`, `8`, `16`, `32`,
-  `64`, `128` or `256`. When not set, the driver setting is kept (`256` after power-on).
+  `64`, `128` or `256`. Written to the driver at startup, which then ignores the `MS1` and `MS2` pins. Default: `16`.
 
 - **analog_current_scale** (*Optional*, boolean): Scale the motor current with the voltage on the `VREF` pin of the
   driver. Defaults to `false`.
