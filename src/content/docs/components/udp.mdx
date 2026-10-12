@@ -25,7 +25,9 @@ udp:
   - **broadcast_port** (**Required**, int): The port to send packets to.
 - **addresses** (*Optional*, list of IP addresses): One or more IPv4 or IPv6 addresses to send data to. Defaults to
   `255.255.255.255`, the local network broadcast address. IPv6 addresses require `enable_ipv6: true` in the
-  [Network](/components/network/) component and are not supported on ESP8266 or RP2040.
+  [Network](/components/network/) component and are not supported on ESP8266 or RP2040. Give them without a
+  `%` scope suffix; link-local unicast destinations (`fe80::/10`) cannot be given an interface and may not be
+  reachable, so prefer global or unique local addresses.
 
 - **listen_address** (*Optional*, IPv4 or IPv6 multicast address): Joins a multicast group and listens on that
   address. Defaults to no multicast address, just the local network broadcast address `255.255.255.255`. IPv6
