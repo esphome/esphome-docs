@@ -284,7 +284,8 @@ climate:
 
 ### `remko_ar715`
 
-Supports air conditioners using the **Remko AR-715** IR remote (model 1613138).
+Supports air conditioners using the Remko AR-715 infrared remote (model 1613138). The IRremoteESP8266
+library calls this protocol *ClimaButler* after one of the rebranded models; Remko is the original manufacturer.
 
 | Brand | Model |
 |---|---|
@@ -295,27 +296,16 @@ Supports air conditioners using the **Remko AR-715** IR remote (model 1613138).
 | Rexair | C15000N |
 | FREECOM | RCS-SD43UAI, RCS-SD43UWI |
 
-The fan speed **Auto** corresponds to the remote's *Fuzzy Logic* mode, where the
-unit selects the fan speed automatically based on room temperature.
-
-> [!NOTE]
-> The IRremoteESP8266 library refers to this protocol as *ClimaButler* after one
-> of the rebranded models. The OEM and original manufacturer is Remko.
->
-> Fan speed selection is only available in Cool mode.
-> In Dry and Fan Only mode the unit controls the fan speed automatically.
->
-> The hardware timer function (1–24h) of the AR-715 remote is not implemented.
-> Use Home Assistant automations for equivalent functionality.
->
-> Heat and Heat/Cool modes are not supported by the AR-715 remote and are
-> not available in this component.
+- The remote has no heat mode, so only cool, dry and fan-only modes are available.
+- The fan speed can only be chosen in cool mode. In dry and fan-only modes the unit picks the speed itself.
+  Fan speed `auto` is the remote's *Fuzzy Logic* setting, which follows the room temperature.
+- The remote's 1 to 24 hour timer is not implemented; use an automation instead.
 
 ```yaml
 # Example configuration entry
 climate:
   - platform: remko_ar715
-    name: "Air Conditioner"
+    name: Air Conditioner
 ```
 
 <span id="toshiba"></span>
