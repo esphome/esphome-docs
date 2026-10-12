@@ -1035,7 +1035,7 @@ The color picker lets the user choose a color by dragging sliders. By default it
 **Configuration variables:**
 
 - **width** (*Optional*): Width of the widget in pixels or a percentage, or `SIZE_CONTENT` (the default.) It is square, so the height is always set to match, and giving a `height` is an error. With `SIZE_CONTENT` (recommended) the widget sizes itself from the height of a line of its `text_font`, so setting a larger font makes the whole widget larger. A fixed width should be at least about ten lines of the font, or the slider names and the hex value will not fit; use a smaller `text_font` for a smaller widget.
-- **color** (*Optional*, [color](/components/lvgl#lvgl-color)): The color to start with. Defaults to mid grey (`0x808080`).
+- **color** (*Optional*, [color](/components/lvgl#lvgl-color)): The color to start with. Defaults to mid gray (`0x808080`).
 - **sliders** (*Optional*, list): Which sliders to give the widget, from `hue`, `saturation`, `brightness`, `red`, `green` and `blue`. Defaults to all six. `hsv` (or `hsb`) and `rgb` can be used as shorthand for the three sliders of each set. The order they are listed in makes no difference. The space a missing slider would have taken goes to the color swatch and the other sliders.
 - **wheel** (*Optional*, boolean): Show a color wheel in place of the hue and saturation sliders. Touching the wheel sets the hue from the direction of the touch, and the saturation from its distance from the center. The red, green and blue sliders are left out to make room, so `brightness` is the only slider that can be used alongside the wheel, and is given by default. Defaults to `false`.
 - **items** (*Optional*, list): Settings for the bars of all the widget's sliders. Supports a list of [styles](/components/lvgl#lvgl-styling) and state-based styles to customize. Each slider already has a color gradient of its own, so setting a background color here will hide it.
@@ -1116,7 +1116,7 @@ on_...:
 > The `on_value` trigger is sent continuously while a slider is being dragged, which generally has a negative effect on performance. To act only once the user has finished, use a [universal interaction trigger](#triggers) like `on_release`, to get the `x` variable once after the interaction has completed.
 
 > [!NOTE]
-> The default color is grey, which has zero saturation. Until the saturation or brightness slider is moved, dragging the hue slider will not change the color, since every hue at zero saturation is the same grey. Set `color` to a saturated value to avoid this.
+> The default color is gray, which has zero saturation. Until the saturation or brightness slider is moved, dragging the hue slider will not change the color, since every hue at zero saturation is the same gray. Set `color` to a saturated value to avoid this.
 
 > [!NOTE]
 > The widget always holds a complete color, whichever sliders it was given. A component left without a slider of its own simply keeps the value it already has, so `sliders: [ hue, saturation ]` with `color: 0x3366CC` picks colors at the brightness of that color, and `on_value` still reports all three of `x.r`, `x.g` and `x.b`.
