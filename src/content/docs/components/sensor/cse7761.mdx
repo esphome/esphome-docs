@@ -40,9 +40,14 @@ sensor:
 ```
 
 > [!NOTE]
-> The configuration above should work for Sonoff Dual R3 v1.x.
+> The configuration above should work for Sonoff Dual R3 v1.x. The Sonoff POW CT measures current with a
+> current transformer, so add `current_input: current_transformer` for it.
 
 ## Configuration variables
+
+- **current_input** (*Optional*): How the board feeds current into the chip. `shunt` for boards with shunt
+  resistors such as the Sonoff Dual R3, or `current_transformer` for boards with a current transformer such
+  as the Sonoff POW CT. Defaults to `shunt`.
 
 - **voltage** (*Optional*): Use the voltage value of the sensor in V (RMS).
   All options from [Sensor](/components/sensor).
