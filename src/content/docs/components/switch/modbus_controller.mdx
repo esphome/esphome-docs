@@ -22,6 +22,10 @@ and requires [Modbus Controller](/components/modbus_controller/) to be configure
   To poll some registers less often, place those sensors on a second `modbus_controller` with the same `address:` and a
   slower `update_interval:`.
 - **use_write_multiple** (*Optional*, boolean): By default the modbus command *Function Code 6 (Preset Single Registers)* is used for setting the holding register if only one register is set. If your device only supports *Function Code 16 (Preset Multiple Registers)* set this option to `true`.
+- **expect_broadcast_write_response** (*Optional*, boolean): When the controller's `address` is `0` (see
+  `allow_broadcast_read` on [Modbus Controller](/components/modbus_controller/)), wait for the reply to each write
+  instead of treating it as a fire-and-forget broadcast. Rejected under a controller at any other address.
+  Defaults to `false`.
 - **bitmask** (*Optional*, int): Some values are packed in a response. The bitmask is used to determined if the result is true or false. See [Bitmasks](/components/modbus_controller#bitmasks).
 - **lambda** (*Optional*, [lambda](/automations/templates#config-lambda)):
   Lambda to be evaluated every update interval to read the status of the switch.
@@ -31,20 +35,25 @@ and requires [Modbus Controller](/components/modbus_controller/) to be configure
 
   Parameters passed into the lambda
 
-  - **x** (bool): The boolean state to be sent to the modbus device
-  - **payload** (`std::vector<uint8_t> &payload`): empty vector for the payload. If set in the lambda it is sent as a
-    custom command and must be a full Modbus request frame - the leading device-address byte followed by the PDU
-    (function code + data); the CRC is added automatically. Unlike `custom_pdu` below (which is PDU-only), the
-    device-address byte **is** part of this payload. The leading byte is the wire target address and is sent as
-    given - normally this controller's `address:`, but it is not validated against it.
-
-  - **item** (pointer to a Switch derived object): The sensor object itself.
+  - **x** (bool): The new boolean state being set
+  - **item** (`ModbusSwitch *`): The entity as its own modbus device: the
+    [write helpers](/components/modbus_client/#lambda-hook-component) and `queue_pdu()` are available - for example
+    `item->write_single_register(0x1234, 42)` or `item->queue_pdu(...)` - regardless of the switch's own register
+    type. Also a [`SensorItem`](https://api-docs.esphome.io/classesphome_1_1modbus__controller_1_1_sensor_item)
+    subclass, so the configured address, `offset`, `bitmask`, etc. are accessible.
+  - **payload** (`PduBuffer &payload`): *Deprecated, removed in 2027.3.0 - use `item` instead.*
+    An empty buffer; if the lambda fills it (`push_back`/`clear`/`assign` - not the full `std::vector` API), it is
+    sent as a full modbus request frame - the leading device-address byte followed by the PDU (function code +
+    data); the CRC is added automatically. Unlike `custom_pdu` below (which is PDU-only), the device-address byte
+    **is** part of this payload - it is the wire target address and is sent as given, normally this controller's
+    `address:`. If the buffer is filled, the return value is ignored.
 
   Possible return values for the lambda:
 
-  - `return true;` or `return false;` the new value for the sensor.
-  - `return <anything>;` and fill payload with data if the payload is added from the lambda then these bytes will be sent.
-  - `return {};` in the case the lambda handles the sending of the value itself.
+  - `return true;` or `return false;` the value to be written to the device.
+    The switch still reports the requested state `x`; return a different value to translate between the ESPHome
+    state and an inverted modbus transmitted value.
+  - `return {};` if the lambda handled (or deliberately skipped) the write itself, for example via `item->write_*()`.
 
 - **custom_pdu** (*Optional*, list of bytes): The modbus PDU (function code + data) for a custom command. This allows
   using non-standard commands. The device address (taken from the controller's `address:`) and the CRC are added
@@ -81,14 +90,11 @@ switch:
     name: "enable load test mode"
     write_lambda: |-
       ESP_LOGD("main","Modbus Switch incoming state = %d",x);
-      // return false ; // use this to just change the value
-      payload.push_back(0x1);  // device address
-      payload.push_back(0x5);  // force single coil
-      payload.push_back(0x00); // high byte address of the coil
-      payload.push_back(0x6);  // low byte address of the coil
-      payload.push_back(0xFF); // ON = 0xFF00 OFF=0000
-      payload.push_back(0x00);
-      return true;
+      // return !x; // use this to write an inverted value (the switch still reports x)
+      // deliberately targets a different coil (0x0006) than the entity's own address
+      item->write_single_coil(0x0006, x);
+      // the lambda must return something - return empty, the write is already done
+      return {};
 ```
 
 Since offset is not zero the read command is part of a range and will be parsed when the range is updated.
