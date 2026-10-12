@@ -122,6 +122,12 @@ The driver keeps two 135x240 RGB565 buffers (about 130 KB in total): the frame b
 panel currently shows. This rules out the ESP8266; an ESP32 or RP2040 has enough RAM, and PSRAM is used when
 available.
 
+## Reconnecting
+
+If the unit stops answering, for example because its cable was unplugged, the display stops sending and checks for
+the unit again at every update. A unit that comes back has restarted and lost its picture and settings, so the
+brightness, inversion and sleep settings are sent again and the whole screen is redrawn.
+
 ## See Also
 
 - [Display Component](/components/display/)
