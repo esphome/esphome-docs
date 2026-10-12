@@ -25,17 +25,19 @@ udp:
   - **broadcast_port** (**Required**, int): The port to send packets to.
 - **addresses** (*Optional*, list of IP addresses): One or more IPv4 or IPv6 addresses to send data to. Defaults to
   `255.255.255.255`, the local network broadcast address. IPv6 addresses require `enable_ipv6: true` in the
-  [Network](/components/network/) component and are not supported on ESP8266 or RP2040. A `%` scope suffix and
-  link-local unicast destinations (`fe80::/10`) are rejected, because the device cannot pick an interface for them;
-  use multicast, unique local or global addresses.
+  [Network](/components/network/) component; on ESP8266 and RP2040 the `udp` component rejects them at validation.
+  A `%` scope suffix and link-local unicast destinations (`fe80::/10`) also fail validation, because the device
+  cannot pick an interface for them. Multicast destinations leave on the interface the `listen_address` group was
+  joined on, or on the first IPv6 interface when there is no IPv6 group, so use multicast, unique local or global
+  addresses.
 
-- **listen_address** (*Optional*, IPv4 or IPv6 multicast address): Joins a multicast group and listens on that
-  address. Defaults to no multicast address, just the local network broadcast address `255.255.255.255`. IPv6
-  multicast addresses (e.g. `ff02::1`) require `enable_ipv6: true` in the [Network](/components/network/) component
-  and are not supported on ESP8266 or RP2040.
-  **NOTE**: When set, the socket binds to the multicast group address. For IPv4, this means broadcast packets
-  (`255.255.255.255`) are no longer received. IPv6 has no broadcast equivalent. Outgoing `addresses` are unaffected
-  in both cases.
+- **listen_address** (*Optional*, IP address): An IPv4 multicast or broadcast address, or an IPv6 multicast
+  address, to listen on. A multicast address joins that group; a broadcast address, such as the default
+  `255.255.255.255`, only listens. IPv6 multicast addresses (e.g. `ff12::6053`) follow the same rules as IPv6
+  `addresses` above.
+  **NOTE**: When set to a multicast address, the socket binds to the group address. For IPv4, this means broadcast
+  packets (`255.255.255.255`) are no longer received. IPv6 has no broadcast equivalent. Outgoing `addresses` are
+  unaffected in both cases.
 
 ## Reliability
 
@@ -123,16 +125,17 @@ binary_sensor:
 ### IPv6 Multicast
 
 With IPv6 enabled in the [Network](/components/network/) component, both `listen_address` and `addresses` accept IPv6
-multicast addresses. This is not supported on ESP8266 or RP2040.
+multicast addresses. Pick a group of your own, such as a transient link-local group; `ff02::1` would reach every
+IPv6 host on the link.
 
 ```yaml
 network:
   enable_ipv6: true
 
 udp:
-  listen_address: ff02::1
+  listen_address: ff12::6053
   addresses:
-    - ff02::1
+    - ff12::6053
 ```
 
 ## See Also
