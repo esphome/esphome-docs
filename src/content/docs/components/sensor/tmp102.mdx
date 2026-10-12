@@ -32,8 +32,8 @@ sensor:
 
 ## Configuration Variables
 
-- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the sensor ID. Use this when an alert
-  binary sensor must select one of multiple TMP102 sensors.
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the sensor ID. Use this when another
+  TMP102 platform must select one of multiple TMP102 sensors.
 - **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How often ESPHome reads the sensor.
   Defaults to `60s`.
 - **address** (*Optional*, int): The I²C address. Defaults to `0x48`. TMP102 supports `0x48` through `0x4B`,
@@ -42,9 +42,9 @@ sensor:
 
 ### Optional Hardware Settings
 
-Temperature-only configurations work unchanged and write no registers at startup. Setting any option below makes
-ESPHome write the configuration register and both threshold registers during setup, using the listed defaults for
-omitted settings. These settings apply to TMP102 chips; do not enable them for LM75 sensors.
+Temperature-only configurations work unchanged and write no registers at startup. Setting any option below or adding
+a TMP102 number makes ESPHome write the configuration register and both threshold registers during setup, using the
+listed defaults for omitted settings. These settings apply to TMP102 chips; do not enable them for LM75 sensors.
 Adding only an alert binary sensor does not enable hardware configuration or write these registers.
 
 Before each update ESPHome reads the configuration register back. If it no longer matches, for example after the chip
@@ -73,12 +73,62 @@ The defaults below are the chip's power-on values and apply only once any of the
 Thresholds accept Celsius or Fahrenheit values, such as `30°C` or `86°F`. The low threshold must not exceed the high
 threshold. Supported thresholds range from `-55°C` to `127.9375°C` in normal mode, or `150°C` in extended mode.
 The chip stores thresholds in steps of `0.0625°C`; values are rounded to the nearest step, with exact half-steps
-rounded away from zero. Temperature sensor filters do not change thermostat thresholds or alert decisions.
+rounded away from zero. Number states and saved values reflect the rounded hardware thresholds. Temperature sensor
+filters do not change thermostat thresholds or alert decisions.
 
 In continuous mode, the chip makes conversions independently of ESPHome polling. In one-shot mode, ESPHome waits
 40 ms after triggering a conversion before reading it. Continuous-mode reads happen immediately and do not force
 a new conversion. Very short update intervals do not restart a pending one-shot conversion. Each reading uses the
 format flag in the temperature register, including when a sample still uses the previous mode's format.
+
+## Adjustable Thresholds
+
+The TMP102 [Number](/components/number/) platform adjusts thermostat thresholds at runtime. It requires a TMP102
+temperature sensor in the same configuration. Other hardware settings remain in YAML. This platform applies to
+TMP102 chips, not LM75 sensors.
+
+```yaml
+sensor:
+  - platform: tmp102
+    id: freezer_temperature
+    name: "Freezer Temperature"
+
+number:
+  - platform: tmp102
+    tmp102_id: freezer_temperature
+    temperature_high:
+      name: "High Temperature Threshold"
+      initial_value: "10°F"
+    temperature_low:
+      name: "Clear Temperature Threshold"
+      initial_value: "9°F"
+```
+
+### Number Configuration Variables
+
+- **tmp102_id** (*Optional*, [ID](/guides/configuration-types/#id)): The TMP102 temperature sensor to control. Required
+  when the configuration contains more than one TMP102 sensor.
+- **temperature_high** (*Optional*): High threshold number.
+- **temperature_low** (*Optional*): Low threshold number.
+
+At least one threshold number is required. Only one TMP102 number platform may reference each temperature sensor.
+Both threshold numbers support:
+
+- **initial_value** (*Optional*, temperature): Initial threshold when no valid saved value is available.
+  Defaults to the corresponding scalar setting on the temperature sensor, or `80°C` high and `75°C` low.
+  Set the sensor's scalar threshold or the number's `initial_value`, not both for the same threshold.
+- **restore_value** (*Optional*, boolean): Save accepted changes and restore them after reboot. Defaults to `true`.
+- All other options from [Number](/components/number/).
+
+These numbers use Celsius internally, have a step of `0.0625°C`, and default to configuration entities. ESPHome loads
+both saved thresholds before validating their relationship. Invalid saved values fall back to their initial values.
+If the resulting pair is inverted, both thresholds fall back to the configured initial pair. After successful hardware
+setup, corrected values are saved and the fallback is logged. With `restore_value: false`, that threshold starts from
+its configured initial value on every boot.
+
+Runtime changes must stay within range and keep the low threshold at or below the high threshold. Rejected changes
+and failed I²C writes leave the accepted value unchanged. When moving both thresholds, change the high threshold first
+when raising the pair, or the low threshold first when lowering it.
 
 ## Alert Binary Sensor
 
