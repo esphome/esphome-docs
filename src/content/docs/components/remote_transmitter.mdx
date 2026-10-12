@@ -700,7 +700,8 @@ on_...:
   a normal battery and `false` for a low one. Defaults to `true`.
 - **force_update** (*Optional*, boolean, [templatable](/automations/templates)): The forced transmission flag, `true`
   when the sensor sends because its button was pressed. Defaults to `false`.
-- All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
+- All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action). Real sensors send each
+  frame about ten times, so set `repeat` with a similar count for receivers that expect it.
 
 <span id="remote_transmitter-transmit_onkyori"></span>
 
