@@ -112,6 +112,8 @@ climate:
 The Daikin BRC remotes are used by the ceiling cassette model of Daikin heatpumps.
 
 - **use_fahrenheit** (*Optional*, boolean): U.S. models of the Daikin BRC remote send the temperature in Fahrenheit, if your remote shows Fahrenheit and can not be changed to Celsius then set this to true. Defaults to `false`.
+- **sub_unit** (*Optional*, int): Which indoor unit this climate addresses on a system with several units on one
+  remote, `0` to `5`. A frame from the remote is only decoded when it is addressed to this unit. Defaults to `0`.
 
 ```yaml
 # Example configuration entry
@@ -120,6 +122,15 @@ climate:
     name: "AC"
     sensor: room_temperature
     use_fahrenheit: true
+
+# Two indoor units driven from one transmitter
+climate:
+  - platform: daikin_brc
+    name: "Living Room"
+    sub_unit: 0
+  - platform: daikin_brc
+    name: "Kitchen"
+    sub_unit: 1
 ```
 
 <span id="delonghi_ir"></span>
