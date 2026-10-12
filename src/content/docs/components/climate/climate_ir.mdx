@@ -350,6 +350,35 @@ This platform works with the `arduino` framework and ESP-IDF (on ESP32), and sho
 
 This platform utilises the library's generic one-size-fits-all API, which might not line up perfectly with all of the supported AC units. For example, some AC units have more fan speed options than what the generic API supports.
 
+The `mitsubishi_heavy_zmp` protocol can also decode frames from the physical remote, so the climate state follows
+the remote. Set up a [Remote Receiver](/components/remote_receiver/) and pass its ID as `receiver_id`:
+
+```yaml
+remote_receiver:
+  id: rcvr
+  pin:
+    number: GPIOXX
+    inverted: true
+    mode:
+      input: true
+      pullup: true
+  tolerance: 55%
+
+climate:
+  - platform: heatpumpir
+    protocol: mitsubishi_heavy_zmp
+    name: "Heat Pump"
+    receiver_id: rcvr
+    horizontal_default: left
+    vertical_default: up
+    min_temperature: 18
+    max_temperature: 30
+    transmitter_id: xmitr
+```
+
+The receiver reports the ECO and BOOST presets of the remote, but the climate does not transmit them yet. Other
+protocols ignore received frames.
+
 Additional configuration must be specified for this platform:
 
 - **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols:
