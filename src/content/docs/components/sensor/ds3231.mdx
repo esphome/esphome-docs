@@ -19,10 +19,9 @@ sensor:
 
 ## Configuration Variables
 
-- **name** (**Required**, string): The name of the sensor.
-- **ds3231_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the [`ds3231`](/components/ds3231/)
+- **ds3231_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the [`ds3231`](/components/ds3231/)
   hub to use when more than one is configured.
-- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): How often to read the
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How often to read the
   temperature. Defaults to `60s`.
 - All other options from [Sensor](/components/sensor/#config-sensor).
 
@@ -33,7 +32,8 @@ The temperature is reported in degrees Celsius. To publish another unit, convert
 > The DS3231 runs a temperature conversion on its own every 64 seconds. Reading more often than that returns
 > the same value until the next conversion. Use the
 > [`ds3231.force_temperature_conversion`](/components/ds3231/#ds3231-force_temperature_conversion-action)
-> action to trigger a conversion on demand. The new value is published on the sensor's next update.
+> action to trigger a conversion on demand. The chip needs about 200 ms to finish, so the new value appears on
+> the first sensor update after that.
 
 ## See Also
 

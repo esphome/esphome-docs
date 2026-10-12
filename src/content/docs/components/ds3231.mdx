@@ -26,14 +26,14 @@ ds3231:
 
 ## Configuration Variables
 
-- **id** (*Optional*, [ID](/guides/configuration-types#id)): The ID to use for referencing this hub from
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID to use for referencing this hub from
   the sensor platform and actions.
 - **address** (*Optional*, int): The I²C address of the chip. Defaults to `0x68`.
-- **i2c_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the [I²C](/components/i2c/) bus
+- **i2c_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the [I²C](/components/i2c/) bus
   when using multiple buses.
 
-Multiple DS3231 chips (on different addresses or buses) can be configured by giving each one its own entry
-with a distinct `id`.
+The chip has a fixed address, so more than one DS3231 needs separate I²C buses (or separate channels of an
+I²C multiplexer); give each chip its own entry with a distinct `id` and `i2c_id`.
 
 ## `ds3231.force_temperature_conversion` Action
 
@@ -47,7 +47,7 @@ on_...:
 
 Configuration variables:
 
-- **id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the `ds3231` hub.
+- **id** (**Required**, [ID](/guides/configuration-types/#id)): The ID of the `ds3231` hub.
 
 ## Hardware Notes
 
