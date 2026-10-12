@@ -72,8 +72,9 @@ sensor:
   - `X256`
   - `X512`
 
-- **astep** (*Optional*): The number of integration steps. Default is `599`. Must be between `0` and `65534`.
-- **atime** (*Optional*): The integration time per step in increments of 2.78µs. Default is `29`. Must be between `0` and `255`.
+- **astep** (*Optional*): The length of one integration step in increments of 2.78µs. Default is `599`. Must be
+  between `0` and `65534`.
+- **atime** (*Optional*): The number of integration steps. Default is `29`. Must be between `0` and `255`.
 - All other options for I²C devices described at [I²C Bus](/components/i2c).
 
 ## Integration time
@@ -81,7 +82,7 @@ sensor:
 The integration time determines how long a channel measurement takes and depends on `ATIME` and `ASTEP`. The formula for the total integration time is:
 
 $$
-t = (\text{ATIME} + 1) \times (\text{ASTEP} + 1) \times 2.78\mu S
+t = (\text{ATIME} + 1) \times (\text{ASTEP} + 1) \times 2.78\,\mu\text{s}
 $$
 
 ## See Also

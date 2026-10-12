@@ -34,10 +34,6 @@ everything written below about the AS7343 applies to it too. The sensor is selec
 as734x:
   - id: spectral
     type: AS7343
-    gain: X512
-    atime: 29
-    astep: 599
-    update_interval: 60s
 
 sensor:
   - platform: as734x
@@ -214,13 +210,13 @@ sensor:
 > [!WARNING]
 > The reported values change when you move over. The AS7341 returns its data registers low byte first, and the
 > `as7341` platform never accounted for this, so its counts come out byte-swapped. The `as734x` component reads
-> them correctly. In practice a reading below 256 on the old platform was reported 256 times too large, and a
-> larger reading had its two bytes the wrong way round. Any automation, filter or long-term statistic built on
+> them correctly. In practice a true count below 256 was reported by the old platform as 256 times too large, and
+> a larger count had its two bytes the wrong way round. Any automation, filter or long-term statistic built on
 > the old values will need to be revisited.
 
 ## See Also
 
-- [Sensor Filters](/components/sensor#sensor-filters)
+- [Sensor Filters](/components/sensor/#sensor-filters)
 - [AS7341 Spectral Color Sensor](/components/sensor/as7341/)
 - [Adafruit_AS7341](https://github.com/adafruit/Adafruit_AS7341)
 - [SparkFun_AS7341X_Arduino_Library](https://github.com/sparkfun/SparkFun_AS7341X_Arduino_Library)
