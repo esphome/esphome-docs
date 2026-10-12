@@ -468,13 +468,14 @@ Remote code selection (exactly one of these has to be included):
   - **address** (**Required**, int): The 16-bit address to trigger on, see dumper output for more info. It is the
     12-bit thermostat ID followed by a 4-bit pairing field. The pairing field is normally 0; a thermostat sets bit 0
     in the first packets after its batteries are inserted, so a receiver in pairing mode can learn its ID.
-  - **data** (*Optional*, int): The 4-bit data value to trigger on. Range is 0 to 0xF. `0x8` means the thermostat
-    is on and `0x2` means low battery, so `0x8` is On with the battery OK. Cannot be used with `channel` and
-    `command`.
-  - **channel** (*Optional*, int): The legacy 5-bit channel, the low 5 checksum bits. Range is 0 to 0x1F. Must be
-    used together with `command`; kept for configurations written for the first Drayton release.
+  - **data** (*Optional*, int): The 4-bit data value to trigger on. Range is `0` to `0xF`. Bit `0x8` means the
+    thermostat calls for heat and bit `0x2` means low battery, so `0x8` is On with the battery OK and `0x0` is Off.
+    The other two bits have not been seen set. Cannot be used with `channel` and `command`.
+  - **channel** (*Optional*, int): The legacy 5-bit channel, the low 5 checksum bits. Range is `0` to `0x1F`. Must
+    be used together with `command`; kept for configurations written for the first Drayton release. It is not
+    compared when matching, since the checksum is verified before a packet gets this far.
   - **command** (*Optional*, int): The legacy 7-bit command, the 4 data bits followed by the top 3 checksum bits.
-    Range is 0 to 0x7F. Must be used together with `channel`. Only its 4 data bits are compared with the received
+    Range is `0` to `0x7F`. Must be used together with `channel`. Only its 4 data bits are compared with the received
     packet.
 
 - **dyson**: Trigger on a decoded dyson cool AM07 infrared remote code with the given data.

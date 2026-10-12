@@ -404,15 +404,16 @@ Set `address` and either `data` or both `channel` and `command`.
 - **address** (**Required**, int, [templatable](/automations/templates)): The 16-bit address to send, see dumper
   output for more info. It is the 12-bit thermostat ID followed by a 4-bit pairing field. The pairing field is
   normally 0; setting bit 0 lets a receiver in pairing mode learn the ID.
-- **data** (*Optional*, int, [templatable](/automations/templates)): The 4-bit data value to send. Range is 0 to 0xF.
-  `0x8` means the thermostat is on and `0x2` means low battery, so `0x8` is On with the battery OK. The checksum is
-  calculated and added for you. Cannot be used with `channel` and `command`.
-- **channel** (*Optional*, int, [templatable](/automations/templates)): The legacy 5-bit channel, the low 5 checksum
-  bits. Range is 0 to 0x1F. Must be used together with `command`; kept for configurations written for the first
+- **data** (*Optional*, int, [templatable](/automations/templates/)): The 4-bit data value to send. Range is `0` to
+  `0xF`. Bit `0x8` means the thermostat calls for heat and bit `0x2` means low battery, so `0x8` is On with the
+  battery OK and `0x0` is Off. The other two bits have not been seen set. The checksum is calculated and added for
+  you. Cannot be used with `channel` and `command`.
+- **channel** (*Optional*, int, [templatable](/automations/templates/)): The legacy 5-bit channel, the low 5 checksum
+  bits. Range is `0` to `0x1F`. Must be used together with `command`; kept for configurations written for the first
   Drayton release.
-- **command** (*Optional*, int, [templatable](/automations/templates)): The legacy 7-bit command, the 4 data bits
-  followed by the top 3 checksum bits. Range is 0 to 0x7F. Must be used together with `channel`. The packet is sent
-  from `channel` and `command` as they are, with no checksum calculated.
+- **command** (*Optional*, int, [templatable](/automations/templates/)): The legacy 7-bit command, the 4 data bits
+  followed by the top 3 checksum bits. Range is `0` to `0x7F`. Must be used together with `channel`. The packet is
+  sent from `channel` and `command` as they are, with no checksum calculated.
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
 <span id="remote_transmitter-transmit_dyson"></span>
