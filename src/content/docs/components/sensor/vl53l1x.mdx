@@ -11,14 +11,16 @@ The `vl53l1x` sensor platform allows you to use VL53L1X optical time of flight
 to measure distances. The sensor works optically by emitting short infrared pulses
 and measuring the time it takes the light to be reflected back.
 
-The VL53L1X is the successor to the VL53L0X with a longer range. It has two distance modes:
+The VL53L1X is the successor to the VL53L0X with a longer range. It has three distance modes:
 
 - **Short mode**: up to about 1.3m, with better immunity to ambient light
+- **Medium mode**: up to about 3m
 - **Long mode**: up to about 4m in the dark (default)
 
 Range depends on how well the target reflects light, on ambient light, and on the sensor settings.
-The component follows the register sequence of ST's VL53L1X Ultra Lite Driver (ULD), so the distance
-modes and timing budgets are the ones that driver supports. It is supported on ESP32 and ESP8266.
+The component follows the register sequence of ST's VL53L1X Ultra Lite Driver (ULD), so short and long
+mode and their timing budgets are the ones that driver supports. Medium mode uses ST's standard ranging
+register values. It is supported on ESP32 and ESP8266.
 
 The [I²C Bus](/components/i2c/) is required to be set up in your configuration for this sensor to work.
 
@@ -45,13 +47,13 @@ range, the state is set to `NaN`.
 
 ## Configuration variables
 
-- **distance_mode** (*Optional*, string): The distance mode, one of `short` or `long`. See
+- **distance_mode** (*Optional*, string): The distance mode, one of `short`, `medium` or `long`. See
   [Distance Modes](#distance-modes). Defaults to `long`.
 
 - **timing_budget** (*Optional*, [Time](/guides/configuration-types#time)): The time allowed for a single
   distance measurement. A longer budget gives more accurate readings at a lower measurement rate.
   Must be one of `15ms`, `20ms`, `33ms`, `50ms`, `100ms`, `200ms` or `500ms` in short mode, and one of
-  `20ms`, `33ms`, `50ms`, `100ms`, `200ms` or `500ms` in long mode. Defaults to `50ms`.
+  `20ms`, `33ms`, `50ms`, `100ms`, `200ms` or `500ms` in medium and long mode. Defaults to `50ms`.
 
 - **signal_rate_limit** (*Optional*, float): The minimum return signal rate in MCPS (mega counts per second)
   needed for a valid reading. Must be greater than 0 and less than 512. A lower value may increase the range
@@ -83,7 +85,7 @@ range, the state is set to `NaN`.
 
 ## Distance Modes
 
-The two distance modes trade maximum range against immunity to ambient light.
+The distance modes trade maximum range against immunity to ambient light.
 
 **Short mode** is best for:
 
@@ -95,6 +97,8 @@ The two distance modes trade maximum range against immunity to ambient light.
 
 - Targets up to about 4m away
 - Indoor use or low ambient light
+
+**Medium mode** sits between the two, with a range of about 3m.
 
 ```yaml
 # Short range mode for faster readings in bright conditions
