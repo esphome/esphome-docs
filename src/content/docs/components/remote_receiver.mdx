@@ -506,7 +506,8 @@ Remote code selection (exactly one of these has to be included):
 
   - **wand_id** (*Optional*, int): The MagiQuest wand ID to trigger on, see dumper output for more info. If omitted,
     any wand triggers the sensor. Ids written down with ESPHome versions before 2026.11 keep working: they are the
-    new id without its five lowest bits, and both forms are matched.
+    new id without its five lowest bits, and both forms are matched. Because of that, an id below `0x04000000` also
+    matches the 32 wands whose full id shortens to it; a full id from a current dump is unambiguous above that value.
   - **magnitude** (*Optional*, int): Accepted for compatibility but ignored; the magnitude field encodes the kind of
     cast rather than a strength, so every activation of the wand matches.
 
