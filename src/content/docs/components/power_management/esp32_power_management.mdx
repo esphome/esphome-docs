@@ -20,16 +20,17 @@ power_management:
 
 - **max_frequency** (*Optional*, frequency): The CPU frequency used while a component holds a CPU lock. Must be
   one of the frequencies the chip supports (for example `80MHz`, `160MHz` or `240MHz` on the ESP32, and
-  `16MHz` to `96MHz` on the ESP32-H2). Defaults to the `cpu_frequency` of the `esp32` component; a different
-  value is reported during validation.
+  `16MHz`, `32MHz`, `48MHz`, `64MHz` or `96MHz` on the ESP32-H2). Defaults to the `cpu_frequency` of the
+  [`esp32`](/components/esp32/) component. A different value is accepted; validation logs that the CPU will
+  be clocked down to it, or warns that it may run above the boot frequency under load.
 - **min_frequency** (*Optional*, frequency): The CPU frequency used while no CPU lock is held. Must divide the
   crystal frequency (`40MHz` on most variants, `32MHz` on the ESP32-H2) or be one of the CPU frequencies, be at
   least `10MHz` on the ESP32 and `2MHz` on the other variants, and be no higher than the maximum. Defaults to
   the crystal frequency, limited to the maximum.
 - **enable_light_sleep** (*Optional*, boolean): Enter light sleep automatically whenever no task is runnable,
   which also stops the periodic tick interrupt while idle. Defaults to `false`.
-- **idle_time_before_sleep** (*Optional*, int): How many FreeRTOS ticks (10 ms each at the default tick rate)
-  the system must stay idle before it enters light sleep. Minimum `2`. Defaults to `3`.
+- **idle_time_before_sleep** (*Optional*, int): How many FreeRTOS ticks (1 ms each, as ESPHome runs the ESP32
+  tick at 1 kHz) the system must stay idle before it enters light sleep. Minimum `2`. Defaults to `3`.
 - **power_down_flash** (*Optional*, boolean): Power down the flash chip during light sleep. Requires
   `enable_light_sleep` and is rejected when the device has PSRAM. Defaults to `false`.
 - **power_down_peripherals** (*Optional*, boolean): Save and restore the peripheral registers around light
@@ -46,7 +47,8 @@ power_management:
 - All other options from [Power Management](/components/power_management/#configuration-variables).
 
 > [!WARNING]
-> Do not combine `enable_light_sleep: true` with the [Deep Sleep](/components/deep_sleep/) component.
+> Do not combine `enable_light_sleep: true` with the [Deep Sleep](/components/deep_sleep/) component. Nothing
+> validates the combination, and it has not been tested.
 
 > [!NOTE]
 > On chips with USB Serial/JTAG, light sleep is blocked while a USB host (not just power) is connected to
@@ -57,8 +59,9 @@ power_management:
 ESP-IDF components express their requirements by acquiring and releasing power management locks. While a
 lock is held, the CPU runs at `max_frequency` and light sleep is prevented; when none is held, the CPU drops to
 `min_frequency` and, with `enable_light_sleep`, the chip sleeps until the next scheduled task or an interrupt.
-In ESPHome the main loop interval sets the sleep rhythm, and OpenThread sleepy end devices (a `poll_period`
-greater than zero) switch the radio off between polls so the device can sleep in between.
+In ESPHome the main loop interval sets the sleep rhythm, and [OpenThread](/components/openthread/) sleepy end
+devices (a `poll_period` greater than zero) switch the radio off between polls so the device can sleep in
+between.
 
 The price is interrupt latency, which can grow to around 40 µs, and peripheral behaviour under a changing
 APB frequency. Timers in the Timer Group peripheral, for example, keep counting but at a rate that follows
@@ -75,10 +78,10 @@ resumes where it stopped rather than rebooting, and there is no companion compon
 > costs wake-up time and needs testing on the actual board to be sure the flash is never corrupted.
 
 > [!NOTE]
-> With `power_down_peripherals: true`, a GPIO output may not keep its level during light sleep. Set
-> `hold_state: true` on any pin that must keep its state. Peripherals without register save and restore
-> support come back reset after sleep; an ESP32-C6 devkit has been seen to crash within a minute with the
-> option set to `false`.
+> Keep `power_down_peripherals` at its default of `true` on the chips that support it. A GPIO output may
+> then lose its level during light sleep, so set [`hold_state: true`](/guides/configuration-types/#pin-schema)
+> on any pin that must keep its state, and peripherals without register save and restore support come back
+> reset after sleep. With the option set to `false` an ESP32-C6 devkit has been seen to crash within a minute.
 
 ## Inspecting the Locks
 
