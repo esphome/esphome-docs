@@ -12,9 +12,6 @@ Set up the [`ds3231`](/components/ds3231/) hub (and the [I²C](/components/i2c/)
 
 ```yaml
 # Example configuration entry
-ds3231:
-  id: ds3231_hub
-
 sensor:
   - platform: ds3231
     name: "RTC Temperature"
@@ -36,7 +33,7 @@ The temperature is reported in degrees Celsius. To publish another unit, convert
 > The DS3231 runs a temperature conversion on its own every 64 seconds. Reading more often than that returns
 > the same value until the next conversion. Use the
 > [`ds3231.force_temperature_conversion`](/components/ds3231/#ds3231-force_temperature_conversion-action)
-> action to trigger a conversion on demand.
+> action to trigger a conversion on demand. The new value is published on the sensor's next update.
 
 ## See Also
 

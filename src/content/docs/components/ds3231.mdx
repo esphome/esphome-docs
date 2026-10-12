@@ -10,20 +10,16 @@ The `ds3231` component provides support for the Maxim/Analog Devices DS3231 real
 is a temperature-compensated RTC accurate to a few parts per million, and is found on inexpensive breakout
 boards such as the ZS-042.
 
-<Image src="/images/ds3231.png" width={300} height={300} layout="constrained" alt="DS3231 RTC breakout board" />
+<Image src="/images/ds3231.jpg" width={300} height={300} layout="constrained" alt="DS3231 RTC breakout board" />
 
 This component is an I²C hub. It talks to the chip, and the on-die temperature is read with the
-[`sensor`](/components/sensor/ds3231/) platform. Time, alarm and output support will be
-added in follow-up pull requests.
+[`sensor`](/components/sensor/ds3231/) platform. It does not yet provide a `time` platform, alarms or the
+square-wave and 32 kHz outputs.
 
 The [I²C](/components/i2c/) bus must be set up first.
 
 ```yaml
 # Example configuration entry
-i2c:
-  sda: GPIOXX
-  scl: GPIOXX
-
 ds3231:
   id: ds3231_hub
 ```
@@ -38,8 +34,6 @@ ds3231:
 
 Multiple DS3231 chips (on different addresses or buses) can be configured by giving each one its own entry
 with a distinct `id`.
-
-<span id="ds3231-force_temperature_conversion-action"></span>
 
 ## `ds3231.force_temperature_conversion` Action
 
