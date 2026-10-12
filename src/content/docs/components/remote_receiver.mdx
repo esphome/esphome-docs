@@ -539,7 +539,8 @@ Remote code selection (exactly one of these has to be included):
   - **data** (**Required**, int): The Onkyo RI code to trigger on, in the range `0x000` to `0xFFF`, see dumper
     output for more info.
 
-- **panasonic**: Trigger on a decoded Panasonic remote code with the given data.
+- **panasonic**: Trigger on a decoded Panasonic remote code with the given data. A 56-bit remote that an earlier
+  release showed as a 48-bit code needs a fresh dump; its `nbits`, `address_2` and `command` change.
 
   - **address** (**Required**, int): The 16-bit address to trigger on, see dumper output for more info.
   - **address_2** (*Optional*, int): The extra 8-bit address byte of a 56-bit code, see dumper output for more
