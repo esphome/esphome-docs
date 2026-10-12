@@ -41,7 +41,8 @@ speaker:
 
 Any 8 to 32 bit mono or stereo audio stream is accepted. Stereo audio is mixed down to mono, and all
 audio is converted to the 8-bit pulse density used by the modulator, which runs at a fixed 1 MHz.
-Volume and mute are applied in software.
+Volume and mute are applied in software unless an `audio_dac` is configured, in which case the DAC
+handles them.
 
 ## Hardware Setup
 
@@ -66,7 +67,7 @@ GPIOXX --[1 kΩ]--+--> amplifier input / headphones
 Any output-capable GPIO pin can be used. Avoid strapping pins and pins already used by other hardware
 on the board:
 
-| Board                     | Tested pin      | Note                                                  |
+| Board                     | Suggested pin   | Note                                                  |
 | ------------------------- | --------------- | ----------------------------------------------------- |
 | ESP32-C3 SuperMini / Zero | GPIO1           | Avoid the strapping pins GPIO2, GPIO8 and GPIO9.      |
 | ESP32-S3-BOX-3            | GPIO14          | Avoid the pins used by the display and touch panel.   |
