@@ -388,7 +388,7 @@ on_...:
 
 ### `remote_transmitter.transmit_drayton` Action
 
-This [action](/automations/actions#all-actions) sends a Draton Digistat RF remote code to a remote transmitter.
+This [action](/automations/actions#all-actions) sends a Drayton Digistat RF remote code to a remote transmitter.
 
 ```yaml
 on_...:
@@ -399,14 +399,20 @@ on_...:
 
 #### Configuration variables
 
-- **address** (**Required**, int): The 16-bit ID to send. Bits 0-3 are normally zero. Setting bit 0 will allow a Drayton
-    receiver in 'learn' mode to receive this address. See dumper output for more info.
-- **data** (*Optional*, int): The data value to send, between 0 and 15 inclusive. Defaults to '0'. Bit '3' represents thermostat on/off. Bit '1'
-    represents 'Low Batt'. e.g. 0x8=Thermostat ON, Battery OK.  Should be used in preference to channel and command.
-- **channel** (*Optional*, int): The 7-bit switch/channel to send. May be used, in conjunction with command, to maintain compatibility with first
-    implematation of the Drayton receiver. Use of data is preferred.
-- **command** (*Optional*, int): The 5-bit command to send. May be used, in conjunction with channel, to maintain compatibility with first implematation of
-    the Drayton receiver. Use of data is preferred.
+Set `address` and either `data` or both `channel` and `command`.
+
+- **address** (**Required**, int, [templatable](/automations/templates)): The 16-bit address to send, see dumper
+  output for more info. It is the 12-bit thermostat ID followed by a 4-bit pairing field. The pairing field is
+  normally 0; setting bit 0 lets a receiver in pairing mode learn the ID.
+- **data** (*Optional*, int, [templatable](/automations/templates)): The 4-bit data value to send. Range is 0 to 0xF.
+  `0x8` means the thermostat is on and `0x2` means low battery, so `0x8` is On with the battery OK. The checksum is
+  calculated and added for you. Cannot be used with `channel` and `command`.
+- **channel** (*Optional*, int, [templatable](/automations/templates)): The legacy 5-bit channel, the low 5 checksum
+  bits. Range is 0 to 0x1F. Must be used together with `command`; kept for configurations written for the first
+  Drayton release.
+- **command** (*Optional*, int, [templatable](/automations/templates)): The legacy 7-bit command, the 4 data bits
+  followed by the top 3 checksum bits. Range is 0 to 0x7F. Must be used together with `channel`. The packet is sent
+  from `channel` and `command` as they are, with no checksum calculated.
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
 <span id="remote_transmitter-transmit_dyson"></span>
