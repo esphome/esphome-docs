@@ -717,12 +717,26 @@ on_...:
   - remote_transmitter.transmit_panasonic:
       address: 0x1FEF
       command: 0x1F3E065F
+
+  # A 56-bit code
+  - remote_transmitter.transmit_panasonic:
+      nbits: 56
+      address: 0x4004
+      address_2: 0x0E
+      command: 0x0100BCBD
 ```
 
 #### Configuration variables
 
-- **address** (**Required**, int, [templatable](/automations/templates)): The address to send the command to, see dumper output for more details.
-- **command** (**Required**, int, [templatable](/automations/templates)): The command to send.
+- **address** (**Required**, int, [templatable](/automations/templates)): The 16-bit address to send the command to, see
+  dumper output for more details.
+- **address_2** (*Optional*, int, [templatable](/automations/templates)): The extra 8-bit address byte of a 56-bit
+  code, see dumper output for more details. Only sent when `nbits` is `56`. Defaults to `0`.
+- **command** (**Required**, int, [templatable](/automations/templates)): The 32-bit command to send.
+- **nbits** (*Optional*, int, [templatable](/automations/templates)): The number of bits of the remote code, `48` or
+  `56`. Defaults to `48`.
+- **carrier_frequency** (*Optional*, float, [templatable](/automations/templates)): Set a frequency to send the signal
+  with for infrared signals. Defaults to `35000Hz`.
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
 <span id="remote_transmitter-transmit_pioneer"></span>
