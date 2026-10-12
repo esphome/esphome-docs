@@ -288,10 +288,22 @@ climate:
 All whirlpool models only have a power toggle, so the climate keeps track of whether it believes the unit is on. If
 the unit is switched with another remote, the next command may toggle the power instead of changing a setting. With
 the `HISENSE_ARG` model the three frames of one transmission are separated by long gaps, so a
-[receiver](#ir-receiver_id) needs `idle: 50ms` to capture them.
+[receiver](#ir-receiver_id) needs `idle: 50ms` to capture them. The three frames also add up to more pulses than a
+single-frame protocol, so a `remote_receiver` using a pulse-ring target (for example `bk72xx`) needs a larger
+`buffer_size` as well: that option is sized in bytes with 4 bytes per pulse, so a value that was enough pulses for
+a short protocol can be too small for `HISENSE_ARG` and will show up as repeated "Buffer overflow" log warnings
+with no decode. `2000b` (500 pulses) comfortably fits the three frames.
 
 ```yaml
 # Example configuration entry
+remote_receiver:
+  id: rcvr
+  pin:
+    number: GPIOXX
+    inverted: true
+  idle: 50ms
+  buffer_size: 2000b
+
 climate:
   - platform: whirlpool
     name: "AC"
