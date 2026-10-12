@@ -31,6 +31,7 @@ submit a feature request (see FAQ).
 | [Midea](#midea_ir) | `midea_ir`                         | yes |
 | [Mitsubishi](#mitsubishi) | `mitsubishi`                       | yes |
 | Noblex | `noblex`                           | yes |
+| [Siemens IRA211](#siemens_ira211) | `siemens_ira211`        | yes |
 | Electrolux, TCL, Fuego | `tcl112`                           | yes |
 | [Toshiba](#toshiba) | `toshiba`                          | yes |
 | [Whirlpool](#whirlpool) | `whirlpool`                        | yes |
@@ -279,6 +280,23 @@ climate:
     vertical_default: "down"
 ```
 
+### `siemens_ira211`
+
+The `siemens_ira211` climate controls Siemens RDG1xx and RDG2xx thermostats that are operated with the
+Siemens IRA211 handheld remote. It has no options beyond the common ones listed above. The thermostat decides between
+heating and cooling itself, so with both `supports_cool` and `supports_heat` enabled the climate offers one
+`heat_cool` mode; the thermostat's `PROTECTION` mode is shown as `off`, and its `COMFORT` and `TIMER` modes as the
+`comfort` and `eco` presets. When `receiver_id` is set the climate state is tracked when the thermostat is operated
+with the original remote.
+
+```yaml
+# Example configuration entry
+climate:
+  - platform: siemens_ira211
+    name: "Siemens IRA211"
+    sensor: room_temperature
+```
+
 ### `toshiba`
 
 - **model** (*Optional*, string): There are six valid models:
@@ -454,6 +472,7 @@ Additional configuration must be specified for this platform:
 - <APIRef text="hitachi_ac344.h" path="hitachi_ac344/hitachi_ac344.h" />
 - <APIRef text="midea_ir.h" path="midea_ir/midea_ir.h" />
 - <APIRef text="mitsubishi.h" path="mitsubishi/mitsubishi.h" />
+- <APIRef text="siemens_ira211.h" path="siemens_ira211/siemens_ira211.h" />
 - <APIRef text="tcl112.h" path="tcl112/tcl112.h" />
 - <APIRef text="toshiba.h" path="toshiba/toshiba.h" />
 - <APIRef text="whirlpool.h" path="whirlpool/whirlpool.h" />
