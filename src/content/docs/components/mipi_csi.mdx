@@ -55,10 +55,9 @@ mipi_csi:
 
 - **jpeg_quality** (*Optional*, int): The JPEG quality every captured frame is encoded with, from `10`
   (smallest, lowest quality) to `100` (largest, highest quality). Defaults to `40`.
-- **framerate** (*Optional*, framerate): The frame rate to request from the sensor, between `1fps` and
-  `60fps`. Defaults to `10fps`. Sensors can usually only run at rates that evenly divide their own
-  native frame rate; if the requested rate does not, the component logs a warning and steps down to the
-  closest rate that does.
+- **framerate** (*Optional*, framerate): The frame rate to deliver, between `1fps` and `60fps`. Defaults
+  to `10fps`. Reached by dropping frames, so it must evenly divide the sensor's native rate, otherwise the
+  closest rate that does is used. The sensor keeps running at its native rate.
 - **idle_framerate** (*Optional*, framerate): The frame rate to capture at when no client is actively
   requesting a stream or a single image, between `0fps` and `1fps`. Defaults to `0.1fps`. Set to `0fps`
   to stop capturing entirely while idle.
