@@ -73,7 +73,8 @@ Base Configuration (shared by both `lis2dw12_i2c` and `lis2dw12_spi`):
   - **offset_y** (*Optional*, float): Y-axis zero position calibration, in m/s². From -4.5 to 4.5. Defaults to `0`.
   - **offset_z** (*Optional*, float): Z-axis zero position calibration, in m/s². From -4.5 to 4.5. Defaults to `0`.
 
-- **transform** (*Optional*):
+- **transform** (*Optional*): Remaps the axes of the acceleration sensors to match how the board is mounted. The
+  orientation text sensor always reports the chip's own axes.
 
   - **mirror_x** (*Optional*, boolean): Mirror X-axis. Defaults to `false`.
   - **mirror_y** (*Optional*, boolean): Mirror Y-axis. Defaults to `false`.
