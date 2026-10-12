@@ -137,6 +137,12 @@ on_...:
     - script.stop: my_script
 ```
 
+...or as lambda:
+
+```yaml
+lambda: 'id(my_script).stop();'
+```
+
 Inside a script, the id can be left out to stop the script itself. Outside a script the id is required.
 
 ```yaml
@@ -150,12 +156,6 @@ script:
             - script.stop
       - delay: 1s
       - switch.turn_off: my_switch
-```
-
-...or as lambda:
-
-```yaml
-lambda: 'id(my_script).stop();'
 ```
 
 ## `script.wait` Action

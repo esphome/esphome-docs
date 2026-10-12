@@ -211,11 +211,12 @@ example above:
           - light.turn_on: my_light
 ```
 
-To check more than one condition, use `condition`, `all` or `any`.
+A condition given this way cannot be combined with `condition`, `all` or `any`. To check more than one condition,
+use one of those instead.
 
 #### Configuration variables
 
-At least one of `condition`, `all` or `any`, or a single condition, must be provided.
+Exactly one of `condition`, `all`, `any` or a single condition must be provided.
 
 - **condition** (*Optional*, [Condition](#all-conditions)): The condition to check to determine which branch to take.
   If this is configured with a list of conditions then they must all be true for the condition to be true.
