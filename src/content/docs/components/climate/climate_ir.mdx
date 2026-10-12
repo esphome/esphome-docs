@@ -186,12 +186,15 @@ switch:
 
 Haier 112-bit protocol, currently only tested with AS35TB4HRA but may also work with other units.
 
+- **unit** (*Optional*, string): The AC unit ID, either `a` or `b`. Only one of each is supported globally. Defaults to `a`.
+
 ```yaml
 # Example configuration entry
 climate:
   - platform: haier_tundra
     name: "AC"
     sensor: room_temperature
+    unit: b
 ```
 
 Two buttons and three switches are also exposed:
