@@ -607,11 +607,18 @@ on_...:
 
 #### Configuration variables
 
-- **wand_id** (**Required**, int, [templatable](/automations/templates)): The wand ID to send, as a hex integer. See the dumper output for your wand ID.
-- **magnitude** (*Optional*, int, [templatable](/automations/templates)): The magnitude of swishes and swirls the wand should transmit. See the dumper output
-  for examples. If omitted, sends 0xFFFF (which the real wand never uses).
+- **wand_id** (**Required**, int, [templatable](/automations/templates/)): The wand ID to send, as a hex integer in
+  the old frame layout (see the note below): the id a dumper before 2026.11 printed, which is the id a current dumper
+  prints without its five lowest bits.
+- **magnitude** (*Optional*, int, [templatable](/automations/templates/)): The magnitude value to send, in the old
+  frame layout (see the note below). If omitted, sends 0xFFFF (which the real wand never uses).
 
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
+
+> [!NOTE]
+> This action still sends the frame layout ESPHome has always used, which is not the layout a real wand sends. The
+> receiver decodes real wand frames since 2026.11, so a frame sent by this action is not decoded by another ESPHome
+> device running 2026.11 or later; receivers on earlier versions still accept it.
 
 <span id="remote_transmitter-transmit_midea"></span>
 

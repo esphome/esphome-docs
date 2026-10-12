@@ -248,7 +248,9 @@ To enable signal demodulation, configure the signal carrier frequency and duty c
 
 - **on_magiquest** (*Optional*, [Automation](/automations)): An automation to perform when a
   MagiQuest wand remote code has been decoded. A variable `x` of type <APIStruct text="remote_base::MagiQuestData" path="remote_base::MagiQuestData" />
-  is passed to the automation for use in lambdas.
+  is passed to the automation for use in lambdas. Since 2026.11, `x.wand_id` is the wand's full 31 bit id and
+  `x.magnitude` its 9 bit magnitude field; earlier versions read both fields at the wrong offsets, so lambdas that
+  compare them need the new values shown by the dumper.
 
 - **on_midea** (*Optional*, [Automation](/automations)): An automation to perform when a
   Midea remote code has been decoded. A variable `x` of type <APIClass text="remote_base::MideaData" path="remote_base::MideaData" />
@@ -535,11 +537,14 @@ Remote code selection (exactly one of these has to be included):
   - **data** (**Required**, int): The LG code to trigger on, see dumper output for more info.
   - **nbits** (*Optional*, int): The number of bits of the remote code. Defaults to `28`.
 
-- **magiquest**: Trigger on a decoded MagiQuest wand remote code with the given wand ID.
+- **magiquest**: Trigger on a decoded MagiQuest wand remote code, optionally limited to one wand ID.
 
-  - **wand_id** (**Required**, int): The MagiQuest wand ID to trigger on, see dumper output for more info.
-  - **magnitude** (*Optional*, int): The magnitude of swishes and swirls of the wand. If omitted, will match on any
-    activation of the wand.
+  - **wand_id** (*Optional*, int): The MagiQuest wand ID to trigger on, see dumper output for more info. If omitted,
+    any wand triggers the sensor. Ids written down with ESPHome versions before 2026.11 keep working: they are the
+    new id without its five lowest bits, and both forms are matched. Because of that, an id below `0x04000000` also
+    matches the 32 wands whose full id shortens to it; a full id from a current dump is unambiguous above that value.
+  - **magnitude** (*Optional*, int): Accepted for compatibility but ignored; the magnitude field encodes the kind of
+    cast rather than a strength, so every activation of the wand matches.
 
 - **midea**: Trigger on a Midea remote code with the given code.
 
