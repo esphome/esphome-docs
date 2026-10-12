@@ -7,12 +7,12 @@ import APIRef from '@components/APIRef.astro';
 
 The `tca8418` component allows you to use a TCA8418 keypad scanner
 ([datasheet](https://www.ti.com/lit/ds/symlink/tca8418.pdf)) with ESPHome. The
-[I²C Bus](/components/i2c) is required to be set up in your configuration for
+[I²C Bus](/components/i2c/) is required to be set up in your configuration for
 this device to work.
 
-The TCA8418 has 18 pins and scans the keys for you, reporting each press and
+The TCA8418 has 18 GPIO lines (`ROW0` to `ROW7` and `COL0` to `COL9`) and scans the keys for you, reporting each press and
 release over I²C so the microcontroller does not have to poll the keys itself.
-Its pins can be used in two ways at the same time:
+Its lines can be used in two ways at the same time:
 
 - as a **key matrix**, where keys sit at the intersections of the row and column
   lines, and
@@ -35,14 +35,14 @@ tca8418:
     - lambda: ESP_LOGI("KEY", "key %c pressed", x);
 ```
 
-### Configuration variables
+### Configuration Variables
 
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Set the ID of this device for use in lambdas.
 - **address** (*Optional*, int): The I²C address of the device. Defaults to `0x34`.
-- **rows** (*Optional*, int): The number of rows in the key matrix, `0` to `8`. The matrix occupies
-  the `ROW` lines starting at `ROW0`. Defaults to `0`, which means no key matrix.
-- **columns** (*Optional*, int): The number of columns in the key matrix, `0` to `10`. The matrix
-  occupies the `COL` lines starting at `COL0`. Defaults to `0`.
+- **rows** (*Optional*, int): The number of rows in the key matrix, `1` to `8`. The matrix occupies
+  the `ROW` lines starting at `ROW0`. Set together with `columns`; leave both out for no key matrix.
+- **columns** (*Optional*, int): The number of columns in the key matrix, `1` to `10`. The matrix
+  occupies the `COL` lines starting at `COL0`.
 - **keys** (*Optional*, string): The keys present on the matrix, from top left to bottom right,
   row by row. It must have exactly `rows` × `columns` characters. Required for `key_collector`,
   and for selecting a `binary_sensor` by its character.
@@ -55,9 +55,9 @@ tca8418:
   noticeably sooner, since either way one is picked up within a few milliseconds. The output is
   open drain and active low, so it needs a pull-up; set `mode: INPUT_PULLUP` unless the board
   already has one of its own.
-- All other options from [I²C Device](/components/i2c).
+- All other options from [I²C Device](/components/i2c/).
 
-### Key numbers
+### Key Numbers
 
 The device identifies each key by a number. Matrix keys are numbered row by row with ten columns
 per row, starting at 1, so `ROW0`/`COL0` is key 1, `ROW0`/`COL9` is key 10 and `ROW1`/`COL0` is
@@ -97,7 +97,7 @@ binary_sensor:
     name: "Power button"
 ```
 
-### Configuration variables
+### Configuration Variables
 
 - **keypad_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the keypad to process key presses from.
 - **row** (*Optional*, int): The row of the key in the matrix.
@@ -112,15 +112,16 @@ Identify the key with either the `row` and `col` parameters, the `key` parameter
 
 ## Automations
 
-- **on_key** (*Optional*, [Automation](/automations)): An automation to perform when a key has been
-  pressed. The key is in a variable called `x`, which holds the mapped character when `keys` is
-  configured, and the key number otherwise.
+- **on_key** (*Optional*, [Automation](/automations/)): An automation to perform when a key has been
+  pressed. The key is in a variable called `x`, which holds the mapped character for a matrix key
+  when `keys` is configured, and the key number otherwise; individual inputs always report their
+  number.
 
   > [!NOTE]
   > Automatic handling of multiple keys (e.g. PIN code entry) is possible with the
-  > the [Key Collector](/components/key_collector#key_collector) component.
+  > [Key Collector](/components/key_collector#key_collector) component.
 
-## Mixing a matrix with individual inputs
+## Mixing a Matrix with Individual Inputs
 
 Some boards scan most of their buttons as a matrix but wire one or two directly to the device. In
 that case set `rows` and `columns` for the matrix and leave `gpi_events` enabled, and the remaining
@@ -130,7 +131,6 @@ pins report as individual inputs.
 # A 5x5 matrix on ROW0-4 / COL0-4, with a power button wired to ROW5
 tca8418:
   id: mykeypad
-  address: 0x34
   interrupt_pin: GPIOXX
   rows: 5
   columns: 5
