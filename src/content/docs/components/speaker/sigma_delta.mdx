@@ -10,8 +10,8 @@ audio signal. No external DAC or I²S codec is needed.
 The output is 8-bit, so expect a signal-to-noise ratio of roughly 30 to 40 dB. This is good enough
 for voice prompts, alerts and casual listening, but it is not suitable for high-quality music playback.
 
-This platform only works on ESP32-based chips with a sigma-delta modulator (all variants except the
-ESP32-C2 and ESP32-H2) using the [ESP-IDF framework](/components/esp32/#framework).
+This platform only works on ESP32-based chips using the [ESP-IDF framework](/components/esp32/#framework);
+the ESP32-C2 and ESP32-H2 are not supported.
 
 > [!WARNING]
 > Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
@@ -49,7 +49,7 @@ An RC low-pass filter between the pin and the amplifier removes the high-frequen
 the audio signal:
 
 ```text
-GPIOXX --[1 kΩ]--+--> amplifier / headphones / speaker
+GPIOXX --[1 kΩ]--+--> amplifier input / headphones
                  |
                [10 nF]
                  |
@@ -68,9 +68,9 @@ on the board:
 
 | Board                     | Tested pin      | Note                                                  |
 | ------------------------- | --------------- | ----------------------------------------------------- |
-| ESP32-C3 SuperMini / Zero | GPIO1           | GPIO2 also works. Do not use strapping pins 8 and 9.  |
-| ESP32-S3-BOX-3            | GPIO1 or GPIO14 | Do not use the display or touch pins (GPIO4/5/6/8).   |
-| ESP32 (original)          | Any output GPIO |                                                       |
+| ESP32-C3 SuperMini / Zero | GPIO1           | Avoid the strapping pins GPIO2, GPIO8 and GPIO9.      |
+| ESP32-S3-BOX-3            | GPIO14          | Avoid the pins used by the display and touch panel.   |
+| ESP32 (original)          | Any output GPIO | Avoid the strapping pins GPIO0, 2, 5, 12 and 15.      |
 
 ## Media Player Example
 
@@ -85,6 +85,7 @@ speaker:
   - platform: sigma_delta
     id: sigma_delta_speaker
     pin: GPIOXX
+    sample_rate: 48000  # matches the Sendspin stream
 
 media_source:
   - platform: sendspin
