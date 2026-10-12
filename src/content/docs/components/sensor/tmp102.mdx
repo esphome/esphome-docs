@@ -62,7 +62,7 @@ The defaults below are the chip's power-on values and apply only once any of the
   `fault_queue` intervals, and `conversion_rate` has no effect. Defaults to `false`.
 - **alert_polarity** (*Optional*, string): ALERT pin polarity, `active_low` or `active_high`. Defaults to `active_low`.
 - **thermostat_mode** (*Optional*, string): How the ALERT pin behaves. In `comparator` mode ALERT asserts when the
-  temperature rises above `temperature_high` and clears when it falls below `temperature_low`. In `interrupt` mode
+  temperature reaches `temperature_high` and clears when it falls below `temperature_low`. In `interrupt` mode
   ALERT asserts on crossing either threshold and stays asserted until a register is read; because ESPHome reads the
   chip on every update, the pin clears at the next `update_interval` at the latest. Defaults to `comparator`.
 - **fault_queue** (*Optional*, int): Consecutive fault conversions required before ALERT changes: `1`, `2`, `4`, or `6`.
@@ -106,13 +106,13 @@ binary_sensor:
 
 Only one alert binary sensor may reference each TMP102 sensor. `on` means the comparator status is active, regardless
 of the configured ALERT polarity. The status becomes active once the temperature reaches the high threshold and
-remains active until it falls below the low threshold, subject to the configured fault queue. ESPHome updates the entity after
-reading the temperature, so changes appear at the sensor's polling rate. A failed temperature or configuration read
-invalidates the binary-sensor state until a complete read succeeds.
+remains active until it falls below the low threshold, subject to the configured fault queue. ESPHome updates the
+entity after reading the temperature, so changes appear at the sensor's polling rate. A failed temperature or
+configuration read invalidates the binary-sensor state until a complete read succeeds.
 
 The entity is read-only. Adding it does not change the TMP102 configuration, polarity, or thresholds. Without
 `temperature_high` and `temperature_low` on the sensor, the status follows the thresholds already stored in the chip,
-which are 80°C and 75°C after power-on.
+which are `80°C` and `75°C` after power-on.
 
 > [!NOTE]
 > This entity reports comparator status, not the physical ALERT pin level. In interrupt mode, reading a chip register
