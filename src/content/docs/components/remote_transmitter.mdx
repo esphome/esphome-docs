@@ -760,62 +760,20 @@ are largely shared among devices within a given class.
 
 ### `remote_transmitter.transmit_pioneer_wyt` Action
 
-This [action](/automations/actions#all-actions) sends an infrared remote command for Pioneer Diamante Pro mini split
-heat pumps, the WYT model family, to a remote transmitter. Set either a raw `code` or the friendly fields such as
-`type`, `power` and `mode`; the two forms cannot be combined.
+This [action](/automations/actions#all-actions) sends a raw infrared frame for Pioneer Diamante Pro mini split heat
+pumps, the WYT model family, to a remote transmitter. The frame is 14 bytes; give the first 13 and the checksum is
+appended, or give all 14 and the last byte is replaced by the computed checksum.
 
 ```yaml
 on_...:
-  # Sending via raw code list:
   - remote_transmitter.transmit_pioneer_wyt:
       code: [0x23, 0xCB, 0x26, 0x01, 0x00, 0x24, 0x03, 0x05, 0x00, 0x00, 0x00, 0x00, 0x80]
-
-  # Sending via friendly fields (default sends both `FAN` and `GENERAL` commands sequentially):
-  - remote_transmitter.transmit_pioneer_wyt:
-      power: true
-      mode: COOL
-      target_temperature: 22.0
-      fan_speed: HIGH
-      vertical_swing: true
 ```
 
 #### Configuration variables
 
-- **code** (*Optional*, list of 13 or 14 bytes, [templatable](/automations/templates)): The raw payload. The checksum is
-  always recalculated and stored as the 14th byte; when 13 bytes are provided, it is appended automatically. Cannot be
-  combined with any of the friendly fields below.
-
-The friendly fields below are used when `code` is not set. Each one has a default, so only the fields that differ
-need to be set.
-
-- **type** (*Optional*, string, [templatable](/automations/templates)): The command type to send. One of `GENERAL`,
-  `FAN`, or `BOTH`. `BOTH` sends a `FAN` command followed by a `GENERAL` command. Defaults to `BOTH`.
-- **power** (*Optional*, boolean, [templatable](/automations/templates)): Power state of the AC. Defaults to `true`.
-- **mode** (*Optional*, string, [templatable](/automations/templates)): Operation mode. One of `HEAT`, `DRY`, `COOL`,
-  `FAN`, `AUTO`. Defaults to `COOL`.
-- **target_temperature** (*Optional*, float, [templatable](/automations/templates)): The target temperature in °C, from
-  `16.0` to `31.0` in steps of `0.5`. A value from a lambda outside this range is clamped to it. Defaults to `24.0`.
-- **beeper** (*Optional*, boolean, [templatable](/automations/templates)): Enable/disable beeper feedback. Defaults to
-  `true`.
-- **display** (*Optional*, boolean, [templatable](/automations/templates)): Enable/disable the display on the unit.
-  Defaults to `true`.
-- **eco** (*Optional*, boolean, [templatable](/automations/templates)): Enable/disable Eco mode. Defaults to `false`.
-- **turbo** (*Optional*, boolean, [templatable](/automations/templates)): Enable/disable Turbo mode. Defaults to
-  `false`.
-- **sleep** (*Optional*, boolean, [templatable](/automations/templates)): Enable/disable Sleep mode. Defaults to
-  `false`.
-- **follow_me** (*Optional*, boolean, [templatable](/automations/templates)): Enable/disable Follow Me (I-Feel) mode.
-  Defaults to `false`.
-- **remote_temp** (*Optional*, int, [templatable](/automations/templates)): Current room temperature feedback for Follow
-  Me mode, from `0` to `255`. Defaults to `0`.
-- **fan_speed** (*Optional*, string, [templatable](/automations/templates)): The fan speed. One of `AUTO`, `LOW`,
-  `MEDIUM_LOW`, `MEDIUM`, `MEDIUM_HIGH`, `HIGH`. Defaults to `AUTO`.
-- **mute** (*Optional*, boolean, [templatable](/automations/templates)): Enable/disable Silent mode. Defaults to
-  `false`.
-- **vertical_swing** (*Optional*, boolean, [templatable](/automations/templates)): Enable/disable vertical swing.
-  Defaults to `false`.
-- **horizontal_swing** (*Optional*, boolean, [templatable](/automations/templates)): Enable/disable horizontal swing.
-  Defaults to `false`.
+- **code** (**Required**, list of 13 or 14 bytes, [templatable](/automations/templates)): The frame to send. The
+  checksum is computed from the first 13 bytes and stored in the 14th.
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
 
 <span id="remote_transmitter-transmit_pronto"></span>
