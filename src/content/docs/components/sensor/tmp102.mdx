@@ -105,12 +105,14 @@ binary_sensor:
 - All other options from [Binary Sensor](/components/binary_sensor/).
 
 Only one alert binary sensor may reference each TMP102 sensor. `on` means the comparator status is active, regardless
-of the configured ALERT polarity. The status becomes active above the high threshold and remains active until the
-temperature falls below the low threshold, subject to the configured fault queue. ESPHome updates the entity after
+of the configured ALERT polarity. The status becomes active once the temperature reaches the high threshold and
+remains active until it falls below the low threshold, subject to the configured fault queue. ESPHome updates the entity after
 reading the temperature, so changes appear at the sensor's polling rate. A failed temperature or configuration read
 invalidates the binary-sensor state until a complete read succeeds.
 
-The entity is read-only. Adding it does not change the TMP102 configuration, polarity, or thresholds.
+The entity is read-only. Adding it does not change the TMP102 configuration, polarity, or thresholds. Without
+`temperature_high` and `temperature_low` on the sensor, the status follows the thresholds already stored in the chip,
+which are 80°C and 75°C after power-on.
 
 > [!NOTE]
 > This entity reports comparator status, not the physical ALERT pin level. In interrupt mode, reading a chip register
