@@ -22,9 +22,10 @@ power_management:
   one of the frequencies the chip supports (for example `80MHz`, `160MHz` or `240MHz` on the ESP32, and
   `16MHz` to `96MHz` on the ESP32-H2). Defaults to the `cpu_frequency` of the `esp32` component; a different
   value is reported during validation.
-- **min_frequency** (*Optional*, frequency): The CPU frequency used while no CPU lock is held. Must be at least
-  `10MHz` and no higher than the maximum. Defaults to the crystal frequency, usually `40MHz`, limited to the
-  maximum.
+- **min_frequency** (*Optional*, frequency): The CPU frequency used while no CPU lock is held. Must divide the
+  crystal frequency (`40MHz` on most variants, `32MHz` on the ESP32-H2) or be one of the CPU frequencies, be at
+  least `10MHz` on the ESP32 and `2MHz` on the other variants, and be no higher than the maximum. Defaults to
+  the crystal frequency, limited to the maximum.
 - **enable_light_sleep** (*Optional*, boolean): Enter light sleep automatically whenever no task is runnable,
   which also stops the periodic tick interrupt while idle. Defaults to `false`.
 - **idle_time_before_sleep** (*Optional*, int): How many FreeRTOS ticks (10 ms each at the default tick rate)
