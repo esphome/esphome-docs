@@ -26,8 +26,8 @@ everything written below about the AS7343 applies to it too. The sensor is selec
 />
 
 > [!NOTE]
-> This component replaces the [`as7341`](/components/sensor/as7341/) platform, which is deprecated and will be
-> removed in ESPHome 2027.5.0. See [Migrating From `as7341`](#migrating-from-as7341) below.
+> The AS7341 is also covered by the older [`as7341`](/components/sensor/as7341/) platform, which keeps working.
+> See [Moving From `as7341`](#moving-from-as7341) below for the differences.
 
 ```yaml
 # Example configuration entry
@@ -177,10 +177,9 @@ in two passes and takes two integration times per update. The AS7343 cycles inte
 sensor is read without blocking the rest of the device, so a long integration time does not stall other
 components, but keep the total below your `update_interval`.
 
-## Migrating From `as7341`
+## Moving From `as7341`
 
-The `as7341` platform is deprecated and will be removed in ESPHome 2027.5.0. Until then it still works, apart from
-a deprecation warning at compile time. To move, add an `as734x` entry with `type: AS7341` and the `gain`, `atime`,
+The `as7341` platform keeps working. To move to `as734x`, add an `as734x` entry with `type: AS7341` and the `gain`, `atime`,
 `astep`, `address` and `update_interval` options, then change the sensor platform to `as734x` and move the bands
 under `counts`. The options keep their names and their defaults.
 
@@ -213,7 +212,7 @@ sensor:
 ```
 
 > [!WARNING]
-> The reported values change when you migrate. The AS7341 returns its data registers low byte first, and the
+> The reported values change when you move over. The AS7341 returns its data registers low byte first, and the
 > `as7341` platform never accounted for this, so its counts come out byte-swapped. The `as734x` component reads
 > them correctly. In practice a reading below 256 on the old platform was reported 256 times too large, and a
 > larger reading had its two bytes the wrong way round. Any automation, filter or long-term statistic built on
@@ -222,7 +221,7 @@ sensor:
 ## See Also
 
 - [Sensor Filters](/components/sensor#sensor-filters)
-- [AS7341 Spectral Color Sensor (deprecated)](/components/sensor/as7341/)
+- [AS7341 Spectral Color Sensor](/components/sensor/as7341/)
 - [Adafruit_AS7341](https://github.com/adafruit/Adafruit_AS7341)
 - [SparkFun_AS7341X_Arduino_Library](https://github.com/sparkfun/SparkFun_AS7341X_Arduino_Library)
 - <APIRef text="as734x.h" path="as734x/as734x.h" />
