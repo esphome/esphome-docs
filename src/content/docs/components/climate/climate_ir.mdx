@@ -19,7 +19,7 @@ submit a feature request (see FAQ).
 | ----------------------------------------- | ---------------------------------- | ----------------- |
 | Ballu                                     | `ballu`                            | yes               |
 | Coolix                                    | `coolix`                           | yes               |
-| Daikin | `daikin`                           | yes |
+| [Daikin](#daikin) | `daikin`                           | yes |
 | [Daikin ARC](#daikin_arc) | `daikin_arc`                       | yes |
 | [Daikin BRC](#daikin_brc) | `daikin_brc`                       | yes |
 | [Delonghi](#delonghi_ir) | `delonghi`                         | yes |
@@ -105,6 +105,29 @@ climate:
     header_high: 3265us # AC Units from LG in Brazil, for example use these timings
     header_low: 9856us
     advanced_commands_support: false
+```
+
+### `daikin`
+
+The `daikin` climate controls units that use the Daikin ARC43xxx remotes. The target temperature can be set in
+0.5 °C steps. The following presets are supported and map to the unit's own functions:
+
+| Preset     | Unit function                     |
+| ---------- | --------------------------------- |
+| `boost`    | Powerful                          |
+| `sleep`    | Quiet                             |
+| `eco`      | Econo                             |
+| `comfort`  | Comfort airflow                   |
+| `activity` | Intelligent eye (presence sensor) |
+
+The unit ends Powerful after 20 minutes, so the `boost` preset returns to `none` by itself.
+
+```yaml
+# Example configuration entry
+climate:
+  - platform: daikin
+    name: "Living Room AC"
+    sensor: room_temperature
 ```
 
 ### `daikin_brc`
