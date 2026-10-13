@@ -253,7 +253,8 @@ switch:
 
 Haier 112-bit protocol, currently only tested with AS35TB4HRA but may also work with other units.
 
-- **unit** (*Optional*, string): The AC unit ID, either `a` or `b`. Only one of each is supported globally. Defaults to `a`.
+- **unit** (*Optional*, string): The AC unit ID, either `a` or `b`. Each transmitter can drive one unit of each ID.
+  Defaults to `a`.
 
 ```yaml
 # Example configuration entry
@@ -295,7 +296,7 @@ switch:
 ```
 
 > [!NOTE]
-> Quiet and Turbo Mode cannot be enabled at the same time, and are not available in Heat/Cool, Dry or Fan modes.
+> Quiet and Turbo mode cannot both be on at once, and either can only be turned on in Cool or Heat mode.
 
 ### `midea_ir`
 
