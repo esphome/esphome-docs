@@ -27,7 +27,8 @@ bq76972:
     name: "Cell 1 Voltage"
   cell_2_voltage:
     name: "Cell 2 Voltage"
-  cell_3_voltage:
+  # The top cell of a pack with fewer than 16 cells is wired to the VC16 input
+  cell_16_voltage:
     name: "Cell 3 Voltage"
 ```
 
@@ -42,8 +43,9 @@ bq76972:
 - **reg_disabled** (*Optional*, boolean): Turn the chip's REG0, REG1 and REG2 regulators off during setup. Leave
   this off when one of them powers the host or the I²C bus. Defaults to `false`.
 - **stack_voltage** (*Optional*): The total stack voltage, in V. All options from [Sensor](/components/sensor/).
-- **cell_1_voltage** to **cell_16_voltage** (*Optional*): The voltage of each cell, in V. All options from
-  [Sensor](/components/sensor/).
+- **cell_1_voltage** to **cell_16_voltage** (*Optional*): The voltage on each cell input, in V. A pack with fewer
+  than 16 cells has its top cell wired to the VC16 input, so that cell is `cell_16_voltage`; inputs shorted to the
+  cell below read 0 and are not published. All options from [Sensor](/components/sensor/).
 - **internal_temperature** (*Optional*): The die temperature, in °C. All options from
   [Sensor](/components/sensor/).
 - **cfetoff_temperature**, **dfetoff_temperature**, **alert_temperature**, **ts1_temperature**,
