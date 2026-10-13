@@ -75,12 +75,6 @@ sensor:
 
 ```yaml
 # Example configuration entry, EM4M (3-phase)
-uart:
-  rx_pin: D1
-  tx_pin: D2
-  baud_rate: 9600
-  stop_bits: 1
-
 sensor:
   - platform: selec_meter
     model: em4m
@@ -121,8 +115,9 @@ sensor:
 
 - **model** (*Optional*, string): The meter model, one of `em2m` or `em4m`. Defaults to `em2m`.
   `total_active_energy`, `total_reactive_energy` and `apparent_energy` are only available with
-  `model: em2m` (the EM4M has no non-DG equivalent register for these). `phase_a`, `phase_b`,
-  `phase_c` and the other EM4M-only options below are only available with `model: em4m`.
+  `model: em2m`; the EM4M reports energy as `import_*_energy` / `export_*_energy` totals and per phase
+  inside `phase_a`, `phase_b` and `phase_c`. Those phase groups and the other EM4M-only options below are
+  only available with `model: em4m`.
 
 - **byte_order** (*Optional*, string): The order of the two 16-bit Modbus registers that make up each
   value, one of `big_endian` (high word first, ABCD) or `little_endian` (low word first, CDAB). Only the
@@ -131,10 +126,9 @@ sensor:
   meter's own "Endianness Selection" setting. If not set, it defaults to the factory default for the
   selected `model`: `little_endian` for EM2M, `big_endian` for EM4M.
 
-  On `model: em4m`, `active_power`, `reactive_power`, `apparent_power`, `voltage`, `current`,
-  `power_factor`, `frequency` and the three `maximum_demand_*` options below read the meter's
-  Total/Average registers; use the `phase_a`/`phase_b`/`phase_c` groups further down for individual
-  phase values.
+On `model: em4m`, `active_power`, `reactive_power`, `apparent_power`, `voltage`, `current`, `power_factor`,
+`frequency` and the three `maximum_demand_*` options read the meter's Total/Average registers; the
+`phase_a`/`phase_b`/`phase_c` groups further down give the individual phase values.
 
 - **total_active_energy** (*Optional*, EM2M only): Use the total active energy value of the sensor in kilo watt
   hours. All options from [Sensor](/components/sensor/).
