@@ -61,6 +61,10 @@ addresses. Check the schematic of your driver module, as some boards tie these p
   Enables UART speed control mode. Must be a pin that supports interrupts. Exactly one of `step_pin` or `index_pin`
   is required.
 
+- **diag_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The `DIAG` pin of the driver.
+  Must be a pin that supports interrupts. The driver sets this pin high on a driver error or a stall. See
+  [Driver Status](#driver-status) and [Stall Detection](#stall-detection).
+
 - **enn_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The `ENN` (enable, active low) pin
   of the driver. When not set, the motor outputs are turned on and off over UART.
 
@@ -87,6 +91,13 @@ addresses. Check the schematic of your driver module, as some boards tie these p
 
 - **clock_frequency** (*Optional*, frequency): The clock frequency of the driver. Only used to convert the speed in
   UART speed control mode. Change this when the driver runs from an external clock. Defaults to `12MHz`.
+
+- **on_status** (*Optional*, [Automation](/automations/)): An automation to perform when a driver condition, such as
+  an overtemperature warning or a short circuit, starts or ends. The variables `event` (`tmc22xx::DriverEvent`) and
+  `active` (`bool`) are available. See [Driver Status](#driver-status).
+
+- **on_stall** (*Optional*, [Automation](/automations/)): An automation to perform when the driver reports a stall.
+  Requires `diag_pin`. See [Stall Detection](#stall-detection).
 
 - All other options from [Base Stepper Configuration](/components/stepper/#base_stepper_config).
 
@@ -123,6 +134,88 @@ stepper:
     rsense: 110 mOhm
     max_speed: 1000 steps/s
 ```
+
+## Driver Status
+
+When `diag_pin` or `on_status` is configured, the component reads the driver status every second, and also right
+away when `DIAG` goes high. Every condition that starts or ends is logged and passed to `on_status`.
+
+If the driver reports that it was reset, for example after its supply voltage dropped, all settings are written to
+the driver again, including changes made with actions. A move that was in progress continues from standstill.
+
+The `event` variable of `on_status` is one of:
+
+| Event                                              | Condition                                                   |
+| -------------------------------------------------- | ----------------------------------------------------------- |
+| `tmc22xx::DRIVER_EVENT_RESET`                      | The driver was reset. Settings are restored.                |
+| `tmc22xx::DRIVER_EVENT_DRIVER_ERROR`               | The driver shut down because of overtemperature or a short. |
+| `tmc22xx::DRIVER_EVENT_CHARGE_PUMP_UNDERVOLTAGE`   | Charge pump undervoltage. The driver is disabled.           |
+| `tmc22xx::DRIVER_EVENT_OVERTEMPERATURE_PREWARNING` | Overtemperature prewarning threshold reached.               |
+| `tmc22xx::DRIVER_EVENT_OVERTEMPERATURE`            | Overtemperature limit reached. The driver shuts down.       |
+| `tmc22xx::DRIVER_EVENT_SHORT_TO_GROUND_A`, `_B`    | Short to ground on phase A or B.                            |
+| `tmc22xx::DRIVER_EVENT_LOW_SIDE_SHORT_A`, `_B`     | Short on the low side MOSFET of phase A or B.               |
+| `tmc22xx::DRIVER_EVENT_OPEN_LOAD_A`, `_B`          | Open load on phase A or B. Only a hint, see the datasheet.  |
+| `tmc22xx::DRIVER_EVENT_TEMPERATURE_120C`           | Temperature above 120 °C.                                   |
+| `tmc22xx::DRIVER_EVENT_TEMPERATURE_143C`           | Temperature above 143 °C.                                   |
+| `tmc22xx::DRIVER_EVENT_TEMPERATURE_150C`           | Temperature above 150 °C.                                   |
+| `tmc22xx::DRIVER_EVENT_TEMPERATURE_157C`           | Temperature above 157 °C.                                   |
+
+`active` is `true` when the condition starts and `false` when it ends. Open load and the temperature levels are
+informational, the driver keeps running.
+
+This example disables the motor outputs at the overtemperature prewarning:
+
+```yaml
+stepper:
+  - platform: tmc2209
+    id: my_stepper
+    # ...
+    on_status:
+      - if:
+          condition:
+            lambda: "return event == tmc22xx::DRIVER_EVENT_OVERTEMPERATURE_PREWARNING && active;"
+          then:
+            - tmc2209.disable: my_stepper
+```
+
+## Stall Detection
+
+The TMC2209 measures the motor load with StallGuard and sets `DIAG` high when the motor stalls. This can be used for
+sensorless homing: drive the motor against a mechanical stop and set the position when the stall is reported.
+`on_stall` requires `diag_pin`.
+
+StallGuard only works in StealthChop mode, within a speed range: faster than the speed set by `tcool_threshold`, and
+slower than the speed set by `tpwm_threshold` when that is not `0`. `tcool_threshold` is `0` at power-up, which
+disables stall reports, so set it and the sensitivity with the [`tmc2209.stallguard`](#tmc2209-stallguard-action)
+action.
+
+```yaml
+esphome:
+  on_boot:
+    - tmc2209.stallguard:
+        id: my_stepper
+        threshold: 50
+        tcool_threshold: 400
+
+stepper:
+  - platform: tmc2209
+    id: my_stepper
+    step_pin: GPIOXX
+    dir_pin: GPIOXX
+    diag_pin: GPIOXX
+    rsense: 110 mOhm
+    max_speed: 2000 steps/s
+    on_stall:
+      - stepper.report_position:
+          id: my_stepper
+          position: 0
+      - stepper.set_target:
+          id: my_stepper
+          target: 0
+```
+
+The right `threshold` depends on the motor, its current and speed, and the load. Start low and raise it until a stall
+is detected reliably without false reports during normal moves.
 
 ## `tmc2209.enable` / `tmc2209.disable` Actions
 
@@ -219,6 +312,71 @@ Configuration variables:
   - `freewheeling`: The motor can turn freely.
   - `coil_short_ls`: The coils are shorted through the low side switches (passive braking).
   - `coil_short_hs`: The coils are shorted through the high side switches (passive braking).
+
+## `tmc2209.stallguard` Action
+
+Change the StallGuard settings at runtime. See [Stall Detection](#stall-detection).
+
+```yaml
+on_...:
+  then:
+    - tmc2209.stallguard:
+        id: my_stepper
+        threshold: 50
+        tcool_threshold: 400
+```
+
+Configuration variables:
+
+- **id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the stepper.
+
+- **threshold** (*Optional*, int, [templatable](/automations/templates)): The `SGTHRS` value, `0` to `255`. A stall
+  is reported when the StallGuard result drops below twice this value, so a higher value detects a stall sooner.
+
+- **tcool_threshold** (*Optional*, int, [templatable](/automations/templates)): The `TCOOLTHRS` value, `0` to
+  `1048575`. StallGuard and CoolStep are active above the speed set by this value. Like `tpwm_threshold`, it is
+  compared with the time between steps, so a higher value means a lower speed. `0` disables both. See the datasheet
+  for the conversion between this value and speed.
+
+## `tmc2209.coolconf` Action
+
+Change the CoolStep settings at runtime. CoolStep uses the StallGuard result to lower the motor current when the
+load is low and raise it again when the load increases. It is active in the same speed range as StallGuard. See the
+`COOLCONF` register in the datasheet for details.
+
+```yaml
+on_...:
+  then:
+    - tmc2209.coolconf:
+        id: my_stepper
+        semin: 5
+        semax: 2
+        seup: 1
+        sedn: 0
+        seimin: false
+```
+
+Configuration variables:
+
+- **id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the stepper.
+
+- **semin** (*Optional*, int, [templatable](/automations/templates)): The lower StallGuard threshold for raising
+  the current, `0` to `15`. The current is raised when the StallGuard result drops below `semin` × 32. `0` disables
+  CoolStep, which is the power-up value.
+
+- **semax** (*Optional*, int, [templatable](/automations/templates)): The upper StallGuard threshold for lowering
+  the current, `0` to `15`. The current is lowered when the StallGuard result is at or above
+  (`semin` + `semax` + 1) × 32.
+
+- **seup** (*Optional*, int, [templatable](/automations/templates)): The current increment step size, `0` to `3`,
+  for 1, 2, 4 or 8 current steps.
+
+- **sedn** (*Optional*, int, [templatable](/automations/templates)): How fast the current is lowered, `0` to `3`.
+  `0` lowers the current by one step for every 32 StallGuard measurements, `1` for every 8, `2` for every 2 and `3`
+  for every measurement.
+
+- **seimin** (*Optional*, boolean, [templatable](/automations/templates)): The minimum current CoolStep lowers to.
+  `false` for half of the run current, `true` for a quarter.
 
 ## See Also
 
