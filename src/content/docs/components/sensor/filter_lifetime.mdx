@@ -53,8 +53,10 @@ button:
   the sensors published. Defaults to `60s`.
 - All other options from [Sensor](/components/sensor/).
 
-The runtime is written to flash once per hour of accumulated runtime and when the filter is reset, so a power loss
-costs at most an hour of tracking.
+The runtime is written to flash once per hour of accumulated runtime, on a clean restart or update, and when the
+filter is reset. A power cut loses whatever accumulated since the last write, up to an hour. A device that is powered
+together with the appliance and runs for less than an hour at a time never reaches a write, so its runtime is not
+counted; give such a device its own power or keep it powered across sessions.
 
 ## `filter_lifetime.reset_filter` Action
 
