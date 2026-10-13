@@ -187,7 +187,8 @@ in degrees Fahrenheit, in the range 60 to 88. Heating can be set down to 60, oth
 - **model** (*Optional*, string): There is 1 valid model. Reserved for other models in the future.
   - `MW12Y3H`: uses degrees Fahrenheit. This is the default.
 
-The `sensor` and `humidity_sensor` options are not supported.
+The `sensor` option is not supported, because a temperature sensor reports Celsius while this climate works in
+Fahrenheit. `humidity_sensor` works as usual.
 
 > [!NOTE]
 > Home Assistant reads the temperature unit from the device starting with release 2026.10. In earlier releases
