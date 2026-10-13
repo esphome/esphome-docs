@@ -34,6 +34,7 @@ submit a feature request (see FAQ).
 | Noblex | `noblex`                           | yes |
 | [Pioneer mini-split (Parker Davis)](#pd_pioneer_ir) | `pd_pioneer_ir`                    | yes |
 | [Remko, Fischer ClimaButler, TROTEC, Novamatic, Rexair, FREECOM](#remko_ar715) | `remko_ar715` | |
+| [Samsung](#samsung) | `samsung`                          | yes |
 | [Siemens IRA211](#siemens_ira211) | `siemens_ira211`        | yes |
 | Electrolux, TCL, Fuego | `tcl112`                           | yes |
 | [Toshiba](#toshiba) | `toshiba`                          | yes |
@@ -349,6 +350,26 @@ library calls this protocol *ClimaButler* after one of the rebranded models.
 climate:
   - platform: remko_ar715
     name: Air Conditioner
+```
+
+### `samsung`
+
+> [!NOTE]
+> - Supported models:
+>   - `AR09FSSDAWKNFA`
+>   - `AR09HSFSBWKN`
+>   - `AR12RXFPEWQNEU` (tested)
+>
+> - Supported remotes:
+>   - `DB93-15882Q` (tested)
+>   - `DB93-14195A`
+>   - `DB96-24901C`
+
+```yaml
+# Example configuration entry
+climate:
+  - platform: samsung
+    name: "Samsung AC"
 ```
 
 ### `siemens_ira211`
