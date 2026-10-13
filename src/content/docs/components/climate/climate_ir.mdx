@@ -261,18 +261,18 @@ Haier 112-bit protocol, currently only tested with AS35TB4HRA but may also work 
 climate:
   - platform: haier_tundra
     name: "AC"
-    sensor: room_temperature
-    unit: b
+    id: my_haier_ac
 ```
 
 Two buttons and three switches are also exposed:
 
-- **haier_tundra_id** (**Required**, [ID](/guides/configuration-types#id)): The Haier Tundra Climate entity.
-- **light** (*Optional*, [Button](/components/button#config-button)): Toggles the display LEDs.
-- **self_clean** (*Optional*, [Button](/components/button#config-button)): Starts the self clean process. Can be started when the unit is off.
-- **health_mode** (*Optional*, [Switch](/components/switch#config-switch)): Turns on/off Health mode.
-- **quiet_mode** (*Optional*, [Switch](/components/switch#config-switch)): Turns on/off Quiet mode.
-- **turbo_mode** (*Optional*, [Switch](/components/switch#config-switch)): Turns on/off Turbo mode.
+- **haier_tundra_id** (**Required**, [ID](/guides/configuration-types/#id)): The Haier Tundra Climate entity.
+- **light** (*Optional*, [Button](/components/button/#config-button)): Toggles the display LEDs.
+- **self_clean** (*Optional*, [Button](/components/button/#config-button)): Starts the self clean process. Can be
+  started when the unit is off.
+- **health_mode** (*Optional*, [Switch](/components/switch/#config-switch)): Turns on/off Health mode.
+- **quiet_mode** (*Optional*, [Switch](/components/switch/#config-switch)): Turns on/off Quiet mode.
+- **turbo_mode** (*Optional*, [Switch](/components/switch/#config-switch)): Turns on/off Turbo mode.
 
 ```yaml
 # Example configuration entry
