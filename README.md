@@ -65,7 +65,7 @@ import myImageImg from './images/my-image.jpg';
 For images used in multiple documents or in ImgTable components:
 
 ```jsx
-<Image src="/images/shared-image.jpg" alt="Description" layout="constrained" />
+<Image src="/images/shared-image.jpg" alt="Description" layout="constrained" width={800} height={600} />
 ```
 
 - Images are stored in `/public/images/`

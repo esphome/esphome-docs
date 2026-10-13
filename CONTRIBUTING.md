@@ -172,7 +172,7 @@ paragraph, should you use HTML:
    - Reference using absolute path
 
    ```mdx
-   <Image src="/images/shared-image.jpg" alt="Description" layout="constrained" />
+   <Image src="/images/shared-image.jpg" alt="Description" layout="constrained" width={800} height={600} />
    ```
 
 1. **ImgTable images** (component index pages):
