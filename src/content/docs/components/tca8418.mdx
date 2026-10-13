@@ -10,8 +10,8 @@ The `tca8418` component allows you to use a TCA8418 keypad scanner
 [I²C Bus](/components/i2c/) is required to be set up in your configuration for
 this device to work.
 
-The TCA8418 has 18 GPIO lines (`ROW0` to `ROW7` and `COL0` to `COL9`) and scans the keys for you, reporting each press and
-release over I²C so the microcontroller does not have to poll the keys itself.
+The TCA8418 has 18 GPIO lines (`ROW0` to `ROW7` and `COL0` to `COL9`) and scans the keys for you,
+reporting each press and release over I²C so the microcontroller does not have to poll the keys itself.
 Its lines can be used in two ways at the same time:
 
 - as a **key matrix**, where keys sit at the intersections of the row and column
@@ -131,7 +131,9 @@ pins report as individual inputs.
 # A 5x5 matrix on ROW0-4 / COL0-4, with a power button wired to ROW5
 tca8418:
   id: mykeypad
-  interrupt_pin: GPIOXX
+  interrupt_pin:
+    number: GPIOXX
+    mode: INPUT_PULLUP
   rows: 5
   columns: 5
 
