@@ -129,6 +129,10 @@ but can be overridden if needed.
 - **border_waveform** (*Optional*, int): Only for SSD1677 models. The border waveform byte (controller command `0x3C`),
   which sets how the border around the active area is driven. Defaults to `0x01`, or `0x00` for
   `Seeed-reTerminal-Sticky-gray4`. Rarely needs changing.
+- **gate_offset** (*Optional*, int): Only for UC8279 models. The number of gates the controller scans before the first
+  row of the panel. The panel is bonded to the last rows of the controller's gates, so a panel that does not start at
+  gate `0` needs this set to the offset of its first row. Defaults to `0`, or the panel's own offset for a predefined
+  model such as `Xteink-X4Pro-UC8279`.
 - **spi_id** (*Optional*, [ID](/guides/configuration-types#id)): Required to specify the ID of the [SPI Component](/components/spi) if your
   configuration defines multiple SPI buses. If only a single SPI bus is configured, this is optional.
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
