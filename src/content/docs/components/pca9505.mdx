@@ -69,6 +69,11 @@ binary_sensor:
 
 - **id** (**Required**, [ID](/guides/configuration-types/#id)): The id to use for this `pca9505` component.
 - **address** (*Optional*, int): The I²C address of the expander. Defaults to `0x20`.
+- **interrupt_pin** (*Optional*, [Pin Schema](/guides/configuration-types/#pin-schema)): The pin
+  connected to the INT output of the expander. When configured, the component only reads the chip
+  after a pin actually changes, instead of polling it on every loop, which cuts I²C traffic
+  considerably. INT is active low and open drain, so a pull-up resistor is required. Must be an
+  internal GPIO pin, not another expander pin.
 
 ## Pin Configuration Variables
 
