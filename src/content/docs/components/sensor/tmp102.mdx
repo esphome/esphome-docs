@@ -1,5 +1,5 @@
 ---
-description: "Instructions for TMP102 temperature readings, thermostat configuration, and alert status."
+description: "TMP102 temperature, thermostat, alert, and threshold-status configuration."
 title: "TMP102 Temperature Sensor"
 ---
 
@@ -46,7 +46,8 @@ Temperature-only configurations work unchanged and write no registers at startup
 adding a [TMP102 number](#adjustable-thresholds) makes ESPHome write the configuration register and both threshold
 registers during setup, using the listed defaults for omitted settings. These settings apply to TMP102 chips; do not
 enable them for LM75 sensors.
-Adding only an alert binary sensor does not enable hardware configuration or write these registers.
+Adding only an alert binary sensor or threshold status text sensor does not enable hardware configuration or write
+these registers.
 
 Before each update ESPHome reads the configuration register back. If it no longer matches, for example after the chip
 alone lost power, ESPHome rewrites the configuration and both thresholds, skips that update and sets the sensor's
@@ -138,6 +139,35 @@ crosses the other threshold is rejected, and the entity keeps the accepted value
 accepted value and sets the sensor's warning status until the next reading succeeds. If hardware setup failed,
 changes are rejected with a warning and the numbers have no state. When moving both thresholds, change the high
 threshold first when raising the pair, or the low threshold first when lowering it.
+
+## Threshold Status Text Sensor
+
+The TMP102 [Text Sensor](/components/text_sensor/) platform reports threshold validation, writes, restoration, and
+configuration recovery. It requires a TMP102 temperature sensor in the same configuration.
+
+```yaml
+sensor:
+  - platform: tmp102
+    id: freezer_temperature
+    name: "Freezer Temperature"
+    temperature_high: -12°C
+    temperature_low: -13°C
+
+text_sensor:
+  - platform: tmp102
+    tmp102_id: freezer_temperature
+    name: "Threshold Status"
+```
+
+- **tmp102_id** (*Optional*, [ID](/guides/configuration-types/#id)): The TMP102 temperature sensor to monitor. Required
+  when the configuration contains more than one TMP102 sensor.
+- All other options from [Text Sensor](/components/text_sensor/).
+
+Only one threshold status text sensor may reference each TMP102 sensor. It reports `OK` after successful configured
+setup or a runtime threshold write. Rejected changes, failed writes, repaired restored values, preference-save
+failures, and configuration recovery publish descriptive states. Adding this entity alone does not enable hardware
+configuration or write registers; without hardware configuration or threshold numbers, it has no initial state. This
+entity reports threshold management results, not general sensor connectivity.
 
 ## Alert Binary Sensor
 
