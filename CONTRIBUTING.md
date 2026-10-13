@@ -184,6 +184,8 @@ paragraph, should you use HTML:
 
 - **ALWAYS optimize images** before adding (use TinyPNG/TinyJPG)
 - **Maximum size**: ~1000x800 pixels
+- **Prefer a transparent background** where possible (WebP, PNG or SVG) so the image looks right in both the light
+  and dark themes; crop product photos to the board rather than leaving a white box around it
 - All images must be as small as possible to minimize page load times
 - Variable names follow camelCase with `Img` suffix (e.g., `myImageImg`)
 
@@ -207,13 +209,29 @@ Use inline styles for sizing:
 />
 ```
 
-#### Component Thumbnails
+#### Component Images
 
-- **Aspect ratio**: 8:10 or 10:8 (portrait or landscape orientation)
-- **Format**: SVG (heavily compressed) or JPG (max 300x300px)
+Use one image per component. It is shown both on the component card in the index page (via ImgTable) and at the
+top of the component page itself, so do not add a separate thumbnail.
+
 - **Location**: `/public/images/` directory
-- **Reference**: Use `/images/filename` path in ImgTable
-- Used in component listings and cards
+- **Format**: SVG, WebP or JPG; use WebP or SVG whenever the background can be transparent
+- **Size**: as small as possible, no larger than ~1000x800 pixels
+- **Reference**: `/images/filename` in ImgTable, and the same absolute path on the component page. A string `src`
+  needs explicit `width` and `height` attributes
+
+```mdx
+import Figure from '@components/Figure.astro';
+
+<Figure
+  src="/images/my-component.webp"
+  alt="My Component board"
+  caption="My Component board"
+  layout="constrained"
+  width={520}
+  height={520}
+/>
+```
 
 ### Alerts and Callouts
 
