@@ -132,7 +132,8 @@ sensor:
   All options from [Sensor](/components/sensor/).
 - **voc** (*Optional*): The volatile organic compounds reading of the unit, in ppb.
   All options from [Sensor](/components/sensor/).
-- **direction** (*Optional*): The air flow direction byte the unit reports, as a diagnostic value.
+- **direction** (*Optional*): The air flow direction byte from the unit's status, passed through as the unit sends
+  it; the component does not decode it. It shows the unit switching direction in the `In-Out` and `Sensor` presets.
   All options from [Sensor](/components/sensor/).
 
 ## Binary Sensor
@@ -173,7 +174,8 @@ text_sensor:
 
 ## Multiple Units
 
-Add one BLE client, one hub and one fan for each unit:
+Add one BLE client, one hub and one fan for each unit. With more than one hub, every `ecocomfort2` platform entry,
+sensors included, names its hub with `ecocomfort2_id`:
 
 ```yaml
 ble_client:
@@ -195,6 +197,12 @@ fan:
   - platform: ecocomfort2
     name: "Ventilation 2"
     ecocomfort2_id: vmc2
+
+sensor:
+  - platform: ecocomfort2
+    ecocomfort2_id: vmc1
+    temperature:
+      name: "Ventilation 1 Temperature"
 ```
 
 ## See Also
