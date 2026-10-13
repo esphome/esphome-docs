@@ -236,7 +236,8 @@ documentation for detailed information and examples.
 
 A warning or error logged during boot, before Wi-Fi or Ethernet is up, is gone by the time a client connects over
 the API; only a serial console would have shown it. On a board without a usable serial port, set a boot log buffer
-in the [Logger](/components/logger/) configuration and replay it once a client connects:
+in the [Logger](/components/logger/) configuration and replay it from the API's
+[`on_client_connected` trigger](/components/api/#api-on_client_connected_trigger):
 
 ```yaml
 logger:
