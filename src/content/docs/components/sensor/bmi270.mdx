@@ -5,11 +5,13 @@ title: "BMI270 Temperature and Magnetic Field Sensor"
 
 The `bmi270` sensor platform provides access to the on-chip temperature sensor in a BMI270 Accelerometer/Gyroscope
 ([datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi270-ds000.pdf))
-with ESPHome. If a
+with ESPHome. This platform requires a [`motion`](/components/motion/) component to be configured with the `bmi270`
+platform, which handles the accelerometer and gyroscope data processing and configures the device. See that component
+for more information.
+
+If a
 [Bosch BMM150](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmm150-ds001.pdf)
 magnetometer is wired to the BMI270's auxiliary interface, the platform also provides its magnetic field readings.
-It requires a [`motion`](/components/motion) component to be configured with the `bmi270` platform,
-which handles the accelerometer and gyroscope data processing and configures the device. See that component for more information.
 
 ```yaml
 # Example configuration entry
