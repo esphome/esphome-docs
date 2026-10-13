@@ -20,11 +20,11 @@ interface, so either can be used with this component.
 />
 
 Once configured, the 40 pins can be used anywhere ESPHome accepts a
-[Pin Schema](/guides/configuration-types#pin-schema). Within ESPHome they behave like internal GPIO pins, so
+[Pin Schema](/guides/configuration-types/#pin-schema). Within ESPHome they behave like internal GPIO pins, so
 they work with components such as the GPIO binary sensor and the GPIO switch.
 
 > [!NOTE]
-> The pins are numbered `0` to `39`. The chip groups them into five ports of eight:pins 0-7 are port 0,
+> The pins are numbered `0` to `39`. The chip groups them into five ports of eight: pins 0-7 are port 0,
 > pins 8-15 are port 1, and so on up to pins 32-39 on port 4. ESPHome hides this grouping, so you only ever
 > refer to a pin by its number.
 >
@@ -32,7 +32,7 @@ they work with components such as the GPIO binary sensor and the GPIO switch.
 > of these devices can therefore share one I²C bus. Refer to the datasheet linked below for the address pin
 > wiring.
 >
-> Any option accepting a [Pin Schema](/guides/configuration-types#pin-schema) can theoretically be used, but
+> Any option accepting a [Pin Schema](/guides/configuration-types/#pin-schema) can theoretically be used, but
 > some more complicated components that do communication through this I/O expander will not work.
 
 ```yaml
@@ -65,14 +65,14 @@ binary_sensor:
       inverted: true
 ```
 
-## Configuration variables
+## Configuration Variables
 
-- **id** (**Required**, [ID](/guides/configuration-types#id)): The id to use for this `pca9505` component.
+- **id** (**Required**, [ID](/guides/configuration-types/#id)): The id to use for this `pca9505` component.
 - **address** (*Optional*, int): The I²C address of the expander. Defaults to `0x20`.
 
-## Pin configuration variables
+## Pin Configuration Variables
 
-- **pca9505** (**Required**, [ID](/guides/configuration-types#id)): The id of the `pca9505` component of the pin.
+- **pca9505** (**Required**, [ID](/guides/configuration-types/#id)): The id of the `pca9505` component of the pin.
 - **number** (**Required**, int): The pin number, `0` to `39`.
 - **inverted** (*Optional*, boolean): If all read and written values should be treated as inverted.
   Defaults to `false`.
