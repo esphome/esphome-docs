@@ -9,9 +9,10 @@ The `ecocomfort2` component lets you control a
 [Fantini Cosmi Aspirvelo Air Ecocomfort 2.0 Smart](https://www.fantinicosmi.it/prodotto/aspirvelo-air-ecocomfort-2-0-smart/)
 heat recovery ventilation unit over BLE from an ESP32.
 
-The component has two parts: a hub that keeps the BLE connection to one unit, and a
-[Fan](/components/fan/) platform that controls the unit's air flow mode and speed. One ESP32 can control
-several units, with one hub per unit. Sensors and other entities for this unit come in later releases.
+The component has a hub that keeps the BLE connection to one unit, a [Fan](/components/fan/) platform that
+controls the unit's air flow mode and speed, and sensor platforms that report what the unit measures. One
+ESP32 can control several units, with one hub per unit. The unit's configuration entities come in a later
+release.
 
 ```yaml
 # Example configuration entry
@@ -64,8 +65,11 @@ ecocomfort2:
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code generation.
 - **ble_client_id** (**Required**, [ID](/guides/configuration-types/#id)): The ID of the
   [BLE Client](/components/ble_client/) connected to the unit.
-- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How often the operating state is
-  read back from the unit. Defaults to `30s`.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How often the operating state
+  and the measurements are read from the unit. Defaults to `30s`.
+- **time_id** (*Optional*, [ID](/guides/configuration-types/#id)): A [Time](/components/time/) component to
+  set the unit's clock from. The clock is written once the time is known after each connection, and again
+  whenever the time source syncs.
 
 ## Fan
 
@@ -98,9 +102,73 @@ The on/off state always comes from the unit after the first read back. The fan's
 back the last preset and speed after a reboot; set it to `NO_RESTORE` to skip that. After each change, the
 state is read back from the unit about 300 ms later.
 
+## Sensor
+
+```yaml
+sensor:
+  - platform: ecocomfort2
+    temperature:
+      name: "Ventilation Temperature"
+    humidity:
+      name: "Ventilation Humidity"
+    voc:
+      name: "Ventilation VOC"
+```
+
+### Configuration Variables
+
+- **ecocomfort2_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the `ecocomfort2` hub.
+  Only needed when more than one hub is configured.
+- **temperature** (*Optional*): The air temperature measured by the unit, in °C.
+  All options from [Sensor](/components/sensor/).
+- **humidity** (*Optional*): The relative humidity measured by the unit, in %.
+  All options from [Sensor](/components/sensor/).
+- **voc** (*Optional*): The volatile organic compounds reading of the unit, in ppb.
+  All options from [Sensor](/components/sensor/).
+- **direction** (*Optional*): The air flow direction byte from the unit's status, passed through as the unit sends
+  it; the component does not decode it. It shows the unit switching direction in the `In-Out` and `Sensor` presets.
+  All options from [Sensor](/components/sensor/).
+
+## Binary Sensor
+
+```yaml
+binary_sensor:
+  - platform: ecocomfort2
+    connected:
+      name: "Ventilation Connected"
+    boost:
+      name: "Ventilation Boost"
+```
+
+### Configuration Variables
+
+- **ecocomfort2_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the `ecocomfort2` hub.
+  Only needed when more than one hub is configured.
+- **connected** (*Optional*): On while the ESP32 is connected and paired to the unit.
+  All options from [Binary Sensor](/components/binary_sensor/).
+- **boost** (*Optional*): On while the unit runs its boost mode.
+  All options from [Binary Sensor](/components/binary_sensor/).
+
+## Text Sensor
+
+```yaml
+text_sensor:
+  - platform: ecocomfort2
+    version:
+      name: "Ventilation Firmware"
+```
+
+### Configuration Variables
+
+- **ecocomfort2_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the `ecocomfort2` hub.
+  Only needed when more than one hub is configured.
+- **version** (**Required**): The firmware version of the unit, read once per connection.
+  All options from [Text Sensor](/components/text_sensor/).
+
 ## Multiple Units
 
-Add one BLE client, one hub and one fan for each unit:
+Add one BLE client, one hub and one fan for each unit. With more than one hub, every `ecocomfort2` platform entry,
+sensors included, names its hub with `ecocomfort2_id`:
 
 ```yaml
 ble_client:
@@ -122,6 +190,12 @@ fan:
   - platform: ecocomfort2
     name: "Ventilation 2"
     ecocomfort2_id: vmc2
+
+sensor:
+  - platform: ecocomfort2
+    ecocomfort2_id: vmc1
+    temperature:
+      name: "Ventilation 1 Temperature"
 ```
 
 ## See Also
@@ -130,5 +204,8 @@ fan:
 - [ESP32 BLE Tracker](/components/esp32_ble_tracker/)
 - [BLE Client](/components/ble_client/)
 - [Fan Component](/components/fan/)
+- [Sensor Component](/components/sensor/)
+- [Binary Sensor Component](/components/binary_sensor/)
+- [Text Sensor Component](/components/text_sensor/)
 - <APIRef text="ecocomfort2_hub.h" path="ecocomfort2/ecocomfort2_hub.h" />
 - <APIRef text="ecocomfort2_fan.h" path="ecocomfort2/ecocomfort2_fan.h" />
