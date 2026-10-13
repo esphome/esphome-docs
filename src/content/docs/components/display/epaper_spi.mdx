@@ -46,6 +46,7 @@ the pins used to interface to the display to be specified.
 
 | Display name              | Manufacturer        | Product Description                                |
 |---------------------------|---------------------|----------------------------------------------------|
+| GooDisplay-GDEY0213F51-2.13 | Dalian Good Display | [https://www.good-display.com/product/463.html](https://www.good-display.com/product/463.html) |
 | GooDisplay-GDEY042T81-4.2 | Dalian Good Display | [https://www.good-display.com/product/386.html](https://www.good-display.com/product/386.html) |
 | Waveshare-1.54in-G        | Waveshare           | [https://www.waveshare.com/1.54inch-e-paper-g.htm](https://www.waveshare.com/1.54inch-e-paper-g.htm) |
 | Waveshare-1.54in-v2       | Waveshare           | 1.54" V2 mono e-paper (200x200, SSD1681) [https://www.waveshare.com/1.54inch-e-paper-module.htm](https://www.waveshare.com/1.54inch-e-paper-module.htm) |
@@ -306,6 +307,29 @@ on_...:
   - epaper_spi.full_update_next: epaper
   - component.update: epaper  # not needed if something else, such as LVGL, triggers the update
 ```
+
+## Conditions
+
+### `epaper_spi.is_updating` Condition
+
+This condition lets automations check whether a display update or refresh is in progress. It is true from the moment an
+update starts until the panel has finished refreshing and gone back to deep sleep.
+
+```yaml
+interval:
+  - interval: 10s
+    then:
+      - if:
+          condition:
+            not:
+              epaper_spi.is_updating: my_display
+          then:
+            - component.update: my_display
+```
+
+Configuration variables:
+
+- **id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the `epaper_spi` display.
 
 ## See Also
 
