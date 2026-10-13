@@ -43,9 +43,10 @@ bq76972:
 - **reg_disabled** (*Optional*, boolean): Turn the chip's REG0, REG1 and REG2 regulators off during setup. Leave
   this off when one of them powers the host or the I²C bus. Defaults to `false`.
 - **stack_voltage** (*Optional*): The total stack voltage, in V. All options from [Sensor](/components/sensor/).
-- **cell_1_voltage** to **cell_16_voltage** (*Optional*): The voltage on each cell input, in V. A pack with fewer
-  than 16 cells has its top cell wired to the VC16 input, so that cell is `cell_16_voltage`; inputs shorted to the
-  cell below read 0 and are not published. All options from [Sensor](/components/sensor/).
+- **cell_1_voltage** to **cell_16_voltage** (*Optional*): The voltage on each VC cell input, in V. The number is
+  the input, not the cell's position in the pack: a pack with fewer than 16 cells has its top cell wired to VC16,
+  so that cell is `cell_16_voltage`, and the board's wiring decides which other inputs carry a cell. Inputs shorted
+  to the cell below read 0 and are not published. All options from [Sensor](/components/sensor/).
 - **internal_temperature** (*Optional*): The die temperature, in °C. All options from
   [Sensor](/components/sensor/).
 - **cfetoff_temperature**, **dfetoff_temperature**, **alert_temperature**, **ts1_temperature**,
@@ -59,8 +60,9 @@ bq76972:
 Writes a new I²C address into the chip's data memory and switches to it. The address is held in the chip's RAM:
 it survives a reboot of the ESP but reverts to the default when the chip loses power, so `address` in the
 configuration must match whichever address the chip currently answers to. After an ESP-only reboot the chip still
-answers at the programmed address and setup at the configured one fails until the chip is power-cycled; a
-permanent change needs the address programmed into the chip's OTP memory with the manufacturer's tools.
+answers at the programmed address and setup at the configured one fails; either power-cycle the chip or set
+`address` to the programmed value. A permanent change needs the address programmed into the chip's OTP memory with
+the manufacturer's tools.
 
 ```yaml
 button:
