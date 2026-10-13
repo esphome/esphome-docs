@@ -49,9 +49,15 @@ Advanced settings:
    This prevents API disconnections when multiple threads attempt to log simultaneously.
    Set to `0` to disable the log buffer. Defaults to `768B`.
 
-- **boot_log_buffer_size** (*Optional*, int): The size of a buffer that keeps `WARN` and `ERROR` messages from the
-   moment the logger starts, so that [`logger.replay_boot_logs`](#logger-replay_boot_logs-action) can send them to a
-   client that connects later. Between `512B` and `16kB`, or `0` to disable. Defaults to `0`.
+- **boot_log_buffer_size** (*Optional*, int): The size of a buffer that keeps messages from the moment the logger
+   starts, so that [`logger.replay_boot_logs`](#logger-replay_boot_logs-action) can send them to a client that
+   connects later. Between `512B` and `16kB`, or `0` to disable. Defaults to `0`.
+
+- **boot_log_level** (*Optional*, string): The most verbose [log level](#log-levels) kept in the boot log buffer.
+   Defaults to `WARN`.
+
+- **boot_logs** (*Optional*, mapping): Per-tag levels for the boot log buffer, in the same form as `logs`, for
+   example `wifi: DEBUG` to keep a component's debug lines without filling the buffer with everyone else's.
 
 - **hardware_uart** (*Optional*, string): The Hardware UART to use for logging. The default varies depending on
    the specific processor/chip and framework you are using. See the [table below](#default-hardware-interfaces).
@@ -258,8 +264,8 @@ on_...:
 
 ## `logger.replay_boot_logs` Action
 
-Sends the `WARN` and `ERROR` messages captured during boot to every log listener, such as a connected API client.
-Set `boot_log_buffer_size` and call the action once a client can receive logs:
+Sends the messages captured during boot to every log listener, such as a connected API client. Set
+`boot_log_buffer_size` and call the action once a client can receive logs:
 
 ```yaml
 logger:
@@ -272,9 +278,10 @@ api:
     - logger.replay_boot_logs:
 ```
 
-Each line is sent once with the time since boot in front of it, such as `@64ms [W][wifi:123]: ...`. Capture stops
-at the first replay, and lines that did not fit in the buffer are counted in the replay summary. This is the way to
-see why a device shows an error status before the network comes up on boards without a usable serial port.
+Each call sends every captured line with the time since boot in front of it, such as `@64ms [W][wifi:123]: ...`.
+Capture stops at the first replay. Lines that did not fit are counted in the replay summary, which is logged as a
+warning when any were dropped; raise `boot_log_buffer_size` if that happens. This is the way to see why a device
+shows an error status before the network comes up on boards without a usable serial port.
 
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the logger, needed only with more than one.
 
