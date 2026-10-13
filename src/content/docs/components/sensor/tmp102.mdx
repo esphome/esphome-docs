@@ -95,8 +95,8 @@ sensor:
   - platform: tmp102
     id: freezer_temperature
     name: "Freezer Temperature"
-    temperature_high: 10°F
-    temperature_low: 9°F
+    temperature_high: -12°C
+    temperature_low: -13°C
 
 number:
   - platform: tmp102
@@ -125,8 +125,10 @@ the chip's range: `-55°C` to `127.9375°C`, or `150°C` in extended mode. Numbe
 rounded hardware thresholds.
 
 The sensor's `temperature_high` and `temperature_low` are the numbers' starting values, or `80°C` and `75°C` when
-omitted. With `restore_value: true`, a saved value takes precedence over the starting value; with
-`restore_value: false`, that threshold starts from its starting value on every boot. ESPHome loads both saved
+omitted. With `restore_value: true`, a saved value takes precedence over the starting value, so once a number has
+saved a value, changing the sensor's threshold in YAML has no effect until the number is changed again or
+`restore_value` is set to `false`. With `restore_value: false`, that threshold starts from its starting value on
+every boot. ESPHome loads both saved
 thresholds before checking their relationship. A saved value out of range is discarded. If the resulting pair is
 inverted, both thresholds use their starting values. After successful hardware setup, corrected values are saved and
 the fallback is logged.
