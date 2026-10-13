@@ -1,6 +1,6 @@
 ---
 description: "Instructions for setting up the Texas Instruments BQ25186 battery charger in ESPHome."
-title: "Texas Instruments BQ25186 battery charger"
+title: "Texas Instruments BQ25186 Battery Charger"
 ---
 
 The `bq25186` component lets you configure and monitor the Texas Instruments BQ25186 1-cell battery charger and
@@ -84,6 +84,8 @@ switch:
 - **recharge_threshold** (*Optional*, string): Recharge threshold. One of `100mv`, `200mv`. Default: `100mv`.
 - **double_timer_during_dpm** (*Optional*, boolean): Double the safety timer during DPM. Default: `false`.
 - **safety_timer** (*Optional*, string): Safety timer duration. One of `3h`, `6h`, `12h`, `disabled`. Default: `6h`.
+### Watchdog, Button and Power Path Configuration
+
 - **watchdog** (*Optional*, string): The I²C watchdog. When the bus stays quiet for the chosen period the IC restores
   its power-on configuration, and the hardware reset variants also power cycle the system. Every status read resets
   the watchdog, so `update_interval` must be shorter than the period. One of `disabled`, `160s_software_reset`,
@@ -193,13 +195,16 @@ action; the rest keeps the value from the component. Use it to apply the configu
 (with `configure_on_boot: false`) or to change some options after the initial configuration has been applied.
 
 ```yaml
-# Just apply the configuration defined in the bq25186 component configuration
+# Apply the configuration defined in the bq25186 component
 esphome:
   on_boot:
     priority: -100
     then:
       - bq25186.apply_configuration: bq25186_charger
-# Example of applying a configuration with some options overridden from the originally defined configuration
+```
+
+```yaml
+# Apply the configuration with some options overridden
 esphome:
   on_boot:
     priority: -100
