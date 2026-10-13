@@ -94,6 +94,71 @@ button:
 - **id** (*Required*, [ID](/guides/configuration-types#id)): The ID of the EmonTx hub.
 - **command** (*Required*, string, [templatable](/automations/actions#all-actions)): The command string to send.
 
+### `emontx.pause` / `emontx.resume` Actions
+
+Suspend or resume processing of the UART by the EmonTx hub. While paused, the hub does not read any
+bytes from the UART and `emontx.send_command` is ignored, so another component sharing the same UART
+can take exclusive ownership of it, for example a [Serial Proxy](/components/serial_proxy/) used to
+flash or debug the EmonTx from a computer.
+
+Sensors are not updated and `on_json` / `on_data` are not triggered while paused. On resume, the
+line that was interrupted by the pause is discarded, so only complete lines are processed.
+
+```yaml
+uart:
+  id: emontx_uart
+  rx_pin: GPIOXX
+  tx_pin: GPIOXX
+  baud_rate: 115200
+  rx_buffer_size: 2048
+  tx_buffer_size: 2048  # ESP32 only: at least the largest block the flasher writes at once
+
+emontx:
+  id: myemontx
+  uart_id: emontx_uart
+
+serial_proxy:
+  - id: emontx_proxy
+    uart_id: emontx_uart
+    name: EmonTx
+    port_type: TTL
+
+switch:
+  - platform: template
+    name: "Pause EmonTx"
+    lambda: return id(myemontx).is_paused();
+    turn_on_action:
+      - emontx.pause: myemontx
+    turn_off_action:
+      - emontx.resume: myemontx
+```
+
+Turn the switch on before connecting to the serial proxy, and off again once you have disconnected. Writes
+larger than the UART's transmit buffer are cut short, so size `tx_buffer_size` as described for the
+[Serial Proxy](/components/serial_proxy/).
+
+#### Configuration Variables
+
+- **id** (*Required*, [ID](/guides/configuration-types/#id)): The ID of the EmonTx hub.
+
+## Conditions
+
+### `emontx.is_paused` Condition
+
+Check whether the EmonTx hub is currently paused.
+
+```yaml
+- if:
+    condition:
+      emontx.is_paused: myemontx
+    then:
+      - logger.log: "EmonTx is paused"
+```
+
+#### Configuration Variables
+
+- **id** (*Required*, [ID](/guides/configuration-types/#id)): The ID of the EmonTx hub.
+
 ## Quick Start
 
 Here is a minimal working configuration to get started with basic sensor readings from the EmonTx:
@@ -344,6 +409,27 @@ sensor:
     tag_name: "pulse"
     name: "Pulse"
 ```
+
+## Text Sensor
+
+The `version` text sensor reports the firmware version of the EmonTx, for example `v1.2.0`. ESPHome asks
+the EmonTx for it with the `v` command once it has booted, and again whenever the EmonTx restarts (seen
+when the `MSG` counter in its data goes back down), as it does after a firmware update. It also asks after
+`emontx.resume`, since the firmware may have been changed while the UART was paused. The `v` command is
+only sent when this text sensor is configured.
+
+```yaml
+# Example configuration entry
+text_sensor:
+  - platform: emontx
+    version:
+      name: "EmonTx Firmware Version"
+```
+
+### Configuration Variables
+
+- **version** (*Optional*): The firmware version of the EmonTx. All options from
+  [Text Sensor](/components/text_sensor/#config-text_sensor).
 
 ## Data Forwarding with on_json
 
