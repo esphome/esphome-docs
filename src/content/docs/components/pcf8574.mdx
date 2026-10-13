@@ -95,8 +95,8 @@ not the stored output latch values.
 
 > [!NOTE]
 > Components using these pins still write their own startup state. A [GPIO Switch](/components/switch/gpio/) writes
-> the state chosen by its `restore_mode` during setup, so use a `RESTORE_*` mode to bring back the saved state. A
-> [GPIO Output](/components/output/gpio/) turns off during setup.
+> the state chosen by its `restore_mode` during setup, so use `RESTORE_DEFAULT_OFF` or `RESTORE_DEFAULT_ON` to bring
+> back the saved state. A [GPIO Output](/components/output/gpio/) turns off during setup.
 
 ## See Also
 
