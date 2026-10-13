@@ -414,7 +414,8 @@ sensor:
 
 The `version` text sensor reports the firmware version of the EmonTx, for example `v1.2.0`. ESPHome asks
 the EmonTx for it with the `v` command once it has booted, and again whenever the EmonTx restarts (seen
-when the `MSG` counter in its data goes back down), as it does after a firmware update. The `v` command is
+when the `MSG` counter in its data goes back down), as it does after a firmware update. It also asks after
+`emontx.resume`, since the firmware may have been changed while the UART was paused. The `v` command is
 only sent when this text sensor is configured.
 
 ```yaml
