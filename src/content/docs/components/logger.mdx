@@ -54,10 +54,11 @@ Advanced settings:
    connects later. Between `512B` and `16kB`, or `0` to disable. Defaults to `0`.
 
 - **boot_log_level** (*Optional*, string): The most verbose [log level](#log-levels) kept in the boot log buffer.
-   Defaults to `WARN`.
+   Only lines that pass `level` can be kept, so it cannot be more verbose than `level`. Defaults to `WARN`.
 
 - **boot_logs** (*Optional*, mapping): Per-tag levels for the boot log buffer, in the same form as `logs`, for
-   example `wifi: DEBUG` to keep a component's debug lines without filling the buffer with everyone else's.
+   example `wifi: DEBUG` to keep a component's debug lines without filling the buffer with everyone else's. A tag's
+   boot level cannot be more verbose than its `logs` level.
 
 - **hardware_uart** (*Optional*, string): The Hardware UART to use for logging. The default varies depending on
    the specific processor/chip and framework you are using. See the [table below](#default-hardware-interfaces).
@@ -264,12 +265,12 @@ on_...:
 
 ## `logger.replay_boot_logs` Action
 
-Sends the messages captured during boot to every log listener, such as a connected API client. Set
-`boot_log_buffer_size` and call the action once a client can receive logs:
+Sends the messages captured during boot, `WARN` and above unless `boot_log_level` or `boot_logs` say otherwise, to
+every log listener, such as a connected API client. Set `boot_log_buffer_size` and call the action once a client can
+receive logs; the delay below gives a new API client time to subscribe to logs first:
 
 ```yaml
 logger:
-  baud_rate: 0
   boot_log_buffer_size: 4kB
 
 api:
@@ -278,7 +279,8 @@ api:
     - logger.replay_boot_logs:
 ```
 
-Each call sends every captured line with the time since boot in front of it, such as `@64ms [W][wifi:123]: ...`.
+Each call sends every captured line with the time since boot in front of it, such as `@64ms [W][wifi:123]: ...`, so
+listeners that are still attached see the lines again on the next call.
 Capture stops at the first replay. Lines that did not fit are counted in the replay summary, which is logged as a
 warning when any were dropped; raise `boot_log_buffer_size` if that happens. This is the way to see why a device
 shows an error status before the network comes up on boards without a usable serial port.
