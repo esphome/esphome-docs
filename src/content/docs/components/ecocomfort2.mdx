@@ -75,8 +75,8 @@ ecocomfort2:
 - **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How often the operating state
   and the measurements are read from the unit. Defaults to `30s`.
 - **time_id** (*Optional*, [ID](/guides/configuration-types/#id)): A [Time](/components/time/) component to
-  set the unit's clock from. The clock is written once the time is known after each connection, and then once
-  an hour.
+  set the unit's clock from. The clock is written once the time is known after each connection, and again
+  whenever the time source syncs.
 
 ## Fan
 
