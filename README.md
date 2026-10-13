@@ -223,6 +223,7 @@ Contributions to improve the documentation are welcome! Please follow these step
 - Keep multi-use images in `/public/images/` with absolute paths
 - All ImgTable images must remain in `/public/images/`
 - Use one image per component, in `/public/images/`, for both the ImgTable card and the component page
+- Keep images small; lint rejects files over 1 MB
 - Prefer a transparent background (WebP, PNG or SVG) so images work in both light and dark themes
 - Use descriptive alt text for accessibility
 - Include `layout="constrained"` for responsive images
