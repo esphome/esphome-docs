@@ -1,9 +1,6 @@
 ---
 description: "Instructions for setting up the Texas Instruments BQ25186 battery charger in ESPHome."
 title: "Texas Instruments BQ25186 battery charger"
-params:
-  seo:
-    description: Instructions for setting up the Texas Instruments BQ25186 battery charger in ESPHome.
 ---
 
 The `bq25186` component lets you configure and monitor the Texas Instruments BQ25186 1-cell battery charger and
@@ -16,18 +13,9 @@ triggers the IC's reset and ship modes, and the `switch` platform drives the `/P
 
 ```yaml
 # Example configuration entry
-i2c:
-  sda: GPIO21
-  scl: GPIO22
-
 bq25186:
   id: bq25186_charger
-  address: 0x6A
-  update_interval: 60s
-  battery_regulation_voltage: 4.2V
   fast_charge_current: 500mA
-  charge_enabled: true
-  vindpm_mode: 4.5v
 
 binary_sensor:
   - platform: bq25186
@@ -60,10 +48,10 @@ switch:
 
 ## BQ25186 Component
 
-- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used to reference this BQ25186 hub
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used to reference this BQ25186 hub
   from other components.
 - **address** (*Optional*, int): The I2C address of the device. Default: `0x6A`.
-- **i2c_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the I²C bus.
+- **i2c_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the I²C bus.
 - **update_interval** (*Optional*, time): How often to read the status registers that feed the binary and text
   sensors. Every read also serves the I²C watchdog, see `watchdog` below. Default: `60s`.
 - **configure_on_boot** (*Optional*, boolean): Apply the configuration to the IC on boot. If `false`, the
@@ -141,11 +129,10 @@ switch:
 
 ## Binary Sensor
 
-Configuration for `binary_sensor` platform. All options from [Binary Sensor](/components/binary_sensor).
+Configuration for `binary_sensor` platform. All options from [Binary Sensor](/components/binary_sensor/).
 
-- **bq25186_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the `bq25186` hub.
-  Required
-  when more than one hub is configured.
+- **bq25186_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the `bq25186` hub.
+  Required when more than one hub is configured.
 - **ts** (*Optional*): TS open status.
 - **charging** (*Optional*): Charging status (constant current or constant voltage).
 - **charge_done** (*Optional*): Charge done (or disabled) status.
@@ -170,11 +157,10 @@ Configuration for `binary_sensor` platform. All options from [Binary Sensor](/co
 
 ## Text Sensor
 
-Configuration for `text_sensor` platform. All options from [Text Sensor](/components/text_sensor).
+Configuration for `text_sensor` platform. All options from [Text Sensor](/components/text_sensor/).
 
-- **bq25186_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the `bq25186` hub.
-  Required
-  when more than one hub is configured.
+- **bq25186_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the `bq25186` hub.
+  Required when more than one hub is configured.
 - **charge_status** (*Optional*): Human-readable charge status. One of `Not Charging`, `Constant Current`,
   `Constant Voltage`, `Charge Done/Disabled`.
 - **ts_status** (*Optional*): Human-readable TS status. One of `Normal`, `Hot/Cold (Charging Suspended)`,
@@ -182,11 +168,10 @@ Configuration for `text_sensor` platform. All options from [Text Sensor](/compon
 
 ## Button
 
-Configuration for `button` platform. All options from [Button](/components/button).
+Configuration for `button` platform. All options from [Button](/components/button/).
 
-- **bq25186_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the `bq25186` hub.
-  Required
-  when more than one hub is configured.
+- **bq25186_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the `bq25186` hub.
+  Required when more than one hub is configured.
 - **software_reset** (*Optional*): Trigger a software reset.
 - **shutdown** (*Optional*): Trigger shutdown mode.
 - **ship_mode** (*Optional*): Trigger ship mode.
@@ -194,13 +179,12 @@ Configuration for `button` platform. All options from [Button](/components/butto
 
 ## Switch
 
-Configuration for `switch` platform. All options from [Switch](/components/switch).
+Configuration for `switch` platform. All options from [Switch](/components/switch/).
 
-- **bq25186_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the `bq25186` hub.
-  Required
-  when more than one hub is configured.
-- **pg_gpo** (*Required*): Control the `/PG/GPO` pin as a general purpose output. When configured, the hub switches the
-  pin from power-good reporting to GPO mode at boot; the `restore_mode` of the switch decides the initial level.
+- **bq25186_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the `bq25186` hub.
+  Required when more than one hub is configured.
+- **pg_gpo** (**Required**): Control the `/PG/GPO` pin as a general purpose output. When configured, the hub switches
+  the pin from power-good reporting to GPO mode at boot; the `restore_mode` of the switch decides the initial level.
 
 ## `bq25186.apply_configuration` Action
 
