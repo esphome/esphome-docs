@@ -254,6 +254,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["AGS10", "/components/sensor/ags10/", "ags10.jpg", "Volatile Organic Compound Sensor"],
   ["Air Quality Index", "/components/sensor/aqi/", "aqi.svg"],
   ["AirThings BLE", "/components/sensor/airthings_ble/", "airthings_logo.png", "Radon", "CO2", "Volatile organics"],
+  ["APC1", "/components/sensor/apc1/", "apc1.webp", "Particulate", "CO2", "Volatile organics", "Temp & Humidity"],
   ["CCS811", "/components/sensor/ccs811/", "ccs811.jpg", "CO2 & Volatile organics"],
   ["CM1106", "/components/sensor/cm1106/", "cm1106.png", "CO2"],
   ["D01", "/components/sensor/d01/", "d01.jpg", "Particulate"],
@@ -318,6 +319,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["Inkbird IBS-TH1 Mini", "/components/sensor/inkbird_ibsth1_mini/", "inkbird_isbth1_mini.jpg", "Temperature & Humidity"],
   ["Mopeka Pro Check LP", "/components/sensor/mopeka_pro_check/", "mopeka_pro_check.jpg", "Tank level"],
   ["Mopeka Standard Check LP", "/components/sensor/mopeka_std_check/", "mopeka_std_check.jpg", "Tank level"],
+  ["Renogy Inverter BLE", "/components/sensor/renogy_inverter_ble/", "bluetooth.svg", "dark-invert"],
   ["RuuviTag", "/components/sensor/ruuvitag/", "ruuvitag.jpg", "Temperature & Humidity & Accelerometer"],
   ["ThermoPro BLE", "/components/sensor/thermopro_ble/", "thermopro_tp357.jpg"],
   ["Xiaomi BLE", "/components/sensor/xiaomi_ble/", "xiaomi_mijia_logo.jpg", "Various"],
@@ -522,6 +524,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["AS3935", "/components/sensor/as3935/", "as3935.jpg", "Storm lightning"],
   ["b-parasite", "/components/sensor/b_parasite/", "b_parasite.jpg", "Moisture & Temperature & Humidity & Light"],
   ["Binary Sensor Map", "/components/sensor/binary_sensor_map/", "binary_sensor_map.jpg", "Map binary to value"],
+  ["BQ27220", "/components/sensor/bq27220/", "bq27220.jpg", "Battery Fuel Gauge"],
   ["Combination", "/components/sensor/combination/", "function.svg", "dark-invert"],
   ["Counter", "/components/sensor/counter/", "counter.svg", "dark-invert"],
   ["Duty Time", "/components/sensor/duty_time/", "timer-play-outline.svg", "dark-invert"],
@@ -570,6 +573,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["LD2460", "/components/sensor/ld2460/", "ld2460.jpg", "Motion & Presence"],
   ["LD6002B", "/components/sensor/ld6002b/", "ld6002b.png", "Motion & Presence"],
   ["LIS2DW12", "/components/sensor/lis2dw12/", "lis2dw12.jpg", "Accelerometer"],
+  ["LIS3DH", "/components/motion/lis3dh/", "imu.svg", "Accelerometer", "dark-invert"],
   ["LSM6DS", "/components/motion/lsm6ds/", "imu.svg", "Accelerometer & Gyroscope", "dark-invert"],
   ["Motion (IMU)", "/components/sensor/motion/", "imu.svg", "dark-invert"],
   ["MPU6050", "/components/sensor/mpu6050/", "mpu6050.jpg", "Accelerometer & Gyroscope"],
@@ -852,6 +856,7 @@ Often known as "tag" or "card" readers within the community.
   ["Servo", "/components/servo/", "servo.svg"],
   ["Stepper", "/components/stepper/", "stepper.svg"],
   ["TCA8418 Keypad", "/components/tca8418/", "matrix_keypad.jpg"],
+  ["TMC2209 Stepper Driver", "/components/stepper/tmc2209/", "stepper.svg"],
 ]} />
 
 ## Energy/Solar Management
@@ -937,6 +942,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["ESP32 RMT", "/components/light/esp32_rmt_led_strip/", "color_lens.svg", "dark-invert"],
   ["FastLED Light", "/components/light/fastled/", "color_lens.svg", "dark-invert"],
   ["H-bridge Light", "/components/light/hbridge/", "brightness-medium.svg", "dark-invert"],
+  ["I2S Clockless", "/components/light/i2s_clockless_led_strip/", "color_lens.svg", "dark-invert"],
   ["Light Partition", "/components/light/partition/", "color_lens.svg", "dark-invert"],
   ["LightWaveRF", "/components/lightwaverf/", "brightness-medium.svg", "dark-invert"],
   ["LVGL widget", "/components/light/lvgl/", "lvgl_c_lig.png"],
@@ -957,7 +963,9 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
 ]} />
 
 **Looking for WS2811 and similar individually addressable lights?** For the ESP32 and its variants, we recommend the
-[ESP32 RMT Led Strip](/components/light/esp32_rmt_led_strip/) or [SPI Led Strip](/components/light/spi_led_strip/); for other processors, have a look at the
+[ESP32 RMT LED Strip](/components/light/esp32_rmt_led_strip/),
+[I2S Clockless LED Strip](/components/light/i2s_clockless_led_strip/), or
+[SPI LED Strip](/components/light/spi_led_strip/); for other processors, have a look at the
 [FastLED Light](/components/light/fastled/).
 
 ## Lock Components
@@ -1000,6 +1008,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
 <ImgTable items={[
   ["Motion Core", "/components/motion/", "imu.svg", "IMU", "dark-invert"],
   ["BMI270", "/components/motion/bmi270/", "imu.svg", "Accelerometer & Gyroscope", "dark-invert"],
+  ["LIS3DH", "/components/motion/lis3dh/", "imu.svg", "Accelerometer", "dark-invert"],
   ["LSM6DS", "/components/motion/lsm6ds/", "imu.svg", "Accelerometer & Gyroscope", "dark-invert"],
   ["QMI8658", "/components/motion/qmi8658/", "imu.svg", "Accelerometer & Gyroscope", "dark-invert"],
 ]} />
@@ -1032,6 +1041,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["GP8403", "/components/output/gp8403/", "gp8403.svg"],
   ["GPIO Output", "/components/output/gpio/", "gpio.svg"],
   ["LibreTiny PWM", "/components/output/libretiny_pwm/", "pwm.png"],
+  ["LP5562", "/components/output/lp5562/", "lp5562.svg"],
   ["MCP4661", "/components/output/mcp4461/", "mcp4461.jpg"],
   ["MCP4725", "/components/output/mcp4725/", "mcp4725.jpg"],
   ["MCP4728", "/components/output/mcp4728/", "mcp4728.jpg"],
@@ -1174,7 +1184,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["FT63X6", "/components/touchscreen/ft63x6/", "wt32-sc01.png"],
   ["GSL3670", "/components/touchscreen/gsl3670/", "touchscreen.svg", "dark-invert"],
   ["GT911", "/components/touchscreen/gt911/", "esp32_s3_box_3.png"],
-  ["ICNT86", "/components/touchscreen/icnt86/", "icnt86.svg", "dark-invert"],
+  ["ICNT86", "/components/touchscreen/icnt86/", "icnt86.svg"],
   ["Lilygo T5 4.7", "/components/touchscreen/lilygo_t5_47/", "lilygo_t5_47_touch.jpg"],
   ["SPD2010", "/components/touchscreen/spd2010/", "touch.svg", "dark-invert"],
   ["ST7123", "/components/touchscreen/st7123/", "touch.svg", "dark-invert"],
