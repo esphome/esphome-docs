@@ -30,7 +30,10 @@ ezsp_proxy_tap:
 ## How It Works
 
 The component acknowledges frames only while the API client has the port in `PROTOCOL` mode. The client must then
-not send its own acknowledgements. In `RAW` mode the component sends nothing.
+not send its own acknowledgements. While a client holds the port in `RAW` mode the component sends nothing.
+
+The API client must support `PROTOCOL` mode, for example [serialx](https://github.com/puddly/serialx). With other
+clients the port stays in `RAW` mode and the component has no effect.
 
 The component follows the NCP's frame numbers from its next reset. If the NCP is already running, the component
 follows them from the first frame it receives.
