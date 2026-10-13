@@ -58,6 +58,10 @@ media_player:
 - **on_turn_on** (*Optional*, [Automation](/automations)): An automation to perform when media_player is turned on, implements the `supports_turn_off_on` trait.
 - All other options from [Media Player](/components/media_player#config-media_player)
 
+Configuring `on_turn_on` or `on_turn_off` adds on/off support to this media player. It then starts as off, and any
+playback request turns it on. After playback ends it stays idle until it is turned off, for example by a Home Assistant
+automation after a period of inactivity. Turning it off stops all playback, including announcements.
+
 <span id="media_player-speaker_source-examples"></span>
 
 ## Example Configuration
