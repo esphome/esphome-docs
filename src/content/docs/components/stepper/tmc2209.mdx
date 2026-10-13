@@ -278,15 +278,16 @@ sensor:
   Defaults to `60s`.
 
 - **actual_current** (*Optional*): The motor current the driver is set to, in A RMS. This is the run current or the
-  hold current, lowered by CoolStep when it is active. Not correct when `analog_current_scale` is used. All options
-  from [Sensor](/components/sensor/).
+  hold current, lowered by CoolStep when it is active. Cannot be used when `analog_current_scale` is `true`, because
+  the current then depends on the voltage on `VREF`. All options from [Sensor](/components/sensor/).
 
 - **stallguard_result** (*Optional*): The StallGuard result, `0` to `510`. A lower value means a higher load. Only
   valid while the motor runs in StealthChop mode. All options from [Sensor](/components/sensor/).
 
 - **motor_load** (*Optional*): The StallGuard result as a load in percent. `0%` is a result of `510` (no load) and
   `100%` is twice the StallGuard `threshold`, where a stall is reported. Values above `100%` are possible. Only valid
-  while the motor runs in StealthChop mode. All options from [Sensor](/components/sensor/).
+  while the motor runs in StealthChop mode. Has no value while the motor is stopped. All options from
+  [Sensor](/components/sensor/).
 
 - **pwm_scale_sum** (*Optional*): The StealthChop PWM duty cycle, `0` to `255`. A value close to `255` means that
   the supply voltage is too low to reach the motor current at this speed. All options from
@@ -306,7 +307,8 @@ See the `SG_RESULT`, `PWM_SCALE` and `PWM_AUTO` registers in the datasheet for d
 
 > [!NOTE]
 > The sensors only show the value at the moment they are read. To follow the load during a move, use a short
-> `update_interval`. Every update reads the driver registers over UART.
+> `update_interval`. Every update reads the driver registers over UART. When a read fails, that sensor and the
+> sensors after it have no value until the next update.
 
 ## `tmc2209.enable` / `tmc2209.disable` Actions
 
