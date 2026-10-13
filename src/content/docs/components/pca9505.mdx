@@ -39,6 +39,7 @@ they work with components such as the GPIO binary sensor and the GPIO switch.
 # Example configuration entry
 pca9505:
   - id: 'pca9505_device'
+    interrupt_pin: GPIO34
 
 # Individual output
 switch:
@@ -46,12 +47,9 @@ switch:
     name: "PCA9505 Pin #0"
     pin:
       pca9505: pca9505_device
-      # Use pin number 0
       number: 0
-      # One of INPUT or OUTPUT
       mode:
         output: true
-      inverted: false
 
 # Individual input
 binary_sensor:
