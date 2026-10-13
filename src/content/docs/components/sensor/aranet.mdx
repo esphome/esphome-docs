@@ -1,6 +1,6 @@
 ---
 title: "Aranet BLE Sensors"
-description: "Instructions for reading Aranet air-quality and radiation monitors over Bluetooth Low Energy."
+description: "Instructions for reading Aranet air-quality, radon and radiation monitors over Bluetooth Low Energy."
 ---
 
 The `aranet` sensor platform reads advertisements from Aranet Bluetooth Low Energy devices. It supports Aranet4,
@@ -35,18 +35,21 @@ sensor:
   Aranet Radon Plus.
 - **pressure** (*Optional*, [Sensor](/components/sensor/)): The atmospheric pressure reported by an Aranet4, Aranet
   Radon Plus, or Aranet Radon One.
-- **radon** (*Optional*, [Sensor](/components/sensor/)): The radon concentration reported by an Aranet Radon Plus or
-  Aranet Radon One.
-- **radiation_rate** (*Optional*, [Sensor](/components/sensor/)): The radiation dose rate reported by an Aranet
-  Radiation.
-- **radiation_total** (*Optional*, [Sensor](/components/sensor/)): The accumulated radiation dose reported by an
+- **radon** (*Optional*, [Sensor](/components/sensor/)): The radon concentration in Bq/m³ reported by an Aranet
+  Radon Plus or Aranet Radon One.
+- **radiation_rate** (*Optional*, [Sensor](/components/sensor/)): The radiation dose rate in µSv/h reported by an
   Aranet Radiation.
-- **radiation_duration** (*Optional*, [Sensor](/components/sensor/)): The duration over which the accumulated dose was
-  measured by an Aranet Radiation.
-- **battery_level** (*Optional*, [Sensor](/components/sensor/)): The device battery level.
-- **measurement_interval** (*Optional*, [Sensor](/components/sensor/)): The interval between device measurements.
-- **measurement_age** (*Optional*, [Sensor](/components/sensor/)): The age of the most recent measurement.
-- **signal_strength** (*Optional*, [Sensor](/components/sensor/)): The Bluetooth signal strength.
+- **radiation_total** (*Optional*, [Sensor](/components/sensor/)): The accumulated radiation dose in nSv reported by
+  an Aranet Radiation.
+- **radiation_duration** (*Optional*, [Sensor](/components/sensor/)): The duration in seconds over which the
+  accumulated dose was measured by an Aranet Radiation.
+- **battery_level** (*Optional*, [Sensor](/components/sensor/)): The device battery level in percent. Reported by all
+  supported models.
+- **measurement_interval** (*Optional*, [Sensor](/components/sensor/)): The interval between device measurements in
+  seconds. Reported by all supported models.
+- **measurement_age** (*Optional*, [Sensor](/components/sensor/)): The time in seconds since the device took its most
+  recent measurement. Reported by all supported models.
+- **signal_strength** (*Optional*, [Sensor](/components/sensor/)): The RSSI of the received advertisement in dBm.
 
 All sensor options support the settings described in the [Sensor component](/components/sensor/).
 
