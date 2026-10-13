@@ -145,7 +145,7 @@ This is only the in-page lead image at the top of the post — it is **not** the
 generated via a URL; see [Build Blog Post](#6-build-blog-post)). Skip this section if no `art.*` file is provided.
 
 - Find the `art` image in `create-blog-post/` (any extension: `.webp`, `.png`, `.jpg`, `.jpeg`).
-- Optimize and convert to WebP at a maximum width of 1000px (per CONTRIBUTING.md — max ~1000x800):
+- Optimize and convert to WebP at a maximum width of 1000px:
   `cwebp -resize 1000 0 -q 85 input -o src/content/docs/blog/images/<slug>-hero.webp` (the `0` height preserves the aspect ratio).
 - If the source is already `.webp`, still re-encode it with the resize to keep it small.
 - At the top of the MDX file (after the front matter) add the imports:
