@@ -172,7 +172,7 @@ paragraph, should you use HTML:
    - Reference using absolute path
 
    ```mdx
-   <Image src="/images/shared-image.jpg" alt="Description" layout="constrained" />
+   <Image src="/images/shared-image.jpg" alt="Description" layout="constrained" width={800} height={600} />
    ```
 
 1. **ImgTable images** (component index pages):
@@ -183,7 +183,9 @@ paragraph, should you use HTML:
 **Image Optimization:**
 
 - **ALWAYS optimize images** before adding (use TinyPNG/TinyJPG)
-- **Maximum size**: ~1000x800 pixels
+- **Maximum file size**: 1 MB, enforced by lint; keep images far smaller than that where you can
+- **Prefer a transparent background** where possible (WebP, PNG or SVG) so the image looks right in both the light
+  and dark themes; crop product photos to the board rather than leaving a white box around it
 - All images must be as small as possible to minimize page load times
 - Variable names follow camelCase with `Img` suffix (e.g., `myImageImg`)
 
@@ -192,7 +194,8 @@ paragraph, should you use HTML:
 - `src`: Either imported variable or absolute path
 - `alt`: Alternative text for accessibility (required)
 - `layout`: Use `"constrained"` for responsive images
-- `width` and `height`: Optional pixel values (not percentages)
+- `width` and `height`: Pixel values (not percentages). Required when `src` is an absolute path, optional for
+  imported images
 
 **Styling Images:**
 
@@ -207,13 +210,32 @@ Use inline styles for sizing:
 />
 ```
 
-#### Component Thumbnails
+#### Component Images
 
-- **Aspect ratio**: 8:10 or 10:8 (portrait or landscape orientation)
-- **Format**: SVG (heavily compressed) or JPG (max 300x300px)
+Use one image per component. It is shown both on the component card in the index page (via ImgTable) and at the
+top of the component page itself, so do not add a separate thumbnail.
+
 - **Location**: `/public/images/` directory
-- **Reference**: Use `/images/filename` path in ImgTable
-- Used in component listings and cards
+- **Format**: SVG, WebP, PNG or JPG; use WebP, PNG or SVG when the background can be transparent
+- **Size**: as small as possible; 500 to 800 pixels on the long side is plenty for both the card and the page
+  figure
+- **Reference**: `/images/filename` in ImgTable, and the same absolute path on the component page. A string `src`
+  needs explicit `width` and `height` attributes
+- **No photo available?** Ask the bot on your pull request for a generated name image (see the PR template) and
+  use that SVG in both places
+
+```mdx
+import Figure from '@components/Figure.astro';
+
+<Figure
+  src="/images/my-component.webp"
+  alt="My Component board"
+  caption="My Component board"
+  layout="constrained"
+  width={520}
+  height={520}
+/>
+```
 
 ### Alerts and Callouts
 
@@ -313,6 +335,8 @@ import Figure from '@components/Figure.astro';
 <Figure
   src="/images/badge.svg"
   alt="Badge"
+  width={200}
+  height={100}
 >
   <p slot="caption">
     Download: [svg](/images/badge.svg), [png](/images/badge.png)
@@ -327,6 +351,8 @@ import Figure from '@components/Figure.astro';
   src="/images/shared-image.jpg"
   alt="Description"
   caption="Optional caption text"
+  width={800}
+  height={600}
   style="width: 50%"
 />
 ```
@@ -338,7 +364,7 @@ import Figure from '@components/Figure.astro';
 - `caption`: Optional caption text for simple captions (string)
 - `layout`: Use `"constrained"` for responsive images (default)
 - `style`: Optional inline CSS styles
-- `width`, `height`: Optional pixel values
+- `width`, `height`: Pixel values, required when `src` is an absolute path
 
 **Slots:**
 
@@ -454,13 +480,19 @@ title: "Component Name"
 description: "One-line description of what the component does"
 ---
 
-import { Image } from 'astro:assets';
-import myImageImg from './images/my-image.jpg';
+import Figure from '@components/Figure.astro';
 import APIRef from '@components/APIRef.astro';
 
 Brief introduction paragraph explaining what the component is and what it does.
 
-<Image src={myImageImg} alt="Component image" layout="constrained" />
+<Figure
+  src="/images/component_name.webp"
+  alt="Component Name board"
+  caption="Component Name board"
+  layout="constrained"
+  width={520}
+  height={520}
+/>
 
 ## Configuration
 
