@@ -42,19 +42,11 @@ sensor:
 The runtime is written to flash once per hour of speed-weighted runtime, on a clean restart or update, and when
 the filter is reset. A power cut loses whatever accumulated since the last write, up to an hour of counted runtime. A
 device that is powered together with the appliance and never counts an hour between power cuts never reaches a
-write, so its runtime stays at zero; give such a device its own power or keep it powered across sessions.
+write, so its runtime falls back to the last stored value at every power cut; give such a device its own power or
+keep it powered across sessions.
 
-## `filter_lifetime.reset_filter` Action
-
-Sets the accumulated runtime back to zero after the filter has been replaced.
-
-```yaml
-on_...:
-  - filter_lifetime.reset_filter:
-      id: hepa_filter
-```
-
-- **id** (**Required**, [ID](/guides/configuration-types/#id)): The ID of the `filter_lifetime` sensor.
+> [!NOTE]
+> The sensor tracks running time only. It does not measure how dirty the filter actually is.
 
 ## Inputs From Sensors
 
@@ -93,8 +85,17 @@ sensor:
       return 100.0f;
 ```
 
-> [!NOTE]
-> The sensor tracks running time only. It does not measure how dirty the filter actually is.
+## `filter_lifetime.reset_filter` Action
+
+Sets the accumulated runtime back to zero after the filter has been replaced.
+
+```yaml
+on_...:
+  - filter_lifetime.reset_filter:
+      id: hepa_filter
+```
+
+- **id** (**Required**, [ID](/guides/configuration-types/#id)): The ID of the `filter_lifetime` sensor.
 
 ## See Also
 
