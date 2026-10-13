@@ -365,6 +365,19 @@ When Markdown syntax produces the same rendered result, use it instead of raw HT
 Raw HTML and JSX should appear only when Markdown cannot express what you need: invoking custom components like
 `LightEffectPreview` or `Figure`, complex layouts, or specific accessibility attributes.
 
+### Preserving Spaces at Line Ends
+
+When a space at the end or start of a line must be kept, for example between an inline element and the rest of a
+sentence wrapped onto the next line inside a JSX element, use the HTML entity `&nbsp;`. Do not use the JSX expression
+`{" "}` (on one line or split across several lines), which formatters and code generators sometimes insert.
+
+```mdx
+<p slot="caption">
+  Download the badge as&nbsp;
+  [svg](/images/badge.svg).
+</p>
+```
+
 ## Git Workflow
 
 ### Branch Strategy
@@ -427,6 +440,7 @@ npm run build
 - [ ] Variable names, parameter names, and short code snippets are wrapped in single backticks
 - [ ] Markdown syntax used when it produces the same result as raw HTML
 - [ ] No large inline `<style>` blocks in MDX (raise with maintainers if you think one is needed)
+- [ ] Line-end spaces that must be kept use `&nbsp;`, not `{" "}`
 
 ## Common Patterns
 
