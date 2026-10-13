@@ -252,7 +252,61 @@ stepper:
 ```
 
 The right `threshold` depends on the motor, its current and speed, and the load. Start low and raise it until a stall
-is detected reliably without false reports during normal moves.
+is detected reliably without false reports during normal moves. The `stallguard_result` and `motor_load`
+[sensors](#sensor) help to find a value: watch them during a normal move and while the motor is blocked.
+
+## Sensor
+
+The `tmc2209` sensor platform reads the motor current, the StallGuard load measurement and the StealthChop
+regulation values from the driver.
+
+```yaml
+sensor:
+  - platform: tmc2209
+    actual_current:
+      name: "Motor Current"
+    motor_load:
+      name: "Motor Load"
+```
+
+### Configuration Variables
+
+- **tmc2209_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the TMC2209 stepper. Required if you
+  have multiple TMC2209 drivers.
+
+- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval to read the sensors.
+  Defaults to `60s`.
+
+- **actual_current** (*Optional*): The motor current the driver is set to, in A RMS. This is the run current or the
+  hold current, lowered by CoolStep when it is active. Not correct when `analog_current_scale` is used. All options
+  from [Sensor](/components/sensor/).
+
+- **stallguard_result** (*Optional*): The StallGuard result, `0` to `510`. A lower value means a higher load. Only
+  valid while the motor runs in StealthChop mode. All options from [Sensor](/components/sensor/).
+
+- **motor_load** (*Optional*): The StallGuard result as a load in percent. `0%` is a result of `510` (no load) and
+  `100%` is twice the StallGuard `threshold`, where a stall is reported. Values above `100%` are possible. Only valid
+  while the motor runs in StealthChop mode. All options from [Sensor](/components/sensor/).
+
+- **pwm_scale_sum** (*Optional*): The StealthChop PWM duty cycle, `0` to `255`. A value close to `255` means that
+  the supply voltage is too low to reach the motor current at this speed. All options from
+  [Sensor](/components/sensor/).
+
+- **pwm_scale_auto** (*Optional*): The offset that the StealthChop automatic current regulation adds to the PWM
+  amplitude, `-255` to `255`. All options from [Sensor](/components/sensor/).
+
+- **pwm_ofs_auto** (*Optional*): The PWM amplitude offset determined by the StealthChop automatic tuning, `0` to
+  `255`. All options from [Sensor](/components/sensor/).
+
+- **pwm_grad_auto** (*Optional*): The PWM amplitude gradient determined by the StealthChop automatic tuning, `0` to
+  `255`. All options from [Sensor](/components/sensor/).
+
+`stallguard_result`, `pwm_scale_sum`, `pwm_scale_auto`, `pwm_ofs_auto` and `pwm_grad_auto` are diagnostic sensors.
+See the `SG_RESULT`, `PWM_SCALE` and `PWM_AUTO` registers in the datasheet for details.
+
+> [!NOTE]
+> The sensors only show the value at the moment they are read. To follow the load during a move, use a short
+> `update_interval`. Every update reads the driver registers over UART.
 
 ## `tmc2209.enable` / `tmc2209.disable` Actions
 
@@ -418,5 +472,7 @@ Configuration variables:
 
 - [Stepper Component](/components/stepper/)
 - [UART Bus](/components/uart/)
+- [Sensor Component](/components/sensor/)
 - <APIRef text="tmc2209.h" path="tmc2209/tmc2209.h" />
+- <APIRef text="tmc2209_sensor.h" path="tmc2209/sensor/tmc2209_sensor.h" />
 - <APIRef text="tmc22xx.h" path="tmc22xx/tmc22xx.h" />
