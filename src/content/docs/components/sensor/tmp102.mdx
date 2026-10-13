@@ -42,9 +42,10 @@ sensor:
 
 ### Optional Hardware Settings
 
-Temperature-only configurations work unchanged and write no registers at startup. Setting any option below or adding
-a TMP102 number makes ESPHome write the configuration register and both threshold registers during setup, using the
-listed defaults for omitted settings. These settings apply to TMP102 chips; do not enable them for LM75 sensors.
+Temperature-only configurations work unchanged and write no registers at startup. Setting any option below or
+adding a [TMP102 number](#adjustable-thresholds) makes ESPHome write the configuration register and both threshold
+registers during setup, using the listed defaults for omitted settings. These settings apply to TMP102 chips; do not
+enable them for LM75 sensors.
 Adding only an alert binary sensor does not enable hardware configuration or write these registers.
 
 Before each update ESPHome reads the configuration register back. If it no longer matches, for example after the chip
@@ -52,7 +53,8 @@ alone lost power, ESPHome rewrites the configuration and both thresholds, skips 
 warning status until the next reading succeeds. Do not use another controller to change these registers while ESPHome
 manages them.
 
-The defaults below are the chip's power-on values and apply only once any of these options is set.
+The defaults below are the chip's power-on values and apply once any of these options is set or a TMP102 number is
+added.
 
 - **extended_mode** (*Optional*, boolean): Use the 13-bit temperature format. Defaults to `false`.
 - **conversion_rate** (*Optional*, string): Chip conversion rate: `0.25Hz`, `1Hz`, `4Hz`, or `8Hz`. Defaults to `4Hz`.
@@ -67,14 +69,15 @@ The defaults below are the chip's power-on values and apply only once any of the
   chip on every update, the pin clears at the next `update_interval` at the latest. Defaults to `comparator`.
 - **fault_queue** (*Optional*, int): Consecutive fault conversions required before ALERT changes: `1`, `2`, `4`, or `6`.
   Defaults to `1`.
-- **temperature_high** (*Optional*, temperature): High threshold. Defaults to `80°C`.
-- **temperature_low** (*Optional*, temperature): Low threshold. Defaults to `75°C`.
+- **temperature_high** (*Optional*, temperature): High threshold. Defaults to `80°C`. With a TMP102 number, this is
+  the number's starting value.
+- **temperature_low** (*Optional*, temperature): Low threshold. Defaults to `75°C`. With a TMP102 number, this is
+  the number's starting value.
 
 Thresholds accept Celsius or Fahrenheit values, such as `30°C` or `86°F`. The low threshold must not exceed the high
 threshold. Supported thresholds range from `-55°C` to `127.9375°C` in normal mode, or `150°C` in extended mode.
 The chip stores thresholds in steps of `0.0625°C`; values are rounded to the nearest step, with exact half-steps
-rounded away from zero. Number states and saved values reflect the rounded hardware thresholds. Temperature sensor
-filters do not change thermostat thresholds or alert decisions.
+rounded away from zero. Temperature sensor filters do not change thermostat thresholds or alert decisions.
 
 In continuous mode, the chip makes conversions independently of ESPHome polling. In one-shot mode, ESPHome waits
 40 ms after triggering a conversion before reading it. Continuous-mode reads happen immediately and do not force
@@ -92,16 +95,16 @@ sensor:
   - platform: tmp102
     id: freezer_temperature
     name: "Freezer Temperature"
+    temperature_high: 10°F
+    temperature_low: 9°F
 
 number:
   - platform: tmp102
     tmp102_id: freezer_temperature
     temperature_high:
       name: "High Temperature Threshold"
-      initial_value: "10°F"
     temperature_low:
       name: "Clear Temperature Threshold"
-      initial_value: "9°F"
 ```
 
 ### Number Configuration Variables
@@ -114,21 +117,25 @@ number:
 At least one threshold number is required. Only one TMP102 number platform may reference each temperature sensor.
 Both threshold numbers support:
 
-- **initial_value** (*Optional*, temperature): Initial threshold when no valid saved value is available.
-  Defaults to the corresponding scalar setting on the temperature sensor, or `80°C` high and `75°C` low.
-  Set the sensor's scalar threshold or the number's `initial_value`, not both for the same threshold.
 - **restore_value** (*Optional*, boolean): Save accepted changes and restore them after reboot. Defaults to `true`.
 - All other options from [Number](/components/number/).
 
-These numbers use Celsius internally, have a step of `0.0625°C`, and default to configuration entities. ESPHome loads
-both saved thresholds before validating their relationship. Invalid saved values fall back to their initial values.
-If the resulting pair is inverted, both thresholds fall back to the configured initial pair. After successful hardware
-setup, corrected values are saved and the fallback is logged. With `restore_value: false`, that threshold starts from
-its configured initial value on every boot.
+These numbers use Celsius internally, have a step of `0.0625°C`, and default to configuration entities. Their range is
+the chip's range: `-55°C` to `127.9375°C`, or `150°C` in extended mode. Number states and saved values reflect the
+rounded hardware thresholds.
 
-Runtime changes must stay within range and keep the low threshold at or below the high threshold. Rejected changes
-and failed I²C writes leave the accepted value unchanged. When moving both thresholds, change the high threshold first
-when raising the pair, or the low threshold first when lowering it.
+The sensor's `temperature_high` and `temperature_low` are the numbers' starting values, or `80°C` and `75°C` when
+omitted. With `restore_value: true`, a saved value takes precedence over the starting value; with
+`restore_value: false`, that threshold starts from its starting value on every boot. ESPHome loads both saved
+thresholds before checking their relationship. A saved value out of range is discarded. If the resulting pair is
+inverted, both thresholds use their starting values. After successful hardware setup, corrected values are saved and
+the fallback is logged.
+
+Runtime changes must stay within range and keep the low threshold at or below the high threshold. A change that
+crosses the other threshold is rejected, and the entity keeps the accepted value. A failed I²C write also keeps the
+accepted value and sets the sensor's warning status until the next reading succeeds. If hardware setup failed,
+changes are rejected with a warning and the numbers have no state. When moving both thresholds, change the high
+threshold first when raising the pair, or the low threshold first when lowering it.
 
 ## Alert Binary Sensor
 
@@ -161,8 +168,8 @@ entity after reading the temperature, so changes appear at the sensor's polling 
 configuration read invalidates the binary-sensor state until a complete read succeeds.
 
 The entity is read-only. Adding it does not change the TMP102 configuration, polarity, or thresholds. Without
-`temperature_high` and `temperature_low` on the sensor, the status follows the thresholds already stored in the chip,
-which are `80°C` and `75°C` after power-on.
+`temperature_high` and `temperature_low` on the sensor and without a TMP102 number, the status follows the thresholds
+already stored in the chip, which are `80°C` and `75°C` after power-on.
 
 > [!NOTE]
 > This entity reports comparator status, not the physical ALERT pin level. In interrupt mode, reading a chip register
