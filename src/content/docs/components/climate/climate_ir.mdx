@@ -24,7 +24,7 @@ submit a feature request (see FAQ).
 | [Daikin BRC](#daikin_brc) | `daikin_brc`                       | yes |
 | [Delonghi](#delonghi_ir) | `delonghi`                         | yes |
 | Emmeti | `emmeti`                           | yes |
-| Friedrich                                 | `friedrich`                        | yes               |
+| [Friedrich](#friedrich)                   | `friedrich`                        | yes               |
 | Fujitsu General | `fujitsu_general`                  | yes |
 | [GREE](#gree_ir) | `gree`                             | |
 | Hitachi | `hitachi_ac344`, `hitachi_ac424` | yes |
@@ -175,8 +175,6 @@ The `delonghi` climate currently supports the protocol used by some Delonghi por
 
 The Daikin ARC remotes (`daikin_arc` climate, `daikin_arc417`, `daikin_arc480` protocols of [Arduino-HeatpumpIR](#heatpumpir)) are used by the japanese model of Daikin.
 
-<span id="friedrich"></span>
-
 ### `friedrich`
 
 The `friedrich` climate currently supports the MW12Y3H protocol.
@@ -184,8 +182,8 @@ The `friedrich` climate currently supports the MW12Y3H protocol.
 The unit only accepts Fahrenheit temperatures in steps of 2 degrees, so the climate entity reports temperatures
 in degrees Fahrenheit, in the range 60 to 88. Heating can be set down to 60, other modes down to 64.
 
-- **model** (*Optional*, string): There is 1 valid model. Reserved for other models in the future.
-  - `MW12Y3H`: uses degrees Fahrenheit. This is the default.
+- **model** (*Optional*, string): The unit model. Only `MW12Y3H` exists so far; the option is reserved for other
+  models. Defaults to `MW12Y3H`.
 
 The `sensor` option is not supported, because a temperature sensor reports Celsius while this climate works in
 Fahrenheit. `humidity_sensor` works as usual.
