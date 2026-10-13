@@ -58,7 +58,9 @@ bq76972:
 
 Writes a new I²C address into the chip's data memory and switches to it. The address is held in the chip's RAM:
 it survives a reboot of the ESP but reverts to the default when the chip loses power, so `address` in the
-configuration must match whichever address the chip currently answers to.
+configuration must match whichever address the chip currently answers to. After an ESP-only reboot the chip still
+answers at the programmed address and setup at the configured one fails until the chip is power-cycled; a
+permanent change needs the address programmed into the chip's OTP memory with the manufacturer's tools.
 
 ```yaml
 button:
