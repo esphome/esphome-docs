@@ -32,6 +32,7 @@ submit a feature request (see FAQ).
 | [Mistral](#mistral_ir) | `mistral_ir`                       | yes |
 | [Mitsubishi](#mitsubishi) | `mitsubishi`                       | yes |
 | Noblex | `noblex`                           | yes |
+| [Pioneer mini-split (Parker Davis)](#pd_pioneer_ir) | `pd_pioneer_ir`                    | yes |
 | [Remko, Fischer ClimaButler, TROTEC, Novamatic, Rexair, FREECOM](#remko_ar715) | `remko_ar715` | |
 | [Siemens IRA211](#siemens_ira211) | `siemens_ira211`        | yes |
 | Electrolux, TCL, Fuego | `tcl112`                           | yes |
@@ -299,6 +300,31 @@ climate:
     vertical_default: "down"
 ```
 
+### `pd_pioneer_ir`
+
+This platform controls Pioneer mini-split air conditioners that use the PD Pioneer infrared protocol.
+These units are manufactured by Parker Davis (the "PD" in the protocol name). It has been tested with
+the ESPIR1 IR adapter module. Other Pioneer mini-split models that use the same protocol may also work.
+
+Supported modes are Off, Cool, Heat, Dry, and Fan Only. Fan speeds Auto, Low, Medium, and High are supported.
+Swing modes Off, Vertical, Horizontal, and Both are supported. The ECO preset is supported.
+
+- **use_fahrenheit** (*Optional*, boolean): When enabled, the target temperature is sent in half-degree
+  Fahrenheit steps and the unit display shows Fahrenheit. When disabled, whole-degree Celsius is used.
+  Defaults to `false`.
+
+```yaml
+# Example configuration entry
+climate:
+  - platform: pd_pioneer_ir
+    name: "Pioneer AC"
+    use_fahrenheit: true
+```
+
+> [!NOTE]
+> See [Transmit PD Pioneer](/components/remote_transmitter/#remote_transmitter-transmit_pd_pioneer-action) to send
+> custom raw frames for debugging or advanced use.
+
 ### `remko_ar715`
 
 Supports air conditioners using the Remko AR-715 infrared remote (model 1613138). The IRremoteESP8266
@@ -541,6 +567,7 @@ Additional configuration must be specified for this platform:
 - <APIRef text="midea_ir.h" path="midea_ir/midea_ir.h" />
 - <APIRef text="mistral_ir.h" path="mistral_ir/mistral_ir.h" />
 - <APIRef text="mitsubishi.h" path="mitsubishi/mitsubishi.h" />
+- <APIRef text="pd_pioneer_ir.h" path="pd_pioneer_ir/pd_pioneer_ir.h" />
 - <APIRef text="remko_ar715.h" path="remko_ar715/remko_ar715.h" />
 - <APIRef text="siemens_ira211.h" path="siemens_ira211/siemens_ira211.h" />
 - <APIRef text="tcl112.h" path="tcl112/tcl112.h" />
