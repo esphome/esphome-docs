@@ -64,9 +64,9 @@ logger:
 
 Each `homeassistant` platform has its own tag, such as `homeassistant.binary_sensor` or
 `homeassistant.text_sensor`; a bare `homeassistant` matches nothing. Received values then log as
-`'sensor.power': Got state 100.50`. They are `VERBOSE` rather than `DEBUG` because Home Assistant forwards every
-change and a fast-updating entity would flood the default level. See
-[Manual Tag-Specific Log Levels](/components/logger/#logger-manual_tag_specific_levels).
+`'sensor.power': Got state 100.50`. This platform logs them at `VERBOSE` rather than `DEBUG` because Home Assistant
+forwards every change and a fast-updating entity would flood the default level. See
+[Manual Tag-Specific Log Levels](/components/logger/#manual-tag-specific-log-levels).
 
 ## See Also
 
