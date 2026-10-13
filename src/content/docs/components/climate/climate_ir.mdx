@@ -32,6 +32,7 @@ submit a feature request (see FAQ).
 | [Mistral](#mistral_ir) | `mistral_ir`                       | yes |
 | [Mitsubishi](#mitsubishi) | `mitsubishi`                       | yes |
 | Noblex | `noblex`                           | yes |
+| [Remko, Fischer ClimaButler, TROTEC, Novamatic, Rexair, FREECOM](#remko_ar715) | `remko_ar715` | |
 | [Siemens IRA211](#siemens_ira211) | `siemens_ira211`        | yes |
 | Electrolux, TCL, Fuego | `tcl112`                           | yes |
 | [Toshiba](#toshiba) | `toshiba`                          | yes |
@@ -297,6 +298,32 @@ climate:
     vertical_default: "down"
 ```
 
+### `remko_ar715`
+
+Supports air conditioners using the Remko AR-715 infrared remote (model 1613138). The IRremoteESP8266
+library calls this protocol *ClimaButler* after one of the rebranded models.
+
+| Brand | Model |
+|---|---|
+| Remko | RKL 490, RKL 491, RKL 494, RKL 495 |
+| Fischer | ClimaButler RCS-SD43UAI, RCS-SD43UWI |
+| TROTEC | PAC 4600 |
+| Novamatic | CL 990, CL 1590 |
+| Rexair | C15000N |
+| FREECOM | RCS-SD43UAI, RCS-SD43UWI |
+
+- The remote has no heat mode, so only cool, dry and fan-only modes are available.
+- The fan speed can only be chosen in cool mode. In dry and fan-only modes the unit picks the speed itself.
+  Fan speed `auto` is the remote's *Fuzzy Logic* setting, which follows the room temperature.
+- The remote's 1 to 24 hour timer is not implemented; use an automation instead.
+
+```yaml
+# Example configuration entry
+climate:
+  - platform: remko_ar715
+    name: Air Conditioner
+```
+
 ### `siemens_ira211`
 
 The `siemens_ira211` climate controls Siemens RDG1xx and RDG2xx thermostats that are operated with the
@@ -490,6 +517,7 @@ Additional configuration must be specified for this platform:
 - <APIRef text="midea_ir.h" path="midea_ir/midea_ir.h" />
 - <APIRef text="mistral_ir.h" path="mistral_ir/mistral_ir.h" />
 - <APIRef text="mitsubishi.h" path="mitsubishi/mitsubishi.h" />
+- <APIRef text="remko_ar715.h" path="remko_ar715/remko_ar715.h" />
 - <APIRef text="siemens_ira211.h" path="siemens_ira211/siemens_ira211.h" />
 - <APIRef text="tcl112.h" path="tcl112/tcl112.h" />
 - <APIRef text="toshiba.h" path="toshiba/toshiba.h" />
