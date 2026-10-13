@@ -52,10 +52,11 @@ sensor:
 
 ## Logging Received States
 
-Received states are logged at the `VERBOSE` level, so they do not show at the default `DEBUG` level. Home Assistant
-forwards every state change as it happens, and a fast-updating entity such as a power meter can push several values
-per second, so logging each one at the default level would cost CPU and serial time on every device that imports it.
-To watch the values arrive while debugging, enable `VERBOSE` for this platform's tag only:
+Numeric states received from Home Assistant are logged at the `VERBOSE` level, so they do not show at the default
+`DEBUG` level. Home Assistant forwards every state change as it happens, and a fast-updating entity such as a power
+meter can push several values per second, so logging each one at the default level would cost CPU and serial time
+on every device that imports it. To watch values arrive while debugging, raise the level for the tag of the platform
+you are looking at:
 
 ```yaml
 logger:
@@ -65,8 +66,10 @@ logger:
     homeassistant.sensor: VERBOSE
 ```
 
-Each received value then logs as `'sensor.power': Got state 100.50`. The tag must be the full `homeassistant.sensor`;
-`homeassistant` on its own matches nothing. See [Manual Tag-Specific Log Levels](/components/logger/#logger-manual_tag_specific_levels).
+Each `homeassistant` platform logs under its own tag, such as `homeassistant.sensor`, `homeassistant.binary_sensor`
+or `homeassistant.text_sensor`, and each received value logs as `'sensor.power': Got state 100.50`. Use the full
+tag; `homeassistant` on its own matches nothing. See
+[Manual Tag-Specific Log Levels](/components/logger/#logger-manual_tag_specific_levels).
 
 ## See Also
 
