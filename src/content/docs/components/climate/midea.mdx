@@ -78,6 +78,27 @@ climate:
   Defaults to `True`.
 
 - **beeper** (*Optional*, boolean): Beeper feedback on command. Defaults to `False`.
+- **display_control** (*Optional*, enum): Channel used by the
+  `midea_ac.display_toggle` action to flip the AC panel display. Possible
+  values are:
+
+  - `AUTO` (default): send the toggle over UART when the appliance reports
+    `supportLightControl()` in its 0xB5 capabilities report, otherwise fall
+    back to IR when a `remote_transmitter` is configured. When no
+    transmitter is compiled in, `AUTO` uses UART — many appliances
+    (Mundoclima, Rotenso, and others) silently accept the toggle without
+    advertising the capability.
+  - `UART`: always send the toggle over UART, regardless of the
+    capabilities report. Pick this when a `remote_transmitter` is
+    configured but the appliance accepts the UART command and does not
+    report `supportLightControl()` — in that case `AUTO` would fall back
+    to IR through the transmitter.
+  - `IR`: always send the toggle over IR. Requires a `remote_transmitter`.
+
+  Existing configurations without a `remote_transmitter` keep working
+  out of the box (the toggle goes over UART). Existing configurations
+  with a `remote_transmitter` keep the previous behaviour (UART only when
+  the capability is reported, IR otherwise).
 - **supported_modes** (*Optional*, list): List of supported modes. Possible values are: `HEAT_COOL`, `COOL`, `HEAT`, `DRY`, `FAN_ONLY`.
 - **custom_fan_modes** (*Optional*, list): List of supported custom fan modes. Possible values are: `SILENT`, `TURBO`.
 - **supported_presets** (*Optional*, list): List of supported presets. Possible values are: `ECO`, `BOOST`, `SLEEP`.
@@ -159,7 +180,10 @@ Configuration variables:
 
 ### `midea_ac.display_toggle` Action
 
-This action toggle ac screen. Works via UART if supported or [Remote Transmitter](/components/remote_transmitter/).
+This action toggles the AC panel display (the on-unit LED screen). The
+channel used (UART or IR) is selected by the `display_control`
+configuration option — see the description of `display_control` above for
+the routing details.
 
 ```yaml
 on_...:
