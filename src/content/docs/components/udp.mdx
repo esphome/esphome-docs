@@ -27,17 +27,19 @@ udp:
   `255.255.255.255`, the local network broadcast address. IPv6 addresses require `enable_ipv6: true` in the
   [Network](/components/network/) component; on ESP8266 and RP2040 the `udp` component rejects them at validation.
   A `%` scope suffix and link-local unicast destinations (`fe80::/10`) also fail validation, because the device
-  cannot pick an interface for them. Multicast destinations leave on the interface the `listen_address` group was
-  joined on, or on the first IPv6 interface when there is no IPv6 group, so use multicast, unique local or global
-  addresses.
+  cannot pick an interface for them; use multicast, unique local or global addresses instead. Multicast destinations
+  leave on the interface the `listen_address` group was joined on, or on the first IPv6 interface when there is no
+  IPv6 group.
 
 - **listen_address** (*Optional*, IP address): An IPv4 multicast or broadcast address, or an IPv6 multicast
   address, to listen on. A multicast address joins that group; a broadcast address, such as the default
-  `255.255.255.255`, only listens. IPv6 multicast addresses (e.g. `ff12::6053`) follow the same rules as IPv6
-  `addresses` above.
+  `255.255.255.255`, only listens. IPv6 multicast addresses (e.g. `ff12::6053`) have the same `enable_ipv6`,
+  platform and `%` scope suffix requirements as IPv6 `addresses` above. With the default `listen_address` and
+  `enable_ipv6: true`, the device also receives IPv6 unicast datagrams sent to its own address, except on ESP8266
+  and RP2040.
   **NOTE**: When set to a multicast address, the socket binds to the group address. For IPv4, this means broadcast
-  packets (`255.255.255.255`) are no longer received. IPv6 has no broadcast equivalent. Outgoing `addresses` are
-  unaffected in both cases.
+  packets (`255.255.255.255`) are no longer received. For IPv6, unicast datagrams sent to the device's own address
+  are no longer received. Outgoing `addresses` are unaffected in both cases.
 
 ## Reliability
 
