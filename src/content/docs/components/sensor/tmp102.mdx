@@ -165,9 +165,9 @@ text_sensor:
 
 Only one threshold status text sensor may reference each TMP102 sensor. It reports `OK` after successful configured
 setup or a runtime threshold write. Rejected changes, failed writes, repaired restored values, preference-save
-failures, and configuration recovery publish descriptive states. Adding this entity alone does not enable hardware
-configuration or write registers; without hardware configuration or threshold numbers, it has no initial state. This
-entity reports threshold management results, not general sensor connectivity.
+failures, setup failures, and configuration recovery publish descriptive states. Adding this entity alone does not
+enable hardware configuration or write registers. Without hardware configuration or threshold numbers, it publishes
+`Not configured` at startup. This entity reports threshold management results, not general sensor connectivity.
 
 ## Alert Binary Sensor
 
