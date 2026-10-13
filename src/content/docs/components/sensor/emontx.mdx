@@ -410,6 +410,28 @@ sensor:
     name: "Pulse"
 ```
 
+## Text Sensor
+
+The `version` text sensor reports the firmware version of the EmonTx, for example `v1.2.0`. ESPHome asks
+the EmonTx for it with the `v` command once it has booted, and again whenever the EmonTx restarts (seen
+when the `MSG` counter in its data goes back down), as it does after a firmware update. The `v` command is
+only sent when this text sensor is configured.
+
+```yaml
+# Example configuration entry
+text_sensor:
+  - platform: emontx
+    version:
+      name: "EmonTx Firmware Version"
+```
+
+### Configuration Variables
+
+- **emontx_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the EmonTx hub. Only needed
+  when there is more than one.
+- **version** (*Optional*): The firmware version of the EmonTx. All options from
+  [Text Sensor](/components/text_sensor#config-text_sensor).
+
 ## Data Forwarding with on_json
 
 The `on_json` trigger provides a flexible way to handle the JSON data received from the EmonTx. You can use this trigger to:
