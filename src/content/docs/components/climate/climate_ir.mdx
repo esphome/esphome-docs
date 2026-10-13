@@ -36,6 +36,7 @@ submit a feature request (see FAQ).
 | [Siemens IRA211](#siemens_ira211) | `siemens_ira211`        | yes |
 | Electrolux, TCL, Fuego | `tcl112`                           | yes |
 | [Toshiba](#toshiba) | `toshiba`                          | yes |
+| [Hisense, BGH, Tadiran (Argentina)](#whirlpool) | `whirlpool` (`HISENSE_ARG`) | yes |
 | [Whirlpool](#whirlpool) | `whirlpool`                        | yes |
 | Yashima | `yashima`                          | |
 | [Whynter](#whynter) | `whynter`                          | yes |
@@ -389,10 +390,33 @@ climate:
 
 ### `whirlpool`
 
-- **model** (*Optional*, string): There are two valid models to choose from:
+- **model** (*Optional*, string): There are three valid models to choose from:
 
   - `DG11J1-3A`  : Temperature range is from 18 to 32 (default)
   - `DG11J1-91`  : Temperature range is from 16 to 30
+  - `HISENSE_ARG`: Hisense, BGH and Tadiran units sold in Argentina that work with the BGH Smart Control (HPA-4911)
+    module. Temperature range is from 16 to 30; the swing setting is sent as a state instead of a toggle.
+
+All whirlpool models only have a power toggle, so the climate keeps track of whether it believes the unit is on. If
+the unit is switched with another remote, the next command may toggle the power instead of changing a setting. With
+the `HISENSE_ARG` model the three frames of one transmission are separated by gaps close to the default `idle` of
+`10ms`, so a [receiver](#ir-receiver_id) needs a longer `idle` to capture them as one signal: `idle: 50ms`, or the
+largest value the platform allows, `32767us`, on ESP32 variants with RMT other than ESP32 and ESP32-S2.
+
+The three frames also take more pulses than a single-frame protocol. On platforms other than ESP32 variants with RMT,
+the default `buffer_size` of `4000B` holds 1000 pulses, which is plenty. An explicit `buffer_size` carried over from
+before 2026.10 now holds a quarter of the pulses it used to (see the `buffer_size` warning in
+[Remote Receiver](/components/remote_receiver/#configuration-variables)) and shows up as repeated "Buffer overflow"
+warnings with no decode; raise it to at least `2000B` (500 pulses) or remove it.
+
+```yaml
+# Example configuration entry
+climate:
+  - platform: whirlpool
+    name: "AC"
+    model: HISENSE_ARG
+    receiver_id: rcvr
+```
 
 ### `whynter`
 
