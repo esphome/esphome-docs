@@ -20,8 +20,10 @@ sensor:
     name: "ICM-20689 Temperature"
 ```
 
-## Configuration variables
+## Configuration Variables
 
+- **icm20689_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the `icm20689` motion
+  platform this sensor reads from. Needed only when more than one ICM-20689 is configured.
 - **type** (*Optional*, string): Must be set to `temperature`, or simply omitted.
 - All other options from [Sensor](/components/sensor/).
 
