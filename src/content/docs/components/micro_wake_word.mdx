@@ -27,7 +27,8 @@ micro_wake_word:
 - **microphone** (*Optional*, [Microphone Source Configuration](/components/microphone#config-microphone-source)): The [microphone](/components/microphone/) settings to use for audio input.
 - **stop_after_detection** (*Optional*, boolean): Whether to stop the component after detecting a wake word. Defaults to `true`.
 - **task_core** (*Optional*, integer): CPU core for the inference task: `0`, `1`, or `-1` for no explicit
-  affinity (the default). Core `1` requires a dual-core ESP32 variant with FreeRTOS dual-core mode enabled.
+  affinity. Defaults to `-1`. Core `1` requires a dual-core ESP32 variant and is unavailable when
+  `CONFIG_FREERTOS_UNICORE` is enabled through [sdkconfig_options](/components/esp32/#framework).
   This advanced option can separate inference from other CPU-intensive audio tasks. It does not change
   the task priority, stack size or detection settings. Leave it at the default unless you have measured
   contention in your configuration.
