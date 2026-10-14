@@ -166,8 +166,8 @@ Configuration variables:
 
 This action toggles the display of the appliance over UART or the [Remote Transmitter](/components/remote_transmitter/),
 as chosen by `display_control`. Many appliances, Mundoclima and Rotenso among them, accept the UART toggle without
-reporting it, so a unit that ignores the toggle while a remote transmitter is configured for other IR commands needs
-`display_control: UART`.
+reporting display control, so in `AUTO` they get IR whenever a remote transmitter is configured. If such a unit
+ignores the toggle, set `display_control: UART`.
 
 ```yaml
 on_...:
@@ -209,7 +209,7 @@ on_...:
 
 It is possible to use the FollowMe function and some other features available only through IR commands.
 Below is an example of how to send FollowMe commands with the values of your sensor using the [Remote Transmitter](/components/remote_transmitter/)
-component, as well as control the light of the LED display.
+component, as well as toggle the LED display over IR.
 
 ```yaml
 # Example configuration entry
