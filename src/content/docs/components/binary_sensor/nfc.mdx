@@ -53,8 +53,9 @@ prepared using the Home Assistant Companion app) or (part of) a string that is c
 
 To obtain a tag's UID:
 
-- Set up a simple NFC component (such as the [PN532](/components/binary_sensor/pn532/), [PN7150](/components/pn7150/) or [PN716x](/components/pn7160/))
-  configuration without any binary sensors.
+- Set up a simple NFC component (such as the [PN532](/components/binary_sensor/pn532/),
+  [PN7150](/components/pn7150/), [PN716x](/components/pn7160/) or [ST25R3916](/components/st25r/)) configuration
+  without any binary sensors.
 
 - Approach the NFC reader with an NFC tag. When the tag is sufficiently close to the reader, you'll see a message in the
   ESPHome device's logs similar to this:
@@ -62,6 +63,8 @@ To obtain a tag's UID:
   ```log
   Read tag type Mifare Classic with UID 1C-E5-E7-A6
   ```
+
+  The ST25R3916 logs a different line; see its [Setting Up Tags](/components/st25r/#setting-up-tags) section.
 
 - Either:
 
