@@ -192,7 +192,8 @@ handlers, never another action's.
   is sent to address `0`, instead of treating it as fire-and-forget - see [Broadcast](#behavior) under Behavior.
   Accepted by the four write actions only. Defaults to `false`.
 - **on_sent** (*Optional*, [Automation](/automations/)): Fires when the frame is written to the wire. Lambda
-  variable: `request` (`std::span<const uint8_t>`, the PDU sent).
+  variables: `address` (`uint8_t`, the request's device address) and `request` (`std::span<const uint8_t>`, the PDU
+  sent).
 - **on_response** (*Optional*, [Automation](/automations/)): Fires on a standard-conforming reply. The lambda
   variable it carries depends on the action - see below.
 - **on_custom_response** (*Optional*, [Automation](/automations/)): Fires instead of `on_response` when the reply
@@ -201,14 +202,16 @@ handlers, never another action's.
   non-conforming device is still handleable. If left unconfigured, no handler runs for that transmission - the first
   non-conforming reply for this action logs a warning, and any after that log at verbose level instead.
 - **on_error** (*Optional*, [Automation](/automations/)): Fires on a Modbus exception response. Lambda variables:
+  `address` (`uint8_t`, the request's device address),
   `request` (`std::span<const uint8_t>`) and `exception_code` (`modbus::ExceptionCode`, an enum - cast to
   `int`/`uint8_t` to print).
 - **on_no_response** (*Optional*): Fires when the device does not answer within the hub's `send_wait_time`. Same
-  three forms as `modbus_client.send`'s `on_no_response` above, with `request` but without `address`: a returning
-  lambda, a `then:` automation, or a `then:` automation with a nested `retry:` returning lambda.
+  three forms as `modbus_client.send`'s `on_no_response` above: a returning lambda, a `then:` automation, or a
+  `then:` automation with a nested `retry:` returning lambda.
 - **on_not_sent** (*Optional*, [Automation](/automations/)): Fires when the frame never reached the wire - a
   duplicate write already pending, a full send queue, an invalid request, or a queued frame cancelled by another
-  device or automation clearing the queue for the same address. See [Behavior](#behavior). Lambda variable:
+  device or automation clearing the queue for the same address. See [Behavior](#behavior). Lambda variables:
+  `address` (`uint8_t`, the request's device address) and
   `request` (`std::span<const uint8_t>`, the PDU that was not sent).
 
 ### `modbus_client.read_holding_registers` Action
