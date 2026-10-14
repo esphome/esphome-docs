@@ -89,7 +89,8 @@ wifi:
   WiFi connection exists. Can be disabled by setting this to `0s`, but note that the low level IP stack currently
   seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to `15min`.
   The device does not reboot while a station is connected to its fallback access point, or when no networks are
-  configured.
+  configured. RTL87xx and LN882x boards do not report stations, so there the device does not reboot while the
+  fallback access point is up.
 
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
   See [Power Save Mode](#power-save-mode)
