@@ -289,9 +289,10 @@ Notes:
 - The access point starts right away and stays on, so `ap_timeout` and `captive_portal` are rejected.
 - Without `dns_servers`, clients get an address only once the node has connected to the router and learned its DNS
   servers, so none of them is handed the access point as a resolver.
-- WISP mode enables the [high performance networking](/components/network/#high-performance-networking) settings;
-  set `enable_high_performance: false` under `network:` to opt out. Keeping the lwIP fast paths in IRAM raises
-  throughput further at the cost of about 10 KB of IRAM: set `CONFIG_LWIP_IRAM_OPTIMIZATION: y` in the esp32
+- WISP mode enlarges the Wi-Fi driver buffers and enables frame aggregation, the Wi-Fi half of
+  [high performance networking](/components/network/#high-performance-networking); the TCP settings stay at their
+  defaults since the forwarded traffic never uses the node's own connections. Keeping the lwIP fast paths in IRAM
+  raises throughput further at the cost of about 10 KB of IRAM: set `CONFIG_LWIP_IRAM_OPTIMIZATION: y` in the esp32
   `sdkconfig_options`.
 - If the node is close to the router, a lower `output_power` (for example `8.5dB`) and pinning `bssid` on the
   network can improve speed noticeably.
