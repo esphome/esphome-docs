@@ -6,7 +6,7 @@ title: "Zephyr Power Management"
 import APIRef from '@components/APIRef.astro';
 
 
-The `zephyr_pm` platform enables Zephyr's system power management (`CONFIG_PM`), device power-down, and
+The `zephyr_power_management` platform enables Zephyr's system power management (`CONFIG_PM`), device power-down, and
 CPU frequency scaling (`subsys/cpu_freq`), for boards built on the [Zephyr platform](/components/zephyr/).
 
 Every option here depends on what the target board's own devicetree actually declares, not on which
@@ -17,7 +17,7 @@ family (ESP32, nRF52, RP2040, Silicon Labs) it belongs to. Two boards in the sam
 ```yaml
 # on a board with CONFIG_PM support
 power_management:
-  - platform: zephyr_pm
+  - platform: zephyr_power_management
     enable_light_sleep: true
     power_down_device: true
     stats: true
@@ -26,7 +26,7 @@ power_management:
 ```yaml
 # on a board without CONFIG_PM support
 power_management:
-  - platform: zephyr_pm
+  - platform: zephyr_power_management
     power_down_device: true
 ```
 
@@ -146,4 +146,4 @@ board that does have one, without further changes here.
 
 - [Power Management Component](/components/power_management/)
 - [Zephyr Component](/components/zephyr/)
-- <APIRef text="zephyr_pm.h" path="zephyr_pm/zephyr_pm.h" />
+- <APIRef text="zephyr_power_management.h" path="zephyr_power_management/zephyr_power_management.h" />
