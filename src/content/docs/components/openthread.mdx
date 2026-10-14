@@ -84,6 +84,8 @@ openthread:
   limits.
 - **poll_period** (*Optional*, [Time](/guides/configuration-types#time)): When set on an MTD device, the parent
   router enqueues any messages and waits for the child to submit a poll data request.
+- **core_options** (*Optional*, mapping): OpenThread compile-time options to set. See
+  [OpenThread Core Options](#openthread-core-options-esp32).
 
 > [!NOTE]
 > `esphome.ota` does not work when `poll_period` > 0. Use the `openthread.set_poll_period` action to set the poll
@@ -134,7 +136,8 @@ See [https://openthread.io/guides/thread-primer/node-roles-and-types](https://op
 
 ## Sleepy End Device (SED)
 
-The Poll Period makes the device behave as a SED. Follow on work is needed utilizing Power Management and/or Light Sleep capability in esp-idf.
+The Poll Period makes the device behave as a SED. Combine it with
+[ESP32 Power Management](/components/power_management/esp32_power_management/) light sleep to save power between polls.
 If the device is always awake, the API timeout is 60 seconds, so a ping request will force interaction with the parent when the poll period is greater than 60 seconds.
 
 ### Public API
@@ -175,6 +178,35 @@ esp32:
     type: esp-idf
     log_level: INFO
 ```
+
+## OpenThread Core Options (ESP32)
+
+OpenThread has many compile-time options that ESP-IDF does not offer as Kconfig options, such as frame retry counts
+or optional features. On ESP32 they can be set with `core_options`. ESPHome writes each entry as
+`#define NAME VALUE` to a header file in the build directory and tells ESP-IDF to include it when building OpenThread.
+
+Every name must start with `OPENTHREAD_CONFIG_` and may only contain `A-Z`, `0-9` and `_`. Values must be strings, so
+quote numbers. The available options and
+their defaults are listed in the
+[OpenThread core configuration headers](https://github.com/openthread/openthread/tree/main/src/core/config).
+
+```yaml
+# Example OpenThread core options
+openthread:
+  # ...
+  core_options:
+    OPENTHREAD_CONFIG_COAP_BLOCKWISE_TRANSFER_ENABLE: "1"
+    OPENTHREAD_CONFIG_MAC_DEFAULT_MAX_FRAME_RETRIES_DIRECT: "5"
+```
+
+ESP-IDF Kconfig options for OpenThread (`CONFIG_OPENTHREAD_*`) are still set with `sdkconfig_options` in the
+[ESP-IDF framework configuration](/components/esp32/#framework).
+
+> [!WARNING]
+> Some OpenThread options are already set by ESP-IDF from a Kconfig option, for example
+> `OPENTHREAD_CONFIG_MLE_MAX_CHILDREN` from `CONFIG_OPENTHREAD_MLE_MAX_CHILDREN`. Setting one of these in
+> `core_options` stops the build with an `is redefined` error; set the matching `CONFIG_OPENTHREAD_*` option in
+> `sdkconfig_options` instead.
 
 ## See Also
 
