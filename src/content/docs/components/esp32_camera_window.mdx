@@ -22,8 +22,8 @@ on them has to be the size of the frame and only moves which part of the sensor 
 window are counted in the pixels of the whole sensor readout from its top left corner, 1280x720 for the SC101IOT and
 640x480 for the SC030IOT, and a window of another size is rejected.
 
-Every other sensor the camera driver knows, among them the OV7725, the OV7670, the GC and BF sensors, the SC031GS,
-the NT99141, the HM sensors and the MEGA_CCM, is read out through registers of its own, so a window is reported as
+Every other sensor the camera driver knows — the OV7725, OV7670, OV3640, NT99141, GC2145, GC032A, GC0308, BF3005,
+BF20A6, SC031GS, HM1055, HM0360 and MEGA_CCM — is read out through registers of its own, so a window is reported as
 unsupported and every call to set one fails on it. A camera with such a sensor is otherwise unaffected: a `window` in
 the configuration is skipped with a warning at startup.
 
@@ -112,7 +112,9 @@ Configuration variables:
 The tool lets you load a sample frame, select the sensor full resolution (`OV2640` up to `1600x1200` UXGA,
 `OV3660` up to `2048x1536` QXGA, `OV5640` up to `2592x1944` QSXGA), draw the region of interest, optionally set
 rotation and a target resolution, and then copies the computed offsets and size into your `window` configuration
-or `esp32_camera_window.set` action. It also snaps values to the alignment the hardware requires.
+or `esp32_camera_window.set` action. It also snaps values to the alignment the hardware requires. The tool
+covers the scaling sensors; on the `SC101IOT` (`1280x720`) and `SC030IOT` (`640x480`) enter the offsets manually
+and keep `width` and `height` equal to the frame size.
 
 ## Hardware Windowing Details
 
