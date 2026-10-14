@@ -44,7 +44,8 @@ in it. Copy what you need first. Keep the automation short: it runs in the hub's
 
 `on_request` runs for every frame the hub reads as a request, for any address and for broadcasts. For a request to
 one of this hub's [Modbus Server](/components/modbus_server/) devices, it runs before the device answers.
-`on_response` runs for each reply the hub has sent and for the reply of another device to a request the hub has seen.
+`on_response` runs for each reply the hub has sent, after the reply is written to the UART, and for the reply of
+another device to a request the hub has seen. A reply that is dropped does not run it.
 
 > [!NOTE]
 > The hub tells a request from a reply by the order and shape of the frames. If a device does not answer, the next
@@ -53,8 +54,10 @@ one of this hub's [Modbus Server](/components/modbus_server/) devices, it runs b
 
 ### Client Hub
 
-`on_request` runs each time the hub sends a request, broadcasts and retries included. A request that was queued but
-never sent does not run it. `on_response` runs for each response that matches the request the hub is waiting for.
+`on_request` runs each time the hub sends a request, broadcasts and retries included, after the request is written
+to the UART and after the device's `on_sent`. A request that was queued but never sent does not run it.
+`on_response` runs for each response that matches the request the hub is waiting for, exception responses included,
+after the device has handled it. A request without a response does not run it.
 
 ## See Also
 
