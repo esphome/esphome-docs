@@ -62,8 +62,8 @@ registers to their power-on defaults, including `charge_enabled` and `enable_sta
 LED then switch back on by themselves.
 
 While `i2c_watchdog_timeout` is not `DISABLED`, ESPHome resets the watchdog on its own interval, independent of
-`update_interval`, so any `update_interval` - including `never` - is valid. The reset happens every half of the
-timeout. If the IC cannot be reached over I²C, the watchdog is not reset, so the IC returns to its defaults after the
+`update_interval`, so any `update_interval` - including `never` - is valid. The reset happens every 10 seconds, whatever the
+timeout, so a single missed reset does not let the watchdog expire. If the IC cannot be reached over I²C, the watchdog is not reset, so the IC returns to its defaults after the
 timeout. Once the IC has reverted, your configured settings are not re-applied until the next reboot.
 
 Set `i2c_watchdog_timeout: DISABLED` to turn the watchdog off.
