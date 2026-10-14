@@ -286,9 +286,10 @@ Notes:
 
 - Requires an ESP32 on the ESP-IDF framework (5.1 or newer; the Arduino framework is not supported), at least one
   entry in `networks`, and a password for the access point.
-- The access point starts right away and stays on, so `ap_timeout` and `captive_portal` are rejected.
-- Without `dns_servers`, clients get an address only once the node has connected to the router and learned its DNS
-  servers, so none of them is handed the access point as a resolver.
+- The access point stays on, so `captive_portal` is rejected, and `ap_timeout` is how long a start that failed
+  waits before it is tried again. With `dns_servers` the access point starts right away; without them it starts
+  once the node has connected to the router and learned its DNS servers, so no client is ever handed the access
+  point as a resolver. A network with `manual_ip` must then set `dns1`.
 - WISP mode enlarges the Wi-Fi driver buffers and enables frame aggregation, the Wi-Fi half of
   [high performance networking](/components/network/#high-performance-networking); the TCP settings stay at their
   defaults since the forwarded traffic never uses the node's own connections. Keeping the lwIP fast paths in IRAM
