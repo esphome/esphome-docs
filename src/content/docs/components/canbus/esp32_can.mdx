@@ -34,6 +34,7 @@ canbus:
 
   - `NORMAL`: Normal operation, sends ACK signals. *(default)*
   - `LISTENONLY`: Receive data only, no ACK signals sent.
+  - `NO_ACK`: Transmit without requiring an ACK from another node (self-test mode).
 
 - **rx_queue_len** (*Optional*, int): Length of RX queue.
 - **tx_queue_len** (*Optional*, int): Length of TX queue, 0 to disable.
@@ -75,6 +76,30 @@ canbus:
 
 > [!TIP]
 > The `tx_pin` is still required even in listen-only mode, as the ESP32 TWAI driver requires both pins for initialization. However, no data will be transmitted on this pin when using `LISTENONLY` mode.
+
+## NO_ACK Mode
+
+NO_ACK mode (ESP-IDF `TWAI_MODE_NO_ACK`, also called self-test mode) lets the ESP32 transmit frames when no other node is acknowledging the bus. The controller still receives frames and still sends ACK signals for frames from other nodes.
+
+Use this when you are the only transmitter on the bus and the other node is a silent/passive listener that never ACKs (for example a J1939 bus simulator with a capture tool).
+
+```yaml
+# Example: transmit without requiring ACK (single transmitter, silent listener)
+canbus:
+  - platform: esp32_can
+    tx_pin: GPIOXX
+    rx_pin: GPIOXX
+    bit_rate: 250kbps
+    mode: NO_ACK
+    can_id: 0x18FEF100
+    use_extended_id: true
+```
+
+> [!NOTE]
+> `NO_ACK` is not the same as `LISTENONLY`. Listen-only mode disables transmission and ACKs. NO_ACK mode still transmits and still acknowledges other nodes; it only skips checking the ACK slot of frames *you* send.
+
+> [!NOTE]
+> Real bit, stuff, form, and CRC errors are still detected and retried. A missing bus termination or a bitrate mismatch can still drive the controller into bus-off.
 
 <span id="esp32-can-bit-rate"></span>
 
