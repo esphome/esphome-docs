@@ -221,7 +221,7 @@ wifi:
   [Wi-Fi Easy Connect](#wi-fi-easy-connect).
   - **channels** (*Optional*, list of int): The channels the device listens on for a configurator. Defaults to `[6]`.
   - **device_info** (*Optional*, string): Free text carried in the URI, such as a serial number, that some
-    configurators show.
+    configurators show. It cannot contain spaces.
   - **private_key** (*Optional*, string): The bootstrapping private key, 32 bytes written as 64 hexadecimal
     characters. A new key is generated on every boot when it is left out, so the URI, and with it the QR code,
     changes with each boot.
