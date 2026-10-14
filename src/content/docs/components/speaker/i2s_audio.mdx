@@ -55,7 +55,9 @@ speaker:
 - **keep_alive** (*Optional*, boolean): Keep the I²S channel allocated between playbacks instead of tearing it down
   and setting it up again. Some DAC and amplifier combinations, such as the ES8311 with an NS4150B, pop or click
   every time the channel is set up, so with this option only the first playback after boot makes that sound. The
-  speaker then needs its own I²S bus, and the option is not available with `spdif_mode`. Defaults to `false`.
+  channel's DMA buffers stay allocated while idle, about 10 KB of internal RAM at 48 kHz 16-bit stereo. The speaker
+  then needs its own I²S bus with no other speaker or microphone on it, and the option is not available with
+  `spdif_mode`. Defaults to `false`.
 - **spdif_mode** (*Optional*, boolean): Enable S/PDIF (Sony/Philips Digital Interface) mode for digital audio output. When enabled, the speaker outputs a SPDIF-encoded bitstream format suitable for optical (TOSLINK optical fiber connector) or coaxial digital audio transmission. Defaults to `false`.
 - All other options from [Speaker Component](/components/speaker#config-speaker).
 
