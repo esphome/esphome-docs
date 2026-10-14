@@ -73,8 +73,8 @@ Set `i2c_watchdog_timeout: DISABLED` to turn the watchdog off.
 ### Deep Sleep
 
 Nothing runs on the ESP while it is in [deep sleep](/components/deep_sleep/), including the watchdog reset. If
-`sleep_duration` is longer than `i2c_watchdog_timeout`, the IC's watchdog fires mid-sleep and reverts
-`charge_enabled` and `enable_status_led` before the device wakes up to reconfigure it.
+the ESP sleeps for about as long as `i2c_watchdog_timeout` or longer, the IC's watchdog fires mid-sleep and
+reverts `charge_enabled` and `enable_status_led` before the device wakes up to reconfigure it.
 
 Disable the watchdog before sleeping with an [`on_shutdown`](/components/esphome/#esphome-on_shutdown) automation,
 which runs both for the [`deep_sleep.enter` action](/components/deep_sleep/#deep_sleep-enter-action) and for sleep
