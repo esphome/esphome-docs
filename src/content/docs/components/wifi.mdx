@@ -283,7 +283,7 @@ wifi:
 - **private_key** (*Optional*, string): The 32 byte bootstrapping private key. A new key is generated on every boot
   when it is left out, so the URI, and with it the QR code, changes with each boot.
 - **timeout** (*Optional*, [Time](/guides/configuration-types#time)): How long the configured networks are tried
-  before the device listens for a configurator, and how long it waits between listening attempts. Defaults to `20s`.
+  before the device listens for a configurator, and how long it waits between listening attempts. Defaults to `1min`.
 
 The [QR Code](/components/qr_code/) display component renders the URI from `on_dpp_uri`.
 
