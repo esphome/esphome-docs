@@ -4,7 +4,8 @@ description: "Configure local control and monitoring of Haier hOn water heaters 
 ---
 
 The `haier` water heater platform controls a Haier water heater over UART, replacing its original Wi-Fi module.
-It supports power, operating mode, target temperature, and status monitoring.
+It uses hOn automatically and supports power, operating mode, target temperature, and status monitoring.
+SmartAir2 is not supported.
 
 Hardware testing has only been performed with a VH3W. Compatibility with other models is unverified.
 For air conditioners, use [Haier Climate](/components/climate/haier/).
@@ -28,7 +29,6 @@ water_heater:
 ## Configuration Variables
 
 - **uart_id** (*Optional*, ID): The UART bus to use. Required if multiple UART buses are configured.
-- **protocol** (*Optional*, string): Defaults to `HON`, the only supported protocol. SmartAir2 is not supported.
 - **communication_timeout** (*Optional*, Time): Time without a valid heater status before communication is
   reported as disconnected. Defaults to `20s`. Shorter values may cause false disconnects during periodic
   device-information requests. This setting also controls the component warning when no communication sensor
