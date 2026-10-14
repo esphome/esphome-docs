@@ -284,12 +284,15 @@ wifi:
 
 Notes:
 
-- Requires an ESP32 with ESP-IDF 5.1 or newer, at least one entry in `networks`, and a password for the access point.
+- Requires an ESP32 on the ESP-IDF framework (5.1 or newer; the Arduino framework is not supported), at least one
+  entry in `networks`, and a password for the access point.
 - The access point starts right away and stays on, so `ap_timeout` and `captive_portal` are rejected.
 - Without `dns_servers`, clients get an address only once the node has connected to the router and learned its DNS
   servers, so none of them is handed the access point as a resolver.
-- WISP mode enables the high performance networking settings. Keeping the lwIP fast paths in IRAM raises throughput
-  further at the cost of about 10 KB of IRAM: set `CONFIG_LWIP_IRAM_OPTIMIZATION: y` in the esp32 `sdkconfig_options`.
+- WISP mode enables the [high performance networking](/components/network/#high-performance-networking) settings;
+  set `enable_high_performance: false` under `network:` to opt out. Keeping the lwIP fast paths in IRAM raises
+  throughput further at the cost of about 10 KB of IRAM: set `CONFIG_LWIP_IRAM_OPTIMIZATION: y` in the esp32
+  `sdkconfig_options`.
 - If the node is close to the router, a lower `output_power` (for example `8.5dB`) and pinning `bssid` on the
   network can improve speed noticeably.
 - The number of clients is limited by the ESP32 access point (five at the same time).
