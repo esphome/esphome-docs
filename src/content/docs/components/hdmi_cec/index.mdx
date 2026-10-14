@@ -1,119 +1,99 @@
 ---
-description: "The HDMI CEC bus allows an ESPHOME component to communicate with HDMI A/V devices."
-title: "HDMI CEC bus"
+description: "Instructions for setting up the HDMI-CEC bus component in ESPHome."
+title: "HDMI-CEC Bus"
 params:
   seo:
-    description: The HDMI CEC bus allows an ESPHOME component to communicate with HDMI A/V devices.
+    description: Exchange HDMI-CEC messages with the TV and the other devices on an HDMI link.
     image: hdmi-cec.png
 ---
 
-This component provides an implementation of the HDMI-CEC bus protocol, allowing to exchange commands with any device in a cluster
-of HDMI-connected Audio/Video devices.
+The `hdmi_cec` component connects an ESPHome device to the HDMI-CEC bus, so it can receive the messages
+that travel between a TV and the devices attached to it, and send messages of its own: power a device on or
+off, press a button on the TV's remote, select an input, change the volume.
 
-The HDMI-CEC (High-Definition Multimedia Interface - Consumer Electronics Control) is a single-wire bus
-which is part of the standard HDMI cable, and is present as pin in any HDMI connector.
-This bus is passed through all hdmi devices, and directly wired between all connectors in devices
-like televisions, A/V-receivers, and HDMI switches. This bus is bidirectional and multi-master,
-using 3.3V signals with a rather low bitrate.
-Connecting one ESPHome microcontroller to single HDMI port on a TV,
-allows to receive messages from and send messages to any device in the hdmi-connected cluster. Typical messages relate to
-power-on and standby status, input selections, and audio volume control.
+HDMI-CEC (Consumer Electronics Control) is a single wire in every HDMI cable, present as pin 13 of the
+connector. The wire is shared by all devices on an HDMI link, including those behind an A/V receiver or an
+HDMI switch, so one ESPHome device plugged into a spare HDMI port of the TV reaches every one of them. The
+bus is bidirectional, multi-master, and uses 3.3V signalling at a low bit rate, so a single GPIO pin is
+enough.
 
-This software implementation on an ESPHome microcontroller allows to simply connect one GPIO pin to the CEC bus wire, HDMI pin 13.
-However, see the remarks for a more robust (extensive) connection further below.
+## Wiring
 
-## Features
+- A GPIO pin that can be both input and output, to HDMI pin 13 (CEC)
+- GND to HDMI pin 17 (DDC/CEC ground)
+- *Optional but recommended*: the board's 5V supply to HDMI pin 18, which tells the TV or receiver that
+  something is connected and alive
 
-- The CEC protocol is implemented upto HDMI version 1.4. No external (third-party) CEC library is used.
-- Actions to be taken on incoming messages can be specified in the yaml configuration by `on_message` triggers.
-  In these triggers, messages can be matched on source, destination, opcode, and further arguments.
-- Sending CEC messages can be specified in the yaml configuration with `hdmi_cec.send` actions.
-  Furthermore, API calls `.send(...)` can be used in lambda sections.
-- A few received message types are replied automatically through built-in handlers, which can be overridden if so desired.
-- Debug logging shows all received and sent messages as hex byte sequence, and are now
-  also annotated with a full textual decoding for better understanding and verification.
-- New optional use of a UART can now resolve the issue of timing warnings in the esphome log output
+An HDMI breakout board makes the connector easy to reach. The component configures the pin as an
+open-drain output with a weak pull-up, so no extra parts are needed for a first try; see
+[Extended installation](#extended-installation) for a more robust connection.
 
-On the to-do list is still "Automatic Physical Address Discovery" through E-DDC: This would allow
-to automatically detect the CEC "source" address of this component.
-For now, this must be entered as part of the configuration.
-
-## Basic installation
-
-Wire your ESPhome device to an HDMI connector (e.g. with an HDMI breakout board as can be found on Amazon) as follows:
-
-- GPIO pin of your choice -> HDMI pin 13 (CEC)
-- GND -> HDMI pin 17 (DDC/CEC ground)
-- *Optional but recommended*: wire your board's 5V supply to HDMI pin 18. This is how your TV or Receiver
-  on the other end knows something is connected and alive.
-
-The CEC bus uses 3.3V logic, so it can be directly connected to a GPIO of ESP32/ESP8266 devices.
-The GPIO pin mode will be set automatically by the software, to use a "weak pull-up" mode.
-The selected pin should support this mode, but that is generally available.
-Note, for extra robustness, the remarks below in [Extended installation](#extended-installation).
-
-## Basic configuration
+## Configuration
 
 ```yaml
+# Example configuration entry
 hdmi_cec:
   id: cec
-  # Pick a GPIO pin that can do both input AND output
-  pin: GPIO9 # Required
-  # The (logical) address can be anything in the [0x1 .. 0xF] range.
-  # Use 0xF if you only want to listen to the bus and not act
-  # like a standard device. Address 0x5 is for an audio device.
-  address: 0xE # Required
-  # Physical address of the device. In this case: 4.0.0.0 (HDMI4 input on the TV)
-  # Unfortunately, you will have to set this manually.
-  physical_address: 0x2000 # Required
-  # The name that will be displayed in the list of devices on your TV/receiver
-  osd_name: "my device" # Optional. Defaults to "esphome"
-  # By default, promiscuous mode is disabled, so the component only handles
-  # directly-addressed messages (matching the address configured above)
-  # and broadcast messages. Enabling promiscuous mode will make the component
-  # listen for ALL messages (both in logs and the 'on_message' triggers)
-  promiscuous_mode: false # Optional. Defaults to false
-  # By default, monitor mode is disabled, so the component can send messages and acknowledge incoming messages.
-  # Enabling monitor mode lets the component act as a passive listener, disabling active manipulation of the CEC bus.
-  monitor_mode: false # Optional. Defaults to false
-  # By default, received and sent cec messages are decoded to text in the debug log output.
-  # For resource-constrained applications, this decoding can be disabled:
-  # NOTE: In the code current revision, this decoding facility is temporarily removed
-  decode_messages: false # Optional. For now, setting to 'true' has no effect.
-  # List of triggers to handle specific commands. Each trigger has the following optional filter parameters:
-  # - "source": match messages coming from the specified address
-  # - "destination": match messages meant for the specified address
-  # - "opcode": match messages bearing the specified opcode
-  # - "data": vector of bytes to match on message content (or just its initial part), starting with opcode
-  # Actions called from these triggers is called with "source", "destination" and "data" as parameters
+  pin: GPIO9
+  address: 0x5
   on_message:
-    - opcode: 0x36 # opcode for "Standby"
+    - opcode: 0x8F  # Give Device Power Status
       then:
-        logger.log: "Got Standby command"
-
-    # Respond to "Menu Request" (not required, example purposes only)
-    - opcode: 0x8D
-      then:
-        hdmi_cec.send:
-          # both "destination" and "data" are templatable
-          destination: !lambda return source;
-          data: [0x8E, 0x01] # 0x01 => "Menu Deactivated"
+        - hdmi_cec.send:
+            destination: !lambda return source;
+            data: [0x90, 0x00]  # Report Power Status: on
 ```
 
-## Example: Power-down HDMI devices
+### Configuration Variables
+
+- **pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The GPIO pin wired to the CEC
+  line.
+- **address** (**Required**, int): The logical address the device answers to, `0x0` to `0xF`. `0x5` is an
+  audio system, `0x4` a playback device, `0xF` the unregistered address of a device that only listens.
+- **promiscuous_mode** (*Optional*, boolean): Also hand messages addressed to other devices to `on_message`.
+  Defaults to `false`: only broadcasts and messages for this device's address are seen.
+- **monitor_mode** (*Optional*, boolean): Listen without taking part in the bus: no acknowledge is sent for
+  messages addressed to this device, and `hdmi_cec.send` does nothing. Defaults to `false`.
+- **on_message** (*Optional*, [Automation](/automations/)): Automations to run for received messages, each
+  with optional filters:
+  - **source** (*Optional*, int): Only messages from this logical address.
+  - **destination** (*Optional*, int): Only messages to this logical address.
+  - **opcode** (*Optional*, int): Only messages with this opcode.
+  - **data** (*Optional*, list of int): Only messages whose payload starts with these bytes, the opcode
+    first.
+
+Inside the automation, `source` and `destination` are the logical addresses of the message as `uint8_t`,
+and `data` is the payload starting with the opcode as a `std::span<const uint8_t>`. The payload is only
+valid while the automation runs; copy it if a later action needs it.
+
+> [!NOTE]
+> This component does not answer the TV's questions on its own. A TV asks a new device for its physical
+> address, OSD name, vendor id and power status, and marks it absent when nothing comes back. Answer the
+> ones your TV needs with `on_message` automations, as in the example above.
+
+## `hdmi_cec.send` Action
+
+Queues a message for transmission. Up to four messages wait in the queue while the bus is busy.
 
 ```yaml
 button:
   - platform: template
     name: "Turn everything off"
     on_press:
-      hdmi_cec.send:
-        # "source" can optionally be set, like if you want to spoof another device's address
-        destination: 0xF # Broadcast to all hdmi devices
-        data: [0x36] # "Standby" opcode
+      - hdmi_cec.send:
+          destination: 0xF  # broadcast
+          data: [0x36]  # Standby
 ```
 
-## Example: TV power-up and volume control
+- **destination** (**Required**, int, [templatable](/automations/templates#config-templatable)): The logical
+  address to send to, `0xF` for a broadcast.
+- **data** (**Required**, list of int, [templatable](/automations/templates#config-templatable)): The
+  payload, the opcode first, up to 15 bytes. A lambda returns a `std::vector<uint8_t>`.
+
+The same is available in lambdas as `id(cec).send(destination, {opcode, ...})`. Both report the message in
+the log once it is sent or when it was not acknowledged.
+
+## Example: TV Power and Volume
 
 ```yaml
 button:
@@ -121,200 +101,73 @@ button:
     name: "TV Power On"
     on_press:
       - hdmi_cec.send:
-          destination: 0x0  # to TV
-          data: [0x44, 0x6D]  # UI command, "Power On"
+          destination: 0x0  # the TV
+          data: [0x44, 0x6D]  # User Control Pressed: Power On
   - platform: template
     name: "TV Volume Up"
     on_press:
       - hdmi_cec.send:
-          destination: 0x0  # to TV
-          data: [0x44, 0x41]  # UI command, "Volume Up"
+          destination: 0x0
+          data: [0x44, 0x41]  # User Control Pressed: Volume Up
   - platform: template
     name: "TV Volume Down"
     on_press:
-      # as example, using the api: component.send( destination, {opcode, parameters..} )
-      - lambda: !lambda |-
-          id(cec).send(0x0, {0x44, 0x42});  // UI command, "Volume Down"
+      - lambda: id(cec).send(0x0, {0x44, 0x42});  // User Control Pressed: Volume Down
 ```
 
-Note that these cec commands for TV control are well-defined.
-However, some TVs might not respond properly as they might have an incomplete implementation.
-
-When the device with this *hdmi_cec* and this example *yaml* is integrated in *Home Assistant*,
-and the buttons are pressed while capturing a debug output, the log would show something like this:
+Not every TV honours every command; the log shows what was sent and received:
 
 ```text
-  [17:14:50][D][api.connection:1579]: Home Assistant 2025.6.1 (192.168.178.194) connected
-  [17:15:16][D][button:010]: 'TV Volume Up' Pressed.
-  [17:15:16][D][hdmi_cec:381]: Sending: E0:44:41 => SpecificUse to TV: <User Control Pressed>[Volume Up]
-  [17:15:17][D][hdmi_cec:345]: Send frame success in 1 attempt
-  [17:15:52][D][button:010]: 'TV Volume Up' Pressed.
-  [17:15:52][D][hdmi_cec:381]: Sending: E0:44:41 => SpecificUse to TV: <User Control Pressed>[Volume Up]
-  [17:15:52][D][hdmi_cec:345]: Send frame success in 1 attempt
-  [17:16:06][D][button:010]: 'TV Volume Down' Pressed.
-  [17:16:06][D][hdmi_cec:381]: Sending: E0:44:42 => SpecificUse to TV: <User Control Pressed>[Volume Down]
-  [17:16:06][D][hdmi_cec:345]: Send frame success in 1 attempt
-  [17:16:14][D][button:010]: 'Standby All' Pressed.
-  [17:16:14][D][hdmi_cec:381]: Sending: EF:36 => SpecificUse to All: <Standby>
-  [17:16:14][D][hdmi_cec:345]: Send frame success in 1 attempt
-  [17:16:14][D][hdmi_cec:126]: Received: 5F:72:00 => AudioSystem to All: <Set System Audio Mode>[Off]
-  [17:16:36][D][button:010]: 'TV Power On' Pressed.
-  [17:16:36][D][hdmi_cec:381]: Sending: E0:44:6D => SpecificUse to TV: <User Control Pressed>[Power On Function]
-  [17:16:36][D][hdmi_cec:345]: Send frame success in 1 attempt
-  [17:16:37][D][hdmi_cec:126]: Received: 0F:84:00:00:00 => TV to All: <Report Physical Address>[0.0.0.0][TV]
-  [17:16:38][D][hdmi_cec:126]: Received: 0F:87:08:00:46 => TV to All: <Device Vendor ID>[Sony]
-  [17:16:40][D][hdmi_cec:126]: Received: 0E:83 => TV to SpecificUse: <Give Physical Address>
-  [17:16:40][D][hdmi_cec:381]: Sending: EF:84:20:00:04 => SpecificUse to All: <Report Physical Address>[2.0.0.0][Playback Device]
-  [17:16:40][D][hdmi_cec:345]: Send frame success in 1 attempt
-  [17:16:41][D][hdmi_cec:126]: Received: 5F:84:30:00:05 => AudioSystem to All: <Report Physical Address>[3.0.0.0][Audio System]
-  [17:16:41][D][hdmi_cec:126]: Received: 0E:46 => TV to SpecificUse: <Give OSD Name>
-  [17:16:41][D][hdmi_cec:381]: Sending: E0:47:65:73:70:68:6F:6D:65 => SpecificUse to TV: <Set OSD Name>[esphome]
-  [17:16:43][D][hdmi_cec:126]: Received: 0E:8F => TV to SpecificUse: <Give Device Power Status>
-  [17:16:43][D][hdmi_cec:381]: Sending: E0:90:00 => SpecificUse to TV: <Report Power Status>[On]
+[D][hdmi_cec:089]: Sending: 50:44:41
+[D][hdmi_cec:123]: Send frame success in 1 attempt
+[D][hdmi_cec:056]: Received: 05:8F
+[D][hdmi_cec:089]: Sending: 50:90:00
 ```
 
-An advanced yaml configuration can be used to create an hdmi *audio device*, and instruct the TV to enable its ARC (audio return channel). This causes the TV to mute its own audio, pass its own volume control over cec to this device, and send its digital audio as SPDIF through HDMI pin 14.
-
-## Example: Create service for Home Assistant
+## Example: Send from Home Assistant
 
 ```yaml
 api:
-  ...
-  services:
-    - service: hdmi_cec_send
+  actions:
+    - action: hdmi_cec_send
       variables:
         cec_destination: int
         cec_data: int[]
       then:
         - hdmi_cec.send:
-            destination: !lambda "return static_cast<unsigned char>(cec_destination);"
-            data: !lambda |
-              std::vector<unsigned char> charVector;
-              for (int i : cec_data) {
-                charVector.push_back(static_cast<unsigned char>(i));
-              }
-              return charVector;
+            destination: !lambda return cec_destination;
+            data: !lambda return std::vector<uint8_t>(cec_data.begin(), cec_data.end());
 ```
 
 ## Extended installation
 
-The basic configuration can be extended with further enhancements:
+Two additions make the connection more robust.
 
-1. Disconnect from the cec line on power-down
-1. Use a UART for sending messages
-1. Connect the HDMI 'Hot Plug Detect' pin
+![Schematics with a relay and a diode](images/cec_uart_schematics.png)
 
-The figure below shows a schematics with the first two enhancements, adding a relay (for 1.) and a diode (for 2.):
+### Disconnect from the CEC line on power-down
 
-![Schematics with disconnect and UART](images/cec_uart_schematics.png)
+The CEC line stays at 3.3V while the TV is on. A GPIO pin must not see a voltage above the device's own
+supply, so with the ESPHome device powered off the line is outside the pin's operating conditions. This is
+often ignored, at the risk of damaging the microcontroller or disturbing the other devices on the bus.
 
-Note that the particular microcontroller type in this schematics is arbitrary,
-feel free to select a type that fits your project requirements.
+The schematic shows a small signal relay (a TQ2-5V or G6K-2P-5V, for instance) that disconnects the GPIO
+from the CEC line when the power is off. An I²C level shifter such as the TXS0102 or TCA9517 does the same
+job: it tolerates a bus voltage without local power, and its open-drain behaviour matches the CEC bus.
 
-The merits of these two enhancements are discussed below.
+The diode and the second pin in the schematic are for driving the line from a UART, an option that is not
+part of this component yet; they can be left out.
 
-### 1: Disconnect from cec on power-down
+### Connect the HDMI Hot Plug Detect pin
 
-Although the cec line uses 3.3V logic, which is fine for GPIO, there is an issue when your esphome device is powered off.
-In that case, the cec line is likely to stay at 3.3V, and a GPIO pin should NOT have a voltage above the microcontroller
-power supply: such situation exceeds the device operating conditions.
-Although in practice people often ignore this, it has the risk of:
-
-- damaging your microcontroller
-- disturbing the communication between the other hdmi devices
-
-Therefor, the schematics above shows a small relay that disconnects the GPIO from the cec line
-when the power is switched off. The choice of relay type is not critical, but it should be a
-small-signal and compact relay type such as a TQ2-5V or a G6K-2P-5V.
-
-To protect the GPIO pin when the power is off, alternatively, in stead of a relay, an 'i2c' level-shift
-chip can be used. Although the 3.3 volt level is already fine, an interface chip like a TXS0102 or TCA9517 is designed
-to withstand a bus line voltage even when the local power is off, and its `i2c` pull-down behavior is compatible
-with the cec bus protocol. Also, tiny PCB modules are easily available for i2c level conversion, which are fine as well.
-
-### 2: Use a UART for sending messages
-
-The *hdmi_cec* component receives messages by being triggered by interrupts on GPIO level changes,
-and timing of the delays between those changes. That is fine: the interrupts are short-duration software functions.
-
-However, in the basic configuration, *sending* messages is done by software that changes the GPIO output
-with software delays in between to set pulse durations.
-Unfortunately, due to the low bitrate of cec, sending a message keeps hold of the CPU for a long period.
-This conflicts with the esphome operating system, which wants the components to return control more frequently.
-As result, in the basic configuration, you will see in an output debug log many warnings like:
-
-```text
-  [W][hdmi_cec:239]: Component hdmi_cec took a long time for an operation (224 ms).
-```
-
-Many people ignore this, and their component seems to work fine. However, these warnings are likely to affect
-the esphome device stability, and might easily interfere with for instance wifi operation and/or
-cause an occasional crash and reboot.
-To avoid this issue, this new version of `hdmi_cec` allows to alternatively use a hardware UART to send its messages.
-Using a UART takes the workload off the CPU. Clearly, your microcontroller needs to have a UART available.
-Typically, one UART is already in use for creating output logs, but a second is mostly available.
-Sometimes, a microcontroller restricts the selection of UART output pins. Note that only a UART output
-is needed. For instance, a tiny controller like an esp8266 does provide an extra output-only UART.
-
-The UART output pin is used in addition to the earlier cec pin which remains in use for receiving messages.
-The UART should operate in 'open drain' output mode for the cec bus. The yaml configuration file syntax allows to
-configure such output pin mode for the UART, but that typically does NOT work! As work-around, the above schematics
-adds a diode between the UART pin and the cec line. Any standard small-signal diode should work, such as types 1N4148, 1N914.
-Schottky type diodes offer a smaller voltage drop, but a low-leakage type is needed such as BAT81.
-Do NOT choose larger rectifier diodes, as those will have too high reverse leakage current.
-
-To enable the UART with the hdmi_cec component, the yaml file must declare the UART,
-and pass its `id` to the cec component. For example:
-
-```yaml
-uart:
-  id: cec_uart
-  tx_pin: GPIO7
-  baud_rate: 115200
-
-hdmi_cec:
-  pin: GPIO9
-  uart_id: cec_uart
-  address: 0xE
-  physical_address: 0x2000
-```
-
-The baudrate assignment is required for a UART, but its value is not important: it will be
-re-assigned by the `hdmi_cec` component software.
-
-**Note**: On several microcontrollers, especially the esp types from Espressif, one UART will output a log message during boot-up.
-Potentially, that could interfere with the intended CEC bus usage. To prevent such interference, different options are available:
-Use some 'strapping pin' to change the boot message mode, write an eFuse register, or select a different UART when available.
-Please consult the device programming manual for details.
-However, especially when choosing a relatively fast UART baud_rate, other devices on the CEC bus do not seem to be
-bothered by the weird pattern.
-
-**Note**: Maybe, the diode on the UART output can be replaced by a plain wire for some of the newer microcontrollers,
-such as an `esp32s3` or an `rp2350`, thanks to their flexible GPIO matrix:
-*After* the UART driver has done its standard pin configuration,
-the pin mode can probably be overwritten to be `open drain`. This needs further testing.
-
-### 3: Connect the HDMI Hot Plug Detect pin
-
-A further HDMI signal which might be useful for your application is HPD (*Hot Plug Detect*), at HDMI pin 19.
-Strictly speaking, this signal is not part of the CEC protocol, so you would not need this for the CEC commands.
-The HPD signal allows to easily detect that the HDMI is plugged into or pulled out of a device (such as the TV).
-
-The signal is connected to +5V with a 1K series-resistor in the TV, So, for todays 3.3V microcontrollers,
-the signal needs to be limited to 3.3V. In the circuit diagram below, this is done by a LED connected to GND.
-This should be a blue or white LED, as those have a higher forward voltage then red or green LEDs.
-Using a (blue) LED for for this purpose is nice, as it gives a direct visual feedback when using your circuit
-(in comparison with using a 3.3V zener diode, which is also fine).
+HDMI pin 19, Hot Plug Detect, is not part of CEC but tells when the cable is plugged into a TV. The TV
+drives it to 5V through a 1K resistor, so it has to be limited to 3.3V: a blue or white LED to ground in
+the schematic below does that and shows the connection at the same time (a 3.3V zener diode works too).
 
 ![Schematics with HPD and UART](images/hpd_uart_schematics.png)
 
-To have a valid reading in the microcontroller on disconnect, the GPIO pin should be configured with a weak pull-down.
-Also, the use of `delayed` filters is recommended:
-
-- To avoid multiple triggers on glitches in the signal during connector plug-in and pull-out.
-- To avoid triggers when the TV shortly pulls this signal low, which is part of the hdmi protocol for address discovery.
-
-Example yaml fragment for using HPD, showing the connected status in Home Assistant and create log output:
+Configure the pin with a weak pull-down for a defined level when nothing is connected, and add `delayed`
+filters: the signal bounces while plugging, and the TV pulls it low for a moment during address discovery.
 
 ```yaml
 binary_sensor:
@@ -324,44 +177,31 @@ binary_sensor:
       mode:
         input: true
         pulldown: true
-    id: hdmi_connected
-    name: "Hdmi Connected"
+    name: "HDMI Connected"
     filters:
       - delayed_on: 300ms
       - delayed_off: 300ms
-    on_press:
-      then:
-        - logger.log:
-            format: "HDMI Connected"
-            level: "INFO"
 ```
 
 ## Note on the HDMI standard
 
-A good overview on the CEC messages can be found in the HDMI 1.3a standard document,
-which can be downloaded from the *hdmi.org* website. It contains a section
-*Supplement 1 Consumer Electronics Control (CEC)* which describes these messages.
-Unfortunately, later versions of the standard are (currently) not made public available.
+The HDMI 1.3a specification, available from [hdmi.org](https://www.hdmi.org), describes the CEC messages in
+*Supplement 1, Consumer Electronics Control*. Later versions are not public.
 
-Although the source code of this *hdmi-cec* component is made available under a quite permissive
-*ESPHome License*, please note that the HDMI technology and its trademarks and logos are protected:
-Marketing products as **HDMI** requires licensing and, presumably, becoming a member of the HDMI organization.
+Marketing a product as **HDMI** needs a licence from the HDMI organisation; the component itself is
+available under the ESPHome licence.
 
 ## Platform compatibility
 
-This *hdmi_cec* component has been tested on various platforms. Feedback on other platforms is appreciated!
-
-- ESP32s3: tested, works with both the `arduino` and `esp-idf` framework types
-- ESP32c3: tested, works with both the `arduino` and `esp-idf` framework types
-- ESP8266: tested, works with both the `arduino` and `esp-idf` framework types
-- RP2040: not tested
+- ESP32-S3 and ESP32-C3: tested with the `arduino` and `esp-idf` frameworks
+- ESP8266: tested
+- RP2040 and LibreTiny boards: compiled, not tested
 
 ## Acknowledgements
 
-- johnboiles' [esphome-hdmi-cec* component](https://github.com/johnboiles/esphome-hdmi-cec) was the
-  original starting point of this project.
-- Palakis' [Native HDMI-CEC* Component](https://github.com/Palakis/esphome-native-hdmi-cec) was a later version based on the above,
-  making it self-contained, and created an improved interrupt-driven receiver
+- johnboiles' [esphome-hdmi-cec](https://github.com/johnboiles/esphome-hdmi-cec) was the starting point.
+- Palakis' [Native HDMI-CEC component](https://github.com/Palakis/esphome-native-hdmi-cec) made it
+  self-contained and added the interrupt driven receiver.
 
-This current version is a continuation on Palakis' code: adding buffering on send, and uart support.
-The decoding of cec messages into text is newly developed and also backported into his repository.
+This component continues Palakis' code with a transmit queue, retries spread over loop passes, and the
+collision detection the standard asks for.
