@@ -13,6 +13,8 @@ cannot drive: it ignores climate commands unless their sync byte is `0x00`. This
 also takes the place of the original Wi-Fi module, which the air conditioner expects to be present.
 
 This component requires a [UART bus](/components/uart/) with both `tx_pin` and `rx_pin` set, using `baud_rate: 9600`.
+Like other Midea units, the module connector works at 5 V logic levels, so a 3.3 V board needs a level shifter.
+The [Midea](/components/climate/midea/) page lists dongle hardware that fits.
 
 ```yaml
 # Example configuration entry
