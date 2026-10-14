@@ -45,9 +45,8 @@ fendt_caravan:
   [BLE client](/components/ble_client/) set up with the address of the panel.
 - **bt_id** (*Optional*, MAC address): The Bluetooth address the panel was paired with, sent in the handshake.
   Defaults to `C0:EE:FB:90:B0:A7`.
-- **main_control_unit** (**Required**): The entities of the main control unit.
-  - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): How often the temperatures and the
-    water level are published. Defaults to `60s`.
+- **main_control_unit** (**Required**): The entities of the main control unit. Each value is published as the panel
+  reports it; add a `throttle` [filter](/components/sensor/) to a sensor to publish it less often.
   - **temp_in** (*Optional*): The inside temperature. All options from [Sensor](/components/sensor/).
   - **temp_out** (*Optional*): The outside temperature. All options from [Sensor](/components/sensor/).
   - **water_level** (*Optional*): The fresh water level in percent, in steps of a quarter tank. All options from
