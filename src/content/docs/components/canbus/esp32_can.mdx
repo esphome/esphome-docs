@@ -34,7 +34,7 @@ canbus:
 
   - `NORMAL`: Normal operation, sends ACK signals. *(default)*
   - `LISTENONLY`: Receive data only, no ACK signals sent.
-  - `NO_ACK`: Transmit without requiring acknowledgment from another node. *(self-test)*
+  - `NO_ACK`: Transmit without requiring an acknowledgment from another node. See [NO_ACK Mode](#no_ack-mode).
 
 - **rx_queue_len** (*Optional*, int): Length of RX queue.
 - **tx_queue_len** (*Optional*, int): Length of TX queue, 0 to disable.
@@ -79,22 +79,13 @@ canbus:
 
 ## NO_ACK Mode
 
-NO_ACK mode configures the ESP32's TWAI controller so transmitted frames do not require an acknowledgment from another node
-([Espressif TWAI self-test mode](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/twai.html)).
-In this mode:
-
-- The controller can transmit and receive frames
-- Transmitted frames do not wait for an ACK from another node
-- The controller still sends ACK signals for frames received from other nodes
-
-This is particularly useful for:
-
-- **Single-node testing**: Checking transmit wiring and bit rate with only the ESP32 on the bus
-- **Silent monitors**: Driving a bus when other tools listen but do not acknowledge
-- **Bring-up**: Exercising transmit before a second acknowledging node is available
+`mode: NO_ACK` puts the TWAI controller in its self-test mode: frames the ESP32 sends are not checked for an
+acknowledgment from another node, while frames from other nodes are still received and acknowledged. Use it when the
+only other device on the bus is a passive listener, such as a capture tool, or to check wiring and bit rate with a
+single node. In `NORMAL` mode a missing acknowledgment makes the controller retransmit the frame without end.
 
 ```yaml
-# Example configuration for transmit without requiring ACK
+# Example configuration entry
 canbus:
   - platform: esp32_can
     tx_pin: GPIOXX
@@ -105,10 +96,8 @@ canbus:
 ```
 
 > [!NOTE]
-> `NO_ACK` is not the same as `LISTENONLY`. Listen-only mode disables transmission and does not send ACK signals.
-> NO_ACK mode still transmits and still acknowledges frames from other nodes; it only skips checking the ACK slot of
-> frames the ESP32 sends. Espressif documents this as self-test mode (`enable_self_test`: ACK is not checked during
-> transmission) in the [TWAI API reference](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/twai.html).
+> `LISTENONLY` is the opposite: it neither transmits nor acknowledges. `NO_ACK` transmits and acknowledges, and only
+> skips checking the ACK slot of its own frames.
 
 <span id="esp32-can-bit-rate"></span>
 
