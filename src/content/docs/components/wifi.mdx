@@ -219,6 +219,15 @@ wifi:
 
 - **dpp** (*Optional*): Let a phone provision the network with Wi-Fi Easy Connect. ESP32 only. See
   [Wi-Fi Easy Connect](#wi-fi-easy-connect).
+  - **channels** (*Optional*, list of int): The channels the device listens on for a configurator. Defaults to `[6]`.
+  - **device_info** (*Optional*, string): Free text carried in the URI, such as a serial number, that some
+    configurators show.
+  - **private_key** (*Optional*, string): The bootstrapping private key, 32 bytes written as 64 hexadecimal
+    characters. A new key is generated on every boot when it is left out, so the URI, and with it the QR code,
+    changes with each boot.
+  - **timeout** (*Optional*, [Time](/guides/configuration-types#time)): How long the configured networks are tried
+    before the device listens for a configurator, and how long it waits between listening attempts. Defaults to
+    `1min`.
 - **on_connect** (*Optional*, [Automation](/automations)): An action to be performed when a connection is established.
 - **on_disconnect** (*Optional*, [Automation](/automations)): An action to be performed when the connection is dropped.
 - **on_dpp_uri** (*Optional*, [Automation](/automations)): An action to be performed when the Wi-Fi Easy Connect URI
@@ -258,6 +267,9 @@ wifi:
     password: "W1PBGyrokfLz"
 ```
 
+For a device that only ever uses its access point, add [`web_server:`](/components/web_server/#access-point-mode)
+to control it from a phone without any internet connection.
+
 ## Wi-Fi Easy Connect
 
 On the ESP32, `dpp` lets a phone provision the network with Wi-Fi Easy Connect, the Device Provisioning Protocol: the
@@ -275,17 +287,8 @@ wifi:
     - lambda: id(my_qr_code).set_value(uri);
 ```
 
-### Configuration variables
-
-- **channels** (*Optional*, list of int): The channels the device listens on for a configurator. Defaults to `[6]`.
-- **device_info** (*Optional*, string): Free text carried in the URI, such as a serial number, that some configurators
-  show.
-- **private_key** (*Optional*, string): The 32 byte bootstrapping private key. A new key is generated on every boot
-  when it is left out, so the URI, and with it the QR code, changes with each boot.
-- **timeout** (*Optional*, [Time](/guides/configuration-types#time)): How long the configured networks are tried
-  before the device listens for a configurator, and how long it waits between listening attempts. Defaults to `1min`.
-
-The [QR Code](/components/qr_code/) display component renders the URI from `on_dpp_uri`.
+The [QR Code](/components/qr_code/) display component renders the URI from `on_dpp_uri` once a lambda passes it to
+`set_value()`.
 
 ## User Entered Credentials
 

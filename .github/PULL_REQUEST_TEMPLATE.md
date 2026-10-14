@@ -33,7 +33,8 @@ If you are adding a new component to ESPHome, you can automatically generate a s
 
 3. Extract the SVG file and place it in the `/public/images/` folder of this repository.
 
-4. Use the image in your component's index table entry in `/src/content/docs/components/index.mdx`.
+4. Use the image in your component's index table entry in `/src/content/docs/components/index.mdx` and as the
+   image at the top of the component page.
 
 **Example:** For a component called "DHT22 Temperature Sensor", use:
 
