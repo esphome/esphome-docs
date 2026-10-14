@@ -79,7 +79,8 @@ wifi:
 
   - **ap_timeout** (*Optional*, [Time](/guides/configuration-types#time)): The time after which to enable the
     configured fallback hotspot. Can be disabled by setting this to `0s`, which requires manually starting the AP by
-    other means (eg: from a button press). Defaults to `90s`.
+    other means (eg: from a button press). Defaults to `90s`. In [WISP mode](#wisp-mode) it is how long a start
+    that failed waits before the next attempt, and `0s` is rejected.
 
   - **ap_mode** (*Optional*, string): One of `fallback` or `wisp`. Defaults to `fallback`, which starts the access
     point only when no connection to the WiFi router can be made. `wisp` turns the node into a WiFi repeater, see
