@@ -447,9 +447,9 @@ for [presence_timeout](#number) after the last target leaves it.
 > On ESP8266, polygons are kept in RTC memory by default, which survives a reboot but not a power loss. Set
 > [restore_from_flash](/components/esp8266#configuration-variables) to `true` to keep them across a power loss.
 > Either way, the space for saved settings is small and shared with other components, and each zone takes about
-> 100 bytes: at most 4 zones fit in RTC memory, or 5 with `restore_from_flash`. Configuration validation rejects
-> more zones than fit, and warns when they fill the space, because other saved settings may then leave no room for
-> some zones. When a polygon can't be saved, it is rejected: a warning is logged and the previous polygon is kept.
+> 100 bytes: at most 4 zones fit in RTC memory, or 5 with `restore_from_flash`. The build fails when the saved
+> values of every component together do not fit. When a polygon can't be saved, it is rejected: a warning is logged
+> and the previous polygon is kept.
 
 > [!NOTE]
 > Polygons are checked against the raw target coordinates reported by the radar, before any sensor filter. A filter
