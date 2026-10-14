@@ -1,0 +1,57 @@
+---
+description: "Instructions for setting up a Home Assistant light in ESPHome that imports its state and controls it through your Home Assistant instance."
+title: "Home Assistant Light"
+---
+import APIRef from '@components/APIRef.astro';
+
+The `homeassistant` light platform creates a light that **imports** the state of a light in Home Assistant and
+**controls** it through the [native API](/components/api/). The light can then be used like any other light on
+the device: in [automations](/automations/), with the [light actions](/components/light/#light-actions), on a
+[display](/components/display/) or through [LVGL](/components/lvgl/).
+
+> [!NOTE]
+> Although you might not plan to *export* states from the node and you do not need an entity of the node in
+> Home Assistant, this component still requires you to register the node under Home Assistant. See:
+> [Connecting your device to Home Assistant](/install/getting-started/#connecting-your-device-to-home-assistant).
+
+```yaml
+# Example configuration entry
+light:
+  - platform: homeassistant
+    id: my_light_from_ha
+    entity_id: light.living_room
+
+button:
+  - platform: template
+    name: "Living room dim"
+    on_press:
+      - light.turn_on:
+          id: my_light_from_ha
+          brightness: 40%
+          color_temperature: 370 mireds
+```
+
+## Configuration variables
+
+- **entity_id** (*Optional*, string): The entity ID of the light to import and control from Home Assistant.
+  Required unless the entity is a linked input of the [API wizard](/components/api/#wizard), which lets the user
+  pick the entity when the device is added.
+- All other options from [Light](/components/light/#config-light). `gamma_correct` defaults to `0` and
+  `default_transition_length` to `0s`, as Home Assistant renders the light; `restore_mode` and `restore_state`
+  have no effect, the state always comes from Home Assistant.
+
+## How it works
+
+The supported color modes and the color temperature range are read from Home Assistant once, so `color_temperature`
+is given in mireds within that range. The state, color mode, brightness, color temperature and color follow the
+Home Assistant entity as they change there.
+
+A change made on the device is sent as a `light.turn_on` or `light.turn_off` action with the brightness, the
+color temperature or the color of the active color mode. Brightness values are scaled to Home Assistant's
+`0` to `255` range. Effects run on the device and drive the Home Assistant light through the same actions.
+
+## See Also
+
+- [Light](/components/light/)
+- [Home Assistant Switch](/components/switch/homeassistant/)
+- <APIRef text="homeassistant_light.h" path="homeassistant/light/homeassistant_light.h" />
