@@ -81,6 +81,14 @@ wifi:
     configured fallback hotspot. Can be disabled by setting this to `0s`, which requires manually starting the AP by
     other means (eg: from a button press). Defaults to `90s`.
 
+  - **ap_mode** (*Optional*, string): One of `fallback` or `wisp`. Defaults to `fallback`, which starts the access
+    point only when no connection to the WiFi router can be made. `wisp` turns the node into a WiFi repeater, see
+    [WISP Mode](#wisp-mode). ESP32 with ESP-IDF 5.1 or newer only.
+
+  - **dns_servers** (*Optional*, list of IPv4 addresses): The DNS servers handed out to clients of the access point.
+    Only valid with `ap_mode: wisp`. Accepts one server, or two with ESP-IDF 6.0 or newer. If not set, the DNS
+    servers of the router connection are passed on to the clients.
+
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to `.local`, all uploads will be sent to `<HOSTNAME>.local`.
   Defaults to `.local`.
@@ -206,6 +214,34 @@ wifi:
   ap:
     password: "W1PBGyrokfLz"
 ```
+
+## WISP Mode
+
+With `ap_mode: wisp` an ESP32 works as a WiFi repeater: it connects to your router as a station and, at the same
+time, runs an access point. Devices that join the access point get an address from the node and their traffic is
+routed (NAT) through the router connection.
+
+```yaml
+wifi:
+  networks:
+    - ssid: "Router SSID"
+      password: "Router password"
+  ap:
+    ssid: "Repeater"
+    password: "W1PBGyrokfLz"
+    ap_mode: wisp
+```
+
+Notes:
+
+- Requires an ESP32 with ESP-IDF 5.1 or newer, at least one entry in `networks`, and a password for the access point.
+- The access point starts right away and stays on. `ap_timeout` has no effect, and `captive_portal` cannot be used.
+- Clients that join before the node is connected to the router may get the access point address as their DNS server
+  until their lease renews. Setting `dns_servers` avoids this.
+- WISP mode automatically enables the IRAM options and high performance networking settings that raise throughput.
+- If the node is close to the router, a lower `output_power` (for example `8.5dB`) and pinning `bssid` on the
+  network can improve speed noticeably.
+- The number of clients is limited by the ESP32 access point (five at the same time).
 
 ## User Entered Credentials
 
