@@ -104,6 +104,12 @@ but can be overridden if needed.
   or with separate config keys. For integrated boards with full pre-defined configuration this is optional and will be preset by
   the model selected. The dimensions are specified in pixels, and the width and height must be greater than 0.
 
+  > [!NOTE]
+  > `Waveshare-2.13in-G` and `Waveshare-2.13in-G-V1` declare a width of 124 and 128 for a 122 pixel panel, because
+  > their init sequence fixes the controller's row length at that value and the buffer has to match it. `get_width()`
+  > returns the padded width and the extra columns are off the glass. Do not override `dimensions` on these models:
+  > the row length in the init sequence does not follow it and the image shears diagonally.
+
   - **height** (**Required**, int): Specifies height of display.
   - **width** (**Required**, int): Specifies width of display.
 
