@@ -103,6 +103,55 @@ Configuration variables:
 
 - **id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the `esp32_camera_window` component.
 
+## Choosing a Window
+
+> [!TIP]
+> Use the community [ESP32 Camera ROI Tool](https://nliaudat.github.io/esphome_ai_component/roi.html) to pick
+> `offset_x`, `offset_y`, `width` and `height` visually instead of guessing pixel values.
+
+The tool lets you load a sample frame, select the sensor full resolution (`OV2640` up to `1600x1200` UXGA,
+`OV3660` up to `2048x1536` QXGA, `OV5640` up to `2592x1944` QSXGA), draw the region of interest, optionally set
+rotation and a target resolution, and then copies the computed offsets and size into your `window` configuration
+or `esp32_camera_window.set` action. It also snaps values to the alignment the hardware requires.
+
+## Hardware Windowing Details
+
+The exact calculation of windowing is complex and depends mainly on your hardware.
+
+On the OV2640, windowing defines a region of interest (ROI) anywhere inside the `1632x1220` boundary. From the
+[OV2640 datasheet](https://www.uctronics.com/download/cam_module/OV2640DS.pdf):
+
+> The OV2640 allows the user to define window size or region of interest (ROI), as required by the application.
+> Window size setting (in pixels) ranges from 2 x 4 to 1632 x 1220 (UXGA) or 2 x 2 to 818 x 610 (SVGA), and
+> 408 x 304 (CIF), and can be anywhere inside the 1632 x 1220 boundary.
+
+To define the window, the driver programs these register groups. The OV2640 uses register banks, so the correct
+bank (`BANK_SENSOR` or `BANK_DSP`) must be selected before reading or writing:
+
+| Register Name | Register Address       | Description                                        |
+| ------------- | ---------------------- | -------------------------------------------------- |
+| `HSTART`      | `0x17` (`BANK_SENSOR`) | High 8 bits of the horizontal start position.      |
+| `HREF`        | `0x32` (`BANK_DSP`)    | Low 2 bits of `HSTART` (`[7:6]`) and `HSTOP` (`[5:4]`). |
+| `VSTART`      | `0x19` (`BANK_SENSOR`) | High 8 bits of the vertical start position.        |
+| `VREF`        | `0x03` (`BANK_DSP`)    | Low 2 bits of `VSTART` (`[7:6]`) and `VSTOP` (`[5:4]`). |
+| `HSTOP`       | `0x18` (`BANK_SENSOR`) | High 8 bits of the horizontal end position.        |
+| `VSTOP`       | `0x1A` (`BANK_SENSOR`) | High 8 bits of the vertical end position.          |
+
+The start and stop values are 10-bit numbers spread across two registers:
+
+- Horizontal start: `(HSTART[7:0] << 2) | HREF[7:6]`
+- Horizontal stop: `(HSTOP[7:0] << 2) | HREF[5:4]`
+- Vertical start: `(VSTART[7:0] << 2) | VREF[7:6]`
+- Vertical stop: `(VSTOP[7:0] << 2) | VREF[5:4]`
+
+The window size is then:
+
+- Window width = `HSTOP - HSTART`
+- Window height = `VSTOP - VSTART`
+
+You do not need to program these registers by hand; `esp32_camera_window` and the ROI tool above handle this
+for you.
+
 ## See Also
 
 - [ESP32 Camera Component](/components/esp32_camera/)
