@@ -88,7 +88,9 @@ wifi:
 - **reboot_timeout** (*Optional*, [Time](/guides/configuration-types#time)): The amount of time to wait before rebooting when no
   WiFi connection exists. Can be disabled by setting this to `0s`, but note that the low level IP stack currently
   seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to `15min`.
-  Does not apply when in access point mode.
+  The device does not reboot while a station is connected to its fallback access point, or when no networks are
+  configured. On the RP2040 the driver does not report connected stations, so a running fallback access point holds
+  the reboot there.
 
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
   See [Power Save Mode](#power-save-mode)
