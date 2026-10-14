@@ -262,6 +262,9 @@ wifi:
     password: "W1PBGyrokfLz"
 ```
 
+For a device that only ever uses its access point, add [`web_server:`](/components/web_server/#access-point-mode)
+to control it from a phone without any internet connection.
+
 ## WISP Mode
 
 With `ap_mode: wisp` an ESP32 works as a WiFi repeater: it connects to your router as a station and, at the same
@@ -283,8 +286,8 @@ Notes:
 
 - Requires an ESP32 with ESP-IDF 5.1 or newer, at least one entry in `networks`, and a password for the access point.
 - The access point starts right away and stays on, so `ap_timeout` and `captive_portal` are rejected.
-- Clients that join before the node is connected to the router may get the access point address as their DNS server
-  until their lease renews. Setting `dns_servers` avoids this.
+- Without `dns_servers`, clients get an address only once the node has connected to the router and learned its DNS
+  servers, so none of them is handed the access point as a resolver.
 - WISP mode enables the high performance networking settings. Keeping the lwIP fast paths in IRAM raises throughput
   further at the cost of about 10 KB of IRAM: set `CONFIG_LWIP_IRAM_OPTIMIZATION: y` in the esp32 `sdkconfig_options`.
 - If the node is close to the router, a lower `output_power` (for example `8.5dB`) and pinning `bssid` on the
