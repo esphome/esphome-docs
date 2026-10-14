@@ -160,7 +160,9 @@ on_...:
 ## OpenThread Border Router
 
 Border Router mode bridges a Thread network to a Wi-Fi network. It requires an ESP32 using ESP-IDF 5.5 or newer,
-IPv6 enabled in the [Network Component](/components/network/), and `device_type: FTD`.
+IPv6 enabled in the [Network Component](/components/network/), and the default `device_type: FTD`. The Thread
+dataset is configured as in the [Full Configuration](#full-configuration) above; Thread starts on boot and border
+routing begins once Wi-Fi is connected.
 
 The native radio is supported on ESP32-C5 and ESP32-C6:
 
@@ -173,20 +175,20 @@ wifi:
   password: !secret wifi_password
 
 openthread:
-  device_type: FTD
   border_router: {}
+  network_key: !secret thread_network_key
 ```
 
 Any Wi-Fi-capable ESP32 can instead use an external OpenThread Radio Co-Processor (RCP) over UART:
 
 ```yaml
 openthread:
-  device_type: FTD
   border_router:
     rcp:
       rx_pin: GPIOXX
       tx_pin: GPIOXX
       reset_pin: GPIOXX
+  network_key: !secret thread_network_key
 ```
 
 ### Configuration Variables
@@ -196,8 +198,8 @@ openthread:
     - **rx_pin** (**Required**, Pin): ESP32 receive pin connected to the RCP transmit pin.
     - **tx_pin** (**Required**, Pin): ESP32 transmit pin connected to the RCP receive pin.
     - **baud_rate** (*Optional*, integer): UART baud rate. Defaults to `460800`.
-    - **reset_pin** (*Optional*, Pin): Active-low RCP reset pin. Configure this pin to allow recovery after an RCP
-      failure.
+    - **reset_pin** (*Optional*, Pin): RCP reset pin, inverted (active low) unless configured otherwise. With this
+      pin the RCP is reset in hardware when it stops responding, up to five times.
 
 Wi-Fi must have at least one STA network, must not use AP or fallback AP mode, and must keep `enable_on_boot: true`.
 
