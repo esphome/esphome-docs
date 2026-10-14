@@ -148,6 +148,28 @@ bank (`BANK_SENSOR` or `BANK_DSP`) must be selected before reading or writing:
 | `HSTOP`       | `0x18` (`BANK_SENSOR`) | High 8 bits of the horizontal end position.        |
 | `VSTOP`       | `0x1A` (`BANK_SENSOR`) | High 8 bits of the vertical end position.          |
 
+```text
+Figure 4 concept, redrawn (OV2640 datasheet): Windowing
+
+                          Column Start          Column End
+                                |                    |
+                   HREF --------+--------------------+--------
+                                v                    v
+                     +------------------------------------------+
+                     |//////////////////////////////////////////|
+                     |//////////////////////////////////////////|
+           Row Start |--------->+--------------------+//////////|
+        R   (HREF)   |//////////|                    |//////////|
+        o            |//////////|   Display Window   |//////////|  Sensor
+        w            |//////////|                    |//////////|  Array
+           Row End   |--------->+--------------------+//////////|  Boundary
+        v            |//////////////////////////////////////////|
+                     +------------------------------------------+
+```
+
+`///` marks sensor areas outside the window; only the Display Window is read out.
+Column Start/End map to `HSTART`/`HSTOP` and Row Start/End to `VSTART`/`VSTOP` in the formulas below.
+
 The start and stop values are 10-bit numbers spread across two registers:
 
 - Horizontal start: `(HSTART[7:0] << 2) | HREF[7:6]`
