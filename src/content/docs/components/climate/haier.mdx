@@ -171,6 +171,11 @@ climate:
             args: ['data_size', 'data[0]', 'data[1]']
 ```
 
+> [!NOTE]
+> `on_status_message` may not contain deferring actions (`delay`, `wait_until`, `script.wait`, ...) - `data` points
+> into the receive buffer, which is reused for the next frame. Config validation rejects such an automation with an
+> error. Copy any value you need into a global first, then defer from a separate script or automation.
+
 ### `climate.haier.power_on` Action
 
 This action turns AC power on.
@@ -263,7 +268,8 @@ on_...:
 
 ### `climate.haier.set_vertical_airflow` Action
 
-(supported only by hOn) Set direction for vertical airflow if the vertical swing is disabled.
+(supported only by hOn) Set the vertical airflow direction. While the vertical swing is on, the position is stored
+and applied when the swing is turned off.
 
 ```yaml
 on_...:
@@ -280,7 +286,8 @@ Configuration variables:
 
 ### `climate.haier.set_horizontal_airflow` Action
 
-(supported only by hOn) Set direction for horizontal airflow if the horizontal swing is disabled.
+(supported only by hOn) Set the horizontal airflow direction. While the horizontal swing is on, the position is
+stored and applied when the swing is turned off.
 
 ```yaml
 on_...:
@@ -322,7 +329,7 @@ on_...:
 - [Haier Climate Binary Sensors](/components/binary_sensor/haier/)
 - [Haier Climate Text Sensors](/components/text_sensor/haier/)
 - [Haier Climate Buttons](/components/button/haier/)
-- [Haier Climate Switches](/components/switch/haier/)
 - [Haier Climate Select](/components/select/haier/)
+- [Haier Climate Switches](/components/switch/haier/)
 - [Climate Component](/components/climate/)
 - <APIRef text="haier_base.h" path="haier/climate/haier_base.h" />
