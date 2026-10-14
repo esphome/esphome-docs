@@ -5,10 +5,13 @@ title: "Fendt Caravan"
 
 The `fendt_caravan` component connects an ESP32 to the Bluetooth Low Energy (BLE) interface of a Fendt or Hobby
 caravan control panel, the one the Fendt Connect app talks to. It reads the values the panel reports and sends the
-same key presses as the app, all locally. Only the main control unit is supported at the moment.
+same key presses as the app, all locally. Only the main control unit is supported at the moment. The component is
+experimental and not supported by Fendt: it operates the caravan, so test each switch while you are next to it.
 
 The panel accepts a link only from the Bluetooth address it was paired with. The `bt_id` option is that address; the
-default is the one the panels seen so far were paired with. The ESP32 does **not** use its own address for this.
+default is the one the panels seen so far were paired with. The ESP32 does **not** use its own address for this. If
+the panel drops the link right after it connects, it was paired with another address: use the one of the phone that
+runs the Fendt Connect app, shown in the phone's Bluetooth settings or by a BLE scanner app.
 
 ```yaml
 # Example configuration entry
@@ -23,20 +26,10 @@ fendt_caravan:
   main_control_unit:
     temp_in:
       name: Inside Temperature
-    temp_out:
-      name: Outside Temperature
     water_level:
       name: Fresh Water
-    power_status:
-      name: Mains Power
-    software_version:
-      name: Panel Software
     main_switch:
       name: Caravan Power
-    all_lights:
-      name: All Lights
-    floor_heater:
-      name: Floor Heater
 ```
 
 ## Configuration variables
