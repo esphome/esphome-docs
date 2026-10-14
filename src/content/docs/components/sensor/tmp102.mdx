@@ -143,7 +143,8 @@ threshold first when raising the pair, or the low threshold first when lowering 
 ## Threshold Status Text Sensor
 
 The TMP102 [Text Sensor](/components/text_sensor/) platform reports threshold validation, writes, restoration, and
-configuration recovery. It requires a TMP102 temperature sensor in the same configuration.
+configuration recovery. It requires a TMP102 temperature sensor in the same configuration. This platform applies to
+TMP102 chips, not LM75 sensors.
 
 ```yaml
 sensor:
@@ -163,11 +164,27 @@ text_sensor:
   when the configuration contains more than one TMP102 sensor.
 - All other options from [Text Sensor](/components/text_sensor/).
 
-Only one threshold status text sensor may reference each TMP102 sensor. It reports `OK` after successful configured
-setup or a runtime threshold write. Rejected changes, failed writes, repaired restored values, preference-save
-failures, setup failures, and configuration recovery publish descriptive states. Adding this entity alone does not
-enable hardware configuration or write registers. Without hardware configuration or threshold numbers, it publishes
-`Not configured` at startup. This entity reports threshold management results, not general sensor connectivity.
+Only one threshold status text sensor may reference each TMP102 sensor. It defaults to the `diagnostic` entity
+category. The possible states are:
+
+| State | Meaning |
+| --- | --- |
+| `OK` | Setup completed with no other result to report, or an accepted runtime threshold write completed. |
+| `Not configured` | No hardware setting or threshold number enables ESPHome management. |
+| `Setup failed` | Writing the configuration or thresholds during setup failed. |
+| `Restored thresholds reset` | Invalid saved thresholds were replaced with configured starting values. |
+| `Restore reset; save failed` | Corrected thresholds reached the chip, but saving the corrected values failed. |
+| `Preference save failed` | A runtime threshold reached the chip, but saving it failed. |
+| `Write failed: high threshold` | Writing a requested high threshold failed. |
+| `Write failed: low threshold` | Writing a requested low threshold failed. |
+| `Rejected: sensor setup failed` | A runtime threshold change was rejected because setup failed. |
+| `Rejected: high VALUE°C crosses low VALUE°C` | A high-threshold change would cross the low threshold. |
+| `Rejected: low VALUE°C crosses high VALUE°C` | A low-threshold change would cross the high threshold. |
+| `Configuration restored` | Changed configuration or threshold registers were restored. |
+| `Configuration recovery failed` | Restoring changed registers failed. |
+
+`VALUE` is printed with four decimal places. Adding this entity alone does not enable hardware configuration or write
+registers. This entity reports threshold-management results, not general sensor connectivity.
 
 ## Alert Binary Sensor
 
