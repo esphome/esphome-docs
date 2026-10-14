@@ -388,8 +388,8 @@ button:
 
 ## Text
 
-The `ld2450` text platform defines [polygon zones](#polygon-zones). Each zone is a text entity that holds the
-zone's polygon, and needs one presence binary sensor under the [binary sensor platform](#ld2450-binary-sensors).
+The `ld2450` text platform defines [polygon zones](#polygon-zones): one text entity per zone that holds its polygon,
+paired with a presence binary sensor under the [binary sensor platform](#ld2450-binary-sensors).
 
 ```yaml
 text:
@@ -419,45 +419,36 @@ binary_sensor:
 
 ### Polygon Zones
 
-The hardware zones configured with the [number platform](#number) are limited to three rectangles. Polygon zones
-can have any polygon shape, and presence in them is evaluated on the device at the radar's full rate of 10 Hz.
-Changes are published to Home Assistant immediately.
+The hardware zones of the [number platform](#number) are three rectangles. A polygon zone can have any shape, and
+presence in it is evaluated on the device at the radar's full rate of 10 Hz, instead of in Home Assistant from the
+target X/Y sensors, which are throttled to 1 Hz by default.
 
-Evaluating zones of other shapes on the Home Assistant side, from the target X/Y sensors, adds up to around one
-second of delay, because those sensors are throttled to 1 Hz by default. Removing the throttle avoids the delay,
-but puts a higher load on Home Assistant.
-
-The polygon is set at runtime, by writing to the zone's text entity, as a list of `x,y` points in millimeters
-separated by `;`, for example:
+The polygon is set at runtime through the zone's text entity, as `x,y` points in millimeters separated by `;`:
 
 ```text
 -1000,500;1000,500;1500,3000;-1500,3000
 ```
 
-- A polygon has 3 to 23 points.
-- Points are in the radar's coordinates, the same as the target X/Y sensors.
-- Spaces around numbers and a trailing `;` are allowed.
+- 3 to 23 points, in the radar's coordinates, the same as the target X/Y sensors. Spaces around numbers and a
+  trailing `;` are allowed.
 - An empty value disables the zone, and its presence binary sensor becomes unknown.
-- An invalid value is rejected and the previous polygon is kept.
+- An invalid value, or one that can't be saved, is rejected and the previous polygon is kept.
 
 The polygon is saved and restored on boot. Presence is on while any target is inside the polygon, and stays on
 for [presence_timeout](#number) after the last target leaves it.
 
 > [!NOTE]
-> On ESP8266, polygons are kept in RTC memory by default, which survives a reboot but not a power loss. Set
-> [restore_from_flash](/components/esp8266#configuration-variables) to `true` to keep them across a power loss.
-> Either way, the space for saved settings is small and shared with other components, and each zone takes about
-> 100 bytes: at most 4 zones fit in RTC memory, or 5 with `restore_from_flash`. The build fails when the saved
-> values of every component together do not fit. When a polygon can't be saved, it is rejected: a warning is logged
-> and the previous polygon is kept.
+> Polygons are checked against the raw coordinates reported by the radar, before any sensor filter, so a filter
+> that changes the target X/Y sensor values (such as `multiply`, `offset` or `lambda`) puts them in a different
+> coordinate frame. Targets the radar itself drops never reach a polygon zone: those outside the hardware zones
+> when `zone_type` is `Detection` or inside them when it is `Filter`, and all but one target when `multi_target`
+> is off.
 
 > [!NOTE]
-> Polygons are checked against the raw target coordinates reported by the radar, before any sensor filter. A filter
-> on the target X/Y sensors that changes their values (such as `multiply`, `offset` or `lambda`) puts them in a
-> different coordinate frame from the polygons.
->
-> Targets that the radar itself drops never reach polygon zones: those outside the hardware zones when `zone_type`
-> is `Detection` or inside them when it is `Filter`, and all but one target when `multi_target` is off.
+> On ESP8266, polygons are kept in RTC memory by default, which survives a reboot but not a power loss; set
+> [restore_from_flash](/components/esp8266#configuration-variables) to keep them across a power loss. Each zone
+> takes about 100 bytes of the small space for saved settings, which is shared with other components: at most 4
+> zones fit in RTC memory, or 5 with `restore_from_flash`, and the build fails when everything saved does not fit.
 
 > [!TIP]
 > The [LD2450 Zone Card](https://github.com/fornellas/ld2450-zone-card) is a Home Assistant dashboard card that
