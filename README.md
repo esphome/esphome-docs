@@ -65,7 +65,7 @@ import myImageImg from './images/my-image.jpg';
 For images used in multiple documents or in ImgTable components:
 
 ```jsx
-<Image src="/images/shared-image.jpg" alt="Description" layout="constrained" />
+<Image src="/images/shared-image.jpg" alt="Description" layout="constrained" width={800} height={600} />
 ```
 
 - Images are stored in `/public/images/`
@@ -222,6 +222,9 @@ Contributions to improve the documentation are welcome! Please follow these step
 - Use local imported images for single-use images (one file only)
 - Keep multi-use images in `/public/images/` with absolute paths
 - All ImgTable images must remain in `/public/images/`
+- Use one image per component, in `/public/images/`, for both the ImgTable card and the component page
+- Keep images small; lint rejects files over 1 MB
+- Prefer a transparent background (WebP, PNG or SVG) so images work in both light and dark themes
 - Use descriptive alt text for accessibility
 - Include `layout="constrained"` for responsive images
 
