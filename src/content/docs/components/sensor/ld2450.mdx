@@ -93,14 +93,14 @@ binary_sensor:
 - **polygon_zones** (*Optional*, list): Presence binary sensors for [polygon zones](#polygon-zones). Each polygon
   zone must have exactly one presence binary sensor, under the same `ld2450_id` as the zone.
 
-  - **polygon_zone_id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the polygon zone defined
+  - **polygon_zone_id** (**Required**, [ID](/guides/configuration-types/#id)): The ID of the polygon zone defined
     in the [text platform](#text).
-  - All options from [Binary Sensor](/components/binary_sensor#config-binary_sensor), except `filters`. To keep
+  - All options from [Binary Sensor](/components/binary_sensor/#config-binary_sensor), except `filters`. To keep
     presence on after targets leave, use [presence_timeout](#number).
 
 > [!NOTE]
-> By default, the `has_target`, `has_moving_target` and `has_still_target` binary sensors include the
-> following [filter](/components/binary_sensor#binary-sensor-filters) by default to prevent flooding Home Assistant with state updates:
+> By default, the `has_target`, `has_moving_target` and `has_still_target` binary sensors include the following
+> [filter](/components/binary_sensor/#binary-sensor-filters) to prevent flooding Home Assistant with state updates:
 >
 > ```yaml
 > - settle: 1000ms
@@ -409,13 +409,13 @@ binary_sensor:
 
 ### Configuration variables
 
-- **ld2450_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID for the
+- **ld2450_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID for the
   [Ld2450](/components/sensor/ld2450/) component.
 - **polygon_zones** (**Required**, list): The polygon zones.
 
-  - **id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the zone, referenced by
+  - **id** (**Required**, [ID](/guides/configuration-types/#id)): The ID of the zone, referenced by
     `polygon_zone_id` in the zone's presence binary sensor.
-  - All options from [Text](/components/text/#config-text).
+  - All options from [Text](/components/text/#config-text). `mode` defaults to `TEXT`.
 
 ### Polygon Zones
 
@@ -446,7 +446,7 @@ for [presence_timeout](#number) after the last target leaves it.
 
 > [!NOTE]
 > On ESP8266, polygons are kept in RTC memory by default, which survives a reboot but not a power loss; set
-> [restore_from_flash](/components/esp8266#configuration-variables) to keep them across a power loss. Each zone
+> [restore_from_flash](/components/esp8266/#configuration-variables) to keep them across a power loss. Each zone
 > takes about 100 bytes of the small space for saved settings, which is shared with other components: at most 4
 > zones fit in RTC memory, or 5 with `restore_from_flash`, and the build fails when everything saved does not fit.
 
