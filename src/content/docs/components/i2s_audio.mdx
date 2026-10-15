@@ -45,10 +45,14 @@ A full duplex bus must meet these requirements, which are checked when the confi
 
 Because the output channel is set up only once, a speaker on a full duplex bus only accepts audio in exactly its
 configured format (sample rate, bits per sample and number of channels). A stream in any other format is rejected and
-a message is logged. Put a [Resampler Speaker](/components/speaker/resampler/) in front of it to convert other formats.
+a message is logged. Put a [Resampler Speaker](/components/speaker/resampler/) in front of it to convert the sample rate
+and bits per sample. A resampler does not change the number of channels, so a speaker with `channel: mono`, `left` or
+`right` also needs a [Mixer Speaker](/components/speaker/mixer/) with `num_channels: 1`; see the
+[mono example](#mono-full-duplex-example) below.
 
-More than one speaker can use a full duplex bus, for example a media speaker and an announcement speaker. They share
-the one output channel, so only one of them can play at a time.
+More than one speaker can use a full duplex bus, for example when two DACs are connected to the same data pin and a
+[Router Speaker](/components/speaker/router/) switches between them. They share the one output channel, so only one of
+them can play at a time.
 
 ```yaml
 # Example full duplex configuration
@@ -77,6 +81,37 @@ speaker:
   # Converts incoming audio to the fixed format of the full duplex bus
   - platform: resampler
     output_speaker: duplex_speaker
+    bits_per_sample: 32
+```
+
+### Mono Full Duplex Example
+
+A speaker with `channel: mono` only accepts one channel audio. The mixer converts stereo sources to one channel, and the
+resamplers convert each source to the sample rate and bits per sample of the bus.
+
+```yaml
+speaker:
+  - platform: i2s_audio
+    id: duplex_speaker
+    i2s_audio_id: i2s_duplex_bus
+    i2s_dout_pin: GPIOXX
+    dac_type: external
+    channel: mono
+    sample_rate: 48000
+    bits_per_sample: 32bit
+  - platform: mixer
+    output_speaker: duplex_speaker
+    num_channels: 1
+    source_speakers:
+      - id: announcement_mixer_input
+      - id: media_mixer_input
+  - platform: resampler
+    id: announcement_resampler
+    output_speaker: announcement_mixer_input
+    bits_per_sample: 32
+  - platform: resampler
+    id: media_resampler
+    output_speaker: media_mixer_input
     bits_per_sample: 32
 ```
 
