@@ -12,7 +12,7 @@ Thread uses the same RF technology as Zigbee (IEEE 802.15.4), but provides IPv6 
 This component allows ESPHome nodes to communicate with Home Assistant over a Thread network. It permits sending sensor state to Home Assistant and receiving [Over-the-Air Updates (OTA)](/components/ota/). This OpenThread component relies on [OpenThread](https://openthread.io) which is an open-source implementation of Thread.
 
 > [!NOTE]
-> You will need a [Thread border router](https://www.home-assistant.io/integrations/thread#about-thread-border-routers) to connect your node to a Thread network. The border router adapts IPv6 packets on your Home Assistant network to 6LoWPAN packets on your Thread network, allowing communication across both networks.
+> You will need a [Thread border router](https://www.home-assistant.io/integrations/thread#about-thread-border-routers) to connect your node to a Thread network. The border router adapts IPv6 packets on your Home Assistant network to 6LoWPAN packets on your Thread network, allowing communication across both networks. An ESP32 running ESPHome can be that border router itself, see [OpenThread Border Router](#openthread-border-router).
 
 ## Usage
 
@@ -20,6 +20,8 @@ This component is supported on the following platforms:
 
 - **ESP32** with an 802.15.4 radio (ESP32-C5, ESP32-C6, ESP32-H2, ESP32-H4, ESP32-H21, or ESP32-S31) with the
   ESP-IDF framework, version 5.5.5 or newer.
+- **ESP32** with Wi-Fi and an external OpenThread Radio Co-Processor, as a border router only, see
+  [OpenThread Border Router](#openthread-border-router).
 - **nRF52840** with the Zephyr framework.
 
 <span id="config-openthread"></span>
@@ -179,7 +181,9 @@ openthread:
   network_key: !secret thread_network_key
 ```
 
-Any Wi-Fi-capable ESP32 can instead use an external OpenThread Radio Co-Processor (RCP) over UART:
+Any Wi-Fi-capable ESP32 can instead use an external OpenThread Radio Co-Processor (RCP) over UART. The
+co-processor runs OpenThread RCP firmware, for instance ESP-IDF's `examples/openthread/ot_rcp` on an ESP32-H2,
+built for the same UART speed as `baud_rate`; a mismatch gives a co-processor that never answers.
 
 ```yaml
 openthread:
