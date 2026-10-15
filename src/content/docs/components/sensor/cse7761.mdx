@@ -57,7 +57,7 @@ sensor:
 - **uart_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the [UART Component](/components/uart) if you want
   to use multiple UART buses.
 
-## Power direction
+## Power Direction
 
 Active power is signed, so it shows which way power flows: a load reads positive and power fed back, for
 example from a solar inverter, reads negative. On the Sonoff Dual R3 v1.x the board wires the current into
@@ -78,7 +78,7 @@ sensor:
 ```
 
 If a channel only ever powers loads, `- lambda: return fabsf(x);` also works, but it hides the direction.
-On a current transformer board, turn the clamp around instead.
+On a board with a clip-on current transformer, such as the Sonoff POW CT, turn the clamp around instead.
 
 ## See Also
 
