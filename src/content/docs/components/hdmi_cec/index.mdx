@@ -34,15 +34,11 @@ open-drain output with a weak pull-up, so no extra parts are needed for a first 
 # Example configuration entry
 hdmi_cec:
   id: cec
-  pin: GPIO9
+  pin: GPIOXX
   address: 0x5
-  on_message:
-    - opcode: 0x8F  # Give Device Power Status
-      then:
-        - hdmi_cec.send:
-            destination: !lambda return source;
-            data: [0x90, 0x00]  # Report Power Status: on
 ```
+
+The examples below assume `id: cec`.
 
 ### Configuration Variables
 
@@ -69,7 +65,7 @@ valid while the automation runs; copy it if a later action needs it.
 > [!NOTE]
 > This component does not answer the TV's questions on its own. A TV asks a new device for its physical
 > address, OSD name, vendor id and power status, and marks it absent when nothing comes back. Answer the
-> ones your TV needs with `on_message` automations, as in the example above.
+> ones your TV needs with `on_message` automations; see [Example: Answer the TV](#example-answer-the-tv).
 
 ## `hdmi_cec.send` Action
 
@@ -95,6 +91,21 @@ button:
 The same is available in lambdas as `id(cec).send(destination, {opcode, ...})`. Both report the message in
 the log once it is sent or when it was not acknowledged.
 
+## Example: Answer the TV
+
+```yaml
+hdmi_cec:
+  id: cec
+  pin: GPIOXX
+  address: 0x5
+  on_message:
+    - opcode: 0x8F  # Give Device Power Status
+      then:
+        - hdmi_cec.send:
+            destination: !lambda return source;
+            data: [0x90, 0x00]  # Report Power Status: on
+```
+
 ## Example: TV Power and Volume
 
 ```yaml
@@ -114,7 +125,7 @@ button:
   - platform: template
     name: "TV Volume Down"
     on_press:
-      - lambda: id(cec).send(0x0, {0x44, 0x42});  // User Control Pressed: Volume Down
+      - lambda: id(cec).send(0x0, {0x44, 0x42});  # User Control Pressed: Volume Down
 ```
 
 Not every TV honours every command; the log shows what was sent and received:
@@ -141,13 +152,13 @@ api:
             data: !lambda return std::vector<uint8_t>(cec_data.begin(), cec_data.end());
 ```
 
-## Extended installation
+## Extended Installation
 
 Two additions make the connection more robust.
 
 ![Schematics with a relay and a diode](images/cec_uart_schematics.png)
 
-### Disconnect from the CEC line on power-down
+### Disconnect from the CEC Line on Power-Down
 
 The CEC line stays at 3.3V while the TV is on. A GPIO pin must not see a voltage above the device's own
 supply, so with the ESPHome device powered off the line is outside the pin's operating conditions. This is
@@ -160,7 +171,7 @@ job: it tolerates a bus voltage without local power, and its open-drain behaviou
 The diode and the second pin in the schematic are for driving the line from a UART, an option that is not
 part of this component yet; they can be left out.
 
-### Connect the HDMI Hot Plug Detect pin
+### Connect the HDMI Hot Plug Detect Pin
 
 HDMI pin 19, Hot Plug Detect, is not part of CEC but tells when the cable is plugged into a TV. The TV
 drives it to 5V through a 1K resistor, so it has to be limited to 3.3V: a blue or white LED to ground in
@@ -175,7 +186,7 @@ filters: the signal bounces while plugging, and the TV pulls it low for a moment
 binary_sensor:
   - platform: gpio
     pin:
-      number: GPIO8
+      number: GPIOXX
       mode:
         input: true
         pulldown: true
@@ -185,7 +196,7 @@ binary_sensor:
       - delayed_off: 300ms
 ```
 
-## Note on the HDMI standard
+## Note on the HDMI Standard
 
 The HDMI 1.3a specification, available from [hdmi.org](https://www.hdmi.org), describes the CEC messages in
 *Supplement 1, Consumer Electronics Control*. Later versions are not public.
@@ -193,7 +204,7 @@ The HDMI 1.3a specification, available from [hdmi.org](https://www.hdmi.org), de
 Marketing a product as **HDMI** needs a licence from the HDMI organisation; the component itself is
 available under the ESPHome licence.
 
-## Platform compatibility
+## Platform Compatibility
 
 - ESP32-S3 and ESP32-C3: tested with the `arduino` and `esp-idf` frameworks
 - ESP8266: tested. The acknowledge bit is timed with hardware timer 1, which `esp8266_pwm`, `ac_dimmer`,
