@@ -79,7 +79,17 @@ wifi:
 
   - **ap_timeout** (*Optional*, [Time](/guides/configuration-types#time)): The time after which to enable the
     configured fallback hotspot. Can be disabled by setting this to `0s`, which requires manually starting the AP by
-    other means (eg: from a button press). Defaults to `90s`.
+    other means (eg: from a button press). Defaults to `90s`. In [WISP mode](#wisp-mode) it is how long a start
+    that failed waits before the next attempt, and `0s` is rejected.
+
+  - **ap_mode** (*Optional*, string): One of `fallback` or `wisp`. Defaults to `fallback`, which starts the access
+    point only when no connection to the WiFi router can be made. `wisp` turns the node into a WiFi repeater, see
+    [WISP Mode](#wisp-mode). ESP32 with ESP-IDF 5.1 or newer only. `coexist` and `napt` are
+    only accepted with `fallback`.
+
+  - **dns_servers** (*Optional*, list of IPv4 addresses): The DNS servers handed out to clients of the access point.
+    Only valid with `ap_mode: wisp`. Accepts one server, or two with ESP-IDF 6.0 or newer. If not set, the DNS
+    servers of the router connection are passed on to the clients.
 
   - **coexist** (*Optional*, boolean): Only on `esp32` with ESP-IDF. If enabled, the access
     point starts immediately at boot and stays active permanently alongside the station
@@ -90,9 +100,10 @@ wifi:
 
     Requires at least one station network to be configured (via `ssid`/`password` or
     `networks`), and requires `post_connect_roaming: false` (see
-    [Post-Connect Roaming](#post-connect-roaming)). While coexistence is enabled,
-    `ap_timeout` is ignored because the access point is always started. See
-    [Access Point Coexistence](#access-point-coexistence) below.
+    [Post-Connect Roaming](#post-connect-roaming)). `ap_timeout` has to stay at its default:
+    the access point is started with the node whether or not the station connects, so any
+    other value is rejected. `ap_mode: wisp` keeps the access point up as well and cannot be
+    combined with `coexist`. See [Access Point Coexistence](#access-point-coexistence) below.
 
     > [!NOTE]
     > The ESP32 has a single radio shared by the station and access point interfaces, so both
@@ -101,12 +112,13 @@ wifi:
     > disconnect AP clients. Time-slicing between both modes also reduces overall WiFi
     > throughput.
 
-  - **napt** (*Optional*, boolean): Only on `esp32` with ESP-IDF. Enables Network Address and
-    Port Translation (IP forwarding) for the access point, so devices connected to the AP
-    can reach the internet through the device's station connection. Combined with
+  - **napt** (*Optional*, boolean): Only on `esp32` with ESP-IDF 5.1 or newer. Enables Network
+    Address and Port Translation (IP forwarding) for the access point, so devices connected
+    to the AP can reach the internet through the device's station connection. Combined with
     `coexist: true` this lets the device act as a WiFi repeater, sharing the upstream
-    connection with the AP clients. Defaults to `false`.
-    Requires `coexist: true` to be enabled.
+    connection with the AP clients. Defaults to `false`. Requires `coexist: true` to be
+    enabled, and cannot be combined with `ap_mode: wisp`, which routes the access point's
+    subnet through the station on its own path (see [WISP Mode](#wisp-mode)).
 
     > [!NOTE]
     > Enabling `napt` adds `CONFIG_LWIP_IP_FORWARD` and `CONFIG_LWIP_IPV4_NAPT` to the
@@ -328,7 +340,15 @@ Coexistence is best suited to occasional access rather than high-throughput clie
 
 The access point runs its own subnet and DHCP server (default `192.168.4.1`). You can override
 this with `manual_ip` under `ap:`. A [Captive Portal](/components/captive_portal/) is served on
-the AP; the `wifi.ap_active` condition reports whether the AP is currently up.
+the AP while the station is not connected, so a wrong password can be corrected without a
+reboot, and it closes once the station connects. The
+[`wifi.ap_active` condition](#wifi-ap_active-condition) reports whether the AP is currently up.
+
+[WISP Mode](#wisp-mode) keeps an access point up next to the station as well and routes its
+subnet the same way. Choose `ap_mode: wisp` for a repeater: it also enlarges the Wi-Fi driver
+buffers and enables frame aggregation for the forwarded traffic. Choose `coexist` when the
+access point should keep its [Captive Portal](/components/captive_portal/) or the Wi-Fi
+driver settings should stay as they are; WISP mode rejects `captive_portal`.
 
 > [!WARNING]
 > Enabling `coexist: true` together with aggressive power saving (e.g. `power_save_mode: high`)
@@ -352,10 +372,49 @@ wifi:
     napt: true
 ```
 
+Clients of the access point are handed the resolvers of the station connection over DHCP, so
+their name lookups work once the station has connected; before that there is nothing to pass
+on. A later change of resolvers is given to the clients with their next lease, without taking
+the access point down.
+
 > [!WARNING]
 > With `napt: true`, anything connected to the access point can reach the networks the device
 > itself can reach through its station connection. Always set a password on the access point,
 > and treat the AP as an extension of your upstream network.
+
+## WISP Mode
+
+With `ap_mode: wisp` an ESP32 works as a WiFi repeater: it connects to your router as a station and, at the same
+time, runs an access point. Devices that join the access point get an address from the node and their traffic is
+routed (NAT) through the router connection.
+
+```yaml
+wifi:
+  networks:
+    - ssid: "Router SSID"
+      password: "Router password"
+  ap:
+    ssid: "Repeater"
+    password: "W1PBGyrokfLz"
+    ap_mode: wisp
+```
+
+Notes:
+
+- Requires an ESP32 on the ESP-IDF framework (5.1 or newer; the Arduino framework is not supported), at least one
+  entry in `networks`, and a password for the access point.
+- The access point stays on, so `captive_portal` is rejected, and `ap_timeout` is how long a start that failed
+  waits before it is tried again (it cannot be `0s`). With `dns_servers` the access point starts right away;
+  without them it starts once the node has connected to the router and learned its DNS servers, so no client is
+  ever handed the access point as a resolver. A network with `manual_ip` must then set `dns1`.
+- WISP mode enlarges the Wi-Fi driver buffers and enables frame aggregation, the Wi-Fi half of
+  [high performance networking](/components/network/#high-performance-networking); the TCP settings stay at their
+  defaults since the forwarded traffic never uses the node's own connections. Keeping the lwIP fast paths in IRAM
+  raises throughput further at the cost of about 10 KB of IRAM: set `CONFIG_LWIP_IRAM_OPTIMIZATION: y` in the esp32
+  `sdkconfig_options`.
+- If the node is close to the router, a lower `output_power` (for example `8.5dB`) and pinning `bssid` on the
+  network can improve speed noticeably.
+- The number of clients is limited by the ESP32 access point (five at the same time).
 
 ## User Entered Credentials
 
