@@ -110,15 +110,27 @@ channel at a time blends the colors.
 
 ## Flashing the Makerdiary nRF52840 MDK USB Dongle
 
-The dongle ships with Makerdiary's UF2 bootloader, an Adafruit nRF52 Bootloader built without a
-SoftDevice. It lives at the top of flash (`0xF4000`–`0x100000`) and loads the application from
-`0x1000`, directly after the MBR page. ESPHome selects the `adafruit_nrf52_nosd` bootloader for
-this board, reserves that region and builds no bootloader of its own.
+The dongle ships with Makerdiary's UF2 bootloader, an Adafruit nRF52 Bootloader that lives at the top
+of flash (`0xF4000`–`0x100000`). ESPHome reserves that region and builds no bootloader of its own.
+Two generations of it exist, and the `INFO_UF2.TXT` file on the dongle's flash drive names yours:
+
+- Dongles made since 2023 carry version 0.4.0 or newer without a SoftDevice, and their drive is
+  named **UF2BOOT**. The application loads from `0x1000`, directly after the MBR page. This is the
+  default, `adafruit_nrf52_nosd`.
+- Older dongles carry version 0.2.x with the S140 6.1.1 SoftDevice, and their drive is named
+  **MDK-DONGLE**. Set `bootloader: adafruit_nrf52_sd140_v6` for those.
+
+```yaml
+# Example configuration entry for an older dongle
+nrf52:
+  board: nrf52840_mdk_usb_dongle
+  bootloader: adafruit_nrf52_sd140_v6
+```
 
 ### First flash and recovery
 
-1. Hold the dongle's button while plugging it in, then release it. The RGB LED turns green and a
-   flash drive named **UF2BOOT** appears.
+1. Hold the dongle's button while plugging it in, then release it. The RGB LED turns green and the
+   bootloader's flash drive appears.
 2. Run `esphome run yourfile.yaml` and pick the bootloader's serial port. ESPHome builds the
    firmware and uploads it over USB CDC. Alternatively copy the UF2 package from the build
    directory, or from the dashboard's download menu, onto the flash drive.
