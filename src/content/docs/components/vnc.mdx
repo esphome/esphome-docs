@@ -39,10 +39,10 @@ is larger, only its top-left part is shown.
   unchanged before the display refreshes. This turns an animation into one refresh that shows where the
   animation ended. Defaults to `200ms`.
 - **max_update_delay** (_Optional_, [Time](/guides/configuration-types/#time)): The longest a change waits for
-  the picture to stop changing. Content that never stops changing, such as a moving background, refreshes the
-  display at most this often. Defaults to `1s`. On e-paper, a few seconds often looks better.
-- **on_connect** (_Optional_, [Automation](/automations/)): An automation to run when the picture starts
-  showing.
+  the picture to stop changing. If the picture never stops changing, for example because of a moving background,
+  the display refreshes about this often. Defaults to `1s`. On e-paper, a few seconds often looks better.
+- **on_connect** (_Optional_, [Automation](/automations/)): An automation to run when the client has connected to
+  the server, before the first picture arrives.
 - **on_disconnect** (_Optional_, [Automation](/automations/)): An automation to run when the connection is lost.
 - **id** (_Optional_, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code generation.
 
@@ -94,7 +94,8 @@ that need no password.
 
 ### `vnc.is_connected` Condition
 
-True while the server's screen is showing.
+True while the client is connected to the server. This starts before the first picture arrives. After a
+disconnect, an e-paper display keeps showing the last picture.
 
 ```yaml
 binary_sensor:
