@@ -68,9 +68,10 @@ devices that share a vendor and product ID.
 
 ## Modem control lines
 
-DTR and RTS are asserted when a device is attached, as a host driver does when it opens the port. A
-[Serial Proxy](/components/serial_proxy/) on a channel lets an API client change them at runtime, which many
-USB-serial devices use to pull the attached microcontroller into its bootloader.
+A channel starts with DTR and RTS asserted, as a host driver does when it opens the port, and applies its current
+states whenever a device is attached. A [Serial Proxy](/components/serial_proxy/) on the channel lets an API
+client change them at runtime, which many USB-serial devices use to pull the attached microcontroller into its
+bootloader; a state set that way is kept across reattachment.
 
 ## Channel configuration options
 
