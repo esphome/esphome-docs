@@ -103,10 +103,10 @@ over-the-air updates are not supported with this bootloader. Choose `mcuboot`
 
 ### On-board LEDs
 
-All four on-board LEDs are active-low, so set `inverted: true` on their pins to
-make logical `on`/`off` match the printed labels. LED0 is a dedicated green LED on
-`P0.6`; LED1 is an RGB LED with red on `P0.8`, green on `P1.9` and blue on `P0.12`
-— turning on more than one channel at a time blends the colors.
+All four on-board LEDs are active-low, so set `inverted: true` on their pins so
+that `on` lights the LED. LD1 is a dedicated green LED on `P0.6`; LD2 is an RGB LED
+with red on `P0.8`, green on `P1.9` and blue on `P0.12`, and turning on more than one
+channel at a time blends the colors.
 
 ## GPIO Pin Numbering
 
@@ -155,7 +155,8 @@ nrf52:
 
 - **reset_pin** (*Optional*, [Pin](/guides/configuration-types#pin)): The pin to use to trigger a hardware reset.
   This pin should be connected to the MCU's reset line or to a circuit that causes the bootloader to enter DFU mode after reset.
-  When omitted, a software reset is used instead.
+  Defaults to `P0.19` on `nrf52840dongle`, which is wired to the dongle's RESET pin; on other boards a software
+  reset is used when omitted.
 
 ## REGOUT0
 
