@@ -49,8 +49,9 @@ Home Assistant entity as they change there.
 A change made on the device is sent as a `light.turn_on` or `light.turn_off` action with the brightness, the
 color temperature or the color of the active color mode. Brightness values are scaled to Home Assistant's
 `0` to `255` range. Effects run on the device and drive the Home Assistant light through the same actions. A
-transition or flash runs on the device alone; Home Assistant receives the state the light ends at. A change that
-leaves Home Assistant as it is, such as turning on a light that is already on, is not sent.
+transition runs on the device alone; Home Assistant receives the state the light ends at. A change that leaves
+Home Assistant as it is, such as turning on a light that is already on, is not sent. A flash ends where it began,
+so it is never sent and only the device's own state shows it; a warning in the log says so.
 
 ## See Also
 
