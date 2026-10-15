@@ -87,10 +87,13 @@ bootloader is never erased by application uploads.
 
 ### Updating a running device
 
-Press RESET while the application runs to drop back into the bootloader, then
-upload again. There is no automatic bootloader entry on this board — the
-Open DFU Bootloader has no auto-entry mechanism, and the [dfu](#dfu-device-firmware-update)
-component's 1200-baud touch trick does not apply to it.
+With `dfu: true` in the `nrf52` configuration, `esphome upload` reboots the running application
+into the bootloader itself and flashes it: the dongle has a GPIO wired to its RESET pin (P0.19),
+which the [dfu](#dfu-device-firmware-update) component uses as its `reset_pin` on this board
+without being told, and the factory bootloader stays in DFU mode after a pin reset. The bootloader
+shows up as its own USB device, so the upload looks for it rather than for the port you named.
+Without `dfu:`, press RESET while the application runs to drop back into the bootloader, then
+upload again.
 
 ### OTA updates
 
