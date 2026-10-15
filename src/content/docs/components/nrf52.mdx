@@ -70,14 +70,9 @@ flash (`0xE0000`–`0x100000`). ESPHome reserves that region and boots your
 application directly after the MBR page — no custom bootloader is built.
 
 The bootloader speaks Nordic's Secure DFU protocol, so ESPHome packages and
-uploads the firmware with Nordic's `nrfutil`, which has to be installed once:
-
-1. Install `nrfutil` from [Nordic Semiconductor](https://www.nordicsemi.com/Products/Development-tools/nRF-Util)
-   and make sure it is on your `PATH`.
-2. Run `nrfutil install nrf5sdk-tools` to add the DFU commands.
-
-Without it the build still succeeds, but no DFU package is produced and the
-upload step tells you what is missing.
+uploads the firmware with Nordic's `nrfutil`. The first build downloads it from
+Nordic, together with its `nrf5sdk-tools` command, into ESPHome's tools cache;
+nothing has to be installed by hand.
 
 ### First flash and recovery
 
