@@ -30,9 +30,9 @@ binary_sensor:
 ## Hub Component
 
 At every boot the hub stops the sensor, writes the run mode, the UART output settings and the
-[LED switches](#switch), reads the versions and the [settings](#settings) that have an entity configured, and starts
-the sensor again. The run mode, the UART output and the LEDs are applied each time instead of being saved on the
-module.
+[LED switches](#switch), reads the versions when [text sensors](#text-sensor) are configured and the
+[settings](#settings) that have an entity configured, and starts the sensor again. The run mode, the UART output
+and the LEDs are applied each time instead of being saved on the module.
 
 The module ignores commands that arrive too quickly, so the hub sends one command at a time and retries a command
 that is rejected or not answered, up to three times. When the module does not answer at all, the component shows a
@@ -131,6 +131,10 @@ reads their values from the module at boot, so the entities show what the module
 Changing a setting stops the radar for a moment: the hub stops the sensor, writes the change, saves it to the module's
 flash and starts the sensor again. Changes made within a second of each other are saved together. If the module does
 not accept a change, a warning is logged and the entity shows the module's value again.
+
+The `run_led` and `out_led` switches are the exception: the module forgets them at power off, so they are not read
+from the module or saved to its flash. The hub writes them at boot from the switch's restored state. Changing an LED
+also stops and starts the sensor.
 
 Some settings are written in pairs with one command: `min_range` with `max_range`, `hold_sensitivity` with
 `trigger_sensitivity`, and `on_latency` with `off_latency`. When only one of a pair has an entity, the other value is
