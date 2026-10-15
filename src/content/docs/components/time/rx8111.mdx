@@ -1,0 +1,78 @@
+---
+title: "RX8111 Time Source"
+description: "Read and set time using an Epson RX8111CE real-time clock."
+---
+
+The RX8111 time platform reads UTC time from an Epson RX8111CE real-time clock (RTC) over
+[I²C](/components/i2c/). Configure the I²C bus separately.
+
+```yaml
+# Example configuration entry
+time:
+  - platform: rx8111
+    id: rtc
+```
+
+The RTC is read on startup and then at the `update_interval` (15 minutes by default). It is **not** set from the
+system time automatically; use the `rx8111.write_time` action for that. A read does not synchronize the system
+clock when the RTC reports a power loss or an oscillator stop, or when its time, calendar date or weekday is
+invalid. Those flags are cleared only by a successful `rx8111.write_time`.
+
+## Configuration Variables
+
+- **address** (*Optional*, int): Manually specify the I²C address of the RTC. Defaults to `0x32`.
+- All other options from [Base Time Configuration](/components/time/#base_time_config).
+
+## `rx8111.write_time` Action
+
+This [Action](/automations/actions/#config-action) writes the current system time to the RTC. It needs a valid
+system time with a year from 2019 to 2099. A successful write clears the RTC's time-validity flags and keeps its
+alarm, timer, update and event flags.
+
+> [!NOTE]
+> The RX8111 component will *not* write to the RTC unless triggered *explicitly* by this action.
+
+```yaml
+on_...:
+  - rx8111.write_time
+
+  # in case you need to specify the RX8111 id
+  - rx8111.write_time:
+      id: rtc
+```
+
+## `rx8111.read_time` Action
+
+This [Action](/automations/actions/#config-action) reads the RTC and synchronizes the system clock when the time
+read is valid, in addition to the reads at the `update_interval`.
+
+```yaml
+on_...:
+  - rx8111.read_time
+
+  # in case you need to specify the RX8111 id
+  - rx8111.read_time:
+      id: rtc
+```
+
+## Full Configuration Example
+
+The RTC is read once at boot, and written whenever Home Assistant provides a trusted time.
+
+```yaml
+time:
+  - platform: rx8111
+    id: rtc
+    update_interval: never
+  - platform: homeassistant
+    on_time_sync:
+      then:
+        - rx8111.write_time: rtc
+```
+
+The alarm, timer, event capture, FOUT and backup power features of the RX8111 are not available yet.
+
+## See Also
+
+- [Time Component](/components/time/)
+- [I²C Bus](/components/i2c/)
