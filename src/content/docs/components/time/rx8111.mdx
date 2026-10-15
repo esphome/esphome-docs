@@ -25,7 +25,7 @@ invalid. Those flags are cleared only by a successful `rx8111.write_time`.
 
 ## `rx8111.write_time` Action
 
-This [Action](/automations/actions#config-action) writes the current system time to the RTC. It needs a valid
+This [Action](/automations/actions/#config-action) writes the current system time to the RTC. It needs a valid
 system time with a year from 2019 to 2099. A successful write clears the RTC's time-validity flags and keeps its
 alarm, timer, update and event flags.
 
@@ -43,7 +43,7 @@ on_...:
 
 ## `rx8111.read_time` Action
 
-This [Action](/automations/actions#config-action) reads the RTC and synchronizes the system clock when the time
+This [Action](/automations/actions/#config-action) reads the RTC and synchronizes the system clock when the time
 read is valid, in addition to the reads at the `update_interval`.
 
 ```yaml
