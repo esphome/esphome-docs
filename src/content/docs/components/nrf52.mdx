@@ -67,24 +67,33 @@ nrf52:
 
 The dongle ships with Nordic's Open DFU Bootloader factory-flashed at the top of
 flash (`0xE0000`–`0x100000`). ESPHome reserves that region and boots your
-application directly after it — no custom bootloader is built.
+application directly after the MBR page — no custom bootloader is built.
+
+The bootloader speaks Nordic's Secure DFU protocol, so ESPHome packages and
+uploads the firmware with Nordic's `nrfutil`, which has to be installed once:
+
+1. Install `nrfutil` from [Nordic Semiconductor](https://www.nordicsemi.com/Products/Development-tools/nRF-Util)
+   and make sure it is on your `PATH`.
+2. Run `nrfutil install nrf5sdk-tools` to add the DFU commands.
+
+Without it the build still succeeds, but no DFU package is produced and the
+upload step tells you what is missing.
 
 ### First flash and recovery
 
-1. Connect the dongle to the PC while holding the **SW1** button (the small
-   button on the far side of the PCB from the USB connector).
-2. Release SW1 after a second — the red LED fades in and out while the
-   bootloader is running.
-3. Run `esphome upload yourfile.yaml`. ESPHome sends the merged firmware image
-   to the dongle over USB CDC.
+1. Connect the dongle to the PC and press the **RESET** button (the small
+   button on the side of the PCB, next to the USB connector). The red LED
+   fades in and out while the bootloader is running.
+2. Run `esphome upload yourfile.yaml`. ESPHome sends the DFU package to the
+   dongle over USB CDC.
 
 The same procedure recovers a device whose application won't boot; the factory
 bootloader is never erased by application uploads.
 
 ### Updating a running device
 
-Once an application is running, replug with SW1 held to re-enter the bootloader,
-then upload again. There is no automatic bootloader entry on this board — the
+Press RESET while the application runs to drop back into the bootloader, then
+upload again. There is no automatic bootloader entry on this board — the
 Open DFU Bootloader has no auto-entry mechanism, and the [dfu](#dfu-device-firmware-update)
 component's 1200-baud touch trick does not apply to it.
 
