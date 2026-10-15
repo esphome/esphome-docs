@@ -79,8 +79,8 @@ nothing has to be installed by hand.
 1. Connect the dongle to the PC and press the **RESET** button (the small
    button on the side of the PCB, next to the USB connector). The red LED
    fades in and out while the bootloader is running.
-2. Run `esphome upload yourfile.yaml`. ESPHome sends the DFU package to the
-   dongle over USB CDC.
+2. Run `esphome run yourfile.yaml`. ESPHome builds the firmware and sends the
+   DFU package to the dongle over USB CDC.
 
 The same procedure recovers a device whose application won't boot; the factory
 bootloader is never erased by application uploads.
