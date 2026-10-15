@@ -36,6 +36,9 @@ button:
 - **entity_id** (*Optional*, string): The entity ID of the light to import and control from Home Assistant.
   Required unless the entity is a linked input of the [API wizard](/components/api/#wizard), which lets the user
   pick the entity when the device is added.
+- **report_timeout** (*Optional*, [Time](/guides/configuration-types/#config-time)): How long Home Assistant may
+  take to report a change made on the device back before the light returns to the state reported last. Raise it
+  for a light Home Assistant only polls, which can take a minute. From `1s` to `255s`. Defaults to `10s`.
 - All other options from [Light](/components/light/#config-light). `gamma_correct` defaults to `0` and
   `default_transition_length` to `0s`, as Home Assistant renders the light; `restore_mode` and `restore_state`
   have no effect, the state always comes from Home Assistant.
@@ -53,7 +56,8 @@ white balance of a cold/warm white light. Brightness values are scaled to Home A
 range. Effects run on the device and drive the Home Assistant light through the same actions. A
 transition runs on the device alone; Home Assistant receives the state the light ends at. A change that leaves
 Home Assistant as it is, such as turning on a light that is already on, is not sent. A flash ends where it began,
-so it is never sent and only the device's own state shows it; a warning in the log says so.
+so it is never sent and only the device's own state shows it; a warning in the log says so, as it does for
+a transition that ends in the state Home Assistant already has.
 
 ## See Also
 
