@@ -19,7 +19,7 @@ This component allows ESPHome nodes to communicate with Home Assistant over a Th
 This component is supported on the following platforms:
 
 - **ESP32** with an 802.15.4 radio (ESP32-C5, ESP32-C6, ESP32-H2, ESP32-H4, ESP32-H21, or ESP32-S31) with the
-  ESP-IDF framework.
+  ESP-IDF framework, version 5.5.5 or newer.
 - **nRF52840** with the Zephyr framework.
 
 <span id="config-openthread"></span>
@@ -159,8 +159,8 @@ on_...:
 
 ## OpenThread Border Router
 
-Border Router mode bridges a Thread network to a Wi-Fi network. It requires an ESP32 using ESP-IDF 5.5.5 or newer,
-IPv6 enabled in the [Network Component](/components/network/), and the default `device_type: FTD`. The Thread
+Border Router mode bridges a Thread network to a Wi-Fi network. It requires an ESP32, IPv6 enabled in the
+[Network Component](/components/network/), and the default `device_type: FTD`. The Thread
 dataset is configured as in the [Full Configuration](#full-configuration) above; Thread starts on boot and border
 routing begins once Wi-Fi is connected.
 
