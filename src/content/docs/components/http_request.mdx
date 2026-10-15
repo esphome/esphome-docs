@@ -274,7 +274,7 @@ If you want to retrieve the value for the vol key and assign it to a template se
 set to player_volume you can do this, but note that checking for the presence of the key will prevent difficult-to-read
 error messages:
 
-This example assumes that the server returns a response as a JSON object similar to this:
+This example assumes that the server returns a response as a JSON object similar to this, using a specific given optional timeout:
 `{"status":"play","vol":"42","mute":"0"}`
 
 If you want to retrieve the value for the `vol` key and assign it to a template `sensor` or `number` component
@@ -285,6 +285,7 @@ on_...:
 - http_request.get:
     url: https://esphome.io
     capture_response: true
+    timeout: 10000
     on_response:
       then:
         - if:
