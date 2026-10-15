@@ -5,6 +5,7 @@ title: "AS7341 / AS7343 / TCS3448 Spectral Color Sensor"
 
 import Figure from '@components/Figure.astro';
 import APIRef from '@components/APIRef.astro';
+import spectrumCardImg from './images/as734x-spectrum-card.jpg';
 
 The `as734x` component allows you to use the AS7341
 ([datasheet](https://look.ams-osram.com/m/24266a3e584de4db/original/AS7341-DS000504.pdf),
@@ -55,6 +56,26 @@ more entries to the list to use several sensors.
 - **type** (**Required**, string): The sensor model. Must be `AS7341`, `AS7343` or `TCS3448`.
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID for this component. Set it
   when you have more than one `as734x` sensor.
+- **normalize_basic_counts** (*Optional*, string): Divide every basic count by a common reference, so the
+  published values describe the shape of the spectrum rather than its strength. Defaults to `NONE`. Must be one
+  of:
+
+  - `NONE` (*default*): publish the basic counts as they are.
+  - `ALL`: divide by the largest basic count of any channel.
+  - `BANDS`: divide by the largest basic count among the visible bands, ignoring `clear` and `nir`.
+  - `CLEAR`: divide by the basic count of the `clear` channel.
+- **calibration** (*Optional*): Corrections applied while converting raw counts to basic counts. See
+  [Calibration](#calibration) below.
+
+  - **channel_correction** (*Optional*, list of float): One factor per channel, in the order given under
+    [Channel Order](#channel-order). The list length must match the model: 10 values for the AS7341, 13 for
+    the AS7343 and TCS3448. Defaults to the manufacturer's factors for the AS7343 and TCS3448, and to all
+    ones for the AS7341.
+  - **dark_current** (*Optional*, list of float): One dark current offset per channel, in basic counts,
+    subtracted before the corrections are applied. Same length rule as `channel_correction`. Defaults to all
+    zeroes.
+  - **glass_attenuation_factor** (*Optional*, float): A single factor compensating for any cover glass in front
+    of the sensor. Defaults to `1.0`, meaning no cover.
 - **gain** (*Optional*): The gain used by the device. A higher gain may be more suitable for lower-light
   environments. Defaults to `X8`. Must be one of:
 
@@ -110,7 +131,7 @@ sensor:
   from. Only needed when you have more than one `as734x` sensor.
 - **counts** (*Optional*): The raw per-band readings to publish, see [Raw Counts](#raw-counts). Each band is
   optional; only the bands you list are published. Each band accepts all options from
-  [Sensor](/components/sensor/).
+  [Sensor](/components/sensor/), or just a name as a shorthand.
 
   - **f1** (*Optional*): Band F1 (415nm on the AS7341, 405nm on the AS7343).
   - **f2** (*Optional*): Band F2 (445nm on the AS7341, 425nm on the AS7343).
@@ -125,6 +146,12 @@ sensor:
   - **f8** (*Optional*): Band F8 (680nm on the AS7341, 745nm on the AS7343).
   - **nir** (*Optional*): Near-infrared (910nm on the AS7341, 855nm on the AS7343).
   - **clear** (*Optional*): Clear, unfiltered wideband channel.
+
+- **basic_counts** (*Optional*): The same channels as `counts`, but converted to basic counts, which are
+  comparable across different `gain` and integration time settings. See [Basic Counts](#basic-counts) below.
+  Each channel accepts all options from [Sensor](/components/sensor/), or just a name as a shorthand.
+- **saturation_level** (*Optional*): The highest channel reading as a percentage of the full-scale count. All
+  options from [Sensor](/components/sensor/), or just a name as a shorthand.
 
 ## Bands
 
@@ -156,6 +183,142 @@ and `astep`. Changing any of those three options changes the counts for the same
 The largest count a band can reach is $(\text{ATIME} + 1) \times (\text{ASTEP} + 1)$, or 65535 if that product
 is larger. With the default `atime` and `astep` that limit is 18000. A band sitting at the limit is saturated
 and its reading should be discarded; lower the `gain` or the integration time until it drops below the limit.
+
+The `saturation_level` sensor reports how close the brightest channel is to that limit, as a percentage. It is a
+convenient thing to watch while choosing `gain`, `atime` and `astep`: a reading near 100% means at least one
+channel is clipping, and a reading of a few percent means most of the sensor's range is going unused.
+
+## Basic Counts
+
+A basic count is the raw count scaled to one unit of gain and one millisecond of integration time. Two basic
+counts taken with different `gain`, `atime` or `astep` settings can be compared directly, which raw counts
+cannot. The conversion is:
+
+$$
+\text{basic count} = \frac{\text{raw count}}{\text{gain} \times t}
+$$
+
+where $t$ is the integration time in milliseconds. The [calibration](#calibration) corrections are then applied.
+Because basic counts are small fractional numbers, these sensors default to six decimal places.
+
+Setting `normalize_basic_counts` divides every channel by a common reference, which turns the readings into a
+spectral shape that does not move when the light gets brighter or dimmer. `BANDS` is the usual choice for
+comparing the colour of a light source, since it ignores the wideband `clear` and the `nir` channels.
+
+## Charting the Spectrum
+
+The [AS734x Spectrum Card](https://github.com/latonita/HA-par-spectrum-card) is a Home Assistant Lovelace card
+that plots these channels as a spectrum. It reads either the `counts` or the `basic_counts` sensors, and given a
+full set of `basic_counts` it can also rebuild the spectrum between the channels using the manufacturer's
+per-channel weights.
+
+<Figure
+  src={spectrumCardImg}
+  alt="Spectrum card showing an AS7341 and an AS7343 under a 3000K LED bulb"
+  caption="Both sensors under a 3000K LED bulb: rebuilt spectrum above, basic counts below"
+  layout="constrained"
+/>
+
+The lamp above is a blue emitter behind a phosphor, which is why the rebuilt curve shows a narrow spike near
+450nm from the emitter and a broad hump near 600nm from the phosphor.
+
+## Calibration
+
+The `calibration` block holds the corrections applied while a raw count becomes a basic count. They run in this
+order:
+
+1. The channel's `dark_current` is subtracted and the result is clamped at zero.
+2. The device's own gain correction is applied.
+3. The channel's `channel_correction` is applied.
+4. `glass_attenuation_factor` is applied.
+
+These corrections move the `basic_counts` sensors and everything computed from them. They do not touch the
+`counts` sensors, which always report what the device returned.
+
+Set `glass_attenuation_factor` when the sensor sits behind a window or enclosure that dims everything it sees by
+a known amount. To measure your own `dark_current`, cover the sensor completely and record the basic counts each
+channel reports; those values are the offsets to subtract.
+
+### Channel Order
+
+`channel_correction` and `dark_current` both take one value per channel, and the list length has to match the
+model exactly: 10 values for the AS7341, 13 for the AS7343 and TCS3448. There is no syntax for setting a single
+channel, so changing one value means supplying the whole list.
+
+The values are read in the order ESPHome lists the channels, which is not wavelength order. On the AS7343, `fy`
+(555nm) comes before `f5` (550nm):
+
+- AS7341: `f1`, `f2`, `f3`, `f4`, `f5`, `f6`, `f7`, `f8`, `nir`, `clear`
+- AS7343: `f1`, `f2`, `fz`, `f3`, `f4`, `fy`, `f5`, `fxl`, `f6`, `f7`, `f8`, `nir`, `clear`
+
+### Default Channel Correction
+
+The AS7341 has no published per-device calibration, so all ten of its factors default to `1.0` and the channels
+are left as the device reports them.
+
+The AS7343 and TCS3448 default to the manufacturer's factors for a golden reference device:
+
+| Position | Channel | Wavelength | Default factor |
+| -------- | ------- | ---------- | -------------- |
+| 1        | `f1`    | 405nm      | 1.055464349    |
+| 2        | `f2`    | 425nm      | 1.043509797    |
+| 3        | `fz`    | 450nm      | 1.029576268    |
+| 4        | `f3`    | 475nm      | 1.017505200    |
+| 5        | `f4`    | 515nm      | 1.004418990    |
+| 6        | `fy`    | 555nm      | 0.987356499    |
+| 7        | `f5`    | 550nm      | 0.957597044    |
+| 8        | `fxl`   | 600nm      | 0.995863485    |
+| 9        | `f6`    | 640nm      | 1.014628964    |
+| 10       | `f7`    | 690nm      | 0.996500814    |
+| 11       | `f8`    | 745nm      | 0.933072749    |
+| 12       | `nir`   | 855nm      | 1.052236338    |
+| 13       | `clear` |            | 0.999570232    |
+
+`dark_current` defaults to `0.0` for every channel on both models.
+
+> [!WARNING]
+> Supplying `channel_correction` replaces the entire list, defaults included. To adjust one channel on an
+> AS7343, copy the other twelve values from the table above into your own list, or you will silently drop the
+> manufacturer's calibration for them.
+
+### Adjusting One Channel
+
+Compare the channel against a reference, then scale its existing factor by how far off it reads:
+
+$$
+\text{new factor} = \text{current factor} \times \frac{\text{expected reading}}{\text{observed reading}}
+$$
+
+For example, if `f5` on an AS7343 reads half of what it should, its factor becomes
+`0.957597044 * 2 = 1.915194088`, and the whole list is given with that one value changed:
+
+```yaml
+as734x:
+  - id: spectral
+    type: AS7343
+    calibration:
+      channel_correction:
+        - 1.055464349 # f1
+        - 1.043509797 # f2
+        - 1.029576268 # fz
+        - 1.017505200 # f3
+        - 1.004418990 # f4
+        - 0.987356499 # fy
+        - 1.915194088 # f5, adjusted
+        - 0.995863485 # fxl
+        - 1.014628964 # f6
+        - 0.996500814 # f7
+        - 0.933072749 # f8
+        - 1.052236338 # nir
+        - 0.999570232 # clear
+```
+
+> [!NOTE]
+> Channels differ in bandwidth as well as centre wavelength, so two neighbouring channels do not read the same
+> under the same light even when both are working correctly. On the AS7343 in particular, `fy` is a wideband
+> channel and `f5` is narrow, so `f5` reading lower than `fy` is expected rather than a fault. Compare a channel
+> against a reference instrument or a known source before correcting it, and use a smooth broadband source: a
+> narrow LED peak that falls between two filters looks exactly like a broken channel.
 
 ## Integration Time
 
@@ -217,6 +380,8 @@ sensor:
 ## See Also
 
 - [Sensor Filters](/components/sensor/#sensor-filters)
+- [AS734x Spectrum Card](https://github.com/latonita/HA-par-spectrum-card), a Home Assistant card that charts
+  these channels
 - [AS7341 Spectral Color Sensor](/components/sensor/as7341/)
 - [Adafruit_AS7341](https://github.com/adafruit/Adafruit_AS7341)
 - [SparkFun_AS7341X_Arduino_Library](https://github.com/sparkfun/SparkFun_AS7341X_Arduino_Library)
