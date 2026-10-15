@@ -7,25 +7,57 @@ The RX8111 time platform reads UTC time from an Epson RX8111CE real-time clock (
 [I²C](/components/i2c/). Configure the I²C bus separately.
 
 ```yaml
+# Example configuration entry
 time:
   - platform: rx8111
     id: rtc
 ```
 
-The RTC is read on startup and periodically at the base time platform's `update_interval` (15 minutes by default).
-The RTC will **not** automatically be set from system time. A read will not synchronize the system clock if the RTC
-reports power loss or oscillator stop, or if its BCD time, calendar date or weekday is invalid. The invalid-time
-flags are cleared only after an explicit, successful write of trusted time.
+The RTC is read on startup and then at the `update_interval` (15 minutes by default). It is **not** set from the
+system time automatically; use the `rx8111.write_time` action for that. A read does not synchronize the system
+clock when the RTC reports a power loss or an oscillator stop, or when its time, calendar date or weekday is
+invalid. Those flags are cleared only by a successful `rx8111.write_time`.
 
 ## Configuration Variables
 
-- **id** (*Optional*, [ID](/guides/configuration-types#id)): ID used by the actions and lambdas.
-- **address** (*Optional*, int): I²C address; defaults to `0x32`.
+- **address** (*Optional*, int): Manually specify the I²C address of the RTC. Defaults to `0x32`.
 - All other options from [Base Time Configuration](/components/time/#base_time_config).
 
-## Synchronizing Time
+## `rx8111.write_time` Action
 
-To set the RTC when a trusted time source becomes available, call `rx8111.write_time` explicitly:
+This [Action](/automations/actions#config-action) writes the current system time to the RTC. It needs a valid
+system time with a year from 2019 to 2099. A successful write clears the RTC's time-validity flags and keeps its
+alarm, timer, update and event flags.
+
+> [!NOTE]
+> The RX8111 component will *not* write to the RTC unless triggered *explicitly* by this action.
+
+```yaml
+on_...:
+  - rx8111.write_time
+
+  # in case you need to specify the RX8111 id
+  - rx8111.write_time:
+      id: rtc
+```
+
+## `rx8111.read_time` Action
+
+This [Action](/automations/actions#config-action) reads the RTC and synchronizes the system clock when the time
+read is valid, in addition to the reads at the `update_interval`.
+
+```yaml
+on_...:
+  - rx8111.read_time
+
+  # in case you need to specify the RX8111 id
+  - rx8111.read_time:
+      id: rtc
+```
+
+## Full Configuration Example
+
+The RTC is read once at boot, and written whenever Home Assistant provides a trusted time.
 
 ```yaml
 time:
@@ -35,21 +67,10 @@ time:
   - platform: homeassistant
     on_time_sync:
       then:
-        - rx8111.write_time: {id: rtc}
+        - rx8111.write_time: rtc
 ```
 
-This example also requires a working [Home Assistant time source](/components/time/homeassistant/).
-`rx8111.write_time` writes valid system UTC time to the RTC; it will not write dates outside 2000–2099. A
-successful write clears the time-validity flags without clearing alarm, timer, update or event flags.
-`rx8111.read_time` requests an additional RTC read and synchronizes the system clock only if the RTC time is valid:
-
-```yaml
-on_...:
-  - rx8111.read_time: {id: rtc}
-```
-
-Both actions can omit `id` when only one RX8111 time source is configured. RX8111 alarm, timer, event capture,
-FOUT and backup power configuration are not available in this initial time platform.
+The alarm, timer, event capture, FOUT and backup power features of the RX8111 are not available yet.
 
 ## See Also
 
