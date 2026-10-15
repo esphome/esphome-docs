@@ -196,7 +196,8 @@ available under the ESPHome licence.
 ## Platform compatibility
 
 - ESP32-S3 and ESP32-C3: tested with the `arduino` and `esp-idf` frameworks
-- ESP8266: tested
+- ESP8266: tested. The acknowledge bit is timed with hardware timer 1, which the Arduino core's PWM, `tone` and
+  servo outputs use as well, so do not combine them with this component.
 - RP2040 and LibreTiny boards: compiled, not tested
 
 ## Acknowledgements
