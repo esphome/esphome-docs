@@ -57,7 +57,7 @@ The component stays at 5 V Type-C default power when:
 
 - The source does not support Power Delivery, or does not send its capabilities after the component asks for them
   and sends a soft reset.
-- The source rejects the request, or does not report the new supply as ready in time.
+- The source rejects the request, does not answer it in time, or does not report the new supply as ready in time.
 
 The negotiation runs in a dedicated FreeRTOS task, so replies to the source meet the PD timing requirements even
 while the main loop is busy. The first measurement of the CC lines is made 2 seconds after boot, to give the source
@@ -142,13 +142,16 @@ This automation is triggered when a voltage request ends without a new contract:
 
 - The source rejects the request.
 - The source keeps answering that it is busy, until the component stops retrying.
-- The request cannot be sent.
+- The source does not answer the request in time.
+- The request cannot be sent, including a [`fusb302b.request_voltage`](#fusb302b-request_voltage-action) action
+  that runs after the component failed at boot.
 - After the first negotiation, for example after a [`fusb302b.request_voltage`](#fusb302b-request_voltage-action)
   action, the source does not send its capabilities when the component asks for them, even after a soft reset.
 
 A contract that is already in place stays valid. When the first request after attach fails, the component stays at
 5 V and [`on_power_ready`](#on_power_ready-trigger) is triggered as well. It is not triggered when the source does
-not support Power Delivery.
+not support Power Delivery, or when a request is cut short because communication with the FUSB302B fails: that
+triggers [`on_error`](#on_error-trigger) instead.
 
 ```yaml
 fusb302b:
@@ -159,8 +162,11 @@ fusb302b:
 
 ### `on_error` Trigger
 
-This automation is triggered when communication with the FUSB302B over I²C fails. The component keeps trying to
-initialize the chip and triggers `on_connect` once a source is detected again.
+This automation is triggered when communication with the FUSB302B over I²C fails after boot. The component keeps
+trying to initialize the chip and triggers `on_connect` once a source is detected again.
+
+It is not triggered when the chip cannot be reached at boot, for example because it is missing or wired incorrectly.
+The component is then marked as failed, which is shown in the logs.
 
 ## Actions
 
