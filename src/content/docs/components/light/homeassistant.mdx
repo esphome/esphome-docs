@@ -6,7 +6,7 @@ import APIRef from '@components/APIRef.astro';
 
 The `homeassistant` light platform creates a light that **imports** the state of a light in Home Assistant and
 **controls** it through the [native API](/components/api/). The light can then be used like any other light on
-the device: in [automations](/automations/), with the [light actions](/components/light/#light-actions), on a
+the device: in [automations](/automations/), with the [light actions](/components/light/#light-automations), on a
 [display](/components/display/) or through [LVGL](/components/lvgl/).
 
 > [!NOTE]
@@ -36,7 +36,7 @@ button:
 - **entity_id** (*Optional*, string): The entity ID of the light to import and control from Home Assistant.
   Required unless the entity is a linked input of the [API wizard](/components/api/#wizard), which lets the user
   pick the entity when the device is added.
-- **report_timeout** (*Optional*, [Time](/guides/configuration-types/#config-time)): How long Home Assistant may
+- **report_timeout** (*Optional*, [Time](/guides/configuration-types/#time)): How long Home Assistant may
   take to report a change made on the device back before the light returns to the state reported last. Raise it
   for a light Home Assistant only polls, which can take a minute. From `1s` to `255s`. Defaults to `10s`.
 - All other options from [Light](/components/light/#config-light). `gamma_correct` defaults to `0` and
