@@ -69,7 +69,8 @@ more entries to the list to use several sensors.
 
   - **channel_correction** (*Optional*, list of float): One factor per channel, in the order given under
     [Channel Order](#channel-order). The list length must match the model: 10 values for the AS7341, 13 for
-    the AS7343. Defaults to the manufacturer's factors for the AS7343, and to all ones for the AS7341.
+    the AS7343 and TCS3448. Defaults to the manufacturer's factors for the AS7343 and TCS3448, and to all
+    ones for the AS7341.
   - **dark_current** (*Optional*, list of float): One dark current offset per channel, in basic counts,
     subtracted before the corrections are applied. Same length rule as `channel_correction`. Defaults to all
     zeroes.
@@ -130,7 +131,7 @@ sensor:
   from. Only needed when you have more than one `as734x` sensor.
 - **counts** (*Optional*): The raw per-band readings to publish, see [Raw Counts](#raw-counts). Each band is
   optional; only the bands you list are published. Each band accepts all options from
-  [Sensor](/components/sensor/).
+  [Sensor](/components/sensor/), or just a name as a shorthand.
 
   - **f1** (*Optional*): Band F1 (415nm on the AS7341, 405nm on the AS7343).
   - **f2** (*Optional*): Band F2 (445nm on the AS7341, 425nm on the AS7343).
@@ -241,8 +242,8 @@ channel reports; those values are the offsets to subtract.
 ### Channel Order
 
 `channel_correction` and `dark_current` both take one value per channel, and the list length has to match the
-model exactly: 10 values for the AS7341, 13 for the AS7343. There is no syntax for setting a single channel, so
-changing one value means supplying the whole list.
+model exactly: 10 values for the AS7341, 13 for the AS7343 and TCS3448. There is no syntax for setting a single
+channel, so changing one value means supplying the whole list.
 
 The values are read in the order ESPHome lists the channels, which is not wavelength order. On the AS7343, `fy`
 (555nm) comes before `f5` (550nm):
@@ -255,7 +256,7 @@ The values are read in the order ESPHome lists the channels, which is not wavele
 The AS7341 has no published per-device calibration, so all ten of its factors default to `1.0` and the channels
 are left as the device reports them.
 
-The AS7343 defaults to the manufacturer's factors for a golden reference device:
+The AS7343 and TCS3448 default to the manufacturer's factors for a golden reference device:
 
 | Position | Channel | Wavelength | Default factor |
 | -------- | ------- | ---------- | -------------- |
@@ -292,8 +293,8 @@ For example, if `f5` on an AS7343 reads half of what it should, its factor becom
 `0.957597044 * 2 = 1.915194088`, and the whole list is given with that one value changed:
 
 ```yaml
-sensor:
-  - platform: as734x
+as734x:
+  - id: spectral
     type: AS7343
     calibration:
       channel_correction:
