@@ -45,7 +45,8 @@ The examples below assume `id: cec`.
 - **pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The GPIO pin wired to the CEC
   line.
 - **address** (**Required**, int): The logical address the device answers to, `0x0` to `0xF`. `0x5` is an
-  audio system, `0x4` a playback device, `0xF` the unregistered address of a device that only listens.
+  audio system, `0x4` a playback device, `0xF` the unregistered address; a device that only listens uses it
+  together with `monitor_mode: true`, as `0xF` alone still acknowledges broadcasts.
 - **promiscuous_mode** (*Optional*, boolean): Also hand messages addressed to other devices to `on_message`.
   Defaults to `false`: only broadcasts and messages for this device's address are seen.
 - **monitor_mode** (*Optional*, boolean): Listen without taking part in the bus: no acknowledge is sent for
@@ -116,16 +117,24 @@ button:
       - hdmi_cec.send:
           destination: 0x0  # the TV
           data: [0x44, 0x6D]  # User Control Pressed: Power On
+      - hdmi_cec.send:
+          destination: 0x0
+          data: [0x45]  # User Control Released, or the TV treats the key as held
   - platform: template
     name: "TV Volume Up"
     on_press:
       - hdmi_cec.send:
           destination: 0x0
           data: [0x44, 0x41]  # User Control Pressed: Volume Up
+      - hdmi_cec.send:
+          destination: 0x0
+          data: [0x45]  # User Control Released
   - platform: template
     name: "TV Volume Down"
     on_press:
-      - lambda: id(cec).send(0x0, {0x44, 0x42});  # User Control Pressed: Volume Down
+      - lambda: |-  # User Control Pressed: Volume Down, then Released
+          id(cec).send(0x0, {0x44, 0x42});
+          id(cec).send(0x0, {0x45});
 ```
 
 Not every TV honours every command; the log shows what was sent and received:
@@ -174,8 +183,10 @@ part of this component yet; they can be left out.
 ### Connect the HDMI Hot Plug Detect Pin
 
 HDMI pin 19, Hot Plug Detect, is not part of CEC but tells when the cable is plugged into a TV. The TV
-drives it to 5V through a 1K resistor, so it has to be limited to 3.3V: a blue or white LED to ground in
-the schematic below does that and shows the connection at the same time (a 3.3V zener diode works too).
+drives it to 5V through a 1K resistor, so it has to be limited to 3.3V before it reaches a GPIO: a
+resistor divider (for example 10K to the pin and 20K from the pin to ground) or a 3.3V zener diode with a
+series resistor. The LED in the schematic below only shows the connection; its forward voltage is not a
+specification, so do not rely on it alone to protect the input.
 
 ![Schematics with HPD and UART](images/hpd_uart_schematics.png)
 
