@@ -73,7 +73,9 @@ valid while the automation runs; copy it if a later action needs it.
 
 ## `hdmi_cec.send` Action
 
-Queues a message for transmission. Up to four messages wait in the queue while the bus is busy.
+Queues a message for transmission. Up to four messages wait in the queue while the bus is busy. A message is
+sent bit by bit from the main loop, which takes about 25 ms per byte, so the loop pauses for up to 400 ms while
+a message goes out; a warning about a slow operation during a send is expected.
 
 ```yaml
 button:
