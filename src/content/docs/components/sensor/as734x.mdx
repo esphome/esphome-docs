@@ -1,0 +1,223 @@
+---
+description: "Instructions for setting up AS7341, AS7343 and TCS3448 spectral color sensors."
+title: "AS7341 / AS7343 / TCS3448 Spectral Color Sensor"
+---
+
+import Figure from '@components/Figure.astro';
+import APIRef from '@components/APIRef.astro';
+
+The `as734x` component allows you to use the AS7341
+([datasheet](https://look.ams-osram.com/m/24266a3e584de4db/original/AS7341-DS000504.pdf),
+[Adafruit](https://www.adafruit.com/product/4698)) and AS7343
+([datasheet](https://look.ams-osram.com/m/5f2d27fff9a874d2/original/AS7343-14-Channel-Multi-Spectral-Sensor.pdf))
+spectral color sensors with ESPHome. The TCS3448
+([datasheet](https://look.ams-osram.com/m/1c24b057e65ee61e/original/TCS3448-14-Channel-multi-spectral-sensor.pdf))
+is supported as well: it replaces the AS7343 and shares its channels, register map and calibration, so
+everything written below about the AS7343 applies to it too. The sensor is selected with the `type` option. The
+[I²C Bus](/components/i2c/) is required to be set up in your configuration for this sensor to work.
+
+<Figure
+  src="/images/as7341.jpg"
+  alt="AS7341 Spectral Color Sensor"
+  caption="AS7341 Spectral Color Sensor"
+  layout="constrained"
+  width={250}
+  height={182}
+/>
+
+> [!NOTE]
+> The AS7341 is also covered by the older [`as7341`](/components/sensor/as7341/) platform, which keeps working.
+> See [Moving From `as7341`](#moving-from-as7341) below for the differences.
+
+```yaml
+# Example configuration entry
+as734x:
+  - id: spectral
+    type: AS7343
+
+sensor:
+  - platform: as734x
+    as734x_id: spectral
+    counts:
+      f1:
+        name: "F1 405nm"
+      clear:
+        name: "Clear"
+```
+
+## Component/Hub
+
+The `as734x` component talks to the sensor and sets how it measures. Each `as734x` entry is one sensor, so add
+more entries to the list to use several sensors.
+
+### Configuration variables
+
+- **type** (**Required**, string): The sensor model. Must be `AS7341`, `AS7343` or `TCS3448`.
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID for this component. Set it
+  when you have more than one `as734x` sensor.
+- **gain** (*Optional*): The gain used by the device. A higher gain may be more suitable for lower-light
+  environments. Defaults to `X8`. Must be one of:
+
+  - `X0.5`
+  - `X1`
+  - `X2`
+  - `X4`
+  - `X8` (*default*)
+  - `X16`
+  - `X32`
+  - `X64`
+  - `X128`
+  - `X256`
+  - `X512`
+  - `X1024` (`AS7343` and `TCS3448` only)
+  - `X2048` (`AS7343` and `TCS3448` only)
+
+- **atime** (*Optional*, int): The number of integration steps. Defaults to `29`. Must be between `0` and `255`.
+- **astep** (*Optional*, int): The length of one integration step in increments of 2.78µs. Defaults to `599`.
+  Must be between `0` and `65534`.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval to read the sensor.
+  Defaults to `60s`.
+- **address** (*Optional*, int): The I²C address of the sensor. Defaults to `0x39`, or to `0x59` when `type`
+  is `TCS3448`, which answers on a different address than the AS7343.
+- **i2c_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the
+  [I²C Component](/components/i2c/) if you want to use multiple I²C buses.
+
+> [!NOTE]
+> `atime` and `astep` must not both be `0`, as that would leave the sensor with no integration time.
+
+## Sensor
+
+The `as734x` sensor platform publishes the readings of an `as734x` component.
+
+```yaml
+sensor:
+  - platform: as734x
+    as734x_id: spectral
+    counts:
+      f1:
+        name: "F1 405nm"
+      f8:
+        name: "F8 745nm"
+      nir:
+        name: "NIR"
+      clear:
+        name: "Clear"
+```
+
+### Configuration variables
+
+- **as734x_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the `as734x` component to read
+  from. Only needed when you have more than one `as734x` sensor.
+- **counts** (*Optional*): The raw per-band readings to publish, see [Raw Counts](#raw-counts). Each band is
+  optional; only the bands you list are published. Each band accepts all options from
+  [Sensor](/components/sensor/).
+
+  - **f1** (*Optional*): Band F1 (415nm on the AS7341, 405nm on the AS7343).
+  - **f2** (*Optional*): Band F2 (445nm on the AS7341, 425nm on the AS7343).
+  - **fz** (*Optional*): Band FZ (450nm). `AS7343` and `TCS3448` only.
+  - **f3** (*Optional*): Band F3 (480nm on the AS7341, 475nm on the AS7343).
+  - **f4** (*Optional*): Band F4 (515nm).
+  - **fy** (*Optional*): Band FY (555nm). `AS7343` and `TCS3448` only.
+  - **f5** (*Optional*): Band F5 (555nm on the AS7341, 550nm on the AS7343).
+  - **fxl** (*Optional*): Band FXL (600nm). `AS7343` and `TCS3448` only.
+  - **f6** (*Optional*): Band F6 (590nm on the AS7341, 640nm on the AS7343).
+  - **f7** (*Optional*): Band F7 (630nm on the AS7341, 690nm on the AS7343).
+  - **f8** (*Optional*): Band F8 (680nm on the AS7341, 745nm on the AS7343).
+  - **nir** (*Optional*): Near-infrared (910nm on the AS7341, 855nm on the AS7343).
+  - **clear** (*Optional*): Clear, unfiltered wideband channel.
+
+## Bands
+
+Each band is a photodiode with an optical filter in front of it, centered on the wavelength listed below. The
+`clear` band has no filter and responds to the whole visible range, and `nir` responds to near-infrared light.
+
+The AS7343 has three bands the AS7341 does not have (`fz`, `fy` and `fxl`), and the bands the two models share
+are not centered on the same wavelengths. The same band key therefore does not mean the same thing on both
+models. The TCS3448 has the same bands as the AS7343.
+
+### AS7341
+
+| Band       | `f1`  | `f2`  | `f3`  | `f4`  | `f5`  | `f6`  | `f7`  | `f8`  | `nir` | `clear`  |
+| ---------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | -------- |
+| Wavelength | 415nm | 445nm | 480nm | 515nm | 555nm | 590nm | 630nm | 680nm | 910nm | Wideband |
+
+### AS7343 and TCS3448
+
+| Band       | `f1`  | `f2`  | `fz`  | `f3`  | `f4`  | `fy`  | `f5`  | `fxl` | `f6`  | `f7`  | `f8`  | `nir` | `clear`  |
+| ---------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | -------- |
+| Wavelength | 405nm | 425nm | 450nm | 475nm | 515nm | 555nm | 550nm | 600nm | 640nm | 690nm | 745nm | 855nm | Wideband |
+
+## Raw Counts
+
+The `counts` sensors report the raw ADC counts read from the device. They are not calibrated and carry no
+physical unit, so a value is only meaningful when compared with another value taken at the same `gain`, `atime`
+and `astep`. Changing any of those three options changes the counts for the same light.
+
+The largest count a band can reach is $(\text{ATIME} + 1) \times (\text{ASTEP} + 1)$, or 65535 if that product
+is larger. With the default `atime` and `astep` that limit is 18000. A band sitting at the limit is saturated
+and its reading should be discarded; lower the `gain` or the integration time until it drops below the limit.
+
+## Integration Time
+
+The integration time determines how long a single channel measurement takes and depends on `atime` and `astep`.
+The formula for the total integration time is:
+
+$$
+t = (\text{ATIME} + 1) \times (\text{ASTEP} + 1) \times 2.78\,\mu\text{s}
+$$
+
+The defaults of `atime: 29` and `astep: 599` give an integration time of 50ms.
+
+One update does not take exactly this long. The AS7341 has more channels than it has ADCs, so it measures them
+in two passes and takes two integration times per update. The AS7343 cycles internally and takes three. The
+sensor is read without blocking the rest of the device, so a long integration time does not stall other
+components, but keep the total below your `update_interval`.
+
+## Moving From `as7341`
+
+The `as7341` platform keeps working. To move to `as734x`, add an `as734x` entry with `type: AS7341` and the
+`gain`, `atime`, `astep`, `address` and `update_interval` options, then change the sensor platform to `as734x`
+and move the bands under `counts`. The options keep their names and their defaults.
+
+```yaml
+# Old configuration
+sensor:
+  - platform: as7341
+    gain: X8
+    f1:
+      name: "415nm"
+    clear:
+      name: "Clear"
+```
+
+```yaml
+# New configuration
+as734x:
+  - id: spectral
+    type: AS7341
+    gain: X8
+
+sensor:
+  - platform: as734x
+    as734x_id: spectral
+    counts:
+      f1:
+        name: "415nm"
+      clear:
+        name: "Clear"
+```
+
+> [!WARNING]
+> The reported values change when you move over. The AS7341 returns its data registers low byte first, and the
+> `as7341` platform never accounted for this, so its counts come out byte-swapped. The `as734x` component reads
+> them correctly. In practice a true count below 256 was reported by the old platform as 256 times too large, and
+> a larger count had its two bytes the wrong way round. Any automation, filter or long-term statistic built on
+> the old values will need to be revisited.
+
+## See Also
+
+- [Sensor Filters](/components/sensor/#sensor-filters)
+- [AS7341 Spectral Color Sensor](/components/sensor/as7341/)
+- [Adafruit_AS7341](https://github.com/adafruit/Adafruit_AS7341)
+- [SparkFun_AS7341X_Arduino_Library](https://github.com/sparkfun/SparkFun_AS7341X_Arduino_Library)
+- <APIRef text="as734x.h" path="as734x/as734x.h" />
