@@ -79,7 +79,16 @@ wifi:
 
   - **ap_timeout** (*Optional*, [Time](/guides/configuration-types#time)): The time after which to enable the
     configured fallback hotspot. Can be disabled by setting this to `0s`, which requires manually starting the AP by
-    other means (eg: from a button press). Defaults to `90s`.
+    other means (eg: from a button press). Defaults to `90s`. In [WISP mode](#wisp-mode) it is how long a start
+    that failed waits before the next attempt, and `0s` is rejected.
+
+  - **ap_mode** (*Optional*, string): One of `fallback` or `wisp`. Defaults to `fallback`, which starts the access
+    point only when no connection to the WiFi router can be made. `wisp` turns the node into a WiFi repeater, see
+    [WISP Mode](#wisp-mode). ESP32 with ESP-IDF 5.1 or newer only.
+
+  - **dns_servers** (*Optional*, list of IPv4 addresses): The DNS servers handed out to clients of the access point.
+    Only valid with `ap_mode: wisp`. Accepts one server, or two with ESP-IDF 6.0 or newer. If not set, the DNS
+    servers of the router connection are passed on to the clients.
 
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to `.local`, all uploads will be sent to `<HOSTNAME>.local`.
@@ -256,6 +265,40 @@ wifi:
 
 For a device that only ever uses its access point, add [`web_server:`](/components/web_server/#access-point-mode)
 to control it from a phone without any internet connection.
+
+## WISP Mode
+
+With `ap_mode: wisp` an ESP32 works as a WiFi repeater: it connects to your router as a station and, at the same
+time, runs an access point. Devices that join the access point get an address from the node and their traffic is
+routed (NAT) through the router connection.
+
+```yaml
+wifi:
+  networks:
+    - ssid: "Router SSID"
+      password: "Router password"
+  ap:
+    ssid: "Repeater"
+    password: "W1PBGyrokfLz"
+    ap_mode: wisp
+```
+
+Notes:
+
+- Requires an ESP32 on the ESP-IDF framework (5.1 or newer; the Arduino framework is not supported), at least one
+  entry in `networks`, and a password for the access point.
+- The access point stays on, so `captive_portal` is rejected, and `ap_timeout` is how long a start that failed
+  waits before it is tried again (it cannot be `0s`). With `dns_servers` the access point starts right away;
+  without them it starts once the node has connected to the router and learned its DNS servers, so no client is
+  ever handed the access point as a resolver. A network with `manual_ip` must then set `dns1`.
+- WISP mode enlarges the Wi-Fi driver buffers and enables frame aggregation, the Wi-Fi half of
+  [high performance networking](/components/network/#high-performance-networking); the TCP settings stay at their
+  defaults since the forwarded traffic never uses the node's own connections. Keeping the lwIP fast paths in IRAM
+  raises throughput further at the cost of about 10 KB of IRAM: set `CONFIG_LWIP_IRAM_OPTIMIZATION: y` in the esp32
+  `sdkconfig_options`.
+- If the node is close to the router, a lower `output_power` (for example `8.5dB`) and pinning `bssid` on the
+  network can improve speed noticeably.
+- The number of clients is limited by the ESP32 access point (five at the same time).
 
 ## User Entered Credentials
 
