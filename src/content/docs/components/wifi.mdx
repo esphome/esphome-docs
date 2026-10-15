@@ -217,7 +217,7 @@ wifi:
   `enable_btm` or `enable_rrm` is enabled. See
   [Post-Connect Roaming](#post-connect-roaming). Defaults to `true`.
 
-- **dpp** (*Optional*): Let a phone provision the network with Wi-Fi Easy Connect. ESP32-S3 only for now. See
+- **dpp** (*Optional*): Let a phone provision the network with Wi-Fi Easy Connect. ESP32 only. See
   [Wi-Fi Easy Connect](#wi-fi-easy-connect).
   - **channels** (*Optional*, list of int): The channels the device listens on for a configurator. Defaults to `[6]`.
   - **device_info** (*Optional*, string): Free text carried in the URI, such as a serial number, that some
@@ -272,7 +272,7 @@ to control it from a phone without any internet connection.
 
 ## Wi-Fi Easy Connect
 
-On the ESP32-S3, `dpp` lets a phone provision the network with Wi-Fi Easy Connect, the Device Provisioning Protocol: the
+On the ESP32, `dpp` lets a phone provision the network with Wi-Fi Easy Connect, the Device Provisioning Protocol: the
 device publishes a bootstrapping URI, which is shown as a QR code, and a configurator such as the Android Wi-Fi
 settings scans it and sends the credentials. The device saves them and connects, and keeps using them on later boots
 like credentials entered on the captive portal. The device listens for a configurator right away when no `networks`
