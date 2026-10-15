@@ -356,6 +356,7 @@ Beyond the per-channel readings, the component can publish several whole-light m
 weighted sum over the channels, using per-channel factors from the manufacturer, and each is calculated from the
 [basic counts](#basic-counts). You do not have to configure the `basic_counts` sensors to use them, but they do
 share the same [calibration](#calibration), so anything you change there moves these values too.
+`normalize_basic_counts` does not affect them: they are always calculated from the absolute basic counts.
 
 `color_temperature` and `rgb_hex` describe the colour rather than the strength of the light. Both come from CIE
 1931 tristimulus values summed over the channels, with the colour temperature using McCamy's approximation. The
@@ -404,19 +405,18 @@ In short: use `illuminance` for spaces people occupy and `ppfd` for growing plan
 # Example configuration entry with derived metrics
 sensor:
   - platform: as734x
-    type: AS7343
     illuminance:
       name: "Illuminance"
     ppfd:
       name: "PPFD"
     color_temperature:
       name: "Color Temperature"
+
+text_sensor:
+  - platform: as734x
     rgb_hex:
       name: "Colour"
 ```
-
-`rgb_hex` publishes a [Text Sensor](/components/text_sensor/), but it is configured here alongside the other
-sensors rather than under a separate `text_sensor:` block.
 
 ## Optical Setup
 
