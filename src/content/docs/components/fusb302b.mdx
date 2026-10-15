@@ -34,14 +34,16 @@ fusb302b:
   [Sensor](/components/sensor/#config-sensor).
 - **current** (*Optional*): A sensor that reports the maximum current of the current power contract in amperes. All
   options from [Sensor](/components/sensor/#config-sensor).
-- **contract** (*Optional*): A text sensor that reports the current power contract, for example `3.0A @ 20V`, or
-  `Detached` when no source is attached. All options from [Text Sensor](/components/text_sensor/#config-text_sensor).
+- **contract** (*Optional*): A text sensor that reports the current power contract, for example `3.00A @ 20V`,
+  or `Detached` when no source is attached. All options from [Text Sensor](/components/text_sensor/#config-text_sensor).
 - **on_connect** (*Optional*, [Automation](/automations/)): An automation to perform when a source is attached. See
   [`on_connect` Trigger](#on_connect-trigger).
 - **on_disconnect** (*Optional*, [Automation](/automations/)): An automation to perform when the source is removed.
   See [`on_disconnect` Trigger](#on_disconnect-trigger).
 - **on_power_ready** (*Optional*, [Automation](/automations/)): An automation to perform when power negotiation is
   finished. See [`on_power_ready` Trigger](#on_power_ready-trigger).
+- **on_request_failed** (*Optional*, [Automation](/automations/)): An automation to perform when a voltage request
+  ends without a new contract. See [`on_request_failed` Trigger](#on_request_failed-trigger).
 - **on_error** (*Optional*, [Automation](/automations/)): An automation to perform when communication with the
   FUSB302B fails. See [`on_error` Trigger](#on_error-trigger).
 
@@ -69,7 +71,7 @@ time to settle.
 
 The `voltage`, `current` and `contract` sensors are updated each time the power contract changes:
 
-- At 5 V Type-C default power, before negotiation or when it fails, they report 5 V and 0.5 A (`0.5A @ 5V`).
+- At 5 V Type-C default power, before negotiation or when it fails, they report 5 V and 0.5 A (`0.50A @ 5V`).
 - After a successful negotiation, they report the voltage and maximum current of the new contract.
 - When the source is removed or communication with the FUSB302B fails, `voltage` and `current` report `0` and
   `contract` reports `Detached`.
@@ -87,6 +89,9 @@ fusb302b:
 ```
 
 ## Triggers
+
+The triggers run in the main loop. Changes in the connection state are queued, so the triggers run in the order the
+changes happened, even when the main loop was busy at the time.
 
 ### `on_connect` Trigger
 
@@ -113,8 +118,8 @@ This automation is triggered each time power negotiation is finished:
 - Negotiation failed or the source does not support Power Delivery, so VBUS stays at 5 V.
 
 The `voltage` sensor is updated before the automation runs, so use it to check which of the two applies. When a
-[`fusb302b.request_voltage`](#fusb302b-request_voltage-action) request is rejected while a contract is already in
-place, that contract stays valid and the automation is not triggered.
+[`fusb302b.request_voltage`](#fusb302b-request_voltage-action) request fails while a contract is already in place,
+that contract stays valid and only [`on_request_failed`](#on_request_failed-trigger) is triggered.
 
 ```yaml
 fusb302b:
@@ -131,6 +136,27 @@ fusb302b:
           - switch.turn_on: load_power
 ```
 
+### `on_request_failed` Trigger
+
+This automation is triggered when a voltage request ends without a new contract:
+
+- The source rejects the request.
+- The source keeps answering that it is busy, until the component stops retrying.
+- The request cannot be sent.
+- After the first negotiation, for example after a [`fusb302b.request_voltage`](#fusb302b-request_voltage-action)
+  action, the source does not send its capabilities when the component asks for them, even after a soft reset.
+
+A contract that is already in place stays valid. When the first request after attach fails, the component stays at
+5 V and [`on_power_ready`](#on_power_ready-trigger) is triggered as well. It is not triggered when the source does
+not support Power Delivery.
+
+```yaml
+fusb302b:
+  # ...
+  on_request_failed:
+    - logger.log: "Voltage request failed"
+```
+
 ### `on_error` Trigger
 
 This automation is triggered when communication with the FUSB302B over I²C fails. The component keeps trying to
@@ -144,7 +170,8 @@ This action changes the voltage to request from the source. When a source is att
 new power contract right away, following the same rules as `request_voltage` in the configuration (see
 [Power Negotiation](#power-negotiation)). When no source is attached, the new voltage is used at the next attach.
 
-The new voltage is not saved: after a reboot, the component requests the voltage set in the configuration again.
+A voltage outside `5` to `20`, for example from a lambda, is clamped to that range and a warning is logged. The new
+voltage is not saved: after a reboot, the component requests the voltage set in the configuration again.
 
 ```yaml
 on_...:
