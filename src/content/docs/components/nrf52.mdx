@@ -16,8 +16,8 @@ nrf52:
 
 ## Configuration variables
 
-- **board** (*Required*, string): The board type. Valid options are `adafruit_feather_nrf52840`, `adafruit_itsybitsy_nrf52840`, `xiao_ble`, `nrf52840dongle`. Other boards should work with those configuration as well.
-- **bootloader** (*Optional*, string): Bootloader type. Valid options are `mcuboot`, `adafruit`, `adafruit_nrf52_sd132`, `adafruit_nrf52_sd140_v6`, `adafruit_nrf52_sd140_v7`, `nrf`. Default value depends on board type.
+- **board** (*Required*, string): The board type. Valid options are `adafruit_feather_nrf52840`, `adafruit_itsybitsy_nrf52840`, `xiao_ble`, `nrf52840dongle`, `nrf52840_mdk_usb_dongle`. Other boards should work with those configuration as well.
+- **bootloader** (*Optional*, string): Bootloader type. Valid options are `mcuboot`, `adafruit`, `adafruit_nrf52_sd132`, `adafruit_nrf52_sd140_v6`, `adafruit_nrf52_sd140_v7`, `adafruit_nrf52_nosd`, `nrf`. Default value depends on board type. `adafruit_nrf52_nosd` is an Adafruit nRF52 Bootloader built without a SoftDevice, such as the UF2 bootloader of the Makerdiary nRF52840 MDK USB Dongle.
 - **dcdc** (*Optional*, boolean): Enable DC/DC converter for REG1 stage. Defaults follow board settings from Zephyr.
 External LC filters must be connected to the DC/DC regulator pins if it is being used.
 The advantage of using a DC/DC regulator is that the overall power consumption is normally reduced
@@ -107,6 +107,41 @@ All four on-board LEDs are active-low, so set `inverted: true` on their pins so
 that `on` lights the LED. LD1 is a dedicated green LED on `P0.6`; LD2 is an RGB LED
 with red on `P0.8`, green on `P1.9` and blue on `P0.12`, and turning on more than one
 channel at a time blends the colors.
+
+## Flashing the Makerdiary nRF52840 MDK USB Dongle
+
+The dongle ships with Makerdiary's UF2 bootloader, an Adafruit nRF52 Bootloader built without a
+SoftDevice. It lives at the top of flash (`0xF4000`–`0x100000`) and loads the application from
+`0x1000`, directly after the MBR page. ESPHome selects the `adafruit_nrf52_nosd` bootloader for
+this board, reserves that region and builds no bootloader of its own.
+
+### First flash and recovery
+
+1. Hold the dongle's button while plugging it in, then release it. The RGB LED turns green and a
+   flash drive named **UF2BOOT** appears.
+2. Run `esphome run yourfile.yaml` and pick the bootloader's serial port. ESPHome builds the
+   firmware and uploads it over USB CDC. Alternatively copy the UF2 package from the build
+   directory, or from the dashboard's download menu, onto the flash drive.
+
+The same procedure recovers a device whose application won't boot; the bootloader is never erased
+by application uploads.
+
+### Updating a running device
+
+With `dfu: true` in the `nrf52` configuration, `esphome upload` reboots the running application
+into the bootloader and uploads over USB CDC, as with any Adafruit nRF52 Bootloader. Without
+`dfu:`, enter the bootloader by hand as above and upload again.
+
+### OTA updates
+
+Over-the-air updates are not supported with this bootloader. Choose `mcuboot` (with an SWD
+connection) when wireless updates are required.
+
+### On-board LED and button
+
+The RGB LED is active-low, so set `inverted: true` on its pins so that `on` lights the LED: red is
+on `P0.23`, green on `P0.22` and blue on `P0.24`. The button is on `P0.18` and pulls the pin low
+while pressed.
 
 ## GPIO Pin Numbering
 
@@ -262,6 +297,33 @@ output:
   - platform: gpio
     pin:
       number: P0.6
+      inverted: true
+    id: green_led
+
+interval:
+  - interval: 1s
+    then:
+      - output.turn_on: green_led
+      - delay: 0.5s
+      - output.turn_off: green_led
+```
+
+[nrf52840-mdk-usb-dongle](https://wiki.makerdiary.com/nrf52840-mdk-usb-dongle/)
+
+```yaml
+nrf52:
+  board: nrf52840_mdk_usb_dongle
+
+esphome:
+  name: nrf52840-mdk-usb-dongle
+
+logger:
+  level: DEBUG
+
+output:
+  - platform: gpio
+    pin:
+      number: P0.22
       inverted: true
     id: green_led
 
