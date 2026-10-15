@@ -152,6 +152,36 @@ sensor:
   Each channel accepts all options from [Sensor](/components/sensor/), or just a name as a shorthand.
 - **saturation_level** (*Optional*): The highest channel reading as a percentage of the full-scale count. All
   options from [Sensor](/components/sensor/), or just a name as a shorthand.
+- **illuminance** (*Optional*): Brightness as the human eye perceives it, in lux. All options from
+  [Sensor](/components/sensor/), or just a name as a shorthand.
+- **irradiance_photopic** (*Optional*): Radiant power weighted by the eye's response curve, in W/m². All options
+  from [Sensor](/components/sensor/), or just a name as a shorthand.
+- **irradiance_par** (*Optional*): Radiant power over the 400nm to 700nm range plants use, in W/m². All options
+  from [Sensor](/components/sensor/), or just a name as a shorthand.
+- **ppfd** (*Optional*): Photosynthetic photon flux density, the same 400nm to 700nm range counted as photons
+  rather than power, in µmol/m²/s. All options from [Sensor](/components/sensor/), or just a name as a
+  shorthand.
+- **color_temperature** (*Optional*): Correlated colour temperature of the light, in kelvin. All options from
+  [Sensor](/components/sensor/), or just a name as a shorthand.
+
+## Text Sensor
+
+The `as734x` text sensor platform publishes the colour of the light as an sRGB hex string.
+
+```yaml
+text_sensor:
+  - platform: as734x
+    as734x_id: spectral
+    rgb_hex:
+      name: "Colour"
+```
+
+### Configuration variables
+
+- **as734x_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the `as734x` component to read
+  from. Only needed when you have more than one `as734x` sensor.
+- **rgb_hex** (*Optional*): The colour of the light as an sRGB hex string. All options from
+  [Text Sensor](/components/text_sensor/), or just a name as a shorthand.
 
 ## Bands
 
@@ -319,6 +349,92 @@ as734x:
 > channel and `f5` is narrow, so `f5` reading lower than `fy` is expected rather than a fault. Compare a channel
 > against a reference instrument or a known source before correcting it, and use a smooth broadband source: a
 > narrow LED peak that falls between two filters looks exactly like a broken channel.
+
+## Derived Light Metrics
+
+Beyond the per-channel readings, the component can publish several whole-light measurements. Each one is a
+weighted sum over the channels, using per-channel factors from the manufacturer, and each is calculated from the
+[basic counts](#basic-counts). You do not have to configure the `basic_counts` sensors to use them, but they do
+share the same [calibration](#calibration), so anything you change there moves these values too.
+`normalize_basic_counts` does not affect them: they are always calculated from the absolute basic counts.
+
+`color_temperature` and `rgb_hex` describe the colour rather than the strength of the light. Both come from CIE
+1931 tristimulus values summed over the channels, with the colour temperature using McCamy's approximation. The
+brightness measurements are explained below.
+
+> [!NOTE]
+> These factors, and the AS7343 defaults in [Calibration](#calibration), come from ams OSRAM measurements of a
+> golden device: one reference part characterised under known light. Your sensor is not that part. Filter
+> response and sensitivity vary a little between individual chips, so two sensors under the same light can
+> report somewhat different absolute values. Readings taken from one sensor stay comparable with each other,
+> which is what most automations need. For absolute accuracy, compare the sensor against a reference
+> instrument and fold the difference into `channel_correction`.
+
+### What the Brightness Measurements Mean
+
+They all answer the question "how much light is there", but each counts a different thing, so their values are
+not interchangeable and generally do not track each other between light sources.
+
+**Photopic irradiance** is the radiant power arriving on a surface, in watts per square metre, weighted by the
+standard curve for human vision, which describes how sensitive the light-adapted eye is at each wavelength. That
+curve peaks at 555nm in the green and falls to nothing below about 400nm and above about 700nm, so a watt of
+green light contributes almost all of itself, a watt of deep red very little, and a watt of infrared nothing at
+all. **Illuminance** is this same quantity multiplied by 683 lm/W, the luminous efficacy of light at 555nm, which
+converts it to lux. Photopic irradiance and illuminance are therefore one measurement in two units; use lux when
+you care about how bright a space looks to people.
+
+**PAR irradiance** covers photosynthetically active radiation: the power falling in the 400nm to 700nm band that
+plants use. Inside that band nothing is weighted, so a watt of blue counts exactly as much as a watt of red;
+outside it, nothing counts at all. It is radiant power with a 400nm to 700nm window applied and no curve.
+
+**PPFD**, photosynthetic photon flux density, covers the same 400nm to 700nm window but counts photons per
+second instead of watts, in micromoles per square metre per second. Photosynthesis responds to the number of
+photons absorbed rather than the energy they carry: one photon drives one reaction whether it is a high-energy
+blue photon or a low-energy red one. Since blue photons carry more energy than red ones, a watt of blue light is
+fewer photons than a watt of red, which is why PPFD and PAR irradiance disagree between lights of different
+colour. PPFD is what horticultural lighting is rated in and the figure to compare grow lights on.
+
+In short: use `illuminance` for spaces people occupy and `ppfd` for growing plants.
+
+> [!NOTE]
+> These are estimates from a 10 or 13 channel sensor, not laboratory measurements. Treat them as good for
+> tracking change over time and for comparing one light against another, rather than as absolute values. In very
+> dim light there is not enough signal to place a colour, and `color_temperature` reports 0.
+
+```yaml
+# Example configuration entry with derived metrics
+sensor:
+  - platform: as734x
+    illuminance:
+      name: "Illuminance"
+    ppfd:
+      name: "PPFD"
+    color_temperature:
+      name: "Color Temperature"
+
+text_sensor:
+  - platform: as734x
+    rgb_hex:
+      name: "Colour"
+```
+
+## Optical Setup
+
+The sensor only measures the light that actually reaches its photodiodes, so what sits in front of it matters
+as much as the settings. The optical design guide for these parts asks for a diffuser above the sensor, chosen
+so that:
+
+- The top of the diffuser is lit evenly, whatever the size and position of the light source.
+- The field of view is wide, so a source is still detected when the device is turned away from it.
+- Nothing in front of the diffuser casts a hot spot or a shadow. Both move as the angle of the incoming light
+  changes, and because the photodiodes sit side by side, a hot spot covers some of them more than others. The
+  same light is then measured as a different spectrum.
+- The diffuser scatters the incoming rays completely, leaving no directional information for the sensor to
+  pick up.
+
+Without one, a bare sensor still produces readings, but they shift as the light moves around the room, and the
+colour values are the first to suffer. Any cover you do add absorbs some light, which is what
+`glass_attenuation_factor` compensates for.
 
 ## Integration Time
 
