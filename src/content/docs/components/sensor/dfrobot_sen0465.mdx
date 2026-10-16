@@ -118,9 +118,15 @@ It can only be changed with the DFRobot Arduino library.
 ## Startup
 
 At startup, ESPHome switches the sensor to passive mode, in which the sensor only answers requests. It then waits
-1 second, sets or switches off the alarm and takes the first reading. Each step is tried up to 3 times. If the
-sensor still does not answer, ESPHome shows a warning and continues with the next step. The warning is cleared by
-the next successful reading.
+1 second, sets or switches off the alarm and takes the first reading.
+
+Setting the passive mode and setting the alarm are each tried up to 3 times, when the sensor does not answer or
+sends a wrong answer. If a step still fails, ESPHome shows a warning and continues with the next step. The warning
+is cleared by the next successful reading. A failed reading is not repeated; the sensor is asked again at the next
+`update_interval`.
+
+If the very first request cannot be sent at all, for example because no device answers at the I²C address, the
+component is marked as failed and does not try again.
 
 ## Temperature Compensation
 
