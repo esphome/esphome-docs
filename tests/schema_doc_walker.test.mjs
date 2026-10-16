@@ -665,3 +665,38 @@ test("bullets after a section that could not be routed are dropped and reported,
     ],
   );
 });
+
+test("options of an action the schema does not have are dropped, not written to the component", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ name: { key: "Optional" } }) } }, action: {} },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **name** (*Optional*, string): The name.",
+        "## `foo.missing` Action",
+        "- **name** (*Optional*, string): Text for the action.",
+        "### Configuration variables",
+        "- **name** (*Optional*, string): Text for the action.",
+        "## `foo.other` Action",
+        "- **name** (*Optional*, string): Text for the other action.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "name"), /: The name\./);
+  assert.deepEqual(
+    report.findings.map((f) => [f.kind, f.line]),
+    [
+      ["unknown_registry_entry", 11],
+      ["orphan_option_list", 13],
+      ["unroutable_section", 15],
+      ["orphan_option_list", 17],
+      ["unknown_registry_entry", 19],
+      ["orphan_option_list", 21],
+    ],
+  );
+});

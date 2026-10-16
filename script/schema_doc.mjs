@@ -11,10 +11,11 @@
  *
  * Without --emit it only reports what does not line up: documented keys the
  * schema does not have, schema keys the docs do not mention, Required/Optional
- * disagreements and sections it could not route. With --strict any such
- * finding fails the run. An --emit run that cannot route most of its sections
- * writes nothing and fails, so a changed schema layout does not ship an empty
- * bundle.
+ * disagreements and sections it could not route. With --strict every finding
+ * except the informational ones (no intro paragraph, nested list ignored) fails
+ * the run, undocumented schema keys included. A run that cannot match most of
+ * its sections or keys fails, and with --emit writes nothing, so a changed
+ * schema layout does not ship an empty bundle.
  *
  * Usage:
  *   node script/schema_doc.mjs --schema-dir DIR --emit OUT_DIR [--deploy-url https://esphome.io]
@@ -1216,6 +1217,15 @@ export class Walker {
       const ref = this.pendingRegistry;
       this.pendingRegistry = null;
       await this.openSection(ref, depth, line, "registry");
+    } else if (
+      this.failedSection &&
+      depth > this.failedSection.depth &&
+      this.failedSection.defaultRef === this.defaultRef
+    ) {
+      // "### Configuration variables" under a heading that matched no schema
+      this.report.stats.sections++;
+      this.report.stats.sectionsUnroutable++;
+      this.report.add("unroutable_section", this.rel, line, { detail: "options of a section that matched no schema" });
     } else {
       await this.openSection(this.defaultRef, depth, line, "default");
     }
@@ -1302,6 +1312,9 @@ export class Walker {
           detail: `${reg.type} '${reg.name}' not in schema`,
         });
         this.pendingRegistry = null;
+        // Its options are not the component's: drop them until this heading's subtree ends
+        await this.closeSection();
+        this.failedSection = { depth: node.depth, defaultRef: this.defaultRef };
       }
       return;
     }
@@ -1739,12 +1752,20 @@ async function main() {
   }
 
   const s = report.stats;
-  const mostlyUnroutable = s.sectionsUnroutable * 2 > s.sections;
+  // A changed schema layout must not ship a bundle with no docs
+  let broken = null;
+  if (parseErrors) {
+    broken = `${parseErrors} page(s) could not be parsed`;
+  } else if (s.sectionsUnroutable * 2 > s.sections) {
+    broken = `${s.sectionsUnroutable} of ${s.sections} sections match no schema`;
+  } else if (s.keysUnmatched > s.keysMatched) {
+    broken = `${s.keysUnmatched} of ${s.keysMatched + s.keysUnmatched} documented keys match no schema key`;
+  } else if (args.emit && s.emitted.props + s.emitted.propsRefined === 0) {
+    broken = "no option description was written";
+  }
   if (args.emit) {
-    if (parseErrors) {
-      console.error(`not writing ${args.emit}: ${parseErrors} page(s) could not be parsed`);
-    } else if (mostlyUnroutable) {
-      console.error(`not writing ${args.emit}: ${s.sectionsUnroutable} of ${s.sections} sections match no schema`);
+    if (broken) {
+      console.error(`not writing ${args.emit}: ${broken}`);
     } else {
       store.save(args.emit);
     }
@@ -1781,10 +1802,14 @@ async function main() {
     "no_intro_paragraph",
     "nested_list_ignored",
   ];
-  const strictKinds = new Set(order.slice(0, 18));
-  const shown = new Set(args.verbose ? order : strictKinds);
+  // Kinds the report lists only with --verbose; a kind missing from `order` is always shown
+  const verboseOnly = new Set(["undocumented_key", "no_intro_paragraph", "nested_list_ignored"]);
+  // Kinds that are observations rather than mismatches
+  const informational = new Set(["no_intro_paragraph", "nested_list_ignored"]);
+  const shown = (kind) => args.verbose || !verboseOnly.has(kind) || !order.includes(kind);
+  const strict = (kind) => !informational.has(kind);
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {
-    if (!shown.has(f.kind)) continue;
+    if (!shown(f.kind)) continue;
     const what = f.key ? `'${f.key}'` : "";
     console.log(
       `${f.file}:${f.line}: ${f.kind} ${what} ${f.schema ? `[${f.schema}]` : ""} ${f.detail ?? ""}`
@@ -1794,7 +1819,7 @@ async function main() {
   }
 
   const hidden = new Map();
-  for (const f of report.findings) if (!shown.has(f.kind)) hidden.set(f.kind, (hidden.get(f.kind) ?? 0) + 1);
+  for (const f of report.findings) if (!shown(f.kind)) hidden.set(f.kind, (hidden.get(f.kind) ?? 0) + 1);
   console.log(
     [
       `files ${s.files}`,
@@ -1805,14 +1830,15 @@ async function main() {
       ...(hidden.size ? [`not shown without --verbose: ${[...hidden].map(([k, n]) => `${k} ${n}`).join(", ")}`] : []),
     ].join("\n"),
   );
-  if (parseErrors) {
-    console.error(`${parseErrors} page(s) could not be parsed`);
+  if (broken) {
+    console.error(broken);
     return 1;
   }
-  if (args.emit && mostlyUnroutable) return 1;
-  const strictFindings = report.findings.filter((f) => strictKinds.has(f.kind)).length;
-  if (args.strict && strictFindings) {
-    console.error(`--strict: ${strictFindings} finding(s)`);
+  const strictCounts = new Map();
+  for (const f of report.findings) if (strict(f.kind)) strictCounts.set(f.kind, (strictCounts.get(f.kind) ?? 0) + 1);
+  if (args.strict && strictCounts.size) {
+    const total = [...strictCounts.values()].reduce((a, b) => a + b, 0);
+    console.error(`--strict: ${total} finding(s): ${[...strictCounts].map(([k, n]) => `${k} ${n}`).join(", ")}`);
     return 1;
   }
   return 0;
