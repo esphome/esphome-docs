@@ -22,96 +22,158 @@ Do not use this prototype for safety interlocks or critical measurements.
 
 ## Device Models
 
-| `type` | ROM family | Emulated behavior |
+| `type` | ROM family | Value channels |
 | --- | --- | --- |
-| `DS18B20` | `0x28` | Variable-resolution temperature, scratchpad, alarms and ready polling |
-| `DS1822` | `0x22` | DS1822 thermometer command and scratchpad model |
-| `DS18S20` | `0x10` | Legacy thermometer, including count-remaining interpolation fields |
-| `DS2401` | `0x01` | Serial identification, ROM search and normal/legacy Read ROM |
-| `DS2413` | `0x3A` | Two PIO input levels/output latches, status/complement and access read/write |
+| `DS18B20` | `0x28` | `temperature` (Celsius) |
+| `DS1822` | `0x22` | `temperature` (Celsius) |
+| `DS18S20` | `0x10` | `temperature` (Celsius, with DS18S20 interpolation) |
+| `DS2401` | `0x01` | None: identity-only model |
+| `DS2413` | `0x3A` | `pio_a`, `pio_b` (0/1 input levels) |
 
 These are protocol models, not electrical simulations of the original silicon. In particular, an emulated DS2413
 still uses 3.3 V ESP32 wiring, not the real part's high-voltage PIO ratings.
 
-## Feed an Existing Temperature Sensor Into the Bus
+## Values Are Model-Specific Channels
 
-Give an ordinary ESPHome temperature sensor an `id`, then reference it with `sensor_id`:
+A physical 1-Wire device can report several quantities. For example, the
+[DS1923 Hygrochron](https://www.analog.com/media/en/technical-documentation/data-sheets/DS1923.pdf) records both
+temperature and humidity. It also has a logger/memory protocol and is **not** one of the models implemented here.
+A multi-value device is not the same thing as multiple virtual devices sharing a bus.
+
+The API therefore uses `set_value` and named channels. A single-value model can use the `value` shorthand; a
+multi-value model uses a `values` mapping and an explicit `channel` in actions. The model determines channel names,
+units, valid ranges and the wire representation. Unsupported channels are rejected, not silently ignored.
+
+## Computed Values and Live Offsets
+
+Values accept constants or normal ESPHome C++ lambdas. Read any existing sensor or global variable and calculate
+the result on the emulating node:
 
 ```yaml
-# my_temperature_sensor is the id of your existing temperature sensor.
+globals:
+  - id: offset
+    type: float
+    initial_value: '4.0'
+
 one_wire_device:
+  id: emulated
   pin: GPIOXX
   type: DS18B20
-  sensor_id: my_temperature_sensor
+  value: !lambda return id(my_temperature_sensor).state + id(offset);
+  update_interval: 1s
 ```
 
-The sensor can be a physical sensor, an [MQTT sensor](/components/sensor/mqtt_subscribe/), a
-[Home Assistant sensor](/components/sensor/homeassistant/), or a [template sensor](/components/sensor/template/).
-It must publish degrees Celsius; apply a sensor filter first if the source uses another unit.
+`my_temperature_sensor` is an existing sensor on this node. It can be physical or imported with an
+[MQTT sensor](/components/sensor/mqtt_subscribe/) or [Home Assistant sensor](/components/sensor/homeassistant/).
+IDs do not refer directly to sensors on another ESP32: import remote readings first. The thermometer channel uses
+Celsius; convert the source's units before supplying it.
 
-Updates publish one atomic, quantized temperature snapshot. A Convert T command samples that snapshot; the resulting
-scratchpad stays unchanged until the next conversion. No sensor callbacks, logging, allocation or floating-point
-conversion run inside the protocol interrupt.
+Change the `offset` global from an existing automation or control, and the next evaluation uses the new offset.
+For two readouts, the same `value` key can contain:
 
-Before the first valid sensor value, and after NaN/infinity or an out-of-range update, the virtual thermometer does not
-respond to new transactions. It does not replace missing data with 23.5 degrees or silently retain an old reading.
-A later valid update makes it available again at the next bus reset. Other physical devices can still acknowledge
-resets on a shared bus, so an unavailable virtual device can also appear as a failed scratchpad read to the controller.
+```yaml
+value: !lambda return id(sensor_x).state + id(sensor_y).state;
+```
 
-## Set Temperature From an Automation
+Explicit channel syntax is equivalent for the thermometer:
 
-For manual control, omit `sensor_id`, assign the emulator an `id`, and use the action:
+```yaml
+values:
+  temperature: !lambda return id(sensor_x).state + id(sensor_y).state + id(offset);
+```
+
+Lambdas run in foreground at `update_interval` (default `1s`), not inside the protocol ISR. `update_interval: never`
+disables periodic evaluation; `component.update` can then explicitly recompute the bindings. Constants are applied
+once, not reapplied at every polling interval.
+
+The evaluated result is checked against the selected channel's range and published as a lock-free snapshot.
+Convert T latches the current thermometer snapshot; an already converted scratchpad remains unchanged until the
+next conversion. NaN, infinity and out-of-range results make the virtual endpoint unavailable until valid data
+recovers. A configured lambda starts unavailable before its first valid evaluation, rather than using the fixed
+23.5 C default. Numeric sensor NaNs propagate through arithmetic. For binary sensors, or a variable without a
+suitable unknown state, explicitly return `NAN` until its prerequisites are ready.
+
+## Generic `set_value` Action
+
+For an action-controlled value, omit a periodic lambda and use the generic action in an existing automation:
 
 ```yaml
 one_wire_device:
-  id: emulated_temperature
+  id: emulated
   pin: GPIOXX
-  temperature: 20.0
+  type: DS18B20
+  value: 20.0
 
-# Inside an existing automation's then: block:
-# - one_wire_device.set_temperature:
-#     id: emulated_temperature
-#     temperature: !lambda return id(my_temperature_sensor).state;
+# Inside an existing then: block:
+# - one_wire_device.set_value:
+#     id: emulated
+#     value: !lambda return id(sensor_x).state + id(offset);
 ```
 
-The action accepts a literal or a lambda. Its input follows the same Celsius range and invalid-value behavior.
-When `sensor_id` is configured, later sensor updates can overwrite an action's value; prefer one control mechanism.
-This action is intended for thermometer types, not DS2401 or DS2413.
+The model has one channel, so `channel` may be omitted. Explicit `channel: temperature` is also valid.
+The action accepts constants and lambdas and performs the same run-time validity checks. If a periodic lambda is
+also configured for that channel, its next evaluation overwrites an action's result; choose one producer or use
+manual evaluation deliberately. The old `set_temperature` action is replaced, not retained as a parallel API.
 
-## DS2413 Digital Inputs and Latches
+## Independent Channels: DS2413
 
 ```yaml
 one_wire_device:
+  id: emulated_io
   pin: GPIOXX
   type: DS2413
-  pio_a: existing_binary_sensor_a
-  pio_b: existing_binary_sensor_b
+  values:
+    pio_a: !lambda |-
+      if (!id(input_a).has_state()) return NAN;
+      return id(input_a).state;
+    pio_b: !lambda |-
+      if (!id(input_b).has_state()) return NAN;
+      return id(input_b).state;
 ```
 
-`pio_a` and `pio_b` reference existing [binary sensors](/components/binary_sensor/). A true source state means a high
-input level. Omitted inputs default to high; configured inputs remain unavailable until their first state arrives.
-Controller writes affect the model's open-drain output latches: a zero latch pulls that virtual input low, while a one
-releases it to the source level. These are virtual registers; writing a latch does not operate a physical GPIO output.
-Read responses include the complemented status nibble. A write with an incorrect complement is not acknowledged and
-does not modify the latches. Power-down behavior, overdrive and Resume ROM are not implemented.
+These sources are existing [binary sensors](/components/binary_sensor/). A high value (`true` or `1`) means a high
+input level; low is `false` or `0`. Other numeric results are invalid rather than implicitly converted to true.
+Either configured channel being unavailable suppresses the endpoint. Omitted channels default to released/high.
+Each channel is independently addressable:
+
+```yaml
+# Inside an existing then: block:
+# - one_wire_device.set_value:
+#     id: emulated_io
+#     channel: pio_a
+#     value: !lambda return id(input_a).state;
+# - one_wire_device.set_value:
+#     id: emulated_io
+#     channel: pio_b
+#     value: false
+```
+
+`channel` is mandatory for a multi-value model. The configuration rejects an omitted channel, a channel belonging
+to a different model, and attempts to set any value on the identity-only DS2401.
+
+Controller writes separately affect the model's open-drain output latches: a zero latch pulls that virtual input
+low, while a one releases it to the supplied input level. These are virtual registers, not physical GPIO outputs.
+Status bytes include the complemented nibble. Invalid-complement writes do not modify latches. Power-down behavior,
+overdrive and Resume ROM are not implemented.
 
 ## Configuration Variables
 
 - **pin** (**Required**, [Pin Schema](/guides/configuration-types/#pin-schema)): Internal DQ GPIO. The default mode
   is input/output/open-drain. Inversion, pulldown and incompatible modes are rejected.
-- **type** (*Optional*, string): One of the device models above. Defaults to `DS18B20`.
-- **address** (*Optional*, hexadecimal integer): A complete 64-bit ROM with the selected model's family byte and a
-  valid Dallas CRC. Defaults to `0`, deriving the serial from the station MAC and calculating the family/CRC bytes.
-  The ROM is logged at startup. Changing the selected model therefore changes its generated ROM.
-- **temperature** (*Optional*, float): Fixed Celsius value for a thermometer; defaults to `23.5` when no `sensor_id`
-  is configured. Range: `-55.0` to `125.0`; non-finite literals are rejected. Cannot be combined with `sensor_id`.
-- **sensor_id** (*Optional*, [ID](/guides/configuration-types/#id)): Existing numeric temperature sensor to follow.
-  Only accepted for thermometer models.
-- **pio_a**, **pio_b** (*Optional*, [IDs](/guides/configuration-types/#id)): Binary input sources for `DS2413` only.
-- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Identifier used by the temperature-setting action.
+- **type** (*Optional*, string): Device model; defaults to `DS18B20`.
+- **address** (*Optional*, hexadecimal integer): Full ROM with the selected family and a valid Dallas CRC.
+  Defaults to `0`, deriving the serial from the station MAC and calculating family/CRC bytes. Logged at startup.
+- **value** (*Optional*, float/boolean or lambda): Shorthand for a model with exactly one value channel.
+  Cannot be combined with `values`. For thermometers the range is -55 through 125 C; default is 23.5 C.
+- **values** (*Optional*, mapping): Model-specific channel names to constants or lambdas. Thermometers support
+  `temperature`; DS2413 supports `pio_a`/`pio_b` (default 1 each); DS2401 has no value channels.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): Lambda evaluation interval; default `1s`.
+  Use `never` for explicit `component.update` or action-only control.
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Target of `set_value` and `component.update`.
 
-Old prototype options `timing_scale: 1` and `interrupt_mode: true` are accepted for migration, but other values are
-rejected. The scaled task backend and diagnostic modifications to the GPIO controller have been removed.
+The former draft-specific `temperature`, `sensor_id` and direct PIO-source keys are replaced by `value`/`values`.
+For example, replace `sensor_id: source` with `value: !lambda return id(source).state;`.
+Old prototype options `timing_scale: 1` and `interrupt_mode: true` remain accepted, but other values are rejected.
 
 ## Wiring and Controller
 
