@@ -45,8 +45,8 @@ $$
 
 - `x` is how far the analog output sits below the supply and `x_air` is the same value in clean air, where the ratio
   is 1.0. The ratio drops as the gas concentration rises, and the ppm value follows from the `threshold` and `gain` of
-  the gas: a ratio above the threshold means "not detected" and publishes 0 ppm, and the result is clamped to the
-  measuring range of that gas.
+  the gas: a ratio above the threshold counts as "not detected" and publishes 0 ppm, a result below the vendor
+  minimum of the gas is reported the same way, and the upper end is clamped to the measuring range of that gas.
 - `x_air` is measured in place, either hard-coded with `air_reference:` or captured by the automatic clean-air
   calibration (`calibration:`), so the board's load resistor and the exact divider ratio do not matter.
 - A second, datasheet-based model (`RS` / `R0`) is not implemented by this platform.
@@ -183,8 +183,8 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor/), s
   calibration delay and the warm-up run at the same time, so the reference is ready after
   `max(calibration.delay, warmup_time)` plus the calibration run itself (`sample_count` × `sample_interval`, about
   0.2 s with the defaults). Hard-code the value the log reports as `air_reference: ...` to skip it.
-- **ESP32 ADC**: The ESP32 ADC is noisy and bottoms out around 75 mV (~7 ppm CO). Raise `sample_count`, add an RC
-  filter or use an [ADS1115](/components/sensor/ads1115/) behind the same divider.
+- **ESP32 ADC**: The ESP32 ADC is noisy and bottoms out around 75 mV. Raise `sample_count`, add an RC filter or use
+  an [ADS1115](/components/sensor/ads1115/) behind the same divider.
 - **Accuracy**: The vendor model is a coarse fit of a multi-gas sensor, so the published ppm value estimates the
   concentration of the selected gas rather than measuring it.
 
@@ -196,7 +196,7 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor/), s
 | `analog output out of range` status warning, reading `0.0000 V` | AO not wired, module not powered from 5 V, the `EN` pad not driven low |
 | `analog output out of range` status warning, reading above `vcc:` | wrong `vcc:` or `voltage_multiplier:` - the reading is ignored instead of published |
 | ppm far too high | a reference that was captured while gas was present, or a divider ratio that does not match the wiring |
-| ppm always 0 while gas is clearly present | the ratio stays above the gas's `threshold` (0.425 for CO, 0.279 for H2), so the model reports 0 ppm - expected at low concentrations, not a calibration fault |
+| ppm always 0 while gas is clearly present | the ratio stays above the gas's `threshold` (0.425 for CO, 0.279 for H2), or the result is below the gas's minimum (1 ppm for CO and H2, 10 ppm for NH3 and C2H5OH, 1000 ppm for CH4) - the model reports 0 ppm either way, so this is expected at low concentrations and not a calibration fault |
 | values jump around | ESP32 ADC noise - raise `sample_count` or add an RC filter |
 | `calibration failed`, or a warning about the spread of the samples | the sensor was not settled in clean, still air; let it burn in and let the component retry |
 | nothing is published for minutes after a restart | `max(warmup_time, calibration.delay)` (`3min` and `60s` by default) plus the calibration run; lower them while testing, or hard-code `air_reference:` |
