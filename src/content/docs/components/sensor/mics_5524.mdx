@@ -27,10 +27,9 @@ gas, so one reading is interpreted per gas instead of read once per gas.
 
 > [!NOTE]
 > The MiCS-5524 is **not** a safety-grade sensor. It has one analog output for CO, H2, C2H5OH, NH3 and CH4 and cannot
-> tell them apart, individual sensors vary widely and the ESP32 ADC bottoms out around 75 mV (~7 ppm CO). Treat every
-> published value as an estimate.
+> tell them apart, and individual sensors vary widely. Treat every published value as an estimate.
 
-## How the numbers are calculated
+## How the Numbers Are Calculated
 
 The component implements the vendor model of the [DFRobot_MICS](https://github.com/DFRobot/DFRobot_MICS) library
 (MIT), which is what this breakout is sold for and what the
@@ -52,7 +51,7 @@ $$
   calibration (`calibration:`), so the board's load resistor and the exact divider ratio do not matter.
 - A second, datasheet-based model (`RS` / `R0`) is not implemented by this platform.
 
-## Example configuration
+## Example Configuration
 
 The analog output is read through an [ADC](/components/sensor/adc/) sensor. The 10k/20k divider of the recommended
 wiring maps the 0 - 5 V output onto 0 - 3.33 V, which `voltage_multiplier: 1.5` scales back:
@@ -63,29 +62,18 @@ sensor:
   - platform: adc
     id: mics_ao
     name: "MiCS-5524 AO"
-    pin: GPIO34
+    pin: GPIOXX
     attenuation: 12db
-    update_interval: 60s
 
   - platform: mics_5524
-    id: mics
     voltage: mics_ao
     voltage_multiplier: 1.5     # 10k/20k divider in front of the AO pin
-    warmup_time: 3min           # DFRobot's heater warm-up
     calibration:                # capture the clean-air reference at boot
       delay: 3min
-      sample_count: 10
     carbon_monoxide:
       name: "CO (MiCS-5524)"
     hydrogen:
       name: "H2 (MiCS-5524)"
-      max_ppm: 500              # publish at most 500 ppm for this gas
-    ammonia:
-      name: "NH3 (MiCS-5524)"
-    ethanol:
-      name: "C2H5OH (MiCS-5524)"
-    methane:
-      name: "CH4 (MiCS-5524)"
 ```
 
 An [ADS1115](/components/sensor/ads1115/) (16 bit, gain 6.144 V) covers the 0 - 5 V output directly, so no divider is
@@ -94,8 +82,8 @@ needed:
 ```yaml
 # Example configuration entry, external sampler
 i2c:
-  sda: GPIO21
-  scl: GPIO22
+  sda: GPIOXX
+  scl: GPIOXX
 
 ads1115:
   - address: 0x48
@@ -105,17 +93,13 @@ sensor:
     id: mics_ao
     multiplexer: A0_GND
     gain: 6.144
-    update_interval: 100ms
 
   - platform: mics_5524
     voltage: mics_ao            # 0 - 5 V directly, no divider
     calibration:
       delay: 5min               # leave the sensor in clean air for that long after boot
-      sample_count: 10
     carbon_monoxide:
       name: "CO trace (MiCS-5524)"
-    ammonia:
-      name: "NH3 (MiCS-5524)"
 ```
 
 With `air_reference:` the calibration is skipped, which is what a stable, already burned-in sensor ends up with - the
@@ -136,13 +120,13 @@ sensor:
 > Keep the sensor in clean air for the whole calibration and do not configure a gas that may be present while it runs:
 > the reference it captures is the baseline of every later reading.
 
-## Configuration variables
+## Configuration Variables
 
 One entry is one physical sensor and not an entity itself: the gases listed under it are the entities.
 
-- **voltage** (*Required*, [ID](/guides/configuration-types#id)): The ID of a voltage sampler (`adc`, `ads1115`, ...)
-  that reads the AO pin.
-- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
+- **voltage** (**Required**, [ID](/guides/configuration-types/#id)): The ID of a voltage sampler (`adc`, `ads1115`,
+  ...) that reads the AO pin.
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code generation.
 - **voltage_multiplier** (*Optional*, float): The multiplier applied to the sampled voltage, the inverse of the
   divider ratio (`1.5` for a 10k/20k divider, `1.0` for a directly connected sensor or a sampler with a wider input
   range). Defaults to `1.0`.
@@ -150,23 +134,24 @@ One entry is one physical sensor and not an entity itself: the gases listed unde
   so it is reported as `unknown` with a warning instead of being published as a measurement. Defaults to `5.0`.
 - **sample_count** (*Optional*, int): The number of AO conversions averaged per reading. They run back to back inside
   one pass of the main loop. Defaults to `4`. Range: 1-16.
-- **warmup_time** (*Optional*, [Time](/guides/configuration-types#time)): The heater warm-up. Nothing is published
+- **warmup_time** (*Optional*, [Time](/guides/configuration-types/#time)): The heater warm-up. Nothing is published
   before it has elapsed. Defaults to `3min`; use `24h` for the burn-in of a new module.
-- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval between two readings,
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): The interval between two readings,
   shared by every gas of the entry. Defaults to `30s`.
 - **air_reference** (*Optional*, float): A fixed clean-air reference in volts (`VCC - V_AO` measured in clean air),
   which skips the calibration at boot. It has to be smaller than `vcc`. Mutually exclusive with `calibration:`.
 - **calibration** (*Optional*): Capture the clean-air reference at boot instead of hard-coding it.
-  - **delay** (*Optional*, [Time](/guides/configuration-types#time)): The time to wait after boot before the first
+  - **delay** (*Optional*, [Time](/guides/configuration-types/#time)): The time to wait after boot before the first
     sample, so the module has settled. Defaults to `60s`.
   - **sample_count** (*Optional*, int): The number of readings averaged into the reference. Defaults to `10`.
     Range: 2-16.
-  - **sample_interval** (*Optional*, [Time](/guides/configuration-types#time)): The spacing between two of those
+  - **sample_interval** (*Optional*, [Time](/guides/configuration-types/#time)): The spacing between two of those
     readings. Defaults to `20ms`; the minimum is 16 ms, one pass of the main loop.
 
-Without `air_reference:` or `calibration:` the gases stay `unknown` until the sensor is calibrated.
+Without `air_reference:` or `calibration:` the component never has an air reference, so every gas stays `unknown`
+permanently. The reference is only captured at boot; there is no action to trigger a calibration at run time.
 
-### Gas sub-sensors
+### Gas Sub-Sensors
 
 `carbon_monoxide`, `hydrogen`, `ethanol`, `ammonia` and `methane` are the gases of the platform, and at least one of
 them has to be configured. Each one is a normal [Sensor](/components/sensor), so `name:`, `id:`, `filters:`,
@@ -183,33 +168,32 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor), so
 | `ethanol` (`C2H5OH`) | 10 - 500 ppm | 0.306 | 0.00057 |
 | `methane` (`CH4`) | 1000 - 25000 ppm | 0.786 | 0.000023 |
 
-- The vendor `threshold` is the clean-air ratio at or below which the gas counts as detected, and `gain` is the
-  vendor's ppm per unit of ratio.
+- The vendor `threshold` is the ratio relative to clean air (1.0) at or below which the gas counts as detected, and
+  `gain` is the vendor's ppm per unit of ratio.
 - The vendor's own minimum applies near the threshold: H2 and CO report 0 ppm below 1 ppm, NH3 and C2H5OH below
   10 ppm and CH4 below 1000 ppm.
 
-## Notes and limitations
+## Notes and Limitations
 
-- **Safety**: The MiCS-5524 is a MEMS metal-oxide sensor for trace detection, not a safety device. It responds to CO,
-  H2, C2H5OH, NH3 and CH4 at the same time and cannot identify which gas is present, so each sub-sensor is the same
-  mixture interpreted through the curve of its gas.
+- **Cross-sensitivity**: The MiCS-5524 is a MEMS metal-oxide sensor for trace detection, not a safety device. The five
+  sub-sensors are views of the same reading interpreted through the curve of their gas, not independent measurements.
 - **`unknown` vs `0 ppm`**: Unusable readings - an AO that cannot be read or is at or below 0 V, a reading at or above
   the configured `vcc:`, and a reference that is not available yet - publish `unknown`, never `0 ppm`, so a broken
   sensor cannot look like clean air. A one-time warning is logged instead. `0 ppm` is only published when the model
   says "not detected" (the ratio is above the threshold), i.e. for a valid clean-air reading.
-- **Several gases on one sensor**: They are views of the same reading rather than independent measurements, because
-  one analog output cannot separate the gases.
 - **The calibration has to be plausible**: A run whose samples disagree by more than 25 % of their mean was not taken
   in clean, still air, and neither was a run in which a majority of the samples were unusable. Both are logged with
   the reason, are retried after `calibration.delay` and keep the gases `unknown` in the meantime. A new module needs
   24 - 48 h of burn-in before its readings are stable.
-- **The reference is not stored across reboots**: With `calibration:` the sensor calibrates at every boot, which takes
-  `max(calibration.delay, warmup_time)`. Hard-code the value the log reports as `air_reference: ...` to skip it.
+- **The reference is not stored across reboots**: With `calibration:` the sensor calibrates at every boot. The
+  calibration delay and the warm-up run at the same time, so the reference is ready after
+  `max(calibration.delay, warmup_time)` plus the calibration run itself (`sample_count` × `sample_interval`, about
+  0.2 s with the defaults). Hard-code the value the log reports as `air_reference: ...` to skip it.
 - **ESP32 ADC**: The ESP32 ADC is noisy and bottoms out around 75 mV (~7 ppm CO). Raise `sample_count`, add an RC
   filter or use an [ADS1115](/components/sensor/ads1115/) (16 bit, gain `6.144` covers the 0 - 5 V output without a
   divider).
-- **Accuracy**: The vendor model is a coarse fit of a multi-gas sensor. Treat the published ppm value as an estimate
-  of the concentration of the selected gas, not as a measurement of it.
+- **Accuracy**: The vendor model is a coarse fit of a multi-gas sensor, so the published ppm value estimates the
+  concentration of the selected gas rather than measuring it.
 
 ## Troubleshooting
 
@@ -219,23 +203,18 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor), so
 | warning about `0.0000 V` on the analog output | AO not wired, module not powered from 5 V, the `EN` pad not driven low |
 | warning that the analog output is at or above `vcc:` | wrong `vcc:` or `voltage_multiplier:` - the reading is ignored instead of published |
 | ppm far too high | a reference that was captured while gas was present, or a divider ratio that does not match the wiring |
-| ppm always 0 while gas is clearly present | the vendor thresholds sit close to the clean-air ratio; re-calibrate in really clean air |
-| values jump around | ESP32 ADC noise - raise `sample_count`, add an RC filter or use an `ads1115` |
+| ppm always 0 while gas is clearly present | the ratio stays above the gas's `threshold` (0.425 for CO, 0.279 for H2), so the model reports 0 ppm - expected at low concentrations, not a calibration fault |
+| values jump around | ESP32 ADC noise - raise `sample_count` or add an RC filter |
 | `calibration failed`, or a warning about the spread of the samples | the sensor was not settled in clean, still air; let it burn in and let the component retry |
-| nothing is published for minutes after a restart | `warmup_time` (`3min` by default) plus `calibration.delay`; lower them while testing, or hard-code `air_reference:` |
+| nothing is published for minutes after a restart | `max(warmup_time, calibration.delay)` (`3min` each by default) plus the calibration run; lower them while testing, or hard-code `air_reference:` |
 
 > [!TIP]
-> The chain behind every reading (`V_AO`, `x`, `ratio` and the ppm value of each gas) is logged at `DEBUG`, which is
-> the quickest way to see whether the reading or its reference is off:
-
-```yaml
-logger:
-  level: DEBUG
-```
+> The chain behind every reading (`V_AO`, `x`, `ratio` and the ppm value of each gas) is logged at `DEBUG`, the default
+> logger level, which is the quickest way to see whether the reading or its reference is off.
 
 ## See Also
 
-- [Sensor Filters](/components/sensor#sensor-filters)
+- [Sensor Filters](/components/sensor/#sensor-filters)
 - [ADC](/components/sensor/adc/)
 - [ADS1115](/components/sensor/ads1115/)
 - [MiCS-4514](/components/sensor/mics_4514/)
