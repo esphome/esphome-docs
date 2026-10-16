@@ -500,18 +500,27 @@ test("a typed platform joined with its hub keeps the discriminator and variant g
   );
 });
 
-test("nested bullets under a key created from platform children are written to the child", async () => {
+test("nested bullets under a key created from platform children are written to every child", async () => {
   const { docs, store } = await walk({
     schema: {
-      esphome: core(["foo"], { sensor: {} }),
+      esphome: core(["foo", "bar"], { sensor: {} }),
       sensor: {
         sensor: {
           schemas: { SENSOR_SCHEMA: schema({ name: { key: "Optional" } }) },
-          components: { foo: {} },
+          components: { foo: {}, bar: {} },
         },
       },
       foo: {
         "foo.sensor": {
+          schemas: {
+            CONFIG_SCHEMA: schema({
+              mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } },
+            }),
+          },
+        },
+      },
+      bar: {
+        "bar.sensor": {
           schemas: {
             CONFIG_SCHEMA: schema({
               mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } },
@@ -531,9 +540,37 @@ test("nested bullets under a key created from platform children are written to t
     },
   });
   assert.match(docs("sensor", "sensor", "schemas", "SENSOR_SCHEMA", "schema", "config_vars", "mode"), /sampling mode/);
-  const values = store.files.get("foo")["foo.sensor"].schemas.CONFIG_SCHEMA.schema.config_vars.mode.values;
-  assert.match(values.FAST.docs, /^Sample quickly/);
-  assert.match(values.SLOW.docs, /^Sample slowly/);
+  for (const comp of ["foo", "bar"]) {
+    const values = store.files.get(comp)[`${comp}.sensor`].schemas.CONFIG_SCHEMA.schema.config_vars.mode.values;
+    assert.match(values.FAST.docs, /^Sample quickly/);
+    assert.match(values.SLOW.docs, /^Sample slowly/);
+  }
+});
+
+test("an orphan list is reported even when its first bullet is prose", async () => {
+  const { report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ name: { key: "Optional" } }) } } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Advanced",
+        "{/* schema: foo.MISSING */}",
+        "### Configuration variables",
+        "- **Note**: read this first.\n- **name** (*Optional*, string): The name.\n- **pin** (*Optional*, pin): The pin.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.deepEqual(
+    report.findings.map((f) => [f.kind, f.line, f.key, f.detail]),
+    [
+      ["unroutable_section", 11, undefined, "schema 'foo.MISSING' not found"],
+      ["orphan_option_list", 13, "name", "2 option bullet(s) outside any schema section"],
+    ],
+  );
 });
 
 test("nested bullets under an inherited key refined on typed variants reach the base definition", async () => {

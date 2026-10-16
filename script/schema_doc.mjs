@@ -1495,10 +1495,13 @@ export class Walker {
     }
     if (this.section) {
       await this.listItems(node);
-    } else if (first && !first.prose && first.optionality) {
+      return;
+    }
+    const options = node.children.map((item) => parseItem(item)).filter((p) => p?.hasParen && !p.prose);
+    if (options.length) {
       this.report.add("orphan_option_list", this.rel, line, {
-        key: first.key,
-        detail: "option bullets outside any schema section",
+        key: options[0].key,
+        detail: `${options.length} option bullet(s) outside any schema section`,
       });
     }
   }
@@ -1563,20 +1566,20 @@ export class Walker {
    */
   async createFromChildren(inner, parsed, item, documented) {
     const { store, report } = this;
-    const child = (await store.childrenOf(inner.baseRef)).find((v) => v.config_vars?.[parsed.key]);
-    if (!child) return null;
+    const children = (await store.childrenOf(inner.baseRef)).filter((v) => v.config_vars?.[parsed.key]);
+    if (!children.length) return null;
     report.stats.keysMatched++;
     documented.add(parsed.key);
     this.checkBullet(item, parsed);
-    await this.checkOptionality({ variants: [child] }, parsed);
-    const childProp = child.config_vars[parsed.key];
-    if (!this.emit) return { prop: childProp, inherited: false, created: true, child };
+    await this.checkOptionality({ variants: children }, parsed);
+    const childProp = children[0].config_vars[parsed.key];
+    if (!this.emit) return { prop: childProp, inherited: false, created: true, children };
     const base = inner.variants[0];
     base.config_vars ??= {};
     const created = (base.config_vars[parsed.key] ??= {});
     if ("key" in childProp) created.key ??= childProp.key;
     await this.emitPropDocs({ prop: created, inherited: false }, inner, item, parsed);
-    return { prop: created, inherited: false, created: true, child };
+    return { prop: created, inherited: false, created: true, children };
   }
 
   /** A bullet the generator will not be able to turn into docs. */
@@ -1667,10 +1670,11 @@ export class Walker {
         }
       }
       if (found?.created) {
-        // The base schema only got the key's docs; its type and values live on the child
-        const childFound = { prop: found.child.config_vars[parsed.key], inherited: false };
+        // The base schema only got the key's docs; its type and values live on
+        // the platform components, each of which gets the nested text
+        const childFound = { prop: found.children[0].config_vars[parsed.key], inherited: false };
         this.lastEnumProp = childFound.prop.type === "enum" ? childFound.prop : null;
-        await this.nestedContent(item, { variants: [found.child] }, parsed.key, childFound);
+        await this.nestedContent(item, { variants: found.children, multi: true }, parsed.key, childFound);
         continue;
       }
       if (!found) {
@@ -1758,8 +1762,9 @@ async function main() {
     broken = `${parseErrors} page(s) could not be parsed`;
   } else if (s.sectionsUnroutable * 2 > s.sections) {
     broken = `${s.sectionsUnroutable} of ${s.sections} sections match no schema`;
-  } else if (s.keysUnmatched > s.keysMatched) {
-    broken = `${s.keysUnmatched} of ${s.keysMatched + s.keysUnmatched} documented keys match no schema key`;
+  } else if (s.keysUnmatched > s.keysMatched + s.keysMatchedNested) {
+    const total = s.keysMatched + s.keysMatchedNested + s.keysUnmatched;
+    broken = `${s.keysUnmatched} of ${total} documented keys match no schema key`;
   } else if (args.emit && s.emitted.props + s.emitted.propsRefined === 0) {
     broken = "no option description was written";
   }
