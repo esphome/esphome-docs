@@ -1505,6 +1505,11 @@ async function main() {
     console.error("--emit needs --schema-dir");
     return 2;
   }
+  if (args.emit && args.file) {
+    // The output would look like a full bundle while only the matched pages have docs
+    console.error("--emit documents every page; --file is for report runs");
+    return 2;
+  }
   const store = new SchemaStore({ dir: args["schema-dir"], url: args["schema-url"] });
   await store.init();
   if (args.emit) await store.loadAll();
@@ -1517,7 +1522,13 @@ async function main() {
 
   let files = listMdx(COMPONENTS_ROOT);
   files.push(join(DOCS_ROOT, "automations", "actions.mdx"));
-  if (args.file) files = files.filter((f) => f.includes(args.file));
+  if (args.file) {
+    files = files.filter((f) => f.includes(args.file));
+    if (!files.length) {
+      console.error(`--file ${args.file} matches no page`);
+      return 2;
+    }
+  }
 
   // Platform index pages first so base-schema docs are in place before the
   // platform components refine them (platform components refine base docs).
@@ -1539,8 +1550,13 @@ async function main() {
     await walker.walk(tree);
   }
 
+  const parseErrors = report.findings.filter((f) => f.kind === "parse_error").length;
   if (args.emit) {
-    store.save(args.emit);
+    if (parseErrors) {
+      console.error(`not writing ${args.emit}: ${parseErrors} page(s) could not be parsed`);
+    } else {
+      store.save(args.emit);
+    }
     console.log(JSON.stringify(report.stats.emitted, null, 2));
   }
 
@@ -1582,7 +1598,8 @@ async function main() {
     );
   }
 
-  const parseErrors = report.findings.filter((f) => f.kind === "parse_error").length;
+  const hidden = new Map();
+  for (const f of report.findings) if (!shown.has(f.kind)) hidden.set(f.kind, (hidden.get(f.kind) ?? 0) + 1);
   const s = report.stats;
   console.log(
     [
@@ -1591,6 +1608,7 @@ async function main() {
       `keys matched ${s.keysMatched} (+${s.keysMatchedNested} via nested schema), not in schema ${s.keysUnmatched}, in schema but undocumented ${s.keysUndocumented}`,
       `optionality mismatches ${s.optionalityMismatch}`,
       `prose bullets skipped ${s.proseBullets}`,
+      ...(hidden.size ? [`not shown without --verbose: ${[...hidden].map(([k, n]) => `${k} ${n}`).join(", ")}`] : []),
     ].join("\n"),
   );
   if (parseErrors) {
