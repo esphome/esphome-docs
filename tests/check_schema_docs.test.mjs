@@ -27,7 +27,10 @@ test("parseItem marks non-key bullets as prose", () => {
 
 test("registryHeading uses the inline code, not the heading text", () => {
   const tree = parse("## `uart.write` Action\n");
-  assert.deepEqual(registryHeading(tree.children[0]), { name: "uart.write", type: "action" });
+  const reg = registryHeading(tree.children[0]);
+  assert.deepEqual([reg.name, reg.type], ["uart.write", "action"]);
+  const two = registryHeading(parse("## `fan.is_on` / `fan.is_off` Condition\n").children[0]);
+  assert.deepEqual(two.names, ["fan.is_on", "fan.is_off"]);
   assert.equal(registryHeading(parse("## Debugging\n").children[0]), null);
 });
 
