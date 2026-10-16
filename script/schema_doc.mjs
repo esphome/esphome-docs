@@ -207,6 +207,7 @@ export class SchemaStore {
     if (m) [, ref, variant] = m;
     const found = await this.lookup(ref);
     if (!found) return null;
+    if (variant && found.entry?.type !== "typed") return null;
     // Registry entries the extractor emitted as {} exist but have no keys
     return toInner(found.entry, variant) ?? (found.registry ? { variants: [{}] } : null);
   }
@@ -1241,6 +1242,25 @@ export class Walker {
       this.pendingRegistry = registryEntry;
       this.pendingRegistryDepth = node.depth;
       return;
+    }
+
+    // "## `custom` VBus sensors": a typed variant of this page's sensor platform
+    const variantCode =
+      bareCodeHeading(node) === null ? node.children.find((c) => c.type === "inlineCode")?.value : null;
+    if (variantCode && this.stem !== "index") {
+      const words = slug(toString({ children: node.children.filter((c) => c.type !== "inlineCode") })).split("_");
+      const candidates = [words.slice(-2).join("_"), words.at(-1) ?? ""].map((w) => w.replace(/s$/, ""));
+      const platformWord = candidates.find((w) => w && store.isPlatform(w));
+      if (platformWord) {
+        const ref = `${this.stem}.${platformWord}.CONFIG_SCHEMA[${variantCode}]`;
+        if (await store.exists(ref)) {
+          await this.closeSection();
+          this.defaultRef = ref;
+          this.componentRef = `${this.stem}.${platformWord}`;
+          this.switchDepth = null;
+          return;
+        }
+      }
     }
 
     const switched = async (name, scoped = false) => {

@@ -347,3 +347,46 @@ test("enum bullets with a (Default) note before a hyphen keep their description"
   assert.match(values.RESTORE_DEFAULT_OFF.docs, /^Attempt to restore state/);
   assert.match(values.ALWAYS_ON.docs, /^Always initialize/);
 });
+
+test("a `variant` Platform heading documents that typed variant of the page's platform", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["vbus"], { sensor: {} }),
+      sensor: { sensor: { schemas: {}, components: { vbus: {} } } },
+      vbus: {
+        vbus: { schemas: { CONFIG_SCHEMA: schema({ uart_id: { key: "Optional" } }) } },
+        "vbus.sensor": {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "model",
+              types: {
+                deltasol_c: { config_vars: { temperature_1: { key: "Optional" } } },
+                custom: { config_vars: { sensors: { key: "Optional" } } },
+              },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "vbus.mdx": [
+        "VBus.",
+        "## Sensor",
+        "### Configuration variables",
+        "- **temperature_1** (*Optional*): Temperature sensor 1.",
+        "## `custom` VBus sensors",
+        "### Configuration variables",
+        "- **sensors** (*Optional*): A list of sensor definitions with a lambda.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const types = (...k) => docs("vbus", "vbus.sensor", "schemas", "CONFIG_SCHEMA", "types", ...k);
+  assert.match(types("deltasol_c", "config_vars", "temperature_1"), /Temperature sensor 1/);
+  assert.match(types("custom", "config_vars", "sensors"), /sensor definitions/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key"),
+    [],
+  );
+});
