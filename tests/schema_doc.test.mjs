@@ -134,4 +134,21 @@ test("parseEnumValues reads the <EnumValues> JSX block", () => {
   for (const bad of ['{ value: "X", description: 123 }', '{ value: "X", default: "yes" }', "{ value: true }"]) {
     assert.match(parseEnumValues(parse(`<EnumValues values={[${bad}]} />\n`).children[0]).error, /value is a string/);
   }
+  // Text that looks like a field or a trailing comma inside a string stays as written
+  assert.deepEqual(
+    parseEnumValues(
+      parse(
+        '<EnumValues values={[{ value: "A", description: "Default value: 1" }, { value: -1, description: "Literal A, }" }]} />\n',
+      ).children[0],
+    ).entries,
+    [
+      { value: "A", description: "Default value: 1" },
+      { value: -1, description: "Literal A, }" },
+    ],
+  );
+  assert.match(
+    parseEnumValues(parse("<EnumValues values={[{ value: name }]} />\n").children[0]).error,
+    /not a literal/,
+  );
+  assert.match(parseEnumValues(parse("<EnumValues values={items} />\n").children[0]).error, /not an array/);
 });

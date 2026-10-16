@@ -215,7 +215,10 @@ export class SchemaStore {
       const inners = variants.map(([r, entry]) => [r, toInner(entry)]).filter(([, i]) => i);
       const flat = inners.flatMap(([, i]) => i.variants);
       const primaryCount = inners.filter(([r]) => r === 0).reduce((n, [, i]) => n + i.variants.length, 0);
-      return flat.length ? { variants: flat, primaryCount: primaryCount || flat.length, baseRef: top } : null;
+      if (!flat.length) return null;
+      // Without a base schema every schema of the file is audited, and keys the
+      // platform components declare have nowhere to be created
+      return { variants: flat, primaryCount: primaryCount || flat.length, baseRef: top, hasBase: primaryCount > 0 };
     }
     let variant = null;
     const m = ref.match(/^(.*)\[([^\]]+)\]$/);
@@ -378,7 +381,12 @@ export class SchemaStore {
     if (inner.typedKey === name) props.push({ key: "Required", type: "enum" });
     for (const variantInner of inner.variants) {
       const own = variantInner.config_vars?.[name];
-      if (own) props.push(own);
+      if (own) {
+        props.push(own);
+        // A redeclared key shadows the inherited one, as findPropOwner resolves it;
+        // a bare {} the extractor could not describe does not
+        if ("key" in own) continue;
+      }
       for (const ext of variantInner.extends ?? []) {
         if (seen.has(ext)) continue;
         seen.add(ext);
@@ -558,16 +566,29 @@ const ENUM_RE = /^(?:`([^`]*)`|\*\*([^*]*)\*\*)\s*(?:(?:-|:)\s*(.*)|\(([^)]*)\)(
 /** <EnumValues values={[ {value: "X", default: true, description: "Y"}, … ]} /> */
 export function parseEnumValues(node) {
   const attr = node.attributes?.find((a) => a.name === "values");
-  const raw = attr?.value?.value ?? attr?.value;
-  if (typeof raw !== "string") return { error: "missing values={[...]} prop" };
-  const body = raw.replace(/\b(value|description|default)\s*:/g, '"$1":').replace(/,(\s*[\]}])/g, "$1");
+  const expr = attr?.value?.data?.estree?.body?.[0]?.expression;
+  if (!expr) return { error: "missing values={[...]} prop" };
+  const literal = (n) => {
+    if (n.type === "Literal") return n.value;
+    if (n.type === "UnaryExpression" && n.operator === "-" && n.argument.type === "Literal") return -n.argument.value;
+    throw new Error(`${n.type} is not a literal`);
+  };
   let entries;
   try {
-    entries = JSON.parse(body);
+    if (expr.type !== "ArrayExpression") throw new Error("values is not an array literal");
+    entries = expr.elements.map((el) => {
+      if (el?.type !== "ObjectExpression") throw new Error("each entry must be an object literal");
+      return Object.fromEntries(
+        el.properties.map((prop) => {
+          if (prop.type !== "Property" || prop.computed) throw new Error("each field must be a plain key: value pair");
+          return [prop.key.name ?? prop.key.value, literal(prop.value)];
+        }),
+      );
+    });
   } catch (err) {
     return { error: err.message };
   }
-  if (!Array.isArray(entries) || !entries.every((e) => e && typeof e === "object" && "value" in e)) {
+  if (!entries.every((e) => "value" in e)) {
     return { error: "each entry needs a 'value'" };
   }
   const bad = entries.find(
@@ -702,7 +723,7 @@ export class Walker {
     this.componentsRoot = componentsRoot;
     this.url = pageUrl(file, docsRoot);
     this.lastHeadingSlug = null;
-    this.lastEnumProp = null;
+    this.lastEnumProps = [];
     this.slugger = new Slugger();
     this.tree = null;
     this.rel = relative(componentsRoot, file).replace(/\\/g, "/");
@@ -854,8 +875,14 @@ export class Walker {
       return;
     }
     this.failedSection = null;
+    if (inner.baseRef && !inner.hasBase) {
+      report.add("missing_base_schema", this.rel, line, {
+        schema: ref,
+        detail: `${inner.baseRef} has no ${inner.baseRef.toUpperCase()}_SCHEMA to hold keys its platforms share`,
+      });
+    }
     this.section = { ref, inner, depth, documented: new Set(), line, continued: false };
-    this.lastEnumProp = null;
+    this.lastEnumProps = [];
     report.sections.push({ file: this.rel, line, ref, source });
     await store.verifyExtends(inner);
   }
@@ -882,7 +909,7 @@ export class Walker {
     const s = this.section;
     if (!s) return;
     this.section = null;
-    this.lastEnumProp = null;
+    this.lastEnumProps = [];
     this.reportUndocumented(s);
   }
 
@@ -986,6 +1013,22 @@ export class Walker {
       if (entry.default) prop.values[key].default = true;
       this.report.stats.emitted.enumDocs++;
     }
+  }
+
+  /** The enum definitions a bullet's key has in this section, for an <EnumValues/> block that follows it. */
+  async enumHolders(inner, key, found) {
+    const holders = inner.typedKey || inner.multi ? await this.store.propHolders(inner, key) : [];
+    const props = holders.length ? holders.map((h) => h.prop) : [found.prop];
+    return props.filter((p) => p?.type === "enum");
+  }
+
+  /** A top-level <EnumValues/> block: one copy of its descriptions per definition of the option before it. */
+  enumValuesBlocks(node, props) {
+    if (!props.length) {
+      this.enumValuesBlock(node, null);
+      return;
+    }
+    for (const prop of props) this.enumValuesBlock(node, prop);
   }
 
   /** An <EnumValues/> block: attach its descriptions to the enum it follows. */
@@ -1165,7 +1208,7 @@ export class Walker {
       else if (node.type === "list") await this.list(node);
       else if (node.type === "mdxFlowExpression") this.expression(node);
       else if (node.type === "mdxJsxFlowElement" && node.name === "EnumValues") {
-        this.enumValuesBlock(node, this.lastEnumProp);
+        this.enumValuesBlocks(node, this.lastEnumProps);
       }
     }
     await this.closeSection();
@@ -1238,7 +1281,7 @@ export class Walker {
     const line = node.position.start.line;
     this.lastHeadingSlug = this.slugger.slug(toString(node).replace(/\./g, "-"));
     this.lastHeadingDepth = node.depth;
-    this.lastEnumProp = null;
+    this.lastEnumProps = [];
     if (this.failedSection && node.depth <= this.failedSection.depth) this.failedSection = null;
     const intro = () => this.leadParagraph(siblings, index + 1);
 
@@ -1361,14 +1404,13 @@ export class Walker {
       this.report.add("unresolved_component_heading", this.rel, line, {
         detail: `"${text}" names no schema (tried ${name})`,
       });
-    if (/ Component$/.test(text)) {
-      const name = slug(text.replace(/ Component$/, "").replace(/\./g, ""));
-      if (await switched(name)) return;
-      unresolved(name);
-    }
     if (text === "Component/Hub" || text === "Hub Component") {
       if (await switched(this.stem)) return;
       unresolved(this.stem);
+    } else if (/ Component$/.test(text)) {
+      const name = slug(text.replace(/ Component$/, "").replace(/\./g, ""));
+      if (await switched(name)) return;
+      unresolved(name);
     }
     // Bus headings describe one wiring of the same component; the sibling
     // sections that follow belong to the page again
@@ -1458,7 +1500,7 @@ export class Walker {
       const prop = await store.findProp(this.section.inner, code);
       const inner = propInner(prop);
       if (prop?.type === "enum") {
-        this.lastEnumProp = prop;
+        this.lastEnumProps = [prop];
         this.section.enumProp = prop;
         this.section.documented.add(code);
         return;
@@ -1566,6 +1608,7 @@ export class Walker {
    */
   async createFromChildren(inner, parsed, item, documented) {
     const { store, report } = this;
+    if (!inner.hasBase) return null;
     const children = (await store.childrenOf(inner.baseRef)).filter((v) => v.config_vars?.[parsed.key]);
     if (!children.length) return null;
     report.stats.keysMatched++;
@@ -1596,7 +1639,7 @@ export class Walker {
   async items(listNode, inner, documented) {
     const { store, report } = this;
     for (const item of listNode.children) {
-      this.lastEnumProp = null;
+      this.lastEnumProps = [];
       const parsed = parseItem(item);
       if (!parsed || parsed.prose) {
         if (parsed?.optionality || (!parsed && LOOKS_LIKE_OPTION_RE.test(itemText(this.tree, item)))) {
@@ -1653,8 +1696,9 @@ export class Walker {
         if (nestedProps.length) {
           report.stats.keysMatchedNested++;
           // Two sub-schemas with the same key (on_boot/on_shutdown priority)
-          // cannot be told apart from a flat list: match, but do not document
-          if (nestedProps.length === 1) {
+          // cannot be told apart from a flat list, and every sub-schema has an
+          // `id`: match, but do not document
+          if (nestedProps.length === 1 && parsed.key !== "id") {
             this.checkBullet(item, parsed);
             await this.checkOptionality({ variants: [{ config_vars: { [parsed.key]: nestedProps[0] } }] }, parsed);
             found = { prop: nestedProps[0], inherited: false };
@@ -1673,8 +1717,9 @@ export class Walker {
         // The base schema only got the key's docs; its type and values live on
         // the platform components, each of which gets the nested text
         const childFound = { prop: found.children[0].config_vars[parsed.key], inherited: false };
-        this.lastEnumProp = childFound.prop.type === "enum" ? childFound.prop : null;
-        await this.nestedContent(item, { variants: found.children, multi: true }, parsed.key, childFound);
+        const childInner = { variants: found.children, multi: true };
+        this.lastEnumProps = await this.enumHolders(childInner, parsed.key, childFound);
+        await this.nestedContent(item, childInner, parsed.key, childFound);
         continue;
       }
       if (!found) {
@@ -1690,7 +1735,7 @@ export class Walker {
       this.checkBullet(item, parsed);
       await this.checkOptionality(inner, parsed);
       await this.emitPropDocs(found, inner, item, parsed);
-      this.lastEnumProp = found.prop.type === "enum" ? found.prop : null;
+      this.lastEnumProps = await this.enumHolders(inner, parsed.key, found);
       await this.nestedContent(item, inner, parsed.key, found);
     }
   }
@@ -1788,6 +1833,7 @@ async function main() {
     "parse_error",
     "unroutable_section",
     "orphan_option_list",
+    "missing_base_schema",
     "unknown_registry_entry",
     "missing_schema_entry",
     "malformed_enum_values",

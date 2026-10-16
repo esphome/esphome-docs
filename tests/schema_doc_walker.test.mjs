@@ -737,3 +737,132 @@ test("options of an action the schema does not have are dropped, not written to 
     ],
   );
 });
+
+test("a top-level <EnumValues> block reaches every typed variant that has the option before it", async () => {
+  const typed = (extra = {}) => ({
+    config_vars: { mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } }, ...extra },
+  });
+  const { store } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "model",
+              types: { a: typed(), b: typed({ pin: { key: "Required" } }) },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **model** (**Required**): The model.",
+        "- **mode** (*Optional*): The mode.",
+        '<EnumValues values={[{ value: "FAST", default: true, description: "Sample quickly" }, { value: "SLOW", description: "Sample slowly" }]} />',
+        "",
+      ].join("\n\n"),
+    },
+  });
+  for (const variant of ["a", "b"]) {
+    const values = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.types[variant].config_vars.mode.values;
+    assert.deepEqual(values.FAST, { default: true, docs: "Sample quickly" });
+    assert.equal(values.SLOW.docs, "Sample slowly");
+  }
+});
+
+test("a variant's own Required key is not excused by an inherited Optional one", async () => {
+  const { report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            BASE_SCHEMA: schema({ mode: { key: "Optional" } }),
+            CONFIG_SCHEMA: {
+              type: "schema",
+              schema: { config_vars: { mode: { key: "Required" } }, extends: ["foo.BASE_SCHEMA"] },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": ["Foo.", "## Configuration variables", "- **mode** (*Optional*, string): The mode.", ""].join("\n\n"),
+    },
+  });
+  assert.deepEqual(
+    report.findings.map((f) => [f.kind, f.key, f.detail]),
+    [["optionality_mismatch", "mode", "docs say optional, schema says required"]],
+  );
+});
+
+test("a Hub Component heading is the page's own hub, not an unresolved component", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"], { sensor: {} }),
+      sensor: { sensor: { schemas: {}, components: { foo: {} } } },
+      foo: {
+        foo: { schemas: { CONFIG_SCHEMA: schema({ uart_id: { key: "Optional" } }) } },
+        "foo.sensor": { schemas: { CONFIG_SCHEMA: schema({ distance: { key: "Optional" } }) } },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Hub Component",
+        "The hub.",
+        "### Configuration variables",
+        "- **uart_id** (*Optional*, ID): The UART.",
+        "## Sensor",
+        "### Configuration variables",
+        "- **distance** (*Optional*): Distance.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "uart_id"), /The UART/);
+  assert.match(docs("foo", "foo.sensor", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "distance"), /Distance/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unresolved_component_heading"),
+    [],
+  );
+});
+
+test("a platform index without a base schema does not get platform keys created on a derived schema", async () => {
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["foo"], { gizmo: {} }),
+      gizmo: {
+        gizmo: {
+          schemas: { BASIC_GIZMO_SCHEMA: schema({ name: { key: "Optional" } }) },
+          components: { foo: {} },
+        },
+      },
+      foo: { "foo.gizmo": { schemas: { CONFIG_SCHEMA: schema({ speed: { key: "Optional" } }) } } },
+    },
+    pages: {
+      "gizmo/index.mdx": [
+        "Gizmos.",
+        "## Base Gizmo Configuration",
+        "- **name** (*Optional*, string): The name.",
+        "- **speed** (*Optional*, int): The speed.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const basic = store.files.get("gizmo").gizmo.schemas.BASIC_GIZMO_SCHEMA.schema.config_vars;
+  assert.match(basic.name.docs, /The name/);
+  assert.equal(basic.speed, undefined);
+  assert.deepEqual(
+    report.findings.map((f) => [f.kind, f.key]),
+    [
+      ["missing_base_schema", undefined],
+      ["unmatched_key", "speed"],
+    ],
+  );
+});
