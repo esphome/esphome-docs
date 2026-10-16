@@ -95,18 +95,30 @@ export class SchemaStore {
 
   async init() {
     const esphome = await this.file("esphome");
+    if (!esphome?.core) {
+      throw new Error(`esphome.json not found in ${this.dir ?? this.url}; is this a language schema bundle?`);
+    }
     this.core = esphome.core;
   }
 
+  /** The parsed JSON for one schema file, or null when the bundle has no such file. */
   async file(name) {
     if (this.files.has(name)) return this.files.get(name);
     let doc = null;
     if (this.dir) {
       const path = join(this.dir, `${name}.json`);
-      if (existsSync(path)) doc = JSON.parse(readFileSync(path, "utf8"));
+      if (existsSync(path)) {
+        try {
+          doc = JSON.parse(readFileSync(path, "utf8"));
+        } catch (err) {
+          throw new Error(`${path}: ${err.message}`, { cause: err });
+        }
+      }
     } else {
-      const res = await fetch(`${this.url}/${name}.json`);
+      const url = `${this.url}/${name}.json`;
+      const res = await fetch(url);
       if (res.ok) doc = await res.json();
+      else if (res.status !== 404) throw new Error(`${url}: HTTP ${res.status}`);
     }
     this.files.set(name, doc);
     return doc;
@@ -167,30 +179,10 @@ export class SchemaStore {
     let variant = null;
     const m = ref.match(/^(.*)\[([^\]]+)\]$/);
     if (m) [, ref, variant] = m;
-    const parts = ref.split(".");
-    if (parts[0] === "core") {
-      const entry = REGISTRY_TYPES.has(parts[1])
-        ? this.core?.[parts[1]]?.[parts.slice(2).join(".")]
-        : this.core?.schemas?.[parts[1]];
-      if (!entry) return null;
-      return toInner(entry, variant) ?? (REGISTRY_TYPES.has(parts[1]) ? { variants: [{}] } : null);
-    }
-    const doc = await this.file(parts[0]);
-    if (!doc) return null;
-    for (const topLen of [1, 2]) {
-      const top = doc[parts.slice(0, topLen).join(".")];
-      if (!top) continue;
-      const rest = parts.slice(topLen);
-      if (rest.length === 0) continue;
-      if (REGISTRY_TYPES.has(rest[0])) {
-        const entry = top[rest[0]]?.[rest.slice(1).join(".")];
-        if (entry) return toInner(entry, variant) ?? { variants: [{}] };
-      } else if (rest.length === 1) {
-        const entry = top.schemas?.[rest[0]];
-        if (entry) return toInner(entry, variant);
-      }
-    }
-    return null;
+    const found = await this.lookup(ref);
+    if (!found) return null;
+    // Registry entries the extractor emitted as {} exist but have no keys
+    return toInner(found.entry, variant) ?? (found.registry ? { variants: [{}] } : null);
   }
 
   async exists(ref) {
@@ -199,11 +191,16 @@ export class SchemaStore {
 
   /** The raw JSON object a plain (non-union) reference points at. */
   async entry(ref) {
-    const parts = ref.replace(/\[[^\]]+\]$/, "").split(".");
+    return (await this.lookup(ref.replace(/\[[^\]]+\]$/, "")))?.entry ?? null;
+  }
+
+  /** {entry, registry} for a plain reference, or null. */
+  async lookup(ref) {
+    const parts = ref.split(".");
     if (parts[0] === "core") {
-      return REGISTRY_TYPES.has(parts[1])
-        ? (this.core?.[parts[1]]?.[parts.slice(2).join(".")] ?? null)
-        : (this.core?.schemas?.[parts[1]] ?? null);
+      const registry = REGISTRY_TYPES.has(parts[1]);
+      const entry = registry ? this.core?.[parts[1]]?.[parts.slice(2).join(".")] : this.core?.schemas?.[parts[1]];
+      return entry ? { entry, registry } : null;
     }
     const doc = await this.file(parts[0]);
     if (!doc) return null;
@@ -214,18 +211,17 @@ export class SchemaStore {
       if (rest.length === 0) continue;
       if (REGISTRY_TYPES.has(rest[0])) {
         const entry = top[rest[0]]?.[rest.slice(1).join(".")];
-        if (entry) return entry;
+        if (entry) return { entry, registry: true };
       } else if (rest.length === 1 && top.schemas?.[rest[0]]) {
-        return top.schemas[rest[0]];
+        return { entry: top.schemas[rest[0]], registry: false };
       }
     }
     return null;
   }
 
-  loadAll() {
-    for (const name of readdirSync(this.dir)) {
-      if (name.endsWith(".json")) this.file(basename(name, ".json"));
-    }
+  async loadAll() {
+    const names = readdirSync(this.dir).filter((n) => n.endsWith(".json"));
+    await Promise.all(names.map((n) => this.file(basename(n, ".json"))));
   }
 
   save(dir) {
@@ -417,22 +413,12 @@ export function parseMdx(path) {
 // Emitting docs into the schema
 // ---------------------------------------------------------------------------
 
-export function slugify(text) {
-  return text
-    .normalize("NFKD")
-    .replace(/[\u0080-\uffff]/g, "")
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/[-\s]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
 /** Site path of a doc page: /components/sensor/bme280 */
 export function pageUrl(file) {
   const rel = relative(DOCS_ROOT, file)
     .replace(/\\/g, "/")
     .replace(/\.mdx$/, "");
-  return `/${rel.replace(/\/index$/, "")}`;
+  return `/${rel.replace(/\/index$/, "")}/`;
 }
 
 export function convertLinks(text, url, deployUrl) {
@@ -470,14 +456,18 @@ const ENUM_RE = /^(?:`([^`]*)`|\*\*([^*]*)\*\*)(?:(?: -|:) (.*)| \(([^)]*)\)(?::
 export function parseEnumValues(node) {
   const attr = node.attributes?.find((a) => a.name === "values");
   const raw = attr?.value?.value ?? attr?.value;
-  if (typeof raw !== "string") return null;
+  if (typeof raw !== "string") return { error: "missing values={[...]} prop" };
   const body = raw.replace(/\b(value|description|default)\s*:/g, '"$1":').replace(/,(\s*[\]}])/g, "$1");
+  let entries;
   try {
-    const entries = JSON.parse(body);
-    return Array.isArray(entries) && entries.every((e) => e && typeof e === "object" && "value" in e) ? entries : null;
-  } catch {
-    return null;
+    entries = JSON.parse(body);
+  } catch (err) {
+    return { error: err.message };
   }
+  if (!Array.isArray(entries) || !entries.every((e) => e && typeof e === "object" && "value" in e)) {
+    return { error: "each entry needs a 'value'" };
+  }
+  return { entries };
 }
 
 function slug(text) {
@@ -715,13 +705,17 @@ export class Walker {
       return;
     }
     this.section = { ref, inner, depth, documented: new Set(), line, continued: false };
+    this.lastEnumProp = null;
     report.sections.push({ file: this.rel, line, ref, source });
   }
 
   async closeSection() {
+    // Sub-sections opened by `prop` headings fall back to their parent first
+    while (this.section?.parent) this.section = this.section.parent;
     const s = this.section;
     if (!s) return;
     this.section = null;
+    this.lastEnumProp = null;
     for (const key of this.store.ownKeys(s.inner)) {
       if (!s.documented.has(key)) {
         this.report.stats.keysUndocumented++;
@@ -755,20 +749,31 @@ export class Walker {
   }
 
   /** Write the page/section intro for the component or platform entry the docs describe. */
-  async emitComponentDocs(name, platform, text) {
-    if (!this.emit || !text) return;
+  async emitComponentDocs(name, platform, text, line = 1) {
+    if (!this.emit) return;
     const { store, report } = this;
+    const target = platform ? `${name}.${platform}` : name;
+    if (!text) {
+      report.add("no_intro_paragraph", this.rel, line, { detail: `no paragraph to describe ${target}` });
+      return;
+    }
     if (platform) {
       const doc = await store.file(platform);
       const entry = doc?.[platform]?.components?.[name];
-      if (entry) {
-        entry.docs = this.withSeeAlso(text);
-        report.stats.emitted.platformDocs++;
+      if (!entry) {
+        report.add("missing_schema_entry", this.rel, line, { detail: `${platform}.json has no component ${name}` });
+        return;
       }
+      entry.docs = this.withSeeAlso(text);
+      report.stats.emitted.platformDocs++;
       return;
     }
     const entry = store.core.components[name];
-    if (entry && !("docs" in entry)) {
+    if (!entry) {
+      report.add("missing_schema_entry", this.rel, line, { detail: `core.components has no ${name}` });
+      return;
+    }
+    if (!("docs" in entry)) {
       entry.docs = this.withSeeAlso(text);
       report.stats.emitted.componentDocs++;
     }
@@ -796,6 +801,23 @@ export class Walker {
     }
   }
 
+  /** An <EnumValues/> block: attach its descriptions to the enum it follows. */
+  enumValuesBlock(node, prop) {
+    const line = node.position.start.line;
+    const { entries, error } = parseEnumValues(node);
+    if (error) {
+      this.report.add("malformed_enum_values", this.rel, line, { detail: error });
+      return;
+    }
+    if (!prop || prop.type !== "enum") {
+      this.report.add("enum_values_without_enum", this.rel, line, {
+        detail: "<EnumValues> does not follow an enum option",
+      });
+      return;
+    }
+    this.emitEnumEntries(prop, entries);
+  }
+
   emitEnumList(prop, listNode) {
     if (!this.emit || !prop || prop.type !== "enum" || !prop.values) return;
     for (const item of listNode.children) {
@@ -812,10 +834,16 @@ export class Walker {
   }
 
   /** Attach a config bullet's description to the schema, as the old Python generator did. */
-  emitPropDocs(found, sectionInner, item, parsed) {
+  async emitPropDocs(found, sectionInner, item, parsed) {
     if (!this.emit || !found) return;
     const m = PROP_RE.exec(itemText(this.tree, item));
-    if (!m) return;
+    if (!m) {
+      this.report.add("malformed_prop_bullet", this.rel, parsed.line, {
+        key: parsed.key,
+        detail: "expected **key** (type): description",
+      });
+      return;
+    }
     if (found.typedEntry) {
       found.typedEntry.docs = m[3];
       this.report.stats.emitted.props++;
@@ -823,9 +851,10 @@ export class Walker {
     }
     if (sectionInner.typedKey && sectionInner.variants.length > 1) {
       // A typed schema: document the key in every variant that accepts it
-      return this.emitPropDocsTyped(sectionInner, item, parsed);
+      await this.emitPropDocsTyped(sectionInner, item, parsed);
+      return;
     }
-    const { prop, owner, inherited } = found;
+    const { prop, inherited } = found;
     const e = this.report.stats.emitted;
     let converted = this.withSeeAlso(m[3]);
     if (m[2]) {
@@ -860,14 +889,13 @@ export class Walker {
     }
     prop.docs = converted;
     e.props++;
-    void owner;
   }
 
   async emitPropDocsTyped(sectionInner, item, parsed) {
     for (const variant of sectionInner.variants) {
       const single = { variants: [variant] };
       const found = await this.store.findPropOwner(single, parsed.key);
-      if (found) this.emitPropDocs(found, single, item, parsed);
+      if (found) await this.emitPropDocs(found, single, item, parsed);
     }
   }
 
@@ -898,8 +926,7 @@ export class Walker {
       else if (node.type === "list") await this.list(node);
       else if (node.type === "mdxFlowExpression") this.expression(node);
       else if (node.type === "mdxJsxFlowElement" && node.name === "EnumValues") {
-        const entries = parseEnumValues(node);
-        if (entries) this.emitEnumEntries(this.lastEnumProp, entries);
+        this.enumValuesBlock(node, this.lastEnumProp);
       }
     }
     await this.closeSection();
@@ -1005,7 +1032,7 @@ export class Walker {
     const switched = async (name) => {
       if (!(await this.switchComponent(name))) return false;
       const [comp, platform] = this.componentRef.split(".");
-      await this.emitComponentDocs(comp, platform ?? null, intro());
+      await this.emitComponentDocs(comp, platform ?? null, intro(), line);
       return true;
     };
     if (/ Component$/.test(text)) {
@@ -1026,7 +1053,7 @@ export class Walker {
         if (ref) {
           this.defaultRef = ref;
           this.componentRef = `${this.stem}.${platformName}`;
-          await this.emitComponentDocs(this.stem, platformName, intro());
+          await this.emitComponentDocs(this.stem, platformName, intro(), line);
           return;
         }
       }
@@ -1136,14 +1163,14 @@ export class Walker {
           report.stats.keysMatched++;
           for (const k of family) {
             documented.add(k);
-            this.emitPropDocs(await store.findPropOwner(inner, k), inner, item, { ...parsed, key: k });
+            await this.emitPropDocs(await store.findPropOwner(inner, k), inner, item, { ...parsed, key: k });
           }
           continue;
         }
         prop = await store.findNestedProp(inner, parsed.key);
         if (prop) {
           report.stats.keysMatchedNested++;
-          this.emitPropDocs({ prop, owner: null, inherited: false }, inner, item, parsed);
+          await this.emitPropDocs({ prop, inherited: false }, inner, item, parsed);
           continue;
         }
         if (inner.baseRef && this.emit) {
@@ -1157,7 +1184,7 @@ export class Walker {
             if ("key" in child.config_vars[parsed.key]) created.key ??= child.config_vars[parsed.key].key;
             report.stats.keysMatched++;
             documented.add(parsed.key);
-            this.emitPropDocs({ prop: created, owner: base, inherited: false }, inner, item, parsed);
+            await this.emitPropDocs({ prop: created, inherited: false }, inner, item, parsed);
             continue;
           }
         }
@@ -1197,21 +1224,11 @@ export class Walker {
         else if (prop.type === "enum") this.emitEnumList(prop, nested);
       }
       for (const jsx of item.children.filter((c) => c.type === "mdxJsxFlowElement" && c.name === "EnumValues")) {
-        const entries = parseEnumValues(jsx);
-        if (entries) this.emitEnumEntries(prop, entries);
+        this.enumValuesBlock(jsx, prop);
       }
     }
   }
 }
-
-// Sub-sections opened by `prop` headings must fall back to the parent on close.
-const originalClose = Walker.prototype.closeSection;
-Walker.prototype.closeSection = async function () {
-  while (this.section?.parent) {
-    this.section = this.section.parent;
-  }
-  await originalClose.call(this);
-};
 
 // ---------------------------------------------------------------------------
 // Main
@@ -1224,7 +1241,7 @@ async function main() {
   }
   const store = new SchemaStore({ dir: args["schema-dir"], url: args["schema-url"] });
   await store.init();
-  if (args.emit) store.loadAll();
+  if (args.emit) await store.loadAll();
   if (args.resolve) {
     const inner = await store.resolve(args.resolve);
     console.log(inner ? JSON.stringify([...store.ownKeys(inner)]) : "not found");
@@ -1272,11 +1289,16 @@ async function main() {
     "parse_error",
     "unroutable_section",
     "unknown_registry_entry",
+    "missing_schema_entry",
+    "malformed_enum_values",
+    "enum_values_without_enum",
+    "malformed_prop_bullet",
     "unmatched_key",
     "optionality_mismatch",
     "undocumented_key",
+    "no_intro_paragraph",
   ];
-  const shown = new Set(args.verbose ? order : order.slice(0, 5));
+  const shown = new Set(args.verbose ? order : order.slice(0, 9));
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {
     if (!shown.has(f.kind)) continue;
     const what = f.key ? `'${f.key}'` : "";
@@ -1287,6 +1309,7 @@ async function main() {
     );
   }
 
+  const parseErrors = report.findings.filter((f) => f.kind === "parse_error").length;
   const s = report.stats;
   console.log(
     [
@@ -1297,6 +1320,10 @@ async function main() {
       `prose bullets skipped ${s.proseBullets}`,
     ].join("\n"),
   );
+  if (parseErrors) {
+    console.error(`${parseErrors} page(s) could not be parsed`);
+    return 1;
+  }
   return 0;
 }
 

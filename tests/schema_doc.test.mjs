@@ -108,13 +108,14 @@ test("parseEnumValues reads the <EnumValues> JSX block", () => {
 ]} />
 `;
   const node = parse(block).children[0];
-  assert.deepEqual(parseEnumValues(node), [
+  assert.deepEqual(parseEnumValues(node).entries, [
     { value: "ANY", default: true, description: "Trigger on any edge change (high to low or low to high)" },
     { value: "RISING", description: "Trigger only on rising edge (low to high)" },
     { value: "2x" },
   ]);
-  assert.deepEqual(parseEnumValues(parse('<EnumValues values={[{ value: "X", default: true }]} />\n').children[0]), [
-    { value: "X", default: true },
-  ]);
-  assert.equal(parseEnumValues(parse("<EnumValues values={[{ default: true }]} />\n").children[0]), null);
+  assert.deepEqual(
+    parseEnumValues(parse('<EnumValues values={[{ value: "X", default: true }]} />\n').children[0]).entries,
+    [{ value: "X", default: true }],
+  );
+  assert.match(parseEnumValues(parse("<EnumValues values={[{ default: true }]} />\n").children[0]).error, /value/);
 });
