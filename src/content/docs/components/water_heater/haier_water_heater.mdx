@@ -3,7 +3,8 @@ title: "Haier Water Heater"
 description: "Configure local control and monitoring of Haier hOn water heaters over UART."
 ---
 
-The `haier` water heater platform controls a Haier water heater over UART, replacing its original Wi-Fi module.
+The `haier_water_heater` water heater platform controls a Haier water heater over UART,
+replacing its original Wi-Fi module.
 It uses hOn automatically and supports power, operating mode, target temperature, and status monitoring.
 SmartAir2 is not supported.
 
@@ -22,7 +23,7 @@ water-heater wiring reference.
 
 ```yaml
 water_heater:
-  - platform: haier
+  - platform: haier_water_heater
     name: "Water Heater"
 ```
 
@@ -101,7 +102,7 @@ not internet access, a cloud connection, or a connection to Home Assistant. Ther
 
 ```yaml
 water_heater:
-  - platform: haier
+  - platform: haier_water_heater
     name: "Water Heater"
     communication_timeout: 20s
     primary_temperature:
