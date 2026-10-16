@@ -93,6 +93,7 @@ export class SchemaStore {
     this.core = null;
   }
 
+  /** Load esphome.json, whose `core` lists every component and platform. */
   async init() {
     const esphome = await this.file("esphome");
     if (!esphome?.core) {
@@ -124,10 +125,12 @@ export class SchemaStore {
     return doc;
   }
 
+  /** Whether `name` is a platform such as sensor or light. */
   isPlatform(name) {
     return Object.hasOwn(this.core.platforms, name);
   }
 
+  /** Whether `name` is a component with a top-level schema. */
   isComponent(name) {
     return Object.hasOwn(this.core.components, name);
   }
@@ -208,6 +211,7 @@ export class SchemaStore {
     return toInner(found.entry, variant) ?? (found.registry ? { variants: [{}] } : null);
   }
 
+  /** Whether a reference resolves to a schema. */
   async exists(ref) {
     return (await this.resolve(ref)) !== null;
   }
@@ -242,11 +246,13 @@ export class SchemaStore {
     return null;
   }
 
+  /** Read every schema file of the bundle, so an emit run writes them all back. */
   async loadAll() {
     const names = readdirSync(this.dir).filter((n) => n.endsWith(".json"));
     await Promise.all(names.map((n) => this.file(basename(n, ".json"))));
   }
 
+  /** Write every loaded schema file to `dir`. */
   save(dir) {
     for (const [name, doc] of this.files) {
       if (doc) writeFileSync(join(dir, `${name}.json`), `${JSON.stringify(doc, null, 2)}\n`);
@@ -289,6 +295,7 @@ export class SchemaStore {
     return out;
   }
 
+  /** The names of the schemas a component file holds for `topRef`. */
   async schemaNames(topRef) {
     const parts = topRef.split(".");
     const doc = await this.file(parts[0]);
@@ -404,6 +411,7 @@ export function toInner(entry, variant = null) {
   return null;
 }
 
+/** The schema a config var opens (nested mapping, trigger or typed), or null. */
 function propInner(prop) {
   if (!prop) return null;
   if (prop.type === "enum") return null;
@@ -424,6 +432,7 @@ function listMdx(dir) {
   return out;
 }
 
+/** Parse a docs page to mdast, keeping the source for raw bullet text and the frontmatter title. */
 export function parseMdx(path) {
   let src = readFileSync(path, "utf8")
     .replace(/^\uFEFF/, "")
@@ -453,6 +462,7 @@ export function pageUrl(file, docsRoot = DOCS_ROOT) {
   return `/${rel.replace(/\/index$/, "")}/`;
 }
 
+/** Rewrite the page's relative links to absolute links on the deployed site. */
 export function convertLinks(text, url, deployUrl) {
   if (text == null) return text;
   return text.replace(/\[([^\]]*)\]\(([^)]*)\)/g, (all, title, href) => {
@@ -483,6 +493,8 @@ function itemText(tree, item) {
 
 const PAREN = "\\((?:[^()]|\\([^()]*\\))*\\)";
 const TYPE_GROUP = `((?:${PAREN}\\s*)*${PAREN})`;
+// A bullet that was meant to be an option but does not start with a bold key
+const LOOKS_LIKE_OPTION_RE = /^`[a-z0-9_]+`\s*\(|\(\s*(?:\*\*|\*)?(?:required|optional)\b/i;
 const LAST_PAREN_RE = new RegExp(`\\(((?:[^()]|\\([^()]*\\))*)\\)\\s*$`);
 const PROP_RE = new RegExp(`^\\*\\*(\\w+)\\*\\*(?::\\s*${TYPE_GROUP}(?::\\s*|\\s+|$)|(?: ${TYPE_GROUP})?: )(.*)$`);
 const ENUM_RE = /^(?:`([^`]*)`|\*\*([^*]*)\*\*)\s*(?:(?:-|:)\s*(.*)|\(([^)]*)\)(?:\s*:\s*(.*))?)?$/;
@@ -505,6 +517,7 @@ export function parseEnumValues(node) {
   return { entries };
 }
 
+/** Lower snake_case of a heading, for matching component and platform names. */
 function slug(text) {
   return text
     .toLowerCase()
@@ -533,6 +546,7 @@ function triggerHeading(node) {
   return code.value.split(".").pop();
 }
 
+/** The code span of a heading that is nothing but `name`, else null. */
 function bareCodeHeading(node) {
   const c = node.children;
   if (c.length === 1 && c[0].type === "inlineCode") return c[0].value;
@@ -603,6 +617,7 @@ export class Report {
     };
   }
 
+  /** Record one finding. */
   add(kind, file, line, detail) {
     this.findings.push({ kind, file, line, ...detail });
   }
@@ -637,6 +652,7 @@ export class Walker {
     this.componentRef = null; // top ref like "uart" or "template.sensor" for named-schema lookup
   }
 
+  /** Work out which schema this page documents by default from its path. */
   async init() {
     const { store } = this;
     const inComponents = this.file.startsWith(this.componentsRoot);
@@ -685,10 +701,12 @@ export class Walker {
     return buses.length ? buses.join("+") : null;
   }
 
+  /** Keep the page's own schema so a bus heading can hand back to it. */
   rememberPageDefaults() {
     this.pageDefault = { defaultRef: this.defaultRef, componentRef: this.componentRef };
   }
 
+  /** Re-target the page at another component or platform component, if it has a schema. */
   async switchComponent(name) {
     // A heading such as "FooBar Component" / "Sensor" re-targets the rest of the page
     const platform = this.folder !== "components" && this.store.isPlatform(this.folder) ? this.folder : null;
@@ -705,6 +723,7 @@ export class Walker {
     return false;
   }
 
+  /** The action/condition reference an `x.y` heading names, resolved against this page. */
   async registryRef(name, type) {
     const { store } = this;
     const parts = name.split(".");
@@ -723,6 +742,7 @@ export class Walker {
     return null;
   }
 
+  /** A filter or effect entry a heading names ("Strobe Effect", `delta`), if any. */
   async findRegistryEntry(headingText) {
     const { store } = this;
     const platform = store.isPlatform(this.folder) ? this.folder : this.componentRef;
@@ -743,6 +763,7 @@ export class Walker {
     return null;
   }
 
+  /** Start the config section the bullets that follow belong to. */
   async openSection(ref, depth, line, source) {
     const { store, report } = this;
     if (this.pendingMarker) {
@@ -772,6 +793,7 @@ export class Walker {
     report.sections.push({ file: this.rel, line, ref, source });
   }
 
+  /** Report the keys of a section's schema that its bullets did not mention. */
   reportUndocumented(s) {
     for (const key of this.store.ownKeys(s.inner)) {
       if (!s.documented.has(key)) {
@@ -787,6 +809,7 @@ export class Walker {
     this.section = this.section.parent;
   }
 
+  /** End the current section, reporting what its bullets left out. */
   async closeSection() {
     while (this.section?.parent) this.popSubSection();
     const s = this.section;
@@ -802,6 +825,7 @@ export class Walker {
     return convertLinks(text, this.url, this.deployUrl);
   }
 
+  /** A description plus the See-also link to the section it came from. */
   withSeeAlso(text) {
     const anchor = this.lastHeadingSlug ? `#${this.lastHeadingSlug}` : "";
     return `${this.links(text)}\n\n*See also: [${this.title}](${this.deployUrl}${this.url}${anchor})*`;
@@ -851,6 +875,7 @@ export class Walker {
     }
   }
 
+  /** Write the paragraph under an action, condition, filter or effect heading. */
   async emitRegistryDocs(ref, type, text, line = 1) {
     if (!text) {
       this.report.add("no_intro_paragraph", this.rel, line, { detail: `no paragraph to describe ${ref}` });
@@ -876,6 +901,7 @@ export class Walker {
     return Object.keys(prop.values).find((k) => k.toLowerCase() === lower) ?? null;
   }
 
+  /** Write the descriptions of an <EnumValues/> block to the enum's values. */
   emitEnumEntries(prop, entries, line) {
     if (!prop || prop.type !== "enum" || !prop.values) return;
     for (const entry of entries) {
@@ -916,6 +942,7 @@ export class Walker {
     this.emitEnumEntries(prop, entries, line);
   }
 
+  /** Write the descriptions of a `value`: text bullet list to the enum's values. */
   emitEnumList(prop, listNode) {
     if (!prop || prop.type !== "enum") return;
     if (!prop.values) {
@@ -956,7 +983,7 @@ export class Walker {
     const typeText = (m[2] ?? m[3])?.match(LAST_PAREN_RE)?.[1];
     const docText = m[4];
     if (found.typedEntry) {
-      found.typedEntry.docs = docText;
+      found.typedEntry.docs = this.withSeeAlso(docText);
       this.report.stats.emitted.props++;
       return;
     }
@@ -971,6 +998,7 @@ export class Walker {
     const { prop, inherited } = found;
     const e = this.report.stats.emitted;
     let converted = this.withSeeAlso(docText);
+    let newKey = null;
     if (typeText) {
       const typeParts = typeText.split(",").map((t) => t.trim());
       if (
@@ -980,32 +1008,48 @@ export class Walker {
         prop.key?.toLowerCase() !== parsed.optionality &&
         !parsed.optionalityAgrees
       ) {
-        prop.key = parsed.optionality[0].toUpperCase() + parsed.optionality.slice(1);
-        e.keyChanged++;
+        newKey = parsed.optionality[0].toUpperCase() + parsed.optionality.slice(1);
       }
       if (typeParts.length > 1 && !/\[templatable\]/.test(typeParts[1])) {
         converted = `**${this.links(typeParts[1])}**: ${converted}`;
       }
     }
-    if (prop.docs === converted) {
+    if (prop.docs === converted && !newKey) {
       e.propsSkipped++;
       return;
     }
-    if (inherited && "docs" in prop) {
-      // The base schema already carries different docs: describe it at this level instead
-      // The variant whose extends chain reached the key is the one that accepts it
+    if (inherited && ("docs" in prop || newKey)) {
+      // The base schema already carries different docs, or this page disagrees
+      // on Required/Optional: describe it at this level instead of changing the
+      // shared base. The variant whose extends chain reached the key is the one
+      // that accepts it.
       const target = found.root ?? sectionInner.variants[0];
       target.config_vars ??= {};
       const refined = (target.config_vars[parsed.key] ??= {});
-      if ("key" in prop && !("key" in refined)) refined.key = prop.key;
+      if (newKey) {
+        refined.key = newKey;
+        e.keyChanged++;
+      } else if ("key" in prop && !("key" in refined)) {
+        refined.key = prop.key;
+      }
       refined.docs = converted;
       e.propsRefined++;
+      if (!("docs" in prop)) {
+        // The base had no description yet; the text is shared, only the marker is local
+        prop.docs = converted;
+        e.props++;
+      }
       return;
+    }
+    if (newKey) {
+      prop.key = newKey;
+      e.keyChanged++;
     }
     prop.docs = converted;
     e.props++;
   }
 
+  /** Document a key in every typed variant (or grouped action) that has it. */
   async emitPropDocsTyped(sectionInner, item, parsed) {
     for (const variant of sectionInner.variants) {
       const single = { variants: [variant] };
@@ -1056,6 +1100,7 @@ export class Walker {
     this.dropMarker();
   }
 
+  /** A {/* schema: ref *\/} marker: remember it for the next section. */
   expression(node) {
     const m = node.value.match(MARKER_RE);
     if (!m) return;
@@ -1063,6 +1108,7 @@ export class Walker {
     this.pendingMarker = { ref: m[1], line: node.position.start.line };
   }
 
+  /** Report a marker that applied to nothing and forget it. */
   dropMarker() {
     if (!this.pendingMarker) return;
     this.report.add("unused_schema_marker", this.rel, this.pendingMarker.line, {
@@ -1071,6 +1117,7 @@ export class Walker {
     this.pendingMarker = null;
   }
 
+  /** A bold "Configuration variables:" paragraph acts as a section heading. */
   async paragraph(node) {
     const text = toString(node).trim();
     if (CONFIG_VARS_RE.test(text) && node.children.length === 1 && node.children[0].type === "strong") {
@@ -1079,6 +1126,7 @@ export class Walker {
     }
   }
 
+  /** Open the section a "Configuration variables" heading introduces. */
   async openConfigSection(depth, line) {
     // "### Configuration variables" under "## `on_boot`" lists on_boot's options
     if (this.section?.ref.includes("/") && depth > this.section.depth && !this.pendingMarker && !this.pendingRegistry) {
@@ -1095,6 +1143,7 @@ export class Walker {
     }
   }
 
+  /** Route a heading: section breaks, actions, component switches, sub-schemas. */
   async heading(node, siblings = [], index = 0) {
     const { store } = this;
     const text = toString(node).trim();
@@ -1313,6 +1362,7 @@ export class Walker {
     }
   }
 
+  /** A top-level bullet list: the options of the open section, if any. */
   async list(node) {
     if (!this.section && this.defaultRef) {
       // "## Base Fan Configuration" / "## A4988 Component" go straight into the
@@ -1407,15 +1457,18 @@ export class Walker {
     }
   }
 
+  /** Match each option bullet of a list against the schema and emit its docs. */
   async items(listNode, inner, documented) {
     const { store, report } = this;
     for (const item of listNode.children) {
+      this.lastEnumProp = null;
       const parsed = parseItem(item);
       if (!parsed || parsed.prose) {
-        if (parsed?.optionality) {
-          report.add("malformed_prop_bullet", this.rel, parsed.line, {
-            key: parsed.key,
-            detail: "option keys are lower snake_case",
+        if (parsed?.optionality || (!parsed && LOOKS_LIKE_OPTION_RE.test(itemText(this.tree, item)))) {
+          // "`baud_rate` (**Required**, int): ..." or a key that is not lower snake_case
+          report.add("malformed_prop_bullet", this.rel, item.position.start.line, {
+            key: parsed?.key ?? itemText(this.tree, item).match(/^`([^`]+)`/)?.[1] ?? "",
+            detail: parsed ? "option keys are lower snake_case" : "expected **key** (type): description",
           });
         } else {
           report.stats.proseBullets++;
