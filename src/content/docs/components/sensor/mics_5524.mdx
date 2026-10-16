@@ -199,7 +199,7 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor/), s
 | ppm always 0 while gas is clearly present | the ratio stays above the gas's `threshold` (0.425 for CO, 0.279 for H2), so the model reports 0 ppm - expected at low concentrations, not a calibration fault |
 | values jump around | ESP32 ADC noise - raise `sample_count` or add an RC filter |
 | `calibration failed`, or a warning about the spread of the samples | the sensor was not settled in clean, still air; let it burn in and let the component retry |
-| nothing is published for minutes after a restart | `max(warmup_time, calibration.delay)` (`3min` each by default) plus the calibration run; lower them while testing, or hard-code `air_reference:` |
+| nothing is published for minutes after a restart | `max(warmup_time, calibration.delay)` (`3min` and `60s` by default) plus the calibration run; lower them while testing, or hard-code `air_reference:` |
 
 > [!TIP]
 > The chain behind every reading (`V_AO`, `x`, `ratio` and the ppm value of each gas) is logged at `DEBUG`, the default
