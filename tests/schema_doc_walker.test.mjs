@@ -945,3 +945,131 @@ test("an Over SPI heading on a component typed by bus documents that variant", a
   assert.match(types("spi", "config_vars", "sr_count"), /over SPI/);
   assert.deepEqual(report.findings, []);
 });
+
+test("a trigger section reaches that trigger in every typed variant", async () => {
+  const trigger = () => ({ key: "Optional", type: "schema", schema: { config_vars: { then: { key: "Optional" } } } });
+  const { store } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "model",
+              types: {
+                a: { config_vars: { on_event: trigger() } },
+                b: { config_vars: { on_event: trigger(), pin: { key: "Required" } } },
+              },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **model** (**Required**): The model.",
+        "- **pin** (**Required**, pin): The pin.",
+        "## `on_event` Trigger",
+        "Fires on an event.",
+        "### Configuration variables",
+        "- **then** (*Optional*, Automation): What to run.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  for (const variant of ["a", "b"]) {
+    const onEvent = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.types[variant].config_vars.on_event;
+    assert.match(onEvent.schema.config_vars.then.docs, /What to run/);
+  }
+});
+
+test("a sibling-schema heading keeps its section through a nested configuration heading", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: schema({ name: { key: "Optional" } }),
+            LIGHT_STATE_SCHEMA: schema({ brightness: { key: "Optional" } }),
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **name** (*Optional*, string): The name.",
+        "## Light state",
+        "A light state has these variables:",
+        "### Configuration variables",
+        "- **brightness** (*Optional*, percentage): The brightness.",
+        "## Unrelated",
+        "### Configuration variables",
+        "- **name** (*Optional*, string): Still the name.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(
+    docs("foo", "foo", "schemas", "LIGHT_STATE_SCHEMA", "schema", "config_vars", "brightness"),
+    /The brightness/,
+  );
+  assert.match(docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "name"), /Still the name/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key"),
+    [],
+  );
+});
+
+test("a bold configuration label stays inside the sub-schema section it follows", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: schema({
+              name: { key: "Optional" },
+              legend: { key: "Optional", type: "schema", schema: { config_vars: { border: { key: "Optional" } } } },
+            }),
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **name** (*Optional*, string): The name.",
+        "### Legend Options",
+        "**Configuration variables:**",
+        "- **border** (*Optional*, boolean): Draw a border.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(
+    docs(
+      "foo",
+      "foo",
+      "schemas",
+      "CONFIG_SCHEMA",
+      "schema",
+      "config_vars",
+      "legend",
+      "schema",
+      "config_vars",
+      "border",
+    ),
+    /Draw a border/,
+  );
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key"),
+    [],
+  );
+});

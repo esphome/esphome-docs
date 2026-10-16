@@ -167,7 +167,7 @@ export class SchemaStore {
     if (ref.includes("/")) {
       const [base, ...props] = ref.split("/");
       let inner = await this.resolve(base);
-      for (const prop of props) inner = propInner(await this.findProp(inner, prop));
+      for (const prop of props) inner = await this.nestedInner(inner, prop);
       return inner;
     }
     if (ref.includes("+")) {
@@ -329,6 +329,25 @@ export class SchemaStore {
       out.push({ prop, owner: variantInner, inherited: prop !== own });
     }
     return out;
+  }
+
+  /**
+   * The schema behind a nested key, from every definition the section's own
+   * variants hold (typed group, bus union, or the platform part of a hub union),
+   * as one inner so docs reach each of them.
+   */
+  async nestedInner(inner, name) {
+    if (!inner) return null;
+    const scope =
+      inner.typedCount || inner.multi
+        ? inner
+        : { variants: inner.variants.slice(0, inner.primaryCount ?? inner.variants.length) };
+    const holders = await this.propHolders(scope, name);
+    const props = holders.length ? holders.map((h) => h.prop) : [await this.findProp(inner, name)];
+    const inners = props.map((prop) => propInner(prop)).filter(Boolean);
+    if (inners.length <= 1) return inners[0] ?? null;
+    const variants = inners.flatMap((i) => i.variants);
+    return { variants, primaryCount: variants.length, multi: true };
   }
 
   /** The names of the schemas a component file holds for `topRef`. */
@@ -683,6 +702,7 @@ export class Report {
       keysMatched: 0,
       keysMatchedNested: 0,
       keysUnmatched: 0,
+      keysOrphaned: 0,
       keysUndocumented: 0,
       optionalityMismatch: 0,
       proseBullets: 0,
@@ -881,7 +901,7 @@ export class Walker {
         detail: `${inner.baseRef} has no ${inner.baseRef.toUpperCase()}_SCHEMA to hold keys its platforms share`,
       });
     }
-    this.section = { ref, inner, depth, documented: new Set(), line, continued: false };
+    this.section = { ref, inner, depth, documented: new Set(), line, continued: false, source };
     this.lastEnumProps = [];
     report.sections.push({ file: this.rel, line, ref, source });
     await store.verifyExtends(inner);
@@ -889,17 +909,30 @@ export class Walker {
 
   /** Report the keys of a section's schema that its bullets did not mention. */
   reportUndocumented(s) {
-    for (const key of this.store.ownKeys(s.inner)) {
-      if (!s.documented.has(key)) {
-        this.report.stats.keysUndocumented++;
-        this.report.add("undocumented_key", this.rel, s.line, { schema: s.ref, key });
+    // A schema documented in several sections of a page is audited once, at the end
+    const audit = this.audits.get(s.ref);
+    if (audit) {
+      for (const key of s.documented) audit.documented.add(key);
+    } else {
+      this.audits.set(s.ref, { inner: s.inner, documented: new Set(s.documented), line: s.line });
+    }
+  }
+
+  /** Report the keys of every schema the page documented that none of its sections mentioned. */
+  reportAudits() {
+    for (const [ref, audit] of this.audits) {
+      for (const key of this.store.ownKeys(audit.inner)) {
+        if (!audit.documented.has(key)) {
+          this.report.stats.keysUndocumented++;
+          this.report.add("undocumented_key", this.rel, audit.line, { schema: ref, key });
+        }
       }
     }
   }
 
   /** Leave a `prop` sub-section, reporting what its docs left out. */
-  popSubSection() {
-    this.reportUndocumented(this.section);
+  popSubSection(audit = true) {
+    if (audit) this.reportUndocumented(this.section);
     this.section = this.section.parent;
   }
 
@@ -1173,6 +1206,7 @@ export class Walker {
 
   async walk(tree) {
     this.tree = tree;
+    this.audits = new Map();
     this.report.stats.files++;
     this.title = tree.title;
     if (!this.title) {
@@ -1212,6 +1246,7 @@ export class Walker {
       }
     }
     await this.closeSection();
+    this.reportAudits();
     this.dropMarker();
   }
 
@@ -1243,15 +1278,23 @@ export class Walker {
   async paragraph(node) {
     const text = toString(node).trim();
     if (CONFIG_VARS_RE.test(text) && node.children.length === 1 && node.children[0].type === "strong") {
-      // **Configuration variables:** used as a pseudo heading under an action
-      await this.openConfigSection(this.section?.depth ?? 2, node.position.start.line);
+      // **Configuration variables:** used as a pseudo heading under an action, nested in the open section
+      await this.openConfigSection((this.section?.depth ?? 1) + 1, node.position.start.line);
     }
   }
 
   /** Open the section a "Configuration variables" heading introduces. */
   async openConfigSection(depth, line) {
-    // "### Configuration variables" under "## `on_boot`" lists on_boot's options
-    if (this.section?.ref.includes("/") && depth > this.section.depth && !this.pendingMarker && !this.pendingRegistry) {
+    // "### Configuration variables" under "## `on_boot`" or "## Light state" lists
+    // that schema's options, until an unrelated heading has intervened
+    if (
+      this.section &&
+      (this.section.ref.includes("/") || this.section.source === "heading") &&
+      !this.section.interrupted &&
+      depth > this.section.depth &&
+      !this.pendingMarker &&
+      !this.pendingRegistry
+    ) {
       return;
     }
     if (this.pendingMarker) {
@@ -1316,7 +1359,11 @@ export class Walker {
       bareCodeHeading(node) !== null ||
       (this.section?.depth >= node.depth && node.depth <= 1);
     if (this.section && isBreak && node.depth <= this.section.depth) await this.closeSection();
-    else if (this.section && !CONFIG_VARS_RE.test(text)) this.section.continued = true;
+    else if (this.section && !CONFIG_VARS_RE.test(text)) {
+      this.section.continued = true;
+      // A sibling heading ends what a heading-selected schema covers
+      if (node.depth <= this.section.depth) this.section.interrupted = true;
+    }
 
     const trig = triggerHeading(node);
     if (trig && this.defaultRef) {
@@ -1488,22 +1535,34 @@ export class Walker {
     if (baseRef && !baseRef.includes("/")) {
       const base = await store.resolve(baseRef);
       let first = slug(text);
-      let prop = first && (await store.findProp(base, first));
-      if (!propInner(prop)) {
+      let nested = first && (await store.nestedInner(base, first));
+      if (!nested) {
         first = first.split("_")[0];
-        prop = first && (await store.findProp(base, first));
+        nested = first && (await store.nestedInner(base, first));
       }
-      if (prop && propInner(prop)) {
-        if (this.section && !this.section.parent) {
-          // keep the parent open so later headings fall back to it
-          this.section.documented.add(first);
+      if (nested) {
+        let parent = this.section && !this.section.parent ? this.section : null;
+        if (!this.section && baseRef === this.defaultRef && bareCodeHeading(node) === null) {
+          // A word heading may name a sub-schema by accident ("## Main Configuration"
+          // matched lvgl's `main` style state): keep the page schema underneath so
+          // bullets the sub-schema lacks fall back to it
+          await this.closeSection();
+          parent = { ref: baseRef, inner: base, depth: node.depth, documented: new Set(), line };
+          this.report.stats.sections++;
+          this.report.sections.push({ file: this.rel, line, ref: `${baseRef}/${first}`, source: "heading" });
+        }
+        if (parent) {
+          parent.documented.add(first);
           this.section = {
-            ...this.section,
-            inner: propInner(prop),
-            ref: `${this.section.ref}/${first}`,
+            ...parent,
+            inner: nested,
+            ref: `${parent.ref}/${first}`,
             depth: node.depth,
             documented: new Set(),
-            parent: this.section,
+            parent,
+            source: "heading",
+            continued: false,
+            interrupted: false,
             line,
           };
         } else {
@@ -1516,21 +1575,25 @@ export class Walker {
     // `prop` sub-heading inside an open section: describe a nested schema
     if (code && this.section && node.depth > this.section.depth) {
       const prop = await store.findProp(this.section.inner, code);
-      const inner = propInner(prop);
       if (prop?.type === "enum") {
         this.lastEnumProps = [prop];
         this.section.enumProp = prop;
         this.section.documented.add(code);
         return;
       }
+      const inner = await store.nestedInner(this.section.inner, code);
       if (inner) {
         this.section.documented.add(code);
         this.section = {
           ...this.section,
           inner,
+          ref: `${this.section.ref}/${code}`,
           depth: node.depth,
           documented: new Set(),
           parent: this.section,
+          source: "heading",
+          continued: false,
+          interrupted: false,
           line,
         };
       }
@@ -1559,6 +1622,7 @@ export class Walker {
     }
     const options = node.children.map((item) => parseItem(item)).filter((p) => p?.hasParen && !p.prose);
     if (options.length) {
+      this.report.stats.keysOrphaned += options.length;
       this.report.add("orphan_option_list", this.rel, line, {
         key: options[0].key,
         detail: `${options.length} option bullet(s) outside any schema section`,
@@ -1686,7 +1750,8 @@ export class Walker {
         let ancestor = this.section.parent;
         while (ancestor && !(found = await store.findPropOwner(ancestor.inner, parsed.key))) ancestor = ancestor.parent;
         if (found) {
-          while (this.section !== ancestor) this.popSubSection();
+          // A sub-schema heading whose bullets all belong to an ancestor was a misroute
+          while (this.section !== ancestor) this.popSubSection(this.section.documented.size > 0);
           inner = this.section.inner;
           documented = this.section.documented;
         }
@@ -1825,9 +1890,9 @@ async function main() {
     broken = `${parseErrors} page(s) could not be parsed`;
   } else if (s.sectionsUnroutable * 2 > s.sections) {
     broken = `${s.sectionsUnroutable} of ${s.sections} sections match no schema`;
-  } else if (s.keysUnmatched > s.keysMatched + s.keysMatchedNested) {
-    const total = s.keysMatched + s.keysMatchedNested + s.keysUnmatched;
-    broken = `${s.keysUnmatched} of ${total} documented keys match no schema key`;
+  } else if (s.keysUnmatched + s.keysOrphaned > s.keysMatched + s.keysMatchedNested) {
+    const total = s.keysMatched + s.keysMatchedNested + s.keysUnmatched + s.keysOrphaned;
+    broken = `${s.keysUnmatched + s.keysOrphaned} of ${total} documented keys match no schema key`;
   } else if (args.emit && s.emitted.props + s.emitted.propsRefined + s.emitted.propsSkipped === 0) {
     broken = "no option description was written";
   }
@@ -1893,7 +1958,7 @@ async function main() {
     [
       `files ${s.files}`,
       `sections ${s.sections} (unroutable ${s.sectionsUnroutable}, by marker ${s.sectionsByMarker})`,
-      `keys matched ${s.keysMatched} (+${s.keysMatchedNested} via nested schema), not in schema ${s.keysUnmatched}, in schema but undocumented ${s.keysUndocumented}`,
+      `keys matched ${s.keysMatched} (+${s.keysMatchedNested} via nested schema), not in schema ${s.keysUnmatched}, outside any section ${s.keysOrphaned}, in schema but undocumented ${s.keysUndocumented}`,
       `optionality mismatches ${s.optionalityMismatch}`,
       `prose bullets skipped ${s.proseBullets}`,
       ...(hidden.size ? [`not shown without --verbose: ${[...hidden].map(([k, n]) => `${k} ${n}`).join(", ")}`] : []),
