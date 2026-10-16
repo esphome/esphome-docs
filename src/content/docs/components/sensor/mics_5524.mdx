@@ -6,7 +6,7 @@ title: "MiCS-5524 Gas Sensor"
 import Figure from '@components/Figure.astro';
 import APIRef from '@components/APIRef.astro';
 
-The `mics_5524_gas_sensor` sensor platform allows you to use the **MiCS-5524** MEMS multi-gas sensor - the small 5 V
+The `mics_5524` sensor platform allows you to use the **MiCS-5524** MEMS multi-gas sensor - the small 5 V
 analog modules with `VCC` / `GND` / `A0` / `EN` pads, and the DFRobot "Fermion" breakout they are cloned from - with
 ESPHome. One entry configures one physical sensor: it reads the analog output once per `update_interval` and publishes
 every gas listed under it as its own sub-sensor.
@@ -67,7 +67,7 @@ sensor:
     attenuation: 12db
     update_interval: 60s
 
-  - platform: mics_5524_gas_sensor
+  - platform: mics_5524
     id: mics
     voltage: mics_ao
     voltage_multiplier: 1.5     # 10k/20k divider in front of the AO pin
@@ -107,7 +107,7 @@ sensor:
     gain: 6.144
     update_interval: 100ms
 
-  - platform: mics_5524_gas_sensor
+  - platform: mics_5524
     voltage: mics_ao            # 0 - 5 V directly, no divider
     calibration:
       delay: 5min               # leave the sensor in clean air for that long after boot
@@ -124,7 +124,7 @@ value is the one the component logs after a calibration:
 ```yaml
 # Example configuration entry, fixed reference
 sensor:
-  - platform: mics_5524_gas_sensor
+  - platform: mics_5524
     voltage: mics_ao
     voltage_multiplier: 1.5
     air_reference: 1.2          # VCC - V_AO in clean air, from the previous calibration
@@ -241,4 +241,4 @@ logger:
 - [MiCS-4514](/components/sensor/mics_4514/)
 - [DFRobot_MICS library](https://github.com/DFRobot/DFRobot_MICS) (MIT)
 - [Fermion MiCS-5524 tutorial](https://www.makerguides.com/fermion-mems-multi-gas-sensor-mics-5524-with-arduino/)
-- <APIRef text="mics_5524_gas_sensor.h" path="mics_5524_gas_sensor/mics_5524_gas_sensor.h" />
+- <APIRef text="mics_5524.h" path="mics_5524/mics_5524.h" />
