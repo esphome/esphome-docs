@@ -300,13 +300,22 @@ export class SchemaStore {
     return inner.typedCount ? inner.variants.slice(0, inner.typedCount) : inner.variants;
   }
 
-  /** Every holder of a key across typed variants (own keys only). */
-  propHolders(inner, name) {
+  /**
+   * Every holder of a key across typed variants (own keys only). A docs-only
+   * copy that emitPropDocs refined onto a variant stands in for an inherited
+   * definition, so nested options and enum values are read from that one.
+   */
+  async propHolders(inner, name) {
     const out = [];
     for (const variantInner of inner ? this.groupVariants(inner) : []) {
-      if (variantInner.config_vars && Object.hasOwn(variantInner.config_vars, name)) {
-        out.push({ prop: variantInner.config_vars[name], owner: variantInner, inherited: false });
+      const own = variantInner.config_vars?.[name];
+      if (!own) continue;
+      let prop = own;
+      if ("docs" in own && Object.keys(own).every((k) => k === "docs" || k === "key")) {
+        const base = await this.findPropOwner({ variants: [{ extends: variantInner.extends }] }, name);
+        if (base) prop = base.prop;
       }
+      out.push({ prop, owner: variantInner, inherited: prop !== own });
     }
     return out;
   }
@@ -1487,7 +1496,7 @@ export class Walker {
     if (!lists.length && !blocks.length) return;
     // In a typed schema (or a heading covering several actions) the same key may
     // exist in several variants; descend into each
-    const holders = inner.typedKey || inner.multi ? this.store.propHolders(inner, key) : [];
+    const holders = inner.typedKey || inner.multi ? await this.store.propHolders(inner, key) : [];
     const props = holders.length ? holders.map((h) => h.prop) : [found.prop];
     const line = item.position.start.line;
     for (const prop of props) {

@@ -535,3 +535,58 @@ test("nested bullets under a key created from platform children are written to t
   assert.match(values.FAST.docs, /^Sample quickly/);
   assert.match(values.SLOW.docs, /^Sample slowly/);
 });
+
+test("nested bullets under an inherited key refined on typed variants reach the base definition", async () => {
+  const { docs, store, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            BASE_SCHEMA: schema({
+              mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null }, docs: "Base text." },
+              filter: {
+                key: "Optional",
+                type: "schema",
+                schema: { config_vars: { threshold: { key: "Optional" } } },
+                docs: "Base filter.",
+              },
+            }),
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "model",
+              types: {
+                a: { config_vars: { pin_a: { key: "Required" } }, extends: ["foo.BASE_SCHEMA"] },
+                b: { config_vars: { pin_b: { key: "Required" } }, extends: ["foo.BASE_SCHEMA"] },
+              },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **model** (**Required**): The model.",
+        "- **mode** (*Optional*): The mode.\n  - `FAST`: Sample quickly.\n  - `SLOW`: Sample slowly.",
+        "- **filter** (*Optional*): The filter.\n  - **threshold** (*Optional*, int): The threshold.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const types = (...k) => docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "types", ...k);
+  assert.match(types("a", "config_vars", "mode"), /^The mode/);
+  assert.match(types("b", "config_vars", "mode"), /^The mode/);
+  const base = store.files.get("foo").foo.schemas.BASE_SCHEMA.schema.config_vars;
+  assert.equal(base.mode.docs, "Base text.");
+  assert.match(base.mode.values.FAST.docs, /^Sample quickly/);
+  assert.match(base.mode.values.SLOW.docs, /^Sample slowly/);
+  assert.match(base.filter.schema.config_vars.threshold.docs, /The threshold/);
+  assert.deepEqual(
+    report.findings.filter((f) =>
+      ["nested_list_ignored", "enum_values_without_enum", "unmatched_key"].includes(f.kind),
+    ),
+    [],
+  );
+});
