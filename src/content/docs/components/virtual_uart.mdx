@@ -30,7 +30,8 @@ virtual_uart:
   are read. At most 65535. Defaults to `256`.
 - **on_tx** (*Optional*, [Automation](/automations)): Runs for each write, with the written bytes as `data`
   (`std::span<const uint8_t>`); without it, the bytes are discarded. The data is only valid while the automation
-  runs, so `delay`, `wait_until` and other actions that wait are rejected in it.
+  runs, so `delay`, `wait_until` and other actions that wait are rejected in it. A write to the same UART from
+  `on_tx` is dropped and logged once.
 - **debug** (*Optional*, mapping): Log the bytes that pass this UART. Same options as the
   [UART debug](/components/uart/#debugging) option.
 
