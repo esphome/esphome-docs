@@ -1188,6 +1188,7 @@ export class Walker {
 
     const switched = async (name, scoped = false) => {
       if (!(await this.switchComponent(name))) return false;
+      await this.closeSection();
       this.switchDepth = scoped ? node.depth : null;
       const [comp, platform] = this.componentRef.split(".");
       await this.emitComponentDocs(comp, platform ?? null, intro(), line);
@@ -1223,6 +1224,8 @@ export class Walker {
       if (store.isPlatform(platformName)) {
         const ref = await this.componentSchemaRef(this.stem, platformName);
         if (ref) {
+          // "### Select" nested under the hub's options still starts the select platform's section
+          await this.closeSection();
           this.defaultRef = ref;
           this.componentRef = `${this.stem}.${platformName}`;
           this.switchDepth = null;
@@ -1245,11 +1248,16 @@ export class Walker {
     }
 
     const code = bareCodeHeading(node);
-    if (code && /^[a-z0-9_]+$/.test(code) && !(this.section && (await store.findProp(this.section.inner, code)))) {
-      if (await this.componentSchemaRef(code, store.isPlatform(this.folder) ? this.folder : null)) {
-        await this.closeSection();
-        if (await switched(code)) return;
-      }
+    const inPlatformDir = this.folder !== "components" && store.isPlatform(this.folder);
+    if (
+      code &&
+      inPlatformDir &&
+      /^[a-z0-9_]+$/.test(code) &&
+      !(this.section && (await store.findProp(this.section.inner, code))) &&
+      (await this.componentSchemaRef(code, this.folder))
+    ) {
+      // climate/climate_ir.mdx: "### `gree`" documents the gree climate platform
+      if (await switched(code)) return;
     }
 
     // "## Legend Options" documents the `legend` sub-schema of the current schema
@@ -1394,6 +1402,17 @@ export class Walker {
         continue;
       }
       let found = await store.findPropOwner(inner, parsed.key);
+      if (!found && this.section?.parent && inner === this.section.inner) {
+        // "### Sensitivity" opened the `sensitivity` sub-schema, but the bullets that
+        // follow may still be the parent's options: fall back to the nearest ancestor
+        let ancestor = this.section.parent;
+        while (ancestor && !(found = await store.findPropOwner(ancestor.inner, parsed.key))) ancestor = ancestor.parent;
+        if (found) {
+          while (this.section !== ancestor) this.popSubSection();
+          inner = this.section.inner;
+          documented = this.section.documented;
+        }
+      }
       if (!found && this.section?.continued && inner === this.section.inner && !parsed.hasParen) {
         // After an unrelated heading, a bare "**word**: text" bullet is prose unless it names a key
         report.stats.proseBullets++;

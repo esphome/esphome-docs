@@ -235,3 +235,87 @@ test("a type annotation holding a link keeps the link and the whole description"
     /^\*\*\[Time\]\(https:\/\/esphome\.io\/guides\/configuration-types\/#time\)\*\*: The interval\./,
   );
 });
+
+test("a platform heading nested under the hub's options starts that platform's section", async () => {
+  const { docs } = await walk({
+    schema: {
+      esphome: core(["mits"], { select: {} }),
+      select: { select: { schemas: {}, components: { mits: {} } } },
+      mits: {
+        mits: { schemas: { CONFIG_SCHEMA: schema({ uart_id: { key: "Optional" } }) } },
+        "mits.select": { schemas: { CONFIG_SCHEMA: schema({ vane: { key: "Optional" } }) } },
+      },
+    },
+    pages: {
+      "mits.mdx": [
+        "Mits.",
+        "## Configuration variables",
+        "- **uart_id** (*Optional*, ID): The UART.",
+        "### Select",
+        "- **vane** (*Optional*, string): The vane select.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("mits", "mits", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "uart_id"), /The UART/);
+  assert.match(docs("mits", "mits.select", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "vane"), /vane select/);
+});
+
+test("a bare code heading on a top-level page does not switch to another component", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["i2c", "host"]),
+      i2c: { i2c: { schemas: { CONFIG_SCHEMA: schema({ device: { key: "Optional" } }) } } },
+      host: { host: { schemas: { CONFIG_SCHEMA: schema({ board: { key: "Optional" } }) } } },
+    },
+    pages: {
+      "i2c.mdx": [
+        "I2C.",
+        "## Configuration variables",
+        "### `host`",
+        "- **device** (*Optional*, string): The device path.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("i2c", "i2c", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "device"), /device path/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key"),
+    [],
+  );
+});
+
+test("options after a sub-schema heading fall back to the parent schema", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["radar"]),
+      radar: {
+        radar: {
+          schemas: {
+            CONFIG_SCHEMA: schema({
+              sensitivity: { key: "Optional", ...schema({ level: { key: "Optional" } }) },
+              custom_mode: { key: "Optional" },
+            }),
+          },
+        },
+      },
+    },
+    pages: {
+      "radar.mdx": [
+        "Radar.",
+        "## Configuration variables",
+        "### Sensitivity",
+        "- **level** (*Optional*, int): Sensitivity level.",
+        "- **custom_mode** (*Optional*, int): Custom mode.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const cv = (...k) => docs("radar", "radar", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", ...k);
+  assert.match(cv("sensitivity", "schema", "config_vars", "level"), /Sensitivity level/);
+  assert.match(cv("custom_mode"), /Custom mode/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key"),
+    [],
+  );
+});
