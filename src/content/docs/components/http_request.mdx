@@ -18,7 +18,7 @@ http_request:
 - **follow_redirects** (*Optional*, boolean): Enable following HTTP redirects. Defaults to `true`.
 - **redirect_limit** (*Optional*, integer): Maximum amount of redirects to follow when enabled. Defaults to `3`.
 - **timeout** (*Optional*, [Time](/guides/configuration-types#time)): Timeout for request. Defaults to `4.5s`.
-  sets the default timeout, public http_request method accepts manual timeout as optional parameter
+  Each action can override it with its own `timeout` option.
   On ESP32 this applies to each network operation (DNS lookup, connect, TLS handshake, every read and write)
   rather than to the request as a whole.
 - **useragent** (*Optional*, string): User-Agent header for requests. Defaults to
@@ -125,6 +125,8 @@ on_...:
 
 - **max_response_buffer_size** (*Optional*, integer): The maximum buffer size to be used to store the response.
   Defaults to `1 kB`.
+- **timeout** (*Optional*, [Time](/guides/configuration-types#time), [templatable](/automations/templates)): Timeout
+  for this request. Defaults to the `timeout` of the `http_request` component.
 
 - **on_response** (*Optional*, [Automation](/automations)): An automation to perform after the request is received.
 - **on_error** (*Optional*, [Automation](/automations)): An automation to perform if the request cannot be completed.
@@ -281,7 +283,7 @@ If you want to retrieve the value for the vol key and assign it to a template se
 set to player_volume you can do this, but note that checking for the presence of the key will prevent difficult-to-read
 error messages:
 
-This example assumes that the server returns a response as a JSON object similar to this, using a specific given optional timeout:
+This example assumes that the server returns a response as a JSON object similar to this:
 `{"status":"play","vol":"42","mute":"0"}`
 
 If you want to retrieve the value for the `vol` key and assign it to a template `sensor` or `number` component
@@ -292,7 +294,7 @@ on_...:
 - http_request.get:
     url: https://esphome.io
     capture_response: true
-    timeout: 10000
+    timeout: 10s
     on_response:
       then:
         - if:
