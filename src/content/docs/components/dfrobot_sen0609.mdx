@@ -30,7 +30,7 @@ binary_sensor:
 ## Hub Component
 
 At every boot the hub stops the sensor, writes the run mode, the UART output settings and the
-[LED switches](#switch), reads the versions when [text sensors](#text-sensor) are configured and the
+[LED switches](#switch), reads the versions when [text sensors](#text-sensor) are configured, reads the
 [settings](#settings) that have an entity configured, and starts the sensor again. The run mode, the UART output
 and the LEDs are applied each time instead of being saved on the module.
 
@@ -40,9 +40,9 @@ warning status and tries again after 30 seconds.
 
 ### Configuration Variables
 
-- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID for this component. Necessary
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID for this component. Necessary
   if you want to define multiple instances of this component.
-- **uart_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the [UART](/components/uart/) to use.
+- **uart_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the [UART](/components/uart/) to use.
   Required if you have multiple UARTs configured.
 - **model** (*Optional*, string): The radar model, which sets the largest value of the range
   [numbers](#number). Defaults to `SEN0609`.
@@ -67,7 +67,7 @@ binary_sensor:
 
 ### Configuration Variables
 
-- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the hub component. Required
+- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the hub component. Required
   if you have multiple hubs configured.
 - **has_target** (*Optional*): `true` when the radar detects a target. In `presence` mode this is a person being
   present; in `speed_and_distance` mode it is a moving target. All options from
@@ -92,7 +92,7 @@ sensor:
 
 ### Configuration Variables
 
-- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the hub component. Required
+- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the hub component. Required
   if you have multiple hubs configured.
 - **target_distance** (*Optional*): The distance to the target in metres. All options from
   [Sensor](/components/sensor/).
@@ -116,7 +116,7 @@ text_sensor:
 
 ### Configuration Variables
 
-- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the hub component. Required
+- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the hub component. Required
   if you have multiple hubs configured.
 - **version** (*Optional*): The software version of the module. All options from
   [Text Sensor](/components/text_sensor/).
@@ -154,7 +154,7 @@ number:
 
 ### Configuration Variables
 
-- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the hub component. Required
+- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the hub component. Required
   if you have multiple hubs configured.
 - **min_range** (*Optional*): The shortest distance at which a target is detected, from 0.6 m to the longest range of
   the `model`. All options from [Number](/components/number/).
@@ -192,7 +192,7 @@ The module forgets the LED states at power off, so the hub writes them at every 
 
 ### Configuration Variables
 
-- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the hub component. Required
+- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the hub component. Required
   if you have multiple hubs configured.
 - **micro_motion** (*Optional*): Detection of small movements. Only in `speed_and_distance` mode; configuration
   validation fails otherwise. All options from [Switch](/components/switch/).
@@ -211,7 +211,7 @@ select:
 
 ### Configuration Variables
 
-- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the hub component. Required
+- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the hub component. Required
   if you have multiple hubs configured.
 - **out_pin_level** (*Optional*): The level of the module's OUT pin while a target is detected, `low` or `high`. All
   options from [Select](/components/select/).
@@ -227,7 +227,7 @@ button:
 
 ### Configuration Variables
 
-- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the hub component. Required
+- **dfrobot_sen0609_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the hub component. Required
   if you have multiple hubs configured.
 - **restart** (*Optional*): Reboots the module. The module does not answer this command, so the hub waits for it to
   boot, then writes the run mode, the UART output settings and the LEDs and reads the settings again, as it does at
