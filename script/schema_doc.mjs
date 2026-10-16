@@ -1,19 +1,21 @@
 #!/usr/bin/env node
 /**
- * Check component documentation against the ESPHome language schema, or
- * (with --emit) write the documentation into the schema for the editors.
+ * Add the component documentation to the ESPHome language schema.
  *
- * Parses the MDX with remark, routes every "Configuration variables" section
- * to a schema from the page path, the heading structure or an explicit
- * `{/* schema: <ref> *\/}` marker, and compares the documented keys with the
- * schema's keys in both directions.
+ * The schema JSON produced by esphome's script/build_language_schema.py lists
+ * every config key; this script parses the docs MDX with remark, routes every
+ * "Configuration variables" section to a schema from the page path, the
+ * heading structure or an explicit `{/* schema: <ref> *\/}` marker, and writes
+ * the descriptions into the schema (`docs` fields) for the VS Code extension
+ * and the ESPHome Builder editor.
+ *
+ * Without --emit it only reports what does not line up: documented keys the
+ * schema does not have, schema keys the docs do not mention, Required/Optional
+ * disagreements and sections it could not route.
  *
  * Usage:
- *   node script/check_schema_docs.mjs [--schema-dir DIR | --schema-url URL]
- *                                     [--file SUBSTR] [--json OUT]
- *                                     [--baseline FILE] [--check] [--verbose]
- *   node script/check_schema_docs.mjs --schema-dir DIR --emit OUT_DIR
- *                                     [--deploy-url https://esphome.io]
+ *   node script/schema_doc.mjs --schema-dir DIR --emit OUT_DIR [--deploy-url https://esphome.io]
+ *   node script/schema_doc.mjs [--schema-dir DIR | --schema-url URL] [--file SUBSTR] [--json OUT] [--verbose]
  */
 
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
@@ -30,7 +32,6 @@ import { unified } from "unified";
 const DOCS_ROOT = join("src", "content", "docs");
 const COMPONENTS_ROOT = join(DOCS_ROOT, "components");
 const DEFAULT_SCHEMA_URL = "https://schema.esphome.io/dev";
-const DEFAULT_BASELINE = join("script", "schema_docs_baseline.json");
 
 const CONFIG_VARS_RE = /^Configuration (variables|options):?$/i;
 const MARKER_RE = /^\s*\/\*\s*schema:\s*(\S+)\s*\*\/\s*$/;
@@ -73,9 +74,6 @@ const { values: args } = parseArgs({
     "schema-url": { type: "string", default: DEFAULT_SCHEMA_URL },
     file: { type: "string" },
     json: { type: "string" },
-    baseline: { type: "string", default: DEFAULT_BASELINE },
-    "update-baseline": { type: "boolean", default: false },
-    check: { type: "boolean", default: false },
     verbose: { type: "boolean", short: "v", default: false },
     resolve: { type: "string" },
     emit: { type: "string" },
@@ -416,7 +414,7 @@ export function parseMdx(path) {
 }
 
 // ---------------------------------------------------------------------------
-// Emitting docs into the schema (what script/schema_doc.py used to do)
+// Emitting docs into the schema
 // ---------------------------------------------------------------------------
 
 export function slugify(text) {
@@ -813,7 +811,7 @@ export class Walker {
     }
   }
 
-  /** Attach a config bullet's description to the schema, mirroring schema_doc.py. */
+  /** Attach a config bullet's description to the schema, as the old Python generator did. */
   emitPropDocs(found, sectionInner, item, parsed) {
     if (!this.emit || !found) return;
     const m = PROP_RE.exec(itemText(this.tree, item));
@@ -1239,7 +1237,7 @@ async function main() {
   if (args.file) files = files.filter((f) => f.includes(args.file));
 
   // Platform index pages first so base-schema docs are in place before the
-  // platform components refine them (same order as schema_doc.py).
+  // platform components refine them (platform components refine base docs).
   const fileOrder = (f) => {
     if (basename(f) === "index.mdx") return 0;
     return dirname(f) === COMPONENTS_ROOT ? 1 : 2;
@@ -1263,18 +1261,6 @@ async function main() {
     console.log(JSON.stringify(report.stats.emitted, null, 2));
   }
 
-  const baselinePath = args.baseline;
-  const findingKey = (f) => `${f.kind}|${f.file}|${f.schema ?? ""}|${f.key ?? f.detail ?? ""}`;
-  if (args["update-baseline"]) {
-    const keys = [...new Set(report.findings.map(findingKey))].sort();
-    writeFileSync(baselinePath, `${JSON.stringify(keys, null, 2)}\n`);
-    console.log(`Wrote ${keys.length} entries to ${baselinePath}`);
-    return 0;
-  }
-  const baseline = new Set(
-    args.check && existsSync(baselinePath) ? JSON.parse(readFileSync(baselinePath, "utf8")) : [],
-  );
-
   if (args.json) {
     writeFileSync(
       args.json,
@@ -1282,7 +1268,6 @@ async function main() {
     );
   }
 
-  let newFindings = 0;
   const order = [
     "parse_error",
     "unroutable_section",
@@ -1293,8 +1278,6 @@ async function main() {
   ];
   const shown = new Set(args.verbose ? order : order.slice(0, 5));
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {
-    if (baseline.has(findingKey(f))) continue;
-    newFindings++;
     if (!shown.has(f.kind)) continue;
     const what = f.key ? `'${f.key}'` : "";
     console.log(
@@ -1314,10 +1297,6 @@ async function main() {
       `prose bullets skipped ${s.proseBullets}`,
     ].join("\n"),
   );
-  if (args.check) {
-    console.log(`${newFindings} findings not in baseline`);
-    return newFindings ? 1 : 0;
-  }
   return 0;
 }
 

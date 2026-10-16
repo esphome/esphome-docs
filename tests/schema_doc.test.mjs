@@ -7,7 +7,7 @@ import { unified } from "unified";
 import remarkMdx from "remark-mdx";
 import remarkParse from "remark-parse";
 
-import { parseItem, registryHeading, SchemaStore, toInner } from "../script/check_schema_docs.mjs";
+import { parseEnumValues, parseItem, registryHeading, SchemaStore, toInner } from "../script/schema_doc.mjs";
 
 const parse = (md) => unified().use(remarkParse).use(remarkMdx).parse(md);
 
@@ -98,4 +98,23 @@ test("SchemaStore resolves components, platforms, registries and extends", async
   const sensor = await store.resolve("foo.sensor.CONFIG_SCHEMA");
   assert.deepEqual(store.numberedFamily(sensor, "target_N"), ["target_1", "target_2"]);
   assert.equal((await store.resolve("foo.*")).variants.length, 2, "wildcard unions every schema in the file");
+});
+
+test("parseEnumValues reads the <EnumValues> JSX block", () => {
+  const block = `<EnumValues values={[
+  { value: "ANY",     default: true, description: "Trigger on any edge change (high to low or low to high)" },
+  { value: "RISING",  description: "Trigger only on rising edge (low to high)" },
+  { value: "2x", },
+]} />
+`;
+  const node = parse(block).children[0];
+  assert.deepEqual(parseEnumValues(node), [
+    { value: "ANY", default: true, description: "Trigger on any edge change (high to low or low to high)" },
+    { value: "RISING", description: "Trigger only on rising edge (low to high)" },
+    { value: "2x" },
+  ]);
+  assert.deepEqual(parseEnumValues(parse('<EnumValues values={[{ value: "X", default: true }]} />\n').children[0]), [
+    { value: "X", default: true },
+  ]);
+  assert.equal(parseEnumValues(parse("<EnumValues values={[{ default: true }]} />\n").children[0]), null);
 });
