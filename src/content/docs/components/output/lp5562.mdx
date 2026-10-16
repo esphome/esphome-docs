@@ -36,7 +36,8 @@ output:
    this lp5562 component. Use this if you have multiple LP5562s connected at the same time.
 
 - **logarithmic_dimming** (*Optional*, boolean): Use the chip's logarithmic brightness curve instead of a linear one,
-  so low brightness levels look smoother. Defaults to `false`.
+  so brightness steps look even to the eye. A light on these outputs then needs `gamma_correct: 1.0`, or both curves
+  apply. Defaults to `false`.
 
 ## LP5562 Output
 
