@@ -234,9 +234,10 @@ wifi:
   - **private_key** (*Optional*, string): The bootstrapping private key, 32 bytes written as 64 hexadecimal
     characters. A new key is generated on every boot when it is left out, so the URI, and with it the QR code,
     changes with each boot.
-  - **timeout** (*Optional*, [Time](/guides/configuration-types#time)): How long the configured networks are tried
-    before the device listens for a configurator, and how long it waits between listening attempts. Defaults to
-    `1min`.
+  - **timeout** (*Optional*, [Time](/guides/configuration-types#time)): How long the configured or saved networks
+    are tried before the device listens for a configurator. The device then listens during each pause between
+    connection attempts. Without any network it listens from boot, and listens again at most once per `timeout`
+    after an attempt that did not finish. Defaults to `1min`.
 - **on_connect** (*Optional*, [Automation](/automations)): An action to be performed when a connection is established.
 - **on_disconnect** (*Optional*, [Automation](/automations)): An action to be performed when the connection is dropped.
 - **on_dpp_uri** (*Optional*, [Automation](/automations)): An action to be performed when the Wi-Fi Easy Connect URI
@@ -318,8 +319,8 @@ Notes:
 On the ESP32, `dpp` lets a phone provision the network with Wi-Fi Easy Connect, the Device Provisioning Protocol: the
 device publishes a bootstrapping URI, which is shown as a QR code, and a configurator such as the Android Wi-Fi
 settings scans it and sends the credentials. The device saves them and connects, and keeps using them on later boots
-like credentials entered on the captive portal. The device listens for a configurator right away when no `networks`
-are configured, and otherwise once the configured networks have failed for `timeout`.
+like credentials entered on the captive portal. The device listens for a configurator right away when it has no
+network, neither configured nor saved, and otherwise once those networks have failed for `timeout`.
 
 ```yaml
 # Example configuration entry
