@@ -123,7 +123,7 @@ One entry is one physical sensor and not an entity itself: the gases listed unde
 - **voltage_multiplier** (*Optional*, float): The multiplier applied to the sampled voltage, the inverse of the
   divider ratio (`1.5` for a 10k/20k divider, `1.0` for a directly connected sensor or a sampler with a wider input
   range). Defaults to `1.0`.
-- **vcc** (*Optional*, float): The supply voltage of the module. A reading at or above it cannot come from the sensor,
+- **vcc** (*Optional*, float): The supply voltage of the module. A reading above it cannot come from the sensor,
   so it is reported as `unknown` with a warning instead of being published as a measurement. Defaults to `5.0`.
 - **sample_count** (*Optional*, int): The number of AO conversions averaged per reading. They run back to back inside
   one pass of the main loop. Defaults to `4`. Range: 1-16.
@@ -170,7 +170,7 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor), so
 
 - **Cross-sensitivity**: The MiCS-5524 is a MEMS metal-oxide sensor for trace detection, not a safety device. The five
   sub-sensors are views of the same reading interpreted through the curve of their gas, not independent measurements.
-- **`unknown` vs `0 ppm`**: Unusable readings - an AO that cannot be read or is at or below 0 V, a reading at or above
+- **`unknown` vs `0 ppm`**: Unusable readings - an AO that cannot be read or is at or below 0 V, a reading above
   the configured `vcc:`, and a reference that is not available yet - publish `unknown`, never `0 ppm`, so a broken
   sensor cannot look like clean air. A one-time warning is logged instead. `0 ppm` is only published when the model
   says "not detected" (the ratio is above the threshold), i.e. for a valid clean-air reading.
@@ -193,7 +193,7 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor), so
 | --- | --- |
 | state stays `unknown`, warning about a missing air reference | no `calibration:` block and no `air_reference:` |
 | warning about `0.0000 V` on the analog output | AO not wired, module not powered from 5 V, the `EN` pad not driven low |
-| warning that the analog output is at or above `vcc:` | wrong `vcc:` or `voltage_multiplier:` - the reading is ignored instead of published |
+| warning that the analog output is above `vcc:` | wrong `vcc:` or `voltage_multiplier:` - the reading is ignored instead of published |
 | ppm far too high | a reference that was captured while gas was present, or a divider ratio that does not match the wiring |
 | ppm always 0 while gas is clearly present | the ratio stays above the gas's `threshold` (0.425 for CO, 0.279 for H2), so the model reports 0 ppm - expected at low concentrations, not a calibration fault |
 | values jump around | ESP32 ADC noise - raise `sample_count` or add an RC filter |
