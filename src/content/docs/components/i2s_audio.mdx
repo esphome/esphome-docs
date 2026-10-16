@@ -37,22 +37,25 @@ A full duplex bus must meet these requirements, which are checked when the confi
 - Exactly one [I²S Audio Microphone](/components/microphone/i2s_audio/) and at least one
   [I²S Audio Speaker](/components/speaker/i2s_audio/) use the bus.
 - The microphone is not a PDM microphone.
-- The speakers use an external DAC. Internal DAC and SPDIF speakers are not supported.
+- The speakers do not use `spdif_mode`.
 - The microphone and every speaker use the same `sample_rate`, `bits_per_sample`, `i2s_mode`, `use_apll` and
   `mclk_multiple`, because both directions run from the same clocks. Note that `bits_per_sample` has a different
   default for the microphone (`32bit`) and the speaker (`16bit`), so set it explicitly on both.
 - All speakers use the same `i2s_dout_pin`, `channel` and `i2s_comm_fmt`, because they share one output channel.
 
-Because the output channel is set up only once, a speaker on a full duplex bus only accepts audio in exactly its
-configured format (sample rate, bits per sample and number of channels). A stream in any other format is rejected and
-a message is logged. Put a [Resampler Speaker](/components/speaker/resampler/) in front of it to convert the sample rate
-and bits per sample. A resampler does not change the number of channels, so a speaker with `channel: mono`, `left` or
-`right` also needs a [Mixer Speaker](/components/speaker/mixer/) with `num_channels: 1`; see the
-[mono example](#mono-full-duplex-example) below.
+Because the output channel is set up only once, a speaker on a full duplex bus only accepts audio that matches its
+configured `sample_rate` and number of channels (`channel: stereo` takes two channel audio, `mono`, `left` and `right`
+take one channel audio) and whose bits per sample is the configured `bits_per_sample` or wider. Wider samples are
+narrowed to the configured width. A stream that does not match is rejected and a message is logged. Put a
+[Resampler Speaker](/components/speaker/resampler/) in front of the speaker to convert the sample rate and to widen the
+samples when the bus uses more bits than the source. A resampler does not change the number of channels, so a speaker
+with `channel: mono`, `left` or `right` also needs a [Mixer Speaker](/components/speaker/mixer/) with `num_channels: 1`;
+see the [mono example](#mono-full-duplex-example) below.
 
-More than one speaker can use a full duplex bus, for example when two DACs are connected to the same data pin and a
-[Router Speaker](/components/speaker/router/) switches between them. They share the one output channel, so only one of
-them can play at a time.
+More than one speaker can use a full duplex bus, for example a media speaker and an announcement speaker that a
+[Router Speaker](/components/speaker/router/) switches between. They share the one output channel, so only one of them
+can play at a time. Two DACs wired to the same data pin both play whatever is on the line; choosing one needs a mute or
+enable control on each DAC, which the router does not provide.
 
 ```yaml
 # Example full duplex configuration
@@ -76,9 +79,11 @@ speaker:
     i2s_audio_id: i2s_duplex_bus
     i2s_dout_pin: GPIOXX
     dac_type: external
+    # stereo, so stereo sources play without a mixer
+    channel: stereo
     sample_rate: 48000
     bits_per_sample: 32bit
-  # Converts incoming audio to the fixed format of the full duplex bus
+  # Converts incoming audio to the sample rate and bits per sample of the full duplex bus
   - platform: resampler
     output_speaker: duplex_speaker
     bits_per_sample: 32
