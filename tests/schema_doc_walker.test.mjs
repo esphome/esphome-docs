@@ -1115,26 +1115,30 @@ test("a nested key only one typed variant has is still audited", async () => {
 });
 
 test("nested audits two levels down are kept apart per branch", async () => {
-  const branch = (key) => ({
+  const branch = (...keys) => ({
     key: "Optional",
     type: "schema",
     schema: {
       config_vars: {
-        options: { key: "Optional", type: "schema", schema: { config_vars: { [key]: { key: "Optional" } } } },
+        options: {
+          key: "Optional",
+          type: "schema",
+          schema: { config_vars: Object.fromEntries(keys.map((k) => [k, { key: "Optional" }])) },
+        },
       },
     },
   });
   const { report } = await walk({
     schema: {
       esphome: core(["foo"]),
-      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ left: branch("a"), right: branch("b") }) } } },
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ left: branch("a"), right: branch("b", "c") }) } } },
     },
     pages: {
       "foo.mdx": [
         "Foo.",
         "## Configuration variables",
         "- **left** (*Optional*): Left.\n  - **options** (*Optional*): Options.\n    - **a** (*Optional*, int): A.",
-        "- **right** (*Optional*): Right.\n  - **options** (*Optional*): Options.",
+        "- **right** (*Optional*): Right.\n  - **options** (*Optional*): Options.\n    - **c** (*Optional*, int): C.",
         "",
       ].join("\n\n"),
     },
