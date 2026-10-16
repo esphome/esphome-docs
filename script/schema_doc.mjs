@@ -11,11 +11,14 @@
  *
  * Without --emit it only reports what does not line up: documented keys the
  * schema does not have, schema keys the docs do not mention, Required/Optional
- * disagreements and sections it could not route.
+ * disagreements and sections it could not route. With --strict any such
+ * finding fails the run. An --emit run that cannot route most of its sections
+ * writes nothing and fails, so a changed schema layout does not ship an empty
+ * bundle.
  *
  * Usage:
  *   node script/schema_doc.mjs --schema-dir DIR --emit OUT_DIR [--deploy-url https://esphome.io]
- *   node script/schema_doc.mjs [--schema-dir DIR | --schema-url URL] [--file SUBSTR] [--json OUT] [--verbose]
+ *   node script/schema_doc.mjs [--schema-dir DIR | --schema-url URL] [--file SUBSTR] [--json OUT] [--verbose] [--strict]
  */
 
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
@@ -75,6 +78,7 @@ const { values: args } = parseArgs({
     file: { type: "string" },
     json: { type: "string" },
     verbose: { type: "boolean", short: "v", default: false },
+    strict: { type: "boolean", default: false },
     resolve: { type: "string" },
     emit: { type: "string" },
     "deploy-url": { type: "string", default: "https://esphome.io" },
@@ -301,20 +305,23 @@ export class SchemaStore {
   }
 
   /**
-   * Every holder of a key across typed variants (own keys only). A docs-only
-   * copy that emitPropDocs refined onto a variant stands in for an inherited
-   * definition, so nested options and enum values are read from that one.
+   * The definition of a key in every typed variant, own or inherited, each
+   * once. A docs-only copy that emitPropDocs refined onto a variant stands in
+   * for an inherited definition, so nested options and enum values are read
+   * from that one.
    */
   async propHolders(inner, name) {
     const out = [];
+    const seen = new Set();
     for (const variantInner of inner ? this.groupVariants(inner) : []) {
       const own = variantInner.config_vars?.[name];
-      if (!own) continue;
       let prop = own;
-      if ("docs" in own && Object.keys(own).every((k) => k === "docs" || k === "key")) {
+      if (!own || ("docs" in own && Object.keys(own).every((k) => k === "docs" || k === "key"))) {
         const base = await this.findPropOwner({ variants: [{ extends: variantInner.extends }] }, name);
-        if (base) prop = base.prop;
+        prop = base?.prop ?? own;
       }
+      if (!prop || seen.has(prop)) continue;
+      seen.add(prop);
       out.push({ prop, owner: variantInner, inherited: prop !== own });
     }
     return out;
@@ -842,8 +849,10 @@ export class Walker {
         detail: ref ? `schema '${ref}' not found` : "no schema for this page section",
       });
       this.section = null;
+      this.failedSection = { depth, defaultRef: this.defaultRef };
       return;
     }
+    this.failedSection = null;
     this.section = { ref, inner, depth, documented: new Set(), line, continued: false };
     this.lastEnumProp = null;
     report.sections.push({ file: this.rel, line, ref, source });
@@ -1220,6 +1229,7 @@ export class Walker {
     this.lastHeadingSlug = this.slugger.slug(toString(node).replace(/\./g, "-"));
     this.lastHeadingDepth = node.depth;
     this.lastEnumProp = null;
+    if (this.failedSection && node.depth <= this.failedSection.depth) this.failedSection = null;
     const intro = () => this.leadParagraph(siblings, index + 1);
 
     // A bus or component heading re-targets the page only for its own subtree
@@ -1456,15 +1466,31 @@ export class Walker {
 
   /** A top-level bullet list: the options of the open section, if any. */
   async list(node) {
-    if (!this.section && this.defaultRef) {
-      // "## Base Fan Configuration" / "## A4988 Component" go straight into the
-      // option list without a "Configuration variables" heading
-      const first = node.children[0] && parseItem(node.children[0]);
-      if (first?.hasParen && !first.prose) {
-        await this.openSection(this.defaultRef, this.lastHeadingDepth ?? 2, node.position.start.line, "implicit");
-      }
+    if (this.section) {
+      await this.listItems(node);
+      return;
     }
-    if (!this.section) return;
+    const first = node.children[0] && parseItem(node.children[0]);
+    const line = node.position.start.line;
+    // "## Base Fan Configuration" / "## A4988 Component" go straight into the
+    // option list without a "Configuration variables" heading. After a section
+    // that could not be routed the bullets are dropped rather than sent to the
+    // page's own schema, unless a heading has since switched to another component.
+    const blocked = this.failedSection?.defaultRef === this.defaultRef;
+    if (this.defaultRef && !blocked && first?.hasParen && !first.prose) {
+      await this.openSection(this.defaultRef, this.lastHeadingDepth ?? 2, line, "implicit");
+    }
+    if (this.section) {
+      await this.listItems(node);
+    } else if (first && !first.prose && first.optionality) {
+      this.report.add("orphan_option_list", this.rel, line, {
+        key: first.key,
+        detail: "option bullets outside any schema section",
+      });
+    }
+  }
+
+  async listItems(node) {
     if (this.section.enumProp) {
       this.emitEnumList(this.section.enumProp, node);
       return;
@@ -1712,9 +1738,13 @@ async function main() {
     report.add("unresolved_extends", "(schema bundle)", 0, { detail: `extends '${ref}' points at no schema` });
   }
 
+  const s = report.stats;
+  const mostlyUnroutable = s.sectionsUnroutable * 2 > s.sections;
   if (args.emit) {
     if (parseErrors) {
       console.error(`not writing ${args.emit}: ${parseErrors} page(s) could not be parsed`);
+    } else if (mostlyUnroutable) {
+      console.error(`not writing ${args.emit}: ${s.sectionsUnroutable} of ${s.sections} sections match no schema`);
     } else {
       store.save(args.emit);
     }
@@ -1731,6 +1761,7 @@ async function main() {
   const order = [
     "parse_error",
     "unroutable_section",
+    "orphan_option_list",
     "unknown_registry_entry",
     "missing_schema_entry",
     "malformed_enum_values",
@@ -1750,7 +1781,8 @@ async function main() {
     "no_intro_paragraph",
     "nested_list_ignored",
   ];
-  const shown = new Set(args.verbose ? order : order.slice(0, 17));
+  const strictKinds = new Set(order.slice(0, 18));
+  const shown = new Set(args.verbose ? order : strictKinds);
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {
     if (!shown.has(f.kind)) continue;
     const what = f.key ? `'${f.key}'` : "";
@@ -1763,7 +1795,6 @@ async function main() {
 
   const hidden = new Map();
   for (const f of report.findings) if (!shown.has(f.kind)) hidden.set(f.kind, (hidden.get(f.kind) ?? 0) + 1);
-  const s = report.stats;
   console.log(
     [
       `files ${s.files}`,
@@ -1776,6 +1807,12 @@ async function main() {
   );
   if (parseErrors) {
     console.error(`${parseErrors} page(s) could not be parsed`);
+    return 1;
+  }
+  if (args.emit && mostlyUnroutable) return 1;
+  const strictFindings = report.findings.filter((f) => strictKinds.has(f.kind)).length;
+  if (args.strict && strictFindings) {
+    console.error(`--strict: ${strictFindings} finding(s)`);
     return 1;
   }
   return 0;

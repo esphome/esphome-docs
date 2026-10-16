@@ -590,3 +590,78 @@ test("nested bullets under an inherited key refined on typed variants reach the 
     [],
   );
 });
+
+test("nested enum values of a key one typed variant owns and another inherits reach both definitions", async () => {
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            BASE_SCHEMA: schema({ mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } } }),
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "model",
+              types: {
+                a: { config_vars: { mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } } } },
+                b: { config_vars: { pin: { key: "Required" } }, extends: ["foo.BASE_SCHEMA"] },
+              },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **model** (**Required**): The model.",
+        "- **mode** (*Optional*): The mode.\n  - `FAST`: Sample quickly.\n  - `SLOW`: Sample slowly.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const own = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.types.a.config_vars.mode;
+  const base = store.files.get("foo").foo.schemas.BASE_SCHEMA.schema.config_vars.mode;
+  for (const prop of [own, base]) {
+    assert.match(prop.docs, /^The mode/);
+    assert.match(prop.values.FAST.docs, /^Sample quickly/);
+    assert.match(prop.values.SLOW.docs, /^Sample slowly/);
+  }
+  assert.deepEqual(
+    report.findings.filter((f) => ["nested_list_ignored", "unmatched_key"].includes(f.kind)),
+    [],
+  );
+});
+
+test("bullets after a section that could not be routed are dropped and reported, not sent to the page schema", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ name: { key: "Optional" } }) } } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **name** (*Optional*, string): The name.",
+        "## Advanced",
+        "{/* schema: foo.MISSING */}",
+        "### Configuration variables",
+        "- **name** (*Optional*, string): Text for another schema.",
+        "#### Details",
+        "- **name** (*Optional*, string): Text for another schema.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "name"), /: The name\./);
+  assert.deepEqual(
+    report.findings.map((f) => [f.kind, f.line]),
+    [
+      ["unroutable_section", 15],
+      ["orphan_option_list", 17],
+      ["orphan_option_list", 21],
+    ],
+  );
+});
