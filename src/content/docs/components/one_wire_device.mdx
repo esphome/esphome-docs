@@ -1,82 +1,145 @@
 ---
 title: "1-Wire Device Emulation"
-description: "Experimental DS18B20-compatible 1-Wire device emulation on an externally powered ESP32."
+description: "Emulate a selectable thermometer, serial-ID device or two-channel I/O device on an ESP32."
 ---
 
-The `one_wire_device` component lets an ESP32 respond to an external 1-Wire controller as one
-DS18B20-family temperature device. It returns a configured fixed temperature; it does not measure temperature.
-It requires an [ESP32](/components/esp32/) and is separate from the [1-Wire controller bus](/components/one_wire/).
-
-:::caution[Experimental]
-This component is not production-qualified. Initial wired reads succeeded, but subsequent diagnostic stress
-experiments encountered CRC, presence and timing failures. Reliable operation under background load remains
-unresolved. Do not use this prototype for heating protection, safety interlocks or other critical measurements.
-:::
+The `one_wire_device` component makes a classic dual-core [ESP32](/components/esp32/) respond to an external
+[1-Wire controller](/components/one_wire/). **One virtual device is attached to one DQ output.** Select the device
+model with `type`; simultaneous emulation of several virtual devices on the same output is not implemented.
 
 ```yaml
 one_wire_device:
   pin: GPIOXX
 ```
 
-## Wiring
+The default model is `DS18B20`, with a fixed value of 23.5 degrees Celsius. This is an emulator, not a temperature sensor.
 
-Connect the configured data pin to the external controller's DQ line and connect their grounds.
-Fit an external 4.7 kOhm pull-up resistor between DQ and 3.3 V. The ESP32 configures its DQ pin as open-drain:
-it pulls the line low or releases it, rather than actively driving a high level.
+:::caution[Experimental]
+Bench verification is not production qualification. The microsecond timing backend uses a dedicated GPIO interrupt
+on the opposite core from setup. Network-load, cache-disabled and long-duration operation need separate qualification.
+Do not use this prototype for safety interlocks or critical measurements.
+:::
 
-Power the ESP32 independently. Do not connect independently powered boards' 5 V rails together.
-Parasite power and 5 V data-line operation are not supported. Use a plain, non-inverted, output-capable GPIO;
-advanced pin options are not all honored by the backend's raw GPIO configuration.
+## Device Models
+
+| `type` | ROM family | Emulated behavior |
+| --- | --- | --- |
+| `DS18B20` | `0x28` | Variable-resolution temperature, scratchpad, alarms and ready polling |
+| `DS1822` | `0x22` | DS1822 thermometer command and scratchpad model |
+| `DS18S20` | `0x10` | Legacy thermometer, including count-remaining interpolation fields |
+| `DS2401` | `0x01` | Serial identification, ROM search and normal/legacy Read ROM |
+| `DS2413` | `0x3A` | Two PIO input levels/output latches, status/complement and access read/write |
+
+These are protocol models, not electrical simulations of the original silicon. In particular, an emulated DS2413
+still uses 3.3 V ESP32 wiring, not the real part's high-voltage PIO ratings.
+
+## Feed an Existing Temperature Sensor Into the Bus
+
+Give an ordinary ESPHome temperature sensor an `id`, then reference it with `sensor_id`:
+
+```yaml
+# my_temperature_sensor is the id of your existing temperature sensor.
+one_wire_device:
+  pin: GPIOXX
+  type: DS18B20
+  sensor_id: my_temperature_sensor
+```
+
+The sensor can be a physical sensor, an [MQTT sensor](/components/sensor/mqtt_subscribe/), a
+[Home Assistant sensor](/components/sensor/homeassistant/), or a [template sensor](/components/sensor/template/).
+It must publish degrees Celsius; apply a sensor filter first if the source uses another unit.
+
+Updates publish one atomic, quantized temperature snapshot. A Convert T command samples that snapshot; the resulting
+scratchpad stays unchanged until the next conversion. No sensor callbacks, logging, allocation or floating-point
+conversion run inside the protocol interrupt.
+
+Before the first valid sensor value, and after NaN/infinity or an out-of-range update, the virtual thermometer does not
+respond to new transactions. It does not replace missing data with 23.5 degrees or silently retain an old reading.
+A later valid update makes it available again at the next bus reset. Other physical devices can still acknowledge
+resets on a shared bus, so an unavailable virtual device can also appear as a failed scratchpad read to the controller.
+
+## Set Temperature From an Automation
+
+For manual control, omit `sensor_id`, assign the emulator an `id`, and use the action:
+
+```yaml
+one_wire_device:
+  id: emulated_temperature
+  pin: GPIOXX
+  temperature: 20.0
+
+# Inside an existing automation's then: block:
+# - one_wire_device.set_temperature:
+#     id: emulated_temperature
+#     temperature: !lambda return id(my_temperature_sensor).state;
+```
+
+The action accepts a literal or a lambda. Its input follows the same Celsius range and invalid-value behavior.
+When `sensor_id` is configured, later sensor updates can overwrite an action's value; prefer one control mechanism.
+This action is intended for thermometer types, not DS2401 or DS2413.
+
+## DS2413 Digital Inputs and Latches
+
+```yaml
+one_wire_device:
+  pin: GPIOXX
+  type: DS2413
+  pio_a: existing_binary_sensor_a
+  pio_b: existing_binary_sensor_b
+```
+
+`pio_a` and `pio_b` reference existing [binary sensors](/components/binary_sensor/). A true source state means a high
+input level. Omitted inputs default to high; configured inputs remain unavailable until their first state arrives.
+Controller writes affect the model's open-drain output latches: a zero latch pulls that virtual input low, while a one
+releases it to the source level. These are virtual registers; writing a latch does not operate a physical GPIO output.
+Read responses include the complemented status nibble. A write with an incorrect complement is not acknowledged and
+does not modify the latches. Power-down behavior, overdrive and Resume ROM are not implemented.
 
 ## Configuration Variables
 
-- **pin** (**Required**, [Pin Schema](/guides/configuration-types/#pin-schema)):
-  The internal GPIO used for the shared DQ line. An external pull-up is required.
-- **address** (*Optional*, hexadecimal integer): The 64-bit ROM address in ESPHome's little-endian numeric
-  representation. A nonzero address must have family byte `0x28` and a valid Dallas CRC. Defaults to `0`,
-  which derives a stable ROM from the ESP32 station MAC address and calculates its CRC. The ROM is logged at startup.
-- **temperature** (*Optional*, float): The fixed temperature returned by the emulated device, in degrees Celsius.
-  Defaults to `23.5`. Accepted range is `-55.0` to `125.0`. No sensor-source or template input is available.
-- **interrupt_mode** (*Optional*, boolean): Selects the GPIO edge-interrupt backend when `true` (the default).
-  When `false`, selects the older high-priority timing-task backend. That backend pins its task to core 1;
-  it is not supported on single-core ESP32 variants.
-- **timing_scale** (*Optional*, integer): Bench diagnostic multiplier from `1` to `100`. Defaults to `1`,
-  which uses normal-speed timings. Larger values require a correspondingly modified controller and are
-  **not** standard-speed 1-Wire operation. Leave this at its default for ordinary interoperability testing.
-- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Identifier for the component instance.
+- **pin** (**Required**, [Pin Schema](/guides/configuration-types/#pin-schema)): Internal DQ GPIO. The default mode
+  is input/output/open-drain. Inversion, pulldown and incompatible modes are rejected.
+- **type** (*Optional*, string): One of the device models above. Defaults to `DS18B20`.
+- **address** (*Optional*, hexadecimal integer): A complete 64-bit ROM with the selected model's family byte and a
+  valid Dallas CRC. Defaults to `0`, deriving the serial from the station MAC and calculating the family/CRC bytes.
+  The ROM is logged at startup. Changing the selected model therefore changes its generated ROM.
+- **temperature** (*Optional*, float): Fixed Celsius value for a thermometer; defaults to `23.5` when no `sensor_id`
+  is configured. Range: `-55.0` to `125.0`; non-finite literals are rejected. Cannot be combined with `sensor_id`.
+- **sensor_id** (*Optional*, [ID](/guides/configuration-types/#id)): Existing numeric temperature sensor to follow.
+  Only accepted for thermometer models.
+- **pio_a**, **pio_b** (*Optional*, [IDs](/guides/configuration-types/#id)): Binary input sources for `DS2413` only.
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Identifier used by the temperature-setting action.
 
-## Controller Configuration
+Old prototype options `timing_scale: 1` and `interrupt_mode: true` are accepted for migration, but other values are
+rejected. The scaled task backend and diagnostic modifications to the GPIO controller have been removed.
 
-A separate ESPHome controller can use the existing GPIO [1-Wire bus](/components/one_wire/gpio/) and
-[Dallas temperature sensor](/components/sensor/dallas_temp/). Configure those components on the controller,
-not on the emulating ESP32's same data pin. Obtain the emulated ROM from the device startup log or the
-controller's bus scan, then select that address when other devices share the bus.
+## Wiring and Controller
 
-At `timing_scale: 1`, no diagnostic timing modification is required on the controller. The accompanying
-GPIO-controller `timing_scale` option is only for matched, deliberately slowed bench experiments; leave it
-at its default of `1` for an ordinary controller.
+Connect DQ to the external controller's DQ, share ground and use an external pull-up from DQ to **3.3 V**
+(4.7 kOhm is a starting value for a short bench bus). Power both boards independently; do not join their 5 V rails.
+The emulator releases the line rather than driving it high. Parasite-power and 5 V DQ operation are not supported.
 
-## Supported Scope and Limitations
+An unchanged ESPHome [Dallas temperature sensor](/components/sensor/dallas_temp/) can consume the three thermometer
+models through either the [GPIO controller](/components/one_wire/gpio/) or a supported bridge. Discover the ROM in the
+controller log, then use an explicit address where necessary. Do not configure the emulating ESP32's same DQ pin as a
+controller bus as well.
 
-Hardware development used classic dual-core ESP32-D0WD-V3 revision 3.1 modules. Other ESP32 variants have
-not been qualified. Arduino and ESP-IDF compile fixtures do not establish physical protocol reliability.
+## Deliberate Limits
 
-The implementation includes ROM Search, Read, Match and Skip paths, plus DS18B20-like Convert T,
-Read/Write Scratchpad and Read Power Supply paths. It is not a complete DS18B20 emulator:
-
-- Conversion completion polling/timing and resolution handling are incomplete.
-- Copy Scratchpad does not persist settings; recall and alarm search are not implemented.
-- Only one virtual device with a fixed temperature is provided.
-- Dynamic sensor sources, overdrive and parasite power are not supported.
-- The interrupt backend busy-waits through timing-critical operations. Coexistence with other components,
-  network traffic and long-running workloads must not be assumed to be reliable.
-
-An earlier bring-up report recorded 64 valid reads without CRC/reset/slot errors in that run. Later two-hour
-fixed-scratchpad diagnostic experiments failed for both tested GPIO and GPTimer variants. Those experimental
-images are not a qualification of the current source, and the GPTimer backend is not included here.
+- Only classic dual-core ESP32 is accepted; there is one emulated endpoint, not a list of virtual devices.
+- Conversion completes immediately using the latest source snapshot; ready polling returns ready. Real sensor
+  conversion delays and power consumption are not simulated.
+- Copy Scratchpad and Recall E2 use a **RAM shadow**. They survive bus resets, not ESP32 restarts or power loss.
+- Thermometer alarm search and resolution masking are model state, not host-side filters.
+- Overdrive, parasite power, persistent EEPROM, authenticated memory, loggers and arbitrary family codes are unsupported.
+- Device-model bit-slot logic is separated from the GPIO adapter to allow future extensions without pretending that
+  changing a ROM family byte implements another chip's function commands.
 
 ## See Also
 
 - [1-Wire Bus](/components/one_wire/)
-- [Dallas Temperature Sensor](/components/sensor/dallas_temp/)
 - [DS18B20 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/ds18b20.pdf)
+- [DS1822 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/DS1822.pdf)
+- [DS18S20 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/DS18S20.pdf)
+- [DS2401 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/DS2401.pdf)
+- [DS2413 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/DS2413.pdf)
