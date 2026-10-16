@@ -1513,13 +1513,14 @@ export class Walker {
     documented.add(parsed.key);
     this.checkBullet(item, parsed);
     await this.checkOptionality({ variants: [child] }, parsed);
-    if (!this.emit) return { prop: child.config_vars[parsed.key], inherited: false, created: true };
+    const childProp = child.config_vars[parsed.key];
+    if (!this.emit) return { prop: childProp, inherited: false, created: true, child };
     const base = inner.variants[0];
     base.config_vars ??= {};
     const created = (base.config_vars[parsed.key] ??= {});
-    if ("key" in child.config_vars[parsed.key]) created.key ??= child.config_vars[parsed.key].key;
+    if ("key" in childProp) created.key ??= childProp.key;
     await this.emitPropDocs({ prop: created, inherited: false }, inner, item, parsed);
-    return { prop: created, inherited: false, created: true };
+    return { prop: created, inherited: false, created: true, child };
   }
 
   /** A bullet the generator will not be able to turn into docs. */
@@ -1609,7 +1610,13 @@ export class Walker {
           continue;
         }
       }
-      if (found?.created) continue;
+      if (found?.created) {
+        // The base schema only got the key's docs; its type and values live on the child
+        const childFound = { prop: found.child.config_vars[parsed.key], inherited: false };
+        this.lastEnumProp = childFound.prop.type === "enum" ? childFound.prop : null;
+        await this.nestedContent(item, { variants: [found.child] }, parsed.key, childFound);
+        continue;
+      }
       if (!found) {
         report.stats.keysUnmatched++;
         report.add("unmatched_key", this.rel, parsed.line, {

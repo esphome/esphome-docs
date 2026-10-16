@@ -499,3 +499,39 @@ test("a typed platform joined with its hub keeps the discriminator and variant g
     [],
   );
 });
+
+test("nested bullets under a key created from platform children are written to the child", async () => {
+  const { docs, store } = await walk({
+    schema: {
+      esphome: core(["foo"], { sensor: {} }),
+      sensor: {
+        sensor: {
+          schemas: { SENSOR_SCHEMA: schema({ name: { key: "Optional" } }) },
+          components: { foo: {} },
+        },
+      },
+      foo: {
+        "foo.sensor": {
+          schemas: {
+            CONFIG_SCHEMA: schema({
+              mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } },
+            }),
+          },
+        },
+      },
+    },
+    pages: {
+      "sensor/index.mdx": [
+        "Sensors.",
+        "## Base Sensor Configuration",
+        "- **name** (*Optional*, string): The name.",
+        "- **mode** (*Optional*, string): The sampling mode.\n  - `FAST`: Sample quickly.\n  - `SLOW`: Sample slowly.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("sensor", "sensor", "schemas", "SENSOR_SCHEMA", "schema", "config_vars", "mode"), /sampling mode/);
+  const values = store.files.get("foo")["foo.sensor"].schemas.CONFIG_SCHEMA.schema.config_vars.mode.values;
+  assert.match(values.FAST.docs, /^Sample quickly/);
+  assert.match(values.SLOW.docs, /^Sample slowly/);
+});
