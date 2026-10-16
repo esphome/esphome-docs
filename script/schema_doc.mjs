@@ -338,15 +338,17 @@ export class SchemaStore {
   }
 
   /** Platform component schemas (loaded files only) that extend a platform base schema. */
-  childrenOf(baseTop) {
+  async childrenOf(baseTop) {
+    this.childrenCache ??= new Map();
+    if (this.childrenCache.has(baseTop)) return this.childrenCache.get(baseTop);
     const children = [];
-    for (const doc of this.files.values()) {
-      for (const [top, body] of Object.entries(doc ?? {})) {
-        if (!top.endsWith(`.${baseTop}`)) continue;
-        const inner = toInner(body?.schemas?.CONFIG_SCHEMA);
-        if (inner) children.push(...inner.variants);
-      }
+    const platformDoc = await this.file(baseTop);
+    for (const comp of Object.keys(platformDoc?.[baseTop]?.components ?? {})) {
+      const doc = await this.file(comp);
+      const inner = toInner(doc?.[`${comp}.${baseTop}`]?.schemas?.CONFIG_SCHEMA);
+      if (inner) children.push(...inner.variants);
     }
+    this.childrenCache.set(baseTop, children);
     return children;
   }
 
@@ -987,11 +989,9 @@ export class Walker {
       this.report.stats.emitted.props++;
       return;
     }
-    if (
-      sectionInner.variants.length > 1 &&
-      (sectionInner.typedKey || (sectionInner.multi && this.store.propHolders(sectionInner, parsed.key).length > 1))
-    ) {
-      // Typed schema, or a heading covering several actions: document the key in every variant that has it
+    if (sectionInner.variants.length > 1 && (sectionInner.typedKey || sectionInner.multi)) {
+      // Typed schema, bus union or a heading covering several actions: document the
+      // key in every variant that has it, whether it declares or inherits it
       await this.emitPropDocsTyped(sectionInner, item, parsed);
       return;
     }
@@ -1431,18 +1431,18 @@ export class Walker {
    * hover text. Returns the created entry as a match, or null.
    */
   async createFromChildren(inner, parsed, item, documented) {
-    if (!this.emit) return null;
     const { store, report } = this;
-    const child = store.childrenOf(inner.baseRef).find((v) => v.config_vars?.[parsed.key]);
+    const child = (await store.childrenOf(inner.baseRef)).find((v) => v.config_vars?.[parsed.key]);
     if (!child) return null;
-    const base = inner.variants[0];
-    base.config_vars ??= {};
-    const created = (base.config_vars[parsed.key] ??= {});
-    if ("key" in child.config_vars[parsed.key]) created.key ??= child.config_vars[parsed.key].key;
     report.stats.keysMatched++;
     documented.add(parsed.key);
     this.checkBullet(item, parsed);
     await this.checkOptionality({ variants: [child] }, parsed);
+    if (!this.emit) return { prop: child.config_vars[parsed.key], inherited: false, created: true };
+    const base = inner.variants[0];
+    base.config_vars ??= {};
+    const created = (base.config_vars[parsed.key] ??= {});
+    if ("key" in child.config_vars[parsed.key]) created.key ??= child.config_vars[parsed.key].key;
     await this.emitPropDocs({ prop: created, inherited: false }, inner, item, parsed);
     return { prop: created, inherited: false, created: true };
   }
