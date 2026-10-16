@@ -913,15 +913,18 @@ export class Walker {
     const audit = this.audits.get(s.ref);
     if (audit) {
       for (const key of s.documented) audit.documented.add(key);
+      if (!audit.inners.includes(s.inner)) audit.inners.push(s.inner);
     } else {
-      this.audits.set(s.ref, { inner: s.inner, documented: new Set(s.documented), line: s.line });
+      this.audits.set(s.ref, { inners: [s.inner], documented: new Set(s.documented), line: s.line });
     }
   }
 
   /** Report the keys of every schema the page documented that none of its sections mentioned. */
   reportAudits() {
     for (const [ref, audit] of this.audits) {
-      for (const key of this.store.ownKeys(audit.inner)) {
+      // The same reference may cover one nested schema per typed variant
+      const expected = new Set(audit.inners.flatMap((inner) => [...this.store.ownKeys(inner)]));
+      for (const key of expected) {
         if (!audit.documented.has(key)) {
           this.report.stats.keysUndocumented++;
           this.report.add("undocumented_key", this.rel, audit.line, { schema: ref, key });
@@ -1656,7 +1659,7 @@ export class Walker {
   }
 
   /** Nested bullets and <EnumValues> blocks under a matched bullet, for every schema holding the key. */
-  async nestedContent(item, inner, key, found) {
+  async nestedContent(item, inner, key, found, ref = this.section?.ref) {
     const lists = item.children.filter((c) => c.type === "list");
     const blocks = item.children.filter((c) => c.type === "mdxJsxFlowElement" && c.name === "EnumValues");
     if (!lists.length && !blocks.length) return;
@@ -1665,12 +1668,13 @@ export class Walker {
     const holders = inner.typedKey || inner.multi ? await this.store.propHolders(inner, key) : [];
     const props = holders.length ? holders.map((h) => h.prop) : [found.prop];
     const line = item.position.start.line;
+    const nestedRef = `${ref}/${key}`;
     for (const prop of props) {
       const nestedInner = propInner(prop);
       if (nestedInner) {
         const documented = new Set();
-        for (const list of lists) await this.items(list, nestedInner, documented);
-        this.reportUndocumented({ inner: nestedInner, documented, ref: `${this.section?.ref}/${key}`, line });
+        for (const list of lists) await this.items(list, nestedInner, documented, nestedRef);
+        this.reportUndocumented({ inner: nestedInner, documented, ref: nestedRef, line });
       } else if (prop.type === "enum") {
         for (const list of lists) this.emitEnumList(prop, list);
       } else if (lists.length) {
@@ -1718,7 +1722,7 @@ export class Walker {
   }
 
   /** Match each option bullet of a list against the schema and emit its docs. */
-  async items(listNode, inner, documented) {
+  async items(listNode, inner, documented, ref = this.section?.ref) {
     const { store, report } = this;
     for (const item of listNode.children) {
       this.lastEnumProps = [];
@@ -1771,7 +1775,7 @@ export class Walker {
             const member = await store.findPropOwner(inner, k);
             await this.checkOptionality(inner, parsed, k);
             await this.emitPropDocs(member, inner, item, { ...parsed, key: k });
-            await this.nestedContent(item, inner, k, member);
+            await this.nestedContent(item, inner, k, member, ref);
           }
           continue;
         }
@@ -1791,7 +1795,7 @@ export class Walker {
               item,
               parsed,
             );
-            await this.nestedContent(item, { variants: [] }, parsed.key, found);
+            await this.nestedContent(item, { variants: [] }, parsed.key, found, ref);
           }
           continue;
         }
@@ -1802,7 +1806,7 @@ export class Walker {
         const childFound = { prop: found.children[0].config_vars[parsed.key], inherited: false };
         const childInner = { variants: found.children, multi: true };
         this.lastEnumProps = await this.enumHolders(childInner, parsed.key, childFound);
-        await this.nestedContent(item, childInner, parsed.key, childFound);
+        await this.nestedContent(item, childInner, parsed.key, childFound, ref);
         continue;
       }
       if (!found) {
@@ -1819,7 +1823,7 @@ export class Walker {
       await this.checkOptionality(inner, parsed);
       await this.emitPropDocs(found, inner, item, parsed);
       this.lastEnumProps = await this.enumHolders(inner, parsed.key, found);
-      await this.nestedContent(item, inner, parsed.key, found);
+      await this.nestedContent(item, inner, parsed.key, found, ref);
     }
   }
 }

@@ -1073,3 +1073,74 @@ test("a bold configuration label stays inside the sub-schema section it follows"
     [],
   );
 });
+
+test("a nested key only one typed variant has is still audited", async () => {
+  const options = (extra = {}) => ({
+    key: "Optional",
+    type: "schema",
+    schema: { config_vars: { x: { key: "Optional" }, ...extra } },
+  });
+  const { report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "model",
+              types: {
+                a: { config_vars: { options: options() } },
+                b: { config_vars: { options: options({ extra: { key: "Optional" } }) } },
+              },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **model** (**Required**): The model.",
+        "- **options** (*Optional*): The options.\n  - **x** (*Optional*, int): X.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "undocumented_key").map((f) => [f.schema, f.key]),
+    [["foo.CONFIG_SCHEMA/options", "extra"]],
+  );
+});
+
+test("nested audits two levels down are kept apart per branch", async () => {
+  const branch = (key) => ({
+    key: "Optional",
+    type: "schema",
+    schema: {
+      config_vars: {
+        options: { key: "Optional", type: "schema", schema: { config_vars: { [key]: { key: "Optional" } } } },
+      },
+    },
+  });
+  const { report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ left: branch("a"), right: branch("b") }) } } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **left** (*Optional*): Left.\n  - **options** (*Optional*): Options.\n    - **a** (*Optional*, int): A.",
+        "- **right** (*Optional*): Right.\n  - **options** (*Optional*): Options.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "undocumented_key").map((f) => [f.schema, f.key]),
+    [["foo.CONFIG_SCHEMA/right/options", "b"]],
+  );
+});
