@@ -1,0 +1,196 @@
+---
+description: "Instructions for setting up MQ series gas sensors with ESPHome."
+title: "MQ Gas Sensors"
+
+---
+
+import Figure from '@components/Figure.astro';
+import APIRef from '@components/APIRef.astro';
+
+The `mq_gas_sensors` sensor platform allows you to use the analog gas sensors of the
+[MQ family](https://www.winsen-sensor.com/mq-sensor.html) with ESPHome. It is a port of the PPM model of the
+[MQUnifiedsensor](https://github.com/miguel5612/MQSensorsLib) library and ships the published curves of the MQ-2
+through MQ-9, MQ-131, MQ-135, MQ-137 and MQ-138. One entry configures one sensor module and one gas.
+
+<Figure
+  src="/images/mq-gas-sensor.jpg"
+  alt="MQ-135 gas sensor module on a blue breakout board"
+  caption="MQ-135 gas sensor module."
+  layout="constrained"
+  width={240}
+  height={194}
+/>
+
+The module has a single analog output (AO), so the signal comes from an existing voltage sampler such as an
+[ADC](/components/sensor/adc/) or [ADS1115](/components/sensor/ads1115/) sensor (`voltage:`). The component samples
+that voltage, converts it into the sensor resistance RS and evaluates the regression curve of the selected gas:
+
+$$
+RS = \frac{VCC \cdot RL}{V_{AO}} - RL \qquad
+ratio = \frac{RS}{R0} \qquad
+PPM = a \cdot ratio^{b}
+$$
+
+The types with a `linear` curve use `log10(PPM) = (log10(ratio) - b) / a` instead. R0, the sensor resistance in clean
+air, comes from the configuration (`r0:`) or from a clean-air calibration at boot (`calibration:`).
+
+> [!NOTE]
+> The MQ modules need 5 V on `VCC` and their AO pin swings up to that supply. The ADC pins of an ESP32 are not 5 V
+> tolerant, so connect AO through a voltage divider and describe it with `voltage_multiplier:`. The divider is needed
+> for any sampler that runs from less than 5 V, including an ADS1115 on a 3.3 V supply.
+
+## Example Configuration
+
+The analog output is read through an [ADC](/components/sensor/adc/) sensor. The 10k/20k divider of the recommended
+wiring maps the 0 - 5 V output onto 0 - 3.33 V, which `voltage_multiplier: 1.5` scales back:
+
+```yaml
+# Example configuration entry
+sensor:
+  - platform: adc
+    id: mq8_adc
+    pin: GPIOXX
+    attenuation: 12db
+
+  - platform: mq_gas_sensors
+    name: "Hydrogen (MQ-8)"
+    sensor_type: MQ-8
+    voltage: mq8_adc
+    voltage_multiplier: 1.5     # 10k/20k divider in front of the AO pin
+    calibration:                # determine R0 in clean air at boot
+      delay: 5min
+```
+
+Any other voltage sampler works the same way, for example an [ADS1115](/components/sensor/ads1115/) channel. Its
+inputs are limited to its own supply, so the divider stays unless the ADS1115 runs from 5 V:
+
+```yaml
+# Example configuration entry, external sampler
+sensor:
+  - platform: ads1115
+    id: mq135_ao
+    multiplexer: A0_GND
+    gain: 4.096
+
+  - platform: mq_gas_sensors
+    name: "Ammonia (MQ-135)"
+    sensor_type: MQ-135
+    voltage: mq135_ao
+    voltage_multiplier: 1.5     # the same 10k/20k divider
+    calibration:
+      delay: 5min
+```
+
+With `r0:` the calibration is skipped, which is what a stable, burned-in sensor ends up with - the value is the one
+the component logs after a calibration:
+
+```yaml
+# Example configuration entry, fixed R0
+sensor:
+  - platform: mq_gas_sensors
+    name: "Hydrogen (MQ-8)"
+    sensor_type: MQ-8
+    voltage: mq8_adc
+    voltage_multiplier: 1.5
+    r0: 9.8                     # kOhm, from the previous calibration
+```
+
+> [!NOTE]
+> Keep the sensor in clean air for the whole calibration: the R0 it determines is the reference of every later
+> reading, and it is not stored across reboots.
+
+## Configuration Variables
+
+- **sensor_type** (**Required**, string): The type of the sensor, one of the types listed in
+  [Supported Sensors and Built-in Curves](#supported-sensors-and-built-in-curves). Case and separators are ignored,
+  so `mq8`, `mq-8` and `MQ_8` are all equivalent.
+- **gas** (*Optional*, string): The gas whose curve is evaluated. Must be one of the gases listed for the type.
+  Defaults to the primary gas of `sensor_type`.
+- **voltage** (**Required**, [ID](/guides/configuration-types#id)): The ID of a voltage sampler (`adc`, `ads1115`,
+  ...) that reads the AO pin.
+- **voltage_multiplier** (*Optional*, float): The multiplier applied to the sampled voltage, the inverse of the
+  divider ratio (`1.5` for a 10k/20k divider, `1.0` for a directly connected sensor or a sampler with a wider input
+  range). Defaults to `1.0`.
+- **vcc** (*Optional*, float): The supply voltage of the module in V, used in the RS calculation. A reading at or
+  above it cannot come from the sensor, so it is reported as `unknown` with a warning instead of being published as a
+  measurement. Defaults to `5.0`.
+- **rl** (*Optional*, float): The load resistor of the module in kOhm. Defaults to `10.0`.
+- **ratio_in_clean_air** (*Optional*, float): The RS/R0 ratio in clean air, used to derive R0 from a calibration.
+  Defaults to the value of the built-in curve, for example `70` for the MQ-8.
+- **sample_count** (*Optional*, int): The number of AO conversions averaged per reading. They run back to back inside
+  one pass of the main loop. Defaults to `2`. Range: 1-16.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval between two readings.
+  Defaults to `60s`.
+- **r0** (*Optional*, float): A fixed R0 in kOhm, which skips the calibration at boot. Mutually exclusive with
+  `calibration:`.
+- **calibration** (*Optional*): Determine R0 in clean air at boot instead of hard-coding it.
+  - **delay** (*Optional*, [Time](/guides/configuration-types#time)): The time to wait after boot before the first
+    sample, so the heater has settled. Defaults to `60s`.
+  - **sample_count** (*Optional*, int): The number of readings averaged into R0. Defaults to `50`. Range: 1-1000.
+  - **sample_interval** (*Optional*, [Time](/guides/configuration-types#time)): The spacing between two of those
+    readings. Defaults to `20ms`; the minimum is 16 ms, one pass of the main loop.
+- All other options from [Sensor](/components/sensor/).
+
+Without `r0:` or `calibration:` the sensor stays `unknown` until R0 is known.
+
+## Supported Sensors and Built-in Curves
+
+The `gas` option selects one of the gases of the type; the other columns are the defaults that apply when the
+corresponding option is not set. The published value is clamped to the range of the type.
+
+| `sensor_type` | Curve | RS/R0 in clean air | Default `gas` | Gases | Range |
+| ------------- | ----- | ------------------ | ------------- | ----- | ----- |
+| `MQ-2` | `exponential` | 9.83 | `LPG` | `ALCOHOL`, `CH4`, `CO`, `H2`, `LPG`, `PROPANE`, `SMOKE` | 0 - 10000 ppm |
+| `MQ-3` | `exponential` | 60 | `ALCOHOL` | `ALCOHOL`, `BENZENE`, `CH4`, `CO`, `HEXANE`, `LPG` | 0 - 10000 ppm |
+| `MQ-4` | `exponential` | 4.4 | `CH4` | `ALCOHOL`, `CH4`, `CO`, `LPG`, `SMOKE` | 0 - 10000 ppm |
+| `MQ-5` | `exponential` | 6.5 | `LPG` | `ALCOHOL`, `CH4`, `CO`, `H2`, `LPG` | 0 - 10000 ppm |
+| `MQ-6` | `exponential` | 10 | `LPG` | `ALCOHOL`, `CH4`, `CO`, `H2`, `LPG` | 0 - 10000 ppm |
+| `MQ-7` | `exponential` | 27.5 | `CO` | `ALCOHOL`, `CH4`, `CO`, `H2`, `LPG` | 0 - 2000 ppm |
+| `MQ-8` | `exponential` | 70 | `H2` | `ALCOHOL`, `CH4`, `CO`, `H2`, `LPG` | 0 - 10000 ppm |
+| `MQ-9` | `exponential` | 9.6 | `LPG` | `CH4`, `CO`, `LPG` | 0 - 10000 ppm |
+| `MQ-131` | `linear` | 1 | `O3` | `O3` | 0 - 10 ppm |
+| `MQ-135` | `linear` | 1 | `NH3` | `H2`, `NH3`, `TOLUENE` | 0 - 10000 ppm |
+| `MQ-137` | `linear` | 1 | `NH3` | `NH3` | 0 - 500 ppm |
+| `MQ-138` | `linear` | 1 | `TOLUENE` | `ACETONE`, `ALCOHOL`, `TOLUENE` | 0 - 1000 ppm |
+
+The MQ-131 measures ozone, whose datasheet gives its range in ppb (10 - 1000 ppb). Its built-in curve reports ppm
+and is clamped at the 10 ppm its fit covers. The types without a published curve (MQ-136, MQ-214, MQ-303A, MQ-309A)
+are not supported by this platform.
+
+## Notes and Limitations
+
+- **Power supply**: The modules need 5 V on `VCC`. The ADC pins of an ESP32 are not 5 V tolerant (the absolute maximum
+  is VDD + 0.3 V), so never connect AO directly to a GPIO. The recommended wiring is a 10 kOhm / 20 kOhm divider
+  (5 V becomes 3.33 V), which is what `voltage_multiplier: 1.5` describes.
+- **Two-phase heaters**: The MQ-7 needs a cycled heater supply - 5 V for 60 s followed by 1.4 V for 90 s - which this
+  component does not drive. It only measures the analog output, so the heater has to be driven by an external circuit
+  or an ESPHome `output`.
+- **Burn-in**: A new sensor needs 24 - 48 hours of pre-heating before the readings are stable and a clean-air
+  calibration is meaningful.
+- **`unknown` vs `0 ppm`**: Unusable readings - an AO at 10 mV or less (open circuit, missing supply or wrong divider),
+  a reading at or above the configured `vcc:`, and an R0 that is not known yet or whose calibration is still pending or
+  running - publish `unknown`, never `0 ppm`, so a broken sensor cannot look like clean air. A one-time warning is
+  logged instead.
+- **The calibration is not retried**: Samples that do not produce a valid RS are skipped, and a run in which none of
+  them did logs an error and leaves R0 unknown until the next reboot. R0 is not stored across reboots either; hard-code
+  the value the log reports as `r0: ...` to skip the calibration.
+- **Accuracy**: The datasheet curves are coarse fits and the sensors are not selective - every MQ type responds to
+  several gases, so the published value is an estimate of the concentration of the selected gas and not a measurement
+  of it.
+
+> [!TIP]
+> The chain behind every reading (`V_AO`, RS, the ratio and the ppm value) is logged at `DEBUG`, which is the quickest
+> way to see whether the reading or its R0 is off:
+
+```yaml
+logger:
+  level: DEBUG
+```
+
+## See Also
+
+- [Sensor Filters](/components/sensor/#sensor-filters)
+- [ADC](/components/sensor/adc/)
+- [ADS1115](/components/sensor/ads1115/)
+- [MQUnifiedsensor library](https://github.com/miguel5612/MQSensorsLib)
+- <APIRef text="mq_gas_sensor.h" path="mq_gas_sensors/mq_gas_sensor.h" />
