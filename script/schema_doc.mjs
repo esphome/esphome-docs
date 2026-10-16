@@ -1375,6 +1375,28 @@ export class Walker {
     }
   }
 
+  /**
+   * A key documented on a platform page but declared only by that platform's
+   * components: describe it on the base schema so every platform shows the
+   * hover text. Returns the created entry as a match, or null.
+   */
+  async createFromChildren(inner, parsed, item, documented) {
+    if (!this.emit) return null;
+    const { store, report } = this;
+    const child = store.childrenOf(inner.baseRef).find((v) => v.config_vars?.[parsed.key]);
+    if (!child) return null;
+    const base = inner.variants[0];
+    base.config_vars ??= {};
+    const created = (base.config_vars[parsed.key] ??= {});
+    if ("key" in child.config_vars[parsed.key]) created.key ??= child.config_vars[parsed.key].key;
+    report.stats.keysMatched++;
+    documented.add(parsed.key);
+    this.checkBullet(item, parsed);
+    await this.checkOptionality({ variants: [child] }, parsed);
+    await this.emitPropDocs({ prop: created, inherited: false }, inner, item, parsed);
+    return { prop: created, inherited: false, created: true };
+  }
+
   /** A bullet the generator will not be able to turn into docs. */
   checkBullet(item, parsed) {
     if (!parsed.header && !PROP_RE.test(itemText(this.tree, item))) {
@@ -1400,7 +1422,15 @@ export class Walker {
         }
         continue;
       }
-      let found = await store.findPropOwner(inner, parsed.key);
+      let found;
+      if (inner.baseRef) {
+        // A platform base page: the base schema first, then a key only the
+        // platform components declare (created on the base), then the other
+        // schemas of the file
+        found = await store.findPropOwner({ variants: inner.variants.slice(0, inner.primaryCount) }, parsed.key);
+        if (!found) found = await this.createFromChildren(inner, parsed, item, documented);
+      }
+      found ??= await store.findPropOwner(inner, parsed.key);
       if (!found && this.section?.parent && inner === this.section.inner) {
         // "### Sensitivity" opened the `sensitivity` sub-schema, but the bullets that
         // follow may still be the parent's options: fall back to the nearest ancestor
@@ -1445,24 +1475,8 @@ export class Walker {
           }
           continue;
         }
-        if (inner.baseRef && this.emit) {
-          // Documented on the platform page, declared only by platform components:
-          // describe it on the base schema so every platform shows the hover text
-          const child = store.childrenOf(inner.baseRef).find((v) => v.config_vars?.[parsed.key]);
-          if (child) {
-            const base = inner.variants[0];
-            base.config_vars ??= {};
-            const created = (base.config_vars[parsed.key] ??= {});
-            if ("key" in child.config_vars[parsed.key]) created.key ??= child.config_vars[parsed.key].key;
-            report.stats.keysMatched++;
-            documented.add(parsed.key);
-            this.checkBullet(item, parsed);
-            await this.checkOptionality({ variants: [child] }, parsed);
-            await this.emitPropDocs({ prop: created, inherited: false }, inner, item, parsed);
-            continue;
-          }
-        }
       }
+      if (found?.created) continue;
       if (!found) {
         report.stats.keysUnmatched++;
         report.add("unmatched_key", this.rel, parsed.line, {
