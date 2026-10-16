@@ -19,6 +19,24 @@ Connect the heater's TX to the controller's RX, the heater's RX to the controlle
 Verify the connector pinout and signal voltage for your appliance; the climate-device pinout is not a
 water-heater wiring reference.
 
+### VH3W Connector
+
+The tested VH3W has a **4-pin JST XH connector located at the heater's display**.
+The original cable uses wires in the order **Red, Black, Yellow, White**.
+The table identifies connections by the original cable's wire colours.
+
+| Wire Colour | Heater Connection | ESP Controller Connection |
+| --- | --- | --- |
+| Red | 5 V supply | Board power input rated for 5 V |
+| Black | Ground | GND |
+| Yellow | Heater TX | UART RX |
+| White | Heater RX | UART TX |
+
+The TX and RX names above are relative to the heater. Configure the GPIO connected to the yellow wire
+as `rx_pin` and the GPIO connected to the white wire as `tx_pin` in the UART configuration.
+Connect the red wire only to a board power input rated for 5 V, not to a GPIO or the 3.3 V pin.
+The 5 V supply does not establish the UART signal voltage; verify signal-level compatibility with your board.
+
 ## Configuration
 
 ```yaml
