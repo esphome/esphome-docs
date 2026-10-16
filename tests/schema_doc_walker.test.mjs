@@ -447,3 +447,54 @@ test("a `variant` Platform heading documents that typed variant of the page's pl
     [],
   );
 });
+
+test("a typed platform joined with its hub keeps the discriminator and variant group", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["ble"], { sensor: {} }),
+      sensor: { sensor: { schemas: {}, components: { ble: {} } } },
+      ble: {
+        ble: {
+          schemas: {
+            CONFIG_SCHEMA: schema({ mac_address: { key: "Required" }, update_interval: { key: "Optional" } }),
+          },
+        },
+        "ble.sensor": {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "type",
+              types: {
+                rssi: { config_vars: { update_interval: { key: "Optional" } } },
+                characteristic: { config_vars: { update_interval: { key: "Optional" }, notify: { key: "Optional" } } },
+              },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "sensor/ble.mdx": [
+        "BLE sensor.",
+        "## Configuration variables",
+        "- **type** (**Required**): One of `rssi`, `characteristic`.",
+        "- **update_interval** (*Optional*): The interval to poll the device.",
+        "- **notify** (*Optional*, boolean): Ask for notifications.",
+        "- **mac_address** (**Required**): The hub's address.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const types = (...k) => docs("ble", "ble.sensor", "schemas", "CONFIG_SCHEMA", "types", ...k);
+  const hub = (...k) => docs("ble", "ble", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", ...k);
+  assert.match(docs("ble", "ble.sensor", "schemas", "CONFIG_SCHEMA"), /^One of/);
+  assert.match(types("rssi", "config_vars", "update_interval"), /interval to poll/);
+  assert.match(types("characteristic", "config_vars", "update_interval"), /interval to poll/);
+  assert.match(types("characteristic", "config_vars", "notify"), /notifications/);
+  assert.equal(hub("update_interval"), undefined);
+  assert.match(hub("mac_address"), /hub's address/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key"),
+    [],
+  );
+});

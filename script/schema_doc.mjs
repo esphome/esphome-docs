@@ -177,7 +177,17 @@ export class SchemaStore {
       const multi = bases.size === 1 && comps.every((c) => /_(i2c|spi)$/.test(c));
       // A platform page's hub schema is audited on its own page; bus wirings and
       // grouped actions are only documented here, so audit all of them
-      return { variants, primaryCount: multi ? variants.length : inners[0].variants.length, multi };
+      const out = { variants, primaryCount: multi ? variants.length : inners[0].variants.length, multi };
+      if (!multi && inners[0].typedKey) {
+        // A typed platform joined with its hub: the discriminator and the variant
+        // group stay the platform's; the hub is not another variant
+        Object.assign(out, {
+          typedKey: inners[0].typedKey,
+          entry: inners[0].entry,
+          typedCount: inners[0].variants.length,
+        });
+      }
+      return out;
     }
     if (ref.endsWith(".*")) {
       // Every schema of a platform base page (sensor/index.mdx documents
@@ -285,10 +295,15 @@ export class SchemaStore {
     return null;
   }
 
+  /** The variants a key is shared across: the typed group, or every member of a bus union. */
+  groupVariants(inner) {
+    return inner.typedCount ? inner.variants.slice(0, inner.typedCount) : inner.variants;
+  }
+
   /** Every holder of a key across typed variants (own keys only). */
   propHolders(inner, name) {
     const out = [];
-    for (const variantInner of inner?.variants ?? []) {
+    for (const variantInner of inner ? this.groupVariants(inner) : []) {
       if (variantInner.config_vars && Object.hasOwn(variantInner.config_vars, name)) {
         out.push({ prop: variantInner.config_vars[name], owner: variantInner, inherited: false });
       }
@@ -1017,8 +1032,7 @@ export class Walker {
     if (sectionInner.variants.length > 1 && (sectionInner.typedKey || sectionInner.multi)) {
       // Typed schema, bus union or a heading covering several actions: document the
       // key in every variant that has it, whether it declares or inherits it
-      await this.emitPropDocsTyped(sectionInner, item, parsed);
-      return;
+      if (await this.emitPropDocsTyped(sectionInner, item, parsed)) return;
     }
     const { prop, inherited } = found;
     const e = this.report.stats.emitted;
@@ -1069,13 +1083,17 @@ export class Walker {
     e.props++;
   }
 
-  /** Document a key in every typed variant (or grouped action) that has it. */
+  /** Document a key in every typed variant (or grouped action) that has it; returns how many did. */
   async emitPropDocsTyped(sectionInner, item, parsed) {
-    for (const variant of sectionInner.variants) {
+    let written = 0;
+    for (const variant of this.store.groupVariants(sectionInner)) {
       const single = { variants: [variant] };
       const found = await this.store.findPropOwner(single, parsed.key);
-      if (found) await this.emitPropDocs(found, single, item, parsed);
+      if (!found) continue;
+      await this.emitPropDocs(found, single, item, parsed);
+      written++;
     }
+    return written;
   }
 
   // -- walking --------------------------------------------------------------
