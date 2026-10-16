@@ -303,6 +303,17 @@ export class SchemaStore {
     return Object.keys(doc?.[topRef]?.schemas ?? {});
   }
 
+  /** Follow a schema's extends chain once so a broken reference is reported even when no key needed it. */
+  async verifyExtends(inner, seen = (this.verifiedExtends ??= new Set())) {
+    for (const variantInner of inner?.variants ?? []) {
+      for (const ext of variantInner.extends ?? []) {
+        if (seen.has(ext)) continue;
+        seen.add(ext);
+        await this.verifyExtends(await this.resolveExtends(ext), seen);
+      }
+    }
+  }
+
   /** Resolve an `extends` reference, remembering the ones the bundle cannot satisfy. */
   async resolveExtends(ref) {
     const inner = await this.resolve(ref);
@@ -801,6 +812,7 @@ export class Walker {
     this.section = { ref, inner, depth, documented: new Set(), line, continued: false };
     this.lastEnumProp = null;
     report.sections.push({ file: this.rel, line, ref, source });
+    await store.verifyExtends(inner);
   }
 
   /** Report the keys of a section's schema that its bullets did not mention. */
@@ -970,7 +982,9 @@ export class Walker {
         continue;
       }
       const value = this.enumValueKey(prop, m[1] ?? m[2]);
-      const desc = m[3] ?? m[5] ?? m[4];
+      const note = m[4];
+      const isDefault = note !== undefined && /^default$/i.test(note.trim());
+      const desc = m[3] ?? m[5] ?? (isDefault ? undefined : note);
       if (value === null) {
         this.report.add("unknown_enum_value", this.rel, line, {
           key: m[1] ?? m[2],
@@ -978,10 +992,13 @@ export class Walker {
         });
         continue;
       }
-      if (!desc || !this.emit) continue;
+      if (!this.emit || (!desc && !isDefault)) continue;
       prop.values[value] = prop.values[value] || {};
-      prop.values[value].docs = this.links(desc);
-      this.report.stats.emitted.enumDocs++;
+      if (isDefault) prop.values[value].default = true;
+      if (desc) {
+        prop.values[value].docs = this.links(desc);
+        this.report.stats.emitted.enumDocs++;
+      }
     }
   }
 
@@ -1084,7 +1101,11 @@ export class Walker {
       } else if (platform) {
         await this.emitComponentDocs(this.stem, platform, text);
         if (this.store.isComponent(this.stem)) await this.emitComponentDocs(this.stem, null, text);
-      } else if (this.stem !== "index" || this.folder !== "components") {
+      } else if (
+        this.componentRef !== "core" &&
+        this.folder !== "filter" &&
+        (this.stem !== "index" || this.folder !== "components")
+      ) {
         await this.emitComponentDocs(this.stem === "index" ? this.folder : this.stem, null, text);
       }
     }
@@ -1181,6 +1202,10 @@ export class Walker {
     this.lastMarkerHeadingLine = line;
     // Leave `prop` sub-sections that this heading is not nested under
     while (this.section?.parent && node.depth <= this.section.depth) this.popSubSection();
+    // "## Project information" opened the `project` sub-schema; a sibling heading ends it
+    if (this.section && !this.section.parent && this.section.ref.includes("/") && node.depth <= this.section.depth) {
+      await this.closeSection();
+    }
     if (this.pendingRegistry && node.depth <= this.pendingRegistryDepth) this.pendingRegistry = null;
     const lastWord = slug(text).split("_").pop();
     const isBreak =
@@ -1552,7 +1577,12 @@ export class Walker {
             this.checkBullet(item, parsed);
             await this.checkOptionality({ variants: [{ config_vars: { [parsed.key]: nestedProps[0] } }] }, parsed);
             found = { prop: nestedProps[0], inherited: false };
-            await this.emitPropDocs(found, inner, item, parsed);
+            await this.emitPropDocs(
+              found,
+              { variants: [{ config_vars: { [parsed.key]: nestedProps[0] } }] },
+              item,
+              parsed,
+            );
             await this.nestedContent(item, { variants: [] }, parsed.key, found);
           }
           continue;

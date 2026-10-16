@@ -345,7 +345,64 @@ test("enum bullets with a (Default) note before a hyphen keep their description"
   });
   const values = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars.restore_mode.values;
   assert.match(values.RESTORE_DEFAULT_OFF.docs, /^Attempt to restore state/);
+  assert.equal(values.RESTORE_DEFAULT_OFF.default, true);
   assert.match(values.ALWAYS_ON.docs, /^Always initialize/);
+  assert.equal(values.ALWAYS_ON.default, undefined);
+});
+
+test("an enum bullet that is only `VALUE` (Default) marks the default and writes no text", async () => {
+  const { store } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: { CONFIG_SCHEMA: schema({ mode: { key: "Optional", type: "enum", values: { A: null, B: null } } }) },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **mode** (*Optional*): The mode.\n  - `A` (Default)\n  - `B`: Mode B.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const values = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars.mode.values;
+  assert.deepEqual(values.A, { default: true });
+  assert.match(values.B.docs, /^Mode B/);
+});
+
+test("a sibling heading ends a heading-opened sub-schema section", async () => {
+  const { docs } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: schema({
+              project: { key: "Optional", ...schema({ name: { key: "Required" } }) },
+              area: { key: "Optional", ...schema({ name: { key: "Required" } }) },
+            }),
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Project information",
+        "- **name** (**Required**, string): The project name.",
+        "## Area Configuration",
+        "- **name** (**Required**, string): Display name for the area.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const cv = (...k) => docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", ...k);
+  assert.match(cv("project", "schema", "config_vars", "name"), /project name/);
+  assert.match(cv("area", "schema", "config_vars", "name"), /Display name for the area/);
 });
 
 test("a `variant` Platform heading documents that typed variant of the page's platform", async () => {
