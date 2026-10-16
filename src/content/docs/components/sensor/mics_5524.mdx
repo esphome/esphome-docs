@@ -16,8 +16,8 @@ every gas listed under it as its own sub-sensor.
   alt="MiCS-5524 multi-gas sensor module"
   caption="MiCS-5524 multi-gas sensor module."
   layout="constrained"
-  width={325}
-  height={221}
+  width={300}
+  height={240}
 />
 
 The module has a single analog output (AO) for several reducing gases, so the signal comes from an existing voltage
@@ -147,7 +147,7 @@ permanently. The reference is only captured at boot; there is no action to trigg
 ### Gas Sub-Sensors
 
 `carbon_monoxide`, `hydrogen`, `ethanol`, `ammonia` and `methane` are the gases of the platform, and at least one of
-them has to be configured. Each one is a normal [Sensor](/components/sensor), so `name:`, `id:`, `filters:`,
+them has to be configured. Each one is a normal [Sensor](/components/sensor/), so `name:`, `id:`, `filters:`,
 `accuracy_decimals:`, `unit_of_measurement:` and everything else from that platform apply, plus:
 
 - **max_ppm** (*Optional*, float): The upper end of the published range, which may narrow the vendor measuring range
@@ -162,7 +162,7 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor), so
 | `methane` (`CH4`) | 1000 - 25000 ppm | 0.786 | 0.000023 |
 
 - The vendor `threshold` is the ratio relative to clean air (1.0) at or below which the gas counts as detected, and
-  `gain` is the vendor's ppm per unit of ratio.
+  `gain` is the ratio drop per ppm, so `ppm = (threshold - ratio) / gain`.
 - The vendor's own minimum applies near the threshold: H2 and CO report 0 ppm below 1 ppm, NH3 and C2H5OH below
   10 ppm and CH4 below 1000 ppm.
 
@@ -172,8 +172,9 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor), so
   sub-sensors are views of the same reading interpreted through the curve of their gas, not independent measurements.
 - **`unknown` vs `0 ppm`**: Unusable readings - an AO that cannot be read or is at or below 0 V, a reading above
   the configured `vcc:`, and a reference that is not available yet - publish `unknown`, never `0 ppm`, so a broken
-  sensor cannot look like clean air. A one-time warning is logged instead. `0 ppm` is only published when the model
-  says "not detected" (the ratio is above the threshold), i.e. for a valid clean-air reading.
+  sensor cannot look like clean air. The component raises its status warning and logs the voltage once instead.
+  `0 ppm` is only published when the model says "not detected": the ratio is above the threshold, or the result is
+  below the vendor minimum of the gas.
 - **The calibration has to be plausible**: A run whose samples disagree by more than 25 % of their mean was not taken
   in clean, still air, and neither was a run in which a majority of the samples were unusable. Both are logged with
   the reason, are retried after `calibration.delay` and keep the gases `unknown` in the meantime. A new module needs
@@ -192,8 +193,8 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor), so
 | Symptom | Likely cause |
 | --- | --- |
 | state stays `unknown`, warning about a missing air reference | no `calibration:` block and no `air_reference:` |
-| warning about `0.0000 V` on the analog output | AO not wired, module not powered from 5 V, the `EN` pad not driven low |
-| warning that the analog output is above `vcc:` | wrong `vcc:` or `voltage_multiplier:` - the reading is ignored instead of published |
+| `analog output out of range` status warning, reading `0.0000 V` | AO not wired, module not powered from 5 V, the `EN` pad not driven low |
+| `analog output out of range` status warning, reading above `vcc:` | wrong `vcc:` or `voltage_multiplier:` - the reading is ignored instead of published |
 | ppm far too high | a reference that was captured while gas was present, or a divider ratio that does not match the wiring |
 | ppm always 0 while gas is clearly present | the ratio stays above the gas's `threshold` (0.425 for CO, 0.279 for H2), so the model reports 0 ppm - expected at low concentrations, not a calibration fault |
 | values jump around | ESP32 ADC noise - raise `sample_count` or add an RC filter |
