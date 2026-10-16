@@ -59,7 +59,6 @@ wiring maps the 0 - 5 V output onto 0 - 3.33 V, which `voltage_multiplier: 1.5` 
 
 ```yaml
 # Example configuration entry
-```yaml
 sensor:
   - platform: adc
     id: mics_ao
@@ -87,8 +86,6 @@ sensor:
       name: "C2H5OH (MiCS-5524)"
     methane:
       name: "CH4 (MiCS-5524)"
-
-```
 ```
 
 An [ADS1115](/components/sensor/ads1115/) (16 bit, gain 6.144 V) covers the 0 - 5 V output directly, so no divider is
