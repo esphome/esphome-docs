@@ -1400,27 +1400,41 @@ export class Walker {
       await this.emitComponentDocs(comp, platform ?? null, intro(), line);
       return true;
     };
-    const unresolved = (name) =>
+    // A heading that names a schema the bundle lacks: its options are not the
+    // page component's, so routing stays blocked until this subtree ends
+    const unresolved = async (name) => {
       this.report.add("unresolved_component_heading", this.rel, line, {
         detail: `"${text}" names no schema (tried ${name})`,
       });
+      await this.closeSection();
+      this.failedSection = { depth: node.depth, defaultRef: this.defaultRef };
+    };
+    // "Over SPI" on a component whose schema is typed by bus: that variant
+    const busVariant = async (kind) => {
+      const ref = `${this.pageDefault.defaultRef}[${kind}]`;
+      if (!this.pageDefault.defaultRef || !(await store.resolve(ref))) return false;
+      await this.closeSection();
+      this.defaultRef = ref;
+      this.switchDepth = node.depth;
+      return true;
+    };
     if (text === "Component/Hub" || text === "Hub Component") {
       if (await switched(this.stem)) return;
-      unresolved(this.stem);
+      await unresolved(this.stem);
     } else if (/ Component$/.test(text)) {
       const name = slug(text.replace(/ Component$/, "").replace(/\./g, ""));
       if (await switched(name)) return;
-      unresolved(name);
+      await unresolved(name);
     }
     // Bus headings describe one wiring of the same component; the sibling
     // sections that follow belong to the page again
     if (/Over SPI$/i.test(text)) {
-      if (await switched(`${this.stem}_spi`, true)) return;
-      unresolved(`${this.stem}_spi`);
+      if ((await switched(`${this.stem}_spi`, true)) || (await busVariant("spi"))) return;
+      await unresolved(`${this.stem}_spi`);
     }
     if (/Over I²C$/i.test(text)) {
-      if (await switched(`${this.stem}_i2c`, true)) return;
-      unresolved(`${this.stem}_i2c`);
+      if ((await switched(`${this.stem}_i2c`, true)) || (await busVariant("i2c"))) return;
+      await unresolved(`${this.stem}_i2c`);
     }
     if (this.stem !== "index") {
       let platformName = slug(text);
@@ -1810,7 +1824,7 @@ async function main() {
   } else if (s.keysUnmatched > s.keysMatched + s.keysMatchedNested) {
     const total = s.keysMatched + s.keysMatchedNested + s.keysUnmatched;
     broken = `${s.keysUnmatched} of ${total} documented keys match no schema key`;
-  } else if (args.emit && s.emitted.props + s.emitted.propsRefined === 0) {
+  } else if (args.emit && s.emitted.props + s.emitted.propsRefined + s.emitted.propsSkipped === 0) {
     broken = "no option description was written";
   }
   if (args.emit) {

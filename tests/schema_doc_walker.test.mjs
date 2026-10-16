@@ -866,3 +866,82 @@ test("a platform index without a base schema does not get platform keys created 
     ],
   );
 });
+
+test("options under a Component heading the schema lacks are dropped, not written to the page component", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: { schemas: { CONFIG_SCHEMA: schema({ id: { key: "GeneratedID" }, address: { key: "Optional" } }) } },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **address** (*Optional*, int): The hub address.",
+        "## Lambda Hook Component",
+        "A helper.",
+        "### Configuration variables",
+        "- **id** (**Required**, ID): The ID to use in lambdas.",
+        "- **address** (**Required**, int): The address every call targets.",
+        "## Other",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "address"), /The hub address/);
+  assert.equal(docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "id"), undefined);
+  assert.deepEqual(
+    report.findings.map((f) => [f.kind, f.line]),
+    [
+      ["unresolved_component_heading", 11],
+      ["unroutable_section", 15],
+      ["orphan_option_list", 17],
+    ],
+  );
+});
+
+test("an Over SPI heading on a component typed by bus documents that variant", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "type",
+              types: {
+                gpio: { config_vars: { data_pin: { key: "Required" }, sr_count: { key: "Optional" } } },
+                spi: { config_vars: { spi_id: { key: "Optional" }, sr_count: { key: "Optional" } } },
+              },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Over GPIO",
+        "### Configuration variables",
+        "- **type** (**Required**): `gpio` or `spi`.",
+        "- **data_pin** (**Required**, pin): The data pin.",
+        "- **sr_count** (*Optional*, int): Chained registers.",
+        "## Over SPI",
+        "### Configuration variables",
+        "- **spi_id** (*Optional*, ID): The SPI bus.",
+        "- **sr_count** (*Optional*, int): Chained registers over SPI.",
+        "## Pin configuration",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const types = (...k) => docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "types", ...k);
+  assert.match(types("gpio", "config_vars", "data_pin"), /The data pin/);
+  assert.match(types("gpio", "config_vars", "sr_count"), /Chained registers\./);
+  assert.match(types("spi", "config_vars", "spi_id"), /The SPI bus/);
+  assert.match(types("spi", "config_vars", "sr_count"), /over SPI/);
+  assert.deepEqual(report.findings, []);
+});
