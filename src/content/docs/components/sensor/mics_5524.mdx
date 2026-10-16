@@ -30,7 +30,7 @@ gas, so one reading is interpreted per gas instead of read once per gas.
 > tell them apart, individual sensors vary widely and the ESP32 ADC bottoms out around 75 mV (~7 ppm CO). Treat every
 > published value as an estimate.
 
-## How the numbers are calculated
+## How the Numbers Are Calculated
 
 The component implements the vendor model of the [DFRobot_MICS](https://github.com/DFRobot/DFRobot_MICS) library
 (MIT), which is what this breakout is sold for and what the
@@ -52,7 +52,7 @@ $$
   calibration (`calibration:`), so the board's load resistor and the exact divider ratio do not matter.
 - A second, datasheet-based model (`RS` / `R0`) is not implemented by this platform.
 
-## Example configuration
+## Example Configuration
 
 The analog output is read through an [ADC](/components/sensor/adc/) sensor. The 10k/20k divider of the recommended
 wiring maps the 0 - 5 V output onto 0 - 3.33 V, which `voltage_multiplier: 1.5` scales back:
@@ -62,10 +62,8 @@ wiring maps the 0 - 5 V output onto 0 - 3.33 V, which `voltage_multiplier: 1.5` 
 sensor:
   - platform: adc
     id: mics_ao
-    name: "MiCS-5524 AO"
-    pin: GPIO34
+    pin: GPIOXX
     attenuation: 12db
-    update_interval: 60s
 
   - platform: mics_5524
     id: mics
@@ -88,27 +86,20 @@ sensor:
       name: "CH4 (MiCS-5524)"
 ```
 
-An [ADS1115](/components/sensor/ads1115/) (16 bit, gain 6.144 V) covers the 0 - 5 V output directly, so no divider is
-needed:
+Any other voltage sampler works the same way, for example an [ADS1115](/components/sensor/ads1115/) channel. Its
+inputs are limited to its own supply, so the divider stays unless the ADS1115 runs from 5 V:
 
 ```yaml
 # Example configuration entry, external sampler
-i2c:
-  sda: GPIO21
-  scl: GPIO22
-
-ads1115:
-  - address: 0x48
-
 sensor:
   - platform: ads1115
     id: mics_ao
     multiplexer: A0_GND
-    gain: 6.144
-    update_interval: 100ms
+    gain: 4.096
 
   - platform: mics_5524
-    voltage: mics_ao            # 0 - 5 V directly, no divider
+    voltage: mics_ao
+    voltage_multiplier: 1.5     # the same 10k/20k divider
     calibration:
       delay: 5min               # leave the sensor in clean air for that long after boot
       sample_count: 10
@@ -136,7 +127,7 @@ sensor:
 > Keep the sensor in clean air for the whole calibration and do not configure a gas that may be present while it runs:
 > the reference it captures is the baseline of every later reading.
 
-## Configuration variables
+## Configuration Variables
 
 One entry is one physical sensor and not an entity itself: the gases listed under it are the entities.
 
@@ -166,7 +157,7 @@ One entry is one physical sensor and not an entity itself: the gases listed unde
 
 Without `air_reference:` or `calibration:` the gases stay `unknown` until the sensor is calibrated.
 
-### Gas sub-sensors
+### Gas Sub-Sensors
 
 `carbon_monoxide`, `hydrogen`, `ethanol`, `ammonia` and `methane` are the gases of the platform, and at least one of
 them has to be configured. Each one is a normal [Sensor](/components/sensor), so `name:`, `id:`, `filters:`,
@@ -188,7 +179,7 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor), so
 - The vendor's own minimum applies near the threshold: H2 and CO report 0 ppm below 1 ppm, NH3 and C2H5OH below
   10 ppm and CH4 below 1000 ppm.
 
-## Notes and limitations
+## Notes and Limitations
 
 - **Safety**: The MiCS-5524 is a MEMS metal-oxide sensor for trace detection, not a safety device. It responds to CO,
   H2, C2H5OH, NH3 and CH4 at the same time and cannot identify which gas is present, so each sub-sensor is the same
@@ -206,8 +197,7 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor), so
 - **The reference is not stored across reboots**: With `calibration:` the sensor calibrates at every boot, which takes
   `max(calibration.delay, warmup_time)`. Hard-code the value the log reports as `air_reference: ...` to skip it.
 - **ESP32 ADC**: The ESP32 ADC is noisy and bottoms out around 75 mV (~7 ppm CO). Raise `sample_count`, add an RC
-  filter or use an [ADS1115](/components/sensor/ads1115/) (16 bit, gain `6.144` covers the 0 - 5 V output without a
-  divider).
+  filter or use an [ADS1115](/components/sensor/ads1115/) behind the same divider.
 - **Accuracy**: The vendor model is a coarse fit of a multi-gas sensor. Treat the published ppm value as an estimate
   of the concentration of the selected gas, not as a measurement of it.
 
@@ -235,7 +225,7 @@ logger:
 
 ## See Also
 
-- [Sensor Filters](/components/sensor#sensor-filters)
+- [Sensor Filters](/components/sensor/#sensor-filters)
 - [ADC](/components/sensor/adc/)
 - [ADS1115](/components/sensor/ads1115/)
 - [MiCS-4514](/components/sensor/mics_4514/)
