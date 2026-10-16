@@ -132,6 +132,20 @@ export class SchemaStore {
     return Object.hasOwn(this.core.components, name);
   }
 
+  /** A component or platform component the bundle knows about (no fetch for made-up names). */
+  async knownComponent(name) {
+    if (this.isComponent(name) || this.files.get(name)) return true;
+    if (this.dir && existsSync(join(this.dir, `${name}.json`))) return true;
+    if (!this.platformComponents) {
+      this.platformComponents = new Set();
+      for (const platform of Object.keys(this.core.platforms)) {
+        const doc = await this.file(platform);
+        for (const comp of Object.keys(doc?.[platform]?.components ?? {})) this.platformComponents.add(comp);
+      }
+    }
+    return this.platformComponents.has(name);
+  }
+
   /**
    * Resolve a schema reference to its inner schema.
    *   comp.NAME                 -> file comp, top comp, schemas.NAME
@@ -149,9 +163,10 @@ export class SchemaStore {
       return inner;
     }
     if (ref.includes("+")) {
-      const inners = (await Promise.all(ref.split("+").map((r) => this.resolve(r)))).filter(Boolean);
+      const inners = await Promise.all(ref.split("+").map((r) => this.resolve(r)));
+      if (inners.some((i) => !i)) return null;
       const variants = inners.flatMap((i) => i.variants);
-      return variants.length ? { variants, primaryCount: inners[0].variants.length } : null;
+      return { variants, primaryCount: inners[0].variants.length };
     }
     if (ref.endsWith(".*")) {
       // Every schema of a platform base page (sensor/index.mdx documents
@@ -286,7 +301,7 @@ export class SchemaStore {
   }
 
   /** Every definition of a key across typed variants and extends. */
-  async findProps(inner, name) {
+  async findProps(inner, name, seen = new Set()) {
     const props = [];
     if (!inner) return props;
     if (inner.typedKey === name) props.push({ key: "Required", type: "enum" });
@@ -294,7 +309,9 @@ export class SchemaStore {
       const own = variantInner.config_vars?.[name];
       if (own) props.push(own);
       for (const ext of variantInner.extends ?? []) {
-        props.push(...(await this.findProps(await this.resolve(ext), name)));
+        if (seen.has(ext)) continue;
+        seen.add(ext);
+        props.push(...(await this.findProps(await this.resolve(ext), name, seen)));
       }
     }
     return props;
@@ -414,8 +431,8 @@ export function parseMdx(path) {
 // ---------------------------------------------------------------------------
 
 /** Site path of a doc page: /components/sensor/bme280 */
-export function pageUrl(file) {
-  const rel = relative(DOCS_ROOT, file)
+export function pageUrl(file, docsRoot = DOCS_ROOT) {
+  const rel = relative(docsRoot, file)
     .replace(/\\/g, "/")
     .replace(/\.mdx$/, "");
   return `/${rel.replace(/\/index$/, "")}/`;
@@ -568,18 +585,25 @@ export class Report {
 }
 
 export class Walker {
-  constructor(store, report, file, { emit = false, deployUrl = "https://esphome.io" } = {}) {
+  constructor(
+    store,
+    report,
+    file,
+    { emit = false, deployUrl = "https://esphome.io", docsRoot = DOCS_ROOT, componentsRoot = COMPONENTS_ROOT } = {},
+  ) {
     this.store = store;
     this.report = report;
     this.file = file;
     this.emit = emit;
     this.deployUrl = deployUrl;
-    this.url = pageUrl(file);
+    this.componentsRoot = componentsRoot;
+    this.url = pageUrl(file, docsRoot);
     this.lastHeadingSlug = null;
     this.lastEnumProp = null;
     this.slugger = new Slugger();
     this.tree = null;
-    this.rel = relative(COMPONENTS_ROOT, file).replace(/\\/g, "/");
+    this.rel = relative(componentsRoot, file).replace(/\\/g, "/");
+    this.switchDepth = null; // depth of the heading that re-targeted defaultRef
     this.stem = basename(file, ".mdx");
     this.folder = basename(dirname(file));
     this.section = null; // { inner, ref, depth, documented:Set, subStack:[] }
@@ -591,7 +615,7 @@ export class Walker {
 
   async init() {
     const { store } = this;
-    const inComponents = this.file.startsWith(COMPONENTS_ROOT);
+    const inComponents = this.file.startsWith(this.componentsRoot);
     if (!inComponents) {
       this.defaultRef = null;
       this.componentRef = "core";
@@ -626,12 +650,19 @@ export class Walker {
   async componentSchemaRef(name, platform = null) {
     const { store } = this;
     const suffix = platform ? `.${platform}.CONFIG_SCHEMA` : ".CONFIG_SCHEMA";
-    if (await store.exists(`${name}${suffix}`)) return `${name}${suffix}`;
+    if ((await store.knownComponent(name)) && (await store.exists(`${name}${suffix}`))) return `${name}${suffix}`;
     const buses = [];
     for (const bus of ["i2c", "spi"]) {
-      if (await store.exists(`${name}_${bus}${suffix}`)) buses.push(`${name}_${bus}${suffix}`);
+      const candidate = `${name}_${bus}`;
+      if ((await store.knownComponent(candidate)) && (await store.exists(`${candidate}${suffix}`))) {
+        buses.push(`${candidate}${suffix}`);
+      }
     }
     return buses.length ? buses.join("+") : null;
+  }
+
+  rememberPageDefaults() {
+    this.pageDefault = { defaultRef: this.defaultRef, componentRef: this.componentRef };
   }
 
   async switchComponent(name) {
@@ -690,6 +721,12 @@ export class Walker {
 
   async openSection(ref, depth, line, source) {
     const { store, report } = this;
+    if (this.pendingMarker) {
+      // The marker names the schema for whatever section comes next
+      ref = this.pendingMarker.ref;
+      source = "marker";
+      this.pendingMarker = null;
+    }
     if (this.section && this.section.ref === ref) {
       this.section.depth = Math.max(this.section.depth, depth);
       return;
@@ -761,7 +798,6 @@ export class Walker {
 
   /** Write the page/section intro for the component or platform entry the docs describe. */
   async emitComponentDocs(name, platform, text, line = 1) {
-    if (!this.emit) return;
     const { store, report } = this;
     const target = platform ? `${name}.${platform}` : name;
     if (!text) {
@@ -775,6 +811,7 @@ export class Walker {
         report.add("missing_schema_entry", this.rel, line, { detail: `${platform}.json has no component ${name}` });
         return;
       }
+      if (!this.emit) return;
       entry.docs = this.withSeeAlso(text);
       report.stats.emitted.platformDocs++;
       return;
@@ -784,7 +821,7 @@ export class Walker {
       report.add("missing_schema_entry", this.rel, line, { detail: `core.components has no ${name}` });
       return;
     }
-    if (!("docs" in entry)) {
+    if (this.emit && !("docs" in entry)) {
       entry.docs = this.withSeeAlso(text);
       report.stats.emitted.componentDocs++;
     }
@@ -852,7 +889,13 @@ export class Walker {
   }
 
   emitEnumList(prop, listNode) {
-    if (!prop || prop.type !== "enum" || !prop.values) return;
+    if (!prop || prop.type !== "enum") return;
+    if (!prop.values) {
+      this.report.add("enum_without_values", this.rel, listNode.position.start.line, {
+        detail: "the schema lists no values for this enum",
+      });
+      return;
+    }
     for (const item of listNode.children) {
       if (!item.children.some((c) => c.type === "paragraph")) continue;
       const line = item.position.start.line;
@@ -887,8 +930,11 @@ export class Walker {
       this.report.stats.emitted.props++;
       return;
     }
-    if (sectionInner.typedKey && sectionInner.variants.length > 1) {
-      // A typed schema: document the key in every variant that accepts it
+    if (
+      sectionInner.variants.length > 1 &&
+      (sectionInner.typedKey || (sectionInner.multi && this.store.propHolders(sectionInner, parsed.key).length > 1))
+    ) {
+      // Typed schema, or a heading covering several actions: document the key in every variant that has it
       await this.emitPropDocsTyped(sectionInner, item, parsed);
       return;
     }
@@ -942,13 +988,13 @@ export class Walker {
   async walk(tree) {
     this.tree = tree;
     this.report.stats.files++;
-    if (this.emit) {
+    {
       const text = this.leadParagraph(tree.children, 0);
       const platform = this.folder !== "components" && this.store.isPlatform(this.folder) ? this.folder : null;
       if (platform && this.stem === "index") {
         if (!text) {
           this.report.add("no_intro_paragraph", this.rel, 1, { detail: `no paragraph to describe ${platform}` });
-        } else if (this.store.core.platforms[platform]) {
+        } else if (this.emit && this.store.core.platforms[platform]) {
           this.store.core.platforms[platform].docs = this.links(text);
           this.report.stats.emitted.platformIndexDocs++;
         }
@@ -959,6 +1005,7 @@ export class Walker {
         await this.emitComponentDocs(this.stem === "index" ? this.folder : this.stem, null, text);
       }
     }
+    this.rememberPageDefaults();
     for (let i = 0; i < tree.children.length; i++) {
       const node = tree.children[i];
       if (node.type === "heading") await this.heading(node, tree.children, i);
@@ -970,11 +1017,22 @@ export class Walker {
       }
     }
     await this.closeSection();
+    this.dropMarker();
   }
 
   expression(node) {
     const m = node.value.match(MARKER_RE);
-    if (m) this.pendingMarker = m[1];
+    if (!m) return;
+    this.dropMarker();
+    this.pendingMarker = { ref: m[1], line: node.position.start.line };
+  }
+
+  dropMarker() {
+    if (!this.pendingMarker) return;
+    this.report.add("unused_schema_marker", this.rel, this.pendingMarker.line, {
+      detail: `{/* schema: ${this.pendingMarker.ref} */} did not apply to any section`,
+    });
+    this.pendingMarker = null;
   }
 
   async paragraph(node) {
@@ -991,9 +1049,7 @@ export class Walker {
       return;
     }
     if (this.pendingMarker) {
-      const ref = this.pendingMarker;
-      this.pendingMarker = null;
-      await this.openSection(ref, depth, line, "marker");
+      await this.openSection(this.pendingMarker.ref, depth, line, "marker");
     } else if (this.pendingRegistry) {
       const ref = this.pendingRegistry;
       this.pendingRegistry = null;
@@ -1011,12 +1067,22 @@ export class Walker {
     this.lastHeadingDepth = node.depth;
     const intro = () => this.leadParagraph(siblings, index + 1);
 
+    // A bus or component heading re-targets the page only for its own subtree
+    if (this.switchDepth !== null && node.depth <= this.switchDepth) {
+      this.defaultRef = this.pageDefault.defaultRef;
+      this.componentRef = this.pageDefault.componentRef;
+      this.switchDepth = null;
+    }
+
     if (CONFIG_VARS_RE.test(text)) {
       await this.openConfigSection(node.depth, line);
       return;
     }
 
     if (this.section) this.section.enumProp = null;
+    // A marker applies to the section right after it; a second heading means it was not used
+    if (this.pendingMarker && this.pendingMarker.line < (this.lastMarkerHeadingLine ?? 0)) this.dropMarker();
+    this.lastMarkerHeadingLine = line;
     // Leave `prop` sub-sections that this heading is not nested under
     while (this.section?.parent && node.depth <= this.section.depth) this.popSubSection();
     if (this.pendingRegistry && node.depth <= this.pendingRegistryDepth) this.pendingRegistry = null;
@@ -1042,15 +1108,18 @@ export class Walker {
 
     const reg = registryHeading(node);
     if (reg) {
-      const ref = await this.registryRef(reg.name, reg.type);
-      for (const extra of reg.names.slice(1)) {
-        const extraRef = await this.registryRef(extra, reg.type);
-        if (extraRef) await this.emitRegistryDocs(extraRef, reg.type, intro(), line);
+      const refs = [];
+      for (const name of reg.names) {
+        const r = await this.registryRef(name, reg.type);
+        if (r) refs.push(r);
       }
-      if (ref) {
-        await this.emitRegistryDocs(ref, reg.type, intro(), line);
-        // Many action docs list options directly under the heading
+      for (const r of refs) await this.emitRegistryDocs(r, reg.type, intro(), line);
+      if (refs.length) {
+        // Many action docs list options directly under the heading; a heading
+        // naming several actions documents the options of each of them
+        const ref = refs.join("+");
         await this.openSection(ref, node.depth, line, "registry");
+        if (this.section && refs.length > 1) this.section.inner.multi = true;
         this.pendingRegistry = ref;
         this.pendingRegistryDepth = node.depth;
       } else {
@@ -1073,8 +1142,9 @@ export class Walker {
       return;
     }
 
-    const switched = async (name) => {
+    const switched = async (name, scoped = false) => {
       if (!(await this.switchComponent(name))) return false;
+      this.switchDepth = scoped ? node.depth : null;
       const [comp, platform] = this.componentRef.split(".");
       await this.emitComponentDocs(comp, platform ?? null, intro(), line);
       return true;
@@ -1092,12 +1162,14 @@ export class Walker {
       if (await switched(this.stem)) return;
       unresolved(this.stem);
     }
+    // Bus headings describe one wiring of the same component; the sibling
+    // sections that follow belong to the page again
     if (/Over SPI$/i.test(text)) {
-      if (await switched(`${this.stem}_spi`)) return;
+      if (await switched(`${this.stem}_spi`, true)) return;
       unresolved(`${this.stem}_spi`);
     }
     if (/Over I²C$/i.test(text)) {
-      if (await switched(`${this.stem}_i2c`)) return;
+      if (await switched(`${this.stem}_i2c`, true)) return;
       unresolved(`${this.stem}_i2c`);
     }
     if (this.stem !== "index") {
@@ -1109,12 +1181,14 @@ export class Walker {
         if (ref) {
           this.defaultRef = ref;
           this.componentRef = `${this.stem}.${platformName}`;
+          this.switchDepth = null;
           await this.emitComponentDocs(this.stem, platformName, intro(), line);
           return;
         }
       }
-      // "## Clockless" in fastled.mdx -> fastled_clockless
-      if (await switched(`${this.stem}_${slug(text)}`)) return;
+      // "## Clockless" in fastled.mdx -> fastled_clockless, "## I²C" in bmp581.mdx -> bmp581_i2c
+      const alias = slug(text.replace(/²/g, "2"));
+      if (await switched(`${this.stem}_${alias}`, alias === "i2c" || alias === "spi")) return;
     }
 
     // A heading naming a sibling schema, e.g. "Light state" -> LIGHT_STATE_SCHEMA
@@ -1227,16 +1301,36 @@ export class Walker {
     const lists = item.children.filter((c) => c.type === "list");
     const blocks = item.children.filter((c) => c.type === "mdxJsxFlowElement" && c.name === "EnumValues");
     if (!lists.length && !blocks.length) return;
-    // In a typed schema the same key may exist in several variants; descend into each
-    const holders = this.store.propHolders(inner, key);
+    // In a typed schema (or a heading covering several actions) the same key may
+    // exist in several variants; descend into each
+    const holders = inner.typedKey || inner.multi ? this.store.propHolders(inner, key) : [];
     const props = holders.length ? holders.map((h) => h.prop) : [found.prop];
+    const line = item.position.start.line;
     for (const prop of props) {
       const nestedInner = propInner(prop);
-      for (const list of lists) {
-        if (nestedInner) await this.items(list, nestedInner, new Set());
-        else if (prop.type === "enum") this.emitEnumList(prop, list);
+      if (nestedInner) {
+        const documented = new Set();
+        for (const list of lists) await this.items(list, nestedInner, documented);
+        this.reportUndocumented({ inner: nestedInner, documented, ref: `${this.section?.ref}/${key}`, line });
+      } else if (prop.type === "enum") {
+        for (const list of lists) this.emitEnumList(prop, list);
+      } else if (lists.length) {
+        this.report.add("nested_list_ignored", this.rel, line, {
+          key,
+          detail: `${key} is a ${prop.type ?? "plain"} value; its nested bullets have no schema to match`,
+        });
       }
       for (const jsx of blocks) this.enumValuesBlock(jsx, prop);
+    }
+  }
+
+  /** A bullet the generator will not be able to turn into docs. */
+  checkBullet(item, parsed) {
+    if (!parsed.header && !PROP_RE.test(itemText(this.tree, item))) {
+      this.report.add("malformed_prop_bullet", this.rel, parsed.line, {
+        key: parsed.key,
+        detail: "expected **key** (type): description",
+      });
     }
   }
 
@@ -1259,6 +1353,7 @@ export class Walker {
         const family = store.numberedFamily(inner, parsed.key);
         if (family.length) {
           report.stats.keysMatched++;
+          this.checkBullet(item, parsed);
           for (const k of family) {
             documented.add(k);
             const member = await store.findPropOwner(inner, k);
@@ -1274,6 +1369,7 @@ export class Walker {
           // Two sub-schemas with the same key (on_boot/on_shutdown priority)
           // cannot be told apart from a flat list: match, but do not document
           if (nestedProps.length === 1) {
+            this.checkBullet(item, parsed);
             await this.checkOptionality({ variants: [{ config_vars: { [parsed.key]: nestedProps[0] } }] }, parsed);
             found = { prop: nestedProps[0], inherited: false };
             await this.emitPropDocs(found, inner, item, parsed);
@@ -1292,6 +1388,7 @@ export class Walker {
             if ("key" in child.config_vars[parsed.key]) created.key ??= child.config_vars[parsed.key].key;
             report.stats.keysMatched++;
             documented.add(parsed.key);
+            this.checkBullet(item, parsed);
             await this.checkOptionality(inner, parsed);
             await this.emitPropDocs({ prop: created, inherited: false }, inner, item, parsed);
             continue;
@@ -1308,12 +1405,7 @@ export class Walker {
       }
       report.stats.keysMatched++;
       documented.add(parsed.key);
-      if (!parsed.header && !PROP_RE.test(itemText(this.tree, item))) {
-        report.add("malformed_prop_bullet", this.rel, parsed.line, {
-          key: parsed.key,
-          detail: "expected **key** (type): description",
-        });
-      }
+      this.checkBullet(item, parsed);
       await this.checkOptionality(inner, parsed);
       await this.emitPropDocs(found, inner, item, parsed);
       if (found.prop.type === "enum") this.lastEnumProp = found.prop;
@@ -1387,13 +1479,16 @@ async function main() {
     "malformed_enum_bullet",
     "unknown_enum_value",
     "malformed_prop_bullet",
+    "unused_schema_marker",
+    "enum_without_values",
     "unmatched_key",
     "optionality_mismatch",
     "undocumented_key",
     "no_intro_paragraph",
     "unresolved_component_heading",
+    "nested_list_ignored",
   ];
-  const shown = new Set(args.verbose ? order : order.slice(0, 11));
+  const shown = new Set(args.verbose ? order : order.slice(0, 13));
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {
     if (!shown.has(f.kind)) continue;
     const what = f.key ? `'${f.key}'` : "";
