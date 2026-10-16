@@ -18,6 +18,12 @@ test("parseItem reads key and optionality from a config bullet", () => {
   assert.deepEqual([b.key, b.optionality], ["tx_pin", "optional"]);
 });
 
+test("parseItem recognises a header bullet that only introduces a nested list", () => {
+  const tree = parse("- **preset**: (*Optional*, list)\n  - **name** (**Required**, string): Preset name.\n");
+  const item = parseItem(tree.children[0].children[0]);
+  assert.deepEqual([item.key, item.optionality, item.header, item.hasParen], ["preset", "optional", true, true]);
+});
+
 test("parseItem marks non-key bullets as prose", () => {
   const tree = parse("- **Side** (wall mounted): angle is measured from +X.\n- plain text bullet\n");
   const [a, b] = tree.children[0].children.map(parseItem);

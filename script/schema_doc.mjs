@@ -450,7 +450,7 @@ function itemText(tree, item) {
 }
 
 const PROP_RE = /^\*\*(\w+)\*\*(?: \((.*?)\))?: (.*)$/;
-const ENUM_RE = /^(?:`([^`]*)`|\*\*([^*]*)\*\*)(?:(?: -|:) (.*)| \(([^)]*)\)(?:: (.*))?)?$/;
+const ENUM_RE = /^(?:`([^`]*)`|\*\*([^*]*)\*\*)\s*(?:(?:-|:)\s*(.*)|\(([^)]*)\)(?:\s*:\s*(.*))?)?$/;
 
 /** <EnumValues values={[ {value: "X", default: true, description: "Y"}, … ]} /> */
 export function parseEnumValues(node) {
@@ -518,15 +518,17 @@ export function parseItem(item) {
   if (!/^[a-z0-9_]+[NX]?$/.test(key)) return { prose: true, key, line: para.position.start.line };
   let optionality = null;
   // Expected shape: **key** (**Required**, type): ...  /  **key** (*Optional*, type): ...
-  const hasParen = rest[0]?.type === "text" && /^\s*\(/.test(rest[0].value);
-  if (rest[0]?.type === "text" && /^\s*\(\s*$/.test(rest[0].value)) {
+  // A header bullet "**key**: (*Optional*, list)" introduces a nested list with no text of its own.
+  const header = rest[0]?.type === "text" && /^:\s*\(\s*$/.test(rest[0].value);
+  const hasParen = header || (rest[0]?.type === "text" && /^\s*\(/.test(rest[0].value));
+  if (rest[0]?.type === "text" && /^:?\s*\(\s*$/.test(rest[0].value)) {
     const marker = rest[1];
     if (marker && (marker.type === "strong" || marker.type === "emphasis")) {
       const word = toString(marker).trim().toLowerCase();
       if (word === "required" || word === "optional") optionality = word;
     }
   }
-  return { key, optionality, hasParen, line: para.position.start.line };
+  return { key, optionality, hasParen, header, line: para.position.start.line };
 }
 
 export class Report {
@@ -709,19 +711,28 @@ export class Walker {
     report.sections.push({ file: this.rel, line, ref, source });
   }
 
-  async closeSection() {
-    // Sub-sections opened by `prop` headings fall back to their parent first
-    while (this.section?.parent) this.section = this.section.parent;
-    const s = this.section;
-    if (!s) return;
-    this.section = null;
-    this.lastEnumProp = null;
+  reportUndocumented(s) {
     for (const key of this.store.ownKeys(s.inner)) {
       if (!s.documented.has(key)) {
         this.report.stats.keysUndocumented++;
         this.report.add("undocumented_key", this.rel, s.line, { schema: s.ref, key });
       }
     }
+  }
+
+  /** Leave a `prop` sub-section, reporting what its docs left out. */
+  popSubSection() {
+    this.reportUndocumented(this.section);
+    this.section = this.section.parent;
+  }
+
+  async closeSection() {
+    while (this.section?.parent) this.popSubSection();
+    const s = this.section;
+    if (!s) return;
+    this.section = null;
+    this.lastEnumProp = null;
+    this.reportUndocumented(s);
   }
 
   // -- emit helpers ---------------------------------------------------------
@@ -779,10 +790,17 @@ export class Walker {
     }
   }
 
-  async emitRegistryDocs(ref, type, text) {
-    if (!this.emit || !text) return;
+  async emitRegistryDocs(ref, type, text, line = 1) {
+    if (!text) {
+      this.report.add("no_intro_paragraph", this.rel, line, { detail: `no paragraph to describe ${ref}` });
+      return;
+    }
     const entry = await this.store.entry(ref);
-    if (!entry) return;
+    if (!entry) {
+      this.report.add("missing_schema_entry", this.rel, line, { detail: `${ref} has no schema entry` });
+      return;
+    }
+    if (!this.emit) return;
     entry.docs = this.links(text);
     const e = this.report.stats.emitted;
     if (type === "action") e.actionDocs++;
@@ -790,13 +808,28 @@ export class Walker {
     else e.registryDocs++;
   }
 
-  emitEnumEntries(prop, entries) {
-    if (!this.emit || !prop || prop.type !== "enum" || !prop.values) return;
+  /** The schema's spelling of an enum value, matched case-insensitively. */
+  enumValueKey(prop, value) {
+    if (Object.hasOwn(prop.values, value)) return value;
+    const lower = String(value).toLowerCase();
+    return Object.keys(prop.values).find((k) => k.toLowerCase() === lower) ?? null;
+  }
+
+  emitEnumEntries(prop, entries, line) {
+    if (!prop || prop.type !== "enum" || !prop.values) return;
     for (const entry of entries) {
-      if (!Object.hasOwn(prop.values, entry.value)) continue;
-      prop.values[entry.value] = prop.values[entry.value] || {};
-      if (entry.description) prop.values[entry.value].docs = this.links(entry.description);
-      if (entry.default) prop.values[entry.value].default = true;
+      const key = this.enumValueKey(prop, entry.value);
+      if (key === null) {
+        this.report.add("unknown_enum_value", this.rel, line, {
+          key: String(entry.value),
+          detail: `not one of ${Object.keys(prop.values).join(", ")}`,
+        });
+        continue;
+      }
+      if (!this.emit) continue;
+      prop.values[key] = prop.values[key] || {};
+      if (entry.description) prop.values[key].docs = this.links(entry.description);
+      if (entry.default) prop.values[key].default = true;
       this.report.stats.emitted.enumDocs++;
     }
   }
@@ -815,18 +848,29 @@ export class Walker {
       });
       return;
     }
-    this.emitEnumEntries(prop, entries);
+    this.emitEnumEntries(prop, entries, line);
   }
 
   emitEnumList(prop, listNode) {
-    if (!this.emit || !prop || prop.type !== "enum" || !prop.values) return;
+    if (!prop || prop.type !== "enum" || !prop.values) return;
     for (const item of listNode.children) {
       if (!item.children.some((c) => c.type === "paragraph")) continue;
+      const line = item.position.start.line;
       const m = ENUM_RE.exec(itemText(this.tree, item));
-      if (!m) continue;
-      const value = m[1] ?? m[2];
+      if (!m) {
+        this.report.add("malformed_enum_bullet", this.rel, line, { detail: "expected `value`: description" });
+        continue;
+      }
+      const value = this.enumValueKey(prop, m[1] ?? m[2]);
       const desc = m[3] ?? m[5] ?? m[4];
-      if (!desc || !Object.hasOwn(prop.values, value)) continue;
+      if (value === null) {
+        this.report.add("unknown_enum_value", this.rel, line, {
+          key: m[1] ?? m[2],
+          detail: `not one of ${Object.keys(prop.values).join(", ")}`,
+        });
+        continue;
+      }
+      if (!desc || !this.emit) continue;
       prop.values[value] = prop.values[value] || {};
       prop.values[value].docs = this.links(desc);
       this.report.stats.emitted.enumDocs++;
@@ -835,15 +879,9 @@ export class Walker {
 
   /** Attach a config bullet's description to the schema, as the old Python generator did. */
   async emitPropDocs(found, sectionInner, item, parsed) {
-    if (!this.emit || !found) return;
+    if (!this.emit || !found || parsed.header) return;
     const m = PROP_RE.exec(itemText(this.tree, item));
-    if (!m) {
-      this.report.add("malformed_prop_bullet", this.rel, parsed.line, {
-        key: parsed.key,
-        detail: "expected **key** (type): description",
-      });
-      return;
-    }
+    if (!m) return;
     if (found.typedEntry) {
       found.typedEntry.docs = m[3];
       this.report.stats.emitted.props++;
@@ -908,7 +946,9 @@ export class Walker {
       const text = this.leadParagraph(tree.children, 0);
       const platform = this.folder !== "components" && this.store.isPlatform(this.folder) ? this.folder : null;
       if (platform && this.stem === "index") {
-        if (text && this.store.core.platforms[platform]) {
+        if (!text) {
+          this.report.add("no_intro_paragraph", this.rel, 1, { detail: `no paragraph to describe ${platform}` });
+        } else if (this.store.core.platforms[platform]) {
           this.store.core.platforms[platform].docs = this.links(text);
           this.report.stats.emitted.platformIndexDocs++;
         }
@@ -978,7 +1018,7 @@ export class Walker {
 
     if (this.section) this.section.enumProp = null;
     // Leave `prop` sub-sections that this heading is not nested under
-    while (this.section?.parent && node.depth <= this.section.depth) this.section = this.section.parent;
+    while (this.section?.parent && node.depth <= this.section.depth) this.popSubSection();
     if (this.pendingRegistry && node.depth <= this.pendingRegistryDepth) this.pendingRegistry = null;
     const lastWord = slug(text).split("_").pop();
     const isBreak =
@@ -1005,10 +1045,10 @@ export class Walker {
       const ref = await this.registryRef(reg.name, reg.type);
       for (const extra of reg.names.slice(1)) {
         const extraRef = await this.registryRef(extra, reg.type);
-        if (extraRef) await this.emitRegistryDocs(extraRef, reg.type, intro());
+        if (extraRef) await this.emitRegistryDocs(extraRef, reg.type, intro(), line);
       }
       if (ref) {
-        await this.emitRegistryDocs(ref, reg.type, intro());
+        await this.emitRegistryDocs(ref, reg.type, intro(), line);
         // Many action docs list options directly under the heading
         await this.openSection(ref, node.depth, line, "registry");
         this.pendingRegistry = ref;
@@ -1026,7 +1066,7 @@ export class Walker {
       node.children.some((c) => c.type === "inlineCode") ? `\`${bareCodeHeading(node) ?? ""}\`` : text,
     );
     if (registryEntry) {
-      await this.emitRegistryDocs(registryEntry, "registry", intro());
+      await this.emitRegistryDocs(registryEntry, "registry", intro(), line);
       await this.openSection(registryEntry, node.depth, line, "registry");
       this.pendingRegistry = registryEntry;
       this.pendingRegistryDepth = node.depth;
@@ -1039,15 +1079,27 @@ export class Walker {
       await this.emitComponentDocs(comp, platform ?? null, intro(), line);
       return true;
     };
+    const unresolved = (name) =>
+      this.report.add("unresolved_component_heading", this.rel, line, {
+        detail: `"${text}" names no schema (tried ${name})`,
+      });
     if (/ Component$/.test(text)) {
       const name = slug(text.replace(/ Component$/, "").replace(/\./g, ""));
       if (await switched(name)) return;
+      unresolved(name);
     }
     if (text === "Component/Hub" || text === "Hub Component") {
       if (await switched(this.stem)) return;
+      unresolved(this.stem);
     }
-    if (/Over SPI$/i.test(text) && (await switched(`${this.stem}_spi`))) return;
-    if (/Over I²C$/i.test(text) && (await switched(`${this.stem}_i2c`))) return;
+    if (/Over SPI$/i.test(text)) {
+      if (await switched(`${this.stem}_spi`)) return;
+      unresolved(`${this.stem}_spi`);
+    }
+    if (/Over I²C$/i.test(text)) {
+      if (await switched(`${this.stem}_i2c`)) return;
+      unresolved(`${this.stem}_i2c`);
+    }
     if (this.stem !== "index") {
       let platformName = slug(text);
       const prefix = `${slug(this.componentRef?.split(".")[0] ?? "")}_`;
@@ -1132,7 +1184,6 @@ export class Walker {
           parent: this.section,
           line,
         };
-        this.section.closeToParent = true;
       }
     }
   }
@@ -1154,24 +1205,66 @@ export class Walker {
     await this.items(node, this.section.inner, this.section.documented);
   }
 
+  /** Required/Optional in the docs against every definition of the key in the schema. */
+  async checkOptionality(inner, parsed, key = parsed.key) {
+    if (!parsed.optionality) return;
+    const marked = (await this.store.findProps(inner, key))
+      .map((p) => p.key?.toLowerCase())
+      .filter((k) => k === "required" || k === "optional");
+    parsed.optionalityAgrees = marked.includes(parsed.optionality);
+    if (marked.length && !parsed.optionalityAgrees) {
+      this.report.stats.optionalityMismatch++;
+      this.report.add("optionality_mismatch", this.rel, parsed.line, {
+        schema: this.section?.ref,
+        key,
+        detail: `docs say ${parsed.optionality}, schema says ${marked[0]}`,
+      });
+    }
+  }
+
+  /** Nested bullets and <EnumValues> blocks under a matched bullet, for every schema holding the key. */
+  async nestedContent(item, inner, key, found) {
+    const lists = item.children.filter((c) => c.type === "list");
+    const blocks = item.children.filter((c) => c.type === "mdxJsxFlowElement" && c.name === "EnumValues");
+    if (!lists.length && !blocks.length) return;
+    // In a typed schema the same key may exist in several variants; descend into each
+    const holders = this.store.propHolders(inner, key);
+    const props = holders.length ? holders.map((h) => h.prop) : [found.prop];
+    for (const prop of props) {
+      const nestedInner = propInner(prop);
+      for (const list of lists) {
+        if (nestedInner) await this.items(list, nestedInner, new Set());
+        else if (prop.type === "enum") this.emitEnumList(prop, list);
+      }
+      for (const jsx of blocks) this.enumValuesBlock(jsx, prop);
+    }
+  }
+
   async items(listNode, inner, documented) {
     const { store, report } = this;
     for (const item of listNode.children) {
       const parsed = parseItem(item);
       if (!parsed) continue;
-      if (parsed.prose || (this.section?.continued && inner === this.section.inner && !parsed.hasParen)) {
+      if (parsed.prose) {
         report.stats.proseBullets++;
         continue;
       }
       let found = await store.findPropOwner(inner, parsed.key);
-      let prop = found?.prop ?? null;
-      if (!prop) {
+      if (!found && this.section?.continued && inner === this.section.inner && !parsed.hasParen) {
+        // After an unrelated heading, a bare "**word**: text" bullet is prose unless it names a key
+        report.stats.proseBullets++;
+        continue;
+      }
+      if (!found) {
         const family = store.numberedFamily(inner, parsed.key);
         if (family.length) {
           report.stats.keysMatched++;
           for (const k of family) {
             documented.add(k);
-            await this.emitPropDocs(await store.findPropOwner(inner, k), inner, item, { ...parsed, key: k });
+            const member = await store.findPropOwner(inner, k);
+            await this.checkOptionality(inner, parsed, k);
+            await this.emitPropDocs(member, inner, item, { ...parsed, key: k });
+            await this.nestedContent(item, inner, k, member);
           }
           continue;
         }
@@ -1181,7 +1274,10 @@ export class Walker {
           // Two sub-schemas with the same key (on_boot/on_shutdown priority)
           // cannot be told apart from a flat list: match, but do not document
           if (nestedProps.length === 1) {
-            await this.emitPropDocs({ prop: nestedProps[0], inherited: false }, inner, item, parsed);
+            await this.checkOptionality({ variants: [{ config_vars: { [parsed.key]: nestedProps[0] } }] }, parsed);
+            found = { prop: nestedProps[0], inherited: false };
+            await this.emitPropDocs(found, inner, item, parsed);
+            await this.nestedContent(item, { variants: [] }, parsed.key, found);
           }
           continue;
         }
@@ -1196,12 +1292,13 @@ export class Walker {
             if ("key" in child.config_vars[parsed.key]) created.key ??= child.config_vars[parsed.key].key;
             report.stats.keysMatched++;
             documented.add(parsed.key);
+            await this.checkOptionality(inner, parsed);
             await this.emitPropDocs({ prop: created, inherited: false }, inner, item, parsed);
             continue;
           }
         }
       }
-      if (!prop) {
+      if (!found) {
         report.stats.keysUnmatched++;
         report.add("unmatched_key", this.rel, parsed.line, {
           schema: this.section?.ref,
@@ -1211,33 +1308,16 @@ export class Walker {
       }
       report.stats.keysMatched++;
       documented.add(parsed.key);
-      if (parsed.optionality) {
-        // With typed schemas a key may be Required in one variant and Optional
-        // in another; only report when no variant agrees with the docs.
-        const marked = (await store.findProps(inner, parsed.key))
-          .map((p) => p.key?.toLowerCase())
-          .filter((k) => k === "required" || k === "optional");
-        parsed.optionalityAgrees = marked.includes(parsed.optionality);
-        if (marked.length && !marked.includes(parsed.optionality)) {
-          report.stats.optionalityMismatch++;
-          report.add("optionality_mismatch", this.rel, parsed.line, {
-            schema: this.section?.ref,
-            key: parsed.key,
-            detail: `docs say ${parsed.optionality}, schema says ${marked[0]}`,
-          });
-        }
+      if (!parsed.header && !PROP_RE.test(itemText(this.tree, item))) {
+        report.add("malformed_prop_bullet", this.rel, parsed.line, {
+          key: parsed.key,
+          detail: "expected **key** (type): description",
+        });
       }
+      await this.checkOptionality(inner, parsed);
       await this.emitPropDocs(found, inner, item, parsed);
-      if (prop.type === "enum") this.lastEnumProp = prop;
-      const nested = item.children.find((c) => c.type === "list");
-      if (nested) {
-        const nestedInner = propInner(prop);
-        if (nestedInner) await this.items(nested, nestedInner, new Set());
-        else if (prop.type === "enum") this.emitEnumList(prop, nested);
-      }
-      for (const jsx of item.children.filter((c) => c.type === "mdxJsxFlowElement" && c.name === "EnumValues")) {
-        this.enumValuesBlock(jsx, prop);
-      }
+      if (found.prop.type === "enum") this.lastEnumProp = found.prop;
+      await this.nestedContent(item, inner, parsed.key, found);
     }
   }
 }
@@ -1304,13 +1384,16 @@ async function main() {
     "missing_schema_entry",
     "malformed_enum_values",
     "enum_values_without_enum",
+    "malformed_enum_bullet",
+    "unknown_enum_value",
     "malformed_prop_bullet",
     "unmatched_key",
     "optionality_mismatch",
     "undocumented_key",
     "no_intro_paragraph",
+    "unresolved_component_heading",
   ];
-  const shown = new Set(args.verbose ? order : order.slice(0, 9));
+  const shown = new Set(args.verbose ? order : order.slice(0, 11));
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {
     if (!shown.has(f.kind)) continue;
     const what = f.key ? `'${f.key}'` : "";
