@@ -1421,20 +1421,24 @@ export class Walker {
     if (text === "Component/Hub" || text === "Hub Component") {
       if (await switched(this.stem)) return;
       await unresolved(this.stem);
+      return;
     } else if (/ Component$/.test(text)) {
       const name = slug(text.replace(/ Component$/, "").replace(/\./g, ""));
       if (await switched(name)) return;
       await unresolved(name);
+      return;
     }
     // Bus headings describe one wiring of the same component; the sibling
     // sections that follow belong to the page again
     if (/Over SPI$/i.test(text)) {
       if ((await switched(`${this.stem}_spi`, true)) || (await busVariant("spi"))) return;
       await unresolved(`${this.stem}_spi`);
+      return;
     }
     if (/Over I²C$/i.test(text)) {
       if ((await switched(`${this.stem}_i2c`, true)) || (await busVariant("i2c"))) return;
       await unresolved(`${this.stem}_i2c`);
+      return;
     }
     if (this.stem !== "index") {
       let platformName = slug(text);
