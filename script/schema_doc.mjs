@@ -163,10 +163,16 @@ export class SchemaStore {
       return inner;
     }
     if (ref.includes("+")) {
-      const inners = await Promise.all(ref.split("+").map((r) => this.resolve(r)));
+      const parts = ref.split("+");
+      const inners = await Promise.all(parts.map((r) => this.resolve(r)));
       if (inners.some((i) => !i)) return null;
       const variants = inners.flatMap((i) => i.variants);
-      return { variants, primaryCount: inners[0].variants.length };
+      // foo_i2c + foo_spi are one component with two wirings: a key both declare
+      // is the same option, so its docs go to both
+      const comps = parts.map((r) => r.split(".")[0]);
+      const bases = new Set(comps.map((c) => c.replace(/_(i2c|spi)$/, "")));
+      const multi = bases.size === 1 && comps.every((c) => /_(i2c|spi)$/.test(c));
+      return { variants, primaryCount: inners[0].variants.length, multi };
     }
     if (ref.endsWith(".*")) {
       // Every schema of a platform base page (sensor/index.mdx documents
@@ -412,7 +418,9 @@ function listMdx(dir) {
 }
 
 export function parseMdx(path) {
-  let src = readFileSync(path, "utf8");
+  let src = readFileSync(path, "utf8")
+    .replace(/^\uFEFF/, "")
+    .replace(/\r\n/g, "\n");
   let title = null;
   // Frontmatter is not markdown; blank it but keep offsets and line numbers stable.
   src = src.replace(/^---\n([\s\S]*?)\n---\n/, (fm, body) => {
@@ -466,7 +474,7 @@ function itemText(tree, item) {
     .join(" ");
 }
 
-const PROP_RE = /^\*\*(\w+)\*\*(?: \((.*?)\))?: (.*)$/;
+const PROP_RE = /^\*\*(\w+)\*\*(?::\s*\((.*?)\)\s*|(?: \((.*?)\))?: )(.*)$/;
 const ENUM_RE = /^(?:`([^`]*)`|\*\*([^*]*)\*\*)\s*(?:(?:-|:)\s*(.*)|\(([^)]*)\)(?:\s*:\s*(.*))?)?$/;
 
 /** <EnumValues values={[ {value: "X", default: true, description: "Y"}, … ]} /> */
@@ -536,7 +544,8 @@ export function parseItem(item) {
   let optionality = null;
   // Expected shape: **key** (**Required**, type): ...  /  **key** (*Optional*, type): ...
   // A header bullet "**key**: (*Optional*, list)" introduces a nested list with no text of its own.
-  const header = rest[0]?.type === "text" && /^:\s*\(\s*$/.test(rest[0].value);
+  const colonParen = rest[0]?.type === "text" && /^:\s*\(\s*$/.test(rest[0].value);
+  const header = colonParen && /\)\s*$/.test(toString(para));
   const hasParen = header || (rest[0]?.type === "text" && /^\s*\(/.test(rest[0].value));
   if (rest[0]?.type === "text" && /^:?\s*\(\s*$/.test(rest[0].value)) {
     const marker = rest[1];
@@ -780,7 +789,7 @@ export class Walker {
 
   withSeeAlso(text) {
     const anchor = this.lastHeadingSlug ? `#${this.lastHeadingSlug}` : "";
-    return `${this.links(text)}\n\n*See also: [${this.tree.title}](${this.deployUrl}${this.url}${anchor})*`;
+    return `${this.links(text)}\n\n*See also: [${this.title}](${this.deployUrl}${this.url}${anchor})*`;
   }
 
   /** First paragraph after index in the top-level children, or null if a code block comes first. */
@@ -885,6 +894,10 @@ export class Walker {
       });
       return;
     }
+    if (!prop.values) {
+      this.report.add("enum_without_values", this.rel, line, { detail: "the schema lists no values for this enum" });
+      return;
+    }
     this.emitEnumEntries(prop, entries, line);
   }
 
@@ -925,8 +938,10 @@ export class Walker {
     if (!this.emit || !found || parsed.header) return;
     const m = PROP_RE.exec(itemText(this.tree, item));
     if (!m) return;
+    const typeText = m[2] ?? m[3];
+    const docText = m[4];
     if (found.typedEntry) {
-      found.typedEntry.docs = m[3];
+      found.typedEntry.docs = docText;
       this.report.stats.emitted.props++;
       return;
     }
@@ -940,9 +955,9 @@ export class Walker {
     }
     const { prop, inherited } = found;
     const e = this.report.stats.emitted;
-    let converted = this.withSeeAlso(m[3]);
-    if (m[2]) {
-      const typeParts = m[2].split(",").map((t) => t.trim());
+    let converted = this.withSeeAlso(docText);
+    if (typeText) {
+      const typeParts = typeText.split(",").map((t) => t.trim());
       if (
         parsed.optionality &&
         parsed.key !== "id" &&
@@ -988,6 +1003,11 @@ export class Walker {
   async walk(tree) {
     this.tree = tree;
     this.report.stats.files++;
+    this.title = tree.title;
+    if (!this.title) {
+      this.report.add("missing_title", this.rel, 1, { detail: "frontmatter has no title:" });
+      this.title = this.stem;
+    }
     {
       const text = this.leadParagraph(tree.children, 0);
       const platform = this.folder !== "components" && this.store.isPlatform(this.folder) ? this.folder : null;
@@ -1112,6 +1132,9 @@ export class Walker {
       for (const name of reg.names) {
         const r = await this.registryRef(name, reg.type);
         if (r) refs.push(r);
+        else if (reg.names.length > 1) {
+          this.report.add("unknown_registry_entry", this.rel, line, { detail: `${reg.type} '${name}' not in schema` });
+        }
       }
       for (const r of refs) await this.emitRegistryDocs(r, reg.type, intro(), line);
       if (refs.length) {
@@ -1338,8 +1361,7 @@ export class Walker {
     const { store, report } = this;
     for (const item of listNode.children) {
       const parsed = parseItem(item);
-      if (!parsed) continue;
-      if (parsed.prose) {
+      if (!parsed || parsed.prose) {
         report.stats.proseBullets++;
         continue;
       }
@@ -1483,12 +1505,13 @@ async function main() {
     "enum_without_values",
     "unmatched_key",
     "optionality_mismatch",
+    "unresolved_component_heading",
+    "missing_title",
     "undocumented_key",
     "no_intro_paragraph",
-    "unresolved_component_heading",
     "nested_list_ignored",
   ];
-  const shown = new Set(args.verbose ? order : order.slice(0, 13));
+  const shown = new Set(args.verbose ? order : order.slice(0, 15));
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {
     if (!shown.has(f.kind)) continue;
     const what = f.key ? `'${f.key}'` : "";

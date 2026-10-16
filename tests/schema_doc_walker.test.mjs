@@ -148,3 +148,49 @@ test("an unused schema marker is reported", async () => {
   });
   assert.equal(report.findings.filter((f) => f.kind === "unused_schema_marker").length, 1);
 });
+
+test("a key both bus variants declare is documented in both", async () => {
+  const { docs } = await walk({
+    schema: {
+      esphome: core(["foo_i2c", "foo_spi"], { sensor: {} }),
+      sensor: { sensor: { schemas: {}, components: { foo_i2c: {}, foo_spi: {} } } },
+      foo_i2c: { "foo_i2c.sensor": { schemas: { CONFIG_SCHEMA: schema({ temperature: { key: "Optional" } }) } } },
+      foo_spi: { "foo_spi.sensor": { schemas: { CONFIG_SCHEMA: schema({ temperature: { key: "Optional" } }) } } },
+    },
+    pages: {
+      "sensor/foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **temperature** (*Optional*): The temperature sensor.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  for (const bus of ["foo_i2c", "foo_spi"]) {
+    assert.match(
+      docs(bus, `${bus}.sensor`, "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "temperature"),
+      /temperature sensor/,
+    );
+  }
+});
+
+test("text after a colon-before-type annotation is kept as the description", async () => {
+  const { docs } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ restore_value: { key: "Optional" } }) } } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **restore_value**: (*Optional*, bool) Restore the value on boot.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(
+    docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "restore_value"),
+    /^\*\*bool\*\*: Restore the value on boot/,
+  );
+});
