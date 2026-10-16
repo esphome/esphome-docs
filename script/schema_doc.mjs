@@ -254,19 +254,25 @@ export class SchemaStore {
   }
 
   /** Like findProp but also says which schema object holds the key. */
-  async findPropOwner(inner, name, inherited = false, seen = new Set()) {
+  /**
+   * Like findProp but also says which schema object holds the key (owner) and
+   * which top-level variant of the section led to it (root), so a refined copy
+   * of an inherited key lands on a schema that really accepts the key.
+   */
+  async findPropOwner(inner, name, inherited = false, seen = new Set(), root = null) {
     if (!inner) return null;
     if (inner.typedKey === name) {
       return { prop: { key: "Required", type: "enum" }, owner: null, inherited, typedEntry: inner.entry };
     }
     for (const variantInner of inner.variants) {
+      const top = root ?? variantInner;
       if (variantInner.config_vars && Object.hasOwn(variantInner.config_vars, name)) {
-        return { prop: variantInner.config_vars[name], owner: variantInner, inherited };
+        return { prop: variantInner.config_vars[name], owner: variantInner, inherited, root: top };
       }
       for (const ext of variantInner.extends ?? []) {
         if (seen.has(ext)) continue;
         seen.add(ext);
-        const found = await this.findPropOwner(await this.resolve(ext), name, true, seen);
+        const found = await this.findPropOwner(await this.resolve(ext), name, true, seen, top);
         if (found) return found;
       }
     }
@@ -988,7 +994,8 @@ export class Walker {
     }
     if (inherited && "docs" in prop) {
       // The base schema already carries different docs: describe it at this level instead
-      const target = sectionInner.variants[0];
+      // The variant whose extends chain reached the key is the one that accepts it
+      const target = found.root ?? sectionInner.variants[0];
       target.config_vars ??= {};
       const refined = (target.config_vars[parsed.key] ??= {});
       if ("key" in prop && !("key" in refined)) refined.key = prop.key;
