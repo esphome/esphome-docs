@@ -319,3 +319,31 @@ test("options after a sub-schema heading fall back to the parent schema", async 
     [],
   );
 });
+
+test("enum bullets with a (Default) note before a hyphen keep their description", async () => {
+  const { store } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: schema({
+              restore_mode: { key: "Optional", type: "enum", values: { RESTORE_DEFAULT_OFF: null, ALWAYS_ON: null } },
+            }),
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **restore_mode** (*Optional*): Control how the switch attempts to restore state.\n  - `RESTORE_DEFAULT_OFF` (Default) - Attempt to restore state and default to OFF.\n  - `ALWAYS_ON`: Always initialize as ON.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const values = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars.restore_mode.values;
+  assert.match(values.RESTORE_DEFAULT_OFF.docs, /^Attempt to restore state/);
+  assert.match(values.ALWAYS_ON.docs, /^Always initialize/);
+});

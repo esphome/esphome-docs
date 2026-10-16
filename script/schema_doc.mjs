@@ -277,7 +277,7 @@ export class SchemaStore {
       for (const ext of variantInner.extends ?? []) {
         if (seen.has(ext)) continue;
         seen.add(ext);
-        const found = await this.findPropOwner(await this.resolve(ext), name, true, seen, top);
+        const found = await this.findPropOwner(await this.resolveExtends(ext), name, true, seen, top);
         if (found) return found;
       }
     }
@@ -302,6 +302,13 @@ export class SchemaStore {
     return Object.keys(doc?.[topRef]?.schemas ?? {});
   }
 
+  /** Resolve an `extends` reference, remembering the ones the bundle cannot satisfy. */
+  async resolveExtends(ref) {
+    const inner = await this.resolve(ref);
+    if (!inner) (this.unresolvedExtends ??= new Set()).add(ref);
+    return inner;
+  }
+
   /** Find a config var by name, following extends. */
   async findProp(inner, name, seen = new Set()) {
     if (!inner) return null;
@@ -313,7 +320,7 @@ export class SchemaStore {
       for (const ext of variantInner.extends ?? []) {
         if (seen.has(ext)) continue;
         seen.add(ext);
-        const found = await this.findProp(await this.resolve(ext), name, seen);
+        const found = await this.findProp(await this.resolveExtends(ext), name, seen);
         if (found) return found;
       }
     }
@@ -331,7 +338,7 @@ export class SchemaStore {
       for (const ext of variantInner.extends ?? []) {
         if (seen.has(ext)) continue;
         seen.add(ext);
-        props.push(...(await this.findProps(await this.resolve(ext), name, seen)));
+        props.push(...(await this.findProps(await this.resolveExtends(ext), name, seen)));
       }
     }
     return props;
@@ -499,7 +506,7 @@ const TYPE_GROUP = `((?:${PAREN}\\s*)*${PAREN})`;
 const LOOKS_LIKE_OPTION_RE = /^`[a-z0-9_]+`\s*\(|\(\s*(?:\*\*|\*)?(?:required|optional)\b/i;
 const LAST_PAREN_RE = new RegExp(`\\(((?:[^()]|\\([^()]*\\))*)\\)\\s*$`);
 const PROP_RE = new RegExp(`^\\*\\*(\\w+)\\*\\*(?::\\s*${TYPE_GROUP}(?::\\s*|\\s+|$)|(?: ${TYPE_GROUP})?: )(.*)$`);
-const ENUM_RE = /^(?:`([^`]*)`|\*\*([^*]*)\*\*)\s*(?:(?:-|:)\s*(.*)|\(([^)]*)\)(?:\s*:\s*(.*))?)?$/;
+const ENUM_RE = /^(?:`([^`]*)`|\*\*([^*]*)\*\*)\s*(?:(?:-|:)\s*(.*)|\(([^)]*)\)(?:\s*(?::|-)\s*(.*))?)?$/;
 
 /** <EnumValues values={[ {value: "X", default: true, description: "Y"}, … ]} /> */
 export function parseEnumValues(node) {
@@ -1034,11 +1041,6 @@ export class Walker {
       }
       refined.docs = converted;
       e.propsRefined++;
-      if (!("docs" in prop)) {
-        // The base had no description yet; the text is shared, only the marker is local
-        prop.docs = converted;
-        e.props++;
-      }
       return;
     }
     if (newKey) {
@@ -1103,7 +1105,14 @@ export class Walker {
   /** A {/* schema: ref *\/} marker: remember it for the next section. */
   expression(node) {
     const m = node.value.match(MARKER_RE);
-    if (!m) return;
+    if (!m) {
+      if (/schema/i.test(node.value)) {
+        this.report.add("malformed_schema_marker", this.rel, node.position.start.line, {
+          detail: `expected {/* schema: <ref> */}, got ${node.value.trim()}`,
+        });
+      }
+      return;
+    }
     this.dropMarker();
     this.pendingMarker = { ref: m[1], line: node.position.start.line };
   }
@@ -1604,6 +1613,10 @@ async function main() {
   }
 
   const parseErrors = report.findings.filter((f) => f.kind === "parse_error").length;
+  for (const ref of store.unresolvedExtends ?? []) {
+    report.add("unresolved_extends", "(schema bundle)", 0, { detail: `extends '${ref}' points at no schema` });
+  }
+
   if (args.emit) {
     if (parseErrors) {
       console.error(`not writing ${args.emit}: ${parseErrors} page(s) could not be parsed`);
@@ -1631,6 +1644,8 @@ async function main() {
     "unknown_enum_value",
     "malformed_prop_bullet",
     "unused_schema_marker",
+    "malformed_schema_marker",
+    "unresolved_extends",
     "enum_without_values",
     "unmatched_key",
     "optionality_mismatch",
@@ -1640,7 +1655,7 @@ async function main() {
     "no_intro_paragraph",
     "nested_list_ignored",
   ];
-  const shown = new Set(args.verbose ? order : order.slice(0, 15));
+  const shown = new Set(args.verbose ? order : order.slice(0, 17));
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {
     if (!shown.has(f.kind)) continue;
     const what = f.key ? `'${f.key}'` : "";
