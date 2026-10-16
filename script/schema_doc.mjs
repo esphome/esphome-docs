@@ -253,7 +253,6 @@ export class SchemaStore {
     }
   }
 
-  /** Like findProp but also says which schema object holds the key. */
   /**
    * Like findProp but also says which schema object holds the key (owner) and
    * which top-level variant of the section led to it (root), so a refined copy
