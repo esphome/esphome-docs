@@ -425,7 +425,7 @@ export class SchemaStore {
         keys.add(k);
       }
     }
-    if (inner.typedKey) keys.add(inner.typedKey);
+    if (inner.typedKey && !inner.selected) keys.add(inner.typedKey);
     return keys;
   }
 }
@@ -436,7 +436,10 @@ export function toInner(entry, variant = null) {
   if (entry.type === "typed") {
     const types = variant ? { [variant]: entry.types?.[variant] } : (entry.types ?? {});
     const variants = Object.values(types).filter(Boolean);
-    return variants.length ? { variants, typedKey: entry.typed_key ?? "type", entry } : null;
+    const inner = { variants, typedKey: entry.typed_key ?? "type", entry };
+    // ref[VARIANT] documents one variant's options; the discriminator belongs to the whole schema
+    if (variant) inner.selected = true;
+    return variants.length ? inner : null;
   }
   if (entry.schema && typeof entry.schema === "object") {
     return { variants: [entry.schema] };

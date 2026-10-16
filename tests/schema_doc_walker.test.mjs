@@ -431,6 +431,7 @@ test("a `variant` Platform heading documents that typed variant of the page's pl
         "VBus.",
         "## Sensor",
         "### Configuration variables",
+        "- **model** (**Required**): The controller model.",
         "- **temperature_1** (*Optional*): Temperature sensor 1.",
         "## `custom` VBus sensors",
         "### Configuration variables",
@@ -443,7 +444,7 @@ test("a `variant` Platform heading documents that typed variant of the page's pl
   assert.match(types("deltasol_c", "config_vars", "temperature_1"), /Temperature sensor 1/);
   assert.match(types("custom", "config_vars", "sensors"), /sensor definitions/);
   assert.deepEqual(
-    report.findings.filter((f) => f.kind === "unmatched_key"),
+    report.findings.filter((f) => f.kind === "unmatched_key" || (f.kind === "undocumented_key" && f.key === "model")),
     [],
   );
 });
