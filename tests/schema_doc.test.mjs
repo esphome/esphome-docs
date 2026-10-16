@@ -131,4 +131,7 @@ test("parseEnumValues reads the <EnumValues> JSX block", () => {
     [{ value: "X", default: true }],
   );
   assert.match(parseEnumValues(parse("<EnumValues values={[{ default: true }]} />\n").children[0]).error, /value/);
+  for (const bad of ['{ value: "X", description: 123 }', '{ value: "X", default: "yes" }', "{ value: true }"]) {
+    assert.match(parseEnumValues(parse(`<EnumValues values={[${bad}]} />\n`).children[0]).error, /value is a string/);
+  }
 });

@@ -553,6 +553,14 @@ export function parseEnumValues(node) {
   if (!Array.isArray(entries) || !entries.every((e) => e && typeof e === "object" && "value" in e)) {
     return { error: "each entry needs a 'value'" };
   }
+  const bad = entries.find(
+    (e) =>
+      !["string", "number"].includes(typeof e.value) ||
+      ("description" in e && typeof e.description !== "string") ||
+      ("default" in e && typeof e.default !== "boolean"),
+  );
+  if (bad)
+    return { error: `entry ${JSON.stringify(bad.value)}: value is a string, description a string, default a boolean` };
   return { entries };
 }
 
