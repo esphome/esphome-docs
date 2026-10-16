@@ -4,10 +4,19 @@ title: "DFRobot SEN0465 to SEN0476 Gas Sensors"
 ---
 
 import APIRef from "@components/APIRef.astro";
+import Figure from "@components/Figure.astro";
+import sensorImage from "./images/dfrobot_sen0465.jpg";
 
 The `dfrobot_sen0465_i2c` and `dfrobot_sen0465_uart` sensor platforms allow you to use the DFRobot
 "Factory Calibrated Electrochemical Gas Sensor" series ([product page](https://www.dfrobot.com/product-2510.html))
 with ESPHome. All boards of the series use the same protocol. They only differ in the gas probe that is fitted.
+
+<Figure
+  src={sensorImage}
+  alt="DFRobot SEN0466 signal conversion board next to the CO probe"
+  caption="SEN0466 (CO): signal conversion board and probe"
+  layout="constrained"
+/>
 
 The sensor reports the gas concentration and the temperature of its on-board temperature sensor.
 
