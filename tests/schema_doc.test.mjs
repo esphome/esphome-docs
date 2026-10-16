@@ -24,6 +24,13 @@ test("parseItem recognises a header bullet that only introduces a nested list", 
   assert.deepEqual([item.key, item.optionality, item.header, item.hasParen], ["preset", "optional", true, true]);
 });
 
+test("parseItem reads a plain Required/Optional marker and flags a bad key", () => {
+  const tree = parse("- **baud_rate** (Optional, int): Plain marker.\n- **Baud_Rate** (**Required**, int): Bad key.\n");
+  const [a, b] = tree.children[0].children.map(parseItem);
+  assert.deepEqual([a.optionality, a.prose], ["optional", false]);
+  assert.deepEqual([b.optionality, b.prose], ["required", true]);
+});
+
 test("parseItem marks non-key bullets as prose", () => {
   const tree = parse("- **Side** (wall mounted): angle is measured from +X.\n- plain text bullet\n");
   const [a, b] = tree.children[0].children.map(parseItem);

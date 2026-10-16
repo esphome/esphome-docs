@@ -194,3 +194,44 @@ test("text after a colon-before-type annotation is kept as the description", asy
     /^\*\*bool\*\*: Restore the value on boot/,
   );
 });
+
+test("a type annotation holding a link keeps the link and the whole description", async () => {
+  const { docs } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: schema({
+              preset_change: { key: "Optional" },
+              restore_from: { key: "Optional" },
+              plain: { key: "Optional" },
+            }),
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        [
+          "- **preset_change**: (*Optional*, [Action](/automations/actions/#all-actions)) Runs when the preset changes.",
+          "- **restore_from**: (*Optional*, enum): Where to restore from.",
+          "- **plain** (*Optional*, [Time](/guides/configuration-types/#time)): The interval.",
+        ].join("\n"),
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const field = (k) => docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", k);
+  assert.match(
+    field("preset_change"),
+    /^\*\*\[Action\]\(https:\/\/esphome\.io\/automations\/actions\/#all-actions\)\*\*: Runs when the preset changes\./,
+  );
+  assert.match(field("restore_from"), /^\*\*enum\*\*: Where to restore from\./);
+  assert.match(
+    field("plain"),
+    /^\*\*\[Time\]\(https:\/\/esphome\.io\/guides\/configuration-types\/#time\)\*\*: The interval\./,
+  );
+});

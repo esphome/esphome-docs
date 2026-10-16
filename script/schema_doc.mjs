@@ -172,7 +172,9 @@ export class SchemaStore {
       const comps = parts.map((r) => r.split(".")[0]);
       const bases = new Set(comps.map((c) => c.replace(/_(i2c|spi)$/, "")));
       const multi = bases.size === 1 && comps.every((c) => /_(i2c|spi)$/.test(c));
-      return { variants, primaryCount: inners[0].variants.length, multi };
+      // A platform page's hub schema is audited on its own page; bus wirings and
+      // grouped actions are only documented here, so audit all of them
+      return { variants, primaryCount: multi ? variants.length : inners[0].variants.length, multi };
     }
     if (ref.endsWith(".*")) {
       // Every schema of a platform base page (sensor/index.mdx documents
@@ -474,7 +476,10 @@ function itemText(tree, item) {
     .join(" ");
 }
 
-const PROP_RE = /^\*\*(\w+)\*\*(?::\s*\((.*?)\)\s*|(?: \((.*?)\))?: )(.*)$/;
+const PAREN = "\\((?:[^()]|\\([^()]*\\))*\\)";
+const TYPE_GROUP = `((?:${PAREN}\\s*)*${PAREN})`;
+const LAST_PAREN_RE = new RegExp(`\\(((?:[^()]|\\([^()]*\\))*)\\)\\s*$`);
+const PROP_RE = new RegExp(`^\\*\\*(\\w+)\\*\\*(?::\\s*${TYPE_GROUP}(?::\\s*|\\s+|$)|(?: ${TYPE_GROUP})?: )(.*)$`);
 const ENUM_RE = /^(?:`([^`]*)`|\*\*([^*]*)\*\*)\s*(?:(?:-|:)\s*(.*)|\(([^)]*)\)(?:\s*:\s*(.*))?)?$/;
 
 /** <EnumValues values={[ {value: "X", default: true, description: "Y"}, … ]} /> */
@@ -539,8 +544,7 @@ export function parseItem(item) {
   const [first, ...rest] = para.children;
   if (!first || first.type !== "strong") return null;
   const key = toString(first).trim();
-  // YAML keys are lower snake_case; `target_N` / `gX` stand for numbered families
-  if (!/^[a-z0-9_]+[NX]?$/.test(key)) return { prose: true, key, line: para.position.start.line };
+  const line = para.position.start.line;
   let optionality = null;
   // Expected shape: **key** (**Required**, type): ...  /  **key** (*Optional*, type): ...
   // A header bullet "**key**: (*Optional*, list)" introduces a nested list with no text of its own.
@@ -553,8 +557,14 @@ export function parseItem(item) {
       const word = toString(marker).trim().toLowerCase();
       if (word === "required" || word === "optional") optionality = word;
     }
+  } else if (rest[0]?.type === "text") {
+    // The marker is sometimes left plain: **key** (Optional, int): ...
+    const m = rest[0].value.match(/^:?\s*\(\s*(required|optional)\b/i);
+    if (m) optionality = m[1].toLowerCase();
   }
-  return { key, optionality, hasParen, header, line: para.position.start.line };
+  // YAML keys are lower snake_case; `target_N` / `gX` stand for numbered families
+  const prose = !/^[a-z0-9_]+[NX]?$/.test(key);
+  return { key, optionality, hasParen, header, prose, line };
 }
 
 export class Report {
@@ -938,7 +948,7 @@ export class Walker {
     if (!this.emit || !found || parsed.header) return;
     const m = PROP_RE.exec(itemText(this.tree, item));
     if (!m) return;
-    const typeText = m[2] ?? m[3];
+    const typeText = (m[2] ?? m[3])?.match(LAST_PAREN_RE)?.[1];
     const docText = m[4];
     if (found.typedEntry) {
       found.typedEntry.docs = docText;
@@ -1085,6 +1095,7 @@ export class Walker {
     const line = node.position.start.line;
     this.lastHeadingSlug = this.slugger.slug(toString(node).replace(/\./g, "-"));
     this.lastHeadingDepth = node.depth;
+    this.lastEnumProp = null;
     const intro = () => this.leadParagraph(siblings, index + 1);
 
     // A bus or component heading re-targets the page only for its own subtree
@@ -1142,7 +1153,10 @@ export class Walker {
         // naming several actions documents the options of each of them
         const ref = refs.join("+");
         await this.openSection(ref, node.depth, line, "registry");
-        if (this.section && refs.length > 1) this.section.inner.multi = true;
+        if (this.section && refs.length > 1) {
+          this.section.inner.multi = true;
+          this.section.inner.primaryCount = this.section.inner.variants.length;
+        }
         this.pendingRegistry = ref;
         this.pendingRegistryDepth = node.depth;
       } else {
@@ -1362,7 +1376,14 @@ export class Walker {
     for (const item of listNode.children) {
       const parsed = parseItem(item);
       if (!parsed || parsed.prose) {
-        report.stats.proseBullets++;
+        if (parsed?.optionality) {
+          report.add("malformed_prop_bullet", this.rel, parsed.line, {
+            key: parsed.key,
+            detail: "option keys are lower snake_case",
+          });
+        } else {
+          report.stats.proseBullets++;
+        }
         continue;
       }
       let found = await store.findPropOwner(inner, parsed.key);
@@ -1411,7 +1432,7 @@ export class Walker {
             report.stats.keysMatched++;
             documented.add(parsed.key);
             this.checkBullet(item, parsed);
-            await this.checkOptionality(inner, parsed);
+            await this.checkOptionality({ variants: [child] }, parsed);
             await this.emitPropDocs({ prop: created, inherited: false }, inner, item, parsed);
             continue;
           }
@@ -1430,7 +1451,7 @@ export class Walker {
       this.checkBullet(item, parsed);
       await this.checkOptionality(inner, parsed);
       await this.emitPropDocs(found, inner, item, parsed);
-      if (found.prop.type === "enum") this.lastEnumProp = found.prop;
+      this.lastEnumProp = found.prop.type === "enum" ? found.prop : null;
       await this.nestedContent(item, inner, parsed.key, found);
     }
   }
