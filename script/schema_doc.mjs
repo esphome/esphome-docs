@@ -314,19 +314,19 @@ export class SchemaStore {
   }
 
   /** Look for a key one or two levels below this schema (documented flat). */
-  async findNestedProp(inner, name, depth = 2) {
-    if (!inner || depth === 0) return null;
+  async findNestedProps(inner, name, depth = 2) {
+    const found = [];
+    if (!inner || depth === 0) return found;
     for (const variantInner of inner.variants) {
       for (const child of Object.values(variantInner.config_vars ?? {})) {
         const childInner = propInner(child);
         if (!childInner) continue;
         const direct = await this.findProp(childInner, name);
-        if (direct) return direct;
-        const deeper = await this.findNestedProp(childInner, name, depth - 1);
-        if (deeper) return deeper;
+        if (direct) found.push(direct);
+        found.push(...(await this.findNestedProps(childInner, name, depth - 1)));
       }
     }
-    return null;
+    return found;
   }
 
   /** `target_N` / `gX` in the docs stand for target_1, target_2, ... in the schema. */
@@ -946,6 +946,10 @@ export class Walker {
   }
 
   async openConfigSection(depth, line) {
+    // "### Configuration variables" under "## `on_boot`" lists on_boot's options
+    if (this.section?.ref.includes("/") && depth > this.section.depth && !this.pendingMarker && !this.pendingRegistry) {
+      return;
+    }
     if (this.pendingMarker) {
       const ref = this.pendingMarker;
       this.pendingMarker = null;
@@ -1081,10 +1085,14 @@ export class Walker {
     // "## Legend Options" documents the `legend` sub-schema of the current schema
     const baseRef = this.section?.ref ?? this.defaultRef;
     if (baseRef && !baseRef.includes("/")) {
-      const first = slug(text).split("_")[0];
       const base = await store.resolve(baseRef);
-      const prop = first && (await store.findProp(base, first));
-      if (prop && propInner(prop) && !(await store.findProp(base, slug(text)))) {
+      let first = slug(text);
+      let prop = first && (await store.findProp(base, first));
+      if (!propInner(prop)) {
+        first = first.split("_")[0];
+        prop = first && (await store.findProp(base, first));
+      }
+      if (prop && propInner(prop)) {
         if (this.section && !this.section.parent) {
           // keep the parent open so later headings fall back to it
           this.section.documented.add(first);
@@ -1167,10 +1175,14 @@ export class Walker {
           }
           continue;
         }
-        prop = await store.findNestedProp(inner, parsed.key);
-        if (prop) {
+        const nestedProps = await store.findNestedProps(inner, parsed.key);
+        if (nestedProps.length) {
           report.stats.keysMatchedNested++;
-          await this.emitPropDocs({ prop, inherited: false }, inner, item, parsed);
+          // Two sub-schemas with the same key (on_boot/on_shutdown priority)
+          // cannot be told apart from a flat list: match, but do not document
+          if (nestedProps.length === 1) {
+            await this.emitPropDocs({ prop: nestedProps[0], inherited: false }, inner, item, parsed);
+          }
           continue;
         }
         if (inner.baseRef && this.emit) {
