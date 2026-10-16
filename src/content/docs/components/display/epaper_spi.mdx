@@ -216,7 +216,8 @@ on_...:
 
 ### 4-color display example
 
-Some displays support 4 colors (black, white, red, yellow). Colors are mapped from RGB automatically.
+Some displays support 4 colors (black, white, red, yellow). Colors are mapped from RGB automatically; see
+[Color Panels](#color-panels).
 Full refresh times for 4-color displays are typically around 20 seconds.
 
 ```yaml
@@ -235,13 +236,10 @@ display:
       inverted: true
     update_interval: 5min
     lambda: |-
-      auto BLACK = Color(0, 0, 0);
-      auto WHITE = Color(255, 255, 255);
       auto RED = Color(255, 0, 0);
       auto YELLOW = Color(255, 255, 0);
 
-      it.fill(WHITE);
-      it.filled_rectangle(50, 50, 80, 80, BLACK);
+      it.filled_rectangle(50, 50, 80, 80, Color::BLACK);
       it.filled_rectangle(150, 50, 80, 80, RED);
       it.filled_rectangle(250, 50, 80, 80, YELLOW);
 ```
@@ -260,15 +258,12 @@ display:
     model: Seeed-reTerminal-E1004
     update_interval: 5min
     lambda: |-
-      auto BLACK = Color(0, 0, 0);
-      auto WHITE = Color(255, 255, 255);
       auto RED = Color(255, 0, 0);
       auto GREEN = Color(0, 255, 0);
       auto BLUE = Color(0, 0, 255);
       auto YELLOW = Color(255, 255, 0);
 
-      it.fill(WHITE);
-      it.filled_circle(200, 300, 80, BLACK);
+      it.filled_circle(200, 300, 80, Color::BLACK);
       it.filled_circle(400, 300, 80, RED);
       it.filled_circle(600, 300, 80, GREEN);
       it.filled_circle(200, 550, 80, BLUE);
@@ -289,22 +284,116 @@ display:
     model: inkplate6color
     update_interval: 5min
     lambda: |-
-      auto BLACK = Color(0, 0, 0);
-      auto WHITE = Color(255, 255, 255);
       auto GREEN = Color(0, 255, 0);
       auto BLUE = Color(0, 0, 255);
       auto RED = Color(255, 0, 0);
       auto YELLOW = Color(255, 255, 0);
       auto ORANGE = Color(255, 165, 0);
 
-      it.fill(WHITE);
-      it.filled_circle(100, 224, 80, BLACK);
+      it.filled_circle(100, 224, 80, Color::BLACK);
       it.filled_circle(250, 224, 80, GREEN);
       it.filled_circle(400, 224, 80, BLUE);
       it.filled_circle(100, 350, 80, RED);
       it.filled_circle(250, 350, 80, YELLOW);
       it.filled_circle(400, 350, 80, ORANGE);
 ```
+
+## Colors
+
+### Background and Default Color
+
+Most displays clear to black, but `epaper_spi` clears the display to white, like blank paper. This applies to the
+automatic clear before each update (see `auto_clear_enabled` in [Display](/components/display/)) and to `it.clear()`.
+
+Drawing methods called without a color still draw in `Color::WHITE`, which on this display is white on white, so
+nothing appears. The same applies to `graph()`, `legend()` and `qr_code()`. Pass a color explicitly:
+
+```yaml
+display:
+  - platform: epaper_spi
+    # ...
+    lambda: |-
+      it.line(0, 0, 50, 50, Color::BLACK);
+      it.print(0, 10, id(my_font), Color::BLACK, "Hello World!");
+```
+
+Antialiased fonts (`bpp` greater than `1`) blend the edges of each character with a background color that defaults to
+`Color::BLACK`, so on white paper the edges come out darker than intended. Pass `Color::WHITE` as the background:
+
+```yaml
+display:
+  - platform: epaper_spi
+    # ...
+    lambda: |-
+      it.print(0, 10, id(my_font), Color::BLACK, TextAlign::TOP_LEFT, "Hello World!", Color::WHITE);
+```
+
+### Black and White and Grayscale Panels
+
+Black and white panels convert each color to black or white by its brightness (luma), calculated with the Rec.601
+weights, which count green far more than red or blue:
+
+$$
+Y = 0.299R + 0.587G + 0.114B
+$$
+
+A luma of `128` or more draws white, anything lower draws black. The four-level grayscale model
+(`Seeed-reTerminal-Sticky-gray4`) uses the same luma, split into four bands: below `32` draws black, `32` to `95` dark
+gray, `96` to `159` light gray, and `160` or more white.
+
+Saturated colors therefore do not map the way their RGB values might suggest:
+
+| Color                  | Luma | Black and white | Four-level gray |
+|------------------------|------|-----------------|-----------------|
+| Red `(255, 0, 0)`      | 77   | Black           | Dark gray       |
+| Green `(0, 255, 0)`    | 149  | White           | Light gray      |
+| Blue `(0, 0, 255)`     | 29   | Black           | Black           |
+| Yellow `(255, 255, 0)` | 226  | White           | White           |
+| Cyan `(0, 255, 255)`   | 178  | White           | White           |
+| Magenta `(255, 0, 255)`| 106  | Black           | Light gray      |
+| Orange `(255, 165, 0)` | 173  | White           | White           |
+| Gray `(128, 128, 128)` | 128  | White           | Light gray      |
+| Gray `(127, 127, 127)` | 127  | Black           | Light gray      |
+
+This has some consequences:
+
+- Green, yellow, cyan and orange draw white, so they are invisible on the white background.
+- Red, blue and magenta draw black, so they cannot be told apart from black, for example to highlight a warning.
+- A darker green such as `Color(0, 200, 0)` (luma 117) draws black, while full green draws white.
+- Mid grays flip between black and white at `128`, so a small change in a gray value can invert it.
+- Images and LVGL content are converted pixel by pixel in the same way, without dithering, so areas of similar
+  brightness become solid black or white. For photos, use a `BINARY` [image](/components/image/) with
+  `dither: FLOYDSTEINBERG`, which keeps the shading.
+
+### Color Panels
+
+Panels with colored inks map each color to one of their inks. The `inkplate2`, 4-color (JD79660), 6-color
+(`Seeed-reTerminal-E1002`, `Seeed-reTerminal-E1004`) and `inkplate6color` models first check whether the color is
+close to gray, meaning its largest and smallest RGB components differ by less than `50`. A gray is drawn black or
+white by its luma, as above (`Seeed-reTerminal-E1004` uses the plain average of the components instead). Any other
+color counts each component as on above `128`, and the combination of components that are on selects the ink. Colors
+with no matching ink are folded into another, and a dark color with no component above `128` is black.
+
+The `WeAct-*-3c`, `Waveshare-2.13in-bv4`, `Waveshare-2.66in-b` and `Waveshare-7.5in-bV2-BWR` models use a simpler
+rule: red if the red component is above `127` and greater than green and blue together, otherwise white if the average
+of the components is at least half brightness, otherwise black.
+
+| Color                  | WeAct and Waveshare 3-color | `inkplate2` | 4-color | 6-color | `inkplate6color` |
+|------------------------|-----------------------------|-------------|---------|---------|------------------|
+| Red `(255, 0, 0)`      | Red                         | Red         | Red     | Red     | Red              |
+| Green `(0, 255, 0)`    | Black                       | Black       | Black   | Green   | Green            |
+| Blue `(0, 0, 255)`     | Black                       | Black       | Black   | Blue    | Blue             |
+| Yellow `(255, 255, 0)` | White                       | White       | Yellow  | Yellow  | Yellow           |
+| Cyan `(0, 255, 255)`   | White                       | White       | White   | Green   | Green            |
+| Magenta `(255, 0, 255)`| White                       | White       | White   | Red     | Red              |
+| Orange `(255, 165, 0)` | Red                         | White       | Yellow  | Yellow  | Orange           |
+
+Things to watch for:
+
+- Magenta draws white on 3-color and 4-color panels, and so is invisible on the white background.
+- Green draws black on 3-color and 4-color panels, but white on black and white panels.
+- Orange draws red, white, yellow or orange depending on the panel.
+- Yellow and cyan draw white on 3-color panels.
 
 ## Actions
 
