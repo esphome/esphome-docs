@@ -36,10 +36,10 @@ air, comes from the configuration (`r0:`) or from a clean-air calibration at boo
 
 > [!NOTE]
 > The MQ modules need 5 V on `VCC` and their AO pin swings up to that supply. The ADC pins of an ESP32 are not 5 V
-> tolerant, so connect AO through a voltage divider and describe it with `voltage_multiplier:`, or use a sampler that
-> covers the 0 - 5 V range.
+> tolerant, so connect AO through a voltage divider and describe it with `voltage_multiplier:`. The divider is needed
+> for any sampler that runs from less than 5 V, including an ADS1115 on a 3.3 V supply.
 
-## Example configuration
+## Example Configuration
 
 The analog output is read through an [ADC](/components/sensor/adc/) sensor. The 10k/20k divider of the recommended
 wiring maps the 0 - 5 V output onto 0 - 3.33 V, which `voltage_multiplier: 1.5` scales back:
@@ -49,45 +49,34 @@ wiring maps the 0 - 5 V output onto 0 - 3.33 V, which `voltage_multiplier: 1.5` 
 sensor:
   - platform: adc
     id: mq8_adc
-    name: "MQ-8 AO"
-    pin: GPIO34
+    pin: GPIOXX
     attenuation: 12db
-    update_interval: 60s
 
   - platform: mq_gas_sensors
     name: "Hydrogen (MQ-8)"
     sensor_type: MQ-8
-    gas: H2
     voltage: mq8_adc
     voltage_multiplier: 1.5     # 10k/20k divider in front of the AO pin
     calibration:                # determine R0 in clean air at boot
       delay: 5min
-      sample_count: 50
 ```
 
-An [ADS1115](/components/sensor/ads1115/) (16 bit, gain 6.144 V) covers the 0 - 5 V output directly, so no divider is
-needed:
+Any other voltage sampler works the same way, for example an [ADS1115](/components/sensor/ads1115/) channel. Its
+inputs are limited to its own supply, so the divider stays unless the ADS1115 runs from 5 V:
 
 ```yaml
 # Example configuration entry, external sampler
-i2c:
-  sda: GPIO21
-  scl: GPIO22
-
-ads1115:
-  - address: 0x48
-
 sensor:
   - platform: ads1115
     id: mq135_ao
     multiplexer: A0_GND
-    gain: 6.144
-    update_interval: 100ms
+    gain: 4.096
 
   - platform: mq_gas_sensors
     name: "Ammonia (MQ-135)"
     sensor_type: MQ-135
-    voltage: mq135_ao           # 0 - 5 V directly, no divider
+    voltage: mq135_ao
+    voltage_multiplier: 1.5     # the same 10k/20k divider
     calibration:
       delay: 5min
 ```
@@ -110,10 +99,10 @@ sensor:
 > Keep the sensor in clean air for the whole calibration: the R0 it determines is the reference of every later
 > reading, and it is not stored across reboots.
 
-## Configuration variables
+## Configuration Variables
 
 - **sensor_type** (**Required**, string): The type of the sensor, one of the types listed in
-  [Supported sensors and built-in curves](#supported-sensors-and-built-in-curves). Case and separators are ignored,
+  [Supported Sensors and Built-in Curves](#supported-sensors-and-built-in-curves). Case and separators are ignored,
   so `mq8`, `mq-8` and `MQ_8` are all equivalent.
 - **gas** (*Optional*, string): The gas whose curve is evaluated. Must be one of the gases listed for the type.
   Defaults to the primary gas of `sensor_type`.
@@ -140,11 +129,11 @@ sensor:
   - **sample_count** (*Optional*, int): The number of readings averaged into R0. Defaults to `50`. Range: 1-1000.
   - **sample_interval** (*Optional*, [Time](/guides/configuration-types#time)): The spacing between two of those
     readings. Defaults to `20ms`; the minimum is 16 ms, one pass of the main loop.
-- All other options from [Sensor](/components/sensor).
+- All other options from [Sensor](/components/sensor/).
 
 Without `r0:` or `calibration:` the sensor stays `unknown` until R0 is known.
 
-## Supported sensors and built-in curves
+## Supported Sensors and Built-in Curves
 
 The `gas` option selects one of the gases of the type; the other columns are the defaults that apply when the
 corresponding option is not set. The published value is clamped to the range of the type.
@@ -164,11 +153,11 @@ corresponding option is not set. The published value is clamped to the range of 
 | `MQ-137` | `linear` | 1 | `NH3` | `NH3` | 0 - 500 ppm |
 | `MQ-138` | `linear` | 1 | `TOLUENE` | `ACETONE`, `ALCOHOL`, `TOLUENE` | 0 - 1000 ppm |
 
-The MQ-131 measures ozone, whose datasheet range is given in ppb (10 - 1000 ppb), which is why its range is the
-unusually low 10 ppm. The types without a published curve (MQ-136, MQ-214, MQ-303A, MQ-309A) are not supported by this
-platform.
+The MQ-131 measures ozone, whose datasheet gives its range in ppb (10 - 1000 ppb). Its built-in curve reports ppm
+and is clamped at the 10 ppm its fit covers. The types without a published curve (MQ-136, MQ-214, MQ-303A, MQ-309A)
+are not supported by this platform.
 
-## Notes and limitations
+## Notes and Limitations
 
 - **Power supply**: The modules need 5 V on `VCC`. The ADC pins of an ESP32 are not 5 V tolerant (the absolute maximum
   is VDD + 0.3 V), so never connect AO directly to a GPIO. The recommended wiring is a 10 kOhm / 20 kOhm divider
@@ -200,7 +189,7 @@ logger:
 
 ## See Also
 
-- [Sensor Filters](/components/sensor#sensor-filters)
+- [Sensor Filters](/components/sensor/#sensor-filters)
 - [ADC](/components/sensor/adc/)
 - [ADS1115](/components/sensor/ads1115/)
 - [MQUnifiedsensor library](https://github.com/miguel5612/MQSensorsLib)
