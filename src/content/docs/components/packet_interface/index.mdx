@@ -1,0 +1,55 @@
+---
+description: "Instructions for setting up a packet interface component on ESPHome"
+title: "Packet Interface Component"
+sidebar:
+  label: "Packet Interface Component"
+---
+
+import APIRef from '@components/APIRef.astro';
+
+A packet interface sends and receives packets of bytes over a communication channel, such as a serial port or a
+UDP network connection. It does not know what the bytes mean. Other components use a packet interface to carry
+their own data, without needing to know how the channel works.
+
+Each channel type is a platform of this component. The platforms currently available are:
+
+- [UART](/components/packet_interface/uart/): packets are sent over a serial port, with a simple framing scheme
+  that marks where each packet starts and ends.
+- [UDP](/components/packet_interface/udp/): each packet is sent as one UDP datagram, using the settings of the
+  [UDP](/components/udp/) component.
+
+The [Packet Transport](/components/packet_transport/) component can use any packet interface as its channel through
+the [packet_interface](/components/packet_transport/packet_interface/) transport platform.
+
+## Example Configuration
+
+```yaml
+# Example configuration entry
+uart:
+  tx_pin: GPIOXX
+  rx_pin: GPIOXX
+  baud_rate: 115200
+
+packet_interface:
+  - platform: uart
+    id: serial_link
+```
+
+## Configuration variables
+
+These options are common to all platforms:
+
+- **platform** (**Required**, string): The type of channel to use, for example `uart` or `udp`.
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation. Use
+  this to refer to the interface from another component.
+- **max_packet_size** (*Optional*, int): The largest packet, in bytes, that a user of this interface may send. The
+  range and default depend on the platform.
+
+See the page for each platform for the options it adds.
+
+## See Also
+
+- [UART Packet Interface](/components/packet_interface/uart/)
+- [UDP Packet Interface](/components/packet_interface/udp/)
+- [Packet Transport Component](/components/packet_transport/)
+- <APIRef text="packet_interface.h" path="packet_interface/packet_interface.h" />

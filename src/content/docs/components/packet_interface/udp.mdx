@@ -1,0 +1,39 @@
+---
+description: "Instructions for setting up a UDP packet interface on ESPHome"
+title: "UDP Packet Interface"
+---
+
+import APIRef from '@components/APIRef.astro';
+
+The `udp` [Packet Interface](/components/packet_interface/) platform sends and receives packets over the network using
+the [UDP](/components/udp/) component. Each packet is sent as one UDP datagram to every address configured in the
+`udp` component, and every datagram received on the listen port is passed on as one packet.
+
+The interface enables both sending and receiving on the `udp` component it uses.
+
+## Example Configuration
+
+```yaml
+# Example configuration entry
+udp:
+  addresses: 192.168.1.255
+
+packet_interface:
+  - platform: udp
+    id: network_link
+```
+
+## Configuration variables
+
+- **udp_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the [UDP](/components/udp/) component to
+  use. Required only if more than one `udp` component is configured.
+- **max_packet_size** (*Optional*, int): The largest packet, in bytes, that a user of this interface may send. Range
+  is 16 to 508, the largest packet the `udp` component can receive. Defaults to `508`.
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
+
+## See Also
+
+- [Packet Interface Component](/components/packet_interface/)
+- [UDP Component](/components/udp/)
+- [Packet Transport Component](/components/packet_transport/)
+- <APIRef text="udp_packet_interface.h" path="udp/packet_interface/udp_packet_interface.h" />
