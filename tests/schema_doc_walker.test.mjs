@@ -551,6 +551,58 @@ test("nested bullets under a key created from platform children are written to e
   }
 });
 
+test("a rerun over an emitted bundle still writes nested descriptions through the platform children", async () => {
+  const bundle = {
+    esphome: core(["foo", "bar"], { sensor: {} }),
+    sensor: {
+      sensor: {
+        schemas: { SENSOR_SCHEMA: schema({ name: { key: "Optional" } }) },
+        components: { foo: {}, bar: {} },
+      },
+    },
+    foo: {
+      "foo.sensor": {
+        schemas: {
+          CONFIG_SCHEMA: schema({
+            mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } },
+          }),
+        },
+      },
+    },
+    bar: {
+      "bar.sensor": {
+        schemas: {
+          CONFIG_SCHEMA: schema({
+            mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } },
+          }),
+        },
+      },
+    },
+  };
+  const page = [
+    "Sensors.",
+    "## Base Sensor Configuration",
+    "- **name** (*Optional*, string): The name.",
+    "- **mode** (*Optional*, string): The sampling mode.\n  - `FAST`: Sample quickly.\n  - `SLOW`: Sample slowly.",
+    "",
+  ].join("\n\n");
+  const first = await walk({ schema: bundle, pages: { "sensor/index.mdx": page } });
+  // The saved bundle holds the docs-only `mode` the first run created on the base schema
+  const emitted = Object.fromEntries(first.store.files);
+  const { store, report } = await walk({
+    schema: emitted,
+    pages: { "sensor/index.mdx": page.replace("Sample quickly.", "Sample fast.") },
+  });
+  for (const comp of ["foo", "bar"]) {
+    const values = store.files.get(comp)[`${comp}.sensor`].schemas.CONFIG_SCHEMA.schema.config_vars.mode.values;
+    assert.match(values.FAST.docs, /^Sample fast/);
+  }
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "nested_list_ignored"),
+    [],
+  );
+});
+
 test("an orphan list is reported even when its first bullet is prose", async () => {
   const { report } = await walk({
     schema: {

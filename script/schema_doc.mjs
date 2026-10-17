@@ -738,6 +738,9 @@ export class Report {
   }
 }
 
+/** An entry an emission created from docs alone: a key and its text, no definition. */
+const isDocsOnly = (prop) => Object.keys(prop).every((k) => k === "key" || k === "docs");
+
 export class Walker {
   constructor(
     store,
@@ -1800,7 +1803,11 @@ export class Walker {
         // platform components declare (created on the base), then the other
         // schemas of the file
         found = await store.findPropOwner({ variants: inner.variants.slice(0, inner.primaryCount) }, parsed.key);
-        if (!found) found = await this.createFromChildren(inner, parsed, item, documented);
+        // A docs-only entry is what an earlier emission created on the base; its nested text
+        // still has to reach the children that define the key
+        if (!found || isDocsOnly(found.prop)) {
+          found = (await this.createFromChildren(inner, parsed, item, documented)) ?? found;
+        }
       }
       found ??= await store.findPropOwner(inner, parsed.key);
       if (!found && this.section?.parent && inner === this.section.inner) {
