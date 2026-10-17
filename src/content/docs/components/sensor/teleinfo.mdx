@@ -181,6 +181,8 @@ template:
         unit_of_measurement: "Wh"
         device_class: energy
         state_class: total_increasing
+        # Use the entity ID Home Assistant gave the text sensor above; it usually starts with the
+        # device name, for example sensor.linky_total_energy_index
         availability: "{{ states('sensor.total_energy_index') | is_number }}"
         state: "{{ states('sensor.total_energy_index') | int }}"
 ```
