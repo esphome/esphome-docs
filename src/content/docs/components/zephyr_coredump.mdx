@@ -48,16 +48,20 @@ The log looks like this:
 [14:36:08.321][E][zephyr_coredump:087]: #CD:END#
 ```
 
-Save the log to a file and use the scripts from the `scripts/coredump` directory of a Zephyr checkout
-together with the `.elf` file from the build directory of your device:
+Save the log to a file, for example with `esphome logs device.yaml | tee device.log`. The parser reads
+everything after `#CD:` as hex, so strip the colour codes first. The scripts live in the `scripts/coredump`
+directory of the Zephyr checkout that ESPHome downloaded for the build, and `zephyr.elf` is in the build
+directory (`.esphome/build/<name>/.pioenvs/<name>/zephyr/zephyr/zephyr.elf` with the PlatformIO toolchain).
+GDB is `arm-zephyr-eabi-gdb` from the same toolchain; `gdb-multiarch` works as well.
 
 ```bash
-# Convert the log into a binary coredump
-python3 coredump_serial_log_parser.py device.log coredump.bin
+# Remove the colour codes and convert the log into a binary coredump
+perl -pe 's/\e\[[0-9;]*m//g' device.log > plain.log
+python3 coredump_serial_log_parser.py plain.log coredump.bin
 # Serve it to GDB
-python3 coredump_gdbserver.py firmware.elf coredump.bin
+python3 coredump_gdbserver.py zephyr.elf coredump.bin
 # In a second terminal
-arm-zephyr-eabi-gdb firmware.elf
+arm-zephyr-eabi-gdb zephyr.elf
 (gdb) target remote localhost:1234
 (gdb) bt
 ```
@@ -72,6 +76,7 @@ arm-zephyr-eabi-gdb firmware.elf
 ...
 #11 0x00003850 in esphome::Application::loop (this=0x20001d98 <esphome::App>)
     at src/esphome/core/application.cpp:152
+...
 #13 0x00014b38 in main () at src/esphome/components/zephyr/core.cpp:104
 ```
 

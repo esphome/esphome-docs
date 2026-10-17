@@ -86,10 +86,11 @@ Or connect to a specific serial:
 esphome upload nrf52_device.yaml --device /dev/ttyACM0
 ```
 
-> [!NOTE]
+> [!WARNING]
 > The image slots end below the partition of the [Zephyr Coredump](/components/zephyr_coredump/) component,
-> so enabling or disabling that component moves them. Flash the device over USB once after such a change;
-> an OTA update alone leaves the installed MCUboot with the old slot layout.
+> so enabling or disabling that component moves them. Flash the device over USB once after such a change.
+> An OTA update alone leaves the installed MCUboot with the old slot layout, and later OTA updates would
+> silently fail.
 
 ## See Also
 
