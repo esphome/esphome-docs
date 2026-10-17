@@ -3,6 +3,7 @@ title: "MT6701 14-Bit Magnetic Angle Sensor"
 description: "Instructions for setting up the MT6701 magnetic angle sensor / rotary encoder."
 ---
 
+import { Image } from 'astro:assets';
 import APIRef from '@components/APIRef.astro';
 
 The `mt6701` sensor platform lets you use your MT6701
@@ -15,6 +16,8 @@ This is a minimal driver: it reports the absolute angle and, over I²C, lets you
 configure the chip's ABZ / UVW / analog outputs. Higher-level quantities such
 as multi-turn position or rotational speed are left to you to compute in YAML
 from the angle it exposes (see [Deriving Position and Speed](#deriving-position-and-speed)).
+
+<Image src="/images/mt6701.jpg" width={300} height={240} layout="constrained" alt="" />
 
 Pick one interface and add the matching hub, then add individual sensors with
 the [MT6701 Sensor Platform](#sensor).
@@ -30,9 +33,7 @@ the [MT6701 Sensor Platform](#sensor).
 If five reads in a row fail (a bus error, or over SSI a CRC mismatch), the hub
 raises a warning status. It clears on the next good read.
 
-<span id="mt6701-i2c-component"></span>
-
-## I²C Component/Hub
+## I2C Hub
 
 To use the encoder over I²C, first set up the [I²C Bus](/components/i2c/) and
 connect the sensor to the pins specified there.
@@ -109,9 +110,7 @@ own `update_interval`.
 > ABZ or UVW output that you configure here, save it to EEPROM first and then
 > switch the `MODE` pin. The analog / PWM output has a pin of its own.
 
-<span id="mt6701-spi-component"></span>
-
-## SSI/SPI Component/Hub
+## SSI/SPI Hub
 
 The SSI interface is SPI-compatible and read-only, but it also reports the
 magnetic-field status, push button and track-loss flags that are not available
@@ -147,8 +146,8 @@ own `update_interval`, and every read refreshes the status flags.
 ## Sensor
 
 The `mt6701` sensor publishes the absolute angle (and, optionally, the raw
-count) from your MT6701. Set up an [I²C](#mt6701-i2c-component) or
-[SSI/SPI](#mt6701-spi-component) hub first, then add this platform.
+count) from your MT6701. Set up an [I²C](#i2c-hub) or
+[SSI/SPI](#ssispi-hub) hub first, then add this platform.
 
 ```yaml
 sensor:
@@ -178,7 +177,7 @@ sensor:
 ## Binary Sensor
 
 The `mt6701_spi` binary sensors expose the status flags carried in the SSI
-frame. They are only available on the [SSI/SPI hub](#mt6701-spi-component).
+frame. They are only available on the [SSI/SPI hub](#ssispi-hub).
 
 ```yaml
 binary_sensor:
@@ -212,7 +211,7 @@ binary_sensor:
 ## Text Sensor
 
 The `mt6701_spi` text sensor exposes the magnetic-field status. It is only
-available on the [SSI/SPI hub](#mt6701-spi-component).
+available on the [SSI/SPI hub](#ssispi-hub).
 
 ```yaml
 text_sensor:
