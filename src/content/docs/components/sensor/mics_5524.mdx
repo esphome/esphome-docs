@@ -1,0 +1,216 @@
+---
+description: "Instructions for setting up MiCS-5524 gas sensors with ESPHome."
+title: "MiCS-5524 Gas Sensor"
+---
+
+import Figure from '@components/Figure.astro';
+import APIRef from '@components/APIRef.astro';
+
+The `mics_5524` sensor platform allows you to use the **MiCS-5524** MEMS multi-gas sensor - the small 5 V
+analog modules with `VCC` / `GND` / `A0` / `EN` pads, and the DFRobot "Fermion" breakout they are cloned from - with
+ESPHome. One entry configures one physical sensor: it reads the analog output once per `update_interval` and publishes
+every gas listed under it as its own sub-sensor.
+
+<Figure
+  src="/images/mics_5524.jpg"
+  alt="MiCS-5524 multi-gas sensor module"
+  caption="MiCS-5524 multi-gas sensor module."
+  layout="constrained"
+  width={300}
+  height={240}
+/>
+
+The module has a single analog output (AO) for several reducing gases, so the signal comes from an existing voltage
+sampler such as an [ADC](/components/sensor/adc/) or [ADS1115](/components/sensor/ads1115/) sensor (`voltage:`). The
+component samples that voltage, converts it into a clean-air ratio and evaluates the vendor curve of every configured
+gas, so one reading is interpreted per gas instead of read once per gas.
+
+> [!NOTE]
+> The MiCS-5524 is **not** a safety-grade sensor. It has one analog output for CO, H2, C2H5OH, NH3 and CH4 and cannot
+> tell them apart, and individual sensors vary widely. Treat every published value as an estimate.
+
+## How the Numbers Are Calculated
+
+The component implements the vendor model of the [DFRobot_MICS](https://github.com/DFRobot/DFRobot_MICS) library
+(MIT), which is what this breakout is sold for and what the
+[Fermion tutorial](https://www.makerguides.com/fermion-mems-multi-gas-sensor-mics-5524-with-arduino/) uses:
+
+$$
+\text{x} = \text{VCC} - V_{AO}
+\qquad \qquad
+\text{ratio} = \frac{\text{x}}{x_{air}}
+\qquad \qquad
+\text{ppm} = \frac{\text{threshold} - \text{ratio}}{\text{gain}}
+$$
+
+- `x` is how far the analog output sits below the supply and `x_air` is the same value in clean air, where the ratio
+  is 1.0. The ratio drops as the gas concentration rises, and the ppm value follows from the `threshold` and `gain` of
+  the gas: a ratio above the threshold counts as "not detected" and publishes 0 ppm, a result below the vendor
+  minimum of the gas is reported the same way, and the upper end is clamped to the measuring range of that gas.
+- `x_air` is measured in place, either hard-coded with `air_reference:` or captured by the automatic clean-air
+  calibration (`calibration:`), so the board's load resistor and the exact divider ratio do not matter.
+- A second, datasheet-based model (`RS` / `R0`) is not implemented by this platform.
+
+## Example Configuration
+
+The analog output is read through an [ADC](/components/sensor/adc/) sensor. The 10k/20k divider of the recommended
+wiring maps the 0 - 5 V output onto 0 - 3.33 V, which `voltage_multiplier: 1.5` scales back:
+
+```yaml
+# Example configuration entry
+sensor:
+  - platform: adc
+    id: mics_ao
+    pin: GPIOXX
+    attenuation: 12db
+
+  - platform: mics_5524
+    voltage: mics_ao
+    voltage_multiplier: 1.5     # 10k/20k divider in front of the AO pin
+    calibration:                # capture the clean-air reference at boot
+      delay: 3min
+    carbon_monoxide:
+      name: "CO (MiCS-5524)"
+    hydrogen:
+      name: "H2 (MiCS-5524)"
+```
+
+Any other voltage sampler works the same way, for example an [ADS1115](/components/sensor/ads1115/) channel. Its
+inputs are limited to its own supply, so the divider stays unless the ADS1115 runs from 5 V:
+
+```yaml
+# Example configuration entry, external sampler
+sensor:
+  - platform: ads1115
+    id: mics_ao
+    multiplexer: A0_GND
+    gain: 4.096
+
+  - platform: mics_5524
+    voltage: mics_ao
+    voltage_multiplier: 1.5     # the same 10k/20k divider
+    calibration:
+      delay: 5min               # leave the sensor in clean air for that long after boot
+    carbon_monoxide:
+      name: "CO trace (MiCS-5524)"
+```
+
+With `air_reference:` the calibration is skipped, which is what a stable, already burned-in sensor ends up with - the
+value is the one the component logs after a calibration:
+
+```yaml
+# Example configuration entry, fixed reference
+sensor:
+  - platform: mics_5524
+    voltage: mics_ao
+    voltage_multiplier: 1.5
+    air_reference: 1.2          # VCC - V_AO in clean air, from the previous calibration
+    carbon_monoxide:
+      name: "CO (MiCS-5524)"
+```
+
+> [!NOTE]
+> Keep the sensor in clean air for the whole calibration and do not configure a gas that may be present while it runs:
+> the reference it captures is the baseline of every later reading.
+
+## Configuration Variables
+
+One entry is one physical sensor and not an entity itself: the gases listed under it are the entities.
+
+- **voltage** (**Required**, [ID](/guides/configuration-types/#id)): The ID of a voltage sampler (`adc`, `ads1115`,
+  ...) that reads the AO pin.
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code generation.
+- **voltage_multiplier** (*Optional*, float): The multiplier applied to the sampled voltage, the inverse of the
+  divider ratio (`1.5` for a 10k/20k divider, `1.0` for a directly connected sensor or a sampler with a wider input
+  range). Defaults to `1.0`.
+- **vcc** (*Optional*, float): The supply voltage of the module. A reading above it cannot come from the sensor,
+  so it is reported as `unknown` with a warning instead of being published as a measurement. Defaults to `5.0`.
+- **sample_count** (*Optional*, int): The number of AO conversions averaged per reading. They run back to back inside
+  one pass of the main loop. Defaults to `4`. Range: 1-16.
+- **warmup_time** (*Optional*, [Time](/guides/configuration-types/#time)): The heater warm-up. Nothing is published
+  before it has elapsed. Defaults to `3min`; use `24h` for the burn-in of a new module.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): The interval between two readings,
+  shared by every gas of the entry. Defaults to `30s`.
+- **air_reference** (*Optional*, float): A fixed clean-air reference in volts (`VCC - V_AO` measured in clean air),
+  which skips the calibration at boot. It has to be smaller than `vcc`. Mutually exclusive with `calibration:`.
+- **calibration** (*Optional*): Capture the clean-air reference at boot instead of hard-coding it.
+  - **delay** (*Optional*, [Time](/guides/configuration-types/#time)): The time to wait after boot before the first
+    sample, so the module has settled. Defaults to `60s`.
+  - **sample_count** (*Optional*, int): The number of readings averaged into the reference. Defaults to `10`.
+    Range: 2-16.
+  - **sample_interval** (*Optional*, [Time](/guides/configuration-types/#time)): The spacing between two of those
+    readings. Defaults to `20ms`; the minimum is 16 ms, one pass of the main loop.
+
+Without `air_reference:` or `calibration:` the component never has an air reference, so every gas stays `unknown`
+permanently. The reference is only captured at boot; there is no action to trigger a calibration at run time.
+
+### Gas Sub-Sensors
+
+`carbon_monoxide`, `hydrogen`, `ethanol`, `ammonia` and `methane` are the gases of the platform, and at least one of
+them has to be configured. Each one is a normal [Sensor](/components/sensor/), so `name:`, `id:`, `filters:`,
+`accuracy_decimals:`, `unit_of_measurement:` and everything else from that platform apply, plus:
+
+- **max_ppm** (*Optional*, float): The upper end of the published range, which may narrow the vendor measuring range
+  of the gas but not raise it. Defaults to the vendor range of the gas.
+
+| Sub-sensor | Vendor range | Vendor `threshold` | Vendor `gain` |
+| --- | --- | --- | --- |
+| `carbon_monoxide` (`CO`) | 1 - 1000 ppm | 0.425 | 0.000405 |
+| `hydrogen` (`H2`) | 1 - 1000 ppm | 0.279 | 0.00026 |
+| `ammonia` (`NH3`) | 10 - 500 ppm | 0.8 | 0.0015 |
+| `ethanol` (`C2H5OH`) | 10 - 500 ppm | 0.306 | 0.00057 |
+| `methane` (`CH4`) | 1000 - 25000 ppm | 0.786 | 0.000023 |
+
+- The vendor `threshold` is the ratio relative to clean air (1.0) at or below which the gas counts as detected, and
+  `gain` is the ratio drop per ppm, so `ppm = (threshold - ratio) / gain`.
+- The vendor's own minimum applies near the threshold: H2 and CO report 0 ppm below 1 ppm, NH3 and C2H5OH below
+  10 ppm and CH4 below 1000 ppm.
+
+## Notes and Limitations
+
+- **Cross-sensitivity**: The MiCS-5524 is a MEMS metal-oxide sensor for trace detection, not a safety device. The five
+  sub-sensors are views of the same reading interpreted through the curve of their gas, not independent measurements.
+- **`unknown` vs `0 ppm`**: Unusable readings - an AO that cannot be read or is at or below 0 V, a reading above
+  the configured `vcc:`, and a reference that is not available yet - publish `unknown`, never `0 ppm`, so a broken
+  sensor cannot look like clean air. The component raises its status warning and logs the voltage once instead.
+  `0 ppm` is only published when the model says "not detected": the ratio is above the threshold, or the result is
+  below the vendor minimum of the gas.
+- **The calibration has to be plausible**: A run whose samples disagree by more than 25 % of their mean was not taken
+  in clean, still air, and neither was a run in which a majority of the samples were unusable. Both are logged with
+  the reason, are retried after `calibration.delay` and keep the gases `unknown` in the meantime. A new module needs
+  24 - 48 h of burn-in before its readings are stable.
+- **The reference is not stored across reboots**: With `calibration:` the sensor calibrates at every boot. The
+  calibration delay and the warm-up run at the same time, so the reference is ready after
+  `max(calibration.delay, warmup_time)` plus the calibration run itself (`sample_count` × `sample_interval`, about
+  0.2 s with the defaults). Hard-code the value the log reports as `air_reference: ...` to skip it.
+- **ESP32 ADC**: The ESP32 ADC is noisy and bottoms out around 75 mV. Raise `sample_count`, add an RC filter or use
+  an [ADS1115](/components/sensor/ads1115/) behind the same divider.
+- **Accuracy**: The vendor model is a coarse fit of a multi-gas sensor, so the published ppm value estimates the
+  concentration of the selected gas rather than measuring it.
+
+## Troubleshooting
+
+| Symptom | Likely cause |
+| --- | --- |
+| state stays `unknown`, warning about a missing air reference | no `calibration:` block and no `air_reference:` |
+| `analog output out of range` status warning, reading `0.0000 V` | AO not wired, module not powered from 5 V, the `EN` pad not driven low |
+| `analog output out of range` status warning, reading above `vcc:` | wrong `vcc:` or `voltage_multiplier:` - the reading is ignored instead of published |
+| ppm far too high | a reference that was captured while gas was present, or a divider ratio that does not match the wiring |
+| ppm always 0 while gas is clearly present | the ratio stays above the gas's `threshold` (0.425 for CO, 0.279 for H2), or the result is below the gas's minimum (1 ppm for CO and H2, 10 ppm for NH3 and C2H5OH, 1000 ppm for CH4) - the model reports 0 ppm either way, so this is expected at low concentrations and not a calibration fault |
+| values jump around | ESP32 ADC noise - raise `sample_count` or add an RC filter |
+| `calibration failed`, or a warning about the spread of the samples | the sensor was not settled in clean, still air; let it burn in and let the component retry |
+| nothing is published for minutes after a restart | `max(warmup_time, calibration.delay)` (`3min` and `60s` by default) plus the calibration run; lower them while testing, or hard-code `air_reference:` |
+
+> [!TIP]
+> The chain behind every reading (`V_AO`, `x`, `ratio` and the ppm value of each gas) is logged at `DEBUG`, the default
+> logger level, which is the quickest way to see whether the reading or its reference is off.
+
+## See Also
+
+- [Sensor Filters](/components/sensor/#sensor-filters)
+- [ADC](/components/sensor/adc/)
+- [ADS1115](/components/sensor/ads1115/)
+- [MiCS-4514](/components/sensor/mics_4514/)
+- [DFRobot_MICS library](https://github.com/DFRobot/DFRobot_MICS) (MIT)
+- [Fermion MiCS-5524 tutorial](https://www.makerguides.com/fermion-mems-multi-gas-sensor-mics-5524-with-arduino/)
+- <APIRef text="mics_5524.h" path="mics_5524/mics_5524.h" />
