@@ -56,7 +56,8 @@ script:
   - In `restart` mode, these actions run before the new run starts. If they execute the same script again,
     only the newest run continues.
   - In `parallel` mode, stopping the script performs these actions once, however many runs were stopped.
-  - In `queued` mode, stopping the in-progress script also removes any runs that are waiting, but the trigger is called only once.
+  - In `queued` mode, stopping the in-progress script also removes any runs that are waiting, but the trigger is
+    called only once.
 
   ```yaml
   script:
