@@ -4,8 +4,8 @@ description: "Emulate a selectable thermometer, serial-ID device or two-channel 
 ---
 
 The `one_wire_device` component makes a classic dual-core [ESP32](/components/esp32/) respond to an external
-[1-Wire controller](/components/one_wire/). **One virtual device is attached to one DQ output.** Select the device
-model with `type`; simultaneous emulation of several virtual devices on the same output is not implemented.
+[1-Wire controller](/components/one_wire/). **A node emulates exactly one device on one DQ GPIO.** Select the device
+model with `type`; multiple emulated outputs per node and several virtual devices on one output are not implemented.
 
 ```yaml
 one_wire_device:
@@ -134,6 +134,8 @@ one_wire_device:
 These sources are existing [binary sensors](/components/binary_sensor/). A high value (`true` or `1`) means a high
 input level; low is `false` or `0`. Other numeric results are invalid rather than implicitly converted to true.
 Either configured channel being unavailable suppresses the endpoint. Omitted channels default to released/high.
+A PIO status byte already sampled at its first bit can finish; an invalid input suppresses the next byte instead of
+reporting retained levels as current data. After recovery, a new bus reset starts the next transaction.
 Each channel is independently addressable:
 
 ```yaml
@@ -173,7 +175,8 @@ overdrive and Resume ROM are not implemented.
 
 The former draft-specific `temperature`, `sensor_id` and direct PIO-source keys are replaced by `value`/`values`.
 For example, replace `sensor_id: source` with `value: !lambda return id(source).state;`.
-Old prototype options `timing_scale: 1` and `interrupt_mode: true` remain accepted, but other values are rejected.
+The obsolete prototype options `timing_scale` and `interrupt_mode` are rejected; only the standard-speed interrupt
+backend is supported.
 
 ## Wiring and Controller
 
@@ -188,7 +191,7 @@ controller bus as well.
 
 ## Deliberate Limits
 
-- Only classic dual-core ESP32 is accepted; there is one emulated endpoint, not a list of virtual devices.
+- Only classic dual-core ESP32 is accepted. There is one emulated device per node, not one independently per pin.
 - Conversion completes immediately using the latest source snapshot; ready polling returns ready. Real sensor
   conversion delays and power consumption are not simulated.
 - Copy Scratchpad and Recall E2 use a **RAM shadow**. They survive bus resets, not ESP32 restarts or power loss.
