@@ -38,18 +38,24 @@ display:
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code generation.
 
 Each redraw moves the terminal's cursor to the top left corner and sends every row, so the terminal shows the grid in
-place. A redraw is skipped while the content has not changed, so an idle display sends nothing. Clear the terminal
-once yourself if it shows older output around the grid.
+place. A redraw is skipped while the content has not changed, so an idle display sends little. Every tenth update the
+grid goes out again with the screen cleared first, so a terminal attached later shows it within a few seconds, and
+older output around the grid disappears.
 
 ## Menu Over a Serial Port
+
+The menu draws itself from the display's lambda, as on an LCD.
 
 ```yaml
 display:
   - platform: uart_terminal
     id: terminal
     dimensions: 20x4
+    lambda: |-
+      id(serial_menu).draw();
 
 lcd_menu:
+  id: serial_menu
   display_id: terminal
   active: true
   mode: joystick
