@@ -20,8 +20,10 @@ Each channel type is a platform of this component. The platforms currently avail
 - [UDP](/components/packet_interface/udp/): each packet is sent as one UDP datagram, using the settings of the
   [UDP](/components/udp/) component.
 
-The [Packet Transport](/components/packet_transport/) component can use any packet interface as its channel through
-the [packet_interface](/components/packet_transport/packet_interface/) transport platform.
+The [Entity Transport](/components/entity_transport/) component uses a packet interface to send sensor and binary
+sensor states between devices. The [Packet Transport](/components/packet_transport/) component can also use any
+packet interface as its channel, through the [packet_interface](/components/packet_transport/packet_interface/)
+transport platform.
 
 ## Example Configuration
 
@@ -198,18 +200,14 @@ packet_interface:
       binary_sensor:
         name: Porch link connected
 
-packet_transport:
-  - platform: packet_interface
-    id: porch_transport
-    packet_interface: porch_link
+entity_transport:
+  - packet_interface: porch_link
 
 binary_sensor:
-  - platform: packet_transport
-    transport_id: porch_transport
+  - platform: entity_transport
     provider: front-porch
     remote_id: front_door
     name: Front door
-    internal: false
 ```
 
 Configuration of the device that has the door sensor. It must configure the same layers:
@@ -229,9 +227,8 @@ packet_interface:
     reliability:
     session:
 
-packet_transport:
-  - platform: packet_interface
-    packet_interface: display_link
+entity_transport:
+  - packet_interface: display_link
     binary_sensors:
       - front_door
 
@@ -244,12 +241,14 @@ binary_sensor:
 - Each device's `addresses` is the IP address of the other device.
 - `provider` is the `name` of the device that sends the state, and `remote_id` is the ID of its binary sensor.
 - The `Porch link connected` sensor turns off when nothing has been heard from the porch device for 30 seconds,
-  three times the default `keep_alive`. If the porch device restarts, it turns off and on again.
+  three times the default `keep_alive`. If the porch device restarts, it turns off and on again, and both devices
+  send all their states again.
 - To encrypt the link, add the same `encryption` key to both `packet_interface` entries.
 
 ## See Also
 
 - [UART Packet Interface](/components/packet_interface/uart/)
 - [UDP Packet Interface](/components/packet_interface/udp/)
+- [Entity Transport Component](/components/entity_transport/)
 - [Packet Transport Component](/components/packet_transport/)
 - <APIRef text="packet_interface.h" path="packet_interface/packet_interface.h" />

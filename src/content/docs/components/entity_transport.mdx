@@ -1,0 +1,112 @@
+---
+description: "Instructions for sending sensor and binary sensor states between ESPHome devices with the entity transport component"
+title: "Entity Transport Component"
+sidebar:
+  label: "Entity Transport"
+---
+
+import APIRef from '@components/APIRef.astro';
+
+The entity transport component sends the states of sensors and binary sensors from one ESPHome device to another,
+without a central server or broker. It sends them over a [packet interface](/components/packet_interface/), such as a
+serial port or a UDP network connection.
+
+A device can be a *provider*, which sends the states of some of its own sensors, a *consumer*, which shows the states
+it receives as its own sensors, or both.
+
+Entity transport does not encrypt or check the packets, and does not resend lost ones. Add these to the packet
+interface instead: an [encryption layer](/components/packet_interface/#encryption) protects the packets, a
+[reliability layer](/components/packet_interface/#reliability) resends lost ones, and a
+[session layer](/components/packet_interface/#session) tells entity transport when the other device can be reached.
+
+## Example Configuration
+
+```yaml
+# Example configuration entry
+entity_transport:
+  - packet_interface: serial_link
+    sensors:
+      - outdoor_temperature
+    binary_sensors:
+      - id: front_door
+        broadcast_id: door
+
+sensor:
+  - platform: entity_transport
+    provider: other-device
+    remote_id: humidity
+    name: Humidity
+```
+
+## Configuration variables
+
+- **packet_interface** (**Required**, [ID](/guides/configuration-types#id)): The
+  [packet interface](/components/packet_interface/) to send and receive states on.
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation. Needed
+  when there is more than one entity transport.
+- **sensors** (*Optional*, list): The sensors whose states are sent. Each entry is either the ID of a sensor, or:
+
+  - **id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the sensor.
+  - **broadcast_id** (*Optional*, string): The ID that other devices use for this sensor. Defaults to `id`.
+
+- **binary_sensors** (*Optional*, list): The binary sensors whose states are sent, in the same form as `sensors`.
+
+  There can be up to 255 sensors and 255 binary sensors.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): Send the dictionary and the states of
+  all sensors and binary sensors at this interval, as well as when they change. At least `1s`, or `never`. Defaults
+  to `never` if the packet interface has both a [reliability layer](/components/packet_interface/#reliability) and a
+  [session layer](/components/packet_interface/#session), and to `15s` otherwise.
+
+## When states are sent
+
+To keep packets small, entity transport does not send entity IDs with every state. Each device numbers its sensors
+and binary sensors, and sends a *dictionary* that gives the ID for each number. Packets with states then use the
+numbers.
+
+- When a sensor or binary sensor changes, its new state is sent straight away.
+- At boot, the dictionary and all states are sent.
+- If the packet interface has a [session layer](/components/packet_interface/#session), the dictionary and all
+  states are sent again each time the other device can be reached again, including after it restarts. While it
+  cannot be reached, the sensors that show its states have no state.
+- At each `update_interval`, the dictionary and all states are sent again. Without a reliability and a session
+  layer, this happens every 15 seconds by default, so that a lost packet is soon made good.
+- A device that receives states from a device whose dictionary it does not have yet asks for it, at most every 5
+  seconds. The other device then sends its dictionary and all states.
+
+When the packet interface cannot send a packet, for example while the network is not connected, it is tried again
+after a second.
+
+## Sensor and binary sensor
+
+A sensor or binary sensor with the `entity_transport` platform shows the state of a sensor on another device.
+
+```yaml
+binary_sensor:
+  - platform: entity_transport
+    provider: other-device
+    remote_id: door
+    name: Front door
+```
+
+- **provider** (**Required**, string): The name of the device that sends the state, as set by `name` in its
+  `esphome:` section.
+- **remote_id** (*Optional*, string): The ID of the sensor on the other device, or its `broadcast_id` if it has
+  one. Required unless `id` is given, in which case it defaults to `id`.
+- **entity_transport_id** (*Optional*, [ID](/guides/configuration-types#id)): The entity transport to receive the
+  state from. Needed when there is more than one.
+- All other options from [Sensor](/components/sensor/#config-sensor) or
+  [Binary Sensor](/components/binary_sensor/#config-binary_sensor).
+
+## Differences from packet transport
+
+Entity transport does the same job as [packet transport](/components/packet_transport/), but leaves the work that
+is not about entities to the packet interface. It has no `encryption`, `rolling_code_enable`, `ping_pong_enable`
+or `providers` options, and no status binary sensor; use the encryption and session layers instead. Its packets are
+smaller, as entity IDs are sent only in the dictionary. The packets are not compatible: both devices must use the same
+component.
+
+## See Also
+
+- [Packet Interface Component](/components/packet_interface/)
+- [Packet Transport Component](/components/packet_transport/)
+- <APIRef text="entity_transport.h" path="entity_transport/entity_transport.h" />
