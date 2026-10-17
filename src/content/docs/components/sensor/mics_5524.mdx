@@ -133,6 +133,7 @@ model, and the diagnostics make the intermediate values visible:
 # Example configuration entry, component-owned ADC and the datasheet model
 sensor:
   - platform: mics_5524
+    id: mics_5524
     pin: GPIOXX
     voltage_divider:            # the 10k/20k divider in front of the AO pin
       r1: 10000
@@ -175,16 +176,24 @@ Exactly one source of the analog output is required:
   `(r1 + r2) / r2`. Mutually exclusive with `voltage_multiplier:`.
   - **r1** (**Required**, float): The resistor between AO and the pin, in Ohm.
   - **r2** (**Required**, float): The resistor between the pin and ground, in Ohm.
-- **adc_input_max** (*Optional*, float): The measuring range of the sampler in volts. With `voltage_divider:` the
-  divider has to bring `vcc:` within it, otherwise the configuration is rejected. Defaults to the built-in limit of
-  the platform (ESP32 and RP2 `3.3`, ESP8266 `1.0`); on other platforms it is required with `voltage_divider:`.
+- **adc_input_max** (*Optional*, float): The top of the measuring range of the sampler, in volts: the largest reading
+  the wiring can produce (`vcc:` scaled by `voltage_divider:` or `voltage_multiplier:`) has to stay within it.
+  Defaults to the built-in limit of the platform (ESP32 and RP2 `3.3`, ESP8266 `1.0`); for an ESP32 `pin:` source it
+  defaults to the range of the configured `adc_attenuation:` instead. On a platform without a built-in limit both this
+  and `adc_pin_max:` are required as soon as the wiring is checked.
 - **adc_pin_max** (*Optional*, float): The absolute maximum the ADC pin tolerates, in volts; it is checked the same
   way as `adc_input_max:`. Defaults to the built-in limit of the platform (ESP32 and RP2 `3.6`, ESP8266 `1.0`).
 - **adc_attenuation** (*Optional*, enum): The attenuation of the `adc` sensor that `pin:` creates: `0db`, `2.5db`,
-  `6db`, `11db`, `12db` or `auto`. Defaults to `12db` on ESP32 so that the 3.3 V a divider may put on the pin is not
-  clipped. With `voltage:` set `attenuation:` on that sampler instead.
+  `6db`, `11db`, `12db` or `auto`. Defaults to `12db` on ESP32 so the pin is not clipped by the 0 dB default, and it
+  also picks the default `adc_input_max:` of the wiring check there. With `voltage:` set `attenuation:` on that
+  sampler instead.
 - **enable_pin** (*Optional*, [Pin](/guides/configuration-types/#pin)): The pin wired to the `EN` pad of the module.
   The input is active low, so configure `inverted: true`, or the module stays asleep and every reading sits at 0 V.
+
+Every `pin:` source is checked against these limits, so wiring that puts the full `vcc:` on the ADC is rejected unless
+a `voltage_divider:` or `voltage_multiplier:` scales it down. A `voltage:` source is only checked when it has a
+`voltage_divider:`, since the scaling of an external sampler is not known here. `adc_input_max:` and `adc_pin_max:`
+are accepted only together with `pin:` or `voltage_divider:`.
 
 ### Conversion Model and Reference
 
@@ -268,7 +277,8 @@ them has to be configured. Each one is a normal [Sensor](/components/sensor/), s
 
 Capture a new clean-air reference at run time on the component with the given ID. The calibration starts once the
 warm-up window has passed and uses the `calibration:` parameters (their defaults when no `calibration:` block is set).
-The result replaces the reference in use and is persisted if `calibration.persist:` is `true`.
+The result replaces the reference in use. It is stored in flash and survives a reboot only when a `calibration:` block
+is set and `calibration.persist:` is `true`; without a `calibration:` block it is kept until the next reboot.
 
 ```yaml
 # Example action
@@ -298,8 +308,9 @@ button:
   window. The stored value is keyed to the component ID, the conversion model, `vcc:`, the scaling and `rl:`, so
   changing one of them forces a new calibration. Hard-code the value the log reports as `air_reference: ...` (or
   `r0: ...`) to skip the calibration at boot.
-- **A request overrides a fixed reference**: The `mics_5524.request_calibration` action always captures a new
-  reference, even when `air_reference:` or `r0:` is set, and persists it if `calibration.persist:` is `true`.
+- **A request overrides a fixed reference only until reboot**: `calibration:` cannot be combined with `air_reference:`
+  or `r0:`, so a fixed reference is never persisted. The `mics_5524.request_calibration` action still captures and uses
+  a new reference, but the configured value is back after the next reboot.
 - **ESP32 ADC**: The ESP32 ADC is noisy and bottoms out around 75 mV. Raise `sample_count`, add an RC filter or use
   an [ADS1115](/components/sensor/ads1115/) behind the same divider.
 - **Accuracy**: The vendor model is a coarse fit of a multi-gas sensor, and the datasheet calls its own curve
@@ -312,8 +323,8 @@ button:
 | state stays `unknown`, warning about a missing reference | no `calibration:` block and no `air_reference:` (vendor) or `r0:` (datasheet) |
 | `analog output out of range` status warning, reading `0.0000 V` | AO not wired, module not powered or the `EN` pad not driven low (`enable_pin:` without `inverted: true`) |
 | `analog output out of range` status warning, reading above `vcc:` | wrong `vcc:` or `voltage_multiplier:` - the reading is ignored instead of published |
-| configuration error about `adc_input_max:` or `adc_pin_max:` | the keys only check a `voltage_divider:`, so remove them or add the divider |
-| configuration error that the divider brings the pin above the ADC limit | raise `r1`/`r2`, or declare the real `adc_input_max:`/`adc_pin_max:` of the sampler |
+| configuration error about `adc_input_max:` or `adc_pin_max:` | the keys are only checked for a `pin:` source or a `voltage_divider:`, so remove them or switch to one of those |
+| configuration error that the wiring is above the ADC limit | the largest reading (`vcc:` scaled by the divider or `voltage_multiplier:`) exceeds `adc_input_max:`/`adc_pin_max:` - scale it down, or declare the real limit of the sampler (`pin:` on ESP32 follows `adc_attenuation:`) |
 | configuration error that a gas has no built-in datasheet coefficients | set both `coefficient_a:` and `coefficient_b:` for that gas |
 | ppm far too high or too low in the datasheet model | wrong `rl:` or `r0:` - R0 is `RS` in clean air, in kΩ |
 | ppm far too high | a reference that was captured while gas was present, or a divider ratio that does not match the wiring |
