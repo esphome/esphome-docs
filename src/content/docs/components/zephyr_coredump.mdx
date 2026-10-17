@@ -7,7 +7,7 @@ import APIRef from '@components/APIRef.astro';
 
 The `zephyr_coredump` component helps debug crashes on [nRF52](/components/nrf52/) devices without a
 debug probe. When the firmware crashes, Zephyr saves the CPU registers and the stacks of all threads
-to a 32 KB partition at the top of the application flash. At the next boot the stored dump is printed
+to a 32 KB partition at the top of the application flash. After the restart the stored dump is printed
 in the log as hex-encoded `#CD:` lines and then erased. The Zephyr coredump tools turn that log into
 a GDB session with a full backtrace.
 
@@ -33,15 +33,10 @@ component rejects it; select one of the `adafruit_nrf52_sd*` bootloaders instead
 
 ## Reading the Dump
 
-The dump is printed once, early in the boot, right after the reset reason. Keep a serial monitor
-attached while the device reboots. On boards that log over USB, the host re-enumerates the port after
-a reset and would miss the output, so enable `wait_for_cdc` in the [logger](/components/logger/):
-
-```yaml
-logger:
-  hardware_uart: USB_CDC
-  wait_for_cdc: true
-```
+The dump is printed once a log reader is present and is erased right after. With a UART logger that is
+at boot, so keep the serial monitor attached while the device restarts. With USB logging the device waits
+until the USB port is opened, so a dump from a crash that happened hours ago is still printed when you
+connect. Until then it stays in flash, where only the next crash replaces it.
 
 The log looks like this:
 
