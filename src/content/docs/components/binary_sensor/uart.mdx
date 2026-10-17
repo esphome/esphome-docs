@@ -35,8 +35,8 @@ binary_sensor:
 - All other options from [Binary Sensor](/components/binary_sensor/#config-binary_sensor).
 
 All sensors on one bus read the same bytes, and the first sensor whose sequence matches takes them. Two sensors on the
-same bus therefore cannot have the same sequence, or one whose sequence ends with the other's; the configuration is
-rejected in that case.
+same bus therefore cannot have the same sequence, and neither sequence may occur anywhere inside the other (`AB` and
+`ABC`, or `B` and `ABC`); the configuration is rejected in that case.
 
 ## See Also
 
