@@ -738,6 +738,96 @@ test("options of an action the schema does not have are dropped, not written to 
   );
 });
 
+test("options under an effect or filter heading the schema lacks are dropped, not written to the platform", async () => {
+  const { docs, report, store } = await walk({
+    schema: {
+      esphome: core([], { light: {} }),
+      light: {
+        light: {
+          schemas: { LIGHT_SCHEMA: schema({ name: { key: "Optional" } }) },
+          effects: { strobe: { schema: { config_vars: { name: { key: "Optional" } } } } },
+        },
+      },
+    },
+    pages: {
+      "light/index.mdx": [
+        "Lights.",
+        "## Base Light Configuration",
+        "- **name** (*Optional*, string): The light name.",
+        "## Strobe Effect",
+        "A strobe.",
+        "- **name** (*Optional*, string): The effect name.",
+        "## Missing Effect",
+        "Not in the schema.",
+        "- **name** (*Optional*, string): Text for the missing effect.",
+        "### Configuration variables",
+        "- **name** (*Optional*, string): Text for the missing effect.",
+        "## Other Effect",
+        "Also not in the schema.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("light", "light", "schemas", "LIGHT_SCHEMA", "schema", "config_vars", "name"), /The light name/);
+  assert.match(store.files.get("light").light.effects.strobe.schema.config_vars.name.docs, /The effect name/);
+  assert.deepEqual(
+    report.findings.map((f) => [f.kind, f.line]),
+    [
+      ["unknown_registry_entry", 17],
+      ["orphan_option_list", 21],
+      ["unroutable_section", 23],
+      ["orphan_option_list", 25],
+      ["unknown_registry_entry", 27],
+    ],
+  );
+});
+
+test("a nested typed schema that two outer variants define keeps its discriminator", async () => {
+  const options = () => ({
+    key: "Optional",
+    type: "typed",
+    typed_key: "kind",
+    types: { fast: { config_vars: { speed: { key: "Optional" } } }, slow: { config_vars: {} } },
+  });
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "model",
+              types: { a: { config_vars: { options: options() } }, b: { config_vars: { options: options() } } },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **model** (**Required**): The model.",
+        "- **options** (*Optional*): The options.",
+        "## `options` Trigger",
+        "- **kind** (**Required**): The kind.",
+        "- **speed** (*Optional*, int): The speed.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const types = (...k) => docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "types", ...k);
+  for (const model of ["a", "b"]) {
+    assert.match(types(model, "config_vars", "options"), /^The kind/);
+    assert.match(types(model, "config_vars", "options", "types", "fast", "config_vars", "speed"), /The speed/);
+  }
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key").map((f) => f.key),
+    [],
+  );
+});
+
 test("a top-level <EnumValues> block reaches every typed variant that has the option before it", async () => {
   const typed = (extra = {}) => ({
     config_vars: { mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } }, ...extra },

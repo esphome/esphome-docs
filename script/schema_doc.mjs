@@ -286,7 +286,8 @@ export class SchemaStore {
   async findPropOwner(inner, name, inherited = false, seen = new Set(), root = null) {
     if (!inner) return null;
     if (inner.typedKey === name) {
-      return { prop: { key: "Required", type: "enum" }, owner: null, inherited, typedEntry: inner.entry };
+      const typedEntries = inner.entries ?? [inner.entry];
+      return { prop: { key: "Required", type: "enum" }, owner: null, inherited, typedEntries };
     }
     for (const variantInner of inner.variants) {
       const top = root ?? variantInner;
@@ -347,7 +348,13 @@ export class SchemaStore {
     const inners = props.map((prop) => propInner(prop)).filter(Boolean);
     if (inners.length <= 1) return inners[0] ?? null;
     const variants = inners.flatMap((i) => i.variants);
-    return { variants, primaryCount: variants.length, multi: true };
+    const merged = { variants, primaryCount: variants.length, multi: true };
+    const typedKey = inners[0].typedKey;
+    if (typedKey && inners.every((i) => i.typedKey === typedKey)) {
+      // The same typed schema under several outer variants: one discriminator, documented on every entry
+      Object.assign(merged, { typedKey, typedCount: variants.length, entries: inners.map((i) => i.entry) });
+    }
+    return merged;
   }
 
   /** The names of the schemas a component file holds for `topRef`. */
@@ -847,7 +854,12 @@ export class Walker {
     return null;
   }
 
-  /** A filter or effect entry a heading names ("Strobe Effect", `delta`), if any. */
+  /**
+   * A filter or effect entry a heading names ("Strobe Effect", `delta`): `{ ref }` when the
+   * bundle has it, `{ missing }` for a suffixed heading whose entry does not exist, null for
+   * any other heading. A bare `name` heading without an entry is left alone: on the pages
+   * that document filters that way it is usually a trigger such as `on_press`.
+   */
   async findRegistryEntry(headingText) {
     const { store } = this;
     const platform = store.isPlatform(this.folder) ? this.folder : this.componentRef;
@@ -862,7 +874,8 @@ export class Walker {
       }
       if (name) {
         const ref = `${platform}.${registry}.${name}`;
-        if (await store.exists(ref)) return ref;
+        if (await store.exists(ref)) return { ref };
+        if (suffix !== null) return { missing: `${registry} '${name}'` };
       }
     }
     return null;
@@ -1133,8 +1146,8 @@ export class Walker {
     if (!m) return;
     const typeText = (m[2] ?? m[3])?.match(LAST_PAREN_RE)?.[1];
     const docText = m[4];
-    if (found.typedEntry) {
-      found.typedEntry.docs = this.withSeeAlso(docText);
+    if (found.typedEntries) {
+      for (const entry of found.typedEntries) entry.docs = this.withSeeAlso(docText);
       this.report.stats.emitted.props++;
       return;
     }
@@ -1415,11 +1428,20 @@ export class Walker {
     const registryEntry = await this.findRegistryEntry(
       node.children.some((c) => c.type === "inlineCode") ? `\`${bareCodeHeading(node) ?? ""}\`` : text,
     );
-    if (registryEntry) {
-      await this.emitRegistryDocs(registryEntry, "registry", intro(), line);
-      await this.openSection(registryEntry, node.depth, line, "registry");
-      this.pendingRegistry = registryEntry;
+    if (registryEntry?.ref) {
+      await this.emitRegistryDocs(registryEntry.ref, "registry", intro(), line);
+      await this.openSection(registryEntry.ref, node.depth, line, "registry");
+      this.pendingRegistry = registryEntry.ref;
       this.pendingRegistryDepth = node.depth;
+      return;
+    }
+    if (registryEntry?.missing) {
+      // Its options are not the platform's: drop them until this heading's subtree ends, as for an
+      // unknown action
+      this.report.add("unknown_registry_entry", this.rel, line, { detail: `${registryEntry.missing} not in schema` });
+      this.pendingRegistry = null;
+      await this.closeSection();
+      this.failedSection = { depth: node.depth, defaultRef: this.defaultRef };
       return;
     }
 
