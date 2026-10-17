@@ -16,8 +16,9 @@ asked to fall back to TCP, which every common player does automatically. The cam
 only while at least one client is playing.
 
 > [!WARNING]
-> The connection is plain TCP with no encryption and no authentication: any host that can reach the port can
-> watch the camera. Only use this component on a trusted network.
+> The connection is plain TCP with no encryption and no authentication; `allowed_ips` filters by address but
+> does not authenticate the peer. If it is omitted, any host that can reach the port can watch the camera. Only
+> use this component on a trusted network.
 
 ```yaml
 # Example configuration entry
@@ -35,6 +36,9 @@ rtsp_server:
 - **max_connections** (*Optional*, int): The maximum number of clients that can stream at
   the same time, from `1` to `4`. Each connection reserves about 900 bytes of memory and a
   socket for the whole run, so keep this low on memory-constrained boards. Defaults to `2`.
+- **allowed_ips** (*Optional*, list of IPv4 networks): Only peers from these networks may connect;
+  others are refused at accept time. Each entry is a single address or an `address/prefix` network,
+  for example `192.168.1.0/24`. When omitted every host that can reach the port is accepted.
 
 The component needs an [ESP32 Camera](/components/esp32_camera/) that delivers JPEG: the default
 `pixel_format: JPEG`, or another colour format converted with `jpeg_quality`; `GRAYSCALE` is not
