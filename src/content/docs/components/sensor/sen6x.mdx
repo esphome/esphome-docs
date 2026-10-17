@@ -174,7 +174,8 @@ sensor:
 ## Binary Sensor
 
 The `sen6x` binary sensor platform exposes the device status register as diagnostic entities. The register is
-read and cleared once per update cycle, so each entity reports whether a problem occurred since the last update.
+read and cleared once per update cycle while measuring, so each entity reports whether a problem occurred since
+the last update. The entities keep their last state while the measurement is stopped.
 
 ```yaml
 binary_sensor:
