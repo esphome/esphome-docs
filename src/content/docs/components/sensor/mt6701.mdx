@@ -90,13 +90,13 @@ mt6701_i2c:
   - **analog_start** / **analog_stop** (*Optional*): Start/stop angles of the
     analog or PWM output range (12-bit, same units as **zero_offset**).
 
-- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): The
-  interval at which the hub reads the encoder. Defaults to `60s`.
-
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the
   ID for this MT6701 hub.
 
 - All other options from [I²C Bus](/components/i2c/).
+
+The hub does not poll on its own: the sensors below read the encoder at their
+own `update_interval`.
 
 > [!NOTE]
 > Configuration options are applied on every boot and take effect immediately in
@@ -129,22 +129,20 @@ mt6701_spi:
 - **cs_pin** (**Required**, [Pin](/guides/configuration-types/#pin)): The
   chip-select (CSN) pin.
 
-- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): The
-  interval at which the hub reads the encoder. Defaults to `60s`. The status
-  entities below are refreshed on every read, including the reads triggered by
-  the [sensor](#sensor).
-
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the
   ID for this MT6701 hub.
 
-- All other options from [SPI Bus](/components/spi/). The component defaults to
-  SPI mode 1 at 1 MHz; you normally do not need to change `data_rate` or
-  `spi_mode`.
+- All other options from [SPI Bus](/components/spi/). The bus needs a `miso_pin`;
+  the component defaults to SPI mode 1 at 1 MHz, so you normally do not need to
+  change `data_rate` or `spi_mode`.
+
+The hub does not poll on its own: the sensors below read the encoder at their
+own `update_interval`, and every read refreshes the status flags.
 
 > [!NOTE]
 > A disconnected or stuck-low data line reads as all-zero frames, which pass the
-> CRC. At boot the hub therefore needs at least one frame with a non-zero angle,
-> so an encoder that sits at exactly `0` during setup is reported as not found.
+> CRC. When every frame at boot reads zero the hub logs a warning, but keeps
+> working, since an encoder resting at exactly `0` looks the same.
 
 ## Sensor
 
@@ -207,6 +205,10 @@ binary_sensor:
 - **mt6701_spi_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of
   the SSI/SPI hub.
 
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How
+  often the flags are read. A push has to be seen between two reads, so this is
+  short. Defaults to `50ms`.
+
 ## Text Sensor
 
 The `mt6701_spi` text sensor exposes the magnetic-field status. It is only
@@ -230,6 +232,8 @@ The reported value is one of:
 
 - **mt6701_spi_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of
   the SSI/SPI hub.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How
+  often the field status is read. Defaults to `60s`.
 - All other options from [Text Sensor](/components/text_sensor/).
 
 ## `mt6701_i2c.save_eeprom` Action
