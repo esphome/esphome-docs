@@ -239,9 +239,9 @@ until one is captured with the [`mics_5524.request_calibration`](#mics_5524-requ
 them has to be configured. Each one is a normal [Sensor](/components/sensor/), so `name:`, `id:`, `filters:`,
 `accuracy_decimals:`, `unit_of_measurement:` and everything else from that platform apply, plus:
 
-- **max_ppm** (*Optional*, float): The upper end of the published range. It may narrow the measuring range of the gas
-  but not raise it, and it has to be above `min_ppm:`. Defaults to the range of the gas: its vendor range, or the
-  fitted range of the shipped datasheet fit.
+- **max_ppm** (*Optional*, float): The upper end of the published range, which has to be above `min_ppm:`. Defaults to
+  the range of the gas: its vendor range, or the fitted range of the shipped datasheet fit. In the vendor model it may
+  narrow that range but not raise it.
 - **min_ppm** (*Optional*, float): Readings below it are published as `0 ppm` (not detected). Defaults to the floor of
   the gas: its vendor minimum, or, in the datasheet model, the `1` ppm bottom of the shipped CO fit and `0` for a gas
   with user coefficients. Must be positive and smaller than `max_ppm:`.
