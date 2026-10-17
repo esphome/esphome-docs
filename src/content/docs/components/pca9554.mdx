@@ -75,9 +75,9 @@ binary_sensor:
 ## Configuration variables
 
 - **id** (**Required**, [ID](/guides/configuration-types#id)): The id to use for this `pca9554` component.
-- **address** (*Optional*, int): The I²C address of the driver. This is technically optional, but you should
-  really check to make sure you have the right address as the default will not work for many of the supported
-  components. Defaults to `0x20`.
+- **address** (*Optional*, int): The I²C address of the expander. Defaults to the lowest address of the selected
+  `device`, with all address pins low: `0x20` for the PCA9554, PCA9535, PCA9555 and PCAL9555, `0x38` for the
+  PCA9554A, `0x41` for the PCA9536 and `0x70` for the PCAL9538.
 
 - **device** (*Optional*, string): The part in use, one of the names in the table above. Defaults to `PCA9554`,
   or to the plain part with the pins given by `pin_count`.
