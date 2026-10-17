@@ -5,9 +5,9 @@ title: "RTSP Server Component"
 import APIRef from '@components/APIRef.astro';
 
 
-The `rtsp_server` component streams video from a [camera](/components/camera/) (such as the
-[ESP32 Camera](/components/esp32_camera/)) over RTSP, the standard protocol used by video
-players and surveillance software. This allows tools like VLC, ffplay, go2rtc or Frigate to
+The `rtsp_server` component streams video from an [ESP32 Camera](/components/esp32_camera/) over
+RTSP, the standard protocol used by video players and surveillance software. This allows tools like
+VLC, ffplay, go2rtc or Frigate to
 consume the camera feed directly, without any ESPHome-specific integration.
 
 Video is delivered as Motion JPEG (the format produced by the camera hardware) carried over
@@ -21,15 +21,11 @@ only while at least one client is playing.
 > use this component on a trusted network.
 
 ```yaml
-# Example configuration entry
-esp32_camera:
-  # ... camera pin configuration ...
-
+# Example configuration entry, next to a configured esp32_camera
 rtsp_server:
-  port: 554
 ```
 
-## Configuration variables
+## Configuration Variables
 
 - **port** (*Optional*, int): The port the RTSP server listens on. Defaults to `554`,
   the standard RTSP port.
@@ -37,8 +33,8 @@ rtsp_server:
   the same time, from `1` to `4`. Each connection reserves about 900 bytes of memory and a
   socket for the whole run, so keep this low on memory-constrained boards. Defaults to `2`.
 - **allowed_ips** (*Optional*, list of IPv4 networks): Only peers from these networks may connect;
-  others are refused at accept time. Any form a single address or `address/prefix` network takes,
-  for example `192.168.1.0/24`. When omitted every host that can reach the port is accepted.
+  others are refused at accept time. Each entry is a single address (`192.168.1.50`) or an
+  `address/prefix` network (`192.168.1.0/24`). When omitted, every host that can reach the port is accepted.
 
 The component needs an [ESP32 Camera](/components/esp32_camera/) that delivers JPEG: the default
 `pixel_format: JPEG`, or another colour format converted with `jpeg_quality`; `GRAYSCALE` is not
@@ -47,7 +43,7 @@ otherwise. A client whose connection makes no progress for half a second drops i
 and takes no new one until the connection drains again, so it cannot slow the camera down for the
 other consumers.
 
-## Watching the stream
+## Watching the Stream
 
 The stream is available at `rtsp://<device-ip>:<port>/`. For example:
 
@@ -69,15 +65,17 @@ so the sender has to wait a network round trip every few segments. Over Wi-Fi th
 about one frame per second and keeps dropping frames. The component therefore requests the
 [high-performance networking](/components/network/#high-performance-networking) settings, which raise
 the send buffer and the Wi-Fi driver buffers; in the same test they lifted a Wi-Fi client to about
-5 fps and an Ethernet client to the camera's 10 fps. The cost is heap while clients are connected.
-Set `network: enable_high_performance: false` to turn this off on a board that cannot spare the
-memory, or `network: tcp_send_buffer` to pick a buffer size by hand.
+5 fps and an Ethernet client to the camera's 10 fps (measured on an ESP32-S3 with an OV5640 at
+640x480, 10 fps, over Wi-Fi and Ethernet). The larger TCP buffers cost heap while clients are
+connected; the Wi-Fi driver buffers are reserved for the whole run. Set
+`network: enable_high_performance: false` to turn this off on a board that cannot spare the memory,
+or `network: tcp_send_buffer` to pick a buffer size by hand.
 
 ## Integrating into an NVR
 
 The RTSP URL can be used directly as a camera source in surveillance software such as
 Frigate, go2rtc, Zoneminder or Blue Iris. Configure the source as an RTSP camera with
-TCP transport and the URL `rtsp://<device-ip>:554/`.
+TCP transport and the URL `rtsp://<device-ip>:<port>/`.
 
 ## Home Assistant
 
