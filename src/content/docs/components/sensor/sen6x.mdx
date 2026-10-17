@@ -154,16 +154,17 @@ sensor:
   SEN69C. The sensor will be ignored on unsupported models.
 
   - **automatic_self_calibration** (*Optional*, boolean): Enable or disable the CO₂ sensor's automatic
-    self-calibration (ASC).
+    self-calibration (ASC). The device enables ASC by default.
   - **altitude_compensation** (*Optional*, int): Altitude of the sensor location in meters above sea level,
-    used to compensate the CO₂ reading. Allowed values are in range 0..3000.
+    used to compensate the CO₂ reading. Allowed values are in range 0..3000. The device ignores it once an
+    ambient pressure is written by either option below.
   - **ambient_pressure_compensation** (*Optional*, int): Static ambient pressure in hPa used to compensate the
     CO₂ reading. Allowed values are in range 700..1200.
-  - **ambient_pressure_compensation_source** (*Optional*, [ID](/guides/configuration-types#id)): A pressure sensor
+  - **ambient_pressure_compensation_source** (*Optional*, [ID](/guides/configuration-types/#id)): A pressure sensor
     (in hPa) whose value updates the ambient pressure compensation on every update cycle. Values outside
     700..1200 hPa are ignored with a warning. Can be combined with `ambient_pressure_compensation`, which then
     applies until the source reports a valid value.
-  - All other options from [Sensor](/components/sensor).
+  - All other options from [Sensor](/components/sensor/).
 
   Options that are not set are not written to the device.
 
