@@ -200,6 +200,36 @@ on_...:
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other
 companies.
 
+### `remote_transmitter.transmit_aok` Action
+
+This [action](/automations/actions/#all-actions) sends an A-OK RF remote code to a remote transmitter. A-OK is used by
+remote controls for roller shutters, awnings and similar motors on 433MHz and 868MHz.
+
+```yaml
+on_...:
+  - remote_transmitter.transmit_aok:
+      remote_id: 0x123456
+      channels: 0x1000
+      command: 0x43
+```
+
+#### Configuration Variables
+
+- **remote_id** (**Required**, int, [templatable](/automations/templates/)): The 24-bit ID of the remote to send as.
+  Range is 0 to 0xFFFFFF.
+- **channels** (**Required**, int, [templatable](/automations/templates/)): The 16-bit channel mask to send the command
+  to. Each of the 16 channels on the remote corresponds to one bit of the mask. Multiple bits can
+  be set at once to broadcast the command to multiple receivers.
+- **command** (**Required**, int, [templatable](/automations/templates/)): The 1-byte command code to send.
+  Range is 0 to 0xFF.
+- All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
+
+Set `dump: aok` on a [remote receiver](/components/remote_receiver/) to read these values from an existing remote.
+
+> [!NOTE]
+> Remotes send each code several times. If the device does not react to a single transmission, set `repeat`,
+> for example `times: 8` with `wait_time: 5ms`.
+
 <span id="remote_transmitter-transmit_beo4"></span>
 
 ### `remote_transmitter.transmit_beo4` Action
