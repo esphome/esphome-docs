@@ -1371,8 +1371,8 @@ export class Walker {
     const trig = triggerHeading(node);
     if (trig && this.defaultRef) {
       const base = await store.resolve(this.defaultRef);
-      const prop = await store.findProp(base, trig);
-      if (propInner(prop)) {
+      // nestedInner sees through a docs-only copy of an inherited trigger
+      if (await store.nestedInner(base, trig)) {
         await this.openSection(`${this.defaultRef}/${trig}`, node.depth, line, "heading");
         return;
       }
