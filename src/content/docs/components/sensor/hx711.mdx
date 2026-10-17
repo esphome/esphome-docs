@@ -25,7 +25,7 @@ and `CLK` (or `SCK`  ) to free GPIO pins.
 The HX711 has two input channels. Channel A takes a gain of 128 or 64 and channel B a fixed gain of 32,
 so `gain` selects the channel as well as the amplification. The data sheet suggests channel B for monitoring
 the supply voltage or another low-rate signal next to the load cell on channel A. The optional `channel_b`
-sensor reports channel B after every channel A reading.
+sensor reports channel B after every reading of the main sensor.
 
 The chip is powered down when the device shuts down or reboots, so nothing extra is needed for
 [Deep Sleep](/components/deep_sleep/) or a [Shutdown Button](/components/button/shutdown/). It can also be
