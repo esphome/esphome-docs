@@ -15,6 +15,11 @@ the RTSP connection itself (TCP-interleaved transport). Clients requesting UDP t
 asked to fall back to TCP, which every common player does automatically. The camera streams
 only while at least one client is playing.
 
+> [!WARNING]
+> The connection is plain TCP with no encryption and no authentication; `allowed_ips` filters by address but
+> does not authenticate the peer. If it is omitted, any host that can reach the port can watch the camera. Only
+> use this component on a trusted network.
+
 ```yaml
 # Example configuration entry
 esp32_camera:
@@ -31,11 +36,16 @@ rtsp_server:
 - **max_connections** (*Optional*, int): The maximum number of clients that can stream at
   the same time, from `1` to `4`. Each connection reserves about 900 bytes of memory and a
   socket for the whole run, so keep this low on memory-constrained boards. Defaults to `2`.
+- **allowed_ips** (*Optional*, list of IPv4 networks): Only peers from these networks may connect;
+  others are refused at accept time. Any form a single address or `address/prefix` network takes,
+  for example `192.168.1.0/24`. When omitted every host that can reach the port is accepted.
 
-The component needs an [ESP32 Camera](/components/esp32_camera/) with `pixel_format: JPEG`
-(the default) and a `resolution` of at most 2040 pixels per side; the configuration is
-rejected otherwise. A client that cannot keep up skips frames rather than slowing the camera
-down for the other consumers.
+The component needs an [ESP32 Camera](/components/esp32_camera/) that delivers JPEG: the default
+`pixel_format: JPEG`, or another colour format converted with `jpeg_quality`; `GRAYSCALE` is not
+supported. The `resolution` may be at most 2040 pixels per side. The configuration is rejected
+otherwise. A client whose connection makes no progress for half a second drops its current frame
+and takes no new one until the connection drains again, so it cannot slow the camera down for the
+other consumers.
 
 ## Watching the stream
 
@@ -58,10 +68,6 @@ The RTSP URL can be used directly as a camera source in surveillance software su
 Frigate, go2rtc, Zoneminder or Blue Iris. Configure the source as an RTSP camera with
 TCP transport and the URL `rtsp://<device-ip>:554/`.
 
-> [!NOTE]
-> The stream is not authenticated or encrypted, matching the behavior of the
-> [ESP32 Camera Web Server](/components/esp32_camera_web_server/) component. Only use it on
-> networks you trust.
 
 ## See Also
 
