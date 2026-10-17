@@ -1113,6 +1113,8 @@ export class Walker {
   writeEnumValue(prop, key, docs, isDefault) {
     const targets = prop.typedEntries ? prop.typedEntries.map((e) => e.types) : [prop.values];
     for (const values of targets) {
+      // A variant that does not declare this choice is left alone: the docs never add a type
+      if (!Object.hasOwn(values, key)) continue;
       const value = (values[key] ||= {});
       if (isDefault) value.default = true;
       if (docs !== undefined) value.docs = docs;

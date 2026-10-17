@@ -1716,3 +1716,42 @@ test("options under a sub-section heading nested in an action heading go to the 
   assert.match(action("mode"), /The action mode/);
   assert.match(action("options", "schema", "config_vars", "mode"), /The option mode/);
 });
+
+test("a choice one outer variant's typed schema lacks is not added to it", async () => {
+  const options = (types) => ({ key: "Optional", type: "typed", typed_key: "kind", types });
+  const { store } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "model",
+              types: {
+                a: { config_vars: { options: options({ fast: { config_vars: {} }, slow: { config_vars: {} } }) } },
+                b: { config_vars: { options: options({ fast: { config_vars: {} } }) } },
+              },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **model** (**Required**): The model.",
+        "- **options** (*Optional*): The options.",
+        "## `options` Trigger",
+        "- **kind** (**Required**): The kind.\n  - `fast`: Quick.\n  - `slow` (*default*): Careful.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const types = (model) => store.files.get("foo").foo.schemas.CONFIG_SCHEMA.types[model].config_vars.options.types;
+  assert.match(types("a").slow.docs, /Careful/);
+  assert.equal(types("a").slow.default, true);
+  assert.match(types("b").fast.docs, /Quick/);
+  assert.equal("slow" in types("b"), false);
+});
