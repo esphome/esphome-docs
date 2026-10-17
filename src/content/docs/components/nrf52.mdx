@@ -158,9 +158,9 @@ See the [Power Supply](/components/power_supply/) page for the full set of confi
 to toggle the rail at runtime.
 
 To check whether your board needs this before flashing, power the board on (without `power_supply` configured
-yet) and measure the candidate pin against ground with a multimeter: a genuine pull-up holds it close to 3.3V on
-its own, while a floating pin settles at an indeterminate voltage instead (around 1.9V was observed on a
-"SuperMini nRF52840" clone).
+yet) and measure the candidate pin against ground with a multimeter: a genuine pull-up holds it close to the
+board's GPIO supply voltage (typically 3.3V) on its own, while a floating pin settles at an indeterminate voltage
+instead (around 1.9V was observed on a "SuperMini nRF52840" clone).
 
 ## Troubleshooting
 
