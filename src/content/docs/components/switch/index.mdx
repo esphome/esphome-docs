@@ -60,7 +60,10 @@ Configuration variables:
 
 - **initial_state** (*Optional*, boolean): The state (`ON` or `OFF`) the switch starts in on bootup when nothing
   is restored, for example after a power cut with `storage: rtc`. Can't be combined with **restore_mode**, which
-  sets the boot state itself; use **restore_state** instead. Defaults to `OFF`.
+  sets the boot state itself; use **restore_state** instead. Without **restore_state**, a platform whose default
+  **restore_mode** restores the state keeps restoring it and uses **initial_state** only when nothing is saved;
+  otherwise the switch always starts in **initial_state**. To start in **initial_state** at every boot on any
+  platform, also set `restore_state: none`. Defaults to `OFF`.
 
 - **restore_state** (*Optional*): Save the switch's state and restore it on bootup. Mutually exclusive with
   **restore_mode**. If nothing has been saved yet, the switch starts in **initial_state**. Accepts a mapping, or
