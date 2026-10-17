@@ -6,6 +6,8 @@ sidebar:
 ---
 
 import APIRef from '@components/APIRef.astro';
+import Figure from '@components/Figure.astro';
+import layersImg from './images/packet_interface_layers.svg';
 
 A packet interface sends and receives packets of bytes over a communication channel, such as a serial port or a
 UDP network connection. It does not know what the bytes mean. Other components use a packet interface to carry
@@ -45,9 +47,64 @@ These options are common to all platforms:
 - **max_packet_size** (*Optional*, int): The largest packet, in bytes, that a user of this interface may send. The
   range and default depend on the platform.
 
+- **encryption** (*Optional*): Adds an [encryption layer](#encryption) to the interface.
 - **reliability** (*Optional*): Adds a [reliability layer](#reliability) to the interface.
+- **session** (*Optional*): Adds a [session layer](#session) to the interface.
+
+When more than one of these is configured, they are always stacked in the same order, whatever order they are
+written in: encryption is next to the channel, then reliability, then session. Each layer works with the same layer
+on the other device, so both devices must configure the same layers.
+
+<Figure
+  src={layersImg}
+  alt="Two devices, each with a stack of layers from the application at the top down to the link at the bottom, connected by a serial port or network"
+  caption="The layers of a packet interface. A packet being sent passes down through each layer, and up again on the other device."
+  layout="constrained"
+/>
 
 See the page for each platform for the options it adds.
+
+## Encryption
+
+An encryption layer encrypts each packet with a key shared by both devices, so that other devices on the channel
+cannot read it. It also checks each packet it receives, and drops a packet that was changed or sent with another
+key. With the rolling code enabled, it also drops a packet that was sent before (a replay). Both devices must use the
+same key, the same encryption `type` and the same `rolling_code_enable` setting.
+
+```yaml
+packet_interface:
+  - platform: uart
+    id: serial_link
+    encryption:
+      key: !secret serial_link_key
+      rolling_code_enable: true
+```
+
+The key can also be given on its own:
+
+```yaml
+    encryption: !secret serial_link_key
+```
+
+- **type** (*Optional*, string): The encryption method. Only `xxtea` is available, which uses the
+  [XXTEA](https://en.wikipedia.org/wiki/XXTEA) cipher with a 256-bit key. Defaults to `xxtea`.
+- **key** (**Required**, string): The shared key. Any text can be used; a long random text is best.
+- **rolling_code_enable** (*Optional*, boolean): Add a rolling code to each packet, so that a recorded packet sent
+  again is dropped. Each boot writes to flash once. Defaults to `false`.
+
+The encryption layer adds 4 to 8 bytes to each packet, or 16 to 19 with the rolling code. The largest packet that can
+be sent through it is smaller than `max_packet_size` by that amount.
+
+Without the rolling code, anyone who records a packet can send it again later, and it will be accepted.
+
+With the rolling code, each device saves a boot number in flash and increases it at every boot, and counts the
+packets it sends. Each packet also repeats the highest boot number heard from the other device. A device accepts a
+packet only if it repeats the device's current boot number, and is newer than the last packet accepted from the
+other device. So a packet recorded earlier is never accepted, even after a restart. This has two effects:
+
+- After either device restarts, its first packets are dropped until the two devices have heard from each other. With
+  a [reliability layer](#reliability), they are sent again.
+- If the other device's flash is erased, its packets are dropped until this device restarts.
 
 ## Reliability
 
