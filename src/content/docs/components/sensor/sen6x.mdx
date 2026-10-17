@@ -177,13 +177,18 @@ sensor:
 - **temperature_compensation** (*Optional*): Corrects the reported ambient temperature for heat from the enclosure
   or nearby components by applying an offset. Compensation slot 0 is used.
 
-  - **offset** (*Optional*, float): Temperature offset in °C. Defaults to `0`.
-  - **normalized_offset_slope** (*Optional*, float): Normalized temperature offset slope. Defaults to `0`.
-  - **time_constant** (*Optional*, int): Time constant in seconds. Defaults to `0`.
+  - **offset** (*Optional*, float): Temperature offset in °C. Allowed values are in range -163.84..163.835.
+    Defaults to `0`.
+  - **normalized_offset_slope** (*Optional*, float): Normalized temperature offset slope. Allowed values are in
+    range -3.2768..3.2767. Defaults to `0`.
+  - **time_constant** (*Optional*, int): Time constant in seconds. Allowed values are in range 0..65535.
+    Defaults to `0`.
 
 - **temperature_acceleration** (*Optional*): Parameters for the RH/T engine's temperature acceleration mode, from
   Sensirion's [SEN6x Temperature Acceleration and Compensation](https://sensirion.com/media/documents/C964FCC8/69709EC3/PS_AN_SEN6x_Temperature_Compensation_and_Acceleration_Application_No.pdf)
   application note.
+
+  All four accept values in range 0.1..6553.5.
 
   - **k** (*Optional*, float): Filter constant K. Defaults to `20.0`.
   - **p** (*Optional*, float): Filter constant P. Defaults to `20.0`.
