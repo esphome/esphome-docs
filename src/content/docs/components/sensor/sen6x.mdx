@@ -212,8 +212,9 @@ sensor:
 ## Binary Sensor
 
 The `sen6x` binary sensor platform exposes the device status register as diagnostic entities. The register is
-read and cleared once per update cycle while measuring, so each entity reports whether a problem occurred since
-the last update. The entities keep their last state while the measurement is stopped.
+read and cleared once per update cycle while measuring, so each error entity reports whether the problem occurred
+since the last update; `fan_speed_warning` shows the fan's state at the moment of the read. The entities keep their
+last state while the measurement is stopped.
 
 ```yaml
 binary_sensor:
@@ -236,7 +237,7 @@ binary_sensor:
 
 ### Configuration variables
 
-- **sen6x_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the sen6x sensor component.
+- **sen6x_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the sen6x sensor component.
 - **fan_error** (*Optional*): The fan is switched on but not spinning.
 - **fan_speed_warning** (*Optional*): The fan speed is more than 10% off target. Not latched; clears by itself.
 - **rht_error** (*Optional*): Error in the relative humidity and temperature sensor.
@@ -245,7 +246,7 @@ binary_sensor:
 - **hcho_error** (*Optional*): Error in the formaldehyde sensor. Only available with SEN68 or SEN69C.
 - **pm_error** (*Optional*): Error in the particulate matter sensor.
 
-All entities support all options from [Binary Sensor](/components/binary_sensor). Entities not supported by the
+All entities support all options from [Binary Sensor](/components/binary_sensor/). Entities not supported by the
 detected model are ignored with an error in the log.
 
 ## Actions
