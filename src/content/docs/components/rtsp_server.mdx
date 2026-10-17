@@ -79,18 +79,10 @@ TCP transport and the URL `rtsp://<device-ip>:<port>/`.
 
 ## Home Assistant
 
-Home Assistant's own stream pipeline plays only H.264 and HEVC, so a Generic Camera pointed at this
-URL keeps reconnecting every few seconds without showing a picture. Use one of these instead:
-
-- The [go2rtc](https://www.home-assistant.io/integrations/go2rtc/) integration with a transcoding
-  source, for example `ffmpeg:rtsp://<device-ip>:554/#video=h264`, which gives a live view.
-- The `ffmpeg` camera platform for still images. It opens a new RTSP session for every snapshot
-  (one every 10 seconds by default), so raise `max_connections` to `4` if it runs next to a live
-  stream, or the extra sessions are refused.
-
-The native [ESP32 Camera](/components/esp32_camera/) stream over the ESPHome API keeps working
-alongside the RTSP server, so the Home Assistant camera entity does not need this component.
-
+Home Assistant does not need this component: the [ESP32 Camera](/components/esp32_camera/) entity
+streams over the native API and works out of the box. The RTSP server is for other software. Pointing
+a Home Assistant Generic Camera at the RTSP URL does not work either, because Home Assistant's stream
+pipeline plays only H.264 and HEVC.
 
 ## See Also
 
