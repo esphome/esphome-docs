@@ -31,8 +31,8 @@ modbus:
 ```
 
 When `role` is `server`, each request from the TCP peer is turned into one RTU frame, one at a time: the next request
-waits until the reply has gone out, or for one second, or for the longest `send_wait_time` of a client `modbus` hub if
-that is longer. The reply is sent back with that request's transaction id. Address 0 is not answered. If the hub has a
+waits for the reply to go out, or one second plus twice the longest `turnaround_time` + `send_wait_time` of a client
+`modbus` hub. The reply is sent back with that request's transaction id. Address 0 is not answered. If the hub has a
 Modbus Server, a request to an address that no Modbus Server on the hub uses is dropped without an answer.
 
 ```yaml
