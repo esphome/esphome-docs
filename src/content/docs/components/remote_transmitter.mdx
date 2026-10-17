@@ -596,7 +596,9 @@ on_...:
   to 8 are part of the encrypted **code**. Combining it with **suffix** or **suffix_bits** is rejected, and
   **level** must stay `false` (no lambda).
 - All other options from [Remote Transmitter Actions](#remote_transmitter-transmit_action).
-- A repeat **wait_time** of 15ms as shown replicates the repetition of an HCS301.
+- A repeat **wait_time** of 15ms, as in the first example, replicates the repetition of an HCS301. The Jarolift
+  example repeats its frame with no extra wait: the guard time that ends every KeeLoq frame already separates the
+  two copies.
 
 <span id="remote_transmitter-transmit_haier"></span>
 
