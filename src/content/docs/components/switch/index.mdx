@@ -76,10 +76,8 @@ Configuration variables:
     RTC memory, which survives software reboots (restarts, OTA updates, crashes) and deep sleep but **not**
     power loss. When not set, the platform's usual storage is used: flash on ESP32, and on ESP8266 RTC memory
     unless `restore_from_flash` is enabled. `rtc` is available on ESP32 (except the C2 and C61 variants, which
-    have no RTC memory), ESP8266 and the BK7231T; on other platforms, including other BK72xx chips, RTL87xx,
-    LN882x, RP2040, nRF52 and `host`, only `flash` is available and `rtc` is rejected. The BK7231T has no RTC
-    memory: there `rtc` keeps the state in flash and forgets it after a power cut, based on the chip's reset
-    reason, so each change is written to flash as with `flash`. Not allowed with `state: INITIAL`, which never
+    have no RTC memory) and ESP8266; on other platforms, including BK72xx, RTL87xx, LN882x, RP2040, nRF52 and
+    `host`, only `flash` is available and `rtc` is rejected. Not allowed with `state: INITIAL`, which never
     restores anything.
 
   ```yaml
