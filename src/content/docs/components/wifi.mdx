@@ -132,8 +132,9 @@ wifi:
 
   > [!NOTE]
   > While `fast_connect` skips the initial scan, if the connection attempt fails, ESPHome will still perform a scan
-  > to find available networks. For hidden networks, set `hidden: true` (see
-  > [Connecting to a Hidden Network](#connecting-to-a-hidden-network)) to ensure the device always connects without scanning.
+  > to find available networks. For hidden networks, set `hidden: true`
+  > (see [Connecting to a Hidden Network](#connecting-to-a-hidden-network)) to ensure the device always connects
+  > without scanning.
   > Be aware that marking networks as hidden prevents ESPHome from finding the best access point to connect to,
   > so the device may not connect to the AP with the best signal strength.
 
@@ -440,6 +441,8 @@ wifi:
   Defaults to `0`.
 
 ## Connecting to a Hidden Network
+
+A hidden network does not broadcast its SSID, so ESPHome tries to connect to it directly before scanning.
 
 ```yaml
 wifi:
