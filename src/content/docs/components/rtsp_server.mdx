@@ -79,6 +79,20 @@ The RTSP URL can be used directly as a camera source in surveillance software su
 Frigate, go2rtc, Zoneminder or Blue Iris. Configure the source as an RTSP camera with
 TCP transport and the URL `rtsp://<device-ip>:554/`.
 
+## Home Assistant
+
+Home Assistant's own stream pipeline plays only H.264 and HEVC, so a Generic Camera pointed at this
+URL keeps reconnecting every few seconds without showing a picture. Use one of these instead:
+
+- The [go2rtc](https://www.home-assistant.io/integrations/go2rtc/) integration with a transcoding
+  source, for example `ffmpeg:rtsp://<device-ip>:554/#video=h264`, which gives a live view.
+- The `ffmpeg` camera platform for still images. It opens a new RTSP session for every snapshot
+  (one every 10 seconds by default), so raise `max_connections` to `4` if it runs next to a live
+  stream, or the extra sessions are refused.
+
+The native [ESP32 Camera](/components/esp32_camera/) stream over the ESPHome API keeps working
+alongside the RTSP server, so the Home Assistant camera entity does not need this component.
+
 
 ## See Also
 
