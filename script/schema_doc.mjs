@@ -917,6 +917,9 @@ export class Walker {
       return;
     }
     this.failedSection = null;
+    // A heading that routes on its own, under a trigger the bundle could not place, gets its options written;
+    // the page's default schema, whether a heading or a bare list reopened it, stays held
+    if (source !== "default" && source !== "implicit") this.holdEmit = null;
     if (inner.baseRef && !inner.hasBase) {
       report.add("missing_base_schema", this.rel, line, {
         schema: ref,
@@ -1786,8 +1789,8 @@ export class Walker {
         continue;
       }
       if (this.holdEmit !== null) {
-        // Under a trigger the bundle cannot place: the bullet counts for the guard, but is not matched
-        // against the page schema, so the audit and the emit stats reflect what was written
+        // Under a trigger the bundle cannot place: the bullet is neither matched against the page schema
+        // nor written nor audited; it counts on the unmatched side of the emit guard
         report.stats.keysHeld++;
         continue;
       }
@@ -1946,9 +1949,10 @@ async function main() {
     broken = `${parseErrors} page(s) could not be parsed`;
   } else if (s.sectionsUnroutable * 2 > s.sections) {
     broken = `${s.sectionsUnroutable} of ${s.sections} sections match no schema`;
-  } else if (s.keysUnmatched + s.keysOrphaned > s.keysMatched + s.keysMatchedNested) {
-    const total = s.keysMatched + s.keysMatchedNested + s.keysUnmatched + s.keysOrphaned;
-    broken = `${s.keysUnmatched + s.keysOrphaned} of ${total} documented keys match no schema key`;
+  } else if (s.keysUnmatched + s.keysOrphaned + s.keysHeld > s.keysMatched + s.keysMatchedNested) {
+    const unplaced = s.keysUnmatched + s.keysOrphaned + s.keysHeld;
+    const total = s.keysMatched + s.keysMatchedNested + unplaced;
+    broken = `${unplaced} of ${total} documented keys match no schema key or sit under an unplaced trigger`;
   } else if (args.emit && s.emitted.props + s.emitted.propsRefined + s.emitted.propsSkipped < MIN_EMITTED_PROPS) {
     // Unchanged descriptions count too: an in-place run over a documented bundle writes few new ones
     const described = s.emitted.props + s.emitted.propsRefined + s.emitted.propsSkipped;

@@ -964,6 +964,43 @@ test("a page-specific description of an inherited key copies the whole definitio
   assert.equal(store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars.address.docs, "Base text.");
 });
 
+test("a heading that routes on its own under an unplaced trigger gets its options written", async () => {
+  const { store, report } = await walk({
+    schema: {
+      esphome: core([], { gizmo: {} }),
+      gizmo: {
+        gizmo: {
+          schemas: { GIZMO_SCHEMA: schema({ name: { key: "Optional" } }) },
+          action: { do: schema({ speed: { key: "Optional" } }) },
+        },
+      },
+    },
+    pages: {
+      "gizmo/index.mdx": [
+        "Gizmos.",
+        "## `gizmo.on_missing` Trigger",
+        "- **name** (*Optional*, string): Text that belongs to the trigger.",
+        "### `gizmo.do` Action",
+        "Does it.",
+        "- **speed** (*Optional*, int): The speed.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const gizmo = store.files.get("gizmo").gizmo;
+  assert.equal(gizmo.schemas.GIZMO_SCHEMA.schema.config_vars.name.docs, undefined);
+  assert.match(gizmo.action.do.schema.config_vars.speed.docs, /The speed/);
+  // The held bullet is not documented, so the platform's own audit still misses `name`
+  assert.deepEqual(
+    report.findings.map((f) => [f.kind, f.line]),
+    [
+      ["unresolved_trigger", 7],
+      ["undocumented_key", 9],
+    ],
+  );
+  assert.equal(report.stats.keysHeld, 1);
+});
+
 test("a top-level <EnumValues> block reaches every typed variant that has the option before it", async () => {
   const typed = (extra = {}) => ({
     config_vars: { mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } }, ...extra },
