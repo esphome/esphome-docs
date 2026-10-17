@@ -40,8 +40,6 @@ sensor:
     dout_pin: D0
     clk_pin: D1
     gain: 128
-    channel_b:
-      name: "HX711 Channel B Value"
     update_interval: 60s
 ```
 
@@ -65,7 +63,19 @@ sensor:
 - **power_down_after_reading** (*Optional*, boolean): Power the chip down after each update and wake it, with a
   settling wait, for the next one. Defaults to `false`.
 - **channel_b** (*Optional*, [Sensor](/components/sensor/)): A second sensor that reports channel B (gain 32)
-  after every reading of the main sensor. Each update then takes two conversions and two settling waits.
+  after every reading of the main sensor. Each update then takes two conversions and two settling waits. With
+  `gain: 32` the main sensor already reads channel B, so both sensors publish the same value from one conversion.
+
+  ```yaml
+  sensor:
+    - platform: hx711
+      name: "Load Cell"
+      dout_pin: D0
+      clk_pin: D1
+      channel_b:
+        name: "Supply Voltage"
+  ```
+
 - **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): The interval to check the sensor.
   Defaults to `60s`.
 - All other options from [Sensor](/components/sensor/).
