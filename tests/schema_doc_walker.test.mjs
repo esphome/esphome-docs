@@ -845,7 +845,7 @@ test("a nested typed schema that two outer variants define keeps its discriminat
     typed_key: "kind",
     types: { fast: { config_vars: { speed: { key: "Optional" } } }, slow: { config_vars: {} } },
   });
-  const { docs, report } = await walk({
+  const { docs, report, store } = await walk({
     schema: {
       esphome: core(["foo"]),
       foo: {
@@ -867,7 +867,7 @@ test("a nested typed schema that two outer variants define keeps its discriminat
         "- **model** (**Required**): The model.",
         "- **options** (*Optional*): The options.",
         "## `options` Trigger",
-        "- **kind** (**Required**): The kind.",
+        "- **kind** (**Required**): The kind.\n  - `fast` (*default*): Quick.\n  - `slow`: Careful.",
         "- **speed** (*Optional*, int): The speed.",
         "",
       ].join("\n\n"),
@@ -877,6 +877,11 @@ test("a nested typed schema that two outer variants define keeps its discriminat
   for (const model of ["a", "b"]) {
     assert.match(types(model, "config_vars", "options"), /^The kind/);
     assert.match(types(model, "config_vars", "options", "types", "fast", "config_vars", "speed"), /The speed/);
+    // The choices of the shared discriminator are described on both outer variants
+    const kinds = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.types[model].config_vars.options.types;
+    assert.match(kinds.fast.docs, /Quick/);
+    assert.equal(kinds.fast.default, true);
+    assert.match(kinds.slow.docs, /Careful/);
   }
   assert.deepEqual(
     report.findings.filter((f) => f.kind === "unmatched_key").map((f) => f.key),

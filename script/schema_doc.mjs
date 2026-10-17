@@ -392,8 +392,9 @@ export class SchemaStore {
    * the typed entry's types, so a bullet per choice describes that type.
    */
   static typedKeyProp(inner) {
-    const entry = inner.entries?.[0] ?? inner.entry;
-    return { type: "enum", values: entry?.types ?? {} };
+    const entries = inner.entries ?? [inner.entry];
+    // The choices are read from the first entry; a write goes to the same choice of every entry
+    return { type: "enum", values: entries[0]?.types ?? {}, typedEntries: entries };
   }
 
   /** Find a config var by name, following extends. */
@@ -962,6 +963,7 @@ export class Walker {
     else this.audits.set(ref, { inners: [], documented: new Set([key]), line });
   }
 
+  /** Fold a closed section's documented keys into its schema's audit, which runs once at the end of the page. */
   reportUndocumented(s) {
     // A schema documented in several sections of a page is audited once, at the end
     const audit = this.audits.get(s.ref);
@@ -1102,10 +1104,18 @@ export class Walker {
         continue;
       }
       if (!this.writing) continue;
-      prop.values[key] = prop.values[key] || {};
-      if (entry.description) prop.values[key].docs = this.links(entry.description);
-      if (entry.default) prop.values[key].default = true;
+      this.writeEnumValue(prop, key, entry.description ? this.links(entry.description) : undefined, entry.default);
       this.report.stats.emitted.enumDocs++;
+    }
+  }
+
+  /** Record a choice's docs and default on the enum, or on that type of every entry of a typed discriminator. */
+  writeEnumValue(prop, key, docs, isDefault) {
+    const targets = prop.typedEntries ? prop.typedEntries.map((e) => e.types) : [prop.values];
+    for (const values of targets) {
+      const value = (values[key] ||= {});
+      if (isDefault) value.default = true;
+      if (docs !== undefined) value.docs = docs;
     }
   }
 
@@ -1180,12 +1190,8 @@ export class Walker {
         continue;
       }
       if (!this.writing || (!desc && !isDefault)) continue;
-      prop.values[value] = prop.values[value] || {};
-      if (isDefault) prop.values[value].default = true;
-      if (desc) {
-        prop.values[value].docs = this.links(desc);
-        this.report.stats.emitted.enumDocs++;
-      }
+      this.writeEnumValue(prop, value, desc ? this.links(desc) : undefined, isDefault);
+      if (desc) this.report.stats.emitted.enumDocs++;
     }
   }
 
