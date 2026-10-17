@@ -45,7 +45,7 @@ const core = (components, platforms = {}) => ({
 const schema = (config_vars, extra = {}) => ({ type: "schema", schema: { config_vars }, ...extra });
 
 test("a bus heading re-targets only its own subtree", async () => {
-  const { docs, report } = await walk({
+  const { docs, report, store } = await walk({
     schema: {
       esphome: core(["bmp581_i2c", "bmp581_spi"], { sensor: {} }),
       sensor: { sensor: { schemas: {}, components: { bmp581_i2c: {}, bmp581_spi: {} } } },
@@ -71,8 +71,12 @@ test("a bus heading re-targets only its own subtree", async () => {
     docs("bmp581_i2c", "bmp581_i2c.sensor", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "address"),
     /I²C address/,
   );
+  // The page has no bmp581 entry of its own: both bus variants get its intro
+  const components = store.files.get("sensor").sensor.components;
+  assert.match(components.bmp581_i2c.docs, /The BMP581 sensor/);
+  assert.match(components.bmp581_spi.docs, /The BMP581 sensor/);
   assert.deepEqual(
-    report.findings.filter((f) => f.kind === "unmatched_key"),
+    report.findings.filter((f) => f.kind === "unmatched_key" || f.kind === "missing_schema_entry"),
     [],
   );
 });
@@ -1277,7 +1281,7 @@ test("options under a trigger heading a component page cannot place are dropped,
   );
 });
 
-test("a trigger a platform index page cannot place is reported; its bullets are matched but not written", async () => {
+test("a trigger a platform index page cannot place is reported; its bullets are counted, not written", async () => {
   const { store, report } = await walk({
     schema: {
       esphome: core([], { gizmo: {} }),
@@ -1302,11 +1306,9 @@ test("a trigger a platform index page cannot place is reported; its bullets are 
   assert.match(base.mode.docs, /The mode\./);
   assert.deepEqual(
     report.findings.map((f) => [f.kind, f.line]),
-    [
-      ["unresolved_trigger", 11],
-      ["unmatched_key", 13],
-    ],
+    [["unresolved_trigger", 11]],
   );
+  assert.equal(report.stats.keysHeld, 2);
 });
 
 test("a platform key documented on the base page is not created on the base schema without docs", async () => {

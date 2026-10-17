@@ -713,6 +713,7 @@ export class Report {
       keysMatchedNested: 0,
       keysUnmatched: 0,
       keysOrphaned: 0,
+      keysHeld: 0,
       keysUndocumented: 0,
       optionalityMismatch: 0,
       proseBullets: 0,
@@ -764,10 +765,10 @@ export class Walker {
     this.pendingRegistry = null; // ref set by a `x.y` Action heading
     this.defaultRef = null;
     this.componentRef = null; // top ref like "uart" or "template.sensor" for named-schema lookup
-    this.holdEmit = null; // depth of a heading whose bullets are matched for the report but not written
+    this.holdEmit = null; // depth of a heading whose option bullets are only counted, neither written nor audited
   }
 
-  /** Whether docs are written right now: emitting, and not under a heading that holds writing back. */
+  /** Whether docs are written right now: emitting, and not under a heading that holds its bullets back. */
   get writing() {
     return this.emit && this.holdEmit === null;
   }
@@ -1184,8 +1185,9 @@ export class Walker {
     if (inherited && "docs" in prop) {
       // The base schema already carries different docs: describe it at this level instead of changing the
       // shared base, with a copy of the inherited definition so a consumer that lets a local entry shadow
-      // the base keeps the type and sub-schema. The variant whose extends chain reached the key is the one
-      // that accepts it.
+      // the base keeps the type and sub-schema. The copy is shallow on purpose: nested options and enum
+      // values are shared with the base, so their text reaches every schema that inherits the key. The
+      // variant whose extends chain reached the key is the one that accepts it.
       const target = found.root ?? sectionInner.variants[0];
       target.config_vars ??= {};
       const refined = (target.config_vars[parsed.key] ??= { ...prop });
@@ -1232,7 +1234,12 @@ export class Walker {
           this.report.stats.emitted.platformIndexDocs++;
         }
       } else if (platform) {
-        await this.emitComponentDocs(this.stem, platform, text);
+        // A page for a component split by bus (bmp581 documents bmp581_i2c and bmp581_spi) has no entry of its
+        // own: the intro goes to each platform component the page's schema union names
+        const own = (await this.store.file(platform))?.[platform]?.components?.[this.stem];
+        const names =
+          !own && this.defaultRef ? [...new Set(this.defaultRef.split("+").map((r) => r.split(".")[0]))] : [this.stem];
+        for (const name of names) await this.emitComponentDocs(name, platform, text);
         if (this.store.isComponent(this.stem)) await this.emitComponentDocs(this.stem, null, text);
       } else if (
         this.componentRef !== "core" &&
@@ -1383,9 +1390,9 @@ export class Walker {
         return;
       }
       // Platform index pages document triggers the bundle does not place under the platform's schemas;
-      // their options are still matched for the report, but not written, since the text may belong to
-      // another trigger's key of the same name. On a component page the options are not the component's:
-      // drop them until this heading's subtree ends, as for an unknown action
+      // their options are neither written nor audited, since the text may belong to another trigger's key of
+      // the same name. On a component page the options are not the component's: drop them until this
+      // heading's subtree ends, as for an unknown action
       this.report.add("unresolved_trigger", this.rel, line, {
         detail: `trigger '${trig}' not under ${this.defaultRef}`,
       });
@@ -1778,6 +1785,12 @@ export class Walker {
         }
         continue;
       }
+      if (this.holdEmit !== null) {
+        // Under a trigger the bundle cannot place: the bullet counts for the guard, but is not matched
+        // against the page schema, so the audit and the emit stats reflect what was written
+        report.stats.keysHeld++;
+        continue;
+      }
       let found;
       if (inner.baseRef) {
         // A platform base page: the base schema first, then a key only the
@@ -1936,8 +1949,10 @@ async function main() {
   } else if (s.keysUnmatched + s.keysOrphaned > s.keysMatched + s.keysMatchedNested) {
     const total = s.keysMatched + s.keysMatchedNested + s.keysUnmatched + s.keysOrphaned;
     broken = `${s.keysUnmatched + s.keysOrphaned} of ${total} documented keys match no schema key`;
-  } else if (args.emit && s.emitted.props + s.emitted.propsRefined < MIN_EMITTED_PROPS) {
-    broken = `only ${s.emitted.props + s.emitted.propsRefined} option descriptions were written, ${MIN_EMITTED_PROPS} expected at least`;
+  } else if (args.emit && s.emitted.props + s.emitted.propsRefined + s.emitted.propsSkipped < MIN_EMITTED_PROPS) {
+    // Unchanged descriptions count too: an in-place run over a documented bundle writes few new ones
+    const described = s.emitted.props + s.emitted.propsRefined + s.emitted.propsSkipped;
+    broken = `only ${described} options have a description, ${MIN_EMITTED_PROPS} expected at least`;
   }
   if (args.emit) {
     if (broken) {
@@ -1981,9 +1996,9 @@ async function main() {
     "unresolved_trigger",
   ];
   // Kinds the report lists only with --verbose; a kind missing from `order` is always shown
-  const verboseOnly = new Set(["undocumented_key", "no_intro_paragraph", "nested_list_ignored", "unresolved_trigger"]);
+  const verboseOnly = new Set(["undocumented_key", "no_intro_paragraph", "nested_list_ignored"]);
   // Kinds that are observations rather than mismatches
-  const informational = new Set(["no_intro_paragraph", "nested_list_ignored", "unresolved_trigger"]);
+  const informational = new Set(["no_intro_paragraph", "nested_list_ignored"]);
   const shown = (kind) => args.verbose || !verboseOnly.has(kind) || !order.includes(kind);
   const strict = (kind) => !informational.has(kind);
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {
@@ -2002,7 +2017,7 @@ async function main() {
     [
       `files ${s.files}`,
       `sections ${s.sections} (unroutable ${s.sectionsUnroutable}, by marker ${s.sectionsByMarker})`,
-      `keys matched ${s.keysMatched} (+${s.keysMatchedNested} via nested schema), not in schema ${s.keysUnmatched}, outside any section ${s.keysOrphaned}, in schema but undocumented ${s.keysUndocumented}`,
+      `keys matched ${s.keysMatched} (+${s.keysMatchedNested} via nested schema), not in schema ${s.keysUnmatched}, outside any section ${s.keysOrphaned}, under unplaced triggers ${s.keysHeld}, in schema but undocumented ${s.keysUndocumented}`,
       `optionality mismatches ${s.optionalityMismatch}`,
       `prose bullets skipped ${s.proseBullets}`,
       ...(hidden.size ? [`not shown without --verbose: ${[...hidden].map(([k, n]) => `${k} ${n}`).join(", ")}`] : []),
