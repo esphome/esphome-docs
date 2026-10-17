@@ -34,7 +34,6 @@ remote_receiver:
 
 vevor_dtx:
   receiver_id: rcvr
-  station_id: 0x1234
 ```
 
 ### Configuration Variables
@@ -43,8 +42,8 @@ vevor_dtx:
   [Remote Receiver](/components/remote_receiver/) connected to the DTX signal. Required when more than one receiver
   is configured.
 - **station_id** (*Optional*, int): Only decode frames from the outdoor station with this ID, so a neighbour's
-  station cannot overwrite the readings. The `sensor_id` text sensor shows the ID of every station in range. Defaults
-  to accepting every station.
+  station cannot overwrite the readings. Read the ID of your station from the `sensor_id` text sensor first, then
+  set it here, for example `station_id: 0x1234`. Defaults to accepting every station.
 - **bit_time** (*Optional*, [Time](/guides/configuration-types/#time)): Expected DTX bit timing. Defaults to `88us`.
 
 The receiver's `filter` must stay below the bit time, and its `idle` sets the gap that ends a frame; the values
@@ -85,7 +84,8 @@ sensor:
 - **wind_speed** (*Optional*): Wind speed in meters per second. All options from [Sensor](/components/sensor/).
 - **wind_gust** (*Optional*): Wind gust speed in meters per second. All options from [Sensor](/components/sensor/).
 - **wind_direction_degrees** (*Optional*): Wind direction in degrees. All options from [Sensor](/components/sensor/).
-- **rain** (*Optional*): Rain amount in millimeters. All options from [Sensor](/components/sensor/).
+- **rain** (*Optional*): Rain in millimeters as a running total since the station was powered up; it is published
+  with the `total_increasing` state class. All options from [Sensor](/components/sensor/).
 - **uv_index** (*Optional*): UV index. All options from [Sensor](/components/sensor/).
 - **illuminance** (*Optional*): Illuminance in lux. All options from [Sensor](/components/sensor/).
 - **tx_counter** (*Optional*): The station's transmission counter, a diagnostic value that counts from 0 to 255 and
