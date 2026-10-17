@@ -88,18 +88,71 @@ packet_interface:
 - **address** (**Required**, int): The address of this device, from `0x0001` to `0xFFFE`. Each device on the channel
   must have a different address.
 - **destination** (*Optional*, int): The address of the device to send to, or `broadcast` to send to every device on
-  the channel. Defaults to `broadcast`.
+  the channel. Defaults to `broadcast`. Cannot be used with `peers`.
+- **peers** (*Optional*, list): Talk to several devices on the channel, each with its own layers. See
+  [Several devices on one channel](#several-devices-on-one-channel). Each entry has:
+
+  - **id** (**Required**, [ID](/guides/configuration-types#id)): The ID that components such as
+    [entity transport](/components/entity_transport/) use to send to and receive from this device.
+  - **destination** (**Required**, int): The address of the device, or `broadcast`. Each entry must have a
+    different destination.
+  - **encryption**, **reliability**, **session** (*Optional*): The layers for this device, with the same options as
+    when they are configured on the interface.
 
 With a `destination` other than `broadcast`, the interface becomes a link between this device and that one: it sends
 only to that device, and accepts packets only from it. The [reliability](#reliability) and [session](#session)
 layers, and the rolling code of the [encryption](#encryption) layer, work between two devices only, so they need a
-`destination` when the addressing layer is used. A device can use them with only one other device on the channel;
-the other devices can still share the channel using their own addresses.
+`destination` other than `broadcast`.
 
 With `broadcast`, every device on the channel receives every packet, from any device. This suits
 [entity transport](/components/entity_transport/), which tells devices apart by their names.
 
 The addressing layer adds 4 bytes to each packet.
+
+### Several devices on one channel
+
+With `peers`, one channel carries a separate link to each of several devices, each with its own layers, and
+optionally a `broadcast` entry for everything else. A packet from a device that has its own entry goes to that entry
+only; packets from other devices go to the `broadcast` entry, or are dropped if there is none.
+
+```yaml
+packet_interface:
+  - platform: uart
+    id: rs485
+    addressing:
+      address: 0x0001
+      peers:
+        - id: pump_link
+          destination: 0x0002
+          encryption: !secret pump_key
+          reliability:
+          session:
+            binary_sensor:
+              name: Pump connected
+        - id: valve_link
+          destination: 0x0003
+          reliability:
+        - id: bus_link
+          destination: broadcast
+
+entity_transport:
+  - packet_interface: pump_link
+    sensors:
+      - tank_level
+  - packet_interface: valve_link
+    binary_sensors:
+      - valve_open
+```
+
+- With `peers`, the `encryption`, `reliability` and `session` options go in each entry, not on the interface, and
+  other components must use an entry's `id`, not the interface's.
+- When two devices on a half-duplex bus such as RS485 send at the same moment, their packets collide and are lost.
+  The reliability layer sends them again, after a timeout with a small random variation so that the two devices do
+  not collide again.
+- Each device with a reliability layer needs its own memory for packets waiting to be acknowledged: about 3 KB with
+  the default packet size. Reduce `max_packet_size` on devices with little memory.
+- Every reliable device adds acknowledgements, and with a session layer keep-alive packets, to the channel. On a slow
+  channel, send states that every device needs once, through a `broadcast` entry, rather than to each device.
 
 ## Encryption
 
