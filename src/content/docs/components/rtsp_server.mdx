@@ -12,7 +12,8 @@ consume the camera feed directly, without any ESPHome-specific integration.
 
 Video is delivered as Motion JPEG (the format produced by the camera hardware) carried over
 the RTSP connection itself (TCP-interleaved transport). Clients requesting UDP transport are
-asked to fall back to TCP, which every common player does automatically.
+asked to fall back to TCP, which every common player does automatically. The camera streams
+only while at least one client is playing.
 
 ```yaml
 # Example configuration entry
@@ -27,11 +28,14 @@ rtsp_server:
 
 - **port** (*Optional*, int): The port the RTSP server listens on. Defaults to `554`,
   the standard RTSP port.
-- **max_sessions** (*Optional*, int): The maximum number of clients that can stream at
-  the same time, from `1` to `4`. Each session reserves memory and a socket, so keep this
-  low on memory-constrained boards. Defaults to `2`.
+- **max_connections** (*Optional*, int): The maximum number of clients that can stream at
+  the same time, from `1` to `4`. Each connection reserves about 900 bytes of memory and a
+  socket for the whole run, so keep this low on memory-constrained boards. Defaults to `2`.
 
-This component only works on ESP32-based devices with a camera configured.
+The component needs an [ESP32 Camera](/components/esp32_camera/) with `pixel_format: JPEG`
+(the default) and a `resolution` of at most 2040 pixels per side; the configuration is
+rejected otherwise. A client that cannot keep up skips frames rather than slowing the camera
+down for the other consumers.
 
 ## Watching the stream
 
