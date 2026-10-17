@@ -1120,6 +1120,99 @@ test("a trigger section reaches that trigger in every typed variant", async () =
   }
 });
 
+test("a trigger section reaches an inherited trigger through a docs-only copy on the child", async () => {
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            BASE_SCHEMA: schema({
+              on_event: { key: "Optional", type: "schema", schema: { config_vars: { then: { key: "Optional" } } } },
+            }),
+            // An earlier page refined the inherited trigger into a copy that holds only docs
+            CONFIG_SCHEMA: {
+              type: "schema",
+              schema: { config_vars: { on_event: { key: "Optional", docs: "x" } }, extends: ["foo.BASE_SCHEMA"] },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `on_event` Trigger",
+        "Fires on an event.",
+        "### Configuration variables",
+        "- **then** (*Optional*, Automation): What to run.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const base = store.files.get("foo").foo.schemas.BASE_SCHEMA.schema.config_vars.on_event;
+  assert.match(base.schema.config_vars.then.docs, /What to run/);
+  assert.deepEqual(
+    report.findings.filter((f) => ["unmatched_key", "unroutable_section", "unresolved_trigger"].includes(f.kind)),
+    [],
+  );
+});
+
+test("a trigger heading the schema cannot place is reported and routes as before", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ id: { key: "GeneratedID" }, name: { key: "Optional" } }) } } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **name** (*Optional*, string): The name.",
+        "## `foo.on_missing` Trigger",
+        "- **then** (*Optional*, Automation): What to run.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "name"), /The name/);
+  assert.deepEqual(
+    report.findings.map((f) => [f.kind, f.line]),
+    [
+      ["unresolved_trigger", 11],
+      ["unmatched_key", 13],
+    ],
+  );
+});
+
+test("a platform key documented on the base page is not created on the base schema without docs", async () => {
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["foo"], { gizmo: {} }),
+      gizmo: { gizmo: { schemas: { GIZMO_SCHEMA: schema({ name: { key: "Optional" } }) }, components: { foo: {} } } },
+      foo: {
+        "foo.gizmo": { schemas: { CONFIG_SCHEMA: schema({ speed: { key: "Optional" }, mode: { key: "Optional" } }) } },
+      },
+    },
+    pages: {
+      "gizmo/index.mdx": [
+        "Gizmos.",
+        "## Configuration variables",
+        "- **speed** (*Optional*, int): The speed.",
+        "- **mode**: (*Optional*, string)",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const base = store.files.get("gizmo").gizmo.schemas.GIZMO_SCHEMA.schema.config_vars;
+  assert.match(base.speed.docs, /The speed/);
+  assert.equal(base.mode, undefined);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key"),
+    [],
+  );
+});
+
 test("a sibling-schema heading keeps its section through a nested configuration heading", async () => {
   const { docs, report } = await walk({
     schema: {

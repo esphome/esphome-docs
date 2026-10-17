@@ -1382,13 +1382,18 @@ export class Walker {
     }
 
     const trig = triggerHeading(node);
-    if (trig && this.defaultRef) {
-      const base = await store.resolve(this.defaultRef);
+    if (trig) {
+      const base = this.defaultRef ? await store.resolve(this.defaultRef) : null;
       // nestedInner sees through a docs-only copy of an inherited trigger
       if (await store.nestedInner(base, trig)) {
         await this.openSection(`${this.defaultRef}/${trig}`, node.depth, line, "heading");
         return;
       }
+      // Many pages document triggers the bundle does not place under the page's schema (platform index
+      // pages above all); their options route as before, and the gap is reported for --verbose runs
+      this.report.add("unresolved_trigger", this.rel, line, {
+        detail: `trigger '${trig}' not under ${this.defaultRef}`,
+      });
     }
 
     const reg = registryHeading(node);
@@ -1734,9 +1739,12 @@ export class Walker {
     if (!this.emit) return { prop: childProp, inherited: false, created: true, children };
     const base = inner.variants[0];
     base.config_vars ??= {};
-    const created = (base.config_vars[parsed.key] ??= {});
+    // The key joins the base schema only once it has docs; a header or malformed bullet writes none
+    const existing = base.config_vars[parsed.key];
+    const created = existing ?? {};
     if ("key" in childProp) created.key ??= childProp.key;
     await this.emitPropDocs({ prop: created, inherited: false }, inner, item, parsed);
+    if (!existing && "docs" in created) base.config_vars[parsed.key] = created;
     return { prop: created, inherited: false, created: true, children };
   }
 
@@ -1968,11 +1976,12 @@ async function main() {
     "undocumented_key",
     "no_intro_paragraph",
     "nested_list_ignored",
+    "unresolved_trigger",
   ];
   // Kinds the report lists only with --verbose; a kind missing from `order` is always shown
-  const verboseOnly = new Set(["undocumented_key", "no_intro_paragraph", "nested_list_ignored"]);
+  const verboseOnly = new Set(["undocumented_key", "no_intro_paragraph", "nested_list_ignored", "unresolved_trigger"]);
   // Kinds that are observations rather than mismatches
-  const informational = new Set(["no_intro_paragraph", "nested_list_ignored"]);
+  const informational = new Set(["no_intro_paragraph", "nested_list_ignored", "unresolved_trigger"]);
   const shown = (kind) => args.verbose || !verboseOnly.has(kind) || !order.includes(kind);
   const strict = (kind) => !informational.has(kind);
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {
