@@ -36,6 +36,9 @@ import { unified } from "unified";
 const DOCS_ROOT = join("src", "content", "docs");
 const COMPONENTS_ROOT = join(DOCS_ROOT, "components");
 const DEFAULT_SCHEMA_URL = "https://schema.esphome.io/dev";
+// Today's tree writes about 7500 option descriptions; a schema layout change that loses a fifth of them must
+// not ship a bundle
+const MIN_EMITTED_PROPS = 6000;
 
 const CONFIG_VARS_RE = /^Configuration (variables|options):?$/i;
 const MARKER_RE = /^\s*\/\*\s*schema:\s*(\S+)\s*\*\/\s*$/;
@@ -724,7 +727,6 @@ export class Report {
         componentDocs: 0,
         platformDocs: 0,
         platformIndexDocs: 0,
-        keyChanged: 0,
       },
     };
   }
@@ -762,6 +764,12 @@ export class Walker {
     this.pendingRegistry = null; // ref set by a `x.y` Action heading
     this.defaultRef = null;
     this.componentRef = null; // top ref like "uart" or "template.sensor" for named-schema lookup
+    this.holdEmit = null; // depth of a heading whose bullets are matched for the report but not written
+  }
+
+  /** Whether docs are written right now: emitting, and not under a heading that holds writing back. */
+  get writing() {
+    return this.emit && this.holdEmit === null;
   }
 
   /** Work out which schema this page documents by default from its path. */
@@ -1056,7 +1064,7 @@ export class Walker {
         });
         continue;
       }
-      if (!this.emit) continue;
+      if (!this.writing) continue;
       prop.values[key] = prop.values[key] || {};
       if (entry.description) prop.values[key].docs = this.links(entry.description);
       if (entry.default) prop.values[key].default = true;
@@ -1120,8 +1128,12 @@ export class Walker {
       }
       const value = this.enumValueKey(prop, m[1] ?? m[2]);
       const note = m[4];
-      const isDefault = note !== undefined && /^default$/i.test(note.trim());
-      const desc = m[3] ?? m[5] ?? (isDefault ? undefined : note);
+      const noteDefault = note !== undefined && /^default$/i.test(note.trim());
+      let desc = m[3] ?? m[5] ?? (noteDefault ? undefined : note);
+      // "(default)" after the value, or a description that is only the word, marks the default value
+      const descDefault = desc !== undefined && /^\*{0,2}default\*{0,2}$/i.test(desc.trim());
+      if (descDefault) desc = undefined;
+      const isDefault = noteDefault || descDefault;
       if (value === null) {
         this.report.add("unknown_enum_value", this.rel, line, {
           key: m[1] ?? m[2],
@@ -1129,7 +1141,7 @@ export class Walker {
         });
         continue;
       }
-      if (!this.emit || (!desc && !isDefault)) continue;
+      if (!this.writing || (!desc && !isDefault)) continue;
       prop.values[value] = prop.values[value] || {};
       if (isDefault) prop.values[value].default = true;
       if (desc) {
@@ -1141,7 +1153,7 @@ export class Walker {
 
   /** Attach a config bullet's description to the schema, as the old Python generator did. */
   async emitPropDocs(found, sectionInner, item, parsed) {
-    if (!this.emit || !found || parsed.header) return;
+    if (!this.writing || !found || parsed.header) return;
     const m = PROP_RE.exec(itemText(this.tree, item));
     if (!m) return;
     const typeText = (m[2] ?? m[3])?.match(LAST_PAREN_RE)?.[1];
@@ -1159,47 +1171,27 @@ export class Walker {
     const { prop, inherited } = found;
     const e = this.report.stats.emitted;
     let converted = this.withSeeAlso(docText);
-    let newKey = null;
     if (typeText) {
       const typeParts = typeText.split(",").map((t) => t.trim());
-      if (
-        parsed.optionality &&
-        parsed.key !== "id" &&
-        prop.key !== "GeneratedID" &&
-        prop.key?.toLowerCase() !== parsed.optionality &&
-        !parsed.optionalityAgrees
-      ) {
-        newKey = parsed.optionality[0].toUpperCase() + parsed.optionality.slice(1);
-      }
       if (typeParts.length > 1 && !/\[templatable\]/.test(typeParts[1])) {
         converted = `**${this.links(typeParts[1])}**: ${converted}`;
       }
     }
-    if (prop.docs === converted && !newKey) {
+    if (prop.docs === converted) {
       e.propsSkipped++;
       return;
     }
-    if (inherited && ("docs" in prop || newKey)) {
-      // The base schema already carries different docs, or this page disagrees
-      // on Required/Optional: describe it at this level instead of changing the
-      // shared base. The variant whose extends chain reached the key is the one
+    if (inherited && "docs" in prop) {
+      // The base schema already carries different docs: describe it at this level instead of changing the
+      // shared base, with a copy of the inherited definition so a consumer that lets a local entry shadow
+      // the base keeps the type and sub-schema. The variant whose extends chain reached the key is the one
       // that accepts it.
       const target = found.root ?? sectionInner.variants[0];
       target.config_vars ??= {};
-      const refined = (target.config_vars[parsed.key] ??= {});
-      if (newKey) {
-        refined.key = newKey;
-        e.keyChanged++;
-      } else if ("key" in prop && !("key" in refined)) {
-        refined.key = prop.key;
-      }
+      const refined = (target.config_vars[parsed.key] ??= { ...prop });
       refined.docs = converted;
       e.propsRefined++;
       return;
-    }
-    if (newKey) {
-      prop.key = newKey;
-      e.keyChanged++;
     }
     prop.docs = converted;
     e.props++;
@@ -1342,6 +1334,7 @@ export class Walker {
     this.lastHeadingDepth = node.depth;
     this.lastEnumProps = [];
     if (this.failedSection && node.depth <= this.failedSection.depth) this.failedSection = null;
+    if (this.holdEmit !== null && node.depth <= this.holdEmit) this.holdEmit = null;
     const intro = () => this.leadParagraph(siblings, index + 1);
 
     // A bus or component heading re-targets the page only for its own subtree
@@ -1390,9 +1383,9 @@ export class Walker {
         return;
       }
       // Platform index pages document triggers the bundle does not place under the platform's schemas;
-      // their options route as before, and the gap is reported for --verbose runs. On a component page
-      // the options are not the component's: drop them until this heading's subtree ends, as for an
-      // unknown action
+      // their options are still matched for the report, but not written, since the text may belong to
+      // another trigger's key of the same name. On a component page the options are not the component's:
+      // drop them until this heading's subtree ends, as for an unknown action
       this.report.add("unresolved_trigger", this.rel, line, {
         detail: `trigger '${trig}' not under ${this.defaultRef}`,
       });
@@ -1402,6 +1395,7 @@ export class Walker {
         this.failedSection = { depth: node.depth, defaultRef: this.defaultRef };
         return;
       }
+      this.holdEmit = node.depth;
     }
 
     const reg = registryHeading(node);
@@ -1942,8 +1936,8 @@ async function main() {
   } else if (s.keysUnmatched + s.keysOrphaned > s.keysMatched + s.keysMatchedNested) {
     const total = s.keysMatched + s.keysMatchedNested + s.keysUnmatched + s.keysOrphaned;
     broken = `${s.keysUnmatched + s.keysOrphaned} of ${total} documented keys match no schema key`;
-  } else if (args.emit && s.emitted.props + s.emitted.propsRefined + s.emitted.propsSkipped === 0) {
-    broken = "no option description was written";
+  } else if (args.emit && s.emitted.props + s.emitted.propsRefined < MIN_EMITTED_PROPS) {
+    broken = `only ${s.emitted.props + s.emitted.propsRefined} option descriptions were written, ${MIN_EMITTED_PROPS} expected at least`;
   }
   if (args.emit) {
     if (broken) {

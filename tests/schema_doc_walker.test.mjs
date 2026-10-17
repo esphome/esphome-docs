@@ -872,6 +872,94 @@ test("a nested key only one typed variant has is matched, not reported unmatched
   );
 });
 
+test("an enum bullet whose description is only *Default* marks the default value", async () => {
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: schema({
+              bit_rate: { key: "Optional", type: "enum", values: { "125KBPS": null, "250KBPS": null } },
+            }),
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **bit_rate** (*Optional*, enum): The bit rate.\n  - `125KBPS` - *Default*\n  - `250KBPS` - Fast.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const values = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars.bit_rate.values;
+  assert.equal(values["125KBPS"].default, true);
+  assert.equal(values["125KBPS"].docs, undefined);
+  assert.match(values["250KBPS"].docs, /Fast/);
+  assert.deepEqual(report.findings, []);
+});
+
+test("docs that disagree with the schema on Required are reported, not written into the key", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ cs_pin: { key: "Required", type: "pin" } }) } } },
+    },
+    pages: {
+      "foo.mdx": ["Foo.", "## Configuration variables", "- **cs_pin** (*Optional*, pin): The CS pin.", ""].join("\n\n"),
+    },
+  });
+  const prop = (() => {
+    const vars = docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "cs_pin");
+    return vars;
+  })();
+  assert.match(prop, /The CS pin/);
+  assert.deepEqual(
+    report.findings.map((f) => [f.kind, f.key]),
+    [["optionality_mismatch", "cs_pin"]],
+  );
+});
+
+test("a page-specific description of an inherited key copies the whole definition onto the child", async () => {
+  const { store } = await walk({
+    schema: {
+      esphome: core(["foo", "bar"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "schema",
+              schema: {
+                config_vars: { address: { key: "Optional", type: "integer", docs: "Base text." } },
+              },
+            },
+          },
+        },
+      },
+      bar: {
+        bar: {
+          schemas: {
+            CONFIG_SCHEMA: { type: "schema", schema: { config_vars: {}, extends: ["foo.CONFIG_SCHEMA"] } },
+          },
+        },
+      },
+    },
+    pages: {
+      "bar.mdx": ["Bar.", "## Configuration variables", "- **address** (*Optional*, int): The bar address.", ""].join(
+        "\n\n",
+      ),
+    },
+  });
+  const copy = store.files.get("bar").bar.schemas.CONFIG_SCHEMA.schema.config_vars.address;
+  assert.match(copy.docs, /The bar address/);
+  assert.equal(copy.key, "Optional");
+  assert.equal(copy.type, "integer");
+  assert.equal(store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars.address.docs, "Base text.");
+});
+
 test("a top-level <EnumValues> block reaches every typed variant that has the option before it", async () => {
   const typed = (extra = {}) => ({
     config_vars: { mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } }, ...extra },
@@ -1189,11 +1277,11 @@ test("options under a trigger heading a component page cannot place are dropped,
   );
 });
 
-test("a trigger heading a platform index page cannot place is reported and routes as before", async () => {
+test("a trigger a platform index page cannot place is reported; its bullets are matched but not written", async () => {
   const { store, report } = await walk({
     schema: {
       esphome: core([], { gizmo: {} }),
-      gizmo: { gizmo: { schemas: { GIZMO_SCHEMA: schema({ name: { key: "Optional" } }) } } },
+      gizmo: { gizmo: { schemas: { GIZMO_SCHEMA: schema({ name: { key: "Optional" }, mode: { key: "Optional" } }) } } },
     },
     pages: {
       "gizmo/index.mdx": [
@@ -1202,12 +1290,16 @@ test("a trigger heading a platform index page cannot place is reported and route
         "- **name** (*Optional*, string): The name.",
         "## `gizmo.on_missing` Trigger",
         "- **then** (*Optional*, Automation): What to run.",
+        "- **name** (*Optional*, string): Text that belongs to the trigger, not the platform.",
+        "## Other",
+        "- **mode** (*Optional*, string): The mode.",
         "",
       ].join("\n\n"),
     },
   });
   const base = store.files.get("gizmo").gizmo.schemas.GIZMO_SCHEMA.schema.config_vars;
-  assert.match(base.name.docs, /The name/);
+  assert.match(base.name.docs, /The name\./);
+  assert.match(base.mode.docs, /The mode\./);
   assert.deepEqual(
     report.findings.map((f) => [f.kind, f.line]),
     [
