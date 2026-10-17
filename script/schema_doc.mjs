@@ -99,6 +99,7 @@ export class SchemaStore {
     this.url = url;
     this.files = new Map();
     this.core = null;
+    this.componentIntros = new Set(); // components whose intro this run has written
   }
 
   /** Load esphome.json, whose `core` lists every component and platform. */
@@ -593,6 +594,8 @@ const PROP_RE = new RegExp(`^\\*\\*(\\w+)\\*\\*(?::\\s*${TYPE_GROUP}(?::\\s*|\\s
 const ENUM_RE = /^(?:`([^`]*)`|\*\*([^*]*)\*\*)\s*(?:(?:-|:)\s*(.*)|\(([^)]*)\)(?:\s*(?::|-)\s*(.*))?)?$/;
 
 /** <EnumValues values={[ {value: "X", default: true, description: "Y"}, … ]} /> */
+const ENUM_VALUE_FIELDS = ["value", "description", "default"];
+
 export function parseEnumValues(node) {
   const attr = node.attributes?.find((a) => a.name === "values");
   const expr = attr?.value?.data?.estree?.body?.[0]?.expression;
@@ -620,6 +623,8 @@ export function parseEnumValues(node) {
   if (!entries.every((e) => "value" in e)) {
     return { error: "each entry needs a 'value'" };
   }
+  const unknown = entries.flatMap((e) => Object.keys(e).filter((k) => !ENUM_VALUE_FIELDS.includes(k)));
+  if (unknown.length) return { error: `unknown field '${unknown[0]}'` };
   const bad = entries.find(
     (e) =>
       !["string", "number"].includes(typeof e.value) ||
@@ -1027,7 +1032,10 @@ export class Walker {
       report.add("missing_schema_entry", this.rel, line, { detail: `core.components has no ${name}` });
       return;
     }
-    if (this.emit && !("docs" in entry)) {
+    // The first page of this run to introduce a component wins; a rerun over an emitted bundle
+    // still replaces the intro an earlier run wrote
+    if (this.emit && !store.componentIntros.has(name)) {
+      store.componentIntros.add(name);
       entry.docs = this.withSeeAlso(text);
       report.stats.emitted.componentDocs++;
     }
@@ -1306,6 +1314,11 @@ export class Walker {
 
   /** Open the section a "Configuration variables" heading introduces. */
   async openConfigSection(depth, line) {
+    // A heading nested under an action heading opened its own section, so the action's
+    // pending reference is stale: "#### Configuration variables" lists the nested options
+    if (this.pendingRegistry && this.section?.source === "heading" && this.section.depth > this.pendingRegistryDepth) {
+      this.pendingRegistry = null;
+    }
     // "### Configuration variables" under "## `on_boot`" or "## Light state" lists
     // that schema's options, until an unrelated heading has intervened
     if (

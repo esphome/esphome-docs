@@ -1590,3 +1590,46 @@ test("nested audits two levels down are kept apart per branch", async () => {
     [["foo.CONFIG_SCHEMA/right/options", "b"]],
   );
 });
+
+test("a rerun over an emitted bundle replaces a changed component intro", async () => {
+  const bundle = { esphome: core(["radar"]), radar: { radar: { schemas: { CONFIG_SCHEMA: schema({}) } } } };
+  const first = await walk({ schema: bundle, pages: { "radar.mdx": "Radar.\n" } });
+  const emitted = Object.fromEntries(first.store.files);
+  assert.match(emitted.esphome.core.components.radar.docs, /^Radar\./);
+  const { store } = await walk({ schema: emitted, pages: { "radar.mdx": "Radar sensor.\n" } });
+  assert.match(store.core.components.radar.docs, /^Radar sensor\./);
+});
+
+test("options under a sub-section heading nested in an action heading go to the nested schema", async () => {
+  const { docs } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: { CONFIG_SCHEMA: schema({}) },
+          action: {
+            do: schema({
+              mode: { key: "Optional" },
+              options: { key: "Optional", ...schema({ mode: { key: "Optional" } }) },
+            }),
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `foo.do` Action",
+        "Does it.",
+        "- **mode** (*Optional*, string): The action mode.",
+        "### Options",
+        "#### Configuration variables",
+        "- **mode** (*Optional*, string): The option mode.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const action = (...k) => docs("foo", "foo", "action", "do", "schema", "config_vars", ...k);
+  assert.match(action("mode"), /The action mode/);
+  assert.match(action("options", "schema", "config_vars", "mode"), /The option mode/);
+});

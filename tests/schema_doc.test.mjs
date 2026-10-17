@@ -131,6 +131,11 @@ test("parseEnumValues reads the <EnumValues> JSX block", () => {
     [{ value: "X", default: true }],
   );
   assert.match(parseEnumValues(parse("<EnumValues values={[{ default: true }]} />\n").children[0]).error, /value/);
+  // A misspelled field is an error, not a silently dropped description
+  assert.match(
+    parseEnumValues(parse('<EnumValues values={[{ value: "X", descripton: "Ex" }]} />\n').children[0]).error,
+    /unknown field 'descripton'/,
+  );
   for (const bad of ['{ value: "X", description: 123 }', '{ value: "X", default: "yes" }', "{ value: true }"]) {
     assert.match(parseEnumValues(parse(`<EnumValues values={[${bad}]} />\n`).children[0]).error, /value is a string/);
   }
