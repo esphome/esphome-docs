@@ -1,5 +1,5 @@
 ---
-description: "Instructions for setting up PCA9554, PCA9554A, PCA9536 digital port expanders in ESPHome."
+description: "Instructions for setting up PCA9554, PCA9554A, PCA9536, PCA9535, PCA9555, PCAL9538 and PCAL9555 digital port expanders in ESPHome."
 title: "PCA9554 I/O Expander"
 ---
 
@@ -22,40 +22,37 @@ be used, but some more complicated components that do communication through this
   height={169}
 />
 
-## Tested devices
+## Supported devices
 
-The following devices have been tested with this component and can be used by setting the `device` in your YAML.
+Set `device:` to the part in use. The PCAL parts add pull resistors, input latching and a selectable output
+drive strength on top of the plain I/O.
 
-| Device | Number of Pins | I2C Address | Features |
-| --- | --- | --- | --- | 
+| Device | Number of Pins | I²C Address | Features |
+| --- | --- | --- | --- |
 | PCA9554 | 8 | 0x20-0x27 | I/O |
 | PCA9554A | 8 | 0x38-0x3F | I/O |
 | PCA9536 | 4 | 0x41 | I/O |
 | PCA9535 | 16 | 0x20-0x27 | I/O |
-| PCAL9538A | 8 | 0x70-0x73 | I/O, Pull Up/Down, Open Drain Outputs, Latching, Maskable Interrupt, Variable Drive Strength |
-| PCAL9555A | 16 | 0x20-0x27 | I/O, Pull Up/Down, Open Drain Outputs, Latching, Maskable Interrupt, Variable Drive Strength |
+| PCA9555 | 16 | 0x20-0x27 | I/O |
+| PCAL9538 | 8 | 0x70-0x73 | I/O, pull up/down, latching, drive strength |
+| PCAL9555 | 16 | 0x20-0x27 | I/O, pull up/down, latching, drive strength |
 
-Devices that show a range of I2C addresses have an address that can be set using strapping pins on the device.
+Devices that show a range of I²C addresses have an address that can be set using strapping pins on the device.
 
-Other I/O expanders that use this command interface and up to 16 I/O pins should also work.
- * TCA9554
- * TCA9535
-
-If these devices have the same number of pins and features as the supported devices above, you can use that device
-name in your YAML. For many of the devices with different part numbers, the only change is the I2C address range,
-which can be set independently of the device type.
+Other I/O expanders with the same register layout and up to 16 pins, such as the TCA9554 and TCA9535, work when
+configured as the device with the same number of pins and features; only the I²C address range differs.
 
 ```yaml
 # Example configuration entry
 pca9554:
   - id: "setup_expander"
     address: 0x70
-    device: PCAL9554
+    device: PCAL9538
 
 # Individual outputs
 switch:
   - platform: gpio
-    name: "PCAL9554 Pin 2"
+    name: "PCAL9538 Pin 2"
     pin:
       pca9554: setup_expander
       number: 2
@@ -65,39 +62,33 @@ switch:
 
 binary_sensor:
   - platform: gpio
-    name: "PCAL9554 Pin 3"
+    name: "PCAL9538 Pin 3"
     pin:
       pca9554: setup_expander
       number: 3
       mode:
         input: true
         pullup: true
-        pulldown: false
-        latch: false
-        interrupt: false
+        latch: true
 ```
 
 ## Configuration variables
 
 - **id** (**Required**, [ID](/guides/configuration-types#id)): The id to use for this `pca9554` component.
-- **address** (*Optional*, int): The I²C address of the driver. This is technically optional, but you should 
-  really check to make sure you have the right address as the default will not work for many of the supported components.
-  Defaults to `0x20`.
+- **address** (*Optional*, int): The I²C address of the driver. This is technically optional, but you should
+  really check to make sure you have the right address as the default will not work for many of the supported
+  components. Defaults to `0x20`.
 
-- **device** (*Optional*, string): When using a supported device, you may set the device name per the above table.
-  If this is not set, it will default to 'NONE' and the `pin_count` below needs to be set.
-
-- **pin_count** (*Optional*, int): The number of bits implemented in the expander. If you set the device type above,
-  do not set this variable.
-
+- **device** (*Optional*, string): The part in use, one of the names in the table above. Defaults to `PCA9554`,
+  or to the plain part with the pins given by `pin_count`.
+- **pin_count** (*Optional*, int): The number of pins of the expander, `4`, `8` or `16`, for configurations that
+  predate `device`. With `device` set it may be left out; if both are given they must agree.
 - **interrupt_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The pin connected to the
-  INT output of the PCA9554/PCA9535. When configured, the component becomes interrupt-driven instead of
-  polling — it only reads the chip when a pin actually changes state, significantly reducing I²C bus traffic
+  INT output of the expander. When configured, the component becomes interrupt-driven instead of
+  polling: it only reads the chip when a pin actually changes state, significantly reducing I²C bus traffic
   and CPU usage. The INT pin is active-low and open-drain, so an external or internal pull-up resistor is
-  required. Must be an internal GPIO pin (not another expander pin).
-
-> [!NOTE]
-> If you define the device using pin_count, you **must** set pin_count to the total number of pins on the device.
+  required. Must be an internal GPIO pin (not another expander pin). On the PCAL parts every input pin asserts
+  INT and every output pin is masked, so no per-pin setup is needed.
 
 ## Pin configuration variables
 
@@ -107,16 +98,12 @@ binary_sensor:
 - **number** (**Required**, int): The pin number.
 - **inverted** (*Optional*, boolean): If all read and written values
   should be treated as inverted. Defaults to `false`.
-- **drive_strength** (*Optional*, int): If the pin is configured as an `output`, this controls the drive strength
-  of the output. Refer to the datasheet of your device for the maximum recommended drive strength. Defaults to full strength.
-  This option is only used with the PCAL series devices, setting it on other devices will have no effect.
-  - `0`: 1/4 drive strength
-  - `1`: 1/2 drive strength
-  - `2`: 3/4 drive strength
-  - `3`: full drive strength.
+- **drive_strength** (*Optional*, int): PCAL parts only. The drive strength of an `output` pin, `0` for a
+  quarter, `1` for half, `2` for three quarters and `3` for the full strength. Refer to the datasheet of your
+  device for the recommended value. Defaults to full strength; the plain parts reject this option.
 - **mode** (*Optional*, boolean(s)): Pin mode settings for the selected pin. Multiple pin modes may be selected by
-  indenting them after the `mode:` entry in the YAML as shown in the example above. All devices support `input` and `output`. 
-  The PCAL series devices additionaly support `pullup`, `pulldown`, `latch`, and `interrupt`.
+  indenting them after the `mode:` entry in the YAML as shown in the example above. All devices support `input` and
+  `output`. The PCAL parts additionally support `pullup`, `pulldown` and `latch`; the plain parts reject them.
 
 > [!NOTE]
 > Pin numbers always start at 0. For devices with more than 8 pins, the datasheet may call them out in two ports (ex: P0_0..7 and P1_0..7). In this case, the port 0 pins are the lower eight pins of the expander, and the port 1 pins are the upper eight (ex: P0_4 is pin four, P1_4 is pin 12)
@@ -136,14 +123,10 @@ If the pin is configured as an `input` enable a 100K pull up.
 If the pin is configured as an `input` enable a 100K pull down.
 
 `latch`:
-If the pin is configured as an `input`, latch the input. With this enabled, if the input changes state, the pin state will be latched
-at the new level, and will not change, even if the pin goes back to its original state. This latch is cleared when the pin state 
-register is read. This is likley only useful if you are trying to detect *very* fast transient signals.
-
-`interrupt`:
-If the pin is configured as an `input`, enable interrupt generation on this pin. If this option is enabled, any level change on the pin
-will cause the interrupt pin on the device to pull low. If this pin is monitored by the main CPU, it can be used to asynchronously detect
-pin changes.
+If the pin is configured as an `input`, latch the input. With this enabled, if the input changes state, the pin
+state will be latched at the new level, and will not change, even if the pin goes back to its original state.
+This latch is cleared when the pin state register is read. This is likely only useful if you are trying to
+detect *very* fast transient signals.
 
 ## See Also
 
@@ -154,4 +137,6 @@ pin changes.
 - [PCA9554A datasheet](https://www.ti.com/lit/ds/symlink/pca9554a.pdf)
 - [PCA9535 datasheet](https://www.ti.com/lit/ds/symlink/pca9535.pdf)
 - [PCA9536 datasheet](https://www.ti.com/lit/ds/symlink/pca9536.pdf)
+- [PCAL9538 datasheet](https://www.nxp.com/docs/en/data-sheet/PCAL9538.pdf)
+- [PCAL9555A datasheet](https://www.nxp.com/docs/en/data-sheet/PCAL9555A.pdf)
 - <APIRef text="pca9554.h" path="pca9554/pca9554.h" />
