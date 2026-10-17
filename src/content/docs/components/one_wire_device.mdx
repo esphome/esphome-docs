@@ -192,6 +192,10 @@ controller bus as well.
 ## Deliberate Limits
 
 - Only classic dual-core ESP32 is accepted. There is one emulated device per node, not one independently per pin.
+- The GPIO backend times slots from ISR entry, not a hardware edge timestamp. Interrupt latency can shift sampling
+  and responses, and not all timing overruns are detected. A high line at ISR entry is not itself an overrun detector:
+  normal short write-1/read pulses can already have ended. This backend does not provide a timing-integrity guarantee
+  under arbitrary interrupt load; applications requiring that guarantee need hardware-timestamped/offloaded handling.
 - Conversion completes immediately using the latest source snapshot; ready polling returns ready. Real sensor
   conversion delays and power consumption are not simulated.
 - Copy Scratchpad and Recall E2 use a **RAM shadow**. They survive bus resets, not ESP32 restarts or power loss.
