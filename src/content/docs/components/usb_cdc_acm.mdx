@@ -1,5 +1,5 @@
 ---
-description: "Instructions for setting up USB CDC-ACM virtual serial ports on ESP32 variants in ESPHome"
+description: "Instructions for setting up USB CDC-ACM virtual serial ports on ESP32 variants and nRF52 in ESPHome"
 title: "USB CDC-ACM Interface"
 ---
 import APIRef from '@components/APIRef.astro';
@@ -9,7 +9,7 @@ The USB CDC-ACM (Communications Device Class - Abstract Control Model) component
 as USB virtual serial ports. When connected to a host computer, the microcontroller will appear as one or
 more serial/COM ports, allowing serial communication with the application running on the microcontroller.
 
-You must have [Tinyusb](/components/tinyusb/) in your device's configuration to use this component.
+On ESP32 you must have [Tinyusb](/components/tinyusb/) in your device's configuration to use this component.
 
 The following ESP32 microcontroller variants are currently supported:
 
@@ -18,6 +18,11 @@ The following ESP32 microcontroller variants are currently supported:
 - ESP32-S2
 - ESP32-S3
 - ESP32-S31
+
+The nRF52840 is supported as well. There the ports are shared with the [Logger](/components/logger/) when it
+uses `USB_CDC` and with the [mcumgr OTA](/components/ota/zephyr_mcumgr/) transport: each port has one owner,
+and a configuration that gives the same port to two components is rejected. The position of an interface in
+the `interfaces` list is its port number, so mark a port that another component owns as `disabled`.
 
 ```yaml
 # Example minimal configuration entry
@@ -37,6 +42,11 @@ Each interface in the `interfaces` list consists of the following:
 
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): The ID to use for this interface instance. This is
   used to refer to the interface in other components, platforms or lambdas.
+- **disabled** (*Optional*, boolean): **nRF52 only.** Skip this port, for example because the logger or the
+  mcumgr OTA transport owns it. The entry keeps its place in the list so the later ports keep their numbers.
+  Defaults to `false`.
+- **debug** (*Optional*): Log the bytes sent and received on this port, with the same options as the
+  [UART debugging](/components/uart/#debugging) configuration.
 
 ## Multiple Interface Example
 
@@ -53,6 +63,20 @@ usb_cdc_acm:
 
 In this configuration, the device will appear as two separate serial/COM ports to the host computer. Each interface
 operates independently with its own data buffers.
+
+On an nRF52 board whose logger uses `USB_CDC`, the logger owns port 0, so a second port for your own data looks
+like this:
+
+```yaml
+# Example configuration with the logger on port 0 and a UART on port 1 (nRF52)
+logger:
+  hardware_uart: USB_CDC
+
+usb_cdc_acm:
+  interfaces:
+    - disabled: true
+    - id: cdc_acm_1
+```
 
 ## Buffer Size Considerations
 
