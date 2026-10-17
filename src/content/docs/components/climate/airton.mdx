@@ -9,7 +9,9 @@ The `airton` climate platform controls air conditioners that use the Airton RD1A
 found in Airton branded units and in Ferroli's Aster range. The platform is part of the
 [IR Remote Climate](/components/climate/climate_ir/) family and takes all of its options, plus the extra features of
 this remote: the vertical air outlet direction, the display light and sleep mode. Those are exposed through the
-`airton` select and switch platforms and through actions, all described on this page.
+`airton` select and switch platforms and through actions, all described on this page. Like every IR climate it needs
+a [Remote Transmitter](/components/remote_transmitter/), and takes a [Remote Receiver](/components/remote_receiver/)
+to follow the handheld remote.
 
 ```yaml
 # Example configuration entry
@@ -17,8 +19,6 @@ climate:
   - platform: airton
     id: living_room_ac
     name: Living Room AC
-    sensor: room_temperature
-    vertical_direction: middle
 
 switch:
   - platform: airton
