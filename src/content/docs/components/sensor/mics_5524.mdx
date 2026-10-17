@@ -127,9 +127,10 @@ sensor:
 
 The component can also create the `adc` sensor itself (`pin:`), take the divider from its resistors
 (`voltage_divider:`) and switch the module on over `EN`. `conversion: datasheet` with `r0:` selects the datasheet
-model, and the diagnostics make the intermediate values visible. On ESP32 the wiring check uses the conservative range
-of the configured `adc_attenuation:` (about 2.45 V at the default `12db`), so the 10k/20k divider needs
-`adc_input_max: 3.34` to pass; use a larger `r1` to stay inside the default.
+model, and the diagnostics make the intermediate values visible. On ESP32 the wiring check uses the measuring range
+of the configured `adc_attenuation:` for the variant (about 2.45 V at the default `12db` on the original ESP32), so
+the 10k/20k divider of the vendor wiring does not fit a `pin:` source there; a 22k/20k divider brings the 5 V output
+down to 2.38 V.
 
 ```yaml
 # Example configuration entry, component-owned ADC and the datasheet model
@@ -137,10 +138,9 @@ sensor:
   - platform: mics_5524
     id: mics_5524
     pin: GPIOXX
-    voltage_divider:            # the 10k/20k divider in front of the AO pin
-      r1: 10000
+    voltage_divider:            # 22k/20k brings the 5 V output down to 2.38 V on the pin
+      r1: 22000
       r2: 20000
-    adc_input_max: 3.34         # the divider puts 3.33 V on the pin
     conversion: datasheet
     r0: 10.0                    # RS in clean air, in kOhm
     enable_pin:                 # EN of the module is active low
@@ -328,7 +328,7 @@ button:
 | `analog output out of range` status warning, reading `0.0000 V` | AO not wired, module not powered or the `EN` pad not driven low (`enable_pin:` without `inverted: true`) |
 | `analog output out of range` status warning, reading above `vcc:` | wrong `vcc:` or `voltage_multiplier:` - the reading is ignored instead of published |
 | configuration error about `adc_input_max:` or `adc_pin_max:` | the keys are only checked for a `pin:` source or a `voltage_divider:`, so remove them or switch to one of those |
-| configuration error that the wiring is above the ADC limit | the largest reading (`vcc:` scaled by the divider or `voltage_multiplier:`) exceeds `adc_input_max:`/`adc_pin_max:` - scale it down (raise `r1` relative to `r2`, or raise `voltage_multiplier:`), or declare the real limit of the sampler |
+| configuration error that the wiring is above the ADC limit | the largest reading (`vcc:` scaled by the divider or `voltage_multiplier:`) exceeds `adc_input_max:`/`adc_pin_max:` - change the divider so less voltage reaches the pin (raise `r1` relative to `r2`), then set `voltage_divider:` or `voltage_multiplier:` to match the new wiring; declare `adc_input_max:`/`adc_pin_max:` only for a sampler that really measures more |
 | configuration error that a gas has no built-in datasheet coefficients | set both `coefficient_a:` and `coefficient_b:` for that gas |
 | ppm far too high or too low in the datasheet model | wrong `rl:` or `r0:` - R0 is `RS` in clean air, in kΩ |
 | ppm far too high | a reference that was captured while gas was present, or a divider ratio that does not match the wiring |
