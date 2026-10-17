@@ -22,7 +22,7 @@
  *   node script/schema_doc.mjs [--schema-dir DIR | --schema-url URL] [--file SUBSTR] [--json OUT] [--verbose] [--strict]
  */
 
-import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import { basename, dirname, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import { parseArgs } from "node:util";
@@ -69,7 +69,7 @@ const COMPONENT_REGISTRIES = {
   sensor: [["filter", " Filter"]],
 };
 
-const isMain = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+const isMain = process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href;
 
 const { values: args } = parseArgs({
   args: isMain ? undefined : [],
@@ -1389,11 +1389,19 @@ export class Walker {
         await this.openSection(`${this.defaultRef}/${trig}`, node.depth, line, "heading");
         return;
       }
-      // Many pages document triggers the bundle does not place under the page's schema (platform index
-      // pages above all); their options route as before, and the gap is reported for --verbose runs
+      // Platform index pages document triggers the bundle does not place under the platform's schemas;
+      // their options route as before, and the gap is reported for --verbose runs. On a component page
+      // the options are not the component's: drop them until this heading's subtree ends, as for an
+      // unknown action
       this.report.add("unresolved_trigger", this.rel, line, {
         detail: `trigger '${trig}' not under ${this.defaultRef}`,
       });
+      if (this.defaultRef && !this.defaultRef.endsWith(".*")) {
+        this.pendingRegistry = null;
+        await this.closeSection();
+        this.failedSection = { depth: node.depth, defaultRef: this.defaultRef };
+        return;
+      }
     }
 
     const reg = registryHeading(node);

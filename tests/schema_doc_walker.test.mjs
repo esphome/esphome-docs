@@ -1158,7 +1158,7 @@ test("a trigger section reaches an inherited trigger through a docs-only copy on
   );
 });
 
-test("a trigger heading the schema cannot place is reported and routes as before", async () => {
+test("options under a trigger heading a component page cannot place are dropped, not written to it", async () => {
   const { docs, report } = await walk({
     schema: {
       esphome: core(["foo"]),
@@ -1170,12 +1170,44 @@ test("a trigger heading the schema cannot place is reported and routes as before
         "## Configuration variables",
         "- **name** (*Optional*, string): The name.",
         "## `foo.on_missing` Trigger",
+        "- **name** (*Optional*, string): Text for the missing trigger.",
+        "### Configuration variables",
+        "- **name** (*Optional*, string): Text for the missing trigger.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "name"), /The name\./);
+  assert.deepEqual(
+    report.findings.map((f) => [f.kind, f.line]),
+    [
+      ["unresolved_trigger", 11],
+      ["orphan_option_list", 13],
+      ["unroutable_section", 15],
+      ["orphan_option_list", 17],
+    ],
+  );
+});
+
+test("a trigger heading a platform index page cannot place is reported and routes as before", async () => {
+  const { store, report } = await walk({
+    schema: {
+      esphome: core([], { gizmo: {} }),
+      gizmo: { gizmo: { schemas: { GIZMO_SCHEMA: schema({ name: { key: "Optional" } }) } } },
+    },
+    pages: {
+      "gizmo/index.mdx": [
+        "Gizmos.",
+        "## Configuration variables",
+        "- **name** (*Optional*, string): The name.",
+        "## `gizmo.on_missing` Trigger",
         "- **then** (*Optional*, Automation): What to run.",
         "",
       ].join("\n\n"),
     },
   });
-  assert.match(docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "name"), /The name/);
+  const base = store.files.get("gizmo").gizmo.schemas.GIZMO_SCHEMA.schema.config_vars;
+  assert.match(base.name.docs, /The name/);
   assert.deepEqual(
     report.findings.map((f) => [f.kind, f.line]),
     [
