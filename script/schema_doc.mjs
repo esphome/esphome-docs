@@ -1691,19 +1691,26 @@ export class Walker {
     const props = holders.length ? holders.map((h) => h.prop) : [found.prop];
     const line = item.position.start.line;
     const nestedRef = `${ref}/${key}`;
-    for (const prop of props) {
-      const nestedInner = propInner(prop);
-      if (nestedInner) {
-        const documented = new Set();
-        for (const list of lists) await this.items(list, nestedInner, documented, nestedRef);
+    const nested = props.map((prop) => propInner(prop)).filter(Boolean);
+    if (nested.length) {
+      // One walk over the definitions of every variant, so a key only one of them has is matched there
+      // and not reported unmatched on the others; each definition is still audited for keys the docs miss
+      const merged = nested.length === 1 ? nested[0] : await this.store.nestedInner(inner, key);
+      const documented = new Set();
+      for (const list of lists) await this.items(list, merged, documented, nestedRef);
+      for (const nestedInner of nested)
         this.reportUndocumented({ inner: nestedInner, documented, ref: nestedRef, line });
-      } else if (prop.type === "enum") {
-        for (const list of lists) this.emitEnumList(prop, list);
-      } else if (lists.length) {
-        this.report.add("nested_list_ignored", this.rel, line, {
-          key,
-          detail: `${key} is a ${prop.type ?? "plain"} value; its nested bullets have no schema to match`,
-        });
+    }
+    for (const prop of props) {
+      if (!propInner(prop)) {
+        if (prop.type === "enum") {
+          for (const list of lists) this.emitEnumList(prop, list);
+        } else if (lists.length) {
+          this.report.add("nested_list_ignored", this.rel, line, {
+            key,
+            detail: `${key} is a ${prop.type ?? "plain"} value; its nested bullets have no schema to match`,
+          });
+        }
       }
       for (const jsx of blocks) this.enumValuesBlock(jsx, prop);
     }

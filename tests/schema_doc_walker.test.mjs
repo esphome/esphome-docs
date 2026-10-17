@@ -828,6 +828,50 @@ test("a nested typed schema that two outer variants define keeps its discriminat
   );
 });
 
+test("a nested key only one typed variant has is matched, not reported unmatched on the others", async () => {
+  const options = (extra = {}) => ({
+    key: "Optional",
+    type: "schema",
+    schema: { config_vars: { x: { key: "Optional" }, ...extra } },
+  });
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "model",
+              types: {
+                a: { config_vars: { options: options() } },
+                b: { config_vars: { options: options({ extra: { key: "Optional" } }) } },
+              },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **model** (**Required**): The model.",
+        "- **options** (*Optional*): The options.\n  - **x** (*Optional*, int): The x.\n  - **extra** (*Optional*, int): The extra.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const types = (...k) => docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "types", ...k);
+  assert.match(types("a", "config_vars", "options", "schema", "config_vars", "x"), /The x/);
+  assert.match(types("b", "config_vars", "options", "schema", "config_vars", "x"), /The x/);
+  assert.match(types("b", "config_vars", "options", "schema", "config_vars", "extra"), /The extra/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key"),
+    [],
+  );
+});
+
 test("a top-level <EnumValues> block reaches every typed variant that has the option before it", async () => {
   const typed = (extra = {}) => ({
     config_vars: { mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } }, ...extra },
