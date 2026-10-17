@@ -291,7 +291,7 @@ export class SchemaStore {
     if (!inner) return null;
     if (inner.typedKey === name) {
       const typedEntries = inner.entries ?? [inner.entry];
-      return { prop: { key: "Required", type: "enum" }, owner: null, inherited, typedEntries };
+      return { prop: SchemaStore.typedKeyProp(inner), owner: null, inherited, typedEntries };
     }
     for (const variantInner of inner.variants) {
       const top = root ?? variantInner;
@@ -386,10 +386,20 @@ export class SchemaStore {
     return inner;
   }
 
+  /**
+   * The discriminator of a typed schema as a config var. The bundle does not say whether it is
+   * required (a typed schema may have a default type), so that is left unknown; its choices are
+   * the typed entry's types, so a bullet per choice describes that type.
+   */
+  static typedKeyProp(inner) {
+    const entry = inner.entries?.[0] ?? inner.entry;
+    return { type: "enum", values: entry?.types ?? {} };
+  }
+
   /** Find a config var by name, following extends. */
   async findProp(inner, name, seen = new Set()) {
     if (!inner) return null;
-    if (inner.typedKey === name) return { key: "Required", type: "enum" };
+    if (inner.typedKey === name) return SchemaStore.typedKeyProp(inner);
     for (const variantInner of inner.variants) {
       if (variantInner.config_vars && Object.hasOwn(variantInner.config_vars, name)) {
         return variantInner.config_vars[name];
@@ -408,7 +418,7 @@ export class SchemaStore {
   async findProps(inner, name, seen = new Set()) {
     const props = [];
     if (!inner) return props;
-    if (inner.typedKey === name) props.push({ key: "Required", type: "enum" });
+    if (inner.typedKey === name) props.push(SchemaStore.typedKeyProp(inner));
     for (const variantInner of inner.variants) {
       const own = variantInner.config_vars?.[name];
       if (own) {
@@ -941,6 +951,17 @@ export class Walker {
   }
 
   /** Report the keys of a section's schema that its bullets did not mention. */
+  /** A key documented by its own heading counts for the audit of the schema that holds it. */
+  markDocumented(ref, key, line) {
+    if (this.section?.ref === ref) {
+      this.section.documented.add(key);
+      return;
+    }
+    const audit = this.audits.get(ref);
+    if (audit) audit.documented.add(key);
+    else this.audits.set(ref, { inners: [], documented: new Set([key]), line });
+  }
+
   reportUndocumented(s) {
     // A schema documented in several sections of a page is audited once, at the end
     const audit = this.audits.get(s.ref);
@@ -1062,8 +1083,9 @@ export class Walker {
 
   /** The schema's spelling of an enum value, matched case-insensitively. */
   enumValueKey(prop, value) {
+    value = String(value).replace(/^`|`$/g, ""); // **`value`**: bold around code keeps the backticks
     if (Object.hasOwn(prop.values, value)) return value;
-    const lower = String(value).toLowerCase();
+    const lower = value.toLowerCase();
     return Object.keys(prop.values).find((k) => k.toLowerCase() === lower) ?? null;
   }
 
@@ -1143,7 +1165,8 @@ export class Walker {
       }
       const value = this.enumValueKey(prop, m[1] ?? m[2]);
       const note = m[4];
-      const noteDefault = note !== undefined && /^default$/i.test(note.trim());
+      // "(default)" or "(*default*)" after the value
+      const noteDefault = note !== undefined && /^\*{0,2}default\*{0,2}$/i.test(note.trim());
       let desc = m[3] ?? m[5] ?? (noteDefault ? undefined : note);
       // "(default)" after the value, or a description that is only the word, marks the default value
       const descDefault = desc !== undefined && /^\*{0,2}default\*{0,2}$/i.test(desc.trim());
@@ -1402,10 +1425,13 @@ export class Walker {
 
     const trig = triggerHeading(node);
     if (trig) {
-      const base = this.defaultRef ? await store.resolve(this.defaultRef) : null;
-      // nestedInner sees through a docs-only copy of an inherited trigger
-      if (await store.nestedInner(base, trig)) {
-        await this.openSection(`${this.defaultRef}/${trig}`, node.depth, line, "heading");
+      // The page's own schema is tried after the current one: a hub documents its triggers after
+      // the sections of its platforms. nestedInner sees through a docs-only copy of an inherited trigger
+      const pageRef = this.pageDefault?.defaultRef;
+      for (const ref of [this.defaultRef, ...(pageRef && pageRef !== this.defaultRef ? [pageRef] : [])]) {
+        if (!ref || !(await store.nestedInner(await store.resolve(ref), trig))) continue;
+        this.markDocumented(ref, trig, line);
+        await this.openSection(`${ref}/${trig}`, node.depth, line, "heading");
         return;
       }
       // Platform index pages document triggers the bundle does not place under the platform's schemas;

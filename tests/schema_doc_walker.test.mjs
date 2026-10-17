@@ -1263,7 +1263,7 @@ test("an Over SPI heading on a component typed by bus documents that variant", a
 
 test("a trigger section reaches that trigger in every typed variant", async () => {
   const trigger = () => ({ key: "Optional", type: "schema", schema: { config_vars: { then: { key: "Optional" } } } });
-  const { store } = await walk({
+  const { store, report } = await walk({
     schema: {
       esphome: core(["foo"]),
       foo: {
@@ -1299,6 +1299,84 @@ test("a trigger section reaches that trigger in every typed variant", async () =
     const onEvent = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.types[variant].config_vars.on_event;
     assert.match(onEvent.schema.config_vars.then.docs, /What to run/);
   }
+  // The heading documents the trigger, so the audit of the parent schema does not miss it
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "undocumented_key" && f.key === "on_event"),
+    [],
+  );
+});
+
+test("the discriminator of a typed schema is neither required by assumption nor an enum without values", async () => {
+  const { store, report } = await walk({
+    schema: {
+      esphome: core([], { sensor: {} }),
+      sensor: { sensor: { schemas: { SENSOR_SCHEMA: schema({}) }, components: { uptime: {} } } },
+      uptime: {
+        "uptime.sensor": {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "type",
+              types: { seconds: { config_vars: {} }, timestamp: { config_vars: {} } },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "sensor/uptime.mdx": [
+        "Uptime.",
+        "## Configuration variables",
+        "- **type** (*Optional*): Either:\n  - `seconds` (*default*): A simple counter.\n  - `timestamp`: When ESPHome booted.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const entry = store.files.get("uptime")["uptime.sensor"].schemas.CONFIG_SCHEMA;
+  assert.match(entry.docs, /^Either:/);
+  assert.match(entry.types.seconds.docs, /A simple counter/);
+  assert.equal(entry.types.seconds.default, true);
+  assert.match(entry.types.timestamp.docs, /When ESPHome booted/);
+  assert.deepEqual(
+    report.findings.filter((f) => ["optionality_mismatch", "enum_without_values"].includes(f.kind)),
+    [],
+  );
+});
+
+test("a hub trigger documented after a platform section is found on the page's own schema", async () => {
+  const trigger = { key: "Optional", type: "schema", schema: { config_vars: { then: { key: "Optional" } } } };
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["modem"], { binary_sensor: {} }),
+      binary_sensor: { binary_sensor: { schemas: { BINARY_SENSOR_SCHEMA: schema({}) }, components: { modem: {} } } },
+      modem: {
+        modem: { schemas: { CONFIG_SCHEMA: schema({ on_sms: trigger }) } },
+        "modem.binary_sensor": { schemas: { CONFIG_SCHEMA: schema({ registered: { key: "Optional" } }) } },
+      },
+    },
+    pages: {
+      "modem.mdx": [
+        "Modem.",
+        "## Component/Hub",
+        "### Configuration variables",
+        "- **on_sms** (*Optional*, Automation): See below.",
+        "## Binary Sensor",
+        "### Configuration variables",
+        "- **registered** (*Optional*): Registered on the network.",
+        "## `on_sms` Trigger",
+        "Fires on a message.",
+        "### Configuration variables",
+        "- **then** (*Optional*, Automation): What to run.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const onSms = store.files.get("modem").modem.schemas.CONFIG_SCHEMA.schema.config_vars.on_sms;
+  assert.match(onSms.schema.config_vars.then.docs, /What to run/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unresolved_trigger"),
+    [],
+  );
 });
 
 test("a trigger section reaches an inherited trigger through a docs-only copy on the child", async () => {
