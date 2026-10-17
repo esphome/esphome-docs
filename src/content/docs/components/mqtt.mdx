@@ -11,6 +11,8 @@ The MQTT Client Component sets up the MQTT connection to your broker.
 If you are connecting to Home Assistant, you may prefer to use the native API,
 in which case this is not needed.
 
+MQTT is supported on the ESP32, ESP8266, BK72xx, LN882H and RTL87xx platforms.
+
 > [!WARNING]
 > If you enable MQTT and you do *not* use the [Api](/components/api/), you must
 > remove the `api:` configuration or set `reboot_timeout: 0s`, otherwise the ESP will
@@ -632,8 +634,9 @@ mqtt:
   to 0.
 
 > [!NOTE]
-> Due to the way this trigger works internally it is incompatible with certain actions and will
-> trigger a compile failure. For example with the `delay` action.
+> `on_json_message` may not contain deferring actions (`delay`, `wait_until`, `script.wait`, ...) - the parsed
+> JSON document is only valid while the automation runs. Config validation rejects such an automation with an
+> error. Copy any value you need into a global first, then defer from a separate script or automation.
 
 > [!NOTE]
 > This action can also be used in [lambdas](/automations/templates#config-lambda):
