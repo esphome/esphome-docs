@@ -23,7 +23,7 @@ components that do communication through this I/O expander will not work.
   height={169}
 />
 
-## Supported devices
+## Supported Devices
 
 Set `device:` to the part in use. The PCAL parts add pull resistors, input latching and a selectable output
 drive strength on top of the plain I/O.
@@ -63,7 +63,6 @@ switch:
       number: 2
       mode:
         output: true
-      inverted: false
 
 # Individual inputs
 binary_sensor:
@@ -74,10 +73,9 @@ binary_sensor:
       number: 3
       mode:
         input: true
-      inverted: false
 ```
 
-## Configuration variables
+## Configuration Variables
 
 - **id** (**Required**, [ID](/guides/configuration-types/#id)): The id to use for this `pca9554` component.
 - **address** (*Optional*, int): The I²C address of the device; see the table above. Defaults to the lowest
@@ -94,7 +92,7 @@ binary_sensor:
   required. Must be an internal GPIO pin (not another expander pin). On the PCAL parts every input pin asserts
   INT and every output pin is masked, so no per-pin setup is needed.
 
-## Pin configuration variables
+## Pin Configuration Variables
 
 - **pca9554** (**Required**, [ID](/guides/configuration-types/#id)): The id of the `pca9554` component of the pin.
   Instead of an id, an `address:` can be given to select the hub by its I²C address; see
@@ -114,7 +112,7 @@ binary_sensor:
 > Pin numbers start at 0. Datasheets for 16-pin parts may split the pins into two ports (`P0_0`..`P0_7` and
 > `P1_0`..`P1_7`). Port 0 is pins 0-7 and port 1 is pins 8-15, so `P0_4` is pin 4 and `P1_4` is pin 12.
 
-## Description of the mode settings
+## Description of the Mode Settings
 
 `input`:
 Configure the pin as a high impedance input.
@@ -128,14 +126,14 @@ If the pin is configured as an `input` enable a 100K pull up.
 `pulldown`:
 If the pin is configured as an `input` enable a 100K pull down.
 
-## Latched inputs
+## Latched Inputs
 
 With `latch: true` a PCAL part holds a changed input level until the component reads the input register, which
 happens on every poll or, with `interrupt_pin`, when INT fires. INT stays asserted until that read. A pulse
 shorter than the poll interval is therefore still reported once instead of being missed; the level read back is
 the latched one, even if the pin has already returned to its original state.
 
-## PCAL example
+## PCAL Example
 
 ```yaml
 pca9554:
@@ -176,6 +174,7 @@ binary_sensor:
 - [PCA9538 datasheet](https://www.ti.com/lit/ds/symlink/pca9538.pdf)
 - [PCA9555 datasheet](https://www.ti.com/lit/ds/symlink/pca9555.pdf)
 - [TCA9554 datasheet](https://www.ti.com/lit/ds/symlink/tca9554.pdf)
-- [PCAL9538 datasheet](https://www.nxp.com/docs/en/data-sheet/PCAL9538.pdf)
+- [PCAL9538A datasheet](https://www.nxp.com/docs/en/data-sheet/PCAL9538A.pdf)
+- [TCAL9538 datasheet](https://www.ti.com/lit/ds/symlink/tcal9538.pdf)
 - [PCAL9555 datasheet](https://www.nxp.com/docs/en/data-sheet/PCAL9555A.pdf)
 - <APIRef text="pca9554.h" path="pca9554/pca9554.h" />
