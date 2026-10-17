@@ -49,12 +49,13 @@ These options are common to all platforms:
 - **max_packet_size** (*Optional*, int): The largest packet, in bytes, that a user of this interface may send. The
   range and default depend on the platform.
 
+- **addressing** (*Optional*): Adds an [addressing layer](#addressing) to the interface.
 - **encryption** (*Optional*): Adds an [encryption layer](#encryption) to the interface.
 - **reliability** (*Optional*): Adds a [reliability layer](#reliability) to the interface.
 - **session** (*Optional*): Adds a [session layer](#session) to the interface.
 
 When more than one of these is configured, they are always stacked in the same order, whatever order they are
-written in: encryption is next to the channel, then reliability, then session. Each layer works with the same layer
+written in: addressing is next to the channel, then encryption, reliability and session. Each layer works with the same layer
 on the other device, so both devices must configure the same layers.
 
 <Figure
@@ -65,6 +66,40 @@ on the other device, so both devices must configure the same layers.
 />
 
 See the page for each platform for the options it adds.
+
+## Addressing
+
+An addressing layer lets several devices share one channel, such as an RS485 bus with more than two devices. Each
+device has its own address, and each packet carries the address of the device it is for and of the device that sent
+it. A device drops packets that are not for it, before decrypting them, and also drops its own packets if the
+channel echoes them back.
+
+```yaml
+packet_interface:
+  - platform: uart
+    id: bus
+    addressing:
+      address: 0x0001
+      destination: 0x0002
+```
+
+- **type** (*Optional*, string): The addressing method. Only `basic` is available, which uses 16-bit addresses.
+  Defaults to `basic`.
+- **address** (**Required**, int): The address of this device, from `0x0001` to `0xFFFE`. Each device on the channel
+  must have a different address.
+- **destination** (*Optional*, int): The address of the device to send to, or `broadcast` to send to every device on
+  the channel. Defaults to `broadcast`.
+
+With a `destination` other than `broadcast`, the interface becomes a link between this device and that one: it sends
+only to that device, and accepts packets only from it. The [reliability](#reliability) and [session](#session)
+layers, and the rolling code of the [encryption](#encryption) layer, work between two devices only, so they need a
+`destination` when the addressing layer is used. A device can use them with only one other device on the channel;
+the other devices can still share the channel using their own addresses.
+
+With `broadcast`, every device on the channel receives every packet, from any device. This suits
+[entity transport](/components/entity_transport/), which tells devices apart by their names.
+
+The addressing layer adds 4 bytes to each packet.
 
 ## Encryption
 
