@@ -79,6 +79,41 @@ packet_interface:
 The reliability layer adds 3 bytes to each packet, so the largest packet that can be sent through it is 3 bytes
 smaller than `max_packet_size`. Each device holds `max_queue_length` packets of `max_packet_size` bytes in memory.
 
+## Session
+
+A session layer tells whether the other device can be reached. Each device sends a short keep-alive packet at a
+regular interval, and the other device is considered lost when nothing has been received from it for the timeout. A
+restart of the other device is also noticed, even if it is quicker than the timeout. Both devices must use the same
+session `type`.
+
+Like the reliability layer, the session layer works between two devices only. When both are configured, the session
+layer is placed above the reliability layer, so a single lost keep-alive does not mark the other device as lost.
+
+```yaml
+packet_interface:
+  - platform: uart
+    id: serial_link
+    reliability:
+    session:
+      keep_alive: 10s
+      binary_sensor:
+        name: Serial link connected
+```
+
+- **type** (*Optional*, string): The session method. Only `basic` is available. Defaults to `basic`.
+- **keep_alive** (*Optional*, [Time](/guides/configuration-types#time)): How often to send a keep-alive packet. At
+  least `1s`. Defaults to `10s`.
+- **timeout** (*Optional*, [Time](/guides/configuration-types#time)): How long without receiving anything before the
+  other device is considered lost. Must be longer than `keep_alive`. Defaults to three times `keep_alive`.
+- **binary_sensor** (*Optional*): A [binary sensor](/components/binary_sensor/) that is ON while the other device
+  can be reached. All options from [Binary Sensor](/components/binary_sensor/#config-binary_sensor).
+
+The other device is checked at each `keep_alive` interval, so it is reported lost between `timeout` and `timeout`
+plus `keep_alive` after the last packet arrived. A restart is reported as lost, then connected again.
+
+The session layer adds 1 byte to each packet, so the largest packet that can be sent through it is 1 byte smaller
+than the layer below allows.
+
 ## See Also
 
 - [UART Packet Interface](/components/packet_interface/uart/)
