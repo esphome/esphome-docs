@@ -234,7 +234,7 @@ on_...:
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the FUSB302B component. Required when more
   than one `fusb302b` is configured.
 
-The lambda equivalent is `id(fusb302b_id).is_connected()`.
+The lambda equivalent is `id(pd).is_connected()`, where `pd` is the `id` of the `fusb302b` component.
 
 ## See Also
 
