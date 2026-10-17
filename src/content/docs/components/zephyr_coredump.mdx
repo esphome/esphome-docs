@@ -34,8 +34,8 @@ component rejects it; select one of the `adafruit_nrf52_sd*` bootloaders instead
 ## Reading the Dump
 
 The dump is printed once a log reader is present and is erased after it has gone out. With a UART logger
-that is at boot, so keep the serial monitor attached while the device restarts. With USB logging the device
-waits until the USB port is opened, and a client that subscribes to the logs over the native API or MQTT
+that is at boot, so keep the serial monitor attached while the device restarts. With USB logging the dump is
+held until the USB port is opened, and a client that subscribes to the logs over the native API or MQTT
 (`esphome logs` over the network) gets it as well, so a dump from a crash that happened hours ago is still
 printed when you connect. Until then it stays in flash, where only the next crash replaces it; closing the
 USB port during the print keeps it for the next reader.
