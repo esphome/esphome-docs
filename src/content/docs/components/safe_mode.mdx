@@ -48,9 +48,9 @@ safe_mode:
     sleep but **not** power loss, and avoids flash wear.
 
   Defaults to `flash` on ESP32 and `rtc` on ESP8266. `rtc` is available on ESP32 (except the C2 and C61 variants,
-  which have no RTC memory), ESP8266 and the BK7231T; elsewhere only `flash` is available and `rtc` is rejected.
-  The BK7231T has no RTC memory: there `rtc` keeps the counter in flash and forgets it after a power cut, so it
-  does not avoid flash wear.
+  which have no RTC memory), ESP8266 and the Beken BK7231T, BK7231N and BK7238; elsewhere only `flash` is available and
+  `rtc` is rejected. These Beken chips have no RTC memory: there `rtc` keeps the counter in flash and forgets it after a
+  power cut, so it does not avoid flash wear.
 
   Note that on the original ESP32, pressing the hardware reset button (the EN pin) also clears RTC memory, so it
   counts as power loss rather than as a reboot. On newer variants (S3, C3, C6) RTC memory survives a chip reset

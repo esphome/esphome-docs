@@ -136,9 +136,9 @@ wifi:
       flash wear. A good fit for battery-powered devices that wake from deep sleep frequently.
 
     Defaults to `rtc` on ESP8266 and `flash` on ESP32, matching each platform's previous behavior. `rtc` is
-    available on ESP32 (except the C2 and C61 variants, which have no RTC memory), ESP8266 and the BK7231T;
-    elsewhere only `flash` is available and `rtc` is rejected. The BK7231T has no RTC memory: there `rtc` keeps
-    the details in flash and forgets them after a power cut, so it does not avoid flash wear.
+    available on ESP32 (except the C2 and C61 variants, which have no RTC memory), ESP8266 and the Beken BK7231T,
+    BK7231N and BK7238; elsewhere only `flash` is available and `rtc` is rejected. These Beken chips have no RTC memory:
+    there `rtc` keeps the details in flash and forgets them after a power cut, so it does not avoid flash wear.
 
   > [!NOTE]
   > While `fast_connect` skips the initial scan, if the connection attempt fails, ESPHome will still perform a scan
