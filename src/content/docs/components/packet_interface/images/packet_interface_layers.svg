@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 430" width="720" height="430" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#455a64"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="720" height="430" rx="12" fill="#ffffff"/>
+
+  <!-- Device headings -->
+  <text x="170" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="#212121">Device A</text>
+  <text x="550" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="#212121">Device B</text>
+
+  <!-- Device A stack -->
+  <g font-size="12" fill="#212121">
+    <rect x="50" y="50" width="240" height="48" rx="6" fill="#eceff1" stroke="#607d8b" stroke-width="1.5"/>
+    <text x="170" y="70" text-anchor="middle" font-size="15" font-weight="bold">Application</text>
+    <text x="170" y="88" text-anchor="middle">for example packet_transport</text>
+
+    <rect x="50" y="116" width="240" height="48" rx="6" fill="#ede7f6" stroke="#5e35b1" stroke-width="1.5" stroke-dasharray="6 3"/>
+    <text x="170" y="136" text-anchor="middle" font-size="15" font-weight="bold">Session</text>
+    <text x="170" y="154" text-anchor="middle">is the other device there?</text>
+
+    <rect x="50" y="176" width="240" height="48" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5" stroke-dasharray="6 3"/>
+    <text x="170" y="196" text-anchor="middle" font-size="15" font-weight="bold">Reliability</text>
+    <text x="170" y="214" text-anchor="middle">acknowledges and resends</text>
+
+    <rect x="50" y="236" width="240" height="48" rx="6" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.5" stroke-dasharray="6 3"/>
+    <text x="170" y="256" text-anchor="middle" font-size="15" font-weight="bold">Encryption</text>
+    <text x="170" y="274" text-anchor="middle">encrypts and checks</text>
+
+    <rect x="50" y="296" width="240" height="48" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+    <text x="170" y="316" text-anchor="middle" font-size="15" font-weight="bold">Link</text>
+    <text x="170" y="334" text-anchor="middle">platform: uart or udp</text>
+  </g>
+
+  <!-- Device B stack -->
+  <g font-size="12" fill="#212121">
+    <rect x="430" y="50" width="240" height="48" rx="6" fill="#eceff1" stroke="#607d8b" stroke-width="1.5"/>
+    <text x="550" y="70" text-anchor="middle" font-size="15" font-weight="bold">Application</text>
+    <text x="550" y="88" text-anchor="middle">for example packet_transport</text>
+
+    <rect x="430" y="116" width="240" height="48" rx="6" fill="#ede7f6" stroke="#5e35b1" stroke-width="1.5" stroke-dasharray="6 3"/>
+    <text x="550" y="136" text-anchor="middle" font-size="15" font-weight="bold">Session</text>
+    <text x="550" y="154" text-anchor="middle">is the other device there?</text>
+
+    <rect x="430" y="176" width="240" height="48" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5" stroke-dasharray="6 3"/>
+    <text x="550" y="196" text-anchor="middle" font-size="15" font-weight="bold">Reliability</text>
+    <text x="550" y="214" text-anchor="middle">acknowledges and resends</text>
+
+    <rect x="430" y="236" width="240" height="48" rx="6" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.5" stroke-dasharray="6 3"/>
+    <text x="550" y="256" text-anchor="middle" font-size="15" font-weight="bold">Encryption</text>
+    <text x="550" y="274" text-anchor="middle">encrypts and checks</text>
+
+    <rect x="430" y="296" width="240" height="48" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+    <text x="550" y="316" text-anchor="middle" font-size="15" font-weight="bold">Link</text>
+    <text x="550" y="334" text-anchor="middle">platform: uart or udp</text>
+  </g>
+
+  <!-- Each layer works with the same layer on the other device -->
+  <g stroke="#9e9e9e" stroke-width="1.2" stroke-dasharray="3 3">
+    <line x1="290" y1="74" x2="430" y2="74"/>
+    <line x1="290" y1="140" x2="430" y2="140"/>
+    <line x1="290" y1="200" x2="430" y2="200"/>
+    <line x1="290" y1="260" x2="430" y2="260"/>
+  </g>
+  <g font-size="11" fill="#616161" text-anchor="middle">
+    <text x="360" y="68">sensor values</text>
+    <text x="360" y="134">keep-alives</text>
+    <text x="360" y="194">acknowledgements</text>
+    <text x="360" y="254">shared key</text>
+  </g>
+
+  <!-- The channel -->
+  <path d="M170,344 V378 H550 V344" fill="none" stroke="#1565c0" stroke-width="3"/>
+  <text x="360" y="372" text-anchor="middle" font-size="12" fill="#1565c0">serial port or UDP network</text>
+
+  <!-- Direction of travel -->
+  <line x1="30" y1="60" x2="30" y2="334" stroke="#455a64" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="22" y="197" text-anchor="middle" font-size="12" fill="#455a64" transform="rotate(-90 22 197)">sending</text>
+  <line x1="690" y1="334" x2="690" y2="60" stroke="#455a64" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="702" y="197" text-anchor="middle" font-size="12" fill="#455a64" transform="rotate(90 702 197)">receiving</text>
+
+  <!-- Key -->
+  <rect x="50" y="398" width="28" height="16" rx="3" fill="#ffffff" stroke="#616161" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <text x="86" y="411" font-size="12" fill="#616161">optional layer, added only when configured</text>
+</svg>
