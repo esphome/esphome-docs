@@ -45,7 +45,39 @@ These options are common to all platforms:
 - **max_packet_size** (*Optional*, int): The largest packet, in bytes, that a user of this interface may send. The
   range and default depend on the platform.
 
+- **reliability** (*Optional*): Adds a [reliability layer](#reliability) to the interface.
+
 See the page for each platform for the options it adds.
+
+## Reliability
+
+A reliability layer makes sure that packets arrive in order, with none lost or repeated. Each packet is
+acknowledged by the other device, and resent if no acknowledgement arrives in time. Both devices must use the same
+reliability `type`.
+
+The reliability layer works between two devices only. Do not use it on a channel with more than two devices, such as
+a UDP broadcast address or an RS485 bus with several devices.
+
+```yaml
+packet_interface:
+  - platform: uart
+    id: serial_link
+    reliability:
+      timeout: 200ms
+      max_queue_length: 4
+```
+
+- **type** (*Optional*, string): The reliability method. Only `hdlc` is available, which uses the acknowledgement
+  and resend method of the HDLC protocol. Defaults to `hdlc`.
+- **timeout** (*Optional*, [Time](/guides/configuration-types#time)): How long to wait for an acknowledgement before
+  resending. Defaults to `200ms`.
+- **max_queue_length** (*Optional*, int): How many packets can be waiting for an acknowledgement. When the queue is
+  full, new packets are not sent. Range is 1 to 7. Defaults to `4`.
+- **max_retries** (*Optional*, int): How many times to resend without an acknowledgement before the packets waiting
+  are discarded and the connection is started again. Defaults to `5`.
+
+The reliability layer adds 3 bytes to each packet, so the largest packet that can be sent through it is 3 bytes
+smaller than `max_packet_size`. Each device holds `max_queue_length` packets of `max_packet_size` bytes in memory.
 
 ## See Also
 
