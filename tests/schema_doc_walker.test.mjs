@@ -1756,6 +1756,39 @@ test("a choice one outer variant's typed schema lacks is not added to it", async
   assert.equal("slow" in types("b"), false);
 });
 
+test("a rerun that marks another choice as the default moves the flag", async () => {
+  const bundle = {
+    esphome: core(["foo"]),
+    foo: {
+      foo: {
+        schemas: {
+          CONFIG_SCHEMA: schema({
+            mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } },
+            level: { key: "Optional", type: "enum", values: { LOW: null, HIGH: null } },
+          }),
+        },
+      },
+    },
+  };
+  const page = (fast, low) =>
+    [
+      "Foo.",
+      "## Configuration variables",
+      "- **mode** (*Optional*): The mode.",
+      `<EnumValues values={[{ value: "FAST", description: "Quick"${fast ? ", default: true" : ""} }, { value: "SLOW", description: "Careful"${fast ? "" : ", default: true"} }]} />`,
+      `- **level** (*Optional*): The level.\n  - \`LOW\`${low ? " (default)" : ""}: Soft.\n  - \`HIGH\`${low ? "" : " (default)"}: Loud.`,
+      "",
+    ].join("\n\n");
+  const first = await walk({ schema: bundle, pages: { "foo.mdx": page(true, true) } });
+  const emitted = Object.fromEntries(first.store.files);
+  const { store } = await walk({ schema: emitted, pages: { "foo.mdx": page(false, false) } });
+  const vars = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars;
+  assert.equal(vars.mode.values.FAST.default, undefined);
+  assert.equal(vars.mode.values.SLOW.default, true);
+  assert.equal(vars.level.values.LOW.default, undefined);
+  assert.equal(vars.level.values.HIGH.default, true);
+});
+
 test("an explicit default: false in a rerun clears the old default", async () => {
   const bundle = {
     esphome: core(["foo"]),

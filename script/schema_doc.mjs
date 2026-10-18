@@ -1115,11 +1115,6 @@ export class Walker {
     return props.filter((p) => p?.type === "enum");
   }
 
-  /** A top-level <EnumValues/> block: one copy of its descriptions per definition of the option before it. */
-  enumValuesBlocks(node, props) {
-    this.enumValuesBlock(node, props);
-  }
-
   /**
    * An <EnumValues/> block: attach its descriptions to the enum definitions it follows. A choice is written
    * to every definition that declares it and is unknown only when none does.
@@ -1139,6 +1134,7 @@ export class Walker {
       return;
     }
     if (!enums.length) return;
+    const defaults = new Map();
     for (const entry of entries) {
       const holders = this.enumHoldersOf(enums, entry.value);
       if (!holders.length) {
@@ -1151,8 +1147,25 @@ export class Walker {
       if (!this.writing) continue;
       for (const [prop, key] of holders) {
         this.writeEnumValue(prop, key, entry.description ? this.links(entry.description) : undefined, entry.default);
+        if (entry.default) defaults.set(prop, key);
       }
       this.report.stats.emitted.enumDocs++;
+    }
+    this.settleDefaults(defaults);
+  }
+
+  /**
+   * A list or block that marks a default names every choice, so the mark is the whole truth: on a rerun over
+   * an emitted bundle the flag moves instead of piling up on the old choice.
+   */
+  settleDefaults(defaults) {
+    for (const [prop, kept] of defaults) {
+      const targets = prop.typedEntries ? prop.typedEntries.map((e) => e.types) : [prop.values];
+      for (const values of targets) {
+        for (const [key, value] of Object.entries(values)) {
+          if (key !== kept && value?.default) delete value.default;
+        }
+      }
     }
   }
 
@@ -1185,6 +1198,7 @@ export class Walker {
   emitEnumList(props, listNode) {
     const enums = this.enumTargets(props, listNode.position.start.line);
     if (!enums?.length) return;
+    const defaults = new Map();
     for (const item of listNode.children) {
       if (!item.children.some((c) => c.type === "paragraph")) continue;
       const line = item.position.start.line;
@@ -1212,9 +1226,11 @@ export class Walker {
       if (!this.writing || (!desc && !isDefault)) continue;
       for (const [prop, key] of holders) {
         this.writeEnumValue(prop, key, desc ? this.links(desc) : undefined, isDefault ? true : undefined);
+        if (isDefault) defaults.set(prop, key);
       }
       if (desc) this.report.stats.emitted.enumDocs++;
     }
+    this.settleDefaults(defaults);
   }
 
   /** Attach a config bullet's description to the schema, as the old Python generator did. */
@@ -1322,7 +1338,7 @@ export class Walker {
       else if (node.type === "list") await this.list(node);
       else if (node.type === "mdxFlowExpression") this.expression(node);
       else if (node.type === "mdxJsxFlowElement" && node.name === "EnumValues") {
-        this.enumValuesBlocks(node, this.lastEnumProps);
+        this.enumValuesBlock(node, this.lastEnumProps);
       }
     }
     await this.closeSection();
@@ -1800,7 +1816,7 @@ export class Walker {
         detail: `${key} is a ${flat[0].type ?? "plain"} value; its nested bullets have no schema to match`,
       });
     }
-    for (const jsx of blocks) this.enumValuesBlock(jsx, enums.length ? enums : flat.length ? flat : props);
+    for (const jsx of blocks) this.enumValuesBlock(jsx, props);
   }
 
   /**
