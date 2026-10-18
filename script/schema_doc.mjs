@@ -455,7 +455,7 @@ export class SchemaStore {
   }
 
   /** Look for a key one or two levels below this schema (documented flat). */
-  async findNestedProps(inner, name, depth = 2) {
+  async findNestedProps(inner, name, depth = 2, seen = new Set()) {
     const found = [];
     if (!inner || depth === 0) return found;
     for (const variantInner of inner.variants) {
@@ -464,7 +464,13 @@ export class SchemaStore {
         if (!childInner) continue;
         const direct = await this.findProp(childInner, name);
         if (direct) found.push(direct);
-        found.push(...(await this.findNestedProps(childInner, name, depth - 1)));
+        found.push(...(await this.findNestedProps(childInner, name, depth - 1, seen)));
+      }
+      // A sub-schema the base declares is as reachable as one declared here
+      for (const ext of variantInner.extends ?? []) {
+        if (seen.has(ext)) continue;
+        seen.add(ext);
+        found.push(...(await this.findNestedProps(await this.resolveExtends(ext), name, depth, seen)));
       }
     }
     return found;
@@ -851,7 +857,7 @@ export class Walker {
     const platform = this.folder !== "components" && this.store.isPlatform(this.folder) ? this.folder : null;
     const hubRef = `${this.stem}.CONFIG_SCHEMA`;
     if (!platform || !this.defaultRef?.includes("+") || !this.defaultRef.split("+").includes(hubRef)) return;
-    const wanted = new Set([platform, `${slug(this.stem)}_${platform}`]);
+    const wanted = new Set([platform, `${platform}s`, `${slug(this.stem)}_${platform}`]);
     const headings = tree.children.filter((n) => n.type === "heading").map((n) => slug(toString(n)));
     if (!headings.some((h) => wanted.has(h))) return;
     this.defaultRef = hubRef;
@@ -981,6 +987,9 @@ export class Walker {
 
   /** Fold a closed section's documented keys into its schema's audit, which runs once at the end of the page. */
   reportUndocumented(s) {
+    // "## Actions" opens the union of the actions under it; when nothing was listed there the actions are
+    // audited by their own sections
+    if (s.auditIfUsed && s.documented.size === 0) return;
     // A schema documented in several sections of a page is audited once, at the end
     const audit = this.audits.get(s.ref);
     if (audit) {
@@ -1524,6 +1533,45 @@ export class Walker {
       this.holdEmit = node.depth;
     }
 
+    // A heading such as "## Typed Read/Write Actions" with no code span introduces the action headings nested
+    // under it, and a list right under it holds what those actions share; "## All actions" covers every action
+    const plainRegistry = /^(action|condition)s?$/.exec(lastWord)?.[1];
+    if (plainRegistry && !node.children.some((c) => c.type === "inlineCode")) {
+      const names = [];
+      for (let i = index + 1; i < siblings.length; i++) {
+        const next = siblings[i];
+        if (next.type !== "heading") continue;
+        if (next.depth <= node.depth) break;
+        const sub = registryHeading(next);
+        if (sub && sub.type === plainRegistry) names.push(...sub.names);
+      }
+      const refs = [];
+      for (const name of names) {
+        const r = await this.registryRef(name, plainRegistry);
+        if (r) refs.push(r);
+      }
+      if (!refs.length && /^(all_)?(actions|conditions)$/.test(slug(text))) {
+        const comp = this.componentRef?.split(".")[0];
+        for (const name of Object.keys((await store.file(comp))?.[this.componentRef]?.[plainRegistry] ?? {})) {
+          refs.push(`${this.componentRef}.${plainRegistry}.${name}`);
+        }
+      }
+      if (refs.length) {
+        const ref = refs.join("+");
+        await this.closeSection();
+        await this.openSection(ref, node.depth, line, "registry");
+        if (this.section) {
+          this.section.ownerDepth = node.depth;
+          this.section.inner.multi = true;
+          this.section.inner.primaryCount = this.section.inner.variants.length;
+          this.section.auditIfUsed = true;
+        }
+        this.pendingRegistry = ref;
+        this.pendingRegistryDepth = node.depth;
+        return;
+      }
+    }
+
     const reg = registryHeading(node);
     if (reg) {
       const refs = [];
@@ -1654,6 +1702,15 @@ export class Walker {
       let platformName = slug(text);
       for (const prefix of new Set([`${slug(owner)}_`, `${slug(this.componentRef?.split(".")[0] ?? "")}_`])) {
         if (platformName.startsWith(prefix)) platformName = platformName.slice(prefix.length);
+      }
+      // "## Sensors" on a hub page is its sensor platform, when it has one
+      const singular = platformName.replace(/s$/, "");
+      if (
+        !store.isPlatform(platformName) &&
+        store.isPlatform(singular) &&
+        (await this.componentSchemaRef(owner, singular))
+      ) {
+        platformName = singular;
       }
       if (store.isPlatform(platformName)) {
         const ref = await this.componentSchemaRef(owner, platformName);
@@ -1919,6 +1976,17 @@ export class Walker {
         } else {
           report.stats.proseBullets++;
         }
+        // "Or a key-value mapping is given, then there are these settings:" lists the options under it
+        for (const child of item.children) {
+          if (child.type === "list") await this.items(child, inner, documented, ref);
+        }
+        continue;
+      }
+      const chosenByHeading = this.section?.source === "heading" || this.section?.source === "registry";
+      if (chosenByHeading && this.section.interrupted && parsed.hasParen && ref === this.section.ref) {
+        // A sibling heading came between this list and the heading that chose the schema: the list may
+        // belong to something else, so it is reported rather than written over the previous schema
+        report.add("option_list_after_sibling_heading", this.rel, parsed.line, { schema: ref, key: parsed.key });
         continue;
       }
       if (this.holdEmit !== null) {
@@ -2130,6 +2198,7 @@ async function main() {
     "parse_error",
     "unroutable_section",
     "orphan_option_list",
+    "option_list_after_sibling_heading",
     "missing_base_schema",
     "unknown_registry_entry",
     "missing_schema_entry",

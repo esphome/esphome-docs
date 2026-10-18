@@ -2237,3 +2237,143 @@ test("a flat bullet matched inside one sub-schema keeps its enum for the block t
     [],
   );
 });
+
+test("a plain Actions heading documents what every action of the component takes", async () => {
+  const { docs } = await walk({
+    schema: {
+      esphome: core(["dfp"]),
+      dfp: {
+        dfp: {
+          schemas: { CONFIG_SCHEMA: schema({ id: { key: "GeneratedID" } }) },
+          action: { play: schema({ id: { key: "GeneratedID" } }), pause: schema({ id: { key: "GeneratedID" } }) },
+        },
+      },
+    },
+    pages: {
+      "dfp.mdx": [
+        "A player.",
+        "## Configuration variables",
+        "- **id** (*Optional*, ID): The player.",
+        "## `dfp.play` Action",
+        "Plays.",
+        "## All actions",
+        "- **id** (*Optional*, ID): The player to act on.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  for (const name of ["play", "pause"]) {
+    assert.match(docs("dfp", "dfp", "action", name, "schema", "config_vars", "id"), /to act on/);
+  }
+  assert.match(docs("dfp", "dfp", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "id"), /The player\./);
+});
+
+test("a plural platform heading splits a hub page and routes to the platform", async () => {
+  const { docs } = await walk({
+    schema: {
+      esphome: core(["mk2"], { sensor: {} }),
+      sensor: { sensor: { schemas: {}, components: { mk2: {} } } },
+      mk2: {
+        mk2: { schemas: { CONFIG_SCHEMA: schema({ id: { key: "GeneratedID" }, uart_id: { key: "Optional" } }) } },
+        "mk2.sensor": { schemas: { CONFIG_SCHEMA: schema({ id: { key: "GeneratedID" }, tag: { key: "Required" } }) } },
+      },
+    },
+    pages: {
+      "sensor/mk2.mdx": [
+        "A router.",
+        "## Configuration Variables",
+        "- **id** (*Optional*, ID): The hub.",
+        "- **uart_id** (*Optional*, ID): The bus.",
+        "## Sensors",
+        "- **tag** (**Required**, string): The tag.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("mk2", "mk2", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "id"), /The hub/);
+  assert.match(docs("mk2", "mk2.sensor", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "tag"), /The tag/);
+});
+
+test("a flat bullet reaches a sub-schema the base declares", async () => {
+  const { docs } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            BASE_SCHEMA: schema({ options: { key: "Optional", ...schema({ threshold: { key: "Optional" } }) } }),
+            CONFIG_SCHEMA: {
+              type: "schema",
+              schema: { config_vars: { pin: { key: "Required" } }, extends: ["foo.BASE_SCHEMA"] },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": ["Foo.", "## Configuration variables", "- **threshold** (*Optional*, int): The threshold.", ""].join(
+        "\n\n",
+      ),
+    },
+  });
+  assert.match(
+    docs(
+      "foo",
+      "foo",
+      "schemas",
+      "BASE_SCHEMA",
+      "schema",
+      "config_vars",
+      "options",
+      "schema",
+      "config_vars",
+      "threshold",
+    ),
+    /The threshold/,
+  );
+});
+
+test("options nested under a prose bullet are routed", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ pulse_length: { key: "Required" } }) } } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- Or a key-value mapping is given, then there are these settings:\n\n  - **pulse_length** (**Required**, int): The pulse length.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "pulse_length"), /pulse length/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key" || f.kind === "undocumented_key"),
+    [],
+  );
+});
+
+test("an option list after a sibling heading is reported rather than written over the previous schema", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: { schemas: { CONFIG_SCHEMA: schema({}) }, action: { send: schema({ address: { key: "Required" } }) } },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `foo.send` Action",
+        "- **address** (**Required**, int): The send address.",
+        "## Notes on addressing",
+        "- **address** (**Required**, int): Something else.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("foo", "foo", "action", "send", "schema", "config_vars", "address"), /send address/);
+  assert.equal(report.findings.filter((f) => f.kind === "option_list_after_sibling_heading").length, 1);
+});
