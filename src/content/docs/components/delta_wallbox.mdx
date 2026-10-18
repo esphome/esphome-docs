@@ -1,0 +1,84 @@
+---
+description: "Instructions for setting up Delta AC Wallbox in ESPHome."
+title: "Delta AC Wallbox"
+---
+
+This component will report the charger model, serial number, current raw state of the charger, and Bluetooth firmware version. 
+
+It is also possible to start and stop a charging session using this component. 
+
+## Device Discovery
+
+To find out your device's `MAC address`, add the following to your ESPHome configuration:
+
+```yaml
+logger:
+  level: DEBUG # Required for the tracker to show the device
+
+esp32_ble_tracker:
+```
+
+Look for a device's serial name starting with `JV`.
+
+Once the device is found, take note of the device `MAC address` and remove the `esp32_ble_tracker` device tracker from your configuration.
+
+## Supported Devices
+
+### Delta AC MAX (Basic) Wallbox 
+
+Delta AC MAX (Basic) Wallbox is a EV charger that make use of bluetooth to get charging information and to control it.
+
+You will need the `password` and `pin`, both of which are available from the Delta application (usually show to you when you first setup the device). 
+
+### Configuration example
+
+```yaml
+
+esp32_ble:
+  io_capability: keyboard_only
+  auth_req_mode: sc_mitm_bond
+
+# Real-time clock required for the wallbox to synchronize its internal logs
+time:
+  - platform: sntp
+    id: sntp_time
+
+ble_client:
+  - id: delta_ble_client
+    mac_address: "xx:xx:xx:xx:xx:xx" # Replace with the mac address of the Delta Wallbox
+
+delta_wallbox:
+  id: my_charger
+  ble_client_id: delta_ble_client
+  password: "PASSWORD_HERE"        # This is the password given to you by the Delta Wallbox (needed) (quotes required)
+  pin: PIN_HERE                    # BLE pairing PIN/passkey if the wallbox. Given to you by the Delta Wallbox (needed) (PIN_HERE should be 6 digits, no quotes)
+  user: "admin"                    # Default: "admin" (future option)
+  time_id: sntp_time
+  update_interval: 15s             # You can increase this if you need it to update less frequently
+
+sensor:
+  - platform: delta_wallbox
+    delta_wallbox_id: my_charger
+    charger_state:
+      name: "Charger Raw State"
+
+text_sensor:
+  - platform: delta_wallbox
+    delta_wallbox_id: my_charger
+    bt_fw_version:
+      name: "Charger Bluetooth FW Version"
+    model_name:
+      name: "Charger Model"
+    serial_number:
+      name: "Charger Serial Number"
+      
+button:
+  - platform: delta_wallbox
+    delta_wallbox_id: my_charger
+    start_charging:
+      name: "Start Charging"
+    stop_charging:
+      name: "Stop Charging"
+```
+
+
