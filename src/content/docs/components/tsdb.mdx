@@ -52,7 +52,6 @@ tsdb:
 - **partition_size** (*Optional*, size): Size of that partition. Defaults to `512KB`; must be a multiple of
   4 KB and at least `64KB`. The size is taken out of the two OTA slots, so each of them shrinks by half of
   it. See [Partition sizing](#partition-sizing).
-
 - **format_on_first_boot** (*Optional*, boolean): Format the partition when it is *blank*, meaning every byte
   of it reads `0xFF`. Defaults to `true`. The whole partition is scanned before formatting, so a partition
   that holds data but does not mount - or whose head happens to be erased - is never reformatted: that
