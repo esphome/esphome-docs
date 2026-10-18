@@ -1,0 +1,141 @@
+---
+description: "Instructions for connecting USB Audio Class speakers, microphones and sound cards to an ESP32 in ESPHome."
+title: "USB Audio Component"
+---
+
+The `usb_audio` component lets an ESP32 with USB host support (ESP32-S2, ESP32-S3, ESP32-P4 or ESP32-H4) play and
+record audio through a USB Audio Class (UAC) device, such as a USB speakerphone, a USB headset or a USB sound card.
+The ESP32 acts as the USB host and the device is plugged into its USB OTG port.
+
+The component is a hub for the [USB Audio Microphone](/components/microphone/usb_audio/) and
+[USB Audio Speaker](/components/speaker/usb_audio/) platforms, which stream the device's input and output. It uses
+the [USB Host](/components/usb_host/) component, which is loaded automatically.
+
+This component only works with the [ESP-IDF framework](/components/esp32/#framework). The ESP32-S31 is not
+supported, because the USB Audio Class driver does not support it.
+
+> [!WARNING]
+> Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
+>
+> **Crashes are likely to occur** if you include too many additional components in your device's
+> configuration. In particular, Bluetooth/BLE components are known to cause issues when used in
+> combination with Voice Assistant and/or other audio components.
+
+```yaml
+# Example configuration entry
+usb_audio:
+```
+
+## Configuration Variables
+
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID for this component. Use it
+  as `usb_audio_id` on the microphone and speaker platforms when more than one `usb_audio` component is configured.
+
+## Hardware
+
+Plug the device into the ESP32's USB OTG port, not into a USB-to-serial port that is only used for flashing and
+logs. Most boards have a USB-C or micro-USB socket for the OTG port, so a USB-A host adapter (OTG adapter) is needed
+for a device with a USB-A plug.
+
+To use a USB hub between the ESP32 and the device, enable hub support in the [USB Host](/components/usb_host/)
+component with `enable_hubs: true`.
+
+USB-powered devices such as a speakerphone or a USB sound card draw their power from the board's 5 V supply through
+the OTG port. Make sure the board actually supplies 5 V on that port (some boards only do so when powered through a
+specific connector, or need a jumper or a powered hub) and that the power supply can deliver the extra current.
+
+## Audio Format
+
+Each platform opens its stream with exactly one format, set by its `sample_rate`, `bits_per_sample` and
+`num_channels` options. The device must support that format exactly; no conversion is done by the device or by this
+component. If the device does not support the configured format, the stream does not start and an error is logged
+along with every format the device does support, for example:
+
+```text
+[E][usb_audio]: Speaker interface 2 does not support requested format (channels=2 bits=16 sample_rate=44100 Hz)
+[I][usb_audio]:   alt 1: channels=2 bits=16 sample rates:
+[I][usb_audio]:     48000 Hz
+```
+
+Change the platform options to one of the logged formats. When other components need a different format, convert
+the audio in ESPHome: use a [Resampler Speaker](/components/speaker/resampler/) in front of the speaker, and a
+[Resampler Microphone](/components/microphone/resampler/) or a
+[Microphone Source](/components/microphone/#microphone-source-configuration) after the microphone.
+
+## Connecting and Reconnecting
+
+The device can be plugged in before or after the ESP32 starts. Streams open when the device is plugged in and a
+component, such as a media player or a voice assistant, has asked for audio. If the device is unplugged, the
+microphone waits and resumes recording when the device returns; the speaker stops the current playback and starts
+again with the next audio it is asked to play. Volume and mute settings are sent to the device again after it
+reconnects.
+
+## Example Configuration
+
+This example plays media and announcements through a USB speakerphone and uses its microphone for wake word
+detection and the voice assistant. It assumes the speakerphone supports 48 kHz 16-bit stereo output and 16 kHz
+16-bit mono input; check the formats it logs and adjust the options if needed.
+
+```yaml
+usb_audio:
+  id: usb_audio_hub
+
+microphone:
+  - platform: usb_audio
+    id: usb_mic
+    sample_rate: 16000
+    num_channels: 1
+
+speaker:
+  - platform: usb_audio
+    id: usb_speaker
+    sample_rate: 48000
+    num_channels: 2
+
+  - platform: mixer
+    output_speaker: usb_speaker
+    source_speakers:
+      - id: announcement_speaker
+      - id: media_speaker
+
+media_player:
+  - platform: speaker
+    id: speakerphone_player
+    name: "Speakerphone"
+    announcement_pipeline:
+      speaker: announcement_speaker
+    media_pipeline:
+      speaker: media_speaker
+
+micro_wake_word:
+  microphone: usb_mic
+  models:
+    - model: okay_nabu
+  on_wake_word_detected:
+    - voice_assistant.start:
+        wake_word: !lambda return wake_word;
+
+voice_assistant:
+  microphone: usb_mic
+  media_player: speakerphone_player
+```
+
+For a stereo microphone, select the channel to use with a
+[Microphone Source](/components/microphone/#microphone-source-configuration) in the component that reads it:
+
+```yaml
+voice_assistant:
+  microphone:
+    microphone: usb_mic
+    channels: 0
+```
+
+## See Also
+
+- [USB Audio Microphone](/components/microphone/usb_audio/)
+- [USB Audio Speaker](/components/speaker/usb_audio/)
+- [USB Host](/components/usb_host/)
+- [Speaker Audio Media Player](/components/media_player/speaker/)
+- [Mixer Speaker](/components/speaker/mixer/)
+- [Micro Wake Word](/components/micro_wake_word/)
+- [Voice Assistant](/components/voice_assistant/)

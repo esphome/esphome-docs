@@ -1,0 +1,83 @@
+---
+description: "Instructions for playing audio through a USB Audio Class device in ESPHome."
+title: "USB Audio Speaker"
+---
+
+The `usb_audio` speaker platform plays audio through the output of a USB Audio Class device, such as a USB
+speakerphone, headset or sound card, connected through the [USB Audio](/components/usb_audio/) component.
+
+This platform only works on the ESP32-S2, ESP32-S3, ESP32-P4 and ESP32-H4 with the
+[ESP-IDF framework](/components/esp32/#framework).
+
+> [!WARNING]
+> Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
+>
+> **Crashes are likely to occur** if you include too many additional components in your device's
+> configuration. In particular, Bluetooth/BLE components are known to cause issues when used in
+> combination with Voice Assistant and/or other audio components.
+
+```yaml
+# Example configuration entry
+speaker:
+  - platform: usb_audio
+    id: usb_speaker
+```
+
+## Configuration Variables
+
+- **usb_audio_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the
+  [USB Audio](/components/usb_audio/) component to use. Only needed when more than one is configured.
+- **sample_rate** (*Optional*, positive integer): The sample rate of the stream, from `8000` to `96000`.
+  Defaults to `48000`.
+- **bits_per_sample** (*Optional*, enum): The bit depth of the audio samples. One of `8bit`, `16bit`, `24bit` or
+  `32bit`. Defaults to `16bit`.
+- **num_channels** (*Optional*, positive integer): The number of channels, `1` or `2`. With `2`, each sample of the
+  first channel is followed by a sample of the second channel. Defaults to `2`.
+- **buffer_size** (*Optional*, positive integer): The size in bytes of the USB Audio Class driver's ring buffer for
+  this stream. Defaults to `6400`.
+- **write_timeout** (*Optional*, [Time](/guides/configuration-types#time)): The longest time a single write waits
+  for room in the buffer before it returns, so the component sending audio can try again. Defaults to `20ms`.
+- All other options from [Speaker Component](/components/speaker/#base-speaker-configuration).
+
+The device must support the configured `sample_rate`, `bits_per_sample` and `num_channels` exactly, and the speaker
+only accepts audio in that format. If the device does not support the format, the formats it supports are logged
+when it is plugged in; see [Audio Format](/components/usb_audio/#audio-format).
+
+The [Speaker Audio Media Player](/components/media_player/speaker/) converts its audio to the speaker's format, and a
+[Mixer Speaker](/components/speaker/mixer/) or a [Resampler Speaker](/components/speaker/resampler/) in front of this
+speaker can convert audio from other sources. [Voice Assistant](/components/voice_assistant/) can play its
+responses through the speaker directly with its `speaker` option, or through a media player.
+
+Volume and mute are sent to the device as USB Audio Class controls. If the device does not support a control, a
+warning is logged and that control has no effect. The settings are sent again when the device reconnects.
+
+When the device is unplugged while playing, playback stops. The speaker starts again with the next audio it is asked
+to play, once the device is plugged in.
+
+## Example
+
+```yaml
+speaker:
+  - platform: usb_audio
+    id: usb_speaker
+
+  - platform: mixer
+    output_speaker: usb_speaker
+    source_speakers:
+      - id: announcement_speaker
+      - id: media_speaker
+
+media_player:
+  - platform: speaker
+    name: "USB Speaker"
+    announcement_pipeline:
+      speaker: announcement_speaker
+    media_pipeline:
+      speaker: media_speaker
+```
+
+## See Also
+
+- [USB Audio Component](/components/usb_audio/)
+- [USB Audio Microphone](/components/microphone/usb_audio/)
+- [Speaker Component](/components/speaker/)
