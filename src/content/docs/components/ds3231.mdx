@@ -54,8 +54,9 @@ ds3231:
   handled, which also releases the INT/SQW line. When `false`, the flag stays set until it is cleared with the
   [`ds3231.clear_alarm`](#ds3231clear_alarm-action) action. Defaults to `true`.
 - **alarm_check_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How often to poll the alarm
-  flags when no `interrupt_pin` is configured. Only used when an `on_alarm_*` trigger or an alarm binary sensor
-  is configured. Defaults to `1s`.
+  flags. Without an `interrupt_pin` this is how alarms are detected; with one it is a fallback that picks up a
+  missed interrupt. Only used when an `interrupt_pin`, an `on_alarm_*` trigger or an alarm binary sensor is
+  configured. Defaults to `1s`.
 - **on_alarm_1** (*Optional*, [Automation](/automations/)): Actions to run when alarm 1 fires.
 - **on_alarm_2** (*Optional*, [Automation](/automations/)): Actions to run when alarm 2 fires.
 
@@ -87,8 +88,8 @@ that already fired while the ESP was off is reported once when the ESP starts.
 
 ## `on_alarm_1` / `on_alarm_2` Trigger
 
-These automations run each time the alarm fires. Without an `interrupt_pin`, the flags are polled every
-`alarm_check_interval`.
+These automations run each time the alarm fires. With an `interrupt_pin` they run right away; the flags are
+also polled every `alarm_check_interval`, which is the only way alarms are seen without an interrupt pin.
 
 ```yaml
 ds3231:

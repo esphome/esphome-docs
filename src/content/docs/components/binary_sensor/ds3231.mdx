@@ -39,7 +39,8 @@ With `auto_clear_alarms: true` (the default), an alarm sensor turns on for one s
 fires. With `auto_clear_alarms: false`, it stays on until the alarm is cleared with the
 [`ds3231.clear_alarm`](/components/ds3231/#ds3231clear_alarm-action) action.
 
-Only enabled alarms turn their sensor on. Without an `interrupt_pin` on the hub, the flags are polled every
+Only enabled alarms turn their sensor on. The alarm sensors start off at boot; an alarm that fired while the
+device was off is reported right after boot. The flags are read on the hub's `interrupt_pin` and every
 `alarm_check_interval`.
 
 ## See Also
