@@ -3,16 +3,16 @@ description: "Instructions for connecting USB Audio Class speakers, microphones 
 title: "USB Audio Component"
 ---
 
-The `usb_audio` component lets an ESP32 with USB host support (ESP32-S2, ESP32-S3, ESP32-P4 or ESP32-H4) play and
-record audio through a USB Audio Class (UAC) device, such as a USB speakerphone, a USB headset or a USB sound card.
+The `usb_audio` component lets an ESP32 with USB host support (ESP32-S2, ESP32-S3, ESP32-S31, ESP32-P4 or
+ESP32-H4) play and record audio through a USB Audio Class (UAC) device, such as a USB speakerphone, a USB headset or
+a USB sound card.
 The ESP32 acts as the USB host and the device is plugged into its USB OTG port.
 
 The component is a hub for the [USB Audio Microphone](/components/microphone/usb_audio/) and
 [USB Audio Speaker](/components/speaker/usb_audio/) platforms, which stream the device's input and output. It uses
 the [USB Host](/components/usb_host/) component, which is loaded automatically.
 
-This component only works with the [ESP-IDF framework](/components/esp32/#framework). The ESP32-S31 is not
-supported, because the USB Audio Class driver does not support it.
+This component only works with the [ESP-IDF framework](/components/esp32/#framework).
 
 > [!WARNING]
 > Audio and voice components consume a significant amount of resources (RAM, CPU) on the device.
