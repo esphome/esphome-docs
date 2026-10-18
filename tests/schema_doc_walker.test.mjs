@@ -1730,7 +1730,7 @@ test("a choice one outer variant's typed schema lacks is not added to it", async
               typed_key: "model",
               types: {
                 a: { config_vars: { options: options({ fast: { config_vars: {} }, slow: { config_vars: {} } }) } },
-                b: { config_vars: { options: options({ fast: { config_vars: {} } }) } },
+                b: { config_vars: { options: options({ fast: { config_vars: {}, default: true } }) } },
               },
             },
           },
@@ -1754,6 +1754,8 @@ test("a choice one outer variant's typed schema lacks is not added to it", async
   assert.equal(types("a").slow.default, true);
   assert.match(types("b").fast.docs, /Quick/);
   assert.equal("slow" in types("b"), false);
+  // b's own default is not touched by a default chosen among a's choices
+  assert.equal(types("b").fast.default, true);
 });
 
 test("a rerun that marks another choice as the default moves the flag", async () => {

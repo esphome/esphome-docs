@@ -1162,6 +1162,8 @@ export class Walker {
     for (const [prop, kept] of defaults) {
       const targets = prop.typedEntries ? prop.typedEntries.map((e) => e.types) : [prop.values];
       for (const values of targets) {
+        // A target without the chosen choice was not written to, so its own default stands
+        if (!Object.hasOwn(values, kept)) continue;
         for (const [key, value] of Object.entries(values)) {
           if (key !== kept && value?.default) delete value.default;
         }
