@@ -3,7 +3,7 @@ title: "MT6701 14-Bit Magnetic Angle Sensor"
 description: "Instructions for setting up the MT6701 magnetic angle sensor / rotary encoder."
 ---
 
-import { Image } from 'astro:assets';
+import Figure from '@components/Figure.astro';
 import APIRef from '@components/APIRef.astro';
 
 The `mt6701` sensor platform lets you use your MT6701
@@ -17,7 +17,14 @@ configure the chip's ABZ / UVW / analog outputs. Higher-level quantities such
 as multi-turn position or rotational speed are left to you to compute in YAML
 from the angle it exposes (see [Deriving Position and Speed](#deriving-position-and-speed)).
 
-<Image src="/images/mt6701.jpg" width={300} height={240} layout="constrained" alt="" />
+<Figure
+  src="/images/mt6701.jpg"
+  alt="MT6701 chip with a diametrically magnetized magnet above it"
+  caption="MT6701 with its magnet; pressing the magnet down is reported as a push button"
+  layout="constrained"
+  width={300}
+  height={240}
+/>
 
 Pick one interface and add the matching hub, then add individual sensors with
 the [MT6701 Sensor Platform](#sensor).
