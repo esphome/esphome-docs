@@ -46,6 +46,10 @@ speaker:
 The volume and mute state are passed to the USB device. If the device has no volume or mute control, a warning is
 logged and the setting has no effect.
 
+The stream takes about a second to start on the USB device. Until it runs, `play()` accepts no audio and returns `0`
+after waiting the time it was given. Code that calls `play()` directly from a lambda runs on the main loop, so pass it
+no wait, and keep the audio to retry later, instead of blocking the loop until the stream is up.
+
 ## Media player
 
 To stream media or play announcements on a USB speaker, use it with the
