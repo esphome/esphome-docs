@@ -11,6 +11,12 @@ the [UDP](/components/udp/) component. Each packet is sent as one UDP datagram t
 
 The interface enables both sending and receiving on the `udp` component it uses.
 
+When the `udp` component sends to one IPv4 address that is not a broadcast or multicast address, the interface
+accepts packets only from that address. It then joins exactly two devices, so no
+[addressing layer](/components/packet_interface/#addressing) is needed, and one cannot be configured. An address
+ending in `.255` is taken as a broadcast address. Otherwise every packet received is accepted, and an addressing layer
+can tell the devices apart.
+
 ## Example Configuration
 
 ```yaml

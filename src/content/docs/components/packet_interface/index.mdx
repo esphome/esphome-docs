@@ -21,6 +21,8 @@ Each channel type is a platform of this component. The platforms currently avail
   [UDP](/components/udp/) component.
 - [TCP](/components/packet_interface/tcp/): packets are sent over a TCP connection between two devices, which also
   provides reliable delivery and tells the layers above when the other device can be reached.
+- [ESP-NOW](/components/packet_interface/espnow/): each packet is sent as one ESP-NOW packet, to one device or to
+  every device on the channel.
 - [SX126x](/components/packet_interface/sx126x/) and [SX127x](/components/packet_interface/sx127x/): each packet is
   sent as one LoRa or FSK radio packet, using an [SX126x](/components/sx126x/) or [SX127x](/components/sx127x/)
   radio.
@@ -61,8 +63,12 @@ These options are common to all platforms:
 - **session** (*Optional*): Adds a [session layer](#session) to the interface.
 
 When more than one of these is configured, they are always stacked in the same order, whatever order they are
-written in: addressing is next to the channel, then encryption, reliability, fragmentation and session. Each layer works with the same layer
-on the other device, so both devices must configure the same layers.
+written in: addressing is next to the channel, then encryption, reliability, fragmentation and session. Each layer
+works with the same layer on the other device, so both devices must configure the same layers. If a layer cannot make
+sense of 10 packets in a row, it logs a warning that the layers may not match.
+
+Some platforms do the job of a layer themselves, and then that layer cannot be configured on them. For example, a TCP
+connection already joins two devices and resends lost data. The page for each platform says which layers it provides.
 
 <Figure
   src={layersImg}
@@ -380,6 +386,7 @@ binary_sensor:
 - [UART Packet Interface](/components/packet_interface/uart/)
 - [UDP Packet Interface](/components/packet_interface/udp/)
 - [TCP Packet Interface](/components/packet_interface/tcp/)
+- [ESP-NOW Packet Interface](/components/packet_interface/espnow/)
 - [SX126x Packet Interface](/components/packet_interface/sx126x/)
 - [SX127x Packet Interface](/components/packet_interface/sx127x/)
 - [Entity Transport Component](/components/entity_transport/)
