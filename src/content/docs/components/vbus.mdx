@@ -873,6 +873,9 @@ An uncertain result blocks further writes until a new complete settings scan est
 are not proof that the interrupted write had no effect. OTA cancellation has the same rule; late replies cannot restart
 verification or replay the write. `vbus.resume_polling` only resumes reads.
 
-Verified numeric changes update the confirmed cached value. A verified enum change invalidates the snapshot and requests
-a fresh scan, subject to the scan rate limit, because the available controls or their units may have changed. During other
-refreshes and failures the previous complete snapshot follows the usual 660-second expiry.
+Verified numeric changes update the confirmed cached value. A verified enum change or an uncertain write requests a
+fresh, read-only scan because the available controls or their units may have changed. This one refresh bypasses the
+usual 60-second scan limit and starts on the next one-second controller check when telemetry and polling are available.
+Until it completes, `has_fresh_snapshot()` is false and further writes are rejected. `has_recent_snapshot()` still reports
+whether the last complete snapshot is within its 660-second expiry, so displays can retain confirmed values while waiting.
+An incompatible firmware broadcast discards both fresh and retained context immediately. No refresh retries a write.
