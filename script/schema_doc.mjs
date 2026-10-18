@@ -951,7 +951,6 @@ export class Walker {
     await store.verifyExtends(inner);
   }
 
-  /** Report the keys of a section's schema that its bullets did not mention. */
   /** A key documented by its own heading counts for the audit of the schema that holds it. */
   markDocumented(ref, key, line) {
     if (this.section?.ref === ref) {
@@ -1091,7 +1090,6 @@ export class Walker {
     return Object.keys(prop.values).find((k) => k.toLowerCase() === lower) ?? null;
   }
 
-  /** Write the descriptions of an <EnumValues/> block to the enum's values. */
   /**
    * Record a choice's docs and default on the enum, or on that type of every entry of a typed discriminator.
    * isDefault true sets the flag, false clears it (an explicit `default: false`), undefined leaves it alone.
@@ -2055,6 +2053,12 @@ async function main() {
     const described = s.emitted.props + s.emitted.propsRefined + s.emitted.propsSkipped;
     broken = `only ${described} options have a description, ${MIN_EMITTED_PROPS} expected at least`;
   }
+  const strictCounts = new Map();
+  for (const f of report.findings) if (strict(f.kind)) strictCounts.set(f.kind, (strictCounts.get(f.kind) ?? 0) + 1);
+  if (args.strict && strictCounts.size && !broken) {
+    const total = [...strictCounts.values()].reduce((a, b) => a + b, 0);
+    broken = `--strict: ${total} finding(s): ${[...strictCounts].map(([k, n]) => `${k} ${n}`).join(", ")}`;
+  }
   if (args.emit) {
     if (broken) {
       console.error(`not writing ${args.emit}: ${broken}`);
@@ -2126,13 +2130,6 @@ async function main() {
   );
   if (broken) {
     console.error(broken);
-    return 1;
-  }
-  const strictCounts = new Map();
-  for (const f of report.findings) if (strict(f.kind)) strictCounts.set(f.kind, (strictCounts.get(f.kind) ?? 0) + 1);
-  if (args.strict && strictCounts.size) {
-    const total = [...strictCounts.values()].reduce((a, b) => a + b, 0);
-    console.error(`--strict: ${total} finding(s): ${[...strictCounts].map(([k, n]) => `${k} ${n}`).join(", ")}`);
     return 1;
   }
   return 0;
