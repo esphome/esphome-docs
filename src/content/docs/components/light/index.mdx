@@ -686,7 +686,8 @@ light:
 The estimate is available from the light's ID in a lambda. It is the draw of the pixel buffer as the strip
 receives it, after the limit, so with `max_current_ma` set it stays at or near that value rather than showing
 what the frame asked for. Each call sums the whole buffer, which is the last frame sent, or the next one when
-pixels were written since. Read it from something that polls, such as a
+pixels were written since; those pixels are not limited until that frame goes out, so a read taken in between
+can be above the limit for one frame. Read it from something that polls, such as a
 [template sensor](/components/sensor/template/), rather than on every loop:
 
 ```yaml
