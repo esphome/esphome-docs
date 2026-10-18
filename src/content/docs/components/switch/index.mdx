@@ -58,20 +58,25 @@ Configuration variables:
   Unless a specific platform defines another default value, the default is `ALWAYS_OFF`.
   Mutually exclusive with **restore_state**.
 
-- **initial_state** (*Optional*, boolean): The state (`ON` or `OFF`) the switch starts in on bootup when nothing
-  is restored, for example after a power cut with `storage: rtc`. Can't be combined with **restore_mode**, which
-  sets the boot state itself; use **restore_state** instead. Without **restore_state**, the switch starts in
-  **initial_state** at every boot, unless the platform's default **restore_mode** restores the state (see the
-  platform's page), in which case **initial_state** is only used when nothing is saved. Set `restore_state: none` to
-  always start in **initial_state**. Defaults to `OFF`.
+- **initial_state** (*Optional*, boolean): The state (`ON` or `OFF`) the switch starts in when nothing is
+  restored: on the first boot, and after a power cut when the state is kept in RTC memory
+  (`restore_state: {storage: rtc}`), where restarts and OTA updates keep the last state instead. The form used by
+  lights, `initial_state: {state: ON}`, is also accepted. Can't be combined with **restore_mode**; use
+  **restore_state** instead. Defaults to `OFF`.
+
+  > [!NOTE]
+  > Without **restore_state**, the switch starts in **initial_state** at every boot, unless the platform's default
+  > **restore_mode** restores the state (see the platform's page); then **initial_state** is only used when nothing
+  > is saved. Set `restore_state: none` to always start in **initial_state**.
 
 - **restore_state** (*Optional*): Save the switch's state and restore it on bootup. Mutually exclusive with
   **restore_mode**. If nothing has been saved yet, the switch starts in **initial_state**. Accepts a mapping, or
-  a case-insensitive shorthand: `KEEP`, `INVERT` or `INITIAL` (the **state** below, with the default storage),
-  `all` (same as `KEEP`), or `none` (nothing is restored and the switch starts in **initial_state**).
+  the shorthand `all` (restore the saved state as-is) or `none` (nothing is restored and the switch starts in
+  **initial_state**).
 
   - **state** (*Optional*, string): `KEEP` (default) to restore the saved state as-is, `INVERT` to restore it
-    inverted, or `INITIAL` to always start in **initial_state** instead.
+    inverted, or `INITIAL` to always start in **initial_state** instead. Unlike lights, a switch can't restore and
+    then force `ON` or `OFF`; to always start in a fixed state, set **initial_state** with `restore_state: none`.
   - **storage** (*Optional*, string): Where the state is saved. `flash` survives power loss. `rtc` stores it in
     RTC memory, which survives software reboots (restarts, OTA updates, crashes) and deep sleep but **not**
     power loss. When not set, the platform's usual storage is used: flash on ESP32, and on ESP8266 RTC memory
