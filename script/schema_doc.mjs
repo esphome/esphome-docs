@@ -664,7 +664,7 @@ export function registryHeading(node) {
   const rest = toString({ children: node.children.filter((c) => c.type !== "inlineCode") })
     .replace(/\s*\/\s*/g, " ")
     .trim();
-  const m = rest.match(/^(Action|Condition)$/i);
+  const m = rest.match(/^(Action|Condition)s?$/i);
   if (!m) return null;
   return { name: codes[0].value, names: codes.map((c) => c.value), type: m[1].toLowerCase() };
 }
@@ -1475,7 +1475,7 @@ export class Walker {
     const isBreak =
       /^see also$/i.test(text) ||
       store.isPlatform(lastWord) ||
-      ["action", "condition", "component", "components", "hub"].includes(lastWord) ||
+      ["action", "actions", "condition", "conditions", "component", "components", "hub"].includes(lastWord) ||
       bareCodeHeading(node) !== null ||
       (this.section?.depth >= node.depth && node.depth <= 1);
     if (this.section && isBreak && node.depth <= this.section.depth) await this.closeSection();
@@ -1987,12 +1987,9 @@ export class Walker {
             this.checkBullet(item, parsed);
             await this.checkOptionality({ variants: [{ config_vars: { [parsed.key]: nestedProps[0] } }] }, parsed);
             found = { prop: nestedProps[0], inherited: false };
-            await this.emitPropDocs(
-              found,
-              { variants: [{ config_vars: { [parsed.key]: nestedProps[0] } }] },
-              item,
-              parsed,
-            );
+            const holder = { variants: [{ config_vars: { [parsed.key]: nestedProps[0] } }] };
+            await this.emitPropDocs(found, holder, item, parsed);
+            this.lastEnumProps = await this.enumHolders(holder, parsed.key, found);
             await this.nestedContent(item, { variants: [] }, parsed.key, found, ref);
           }
           continue;
@@ -2105,7 +2102,7 @@ async function main() {
     if (short) broken = `only ${s.emitted[short[0]]} ${short[0]}, ${short[1]} expected at least`;
   }
   // Kinds that are observations rather than mismatches
-  const informational = new Set(["no_intro_paragraph", "nested_list_ignored", "ambiguous_nested_key"]);
+  const informational = new Set(["no_intro_paragraph", "nested_list_ignored"]);
   const strict = (kind) => !informational.has(kind);
   const strictCounts = new Map();
   for (const f of report.findings) if (strict(f.kind)) strictCounts.set(f.kind, (strictCounts.get(f.kind) ?? 0) + 1);
@@ -2156,7 +2153,12 @@ async function main() {
     "ambiguous_nested_key",
   ];
   // Kinds the report lists only with --verbose; a kind missing from `order` is always shown
-  const verboseOnly = new Set(["undocumented_key", "no_intro_paragraph", "nested_list_ignored"]);
+  const verboseOnly = new Set([
+    "undocumented_key",
+    "no_intro_paragraph",
+    "nested_list_ignored",
+    "ambiguous_nested_key",
+  ]);
   const shown = (kind) => args.verbose || !verboseOnly.has(kind) || !order.includes(kind);
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {
     if (!shown(f.kind)) continue;

@@ -2186,3 +2186,54 @@ test("a bullet two sub-schemas share is reported as ambiguous", async () => {
   });
   assert.equal(report.findings.filter((f) => f.kind === "ambiguous_nested_key").length, 1);
 });
+
+test("a plural sibling heading ends an action's section", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: { schemas: { CONFIG_SCHEMA: schema({}) }, action: { send: schema({ address: { key: "Required" } }) } },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `foo.send` Action",
+        "Sends.",
+        "- **address** (**Required**, int): The send address.",
+        "## Typed Read/Write Actions",
+        "### Common Configuration Variables",
+        "- **address** (**Required**, int): The typed address.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("foo", "foo", "action", "send", "schema", "config_vars", "address"), /send address/);
+  assert.equal(report.findings.filter((f) => f.kind === "orphan_option_list" || f.kind === "unmatched_key").length, 1);
+});
+
+test("a flat bullet matched inside one sub-schema keeps its enum for the block that follows", async () => {
+  const mode = { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } };
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ options: { key: "Optional", ...schema({ mode }) } }) } } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **mode** (*Optional*, enum): The mode.",
+        '<EnumValues values={[{ value: "FAST", description: "Quick" }, { value: "SLOW", description: "Careful" }]} />',
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const values =
+    store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars.options.schema.config_vars.mode.values;
+  assert.match(values.FAST.docs, /Quick/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "enum_values_without_enum"),
+    [],
+  );
+});

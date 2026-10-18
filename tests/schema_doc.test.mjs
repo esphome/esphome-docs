@@ -46,6 +46,8 @@ test("registryHeading uses the inline code, not the heading text", () => {
   const two = registryHeading(parse("## `fan.is_on` / `fan.is_off` Condition\n").children[0]);
   assert.deepEqual(two.names, ["fan.is_on", "fan.is_off"]);
   assert.equal(registryHeading(parse("## Debugging\n").children[0]), null);
+  const plural = registryHeading(parse("## `sun.is_above_horizon` / `sun.is_below_horizon` Conditions\n").children[0]);
+  assert.deepEqual([plural.names, plural.type], [["sun.is_above_horizon", "sun.is_below_horizon"], "condition"]);
 });
 
 test("toInner exposes the typed key and all variants", () => {
