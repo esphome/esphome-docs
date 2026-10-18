@@ -19,6 +19,8 @@ Each channel type is a platform of this component. The platforms currently avail
   that marks where each packet starts and ends.
 - [UDP](/components/packet_interface/udp/): each packet is sent as one UDP datagram, using the settings of the
   [UDP](/components/udp/) component.
+- [TCP](/components/packet_interface/tcp/): packets are sent over a TCP connection between two devices, which also
+  provides reliable delivery and tells the layers above when the other device can be reached.
 - [SX126x](/components/packet_interface/sx126x/) and [SX127x](/components/packet_interface/sx127x/): each packet is
   sent as one LoRa or FSK radio packet, using an [SX126x](/components/sx126x/) or [SX127x](/components/sx127x/)
   radio.
@@ -377,6 +379,7 @@ binary_sensor:
 
 - [UART Packet Interface](/components/packet_interface/uart/)
 - [UDP Packet Interface](/components/packet_interface/udp/)
+- [TCP Packet Interface](/components/packet_interface/tcp/)
 - [SX126x Packet Interface](/components/packet_interface/sx126x/)
 - [SX127x Packet Interface](/components/packet_interface/sx127x/)
 - [Entity Transport Component](/components/entity_transport/)
