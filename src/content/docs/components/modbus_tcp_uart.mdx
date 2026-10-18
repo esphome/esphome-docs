@@ -36,7 +36,7 @@ waits for the reply to go out, or one second plus twice the longest `turnaround_
 Modbus Server, a request to an address that no Modbus Server on the hub uses is dropped without an answer.
 
 With `max_connections` above `1` on the `tcp_uart`, the requests of all its connections are served this way, and
-each reply goes to the connection that sent the request. After `reply_timeout` the next request is read. A later
+each reply goes to the connection that sent the request. After that wait the next request is read. A later
 reply is still sent until another connection has sent a request, and is dropped after that.
 
 ```yaml
@@ -67,8 +67,6 @@ The hub reads baud rate, data bits, parity and stop bits from the `tcp_uart`. Th
 - **role** (*Optional*, string): `client` or `server`. Defaults to `client`. This is who sends the Modbus
   request, and the hub must use the same role. Who opens the socket stays on the TCP UART. With `client`, the TCP
   UART cannot have `max_connections` above `1`.
-- **reply_timeout** (*Optional*, [Time](/guides/configuration-types#time)): Only with `role: server`. How long the
-  next request waits for the reply. Defaults to the wait described above. At most 65535 ms.
 - **debug** (*Optional*): Log the RTU bytes that pass this UART. Same options as the
   [UART debug](/components/uart/#debugging) option.
 
