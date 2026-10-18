@@ -864,10 +864,10 @@ No startup, refresh, restored-state or resume operation writes settings.
 
 Completion statuses are:
 
-- `SUCCESS`: acknowledgement, matching readback, release and resumed telemetry confirmed the change.
-- `UNCHANGED`: fresh preflight already matched; no write was sent.
-- `FAILED`: the request ended before any write was handed to the UART.
-- `UNCERTAIN`: a write was handed to the UART, but complete confirmation was lost. The controller may have changed.
+- `SETTING_WRITE_STATUS_SUCCESS`: acknowledgement, matching readback, release and resumed telemetry confirmed the change.
+- `SETTING_WRITE_STATUS_UNCHANGED`: fresh preflight already matched; no write was sent.
+- `SETTING_WRITE_STATUS_FAILED`: the request ended before any write was handed to the UART.
+- `SETTING_WRITE_STATUS_UNCERTAIN`: a write was handed to the UART, but complete confirmation was lost. The controller may have changed.
 
 An uncertain result blocks further writes until a new complete settings scan establishes the current state. Retained values
 are not proof that the interrupted write had no effect. OTA cancellation has the same rule; late replies cannot restart
