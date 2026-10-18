@@ -108,17 +108,22 @@ The remote sends every setting in each frame, so the display light, sleep mode a
 flash and restored at boot. Nothing is transmitted at boot; the stored settings go out with the next command. With a
 `receiver_id`, frames from the handheld remote update the climate state and these settings as well.
 
-The display light and sleep mode are exposed as switches, and the vertical direction as a select. Both switches are
-configuration entities and keep their state through the climate's own storage, so they do not need a `restore_mode`.
+The `airton` switch platform exposes the display light and sleep mode. Both switches are configuration entities and
+keep their state through the climate's own storage, so they do not need a `restore_mode`.
 
 - **airton_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the `airton` climate. Only needed with
   more than one.
 - **display** (*Optional*, [Switch](/components/switch#config-switch)): The display light of the indoor unit.
 - **sleep_mode** (*Optional*, [Switch](/components/switch#config-switch)): Sleep mode. The unit ignores it in fan-only
   mode and in the automatic heat/cool mode.
+
+The `airton` select platform exposes the vertical air outlet direction.
+
+- **airton_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the `airton` climate. Only needed with
+  more than one.
 - **vertical_direction** (*Optional*, [Select](/components/select#config-select)): The vertical direction, with the
-  options listed above. `swing` and the climate's vertical swing mode are the same setting, so changing one updates
-  the other.
+  options of the climate's `vertical_direction`. `swing` and the climate's vertical swing mode are the same setting,
+  so changing one updates the other.
 
 ```yaml
 # Example configuration entry
