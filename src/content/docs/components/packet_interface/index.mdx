@@ -67,6 +67,9 @@ written in: addressing is next to the channel, then encryption, reliability, fra
 works with the same layer on the other device, so both devices must configure the same layers. If a layer cannot make
 sense of 10 packets in a row, it logs a warning that the layers may not match.
 
+Each layer adds its own bytes to every packet, so a small `max_packet_size` can leave a layer no room. That layer is
+then marked failed at boot, with the reason in the log.
+
 Some platforms do the job of a layer themselves, and then that layer cannot be configured on them. For example, a TCP
 connection already joins two devices and resends lost data. The page for each platform says which layers it provides.
 
@@ -209,8 +212,10 @@ packet only if it repeats the device's current boot number, and is newer than th
 other device. So a packet recorded earlier is never accepted, even after a restart. This has two effects:
 
 - After either device restarts, its first packets are dropped until the two devices have heard from each other. With
-  a [reliability layer](#reliability), they are sent again.
-- If the other device's flash is erased, its packets are dropped until this device restarts.
+  a [reliability layer](#reliability), they are sent again. Without one, a [session layer](#session) may report the
+  other device connected only after its next `keep_alive`.
+- If the other device's flash is erased, or the `id` of its packet interface changes (the boot number is saved
+  under it), its packets are dropped until this device restarts. A warning is logged when this happens.
 
 ## Reliability
 
@@ -233,7 +238,7 @@ packet_interface:
 - **type** (*Optional*, string): The reliability method. Only `hdlc` is available, which uses the acknowledgement
   and resend method of the HDLC protocol. Defaults to `hdlc`.
 - **timeout** (*Optional*, [Time](/guides/configuration-types#time)): How long to wait for an acknowledgement before
-  resending. Defaults to `200ms`.
+  resending. At least `50ms`. Defaults to `200ms`.
 - **ack_delay** (*Optional*, [Time](/guides/configuration-types#time)): How long to wait before acknowledging a
   packet, so that one acknowledgement can cover several packets, or a reply can carry it. Useful on radio links,
   which cannot receive while they send; about the time one packet takes to send is a good value. Must be shorter than
@@ -244,7 +249,8 @@ packet_interface:
   are discarded and the connection is started again. Defaults to `5`.
 
 The reliability layer adds 3 bytes to each packet, so the largest packet that can be sent through it is 3 bytes
-smaller than `max_packet_size`. Each device holds `max_queue_length` packets of `max_packet_size` bytes in memory.
+smaller than `max_packet_size`. Each device holds `max_queue_length` packets of `max_packet_size` bytes in memory;
+if there is not enough memory, the layer is marked failed and nothing is sent.
 
 ## Fragmentation
 
