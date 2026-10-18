@@ -2101,3 +2101,86 @@ test("a sub-heading under a grouped action heading documents the options of ever
     );
   }
 });
+
+test("a trigger heading under an action heading reaches the action's own trigger", async () => {
+  const trigger = { key: "Optional", type: "trigger", schema: { config_vars: { then: { key: "Optional" } } } };
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: { CONFIG_SCHEMA: schema({ on_done: trigger }) },
+          action: { do: schema({ on_done: trigger }) },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `foo.do` Action",
+        "Does it.",
+        "### `on_done` Trigger",
+        "#### Configuration variables",
+        "- **then** (*Optional*, Automation): After the action.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const action = store.files.get("foo").foo.action.do.schema.config_vars.on_done;
+  assert.match(action.schema.config_vars.then.docs, /After the action/);
+  const component = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars.on_done;
+  assert.equal(component.schema.config_vars.then.docs, undefined);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unresolved_trigger"),
+    [],
+  );
+});
+
+test("a sub-heading under an unknown action does not fall back to the page schema", async () => {
+  const options = { key: "Optional", ...schema({ mode: { key: "Optional" } }) };
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ options }) }, action: {} } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `foo.missing` Action",
+        "Gone.",
+        "### Options",
+        "- **mode** (*Optional*, string): The action's mode.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.equal(
+    docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "options", "schema", "config_vars", "mode"),
+    undefined,
+  );
+  assert.equal(report.findings.filter((f) => f.kind === "unknown_registry_entry").length, 1);
+});
+
+test("a missing schema entry is reported even when the page has no intro", async () => {
+  const { report } = await walk({
+    schema: { esphome: core([]) },
+    pages: { "foo.mdx": ["## Configuration variables", "- **bar** (*Optional*, int): Bar.", ""].join("\n\n") },
+  });
+  assert.equal(report.findings.filter((f) => f.kind === "missing_schema_entry").length, 1);
+});
+
+test("a bullet two sub-schemas share is reported as ambiguous", async () => {
+  const sub = { key: "Optional", ...schema({ priority: { key: "Optional" } }) };
+  const { report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ on_boot: sub, on_shutdown: sub }) } } },
+    },
+    pages: {
+      "foo.mdx": ["Foo.", "## Configuration variables", "- **priority** (*Optional*, float): The priority.", ""].join(
+        "\n\n",
+      ),
+    },
+  });
+  assert.equal(report.findings.filter((f) => f.kind === "ambiguous_nested_key").length, 1);
+});

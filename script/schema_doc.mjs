@@ -1048,25 +1048,21 @@ export class Walker {
   async emitComponentDocs(name, platform, text, line = 1) {
     const { store, report } = this;
     const target = platform ? `${name}.${platform}` : name;
+    // The entry is checked before the intro: a missing one is a mismatch, a missing paragraph only a note
+    const entry = platform ? (await store.file(platform))?.[platform]?.components?.[name] : store.core.components[name];
+    if (!entry) {
+      const where = platform ? `${platform}.json has no component ${name}` : `core.components has no ${name}`;
+      report.add("missing_schema_entry", this.rel, line, { detail: where });
+      return;
+    }
     if (!text) {
       report.add("no_intro_paragraph", this.rel, line, { detail: `no paragraph to describe ${target}` });
       return;
     }
     if (platform) {
-      const doc = await store.file(platform);
-      const entry = doc?.[platform]?.components?.[name];
-      if (!entry) {
-        report.add("missing_schema_entry", this.rel, line, { detail: `${platform}.json has no component ${name}` });
-        return;
-      }
       if (!this.emit) return;
       entry.docs = this.withSeeAlso(text);
       report.stats.emitted.platformDocs++;
-      return;
-    }
-    const entry = store.core.components[name];
-    if (!entry) {
-      report.add("missing_schema_entry", this.rel, line, { detail: `core.components has no ${name}` });
       return;
     }
     // The first page of this run to introduce a component wins; a rerun over an emitted bundle
@@ -1080,13 +1076,13 @@ export class Walker {
 
   /** Write the paragraph under an action, condition, filter or effect heading. */
   async emitRegistryDocs(ref, type, text, line = 1) {
-    if (!text) {
-      this.report.add("no_intro_paragraph", this.rel, line, { detail: `no paragraph to describe ${ref}` });
-      return;
-    }
     const entry = await this.store.entry(ref);
     if (!entry) {
       this.report.add("missing_schema_entry", this.rel, line, { detail: `${ref} has no schema entry` });
+      return;
+    }
+    if (!text) {
+      this.report.add("no_intro_paragraph", this.rel, line, { detail: `no paragraph to describe ${ref}` });
       return;
     }
     if (!this.emit) return;
@@ -1494,7 +1490,10 @@ export class Walker {
       // name "time.on_time", whose last word is the trigger
       const pageRef = this.pageDefault?.defaultRef;
       const nestedPath = trigPath.split(".").slice(0, -1);
-      for (const ref of [this.defaultRef, ...(pageRef && pageRef !== this.defaultRef ? [pageRef] : [])]) {
+      // "### `on_done` Trigger" under "## `foo.do` Action" is the action's trigger before the component's
+      const sectionRef = this.section && node.depth > this.section.depth ? this.section.ref : null;
+      const refs = [sectionRef, this.defaultRef, pageRef].filter((r, i, all) => r && all.indexOf(r) === i);
+      for (const ref of refs) {
         if (!ref) continue;
         for (const path of nestedPath.length ? [nestedPath, []] : [[]]) {
           const holder = path.length ? `${ref}/${path.join("/")}` : ref;
@@ -1696,7 +1695,12 @@ export class Walker {
 
     // "## Legend Options" documents the `legend` sub-schema of the current schema
     const baseRef = this.section?.ref ?? this.defaultRef;
-    if (baseRef && !baseRef.includes("/")) {
+    const underFailed =
+      !this.section &&
+      this.failedSection &&
+      node.depth > this.failedSection.depth &&
+      this.failedSection.defaultRef === this.defaultRef;
+    if (baseRef && !baseRef.includes("/") && !underFailed) {
       // The open section's inner keeps the union of a grouped action heading; resolving its ref again would not
       const base = this.section ? this.section.inner : await store.resolve(baseRef);
       let first = slug(text);
@@ -1966,6 +1970,12 @@ export class Walker {
           // Two sub-schemas with the same key (on_boot/on_shutdown priority)
           // cannot be told apart from a flat list, and every sub-schema has an
           // `id`: match, but do not document
+          if (nestedProps.length > 1) {
+            report.add("ambiguous_nested_key", this.rel, item.position.start.line, {
+              key: parsed.key,
+              detail: `${nestedProps.length} sub-schemas have it; a {/* schema: */} marker or a sub-heading picks one`,
+            });
+          }
           if (nestedProps.length === 1 && parsed.key !== "id") {
             this.checkBullet(item, parsed);
             await this.checkOptionality({ variants: [{ config_vars: { [parsed.key]: nestedProps[0] } }] }, parsed);
@@ -2085,7 +2095,7 @@ async function main() {
     broken = `only ${described} options have a description, ${MIN_EMITTED_PROPS} expected at least`;
   }
   // Kinds that are observations rather than mismatches
-  const informational = new Set(["no_intro_paragraph", "nested_list_ignored"]);
+  const informational = new Set(["no_intro_paragraph", "nested_list_ignored", "ambiguous_nested_key"]);
   const strict = (kind) => !informational.has(kind);
   const strictCounts = new Map();
   for (const f of report.findings) if (strict(f.kind)) strictCounts.set(f.kind, (strictCounts.get(f.kind) ?? 0) + 1);
@@ -2133,6 +2143,7 @@ async function main() {
     "no_intro_paragraph",
     "nested_list_ignored",
     "unresolved_trigger",
+    "ambiguous_nested_key",
   ];
   // Kinds the report lists only with --verbose; a kind missing from `order` is always shown
   const verboseOnly = new Set(["undocumented_key", "no_intro_paragraph", "nested_list_ignored"]);
