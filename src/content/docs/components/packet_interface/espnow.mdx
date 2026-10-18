@@ -9,12 +9,17 @@ The `espnow` [Packet Interface](/components/packet_interface/) platform sends an
 [ESP-NOW](/components/espnow/), between ESP32 and ESP8266 devices on the same Wi-Fi channel. Each packet is sent as
 one ESP-NOW packet.
 
-With a `peer_address`, packets are sent to that device only, and only packets from that device are accepted, so no
-[addressing layer](/components/packet_interface/#addressing) is needed, and one cannot be configured. The device is
-added to the peers of the `espnow` component.
+With a `peer_address`, packets are sent to that device only, and only packets that device sends to this one are
+accepted, so no [addressing layer](/components/packet_interface/#addressing) is needed, and one cannot be configured.
+The device is added to the peers of the `espnow` component.
 
-Without a `peer_address`, packets are broadcast to every device on the channel, and every packet received is
-accepted. An addressing layer can then tell the devices apart.
+Without a `peer_address`, packets are broadcast to every device on the channel, and every broadcast packet received
+is accepted, including from devices that are not in the `espnow` component's peers. An addressing layer can then tell
+the devices apart.
+
+One `espnow` component can carry links to several peers and a broadcast link at the same time. On ESP8266, which does
+not report where a packet was sent, a broadcast link also receives the packets sent to this device by its peers, so
+there an addressing layer is needed on the broadcast link to drop them.
 
 ESP-NOW does not resend lost packets on its own, so add a [reliability layer](/components/packet_interface/#reliability)
 if every packet must arrive. Received packets carry the sender's MAC address and, on ESP32, the RSSI.
