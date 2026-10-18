@@ -185,7 +185,9 @@ export class SchemaStore {
       // is the same option, so its docs go to both
       const comps = parts.map((r) => r.split(".")[0]);
       const bases = new Set(comps.map((c) => c.replace(/_(i2c|spi)$/, "")));
-      const multi = bases.size === 1 && comps.every((c) => /_(i2c|spi)$/.test(c));
+      // A heading naming several actions documents each of them too
+      const registryUnion = parts.every((r) => /\.(action|condition|filter|effects)\./.test(r));
+      const multi = (bases.size === 1 && comps.every((c) => /_(i2c|spi)$/.test(c))) || registryUnion;
       // A platform page's hub schema is audited on its own page; bus wirings and
       // grouped actions are only documented here, so audit all of them
       const out = { variants, primaryCount: multi ? variants.length : inners[0].variants.length, multi };
@@ -582,7 +584,9 @@ export function convertLinks(text, url, deployUrl) {
     if (/^https?:\/\//.test(href)) return all;
     if (href.startsWith("/")) return `[${title}](${deployUrl}${href})`;
     if (href.startsWith("#")) return `[${title}](${deployUrl}${url}${href})`;
-    return all;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(href)) return all;
+    // "../foo" or "images/x.png": relative to the page, as the site resolves it
+    return `[${title}](${new URL(href, `${deployUrl}${url}/`).href})`;
   });
 }
 
@@ -990,14 +994,30 @@ export class Walker {
     // "## Actions" opens the union of the actions under it; when nothing was listed there the actions are
     // audited by their own sections
     if (s.auditIfUsed && s.documented.size === 0) return;
-    // A schema documented in several sections of a page is audited once, at the end
-    const audit = this.audits.get(s.ref);
-    if (audit) {
-      for (const key of s.documented) audit.documented.add(key);
-      if (!audit.inners.includes(s.inner)) audit.inners.push(s.inner);
-    } else {
-      this.audits.set(s.ref, { inners: [s.inner], documented: new Set(s.documented), line: s.line });
+    // What a heading naming several actions documented counts for each of them
+    if (s.members) {
+      for (const member of s.members) this.mergeAudit_(member.ref, member.inner, s.documented, s.line);
+      return;
     }
+    this.mergeAudit_(s.ref, s.inner, s.documented, s.line);
+  }
+
+  // A schema documented in several sections of a page is audited once, at the end
+  mergeAudit_(ref, inner, documented, line) {
+    const audit = this.audits.get(ref);
+    if (audit) {
+      for (const key of documented) audit.documented.add(key);
+      if (!audit.inners.includes(inner)) audit.inners.push(inner);
+    } else {
+      this.audits.set(ref, { inners: [inner], documented: new Set(documented), line });
+    }
+  }
+
+  /** The member schemas of a section opened for several registry entries, for the audit. */
+  async registryMembers_(refs) {
+    const members = [];
+    for (const ref of refs) members.push({ ref, inner: await this.store.resolve(ref) });
+    return members;
   }
 
   /** Report the keys of every schema the page documented that none of its sections mentioned. */
@@ -1562,9 +1582,8 @@ export class Walker {
         await this.openSection(ref, node.depth, line, "registry");
         if (this.section) {
           this.section.ownerDepth = node.depth;
-          this.section.inner.multi = true;
-          this.section.inner.primaryCount = this.section.inner.variants.length;
           this.section.auditIfUsed = true;
+          if (refs.length > 1) this.section.members = await this.registryMembers_(refs);
         }
         this.pendingRegistry = ref;
         this.pendingRegistryDepth = node.depth;
@@ -1589,10 +1608,7 @@ export class Walker {
         const ref = refs.join("+");
         await this.openSection(ref, node.depth, line, "registry");
         if (this.section) this.section.ownerDepth = node.depth;
-        if (this.section && refs.length > 1) {
-          this.section.inner.multi = true;
-          this.section.inner.primaryCount = this.section.inner.variants.length;
-        }
+        if (this.section && refs.length > 1) this.section.members = await this.registryMembers_(refs);
         this.pendingRegistry = ref;
         this.pendingRegistryDepth = node.depth;
       } else {
@@ -1661,6 +1677,7 @@ export class Walker {
       this.report.add("unresolved_component_heading", this.rel, line, {
         detail: `"${text}" names no schema (tried ${name})`,
       });
+      this.pendingRegistry = null;
       await this.closeSection();
       this.failedSection = { depth: node.depth, defaultRef: this.defaultRef };
     };
@@ -1963,6 +1980,7 @@ export class Walker {
   /** Match each option bullet of a list against the schema and emit its docs. */
   async items(listNode, inner, documented, ref = this.section?.ref) {
     const { store, report } = this;
+    let siblingListReported = false;
     for (const item of listNode.children) {
       this.lastEnumProps = [];
       const parsed = parseItem(item);
@@ -1986,7 +2004,11 @@ export class Walker {
       if (chosenByHeading && this.section.interrupted && parsed.hasParen && ref === this.section.ref) {
         // A sibling heading came between this list and the heading that chose the schema: the list may
         // belong to something else, so it is reported rather than written over the previous schema
-        report.add("option_list_after_sibling_heading", this.rel, parsed.line, { schema: ref, key: parsed.key });
+        if (!siblingListReported) {
+          report.add("option_list_after_sibling_heading", this.rel, parsed.line, { schema: ref, key: parsed.key });
+          siblingListReported = true;
+        }
+        report.stats.keysOrphaned++;
         continue;
       }
       if (this.holdEmit !== null) {
@@ -2041,10 +2063,20 @@ export class Walker {
         }
         const nestedProps = await store.findNestedProps(inner, parsed.key);
         if (nestedProps.length) {
-          report.stats.keysMatchedNested++;
           // Two sub-schemas with the same key (on_boot/on_shutdown priority)
           // cannot be told apart from a flat list, and every sub-schema has an
           // `id`: match, but do not document
+          if (nestedProps.length === 1 && parsed.key !== "id") {
+            report.stats.keysMatchedNested++;
+          } else {
+            report.stats.keysOrphaned++;
+          }
+          if (nestedProps.length === 1 && parsed.key === "id") {
+            report.add("nested_id_skipped", this.rel, item.position.start.line, {
+              key: parsed.key,
+              detail: "an id bullet of a sub-schema is not written from a flat list; a sub-heading places it",
+            });
+          }
           if (nestedProps.length > 1) {
             report.add("ambiguous_nested_key", this.rel, item.position.start.line, {
               key: parsed.key,
@@ -2170,7 +2202,7 @@ async function main() {
     if (short) broken = `only ${s.emitted[short[0]]} ${short[0]}, ${short[1]} expected at least`;
   }
   // Kinds that are observations rather than mismatches
-  const informational = new Set(["no_intro_paragraph", "nested_list_ignored"]);
+  const informational = new Set(["no_intro_paragraph", "nested_list_ignored", "nested_id_skipped"]);
   const strict = (kind) => !informational.has(kind);
   const strictCounts = new Map();
   for (const f of report.findings) if (strict(f.kind)) strictCounts.set(f.kind, (strictCounts.get(f.kind) ?? 0) + 1);
@@ -2220,6 +2252,7 @@ async function main() {
     "nested_list_ignored",
     "unresolved_trigger",
     "ambiguous_nested_key",
+    "nested_id_skipped",
   ];
   // Kinds the report lists only with --verbose; a kind missing from `order` is always shown
   const verboseOnly = new Set([
@@ -2227,6 +2260,7 @@ async function main() {
     "no_intro_paragraph",
     "nested_list_ignored",
     "ambiguous_nested_key",
+    "nested_id_skipped",
   ]);
   const shown = (kind) => args.verbose || !verboseOnly.has(kind) || !order.includes(kind);
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {

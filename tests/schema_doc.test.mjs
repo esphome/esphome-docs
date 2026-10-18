@@ -8,7 +8,14 @@ import { unified } from "unified";
 import remarkMdx from "remark-mdx";
 import remarkParse from "remark-parse";
 
-import { parseEnumValues, parseItem, registryHeading, SchemaStore, toInner } from "../script/schema_doc.mjs";
+import {
+  convertLinks,
+  parseEnumValues,
+  parseItem,
+  registryHeading,
+  SchemaStore,
+  toInner,
+} from "../script/schema_doc.mjs";
 
 const parse = (md) => unified().use(remarkParse).use(remarkMdx).parse(md);
 
@@ -188,4 +195,16 @@ test("the command line reports a finding and exits cleanly", () => {
   });
   assert.equal(run.status, 0, run.stderr);
   assert.match(run.stdout, /foo\.mdx:\d+: unmatched_key 'baz'/);
+});
+
+test("convertLinks resolves relative links against the page", () => {
+  const out = convertLinks(
+    "See [here](../bar/) and [img](images/x.png) and [mail](mailto:a@b.c).",
+    "/components/foo",
+    "https://esphome.io",
+  );
+  assert.equal(
+    out,
+    "See [here](https://esphome.io/components/bar/) and [img](https://esphome.io/components/foo/images/x.png) and [mail](mailto:a@b.c).",
+  );
 });

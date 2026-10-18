@@ -2185,6 +2185,9 @@ test("a bullet two sub-schemas share is reported as ambiguous", async () => {
     },
   });
   assert.equal(report.findings.filter((f) => f.kind === "ambiguous_nested_key").length, 1);
+  // Not written, so not matched: it counts on the unplaced side of the emit guard
+  assert.equal(report.stats.keysMatchedNested, 0);
+  assert.equal(report.stats.keysOrphaned, 1);
 });
 
 test("a plural sibling heading ends an action's section", async () => {
@@ -2376,4 +2379,92 @@ test("an option list after a sibling heading is reported rather than written ove
   });
   assert.match(docs("foo", "foo", "action", "send", "schema", "config_vars", "address"), /send address/);
   assert.equal(report.findings.filter((f) => f.kind === "option_list_after_sibling_heading").length, 1);
+  assert.equal(report.stats.keysOrphaned, 1);
+});
+
+test("a trigger heading under a heading naming two actions reaches both actions' triggers", async () => {
+  const trigger = { key: "Optional", type: "trigger", schema: { config_vars: { then: { key: "Optional" } } } };
+  const { docs } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: { CONFIG_SCHEMA: schema({}) },
+          action: { next: schema({ on_done: trigger }), previous: schema({ on_done: trigger }) },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `foo.next` / `foo.previous` Action",
+        "Step.",
+        "### `on_done` Trigger",
+        "- **then** (*Optional*, Automation): After the step.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  for (const name of ["next", "previous"]) {
+    assert.match(
+      docs("foo", "foo", "action", name, "schema", "config_vars", "on_done", "schema", "config_vars", "then"),
+      /After the step/,
+    );
+  }
+});
+
+test("common options under a grouped heading and each action's own options audit together", async () => {
+  const { report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: { CONFIG_SCHEMA: schema({}) },
+          action: {
+            read: schema({ address: { key: "Required" }, count: { key: "Required" } }),
+            write: schema({ address: { key: "Required" }, value: { key: "Required" } }),
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Typed Actions",
+        "### Common Configuration Variables",
+        "- **address** (**Required**, int): The address.",
+        "### `foo.read` Action",
+        "- **count** (**Required**, int): How many.",
+        "### `foo.write` Action",
+        "- **value** (**Required**, int): What to write.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "undocumented_key"),
+    [],
+  );
+});
+
+test("an unresolved heading under an action does not leave the action's options pending", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({}) }, action: { do: schema({ mode: { key: "Optional" } }) } } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `foo.do` Action",
+        "- **mode** (*Optional*, string): The action's mode.",
+        "### Missing Component",
+        "#### Configuration variables",
+        "- **mode** (*Optional*, string): The missing component's mode.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("foo", "foo", "action", "do", "schema", "config_vars", "mode"), /action's mode/);
+  assert.equal(report.findings.filter((f) => f.kind === "unresolved_component_heading").length, 1);
 });
