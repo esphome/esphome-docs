@@ -35,7 +35,7 @@ microphone:
 - **num_channels** (*Optional*, positive integer): The number of channels, `1` (mono) or `2` (stereo). Must be
   supported by the USB device. Defaults to `1`.
 - **buffer_size** (*Optional*, positive integer): The size of the buffer between the USB driver and ESPHome, in
-  bytes. Must hold at least 40 ms of audio (e.g. `1280` bytes at 16000 Hz, 16 bit, mono). Defaults to `6400`.
+  bytes. Must hold at least 40 ms of audio (e.g. `1280` bytes at 16000 Hz, 16 bit, mono). Defaults to `6400`, or to the minimum when that is larger.
 - **usb_audio_id** (*Optional*, [ID](/guides/configuration-types#id)): The [USB Audio](/components/usb_audio/)
   component to use. Defaults to the only one in YAML.
 - All other options from [Microphone Component](/components/microphone/).
