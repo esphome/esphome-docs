@@ -875,7 +875,8 @@ verification or replay the write. `vbus.resume_polling` only resumes reads.
 
 Verified numeric changes update the confirmed cached value. A verified enum change or an uncertain write requests a
 fresh, read-only scan because the available controls or their units may have changed. This one refresh bypasses the
-usual 60-second scan limit and starts on the next one-second controller check when telemetry and polling are available.
+usual 60-second scan limit and is prepared on the next main-loop iteration when telemetry and polling are available.
+If they are unavailable, the controller checks again once per second without keeping its loop busy.
 Until it completes, `has_fresh_snapshot()` is false and further writes are rejected. `has_recent_snapshot()` still reports
 whether the last complete snapshot is within its 660-second expiry, so displays can retain confirmed values while waiting.
 An incompatible firmware broadcast discards both fresh and retained context immediately. No refresh retries a write.
