@@ -373,26 +373,44 @@ on_press:
 
 #### `vbus.send_datagram` Action
 
-Send one P2 datagram while the component owns the bus. This action requires an explicit `id`, a `grant_id`, a `command`,
-an optional `value_id` (default `0`) and an optional `value` (default `0`). All fields except `id` support templates.
+Send one P2 datagram while the component owns the bus.
+
+- **id** (**Required**, ID): The VBus component.
+- **grant_id** (**Required**, integer, templatable): The identifier received by `on_bus_grant`.
+- **command** (**Required**, integer, templatable): The P2 command.
+- **value_id** (*Optional*, integer, templatable): The raw 16-bit parameter. Defaults to `0`.
+- **value** (*Optional*, integer, templatable): The raw 32-bit parameter. Defaults to `0`.
+- **expect_reply** (*Optional*, boolean, templatable): Wait for a controller reply before allowing more traffic.
+  Defaults to `true`.
+
 Always pass the `grant_id` received by `on_bus_grant`, as shown above. A saved callback from an earlier lease cannot
 use a later lease, even when the bus has been acquired again.
 Commands must have both byte high bits clear; `0x0500` and `0x0600` are reserved for bus management.
 
-The action does not wait for a grant, queue data, confirm a reply or retry a request. A send attempted without a
-usable lease, while RX is incomplete or busy, or before the preceding frame has had time to leave the UART is rejected
+While waiting for a reply, the transport cannot
+send another datagram or a release. A complete, valid P2 datagram from the configured controller to the client
+ends this wait; standard read/write requests also require the same parameter identifier. The local TX echo
+does not count. This is flow control, not confirmation that a setting was accepted.
+The application must still validate the reply command, identifier and value. Standard read/write requests
+(`0x0200`, `0x0300` and `0x0400`) require this flag to remain `true`. Use `false` only for commands documented
+to have no reply.
+
+The action returns immediately. It does not wait for a grant, queue data, confirm a parameter change or retry a request.
+A send attempted without a usable lease, while RX is incomplete or busy, or before the preceding frame has had time
+to leave the UART is rejected
 with a warning. Space for a complete 16-byte frame is required. There is a minimum 20 ms interval between sends.
 Each exchange should wait for and validate its reply before sending another request.
 
 The existing `on_datagram` receive callback can be used to match controller replies by source, destination,
 command and parameter identifier. The transport does not interpret success or failure for controller-specific commands.
 In a lambda, `id(resol_bus).send_datagram(grant_id, command, value_id, value)` reports whether the frame
-reached the UART.
+reached the UART. An optional fifth `expect_reply` argument has the same behavior as the action's flag.
 This does not prove reception or acceptance by the controller. `id(resol_bus).has_bus()` reports a usable lease.
 
 #### `vbus.release_bus` Action
 
-Cancel a pending request, or return the owned bus as soon as RX is idle and the preceding frame has had time to finish.
+Cancel a pending request, or return the owned bus once its reply has arrived, RX is idle and the preceding frame
+has had time to finish.
 Once release is requested, further ordinary sends are rejected.
 
 ```yaml
@@ -405,8 +423,9 @@ on_bus_grant:
 Pass the callback's `grant_id` to release that lease. An old identifier cannot release a newer lease.
 Omitting `grant_id` (default `0`) only cancels a pending request or contention; it does not release an owned bus.
 
-The component reserves the last 40 ms of each lease for release. If the controller resumes, another sender appears,
-reception fails, the loop stalls, or ownership expires before a safe release is possible, it stops transmitting
+The component reserves the last 40 ms of each lease for release. It never starts a release in the final 20 ms,
+because there would not be enough time to finish the frame. If a reply is missing, the controller resumes,
+another sender appears, reception fails, the loop stalls, or a safe release can no longer fit, it stops transmitting
 without sending a late release. Shutdown also stops transmission; it does not send another bus command.
 Queued traffic and grants split across a stale receive period cannot authorize transmission. RX continues independently.
 
