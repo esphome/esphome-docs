@@ -50,6 +50,11 @@ The speaker and microphone each stream in one fixed format, set by their `sample
 formats the device does support are written to the log, so you can choose one of them. Devices that store samples
 padded to a larger size, such as 24-bit samples in 4 bytes, are not supported in that format.
 
+On the ESP32-S2 and ESP32-S3, the USB controller has 1024 bytes of FIFO memory for all USB packets, and `usb_audio`
+divides it between the speaker and microphone streams based on their formats. This requires ESP-IDF 5.5 or later. If
+the formats need more than the FIFO holds, for example a 96 kHz 32-bit stereo speaker and microphone together,
+validation fails and asks you to lower the sample rate, bits per sample or channels.
+
 The device can be plugged in and removed while ESPHome is running. A speaker stops playback when the device is removed,
 and a microphone resumes streaming when the device is plugged in again.
 
