@@ -680,9 +680,9 @@ light:
 
 ### Reading the Estimated Current
 
-The estimate of the last frame sent is available from the light's ID in a lambda. Each call sums the whole
-pixel buffer, so read it from something that polls, such as a [template sensor](/components/sensor/template/),
-rather than on every loop:
+The estimate is available from the light's ID in a lambda. Each call sums the pixel buffer as it stands, which is
+the last frame sent, or the next one when pixels were written since. Read it from something that polls, such as a
+[template sensor](/components/sensor/template/), rather than on every loop:
 
 ```yaml
 sensor:
