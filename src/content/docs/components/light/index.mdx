@@ -656,8 +656,9 @@ estimated_ma = num_leds * idle_ma_per_led
 If `max_current_ma` is set and the estimate exceeds it, all channel values are scaled down by the
 ratio `max_current_ma / estimated_ma`. The user-visible brightness and color are not changed; only the
 physical output is reduced. The scale is worked out from each frame just before it goes out, so the strip
-never sees a frame over budget. Pixels written from a lambda or with `light.addressable_set` are limited in
-the same way, and read back as the levels they were written with.
+never sees a frame over budget by more than one hardware level per lit channel, about 70 mA on 300 RGB
+pixels at 20 mA per channel. Pixels written from a lambda or with `light.addressable_set` are limited in the
+same way, and read back as the levels they were written with.
 
 ### Example Configuration
 
