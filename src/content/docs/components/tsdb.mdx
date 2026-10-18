@@ -78,16 +78,17 @@ tsdb:
   `64KB`.
 - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): How often a record is written.
   Defaults to `60s` - one record per interval.
-- **sync_interval** (*Optional*, [Time](/guides/configuration-types#time)): How often the database is
-  committed to the filesystem. Defaults to `60s`; `0s` commits after every record. See
+- **sync_interval** (*Optional*, [Time](/guides/configuration-types#time)): How often the header inside the
+  database file is folded back into it. Defaults to `15min`; `0s` folds after every record. See
   [Durability and flash wear](#durability-and-flash-wear).
 - **min_free_bytes** (*Optional*, size): Free-space guard. Defaults to `32KB`; `0` disables it. The engine
   caps its capacity early and starts evicting the oldest records when the free space on the partition drops
   below this value.
 - **require_time** (*Optional*, boolean): Refuse to write while the clock is invalid (a date before
   2001-09-09). Defaults to `true`. A board that boots offline writes nothing until the first SNTP sync - the
-  log says so once per boot. Set it to `false` on a board without a time source to accept wrong timestamps:
-  the records then only *order* the readings, a boot counter is not a date.
+  log says so once per boot. Set it to `false` on a board without a time source to record the readings anyway:
+  the timestamps then count seconds since the stored history began. They continue after the newest stored
+  record across reboots, so the series stays ordered, and a clock that syncs later jumps to real time.
 - **time_id** (*Optional*, [ID](/guides/configuration-types#id)): The [Time](/components/time/) component
   the timestamps come from. Required while `require_time` is `true`.
 - **on_missing** (*Optional*, string): What to do with a column whose sensor has never published, or
@@ -150,25 +151,31 @@ One record is written per `update_interval`:
 
 1. The clock is checked. With `require_time: true` (the default) nothing is written while the time is not
    valid yet - a record whose timestamp is a boot counter would be worse than a gap. The log reports this
-   once per boot.
+   once per boot. With `require_time: false` the record is written anyway, stamped to continue after the
+   newest stored record.
 1. Every column is read and encoded: `raw = round(value * scale_factor + offset)`, clamped to the range of
    `int16_t` (`-32767` to `32767`; `-32768` is reserved by the engine for "no value").
 1. A column whose sensor has never published, or publishes `NaN`, follows `on_missing`: `skip` (the default,
    the whole record is dropped - a gap is honest, a zero is not), `hold` (the last value written for that
    column is repeated; a column that has not published since boot has nothing to repeat and drops the record
    like `skip`) or `sentinel` (`-32768` is written for that column).
-1. The record is appended to the database and - at most every `sync_interval` - committed with
-   `tsdb_sync_h()`.
+1. The record is appended to the database, and the header inside the file is folded back at most every
+   `sync_interval`.
 
 Dropped records are logged with the name of the column that had no value: the first one and then every
 tenth.
 
 ## Durability and flash wear
 
-LittleFS publishes a file only when it is closed, so `sync_interval` is exactly the age of the data a power
-cut can lose. The component commits (close and reopen) on that cadence, and once after the first record -
-that first commit is what makes the database survive a reboot at all. A clean restart (an OTA update,
-`safe_mode:`) commits and closes as well.
+Every write keeps the header durable in a small sidecar file next to the database (the engine measures that
+at 46-56 ms), so no record waits for `sync_interval` to reach the flash. What the fold adds is the header
+*inside* the main file: littlefs copies every block from the modified offset to the end of the file, which the
+engine measures at 3.7-5.1 s for a 192-268 KB database, and it blocks the main loop for that time. A longer
+`sync_interval` therefore stalls less often, at the cost of leaving the in-file header - and with it the
+file's usefulness to a reader that ignores the sidecar - older after an unclean shutdown; the engine picks the
+newer sidecar header up on the next boot. The component commits once after the first record as well, which is
+what makes a brand-new database survive its first reboot, and a clean restart (an OTA update, `safe_mode:`)
+commits and closes.
 
 The commit deadline is evaluated after every write interval, including the intervals that dropped a record,
 so the last record that *was* written is never left unsynced for longer than `sync_interval` while the
