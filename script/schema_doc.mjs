@@ -673,7 +673,7 @@ function triggerHeading(node) {
   if (!code) return null;
   const rest = toString({ children: node.children.filter((c) => c.type !== "inlineCode") }).trim();
   if (!/^Trigger$/i.test(rest)) return null;
-  return code.value.split(".").pop();
+  return code.value;
 }
 
 /** The code span of a heading that is nothing but `name`, else null. */
@@ -1485,16 +1485,24 @@ export class Walker {
       if (node.depth <= this.section.depth) this.section.interrupted = true;
     }
 
-    const trig = triggerHeading(node);
+    const trigPath = triggerHeading(node);
+    const trig = trigPath?.split(".").pop();
     if (trig) {
       // The page's own schema is tried after the current one: a hub documents its triggers after
-      // the sections of its platforms. nestedInner sees through a docs-only copy of an inherited trigger
+      // the sections of its platforms. nestedInner sees through a docs-only copy of an inherited trigger.
+      // "`vane.on_state`" is first read as the nested key path vane/on_state, then as the component-qualified
+      // name "time.on_time", whose last word is the trigger
       const pageRef = this.pageDefault?.defaultRef;
+      const nestedPath = trigPath.split(".").slice(0, -1);
       for (const ref of [this.defaultRef, ...(pageRef && pageRef !== this.defaultRef ? [pageRef] : [])]) {
-        if (!ref || !(await store.nestedInner(await store.resolve(ref), trig))) continue;
-        this.markDocumented(ref, trig, line);
-        await this.openSection(`${ref}/${trig}`, node.depth, line, "heading");
-        return;
+        if (!ref) continue;
+        for (const path of nestedPath.length ? [nestedPath, []] : [[]]) {
+          const holder = path.length ? `${ref}/${path.join("/")}` : ref;
+          if (!(await store.nestedInner(await store.resolve(holder), trig))) continue;
+          this.markDocumented(holder, trig, line);
+          await this.openSection(`${holder}/${trig}`, node.depth, line, "heading");
+          return;
+        }
       }
       // Platform index pages document triggers the bundle does not place under the platform's schemas;
       // their options are neither written nor audited, since the text may belong to another trigger's key of
@@ -1656,6 +1664,12 @@ export class Walker {
       // "## Clockless" in fastled.mdx -> fastled_clockless, "## I²C" in bmp581.mdx -> bmp581_i2c
       const alias = slug(text.replace(/²/g, "2"));
       if (await switched(`${this.stem}_${alias}`, alias === "i2c" || alias === "spi")) return;
+      if (store.isPlatform(platformName) && bareCodeHeading(node) === null) {
+        // The platform's schema is not in the bundle: its options must not reopen the hub's. A bare code
+        // heading ("## `switch`" among lvgl's widgets) is a key or sibling schema, looked up below
+        await unresolved(`${owner}.${platformName}`);
+        return;
+      }
     }
 
     // A heading naming a sibling schema, e.g. "Light state" -> LIGHT_STATE_SCHEMA
@@ -1683,7 +1697,8 @@ export class Walker {
     // "## Legend Options" documents the `legend` sub-schema of the current schema
     const baseRef = this.section?.ref ?? this.defaultRef;
     if (baseRef && !baseRef.includes("/")) {
-      const base = await store.resolve(baseRef);
+      // The open section's inner keeps the union of a grouped action heading; resolving its ref again would not
+      const base = this.section ? this.section.inner : await store.resolve(baseRef);
       let first = slug(text);
       let nested = first && (await store.nestedInner(base, first));
       if (!nested) {

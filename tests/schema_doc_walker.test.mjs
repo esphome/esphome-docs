@@ -1992,3 +1992,112 @@ test("a hub page with its own platform heading keeps the page-level options for 
     [],
   );
 });
+
+test("a dotted trigger heading reaches a trigger nested under a key of the schema", async () => {
+  const trigger = { key: "Optional", type: "trigger", schema: { config_vars: { then: { key: "Optional" } } } };
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["cn105"]),
+      cn105: {
+        cn105: { schemas: { CONFIG_SCHEMA: schema({ vane: { key: "Optional", ...schema({ on_state: trigger }) } }) } },
+      },
+    },
+    pages: {
+      "cn105.mdx": [
+        "A heat pump.",
+        "## Configuration variables",
+        "- **vane** (*Optional*): Vane automations.",
+        "  - **on_state** (*Optional*, Automation): See below.",
+        "## `vane.on_state` Trigger",
+        "Fires with the vane state.",
+        "### Configuration variables",
+        "- **then** (*Optional*, Automation): What to run.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const vane = store.files.get("cn105").cn105.schemas.CONFIG_SCHEMA.schema.config_vars.vane;
+  assert.match(vane.schema.config_vars.on_state.schema.config_vars.then.docs, /What to run/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unresolved_trigger"),
+    [],
+  );
+});
+
+test("a component-qualified trigger heading still resolves by its last word", async () => {
+  const trigger = { key: "Optional", type: "trigger", schema: { config_vars: { then: { key: "Optional" } } } };
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["time"]),
+      time: { time: { schemas: { CONFIG_SCHEMA: schema({ on_time: trigger }) } } },
+    },
+    pages: {
+      "time.mdx": [
+        "Time.",
+        "## `time.on_time` Trigger",
+        "### Configuration variables",
+        "- **then** (*Optional*, Automation): What to run.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const onTime = store.files.get("time").time.schemas.CONFIG_SCHEMA.schema.config_vars.on_time;
+  assert.match(onTime.schema.config_vars.then.docs, /What to run/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unresolved_trigger"),
+    [],
+  );
+});
+
+test("a platform heading without a schema in the bundle blocks its options", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"], { select: {} }),
+      select: { select: { schemas: {}, components: {} } },
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ name: { key: "Optional" } }) } } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **name** (*Optional*, string): The hub name.",
+        "## Select",
+        "- **name** (**Required**, string): The select name.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(docs("foo", "foo", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "name"), /hub name/);
+  assert.equal(report.findings.filter((f) => f.kind === "unresolved_component_heading").length, 1);
+});
+
+test("a sub-heading under a grouped action heading documents the options of every action", async () => {
+  const options = { key: "Optional", ...schema({ speed: { key: "Optional" } }) };
+  const { docs } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: { CONFIG_SCHEMA: schema({}) },
+          action: { next: schema({ options }), previous: schema({ options }) },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `foo.next` / `foo.previous` Action",
+        "Step.",
+        "### Options",
+        "- **speed** (*Optional*, int): How fast.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  for (const name of ["next", "previous"]) {
+    assert.match(
+      docs("foo", "foo", "action", name, "schema", "config_vars", "options", "schema", "config_vars", "speed"),
+      /How fast/,
+    );
+  }
+});
