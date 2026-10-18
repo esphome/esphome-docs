@@ -841,6 +841,21 @@ export class Walker {
     return buses.length ? buses.join("+") : null;
   }
 
+  /**
+   * output/mcp4728.mdx documents the hub at page level and its output platform under "## MCP4728 Output": when
+   * such a heading exists the page-level options are the hub's alone, not the hub and platform joined.
+   */
+  splitHubFromPlatform_(tree) {
+    const platform = this.folder !== "components" && this.store.isPlatform(this.folder) ? this.folder : null;
+    const hubRef = `${this.stem}.CONFIG_SCHEMA`;
+    if (!platform || !this.defaultRef?.includes("+") || !this.defaultRef.split("+").includes(hubRef)) return;
+    const wanted = new Set([platform, `${slug(this.stem)}_${platform}`]);
+    const headings = tree.children.filter((n) => n.type === "heading").map((n) => slug(toString(n)));
+    if (!headings.some((h) => wanted.has(h))) return;
+    this.defaultRef = hubRef;
+    this.componentRef = this.stem;
+  }
+
   /** Keep the page's own schema so a bus heading can hand back to it. */
   rememberPageDefaults() {
     this.pageDefault = { defaultRef: this.defaultRef, componentRef: this.componentRef };
@@ -1298,6 +1313,7 @@ export class Walker {
   async walk(tree) {
     this.tree = tree;
     this.audits = new Map();
+    this.splitHubFromPlatform_(tree);
     this.report.stats.files++;
     this.title = tree.title;
     if (!this.title) {
@@ -2053,6 +2069,9 @@ async function main() {
     const described = s.emitted.props + s.emitted.propsRefined + s.emitted.propsSkipped;
     broken = `only ${described} options have a description, ${MIN_EMITTED_PROPS} expected at least`;
   }
+  // Kinds that are observations rather than mismatches
+  const informational = new Set(["no_intro_paragraph", "nested_list_ignored"]);
+  const strict = (kind) => !informational.has(kind);
   const strictCounts = new Map();
   for (const f of report.findings) if (strict(f.kind)) strictCounts.set(f.kind, (strictCounts.get(f.kind) ?? 0) + 1);
   if (args.strict && strictCounts.size && !broken) {
@@ -2102,10 +2121,7 @@ async function main() {
   ];
   // Kinds the report lists only with --verbose; a kind missing from `order` is always shown
   const verboseOnly = new Set(["undocumented_key", "no_intro_paragraph", "nested_list_ignored"]);
-  // Kinds that are observations rather than mismatches
-  const informational = new Set(["no_intro_paragraph", "nested_list_ignored"]);
   const shown = (kind) => args.verbose || !verboseOnly.has(kind) || !order.includes(kind);
-  const strict = (kind) => !informational.has(kind);
   for (const f of report.findings.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)) {
     if (!shown(f.kind)) continue;
     const what = f.key ? `'${f.key}'` : "";

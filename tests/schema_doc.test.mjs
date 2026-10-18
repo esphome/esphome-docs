@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, writeFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
@@ -156,4 +157,33 @@ test("parseEnumValues reads the <EnumValues> JSX block", () => {
     /not a literal/,
   );
   assert.match(parseEnumValues(parse("<EnumValues values={items} />\n").children[0]).error, /not an array/);
+});
+
+test("the command line reports a finding and exits cleanly", () => {
+  const root = mkdtempSync(join(tmpdir(), "schema-doc-cli-"));
+  const schemaDir = join(root, "schema");
+  mkdirSync(schemaDir);
+  writeFileSync(
+    join(schemaDir, "esphome.json"),
+    JSON.stringify({ core: { components: { foo: {} }, platforms: {}, action: {}, condition: {}, schemas: {} } }),
+  );
+  writeFileSync(
+    join(schemaDir, "foo.json"),
+    JSON.stringify({ foo: { schemas: { CONFIG_SCHEMA: { type: "schema", schema: { config_vars: { bar: {} } } } } } }),
+  );
+  const docs = join(root, "src", "content", "docs");
+  mkdirSync(join(docs, "components"), { recursive: true });
+  mkdirSync(join(docs, "automations"));
+  writeFileSync(join(docs, "automations", "actions.mdx"), "---\ntitle: Actions\n---\n\nActions.\n");
+  writeFileSync(
+    join(docs, "components", "foo.mdx"),
+    "---\ntitle: Foo\n---\n\nThe foo component.\n\n## Configuration variables\n\n- **bar** (*Optional*, int): A key.\n- **baz** (*Optional*, int): Not a key.\n",
+  );
+  const script = new URL("../script/schema_doc.mjs", import.meta.url).pathname;
+  const run = spawnSync(process.execPath, [script, "--schema-dir", schemaDir, "--file", "foo"], {
+    cwd: root,
+    encoding: "utf8",
+  });
+  assert.equal(run.status, 0, run.stderr);
+  assert.match(run.stdout, /foo\.mdx:\d+: unmatched_key 'baz'/);
 });

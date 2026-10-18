@@ -1954,3 +1954,41 @@ test("a generated id documented as optional agrees with the schema", async () =>
     [],
   );
 });
+
+test("a hub page with its own platform heading keeps the page-level options for the hub", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["mcp4728"], { output: {} }),
+      output: { output: { schemas: {}, components: { mcp4728: {} } } },
+      mcp4728: {
+        mcp4728: { schemas: { CONFIG_SCHEMA: schema({ id: { key: "GeneratedID" }, address: { key: "Optional" } }) } },
+        "mcp4728.output": {
+          schemas: { CONFIG_SCHEMA: schema({ id: { key: "Required" }, channel: { key: "Required" } }) },
+        },
+      },
+    },
+    pages: {
+      "output/mcp4728.mdx": [
+        "A four channel DAC.",
+        "## Configuration variables",
+        "- **id** (*Optional*, ID): The hub id.",
+        "- **address** (*Optional*, int): The I²C address.",
+        "## MCP4728 Output",
+        "### Configuration variables",
+        "- **id** (**Required**, ID): The output id.",
+        "- **channel** (**Required**, string): The channel.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const hub = (key) => docs("mcp4728", "mcp4728", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", key);
+  const out = (key) => docs("mcp4728", "mcp4728.output", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", key);
+  assert.match(hub("id"), /hub id/);
+  assert.match(hub("address"), /address/);
+  assert.match(out("id"), /output id/);
+  assert.match(out("channel"), /channel/);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key" || f.kind === "optionality_mismatch"),
+    [],
+  );
+});
