@@ -125,7 +125,7 @@ tsdb:
   columns:
     - sensor: mq8                # id of the source sensor (required)
       name: h2_mq8_ppm           # column name in the file header (required, at most 31 characters, unique)
-      scale: 1                   # raw = round(value * scale + offset)
+      scale_factor: 1            # raw = round(value * scale_factor + offset)
       offset: 0
       average_sensor: my_average # optional aggregates over `aggregate_window`
       min_sensor: my_min
@@ -136,9 +136,9 @@ tsdb:
   The component reads its last published value; the sensor itself keeps working as before.
 - **name** (**Required**, string): Column name stored in the file header. At most 31 characters and unique
   across all columns.
-- **scale** (*Optional*, float): Multiplier of the raw encoding, `raw = round(value * scale + offset)`.
+- **scale_factor** (*Optional*, float): Multiplier of the raw encoding, `raw = round(value * scale_factor + offset)`.
   Defaults to `1`. Must not be `0`.
-- **offset** (*Optional*, float): Offset of the raw encoding, see `scale`. Defaults to `0`.
+- **offset** (*Optional*, float): Offset of the raw encoding, see `scale_factor`. Defaults to `0`.
 - **average_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a `sensor:` to publish
   the average of this column over `aggregate_window` to.
 - **min_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a `sensor:` to publish the
@@ -146,7 +146,7 @@ tsdb:
 - **max_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a `sensor:` to publish the
   maximum of this column over `aggregate_window` to.
 
-The engine stores `int16_t` values, so pick a `scale` that keeps the expected range inside `-32767` to
+The engine stores `int16_t` values, so pick a `scale_factor` that keeps the expected range inside `-32767` to
 `32767`: ppm and dBm are `1`, °C and %RH are `10`, volts are `1000` (mV). A value outside the range is
 clamped, not wrapped, and never silently turned into `-32768`.
 
@@ -161,7 +161,7 @@ clamped, not wrapped, and never silently turned into `-32768`.
   [template sensor](/components/sensor/template/)) that the component publishes to. They report `unknown` -
   never a `0` - while no stored record lies inside `aggregate_window`.
 
-Reading a stored value back is `value = (raw - offset) / scale`; the [CSV dump](#csv-dump) prints the
+Reading a stored value back is `value = (raw - offset) / scale_factor`; the [CSV dump](#csv-dump) prints the
 engineering values already decoded.
 
 ## How a record is written
@@ -171,7 +171,7 @@ One record is written per `update_interval`:
 1. The clock is checked. With `require_time: true` (the default) nothing is written while the time is not
    valid yet - a record whose timestamp is a boot counter would be worse than a gap. The log reports this
    once per boot.
-1. Every column is read and encoded: `raw = round(value * scale + offset)`, clamped to the range of
+1. Every column is read and encoded: `raw = round(value * scale_factor + offset)`, clamped to the range of
    `int16_t` (`-32767` to `32767`; `-32768` is reserved by the engine for "no value").
 1. A column whose sensor has never published, or publishes `NaN`, follows `on_missing`: `skip` (the default,
    the whole record is dropped - a gap is honest, a zero is not), `hold` (the last value written for that
