@@ -1898,3 +1898,59 @@ test("an enum choice only some typed variants accept is written to those and is 
     [],
   );
 });
+
+test("a platform heading that names a component routes to that component's platform", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["ttp229_lsf", "ttp229_bsf"], { binary_sensor: {} }),
+      binary_sensor: { binary_sensor: { schemas: {}, components: { ttp229_lsf: {}, ttp229_bsf: {} } } },
+      ttp229_lsf: {
+        ttp229_lsf: { schemas: { CONFIG_SCHEMA: schema({ address: { key: "Optional" } }) } },
+        "ttp229_lsf.binary_sensor": { schemas: { CONFIG_SCHEMA: schema({ channel: { key: "Required" } }) } },
+      },
+      ttp229_bsf: {
+        ttp229_bsf: { schemas: { CONFIG_SCHEMA: schema({ sdo_pin: { key: "Required" } }) } },
+        "ttp229_bsf.binary_sensor": { schemas: { CONFIG_SCHEMA: schema({ channel: { key: "Required" } }) } },
+      },
+    },
+    pages: {
+      "binary_sensor/ttp229.mdx": [
+        "Touch pads.",
+        "## `ttp229_bsf` Component",
+        "### Configuration variables",
+        "- **sdo_pin** (**Required**, pin): The data pin.",
+        "## `ttp229_bsf` Binary Sensor",
+        "- **channel** (**Required**, int): The pad.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(
+    docs("ttp229_bsf", "ttp229_bsf", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "sdo_pin"),
+    /data pin/,
+  );
+  assert.match(
+    docs("ttp229_bsf", "ttp229_bsf.binary_sensor", "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "channel"),
+    /The pad/,
+  );
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key"),
+    [],
+  );
+});
+
+test("a generated id documented as optional agrees with the schema", async () => {
+  const { report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ id: { key: "GeneratedID" } }) } } },
+    },
+    pages: {
+      "foo.mdx": ["Foo.", "## Configuration variables", "- **id** (*Optional*, ID): The id.", ""].join("\n\n"),
+    },
+  });
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "optionality_mismatch"),
+    [],
+  );
+});

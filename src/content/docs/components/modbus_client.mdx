@@ -629,7 +629,7 @@ Handling the error and timeout branches:
       - lambda: 'id(device_online).publish_state(false);'
 ```
 
-## Lambda Hook Component
+## `modbus_client` Component
 
 A simpler alternative to the actions above, for use only inside a lambda - not a YAML automation action. It's
 syntactic sugar over the `id(hub).queue_pdu(address, pdu)` call shown on the [Modbus](/components/modbus/) page: the

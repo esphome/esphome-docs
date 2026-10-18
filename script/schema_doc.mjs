@@ -1620,18 +1620,22 @@ export class Walker {
       return;
     }
     if (this.stem !== "index") {
+      // "## `ttp229_bsf` Binary Sensor" names the component the platform belongs to; otherwise it is the page's
+      const code = node.children.find((c) => c.type === "inlineCode")?.value;
+      const owner = code && (await store.knownComponent(code)) ? code : this.stem;
       let platformName = slug(text);
-      const prefix = `${slug(this.componentRef?.split(".")[0] ?? "")}_`;
-      if (platformName.startsWith(prefix)) platformName = platformName.slice(prefix.length);
+      for (const prefix of new Set([`${slug(owner)}_`, `${slug(this.componentRef?.split(".")[0] ?? "")}_`])) {
+        if (platformName.startsWith(prefix)) platformName = platformName.slice(prefix.length);
+      }
       if (store.isPlatform(platformName)) {
-        const ref = await this.componentSchemaRef(this.stem, platformName);
+        const ref = await this.componentSchemaRef(owner, platformName);
         if (ref) {
           // "### Select" nested under the hub's options still starts the select platform's section
           await this.closeSection();
           this.defaultRef = ref;
-          this.componentRef = `${this.stem}.${platformName}`;
+          this.componentRef = `${owner}.${platformName}`;
           this.switchDepth = null;
-          await this.emitComponentDocs(this.stem, platformName, intro(), line);
+          await this.emitComponentDocs(owner, platformName, intro(), line);
           return;
         }
       }
@@ -1773,10 +1777,11 @@ export class Walker {
   /** Required/Optional in the docs against every definition of the key in the schema. */
   async checkOptionality(inner, parsed, key = parsed.key) {
     if (!parsed.optionality) return;
-    const marked = (await this.store.findProps(inner, key))
-      .map((p) => p.key?.toLowerCase())
-      .filter((k) => k === "required" || k === "optional");
-    parsed.optionalityAgrees = marked.includes(parsed.optionality);
+    const props = await this.store.findProps(inner, key);
+    const marked = props.map((p) => p.key?.toLowerCase()).filter((k) => k === "required" || k === "optional");
+    // A generated id is optional to the user: "id (Optional)" on a hub joined with a platform agrees with it
+    const generated = props.some((p) => p.key === "GeneratedID");
+    parsed.optionalityAgrees = marked.includes(parsed.optionality) || (generated && parsed.optionality === "optional");
     if (marked.length && !parsed.optionalityAgrees) {
       this.report.stats.optionalityMismatch++;
       this.report.add("optionality_mismatch", this.rel, parsed.line, {
