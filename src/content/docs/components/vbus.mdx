@@ -1005,3 +1005,89 @@ to particular hydraulic schemes or optional functions. Enumerated settings such 
 - `tube_collector_run_time`
 - `tube_collector_interval`
 
+
+
+## CS Plus Select Setting Controls
+
+The `vbus` select platform exposes the 26 enumerated settings of the DeltaSol CS Plus 1.11 profile.
+It shares the controller's existing scans and validated write path with number controls.
+
+```yaml
+# Uses solar_controller from the numeric controls example above.
+select:
+  - platform: vbus
+    controller_id: solar_controller
+    parameter: display_language
+    name: Controller Display Language
+
+  - platform: vbus
+    controller_id: solar_controller
+    parameter: relay_mode_1
+    name: Relay 1 Operating Mode
+    options:
+      0: "Off"
+      1: "Automatic"
+      2: "On"
+```
+
+- **controller_id** (**Required**, [ID](/guides/configuration-types/#id)): A CS Plus controller with explicit `writes` configuration.
+- **parameter** (**Required**, string): One of the keys below. Numeric parameters belong to the number platform.
+- **options** (*Optional*, mapping): Customize the display labels for the documented raw option values.
+  Supply every documented raw value exactly once, with unique, nonempty labels. Extra or missing values are rejected.
+  Labels do not change the protocol values or permit unsupported choices.
+- Other options from [Select](/components/select/) are supported. The default entity category is `config`.
+
+With `require_write_arm: false`, selecting an option makes a direct explicit request. With the default `true`,
+arm the controller once before the change. No boot, restored state, polling or recovery operation writes settings.
+
+Only options allowed by the current hydraulic scheme, enabled functions and related settings are advertised.
+Commands are validated again against fresh dependency reads. A selected option is not published optimistically:
+acknowledgement, independent readback, bus release and resumed telemetry must confirm the write.
+An enum change also requests a fresh controller context; select states update after that complete scan.
+
+During this refresh or an uncertain write, recent confirmed states remain visible, and further writes wait for fresh
+context. A retained display is not proof that an uncertain write had no effect. Equal confirmed states are not published
+again, including when the option list changes the selected label's position. Actual expiry, incompatible firmware or
+verified inapplicability invalidates the value while retaining the last advertised options; recovery publishes one state.
+
+Options are updated without allocating memory during operation. Entity notification remains bounded to one per loop.
+The native API exposes updated option lists; cached clients need to refresh their entity listing when
+`id(solar_controller).metadata_revision()` changes. The revision advances once per batch of actual metadata changes.
+
+`system_scheme` can reinitialize other controller settings. Relay `Off`/`On` modes override automatic relay operation.
+For `disable_storage_safety_shutdown`, `On` means that the safety shutdown is disabled. Use clear names for these
+controls and consider `disabled_by_default: true` when adding them to Home Assistant.
+
+### Select Parameter Keys and Raw Values
+
+The table lists all defined options. A controller may permit only a subset in its current context.
+Display labels can be translated with `options` while preserving these raw values.
+
+| Parameter | Raw values and default labels |
+| --- | --- |
+| `system_scheme` | 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10 |
+| `temperature_unit` | 0: °C, 1: °F |
+| `storage_priority` | 0: Spread loading 1, 1: Spread loading 2, 2: Sequential loading 1, 3: Sequential loading 2, 4: Parallel loading, 5: Storage 1 priority, 6: Storage 2 priority |
+| `display_language` | 1: German, 2: English, 3: French, 4: Italian, 5: Spanish |
+| `holiday_cooling` | 0: Off, 1: On |
+| `storage_cooling` | 0: Off, 1: On |
+| `flow_sensor_type` | 0: Off, 1: 12, 2: 40, 3: 40F |
+| `heat_meter` | 0: Off, 1: On |
+| `flow_sensor_position` | 0: Fixed flow, 1: Flow sensor, 2: Return sensor |
+| `heat_transfer_fluid` | 0: Water, 1: Propylene glycol, 2: Ethylene glycol, 3: Tyfocor LS / G-LS |
+| `collector_cooling_1` | 0: Off, 1: On |
+| `collector_cooling_2` | 0: Off, 1: On |
+| `collector_minimum_limit_1` | 0: Off, 1: On |
+| `collector_minimum_limit_2` | 0: Off, 1: On |
+| `collector_antifreeze_1` | 0: Off, 1: On |
+| `collector_antifreeze_2` | 0: Off, 1: On |
+| `relay_mode_1` | 0: Off, 1: Auto, 2: On |
+| `relay_mode_2` | 0: Off, 1: Auto, 2: On |
+| `disable_storage_safety_shutdown` | 0: Off, 1: On |
+| `thermal_disinfection` | 0: Off, 1: On |
+| `system_cooling` | 0: Off, 1: On |
+| `drainback` | 0: Off, 1: On |
+| `drainback_booster` | 0: Off, 1: On |
+| `tube_collector_function` | 0: Off, 1: On |
+| `pump_control_1` | 0: OnOF, 1: PULS, 2: PSOL, 3: PRIS |
+| `pump_control_2` | 0: OnOF, 1: PULS, 2: PSOL, 3: PRIS |
