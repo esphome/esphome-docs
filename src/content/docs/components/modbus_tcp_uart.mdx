@@ -62,8 +62,6 @@ The hub reads baud rate, data bits, parity and stop bits from the `tcp_uart`. Th
 - **tcp_uart_id** (**Required**, [ID](/guides/configuration-types#id)): The raw [TCP UART](/components/tcp_uart/).
 - **role** (*Optional*, string): `client` or `server`. Defaults to `client`. This is who sends the Modbus
   request, and the hub must use the same role. Who opens the socket stays on the TCP UART.
-- **reply_timeout** (*Optional*, [Time](/guides/configuration-types#time)): Only with `role: server`. How long the
-  next request waits for the reply. Defaults to the wait described above. At most 65535 ms.
 - **debug** (*Optional*): Log the RTU bytes that pass this UART. Same options as the
   [UART debug](/components/uart/#debugging) option.
 
