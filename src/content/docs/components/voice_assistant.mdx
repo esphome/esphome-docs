@@ -52,9 +52,10 @@ voice_assistant:
   The response then finishes after the speaker stops and this timeout expires. A larger value therefore also delays
   returning to idle or listening for the next turn. Explicit stream-end events and media-player completion do not
   rely on this timeout.
-  With `media_player`, a response that never starts is cancelled and reported through `on_error` with
-  code `tts-start-timeout`. Pending announcements report failure to Home Assistant. Late TTS events do not
-  restart a cancelled response.
+  With `media_player`, a response that has not entered the announcing state before this timeout is cancelled
+  and reported through `on_error` with code `tts-start-timeout`. Pending announcements report failure to
+  Home Assistant. Late TTS events do not restart a cancelled response. This check uses the media player's
+  reported state; it does not measure when the first audio sample arrives.
 
 - **on_intent_start** (*Optional*, [Automation](/automations)): An automation to perform when intent processing starts.
 - **on_intent_progress** (*Optional*, [Automation](/automations)): An automation to perform when intent progress happens.
