@@ -55,10 +55,11 @@ These options are common to all platforms:
 - **addressing** (*Optional*): Adds an [addressing layer](#addressing) to the interface.
 - **encryption** (*Optional*): Adds an [encryption layer](#encryption) to the interface.
 - **reliability** (*Optional*): Adds a [reliability layer](#reliability) to the interface.
+- **fragmentation** (*Optional*): Adds a [fragmentation layer](#fragmentation) to the interface.
 - **session** (*Optional*): Adds a [session layer](#session) to the interface.
 
 When more than one of these is configured, they are always stacked in the same order, whatever order they are
-written in: addressing is next to the channel, then encryption, reliability and session. Each layer works with the same layer
+written in: addressing is next to the channel, then encryption, reliability, fragmentation and session. Each layer works with the same layer
 on the other device, so both devices must configure the same layers.
 
 <Figure
@@ -232,6 +233,38 @@ packet_interface:
 
 The reliability layer adds 3 bytes to each packet, so the largest packet that can be sent through it is 3 bytes
 smaller than `max_packet_size`. Each device holds `max_queue_length` packets of `max_packet_size` bytes in memory.
+
+## Fragmentation
+
+A fragmentation layer lets other components send packets larger than the channel allows, for example more than the
+255 bytes of a LoRa radio packet. Each packet is split into fragments that fit, and joined again on the other
+device. Both devices must use the same fragmentation `type`.
+
+```yaml
+packet_interface:
+  - platform: sx126x
+    id: lora_link
+    reliability:
+      timeout: 500ms
+    fragmentation:
+      max_packet_size: 1024
+```
+
+- **type** (*Optional*, string): The fragmentation method. Only `basic` is available. Defaults to `basic`.
+- **max_packet_size** (*Optional*, int): The largest packet, in bytes, that can be sent or received through the
+  layer. Each device holds one packet of this size while joining it. Range is 16 to 16384. Defaults to `1024`.
+
+The fragmentation layer adds 2 bytes to each fragment. A packet that fits in one fragment is sent as it is, apart from
+those 2 bytes.
+
+If any fragment of a packet is lost, the whole packet is dropped. With a [reliability layer](#reliability), lost
+fragments are sent again, so packets arrive whole. The reliability layer must have room in its queue for every
+fragment of the largest packet: a packet is not sent until there is room for all of its fragments. The log shows how
+many fragments the largest packet needs; increase the reliability layer's `max_queue_length`, up to 7, or reduce
+`max_packet_size` if it is more than the queue holds.
+
+On a channel shared by several devices, use an [addressing layer](#addressing), so that fragments from different
+devices are not mixed.
 
 ## Session
 
