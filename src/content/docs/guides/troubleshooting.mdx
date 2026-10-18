@@ -17,8 +17,8 @@ instructions for capturing and understanding crash data.
 
 ESPHome automatically captures crash backtraces and stores them across software resets (warm reboots) on
 **ESP32**, **ESP8266**, **RP2040** and the **BK7238** and **BK7231N** LibreTiny chips. After a crash, the
-backtrace is logged at boot and when `esphome logs` connects via the API. The ESPHome CLI and ESPHome Device Builder automatically decode the addresses
-using the debug symbols from your last local compile.
+backtrace is logged at boot and when `esphome logs` connects via the API. The ESPHome CLI and ESPHome Device
+Builder automatically decode the addresses using the debug symbols from your last local compile.
 
 > [!NOTE]
 > On ESP32, this feature requires the ESP-IDF framework (the default). It is not available when using the
