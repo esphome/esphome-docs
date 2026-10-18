@@ -52,9 +52,9 @@ padded to a larger size, such as 24-bit samples in 4 bytes, are not supported in
 
 On the ESP32-S2 and ESP32-S3, the USB controller has 800 bytes of usable FIFO memory for all USB packets, and the
 speaker and microphone streams get their share of it based on their formats. Formats with larger packets than
-ESP-IDF's default split allows, such as a 48 kHz 16-bit stereo speaker, require ESP-IDF 5.5 or later. If the formats
-need more than the FIFO holds, for example a 96 kHz 32-bit stereo speaker and microphone together, validation fails;
-lower the sample rate, bits per sample or channels.
+ESP-IDF's default split allows, such as a 48 kHz 16-bit stereo speaker, require ESP-IDF 5.3.4, 5.4.3, 5.5 or later.
+If the formats need more than the FIFO holds, for example a 96 kHz 32-bit stereo speaker and microphone together,
+validation fails; lower the sample rate, bits per sample or channels.
 
 The device can be plugged in and removed while ESPHome is running. A speaker stops playback when the device is removed,
 and a microphone resumes streaming when the device is plugged in again.
