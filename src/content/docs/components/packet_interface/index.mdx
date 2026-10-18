@@ -183,6 +183,7 @@ packet_interface:
     encryption:
       key: !secret serial_link_key
       rolling_code_enable: true
+    session:
 ```
 
 The key can also be given on its own:
@@ -195,7 +196,8 @@ The key can also be given on its own:
   [XXTEA](https://en.wikipedia.org/wiki/XXTEA) cipher with a 256-bit key. Defaults to `xxtea`.
 - **key** (**Required**, string): The shared key. Any text can be used; a long random text is best.
 - **rolling_code_enable** (*Optional*, boolean): Add a rolling code to each packet, so that a recorded packet sent
-  again is dropped. Each boot writes to flash once. Defaults to `false`.
+  again is dropped. Each boot writes to flash once. Needs a [session layer](#session) on the same packet interface.
+  Defaults to `false`.
 
 The encryption layer adds 4 to 8 bytes to each packet, or 16 to 19 with the rolling code. The largest packet that can
 be sent through it is smaller than `max_packet_size` by that amount.
@@ -209,11 +211,12 @@ Without the rolling code, anyone who records a packet can send it again later, a
 With the rolling code, each device saves a boot number in flash and increases it at every boot, and counts the
 packets it sends. Each packet also repeats the highest boot number heard from the other device. A device accepts a
 packet only if it repeats the device's current boot number, and is newer than the last packet accepted from the
-other device. So a packet recorded earlier is never accepted, even after a restart. This has two effects:
+other device. So a packet recorded earlier is never accepted, even after a restart. A device that only receives
+would never send its boot number, so the session layer's keep-alives are needed to send it. This has two effects:
 
 - After either device restarts, its first packets are dropped until the two devices have heard from each other. With
-  a [reliability layer](#reliability), they are sent again. Without one, a [session layer](#session) may report the
-  other device connected only after its next `keep_alive`.
+  a [reliability layer](#reliability), they are sent again. Without one, the session layer may report the other
+  device connected only after its next `keep_alive`.
 - If the other device's flash is erased, or the `id` of its packet interface changes (the boot number is saved
   under it), its packets are dropped until this device restarts. A warning is logged when this happens.
 
