@@ -99,21 +99,9 @@ tsdb:
   are computed and published. Defaults to `5min`; `0s` disables them.
 - **dump_rows** (*Optional*, integer): Number of records the CSV dump prints. Defaults to `60`. Range is `1`
   to `1000`. See [CSV dump](#csv-dump).
-- **records_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a `sensor:` to publish
-  the number of stored records to.
-- **used_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a `sensor:` to publish the
-  number of bytes used on the partition to.
-- **free_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a `sensor:` to publish the
-  number of bytes still free on the partition to.
-- **oldest_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a `sensor:` to publish
-  the timestamp of the oldest stored record to, as Unix epoch seconds.
-- **newest_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a `sensor:` to publish
-  the timestamp of the newest stored record to, as Unix epoch seconds.
-- **errors_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a `sensor:` to publish
-  the number of write and sync errors since boot to.
-- **log_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a
-  [Text Sensor](/components/text_sensor/) that mirrors the important log lines (opened, cleared, flushed,
-  recreated, dropped records, waiting for a valid time).
+
+The diagnostics (record count, partition usage, record ages, evictions, errors and the log) are configured on
+the `sensor` and `text_sensor` platforms, see [Diagnostic sensors](#diagnostic-sensors).
 
 Sizes are written as a plain byte count or with a `B`, `KB`/`KiB` or `MB`/`MiB` suffix, e.g. `512KB`, `2MB`,
 `524288` or `0x40000`.
@@ -127,9 +115,6 @@ tsdb:
       name: h2_mq8_ppm           # column name in the file header (required, at most 31 characters, unique)
       scale_factor: 1            # raw = round(value * scale_factor + offset)
       offset: 0
-      average_sensor: my_average # optional aggregates over `aggregate_window`
-      min_sensor: my_min
-      max_sensor: my_max
 ```
 
 - **sensor** (**Required**, [ID](/guides/configuration-types#id)): The `sensor:` the column is read from.
@@ -139,12 +124,6 @@ tsdb:
 - **scale_factor** (*Optional*, float): Multiplier of the raw encoding, `raw = round(value * scale_factor + offset)`.
   Defaults to `1`. Must not be `0`.
 - **offset** (*Optional*, float): Offset of the raw encoding, see `scale_factor`. Defaults to `0`.
-- **average_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a `sensor:` to publish
-  the average of this column over `aggregate_window` to.
-- **min_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a `sensor:` to publish the
-  minimum of this column over `aggregate_window` to.
-- **max_sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a `sensor:` to publish the
-  maximum of this column over `aggregate_window` to.
 
 The engine stores `int16_t` values, so pick a `scale_factor` that keeps the expected range inside `-32767` to
 `32767`: ppm and dBm are `1`, °C and %RH are `10`, volts are `1000` (mV). A value outside the range is
@@ -157,7 +136,8 @@ clamped, not wrapped, and never silently turned into `-32768`.
   the original count is restored. A failed open for any other reason (heap, filesystem, I/O) keeps the file.
 - Only the count is stored, not the column names or their order. Renaming or reordering a column therefore
   keeps the database open, and the stored values of that column appear under the new name.
-- `average_sensor`, `min_sensor` and `max_sensor` are ordinary `sensor:`s (for example a
+- The per-column aggregates (`average`, `min` and `max`) are configured under
+  [Diagnostic sensors](#diagnostic-sensors) and are ordinary `sensor:`s (for example a
   [template sensor](/components/sensor/template/)) that the component publishes to. They report `unknown` -
   never a `0` - while no stored record lies inside `aggregate_window`.
 
@@ -181,7 +161,7 @@ One record is written per `update_interval`:
    `tsdb_sync_h()`.
 
 Dropped records are logged with the name of the column that had no value: the first one and then every
-tenth. `log_sensor` mirrors the drop as well.
+tenth.
 
 ## Durability and flash wear
 
@@ -216,23 +196,69 @@ the remaining slots still fit the firmware.
 
 ## Diagnostic sensors
 
-Every diagnostic is optional and publishes to an ordinary `sensor:` (for example a
-[template sensor](/components/sensor/template/)). They are refreshed every 60 seconds.
+The diagnostics are ordinary `sensor:`s and `text_sensor:`s on the `sensor` and `text_sensor` platforms, so
+filters work as usual. Each one is optional and they are refreshed every 60 seconds.
 
-- `records_sensor`: Number of records currently stored. `0` until the first statistics pass after boot.
-- `used_sensor` and `free_sensor`: Number of bytes used and still free on the LittleFS partition.
-- `oldest_sensor` and `newest_sensor`: Timestamp of the oldest and the newest stored record, as Unix epoch
-  seconds. They report `unknown` while the database holds no records.
-- `errors_sensor`: Number of write and sync errors since boot. Anything but `0` means the flash or the
-  filesystem refused a write - the log (with `logger:` at `level: DEBUG`) has the details.
-- `log_sensor`: Mirrors the important log lines as text: `history opened`, `history cleared`,
-  `history flushed`, `history recreated (the column set changed)`,
-  `record dropped (a column had no value)` and `waiting for a valid time`.
+```yaml
+sensor:
+  - platform: tsdb
+    records:
+      name: History records
+    used:
+      name: History used
+    free:
+      name: History free
+    oldest_age:
+      name: History oldest record age
+    newest_age:
+      name: History newest record age
+    evictions:
+      name: History evictions
+    errors:
+      name: History errors
+    columns:
+      - column: h2_mq8_ppm
+        average:
+          name: MQ8 average
+        min:
+          name: MQ8 minimum
+        max:
+          name: MQ8 maximum
 
-With `logger:` at `level: DEBUG`, a statistics line is logged as well:
+text_sensor:
+  - platform: tsdb
+    log:
+      name: History log
+```
+
+- **tsdb_id** (*Optional*, [ID](/guides/configuration-types#id)): The `tsdb` instance the platform reads
+  from.
+- **records** (*Optional*, [Sensor](/components/sensor/)): Number of records currently stored.
+- **used** and **free** (*Optional*, [Sensor](/components/sensor/)): Number of bytes used and still free on
+  the LittleFS partition.
+- **oldest_age** and **newest_age** (*Optional*, [Sensor](/components/sensor/)): Age of the oldest and the
+  newest stored record, in seconds. They report `unknown` while the database holds no records or the clock is
+  not valid.
+- **evictions** (*Optional*, [Sensor](/components/sensor/)): Number of records the ring buffer has
+  overwritten since the database was created.
+- **errors** (*Optional*, [Sensor](/components/sensor/)): Number of anomalies since boot - a failed write or
+  sync, a dropped record, a value clamped to the range of `int16_t` and a stale value kept by
+  `on_missing: hold`. Anything but `0` means the history is incomplete or the flash refused a write; the log
+  has the details.
+- **columns** (*Optional*, list): Aggregates over `aggregate_window`, one entry per stored column. Requires
+  `time_id`, because the engine queries them by time. Each entry takes:
+  - **column** (**Required**, string): The `name` of the column in `tsdb:`.
+  - **average**, **min** and **max** (*Optional*, [Sensor](/components/sensor/)): Published every
+    `aggregate_interval`, and `unknown` - never a `0` - while no stored record lies inside
+    `aggregate_window`.
+- **log** (*Optional*, [Text Sensor](/components/text_sensor/)): Mirrors the important log lines as text:
+  `history opened`, `history flushed`, `history cleared` and
+  `history recreated (the column set changed)`.
+
+With `logger:` at `level: DEBUG`, a statistics line is logged every 60 seconds as well:
 
 ```text
-[12:00:00][D][tsdb:552]: history.tsdb: 12 records of 5000, 12 writes, 0 dropped, 0 errors
+[12:00:00][D][tsdb:771]: history.tsdb: 12 records, 0 evicted, 12 writes, 0 dropped, 0 errors
 ```
 
 ## Lambdas
@@ -285,6 +311,8 @@ There is no file download: the CSV dump over the log is the export path that nee
 ## See Also
 
 - [Time Component](/components/time/)
+- [Sensor Component](/components/sensor/)
+- [Text Sensor Component](/components/text_sensor/)
 - [PSRAM Component](/components/psram/)
 - [ESP32 Platform](/components/esp32/) - flash partitions
 - [Runtime Statistics](/components/runtime_stats/)
