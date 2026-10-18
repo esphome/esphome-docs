@@ -87,7 +87,9 @@ tsdb:
   2001-09-09). Defaults to `true`. A board that boots offline writes nothing until the first SNTP sync - the
   log says so once per boot. Set it to `false` on a board without a time source to record the readings anyway:
   the timestamps then count seconds since the stored history began. They continue after the newest stored
-  record across reboots, so the series stays ordered, and a clock that syncs later jumps to real time.
+  record across reboots, so the series stays ordered, and a clock that syncs later jumps to real time. A
+  configuration with `require_time: true` and no [Time](/components/time/) component is rejected at
+  validation, because the clock could never become valid.
 - **time_id** (*Optional*, [ID](/guides/configuration-types#id)): The [Time](/components/time/) component
   the timestamps come from. Without it the system clock is read instead, which every
   [Time](/components/time/) component sets; with `require_time: true` the history then stays empty until one
