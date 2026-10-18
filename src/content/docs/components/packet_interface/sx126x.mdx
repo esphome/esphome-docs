@@ -18,9 +18,14 @@ is usually needed: it drops packets meant for other devices, and lets the
 work with one device among several.
 
 Sending waits until the radio has transmitted the packet, which takes from a few milliseconds to over a second,
-depending on the packet size, spreading factor and bandwidth. While it sends, the radio cannot receive. The reliability
-layer's `timeout` should allow for a packet and its acknowledgement to be sent, for example `500ms` with spreading
-factor 7 and a bandwidth of 125 kHz.
+depending on the packet size, spreading factor and bandwidth. While it sends, the radio cannot receive, so a packet
+is not sent while the radio is receiving one; the layers above send it again shortly.
+
+With a [reliability layer](/components/packet_interface/#reliability), the `timeout` should allow for a packet and
+its acknowledgement to be sent, and `ack_delay` should be about the time one packet takes to send, so that the
+acknowledgement does not collide with a second packet from the other device. With spreading factor 7 and a bandwidth
+of 125 kHz, `timeout: 500ms` and `ack_delay: 100ms` work well. Two devices that send at the same regular interval can
+still collide now and then; the reliability layer sends again after a slightly random delay.
 
 ## Example Configuration
 
@@ -40,6 +45,7 @@ packet_interface:
       destination: 0x0002
     reliability:
       timeout: 500ms
+      ack_delay: 100ms
     session:
 ```
 

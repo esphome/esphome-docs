@@ -221,6 +221,10 @@ packet_interface:
   and resend method of the HDLC protocol. Defaults to `hdlc`.
 - **timeout** (*Optional*, [Time](/guides/configuration-types#time)): How long to wait for an acknowledgement before
   resending. Defaults to `200ms`.
+- **ack_delay** (*Optional*, [Time](/guides/configuration-types#time)): How long to wait before acknowledging a
+  packet, so that one acknowledgement can cover several packets, or a reply can carry it. Useful on radio links,
+  which cannot receive while they send; about the time one packet takes to send is a good value. Must be shorter than
+  `timeout`. Defaults to `0ms`, which acknowledges at once.
 - **max_queue_length** (*Optional*, int): How many packets can be waiting for an acknowledgement. When the queue is
   full, new packets are not sent. Range is 1 to 7. Defaults to `4`.
 - **max_retries** (*Optional*, int): How many times to resend without an acknowledgement before the packets waiting
