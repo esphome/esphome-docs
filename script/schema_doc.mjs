@@ -1092,31 +1092,18 @@ export class Walker {
   }
 
   /** Write the descriptions of an <EnumValues/> block to the enum's values. */
-  emitEnumEntries(prop, entries, line) {
-    if (!prop || prop.type !== "enum" || !prop.values) return;
-    for (const entry of entries) {
-      const key = this.enumValueKey(prop, entry.value);
-      if (key === null) {
-        this.report.add("unknown_enum_value", this.rel, line, {
-          key: String(entry.value),
-          detail: `not one of ${Object.keys(prop.values).join(", ")}`,
-        });
-        continue;
-      }
-      if (!this.writing) continue;
-      this.writeEnumValue(prop, key, entry.description ? this.links(entry.description) : undefined, entry.default);
-      this.report.stats.emitted.enumDocs++;
-    }
-  }
-
-  /** Record a choice's docs and default on the enum, or on that type of every entry of a typed discriminator. */
+  /**
+   * Record a choice's docs and default on the enum, or on that type of every entry of a typed discriminator.
+   * isDefault true sets the flag, false clears it (an explicit `default: false`), undefined leaves it alone.
+   */
   writeEnumValue(prop, key, docs, isDefault) {
     const targets = prop.typedEntries ? prop.typedEntries.map((e) => e.types) : [prop.values];
     for (const values of targets) {
       // A variant that does not declare this choice is left alone: the docs never add a type
       if (!Object.hasOwn(values, key)) continue;
       const value = (values[key] ||= {});
-      if (isDefault) value.default = true;
+      if (isDefault === true) value.default = true;
+      else if (isDefault === false) delete value.default;
       if (docs !== undefined) value.docs = docs;
     }
   }
@@ -1130,43 +1117,74 @@ export class Walker {
 
   /** A top-level <EnumValues/> block: one copy of its descriptions per definition of the option before it. */
   enumValuesBlocks(node, props) {
-    if (!props.length) {
-      this.enumValuesBlock(node, null);
-      return;
-    }
-    for (const prop of props) this.enumValuesBlock(node, prop);
+    this.enumValuesBlock(node, props);
   }
 
-  /** An <EnumValues/> block: attach its descriptions to the enum it follows. */
-  enumValuesBlock(node, prop) {
+  /**
+   * An <EnumValues/> block: attach its descriptions to the enum definitions it follows. A choice is written
+   * to every definition that declares it and is unknown only when none does.
+   */
+  enumValuesBlock(node, props) {
     const line = node.position.start.line;
     const { entries, error } = parseEnumValues(node);
     if (error) {
       this.report.add("malformed_enum_values", this.rel, line, { detail: error });
       return;
     }
-    if (!prop || prop.type !== "enum") {
+    const enums = this.enumTargets(props, line);
+    if (enums === null) {
       this.report.add("enum_values_without_enum", this.rel, line, {
         detail: "<EnumValues> does not follow an enum option",
       });
       return;
     }
-    if (!prop.values) {
-      this.report.add("enum_without_values", this.rel, line, { detail: "the schema lists no values for this enum" });
-      return;
+    if (!enums.length) return;
+    for (const entry of entries) {
+      const holders = this.enumHoldersOf(enums, entry.value);
+      if (!holders.length) {
+        this.report.add("unknown_enum_value", this.rel, line, {
+          key: String(entry.value),
+          detail: `not one of ${this.enumChoices(enums)}`,
+        });
+        continue;
+      }
+      if (!this.writing) continue;
+      for (const [prop, key] of holders) {
+        this.writeEnumValue(prop, key, entry.description ? this.links(entry.description) : undefined, entry.default);
+      }
+      this.report.stats.emitted.enumDocs++;
     }
-    this.emitEnumEntries(prop, entries, line);
+  }
+
+  /** The enum definitions among props, or null when none is an enum; definitions without values are reported. */
+  enumTargets(props, line) {
+    const enums = (props ?? []).filter((p) => p?.type === "enum");
+    if (!enums.length) return null;
+    const withValues = enums.filter((p) => p.values);
+    if (!withValues.length) {
+      this.report.add("enum_without_values", this.rel, line, { detail: "the schema lists no values for this enum" });
+    }
+    return withValues;
+  }
+
+  /** The [definition, key] pairs among enums that declare a documented choice. */
+  enumHoldersOf(enums, raw) {
+    const holders = [];
+    for (const prop of enums) {
+      const key = this.enumValueKey(prop, raw);
+      if (key !== null) holders.push([prop, key]);
+    }
+    return holders;
+  }
+
+  enumChoices(enums) {
+    return [...new Set(enums.flatMap((p) => Object.keys(p.values)))].join(", ");
   }
 
   /** Write the descriptions of a `value`: text bullet list to the enum's values. */
-  emitEnumList(prop, listNode) {
-    if (!prop || prop.type !== "enum") return;
-    if (!prop.values) {
-      this.report.add("enum_without_values", this.rel, listNode.position.start.line, {
-        detail: "the schema lists no values for this enum",
-      });
-      return;
-    }
+  emitEnumList(props, listNode) {
+    const enums = this.enumTargets(props, listNode.position.start.line);
+    if (!enums?.length) return;
     for (const item of listNode.children) {
       if (!item.children.some((c) => c.type === "paragraph")) continue;
       const line = item.position.start.line;
@@ -1175,7 +1193,7 @@ export class Walker {
         this.report.add("malformed_enum_bullet", this.rel, line, { detail: "expected `value`: description" });
         continue;
       }
-      const value = this.enumValueKey(prop, m[1] ?? m[2]);
+      const holders = this.enumHoldersOf(enums, m[1] ?? m[2]);
       const note = m[4];
       // "(default)" or "(*default*)" after the value
       const noteDefault = note !== undefined && /^\*{0,2}default\*{0,2}$/i.test(note.trim());
@@ -1184,15 +1202,17 @@ export class Walker {
       const descDefault = desc !== undefined && /^\*{0,2}default\*{0,2}$/i.test(desc.trim());
       if (descDefault) desc = undefined;
       const isDefault = noteDefault || descDefault;
-      if (value === null) {
+      if (!holders.length) {
         this.report.add("unknown_enum_value", this.rel, line, {
           key: m[1] ?? m[2],
-          detail: `not one of ${Object.keys(prop.values).join(", ")}`,
+          detail: `not one of ${this.enumChoices(enums)}`,
         });
         continue;
       }
       if (!this.writing || (!desc && !isDefault)) continue;
-      this.writeEnumValue(prop, value, desc ? this.links(desc) : undefined, isDefault);
+      for (const [prop, key] of holders) {
+        this.writeEnumValue(prop, key, desc ? this.links(desc) : undefined, isDefault ? true : undefined);
+      }
       if (desc) this.report.stats.emitted.enumDocs++;
     }
   }
@@ -1394,8 +1414,10 @@ export class Walker {
     if (this.holdEmit !== null && node.depth <= this.holdEmit) this.holdEmit = null;
     const intro = () => this.leadParagraph(siblings, index + 1);
 
-    // A bus or component heading re-targets the page only for its own subtree
+    // A bus or component heading re-targets the page only for its own subtree; its section ends with it,
+    // so bullets under the next heading reach the page's own schema again
     if (this.switchDepth !== null && node.depth <= this.switchDepth) {
+      if (this.section) await this.closeSection();
       this.defaultRef = this.pageDefault.defaultRef;
       this.componentRef = this.pageDefault.componentRef;
       this.switchDepth = null;
@@ -1724,7 +1746,7 @@ export class Walker {
 
   async listItems(node) {
     if (this.section.enumProp) {
-      this.emitEnumList(this.section.enumProp, node);
+      this.emitEnumList([this.section.enumProp], node);
       return;
     }
     await this.items(node, this.section.inner, this.section.documented);
@@ -1768,19 +1790,17 @@ export class Walker {
       for (const nestedInner of nested)
         this.reportUndocumented({ inner: nestedInner, documented, ref: nestedRef, line });
     }
-    for (const prop of props) {
-      if (!propInner(prop)) {
-        if (prop.type === "enum") {
-          for (const list of lists) this.emitEnumList(prop, list);
-        } else if (lists.length) {
-          this.report.add("nested_list_ignored", this.rel, line, {
-            key,
-            detail: `${key} is a ${prop.type ?? "plain"} value; its nested bullets have no schema to match`,
-          });
-        }
-      }
-      for (const jsx of blocks) this.enumValuesBlock(jsx, prop);
+    const flat = props.filter((prop) => !propInner(prop));
+    const enums = flat.filter((prop) => prop.type === "enum");
+    if (enums.length) {
+      for (const list of lists) this.emitEnumList(enums, list);
+    } else if (lists.length && flat.length) {
+      this.report.add("nested_list_ignored", this.rel, line, {
+        key,
+        detail: `${key} is a ${flat[0].type ?? "plain"} value; its nested bullets have no schema to match`,
+      });
     }
+    for (const jsx of blocks) this.enumValuesBlock(jsx, enums.length ? enums : flat.length ? flat : props);
   }
 
   /**

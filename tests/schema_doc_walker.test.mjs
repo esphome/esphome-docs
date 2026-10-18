@@ -1755,3 +1755,111 @@ test("a choice one outer variant's typed schema lacks is not added to it", async
   assert.match(types("b").fast.docs, /Quick/);
   assert.equal("slow" in types("b"), false);
 });
+
+test("an explicit default: false in a rerun clears the old default", async () => {
+  const bundle = {
+    esphome: core(["foo"]),
+    foo: {
+      foo: {
+        schemas: {
+          CONFIG_SCHEMA: schema({ mode: { key: "Optional", type: "enum", values: { FAST: null, SLOW: null } } }),
+        },
+      },
+    },
+  };
+  const page = (fastDefault) =>
+    [
+      "Foo.",
+      "## Configuration variables",
+      "- **mode** (*Optional*): The mode.",
+      `<EnumValues values={[{ value: "FAST", description: "Quick", default: ${fastDefault} }, { value: "SLOW", description: "Careful", default: ${!fastDefault} }]} />`,
+      "",
+    ].join("\n\n");
+  const first = await walk({ schema: bundle, pages: { "foo.mdx": page(true) } });
+  const emitted = Object.fromEntries(first.store.files);
+  const { store } = await walk({ schema: emitted, pages: { "foo.mdx": page(false) } });
+  const values = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars.mode.values;
+  assert.equal(values.FAST.default, undefined);
+  assert.equal(values.SLOW.default, true);
+});
+
+test("a sibling heading after a bus section routes its bullets to the page's own schema", async () => {
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["ina_i2c", "ina_spi"], { sensor: {} }),
+      sensor: { sensor: { schemas: {}, components: { ina_i2c: {}, ina_spi: {} } } },
+      ina_i2c: {
+        "ina_i2c.sensor": {
+          schemas: { CONFIG_SCHEMA: schema({ address: { key: "Optional" }, current: { key: "Optional" } }) },
+        },
+      },
+      ina_spi: {
+        "ina_spi.sensor": {
+          schemas: { CONFIG_SCHEMA: schema({ cs_pin: { key: "Required" }, current: { key: "Optional" } }) },
+        },
+      },
+    },
+    pages: {
+      "sensor/ina.mdx": [
+        "The INA sensor.",
+        "## Over SPI",
+        "- **cs_pin** (**Required**, pin): Chip select.",
+        "## Sensors",
+        "- **current** (*Optional*): The current.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  for (const bus of ["ina_i2c", "ina_spi"]) {
+    assert.match(
+      docs(bus, `${bus}.sensor`, "schemas", "CONFIG_SCHEMA", "schema", "config_vars", "current"),
+      /The current/,
+    );
+  }
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unmatched_key"),
+    [],
+  );
+});
+
+test("an enum choice only some typed variants accept is written to those and is not unknown", async () => {
+  const mode = (values) => ({ key: "Optional", type: "enum", values });
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "typed",
+              typed_key: "model",
+              types: {
+                a: { config_vars: { mode: mode({ FAST: null }) } },
+                b: { config_vars: { mode: mode({ FAST: null, SLOW: null }) } },
+              },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **model** (**Required**): The model.",
+        "- **mode** (*Optional*): The mode.\n  - `FAST`: Quick.\n  - `SLOW`: Careful.",
+        '<EnumValues values={[{ value: "SLOW", default: true }]} />',
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const values = (model) => store.files.get("foo").foo.schemas.CONFIG_SCHEMA.types[model].config_vars.mode.values;
+  assert.match(values("a").FAST.docs, /Quick/);
+  assert.equal("SLOW" in values("a"), false);
+  assert.match(values("b").SLOW.docs, /Careful/);
+  assert.equal(values("b").SLOW.default, true);
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unknown_enum_value"),
+    [],
+  );
+});
