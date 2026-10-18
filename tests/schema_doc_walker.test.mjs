@@ -2110,6 +2110,77 @@ test("a sub-heading under a grouped action heading documents the options of ever
   );
 });
 
+test("a code sub-heading two levels under a grouped action heading audits each action's nested schema", async () => {
+  const inner = { key: "Optional", ...schema({ depth: { key: "Optional" }, omitted: { key: "Optional" } }) };
+  const options = { key: "Optional", ...schema({ speed: { key: "Optional" }, inner }) };
+  const { docs, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: { CONFIG_SCHEMA: schema({}) },
+          action: { next: schema({ options }), previous: schema({ options }) },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `foo.next` / `foo.previous` Action",
+        "Step.",
+        "### Options",
+        "- **speed** (*Optional*, int): How fast.",
+        "- **inner** (*Optional*): Nested.",
+        "#### `inner`",
+        "- **depth** (*Optional*, int): How deep.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  for (const name of ["next", "previous"]) {
+    const vars = ["foo", "foo", "action", name, "schema", "config_vars", "options", "schema", "config_vars"];
+    assert.match(docs(...vars, "inner", "schema", "config_vars", "depth"), /How deep/);
+  }
+  // The nested schema of each action is audited on its own, and nothing leaks into the options audit
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "undocumented_key").map((f) => [f.schema, f.key]),
+    [
+      ["foo.action.next/options/inner", "omitted"],
+      ["foo.action.previous/options/inner", "omitted"],
+    ],
+  );
+});
+
+test("a grouped action whose member lacks the nested path is reported instead of dropped", async () => {
+  const options = { key: "Optional", ...schema({ speed: { key: "Optional" } }) };
+  const { report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: { CONFIG_SCHEMA: schema({}) },
+          action: { next: schema({ options }), previous: schema({ other: { key: "Optional" } }) },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `foo.next` / `foo.previous` Action",
+        "Step.",
+        "### Options",
+        "- **speed** (*Optional*, int): How fast.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const unroutable = report.findings.filter((f) => f.kind === "unroutable_section");
+  assert.deepEqual(
+    unroutable.map((f) => f.detail),
+    ["schema 'foo.action.previous/options' not found under a grouped heading"],
+  );
+});
+
 test("a trigger heading under an action heading reaches the action's own trigger", async () => {
   const trigger = { key: "Optional", type: "trigger", schema: { config_vars: { then: { key: "Optional" } } } };
   const { store, report } = await walk({

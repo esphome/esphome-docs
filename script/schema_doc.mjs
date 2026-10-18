@@ -40,7 +40,15 @@ const DEFAULT_SCHEMA_URL = "https://schema.esphome.io/dev";
 // not ship a bundle
 const MIN_EMITTED_PROPS = 6000;
 // Floors for the intros, each well under today's count, so a layout change that loses them does not write a bundle
-const MIN_EMITTED_INTROS = { componentDocs: 100, platformDocs: 300, actionDocs: 200 };
+const MIN_EMITTED_INTROS = {
+  componentDocs: 100,
+  platformDocs: 300,
+  actionDocs: 200,
+  conditionDocs: 20,
+  registryDocs: 20,
+  enumDocs: 100,
+  platformIndexDocs: 10,
+};
 
 const CONFIG_VARS_RE = /^Configuration (variables|options):?$/i;
 const MARKER_RE = /^\s*\/\*\s*schema:\s*(\S+)\s*\*\/\s*$/;
@@ -976,7 +984,7 @@ export class Walker {
     // Grouped actions are audited one by one; a bus union or a hub joined with its platform stays one audit,
     // since the hub is audited on its own page
     if (ref.includes("+") && /^[^/]*\.(action|condition|filter|effects)\./.test(ref)) {
-      this.section.members = await this.unionMembers_(ref);
+      this.section.members = await this.unionMembers_(ref, line);
     }
     this.lastEnumProps = [];
     report.sections.push({ file: this.rel, line, ref, source });
@@ -1019,25 +1027,35 @@ export class Walker {
   }
 
   /** The member schemas of a union reference such as `a+b/options`, each with its own nested path, for the audit. */
-  async unionMembers_(ref) {
+  async unionMembers_(ref, line) {
     const [base, ...props] = ref.split("/");
     const members = [];
     for (const part of base.split("+")) {
       let inner = await this.store.resolve(part);
       for (const prop of props) inner = await this.store.nestedInner(inner, prop);
-      if (inner) members.push({ ref: [part, ...props].join("/"), inner });
+      this.addMember_(members, [part, ...props].join("/"), inner, line);
     }
     return members;
   }
 
   /** The members of a union section one level further down, for a `prop` sub-section. */
-  async nestedMembers_(members, prop) {
+  async nestedMembers_(members, prop, line) {
     const out = [];
     for (const m of members) {
-      const inner = await this.store.nestedInner(m.inner, prop);
-      if (inner) out.push({ ref: `${m.ref}/${prop}`, inner });
+      this.addMember_(out, `${m.ref}/${prop}`, await this.store.nestedInner(m.inner, prop), line);
     }
     return out;
+  }
+
+  /** Keep a resolved member for the audit; one the grouped heading's path does not reach is reported instead. */
+  addMember_(members, ref, inner, line) {
+    if (inner) {
+      members.push({ ref, inner });
+      return;
+    }
+    this.report.add("unroutable_section", this.rel, line, {
+      detail: `schema '${ref}' not found under a grouped heading`,
+    });
   }
 
   /** Report the keys of every schema the page documented that none of its sections mentioned. */
@@ -1826,7 +1844,7 @@ export class Walker {
             inner: nested,
             ref: `${parent.ref}/${first}`,
             // A grouped section's members move down with it, so the audit sees each action's nested options
-            members: parent.members ? await this.nestedMembers_(parent.members, first) : undefined,
+            members: parent.members ? await this.nestedMembers_(parent.members, first, line) : undefined,
             depth: node.depth,
             documented: new Set(),
             parent,
@@ -1858,6 +1876,7 @@ export class Walker {
           ...this.section,
           inner,
           ref: `${this.section.ref}/${code}`,
+          members: this.section.members ? await this.nestedMembers_(this.section.members, code, line) : undefined,
           depth: node.depth,
           documented: new Set(),
           parent: this.section,
@@ -2226,6 +2245,12 @@ async function main() {
   const strict = (kind) => !informational.has(kind);
   const strictCounts = new Map();
   for (const f of report.findings) if (strict(f.kind)) strictCounts.set(f.kind, (strictCounts.get(f.kind) ?? 0) + 1);
+  // A page the script could not read blocks a write even without --strict. Broken extends chains do not: the
+  // published bundle carries some today, and they come from the schema generator rather than the docs
+  const structural = ["parse_error", "malformed_enum_values"].filter((k) => strictCounts.has(k));
+  if (args.emit && structural.length && !broken) {
+    broken = structural.map((k) => `${k} ${strictCounts.get(k)}`).join(", ");
+  }
   if (args.strict && strictCounts.size && !broken) {
     const total = [...strictCounts.values()].reduce((a, b) => a + b, 0);
     broken = `--strict: ${total} finding(s): ${[...strictCounts].map(([k, n]) => `${k} ${n}`).join(", ")}`;
