@@ -60,10 +60,10 @@ Configuration variables:
 
 - **initial_state** (*Optional*, boolean): The state (`ON` or `OFF`) the switch starts in on bootup when nothing
   is restored, for example after a power cut with `storage: rtc`. Can't be combined with **restore_mode**, which
-  sets the boot state itself; use **restore_state** instead. Without **restore_state**, a platform whose default
-  **restore_mode** restores the state keeps restoring it and uses **initial_state** only when nothing is saved;
-  otherwise the switch always starts in **initial_state**. To start in **initial_state** at every boot on any
-  platform, also set `restore_state: none`. Defaults to `OFF`.
+  sets the boot state itself; use **restore_state** instead. Without **restore_state**, the switch starts in
+  **initial_state** at every boot, unless the platform's default **restore_mode** restores the state (see the
+  platform's page), in which case **initial_state** is only used when nothing is saved. Set `restore_state: none` to
+  always start in **initial_state**. Defaults to `OFF`.
 
 - **restore_state** (*Optional*): Save the switch's state and restore it on bootup. Mutually exclusive with
   **restore_mode**. If nothing has been saved yet, the switch starts in **initial_state**. Accepts a mapping, or
@@ -76,9 +76,9 @@ Configuration variables:
     RTC memory, which survives software reboots (restarts, OTA updates, crashes) and deep sleep but **not**
     power loss. When not set, the platform's usual storage is used: flash on ESP32, and on ESP8266 RTC memory
     unless `restore_from_flash` is enabled. `rtc` is available on ESP32 (except the C2 and C61 variants, which
-    have no RTC memory) and ESP8266; on other platforms, including BK72xx, RTL87xx, LN882x, RP2040, nRF52 and
-    `host`, only `flash` is available and `rtc` is rejected. Not allowed with `state: INITIAL`, which never
-    restores anything.
+    have no RTC memory), ESP8266 and the Beken BK7231T, BK7231N and BK7238; elsewhere only `flash` is available and
+    `rtc` is rejected. These Beken chips have no RTC memory: there `rtc` keeps the state in flash and forgets it after
+    a power cut, so it does not avoid flash wear. Not allowed with `state: INITIAL`, which never restores anything.
 
   ```yaml
   # On after a power cut; an OTA update or a restart keeps the previous state.
