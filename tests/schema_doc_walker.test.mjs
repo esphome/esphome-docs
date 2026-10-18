@@ -2072,8 +2072,8 @@ test("a platform heading without a schema in the bundle blocks its options", asy
 });
 
 test("a sub-heading under a grouped action heading documents the options of every action", async () => {
-  const options = { key: "Optional", ...schema({ speed: { key: "Optional" } }) };
-  const { docs } = await walk({
+  const options = { key: "Optional", ...schema({ speed: { key: "Optional" }, mode: { key: "Optional" } }) };
+  const { docs, report } = await walk({
     schema: {
       esphome: core(["foo"]),
       foo: {
@@ -2100,6 +2100,14 @@ test("a sub-heading under a grouped action heading documents the options of ever
       /How fast/,
     );
   }
+  // The nested option left out is reported for each action's own options
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "undocumented_key").map((f) => [f.schema, f.key]),
+    [
+      ["foo.action.next/options", "mode"],
+      ["foo.action.previous/options", "mode"],
+    ],
+  );
 });
 
 test("a trigger heading under an action heading reaches the action's own trigger", async () => {

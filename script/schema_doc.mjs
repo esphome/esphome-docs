@@ -586,7 +586,7 @@ export function convertLinks(text, url, deployUrl) {
     if (href.startsWith("#")) return `[${title}](${deployUrl}${url}${href})`;
     if (/^[a-z][a-z0-9+.-]*:/i.test(href)) return all;
     // "../foo" or "images/x.png": relative to the page, as the site resolves it
-    return `[${title}](${new URL(href, `${deployUrl}${url}/`).href})`;
+    return `[${title}](${new URL(href, `${deployUrl}${url.replace(/\/+$/, "")}/`).href})`;
   });
 }
 
@@ -973,6 +973,11 @@ export class Walker {
       });
     }
     this.section = { ref, inner, depth, documented: new Set(), line, continued: false, source };
+    // Grouped actions are audited one by one; a bus union or a hub joined with its platform stays one audit,
+    // since the hub is audited on its own page
+    if (ref.includes("+") && /^[^/]*\.(action|condition|filter|effects)\./.test(ref)) {
+      this.section.members = await this.unionMembers_(ref);
+    }
     this.lastEnumProps = [];
     report.sections.push({ file: this.rel, line, ref, source });
     await store.verifyExtends(inner);
@@ -1013,11 +1018,26 @@ export class Walker {
     }
   }
 
-  /** The member schemas of a section opened for several registry entries, for the audit. */
-  async registryMembers_(refs) {
+  /** The member schemas of a union reference such as `a+b/options`, each with its own nested path, for the audit. */
+  async unionMembers_(ref) {
+    const [base, ...props] = ref.split("/");
     const members = [];
-    for (const ref of refs) members.push({ ref, inner: await this.store.resolve(ref) });
+    for (const part of base.split("+")) {
+      let inner = await this.store.resolve(part);
+      for (const prop of props) inner = await this.store.nestedInner(inner, prop);
+      if (inner) members.push({ ref: [part, ...props].join("/"), inner });
+    }
     return members;
+  }
+
+  /** The members of a union section one level further down, for a `prop` sub-section. */
+  async nestedMembers_(members, prop) {
+    const out = [];
+    for (const m of members) {
+      const inner = await this.store.nestedInner(m.inner, prop);
+      if (inner) out.push({ ref: `${m.ref}/${prop}`, inner });
+    }
+    return out;
   }
 
   /** Report the keys of every schema the page documented that none of its sections mentioned. */
@@ -1583,7 +1603,6 @@ export class Walker {
         if (this.section) {
           this.section.ownerDepth = node.depth;
           this.section.auditIfUsed = true;
-          if (refs.length > 1) this.section.members = await this.registryMembers_(refs);
         }
         this.pendingRegistry = ref;
         this.pendingRegistryDepth = node.depth;
@@ -1608,7 +1627,6 @@ export class Walker {
         const ref = refs.join("+");
         await this.openSection(ref, node.depth, line, "registry");
         if (this.section) this.section.ownerDepth = node.depth;
-        if (this.section && refs.length > 1) this.section.members = await this.registryMembers_(refs);
         this.pendingRegistry = ref;
         this.pendingRegistryDepth = node.depth;
       } else {
@@ -1807,6 +1825,8 @@ export class Walker {
             ...parent,
             inner: nested,
             ref: `${parent.ref}/${first}`,
+            // A grouped section's members move down with it, so the audit sees each action's nested options
+            members: parent.members ? await this.nestedMembers_(parent.members, first) : undefined,
             depth: node.depth,
             documented: new Set(),
             parent,

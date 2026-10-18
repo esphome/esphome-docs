@@ -200,11 +200,16 @@ test("the command line reports a finding and exits cleanly", () => {
 test("convertLinks resolves relative links against the page", () => {
   const out = convertLinks(
     "See [here](../bar/) and [img](images/x.png) and [mail](mailto:a@b.c).",
-    "/components/foo",
+    "/components/foo/",
     "https://esphome.io",
   );
   assert.equal(
     out,
     "See [here](https://esphome.io/components/bar/) and [img](https://esphome.io/components/foo/images/x.png) and [mail](mailto:a@b.c).",
+  );
+  // With or without the trailing slash pageUrl() gives, the base is the page
+  assert.equal(
+    convertLinks("[x](../bar/)", "/components/foo", "https://esphome.io"),
+    "[x](https://esphome.io/components/bar/)",
   );
 });
