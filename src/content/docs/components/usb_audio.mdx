@@ -7,6 +7,7 @@ import APIRef from '@components/APIRef.astro';
 The `usb_audio` component lets an ESP32 act as a USB host for USB Audio Class (UAC) devices such as USB sound cards,
 USB DACs, USB microphones and USB speakerphones. A connected device can be used as a
 [USB Audio Speaker](/components/speaker/usb_audio/), a [USB Audio Microphone](/components/microphone/usb_audio/), or both.
+Each `usb_audio` component supports one speaker and one microphone.
 
 This component requires an ESP32 variant with a USB OTG peripheral (ESP32-S2, ESP32-S3, ESP32-S31, ESP32-P4 or
 ESP32-H4). It automatically loads the [USB Host](/components/usb_host/) component, so it can be used alongside
@@ -46,7 +47,8 @@ microphone:
 
 The speaker and microphone each stream in one fixed format, set by their `sample_rate`, `bits_per_sample` and
 `num_channels` options. The USB device must support that format. If it does not, the stream is not started and the
-formats the device does support are written to the log, so you can choose one of them.
+formats the device does support are written to the log, so you can choose one of them. Devices that store samples
+padded to a larger size, such as 24-bit samples in 4 bytes, are not supported in that format.
 
 The device can be plugged in and removed while ESPHome is running. A speaker stops playback when the device is removed,
 and a microphone resumes streaming when the device is plugged in again.

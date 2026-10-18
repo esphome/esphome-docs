@@ -35,7 +35,8 @@ speaker:
 - **num_channels** (*Optional*, positive integer): The number of channels, `1` (mono) or `2` (stereo). Must be
   supported by the USB device. Defaults to `2`.
 - **buffer_size** (*Optional*, positive integer): The size of the buffer between ESPHome and the USB driver, in
-  bytes. Defaults to `6400`.
+  bytes. Must hold at least two USB transfers (6 ms of audio, e.g. `1152` bytes at 48000 Hz, 16 bit, stereo).
+  Defaults to `6400`.
 - **write_timeout** (*Optional*, [Time](/guides/configuration-types#time)): The maximum time a write waits for room
   in the buffer. Defaults to `20ms`.
 - **usb_audio_id** (*Optional*, [ID](/guides/configuration-types#id)): The [USB Audio](/components/usb_audio/)
