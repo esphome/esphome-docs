@@ -524,7 +524,8 @@ it does not create a pending operation or fire `on_result`.
 
 ### Completion And Failure
 
-On success, the lease remains available for another operation from `on_result`, or for `vbus.release_bus`.
+On success, `on_result` can start another operation while the transport still permits sends, or request
+`vbus.release_bus`. A valid read can finish in the reserved release window, when another request no longer fits.
 On failure, the lease is retired from further sends. A late reply cannot turn that failure into success or start
 another verification read. A safe release may still follow that reply; no read or write is retried.
 Shutdown discards pending work and stops callbacks without sending another command.
