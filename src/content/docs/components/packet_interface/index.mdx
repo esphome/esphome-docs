@@ -19,6 +19,9 @@ Each channel type is a platform of this component. The platforms currently avail
   that marks where each packet starts and ends.
 - [UDP](/components/packet_interface/udp/): each packet is sent as one UDP datagram, using the settings of the
   [UDP](/components/udp/) component.
+- [SX126x](/components/packet_interface/sx126x/) and [SX127x](/components/packet_interface/sx127x/): each packet is
+  sent as one LoRa or FSK radio packet, using an [SX126x](/components/sx126x/) or [SX127x](/components/sx127x/)
+  radio.
 
 The [Entity Transport](/components/entity_transport/) component uses a packet interface to send sensor and binary
 sensor states between devices. The [Packet Transport](/components/packet_transport/) component can also use any
@@ -337,6 +340,8 @@ binary_sensor:
 
 - [UART Packet Interface](/components/packet_interface/uart/)
 - [UDP Packet Interface](/components/packet_interface/udp/)
+- [SX126x Packet Interface](/components/packet_interface/sx126x/)
+- [SX127x Packet Interface](/components/packet_interface/sx127x/)
 - [Entity Transport Component](/components/entity_transport/)
 - [Packet Transport Component](/components/packet_transport/)
 - <APIRef text="packet_interface.h" path="packet_interface/packet_interface.h" />

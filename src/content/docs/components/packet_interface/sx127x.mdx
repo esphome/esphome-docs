@@ -1,0 +1,61 @@
+---
+description: "Instructions for setting up an SX127x LoRa packet interface on ESPHome"
+title: "SX127x Packet Interface"
+---
+
+import APIRef from '@components/APIRef.astro';
+
+The `sx127x` [Packet Interface](/components/packet_interface/) platform sends and receives packets with an SX127x
+radio configured with the [SX127x](/components/sx127x/) component. Each packet is sent as one radio packet, so the
+radio itself marks where a packet starts and ends, and checks it with its CRC if `crc_enable` is set.
+
+The radio must send packets of varying length, so its `payload_length` must be `0`, the default.
+Without LoRa modulation, the radio sends at most 64 bytes in a packet, so `max_packet_size` must be 64 or less.
+
+Received packets carry the radio's RSSI and SNR, which the layers above pass on.
+
+A radio channel is shared by every device in range, so an [addressing layer](/components/packet_interface/#addressing)
+is usually needed: it drops packets meant for other devices, and lets the
+[reliability](/components/packet_interface/#reliability) and [session](/components/packet_interface/#session) layers
+work with one device among several.
+
+Sending waits until the radio has transmitted the packet, which takes from a few milliseconds to over a second,
+depending on the packet size, spreading factor and bandwidth. While it sends, the radio cannot receive. The reliability
+layer's `timeout` should allow for a packet and its acknowledgement to be sent, for example `500ms` with spreading
+factor 7 and a bandwidth of 125 kHz.
+
+## Example Configuration
+
+```yaml
+# Example configuration entry
+sx127x:
+  # ... radio pins and settings, with modulation: LORA
+  frequency: 917MHz
+  modulation: LORA
+  crc_enable: true
+
+packet_interface:
+  - platform: sx127x
+    id: lora_link
+    addressing:
+      address: 0x0001
+      destination: 0x0002
+    reliability:
+      timeout: 500ms
+    session:
+```
+
+## Configuration variables
+
+- **sx127x_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the [SX127x](/components/sx127x/) radio
+  to use. Required only if more than one is configured.
+- **max_packet_size** (*Optional*, int): The largest packet, in bytes, that can be sent or received. Range is 16 to
+  255. Defaults to `255`.
+- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
+
+## See Also
+
+- [Packet Interface Component](/components/packet_interface/)
+- [SX127x Component](/components/sx127x/)
+- [Entity Transport Component](/components/entity_transport/)
+- <APIRef text="sx127x_packet_interface.h" path="sx127x/packet_interface/sx127x_packet_interface.h" />
