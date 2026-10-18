@@ -15,7 +15,9 @@ The device is added to the peers of the `espnow` component.
 
 Without a `peer_address`, packets are broadcast to every device on the channel, and every broadcast packet received
 is accepted, including from devices that are not in the `espnow` component's peers. An addressing layer can then tell
-the devices apart.
+the devices apart. The [reliability](/components/packet_interface/#reliability) and
+[session](/components/packet_interface/#session) layers, and the rolling code, work between two devices only, so on
+such a link they need an addressing layer with a `destination`.
 
 One `espnow` component can carry links to several peers and a broadcast link at the same time. On ESP8266, which does
 not report where a packet was sent, a broadcast link also receives the packets sent to this device by its peers, so

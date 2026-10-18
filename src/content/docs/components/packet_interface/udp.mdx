@@ -15,7 +15,9 @@ When the `udp` component sends to one IPv4 address that is not a broadcast or mu
 accepts packets only from that address. It then joins exactly two devices, so no
 [addressing layer](/components/packet_interface/#addressing) is needed, and one cannot be configured. An address
 ending in `.255` is taken as a broadcast address. Otherwise every packet received is accepted, and an addressing layer
-can tell the devices apart.
+can tell the devices apart. The [reliability](/components/packet_interface/#reliability) and
+[session](/components/packet_interface/#session) layers, and the rolling code, work between two devices only, so on
+such a link they need an addressing layer with a `destination`.
 
 ## Example Configuration
 
