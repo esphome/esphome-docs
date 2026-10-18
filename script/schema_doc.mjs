@@ -39,6 +39,8 @@ const DEFAULT_SCHEMA_URL = "https://schema.esphome.io/dev";
 // Today's tree writes about 7500 option descriptions; a schema layout change that loses a fifth of them must
 // not ship a bundle
 const MIN_EMITTED_PROPS = 6000;
+// Floors for the intros, each well under today's count, so a layout change that loses them does not write a bundle
+const MIN_EMITTED_INTROS = { componentDocs: 100, platformDocs: 300, actionDocs: 200 };
 
 const CONFIG_VARS_RE = /^Configuration (variables|options):?$/i;
 const MARKER_RE = /^\s*\/\*\s*schema:\s*(\S+)\s*\*\/\s*$/;
@@ -1416,6 +1418,8 @@ export class Walker {
       const ref = this.pendingRegistry;
       this.pendingRegistry = null;
       await this.openSection(ref, depth, line, "registry");
+      // The action heading owns the section, whatever heading reopened it
+      if (this.section) this.section.ownerDepth = this.pendingRegistryDepth;
     } else if (
       this.failedSection &&
       depth > this.failedSection.depth &&
@@ -1491,7 +1495,8 @@ export class Walker {
       const pageRef = this.pageDefault?.defaultRef;
       const nestedPath = trigPath.split(".").slice(0, -1);
       // "### `on_done` Trigger" under "## `foo.do` Action" is the action's trigger before the component's
-      const sectionRef = this.section && node.depth > this.section.depth ? this.section.ref : null;
+      const ownerDepth = this.section?.ownerDepth ?? this.section?.depth;
+      const sectionRef = this.section && node.depth > ownerDepth ? this.section.ref : null;
       const refs = [sectionRef, this.defaultRef, pageRef].filter((r, i, all) => r && all.indexOf(r) === i);
       for (const ref of refs) {
         if (!ref) continue;
@@ -1535,6 +1540,7 @@ export class Walker {
         // naming several actions documents the options of each of them
         const ref = refs.join("+");
         await this.openSection(ref, node.depth, line, "registry");
+        if (this.section) this.section.ownerDepth = node.depth;
         if (this.section && refs.length > 1) {
           this.section.inner.multi = true;
           this.section.inner.primaryCount = this.section.inner.variants.length;
@@ -1559,6 +1565,7 @@ export class Walker {
     if (registryEntry?.ref) {
       await this.emitRegistryDocs(registryEntry.ref, "registry", intro(), line);
       await this.openSection(registryEntry.ref, node.depth, line, "registry");
+      if (this.section) this.section.ownerDepth = node.depth;
       this.pendingRegistry = registryEntry.ref;
       this.pendingRegistryDepth = node.depth;
       return;
@@ -2093,6 +2100,9 @@ async function main() {
     // Unchanged descriptions count too: an in-place run over a documented bundle writes few new ones
     const described = s.emitted.props + s.emitted.propsRefined + s.emitted.propsSkipped;
     broken = `only ${described} options have a description, ${MIN_EMITTED_PROPS} expected at least`;
+  } else if (args.emit) {
+    const short = Object.entries(MIN_EMITTED_INTROS).find(([kind, floor]) => s.emitted[kind] < floor);
+    if (short) broken = `only ${s.emitted[short[0]]} ${short[0]}, ${short[1]} expected at least`;
   }
   // Kinds that are observations rather than mismatches
   const informational = new Set(["no_intro_paragraph", "nested_list_ignored", "ambiguous_nested_key"]);

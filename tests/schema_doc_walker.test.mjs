@@ -2110,7 +2110,7 @@ test("a trigger heading under an action heading reaches the action's own trigger
       foo: {
         foo: {
           schemas: { CONFIG_SCHEMA: schema({ on_done: trigger }) },
-          action: { do: schema({ on_done: trigger }) },
+          action: { do: schema({ id: { key: "Required" }, on_done: trigger }) },
         },
       },
     },
@@ -2119,6 +2119,8 @@ test("a trigger heading under an action heading reaches the action's own trigger
         "Foo.",
         "## `foo.do` Action",
         "Does it.",
+        "### Configuration variables",
+        "- **id** (**Required**, ID): The target.",
         "### `on_done` Trigger",
         "#### Configuration variables",
         "- **then** (*Optional*, Automation): After the action.",
