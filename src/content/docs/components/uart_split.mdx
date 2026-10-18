@@ -32,11 +32,11 @@ a [UART TCP](/components/uart_tcp/) server at `tap` to publish that copy.
 > copied to `BOTH` outputs. Point those at an output as well.
 
 > [!NOTE]
-> More than one output may write. Those bytes share one transmit line.
+> Only one output may write. A second output without `rx_only: true` is rejected.
 
 Each output buffers up to 256 received bytes. The UART bus is read in the main loop, up to 256 bytes per pass.
 
-When an output that writes is full, new bytes wait in the receive buffer of the UART bus, so the output loses
+When the output that writes is full, new bytes wait in the receive buffer of the UART bus, so the output loses
 nothing. Once that buffer is half full, the output drops what does not fit, a warning is logged, and the other
 outputs keep receiving. After the output has been read empty, bytes wait for it again. A larger `rx_buffer_size`
 on the UART bus gives a slow output more time. A receive-only output drops bytes when it is full and never makes
