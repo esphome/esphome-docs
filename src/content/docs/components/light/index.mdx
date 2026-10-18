@@ -228,8 +228,9 @@ light:
 
 - **power_estimation** (*Optional*): Configure power estimation and optional automatic current limiting for
   the LED strip. Only supported by addressable lights (e.g. ``esp32_rmt_led_strip``, ``neopixelbus``,
-  ``fastled``, ``partition``). When configured, ESPHome
-  estimates the total current draw from the per-channel mA constants and the current pixel buffer values.
+  ``fastled``). It belongs on the strip itself, not on a [partition](/components/light/partition/): the strip's
+  limit covers every partition drawn on it. When configured, ESPHome estimates the total current draw from the
+  per-channel mA constants and the current pixel buffer values.
   See [Power Estimation](#addressable-power-estimation) for details.
 
   - **ma_per_led_red** (*Optional*, float): Current drawn by a single LED at full red brightness, in mA.
@@ -656,8 +657,10 @@ estimated_mA = Σ (R[i] * ma_per_led_red + G[i] * ma_per_led_green + B[i] * ma_p
 ```
 
 If `max_current_ma` is set and the estimate exceeds it, all channel values are scaled down by the
-ratio `max_current_ma / estimated_mA` before being sent to the hardware. The user-visible
-brightness and color are not changed; only the physical output is reduced.
+ratio `max_current_ma / estimated_mA`. The user-visible brightness and color are not changed; only the
+physical output is reduced. The scale is worked out from each frame the strip sends, so a frame that raises
+the demand can go out once before the limited frame replaces it. Pixels written from a lambda or with
+`light.addressable_set` are limited in the same way, and read back as the levels they were written with.
 
 ### Example configuration
 
