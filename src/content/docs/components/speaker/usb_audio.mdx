@@ -48,7 +48,8 @@ The [Speaker Audio Media Player](/components/media_player/speaker/) converts its
 speaker can convert audio from other sources. [Voice Assistant](/components/voice_assistant/) can play its
 responses through the speaker directly with its `speaker` option, or through a media player.
 
-Volume and mute are sent to the device as USB Audio Class controls. If the device does not support a control, a
+Volume and mute are sent to the device as USB Audio Class controls just before the next audio is written, so a
+change made while nothing is playing takes effect when playback starts. If the device does not support a control, a
 warning is logged and that control has no effect. The settings are sent again when the device reconnects.
 
 When the device is unplugged while playing, playback stops. The speaker starts again with the next audio it is asked

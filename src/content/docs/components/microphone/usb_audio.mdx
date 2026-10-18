@@ -34,8 +34,8 @@ microphone:
 - **num_channels** (*Optional*, positive integer): The number of channels, `1` or `2`. With `2`, each sample of the
   first channel is followed by a sample of the second channel. Defaults to `1`.
 - **buffer_size** (*Optional*, positive integer): The size in bytes of the USB Audio Class driver's ring buffer for
-  this stream. A larger buffer tolerates longer delays in reading the audio, but uses more memory.
-  Defaults to `6400`.
+  this stream. It must hold at least 40 ms of audio in the configured format (for example `7680` for 48 kHz 16-bit
+  stereo); a larger buffer tolerates longer delays in reading the audio, but uses more memory. Defaults to `6400`.
 - All other options from [Microphone](/components/microphone/#base-microphone-configuration).
 
 The device must support the configured `sample_rate`, `bits_per_sample` and `num_channels` exactly. If it does not,
@@ -61,6 +61,7 @@ microphone:
     id: usb_mic
     sample_rate: 48000
     num_channels: 2
+    buffer_size: 9600
 
   - platform: resampler
     id: resampled_mic
