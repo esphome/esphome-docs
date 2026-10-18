@@ -248,9 +248,9 @@ text_sensor:
 - **evictions** (*Optional*, [Sensor](/components/sensor/)): Number of records the ring buffer has
   overwritten since the database was created.
 - **errors** (*Optional*, [Sensor](/components/sensor/)): Number of anomalies since boot - a failed write or
-  sync, a dropped record, a value clamped to the range of `int16_t` and a stale value kept by
-  `on_missing: hold`. Anything but `0` means the history is incomplete or the flash refused a write; the log
-  has the details.
+  sync, a dropped record, a value clamped to the range of `int16_t`, a stale value kept by `on_missing: hold`
+  and a value `on_missing: sentinel` stored as unknown. Anything but `0` means the history is incomplete or
+  the flash refused a write; the log has the details.
 - **columns** (*Optional*, list): Aggregates over `aggregate_window`, one entry per stored column. Requires
   `time_id`, because the engine queries them by time. Each entry takes:
   - **column** (**Required**, string): The `name` of the column in `tsdb:`.
