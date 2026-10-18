@@ -89,7 +89,9 @@ tsdb:
   the timestamps then count seconds since the stored history began. They continue after the newest stored
   record across reboots, so the series stays ordered, and a clock that syncs later jumps to real time.
 - **time_id** (*Optional*, [ID](/guides/configuration-types#id)): The [Time](/components/time/) component
-  the timestamps come from. Required while `require_time` is `true`.
+  the timestamps come from. Without it the system clock is read instead, which every
+  [Time](/components/time/) component sets; with `require_time: true` the history then stays empty until one
+  of them has synced.
 - **on_missing** (*Optional*, string): What to do with a column whose sensor has never published, or
   publishes `NaN`. One of `skip` (the default), `hold` or `sentinel` - see
   [How a record is written](#how-a-record-is-written).
@@ -247,10 +249,10 @@ text_sensor:
   not valid.
 - **evictions** (*Optional*, [Sensor](/components/sensor/)): Number of records the ring buffer has
   overwritten since the database was created.
-- **errors** (*Optional*, [Sensor](/components/sensor/)): Number of anomalies since boot - a failed write or
-  sync, a dropped record, a value clamped to the range of `int16_t`, a stale value kept by `on_missing: hold`
-  and a value `on_missing: sentinel` stored as unknown. Anything but `0` means the history is incomplete or
-  the flash refused a write; the log has the details.
+- **errors** (*Optional*, [Sensor](/components/sensor/)): Number of anomalies since boot - a failed write,
+  sync or clear, a dropped record, a value clamped to the range of `int16_t`, a stale value kept by
+  `on_missing: hold` and a value `on_missing: sentinel` stored as unknown. Anything but `0` means the history
+  is incomplete or the flash refused a write; the log has the details.
 - **columns** (*Optional*, list): Aggregates over `aggregate_window`, one entry per stored column. Requires
   `time_id`, because the engine queries them by time. Each entry takes:
   - **column** (**Required**, string): The `name` of the column in `tsdb:`.
@@ -298,12 +300,12 @@ column names, then one line per record with the timestamp in Unix epoch seconds 
 values with four decimal places.
 
 ```text
-[12:00:00][I][tsdb:611]: history.tsdb: csv-dump begin (newest 4 records, window [1758900000, 1758900480], timestamp,h2_mq8_ppm,temperature,humidity ...)
-[12:00:00][I][tsdb:636]: history.tsdb: 1758900000,12.3400,21.5000,41.2000
-[12:00:00][I][tsdb:636]: history.tsdb: 1758900060,12.4100,21.5000,41.1000
-[12:00:00][I][tsdb:636]: history.tsdb: 1758900120,12.3900,21.6000,41.3000
-[12:00:00][I][tsdb:636]: history.tsdb: 1758900180,12.4500,21.6000,41.0000
-[12:00:00][I][tsdb:648]: history.tsdb: csv-dump end (4 rows, 0 older skipped)
+[12:00:00][I][tsdb:832]: history.tsdb: csv-dump begin (newest 4 records): timestamp,h2_mq8_ppm,temperature,humidity
+[12:00:00][I][tsdb:866]: history.tsdb: 1758900000,12.3400,21.5000,41.2000
+[12:00:00][I][tsdb:866]: history.tsdb: 1758900060,12.4100,21.5000,41.1000
+[12:00:00][I][tsdb:866]: history.tsdb: 1758900120,12.3900,21.6000,41.3000
+[12:00:00][I][tsdb:866]: history.tsdb: 1758900180,12.4500,21.6000,41.0000
+[12:00:00][I][tsdb:871]: history.tsdb: csv-dump end (4 rows)
 ```
 
 The dump reads a bounded window (the last `dump_rows` write intervals up to the newest record, doubled as a
