@@ -56,6 +56,11 @@ sensor:
   all sensors and binary sensors at this interval, as well as when they change. At least `1s`, or `never`. Defaults
   to `never` if the packet interface has both a [reliability layer](/components/packet_interface/#reliability) and a
   [session layer](/components/packet_interface/#session), and to `15s` otherwise.
+- **timeout** (*Optional*, [Time](/guides/configuration-types#time)): The sensors and binary sensors that show states
+  from other devices lose their state when no state arrives for them for this long. Use a time longer than the other
+  device's `update_interval`, so that a sensor that has not changed is sent again within it. At least `1s`. By
+  default the last state is kept. A [session layer](/components/packet_interface/#session) also clears the states when
+  the other device cannot be reached.
 
 ## When states are sent
 

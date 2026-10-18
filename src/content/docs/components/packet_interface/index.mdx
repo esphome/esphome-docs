@@ -197,6 +197,10 @@ The key can also be given on its own:
 The encryption layer adds 4 to 8 bytes to each packet, or 16 to 19 with the rolling code. The largest packet that can
 be sent through it is smaller than `max_packet_size` by that amount.
 
+The check that drops changed packets uses 3 fixed bytes, so a device that sends millions of random packets could
+get one accepted. Without the rolling code, the same packet is always encrypted to the same bytes, so another device
+can tell when a packet is repeated, though not what it holds. Use the rolling code where this matters.
+
 Without the rolling code, anyone who records a packet can send it again later, and it will be accepted.
 
 With the rolling code, each device saves a boot number in flash and increases it at every boot, and counts the
@@ -304,7 +308,9 @@ packet_interface:
   can be reached. All options from [Binary Sensor](/components/binary_sensor/#config-binary_sensor).
 
 The other device is checked at each `keep_alive` interval, so it is reported lost between `timeout` and `timeout`
-plus `keep_alive` after the last packet arrived. A restart is reported as lost, then connected again.
+plus `keep_alive` after the last packet arrived. A restart is reported as lost, then connected again. So is a reset
+of a [reliability layer](#reliability) below, which can lose packets: the session is reported lost, and connected
+again when the other device is next heard, so that an application such as entity transport sends everything again.
 
 The session layer adds 1 byte to each packet, so the largest packet that can be sent through it is 1 byte smaller
 than the layer below allows.
