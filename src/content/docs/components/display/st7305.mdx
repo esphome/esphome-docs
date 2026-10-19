@@ -3,6 +3,8 @@ description: "Instructions for setting up ST7305 and ST7306 reflective monochrom
 title: "ST7305 Reflective LCD Display"
 ---
 
+import Figure from '@components/Figure.astro';
+import st7305FullImg from './images/st7305-full.jpg';
 import APIRef from '@components/APIRef.astro';
 
 ## Usage
@@ -13,11 +15,21 @@ per pixel, have no backlight and retain their image. The built-in `WAVESHARE-400
 describes the 4.2" panel on the Waveshare ESP32-S3-RLCD-4.2 (400x300 in landscape). Other
 panels can be described with the `CUSTOM` model.
 
+<Figure
+  src={st7305FullImg}
+  alt=""
+  caption="Waveshare ESP32-S3-RLCD-4.2"
+  layout="constrained"
+/>
+
 The controller RAM is addressed in 12-pixel by 2-pixel blocks. A landscape panel packs 2x4
 pixels into each byte, while a portrait panel packs 4x2 pixels. The selected model's orientation
 sets the packing and the address window alignment.
 
 ## Waveshare ESP32-S3-RLCD-4.2
+
+The `WAVESHARE-400X300` model also sets the board's fixed pins: CS on GPIO40, DC on GPIO5 and
+reset on GPIO41. Connect the SPI bus to the board's display connector and use the model.
 
 ```yaml
 spi:
@@ -27,9 +39,6 @@ spi:
 display:
   - platform: st7305
     model: WAVESHARE-400X300
-    cs_pin: GPIO40
-    dc_pin: GPIO5
-    reset_pin: GPIO41
     lambda: |-
       it.fill(Color::WHITE);
       it.print(10, 10, id(my_font), Color::BLACK, "Hello");
@@ -75,12 +84,13 @@ must cover `width * height / 8` bytes.
 
 - **model** (*Optional*, string): The panel model. One of `WAVESHARE-400X300` (default) or
   `CUSTOM`.
-- **cs_pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The chip
-  select pin.
-- **dc_pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The data/command
-  pin.
+- **cs_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The chip
+  select pin. Required for `CUSTOM`; the `WAVESHARE-400X300` model supplies GPIO40.
+- **dc_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The data/command
+  pin. Required for `CUSTOM`; the `WAVESHARE-400X300` model supplies GPIO5.
 - **reset_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The reset pin.
-  If omitted, the driver uses a software reset.
+  The `WAVESHARE-400X300` model supplies GPIO41. If no pin is configured, the driver uses a
+  software reset.
 - **data_rate** (*Optional*, frequency): The SPI clock rate. Defaults to `10MHz`.
 - **spi_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the
   [SPI Component](/components/spi) if there are multiple SPI buses.
