@@ -51,9 +51,9 @@ int main(void) {
 - **sources** (**Required**, list of files): The C (`.c`) and assembly (`.S`) files that make up the program,
   relative to the YAML file. Header files (`.h`) may be listed too; they are copied next to the sources so the
   program can include them. File names must be unique.
-- **wakeup_period** (**Required**, [Time](/guides/configuration-types/#time)): How often the timer starts the
-  program. The program runs to completion each time; returning from `main` halts the coprocessor until the next
-  period. On the LP core this may be left out when `wakeup_sources` is set.
+- **wakeup_period** (**Required** on the ESP32-S2/S3, *Optional* on the LP core when `wakeup_sources` is set,
+  [Time](/guides/configuration-types/#time)): How often the timer starts the program. The program runs to
+  completion each time; returning from `main` halts the coprocessor until the next period.
 - **wakeup_sources** (*Optional*, list): LP core only (ESP32-C5/C6/P4). Additional events that start the program:
   `hp_cpu` (started once by the main CPU), `lp_io` (LP IO interrupt), `lp_uart` (LP UART activity) or `etm`
   (ETM event). The LP timer is used automatically when `wakeup_period` is set.
@@ -69,9 +69,12 @@ int main(void) {
 ## Sharing Data With the Program
 
 Every global variable in the program is visible to lambdas on the main CPU as `ulp_<name>`. A `uint32_t counter`
-in the program becomes `ulp_counter` in a lambda. The main CPU can read and write these at any time; the
-coprocessor keeps running while it does, so prefer single-word values or have the program write a value only
-when it is complete.
+in the program becomes `ulp_counter` in a lambda. ESP-IDF declares every shared symbol as `uint32_t` (or an array
+of `uint32_t`) regardless of its type in the program, so keep shared variables `uint32_t` or `int32_t`. Reading
+a shared `float` through its symbol gives the bit pattern, and writing through the symbol of a `uint8_t` or
+`uint16_t` overwrites the neighbouring bytes; for such types take the symbol's address and cast it to the real
+type. The main CPU can read and write shared variables at any time; the coprocessor keeps running while it does,
+so prefer single-word values or have the program write a value only when it is complete.
 
 To wake the main CPU from deep sleep, the program calls `ulp_riscv_wakeup_main_processor()` on the S2/S3 or
 `ulp_lp_core_wakeup_main_processor()` on the LP core. When the main CPU is awake the call does nothing. Use the
@@ -108,8 +111,11 @@ The calls go through the component's `id`, so the `esp32_ulp` block needs an `id
 
 - `load_and_run()`: Load the program into the coprocessor memory and start it. Only needed with
   `run_on_boot: false`.
-- `timer_stop()`: Stop the timer so the program is not started again.
-- `timer_resume()`: Start the timer again.
+- `timer_stop()`: On the ESP32-S2/S3, stop the timer so the program is not started again; a run in progress
+  finishes. On the LP core this puts the core to sleep and disables all of its wakeup sources, including
+  `lp_io`, `lp_uart` and `etm`.
+- `timer_resume()`: On the ESP32-S2/S3, start the timer again. On the LP core, start the core again with its
+  configured wakeup sources.
 
 ```yaml
 on_...:
