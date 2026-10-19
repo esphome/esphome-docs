@@ -457,7 +457,12 @@ This [Condition](/automations/actions#all-conditions) checks if at least one cli
 
 #### Configuration Variables
 
-- **state_subscription_only** (*Optional*, boolean, [templatable](/automations/templates)): If enabled, only counts clients that have subscribed to entity state updates. This filters out logger-only connections (such as `esphome logs` command), which can cause false positives when waiting for Home Assistant. Defaults to `false`.
+- **state_subscription_only** (*Optional*, boolean, [templatable](/automations/templates)): If enabled, only counts
+  clients that have subscribed to entity state updates. This filters out log-only connections, which can cause false
+  positives when waiting for Home Assistant. Since ESPHome 2026.4.0, `esphome logs` (also used by the
+  [ESPHome Device Builder](/install/) log viewer) subscribes to entity states by default to show state changes in the
+  log, which means it is counted here unless started with [`--no-states`](/guides/cli#logs-command).
+  Defaults to `false`.
 
 **Check if any client is connected:**
 

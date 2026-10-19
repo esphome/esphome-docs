@@ -147,6 +147,7 @@ ESPHome-specific components or components supporting ESPHome device provisioning
   ["StatsD", "/components/statsd/", "connection.svg", "dark-invert"],
   ["Syslog", "/components/syslog/", "file-document-box.svg", "dark-invert"],
   ["Web Server", "/components/web_server/", "badge:HTTP"],
+  ["Zephyr Coredump", "/components/zephyr_coredump/", "bug-report.svg", "dark-invert"],
 ]} />
 
 ## Update Installation
@@ -263,6 +264,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["CCS811", "/components/sensor/ccs811/", "ccs811.jpg", "CO2 & Volatile organics"],
   ["CM1106", "/components/sensor/cm1106/", "cm1106.png", "CO2"],
   ["D01", "/components/sensor/d01/", "d01.jpg", "Particulate"],
+  ["DFRobot SEN0465 Gas Sensors", "/components/sensor/dfrobot_sen0465/", "dfrobot_sen0465.jpg", "O2 & CO & H2S & NH3 & ..."],
   ["Ecocomfort2 VMC", "/components/ecocomfort2/", "fan.svg", "Volatile organics", "dark-invert"],
   ["EE895", "/components/sensor/ee895/", "EE895.png", "CO2 & Temperature & Pressure"],
   ["ENS160", "/components/sensor/ens160/", "ens160.jpg", "CO2 & Air Quality"],
@@ -274,6 +276,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["iAQ-Core", "/components/sensor/iaqcore/", "iaqcore.jpg", "CO2 & Volatile organics"],
   ["MH-Z19", "/components/sensor/mhz19/", "mhz19.jpg", "CO2 & Temperature"],
   ["MiCS-4514", "/components/sensor/mics_4514/", "mics_4514.jpg", "Gas concentration"],
+  ["MiCS-5524", "/components/sensor/mics_5524/", "mics_5524.jpg", "Gas concentration"],
   ["PM1006 Sensor", "/components/sensor/pm1006/", "pm1006.jpg", "Particulate"],
   ["PM2005 Sensor", "/components/sensor/pm2005/", "pm2005.png", "Particulate"],
   ["PMSA003I", "/components/sensor/pmsa003i/", "pmsa003i.jpg", "Particulate"],
@@ -476,6 +479,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["TMP102", "/components/sensor/tmp102/", "tmp102.jpg", "Temperature"],
   ["TMP1075", "/components/sensor/tmp1075/", "tmp1075.jpg", "Temperature"],
   ["TMP117", "/components/sensor/tmp117/", "tmp117.jpg", "Temperature"],
+  ["Vevor DTX Weather Station", "/components/vevor_dtx/", "weather-sunny.svg", "Weather", "dark-invert"],
   ["WTS01", "/components/sensor/wts01/", "wts01.png", "Temperature"],
   ["XDB401", "/components/sensor/xdb401/", "xdb401.jpg", "Pressure"],
   ["XGZP68xx Series", "/components/sensor/xgzp68xx/", "6897d.jpg", "Differential Pressure"],
@@ -527,6 +531,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["MLX90393", "/components/sensor/mlx90393/", "mlx90393.jpg", "3-Axis magnetometer"],
   ["MMC5603", "/components/sensor/mmc5603/", "mmc5603.jpg", "3-Axis magnetometer"],
   ["MMC5983", "/components/sensor/mmc5983/", "mmc5983.jpg", "3-Axis magnetometer"],
+  ["MT6701", "/components/sensor/mt6701/", "mt6701.jpg", "14-Bit Magnetic Angle Sensor"],
   ["QMC5883L", "/components/sensor/qmc5883l/", "qmc5883l.jpg", "3-Axis magnetometer"],
 ]} />
 
@@ -640,6 +645,7 @@ Binary Sensors are organized into categories; if a given sensor fits into more t
   ["Host SDL2", "/components/binary_sensor/sdl/", "sdl.png"],
   ["Status", "/components/binary_sensor/status/", "server-network.svg", "dark-invert"],
   ["Switch", "/components/binary_sensor/switch/", "electric-switch.svg", "dark-invert"],
+  ["UART Binary Sensor", "/components/binary_sensor/uart/", "badge:UART"],
 ]} />
 
 ### Capacitive Touch
@@ -856,6 +862,7 @@ Often known as "tag" or "card" readers within the community.
   ["SSD1327", "/components/display/ssd1327/", "ssd1327.jpg"],
   ["SSD1331", "/components/display/ssd1331/", "ssd1331.jpg"],
   ["SSD1351", "/components/display/ssd1351/", "ssd1351.jpg"],
+  ["ST7305", "/components/display/st7305/", "st7305.jpg"],
   ["ST7567", "/components/display/st7567/", "st7567.jpg"],
   ["ST7701S", "/components/display/st7701s/", "indicator.jpg"],
   ["ST7735", "/components/display/st7735/", "st7735.jpg"],
@@ -1268,6 +1275,7 @@ ESPHome to cellular networks. **Does not encompass Wi-Fi.**
   ["Modbus Client", "/components/modbus_client/", "modbus.png"],
   ["Modbus Controller", "/components/modbus_controller/", "modbus.png"],
   ["Modbus Server", "/components/modbus_server/", "modbus.png"],
+  ["RTSP Server", "/components/rtsp_server/", "camera.svg", "dark-invert"],
   ["Sendspin", "/components/sendspin/", "sendspin.svg"],
   ["Sprinkler", "/components/sprinkler/", "sprinkler-variant.svg", "dark-invert"],
   ["Status LED", "/components/status_led/", "led-on.svg", "dark-invert"],
@@ -1280,7 +1288,6 @@ ESPHome to cellular networks. **Does not encompass Wi-Fi.**
 
 <ImgTable items={[
   ["BME280 Environment extras", "/cookbook/bme280_environment/", "bme280.jpg"],
-  ["EHMTX a matrix status/text display", "/cookbook/ehmtx/", "ehmtx.jpg"],
   ["ESP32 Water Leak Detector", "/cookbook/leak-detector-m5stickc/", "leak-detector-m5stickC_main_index.jpg"],
   ["Garage Door Template Cover", "/cookbook/garage-door/", "garage-variant.svg", "dark-invert"],
   ["Lambda Magic: Tips and Tricks", "/cookbook/lambda_magic/", "head-lightbulb-outline.svg", "dark-invert"],

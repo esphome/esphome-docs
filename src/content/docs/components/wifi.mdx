@@ -48,6 +48,11 @@ wifi:
 - **password** (*Optional*, string): The password (or PSK) for your
   WiFi network. Leave empty for no password.
 
+- **hidden** (*Optional*, boolean): Set to `true` if the network does not broadcast its SSID.
+  Only for the single-network shorthand and requires `ssid` to be set; with `networks`,
+  set `hidden` on the network entry instead. Defaults to `false`.
+  See [Connecting to a Hidden Network](#connecting-to-a-hidden-network).
+
 - **networks** (*Optional*): Configure multiple WiFi networks to connect to, the best one
   that is reachable will be connected to. See [Connecting to Multiple Networks](#wifi-networks).
 
@@ -130,14 +135,16 @@ wifi:
     - `rtc`: stored in RTC memory, which survives software reboots and deep sleep but **not** power loss, and avoids
       flash wear. A good fit for battery-powered devices that wake from deep sleep frequently.
 
-    Defaults to `rtc` on ESP8266 and `flash` on ESP32, matching each platform's previous behavior. Only `flash` is
-    available on platforms without RTC-backed storage (the RP2040 and the ESP32-C2 and C61 variants, which have no
-    RTC memory), where `rtc` is rejected.
+    Defaults to `rtc` on ESP8266 and `flash` on ESP32, matching each platform's previous behavior. `rtc` is
+    available on ESP32 (except the C2 and C61 variants, which have no RTC memory), ESP8266 and the Beken BK7231T,
+    BK7231N and BK7238; elsewhere only `flash` is available and `rtc` is rejected. These Beken chips have no RTC memory:
+    there `rtc` keeps the details in flash and forgets them after a power cut, so it does not avoid flash wear.
 
   > [!NOTE]
   > While `fast_connect` skips the initial scan, if the connection attempt fails, ESPHome will still perform a scan
-  > to find available networks. For hidden networks, use `hidden: true` on the network configuration (see
-  > [Connecting to Multiple Networks](#wifi-networks)) to ensure the device always connects without scanning.
+  > to find available networks. For hidden networks, set `hidden: true`
+  > (see [Connecting to a Hidden Network](#connecting-to-a-hidden-network)) to ensure the device always connects
+  > without scanning.
   > Be aware that marking networks as hidden prevents ESPHome from finding the best access point to connect to,
   > so the device may not connect to the AP with the best signal strength.
 
@@ -530,7 +537,18 @@ wifi:
   If all tracked BSSIDs have identical priorities, they are automatically reset to 0 to start fresh.
   Defaults to `0`.
 
-### Example: Connecting to a Hidden Network
+## Connecting to a Hidden Network
+
+A hidden network does not broadcast its SSID, so ESPHome tries to connect to it directly before scanning.
+
+```yaml
+wifi:
+  ssid: MyHiddenNetwork
+  password: VerySafePassword
+  hidden: true
+```
+
+With multiple networks, set `hidden` on the network entry instead:
 
 ```yaml
 wifi:
