@@ -15,11 +15,12 @@ The coprocessor is chosen from the ESP32 variant:
 
 Both are small RISC-V cores programmed in C against the ESP-IDF `ulp_riscv_*` or `ulp_lp_core_*` APIs. The
 original ESP32's FSM coprocessor and variants without a coprocessor are not supported. This component requires
-the ESP-IDF framework.
+the ESP-IDF framework with the native ESP-IDF toolchain (the default); the PlatformIO toolchain is not supported.
 
 ```yaml
 # Example configuration entry
 esp32_ulp:
+  id: my_ulp
   sources:
     - ulp/main.c
   wakeup_period: 100ms
@@ -43,12 +44,14 @@ int main(void) {
 }
 ```
 
-## Configuration variables
+## Configuration Variables
 
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code generation.
+  Needed for the lambda calls below.
 - **sources** (**Required**, list of files): The C (`.c`) and assembly (`.S`) files that make up the program,
   relative to the YAML file. Header files (`.h`) may be listed too; they are copied next to the sources so the
   program can include them. File names must be unique.
-- **wakeup_period** (*Optional*, [Time](/guides/configuration-types#time)): How often the timer starts the
+- **wakeup_period** (*Optional*, [Time](/guides/configuration-types/#time)): How often the timer starts the
   program. The program runs to completion each time; returning from `main` halts the coprocessor until the next
   period. Required on the LP core unless `wakeup_sources` is set.
 - **wakeup_sources** (*Optional*, list): LP core only (ESP32-C5/C6/P4). Additional events that start the program:
@@ -63,7 +66,7 @@ int main(void) {
 - **wakeup_from_sleep** (*Optional*, boolean): Allow the program to wake the main CPU from deep sleep. Defaults to
   `true`.
 
-## Sharing data with the program
+## Sharing Data With the Program
 
 Every global variable in the program is visible to lambdas on the main CPU as `ulp_<name>`. A `uint32_t counter`
 in the program becomes `ulp_counter` in a lambda. The main CPU can read and write these at any time; the
@@ -72,8 +75,9 @@ when it is complete.
 
 To wake the main CPU from deep sleep, the program calls `ulp_riscv_wakeup_main_processor()` on the S2/S3 or
 `ulp_lp_core_wakeup_main_processor()` on the LP core. When the main CPU is awake the call does nothing. Use the
-[Deep Sleep](/components/deep_sleep) component to put the main CPU to sleep; the coprocessor keeps running
-through it, and the next boot reports the wake cause.
+[Deep Sleep](/components/deep_sleep/) component to put the main CPU to sleep; the coprocessor keeps running
+through it, and the next boot reports the wake cause. The Deep Sleep component does not currently build for the
+ESP32-P4; on that chip call ESP-IDF's `esp_deep_sleep()` from a lambda instead.
 
 ```c
 // ulp/main.c: wake the main CPU every 50 runs
@@ -98,7 +102,9 @@ int main(void) {
 }
 ```
 
-## Lambda calls
+## Lambda Calls
+
+The calls go through the component's `id`, so the `esp32_ulp` block needs an `id:`.
 
 - `load_and_run()`: Load the program into the coprocessor memory and start it. Only needed with
   `run_on_boot: false`.
@@ -118,12 +124,13 @@ on_...:
 - The program can only use the RTC-domain peripherals: RTC GPIOs, the SAR ADC, RTC I2C and the RTC timer on the
   S2/S3, or the LP peripherals on the C5/C6/P4. See the ESP-IDF ULP documentation for the available APIs and
   examples.
-- The coprocessor and the main CPU share the ADC. If the program reads an ADC channel, do not also use the
-  [ADC](/components/sensor/adc) component on that channel.
+- The coprocessor and the main CPU share the ADC. If the program reads the ADC, do not use the
+  [ADC](/components/sensor/adc/) component on any channel of that ADC unit; the main CPU's driver reconfigures the
+  whole unit when it starts.
 
 ## See Also
 
-- [Deep Sleep](/components/deep_sleep)
+- [Deep Sleep](/components/deep_sleep/)
 - [ESP-IDF ULP RISC-V documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/api-reference/system/ulp-risc-v.html)
 - [ESP-IDF LP core documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c6/api-reference/system/ulp-lp-core.html)
 - <APIRef text="esp32_ulp.h" path="esp32_ulp/esp32_ulp.h" />
