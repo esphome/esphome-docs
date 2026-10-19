@@ -60,7 +60,7 @@ int main(void) {
   (ETM event). The LP timer is used automatically when `wakeup_period` is set.
 - **reserve_memory** (*Optional*, int): Bytes of RTC slow memory (LP memory) reserved for the program, its
   variables and its stack. Defaults to `4096`. The maximum is `8176` on the S2/S3, `16352` on the C5/C6 and
-  `31088` on the P4.
+  `31088` on the P4. On the S2/S3 the value must be a multiple of 16, as the stack starts at its end.
 - **run_on_boot** (*Optional*, boolean): Load and start the program during setup. Defaults to `true`. When
   `false`, call `load_and_run()` from a lambda. However it was started, a running program is left alone after a
   deep-sleep wake and its variables keep their values.
