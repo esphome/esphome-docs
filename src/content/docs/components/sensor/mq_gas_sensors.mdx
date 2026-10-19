@@ -50,7 +50,7 @@ R0, the sensor resistance in clean air, comes from the configuration (`r0:`) or 
 With `pin:` the component owns the ADC: it creates a hidden `adc` sensor for that pin (named `<id>_internal_adc`) and
 checks at build time that the divider keeps the full 0 - 5 V output of the module inside the range of the pin. The
 10 kOhm / 2 kOhm divider below maps 5 V onto 0.83 V, which is inside the 0 - 1 V of an ESP8266 A0 and inside the
-measuring range of every ESP32 attenuation:
+12 dB measuring range of every ESP32 variant:
 
 ```yaml
 # Example configuration entry
@@ -151,7 +151,8 @@ button:
 - **pin** (*Optional*, [Pin](/guides/configuration-types#pin)): The pin the AO output is wired to. The component
   creates a hidden `adc` sensor for it, named `<id>_internal_adc`. Exactly one of `voltage:` and `pin:` is required.
 - **adc_attenuation** (*Optional*, ESP32 only): Attenuation of the hidden ADC created by `pin:`, one of `0db`,
-  `2.5db`, `6db`, `12db`, `11db` or `auto`. Defaults to `12db`.
+  `2.5db`, `6db`, `12db` or `11db`. Defaults to `12db`, or to `0db` on the ESP32-S31, whose ADC has a single
+  attenuation. `auto` is not accepted, because the measuring range is needed at build time to check the divider.
 - **adc_samples** (*Optional*, int): Conversions the hidden ADC averages into one sample. Defaults to `1`. Range:
   1-255, and `sample_count:` multiplied by `adc_samples:` may not exceed 64 conversions per reading, since they all
   run back to back inside one pass of the main loop.
@@ -163,9 +164,11 @@ button:
   divider ratio (`1.5` for a 10 kOhm / 20 kOhm divider, `1.0` for a directly connected sensor or a sampler with a
   wider input range). Defaults to `1.0`. At most one of `voltage_divider:` and `voltage_multiplier:` may be set.
 - **adc_input_max** (*Optional*, float): The largest voltage the sampler measures, which is what the divider is
-  checked against. It defaults to the measuring range of the attenuation for an `adc` sensor, and has to be declared
-  for any other sampler - `4.096` for an ADS1115 at that gain, for example; without it the wiring of such a sampler is
-  only checked against `adc_pin_max:`.
+  checked against. It defaults to the measuring range of the attenuation for the hidden ADC of `pin:` and for an
+  `adc` sensor, and has to be declared for any other sampler - `4.096` for an ADS1115 at that gain, for example;
+  without it the wiring of such a sampler is only checked against `adc_pin_max:`. A value above the range the
+  attenuation actually measures (for `pin:` or an `adc` sampler) is capped at that range, with a build-time warning,
+  because the conversion flattens above it.
 - **adc_pin_max** (*Optional*, float): The largest voltage the sampler input survives. Defaults to `3.6`. The divider
   is checked against it as well, so a wiring that would damage the pin is refused at build time.
 - **vcc** (*Optional*, float): The supply voltage of the module in V, used in the RS calculation. Defaults to `5.0`.
@@ -310,8 +313,8 @@ still defaults to `1`. Nothing checks that those coefficients match the sensor, 
   `voltage_multiplier:`; the component refuses a wiring that would put more than `adc_pin_max:` on the input.
 - **Divider and ADC range**: The component also refuses a divider that leaves the AO pin above what the sampler
   measures. The 10 kOhm / 20 kOhm divider (3.33 V) is above the recommended 12 dB range of an ESP32 ADC - 2.45 V on a
-  classic ESP32, 3.1 V on an S3 - so it is only accepted with `adc_input_max: 3.34`, and the top of the range is then
-  compressed. The 10 kOhm / 2 kOhm divider (0.83 V) stays inside the linear range of every target.
+  classic ESP32, 3.1 V on an S3 - so it is refused, and declaring a larger `adc_input_max:` does not widen an ADC
+  whose attenuation is known. The 10 kOhm / 2 kOhm divider (0.83 V) stays inside the 12 dB range of every variant.
 - **Two-phase heaters**: The MQ-7 needs a cycled heater supply - 5 V for 60 s followed by 1.4 V for 90 s - which this
   component does not drive. It only measures the analog output, so the heater has to be driven by an external circuit
   or an ESPHome `output`.
@@ -324,7 +327,7 @@ still defaults to `1`. Nothing checks that those coefficients match the sensor, 
 - **Saturation**: A sensor in a high gas concentration has almost no resistance left and drives AO to its supply. A
   reading between `vcc:` and 5 % above it - a 5.1 V rail against the default `vcc: 5.0`, for example - is a real
   measurement at the top of the range and is published as `max_ppm:`. Only a reading further above `vcc:` is treated
-  as a fault.
+  as a fault. While the output is saturated, the RS diagnostic reports `0 kOhm`, because the resistance has collapsed.
 - **Accuracy**: The datasheet curves are coarse fits and the sensors are not selective - every MQ type responds to
   several gases, so the published value is an estimate of the concentration of the selected gas and not a measurement
   of it.
