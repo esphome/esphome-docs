@@ -210,7 +210,10 @@ Without `r0:` or `calibration:` the sensor stays `unknown` and reports a warning
 **Sampling**
 
 - **sample_count** (*Optional*, int): The number of AO conversions averaged per reading. They run back to back inside
-  one pass of the main loop. Defaults to `2`. Range: 1-16.
+  one pass of the main loop. Defaults to `2`. Range: 1-16. The back-to-back conversions are bounded at 64 per
+  reading: with `pin:` that is `sample_count:` multiplied by `adc_samples:`, and with `voltage:` pointing at an
+  `adc` sensor it is `sample_count:` multiplied by that sensor's `samples:`. Any other sampler takes its own
+  conversion time per sample, which `sample_count:` multiplies.
 - **sample_interval** (*Optional*, [Time](/guides/configuration-types#time)): The spacing between two of the readings
   of a calibration. Defaults to `20ms`; the minimum is 16 ms, one pass of the main loop.
 - **warmup_time** (*Optional*, [Time](/guides/configuration-types#time)): A window after boot in which no reading is
