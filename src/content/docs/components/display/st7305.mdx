@@ -46,8 +46,8 @@ display:
 
 ## Custom Panels
 
-Use the `CUSTOM` model and supply the panel dimensions, orientation, address window and init
-sequence.
+Use the `CUSTOM` model and supply the panel dimensions, packing orientation (`portrait`), address
+window and init sequence.
 
 ```yaml
 display:
@@ -55,7 +55,7 @@ display:
     model: CUSTOM
     width: 200
     height: 200
-    orientation: PORTRAIT
+    portrait: true
     column_start: 0x13
     column_end: 0x25
     row_start: 0x00
@@ -96,7 +96,9 @@ must cover `width * height / 8` bytes.
   [SPI Component](/components/spi) if there are multiple SPI buses.
 - **width** (*Optional*, int): The display width in pixels. Required for `CUSTOM`.
 - **height** (*Optional*, int): The display height in pixels. Required for `CUSTOM`.
-- **orientation** (*Optional*, string): `LANDSCAPE` or `PORTRAIT`. Required for `CUSTOM`.
+- **portrait** (*Optional*, boolean): Set to `true` for a panel that packs 4x2 pixels per byte
+  (portrait native orientation). Set to `false` for the 2x4 landscape layout. Required for
+  `CUSTOM`; the `WAVESHARE-400X300` model sets it to `false`.
 - **column_start** (*Optional*, int): The CASET start address. Defaults to the model value, or `0`
   for `CUSTOM`.
 - **column_end** (*Optional*, int): The CASET end address. Defaults to the model value, or to a
