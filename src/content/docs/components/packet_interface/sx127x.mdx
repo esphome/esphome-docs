@@ -10,7 +10,8 @@ radio configured with the [SX127x](/components/sx127x/) component. Each packet i
 radio itself marks where a packet starts and ends, and checks it with its CRC if `crc_enable` is set.
 
 The radio must send packets of varying length, so its `payload_length` must be `0`, the default.
-Without LoRa modulation, the radio sends at most 64 bytes in a packet, so `max_packet_size` must be 64 or less.
+Without LoRa modulation, the radio must be in packet mode (`packet_mode: true`), and it sends at most 64 bytes in a
+packet, so `max_packet_size` must be 64 or less.
 
 Received packets carry the radio's RSSI and SNR, which the layers above pass on.
 
