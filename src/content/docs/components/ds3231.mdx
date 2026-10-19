@@ -147,7 +147,8 @@ on_...:
 
 ## `ds3231.enable_alarm` / `ds3231.disable_alarm` Actions
 
-Enable or disable an alarm without changing its time.
+Enable or disable an alarm without changing its time. Enabling an alarm first clears a match from while it was
+disabled, so the trigger only fires for the next one.
 
 ```yaml
 on_...:
