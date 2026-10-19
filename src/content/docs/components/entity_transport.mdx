@@ -70,7 +70,8 @@ and binary sensors, and sends a *dictionary* that gives the ID for each number. 
 numbers.
 
 Each packet is checked in full when it arrives, and a packet that is damaged or not well formed is dropped whole, so
-it changes no state. A device ignores the states of entity types it does not support, so devices running newer
+it changes no state. A device logs a warning, at most once a minute, when it drops such a packet, or one from a
+device whose packet format it does not support. A device ignores the states of entity types it does not support, so devices running newer
 ESPHome versions can send more types without upsetting older ones.
 
 - When a sensor or binary sensor changes, its new state is sent straight away.
@@ -80,10 +81,11 @@ ESPHome versions can send more types without upsetting older ones.
   cannot be reached, the sensors that show its states have no state.
 - At each `update_interval`, the dictionary and all states are sent again. Without a reliability and a session
   layer, this happens every 15 seconds by default, so that a lost packet is soon made good.
-- A device that receives states under a dictionary it has not received yet asks for it, at most every 5 seconds.
-  The other device then sends its dictionary and all states. This also happens when the other device's dictionary
-  changes, for example after it is updated with other sensors. A dictionary that names none of the device's sensors
-  is not asked for again.
+- A device that receives states under a dictionary it has not received in full asks for it, at most every 5
+  seconds. The other device then sends its dictionary and all states. This also happens when the other device's
+  dictionary changes, for example after it is updated with other sensors, or when one packet of a dictionary sent in
+  several packets is lost. A dictionary received in full is not asked for again, even if it names none of the
+  device's sensors.
 
 On a one-way link, where the receiving device cannot send back to the provider, such as a radio link with a receiver
 that never transmits, the request for the dictionary is not heard. A receiver that starts after the provider then
