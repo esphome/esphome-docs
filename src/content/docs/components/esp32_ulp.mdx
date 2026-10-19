@@ -74,8 +74,17 @@ in the program becomes `ulp_counter` in a lambda. ESP-IDF declares every shared 
 of `uint32_t`) regardless of its type in the program, so keep shared variables `uint32_t` or `int32_t`. Reading
 a shared `float` through its symbol gives the bit pattern, and writing through the symbol of a `uint8_t` or
 `uint16_t` overwrites the neighbouring bytes; for such types take the symbol's address and cast it to the real
-type. The main CPU can read and write shared variables at any time; the coprocessor keeps running while it does,
-so prefer single-word values or have the program write a value only when it is complete.
+type. A signed value must be cast back on the main CPU, or `-1` reads as `4294967295`:
+
+```yaml
+sensor:
+  - platform: template
+    name: ULP Temperature
+    lambda: return (int32_t) ulp_temperature;
+```
+
+The main CPU can read and write shared variables at any time; the coprocessor keeps running while it does, so
+prefer single-word values or have the program write a value only when it is complete.
 
 To wake the main CPU from deep sleep, the program calls `ulp_riscv_wakeup_main_processor()` on the S2/S3 or
 `ulp_lp_core_wakeup_main_processor()` on the LP core. When the main CPU is awake the call does nothing. Use the
@@ -139,6 +148,6 @@ on_...:
 ## See Also
 
 - [Deep Sleep](/components/deep_sleep/)
-- [ESP-IDF ULP RISC-V documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/api-reference/system/ulp-risc-v.html)
-- [ESP-IDF LP core documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c6/api-reference/system/ulp-lp-core.html)
+- [ULP RISC-V](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/api-reference/system/ulp-risc-v.html)
+- [LP core](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c6/api-reference/system/ulp-lp-core.html)
 - <APIRef text="esp32_ulp.h" path="esp32_ulp/esp32_ulp.h" />
