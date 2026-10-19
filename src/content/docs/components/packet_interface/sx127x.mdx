@@ -13,8 +13,8 @@ The radio must send packets of varying length, so its `payload_length` must be `
 The radio must listen again after sending (`rx_start: true`, the default) when the link has a reliability or
 session layer or the rolling code, as these need packets back from the peer.
 Without LoRa modulation, the radio must be in packet mode (`packet_mode: true`), and it sends at most 64 bytes in a
-packet, so `max_packet_size` must be 64 or less. It must also have a `sync_value` or `preamble_detect` set, as these
-are how the interface tells that a packet is arriving, so that it does not send over it.
+packet, so `max_packet_size` must be 64 or less. It must also have a `sync_value` set, as this is how the interface tells
+that a packet is arriving, so that it does not send over it.
 
 Received packets carry the radio's RSSI and SNR, which the layers above pass on.
 
