@@ -114,10 +114,6 @@ but can be overridden if needed.
   - **mirror_y** (**Required**, boolean): If true, mirror the y axis.
 
 - **reset_duration** (*Optional*, [Time](/guides/configuration-types#time)): Duration for the display reset operation. Defaults to `200ms`.
-- **invert_red** (*Optional*, boolean): Invert the red color plane. Some BWR e-paper panels with OTP waveforms use
-  inverted red encoding (0 = red, 1 = no red).
-  Only supported by the `XSRUPB-DEPG0750RWF86BF30-7.5in-BWR` model, where it defaults to `true`.
-  Set to `false` if red areas render as white and white areas as red.
 - **lambda** (*Optional*, [lambda](/automations/templates#config-lambda)): The lambda to use for rendering the content on the display.
   See [Display Rendering Engine](/components/display#display-engine) for more information.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See [Display Pages](/components/display#display-pages).
