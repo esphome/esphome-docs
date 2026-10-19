@@ -53,13 +53,10 @@ window and init sequence.
 display:
   - platform: st7305
     model: CUSTOM
-    width: 200
-    height: 200
+    width: 168
+    height: 384
     portrait: true
-    column_start: 0x13
-    column_end: 0x25
-    row_start: 0x00
-    row_end: 0x63
+    column_start: 0x17
     cs_pin: GPIOXX
     dc_pin: GPIOXX
     reset_pin: GPIOXX
@@ -75,10 +72,11 @@ Each `init_sequence` entry is a `[command, data...]` list. Use `delay <time>` be
 where the controller needs time to settle. Supply every register write the panel requires; the
 driver programs the address window for each refresh from the window options.
 
-Landscape panels require a width divisible by 2 and a height divisible by 4. Portrait panels
-require a width divisible by 4 and a height divisible by 2. The address window must be large
-enough for the framebuffer: the number of addressed columns, rows and three bytes per address
-must cover `width * height / 8` bytes.
+The panel's inner dimension must be a multiple of 12 so that the framebuffer's inner stride
+matches whole 12-pixel controller addresses: the height for landscape panels, the width for
+portrait panels. Landscape panels also require an even width, and portrait panels an even height.
+The address window must be large enough for the framebuffer: the number of addressed columns,
+rows and three bytes per address must cover `width * height / 8` bytes.
 
 ## Configuration Variables
 
