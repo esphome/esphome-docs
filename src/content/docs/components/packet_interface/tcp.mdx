@@ -15,7 +15,7 @@ interface does the job of the [reliability](/components/packet_interface/#reliab
 itself, and those layers cannot be added to it. Components such as [entity transport](/components/entity_transport/)
 are told when the connection comes up or goes down, as they would be by a session layer. The
 [encryption](/components/packet_interface/#encryption) and [fragmentation](/components/packet_interface/#fragmentation)
-layers can be added.
+layers can be added, but not the encryption layer's rolling code, which needs the keep-alives of a session layer.
 
 Each packet is sent with its length in front. When nothing else has been sent for `keep_alive`, an empty packet is
 sent, and if nothing at all has been received for `timeout`, the connection is closed and made again.
