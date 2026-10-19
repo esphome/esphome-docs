@@ -52,8 +52,9 @@ int main(void) {
   relative to the YAML file. Header files (`.h`) may be listed too; they are copied next to the sources so the
   program can include them. File names must be unique.
 - **wakeup_period** (**Required** on the ESP32-S2/S3, *Optional* on the LP core when `wakeup_sources` is set,
-  [Time](/guides/configuration-types/#time)): How often the timer starts the program. The program runs to
-  completion each time; returning from `main` halts the coprocessor until the next period.
+  [Time](/guides/configuration-types/#time)): How often the timer starts the program, from `1us` to about
+  71 minutes. The program runs to completion each time; returning from `main` halts the coprocessor until the
+  next period.
 - **wakeup_sources** (*Optional*, list): LP core only (ESP32-C5/C6/P4). Additional events that start the program:
   `hp_cpu` (started once by the main CPU), `lp_io` (LP IO interrupt), `lp_uart` (LP UART activity) or `etm`
   (ETM event). The LP timer is used automatically when `wakeup_period` is set.
@@ -61,8 +62,8 @@ int main(void) {
   variables and its stack. Defaults to `4096`. The maximum is `8176` on the S2/S3, `16352` on the C5/C6 and
   `31088` on the P4.
 - **run_on_boot** (*Optional*, boolean): Load and start the program during setup. Defaults to `true`. When
-  `false`, call `load_and_run()` from a lambda. After a deep-sleep wake the program is left running and its
-  variables keep their values.
+  `false`, call `load_and_run()` from a lambda. However it was started, a running program is left alone after a
+  deep-sleep wake and its variables keep their values.
 - **wakeup_from_sleep** (*Optional*, boolean): Allow the program to wake the main CPU from deep sleep. Defaults to
   `true`.
 
