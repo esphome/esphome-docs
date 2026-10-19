@@ -21,7 +21,8 @@ such a link they need an addressing layer with a `destination`.
 
 One `espnow` component can carry links to several peers and a broadcast link at the same time. On ESP8266, which does
 not report where a packet was sent, a broadcast link also receives the packets sent to this device by its peers, so
-there an addressing layer is needed on the broadcast link to drop them.
+there an addressing layer is needed on the broadcast link to drop them. In the same way, a peer link on ESP8266 also
+receives the broadcasts sent by its peer.
 
 ESP-NOW does not resend lost packets on its own, so add a [reliability layer](/components/packet_interface/#reliability)
 if every packet must arrive. Received packets carry the sender's MAC address and, on ESP32, the RSSI.
