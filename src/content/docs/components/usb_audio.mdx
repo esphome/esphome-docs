@@ -6,8 +6,8 @@ import APIRef from '@components/APIRef.astro';
 
 The `usb_audio` component lets an ESP32 act as a USB host for USB Audio Class (UAC) devices such as USB sound cards,
 USB DACs, USB microphones and USB speakerphones. A connected device can be used as a
-[USB Audio Speaker](/components/speaker/usb_audio/), a [USB Audio Microphone](/components/microphone/usb_audio/), or both.
-Each `usb_audio` component supports one speaker and one microphone.
+[USB Audio Speaker](/components/speaker/usb_audio/), a [USB Audio Microphone](/components/microphone/usb_audio/),
+or both. Each `usb_audio` component supports one speaker and one microphone.
 
 This component requires an ESP32 variant with a USB OTG peripheral (ESP32-S2, ESP32-S3, ESP32-S31, ESP32-P4 or
 ESP32-H4). It automatically loads the [USB Host](/components/usb_host/) component, so it can be used alongside
@@ -41,7 +41,7 @@ microphone:
 
 ## Configuration variables
 
-- **id** (*Optional*, [ID](/guides/configuration-types#id)): The id to use for this component.
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): The id to use for this component.
 
 ## Stream format
 
