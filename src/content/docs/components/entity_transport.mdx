@@ -68,6 +68,10 @@ To keep packets small, entity transport does not send entity IDs with every stat
 and binary sensors, and sends a *dictionary* that gives the ID for each number. Packets with states then use the
 numbers.
 
+Each packet is checked in full when it arrives, and a packet that is damaged or not well formed is dropped whole, so
+it changes no state. A device ignores the states of entity types it does not support, so devices running newer
+ESPHome versions can send more types without upsetting older ones.
+
 - When a sensor or binary sensor changes, its new state is sent straight away.
 - At boot, the dictionary and all states are sent.
 - If the packet interface has a [session layer](/components/packet_interface/#session), the dictionary and all
