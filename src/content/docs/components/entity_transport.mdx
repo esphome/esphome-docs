@@ -86,6 +86,8 @@ ESPHome versions can send more types without upsetting older ones.
   dictionary changes, for example after it is updated with other sensors, or when one packet of a dictionary sent in
   several packets is lost. A dictionary received in full is not asked for again, even if it names none of the
   device's sensors.
+- When a provider's dictionary has been received in full and does not name a remote sensor that gives that provider,
+  a warning is logged, and the sensor has no state. Check its `provider` and `remote_id`.
 
 On a one-way link, where the receiving device cannot send back to the provider, such as a radio link with a receiver
 that never transmits, the request for the dictionary is not heard. A receiver that starts after the provider then
