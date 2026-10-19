@@ -281,9 +281,9 @@ those 2 bytes.
 
 If any fragment of a packet is lost, the whole packet is dropped. With a [reliability layer](#reliability), lost
 fragments are sent again, so packets arrive whole. The reliability layer must have room in its queue for every
-fragment of the largest packet: a packet is not sent until there is room for all of its fragments. The log shows how
-many fragments the largest packet needs; increase the reliability layer's `max_queue_length`, up to 7, or reduce
-`max_packet_size` if it is more than the queue holds.
+fragment of the largest packet: a packet is not sent until there is room for all of its fragments. A configuration
+whose largest packet needs more fragments than the queue holds is rejected; increase the reliability layer's
+`max_queue_length`, up to 7, or reduce `max_packet_size`.
 
 On a channel shared by several devices, use an [addressing layer](#addressing), so that fragments from different
 devices are not mixed. When two devices send packets of several fragments to a `broadcast` entry at the same moment,
