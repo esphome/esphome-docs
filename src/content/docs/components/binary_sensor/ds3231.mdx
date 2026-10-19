@@ -32,12 +32,12 @@ binary_sensor:
   [Binary Sensor](/components/binary_sensor/#config-binary_sensor).
 - **oscillator_stopped** (*Optional*): On when the chip's oscillator has stopped since the time was last
   written, which means the stored time is invalid (usually an empty or missing backup battery). Turns off after
-  [`ds3231.write_time`](/components/time/ds3231/#ds3231write_time-action). All options from
+  [`ds3231.write_time`](/components/time/ds3231/#ds3231-write_time-action). All options from
   [Binary Sensor](/components/binary_sensor/#config-binary_sensor).
 
 With `auto_clear_alarms: true` (the default), an alarm sensor turns on for one second each time the alarm
 fires. With `auto_clear_alarms: false`, it stays on until the alarm is cleared with the
-[`ds3231.clear_alarm`](/components/ds3231/#ds3231clear_alarm-action) action.
+[`ds3231.clear_alarm`](/components/ds3231/#ds3231-clear_alarm-action) action.
 
 Only enabled alarms turn their sensor on. The alarm sensors start off at boot; an alarm that fired while the
 device was off is reported right after boot. The flags are read on the hub's `interrupt_pin` and every

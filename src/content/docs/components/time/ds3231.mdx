@@ -21,7 +21,7 @@ time:
 
 - **ds3231_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the [`ds3231`](/components/ds3231/)
   hub to use when more than one is configured.
-- All other options from [Base Time Configuration](/components/time#base_time_config).
+- All other options from [Base Time Configuration](/components/time/#base_time_config).
 
 The RTC holds UTC time. If the chip's oscillator was stopped (for example because the backup battery is empty),
 the stored time is invalid and is not used until a new time has been written. The
@@ -29,7 +29,7 @@ the stored time is invalid and is not used until a new time has been written. Th
 
 ## `ds3231.write_time` Action
 
-This [Action](/automations/actions#all-actions) writes the current system time to the RTC and clears the
+This [Action](/automations/actions/#all-actions) writes the current system time to the RTC and clears the
 oscillator-stop flag.
 
 > [!NOTE]
@@ -46,7 +46,7 @@ on_...:
 
 ## `ds3231.read_time` Action
 
-This [Action](/automations/actions#all-actions) sets the system time from the RTC.
+This [Action](/automations/actions/#all-actions) sets the system time from the RTC.
 
 > [!NOTE]
 > The RTC is read automatically every `update_interval` (15 minutes by default). This action can be used to

@@ -17,7 +17,7 @@ This component is an I²C hub. It owns the chip and provides:
 - the [`time`](/components/time/ds3231/) platform, to keep the system clock across reboots and power loss,
 - the [`sensor`](/components/sensor/ds3231/) platform for the on-die temperature,
 - the [`binary_sensor`](/components/binary_sensor/ds3231/) platform for the alarm and oscillator-stop flags,
-- both hardware alarms with [triggers](#on_alarm_1--on_alarm_2-trigger) and [actions](#ds3231set_alarm_1-action),
+- both hardware alarms with [triggers](#on_alarm_1-on_alarm_2-trigger) and [actions](#ds3231-set_alarm_1-action),
 - control of the INT/SQW square-wave output, the 32 kHz output and the aging offset.
 
 The [I²C](/components/i2c/) bus must be set up first.
@@ -41,9 +41,9 @@ ds3231:
   the INT/SQW pin of the chip. The pin is open drain and active low, so it needs a pull-up (most breakout boards
   have one). With an interrupt pin the alarms are handled as soon as they fire instead of being polled. Can't be
   combined with `square_wave_frequency`.
-- **square_wave_frequency** (*Optional*, string): Use the INT/SQW pin as a square-wave output instead of the
-  alarm interrupt. One of `1Hz`, `1024Hz`, `4096Hz` or `8192Hz`. If not set, INT/SQW is the alarm interrupt
-  output.
+- **square_wave_frequency** (*Optional*, frequency): Use the INT/SQW pin as a square-wave output instead of the
+  alarm interrupt. One of `1Hz`, `1024Hz`, `4096Hz` or `8192Hz` (`1.024kHz` and the other kHz spellings work
+  too). If not set, INT/SQW is the alarm interrupt output.
 - **battery_backed_square_wave** (*Optional*, boolean): Keep the square wave running while the chip runs from
   its backup battery. If not set, the chip setting is left unchanged.
 - **output_32khz** (*Optional*, boolean): Enable or disable the 32 kHz output pin. The chip enables it on
@@ -52,7 +52,7 @@ ds3231:
   at 25 °C; positive values slow the clock down. If not set, the chip setting is left unchanged.
 - **auto_clear_alarms** (*Optional*, boolean): Clear an alarm flag on the chip as soon as the alarm has been
   handled, which also releases the INT/SQW line. When `false`, the flag stays set until it is cleared with the
-  [`ds3231.clear_alarm`](#ds3231clear_alarm-action) action. Defaults to `true`.
+  [`ds3231.clear_alarm`](#ds3231-clear_alarm-action) action. Defaults to `true`.
 - **alarm_check_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How often to poll the alarm
   flags. Without an `interrupt_pin` this is how alarms are detected; with one it is a fallback that picks up a
   missed interrupt. Only used when an `interrupt_pin`, an `on_alarm_*` trigger or an alarm binary sensor is
@@ -79,7 +79,7 @@ power or a backup battery. Alarm 1 has a resolution of one second, alarm 2 of on
 | `weekly`       | on `day_of_week` of every week, at that time     | on `day_of_week`, at that time      |
 
 The chip compares the alarms against its own clock, which holds UTC time when it is set with the
-[`ds3231.write_time`](/components/time/ds3231/#ds3231write_time-action) action. Alarm times are therefore in
+[`ds3231.write_time`](/components/time/ds3231/#ds3231-write_time-action) action. Alarm times are therefore in
 UTC. Days of the week are numbered `1` (Sunday) to `7` (Saturday), as in the [time](/components/time/)
 component.
 
@@ -133,7 +133,7 @@ Configuration variables:
 
 ## `ds3231.set_alarm_2` Action
 
-Program alarm 2. Same as [`ds3231.set_alarm_1`](#ds3231set_alarm_1-action), without `second` and without the
+Program alarm 2. Same as [`ds3231.set_alarm_1`](#ds3231-set_alarm_1-action), without `second` and without the
 `every_second` mode.
 
 ```yaml
@@ -172,7 +172,7 @@ on_...:
       alarm: 1
 ```
 
-Configuration variables: the same as for [`ds3231.enable_alarm`](#ds3231enable_alarm--ds3231disable_alarm-actions).
+Configuration variables: the same as for [`ds3231.enable_alarm`](#ds3231-enable_alarm-ds3231-disable_alarm-actions).
 
 ## `ds3231.is_alarm_triggered` Condition
 
@@ -204,7 +204,7 @@ on_...:
 Configuration variables:
 
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the `ds3231` hub.
-- **frequency** (**Required**, string): One of `1Hz`, `1024Hz`, `4096Hz` or `8192Hz`.
+- **frequency** (**Required**, frequency): One of `1Hz`, `1024Hz`, `4096Hz` or `8192Hz`.
   (`ds3231.enable_square_wave` only)
 
 ## `ds3231.set_32khz_output` Action
