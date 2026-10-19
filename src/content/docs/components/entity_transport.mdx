@@ -78,6 +78,11 @@ numbers.
 - A device that receives states from a device whose dictionary it does not have yet asks for it, at most every 5
   seconds. The other device then sends its dictionary and all states.
 
+On a one-way link, where the receiving device cannot send back to the provider, such as a radio link with a receiver
+that never transmits, the request for the dictionary is not heard. A receiver that starts after the provider then
+gets the dictionary at the provider's next `update_interval`, and its sensors have no state until then. Keep an
+`update_interval` on the provider of such a link, and do not set it to `never`.
+
 When the packet interface cannot send a packet, for example while the network is not connected, it is tried again
 after a second.
 
