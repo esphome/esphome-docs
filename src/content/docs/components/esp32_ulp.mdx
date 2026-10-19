@@ -51,9 +51,9 @@ int main(void) {
 - **sources** (**Required**, list of files): The C (`.c`) and assembly (`.S`) files that make up the program,
   relative to the YAML file. Header files (`.h`) may be listed too; they are copied next to the sources so the
   program can include them. File names must be unique.
-- **wakeup_period** (*Optional*, [Time](/guides/configuration-types/#time)): How often the timer starts the
+- **wakeup_period** (**Required**, [Time](/guides/configuration-types/#time)): How often the timer starts the
   program. The program runs to completion each time; returning from `main` halts the coprocessor until the next
-  period. Required on the LP core unless `wakeup_sources` is set.
+  period. On the LP core this may be left out when `wakeup_sources` is set.
 - **wakeup_sources** (*Optional*, list): LP core only (ESP32-C5/C6/P4). Additional events that start the program:
   `hp_cpu` (started once by the main CPU), `lp_io` (LP IO interrupt), `lp_uart` (LP UART activity) or `etm`
   (ETM event). The LP timer is used automatically when `wakeup_period` is set.
