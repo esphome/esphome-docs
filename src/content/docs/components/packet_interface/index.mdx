@@ -311,10 +311,11 @@ packet_interface:
 ```
 
 - **type** (*Optional*, string): The session method. Only `basic` is available. Defaults to `basic`.
-- **keep_alive** (*Optional*, [Time](/guides/configuration-types#time)): How often to send a keep-alive packet. At
-  least `1s`. Defaults to `10s`.
+- **keep_alive** (*Optional*, [Time](/guides/configuration-types#time)): How often to send a keep-alive packet. From
+  `1s` to `1h`. Defaults to `10s`.
 - **timeout** (*Optional*, [Time](/guides/configuration-types#time)): How long without receiving anything before the
-  other device is considered lost. Must be longer than `keep_alive`. Defaults to three times `keep_alive`.
+  other device is considered lost. Must be longer than `keep_alive`, and at most `3h`. Defaults to three times
+  `keep_alive`.
 - **binary_sensor** (*Optional*): A [binary sensor](/components/binary_sensor/) that is ON while the other device
   can be reached. All options from [Binary Sensor](/components/binary_sensor/#config-binary_sensor).
 
