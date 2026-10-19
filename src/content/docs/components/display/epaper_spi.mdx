@@ -37,7 +37,7 @@ pins and dimensions specified.
 | SSD1681                | Solomon      | [https://www.solomon-systech.com/product/ssd1681/](https://www.solomon-systech.com/product/ssd1681/) |
 | SSD1683                | Solomon      | [https://www.solomon-systech.com/product/ssd1683/](https://www.solomon-systech.com/product/ssd1683/) |
 | T133A01                | TianMa       | 13.3" 6-color e-paper controller IC with dual-CS SPI architecture          |
-| UC8179                 | UltraChip    | E-paper controller used by 800x480 7.5" panels (mono and 3-color variants). [Datasheet](https://www.buydisplay.com/download/ic/UC8179.pdf) |
+| UC8179                 | UltraChip    | E-paper controller used by 800x480 7.5" panels (mono and 3-color variants) |
 | UC8279                 | UltraChip    | Mono e-paper controller, supports partial refresh via `full_update_every` |
 
 ## Supported display panels
@@ -45,27 +45,27 @@ pins and dimensions specified.
 These models represent display panels with known dimensions, but without a microcontroller. The configuration will require
 the pins used to interface to the display to be specified.
 
-| Display name                | Manufacturer        | Product Description                                |
-|-----------------------------|---------------------|----------------------------------------------------|
+| Display name              | Manufacturer        | Product Description                                |
+|---------------------------|---------------------|----------------------------------------------------|
 | GooDisplay-GDEY0213F51-2.13 | Dalian Good Display | [https://www.good-display.com/product/463.html](https://www.good-display.com/product/463.html) |
-| GooDisplay-GDEY042T81-4.2   | Dalian Good Display | [https://www.good-display.com/product/386.html](https://www.good-display.com/product/386.html) |
-| Waveshare-1.54in-G          | Waveshare           | [https://www.waveshare.com/1.54inch-e-paper-g.htm](https://www.waveshare.com/1.54inch-e-paper-g.htm) |
-| Waveshare-1.54in-v2         | Waveshare           | 1.54" V2 mono e-paper (200x200, SSD1681) [https://www.waveshare.com/1.54inch-e-paper-module.htm](https://www.waveshare.com/1.54inch-e-paper-module.htm) |
-| Waveshare-2.13in-G          | Waveshare           | 2.13" 4-color e-paper (124x250 padded from 122, JD79660), current hardware/init revision. [https://www.waveshare.com/product/raspberry-pi/displays/e-paper/2.13inch-e-paper-hat-g.htm](https://www.waveshare.com/product/raspberry-pi/displays/e-paper/2.13inch-e-paper-hat-g.htm) |
-| Waveshare-2.13in-G-V1       | Waveshare           | Older hardware/init revision of the same panel (128x250 padded from 122). Untested. [https://www.waveshare.com/product/raspberry-pi/displays/e-paper/2.13inch-e-paper-hat-g.htm](https://www.waveshare.com/product/raspberry-pi/displays/e-paper/2.13inch-e-paper-hat-g.htm) |
-| Waveshare-2.13in-v3         | Waveshare           | [https://www.waveshare.com/pico-epaper-2.13.htm](https://www.waveshare.com/pico-epaper-2.13.htm)   |
-| Waveshare-2.13in-bv4        | Waveshare           | 2.13" 3-color e-paper (250x122, SSD1683) [https://www.waveshare.com/product/displays/e-paper/epaper-3/2.13inch-e-paper-b.htm](https://www.waveshare.com/product/displays/e-paper/epaper-3/2.13inch-e-paper-b.htm) |
-| Waveshare-2.66in-b          | Waveshare           | [https://www.waveshare.com/2.66inch-e-paper-module-b.htm](https://www.waveshare.com/2.66inch-e-paper-module-b.htm) |
-| Waveshare-2.9in-v2          | Waveshare           | [https://www.waveshare.com/2.9inch-e-paper-module.htm](https://www.waveshare.com/2.9inch-e-paper-module.htm) — 2.9" V2 mono (128x296, SSD1680), partial refresh via `full_update_every` |
-| Waveshare-3.97in            | Waveshare           | [https://www.waveshare.com/3.97inch-e-paper-hat-plus.htm](https://www.waveshare.com/3.97inch-e-paper-hat-plus.htm) |
-| Waveshare-4.26in            | Waveshare           | [https://www.waveshare.com/4.26inch-e-paper.htm](https://www.waveshare.com/4.26inch-e-paper.htm)   |
-| Waveshare-7.5in-H           | Waveshare           | [https://www.waveshare.com/7.5inch-e-paper-hat-h.htm](https://www.waveshare.com/7.5inch-e-paper-hat-h.htm) |
-| Waveshare-7.5in-V2          | Waveshare           | [https://www.waveshare.com/7.5inch-e-paper-hat.htm](https://www.waveshare.com/7.5inch-e-paper-hat.htm) — 7.5" V2 mono (800x480, UC8179), supports fast and partial refresh via `full_update_every` |
-| Waveshare-7.5in-bV2-BWR     | Waveshare           | [https://www.waveshare.com/7.5inch-e-paper-hat-b.htm](https://www.waveshare.com/7.5inch-e-paper-hat-b.htm) — 7.5" V2 3-color (800x480, UC8179) |
-| WeAct-2.13in-3c             | WeAct               | 2.13" 3-color e-paper (250x122, SSD1683)           |
-| WeAct-2.9in-3c              | WeAct               | 2.9" 3-color e-paper (128x296, SSD1683)            |
-| WeAct-4.2in-3c              | WeAct               | 4.2" 3-color e-paper (400x300, SSD1683)            |
-| XSRUPB-7.5-bwr              | XSRUPB              | [7.5" 3-color e-paper (800x480, UC8179), sold under part numbers FPC-8612 / DEPG0750RWF86BF30 / XSRUPB-2025](https://xsrupb.com/index.php?route=product/product&product_id=13) |
+| GooDisplay-GDEY042T81-4.2 | Dalian Good Display | [https://www.good-display.com/product/386.html](https://www.good-display.com/product/386.html) |
+| Waveshare-1.54in-G        | Waveshare           | [https://www.waveshare.com/1.54inch-e-paper-g.htm](https://www.waveshare.com/1.54inch-e-paper-g.htm) |
+| Waveshare-1.54in-v2       | Waveshare           | 1.54" V2 mono e-paper (200x200, SSD1681) [https://www.waveshare.com/1.54inch-e-paper-module.htm](https://www.waveshare.com/1.54inch-e-paper-module.htm) |
+| Waveshare-2.13in-G        | Waveshare           | 2.13" 4-color e-paper (124x250 padded from 122, JD79660), current hardware/init revision. [https://www.waveshare.com/product/raspberry-pi/displays/e-paper/2.13inch-e-paper-hat-g.htm](https://www.waveshare.com/product/raspberry-pi/displays/e-paper/2.13inch-e-paper-hat-g.htm) |
+| Waveshare-2.13in-G-V1     | Waveshare           | Older hardware/init revision of the same panel (128x250 padded from 122). Untested. [https://www.waveshare.com/product/raspberry-pi/displays/e-paper/2.13inch-e-paper-hat-g.htm](https://www.waveshare.com/product/raspberry-pi/displays/e-paper/2.13inch-e-paper-hat-g.htm) |
+| Waveshare-2.13in-v3       | Waveshare           | [https://www.waveshare.com/pico-epaper-2.13.htm](https://www.waveshare.com/pico-epaper-2.13.htm)   |
+| Waveshare-2.13in-bv4      | Waveshare           | 2.13" 3-color e-paper (250x122, SSD1683) [https://www.waveshare.com/product/displays/e-paper/epaper-3/2.13inch-e-paper-b.htm](https://www.waveshare.com/product/displays/e-paper/epaper-3/2.13inch-e-paper-b.htm) |
+| Waveshare-2.66in-b        | Waveshare           | [https://www.waveshare.com/2.66inch-e-paper-module-b.htm](https://www.waveshare.com/2.66inch-e-paper-module-b.htm) |
+| Waveshare-2.9in-v2        | Waveshare           | [https://www.waveshare.com/2.9inch-e-paper-module.htm](https://www.waveshare.com/2.9inch-e-paper-module.htm) — 2.9" V2 mono (128x296, SSD1680), partial refresh via `full_update_every` |
+| Waveshare-3.97in          | Waveshare           | [https://www.waveshare.com/3.97inch-e-paper-hat-plus.htm](https://www.waveshare.com/3.97inch-e-paper-hat-plus.htm) |
+| Waveshare-4.26in          | Waveshare           | [https://www.waveshare.com/4.26inch-e-paper.htm](https://www.waveshare.com/4.26inch-e-paper.htm)   |
+| Waveshare-7.5in-H         | Waveshare           | [https://www.waveshare.com/7.5inch-e-paper-hat-h.htm](https://www.waveshare.com/7.5inch-e-paper-hat-h.htm) |
+| Waveshare-7.5in-V2        | Waveshare           | [https://www.waveshare.com/7.5inch-e-paper-hat.htm](https://www.waveshare.com/7.5inch-e-paper-hat.htm) — 7.5" V2 mono (800x480, UC8179), supports fast and partial refresh via `full_update_every` |
+| Waveshare-7.5in-bV2-BWR   | Waveshare           | [https://www.waveshare.com/7.5inch-e-paper-hat-b.htm](https://www.waveshare.com/7.5inch-e-paper-hat-b.htm) — 7.5" V2 3-color (800x480, UC8179) |
+| WeAct-2.13in-3c           | WeAct               | 2.13" 3-color e-paper (250x122, SSD1683)           |
+| WeAct-2.9in-3c            | WeAct               | 2.9" 3-color e-paper (128x296, SSD1683)            |
+| WeAct-4.2in-3c            | WeAct               | 4.2" 3-color e-paper (400x300, SSD1683)            |
+| XSRUPB-7.5-bwr            | XSRUPB              | [7.5" 3-color e-paper (800x480, UC8179), sold under part numbers FPC-8612 / DEPG0750RWF86BF30 / XSRUPB-2025](https://xsrupb.com/index.php?route=product/product&product_id=13) |
 
 `Waveshare-2.9in-v2` replaces `model: 2.90inv2` of the deprecated `waveshare_epaper` component.
 
