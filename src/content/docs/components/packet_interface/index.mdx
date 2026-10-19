@@ -127,8 +127,9 @@ The addressing layer adds 4 bytes to each packet.
 ### Several devices on one channel
 
 With `peers`, one channel carries a separate link to each of several devices, each with its own layers, and
-optionally a `broadcast` entry for everything else. A packet from a device that has its own entry goes to that entry
-only; packets from other devices go to the `broadcast` entry, or are dropped if there is none.
+optionally a `broadcast` entry for everything else. A packet sent to this device by a device that has its own entry
+goes to that entry. Broadcasts, and packets from devices without an entry, go to the `broadcast` entry; without one,
+a broadcast from a device with its own entry goes to that entry, and packets from other devices are dropped.
 
 ```yaml
 packet_interface:
@@ -285,7 +286,8 @@ many fragments the largest packet needs; increase the reliability layer's `max_q
 `max_packet_size` if it is more than the queue holds.
 
 On a channel shared by several devices, use an [addressing layer](#addressing), so that fragments from different
-devices are not mixed.
+devices are not mixed. When two devices send packets of several fragments to a `broadcast` entry at the same moment,
+only the packet started last arrives; a separate entry for each device, with its own fragmentation layer, avoids this.
 
 ## Session
 

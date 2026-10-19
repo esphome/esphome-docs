@@ -75,8 +75,10 @@ numbers.
   cannot be reached, the sensors that show its states have no state.
 - At each `update_interval`, the dictionary and all states are sent again. Without a reliability and a session
   layer, this happens every 15 seconds by default, so that a lost packet is soon made good.
-- A device that receives states from a device whose dictionary it does not have yet asks for it, at most every 5
-  seconds. The other device then sends its dictionary and all states.
+- A device that receives states under a dictionary it has not received yet asks for it, at most every 5 seconds.
+  The other device then sends its dictionary and all states. This also happens when the other device's dictionary
+  changes, for example after it is updated with other sensors. A dictionary that names none of the device's sensors
+  is not asked for again.
 
 On a one-way link, where the receiving device cannot send back to the provider, such as a radio link with a receiver
 that never transmits, the request for the dictionary is not heard. A receiver that starts after the provider then
