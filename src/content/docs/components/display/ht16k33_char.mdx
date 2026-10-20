@@ -121,7 +121,8 @@ The 7-segment font has the digits `0` to `9`, a space, `-`, `_` and the letters 
 
 `add_characters` maps a single character to the segments that draw it. A character already in the font is drawn the
 new way, and mapping it to `0` blanks it; any other character, including multi-byte ones such as `°`, is added.
-Each segment is one bit of the value, with bit 0 the least significant:
+`.` and `:` always light the decimal point and colon and cannot be redefined. Each segment is one bit of the value,
+with bit 0 the least significant:
 
 <Figure
   src={ht16k33SegmentsImg}
