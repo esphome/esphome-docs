@@ -32,13 +32,14 @@ light:
 - All other options from [Output](/components/output#config-output).
 
 > [!NOTE]
-> A PWM slice serves four pins: an adjacent pair and the pair 16 higher. GPIO0, GPIO1, GPIO16 and GPIO17 are
-> slice 0, GPIO2, GPIO3, GPIO18 and GPIO19 are slice 1, and so on up to GPIO31; on the RP2350, GPIO32 to
-> GPIO47 pair up the same way (GPIO32, GPIO33, GPIO40 and GPIO41 share a slice). All outputs on a slice run
-> at one frequency, so they must use the same `frequency`: when one of them changes it, the others still
-> scale their duty cycle for the old frequency and can end up fully on. Give an output whose frequency
-> changes at runtime a slice of its own. Pins 16 apart, such as GPIO0 and GPIO16, are the same PWM channel
-> and output the same signal.
+> A PWM slice serves four pins. For GPIO0 to GPIO31 that is an adjacent pair and the pair 16 higher: GPIO0,
+> GPIO1, GPIO16 and GPIO17 are slice 0, GPIO2, GPIO3, GPIO18 and GPIO19 are slice 1, and so on. On the RP2350,
+> GPIO32 to GPIO47 have their own four slices, where the pair 8 higher shares instead: GPIO32, GPIO33, GPIO40
+> and GPIO41 are one slice. All outputs on a slice run at one frequency, so they must use the same
+> `frequency`: when one of them changes it, the others still scale their duty cycle for the old frequency and
+> can end up fully on. Give an output whose frequency changes at runtime a slice of its own. Pins that share
+> a slice and have the same parity are the same PWM channel and output the same signal: GPIO0 and GPIO16
+> below GPIO32, GPIO32 and GPIO40 above it.
 
 ## `output.rp2040_pwm.set_frequency` Action
 
