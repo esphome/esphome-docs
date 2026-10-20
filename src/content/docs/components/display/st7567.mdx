@@ -118,14 +118,14 @@ Optionally you can also connect the `RESET` pin to a pin on the ESP which may im
 ```yaml
 # Example minimal configuration entry
 spi:
-  clk_pin: D1
-  mosi_pin: D2
+  clk_pin: GPIOXX
+  mosi_pin: GPIOXX
 
 display:
   - platform: st7567_spi
     id: my_display
-    dc_pin: D3
-    cs_pin: D4
+    dc_pin: GPIOXX
+    cs_pin: GPIOXX
     lambda: |-
       it.print(0, 0, id(my_font), "Hello World!");
 
