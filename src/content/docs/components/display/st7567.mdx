@@ -125,6 +125,7 @@ display:
   - platform: st7567_spi
     id: my_display
     dc_pin: D3
+    cs_pin: D4
     lambda: |-
       it.print(0, 0, id(my_font), "Hello World!");
 

@@ -52,7 +52,8 @@ pn7150_i2c:
 
 - **on_emulated_tag_scan** (*Optional*, [Automation](/automations)): An automation to perform when the PN7150 is
   scanned by another tag reader (such as a smartphone). See [`on_emulated_tag_scan` Trigger](#pn7150-on_emulated_tag_scan).
-- **on_finished_write** (*Optional*, [Automation](/automations)): An automation to perform after a tag has been cleaned, formatted or written.
+- **on_finished_write** (*Optional*, [Automation](/automations)): An automation to perform when an NDEF write attempt finishes,
+  whether successful or not. Standalone clean/format operations and failures during pre-write formatting do not trigger it.
 
 - **i2c_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the [I²C Component](/components/i2c) if you need
   to use multiple I²C buses.

@@ -67,13 +67,13 @@ MQTT options:
 - **target_temperature_state_topic** (*Optional*, string): The topic to publish target temperature state changes to.
 - All other options from [MQTT Component](/components/mqtt#config-mqtt-component).
 
-## Controlling the water heater
+## Controlling the Water Heater
 
 The operation mode and target temperature are set from [lambdas](/automations/templates#config-lambda)
 with a control call. See [Modes](#water-heater-modes) for the available modes.
 
 ```cpp
-auto call = id(boiler_1).make_call();
+auto call = id(my_boiler).make_call();
 call.set_mode("PERFORMANCE");
 call.set_target_temperature(65.0);
 call.perform();
