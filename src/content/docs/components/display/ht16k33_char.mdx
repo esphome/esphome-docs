@@ -4,20 +4,12 @@ title: "HT16K33 Character Display"
 ---
 
 import Figure from '@components/Figure.astro';
-import ht16k33FullImg from './images/ht16k33-char-full.jpg';
 import ht16k33DigitDefImg from './images/ht16k33-digit-defs.jpg';
 import APIRef from '@components/APIRef.astro';
 
 The `ht16k33_char` display platform drives character displays built around the Holtek HT16K33 LED driver over
 [I²C](/components/i2c/). The chip can drive any array of LEDs, but this platform only knows displays whose segments
 are wired as characters.
-
-<Figure
-  src={ht16k33FullImg}
-  alt=""
-  caption="HT16K33 character displays."
-  layout="constrained"
-/>
 
 The platform is based on the
 [ht16k33_alpha](https://github.com/ssieb/esphome_components/tree/master/components/ht16k33_alpha) external
@@ -133,7 +125,7 @@ with bit 0 the least significant:
 
 <Figure
   src={ht16k33DigitDefImg}
-  caption="The segment names."
+  caption="The segment names. This board has segments A to G and the decimal point; the rest belong to 14-segment boards."
   layout="constrained"
   alt="A digit with its segments named: A along the top, B upper right, C lower right, D along the bottom, E lower left, F upper left, G across the middle, and the decimal point at the lower right."
 />
