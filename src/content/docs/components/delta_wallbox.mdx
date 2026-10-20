@@ -37,6 +37,9 @@ esp32_ble_tracker:
 
 ## Configuration
 
+The charger pairs with a passkey, so the `esp32_ble` component needs keyboard input and bonding enabled, as in the
+example.
+
 ```yaml
 # Example configuration entry
 esp32_ble:
@@ -72,7 +75,6 @@ delta_wallbox:
 ```yaml
 sensor:
   - platform: delta_wallbox
-    delta_wallbox_id: my_charger
     charger_state:
       name: "Charger State"
     max_current:
@@ -102,7 +104,6 @@ sensor:
 ```yaml
 text_sensor:
   - platform: delta_wallbox
-    delta_wallbox_id: my_charger
     model_name:
       name: "Charger Model"
     serial_number:
@@ -126,7 +127,6 @@ text_sensor:
 ```yaml
 button:
   - platform: delta_wallbox
-    delta_wallbox_id: my_charger
     start_charging:
       name: "Start Charging"
     stop_charging:
