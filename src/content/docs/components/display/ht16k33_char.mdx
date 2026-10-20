@@ -48,7 +48,6 @@ display:
   two bytes. From 4 to 64. Defaults to `8`.
 - **add_characters** (*Optional*, mapping): Characters to add to the font, or to redraw differently. See
   [Adding or Changing Characters](#adding-or-changing-characters).
-- **remove_characters** (*Optional*, list): Characters to drop from the font. They then show as a blank digit.
 - **lambda** (*Optional*, [lambda](/automations/templates/#config-lambda)): The lambda to use for rendering the
   content on the display. See [Rendering Lambda](#rendering-lambda) for more information.
 - **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): The interval to re-draw the screen.
@@ -120,8 +119,8 @@ The 7-segment font has the digits `0` to `9`, a space, `-`, `_` and the letters 
 ## Adding or Changing Characters
 
 `add_characters` maps a single character to the segments that draw it. A character already in the font is drawn the
-new way; any other character, including multi-byte ones such as `°`, is added. Each segment is one bit of the value,
-with bit 0 the least significant:
+new way, and mapping it to `0` blanks it; any other character, including multi-byte ones such as `°`, is added. Each
+segment is one bit of the value, with bit 0 the least significant:
 
 <Figure
   src={ht16k33DigitDefImg}
@@ -138,7 +137,7 @@ with bit 0 the least significant:
 add_characters:
   "°": 0x63
   "E": 0b1010000  # draw E as r
-remove_characters: ["Y", "u"]
+  "Y": 0  # never draw Y
 ```
 
 ## See Also
