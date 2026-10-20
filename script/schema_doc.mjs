@@ -113,7 +113,6 @@ export class SchemaStore {
     this.componentIntros = new Set(); // components whose intro this run has written
     this.triggerIntros = new Map(); // trigger key -> the paragraph under its heading, as this run wrote it
     this.propBullets = new Map(); // key or refined copy -> the option bullet text this run wrote to it
-    this.refinedBase = new Map(); // refined copy this run made -> the inherited key it copies
   }
 
   /** Load esphome.json, whose `core` lists every component and platform. */
@@ -1114,14 +1113,37 @@ export class Walker {
 
   /** Write the paragraph under a trigger heading to the trigger key, after the key's own bullet text. */
   async emitTriggerDocs(resolved, trig, text) {
-    if (!this.writing || !text) return;
+    if (!this.writing || !text || !resolved) return;
     const { store } = this;
-    const holders = await store.propHolders(resolved, trig);
-    const found = holders.length ? holders.map((h) => h.prop) : [await store.findProp(resolved, trig)];
-    // A bus copy one section refined also describes the base key the other bus's section wrote to
-    const props = new Set(found.flatMap((p) => (p ? [p, store.refinedBase.get(p)].filter(Boolean) : [])));
+    const busless = (c) => c?.replace(/_(i2c|spi)$/, "");
+    const pageComp = busless(this.componentRef?.split(".")[0]);
+    // The key as this page's component holds it: its own definition or local copy on each variant, or the
+    // shared key its component (or one of its bus variants) declares
+    const targets = new Set();
+    const foreign = [];
+    for (const variant of store.groupVariants(resolved)) {
+      const own = variant.config_vars?.[trig];
+      if (own) targets.add(own);
+      for (const ext of variant.extends ?? []) {
+        const base = await store.findPropOwner(await store.resolveExtends(ext), trig);
+        if (!base) continue;
+        if (busless(ext.split(".")[0]) === pageComp) targets.add(base.prop);
+        else if (!own) foreign.push({ variant, prop: base.prop });
+        break;
+      }
+    }
+    if (!targets.size) {
+      // Only inherited from another component's schema: describe it on this component, not on the shared key
+      for (const { variant, prop } of foreign) {
+        variant.config_vars ??= {};
+        const copy = (variant.config_vars[trig] = { ...prop });
+        targets.add(copy);
+        const bullet = store.propBullets.get(prop);
+        if (bullet) store.propBullets.set(copy, bullet);
+      }
+    }
     const intro = this.links(text);
-    for (const prop of props) {
+    for (const prop of targets) {
       // The first page of this run to describe a trigger wins, as for component intros
       if (store.triggerIntros.has(prop)) continue;
       store.triggerIntros.set(prop, intro);
@@ -1398,7 +1420,6 @@ export class Walker {
       const refined = (target.config_vars[parsed.key] ??= { ...prop });
       refined.docs = converted;
       this.store.propBullets.set(refined, { body, seeAlso });
-      this.store.refinedBase.set(refined, prop);
       e.propsRefined++;
       return;
     }

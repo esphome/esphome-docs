@@ -1423,7 +1423,7 @@ test("a trigger section reaches an inherited trigger through a docs-only copy on
 });
 
 test("an option-less trigger inherited through a docs-only copy on the child still resolves", async () => {
-  const { report } = await walk({
+  const { store, report } = await walk({
     schema: {
       esphome: core(["foo"]),
       foo: {
@@ -1446,6 +1446,10 @@ test("an option-less trigger inherited through a docs-only copy on the child sti
     report.findings.filter((f) => f.kind === "unresolved_trigger"),
     [],
   );
+  // The local copy is what a consumer reading CONFIG_SCHEMA sees; the base is the page component's own
+  const schemas = store.files.get("foo").foo.schemas;
+  assert.match(schemas.CONFIG_SCHEMA.schema.config_vars.on_event.docs, /^Fires on an event\./);
+  assert.match(schemas.BASE_SCHEMA.schema.config_vars.on_event.docs, /^Fires on an event\./);
 });
 
 test("options under a trigger heading a component page cannot place are dropped, not written to it", async () => {
@@ -2792,4 +2796,108 @@ test("a trigger heading's paragraph reaches both the base key and a bus section'
   const copy = store.files.get("foo_i2c").foo_i2c.schemas.CONFIG_SCHEMA.schema.config_vars.on_tag;
   assert.match(base.docs, /Runs on a tag\.\n\nFires when a tag is read\./);
   assert.match(copy.docs, /Runs on a tag\.\n\nFires when a tag is read\./);
+});
+test("a rerun with a changed trigger paragraph updates the base key and a bus section's saved copy", async () => {
+  const bus = { type: "schema", schema: { config_vars: {}, extends: ["foo.BASE_SCHEMA"] } };
+  const page = [
+    "Foo.",
+    "## Over SPI",
+    "{/* schema: foo_spi.CONFIG_SCHEMA */}",
+    "### Configuration variables",
+    "- **on_tag** (*Optional*, Automation): Runs on a tag.",
+    "## Over I²C",
+    "{/* schema: foo_i2c.CONFIG_SCHEMA */}",
+    "### Configuration variables",
+    "- **on_tag** (*Optional*, Automation): Runs on a tag.",
+    "### `on_tag` Trigger",
+    "Fires when a tag is read.",
+    "",
+  ].join("\n\n");
+  const first = await walk({
+    schema: {
+      esphome: core(["foo", "foo_i2c", "foo_spi"]),
+      foo: { foo: { schemas: { BASE_SCHEMA: schema({ on_tag: { key: "Optional", type: "trigger" } }) } } },
+      foo_i2c: { foo_i2c: { schemas: { CONFIG_SCHEMA: structuredClone(bus) } } },
+      foo_spi: { foo_spi: { schemas: { CONFIG_SCHEMA: structuredClone(bus) } } },
+    },
+    pages: { "foo.mdx": page },
+  });
+  const { store } = await walk({
+    schema: Object.fromEntries(first.store.files),
+    pages: { "foo.mdx": page.replace("Fires when a tag is read.", "Fires on every tag read.") },
+  });
+  const base = store.files.get("foo").foo.schemas.BASE_SCHEMA.schema.config_vars.on_tag;
+  const copy = store.files.get("foo_i2c").foo_i2c.schemas.CONFIG_SCHEMA.schema.config_vars.on_tag;
+  for (const prop of [base, copy]) {
+    assert.match(prop.docs, /Runs on a tag\.\n\nFires on every tag read\./);
+    assert.doesNotMatch(prop.docs, /Fires when a tag is read/);
+  }
+});
+test("a platform page's trigger paragraph describes its own copy, not the shared key of another component", async () => {
+  const trigger = { key: "Optional", type: "trigger" };
+  const { store } = await walk({
+    schema: {
+      esphome: core(["foo"], { sensor: {} }),
+      sensor: { sensor: { schemas: { SENSOR_SCHEMA: schema({ on_value: trigger }) }, components: { foo: {} } } },
+      foo: {
+        "foo.sensor": {
+          schemas: {
+            CONFIG_SCHEMA: { type: "schema", schema: { config_vars: {}, extends: ["sensor.SENSOR_SCHEMA"] } },
+          },
+        },
+      },
+    },
+    pages: {
+      "sensor/foo.mdx": ["Foo.", "## `on_value` Trigger", "Fires with the foo's reading.", ""].join("\n\n"),
+    },
+  });
+  assert.equal(store.files.get("sensor").sensor.schemas.SENSOR_SCHEMA.schema.config_vars.on_value.docs, undefined);
+  const own = store.files.get("foo")["foo.sensor"].schemas.CONFIG_SCHEMA.schema.config_vars.on_value;
+  assert.equal(own.type, "trigger");
+  assert.match(own.docs, /^Fires with the foo's reading\./);
+});
+test("a hub page's trigger paragraph skips a platform schema that inherits the key from another component", async () => {
+  const trigger = { key: "Optional", type: "trigger" };
+  const { store } = await walk({
+    schema: {
+      esphome: core([], { switch: {}, binary_sensor: {} }),
+      binary_sensor: {
+        binary_sensor: {
+          schemas: { _BINARY_SENSOR_SCHEMA: schema({ on_state: trigger }) },
+          components: { switch: {} },
+        },
+      },
+      switch: {
+        switch: { schemas: { _SWITCH_SCHEMA: schema({ on_state: trigger }) }, components: {} },
+        "switch.binary_sensor": {
+          schemas: {
+            CONFIG_SCHEMA: {
+              type: "schema",
+              schema: { config_vars: {}, extends: ["binary_sensor._BINARY_SENSOR_SCHEMA"] },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "switch/index.mdx": [
+        "Switches.",
+        "## `switch.on_state` Trigger",
+        "Fires when the switch changes state.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.match(
+    store.files.get("switch").switch.schemas._SWITCH_SCHEMA.schema.config_vars.on_state.docs,
+    /^Fires when the switch changes state\./,
+  );
+  assert.equal(
+    store.files.get("binary_sensor").binary_sensor.schemas._BINARY_SENSOR_SCHEMA.schema.config_vars.on_state.docs,
+    undefined,
+  );
+  assert.equal(
+    store.files.get("switch")["switch.binary_sensor"].schemas.CONFIG_SCHEMA.schema.config_vars.on_state,
+    undefined,
+  );
 });
