@@ -343,8 +343,9 @@ mqtt:
     payload: offline
 ```
 
-- **birth_message** (*Optional*, [MQTTMessage](#mqtt-message))
-- **will_message** (*Optional*, [MQTTMessage](#mqtt-message))
+- **birth_message** (*Optional*, [MQTTMessage](#mqtt-message)): The message to publish once connected to the broker.
+- **will_message** (*Optional*, [MQTTMessage](#mqtt-message)): The last will message the broker publishes when it loses the
+  connection to the device unexpectedly. A clean shutdown publishes `shutdown_message` instead.
 
 If the birth message and last will message have empty topics or topics
 that are different from each other, availability reporting will be
