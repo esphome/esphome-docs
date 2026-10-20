@@ -3,15 +3,16 @@ description: "Instructions for setting up a Delta AC wallbox over Bluetooth in E
 title: "Delta AC Wallbox"
 ---
 
-import { Image } from 'astro:assets';
+import Figure from '@components/Figure.astro';
 
 The `delta_wallbox` component connects to a Delta AC wallbox over Bluetooth Low Energy. It reports the charger's
 model, serial number, firmware versions, state, power, energy and charging time, and can start and stop a charging
 session.
 
-<Image
+<Figure
   src="/images/delta-wallbox-ac-max.jpg"
   alt="Delta AC MAX wallbox"
+  caption="Delta AC MAX wallbox."
   layout="constrained"
   width={400}
   height={400}
@@ -47,17 +48,16 @@ ble_client:
     mac_address: "xx:xx:xx:xx:xx:xx"
 
 delta_wallbox:
-  id: my_charger
   ble_client_id: delta_ble_client
   password: !secret wallbox_password
   pin: !secret wallbox_pin
-  time_id: sntp_time
 ```
 
 ### Configuration Variables
 
 - **password** (**Required**, string): The password from the Delta app.
-- **pin** (*Optional*, int): The six-digit pairing PIN from the Delta app.
+- **pin** (*Optional*, int): The six-digit pairing PIN from the Delta app, needed when the charger asks for a
+  passkey while pairing.
 - **user** (*Optional*, string): The user name to log in with. Defaults to `admin`.
 - **time_id** (*Optional*, [ID](/guides/configuration-types/#id)): A [time](/components/time/) source. When set, the
   charger's clock is synchronized at every connection so that its own logs carry the right time.
@@ -87,8 +87,8 @@ sensor:
 
 - **delta_wallbox_id** (*Optional*, [ID](/guides/configuration-types/#id)): The `delta_wallbox` hub. Only needed
   with more than one.
-- **charger_state** (*Optional*, Sensor): The raw state byte the charger reports. All options from
-  [Sensor](/components/sensor/).
+- **charger_state** (*Optional*, Sensor): The state byte the charger reports, as sent by the charger; the values
+  are not decoded. All options from [Sensor](/components/sensor/).
 - **max_current** (*Optional*, Sensor): The configured charging current limit in amperes. All options from
   [Sensor](/components/sensor/).
 - **power** (*Optional*, Sensor): The charging power in kilowatts. All options from [Sensor](/components/sensor/).
