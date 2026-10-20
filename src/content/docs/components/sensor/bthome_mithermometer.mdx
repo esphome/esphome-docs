@@ -61,9 +61,10 @@ example after a battery change, its advertisements are accepted again once none 
 for 10 minutes, so expect a gap of up to 10 minutes in that case. The last counter is not stored
 across reboots of the ESP, so the first valid advertisement after a reboot is always accepted.
 
-So the check does not stop a replay after a reboot of the ESP or after 10 minutes without an accepted
-advertisement, and on a firmware that does not increase the counter it only blocks frames with a lower
-counter.
+So the check holds only while the device keeps being heard. After a reboot of the ESP, or after 10 minutes
+without an accepted advertisement, one recorded advertisement is accepted again and becomes the new baseline,
+and recorded advertisements with higher counters can then follow it in order. On a firmware that does not
+increase the counter it only blocks advertisements with a lower counter.
 
 ## Configuration variables
 
