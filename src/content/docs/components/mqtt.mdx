@@ -111,7 +111,7 @@ mqtt:
 
 - **transport** (*Optional*, string): Only on ESP32 with the ESP-IDF framework. How the broker is reached: `tcp`
   (default), `ws` (MQTT over WebSocket) or `wss` (MQTT over WebSocket with TLS). See
-  [MQTT over WebSocket](#mqtt-websocket).
+  [MQTT over WebSocket](#mqtt-over-websocket).
 - **ws_path** (*Optional*, string): Only with `transport: ws` or `wss`. Path of the WebSocket endpoint on the broker.
   Defaults to `/mqtt`.
 
@@ -420,8 +420,6 @@ mqtt:
     -----END CERTIFICATE-----
 ```
 
-<span id="mqtt-websocket"></span>
-
 ## MQTT over WebSocket
 
 On ESP32 with the ESP-IDF framework the broker can be reached over a WebSocket, for example when it sits behind a
@@ -430,22 +428,15 @@ WebSocket over TLS, and `port` to the broker's WebSocket listener.
 
 With `wss`, `certificate_authority`, `client_certificate`, `client_certificate_key` and `skip_cert_cn_check` apply to
 the TLS handshake as they do for [TLS over TCP](#mqtt-tls-idf). Without `certificate_authority` the broker certificate
-is checked against the certificate bundle built into the firmware, as the [HTTP Request](/components/http_request)
+is checked against the certificate bundle built into the firmware, as the [HTTP Request](/components/http_request/)
 component does. The certificate options are rejected with `ws`, which is unencrypted.
 
 ```yaml
-esp32:
-  board: esp32dev
-  framework:
-    type: esp-idf
-
 mqtt:
   broker: mqtt.example.com
   port: 443
   transport: wss
-  ws_path: /mqtt
-  username: !secret mqtt_user
-  password: !secret mqtt_password
+  ws_path: /ws
 ```
 
 <span id="config-mqtt-component"></span>
