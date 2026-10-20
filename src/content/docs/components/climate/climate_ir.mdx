@@ -360,12 +360,27 @@ switch:
 > [!NOTE]
 > Quiet and Turbo mode cannot both be on at once, and either can only be turned on in Cool or Heat mode.
 
-<span id="islandaire"></span>
-
 ### `islandaire`
 
 The `islandaire` climate supports Islandaire PTAC units, known working with the Islandaire EZ12A1GSP1S10AL.
-It supports cool, heat and fan only modes, auto, low and high fan speeds, and a target temperature of 61-88 °F.
+It supports cool, heat and fan only modes and the auto, low and high fan speeds.
+
+The unit takes whole degrees Fahrenheit, so the climate entity reports temperatures in degrees Fahrenheit, in the
+range 61 to 88.
+
+The `sensor` option is not supported, because a temperature sensor reports Celsius while this climate works in
+Fahrenheit. `humidity_sensor` works as usual.
+
+> [!NOTE]
+> Home Assistant reads the temperature unit from the device starting with release 2026.10. In earlier releases
+> the temperatures are treated as Celsius and converted, so they are shown incorrectly (for example 72 °F as 162 °F).
+
+```yaml
+# Example configuration entry
+climate:
+  - platform: islandaire
+    name: "AC"
+```
 
 ### `midea_ir`
 
