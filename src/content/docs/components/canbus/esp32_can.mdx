@@ -34,6 +34,7 @@ canbus:
 
   - `NORMAL`: Normal operation, sends ACK signals. *(default)*
   - `LISTENONLY`: Receive data only, no ACK signals sent.
+  - `NO_ACK`: Transmit without requiring an acknowledgment from another node. See [NO_ACK Mode](#no_ack-mode).
 
 - **rx_queue_len** (*Optional*, int): Length of RX queue.
 - **tx_queue_len** (*Optional*, int): Length of TX queue, 0 to disable.
@@ -75,6 +76,28 @@ canbus:
 
 > [!TIP]
 > The `tx_pin` is still required even in listen-only mode, as the ESP32 TWAI driver requires both pins for initialization. However, no data will be transmitted on this pin when using `LISTENONLY` mode.
+
+## NO_ACK Mode
+
+`mode: NO_ACK` puts the TWAI controller in its self-test mode: frames the ESP32 sends are not checked for an
+acknowledgment from another node, while frames from other nodes are still received and acknowledged. Use it when the
+only other device on the bus is a passive listener, such as a capture tool, or to check wiring and bit rate with a
+single node. In `NORMAL` mode a missing acknowledgment makes the controller retransmit the frame without end.
+
+```yaml
+# Example configuration entry
+canbus:
+  - platform: esp32_can
+    tx_pin: GPIOXX
+    rx_pin: GPIOXX
+    bit_rate: 50kbps
+    mode: NO_ACK
+    can_id: 4
+```
+
+> [!NOTE]
+> `LISTENONLY` is the opposite: it neither transmits nor acknowledges. `NO_ACK` transmits and acknowledges, and only
+> skips checking the ACK slot of its own frames.
 
 <span id="esp32-can-bit-rate"></span>
 
@@ -139,4 +162,5 @@ If you prefer to only have a 3.3V power supply, special 3.3V CAN transceivers ar
 ## See Also
 
 - [Canbus Component](/components/canbus/)
+- [Espressif TWAI (Two-Wire Automotive Interface)](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/twai.html)
 - <APIRef text="canbus.h" path="canbus/canbus.h" />
