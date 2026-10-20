@@ -24,6 +24,8 @@ light:
 
 - **pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The pin for the data line of the light.
 - **num_leds** (**Required**, int): The number of LEDs in the strip.
+- **is_rgbw** (*Optional*, boolean): Set to `true` for strips with a separate white channel, which take four bytes per LED. Defaults to `false`.
+- **is_wrgb** (*Optional*, boolean): Set to `true` for RGBW strips that expect the white byte first. Defaults to `false`.
 - **chipset** (*Optional*, enum): The name of the chipset used; determines signal timing. Not required if
   [specifying the timings manually](#manual-timings).
 
