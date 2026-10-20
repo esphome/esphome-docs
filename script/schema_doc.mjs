@@ -823,6 +823,7 @@ export class Walker {
     this.defaultRef = null;
     this.componentRef = null; // top ref like "uart" or "template.sensor" for named-schema lookup
     this.holdEmit = null; // depth of a heading whose option bullets are only counted, neither written nor audited
+    this.triggerOwner = null; // { ref, depth } of the section a trigger heading sat under, for its sibling triggers
   }
 
   /** Whether docs are written right now: emitting, and not under a heading that holds its bullets back. */
@@ -1131,9 +1132,14 @@ export class Walker {
     const pageComp = busless(this.componentRef?.split(".")[0]);
     // The key as this page's component holds it: its own definition or local copy on each variant, or the
     // shared key its component (or one of its bus variants) declares
+    const variants = new Set(store.groupVariants(resolved));
+    // A heading in one bus wiring's section describes the key every wiring of the page holds
+    const page = this.pageDefault?.defaultRef ? await store.resolve(this.pageDefault.defaultRef) : null;
+    const busUnion = page?.multi && [...variants].every((v) => page.variants.includes(v));
+    if (busUnion) for (const v of page.variants) variants.add(v);
     const targets = new Set();
     const foreign = [];
-    for (const variant of store.groupVariants(resolved)) {
+    for (const variant of variants) {
       const own = variant.config_vars?.[trig];
       if (own) targets.add(own);
       for (const ext of variant.extends ?? []) {
@@ -1144,8 +1150,10 @@ export class Walker {
         break;
       }
     }
-    if (!targets.size) {
-      // Only inherited from another component's schema: describe it on this component, not on the shared key
+    // A typed group or bus union is all this component's, so each variant that inherits the key from another
+    // component gets a copy; a hub's union also holds platform schemas, so those only when nothing else does
+    if (resolved.typedKey || resolved.multi || busUnion || !targets.size) {
+      // Inherited from another component's schema: describe it on this component, not on the shared key
       for (const { variant, prop } of foreign) {
         variant.config_vars ??= {};
         const copy = (variant.config_vars[trig] = { ...prop });
@@ -1592,6 +1600,7 @@ export class Walker {
     this.lastEnumProps = [];
     if (this.failedSection && node.depth <= this.failedSection.depth) this.failedSection = null;
     if (this.holdEmit !== null && node.depth <= this.holdEmit) this.holdEmit = null;
+    if (this.triggerOwner && node.depth <= this.triggerOwner.depth) this.triggerOwner = null;
     const intro = () => this.leadParagraph(siblings, index + 1);
 
     // A bus or component heading re-targets the page only for its own subtree; its section ends with it,
@@ -1642,8 +1651,10 @@ export class Walker {
       // is not the page schema's.
       const pageRef = this.pageDefault?.defaultRef;
       // "### `on_done` Trigger" under "## `foo.do` Action" is the action's trigger before the component's
+      // A trigger heading ends that section, so a sibling trigger heading after it is still the action's
       const ownerDepth = this.section?.ownerDepth ?? this.section?.depth;
-      const sectionRef = this.section && node.depth > ownerDepth ? this.section.ref : null;
+      if (this.section && node.depth > ownerDepth) this.triggerOwner = { ref: this.section.ref, depth: ownerDepth };
+      const sectionRef = this.triggerOwner?.ref;
       const refs = [sectionRef, this.defaultRef, pageRef].filter((r, i, all) => r && all.indexOf(r) === i);
       const missing = [];
       const withOptions = [];
