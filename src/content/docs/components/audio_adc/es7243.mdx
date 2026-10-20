@@ -20,18 +20,11 @@ during setup and the I2S peripheral drives it afterwards.
 
 ```yaml
 # Example configuration entry
-i2s_audio:
-  - id: i2s_audio_bus
-    i2s_lrclk_pin: GPIO25
-    i2s_bclk_pin: GPIO5
-    i2s_mclk_pin: GPIO0
-
 audio_adc:
   - platform: es7243
-    i2s_audio_id: i2s_audio_bus
 ```
 
-## Configuration variables
+## Configuration Variables
 
 - **mic_gain** (*Optional*, enum): The gain applied to the ADC microphones. One of `1dB`, `3.5dB`, `18dB`,
   `20.5dB`, `22.5dB`, `24.5dB`, `25dB` or `27dB`. Defaults to `27dB`.
