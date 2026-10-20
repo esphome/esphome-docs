@@ -176,6 +176,22 @@ climate:
     receiver_id: rcvr
 ```
 
+The `hitachi_ac344` switch platform exposes the unit's mildew proof function, which keeps the fan running for a
+while after power off to dry the unit:
+
+- **hitachi_ac344_id** (*Optional*, [ID](/guides/configuration-types/#id)): The `hitachi_ac344` climate the switch
+  belongs to. Only needed with more than one.
+- **mildew_proof** (**Required**, [Switch](/components/switch/#config-switch)): The mildew proof switch.
+
+```yaml
+# Example configuration entry for the switch
+switch:
+  - platform: hitachi_ac344
+    hitachi_ac344_id: my_hitachi_ac
+    mildew_proof:
+      name: "AC Mildew Proof"
+```
+
 ### `climate_ir_lg`
 
 - **header_high** (*Optional*, [Time](/guides/configuration-types#time)): time for the high part of the header for the LG protocol. Defaults to `8000us`
