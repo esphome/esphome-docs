@@ -102,7 +102,7 @@ display:
 
 The Component provides some useful font metrics. Those include:
 
-- `get_ascender()`: The maximum height of the glyphs above the baseline (currently returns the same value as `get_baseline()`  ).
+- `get_ascender()`: The maximum height of the glyphs above the baseline (currently returns the same value as `get_baseline()`).
 
 - `get_capheight()`: The height of the capital letters measured on the X glyph.
 
@@ -117,7 +117,7 @@ The Component provides some useful font metrics. Those include:
 - `get_height()`: The lineheight of the font measured from baseline to baseline.
 
 > [!NOTE]
-> The `capheight` and `xheight` values are typically calculated using glyphs with flat tops.
+> The `get_capheight()` and `get_xheight()` values are typically calculated using glyphs with flat tops.
 > Rounded characters however might overshoot this value slightly to make them visually appear as the same size.
 > For special fonts like the Material Design Icons font, which do not contain any letters, these two metrics will be set to 0.
 

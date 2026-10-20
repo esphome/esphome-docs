@@ -206,7 +206,6 @@ Example Payload:
 
 JSON keys that are always present:
 
-- `ip`: The IP address of the ESPHome device.
 - `name`: Name of the device (`esphome.name`).
 - `mac`: MAC address of the device.
 - `board`: Board used for the device.
@@ -214,6 +213,7 @@ JSON keys that are always present:
 
 JSON keys that are present when applicable:
 
+- `ip`: The IP address of the ESPHome device, once it has one.
 - `port`: Port of the ESPHome API, if enabled.
 - `ipX`: Additional IP addresses (X is a number starting at 1).
 - `friendly_name`: Friendly name of the device (`esphome.friendly_name`).
@@ -222,7 +222,8 @@ JSON keys that are present when applicable:
 - `project_name`: `esphome.project.name`.
 - `project_version`: `esphome.project.version`.
 - `package_import_url`: `dashboard_import.package_import_url`.
-- `api_encryption`: API encryption type.
+- `api_encryption`: API encryption type, when an API encryption key is configured.
+- `api_encryption_supported`: API encryption type the device supports, when no key is configured yet.
 
 ## Using device discovery with Home Assistant
 
