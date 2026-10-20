@@ -1422,6 +1422,32 @@ test("a trigger section reaches an inherited trigger through a docs-only copy on
   );
 });
 
+test("an option-less trigger inherited through a docs-only copy on the child still resolves", async () => {
+  const { report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            BASE_SCHEMA: schema({ on_event: { key: "Optional", type: "trigger" } }),
+            CONFIG_SCHEMA: {
+              type: "schema",
+              schema: { config_vars: { on_event: { key: "Optional", docs: "x" } }, extends: ["foo.BASE_SCHEMA"] },
+            },
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": ["Foo.", "## `on_event` Trigger", "Fires on an event.", ""].join("\n\n"),
+    },
+  });
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unresolved_trigger"),
+    [],
+  );
+});
+
 test("options under a trigger heading a component page cannot place are dropped, not written to it", async () => {
   const { docs, report } = await walk({
     schema: {
@@ -2658,4 +2684,36 @@ test("an option-less trigger under an action does not hand its options to the ac
     },
   });
   assert.equal(store.files.get("foo").foo.action.do.schema.config_vars.x.docs, undefined);
+});
+test("a combined trigger heading does not give one trigger's lambda variables to another's options", async () => {
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: schema({
+              on_a: { key: "Optional", type: "trigger", schema: { config_vars: { delay: { key: "Optional" } } } },
+              on_b: { key: "Optional", type: "trigger" },
+            }),
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `on_a` / `on_b` Trigger",
+        "Fires on a or b.",
+        "- **delay** (float): The lambda variable on_b passes.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const vars = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars;
+  assert.equal(vars.on_a.schema.config_vars.delay.docs, undefined);
+  assert.deepEqual(
+    report.findings.filter((f) => ["unroutable_section", "unresolved_trigger"].includes(f.kind)).map((f) => f.kind),
+    ["unroutable_section"],
+  );
 });

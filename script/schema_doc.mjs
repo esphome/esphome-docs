@@ -1577,7 +1577,11 @@ export class Walker {
             const holder = path.length ? `${ref}/${path.join("/")}` : ref;
             const resolved = await store.resolve(holder);
             const inner = await store.nestedInner(resolved, trig);
-            if (!inner && (await store.findProp(resolved, trig))?.type !== "trigger") continue;
+            if (!inner) {
+              const holders = resolved ? await store.propHolders(resolved, trig) : [];
+              const props = holders.length ? holders.map((h) => h.prop) : [await store.findProp(resolved, trig)];
+              if (!props.some((p) => p?.type === "trigger")) continue;
+            }
             hit = { holder, inner };
             break;
           }
@@ -1600,14 +1604,15 @@ export class Walker {
         });
       }
       if (missing.length < trigPaths.length) {
-        if (withOptions.length === 1) {
+        if (trigPaths.length === 1 && withOptions.length === 1) {
           await this.openSection(withOptions[0], node.depth, line, "heading");
           return;
         }
-        if (withOptions.length > 1) {
-          // One list cannot be told apart between several triggers' own options
+        if (withOptions.length) {
+          // The list under a combined heading cannot be told apart between one trigger's options and
+          // another's lambda variables
           this.report.add("unroutable_section", this.rel, line, {
-            detail: `heading names several triggers with options: ${withOptions.join(", ")}`,
+            detail: `combined trigger heading names triggers with options: ${withOptions.join(", ")}`,
           });
         }
         this.pendingRegistry = null;
