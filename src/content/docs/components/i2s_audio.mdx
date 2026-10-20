@@ -40,6 +40,9 @@ master and keeps it running after the speaker stops, transmitting silence while 
 cancellation. It keeps the I²S peripheral and attached codec clocked, which may increase power use; use the codec's
 mute control if it should be silent while idle.
 
+Starting playback or recovering from a dropped DMA event briefly stops TX to synchronize the speaker's DMA buffers
+with playback timestamps. The microphone may miss samples during this brief clock interruption.
+
 A full duplex bus must meet these requirements, which are checked when the configuration is validated:
 
 - Exactly one [I²S Audio Microphone](/components/microphone/i2s_audio/) and at least one
