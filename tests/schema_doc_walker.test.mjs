@@ -2856,6 +2856,32 @@ test("a platform page's trigger paragraph describes its own copy, not the shared
   assert.equal(own.type, "trigger");
   assert.match(own.docs, /^Fires with the foo's reading\./);
 });
+test("a trigger paragraph reached through the component's own intermediate schema still gets a local copy", async () => {
+  const trigger = { key: "Optional", type: "trigger" };
+  const { store } = await walk({
+    schema: {
+      esphome: core(["foo"], { sensor: {} }),
+      sensor: { sensor: { schemas: { SENSOR_SCHEMA: schema({ on_value: trigger }) }, components: { foo: {} } } },
+      foo: {
+        foo: {
+          schemas: { BASE_SCHEMA: { type: "schema", schema: { config_vars: {}, extends: ["sensor.SENSOR_SCHEMA"] } } },
+        },
+        "foo.sensor": {
+          schemas: {
+            CONFIG_SCHEMA: { type: "schema", schema: { config_vars: {}, extends: ["foo.BASE_SCHEMA"] } },
+          },
+        },
+      },
+    },
+    pages: {
+      "sensor/foo.mdx": ["Foo.", "## `on_value` Trigger", "Fires with the foo's reading.", ""].join("\n\n"),
+    },
+  });
+  assert.equal(store.files.get("sensor").sensor.schemas.SENSOR_SCHEMA.schema.config_vars.on_value.docs, undefined);
+  const own = store.files.get("foo")["foo.sensor"].schemas.CONFIG_SCHEMA.schema.config_vars.on_value;
+  assert.equal(own.type, "trigger");
+  assert.match(own.docs, /^Fires with the foo's reading\./);
+});
 test("a hub page's trigger paragraph skips a platform schema that inherits the key from another component", async () => {
   const trigger = { key: "Optional", type: "trigger" };
   const { store } = await walk({

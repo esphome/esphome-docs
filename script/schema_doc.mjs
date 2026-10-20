@@ -300,7 +300,8 @@ export class SchemaStore {
   /**
    * Like findProp but also says which schema object holds the key (owner) and
    * which top-level variant of the section led to it (root), so a refined copy
-   * of an inherited key lands on a schema that really accepts the key.
+   * of an inherited key lands on a schema that really accepts the key. An
+   * inherited key also carries the ref of the schema that declares it (ref).
    */
   async findPropOwner(inner, name, inherited = false, seen = new Set(), root = null) {
     if (!inner) return null;
@@ -317,7 +318,10 @@ export class SchemaStore {
         if (seen.has(ext)) continue;
         seen.add(ext);
         const found = await this.findPropOwner(await this.resolveExtends(ext), name, true, seen, top);
-        if (found) return found;
+        if (found) {
+          found.ref ??= ext;
+          return found;
+        }
       }
     }
     return null;
@@ -352,18 +356,26 @@ export class SchemaStore {
   }
 
   /**
-   * The schema behind a nested key, from every definition the section's own
-   * variants hold (typed group, bus union, or the platform part of a hub union),
-   * as one inner so docs reach each of them.
+   * Every definition of a nested key the section's own variants hold (typed
+   * group, bus union, or the platform part of a hub union).
    */
-  async nestedInner(inner, name) {
-    if (!inner) return null;
+  async nestedProps(inner, name) {
+    if (!inner) return [];
     const scope =
       inner.typedCount || inner.multi
         ? inner
         : { variants: inner.variants.slice(0, inner.primaryCount ?? inner.variants.length) };
     const holders = await this.propHolders(scope, name);
-    const props = holders.length ? holders.map((h) => h.prop) : [await this.findProp(inner, name)];
+    return holders.length ? holders.map((h) => h.prop) : [await this.findProp(inner, name)];
+  }
+
+  /** The schema behind a nested key, from every definition nestedProps finds, as one inner so docs reach each. */
+  async nestedInner(inner, name) {
+    return SchemaStore.mergeInners(await this.nestedProps(inner, name));
+  }
+
+  /** The nested schemas of several definitions of one key, merged into one inner. */
+  static mergeInners(props) {
     const inners = props.map((prop) => propInner(prop)).filter(Boolean);
     if (inners.length <= 1) return inners[0] ?? null;
     const variants = inners.flatMap((i) => i.variants);
@@ -1127,7 +1139,7 @@ export class Walker {
       for (const ext of variant.extends ?? []) {
         const base = await store.findPropOwner(await store.resolveExtends(ext), trig);
         if (!base) continue;
-        if (busless(ext.split(".")[0]) === pageComp) targets.add(base.prop);
+        if (busless((base.ref ?? ext).split(".")[0]) === pageComp) targets.add(base.prop);
         else if (!own) foreign.push({ variant, prop: base.prop });
         break;
       }
@@ -1397,7 +1409,8 @@ export class Walker {
     const intro = this.store.triggerIntros.get(prop);
     const converted = intro ? `${body}\n\n${intro}\n\n${seeAlso}` : `${body}\n\n${seeAlso}`;
     // On a rerun over an emitted bundle the trigger's docs still hold the intro an earlier run added after
-    // this bullet; the heading writes it again
+    // this bullet; the heading writes it again. A heading removed since, or one that no longer resolves, leaves
+    // the old intro in place, so that needs a fresh bundle
     const earlierIntro =
       !intro &&
       prop.type === "trigger" &&
@@ -1642,12 +1655,9 @@ export class Walker {
           for (const path of nestedPath.length ? [nestedPath, []] : [[]]) {
             const holder = path.length ? `${ref}/${path.join("/")}` : ref;
             const resolved = await store.resolve(holder);
-            const inner = await store.nestedInner(resolved, trig);
-            if (!inner) {
-              const holders = resolved ? await store.propHolders(resolved, trig) : [];
-              const props = holders.length ? holders.map((h) => h.prop) : [await store.findProp(resolved, trig)];
-              if (!props.some((p) => p?.type === "trigger")) continue;
-            }
+            const props = await store.nestedProps(resolved, trig);
+            const inner = SchemaStore.mergeInners(props);
+            if (!inner && !props.some((p) => p?.type === "trigger")) continue;
             hit = { holder, inner, resolved };
             break;
           }
