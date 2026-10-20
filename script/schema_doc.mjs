@@ -687,13 +687,15 @@ export function registryHeading(node) {
   return { name: codes[0].value, names: codes.map((c) => c.value), type: m[1].toLowerCase() };
 }
 
-/** `time.on_time` Trigger -> on_time */
+/** `time.on_time` Trigger -> ["time.on_time"]; "`a` / `b` Trigger" names both */
 function triggerHeading(node) {
-  const code = node.children.find((c) => c.type === "inlineCode");
-  if (!code) return null;
-  const rest = toString({ children: node.children.filter((c) => c.type !== "inlineCode") }).trim();
-  if (!/^Trigger$/i.test(rest)) return null;
-  return code.value;
+  const codes = node.children.filter((c) => c.type === "inlineCode");
+  if (!codes.length) return null;
+  const rest = toString({ children: node.children.filter((c) => c.type !== "inlineCode") })
+    .replace(/\s*\/\s*/g, " ")
+    .trim();
+  if (!/^Triggers?$/i.test(rest)) return null;
+  return codes.map((c) => c.value);
 }
 
 /** The code span of a heading that is nothing but `name`, else null. */
@@ -1552,36 +1554,61 @@ export class Walker {
       if (node.depth <= this.section.depth) this.section.interrupted = true;
     }
 
-    const trigPath = triggerHeading(node);
-    const trig = trigPath?.split(".").pop();
-    if (trig) {
+    const trigPaths = triggerHeading(node);
+    if (trigPaths) {
       // The page's own schema is tried after the current one: a hub documents its triggers after
-      // the sections of its platforms. nestedInner sees through a docs-only copy of an inherited trigger.
-      // "`vane.on_state`" is first read as the nested key path vane/on_state, then as the component-qualified
-      // name "time.on_time", whose last word is the trigger
+      // the sections of its platforms. "`vane.on_state`" is first read as the nested key path
+      // vane/on_state, then as the component-qualified name "time.on_time", whose last word is the trigger.
+      // A trigger without options of its own still exists: the heading documents it, and the text under it
+      // is not the page schema's.
       const pageRef = this.pageDefault?.defaultRef;
-      const nestedPath = trigPath.split(".").slice(0, -1);
       // "### `on_done` Trigger" under "## `foo.do` Action" is the action's trigger before the component's
       const ownerDepth = this.section?.ownerDepth ?? this.section?.depth;
       const sectionRef = this.section && node.depth > ownerDepth ? this.section.ref : null;
       const refs = [sectionRef, this.defaultRef, pageRef].filter((r, i, all) => r && all.indexOf(r) === i);
-      for (const ref of refs) {
-        if (!ref) continue;
-        for (const path of nestedPath.length ? [nestedPath, []] : [[]]) {
-          const holder = path.length ? `${ref}/${path.join("/")}` : ref;
-          if (!(await store.nestedInner(await store.resolve(holder), trig))) continue;
-          this.markDocumented(holder, trig, line);
-          await this.openSection(`${holder}/${trig}`, node.depth, line, "heading");
-          return;
+      const missing = [];
+      let opened = false;
+      for (const trigPath of trigPaths) {
+        const trig = trigPath.split(".").pop();
+        const nestedPath = trigPath.split(".").slice(0, -1);
+        let hit = null;
+        for (const ref of refs) {
+          for (const path of nestedPath.length ? [nestedPath, []] : [[]]) {
+            const holder = path.length ? `${ref}/${path.join("/")}` : ref;
+            const resolved = await store.resolve(holder);
+            const inner = await store.nestedInner(resolved, trig);
+            if (!inner && (await store.findProp(resolved, trig))?.type !== "trigger") continue;
+            hit = { holder, inner };
+            break;
+          }
+          if (hit) break;
         }
+        if (!hit) {
+          missing.push(trig);
+          continue;
+        }
+        this.markDocumented(hit.holder, trig, line);
+        if (!opened && hit.inner) {
+          await this.openSection(`${hit.holder}/${trig}`, node.depth, line, "heading");
+          opened = true;
+        }
+      }
+      if (missing.length < trigPaths.length) {
+        if (!opened) {
+          await this.closeSection();
+          this.holdEmit = node.depth;
+        }
+        return;
       }
       // Platform index pages document triggers the bundle does not place under the platform's schemas;
       // their options are neither written nor audited, since the text may belong to another trigger's key of
       // the same name. On a component page the options are not the component's: drop them until this
       // heading's subtree ends, as for an unknown action
-      this.report.add("unresolved_trigger", this.rel, line, {
-        detail: `trigger '${trig}' not under ${this.defaultRef}`,
-      });
+      for (const trig of missing) {
+        this.report.add("unresolved_trigger", this.rel, line, {
+          detail: `trigger '${trig}' not under ${this.defaultRef}`,
+        });
+      }
       if (this.defaultRef && !this.defaultRef.endsWith(".*")) {
         this.pendingRegistry = null;
         await this.closeSection();

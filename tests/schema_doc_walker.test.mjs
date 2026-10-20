@@ -2547,3 +2547,37 @@ test("an unresolved heading under an action does not leave the action's options 
   assert.match(docs("foo", "foo", "action", "do", "schema", "config_vars", "mode"), /action's mode/);
   assert.equal(report.findings.filter((f) => f.kind === "unresolved_component_heading").length, 1);
 });
+test("a heading naming several triggers documents each, with or without options of their own", async () => {
+  const bare = { key: "Optional", type: "trigger" };
+  const { report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: {
+            CONFIG_SCHEMA: schema({ id: { key: "GeneratedID" }, on_turn_on: bare, on_turn_off: bare, on_state: bare }),
+          },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **id** (*Optional*, ID): The id.",
+        "## `foo.on_turn_on` / `foo.on_turn_off` Trigger",
+        "Fires when the foo turns on or off.",
+        "- **x** (*Optional*, float): A lambda variable, not an option of the page schema.",
+        "## `on_state` Trigger",
+        "Fires on every state change.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.deepEqual(
+    report.findings
+      .filter((f) => ["unresolved_trigger", "undocumented_key", "unmatched_key", "orphan_option_list"].includes(f.kind))
+      .map((f) => [f.kind, f.key]),
+    [],
+  );
+});
