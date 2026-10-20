@@ -2581,3 +2581,81 @@ test("a heading naming several triggers documents each, with or without options 
     [],
   );
 });
+test("a combined trigger heading reports the names it cannot place even when another resolves", async () => {
+  const bare = { key: "Optional", type: "trigger" };
+  const { report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ id: { key: "GeneratedID" }, on_turn_on: bare }) } } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Configuration variables",
+        "- **id** (*Optional*, ID): The id.",
+        "## `foo.on_turn_on` / `foo.on_tun_off` Trigger",
+        "Fires when the foo turns on or off.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.deepEqual(
+    report.findings.filter((f) => f.kind === "unresolved_trigger").map((f) => f.detail),
+    ["trigger 'on_tun_off' not under foo.CONFIG_SCHEMA"],
+  );
+});
+test("a combined trigger heading over several triggers with options writes to neither", async () => {
+  const trigger = (key) => ({
+    key: "Optional",
+    type: "trigger",
+    schema: { config_vars: { [key]: { key: "Optional" } } },
+  });
+  const { store, report } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ on_a: trigger("delay"), on_b: trigger("count") }) } } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `on_a` / `on_b` Trigger",
+        "Fires on a or b.",
+        "- **delay** (*Optional*, Time): Only on_a has it.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const vars = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars;
+  assert.equal(vars.on_a.schema.config_vars.delay.docs, undefined);
+  assert.deepEqual(
+    report.findings.filter((f) => ["unroutable_section", "unmatched_key"].includes(f.kind)).map((f) => f.kind),
+    ["unroutable_section"],
+  );
+});
+test("an option-less trigger under an action does not hand its options to the action", async () => {
+  const bare = { key: "Optional", type: "trigger" };
+  const { store } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: {
+        foo: {
+          schemas: { CONFIG_SCHEMA: schema({}) },
+          action: { do: schema({ x: { key: "Optional" }, on_done: bare }) },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `foo.do` Action",
+        "Does it.",
+        "### `on_done` Trigger",
+        "Fires when done.",
+        "#### Configuration variables",
+        "- **x** (*Optional*, float): A lambda variable of the trigger.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  assert.equal(store.files.get("foo").foo.action.do.schema.config_vars.x.docs, undefined);
+});

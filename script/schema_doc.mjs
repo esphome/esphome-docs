@@ -1567,7 +1567,7 @@ export class Walker {
       const sectionRef = this.section && node.depth > ownerDepth ? this.section.ref : null;
       const refs = [sectionRef, this.defaultRef, pageRef].filter((r, i, all) => r && all.indexOf(r) === i);
       const missing = [];
-      let opened = false;
+      const withOptions = [];
       for (const trigPath of trigPaths) {
         const trig = trigPath.split(".").pop();
         const nestedPath = trigPath.split(".").slice(0, -1);
@@ -1588,17 +1588,7 @@ export class Walker {
           continue;
         }
         this.markDocumented(hit.holder, trig, line);
-        if (!opened && hit.inner) {
-          await this.openSection(`${hit.holder}/${trig}`, node.depth, line, "heading");
-          opened = true;
-        }
-      }
-      if (missing.length < trigPaths.length) {
-        if (!opened) {
-          await this.closeSection();
-          this.holdEmit = node.depth;
-        }
-        return;
+        if (hit.inner) withOptions.push(`${hit.holder}/${trig}`);
       }
       // Platform index pages document triggers the bundle does not place under the platform's schemas;
       // their options are neither written nor audited, since the text may belong to another trigger's key of
@@ -1608,6 +1598,22 @@ export class Walker {
         this.report.add("unresolved_trigger", this.rel, line, {
           detail: `trigger '${trig}' not under ${this.defaultRef}`,
         });
+      }
+      if (missing.length < trigPaths.length) {
+        if (withOptions.length === 1) {
+          await this.openSection(withOptions[0], node.depth, line, "heading");
+          return;
+        }
+        if (withOptions.length > 1) {
+          // One list cannot be told apart between several triggers' own options
+          this.report.add("unroutable_section", this.rel, line, {
+            detail: `heading names several triggers with options: ${withOptions.join(", ")}`,
+          });
+        }
+        this.pendingRegistry = null;
+        await this.closeSection();
+        this.holdEmit = node.depth;
+        return;
       }
       if (this.defaultRef && !this.defaultRef.endsWith(".*")) {
         this.pendingRegistry = null;
