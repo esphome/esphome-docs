@@ -2717,3 +2717,79 @@ test("a combined trigger heading does not give one trigger's lambda variables to
     ["unroutable_section"],
   );
 });
+test("a trigger heading's paragraph follows the option bullet in the trigger key's docs", async () => {
+  const bare = { key: "Optional", type: "trigger" };
+  const { store } = await walk({
+    schema: {
+      esphome: core(["foo"]),
+      foo: { foo: { schemas: { CONFIG_SCHEMA: schema({ on_turn_on: bare, on_turn_off: bare, on_state: bare }) } } },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## `on_state` Trigger",
+        "Fires on every state change.",
+        "## Configuration variables",
+        "- **on_turn_on** (*Optional*, Automation): Runs when turned on.",
+        "- **on_state** (*Optional*, Automation): Runs on a change.",
+        "## `foo.on_turn_on` / `foo.on_turn_off` Trigger",
+        "Fires when the foo turns on or off.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const vars = store.files.get("foo").foo.schemas.CONFIG_SCHEMA.schema.config_vars;
+  // Bullet first, heading after
+  assert.match(
+    vars.on_turn_on.docs,
+    /^\*\*Automation\*\*: Runs when turned on\.\n\nFires when the foo turns on or off\.\n\n\*See also: .*#configuration-variables\)\*$/,
+  );
+  // Heading only: its paragraph and a link to the heading
+  assert.match(
+    vars.on_turn_off.docs,
+    /^Fires when the foo turns on or off\.\n\n\*See also: .*#foo-on_turn_on--foo-on_turn_off-trigger\)\*$/,
+  );
+  // Heading first, bullet after
+  assert.match(
+    vars.on_state.docs,
+    /^\*\*Automation\*\*: Runs on a change\.\n\nFires on every state change\.\n\n\*See also: /,
+  );
+});
+test("a trigger heading's paragraph reaches both the base key and a bus section's refined copy", async () => {
+  const { store } = await walk({
+    schema: {
+      esphome: core(["foo", "foo_i2c", "foo_spi"]),
+      foo: { foo: { schemas: { BASE_SCHEMA: schema({ on_tag: { key: "Optional", type: "trigger" } }) } } },
+      foo_i2c: {
+        foo_i2c: {
+          schemas: { CONFIG_SCHEMA: schema({}, { schema: { config_vars: {}, extends: ["foo.BASE_SCHEMA"] } }) },
+        },
+      },
+      foo_spi: {
+        foo_spi: {
+          schemas: { CONFIG_SCHEMA: schema({}, { schema: { config_vars: {}, extends: ["foo.BASE_SCHEMA"] } }) },
+        },
+      },
+    },
+    pages: {
+      "foo.mdx": [
+        "Foo.",
+        "## Over SPI",
+        "{/* schema: foo_spi.CONFIG_SCHEMA */}",
+        "### Configuration variables",
+        "- **on_tag** (*Optional*, Automation): Runs on a tag.",
+        "## Over I²C",
+        "{/* schema: foo_i2c.CONFIG_SCHEMA */}",
+        "### Configuration variables",
+        "- **on_tag** (*Optional*, Automation): Runs on a tag.",
+        "### `on_tag` Trigger",
+        "Fires when a tag is read.",
+        "",
+      ].join("\n\n"),
+    },
+  });
+  const base = store.files.get("foo").foo.schemas.BASE_SCHEMA.schema.config_vars.on_tag;
+  const copy = store.files.get("foo_i2c").foo_i2c.schemas.CONFIG_SCHEMA.schema.config_vars.on_tag;
+  assert.match(base.docs, /Runs on a tag\.\n\nFires when a tag is read\./);
+  assert.match(copy.docs, /Runs on a tag\.\n\nFires when a tag is read\./);
+});

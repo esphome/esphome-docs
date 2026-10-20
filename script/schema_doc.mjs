@@ -48,6 +48,7 @@ const MIN_EMITTED_INTROS = {
   registryDocs: 20,
   enumDocs: 100,
   platformIndexDocs: 10,
+  triggerDocs: 50,
 };
 
 const CONFIG_VARS_RE = /^Configuration (variables|options):?$/i;
@@ -110,6 +111,9 @@ export class SchemaStore {
     this.files = new Map();
     this.core = null;
     this.componentIntros = new Set(); // components whose intro this run has written
+    this.triggerIntros = new Map(); // trigger key -> the paragraph under its heading, as this run wrote it
+    this.propBullets = new Map(); // key or refined copy -> the option bullet text this run wrote to it
+    this.refinedBase = new Map(); // refined copy this run made -> the inherited key it copies
   }
 
   /** Load esphome.json, whose `core` lists every component and platform. */
@@ -766,6 +770,7 @@ export class Report {
         componentDocs: 0,
         platformDocs: 0,
         platformIndexDocs: 0,
+        triggerDocs: 0,
       },
     };
   }
@@ -1098,8 +1103,32 @@ export class Walker {
 
   /** A description plus the See-also link to the section it came from. */
   withSeeAlso(text) {
+    return `${this.links(text)}\n\n${this.seeAlso()}`;
+  }
+
+  /** The See-also link to the section being read. */
+  seeAlso() {
     const anchor = this.lastHeadingSlug ? `#${this.lastHeadingSlug}` : "";
-    return `${this.links(text)}\n\n*See also: [${this.title}](${this.deployUrl}${this.url}${anchor})*`;
+    return `*See also: [${this.title}](${this.deployUrl}${this.url}${anchor})*`;
+  }
+
+  /** Write the paragraph under a trigger heading to the trigger key, after the key's own bullet text. */
+  async emitTriggerDocs(resolved, trig, text) {
+    if (!this.writing || !text) return;
+    const { store } = this;
+    const holders = await store.propHolders(resolved, trig);
+    const found = holders.length ? holders.map((h) => h.prop) : [await store.findProp(resolved, trig)];
+    // A bus copy one section refined also describes the base key the other bus's section wrote to
+    const props = new Set(found.flatMap((p) => (p ? [p, store.refinedBase.get(p)].filter(Boolean) : [])));
+    const intro = this.links(text);
+    for (const prop of props) {
+      // The first page of this run to describe a trigger wins, as for component intros
+      if (store.triggerIntros.has(prop)) continue;
+      store.triggerIntros.set(prop, intro);
+      const bullet = store.propBullets.get(prop);
+      prop.docs = bullet ? `${bullet.body}\n\n${intro}\n\n${bullet.seeAlso}` : `${intro}\n\n${this.seeAlso()}`;
+      this.report.stats.emitted.triggerDocs++;
+    }
   }
 
   /** First paragraph after index in the top-level children, or null if a code block comes first. */
@@ -1334,14 +1363,27 @@ export class Walker {
     }
     const { prop, inherited } = found;
     const e = this.report.stats.emitted;
-    let converted = this.withSeeAlso(docText);
+    let body = this.links(docText);
     if (typeText) {
       const typeParts = typeText.split(",").map((t) => t.trim());
       if (typeParts.length > 1 && !/\[templatable\]/.test(typeParts[1])) {
-        converted = `**${this.links(typeParts[1])}**: ${converted}`;
+        body = `**${this.links(typeParts[1])}**: ${body}`;
       }
     }
-    if (prop.docs === converted) {
+    const seeAlso = this.seeAlso();
+    // A trigger heading read earlier in this run adds its paragraph after the bullet's text
+    const intro = this.store.triggerIntros.get(prop);
+    const converted = intro ? `${body}\n\n${intro}\n\n${seeAlso}` : `${body}\n\n${seeAlso}`;
+    // On a rerun over an emitted bundle the trigger's docs still hold the intro an earlier run added after
+    // this bullet; the heading writes it again
+    const earlierIntro =
+      !intro &&
+      prop.type === "trigger" &&
+      typeof prop.docs === "string" &&
+      prop.docs.startsWith(`${body}\n\n`) &&
+      prop.docs.endsWith(`\n\n${seeAlso}`);
+    if (prop.docs === converted || earlierIntro) {
+      this.store.propBullets.set(prop, { body, seeAlso });
       e.propsSkipped++;
       return;
     }
@@ -1355,10 +1397,13 @@ export class Walker {
       target.config_vars ??= {};
       const refined = (target.config_vars[parsed.key] ??= { ...prop });
       refined.docs = converted;
+      this.store.propBullets.set(refined, { body, seeAlso });
+      this.store.refinedBase.set(refined, prop);
       e.propsRefined++;
       return;
     }
     prop.docs = converted;
+    this.store.propBullets.set(prop, { body, seeAlso });
     e.props++;
   }
 
@@ -1582,7 +1627,7 @@ export class Walker {
               const props = holders.length ? holders.map((h) => h.prop) : [await store.findProp(resolved, trig)];
               if (!props.some((p) => p?.type === "trigger")) continue;
             }
-            hit = { holder, inner };
+            hit = { holder, inner, resolved };
             break;
           }
           if (hit) break;
@@ -1592,6 +1637,7 @@ export class Walker {
           continue;
         }
         this.markDocumented(hit.holder, trig, line);
+        await this.emitTriggerDocs(hit.resolved, trig, intro());
         if (hit.inner) withOptions.push(`${hit.holder}/${trig}`);
       }
       // Platform index pages document triggers the bundle does not place under the platform's schemas;
