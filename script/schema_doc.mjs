@@ -823,7 +823,8 @@ export class Walker {
     this.defaultRef = null;
     this.componentRef = null; // top ref like "uart" or "template.sensor" for named-schema lookup
     this.holdEmit = null; // depth of a heading whose option bullets are only counted, neither written nor audited
-    this.triggerOwner = null; // { ref, depth } of the section a trigger heading sat under, for its sibling triggers
+    // { ref, depth, at } of the section a trigger heading at depth `at` sat under, for its sibling triggers
+    this.triggerOwner = null;
   }
 
   /** Whether docs are written right now: emitting, and not under a heading that holds its bullets back. */
@@ -1147,6 +1148,10 @@ export class Walker {
         if (!base) continue;
         if (busless((base.ref ?? ext).split(".")[0]) === pageComp) targets.add(base.prop);
         else if (!own) foreign.push({ variant, prop: base.prop });
+        else if (!store.propBullets.has(own) && store.propBullets.has(base.prop)) {
+          // A copy saved by an earlier run leads with the inherited key's bullet, as a new copy does
+          store.propBullets.set(own, store.propBullets.get(base.prop));
+        }
         break;
       }
     }
@@ -1173,10 +1178,14 @@ export class Walker {
     }
   }
 
-  /** First paragraph after index in the top-level children, or null if a code block comes first. */
-  leadParagraph(children, index) {
+  /**
+   * First paragraph after index in the top-level children, or null if a code block comes first. With
+   * ownOnly, a heading also ends the search, so a heading without a paragraph does not take the next one's.
+   */
+  leadParagraph(children, index, ownOnly = false) {
     for (let i = index; i < children.length; i++) {
       const n = children[i];
+      if (ownOnly && n.type === "heading") return null;
       if (["mdxjsEsm", "mdxJsxFlowElement", "mdxFlowExpression", "heading", "html", "blockquote"].includes(n.type)) {
         continue;
       }
@@ -1600,7 +1609,11 @@ export class Walker {
     this.lastEnumProps = [];
     if (this.failedSection && node.depth <= this.failedSection.depth) this.failedSection = null;
     if (this.holdEmit !== null && node.depth <= this.holdEmit) this.holdEmit = null;
-    if (this.triggerOwner && node.depth <= this.triggerOwner.depth) this.triggerOwner = null;
+    // Any other heading beside or above the last trigger heading leaves the section that trigger sat under
+    const owner = this.triggerOwner;
+    if (owner && (node.depth <= owner.depth || (node.depth <= owner.at && !triggerHeading(node)))) {
+      this.triggerOwner = null;
+    }
     const intro = () => this.leadParagraph(siblings, index + 1);
 
     // A bus or component heading re-targets the page only for its own subtree; its section ends with it,
@@ -1654,6 +1667,7 @@ export class Walker {
       // A trigger heading ends that section, so a sibling trigger heading after it is still the action's
       const ownerDepth = this.section?.ownerDepth ?? this.section?.depth;
       if (this.section && node.depth > ownerDepth) this.triggerOwner = { ref: this.section.ref, depth: ownerDepth };
+      if (this.triggerOwner) this.triggerOwner.at = node.depth;
       const sectionRef = this.triggerOwner?.ref;
       const refs = [sectionRef, this.defaultRef, pageRef].filter((r, i, all) => r && all.indexOf(r) === i);
       const missing = [];
@@ -1679,7 +1693,7 @@ export class Walker {
           continue;
         }
         this.markDocumented(hit.holder, trig, line);
-        await this.emitTriggerDocs(hit.resolved, trig, intro());
+        await this.emitTriggerDocs(hit.resolved, trig, this.leadParagraph(siblings, index + 1, true));
         if (hit.inner) withOptions.push(`${hit.holder}/${trig}`);
       }
       // Platform index pages document triggers the bundle does not place under the platform's schemas;
