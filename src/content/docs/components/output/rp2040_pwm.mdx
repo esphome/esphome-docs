@@ -32,9 +32,11 @@ light:
 - All other options from [Output](/components/output#config-output).
 
 > [!NOTE]
-> The chip has one PWM slice per pair of pins, so GPIO0/GPIO1, GPIO2/GPIO3 and so on share a frequency;
-> the last output configured on a pair sets it for both. On the RP2040, pins 16 apart such as GPIO0 and
-> GPIO16 are the same PWM channel and output the same signal.
+> Each pair of pins (GPIO0/GPIO1, GPIO2/GPIO3 and so on) shares one PWM slice and therefore one frequency.
+> Outputs on the same pair must use the same `frequency`: when one of them changes it, the other still
+> scales its duty cycle for the old frequency and can end up fully on. Give an output whose frequency
+> changes at runtime a pair of its own. Pins 16 apart below GPIO32, such as GPIO0 and GPIO16, are the same
+> PWM channel on both the RP2040 and the RP2350 and output the same signal.
 
 ## `output.rp2040_pwm.set_frequency` Action
 
