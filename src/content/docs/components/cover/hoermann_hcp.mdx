@@ -7,32 +7,25 @@ import Figure from '@components/Figure.astro';
 import APIRef from '@components/APIRef.astro';
 import hoermannHcpWiringImg from './images/hoermann_hcp_wiring.svg';
 
-The `hoermann_hcp` component allows you to control Hörmann garage door motors through the HCP bus built
-into the motor. It emulates the Hörmann UAP1 module, so the motor's bus controller communicates
+The `hoermann_hcp` component allows you to control Hörmann garage door motors through the HCP2 bus built
+into the motor. It behaves like a smart home gateway, so the motor's bus controller communicates
 with ESPHome just like it would with Hörmann's own accessory.
 
-The following Series 4 motors communicate over the HCP bus (Modbus RTU) and should be supported:
+The following Series 4 motors communicate over the HCP2 bus (Modbus RTU) and _should_ be supported:
 
 - SupraMatic E/P Series 4
 - ProMatic Series 4
 
-> [!NOTE]
-> Only Series 4 motors are supported. Older motors use a different connector pinout and a
-> completely different protocol.
+> [!IMPORTANT]
+> Only Series 4 motor manufactured after **03-2021** with at least software index **B4** are supported.
 >
-> This component implements the same protocol as the [HCPBridge](https://github.com/hkiam/HCPBridge) project and is based on [14yannick's ESPHome port](https://github.com/14yannick/esphome-hcpbridge).
+> This component is based on [14yannick's ESPHome port](https://github.com/14yannick/esphome-hcpbridge)
+> of the [HCPBridge](https://github.com/hkiam/HCPBridge) project, both of which support older motor revisions.
 
 > [!CAUTION]
-> HCP2 accessories are not hot-pluggable!
+> Series 3 and older motors use a different connector pinout and a completely different protocol, a.k.a. HCP1.
 >
-> Disrupting Modbus connectivity for any reason may render the motor **temporarily inoperable**.
->
-> If this happens, the motor will be unresponsive to all controls in this error state, including BiSecur hand remotes.
-> Ensure you have emergency access to your garage at all times,
-> as this type of error can only be cleared by power-cycling the motor.
-
-> [!IMPORTANT]
-> Restarting the ESPHome device (including OTA updates) **will** trigger the motor error described above.
+> **Never** attempt to plug a HCP2 accessory into a Series 3 motor's HCP port.
 
 Communication with the motor happens over [Modbus](/components/modbus/) with the `role` set to
 `server`, which in turn requires a [UART bus](/components/uart/). The UART **must** be configured with
@@ -53,6 +46,7 @@ modbus:
   role: server
 
 hoermann_hcp:
+  address: 0x2a
 
 cover:
   - platform: hoermann_hcp
@@ -60,11 +54,29 @@ cover:
     device_class: garage
 ```
 
+> [!IMPORTANT]
+> Please add `address: 0x2a` to your configuration to future-proof your setup.
+>
+> Support for the previous default Modbus RTU/HCP2 address `0x02` is deprecated and will be removed in **2027.04.0**.
+
 ## Hardware
 
-The HCP bus is a two-wire RS485 connection that also carries the motor's ~25 V supply, so a single
-cable provides both communication and power — no separate power supply is required. To connect an
-ESP32 (or another ESPHome-supported chip) you need four things:
+The HCP2 bus is a two-wire RS485 connection that also carries the drive's ~24 V supply, so a single
+cable provides both communication and power — no separate power supply is required.
+
+> [!CAUTION]
+> HCP2 accessories are not hot-pluggable!
+>
+> Disrupting Modbus connectivity for any reason may render the motor **temporarily inoperable**.
+>
+> If this happens, the motor will be unresponsive to all controls in this error state, including BiSecur hand remotes.
+> Ensure you have emergency access to your garage at all times,
+> as this type of error can only be cleared by power-cycling the motor.
+
+> [!IMPORTANT]
+> Restarting the ESPHome device (including OTA updates) **may** trigger the motor error described above.
+
+To connect an ESP32 (or another ESPHome-supported chip) you need four things:
 
 - an **RJ12 plug and cable** to connect to the motor's 6-pin bus socket;
 - an **RS485 transceiver** wired to the [UART bus](/components/uart/);
@@ -86,10 +98,10 @@ The motor exposes the bus on a 6-pin socket with the following pinout:
 
 > [!NOTE]
 > The wire colours depend on the cable you use — the pin positions are what matter. The GND (pins 1
-> and 2) and +25 V (pins 5 and 6) contacts are each duplicated on the motor side, so you only need
+> and 2) and +24 V (pins 5 and 6) contacts are each duplicated on the drive side, so you only need
 > to connect **one** pin from each pair (the diagram uses pins 1 and 5).
 
-Wire the adapter as shown below: a +25 V pin feeds the buck converter's input and its 5 V output
+Wire the adapter as shown below: a +24 V pin feeds the buck converter's input and its 5 V output
 powers the ESP32, whose 3.3 V rail in turn supplies the RS485 transceiver. The A+/B− data lines
 connect to the transceiver (with the 120 Ω resistor bridging them), and the transceiver's serial pins
 connect to the ESP32 UART pins you set in the `uart:` block.
@@ -102,7 +114,7 @@ connect to the ESP32 UART pins you set in the `uart:` block.
 <Figure
   src={hoermannHcpWiringImg}
   alt="Wiring diagram of a Hörmann motor connected to an ESP32 through a buck converter and an RS485 transceiver"
-  caption="Example adapter: a buck converter powers the ESP32 from the bus's +25 V supply."
+  caption="Example adapter: a buck converter powers the ESP32 from the bus's +24 V supply."
   layout="constrained"
 />
 
@@ -115,8 +127,8 @@ connect to the ESP32 UART pins you set in the `uart:` block.
 > input (DI/TXD) to the ESP32 `tx_pin`; swap the two if data doesn't flow.
 
 > [!IMPORTANT]
-> The adapter gets **no power until a bus scan is run** on the motor. The +25 V on the bus stays
-> switched off until then, and the motor keeps it on only if the emulated UAP1 answers during the
+> The adapter gets **no power until a bus scan is run** on the motor. The +24 V on the bus stays
+> switched off until then, and the motor keeps it on only if the emulated smart home gateway answers during the
 > scan — otherwise it cuts the power again.
 >
 > After wiring the adapter to the bus, trigger a bus scan from the motor's menu to power it up and
