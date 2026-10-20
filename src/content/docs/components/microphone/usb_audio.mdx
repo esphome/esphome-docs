@@ -39,9 +39,9 @@ microphone:
 - All other options from [Microphone Component](/components/microphone/).
 
 Voice components such as [Voice Assistant](/components/voice_assistant/) and
-[Micro Wake Word](/components/micro_wake_word/) expect 16000 Hz audio. If your USB device does not support that rate,
-set `sample_rate` to one it does support and put a [Resampler Microphone](/components/microphone/resampler/) in
-front of the voice component:
+[Micro Wake Word](/components/micro_wake_word/) expect 16000 Hz audio. Speakerphones commonly offer only 48 kHz, so
+the 16000 Hz default is rejected on them and the log lists the rates the device supports. Set `sample_rate` to one
+of those and put a [Resampler Microphone](/components/microphone/resampler/) in front of the voice component:
 
 ```yaml
 microphone:
