@@ -4,7 +4,7 @@ title: "HT16K33 Character Display"
 ---
 
 import Figure from '@components/Figure.astro';
-import ht16k33DigitDefImg from './images/ht16k33-digit-defs.jpg';
+import ht16k33SegmentsImg from './images/ht16k33-7-segment.png';
 import APIRef from '@components/APIRef.astro';
 
 The `ht16k33_char` display platform drives character displays built around the Holtek HT16K33 LED driver over
@@ -60,7 +60,8 @@ display:
 
 The lambda is passed a variable called `it`, the `ht16k33_char` display itself. It prints into a message buffer
 that is drawn to the displays after the lambda returns. Text is placed by byte position, where `0` is the first
-digit of the first display, and the buffer starts out empty on every update.
+digit of the first display; a `.`, a `:` and each byte of a multi-byte character count as one position, so the
+position is not the digit number. The buffer starts out empty on every update.
 
 - `it.print(pos, str)`: Writes `str` into the buffer at `pos`, over whatever was there. Returns the number of
   bytes written, which is less than the length of `str` when the buffer is full.
@@ -123,10 +124,11 @@ new way, and mapping it to `0` blanks it; any other character, including multi-b
 Each segment is one bit of the value, with bit 0 the least significant:
 
 <Figure
-  src={ht16k33DigitDefImg}
-  caption="The segment names. This board uses A to G and the decimal point."
+  src={ht16k33SegmentsImg}
+  caption="The segment names."
   layout="constrained"
-  alt="A digit with its segments named: A along the top, B upper right, C lower right, D along the bottom, E lower left, F upper left, G across the middle, and the decimal point at the lower right."
+  alt="Segments A top, B upper right, C lower right, D bottom, E lower left, F upper left, G middle, DP lower right."
+  style="width: 40%; height: auto; margin: 0 auto; display: block;"
 />
 
 | Bit     | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7             |
