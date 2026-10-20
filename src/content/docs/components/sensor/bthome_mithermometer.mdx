@@ -46,7 +46,7 @@ sensor:
 > unencrypted devices work without one. It is the same 32-character (16-byte) hex key you set when
 > enabling encryption on the device (for example in the ATC/PVVX web configurator).
 
-### Replay Protection
+## Replay Protection
 
 A `bindkey` makes sure that only the device can create valid advertisements, but a valid advertisement
 recorded by someone in range can still be sent again later. With `replay_protection: true` the
@@ -60,6 +60,10 @@ PVVX) send new readings without increasing the counter. If the device restarts i
 example after a battery change, its advertisements are accepted again once none has been accepted
 for 10 minutes, so expect a gap of up to 10 minutes in that case. The last counter is not stored
 across reboots of the ESP, so the first valid advertisement after a reboot is always accepted.
+
+So the check does not stop a replay after a reboot of the ESP or after 10 minutes without an accepted
+advertisement, and on a firmware that does not increase the counter it only blocks frames with a lower
+counter.
 
 ## Configuration variables
 
