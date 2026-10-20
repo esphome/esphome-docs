@@ -17,7 +17,7 @@ The following Series 4 motors communicate over the HCP2 bus (Modbus RTU) and _sh
 - ProMatic Series 4
 
 > [!IMPORTANT]
-> Only Series 4 motor manufactured after **03-2021** with at least software index **B4** are supported.
+> Only Series 4 motors manufactured after **03-2021** with at least software index **B4** are supported.
 >
 > This component is based on [14yannick's ESPHome port](https://github.com/14yannick/esphome-hcpbridge)
 > of the [HCPBridge](https://github.com/hkiam/HCPBridge) project, both of which support older motor revisions.
@@ -25,7 +25,7 @@ The following Series 4 motors communicate over the HCP2 bus (Modbus RTU) and _sh
 > [!CAUTION]
 > Series 3 and older motors use a different connector pinout and a completely different protocol, a.k.a. HCP1.
 >
-> **Never** attempt to plug a HCP2 accessory into a Series 3 motor's HCP port.
+> **Never** attempt to plug an HCP2 accessory into a Series 3 motor's HCP port.
 
 Communication with the motor happens over [Modbus](/components/modbus/) with the `role` set to
 `server`, which in turn requires a [UART bus](/components/uart/). The UART **must** be configured with
@@ -61,7 +61,7 @@ cover:
 
 ## Hardware
 
-The HCP2 bus is a two-wire RS485 connection that also carries the drive's ~24 V supply, so a single
+The HCP2 bus is a two-wire RS485 connection that also carries the motor's ~24 V supply, so a single
 cable provides both communication and power — no separate power supply is required.
 
 > [!CAUTION]
@@ -93,8 +93,8 @@ The motor exposes the bus on a 6-pin socket with the following pinout:
 | 2   | GND             | —                   |
 | 3   | B− (RS485 data) | Yellow              |
 | 4   | A+ (RS485 data) | Grey                |
-| 5   | +25 V           | Purple              |
-| 6   | +25 V           | —                   |
+| 5   | +24 V           | Purple              |
+| 6   | +24 V           | —                   |
 
 > [!NOTE]
 > The wire colours depend on the cable you use — the pin positions are what matter. The GND (pins 1
@@ -147,9 +147,8 @@ to the `cover` platform below.
   generation.
 - **modbus_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the
   [Modbus](/components/modbus/) hub.
-- **address** (*Optional*, int): The Modbus server address the component answers on. Defaults to `2`,
-  which is the address the motor's bus controller expects the UAP1 module on. You should not need
-  to change this.
+- **address** (*Optional*, int): The Modbus server address the component answers on.
+  Defaults to `0x02` during the deprecation window and will change to `0x2a` in **2027.04.0** to improve compatiblity.
 - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval at which
   the connection to the bus controller is checked and state changes are published. Raising it delays
   every door state update by the same amount. Defaults to `500ms`.
