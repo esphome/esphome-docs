@@ -79,8 +79,9 @@ digit of the first display, and the buffer starts out empty on every update.
   with `strftime` and write the result.
 - `it.clock_display(pos, show_leading_zero, use_ampm, time)`: Writes the time as `HH:MM`, or `H:MM` with a blank
   first digit when `show_leading_zero` is `false`, in 12-hour form when `use_ampm` is `true`.
-- `it.clear()`: Empties the buffer. The lambda never needs it, but an automation that prints with
-  `id(my_display).print(...)` does, since what it prints stays until the next update draws it.
+- `it.clear()`: Empties the buffer. The lambda never needs it, since the buffer is emptied before every update.
+  It is for printing from automations with `id(my_display).print(...)` on a display without a lambda: what they
+  print stays until the next update draws it, so clear first when the new message is shorter than the old one.
 
 Other things the lambda can do:
 
@@ -130,7 +131,12 @@ The 7-segment font has the digits `0` to `9`, a space, `-`, `_` and the letters 
 new way; any other character, including multi-byte ones such as `°`, is added. Each segment is one bit of the value,
 with bit 0 the least significant:
 
-<Figure src={ht16k33DigitDefImg} caption="The segment names." layout="constrained" alt="" />
+<Figure
+  src={ht16k33DigitDefImg}
+  caption="The segment names."
+  layout="constrained"
+  alt="A digit with its segments named: A along the top, B upper right, C lower right, D along the bottom, E lower left, F upper left, G across the middle, and the decimal point at the lower right."
+/>
 
 | Bit     | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7             |
 | ------- | - | - | - | - | - | - | - | ------------- |
