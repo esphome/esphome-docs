@@ -1,0 +1,56 @@
+---
+description: "Instructions for setting up Analog Devices MAX17048 and MAX17049 battery fuel gauges in ESPHome."
+title: "Analog Devices MAX17048 battery fuel gauge"
+---
+
+import Figure from '@components/Figure.astro';
+
+The `max17048` platform allows you to monitor the remaining capacity of a lithium-ion battery with an Analog
+Devices MAX17048 or MAX17049 fuel gauge
+([datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/MAX17048-MAX17049.pdf)) in
+ESPHome. The ModelGauge algorithm in the chip tracks the state of charge over a wide range of charge and
+discharge profiles without a sense resistor or relearn cycles. The MAX17048 monitors one cell and the MAX17049
+two cells in series; the two chips are otherwise the same. It uses the [I²C Bus](/components/i2c/) for
+communication.
+
+> [!NOTE]
+> The voltage is scaled for the MAX17048. On a MAX17049, whose voltage step is doubled for its two cells,
+> `battery_voltage` is therefore the average voltage per cell rather than the pack voltage; a `multiply: 2` filter
+> gives the pack voltage.
+
+<Figure
+  src="/images/max17048.webp"
+  alt="Adafruit MAX17048 LiPoly / LiIon fuel gauge and battery monitor"
+  caption="Adafruit MAX17048 LiPoly / LiIon fuel gauge and battery monitor"
+  layout="constrained"
+  width={300}
+  height={244}
+/>
+
+```yaml
+# Example configuration entry
+sensor:
+  - platform: max17048
+    battery_voltage:
+      name: Battery Voltage
+    battery_level:
+      name: Battery Level
+```
+
+## Configuration variables
+
+- **battery_voltage** (*Optional*): The cell voltage in volts.
+  All options from [Sensor](/components/sensor/).
+- **battery_level** (*Optional*): The state of charge in percent.
+  All options from [Sensor](/components/sensor/).
+- **rate** (*Optional*): The rate at which the cell is charging or discharging, in percent per hour, positive
+  while charging. All options from [Sensor](/components/sensor/).
+- **address** (*Optional*, int): The I²C address of the device. Defaults to `0x36`.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How often to read the gauge.
+  Defaults to `60s`.
+
+## See Also
+
+- [I²C Bus](/components/i2c/)
+- [MAX17043 battery fuel gauge](/components/sensor/max17043/)
+- [MAX17048 product page](https://www.analog.com/en/products/max17048.html)
