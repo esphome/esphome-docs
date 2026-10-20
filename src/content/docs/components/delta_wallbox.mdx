@@ -1,77 +1,129 @@
 ---
-description: "Instructions for setting up Delta AC Wallbox in ESPHome."
+description: "Instructions for setting up a Delta AC wallbox over Bluetooth in ESPHome."
 title: "Delta AC Wallbox"
 ---
 
-This component will report the charger model, serial number, current raw state of the charger, and Bluetooth firmware version. 
+import { Image } from 'astro:assets';
 
-It is also possible to start and stop a charging session using this component. 
+The `delta_wallbox` component connects to a Delta AC wallbox over Bluetooth Low Energy. It reports the charger's
+model, serial number, firmware versions, state, power, energy and charging time, and can start and stop a charging
+session.
 
-## Device Discovery
+<Image
+  src="/images/delta-wallbox-ac-max.jpg"
+  alt="Delta AC MAX wallbox"
+  layout="constrained"
+  width={400}
+  height={400}
+/>
 
-To find out your device's `MAC address`, add the following to your ESPHome configuration:
+The Delta AC MAX (Basic) wallbox is supported. You need the `password` and the pairing `pin`, both shown in the Delta
+app when the charger is first set up.
+
+The component needs a [BLE Client](/components/ble_client/) and runs on the ESP32 only.
+
+## Finding the Wallbox
+
+To find the charger's MAC address, add the following to your configuration and look in the log for a device whose
+name starts with `JV`:
 
 ```yaml
 logger:
-  level: DEBUG # Required for the tracker to show the device
+  level: DEBUG
 
 esp32_ble_tracker:
 ```
 
-Look for a device's serial name starting with `JV`.
-
-Once the device is found, take note of the device `MAC address` and remove the `esp32_ble_tracker` device tracker from your configuration.
-
-## Supported Devices
-
-### Delta AC MAX (Basic) Wallbox 
-
-Delta AC MAX (Basic) Wallbox is a EV charger that make use of bluetooth to get charging information and to control it.
-
-You will need the `password` and `pin`, both of which are available from the Delta application (usually show to you when you first setup the device). 
-
-### Configuration example
+## Configuration
 
 ```yaml
-
+# Example configuration entry
 esp32_ble:
   io_capability: keyboard_only
   auth_req_mode: sc_mitm_bond
 
-# Real-time clock required for the wallbox to synchronize its internal logs
-time:
-  - platform: sntp
-    id: sntp_time
-
 ble_client:
   - id: delta_ble_client
-    mac_address: "xx:xx:xx:xx:xx:xx" # Replace with the mac address of the Delta Wallbox
+    mac_address: "xx:xx:xx:xx:xx:xx"
 
 delta_wallbox:
   id: my_charger
   ble_client_id: delta_ble_client
-  password: "PASSWORD_HERE"        # This is the password given to you by the Delta Wallbox (needed) (quotes required)
-  pin: PIN_HERE                    # BLE pairing PIN/passkey if the wallbox. Given to you by the Delta Wallbox (needed) (PIN_HERE should be 6 digits, no quotes)
-  user: "admin"                    # Default: "admin" (future option)
+  password: !secret wallbox_password
+  pin: !secret wallbox_pin
   time_id: sntp_time
-  update_interval: 15s             # You can increase this if you need it to update less frequently
+```
 
+### Configuration Variables
+
+- **password** (**Required**, string): The password from the Delta app.
+- **pin** (*Optional*, int): The six-digit pairing PIN from the Delta app.
+- **user** (*Optional*, string): The user name to log in with. Defaults to `admin`.
+- **time_id** (*Optional*, [ID](/guides/configuration-types/#id)): A [time](/components/time/) source. When set, the
+  charger's clock is synchronized at every connection so that its own logs carry the right time.
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How often to read the charger.
+  Defaults to `15s`.
+- **ble_client_id** (**Required**, [ID](/guides/configuration-types/#id)): The BLE client the charger is reached
+  through.
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code generation.
+
+## Sensor
+
+```yaml
 sensor:
   - platform: delta_wallbox
     delta_wallbox_id: my_charger
     charger_state:
-      name: "Charger Raw State"
+      name: "Charger State"
+    max_current:
+      name: "Max Current"
+    power:
+      name: "Charging Power"
+    energy:
+      name: "Session Energy"
+    charging_time:
+      name: "Charging Time"
+```
 
+- **delta_wallbox_id** (*Optional*, [ID](/guides/configuration-types/#id)): The `delta_wallbox` hub. Only needed
+  with more than one.
+- **charger_state** (*Optional*, Sensor): The raw state byte the charger reports. All options from
+  [Sensor](/components/sensor/).
+- **max_current** (*Optional*, Sensor): The configured charging current limit in amperes. All options from
+  [Sensor](/components/sensor/).
+- **power** (*Optional*, Sensor): The charging power in kilowatts. All options from [Sensor](/components/sensor/).
+- **energy** (*Optional*, Sensor): The energy of the current session in kilowatt hours. All options from
+  [Sensor](/components/sensor/).
+- **charging_time** (*Optional*, Sensor): The length of the current session in minutes. All options from
+  [Sensor](/components/sensor/).
+
+## Text Sensor
+
+```yaml
 text_sensor:
   - platform: delta_wallbox
     delta_wallbox_id: my_charger
-    bt_fw_version:
-      name: "Charger Bluetooth FW Version"
     model_name:
       name: "Charger Model"
     serial_number:
       name: "Charger Serial Number"
-      
+    fw_version:
+      name: "Charger Firmware"
+    bt_fw_version:
+      name: "Charger Bluetooth Firmware"
+    error_code:
+      name: "Charger Error Code"
+```
+
+- **delta_wallbox_id** (*Optional*, [ID](/guides/configuration-types/#id)): The `delta_wallbox` hub. Only needed
+  with more than one.
+- **model_name**, **serial_number**, **fw_version**, **bt_fw_version**, **error_code** (*Optional*, Text Sensor):
+  The charger's model, serial number, firmware version, Bluetooth firmware version and current error code. All
+  options from [Text Sensor](/components/text_sensor/).
+
+## Button
+
+```yaml
 button:
   - platform: delta_wallbox
     delta_wallbox_id: my_charger
@@ -81,4 +133,14 @@ button:
       name: "Stop Charging"
 ```
 
+- **delta_wallbox_id** (*Optional*, [ID](/guides/configuration-types/#id)): The `delta_wallbox` hub. Only needed
+  with more than one.
+- **start_charging** (*Optional*, Button): Starts a charging session. All options from
+  [Button](/components/button/).
+- **stop_charging** (*Optional*, Button): Stops the charging session. All options from
+  [Button](/components/button/).
 
+## See Also
+
+- [BLE Client](/components/ble_client/)
+- [ESP32 Bluetooth Low Energy Tracker Hub](/components/esp32_ble_tracker/)
