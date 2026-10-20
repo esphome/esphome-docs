@@ -25,8 +25,6 @@ light:
 - **pin** (**Required**, [Pin](/guides/configuration-types#pin)): The pin for the data line of the light.
 - **num_leds** (**Required**, int): The number of LEDs in the strip. The DMA buffer limits this to 165 LEDs, or 123
   LEDs when `channel_colors` contains a `W`.
-- **is_rgbw** (*Optional*, boolean): Set to `true` for strips with a separate white channel, which take four bytes per LED. Defaults to `false`.
-- **is_wrgb** (*Optional*, boolean): Set to `true` for RGBW strips that expect the white byte first. Defaults to `false`.
 
 - **chipset** (**Required**, enum): The chipset to apply known timings from.
   - `WS2812`
