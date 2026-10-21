@@ -241,6 +241,22 @@ command, every time.  Espressif chips are signed with a `RSA-2048` verification 
 
 Nordic chips do not have a ROM bootloader, installation via SWD is expected for serial flash.
 
+The `nrf52` variant can instead keep a serial DFU bootloader that the board already has, with
+`advanced: bootloader:` (see [`advanced`](#advanced)):
+
+- `adafruit_nrf52_sd140_v6` or `adafruit_nrf52_sd140_v7`: the Adafruit UF2 bootloader, with the S140 v6 or v7
+  SoftDevice. `esphome compile` builds a `firmware.zip`, and `esphome upload` reboots the running application into
+  the bootloader (a 1200 baud touch on the USB serial port) and sends the package over serial DFU with
+  `adafruit-nrfutil`, which is installed on first use. `esphome logs --reset` reboots the application with a
+  2001 baud touch.
+- `nrf`: the Nordic Open DFU bootloader factory-flashed on the nRF52840 Dongle (`board: nrf52840dongle`). Upload uses
+  Nordic's `nrfutil`. On the dongle, the reboot into the bootloader goes through P0.19, which is wired to RESET.
+
+Both keep the vendor bootloader, so there is no MCUboot and no OTA. The touch that reboots into the bootloader is
+`advanced: dfu:`, on by default with these bootloaders. Only USB serial port 0 reacts to it.
+
+`nrf54l15` and `nrf54lm20a` default to MCUboot and also accept `advanced: bootloader: none`.
+
 ### Raspberry Pi Serial Load Process
 
 `rp2040`/`rp2350` have a ROM bootloader, `BOOTSEL`, that flashes the chip directly — MCUboot is
@@ -421,7 +437,8 @@ it from:
   alternate); `efr32mg24` supports mainline Zephyr (the default) and `silabs` (Silicon Labs' own
   Simplicity SDK for Zephyr, as an alternate). See [Variants](#variants) for each variant's default.
 - **version** (*Optional*, string): The version to build against, in **that SDK's own numbering** —
-  defaults to the SDK's own recommended version. The literal value `recommended` is also accepted as
+  defaults to the SDK's own recommended version, currently `4.4.2` for mainline Zephyr and `3.4.1` for NCS
+  (the oldest accepted are `4.4.1` and `3.4.0`). The literal value `recommended` is also accepted as
   an explicit alias for that default. Mutually exclusive with **source**, since a source determines
   the version from itself.
 - **source** (*Optional*): Overrides *where the selected SDK is fetched from* — a fork, an unreleased
@@ -449,7 +466,7 @@ zephyr:
   variant: nrf52
   framework:
     type: zephyr   # mainline, instead of nrf52's NCS default
-    version: "4.4.1"
+    version: "4.4.2"
 ```
 
 ```yaml
@@ -539,15 +556,21 @@ to. **runner** is the exception: it applies to every variant.
   warning at compile time, it does not fail config validation. Has no effect on `rp2040`/`rp2350`'s
   BOOTSEL/picotool flashing, and is overridden by `--device PYOCD` if that's also used. See
   [Serial Load Process](#serial-load-process).
-- **bootloader** (*Optional*, string, `rp2040`/`rp2350`/`ra4m1`/`stm32l4`/`stm32f4`/`stm32u5` only)
-  : `none` or `mcuboot`. Defaults to `none` on `rp2040`/`rp2350`/`ra4m1`/`stm32l4` — their default
-  boards ship no `slot0`/`slot1` partitions, so choosing `mcuboot` there means supplying a fully
-  qualified board and your own MCUboot-shaped partition overlay via `overlays` (for example
-  `board: rpi_pico/rp2040/mcuboot`). `stm32f4` is the exception: it defaults to `mcuboot`, since its
-  default board's stock partition table already ships `slot0`/`slot1` and real MCUboot fits its
-  `boot_partition` unmodified. Every other variant requires MCUboot and has no such option, except
-  `siwx917`, which has no MCUboot/OTA support at all and also has no such option — see
-  [Silicon Labs](#silicon-labs).
+- **bootloader** (*Optional*, string): `none` or `mcuboot` on `rp2040`, `rp2350`, `ra4m1`, `nrf54l15`,
+  `nrf54lm20a` and the STM32 variants. On `nrf52`: `mcuboot`, `adafruit_nrf52_sd140_v6`,
+  `adafruit_nrf52_sd140_v7` or `nrf`, to keep the board's own serial DFU bootloader — see
+  [Nordic Serial Load Process](#nordic-serial-load-process). Defaults to `none` on
+  `rp2040`/`rp2350`/`ra4m1`/`stm32l4` — their default boards ship no `slot0`/`slot1` partitions, so choosing
+  `mcuboot` there means supplying a fully qualified board and your own MCUboot-shaped partition overlay via
+  `overlays` (for example `board: rpi_pico/rp2040/mcuboot`). Defaults to `mcuboot` on the others. OTA needs
+  `mcuboot`. The Espressif variants and `efr32mg24` always use MCUboot and have no such option; `siwx917` has
+  no MCUboot/OTA support at all and also has no such option — see [Silicon Labs](#silicon-labs).
+- **dfu** (*Optional*, boolean or mapping, `nrf52` with an Adafruit or Open DFU bootloader only): Reboot into
+  the bootloader when the host opens USB serial port 0 at 1200 baud, so `esphome upload` needs no button press.
+  Defaults to `true` with those bootloaders; rejected with `mcuboot`. As a mapping it accepts:
+  - **reset_pin** (*Optional*, [Pin](/guides/configuration-types#pin)): A GPIO wired to the chip's RESET line,
+    driven to reset the chip instead of a software reboot. Defaults to `P0.19` (inverted) on `nrf52840dongle`,
+    whose Open DFU bootloader only stays in DFU mode after a pin reset.
 - **commander_version** (*Optional*, string, `efr32mg24`/`siwx917` with `framework: type: silabs`
   only): Override the version of Silicon Labs' Simplicity Commander CLI used for secure-boot image
   signing. Defaults to a pinned known-good version. Commander is downloaded and cached automatically;
@@ -571,6 +594,15 @@ zephyr:
   board: rpi_pico/rp2040/mcuboot
   advanced:
     bootloader: mcuboot
+```
+
+```yaml
+# Example configuration entry -- nRF52840 keeping its Adafruit UF2 bootloader
+zephyr:
+  variant: nrf52
+  board: adafruit_feather_nrf52840
+  advanced:
+    bootloader: adafruit_nrf52_sd140_v6
 ```
 
 ```yaml
@@ -847,6 +879,36 @@ logger:
 See the [`overlays`](#overlays) `IMPORTANT` note above for why each image's `zephyr,code-partition`
 must point at its own partition.
 
+## Build Checks and Tools
+
+**Flash layout check.** Before anything is compiled, the build checks the flash layout of every image (the
+application and MCUboot), as the board, shields, snippets and [`overlays`](#overlays) leave it. It stops with a
+message naming the partition when:
+
+- preferences have no `storage_partition` (or `zephyr,settings-partition`) large enough for two NVS sectors
+- with MCUboot, `boot_partition`, `slot0_partition` or `slot1_partition` is missing (`scratch_partition` too with
+  `swap_method: scratch`; no `slot1_partition` with `single_slot`), the application and MCUboot images disagree
+  on them, or an image runs from the wrong partition
+- the first image does not start where the chip or board starts running code, or a partition overlaps another one
+  or flash the chip keeps for itself (for example the SoftDevice and UF2 bootloader with an Adafruit bootloader)
+- a partition a component needs is missing, for example `zboss_nvram` for Zigbee or `coredump_partition` for
+  [`zephyr_coredump`](/components/zephyr_coredump/)
+
+**Serial console.** The board's own serial console (`SERIAL`, `CONSOLE`, `UART_CONSOLE`, `PRINTK`, the boot banner)
+is turned off on real hardware unless something needs it, such as the logger on a UART or a `uart:` bus. This frees
+the console pins and saves flash and idle current. [`kconfig_options`](#kconfig_options) can still turn them on.
+
+**Crash output.** After a crash, Zephyr's fault dump (fault type, registers, call trace and the faulting thread)
+is printed on the logger's output before the device resets. The next boot also logs the crash reason and address.
+[`zephyr_coredump`](/components/zephyr_coredump/) keeps a full dump in flash for a later GDB session, and
+[`debug: enable_rtt_console`](/components/debug/) copies the output to SEGGER RTT.
+
+**`--skip-bootloader`.** With an `ota:` platform configured, `esphome compile` or `esphome run` with
+`--skip-bootloader` builds only the application images, since an OTA upload never sends MCUboot. A serial,
+BOOTSEL or pyOCD flash of such a build is refused. Without `ota:`, or on `nativesim`, the flag is ignored.
+
+**`esphome analyze-memory`** works on `platform: zephyr` builds and reads `.west_build/zephyr/zephyr/zephyr.elf`.
+
 ## Zephyr's own logging vs. heavy debug levels
 
 `log_level` controls Zephyr's own subsystem logging (network stack, USB, drivers, etc.), which is
@@ -863,7 +925,8 @@ configured without `openthread:` (on `esp32c6`/`esp32c5`/`esp32h2` with `openthr
 `nrf52`/`nrf54l15` — which always use `openthread:` — discovery instead goes through OpenThread's
 own SRP client; `nativesim` uses the host's own mDNS backend, not Zephyr's).
 
-The minimum Zephyr recommended to use with Wifi is 4.5.0-rc1
+The minimum Zephyr recommended to use with Wi-Fi is 4.5.0-rc1. With OTA on an Espressif variant, 4.5 also needs
+`swap_method: offset`; see [Swap methods](/components/ota/esphome/#swap-methods).
 
 ```yaml
 # Example configuration entry
@@ -882,8 +945,8 @@ mdns:
 ESPHome's own `mdns:` component already sets the mainline-safe Kconfig values it needs (`DNS_SD`,
 `MDNS_RESPONDER`, `MDNS_RESPONDER_PROBE`, and larger stack sizes for the responder's worker and
 socket-service dispatcher threads) regardless of which Zephyr source is used. Only
-`MDNS_RESPONDER_ANNOUNCE_DNS_SD` needs setting by hand, since it's specific to the patches that
-are not in 4.4.1 which is still the minimum version available.
+`MDNS_RESPONDER_ANNOUNCE_DNS_SD` needs setting by hand, since it's specific to patches that are not
+in the 4.4 releases.
 
 ## Adding a new variant
 
@@ -990,7 +1053,12 @@ driven entirely by that data. A new variant is a new entry plus variant-specific
 
 ## See Also
 
+- [Debug Component](/components/debug/)
+- [Deep Sleep Component](/components/deep_sleep/)
 - [I²C Bus](/components/i2c/)
+- [Logger Component](/components/logger/)
+- [USB CDC-ACM Interface](/components/usb_cdc_acm/)
+- [Zephyr Coredump](/components/zephyr_coredump/)
 - [Network Component](/components/network/)
 - [OpenThread Component](/components/openthread/)
 - [ESPHome Core Configuration (OTA/`safe_mode`)](/components/ota/esphome/)

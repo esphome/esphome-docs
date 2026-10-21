@@ -86,12 +86,6 @@ ota:
 - All [automations](/automations) supported by [Ota](/components/ota/).
 
 > [!NOTE]
-> On the `zephyr` platform, the OTA file checksum uses SHA256 instead of MD5 (NCS's crypto drivers don't implement
-> MD5). The device requires this from the uploading client, rather than falling back to MD5 -- an `esphome` version
-> that doesn't support it yet cannot OTA a `zephyr` device at all. Once a device is running `zephyr` platform
-> firmware, going back to an older `esphome` requires a wired reflash; it cannot be done over the air.
-
-> [!NOTE]
 > After a serial upload, ESP8266 modules must be reset before OTA updates will work. If you attempt to perform an OTA
 > update and receive the error message `Bad Answer: ERR: ERROR[11]: Invalid bootstrapping`, the ESP module/board
 > must be power-cycled.
@@ -120,13 +114,19 @@ Which methods a given variant/board's flash layout supports (and which one it de
 
 | Variant | Supported methods | Default |
 | --- | --- | --- |
-| `esp32`, `esp32c3`, `esp32c6`, `esp32h2`, `esp32s3` | `scratch`, `move` | `scratch` |
-| `nrf52`, `rp2040`, `rp2350` | `move`, `offset` | `offset` |
-| `nrf54l15`, `nrf54lm20a`, `efr32mg24` | `move`, `offset` | `move` (pending `offset` testing; may switch to match `nrf52` once done) |
+| `esp32`, `esp32c3`, `esp32c5`, `esp32c6`, `esp32h2`, `esp32s3` | `scratch`, `move`, `offset` | `scratch` |
+| `stm32f4` | `scratch`, `move`, `offset` | `offset` |
+| `nrf52`, `nrf54l15`, `nrf54lm20a` | `move`, `offset` | `move` |
+| `efr32mg24`, `ra4m1`, `rp2040`, `rp2350`, `stm32f1`, `stm32l4`, `stm32u5` | `move`, `offset` | `offset` |
 
-`nrf52`, `nrf54l15`, `nrf54lm20a`, `efr32mg24`, `rp2040`, and `rp2350` never define a `scratch`
-partition, so `scratch` isn't available there; `esp32`/`esp32c3`/`esp32c6`/`esp32h2`/`esp32s3` are the reverse -- `offset`
-isn't available on any Zephyr esp32-family variant.
+`scratch` needs a `scratch_partition` in the board's devicetree, so it is only offered on the variants whose boards
+can have one. `siwx917` and `native_sim` have no MCUboot, so `swap_method` does not apply there. The build checks the
+flash layout and stops with an error if the chosen method does not fit it.
+
+> [!IMPORTANT]
+> Zephyr 4.4 ships a `scratch_partition` on the Espressif boards, but Zephyr 4.5 and newer do not. With
+> `framework: version: 4.5.0-rc1` or newer on an Espressif variant, set `swap_method: offset`, which Espressif now
+> recommends; the default `scratch` fails the flash layout check there.
 
 ## Updating the Password
 

@@ -195,7 +195,8 @@ on_...:
 ### `zigbee.report` Action (`ESP32` only)
 
 This [action](/automations/actions#config-action) triggers a report of all attributes of
-components with `report: enable` or `report: force`.
+components with `report: enable` or `report: force`. On the `nRF52` chip family (`platform: nrf52`, or
+`platform: zephyr`), it reports every attribute that has reporting configured.
 
 ```yaml
 on_...:

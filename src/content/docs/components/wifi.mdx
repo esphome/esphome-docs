@@ -155,7 +155,8 @@ wifi:
   > Be aware that marking networks as hidden prevents ESPHome from finding the best access point to connect to,
   > so the device may not connect to the AP with the best signal strength.
 
-- **lease_cache** (*Optional*): Only on `esp32` with the ESP-IDF framework. Remembers the DHCP lease the device is
+- **lease_cache** (*Optional*): Only on `esp32` with the ESP-IDF framework, and on `platform: zephyr`, where it works
+  differently (see below). Remembers the DHCP lease the device is
   assigned and, on the next boot, re-applies it as a static IP **without running DHCP** while it is still valid. This
   skips the DHCP handshake, so the network is usable in milliseconds. It is most useful for battery-powered devices
   that wake from deep sleep frequently. Disabled by default. Accepts a boolean, or a settings block:
@@ -201,6 +202,11 @@ wifi:
   > renewal deadline (about half the lease by default) by falling back to DHCP; a deep-sleep device only re-checks on
   > each wake, so it can keep applying a stale address until the lease ages past that deadline. Use `max_age` to bound
   > this window, or a `manual_ip` if the address must never be stale.
+
+  On `platform: zephyr`, only the address is saved, in flash (the default storage there, since Zephyr has no RTC
+  memory). The device still runs DHCP on the next connect, but starts by asking the server to confirm the saved
+  address (DHCP INIT-REBOOT). This is quicker than a full DHCP exchange and keeps the same address, and since the
+  server confirms it, the address cannot be stale. `max_age` has no effect there.
 
 - **min_auth_mode** (*Optional*, string): Only on `esp32` and `esp8266`. Sets the minimum WiFi authentication mode
   that the device will accept when connecting to access points. This controls the weakest encryption your device will

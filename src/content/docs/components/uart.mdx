@@ -55,7 +55,7 @@ uart:
 - **baud_rate** (**Required**, int): The baud rate of the UART bus.
 - **tx_pin** (*Optional*, [Pin](/guides/configuration-types#pin)): The pin to send data to from the ESP's perspective. Use the full pin
   schema and set `inverted: true` to invert logic levels. Not supported by host platform. On the `zephyr` platform,
-  only the `esp32`/`esp32c3`/`esp32c6`/`esp32h2`/`esp32s3` variants support this (see [`zephyr` notes](#zephyr) below); `native_sim` does not.
+  only some variants support this (see [`zephyr` notes](#zephyr) below).
 
 - **rx_pin** (*Optional*, [Pin](/guides/configuration-types#pin)): The pin to receive data on from the ESP's perspective. Use the full pin
   schema and set `inverted: true` to invert logic levels. Not supported by host platform. Same `zephyr` variant restriction as **tx_pin**.
@@ -342,16 +342,51 @@ numbering) rather than by pins alone:
 ```yaml
 # Example configuration entry for the zephyr platform
 uart:
-  port: uart1
+  port: UART1
   baud_rate: 115200
 ```
 
-- **port** accepts `uart0` through `uart5`, whichever the board's devicetree exposes. Defaults to `uart0` if not set.
-- **tx_pin**/**rx_pin** may be set together with **port** on the `esp32`/`esp32c3`/`esp32c6`/`esp32h2`/`esp32s3` variants, whose UART
-  TX/RX are routed through the chip's GPIO matrix — this overrides which physical pins the chosen `port` uses.
-  Only pins in that variant's own valid TX/RX set are accepted; an invalid pin is rejected at config time. The
-  `native_sim` and `nrf52` variants do not support pin selection at all — omit **tx_pin**/**rx_pin** there; on
-  `nrf52`, each `port`'s pins come entirely from the board's own devicetree.
+- **port** accepts:
+  - `UART0`, `UART1`, and any other `UART<n>`: ESPHome maps the number to the board's own UART node (for example
+    `uart20` on the nRF54 variants). Defaults to `UART0` if not set.
+  - `"&<label>"`: any UART devicetree node, by its label.
+  - `RTT0`, `RTT1`, `RTT2`: a SEGGER RTT channel, read and written through a debug probe, for example with openocd
+    or J-Link. There are no pins, and **baud_rate** is required but has no effect. Not available on the Espressif
+    variants or `native_sim`. Each channel can have only one user, so `logger:` and `uart:` cannot share one, and
+    [`debug: enable_rtt_console`](/components/debug/) takes `RTT0`. When nothing reads the channel, data written
+    to it is lost once its buffer is full.
+  - `"&rtt0"` to `"&rtt3"`: an RTT channel through a node you declare yourself. ESPHome only reserves the channel,
+    with the same one-user rule; it does not add the node or turn on SEGGER RTT. Declare the node with
+    [`overlays`](/components/zephyr/#overlays) and set `USE_SEGGER_RTT: true` in
+    [`kconfig_options`](/components/zephyr/#kconfig_options). This is the only way to use channel 3, which also
+    needs the SEGGER buffer counts raised from their default of 3:
+
+    ```yaml
+    # Example configuration entry: uart on RTT channel 3
+    zephyr:
+      variant: nrf54l15
+      overlays:
+        app: |
+          / {
+            rtt3: rtt_chan3 {
+              compatible = "segger,rtt-uart";
+            };
+          };
+      kconfig_options:
+        USE_SEGGER_RTT: true
+        SEGGER_RTT_MAX_NUM_UP_BUFFERS: 4
+        SEGGER_RTT_MAX_NUM_DOWN_BUFFERS: 4
+
+    uart:
+      - id: rtt_bus
+        port: "&rtt3"
+        baud_rate: 115200
+    ```
+- **tx_pin**/**rx_pin** may be set together with **port** on the Espressif variants, the Nordic variants (`nrf52`,
+  `nrf54l15`, `nrf54lm20a`), `efr32mg24`, `rp2040` and `rp2350`; this overrides which physical pins the chosen
+  `port` uses. Only pins in that variant's own valid TX/RX set are accepted; an invalid pin is rejected at config
+  time. The other variants (`native_sim`, `ra4m1`, `siwx917` and the STM32 variants) do not support pin selection;
+  omit **tx_pin**/**rx_pin** there, and each `port`'s pins come from the board's own devicetree.
 - Ports other than `uart0` have no pinctrl configured on stock development boards, so **tx_pin**/**rx_pin** are
   required together with `port: uart1` (or any other non-default port) on those boards.
 - **emulation** (*Optional*, mapping): Backs this UART bus with Zephyr's `uart-emul` devicetree node instead of a
