@@ -18,21 +18,19 @@ guessed.
 
 ## Example configuration entry
 
-The component has no options of its own. It is configured together with its dependency
-(`tflite_op_processor`, used by the arena probe):
+The component has no options of its own: the arena it allocates is sized with `tensor_arena_size` on the
+`tflite_micro_runtime` instance that loads it (PSRAM is preferred when present):
 
 ```yaml
-tflite_op_processor:
-tflite_memory_handler:
-```
+psram:
+  mode: quad
 
-It is normally loaded by `tflite_micro_runtime`:
-
-```yaml
 tflite_micro_runtime:
   - id: digit_reader
     model_type: image
     model: "models/digit_recognizer.tflite"
+    # Tensor arena size: allocated in PSRAM when available, internal RAM otherwise
+    tensor_arena_size: 200KB
 ```
 
 ## See Also
