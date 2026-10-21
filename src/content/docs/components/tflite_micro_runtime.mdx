@@ -27,8 +27,11 @@ demo with multiple ESP32 boards, pre-trained digit recognition models, and camer
 ```yaml
 # Example configuration entry
 tflite_micro_runtime:
-  model_type: image
-  model: "models/digit_recognizer.tflite"
+  - id: digit_reader
+    model_type: image
+    model: "models/digit_recognizer.tflite"
+    tensor_arena_size: 200KB
+    debug: true
 ```
 
 ## Configuration Variables
