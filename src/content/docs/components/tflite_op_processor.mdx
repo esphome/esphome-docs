@@ -21,19 +21,17 @@ The table is verified against `esp-tflite-micro` 1.3.7 by `script/verify_tflm_op
 
 ## Example configuration entry
 
-The component has no options of its own; configuring it explicitly only loads the library:
-
-```yaml
-tflite_op_processor:
-```
-
-It is normally loaded by `tflite_micro_runtime`:
+The component has no options of its own: operators are registered automatically from the model, and
+`debug: true` prints the operator table that was registered for it:
 
 ```yaml
 tflite_micro_runtime:
   - id: digit_reader
     model_type: image
     model: "models/digit_recognizer.tflite"
+    # Operators are registered automatically from the model;
+    # debug: true prints the operator table that was registered.
+    debug: true
 ```
 
 ## See Also
