@@ -1,0 +1,19 @@
+---
+description: "Raw output tensor post-processing for TFLite Micro models"
+title: "TFLite Output Processor"
+---
+
+The `tflite_output_processor` component is a **library-only component**: it does not expose YAML configuration and is
+loaded automatically as a dependency of the `tflite_micro_runtime`
+component and of the third-party components that consume it.
+
+`process_output()` supports `const float *` and `TfLiteTensor *` overloads and handles both float models and
+quantized (`uint8`/`int8`) models with explicit dequantization and scale factors, applying the configured
+processing strategy (`direct_class`, `softmax`, `argmax` or `logits`).
+
+## See Also
+
+- `tflite_micro_runtime` - the user-facing component that loads this library
+  automatically
+- [esphome_ai_component Demo](https://github.com/nliaudat/esphome_ai_component) - working demo with pre-trained
+  models and camera integration
