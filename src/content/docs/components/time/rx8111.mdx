@@ -16,7 +16,7 @@ time:
 The RTC is read on startup and then at the `update_interval` (15 minutes by default). It is **not** set from the
 system time automatically; use the `rx8111.write_time` action for that. A read does not synchronize the system
 clock when the RTC reports a power loss or an oscillator stop, or when its time, calendar date or weekday is
-invalid. Those flags are cleared only by a successful `rx8111.write_time`.
+invalid. A successful `rx8111.write_time` clears those flags.
 
 ## Configuration Variables
 
@@ -184,7 +184,7 @@ time:
         - rx8111.write_time: rtc
 ```
 
-Event capture, FOUT and backup power features of the RX8111 are not available yet.
+Event capture, FOUT, and backup power features of the RX8111 are not available yet.
 
 ## See Also
 
