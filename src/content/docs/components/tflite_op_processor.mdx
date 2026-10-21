@@ -34,6 +34,18 @@ tflite_micro_runtime:
     debug: true
 ```
 
+## Configuration Variables
+
+This component has no configuration variables of its own: it is loaded automatically by `tflite_micro_runtime`,
+which owns the user-facing options. The operator list is derived from the model (`.tflite` and its companion `.txt` report), so there is nothing to configure.
+
+The empty schema also allows loading it explicitly, which is mainly useful when another component declares it
+in its `DEPENDENCIES` (the ESPHome component tests do this):
+
+```yaml
+tflite_op_processor:
+```
+
 ## See Also
 
 - `tflite_micro_runtime` - the user-facing component that loads this library
