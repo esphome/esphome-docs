@@ -62,8 +62,8 @@ that is ahead moves the counter along.
 **on_command** fires like a motor, once per press: a counter up to 16 ahead of the last accepted one fires at once,
 one up to 32768 ahead only when the next frame carries the following counter, as in the Microchip HCS301 data
 sheet. The same counter is a copy, and an older one never fires, so a recorded frame played back is ignored. Frames
-this remote sends count as accepted. The last accepted counter is stored in flash every 8 presses; after a power
-loss, the last few codes could be accepted once more.
+this remote sends count as accepted. The last accepted counter is stored with the preferences, at once every 8
+presses; after a power loss, the last few codes could be accepted once more.
 
 ```yaml
 keeloq:
@@ -167,7 +167,7 @@ on_...:
 ### `keeloq.take_over` Action
 
 This [action](/automations/actions#all-actions) opens a one-minute window in which the next frame of a hand remote
-is taken over, see [Taking Over a Hand Remote](#taking-over-a-hand-remote).
+is taken over, see [Taking Over a Hand Remote](#taking-over-a-hand-remote). The remote needs **receiver_id**.
 
 ```yaml
 on_...:
