@@ -3,7 +3,7 @@ description: "TFLite Micro model loading, CRC32 verification and ModelHandler fa
 title: "TFLite Model Loader"
 ---
 
-The `tflite_model_loader` component is a **library-only component**: it does not expose YAML configuration and is
+The `tflite_model_loader` component is a **library-only component**: it has no user-facing configuration options and is
 loaded automatically as a dependency of the `tflite_micro_runtime`
 component and of the third-party components that consume it.
 
@@ -15,6 +15,26 @@ component and of the third-party components that consume it.
   output processor that consumer-facing classes such as `TFLiteMicroHelper` drive.
 
 The component is loaded automatically by `tflite_micro_runtime`.
+
+## Example configuration entry
+
+The component has no options of its own. It is configured together with the libraries it ties together:
+
+```yaml
+tflite_output_processor:
+tflite_op_processor:
+tflite_memory_handler:
+tflite_model_loader:
+```
+
+It is normally loaded by `tflite_micro_runtime`:
+
+```yaml
+tflite_micro_runtime:
+  - id: digit_reader
+    model_type: image
+    model: "models/digit_recognizer.tflite"
+```
 
 ## See Also
 
