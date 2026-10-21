@@ -62,7 +62,7 @@ time:
 ### Wake-Up Timer Options
 
 - **timer_count** (*Optional*, int): Timer reload value from `1` to `16777215` (24 bits). Required when
-  `timer_enabled: true` or `on_timer` is configured.
+  `timer_enabled: true` or `on_timer` is configured; also configure it to use `rx8111.start_timer`.
 - **timer_clock** (*Optional*, string): Clock source: `4096hz`, `64hz`, `1hz` (default), or `1_60hz` (one tick per
   minute). The timer period is `timer_count` divided by the clock frequency.
 - **timer_enabled** (*Optional*, boolean): Enable the timer interrupt. Defaults to `true` when `timer_count` or
@@ -153,13 +153,16 @@ on_...:
 
 ## Timer Actions
 
-`rx8111.clear_timer_flag` clears TF without stopping the timer. Use it after handling
-`on_timer` to rearm the timer callback. Specify the RX8111 `id` if there is more than one RX8111 time source.
-`rx8111.stop_timer` disables both the timer counter and its interrupt without clearing TF. Both actions accept
-the RX8111 `id`.
+`rx8111.start_timer` restarts the full interval using the configured `timer_count` and `timer_clock`. It also clears
+any old TF flag before enabling the timer, so a previous expiration will not fire `on_timer` immediately. Configure
+`timer_count` and set `timer_enabled: false` to keep the timer stopped at boot until an automation starts it. It
+cannot change the count or clock at runtime. `rx8111.stop_timer` disables both the counter and its interrupt without
+clearing TF. `rx8111.clear_timer_flag` clears TF without stopping the counter; use it after handling `on_timer` to
+allow a later expiration to trigger another callback. Each action accepts the RX8111 `id`.
 
 ```yaml
 on_...:
+  - rx8111.start_timer: rtc
   - rx8111.clear_timer_flag: rtc
   - rx8111.stop_timer: rtc
 ```
