@@ -76,6 +76,8 @@ in both directions for `turn_timeout` and the bytes already read from it have be
 the turn has ended still go to the last client until another client gets the turn; once that client has closed,
 they are dropped. A client that sends without a pause keeps the turn, so this suits clients that send a request and
 wait for the answer. A client may have to wait until each of the other clients has had its turn.
+A component whose reply takes longer than `turn_timeout`, for example a bridge to a slow serial device, needs a
+longer `turn_timeout`.
 
 When all connections are in use, a new client takes the place of the one that has been quiet the longest, and that
 client is closed. The client that has the turn is never closed this way.
