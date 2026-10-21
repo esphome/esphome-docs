@@ -7,7 +7,8 @@ The `keeloq` component acts as a KeeLoq remote control: it computes the encrypte
 manufacturer key, a serial number and a counter, and sends it through a
 [Remote Transmitter](/components/remote_transmitter/). The kind of receiver is set with **type**, see
 [Jarolift](#jarolift). With a [Remote Receiver](/components/remote_receiver/) it also decrypts received frames,
-reports presses and can take over a hand remote. For codes that are already encrypted, use
+reports presses and can take over a hand remote. Receiving alone needs no Remote Transmitter.
+For codes that are already encrypted, use
 [`remote_transmitter.transmit_keeloq`](/components/remote_transmitter/#remote_transmitter-transmit_keeloq) instead.
 
 > [!WARNING]
