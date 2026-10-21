@@ -20,9 +20,19 @@ The VL53L1X is the successor to the VL53L0X with a longer range. It has three di
 Range depends on how well the target reflects light, on ambient light, and on the sensor settings.
 The component follows the register sequence of ST's VL53L1X Ultra Lite Driver (ULD), so short and long
 mode and their timing budgets are the ones that driver supports. Medium mode uses ST's standard ranging
-register values. It is supported on ESP32 and ESP8266.
+register values.
 
 The [I²C Bus](/components/i2c/) is required to be set up in your configuration for this sensor to work.
+
+```yaml
+# Example configuration entry
+sensor:
+  - platform: vl53l1x
+    name: "VL53L1X Distance"
+```
+
+The sensor reports the distance in meters. When a measurement fails or the sensor reports an invalid
+range, the state is set to `NaN`.
 
 ## Wiring
 
@@ -35,22 +45,12 @@ The [I²C Bus](/components/i2c/) is required to be set up in your configuration 
   at the default `0x29` address, and required for every sensor when more than one VL53L1X shares
   an I²C bus.
 
-```yaml
-# Example configuration entry
-sensor:
-  - platform: vl53l1x
-    name: "VL53L1X Distance"
-```
-
-The sensor reports the distance in meters. When a measurement fails or the sensor reports an invalid
-range, the state is set to `NaN`.
-
 ## Configuration variables
 
 - **distance_mode** (*Optional*, string): The distance mode, one of `short`, `medium` or `long`. See
   [Distance Modes](#distance-modes). Defaults to `long`.
 
-- **timing_budget** (*Optional*, [Time](/guides/configuration-types#time)): The time allowed for a single
+- **timing_budget** (*Optional*, [Time](/guides/configuration-types/#time)): The time allowed for a single
   distance measurement. A longer budget gives more accurate readings at a lower measurement rate.
   Must be one of `15ms`, `20ms`, `33ms`, `50ms`, `100ms`, `200ms` or `500ms` in short mode, and one of
   `20ms`, `33ms`, `50ms`, `100ms`, `200ms` or `500ms` in medium and long mode. Defaults to `50ms`.
@@ -72,13 +72,14 @@ range, the state is set to `NaN`.
 - **offset** (*Optional*, int): Calibration offset in millimeters, from -1024 to 1023. Defaults to `0`.
 
 - **address** (*Optional*, int): The I²C address of the sensor. Defaults to `0x29`. If another address
-  is set, the sensor is re-addressed at startup, which requires `enable_pin`.
+  is set, the sensor is re-addressed at startup, which requires `enable_pin`. When more than one VL53L1X
+  shares an I²C bus, every sensor must be set to an address other than `0x29`.
 
-- **enable_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The pin connected
+- **enable_pin** (*Optional*, [Pin Schema](/guides/configuration-types/#pin-schema)): The pin connected
   to XSHUT on the VL53L1X. Required when `address` is not `0x29`, and for every sensor when more than
   one VL53L1X shares an I²C bus.
 
-- **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval to check
+- **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): The interval to check
   the sensor. Defaults to `1s`.
 
 - All other options from [Sensor](/components/sensor/).
@@ -162,7 +163,7 @@ sensor:
 The `offset` option compensates for a constant measurement error. To calibrate:
 
 1. Place a target at a known distance (for example 100mm)
-1. Read the measured value
+1. Read the measured value and convert it to millimeters (the sensor reports meters)
 1. Calculate offset = actual distance - measured distance, in millimeters
 1. Set `offset` to this value
 
