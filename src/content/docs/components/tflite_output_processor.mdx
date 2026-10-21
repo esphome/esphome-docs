@@ -13,19 +13,17 @@ processing strategy (`direct_class`, `softmax`, `argmax` or `logits`).
 
 ## Example configuration entry
 
-The component has no options of its own; configuring it explicitly only loads the library:
-
-```yaml
-tflite_output_processor:
-```
-
-It is normally loaded by `tflite_micro_runtime` (output processing is selected per model there):
+The component has no options of its own: `output_processing` and `scale_factor` on the
+`tflite_micro_runtime` instance select how the raw output tensor is converted:
 
 ```yaml
 tflite_micro_runtime:
   - id: digit_reader
     model_type: image
     model: "models/digit_recognizer.tflite"
+    # Post-processing of the raw output tensor: argmax over 10 classes
+    output_processing: argmax
+    scale_factor: 10
 ```
 
 ## See Also
