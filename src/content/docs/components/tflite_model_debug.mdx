@@ -3,7 +3,7 @@ description: "Debug tooling for TFLite Micro models (CRC32, architecture, tensor
 title: "TFLite Model Debug"
 ---
 
-The `tflite_model_debug` component is a **library-only component**: it does not expose YAML configuration and is
+The `tflite_model_debug` component is a **library-only component**: it has no user-facing configuration options and is
 loaded automatically as a dependency of the `tflite_micro_runtime`
 component and of the third-party components that consume it.
 
@@ -11,6 +11,29 @@ Everything is guarded by the `DEBUG_TFLITE_MICRO_HELPER` define emitted when the
 on the consuming `tflite_micro_runtime` component. When enabled it provides CRC32 model verification, model
 architecture inspection, tensor input/output statistics and quantization analysis, parameter sweeps for
 tuning preprocessing configuration, and watchdog feeding during long debug operations.
+
+## Example configuration entry
+
+The component has no options of its own. It extends the loader chain, so that chain is configured with it, and
+diagnostics are enabled with `debug: true` on the `tflite_micro_runtime` instance:
+
+```yaml
+tflite_output_processor:
+tflite_op_processor:
+tflite_memory_handler:
+tflite_model_loader:
+tflite_model_debug:
+```
+
+It is normally loaded by `tflite_micro_runtime`:
+
+```yaml
+tflite_micro_runtime:
+  - id: digit_reader
+    model_type: image
+    model: "models/digit_recognizer.tflite"
+    debug: true
+```
 
 ## See Also
 
