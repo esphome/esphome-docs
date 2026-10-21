@@ -18,22 +18,20 @@ The component is loaded automatically by `tflite_micro_runtime`.
 
 ## Example configuration entry
 
-The component has no options of its own. It is configured together with the libraries it ties together:
-
-```yaml
-tflite_output_processor:
-tflite_op_processor:
-tflite_memory_handler:
-tflite_model_loader:
-```
-
-It is normally loaded by `tflite_micro_runtime`:
+The component has no options of its own: the model, its input geometry and the tensor arena are taken
+from the `tflite_micro_runtime` instance that loads it:
 
 ```yaml
 tflite_micro_runtime:
   - id: digit_reader
     model_type: image
     model: "models/digit_recognizer.tflite"
+    # Geometry and arena for the interpreter created by the loader
+    tensor_arena_size: 200KB
+    input_type: uint8
+    input_width: 32
+    input_height: 20
+    input_channels: 1
 ```
 
 ## See Also
