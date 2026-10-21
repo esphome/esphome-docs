@@ -3,7 +3,7 @@ description: "TFLite Micro operator table and registration manager"
 title: "TFLite Op Processor"
 ---
 
-The `tflite_op_processor` component is a **library-only component**: it does not expose YAML configuration and is
+The `tflite_op_processor` component is a **library-only component**: it has no user-facing configuration options and is
 loaded automatically as a dependency of the `tflite_micro_runtime`
 component and of the third-party components that consume it.
 
@@ -18,6 +18,23 @@ single source of truth for both sides of the pipeline:
   `-DMAX_OPERATORS=<N>`.
 
 The table is verified against `esp-tflite-micro` 1.3.7 by `script/verify_tflm_operators.py`.
+
+## Example configuration entry
+
+The component has no options of its own; configuring it explicitly only loads the library:
+
+```yaml
+tflite_op_processor:
+```
+
+It is normally loaded by `tflite_micro_runtime`:
+
+```yaml
+tflite_micro_runtime:
+  - id: digit_reader
+    model_type: image
+    model: "models/digit_recognizer.tflite"
+```
 
 ## See Also
 
