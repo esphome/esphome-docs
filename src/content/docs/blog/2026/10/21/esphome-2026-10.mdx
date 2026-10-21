@@ -146,7 +146,7 @@ chip family from the browser.
 - If you have a `sendspin` switch, add `type: enabled` to each entry.
 - If you use `sendspin`, update Music Assistant to 2.10.7 or 2.11.0b4 or newer first; older servers cannot connect.
   Also replace `format: BMP` on sendspin images with `JPEG` or `PNG`, make sure a media source `codecs:` list
-  includes `flac` or `pcm`, and set `framework: type: esp-idf` under `esp32:`.
+  includes `flac` or `pcm`, and set the `esp32:` framework `type:` to `esp-idf`.
 - If you build for the `host` platform, remove unsupported `platformio_options` keys and rewrite any
   separate-argument `build_flags` (such as `-include pre.h`) as a single entry; Windows host builds are no longer
   supported.
