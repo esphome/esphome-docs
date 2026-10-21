@@ -81,6 +81,7 @@ keeloq:
 
 ESPHome can send as an existing hand remote, so the receiver needs no pairing. Run
 [`keeloq.take_over`](#keeloq-take_over-action), then press a button on the hand remote within a minute.
+The press that is taken over does not fire **on_command**.
 
 - **Without serial**: the first frame that decrypts with the manufacturer key gives the serial and the counter,
   which are written to flash at once. Until then, `keeloq.send` logs a warning and sends nothing.
@@ -205,6 +206,7 @@ over from the hand remote, unless it sets **channels** itself. For a remote with
 
 Without **repeat**, a name is sent as the table shows and a button code without a name 2×. `learn` sends only the
 code `0xA`; to pair a motor, use [`keeloq.learn`](#keeloq-learn-action).
+In **on_command**, `shade` matches every `stop`.
 
 ### Pairing a Jarolift Motor
 
