@@ -26,7 +26,8 @@ components that do communication through this I/O expander will not work.
 ## Supported Devices
 
 Set `device:` to the part in use. The PCAL parts add pull resistors, input latching and a selectable output
-drive strength on top of the plain I/O.
+drive strength on top of the plain I/O. At startup every PCAL pin is set as an input with its pull resistors
+disconnected, whatever the chip's power-on state, before the configured pin modes are applied.
 
 | Device | Number of Pins | I²C Address | Features |
 | --- | --- | --- | --- |
