@@ -3,13 +3,30 @@ description: "Raw output tensor post-processing for TFLite Micro models"
 title: "TFLite Output Processor"
 ---
 
-The `tflite_output_processor` component is a **library-only component**: it does not expose YAML configuration and is
+The `tflite_output_processor` component is a **library-only component**: it has no user-facing configuration options and is
 loaded automatically as a dependency of the `tflite_micro_runtime`
 component and of the third-party components that consume it.
 
 `process_output()` supports `const float *` and `TfLiteTensor *` overloads and handles both float models and
 quantized (`uint8`/`int8`) models with explicit dequantization and scale factors, applying the configured
 processing strategy (`direct_class`, `softmax`, `argmax` or `logits`).
+
+## Example configuration entry
+
+The component has no options of its own; configuring it explicitly only loads the library:
+
+```yaml
+tflite_output_processor:
+```
+
+It is normally loaded by `tflite_micro_runtime` (output processing is selected per model there):
+
+```yaml
+tflite_micro_runtime:
+  - id: digit_reader
+    model_type: image
+    model: "models/digit_recognizer.tflite"
+```
 
 ## See Also
 
