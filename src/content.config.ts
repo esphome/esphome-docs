@@ -1,7 +1,7 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
-import { docsLoader } from "@astrojs/starlight/loaders";
-import { docsSchema } from "@astrojs/starlight/schema";
+import { docsLoader, i18nLoader } from "@astrojs/starlight/loaders";
+import { docsSchema, i18nSchema } from "@astrojs/starlight/schema";
 import { blogSchema } from "starlight-blog/schema";
 
 export const collections = {
@@ -54,4 +54,10 @@ export const collections = {
       ),
     }),
   }),
+  // Starlight 0.42 reads an `i18n` collection unconditionally and Astro 7.3
+  // warns when it is undefined (#1152). Declared empty: the site keeps
+  // Starlight's default UI strings.  Based on https://github.com/niklam/iracedeck/issues/1152 from another project.
+  // Although the Starlight answer is to implement i18n as in https://github.com/withastro/starlight/issues/3710,
+  // this is a simpler solution that works for now.
+  i18n: defineCollection({ loader: i18nLoader(), schema: i18nSchema() }),
 };
