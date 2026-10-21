@@ -35,7 +35,8 @@ invalid. Those flags are cleared only by a successful `rx8111.write_time`.
 - **alarm_day** (*Optional*, int): Match a day of the month (`1` to `31`). Cannot be combined with `alarm_weekday`.
 - **alarm_enabled** (*Optional*, boolean): Enable the alarm interrupt. Defaults to `true` when at least one alarm
   matching field is set, and `false` otherwise. Set to `true` when only using runtime alarm actions; `on_alarm`
-  requires the alarm to be enabled.
+  requires the alarm to be enabled. Explicit `false` disables a battery-backed alarm interrupt without clearing AF;
+  omitting this setting leaves a retained interrupt alone.
 - **on_alarm** (*Optional*, [Automation](/automations/)): Run when an alarm flag is observed during event polling.
 
 Only the specified fields are matched. For example, `alarm_hour: 7` and `alarm_minute: 30` match every day at 07:30.
@@ -71,9 +72,10 @@ time:
 - **on_timer** (*Optional*, [Automation](/automations/)): Run when a timer flag is observed during event polling.
 
 The timer repeats at the configured period. Its timer flag (TF) remains set until explicitly cleared. `on_timer`
-fires once per newly observed flag, including a flag latched before boot. Clear TF after handling the event to
-receive further callbacks. Polling cannot distinguish multiple expirations while TF remains latched: choose a
-timer period longer than `event_poll_interval` if every expiration matters.
+fires once per newly observed flag, including a flag latched before boot. With `timer_count` and
+`timer_enabled: false`, a retained TF is still reported once at boot while the counter remains stopped. Clear TF after
+handling the event to receive further callbacks. Polling cannot distinguish multiple expirations while TF remains
+latched: choose a timer period longer than `event_poll_interval` if every expiration matters.
 
 ```yaml
 time:
