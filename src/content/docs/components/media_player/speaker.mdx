@@ -34,7 +34,7 @@ media_player:
 
 - **announcement_pipeline** (**Required**, Pipeline Schema): Configuration settings for the announcement pipeline.
 
-  - **speaker** (**Required**, [ID](/guides/configuration-types#id)): The [speaker](/components/speaker/) to output the audio.
+  - **speaker** (**Required**, [ID](/guides/configuration-types/#id)): The [speaker](/components/speaker/) to output the audio.
   - **format** (*Optional*, enum): The audio format Home Assistant will transcode audio to before sending it to the device. One of `FLAC`, `MP3`, `OPUS`, `WAV`, or `NONE`. `NONE` disables transcoding in Home Assistant; ESPHome will then compile support for all supported codecs (`FLAC`, `MP3`, `OPUS`, and `WAV`), which increases firmware size. To compile in additional codecs without setting this to `NONE`, use the [Audio](/components/audio/) component. Defaults to `FLAC`.
   - **sample_rate** (*Optional*, positive integer): Sample rate for the transcoded audio. Should be supported by the configured `speaker` component. Defaults to the speaker's sample rate. The `OPUS` codec only supports a `48000` sample rate.
   - **num_channels** (*Optional*, positive integer): Number of channels for the transcoded audio. Must be either `1` or `2`. Defaults to the speaker's number of channels.
@@ -50,7 +50,7 @@ media_player:
   playing. Scaled between `volume_min` and `volume_max` like the media player volume. If not set, announcements use the
   media player volume. See [Announcement Volume](#announcement-volume).
 - **files** (*Optional*, list): A list of media files to build into the firmware for on-device playback.
-  - **id** (**Required**, [ID](/guides/configuration-types#id)): Unique ID for the file.
+  - **id** (**Required**, [ID](/guides/configuration-types/#id)): Unique ID for the file.
   - **file** (**Required**, string): Path to audio file. Can be a local file path or a URL.
 - **on_mute** (*Optional*, [Automation](/automations)): An automation to perform when muted.
 - **on_unmute** (*Optional*, [Automation](/automations)): An automation to perform when unmuted.
@@ -174,9 +174,9 @@ on_...:
 
 Configuration variables:
 
-- **media_file** (**Required**, [ID](/guides/configuration-types#id)): The ID of the media file.
-- **announcement** (*Optional*, boolean, [templatable](/automations/templates)): Whether to play back the file as an announcement or media stream. Defaults to `false`.
-- **enqueue** (*Optional*, boolean, [templatable](/automations/templates)): Whether to add the media file to the end of the pipeline's internal playlist. Defaults to `false`.
+- **media_file** (**Required**, [ID](/guides/configuration-types/#id)): The ID of the media file.
+- **announcement** (*Optional*, boolean, [templatable](/automations/templates/)): Whether to play back the file as an announcement or media stream. Defaults to `false`.
+- **enqueue** (*Optional*, boolean, [templatable](/automations/templates/)): Whether to add the media file to the end of the pipeline's internal playlist. Defaults to `false`.
 
 ### `media_player.speaker.set_announcement_volume` Action
 
@@ -198,9 +198,9 @@ on_...:
 
 Configuration variables:
 
-- **id** (*Optional*, [ID](/guides/configuration-types#id)): The speaker media player to control. Required if more
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): The speaker media player to control. Required if more
   than one is configured.
-- **volume** (**Required**, percentage, [templatable](/automations/templates)): The announcement volume. A lambda
+- **volume** (**Required**, percentage, [templatable](/automations/templates/)): The announcement volume. A lambda
   returns a value between `0.0` and `1.0`.
 
 ## Performance
