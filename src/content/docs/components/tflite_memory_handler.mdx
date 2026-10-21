@@ -1,0 +1,24 @@
+---
+description: "PSRAM-aware tensor arena allocation for TFLite Micro models"
+title: "TFLite Memory Handler"
+---
+
+The `tflite_memory_handler` component is a **library-only component**: it does not expose YAML configuration and is
+loaded automatically as a dependency of the `tflite_micro_runtime`
+component and of the third-party components that consume it.
+
+The allocator prefers PSRAM when available and falls back to internal SRAM otherwise; build flags
+`-DTFLITE_FORCE_SRAM` and `-DTFLITE_FORCE_PSRAM` override the selection. All allocations use
+`heap_caps_aligned_alloc(16, ...)` as required by TFLite Micro and are released through a heap-caps deleter
+wrapped in `std::unique_ptr`, so memory is never leaked when a model is unloaded.
+
+The component also hosts `ArenaProbe`, which probes the arena size actually required by a model by trial
+allocation (progressive increase then binary search), so the requested arena size does not need to be
+guessed.
+
+## See Also
+
+- `tflite_micro_runtime` - the user-facing component that loads this library
+  automatically
+- [esphome_ai_component Demo](https://github.com/nliaudat/esphome_ai_component) - working demo with pre-trained
+  models and camera integration
