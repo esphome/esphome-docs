@@ -4,12 +4,22 @@ description: "Instructions for setting up VL53L1X time of flight distance sensor
 ---
 
 import APIRef from '@components/APIRef.astro';
+import Figure from '@components/Figure.astro';
 
 The `vl53l1x` sensor platform allows you to use VL53L1X optical time of flight
 ([datasheet](https://www.st.com/resource/en/datasheet/vl53l1x.pdf),
 [ST](https://www.st.com/en/imaging-and-photonics-solutions/vl53l1x.html)) sensors with ESPHome
 to measure distances. The sensor works optically by emitting short infrared pulses
 and measuring the time it takes the light to be reflected back.
+
+<Figure
+  src="/images/vl53l1x.jpg"
+  alt="VL53L1X Time Of Flight Distance Sensor"
+  caption="VL53L1X Time Of Flight Distance Sensor."
+  layout="constrained"
+  width={300}
+  height={300}
+/>
 
 The VL53L1X is the successor to the VL53L0X with a longer range. It has three distance modes:
 
@@ -45,7 +55,7 @@ range, the state is set to `NaN`.
   at the default `0x29` address, and required for every sensor when more than one VL53L1X shares
   an I²C bus.
 
-## Configuration variables
+## Configuration Variables
 
 - **distance_mode** (*Optional*, string): The distance mode, one of `short`, `medium` or `long`. See
   [Distance Modes](#distance-modes). Defaults to `long`.
