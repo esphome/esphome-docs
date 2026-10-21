@@ -3,7 +3,7 @@ description: "Model source resolution and metadata parsing library for TFLite Mi
 title: "TFLite Model Source"
 ---
 
-The `tflite_model_source` component is a **library-only component**: it does not expose YAML configuration and is
+The `tflite_model_source` component is a **library-only component**: it has no user-facing configuration options and is
 loaded automatically as a dependency of the `tflite_micro_runtime`
 component and of the third-party components that consume it.
 
@@ -19,6 +19,23 @@ configuration time:
 The same package also parses the companion `.txt` metadata reports (autodetected input shape, arena size,
 operator count and output processing) and the filename heuristics (`_GRAY`, `_RGB`, `_BGR`, `_10cls`) used
 when no report is available.
+
+## Example configuration entry
+
+The component has no options of its own; configuring it explicitly only loads the library:
+
+```yaml
+tflite_model_source:
+```
+
+It is normally loaded by `tflite_micro_runtime`:
+
+```yaml
+tflite_micro_runtime:
+  - id: digit_reader
+    model_type: image
+    model: "models/digit_recognizer.tflite"
+```
 
 ## See Also
 
