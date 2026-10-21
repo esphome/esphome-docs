@@ -1,0 +1,24 @@
+---
+description: "TFLite Micro model loading, CRC32 verification and ModelHandler facade"
+title: "TFLite Model Loader"
+---
+
+The `tflite_model_loader` component is a **library-only component**: it does not expose YAML configuration and is
+loaded automatically as a dependency of the `tflite_micro_runtime`
+component and of the third-party components that consume it.
+
+- `ModelLoader` builds a `MicroMutableOpResolver` from the model's own operator list (through
+  `tflite_op_processor`), loads the model into a `MicroInterpreter` and allocates the tensor arena through
+  `tflite_memory_handler`.
+- `crc32.h/cpp` provide the CRC32 helpers used to verify model data integrity at load time.
+- `ModelHandler` (namespace `esphome::tflite_model_loader`) is the facade over the loader, memory handler and
+  output processor that consumer-facing classes such as `TFLiteMicroHelper` drive.
+
+The component is loaded automatically by `tflite_micro_runtime`.
+
+## See Also
+
+- `tflite_micro_runtime` - the user-facing component that loads this library
+  automatically
+- [esphome_ai_component Demo](https://github.com/nliaudat/esphome_ai_component) - working demo with pre-trained
+  models and camera integration
