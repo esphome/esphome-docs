@@ -1,0 +1,27 @@
+---
+description: "TFLite Micro operator table and registration manager"
+title: "TFLite Op Processor"
+---
+
+The `tflite_op_processor` component is a **library-only component**: it does not expose YAML configuration and is
+loaded automatically as a dependency of the `tflite_micro_runtime`
+component and of the third-party components that consume it.
+
+The `tflm_operators.h` header holds one X-macro table describing every operator the `esp-tflite-micro`
+library can register (`TFLM_OP_AVAILABLE`, `TFLM_OP_CONDITIONAL`, `TFLM_OP_UNAVAILABLE`). The entry is the
+single source of truth for both sides of the pipeline:
+
+- **At configuration time**, the Python side parses the same table
+  (`op_manifest.py`) and rejects a model whose operators cannot be registered before anything is compiled.
+- **At run time**, `OpResolverManager::RegisterOps()` reads the model's operator code list and registers only
+  the operators actually used, through the table, on a `MicroMutableOpResolver` sized by
+  `-DMAX_OPERATORS=<N>`.
+
+The table is verified against `esp-tflite-micro` 1.3.7 by `script/verify_tflm_operators.py`.
+
+## See Also
+
+- `tflite_micro_runtime` - the user-facing component that loads this library
+  automatically
+- [esphome_ai_component Demo](https://github.com/nliaudat/esphome_ai_component) - working demo with pre-trained
+  models and camera integration
