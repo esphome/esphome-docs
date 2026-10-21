@@ -21,7 +21,56 @@ invalid. Those flags are cleared only by a successful `rx8111.write_time`.
 ## Configuration Variables
 
 - **address** (*Optional*, int): Manually specify the I²C address of the RTC. Defaults to `0x32`.
+- **alarm_enabled** (*Optional*, boolean): Enable the alarm interrupt. The alarm actions below need it. Defaults
+  to `true` when any of the `alarm_*` fields is set, otherwise `false`.
+- **alarm_second** (*Optional*, int): Second the alarm matches, from `0` to `59`.
+- **alarm_minute** (*Optional*, int): Minute the alarm matches, from `0` to `59`.
+- **alarm_hour** (*Optional*, int): Hour the alarm matches, from `0` to `23`.
+- **alarm_weekday** (*Optional*, int): Weekday the alarm matches, from `1` (Sunday) to `7` (Saturday). Cannot be
+  combined with `alarm_day`.
+- **alarm_day** (*Optional*, int): Day of the month the alarm matches, from `1` to `31`.
+- **on_alarm** (*Optional*, [Automation](/automations/)): An automation to perform when the alarm flag becomes
+  set. See [Alarm And Timer Flags](#alarm-and-timer-flags).
+- **timer_count** (*Optional*, int): Number of `timer_clock` periods the wake-up timer counts before it fires, from
+  `1` to `16777215`. The timer reloads and fires again after each period.
+- **timer_clock** (*Optional*, string): The clock the timer counts, one of `4096hz`, `64hz`, `1hz` or `1_60hz`
+  (once a minute). Defaults to `1hz`.
+- **timer_enabled** (*Optional*, boolean): Run the wake-up timer. Requires `timer_count`. Defaults to `true` when
+  `timer_count` or `on_timer` is set, otherwise `false`.
+- **on_timer** (*Optional*, [Automation](/automations/)): An automation to perform when the timer flag becomes
+  set. See [Alarm And Timer Flags](#alarm-and-timer-flags).
 - All other options from [Base Time Configuration](/components/time/#base_time_config).
+
+An alarm fires when every field that is set matches the RTC time; fields that are not set are ignored. The alarm
+registers are battery backed, so an alarm set once keeps repeating until it is unset. The timer settings are written
+at startup only when `timer_enabled` is `true`, so a timer left running in the chip is not touched by a
+configuration without one.
+
+## Alarm And Timer Flags
+
+The RTC latches an alarm flag and a timer flag when the matching event happens. The component reads both flags at
+every `update_interval` and runs `on_alarm` or `on_timer` when a flag has become set since the previous read, so
+set a short `update_interval` when the automation must run promptly. A flag stays set until it is cleared with
+`rx8111.clear_alarm_flag` or `rx8111.clear_timer_flag`, and the automation does not run again until the flag has
+been cleared and set anew.
+
+```yaml
+time:
+  - platform: rx8111
+    id: rtc
+    update_interval: 1s
+    alarm_hour: 7
+    alarm_minute: 30
+    on_alarm:
+      then:
+        - logger.log: "Alarm"
+        - rx8111.clear_alarm_flag: rtc
+    timer_count: 10
+    timer_clock: 1hz
+    on_timer:
+      then:
+        - rx8111.clear_timer_flag: rtc
+```
 
 ## `rx8111.write_time` Action
 
@@ -55,6 +104,78 @@ on_...:
       id: rtc
 ```
 
+## `rx8111.set_alarm` Action
+
+This [Action](/automations/actions/#config-action) sets the alarm match fields at runtime. At least one field is
+required, fields that are left out are ignored, and `weekday` cannot be combined with `day`. It needs
+`alarm_enabled: true`.
+
+```yaml
+on_...:
+  - rx8111.set_alarm:
+      id: rtc
+      hour: 7
+      minute: !lambda return id(wake_minute).state;
+```
+
+- **id** (**Required**, [ID](/guides/configuration-types/#id)): The RX8111 to control.
+- **second** (*Optional*, int, [templatable](/automations/templates/)): Second to match, from `0` to `59`.
+- **minute** (*Optional*, int, [templatable](/automations/templates/)): Minute to match, from `0` to `59`.
+- **hour** (*Optional*, int, [templatable](/automations/templates/)): Hour to match, from `0` to `23`.
+- **weekday** (*Optional*, int, [templatable](/automations/templates/)): Weekday to match, from `1` (Sunday) to
+  `7` (Saturday).
+- **day** (*Optional*, int, [templatable](/automations/templates/)): Day of the month to match, from `1` to `31`.
+
+## `rx8111.schedule_alarm_in` Action
+
+This [Action](/automations/actions/#config-action) sets the alarm to a moment relative to the RTC's current UTC
+time. The units are added together and must come to at least one second and less than 28 days. It needs
+`alarm_enabled: true` and a valid RTC time. The alarm matches the second, minute, hour and day of the month of
+the target, so it repeats monthly until it is unset.
+
+```yaml
+on_...:
+  - rx8111.schedule_alarm_in:
+      id: rtc
+      hours: 1
+      minutes: 30
+```
+
+- **id** (**Required**, [ID](/guides/configuration-types/#id)): The RX8111 to control.
+- **seconds** (*Optional*, int): Seconds to add.
+- **minutes** (*Optional*, int): Minutes to add.
+- **hours** (*Optional*, int): Hours to add.
+- **days** (*Optional*, int): Days to add, at most `28`.
+
+## `rx8111.unset_alarm` Action
+
+This [Action](/automations/actions/#config-action) disables every alarm match field and the alarm interrupt.
+
+```yaml
+on_...:
+  - rx8111.unset_alarm: rtc
+```
+
+## `rx8111.clear_alarm_flag` Action
+
+This [Action](/automations/actions/#config-action) clears the latched alarm flag so the next alarm can run
+`on_alarm` again.
+
+```yaml
+on_...:
+  - rx8111.clear_alarm_flag: rtc
+```
+
+## `rx8111.clear_timer_flag` Action
+
+This [Action](/automations/actions/#config-action) clears the latched timer flag so the next timer expiry can run
+`on_timer` again.
+
+```yaml
+on_...:
+  - rx8111.clear_timer_flag: rtc
+```
+
 ## Full Configuration Example
 
 The RTC is read once at boot, and written whenever Home Assistant provides a trusted time.
@@ -70,7 +191,7 @@ time:
         - rx8111.write_time: rtc
 ```
 
-The alarm, timer, event capture, FOUT and backup power features of the RX8111 are not available yet.
+The event capture, FOUT and backup power features of the RX8111 are not available yet.
 
 ## See Also
 
