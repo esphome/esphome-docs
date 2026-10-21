@@ -114,8 +114,17 @@ climate:
   Telemetry is still requested during regular polling cycles, so the effective update frequency is bounded by
   `update_interval`.
 
-  Set to `never` to disable telemetry polling.
+  Set to `never` to disable telemetry polling (which is needed to reliably display the current temperature and heat
+  pump action).
+- **heatpump_request_min_interval** (*Optional*, [Time](/guides/configuration-types#time)): Minimum time between
+  consecutive checks of the heat pump's current action.
 
+  This allows keeping a low `update_interval` (to quickly reflect changes, e.g. when using an IR remote) while avoiding
+  excessive read of the current action (i.e. whether the device is actively heating/cooling, or idle)
+
+  Set to `never` to completely disable fetching the current action.
+
+  Cannot be enabled if telemetry_request_min_interval is `never`.
 - **use_fahrenheit** (*Optional*, boolean): Configure the climate entity to report and accept temperatures in Fahrenheit
   using Mitsubishi-specific mapping. Defaults to `false`.
 
