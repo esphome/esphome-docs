@@ -1,6 +1,6 @@
 ---
 title: "KeeLoq Remote"
-description: "Instructions for sending KeeLoq rolling codes from a key and a stored counter."
+description: "Instructions for sending and receiving KeeLoq rolling codes from a key and a stored counter."
 ---
 
 The `keeloq` component acts as a KeeLoq remote control: it computes the encrypted hopping code from a
@@ -34,34 +34,34 @@ keeloq:
 - **serial** (*Optional*, int): The 28-bit serial number this remote sends. The receiver learns it with
   [`keeloq.learn`](#keeloq-learn-action). Without it, the remote takes the serial over from a hand remote, see
   [Taking Over a Hand Remote](#taking-over-a-hand-remote); then **receiver_id** is required.
-- **channels** (*Optional*, list or int): The channels, as for `keeloq.send`, for actions that set none. Without
-  it, a taken-over remote uses the channels of the hand remote.
+- **channels** (*Optional*, list or int): Only for `jarolift`: the channels for actions that set none, see
+  [Jarolift Channels](#jarolift-channels).
 - **receiver_id** (*Optional*, [ID](/guides/configuration-types/#id)): The
   [Remote Receiver](/components/remote_receiver/) to listen to.
 - **on_frame** (*Optional*, [Automation](/automations/)): Runs for each received frame that decrypts with the
   manufacturer key, copies and old counters included. Needs **receiver_id**. The frame is `x` with `x.serial`,
-  `x.counter`, `x.channels` (16-bit channel mask) and `x.command`.
+  `x.counter`, `x.channels` (see [Jarolift Channels](#jarolift-channels)) and `x.command`.
 - **on_command** (*Optional*, [Automation](/automations/)): Runs once per new press of this remote's serial, see
   [Received Presses](#received-presses). Needs **receiver_id**. `x` as for **on_frame**.
-  - **channel** (*Optional*, int): Only presses for this channel, `1` to `16`.
-  - **command** (*Optional*, string or int): Only this button, a name from [Jarolift Commands](#jarolift-commands) or
-    the 4-bit code.
+  - **channel** (*Optional*, int): Only for `jarolift`: fires only for presses that include this channel, `1` to `16`.
+  - **command** (*Optional*, string or int): Only this button: the 4-bit code, or a command name of the type, see
+    [Jarolift Commands](#jarolift-commands).
 
 ## Counter
 
 The remote writes its 16-bit counter to flash once every 8 frames. After a reboot the counter jumps ahead by at most
 8, which receivers accept, and no code is sent twice. A firmware update keeps the counter; a new **type** or
 **serial** starts a new one. After a flash erase, set it with `keeloq.set_counter`, take it over or pair again. A
-remote without **serial** stores the taken-over serial and counter under the type and its **id**; renaming the
-**id** loses them. A received frame of the remote's own serial that is ahead moves the counter along.
+remote without **serial** keeps what it took over while **type** and **id** stay the same. A received frame of the
+remote's own serial that is ahead moves the counter along.
 
 ## Received Presses
 
-**on_command** fires like a motor, once per press: a counter up to 16 ahead of the last accepted one fires at once,
-one up to 32768 ahead only when the next frame carries the following counter, as in the Microchip HCS301 data
-sheet. The same counter is a copy, and an older one never fires, so a recorded frame played back is ignored. Frames
-this remote sends count as accepted. The last accepted counter is stored with the preferences, at once every 8
-presses; after a power loss, the last few codes could be accepted once more.
+**on_command** fires like a receiver that learned the remote, once per press. A press more than 16 counts ahead of
+the last accepted one does not fire; the press right after it does. Copies of a press and older frames, such as a
+recorded frame played back, never fire. Frames this remote sends count as accepted presses, so hearing them back
+does not fire. The last accepted counter is saved with the [preferences](/components/preferences/) and written to
+flash at once every 8 presses; after a power loss, a recording of the last few presses could fire once more.
 
 ```yaml
 keeloq:
@@ -79,13 +79,13 @@ keeloq:
 
 ## Taking Over a Hand Remote
 
-ESPHome can send as an existing hand remote, so the motor needs no pairing. Run
+ESPHome can send as an existing hand remote, so the receiver needs no pairing. Run
 [`keeloq.take_over`](#keeloq-take_over-action), then press a button on the hand remote within a minute.
 
-- **Without serial**: the first frame that decrypts with the manufacturer key gives serial, counter and channels,
-  and they are stored in flash. Until then, `keeloq.send` logs a warning and sends nothing.
-- **With serial**: only a frame of that serial counts, and only its counter is taken. Each received frame is logged
-  at debug level with its serial.
+- **Without serial**: the first frame that decrypts with the manufacturer key gives the serial and the counter,
+  which are written to flash at once. Until then, `keeloq.send` logs a warning and sends nothing.
+- **With serial**: only a frame of that serial counts, and only its counter is taken. To find the serial of a hand
+  remote, log `x.serial` in **on_frame**.
 
 ```yaml
 keeloq:
@@ -97,7 +97,7 @@ keeloq:
 
 > [!WARNING]
 > Without serial, the first valid frame of that manufacturer key counts, also one of a neighbour's remote. ESPHome
-> and the hand remote then share one counter, and the motor ignores whichever is behind. ESPHome follows the hand
+> and the hand remote then share one counter, and the receiver ignores whichever is behind. ESPHome follows the hand
 > remote while it hears it, but not the other way round. For an independent hand remote, pair ESPHome with its own
 > serial instead.
 
@@ -119,10 +119,8 @@ on_...:
   is configured.
 - **command** (**Required**, string or int, [templatable](/automations/templates)): The 4-bit button code, `0` to
   `0xF`, or a command name of the type, see [Jarolift Commands](#jarolift-commands).
-- **channels** (*Optional*, list or int, [templatable](/automations/templates)): The channels to send to, see
-  [Jarolift Channels](#jarolift-channels).
-  Defaults to the remote's **channels**, then to the channels taken over from a hand remote; without any, a warning
-  is logged and nothing is sent.
+- **channels** (*Optional*, list or int, [templatable](/automations/templates)): Only for `jarolift`: the channels
+  to send to, see [Jarolift Channels](#jarolift-channels).
 - **repeat** (*Optional*): **times** and **wait_time** as in
   [Remote Transmitter Actions](/components/remote_transmitter/#remote_transmitter-transmit_action); **wait_time**
   defaults to `25ms`. Without **repeat**, the frame is sent as often as the type sends a press (see
@@ -145,8 +143,8 @@ on_...:
 
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the remote. Needed when more than one remote
   is configured.
-- **channels** (*Optional*, list or int, [templatable](/automations/templates)): The channels to pair, see
-  [Jarolift Channels](#jarolift-channels). Defaults as for `keeloq.send`.
+- **channels** (*Optional*, list or int, [templatable](/automations/templates)): Only for `jarolift`: the channels
+  to pair, see [Jarolift Channels](#jarolift-channels).
 - **legacy** (*Optional*, boolean, [templatable](/automations/templates)): Only for `jarolift`: pairs a motor made
   before 2010, see [Pairing a Jarolift Motor](#pairing-a-jarolift-motor). Defaults to `false`.
 - **transmitter_id** (*Optional*, [ID](/guides/configuration-types/#id)): The remote transmitter to send with.
@@ -154,7 +152,8 @@ on_...:
 ### `keeloq.take_over` Action
 
 This [action](/automations/actions#all-actions) opens a one-minute window in which the next frame of a hand remote
-is taken over, see [Taking Over a Hand Remote](#taking-over-a-hand-remote). The remote needs **receiver_id**.
+is taken over, see [Taking Over a Hand Remote](#taking-over-a-hand-remote). It is rejected for a remote without
+**receiver_id**.
 
 ```yaml
 on_...:
@@ -185,6 +184,11 @@ on_...:
 
 **channels** takes a list such as `[1, 2, 3, 4]` of channels `1` to `16`, or the 16-bit mask they make (bit 0 is
 channel 1, so `0x000F` is channels 1 to 4). A lambda returns the mask.
+
+An action without **channels** uses the **channels** of the remote. A remote without **serial** takes the channels
+over from the hand remote, unless it sets **channels** itself. For a remote with **serial** and without
+**channels**, a `keeloq.send` or `keeloq.learn` without **channels** is rejected. In **on_frame** and
+**on_command**, `x.channels` is the 16-bit channel mask of the received frame.
 
 ### Jarolift Commands
 
