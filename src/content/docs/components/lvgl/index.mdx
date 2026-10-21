@@ -107,9 +107,9 @@ The following configuration variables apply to the main `lvgl` component, in ord
   - **group** (*Optional*, string): A name for a group of widgets which will interact with the input device. See the [common properties](/components/lvgl/widgets/) of the widgets for more information on groups.
   - **initial_focus** (*Optional*, [ID](/guides/configuration-types#id)): An optional ID for a widget to be given focus on startup (especially useful if there is only one focusable widget.)
   - **enter_button** (**Required**, [ID](/guides/configuration-types#id)): The ID of a [Binary Sensor](/components/binary_sensor/), to be used as `ENTER` key.
-  - **sensor** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a [Rotary Encoder](/components/sensor/rotary_encoder/); or a list with buttons for left/right interaction with the widgets:
-    - **left_button** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a [Binary Sensor](/components/binary_sensor/), to be used as `LEFT` key.
-    - **right_button** (*Optional*, [ID](/guides/configuration-types#id)): The ID of a [Binary Sensor](/components/binary_sensor/), to be used as `RIGHT` key.
+  - **sensor** (**Required**, [ID](/guides/configuration-types#id)): The ID of a [Rotary Encoder](/components/sensor/rotary_encoder/); or a list with buttons for left/right interaction with the widgets:
+    - **left_button** (**Required**, [ID](/guides/configuration-types#id)): The ID of a [Binary Sensor](/components/binary_sensor/), to be used as `LEFT` key.
+    - **right_button** (**Required**, [ID](/guides/configuration-types#id)): The ID of a [Binary Sensor](/components/binary_sensor/), to be used as `RIGHT` key.
   - **long_press_time** (*Optional*, [Time](/guides/configuration-types#time)): For the rotary encoder, delay after which the `on_long_pressed` [interaction trigger](/components/lvgl/widgets#triggers) will be called. Defaults to `400ms`. Can be disabled with `never`.
   - **long_press_repeat_time** (*Optional*, [Time](/guides/configuration-types#time)): For the rotary encoder, repeated interval after `long_press_time`, when `on_long_pressed_repeat` [interaction trigger](/components/lvgl/widgets#triggers) will be called. Defaults to `100ms`. Can be disabled with `never`.
 - **rotary_sensitivity** (*Optional*, int16): Adjust sensitivity for rotary encoders in 1/256 unit. For example with 128 slow down the rotary to half, 512 speeds up to double, 256 no change.
@@ -163,7 +163,7 @@ The following configuration variables apply to the main `lvgl` component, in ord
   frames and other parts that LVGL creates internally are not outlined. Intended for design use only. When more than
   one LVGL configuration is used, the value must be the same in all of them. Defaults to `false`.
 - **byte_order** (*Optional*, string): The byte order of the data LVGL outputs; either `big_endian` or `little_endian`. Will try to auto-configure based on the display metadata. Defaults to `big_endian` if the display driver does not supply the information.
-- **refresh_interval** (*Optional*, [Time](/guides/configuration-types#time): The minimum interval for screen refresh. Defaults to 16ms.
+- **refresh_interval** (*Optional*, [Time](/guides/configuration-types#time)): The minimum interval for screen refresh. Defaults to 16ms.
 - **default_font** (*Optional*, ID): The ID of the [font](#fonts) used by default to render the text or symbols. Defaults to LVGL's internal `montserrat_14` if not specified.
 - **style_definitions** (*Optional*, list): A batch of style definitions to use in LVGL widget's `styles` configuration. See [below](#lvgl-theme) for more details.
 - **gradients** (*Optional*, list): A list of gradient definitions to use in *bg_grad* styles. See [below](#gradients) for more details.
@@ -684,7 +684,7 @@ In addition to the above, the following special fonts are available from LVGL as
 
 <span id="lvgl-theme"></span>
 
-### Themes
+### Theme
 
 You can configure a global theme at the top level with the `theme:` configuration variable.
 
@@ -910,7 +910,8 @@ on_...:
 This [action](/automations/actions#actions-action) allows changing/updating the styling and layout of the active screen and the LVGL display layers at runtime. Top-level [style properties](#lvgl-styling) and a `layout:` apply to the currently active screen; you can also style and lay out the `top_layer` and/or `bottom_layer`.
 
 - **layout** (*Optional*): Update the [layout](/components/lvgl/layouts#updating-a-layout-at-runtime) options of the active screen. Only the layout options may be changed, not the layout type.
-- **top_layer** / **bottom_layer** (*Optional*): Update the [style properties](#lvgl-styling) and `layout:` of the respective display layer.
+- **top_layer** (*Optional*): Update the [style properties](#lvgl-styling) and `layout:` of the top layer.
+- **bottom_layer** (*Optional*): Update the [style properties](#lvgl-styling) and `layout:` of the bottom layer.
 
 ```yaml
 # Examples:
