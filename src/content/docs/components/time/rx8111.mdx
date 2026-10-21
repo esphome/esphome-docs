@@ -47,6 +47,14 @@ remains set until explicitly cleared, and `on_alarm` runs only once per newly ob
 next matching event to trigger. A flag latched before boot (including one that woke the device) is reported once;
 an alarm already latched when a runtime action reprograms the alarm is not treated as a new event.
 
+If an I²C operation for startup alarm or timer configuration fails, the component retries that operation from the
+beginning up to three times total, one second between attempts, without delaying startup. This includes explicitly
+disabling an alarm or timer and checking whether a battery-backed alarm is enabled. A partial register write counts
+as a failed attempt. The component reports a warning until the configuration succeeds; after all three attempts fail,
+it keeps the warning and does not assume the requested configuration took effect. Calendar and event-poll warnings
+are independent. Runtime alarm and timer actions are not automatically retried; a newer action supersedes any
+pending startup retry for the same feature. Wake-up flags are preserved across startup retries.
+
 ```yaml
 time:
   - platform: rx8111
