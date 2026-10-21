@@ -1,0 +1,28 @@
+---
+description: "Model source resolution and metadata parsing library for TFLite Micro components"
+title: "TFLite Model Source"
+---
+
+The `tflite_model_source` component is a **library-only component**: it does not expose YAML configuration and is
+loaded automatically as a dependency of the `tflite_micro_runtime`
+component and of the third-party components that consume it.
+
+It accepts model sources in three forms and downloads them into the ESPHome external-files cache at
+configuration time:
+
+| Type | Syntax | Description |
+|---|---|---|
+| Local file | `"path/to/model.tflite"` | Path relative to the configuration directory. |
+| GitHub shorthand | `"github://user/repo/path/model.tflite"` | Reads the model file from a repository. |
+| HTTP(S) URL | `"https://example.com/model.tflite"` | Downloads the file, or a JSON manifest naming it. |
+
+The same package also parses the companion `.txt` metadata reports (autodetected input shape, arena size,
+operator count and output processing) and the filename heuristics (`_GRAY`, `_RGB`, `_BGR`, `_10cls`) used
+when no report is available.
+
+## See Also
+
+- `tflite_micro_runtime` - the user-facing component that loads this library
+  automatically
+- [esphome_ai_component Demo](https://github.com/nliaudat/esphome_ai_component) - working demo with pre-trained
+  models and camera integration
