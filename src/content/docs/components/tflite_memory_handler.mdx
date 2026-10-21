@@ -3,7 +3,7 @@ description: "PSRAM-aware tensor arena allocation for TFLite Micro models"
 title: "TFLite Memory Handler"
 ---
 
-The `tflite_memory_handler` component is a **library-only component**: it does not expose YAML configuration and is
+The `tflite_memory_handler` component is a **library-only component**: it has no user-facing configuration options and is
 loaded automatically as a dependency of the `tflite_micro_runtime`
 component and of the third-party components that consume it.
 
@@ -15,6 +15,25 @@ wrapped in `std::unique_ptr`, so memory is never leaked when a model is unloaded
 The component also hosts `ArenaProbe`, which probes the arena size actually required by a model by trial
 allocation (progressive increase then binary search), so the requested arena size does not need to be
 guessed.
+
+## Example configuration entry
+
+The component has no options of its own. It is configured together with its dependency
+(`tflite_op_processor`, used by the arena probe):
+
+```yaml
+tflite_op_processor:
+tflite_memory_handler:
+```
+
+It is normally loaded by `tflite_micro_runtime`:
+
+```yaml
+tflite_micro_runtime:
+  - id: digit_reader
+    model_type: image
+    model: "models/digit_recognizer.tflite"
+```
 
 ## See Also
 
