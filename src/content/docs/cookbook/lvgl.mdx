@@ -20,6 +20,7 @@ import lvglCookFontBinstatImg from './images/lvgl_cook_font_binstat.png';
 import lvglCookFontBattImg from './images/lvgl_cook_font_batt.png';
 import lvglCookAnimimgBattImg from './images/lvgl_cook_animimg_batt.gif';
 import lvglCookClockImg from './images/lvgl_cook_clock.png';
+import lvglCookOtaProgressImg from './images/lvgl_cook_ota_progress.gif';
 import lvglCookKeypadImg from './images/lvgl_cook_keypad.png';
 import lvglCookWeatherImg from './images/lvgl_cook_weather.png';
 
@@ -2358,6 +2359,8 @@ its own. To show progress, update the widgets from the [OTA automations](/compon
 
 The example below shows a hidden box containing a label and a `bar`. The box is shown when the update starts, and the
 bar and label are updated on each `on_progress` trigger.
+
+<Image src={lvglCookOtaProgressImg} layout="constrained" alt="OTA progress bar" />
 
 ```yaml
 ota:
