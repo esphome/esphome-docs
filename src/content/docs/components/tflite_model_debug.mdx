@@ -14,24 +14,16 @@ tuning preprocessing configuration, and watchdog feeding during long debug opera
 
 ## Example configuration entry
 
-The component has no options of its own. It extends the loader chain, so that chain is configured with it, and
-diagnostics are enabled with `debug: true` on the `tflite_micro_runtime` instance:
-
-```yaml
-tflite_output_processor:
-tflite_op_processor:
-tflite_memory_handler:
-tflite_model_loader:
-tflite_model_debug:
-```
-
-It is normally loaded by `tflite_micro_runtime`:
+The component has no options of its own: the diagnostics are enabled with `debug: true` on the
+`tflite_micro_runtime` instance that loads it:
 
 ```yaml
 tflite_micro_runtime:
   - id: digit_reader
     model_type: image
     model: "models/digit_recognizer.tflite"
+    tensor_arena_size: 200KB
+    # Enables the tflite_model_debug diagnostics (CRC32, architecture, tensors)
     debug: true
 ```
 
