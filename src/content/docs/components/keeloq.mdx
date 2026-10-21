@@ -68,7 +68,7 @@ keeloq:
   - id: hand_remote
     type: jarolift
     manufacturer_key: !secret jarolift_manufacturer_key
-    serial: 0x1234500
+    serial: 0x7654300
     receiver_id: rf_receiver
     on_command:
       - channel: 1
@@ -159,6 +159,9 @@ is taken over, see [Taking Over a Hand Remote](#taking-over-a-hand-remote). It i
 on_...:
   - keeloq.take_over: hand_remote
 ```
+
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the remote. Needed when more than one remote
+  is configured.
 
 ### `keeloq.set_counter` Action
 
