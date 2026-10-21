@@ -22,19 +22,23 @@ when no report is available.
 
 ## Example configuration entry
 
-The component has no options of its own; configuring it explicitly only loads the library:
-
-```yaml
-tflite_model_source:
-```
-
-It is normally loaded by `tflite_micro_runtime`:
+The component has no options of its own: its model source resolution is configured through the `model:`
+option of the `tflite_micro_runtime` instance that loads it (local path, `github://` shorthand or
+HTTP(S) URL / JSON manifest):
 
 ```yaml
 tflite_micro_runtime:
+  # Local file, relative to the config directory
   - id: digit_reader
     model_type: image
     model: "models/digit_recognizer.tflite"
+
+  # HTTP(S) URL or JSON manifest
+  # (github://<owner>/<repo>/<path> works the same way)
+  - id: wake_word
+    model_type: audio
+    model: "https://github.com/esphome/micro-wake-word-models/raw/main/models/v2/okay_nabu.json"
+    probability_cutoff: 0.5
 ```
 
 ## See Also
