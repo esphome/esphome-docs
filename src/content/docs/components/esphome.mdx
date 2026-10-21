@@ -481,10 +481,9 @@ into logical devices that appear separately in Home Assistant. This is particula
 - **id** (**Required**, string): Unique identifier for the device.
 - **name** (**Required**, string): Display name for the device.
 - **area_id** (*Optional*, string): Reference to an area ID defined in `areas`.
-- **relation** (*Optional*, string): How the sub-device relates to this ESP device. One of `via` or `child`.
-  Defaults to `via`.
+- **relation** (**Required**, string): How the sub-device relates to this ESP device. One of `via` or `child`.
 
-### Device relation
+### Device Relation
 
 Each sub-device tells Home Assistant how it relates to the ESP device that exposes it:
 
@@ -510,13 +509,15 @@ esphome:
     - id: front_door_device
       name: "Front Door Sensor"
       area_id: entrance_area
-      relation: via  # A separate physical sensor reached over RF (the default)
+      relation: via  # A separate physical sensor reached over RF
     - id: kitchen_motion_device
       name: "Kitchen Motion"
       area_id: kitchen_area
+      relation: via
     - id: garage_door_device
       name: "Garage Door"
       area_id: garage_area
+      relation: via
 
   areas:
     - id: entrance_area
