@@ -30,6 +30,9 @@ The configuration depends on the platform. On ESP32, the Thread dataset can be s
 shown below or a `tlv` string. On nRF52840, the dataset must be provided as a hex-encoded `tlv` string from Home
 Assistant's Thread integration.
 
+With OpenThread configured, IPv4 is disabled by default unless another component requires it. Add
+`enable_ipv4: true` under [network](/components/network/) to keep it enabled on ESP32.
+
 ```yaml
 # Example OpenThread configuration (ESP32)
 network:
