@@ -20,9 +20,9 @@ import lvglCookFontBinstatImg from './images/lvgl_cook_font_binstat.png';
 import lvglCookFontBattImg from './images/lvgl_cook_font_batt.png';
 import lvglCookAnimimgBattImg from './images/lvgl_cook_animimg_batt.gif';
 import lvglCookClockImg from './images/lvgl_cook_clock.png';
-import lvglCookOtaProgressImg from './images/lvgl_cook_ota_progress.gif';
 import lvglCookKeypadImg from './images/lvgl_cook_keypad.png';
 import lvglCookWeatherImg from './images/lvgl_cook_weather.png';
+import lvglCookOtaProgressImg from './images/lvgl_cook_ota_progress.gif';
 
 <span id="lvgl-cookbook"></span>
 
@@ -2407,7 +2407,7 @@ lvgl:
         id: ota_box
         hidden: true
         align: center
-        width: 400
+        width: 90%
         height: 120
         widgets:
           - label:
@@ -2417,7 +2417,7 @@ lvgl:
           - bar:
               id: ota_bar
               align: bottom_mid
-              width: 360
+              width: 100%
               height: 24
               min_value: 0
               max_value: 100
