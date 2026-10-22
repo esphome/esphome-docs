@@ -16,9 +16,9 @@ this requires a `network:` `priority:` list naming both interfaces — see
 [Multi-Interface Support](/components/network/#multi-interface-support) on the [Network](/components/network/)
 component. Using more than one network interface is not supported on other platforms.
 
-A [WiFi](/components/wifi/) access point alone can run next to Ethernet without a `priority:` list. With
-`ap_mode: wisp` the devices that join it reach the network through the Ethernet connection, see
-[WISP Mode](/components/wifi/#wisp-mode).
+On ESP32, a [WiFi](/components/wifi/) access point alone can run next to Ethernet without a `priority:` list.
+With `ap_mode: wisp` (ESP-IDF 5.1 or newer) the devices that join it reach the network through the Ethernet
+connection, see [WISP Mode](/components/wifi/#wisp-mode).
 
 ```yaml
 # Example configuration entry for RMII chips
@@ -89,21 +89,16 @@ ethernet:
 ```
 
 ```yaml
-# Example: a WiFi access point whose clients reach the network through Ethernet
+# Example (ESP32, ESP-IDF): a WiFi access point whose clients reach the network through Ethernet
+ethernet:
+  type: W5500
+  # Pins as in the SPI example above
+
 wifi:
   ap:
     ssid: myap
     password: mypassword
     ap_mode: wisp
-
-ethernet:
-  type: W5500
-  clk_pin: GPIOXX
-  mosi_pin: GPIOXX
-  miso_pin: GPIOXX
-  cs_pin: GPIOXX
-  interrupt_pin: GPIOXX
-  reset_pin: GPIOXX
 ```
 
 ## Configuration variables

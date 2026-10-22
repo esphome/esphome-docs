@@ -283,9 +283,9 @@ to control it from a phone without any internet connection.
 
 ## WISP Mode
 
-With `ap_mode: wisp` an ESP32 works as a WiFi repeater: it connects to your router as a station and, at the same
-time, runs an access point. Devices that join the access point get an address from the node and their traffic is
-routed (NAT) through the router connection.
+With `ap_mode: wisp` an ESP32 runs an access point whose clients get an address from the node and have their
+traffic routed (NAT) through an upstream connection: the router it joins as a station, which makes the node a
+WiFi repeater, or [Ethernet](/components/ethernet/).
 
 ```yaml
 wifi:
@@ -319,9 +319,9 @@ Notes:
   entry in `networks` or an Ethernet connection, and a password for the access point.
 - The access point stays on, so `captive_portal` is rejected, and `ap_timeout` is how long a start that failed
   waits before it is tried again (it cannot be `0s`). With `dns_servers` the access point starts right away;
-  without them it starts once the node has connected to the router and learned its DNS servers, so no client is
-  ever handed the access point as a resolver. A network or an Ethernet connection with `manual_ip` must then set
-  `dns1`.
+  without them it starts once the upstream (router or Ethernet) is connected and its DNS servers are known, so
+  no client is ever handed the access point as a resolver. A network or an Ethernet connection with `manual_ip`
+  must then set `dns1`.
 - WISP mode enlarges the Wi-Fi driver buffers and enables frame aggregation, the Wi-Fi half of
   [high performance networking](/components/network/#high-performance-networking); the TCP settings stay at their
   defaults since the forwarded traffic never uses the node's own connections. Keeping the lwIP fast paths in IRAM
