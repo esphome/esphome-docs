@@ -58,8 +58,8 @@ wifi:
 - **variant** (*Required*, string): The variant of the ESP32 co-processor that is used by the
   host. One of `ESP32`, `ESP32S2`, `ESP32S3`, `ESP32C2`, `ESP32C3` and `ESP32C6`.
 - **reset_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The reset pin of the co-processor.
-- **active_high** (*Required*, boolean): If enabled, the co-processor is active when reset is
-  high. If disabled, the co-processor is active when reset is low.
+- **active_high** (*Required*, boolean): Must be `true`; the co-processor is held active with reset high and
+  reset with a low pulse. See [Library Versions](#library-versions).
 - **clk_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SDIO clock pin.
 - **cmd_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SDIO command pin.
 - **d0_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SDIO D0 pin.
@@ -104,8 +104,8 @@ wifi:
 - **variant** (*Required*, string): The variant of the ESP32 co-processor that is used by the
   host. One of `ESP32`, `ESP32S2`, `ESP32S3`, `ESP32C2`, `ESP32C3` and `ESP32C6`.
 - **reset_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The reset pin of the co-processor.
-- **active_high** (*Required*, boolean): If enabled, the co-processor is active when reset is
-  high. If disabled, the co-processor is active when reset is low.
+- **active_high** (*Required*, boolean): Must be `true`; the co-processor is held active with reset high and
+  reset with a low pulse. See [Library Versions](#library-versions).
 - **clk_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SPI clock pin.
 - **mosi_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SPI MOSI pin.
 - **miso_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SPI MISO pin.
@@ -123,22 +123,12 @@ wifi:
 
 ## Library Versions
 
-ESPHome builds the host side with the `esp_hosted` 3.x library, which needs ESP-IDF 5.5 or newer and always keeps
-the reset line high with a low pulse, so `active_high: false` cannot be used with it. To stay on the 2.x line for
-either reason, pin the library under `esp32.framework.components` (see
-[IDF Components](/components/esp32/#idf-components)):
-
-```yaml
-esp32:
-  framework:
-    type: esp-idf
-    components:
-      - espressif/esp_hosted==2.12.13
-```
+ESPHome builds the host side with the `esp_hosted` 3.x library, which needs ESP-IDF 5.5 or newer. The library
+always keeps the reset line high and resets the co-processor with a low pulse, so `active_high` must be `true`.
 
 The co-processor firmware offered by the [update platform](/components/update/esp32_hosted/) follows the host
-library version, so a device moves from the 2.x to the 3.x co-processor firmware the first time it is built with the
-3.x host library and then updated.
+library version, so a device built with an earlier ESPHome release moves to the 3.x co-processor firmware the first
+time it is updated from this one.
 
 ## Updating co-processor firmware
 
