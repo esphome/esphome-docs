@@ -46,7 +46,9 @@ Each relay is a `switch` of the `seeed_multi_channel_relay` platform.
 - **seeed_multi_channel_relay_id** (*Optional*, [ID](/guides/configuration-types#id)): The board the relay
   belongs to. Required with more than one board.
 - **restore_mode** (*Optional*): The board powers up with every relay off, so the default
-  `RESTORE_DEFAULT_OFF` matches the hardware. See [Switch](/components/switch/#config-switch).
+  `RESTORE_DEFAULT_OFF` matches the hardware. `DISABLED` behaves like `ALWAYS_OFF` here, because the component
+  cannot leave a relay alone: it has to write all eight channels at once. See
+  [Switch](/components/switch/#config-switch).
 - All other options from [Switch](/components/switch/#config-switch).
 
 The board cannot report its relays, so the component keeps their state itself. After a restart of the ESP
