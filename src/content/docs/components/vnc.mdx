@@ -74,7 +74,8 @@ The client asks the server for changes, draws them into the display's memory as 
 display once the picture has stopped changing for `update_delay`. On e-paper this keeps the number of refreshes
 low, which means less flashing.
 
-- Parts of the screen that the server sends again without changes are skipped, so they do not cause a refresh.
+- Hextile tiles that the server sends again without changes are skipped, so they do not cause a refresh. This
+  works only for tiles that line up with a 16x16 grid. Everything else the server sends is always drawn.
 - While an e-paper panel refreshes, the client waits before asking for the next change.
 
 On e-paper, choose content that changes rarely. Clocks with seconds, blinking text cursors, spinners and moving
