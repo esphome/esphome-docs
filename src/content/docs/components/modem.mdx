@@ -18,7 +18,7 @@ Only the ESP32 family with the ESP-IDF framework is supported. The component can
 [Ethernet](/components/ethernet/) or [Captive Portal](/components/captive_portal/) components.
 
 Some modem commands block the main loop for up to 20 seconds, so the task watchdog has to allow for that:
-set `watchdog_timeout` in the [ESP32](/components/esp32/) section to `30s` or more.
+set `watchdog_timeout` in the [ESP32](/components/esp32/) section to `45s` or more.
 
 > [!NOTE]
 > On most cellular networks the device gets a private address behind the operator's NAT, so Home Assistant cannot
