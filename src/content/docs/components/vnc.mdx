@@ -19,7 +19,6 @@ device with an e-paper or LCD screen shows it.
 # Example configuration entry
 vnc:
   host: 192.168.1.20
-  port: 5901
 ```
 
 The component draws every pixel of the display, so the display must not have its own `lambda` or `pages`.
@@ -67,9 +66,8 @@ A display cannot be shared with [LVGL](/components/lvgl/) or with a second `vnc`
 
 The client asks the server for changes, draws them into the display's memory as they arrive, and refreshes the
 display once the picture has stopped changing for `update_delay`. On e-paper this keeps the number of refreshes
-low, which means less flashing.
-
-- While an e-paper panel refreshes, the client waits before asking for the next change.
+low, which means less flashing. While an e-paper panel refreshes, the client waits before asking for the next
+change.
 
 On e-paper, choose content that changes rarely. Clocks with seconds, blinking text cursors, spinners and moving
 backgrounds keep the panel refreshing. The Home Assistant login page has a moving background, so log in, or use
@@ -97,6 +95,20 @@ that need no password.
 
 True while the client is connected to the server. This starts before the first picture arrives. After a
 disconnect, an e-paper display keeps showing the last picture.
+
+```yaml
+on_...:
+  if:
+    condition:
+      vnc.is_connected:
+    then:
+      - logger.log: "VNC connected"
+```
+
+- **id** (_Optional_, [ID](/guides/configuration-types/#id)): The `vnc` client to check. Only needed if there
+  is more than one.
+
+From a [lambda](/automations/templates/#config-lambda), `id(my_vnc).is_connected()` gives the same answer:
 
 ```yaml
 binary_sensor:
