@@ -3,14 +3,21 @@ description: "Instructions for setting up the M5Stack 4-Relay Unit in ESPHome."
 title: "M5Stack 4-Relay Switch"
 ---
 
-import { Image } from 'astro:assets';
+import Figure from '@components/Figure.astro';
 import APIRef from '@components/APIRef.astro';
 
 The `m5stack_4relay` component controls the four relays of the
 [M5Stack 4-Relay Unit](https://docs.m5stack.com/en/unit/4relay) over [I²C](/components/i2c/). Each relay switches
 up to 250 V AC or 28 V DC at 10 A, and the unit's LEDs follow the relays.
 
-<Image src="/images/m5stack_4relay.png" width={400} height={400} layout="constrained" alt="M5Stack 4-Relay Unit" />
+<Figure
+  src="/images/m5stack_4relay.webp"
+  alt="M5Stack 4-Relay Unit"
+  caption="M5Stack 4-Relay Unit"
+  layout="constrained"
+  width={486}
+  height={521}
+/>
 
 ```yaml
 # Example configuration entry
