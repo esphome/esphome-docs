@@ -835,8 +835,8 @@ api:
   - **required** (*Optional*, boolean): Set to `false` to let callers omit the variable.
     An omitted variable arrives as `false` for `bool`, `0` for `int`, `0.0` for `float` and
     an empty string for `string`, so the action cannot tell it apart from that value sent on
-    purpose; use `default` when that matters. Array types such as `bool[]` cannot be optional.
-    Defaults to `true`.
+    purpose. To detect an omitted variable, set `default` to a value callers never send.
+    Array types such as `bool[]` cannot be optional. Defaults to `true`.
   - **default** (*Optional*): Default value the client fills in when the caller omits
     the variable. Must match the variable type and implies `required: false`.
 
