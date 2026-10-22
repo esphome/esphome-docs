@@ -5,7 +5,8 @@ title: "LN882x SPI LED Strip"
 import APIRef from '@components/APIRef.astro';
 
 This is a component using the LN882x SPI DMA interface to drive addressable LED strips. The LED data is sent
-on the SPI0 MOSI line, which can be routed to any GPIO pin of the chip.
+on the SPI0 MOSI line, which can be routed to any GPIO pin of the chip. It requires the `ln882x` platform of
+[LibreTiny](/components/libretiny/).
 
 > [!NOTE]
 > The strip uses SPI0 and DMA channel 4, so only one `ln882x_spi_led_strip` can be configured, and SPI0 can't be
@@ -15,16 +16,18 @@ on the SPI0 MOSI line, which can be routed to any GPIO pin of the chip.
 light:
   - platform: ln882x_spi_led_strip
     channel_colors: GRB
-    pin: PA06
+    pin: GPIOXX
     num_leds: 30
     chipset: ws2812
     name: "My Light"
 ```
 
-## Configuration variables
+## Configuration Variables
 
-- **pin** (**Required**, [Pin](/guides/configuration-types#pin)): The pin for the data line of the light. Any GPIO
-  pin can be used.
+- **pin** (**Required**, [Pin](/guides/configuration-types/#pin)): The pin for the data line of the light. Any GPIO
+  pin can be used, but avoid `PA2` and `PA3` (the logger UART) and `PA9` (the boot strap pin), see the
+  [LibreTiny GPIO notes](/components/libretiny/).
+
 
 - **num_leds** (**Required**, int): The number of LEDs in the strip. The DMA transfer limits this to 2722 LEDs, or
   2042 LEDs when `channel_colors` contains a `W`.
@@ -40,12 +43,12 @@ light:
   `R`, `G` and `B` exactly once, optionally with a single `W` in any position; for example `GRB`, `BGR`, `GRBW`,
   `WRGB` or `RWGB`. The value is case-insensitive. Including a `W` makes this a four channel RGBW strip.
 
-- **max_refresh_rate** (*Optional*, [Time](/guides/configuration-types#time)):
+- **max_refresh_rate** (*Optional*, [Time](/guides/configuration-types/#time)):
   A time interval used to limit the number of commands a light can handle per second. For example
   16ms will limit the light to a refresh rate of about 60Hz. Defaults to sending commands as quickly as
   changes are made to the lights.
 
-- All other options from [Light](/components/light#config-light).
+- All other options from [Light](/components/light/#config-light).
 
 ## See Also
 
