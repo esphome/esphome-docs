@@ -47,19 +47,10 @@ remains set until explicitly cleared, and `on_alarm` runs only once per newly ob
 next matching event to trigger. A flag latched before boot (including one that woke the device) is reported once;
 an alarm already latched when a runtime action reprograms the alarm is not treated as a new event.
 
-If an I²C operation for startup alarm or timer configuration fails, the component retries that operation from the
-beginning up to three times total, one second between attempts, without delaying startup. This includes explicitly
-disabling an alarm or timer and checking whether a battery-backed alarm is enabled. A partial register write counts
-as a failed attempt. The component reports a warning until the configuration succeeds; after all three attempts fail,
-it keeps the warning and does not assume the requested configuration took effect. Calendar and event-poll warnings
-are independent. Runtime alarm and timer actions are not automatically retried; a newer action supersedes any
-pending startup retry for the same feature. Wake-up flags are preserved across startup retries.
-
 ```yaml
 time:
   - platform: rx8111
     id: rtc
-    event_poll_interval: 1s
     alarm_hour: 7
     alarm_minute: 30
     on_alarm:
@@ -89,14 +80,25 @@ latched: choose a timer period longer than `event_poll_interval` if every expira
 time:
   - platform: rx8111
     id: rtc
-    event_poll_interval: 1s
     timer_count: 60
-    timer_clock: 1hz
     on_timer:
       then:
         - logger.log: "RX8111 timer fired"
         - rx8111.clear_timer_flag: rtc
 ```
+
+### Waking the Device
+
+Events are detected by polling over I²C, so they only run automations while the device is awake. The RX8111 also
+pulls its open-drain `INT` output low while an alarm or timer flag is set. To wake a device from
+[Deep Sleep](/components/deep_sleep/), connect `INT` to a GPIO and use it as the `wakeup_pin` with a low
+`wakeup_pin_mode`; the flag that woke the device is reported once after boot.
+
+> [!NOTE]
+> If a startup alarm or timer write fails, it is retried up to three times, one second apart, without delaying
+> startup. After the last failure the component keeps a warning and does not assume the configuration took effect.
+> Runtime alarm and timer actions are not retried; a newer action replaces a pending startup retry for the same
+> feature. Latched flags are kept across retries.
 
 ## `rx8111.write_time` Action
 
@@ -135,14 +137,14 @@ on_...:
 Use `rx8111.set_alarm` to replace the matching fields at runtime. Supply at least one of `second` (`0`–`59`),
 `minute` (`0`–`59`), `hour` (`0`–`23`), `weekday` (`1`–`7`, Sunday first), or `day` (`1`–`31`). Omitted fields do
 not participate in matching; `weekday` and `day` cannot be used together. These fields also accept
-[templatable values](/automations/templates/). Enable the alarm with `alarm_enabled: true` if no fixed alarm fields
+[templatable values](/automations/templates). Enable the alarm with `alarm_enabled: true` if no fixed alarm fields
 are configured.
 
 `rx8111.schedule_alarm_in` programs an alarm relative to the RTC's current UTC time. Its `duration`
 ([Time](/guides/configuration-types#time), [templatable](/automations/templates)) must be at least one second and
 less than 28 days; a template returns the number of seconds and is checked at runtime. The RTC must contain valid
-time. The action matches the target second, minute, hour and day of
-month; after it fires, use `rx8111.unset_alarm` to disable it if you do not want the same day-of-month match later.
+time. The action matches the target second, minute, hour and day of month; after it fires, use `rx8111.unset_alarm`
+to disable it if you do not want the same day-of-month match later.
 
 `rx8111.clear_alarm_flag` clears AF without disabling the alarm. `rx8111.unset_alarm` disables the alarm interrupt
 and removes all matching fields; it does not clear AF. Each action accepts an RX8111 `id` in the same way as
