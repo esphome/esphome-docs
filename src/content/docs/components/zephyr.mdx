@@ -88,13 +88,16 @@ zephyr:
 | Espressif | `esp32h2` | ESP32-H2 (RISC-V) | [`esp32h2_devkitm`](https://docs.zephyrproject.org/latest/boards/espressif/esp32h2_devkitm/doc/index.html) | mainline Zephyr | BLE, Thread (via `openthread:`) |
 | Espressif | `esp32s3` | ESP32-S3 (Xtensa, dual-core) | [`esp32s3_devkitc`](https://docs.zephyrproject.org/latest/boards/espressif/esp32s3_devkitc/doc/index.html) | mainline Zephyr | Wi-Fi, BLE |
 | Native | `nativesim` | Host binary, no real hardware | [`native_sim/native/64`](https://docs.zephyrproject.org/latest/boards/native/native_sim/doc/index.html) | mainline Zephyr | Simulation on your PC |
+| Nordic | `nrf5340` | nRF5340 application core (Cortex-M33) | [`nrf7002dk/nrf5340/cpuapp`](https://docs.zephyrproject.org/latest/boards/nordic/nrf7002dk/doc/index.html) | nRF Connect SDK (NCS) | Wi-Fi (via the onboard nRF7002) |
 | Nordic | `nrf52` | nRF52840 (Cortex-M4) | [`adafruit_feather_nrf52840`](https://docs.zephyrproject.org/latest/boards/adafruit/feather_nrf52840/doc/index.html) | nRF Connect SDK (NCS) | BLE, Thread (via `openthread:`), Zigbee (via `zigbee:`) |
 | Nordic | `nrf54l15` | nRF54L15 (Cortex-M33) | [`nrf54l15dk`](https://docs.zephyrproject.org/latest/boards/nordic/nrf54l15dk/doc/index.html) | nRF Connect SDK (NCS) | BLE, Thread (via `openthread:`), Zigbee (via `zigbee:`) |
 | Nordic | `nrf54lm20a` | nRF54LM20A (Cortex-M33) | [`nrf54lm20dk`](https://docs.zephyrproject.org/latest/boards/nordic/nrf54lm20dk/doc/index.html) | nRF Connect SDK (NCS) | BLE, Thread (via `openthread:`), Zigbee (via `zigbee:`) |
 | Raspberry Pi | `rp2040` | Raspberry Pi RP2040 (Cortex-M0+) | [`rpi_pico`](https://docs.zephyrproject.org/latest/boards/raspberrypi/rpi_pico/doc/index.html) | mainline Zephyr | No wireless |
 | Raspberry Pi | `rp2350` | Raspberry Pi RP2350 (Cortex-M33, dual-core) | [`rpi_pico2`](https://docs.zephyrproject.org/latest/boards/raspberrypi/rpi_pico2/doc/index.html) | mainline Zephyr | No wireless |
 | Renesas | `ra4m1` | Renesas RA4M1 (Cortex-M4) | [`ek_ra4m1`](https://docs.zephyrproject.org/latest/boards/renesas/ek_ra4m1/doc/index.html) | mainline Zephyr | No wireless |
+| Silicon Labs | `efr32bg27` | Silicon Labs EFR32BG27 (Cortex-M33) | [`xg27_dk2602a`](https://docs.zephyrproject.org/latest/boards/silabs/dev_kits/xg27_dk2602a/doc/index.html) | mainline Zephyr | BLE |
 | Silicon Labs | `efr32mg24` | Silicon Labs EFR32MG24 (Cortex-M33) | [`xg24_ek2703a`](https://docs.zephyrproject.org/latest/boards/silabs/dev_kits/xg24_ek2703a/doc/index.html) | mainline Zephyr | BLE, Thread (via `openthread:`) |
+| Silicon Labs | `simg301` | Silicon Labs SiMG301 (Cortex-M33) | `simg301_ek2719a` (custom board, see [Silicon Labs](#silicon-labs)) | mainline Zephyr | BLE |
 | Silicon Labs | `siwx917` | Silicon Labs SiWx917 (Cortex-M4F, Wi-Fi 6) | [`siwx917_dk2605a`](https://docs.zephyrproject.org/latest/boards/silabs/dev_kits/siwx917_dk2605a/doc/index.html) | mainline Zephyr | Wi-Fi, BLE |
 | STMicroelectronics | `stm32f1` | STM32F1 (Cortex-M3) | [`nucleo_f103rb`](https://docs.zephyrproject.org/latest/boards/st/nucleo_f103rb/doc/index.html) | mainline Zephyr | No wireless |
 | STMicroelectronics | `stm32f4` | STM32F4 (Cortex-M4) | [`nucleo_f401re`](https://docs.zephyrproject.org/latest/boards/st/nucleo_f401re/doc/index.html) | mainline Zephyr | No wireless |
@@ -103,8 +106,9 @@ zephyr:
 
 **Vendor** groups variants by silicon manufacturer. Internally, some vendors are split into more
 than one family — a finer grouping used for shared code generation where the hardware differs too
-much to share it, even from the same vendor. Silicon Labs is one such case: `efr32mg24` and
-`siwx917` are unrelated silicon under one vendor, with separate ADC, pinctrl, and flashing code.
+much to share it, even from the same vendor. Silicon Labs is one such case: `efr32bg27`, `efr32mg24`
+and `simg301` share one family, while `siwx917` is unrelated silicon with separate ADC, pinctrl, and
+flashing code.
 
 It is not recommended to use variants that have existing platforms for other than experimental purposes.
 
@@ -142,6 +146,12 @@ zephyr:
 Nordic provides its own vendor Zephyr, "nRF Connect SDK (NCS)", but `framework: type: zephyr` builds
 against mainline Zephyr instead. See [`framework`](#framework).
 
+`nrf5340` builds only the application core, so BLE, Thread and Zigbee (which need the network core)
+are not available; Wi-Fi uses the onboard nRF7002. A Wi-Fi build is too large for the default MCUboot
+slot and needs `single_slot: true` plus a partition overlay (see the example configs). `wifi: ap:` is
+not supported yet. With `framework: type: zephyr` an insecure software random number generator is used,
+and a warning is logged; NCS, the default, uses the chip's hardware one.
+
 ### Raspberry Pi
 
 `rp2350` and `rp2040` do not have SMP support. `rp2350`'s real hardware TRNG currently hangs the boot
@@ -170,6 +180,13 @@ board also needs a one-time network-coprocessor firmware update before Wi-Fi wor
 [Silicon Labs Serial Load Process](#silicon-labs-serial-load-process). Wi-Fi scanning and AP
 association work, but a full STA connection is not yet reliable, due to an issue in the
 upstream Zephyr/WiseConnect Wi-Fi driver rather than this platform.
+
+`efr32bg27` is BLE only. The onboard sensors of its default board (Si7021, VEML6035, Si7210) are
+powered on at boot.
+
+`simg301`'s default board is not in mainline Zephyr yet: set `board_source:` to
+`https://github.com/esphomeplatformzephyr/custom_zephyr_boards`. It needs Zephyr 4.5.0-rc1 or later
+(the default). The UART can only use pins PA0–PA8 and PB0–PB3; ADC and SPI are not supported yet.
 
 ### STMicroelectronics
 
@@ -256,6 +273,7 @@ Both keep the vendor bootloader, so there is no MCUboot and no OTA. The touch th
 `advanced: dfu:`, on by default with these bootloaders. Only USB serial port 0 reacts to it.
 
 `nrf54l15` and `nrf54lm20a` default to MCUboot and also accept `advanced: bootloader: none`.
+`nrf5340` always uses MCUboot.
 
 ### Raspberry Pi Serial Load Process
 
@@ -315,10 +333,10 @@ port and a pin-within-port, but this is transparent to configuration; use the nu
 board or listed in the board's pinout.
 
 On variants with lettered GPIO ports, the vendor's own notation is also accepted. For example on
-`efr32mg24`, `stm32l4`, and `stm32f4` — `PA4`, `PB2`, and so on are accepted, the same string logs and
+`efr32bg27`, `efr32mg24`, `simg301`, `stm32l4`, and `stm32f4` — `PA4`, `PB2`, and so on are accepted, the same string logs and
 `dump_config` print back. This is rejected on variants that don't use a lettered-port notation.
 
-On Nordic variants (`nrf52`, `nrf54l15`, `nrf54lm20a`), Nordic's own `P<port>.<pin>` notation is
+On Nordic variants (`nrf52`, `nrf5340`, `nrf54l15`, `nrf54lm20a`), Nordic's own `P<port>.<pin>` notation is
 accepted the same way — `P0.02`, `P1.05`, and so on. This is rejected on variants that don't use
 Nordic's port-banked notation.
 
@@ -433,8 +451,8 @@ zephyr:
 it from:
 
 - **type** (*Optional*, string): Which SDK to use. Most variants only support one (mainline Zephyr);
-  `nrf52`, `nrf54l15`, and `nrf54lm20a` support `ncs` (the default) and `zephyr` (mainline, as an
-  alternate); `efr32mg24` supports mainline Zephyr (the default) and `silabs` (Silicon Labs' own
+  `nrf52`, `nrf5340`, `nrf54l15`, and `nrf54lm20a` support `ncs` (the default) and `zephyr` (mainline, as an
+  alternate); `efr32bg27` and `efr32mg24` support mainline Zephyr (the default) and `silabs` (Silicon Labs' own
   Simplicity SDK for Zephyr, as an alternate). See [Variants](#variants) for each variant's default.
 - **version** (*Optional*, string): The version to build against, in **that SDK's own numbering** —
   defaults to the SDK's own recommended version, currently `4.4.2` for mainline Zephyr and `3.4.1` for NCS
@@ -563,7 +581,8 @@ to. **runner** is the exception: it applies to every variant.
   `rp2040`/`rp2350`/`ra4m1`/`stm32l4` — their default boards ship no `slot0`/`slot1` partitions, so choosing
   `mcuboot` there means supplying a fully qualified board and your own MCUboot-shaped partition overlay via
   `overlays` (for example `board: rpi_pico/rp2040/mcuboot`). Defaults to `mcuboot` on the others. OTA needs
-  `mcuboot`. The Espressif variants and `efr32mg24` always use MCUboot and have no such option; `siwx917` has
+  `mcuboot`. The Espressif variants, `nrf5340`, `efr32bg27`, `efr32mg24` and `simg301` always use MCUboot and
+  have no such option; `siwx917` has
   no MCUboot/OTA support at all and also has no such option — see [Silicon Labs](#silicon-labs).
 - **dfu** (*Optional*, boolean or mapping, `nrf52` with an Adafruit or Open DFU bootloader only): Reboot into
   the bootloader when the host opens USB serial port 0 at 1200 baud, so `esphome upload` needs no button press.
@@ -571,7 +590,7 @@ to. **runner** is the exception: it applies to every variant.
   - **reset_pin** (*Optional*, [Pin](/guides/configuration-types#pin)): A GPIO wired to the chip's RESET line,
     driven to reset the chip instead of a software reboot. Defaults to `P0.19` (inverted) on `nrf52840dongle`,
     whose Open DFU bootloader only stays in DFU mode after a pin reset.
-- **commander_version** (*Optional*, string, `efr32mg24`/`siwx917` with `framework: type: silabs`
+- **commander_version** (*Optional*, string, `efr32bg27`/`efr32mg24`/`siwx917` with `framework: type: silabs`
   only): Override the version of Silicon Labs' Simplicity Commander CLI used for secure-boot image
   signing. Defaults to a pinned known-good version. Commander is downloaded and cached automatically;
   no extra install step is needed.
