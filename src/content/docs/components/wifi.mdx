@@ -298,14 +298,11 @@ wifi:
     ap_mode: wisp
 ```
 
-Without `networks`, the upstream is [Ethernet](/components/ethernet/) instead of the router: the access point starts
-once the Ethernet connection has an address and DNS servers, and the clients are routed through it.
+Without `networks`, the upstream is [Ethernet](/components/ethernet/) instead of the router: with Ethernet configured
+as described on its page, only the access point is added. It starts once the Ethernet connection has an address and
+DNS servers, and the clients are routed through it.
 
 ```yaml
-ethernet:
-  type: LAN8720
-  # See the Ethernet component for the full configuration
-
 wifi:
   ap:
     ssid: "Bridge"
