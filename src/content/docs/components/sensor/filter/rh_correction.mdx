@@ -29,6 +29,7 @@ In this example a DHT sensor reads 6 °C high because of the heat dissipated ins
 # Example configuration entry
 sensor:
   - platform: dht
+    pin: GPIOXX
     temperature:
       id: t_sensor
       name: Temperature
@@ -42,5 +43,7 @@ sensor:
             temperature_offset: -6
 ```
 
-While the temperature sensor has no reading yet, or reads outside -40 to 50 °C, the humidity passes through
-uncorrected and a warning is logged once. A `NaN` temperature drops the update, so the last corrected value stays.
+Until the temperature sensor has published its first value, or while the measured or corrected temperature is
+outside -40 to 50 °C (-40 to 122 °F), the humidity passes through uncorrected and a warning is logged once. When
+the temperature sensor publishes `NaN`, or the offset evaluates to `NaN`, the update is dropped with a one-time
+warning and the last corrected value stays.
