@@ -89,8 +89,7 @@ wifi:
 
   - **ap_mode** (*Optional*, string): One of `fallback` or `wisp`. Defaults to `fallback`, which starts the access
     point only when no connection to the WiFi router can be made. `wisp` turns the node into a WiFi repeater, see
-    [WISP Mode](#wisp-mode). ESP32 with ESP-IDF 5.1 or newer only. `coexist` and `napt` are
-    only accepted with `fallback`.
+    [WISP Mode](#wisp-mode). ESP32 only. `coexist` and `napt` are only accepted with `fallback`.
 
   - **dns_servers** (*Optional*, list of IPv4 addresses): The DNS servers handed out to clients of the access point.
     Only valid with `ap_mode: wisp`. Accepts one server, or two with ESP-IDF 6.0 or newer. If not set, the DNS
@@ -427,8 +426,8 @@ wifi:
 
 Notes:
 
-- Requires an ESP32 on the ESP-IDF framework (5.1 or newer; the Arduino framework is not supported), at least one
-  entry in `networks`, and a password for the access point.
+- Requires an ESP32, a password for the access point, and an upstream: at least one entry in `networks`,
+  or `ethernet`.
 - The access point stays on, so `captive_portal` is rejected, and `ap_timeout` is how long a start that failed
   waits before it is tried again (it cannot be `0s`). With `dns_servers` the access point starts right away;
   without them it starts once the node has connected to the router and learned its DNS servers, so no client is
