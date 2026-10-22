@@ -123,12 +123,10 @@ wifi:
 
 ## Library Versions
 
-ESPHome builds the host side with the `esp_hosted` 3.x library on ESP-IDF 5.5 or newer. A build stays on the 2.x
-line when the ESP-IDF version is older than 5.5, or when `active_high` is `false`: 3.x always keeps the reset line
-high and pulses it low, so it cannot express that setting.
-
-To choose a line yourself, pin the library under `esp32.framework.components` (see
-[IDF Components](/components/esp32/#idf-components)); the pin always wins:
+ESPHome builds the host side with the `esp_hosted` 3.x library, which needs ESP-IDF 5.5 or newer and always keeps
+the reset line high with a low pulse, so `active_high: false` cannot be used with it. To stay on the 2.x line for
+either reason, pin the library under `esp32.framework.components` (see
+[IDF Components](/components/esp32/#idf-components)):
 
 ```yaml
 esp32:
