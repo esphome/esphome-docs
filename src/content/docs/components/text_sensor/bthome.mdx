@@ -41,6 +41,9 @@ text_sensor:
 - **type** (**Required**, string): The BTHome text sensor type to receive, `text` or `raw`. Must be one of the [supported text sensor types](/components/bthome#supported-text-sensor-types). Type names are case-insensitive.
 - All other options from [Text Sensor](/components/text_sensor).
 
+A `text` object must be valid UTF-8. If it is not, the update is ignored and a warning is logged, because Home
+Assistant cannot receive text that is not valid UTF-8.
+
 ## Encrypted devices
 
 To receive data from a device that uses BTHome encryption, add a `key` to the remote device entry:

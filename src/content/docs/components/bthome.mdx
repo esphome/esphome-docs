@@ -176,7 +176,7 @@ Text sensors carry a variable-length string payload. Size includes the 1-byte BT
 
 | BTHome ID | Name | Description | Size |
 |-----------|------|-------------|------|
-| 0x53 | `text` | UTF-8 text string | variable |
+| 0x53 | `text` | UTF-8 text string (text that is not valid UTF-8 is ignored) | variable |
 | 0x54 | `raw` | Raw binary data | variable |
 
 ## Multiple sensors of the same type
