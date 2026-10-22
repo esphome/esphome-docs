@@ -398,6 +398,11 @@ once the upstream's resolvers are known, so it rejoins and picks them up. A reso
 changes later, for example when the station reconnects or the ethernet link gets its address,
 is handed out with the clients' next lease, without taking the access point down.
 
+A static upstream address has to name a resolver (`dns1` under `manual_ip`), because DHCP is the
+only other place the device learns one; the configuration is rejected otherwise. While the captive
+portal is served on the access point and the upstream has no resolver, clients are handed the
+access point's own address, so their lookups reach the portal.
+
 > [!WARNING]
 > With `napt: true`, anything connected to the access point can reach the networks the device
 > itself can reach through its upstream connection. Always set a password on the access point,
