@@ -17,6 +17,7 @@ submit a feature request (see FAQ).
 
 | Supported units                           | Platform name                      | Supports receiver |
 | ----------------------------------------- | ---------------------------------- | ----------------- |
+| [Airton](#airton)                         | `airton`                           | yes               |
 | Ballu                                     | `ballu`                            | yes               |
 | Coolix                                    | `coolix`                           | yes               |
 | [Daikin](#daikin) | `daikin`                           | yes |
@@ -27,6 +28,7 @@ submit a feature request (see FAQ).
 | [Friedrich](#friedrich)                   | `friedrich`                        | yes               |
 | Fujitsu General | `fujitsu_general`                  | yes |
 | [GREE](#gree_ir) | `gree`                             | |
+| [Haier Tundra](#haier_tundra) | `haier_tundra` | yes |
 | Hitachi | `hitachi_ac344`, `hitachi_ac424` | yes |
 | [LG](#climate_ir_lg) | `climate_ir_lg`                    | yes |
 | [Midea](#midea_ir) | `midea_ir`                         | yes |
@@ -93,6 +95,66 @@ climate:
 ### Advanced Options
 
 - **transmitter_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID of the remote transmitter.
+
+### `airton`
+
+Airton RD1A1 remote protocol, used by Airton branded units and Ferroli's Aster range.
+
+- **vertical_direction** (*Optional*, string): The vertical direction of the air outlet until a saved setting is
+  restored or the select below changes it. One of `off`, `swing`, `up`, `middle-up`, `middle`, `middle-down` and
+  `down`. Defaults to `off`.
+
+The remote sends every setting in each frame, so the display light, sleep mode and vertical direction are stored in
+flash and restored at boot. Nothing is transmitted at boot; the stored settings go out with the next command. With a
+`receiver_id`, frames from the handheld remote update the climate state and these settings as well.
+
+The `airton` switch platform exposes the display light and sleep mode. Both switches are configuration entities and
+keep their state through the climate's own storage, so they do not need a `restore_mode`.
+
+- **airton_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the `airton` climate. Only needed with
+  more than one.
+- **display** (*Optional*, [Switch](/components/switch#config-switch)): The display light of the indoor unit.
+- **sleep_mode** (*Optional*, [Switch](/components/switch#config-switch)): Sleep mode. The unit ignores it in fan-only
+  mode and in the automatic heat/cool mode.
+
+The `airton` select platform exposes the vertical air outlet direction.
+
+- **airton_id** (*Optional*, [ID](/guides/configuration-types#id)): The ID of the `airton` climate. Only needed with
+  more than one.
+- **vertical_direction** (*Optional*, [Select](/components/select#config-select)): The vertical direction, with the
+  options of the climate's `vertical_direction`. `swing` and the climate's vertical swing mode are the same setting,
+  so changing one updates the other.
+
+```yaml
+# Example configuration entry
+climate:
+  - platform: airton
+    id: living_room_ac
+    name: Living Room AC
+
+switch:
+  - platform: airton
+    display:
+      name: Display Light
+    sleep_mode:
+      name: Sleep Mode
+
+select:
+  - platform: airton
+    vertical_direction:
+      name: Vertical Direction
+```
+
+The display light and sleep mode can also be set from automations with `climate.airton.display_on`,
+`climate.airton.display_off`, `climate.airton.sleep_on` and `climate.airton.sleep_off`. Each action takes the ID of
+the `airton` climate.
+
+```yaml
+on_...:
+  - climate.airton.display_off: living_room_ac
+  - climate.airton.sleep_on:
+      id: living_room_ac
+```
 
 ### `climate_ir_lg`
 
@@ -246,6 +308,57 @@ switch:
       name: "AC X-Fan"
 ```
 
+<span id="haier_tundra"></span>
+
+### `haier_tundra`
+
+Haier 112-bit protocol, currently only tested with AS35TB4HRA but may also work with other units.
+
+- **unit** (*Optional*, string): The AC unit ID, either `a` or `b`. Each transmitter can drive one unit of each ID.
+  Defaults to `a`.
+
+```yaml
+# Example configuration entry
+climate:
+  - platform: haier_tundra
+    name: "AC"
+    id: my_haier_ac
+```
+
+Two buttons and three switches are also exposed:
+
+- **haier_tundra_id** (**Required**, [ID](/guides/configuration-types/#id)): The Haier Tundra Climate entity.
+- **light** (*Optional*, [Button](/components/button/#config-button)): Toggles the display LEDs.
+- **self_clean** (*Optional*, [Button](/components/button/#config-button)): Starts the self clean process. Can be
+  started when the unit is off.
+- **health_mode** (*Optional*, [Switch](/components/switch/#config-switch)): Turns on/off Health mode.
+- **quiet_mode** (*Optional*, [Switch](/components/switch/#config-switch)): Turns on/off Quiet mode.
+- **turbo_mode** (*Optional*, [Switch](/components/switch/#config-switch)): Turns on/off Turbo mode.
+
+```yaml
+# Example configuration entry
+button:
+  - platform: haier_tundra
+    haier_tundra_id: my_haier_ac
+    light:
+      name: "Toggle Light"
+    self_clean:
+      name: "Start Self Clean"
+
+switch:
+  - platform: haier_tundra
+    haier_tundra_id: my_haier_ac
+    health_mode:
+      name: "Health Mode"
+    quiet_mode:
+      name: "Quiet Mode"
+    turbo_mode:
+      name: "Turbo Mode"
+```
+
+> [!NOTE]
+> Quiet and Turbo mode cannot both be on at once, and either can only be turned on in Cool or Heat mode.
+
 ### `midea_ir`
 
 These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.
@@ -288,11 +401,9 @@ climate:
 
 - **set_fan_mode** (*Optional*, string): Select the fan modes desired or that are supported on your remote. Defaults to `3levels`
 
-  - Options are: `3levels`, `4levels`, `quiet_4levels`.
-
-    - `3levels`  ; Low [fan speed 1], Medium [2], High [3]
-    - `4levels`  ; Low [1], Middle [2], Medium [3], High [4]
-    - `quiet_4levels`  ; Low [1], Middle [2], Medium [3], High [4], Quiet [5]
+  - `3levels`: Low [fan speed 1], Medium [2], High [3]
+  - `4levels`: Low [1], Middle [2], Medium [3], High [4]
+  - `quiet_4levels`: Low [1], Middle [2], Medium [3], High [4], Quiet [5]
 
 - **supports_dry** (*Optional*, boolean): Enables setting dry mode for this unit. Defaults to `false`.
 - **supports_fan_only** (*Optional*, boolean): Enables setting fan only mode for this unit. Confirm that mode is supported on your remote. Defaults to `false`.
@@ -301,12 +412,10 @@ climate:
   of rounding to the nearest Celsius step; targets outside that range are clamped to it. Enable this when you set the
   target temperature in Fahrenheit, for example when Home Assistant uses imperial units. Defaults to `false`.
 
-- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Defaults to `middle`.
-
-  - Options are: `left`, `middle-left`, `middle`, `middle-right`, `right`, `auto`
-- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Defaults to `middle`.
-
-  - Options are: `down`, `middle-down`, `middle`, `middle-up`, `up`, `auto`
+- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing.
+  One of `left`, `middle-left`, `middle`, `middle-right`, `right`, `auto`. Defaults to `middle`.
+- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing.
+  One of `down`, `middle-down`, `middle`, `middle-up`, `up`, `auto`. Defaults to `middle`.
 - **vertical_vanes** (*Optional*, int): Set to `2` on units with separately controlled left and right vertical vanes, such
   as the FH, FS and FX series, so both vanes receive the swing and default position commands. Both vanes always get the
   same setting. Defaults to `1`.
@@ -603,6 +712,7 @@ Additional configuration must be specified for this platform:
 - [Remote Receiver](/components/remote_receiver/)
 - [Remote Transmitter](/components/remote_transmitter/)
 - [Sensor Component](/components/sensor/)
+- <APIRef text="airton.h" path="airton/airton.h" />
 - <APIRef text="ballu.h" path="ballu/ballu.h" />
 - <APIRef text="climate_ir_lg.h" path="climate_ir_lg/climate_ir_lg.h" />
 - <APIRef text="coolix.h" path="coolix/coolix.h" />
@@ -610,6 +720,7 @@ Additional configuration must be specified for this platform:
 - <APIRef text="friedrich.h" path="friedrich/friedrich.h" />
 - <APIRef text="fujitsu_general.h" path="fujitsu_general/fujitsu_general.h" />
 - <APIRef text="gree.h" path="gree/gree.h" />
+- <APIRef text="haier_tundra.h" path="haier_tundra/haier_tundra.h" />
 - <APIRef text="hitachi_ac344.h" path="hitachi_ac344/hitachi_ac344.h" />
 - <APIRef text="midea_ir.h" path="midea_ir/midea_ir.h" />
 - <APIRef text="mistral_ir.h" path="mistral_ir/mistral_ir.h" />
