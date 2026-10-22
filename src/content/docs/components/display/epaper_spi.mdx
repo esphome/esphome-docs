@@ -49,6 +49,7 @@ the pins used to interface to the display to be specified.
 |---------------------------|---------------------|----------------------------------------------------|
 | GooDisplay-GDEY0154D67-1.54 | Dalian Good Display | 1.54" mono e-paper (200x200, SSD1681) [https://www.good-display.com/product/388.html](https://www.good-display.com/product/388.html) |
 | GooDisplay-GDEY0213F51-2.13 | Dalian Good Display | [https://www.good-display.com/product/463.html](https://www.good-display.com/product/463.html) |
+| GooDisplay-GDEY029Z95-2.9 | Dalian Good Display | 2.9" 3-color e-paper (128x296, SSD1680) [https://www.good-display.com/product/527.html](https://www.good-display.com/product/527.html) |
 | GooDisplay-GDEY042T81-4.2 | Dalian Good Display | [https://www.good-display.com/product/386.html](https://www.good-display.com/product/386.html) |
 | Waveshare-1.54in-G        | Waveshare           | [https://www.waveshare.com/1.54inch-e-paper-g.htm](https://www.waveshare.com/1.54inch-e-paper-g.htm) |
 | Waveshare-1.54in-v2       | Waveshare           | 1.54" V2 mono e-paper (200x200, SSD1681) [https://www.waveshare.com/1.54inch-e-paper-module.htm](https://www.waveshare.com/1.54inch-e-paper-module.htm) |
@@ -95,14 +96,15 @@ but can be overridden if needed.
 - **cs_pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The CS pin. Predefined for integrated boards.
 - **cs1_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The secondary CS pin for dual-CS displays (e.g. T133A01). Predefined for integrated boards that require it.
 - **dc_pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The DC pin. Predefined for integrated boards.
-- **busy_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The BUSY pin, if used.
+- **busy_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The BUSY pin, if used. Required for
+  `GooDisplay-GDEY029Z95-2.9`.
 
   > [!NOTE]
   > Some displays use inverted busy pin polarity (LOW = busy, HIGH = idle). For these models, set `inverted: true`
   > on the busy pin. This applies to: `Waveshare-1.54in-G`, `Waveshare-2.13in-G`, `Waveshare-2.13in-G-V1`,
   > `Waveshare-7.5in-H`, `Waveshare-7.5in-V2`, `inkplate6color`.
 
-- **reset_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The RESET pin, if used. Required for the SSD1681-based models (`SSD1681`, `Waveshare-1.54in-v2`, `GooDisplay-GDEY0154D67-1.54`), whose panels only wake from deep sleep on a hardware reset.
+- **reset_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The RESET pin, if used. Required for the SSD1681-based models (`SSD1681`, `Waveshare-1.54in-v2`, `GooDisplay-GDEY0154D67-1.54`), whose panels only wake from deep sleep on a hardware reset, and for `GooDisplay-GDEY029Z95-2.9`.
   Make sure you pull this pin high (by connecting it to 3.3V with a resistor) if not connected to a GPIO pin.
 - **enable_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): An optional pin to enable the
   display, if required. A list of pins can be provided for displays that require multiple enable pins.
