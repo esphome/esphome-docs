@@ -14,8 +14,9 @@ calculated from the green channel. Color temperature uses the formula from the V
 "Designing the VEML6040 into an Application". Both values are approximate without calibration for your light source
 and enclosure.
 
-A channel that reaches `65535` is saturated, and a warning is logged. If the green channel is saturated, illuminance
-is reported as unknown. If any of the red, green or blue channels is saturated, color temperature is reported as
+A red, green or blue channel that reaches `65535` is saturated, and a warning is logged. The white channel is not
+checked, so a white reading of `65535` comes with no warning. If the green channel is saturated, illuminance is
+reported as unknown. If any of the red, green or blue channels is saturated, color temperature is reported as
 unknown. A saturated red or blue channel does not affect illuminance, so a valid lux reading can appear next to an
 unknown color temperature. Use a shorter `integration_time` in bright light.
 
