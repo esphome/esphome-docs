@@ -621,8 +621,8 @@ select:
   Silent setting. All options from [Select](/components/select/#config-select) are supported.
 
 The 75% and 50% limits are kept when changing presets, including ECO. Changing the limit also keeps the active
-preset. Power selection is not restored after reboot. A supported full-state command from the handheld remote
-updates the select when a receiver is configured.
+preset. Power selection is restored after reboot without sending IR. A supported full-state command from the
+handheld remote updates the select when a receiver is configured, and its power selection is saved too.
 
 > [!NOTE]
 > Combined outdoor Silent and preset commands are not yet supported. Select `100%`, `75%` or `50%` before enabling
