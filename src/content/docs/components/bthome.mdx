@@ -42,7 +42,8 @@ sensor:
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID for code generation.
 
 - **remote_devices** (**Required**, list): A list of remote BTHome devices to receive data from. Each entry has:
-  - **mac_address** (**Required**, MAC address): The Bluetooth MAC address of the remote device.
+  - **mac_address** (**Required**, MAC address): The Bluetooth MAC address of the remote device. Each remote
+    device must have a different MAC address.
   - **id** (*Optional*, [ID](/guides/configuration-types#id)): An ID to reference this device from [BTHome Sensor](/components/sensor/bthome/), [BTHome Binary Sensor](/components/binary_sensor/bthome/), and [BTHome Text Sensor](/components/text_sensor/bthome/) platform entries.
   - **key** (*Optional*, string): A 32-character hexadecimal string (16 bytes) used to decrypt advertisements from this device.
 
