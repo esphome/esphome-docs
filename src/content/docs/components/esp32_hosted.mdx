@@ -24,7 +24,6 @@ esp32_hosted:
   d1_pin: GPIOXX
   d2_pin: GPIOXX
   d3_pin: GPIOXX
-  active_high: true
   sdio_frequency: 10MHz
 
 wifi:
@@ -43,7 +42,6 @@ esp32_hosted:
   clk_pin: GPIOXX
   d0_pin: GPIOXX
   d1_pin: GPIOXX
-  active_high: true
 
 wifi:
   ssid: !secret wifi_ssid
@@ -58,8 +56,6 @@ wifi:
 - **variant** (*Required*, string): The variant of the ESP32 co-processor that is used by the
   host. One of `ESP32`, `ESP32S2`, `ESP32S3`, `ESP32C2`, `ESP32C3` and `ESP32C6`.
 - **reset_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The reset pin of the co-processor.
-- **active_high** (*Required*, boolean): Must be `true`; the co-processor is held active with reset high and
-  reset with a low pulse. See [Library Versions](#library-versions).
 - **clk_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SDIO clock pin.
 - **cmd_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SDIO command pin.
 - **d0_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SDIO D0 pin.
@@ -91,7 +87,6 @@ esp32_hosted:
   cs_pin: GPIOXX
   handshake_pin: GPIOXX
   data_ready_pin: GPIOXX
-  active_high: true
 
 wifi:
   ssid: !secret wifi_ssid
@@ -104,8 +99,6 @@ wifi:
 - **variant** (*Required*, string): The variant of the ESP32 co-processor that is used by the
   host. One of `ESP32`, `ESP32S2`, `ESP32S3`, `ESP32C2`, `ESP32C3` and `ESP32C6`.
 - **reset_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The reset pin of the co-processor.
-- **active_high** (*Required*, boolean): Must be `true`; the co-processor is held active with reset high and
-  reset with a low pulse. See [Library Versions](#library-versions).
 - **clk_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SPI clock pin.
 - **mosi_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SPI MOSI pin.
 - **miso_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SPI MISO pin.
@@ -120,15 +113,6 @@ wifi:
   internal RAM. Requires the host MCU to have DMA-capable PSRAM enabled (ESP32-P4, ESP32-S3).
   Recommended when the host firmware uses most of internal RAM (for example, a large LVGL UI);
   without it, boot can fail with an `spi_mempool_create` assert. Defaults to `false`.
-
-## Library Versions
-
-ESPHome builds the host side with the `esp_hosted` 3.x library, which needs ESP-IDF 5.5 or newer. The library
-always keeps the reset line high and resets the co-processor with a low pulse, so `active_high` must be `true`.
-
-The co-processor firmware offered by the [update platform](/components/update/esp32_hosted/) follows the host
-library version, so a device built with an earlier ESPHome release moves to the 3.x co-processor firmware the first
-time it is updated from this one.
 
 ## Updating co-processor firmware
 
@@ -169,7 +153,6 @@ esp32_hosted:
   d1_pin: GPIOXX
   d2_pin: GPIOXX
   d3_pin: GPIOXX
-  active_high: true
 
 espnow:
   on_broadcast:
