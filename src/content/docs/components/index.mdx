@@ -52,6 +52,7 @@ Peripherals which directly support the operation of the microcontroller's proces
   ["PSRAM", "/components/psram/", "badge:PSRAM"],
   ["Deep Sleep", "/components/deep_sleep/", "hotel.svg", "dark-invert"],
   ["ESP32-P4 LDO regulator", "/components/esp_ldo/", "ldo.svg", "dark-invert"],
+  ["ESP32 ULP coprocessor", "/components/esp32_ulp/", "badge:ESP32_ULP"],
 ]} />
 
 ## ESPHome Automations
@@ -147,6 +148,7 @@ ESPHome-specific components or components supporting ESPHome device provisioning
   ["StatsD", "/components/statsd/", "connection.svg", "dark-invert"],
   ["Syslog", "/components/syslog/", "file-document-box.svg", "dark-invert"],
   ["Web Server", "/components/web_server/", "badge:HTTP"],
+  ["Zephyr Coredump", "/components/zephyr_coredump/", "bug-report.svg", "dark-invert"],
 ]} />
 
 ## Update Installation
@@ -177,6 +179,7 @@ Create update entities simplifying management of OTA updates.
   ["CAN Bus", "/components/canbus/", "badge:CANBUS"],
   ["CDC-ACM UART Bridge", "/components/bridge/cdc_acm_uart/", "usb.svg", "dark-invert"],
   ["FUSB302B", "/components/fusb302b/", "badge:FUSB302B", "USB-C PD sink"],
+  ["HDMI-CEC Bus", "/components/hdmi_cec/", "badge:HDMI-CEC"],
   ["I²C Bus", "/components/i2c/", "i2c.svg"],
   ["I²S Audio", "/components/i2s_audio/", "badge:I2S_Audio"],
   ["OpenTherm", "/components/opentherm/", "opentherm.png"],
@@ -187,6 +190,7 @@ Create update entities simplifying management of OTA updates.
   ["UART", "/components/uart/", "badge:UART"],
   ["UART Mux", "/components/uart_mux/", "badge:UART"],
   ["UART TCP", "/components/uart_tcp/", "badge:UART"],
+  ["USB Audio", "/components/usb_audio/", "usb.svg", "dark-invert"],
   ["USB CDC-ACM", "/components/usb_cdc_acm/", "usb.svg", "dark-invert"],
   ["USB Host", "/components/usb_host/", "usb.svg", "dark-invert"],
   ["USB UART", "/components/usb_uart/", "usb.svg", "dark-invert"],
@@ -263,6 +267,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["CCS811", "/components/sensor/ccs811/", "ccs811.jpg", "CO2 & Volatile organics"],
   ["CM1106", "/components/sensor/cm1106/", "cm1106.png", "CO2"],
   ["D01", "/components/sensor/d01/", "d01.jpg", "Particulate"],
+  ["DFRobot SEN0465 Gas Sensors", "/components/sensor/dfrobot_sen0465/", "dfrobot_sen0465.jpg", "O2 & CO & H2S & NH3 & ..."],
   ["Ecocomfort2 VMC", "/components/ecocomfort2/", "fan.svg", "Volatile organics", "dark-invert"],
   ["EE895", "/components/sensor/ee895/", "EE895.png", "CO2 & Temperature & Pressure"],
   ["ENS160", "/components/sensor/ens160/", "ens160.jpg", "CO2 & Air Quality"],
@@ -274,6 +279,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["iAQ-Core", "/components/sensor/iaqcore/", "iaqcore.jpg", "CO2 & Volatile organics"],
   ["MH-Z19", "/components/sensor/mhz19/", "mhz19.jpg", "CO2 & Temperature"],
   ["MiCS-4514", "/components/sensor/mics_4514/", "mics_4514.jpg", "Gas concentration"],
+  ["MiCS-5524", "/components/sensor/mics_5524/", "mics_5524.jpg", "Gas concentration"],
   ["PM1006 Sensor", "/components/sensor/pm1006/", "pm1006.jpg", "Particulate"],
   ["PM2005 Sensor", "/components/sensor/pm2005/", "pm2005.png", "Particulate"],
   ["PMSA003I", "/components/sensor/pmsa003i/", "pmsa003i.jpg", "Particulate"],
@@ -354,6 +360,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["TOF10120", "/components/sensor/tof10120/", "tof10120.jpg", "IR optical distance"],
   ["Ultrasonic Sensor", "/components/sensor/ultrasonic/", "ultrasonic.jpg", "Acoustic distance"],
   ["VL53L0x", "/components/sensor/vl53l0x/", "vl53l0x.jpg", "IR optical distance"],
+  ["VL53L1X", "/components/sensor/vl53l1x/", "vl53l1x.jpg", "IR optical distance"],
   ["Zio Ultrasonic Sensor", "/components/sensor/zio_ultrasonic/", "zio_ultrasonic.jpg", "Acoustic distance"],
 ]} />
 
@@ -476,6 +483,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["TMP102", "/components/sensor/tmp102/", "tmp102.jpg", "Temperature"],
   ["TMP1075", "/components/sensor/tmp1075/", "tmp1075.jpg", "Temperature"],
   ["TMP117", "/components/sensor/tmp117/", "tmp117.jpg", "Temperature"],
+  ["Vevor DTX Weather Station", "/components/vevor_dtx/", "weather-sunny.svg", "Weather", "dark-invert"],
   ["WTS01", "/components/sensor/wts01/", "wts01.png", "Temperature"],
   ["XDB401", "/components/sensor/xdb401/", "xdb401.jpg", "Pressure"],
   ["XGZP68xx Series", "/components/sensor/xgzp68xx/", "6897d.jpg", "Differential Pressure"],
@@ -527,6 +535,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["MLX90393", "/components/sensor/mlx90393/", "mlx90393.jpg", "3-Axis magnetometer"],
   ["MMC5603", "/components/sensor/mmc5603/", "mmc5603.jpg", "3-Axis magnetometer"],
   ["MMC5983", "/components/sensor/mmc5983/", "mmc5983.jpg", "3-Axis magnetometer"],
+  ["MT6701", "/components/sensor/mt6701/", "mt6701.jpg", "14-Bit Magnetic Angle Sensor"],
   ["QMC5883L", "/components/sensor/qmc5883l/", "qmc5883l.jpg", "3-Axis magnetometer"],
 ]} />
 
@@ -640,6 +649,7 @@ Binary Sensors are organized into categories; if a given sensor fits into more t
   ["Host SDL2", "/components/binary_sensor/sdl/", "sdl.png"],
   ["Status", "/components/binary_sensor/status/", "server-network.svg", "dark-invert"],
   ["Switch", "/components/binary_sensor/switch/", "electric-switch.svg", "dark-invert"],
+  ["UART Binary Sensor", "/components/binary_sensor/uart/", "badge:UART"],
 ]} />
 
 ### Capacitive Touch
@@ -671,6 +681,7 @@ Often known as "tag" or "card" readers within the community.
   ["PN716X", "/components/pn7160/", "pn716x.jpg"],
   ["RC522", "/components/binary_sensor/rc522/", "rc522.jpg"],
   ["RDM6300", "/components/binary_sensor/rdm6300/", "rdm6300.jpg"],
+  ["ST25R3916", "/components/st25r/", "badge:ST25R3916"],
   ["Wiegand Reader", "/components/wiegand/", "wiegand.jpg"],
 ]} />
 
@@ -817,6 +828,7 @@ Often known as "tag" or "card" readers within the community.
   ["LCD Menu", "/components/display_menu/lcd_menu/", "lcd_menu.png"],
   ["LVGL Graphics", "/components/lvgl/", "lvgl.png"],
   ["QR Code", "/components/qr_code/", "qr-code.svg", "dark-invert"],
+  ["VNC Client", "/components/vnc/", "vnc.svg", "dark-invert"],
 ]} />
 
 <span id="display-hw"></span>
@@ -856,6 +868,7 @@ Often known as "tag" or "card" readers within the community.
   ["SSD1327", "/components/display/ssd1327/", "ssd1327.jpg"],
   ["SSD1331", "/components/display/ssd1331/", "ssd1331.jpg"],
   ["SSD1351", "/components/display/ssd1351/", "ssd1351.jpg"],
+  ["ST7305", "/components/display/st7305/", "st7305.jpg"],
   ["ST7567", "/components/display/st7567/", "st7567.jpg"],
   ["ST7701S", "/components/display/st7701s/", "indicator.jpg"],
   ["ST7735", "/components/display/st7735/", "st7735.jpg"],
@@ -1025,6 +1038,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["Microphone Core", "/components/microphone/", "microphone.svg", "dark-invert"],
   ["I2S Microphone", "/components/microphone/i2s_audio/", "badge:I2S_Audio"],
   ["Resampler Microphone", "/components/microphone/resampler/", "waveform.svg", "dark-invert"],
+  ["USB Audio Microphone", "/components/microphone/usb_audio/", "usb.svg", "dark-invert"],
 ]} />
 
 ## Motion Components
@@ -1074,6 +1088,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["Modbus Output", "/components/output/modbus_controller/", "modbus.png"],
   ["MY9231/MY9291", "/components/output/my9231/", "badge:MY9231"],
   ["PCA9685", "/components/output/pca9685/", "pca9685.jpg"],
+  ["RP2040 PWM", "/components/output/rp2040_pwm/", "pwm.png"],
   ["Sigma-Delta Output", "/components/output/sigma_delta_output/", "sigma-delta.svg", "dark-invert"],
   ["Slow PWM", "/components/output/slow_pwm/", "pwm.png"],
   ["SM16716", "/components/output/sm16716/", "badge:SM16716"],
@@ -1121,6 +1136,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["Mixer Speaker", "/components/speaker/mixer/", "badge:Mixer"],
   ["Resampler Speaker", "/components/speaker/resampler/", "waveform.svg", "dark-invert"],
   ["Router Speaker", "/components/speaker/router/", "speaker.svg", "dark-invert"],
+  ["USB Audio Speaker", "/components/speaker/usb_audio/", "usb.svg", "dark-invert"],
 ]} />
 
 ## Switch Components
@@ -1232,6 +1248,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
 <ImgTable items={[
   ["Water Heater Core", "/components/water_heater/", "badge:water_heater"],
   ["Template Water Heater", "/components/water_heater/template/", "description.svg", "dark-invert"],
+  ["Haier Water Heater", "/components/water_heater/haier_water_heater/", "badge:Haier_Water_Heater"],
 ]} />
 
 ## Wireless Communication
@@ -1266,6 +1283,7 @@ ESPHome to cellular networks. **Does not encompass Wi-Fi.**
   ["Modbus Client", "/components/modbus_client/", "modbus.png"],
   ["Modbus Controller", "/components/modbus_controller/", "modbus.png"],
   ["Modbus Server", "/components/modbus_server/", "modbus.png"],
+  ["RTSP Server", "/components/rtsp_server/", "camera.svg", "dark-invert"],
   ["Sendspin", "/components/sendspin/", "sendspin.svg"],
   ["Sprinkler", "/components/sprinkler/", "sprinkler-variant.svg", "dark-invert"],
   ["Status LED", "/components/status_led/", "led-on.svg", "dark-invert"],
@@ -1278,7 +1296,6 @@ ESPHome to cellular networks. **Does not encompass Wi-Fi.**
 
 <ImgTable items={[
   ["BME280 Environment extras", "/cookbook/bme280_environment/", "bme280.jpg"],
-  ["EHMTX a matrix status/text display", "/cookbook/ehmtx/", "ehmtx.jpg"],
   ["ESP32 Water Leak Detector", "/cookbook/leak-detector-m5stickc/", "leak-detector-m5stickC_main_index.jpg"],
   ["Garage Door Template Cover", "/cookbook/garage-door/", "garage-variant.svg", "dark-invert"],
   ["Lambda Magic: Tips and Tricks", "/cookbook/lambda_magic/", "head-lightbulb-outline.svg", "dark-invert"],
