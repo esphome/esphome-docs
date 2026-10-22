@@ -42,7 +42,9 @@ switch:
 
 Each relay is a `switch` of the `seeed_multi_channel_relay` platform.
 
-- **channel** (**Required**, int): The relay to control, `1` to `8`. Each channel can be used once per board.
+- **channel** (**Required**, int): The relay to control: `1` to `4` on the 4-channel board, `1` to `8` on the
+  8-channel board. The component cannot tell the boards apart, so a channel the board does not have is accepted
+  and does nothing. Each channel can be used once per board.
 - **seeed_multi_channel_relay_id** (*Optional*, [ID](/guides/configuration-types#id)): The board the relay
   belongs to. Required with more than one board.
 - **restore_mode** (*Optional*): The board powers up with every relay off, so the default
@@ -52,8 +54,11 @@ Each relay is a `switch` of the `seeed_multi_channel_relay` platform.
 - All other options from [Switch](/components/switch/#config-switch).
 
 The board cannot report its relays, so the component keeps their state itself. After a restart of the ESP
-alone the board still drives the relays as they were, and the first write after boot sets every channel from
-what the component knows, so a relay on a channel without a switch is turned off.
+alone the board still drives the relays as they were.
+
+> [!WARNING]
+> The first write after boot sets every channel from what the component knows, so a relay on a channel that has
+> no `switch` configured is turned off.
 
 ## `seeed_multi_channel_relay.change_address` Action
 
