@@ -52,6 +52,7 @@ Peripherals which directly support the operation of the microcontroller's proces
   ["PSRAM", "/components/psram/", "badge:PSRAM"],
   ["Deep Sleep", "/components/deep_sleep/", "hotel.svg", "dark-invert"],
   ["ESP32-P4 LDO regulator", "/components/esp_ldo/", "ldo.svg", "dark-invert"],
+  ["ESP32 ULP coprocessor", "/components/esp32_ulp/", "badge:ESP32_ULP"],
 ]} />
 
 ## ESPHome Automations
@@ -178,6 +179,7 @@ Create update entities simplifying management of OTA updates.
   ["CAN Bus", "/components/canbus/", "badge:CANBUS"],
   ["CDC-ACM UART Bridge", "/components/bridge/cdc_acm_uart/", "usb.svg", "dark-invert"],
   ["FUSB302B", "/components/fusb302b/", "badge:FUSB302B", "USB-C PD sink"],
+  ["HDMI-CEC Bus", "/components/hdmi_cec/", "badge:HDMI-CEC"],
   ["I²C Bus", "/components/i2c/", "i2c.svg"],
   ["I²S Audio", "/components/i2s_audio/", "badge:I2S_Audio"],
   ["OpenTherm", "/components/opentherm/", "opentherm.png"],
@@ -188,6 +190,7 @@ Create update entities simplifying management of OTA updates.
   ["UART", "/components/uart/", "badge:UART"],
   ["UART Mux", "/components/uart_mux/", "badge:UART"],
   ["UART TCP", "/components/uart_tcp/", "badge:UART"],
+  ["USB Audio", "/components/usb_audio/", "usb.svg", "dark-invert"],
   ["USB CDC-ACM", "/components/usb_cdc_acm/", "usb.svg", "dark-invert"],
   ["USB Host", "/components/usb_host/", "usb.svg", "dark-invert"],
   ["USB UART", "/components/usb_uart/", "usb.svg", "dark-invert"],
@@ -357,6 +360,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["TOF10120", "/components/sensor/tof10120/", "tof10120.jpg", "IR optical distance"],
   ["Ultrasonic Sensor", "/components/sensor/ultrasonic/", "ultrasonic.jpg", "Acoustic distance"],
   ["VL53L0x", "/components/sensor/vl53l0x/", "vl53l0x.jpg", "IR optical distance"],
+  ["VL53L1X", "/components/sensor/vl53l1x/", "vl53l1x.jpg", "IR optical distance"],
   ["Zio Ultrasonic Sensor", "/components/sensor/zio_ultrasonic/", "zio_ultrasonic.jpg", "Acoustic distance"],
 ]} />
 
@@ -520,6 +524,7 @@ Sensors are organized into categories; if a given sensor fits into more than one
   ["TSL2591", "/components/sensor/tsl2591/", "tsl2591.jpg", "Lux"],
   ["VEML3235", "/components/sensor/veml3235/", "veml3235.jpg", "Lux"],
   ["VEML6030", "/components/sensor/veml7700/", "veml6030.jpg", "Lux"],
+  ["VEML6040", "/components/sensor/veml6040/", "badge:VEML6040", "Lux & RGBW colour"],
   ["VEML7700", "/components/sensor/veml7700/", "veml7700.jpg", "Lux"],
 ]} />
 
@@ -677,6 +682,7 @@ Often known as "tag" or "card" readers within the community.
   ["PN716X", "/components/pn7160/", "pn716x.jpg"],
   ["RC522", "/components/binary_sensor/rc522/", "rc522.jpg"],
   ["RDM6300", "/components/binary_sensor/rdm6300/", "rdm6300.jpg"],
+  ["ST25R3916", "/components/st25r/", "badge:ST25R3916"],
   ["Wiegand Reader", "/components/wiegand/", "wiegand.jpg"],
 ]} />
 
@@ -714,6 +720,7 @@ Often known as "tag" or "card" readers within the community.
 <ImgTable items={[
   ["Analog Threshold", "/components/binary_sensor/analog_threshold/", "analog_threshold.svg", "dark-invert"],
   ["BLE Presence", "/components/binary_sensor/ble_presence/", "bluetooth.svg", "dark-invert"],
+  ["DS3231 RTC Alarms", "/components/binary_sensor/ds3231/", "ds3231.jpg"],
   ["HUSB238 USB PD Sink", "/components/husb238/", "husb238.jpg"],
   ["Hydreon Rain Sensor Binary Sensor", "/components/binary_sensor/hydreon_rgxx/", "hydreon_rg9.jpg"],
   ["Modbus Binary Sensor", "/components/binary_sensor/modbus_controller/", "modbus.png"],
@@ -823,6 +830,7 @@ Often known as "tag" or "card" readers within the community.
   ["LCD Menu", "/components/display_menu/lcd_menu/", "lcd_menu.png"],
   ["LVGL Graphics", "/components/lvgl/", "lvgl.png"],
   ["QR Code", "/components/qr_code/", "qr-code.svg", "dark-invert"],
+  ["VNC Client", "/components/vnc/", "vnc.svg", "dark-invert"],
 ]} />
 
 <span id="display-hw"></span>
@@ -976,6 +984,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["I2S Clockless", "/components/light/i2s_clockless_led_strip/", "color_lens.svg", "dark-invert"],
   ["Light Partition", "/components/light/partition/", "color_lens.svg", "dark-invert"],
   ["LightWaveRF", "/components/lightwaverf/", "brightness-medium.svg", "dark-invert"],
+  ["LN882x SPI", "/components/light/ln882x_spi_led_strip/", "color_lens.svg", "dark-invert"],
   ["LVGL widget", "/components/light/lvgl/", "lvgl_c_lig.png"],
   ["MIPI SPI Display Brightness", "/components/light/mipi_spi/", "brightness-medium.svg", "dark-invert"],
   ["Monochromatic Light", "/components/light/monochromatic/", "brightness-medium.svg", "dark-invert"],
@@ -1032,6 +1041,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["Microphone Core", "/components/microphone/", "microphone.svg", "dark-invert"],
   ["I2S Microphone", "/components/microphone/i2s_audio/", "badge:I2S_Audio"],
   ["Resampler Microphone", "/components/microphone/resampler/", "waveform.svg", "dark-invert"],
+  ["USB Audio Microphone", "/components/microphone/usb_audio/", "usb.svg", "dark-invert"],
 ]} />
 
 ## Motion Components
@@ -1081,6 +1091,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["Modbus Output", "/components/output/modbus_controller/", "modbus.png"],
   ["MY9231/MY9291", "/components/output/my9231/", "badge:MY9231"],
   ["PCA9685", "/components/output/pca9685/", "pca9685.jpg"],
+  ["RP2040 PWM", "/components/output/rp2040_pwm/", "pwm.png"],
   ["Sigma-Delta Output", "/components/output/sigma_delta_output/", "sigma-delta.svg", "dark-invert"],
   ["Slow PWM", "/components/output/slow_pwm/", "pwm.png"],
   ["SM16716", "/components/output/sm16716/", "badge:SM16716"],
@@ -1128,6 +1139,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["Mixer Speaker", "/components/speaker/mixer/", "badge:Mixer"],
   ["Resampler Speaker", "/components/speaker/resampler/", "waveform.svg", "dark-invert"],
   ["Router Speaker", "/components/speaker/router/", "speaker.svg", "dark-invert"],
+  ["USB Audio Speaker", "/components/speaker/usb_audio/", "usb.svg", "dark-invert"],
 ]} />
 
 ## Switch Components
@@ -1142,6 +1154,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["H-bridge Switch", "/components/switch/hbridge/", "hbridge-relay.jpg"],
   ["Home Assistant", "/components/switch/homeassistant/", "home-assistant.svg", "dark-invert"],
   ["LVGL Widget", "/components/switch/lvgl/", "lvgl_c_swi.png"],
+  ["M5Stack 4-Relay", "/components/switch/m5stack_4relay/", "m5stack_4relay.webp"],
   ["Modbus Switch", "/components/switch/modbus_controller/", "modbus.png"],
   ["Nextion Switch", "/components/switch/nextion/", "nextion.jpg"],
   ["Restart Switch", "/components/switch/restart/", "restart.svg", "dark-invert"],
@@ -1193,6 +1206,7 @@ Used for creating infrared (IR) remote control transmitters and/or receivers.
   ["Template Time", "/components/time/template/", "description.svg", "dark-invert"],
   ["BM8563 RTC", "/components/time/bm8563/", "badge:BM8563"],
   ["DS1307 RTC", "/components/time/ds1307/", "clock-outline.svg", "dark-invert"],
+  ["DS3231 RTC", "/components/time/ds3231/", "ds3231.jpg"],
   ["GPS Time", "/components/time/gps/", "crosshairs-gps.svg", "dark-invert"],
   ["Home Assistant Time", "/components/time/homeassistant/", "home-assistant.svg", "dark-invert"],
   ["PCF85063 RTC", "/components/time/pcf85063/", "clock-outline.svg", "dark-invert"],
