@@ -48,6 +48,11 @@ wifi:
 - **password** (*Optional*, string): The password (or PSK) for your
   WiFi network. Leave empty for no password.
 
+- **hidden** (*Optional*, boolean): Set to `true` if the network does not broadcast its SSID.
+  Only for the single-network shorthand and requires `ssid` to be set; with `networks`,
+  set `hidden` on the network entry instead. Defaults to `false`.
+  See [Connecting to a Hidden Network](#connecting-to-a-hidden-network).
+
 - **networks** (*Optional*): Configure multiple WiFi networks to connect to, the best one
   that is reachable will be connected to. See [Connecting to Multiple Networks](#wifi-networks).
 
@@ -84,7 +89,7 @@ wifi:
 
   - **ap_mode** (*Optional*, string): One of `fallback` or `wisp`. Defaults to `fallback`, which starts the access
     point only when no connection to the WiFi router can be made. `wisp` turns the node into a WiFi repeater, see
-    [WISP Mode](#wisp-mode). ESP32 with ESP-IDF 5.1 or newer only.
+    [WISP Mode](#wisp-mode). ESP32 only.
 
   - **dns_servers** (*Optional*, list of IPv4 addresses): The DNS servers handed out to clients of the access point.
     Only valid with `ap_mode: wisp`. Accepts one server, or two with ESP-IDF 6.0 or newer. If not set, the DNS
@@ -97,7 +102,9 @@ wifi:
 - **reboot_timeout** (*Optional*, [Time](/guides/configuration-types#time)): The amount of time to wait before rebooting when no
   WiFi connection exists. Can be disabled by setting this to `0s`, but note that the low level IP stack currently
   seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to `15min`.
-  Does not apply when in access point mode.
+  The device does not reboot while a client (for example a phone) is connected to its fallback access point, or when
+  no networks are configured. RTL87xx and LN882x boards cannot detect connected clients, so on those boards the
+  device does not reboot while the fallback access point is up.
 
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
   See [Power Save Mode](#power-save-mode)
@@ -130,14 +137,16 @@ wifi:
     - `rtc`: stored in RTC memory, which survives software reboots and deep sleep but **not** power loss, and avoids
       flash wear. A good fit for battery-powered devices that wake from deep sleep frequently.
 
-    Defaults to `rtc` on ESP8266 and `flash` on ESP32, matching each platform's previous behavior. Only `flash` is
-    available on platforms without RTC-backed storage (the RP2040 and the ESP32-C2 and C61 variants, which have no
-    RTC memory), where `rtc` is rejected.
+    Defaults to `rtc` on ESP8266 and `flash` on ESP32, matching each platform's previous behavior. `rtc` is
+    available on ESP32 (except the C2 and C61 variants, which have no RTC memory), ESP8266 and the Beken BK7231T,
+    BK7231N and BK7238; elsewhere only `flash` is available and `rtc` is rejected. These Beken chips have no RTC memory:
+    there `rtc` keeps the details in flash and forgets them after a power cut, so it does not avoid flash wear.
 
   > [!NOTE]
   > While `fast_connect` skips the initial scan, if the connection attempt fails, ESPHome will still perform a scan
-  > to find available networks. For hidden networks, use `hidden: true` on the network configuration (see
-  > [Connecting to Multiple Networks](#wifi-networks)) to ensure the device always connects without scanning.
+  > to find available networks. For hidden networks, set `hidden: true`
+  > (see [Connecting to a Hidden Network](#connecting-to-a-hidden-network)) to ensure the device always connects
+  > without scanning.
   > Be aware that marking networks as hidden prevents ESPHome from finding the best access point to connect to,
   > so the device may not connect to the AP with the best signal strength.
 
@@ -240,7 +249,9 @@ ESPHome has an optional "Access Point Mode". If you include `ap:`
 in your wifi configuration, ESPHome will automatically set up an access point that you
 can connect to. Additionally, you can specify both a "normal" station mode and AP mode at the
 same time. This will cause ESPHome to only enable the access point when no connection
-to the WiFi router can be made.
+to the WiFi router can be made, also after a connection that was established and then lost. The exception is a device
+whose [provisioning](/components/provisioning/) window has closed: that shuts the access point down until the next
+restart.
 
 ```yaml
 wifi:
@@ -285,8 +296,7 @@ wifi:
 
 Notes:
 
-- Requires an ESP32 on the ESP-IDF framework (5.1 or newer; the Arduino framework is not supported), at least one
-  entry in `networks`, and a password for the access point.
+- Requires an ESP32, at least one entry in `networks`, and a password for the access point.
 - The access point stays on, so `captive_portal` is rejected, and `ap_timeout` is how long a start that failed
   waits before it is tried again (it cannot be `0s`). With `dns_servers` the access point starts right away;
   without them it starts once the node has connected to the router and learned its DNS servers, so no client is
@@ -530,7 +540,18 @@ wifi:
   If all tracked BSSIDs have identical priorities, they are automatically reset to 0 to start fresh.
   Defaults to `0`.
 
-### Example: Connecting to a Hidden Network
+## Connecting to a Hidden Network
+
+A hidden network does not broadcast its SSID, so ESPHome tries to connect to it directly before scanning.
+
+```yaml
+wifi:
+  ssid: MyHiddenNetwork
+  password: VerySafePassword
+  hidden: true
+```
+
+With multiple networks, set `hidden` on the network entry instead:
 
 ```yaml
 wifi:
