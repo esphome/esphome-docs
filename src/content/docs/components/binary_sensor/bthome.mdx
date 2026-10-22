@@ -44,6 +44,8 @@ binary_sensor:
 A transmitter sends each gesture several times. An advertisement with the same packet id as the previous
 one is ignored. After 4 seconds without advertisements, the same packet id counts as a new gesture again.
 For a transmitter that sends no packet id, the same gesture within 1.2 seconds is ignored.
+A new gesture while the sensor is still ON does not turn it on again but restarts the pulse, so the sensor
+turns OFF `pulse_length` after the last gesture.
 
 ## See Also
 
