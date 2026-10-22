@@ -98,7 +98,10 @@ with servers that need no password.
 
 ### `vnc.refresh` Action
 
-Asks the server for the whole screen again and redraws all of it. Use it to clear ghosting on e-paper.
+Asks the server for the whole screen again and redraws all of it. The display then refreshes in its usual
+mode, so on e-paper this does not always clear ghosting. On E-Paper SPI, run
+[`epaper_spi.full_update_next`](/components/display/epaper_spi/#epaper_spi-full_update_next-action) first to
+make that refresh a full one.
 
 ```yaml
 on_...:
