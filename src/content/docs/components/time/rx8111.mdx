@@ -165,11 +165,10 @@ on_...:
 
 ## Timer Actions
 
-`rx8111.start_timer` restarts the full interval using the configured `timer_count` and `timer_clock`. It also clears
-any old TF flag before enabling the timer, so a previous expiration will not fire `on_timer` immediately. Configure
-`timer_count` and set `timer_enabled: false` to keep the timer stopped at boot until an automation starts it. It
-cannot change the count or clock at runtime. `rx8111.stop_timer` disables both the counter and its interrupt without
-clearing TF. `rx8111.clear_timer_flag` clears TF without stopping the counter; use it after handling `on_timer` to
+`rx8111.start_timer` restarts the full interval using the configured `timer_count` and `timer_clock`; it cannot
+change either at runtime. It also clears any old TF flag before enabling the timer, so a previous expiration will not
+fire `on_timer` immediately. Configure `timer_count` and set `timer_enabled: false` to keep the timer stopped at boot
+until an automation starts it. `rx8111.stop_timer` disables both the counter and its interrupt without clearing TF. `rx8111.clear_timer_flag` clears TF without stopping the counter; use it after handling `on_timer` to
 allow a later expiration to trigger another callback. Each action accepts the RX8111 `id`.
 
 ```yaml
