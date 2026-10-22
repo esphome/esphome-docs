@@ -27,7 +27,89 @@ audio_dac:
 
 - **address** (*Optional*, int): The I²C address of the driver. Defaults to `0x10`.
 - **i2c_id** (*Optional*): The ID of the [I²C bus](/components/i2c) the ES8388 is connected to.
+- **mic_gain** (*Optional*, enum): The ADC PGA gain applied to both channels at startup, in dB.
+  One of `0DB`, `3DB`, `6DB`, `9DB`, `12DB`, `15DB`, `18DB`, `21DB`, `24DB`. Defaults to `0DB`.
+  Set this when recording from a microphone, otherwise the input level is often too low for
+  speech recognition. See [Microphone recording level](#microphone-recording-level).
 - All other options from [Audio DAC](/components/audio_dac#config-audio_dac).
+
+> [!NOTE]
+> The default is `0DB` for backwards compatibility: previous versions of this component always
+> wrote `0x00` (0 dB). Changing the default would raise the input level by 21 dB for every
+> existing configuration. The [ES8311](/components/audio_dac/es8311/) component, by contrast,
+> defaults to `42DB`.
+
+## Microphone recording level
+
+The ES8388 ADC PGA gain is set by register `0x09`, where bits 7:4 hold the left channel gain
+(`MicAmpL`) and bits 3:0 the right channel gain (`MicAmpR`) ([datasheet](http://www.everest-semi.com/pdf/ES8388%20DS.pdf),
+register 9). Each nibble is the gain in 3 dB steps, where `0111` is +21 dB. So `0x77` is
++21 dB on both channels and `0x00` is 0 dB on both channels.
+
+`mic_gain` selects this value. For example, `mic_gain: 21DB` writes `0x77`:
+
+```yaml
+audio_dac:
+  - platform: es8388
+    id: es8388_dac
+    mic_gain: 21DB
+```
+
+The configured value is reported in the device log at startup, so it can be verified on your own
+board without attaching to the I²C bus:
+
+```
+[C][es8388:154]: ES8388 Audio Codec:
+[C][es8388:155]:   Mic gain: 21 dB (ADC PGA gain: 0x77)
+```
+
+### Why this option exists
+
+Before this option was added, the component always wrote `0x00` (0 dB) to register `0x09`, even
+though the adjacent source comment described the write as "+21dB : recommended value for ALC &
+voice recording". The comment and the value disagreed. The ES8388 User Guide does recommend
++21 dB for voice recording, so `0x00` was probably not the intended value.
+
+**This was found and verified on one board: an ESP32-A1S Audio Kit V2.2 (A618).** On that board,
+with the stock component writing `0x00`, the wake word was detected but speech-to-text returned
+nothing usable: the recorded level was too low for the transcription service. Setting the gain to
++21 dB (`mic_gain: 21DB`) made speech-to-text work correctly on the same board.
+
+The measurements behind that conclusion, taken on the ESP32-A1S board above, were:
+
+- Reading register `0x09` back after startup with the unmodified component returned `0x00`,
+  confirming the driver writes 0 dB despite the "+21 dB" comment.
+- With `mic_gain: 21DB` set, the same read-back returned `0x77`, and speech-to-text succeeded.
+
+> [!NOTE]
+> This evidence comes from a single board, the ESP32-A1S Audio Kit V2.2 (A618). Whether the low
+> default affects other ES8388 boards is not known. The default of `0DB` is therefore retained so
+> no existing configuration changes behaviour: set `mic_gain` only if your board actually needs
+> it. If you can test other ES8388 boards, please report what you find.
+
+If you are unsure what value your board needs, start from the default (`0DB`) and raise `mic_gain`
+until recording works. If you have an oscilloscope or a level meter, a level of around
+−20 dBFS to −12 dBFS for normal speech is a reasonable target.
+
+> [!NOTE]
+> Adjusting `mic_gain` only changes the analog PGA in front of the ADC. Other microphone-level
+> settings such as [automatic gain control and the noise gate](#noise-gate-and-agc) are separate
+> and still apply.
+
+## Noise gate and AGC
+
+The ES8388 also has an automatic level control (ALC) block and a noise gate. These are separate
+from `mic_gain` and are currently configured with fixed values taken from the ES8388 User
+Guide's voice-recording recommendations:
+
+- Register `0x12` (`ADCCONTROL10`) = `0xE2` enables the ALC with a maximum gain of +23.5 dB.
+- Register `0x16` (`ADCCONTROL14`) = `0xC3` enables the noise gate at −40.5 dB with the
+  "mute ADC" option.
+
+The ALC is intended to keep the recording level roughly constant. Because it raises gain toward
+its target for quiet input, it can also raise the noise floor between words. If speech-to-text
+accuracy is poor even with `mic_gain` set, try an external component or a direct I²C write to
+disable the ALC (`0x12` = `0x00`) and the noise gate (`0x16` = `0x00`) after startup.
 
 ## Select
 
