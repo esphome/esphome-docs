@@ -26,8 +26,7 @@ light:
 
 - **pin** (**Required**, [Pin](/guides/configuration-types/#pin)): The pin for the data line of the light. Any GPIO
   pin can be used, but avoid `PA2` and `PA3` (the logger UART) and `PA9` (the boot strap pin), see the
-  [LibreTiny GPIO notes](/components/libretiny/).
-
+  [LibreTiny GPIO notes](/components/libretiny/#gpio-pin-numbering).
 
 - **num_leds** (**Required**, int): The number of LEDs in the strip. The DMA transfer limits this to 2722 LEDs, or
   2042 LEDs when `channel_colors` contains a `W`.
