@@ -44,7 +44,8 @@ modem:
 - **cts_pin** (*Optional*, [Pin Schema](/guides/configuration-types/#pin-schema)): The `CTS` pin for hardware flow
   control. Must be set together with `rts_pin`.
 - **pin_code** (*Optional*, string): The PIN of the SIM card. It is sent at most once per connection attempt, so a
-  wrong PIN stops the modem instead of locking the SIM.
+  wrong PIN stops the modem instead of locking the SIM. A PIN the SIM rejected is remembered across reboots and not
+  sent again until `pin_code` is changed.
 - **baud_rate** (*Optional*, int): The baud rate to run the link at. The component first finds the rate the modem
   answers at (the last rate that worked, this one, then `115200`), then asks the modem to switch to `baud_rate`.
   Defaults to the rate the modem answers at.
@@ -56,9 +57,6 @@ modem:
   without a connection before it reboots. Set to `0s` to never reboot. Defaults to `10min`.
 - **use_address** (*Optional*, string): The address the ESPHome tools use to reach the device, for example for
   OTA updates and logs. Defaults to `<name>.local`.
-- **urc** (*Optional*, [Text Sensor](/components/text_sensor/#config-text_sensor)): A text sensor that publishes
-  the unsolicited messages the modem sends on its own, such as network registration changes. All options from
-  [Text Sensor](/components/text_sensor/#config-text_sensor).
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code generation.
 
 ### Advanced Options
@@ -69,6 +67,23 @@ modem:
   Defaults to `1024`.
 - **dte_buffer_size** (*Optional*, int): The size of the modem library's command buffer in bytes. Increase it if
   the log shows `CMUX: Failed to defragment longer payload`. Defaults to `1024`.
+
+## Text Sensor
+
+The `modem` text sensor platform publishes the unsolicited messages the modem sends on its own, such as network
+registration changes.
+
+```yaml
+text_sensor:
+  - platform: modem
+    urc:
+      name: Modem URC
+```
+
+- **urc** (*Optional*, [Text Sensor](/components/text_sensor/#config-text_sensor)): A text sensor that publishes
+  each unsolicited message as one line. All options from [Text Sensor](/components/text_sensor/#config-text_sensor).
+- **modem_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the modem. Only needed with more than
+  one modem.
 
 ## Automations
 
@@ -106,7 +121,8 @@ on_...:
 
 ### `modem.send_at` Action
 
-Sends an AT command to the modem and logs the answer. The modem keeps answering commands while the data
+Sends an AT command to the modem and logs the answer. The command is sent from the modem's own task between its
+connection steps, so the action does not wait for the answer. The modem keeps answering commands while the data
 connection is up.
 
 ```yaml
@@ -157,12 +173,13 @@ From [lambdas](/automations/templates/#config-lambda), you can call these method
 - `is_connected()`: Returns `true` while the modem has an IP address.
 - `is_enabled()`: Returns `true` while the modem is enabled.
 - `enable()` and `disable()`: The same as the actions above.
-- `send_at(cmd)`: Sends an AT command and returns `true` when the modem answered `OK`. A second argument sets the
-  timeout in milliseconds, and `true` as a third argument logs the command and the answer.
+- `send_at(cmd)`: Queues an AT command for the modem, which sends it and logs the answer. Returns `false` when the
+  previous command is not sent yet or the command is longer than 127 characters. A second argument sets the
+  timeout in milliseconds.
 
 ```cpp
 if (!id(my_modem).send_at("AT+CFUN=1")) {
-  ESP_LOGW("main", "The modem rejected the command");
+  ESP_LOGW("main", "The command was not queued");
 }
 ```
 
