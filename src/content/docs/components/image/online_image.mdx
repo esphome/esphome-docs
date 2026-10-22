@@ -84,6 +84,10 @@ Advanced options:
 
 ## Automations
 
+- **on_download_started** (*Optional*, [Automation](/automations)): An automation to perform when the server has
+  accepted the request and the image starts to download, before the first `on_download_progress`. It does not run
+  when the server reports that the image has not changed, or returns an error.
+
 - **on_download_finished** (*Optional*, [Automation](/automations)): An automation to perform when the image has been successfully downloaded.
 
 The variable `cached` is a boolean available in [lambdas](/automations/templates#config-lambda) that indicates cache status:
