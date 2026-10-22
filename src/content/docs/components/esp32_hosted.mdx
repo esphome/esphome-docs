@@ -42,6 +42,7 @@ esp32_hosted:
   cmd_pin: GPIOXX
   clk_pin: GPIOXX
   d0_pin: GPIOXX
+  d1_pin: GPIOXX
   active_high: true
 
 wifi:
@@ -62,7 +63,8 @@ wifi:
 - **clk_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SDIO clock pin.
 - **cmd_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SDIO command pin.
 - **d0_pin** (*Required*, [Pin](/guides/configuration-types#pin)): The SDIO D0 pin.
-- **d1_pin** (*Optional*, [Pin](/guides/configuration-types#pin)): The SDIO D1 pin. Required when `bus_width` is 4.
+- **d1_pin** (**Required**, [Pin](/guides/configuration-types#pin)): The SDIO D1 pin. Also needed on a 1-bit bus, where it
+  carries the card interrupt.
 - **d2_pin** (*Optional*, [Pin](/guides/configuration-types#pin)): The SDIO D2 pin. Required when `bus_width` is 4.
 - **d3_pin** (*Optional*, [Pin](/guides/configuration-types#pin)): The SDIO D3 pin. Required when `bus_width` is 4.
 - **bus_width** (*Optional*, int): The SDIO bus width. Either `1` or `4`. Defaults to `4`.
