@@ -24,7 +24,6 @@ to bundle a specific firmware version with your device.
 # Example configuration entry for embedded mode
 update:
   - platform: esp32_hosted
-    id: coprocessor_update
     type: embedded
     path: coprocessor-firmware.bin
     sha256: 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
@@ -36,7 +35,6 @@ your firmware and verifies its SHA256 before embedding it. The device does not n
 ```yaml
 update:
   - platform: esp32_hosted
-    id: coprocessor_update
     type: embedded
     url: https://example.com/firmware/esp32c6.bin
     sha256: "<SHA256_OF_FIRMWARE>"
@@ -47,7 +45,7 @@ Configure exactly one of `path` or `url`. Both require `sha256`.
 
 Downloaded images are cached under `esp32_hosted/firmware` in ESPHome's data directory, normally `.esphome` next to
 your configuration. Each cached image is verified before use. A matching cached image is reused without contacting
-the server, so subsequent builds can acquire the image offline. A missing or damaged cache entry requires a new
+the server, so later builds do not need a network connection. A missing or damaged cache entry requires a new
 download; download failures and SHA256 mismatches stop configuration validation.
 
 Ordinary **Clean Build Files** keeps these images. **Reset Build Environment** (`esphome clean-all`) removes them,
@@ -57,12 +55,16 @@ Embedding an image makes it available for installation. To install it automatica
 use `on_update_available` with the [update.perform action](/components/update/#update-perform-action):
 
 ```yaml
-on_update_available:
-  then:
-    - update.perform: coprocessor_update
+update:
+  - platform: esp32_hosted
+    id: coprocessor_update
+    type: embedded
+    url: https://example.com/firmware/esp32c6.bin
+    sha256: "<SHA256_OF_FIRMWARE>"
+    on_update_available:
+      then:
+        - update.perform: coprocessor_update
 ```
-
-Add this automation to the update entry above.
 
 Choose firmware compatible with your co-processor and the ESP-Hosted library version used by ESPHome. The binary
 must also fit the co-processor's OTA partition. Embedded mode does not select a version from a manifest.
