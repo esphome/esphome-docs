@@ -54,6 +54,13 @@ Some older firmware also puts the device's MAC address at the start of the BTHom
 reserved in the current specification). For unencrypted advertisements, that embedded address is matched as well,
 so these devices are still recognized when their Bluetooth address changes.
 
+## Repeated advertisements
+
+Devices often send the same advertisement several times so that at least one arrives. When the data contains a
+packet ID, a repeated advertisement is ignored. Some firmware, such as pvvx's ATC_MiThermometer, takes turns sending
+different data under the same packet ID. These advertisements are all processed: only an advertisement whose content
+was already received with the current packet ID counts as a repeat.
+
 ## Supported Sensor Types
 
 The following sensor types are supported. Type names are case-insensitive. Where an alias exists, the alias is the
