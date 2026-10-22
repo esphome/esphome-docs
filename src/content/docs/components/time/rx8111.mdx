@@ -138,10 +138,10 @@ not participate in matching; `weekday` and `day` cannot be used together. These 
 [templatable values](/automations/templates/). Enable the alarm with `alarm_enabled: true` if no fixed alarm fields
 are configured.
 
-`rx8111.schedule_alarm_in` programs an alarm relative to the RTC's current UTC time. Specify one or more
-of `seconds`, `minutes`, `hours`, or `days` as non-negative integers; their total must be at least one second and
-less than 28 days. `seconds` also accepts a template when used alone; its return value is checked at runtime.
-The RTC must contain valid time. The action matches the target second, minute, hour and day of
+`rx8111.schedule_alarm_in` programs an alarm relative to the RTC's current UTC time. Its `duration`
+([Time](/guides/configuration-types#time), [templatable](/automations/templates)) must be at least one second and
+less than 28 days; a template returns the number of seconds and is checked at runtime. The RTC must contain valid
+time. The action matches the target second, minute, hour and day of
 month; after it fires, use `rx8111.unset_alarm` to disable it if you do not want the same day-of-month match later.
 
 `rx8111.clear_alarm_flag` clears AF without disabling the alarm. `rx8111.unset_alarm` disables the alarm interrupt
@@ -156,7 +156,7 @@ on_...:
       minute: 30
   - rx8111.schedule_alarm_in:
       id: rtc
-      minutes: 5
+      duration: 5min
   - rx8111.clear_alarm_flag: rtc
   - rx8111.unset_alarm: rtc
 ```
