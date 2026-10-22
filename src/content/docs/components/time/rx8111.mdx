@@ -22,7 +22,7 @@ invalid. A successful `rx8111.write_time` clears those flags.
 
 - **address** (*Optional*, int): Manually specify the I²C address of the RTC. Defaults to `0x32`.
 - **event_poll_interval** (*Optional*, time period): How often to check the alarm and timer flags,
-  independently of the calendar `update_interval`. Defaults to `1s` when events are enabled.
+  independently of the calendar `update_interval`. Minimum `500ms`; defaults to `1s` when events are enabled.
 - All other options from [Base Time Configuration](/components/time/#base_time_config).
 
 ### Alarm Options
