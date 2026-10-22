@@ -30,6 +30,7 @@ submit a feature request (see FAQ).
 | [GREE](#gree_ir) | `gree`                             | |
 | [Haier Tundra](#haier_tundra) | `haier_tundra` | yes |
 | Hitachi | `hitachi_ac344`, `hitachi_ac424` | yes |
+| [Islandaire](#islandaire) | `islandaire`                       | yes |
 | [LG](#climate_ir_lg) | `climate_ir_lg`                    | yes |
 | [Midea](#midea_ir) | `midea_ir`                         | yes |
 | [Mistral](#mistral_ir) | `mistral_ir`                       | yes |
@@ -358,6 +359,28 @@ switch:
 
 > [!NOTE]
 > Quiet and Turbo mode cannot both be on at once, and either can only be turned on in Cool or Heat mode.
+
+### `islandaire`
+
+The `islandaire` climate supports Islandaire PTAC units, known working with the Islandaire EZ12A1GSP1S10AL.
+It supports cool, heat and fan only modes and the auto, low and high fan speeds.
+
+The unit takes whole degrees Fahrenheit, so the climate entity reports temperatures in degrees Fahrenheit, in the
+range 61 to 88.
+
+The `sensor` option is not supported, because a temperature sensor reports Celsius while this climate works in
+Fahrenheit. `humidity_sensor` works as usual.
+
+> [!NOTE]
+> Home Assistant reads the temperature unit from the device starting with release 2026.10. In earlier releases
+> the temperatures are treated as Celsius and converted, so they are shown incorrectly (for example 72 °F as 162 °F).
+
+```yaml
+# Example configuration entry
+climate:
+  - platform: islandaire
+    name: "AC"
+```
 
 ### `midea_ir`
 
@@ -722,6 +745,7 @@ Additional configuration must be specified for this platform:
 - <APIRef text="gree.h" path="gree/gree.h" />
 - <APIRef text="haier_tundra.h" path="haier_tundra/haier_tundra.h" />
 - <APIRef text="hitachi_ac344.h" path="hitachi_ac344/hitachi_ac344.h" />
+- <APIRef text="islandaire.h" path="islandaire/islandaire.h" />
 - <APIRef text="midea_ir.h" path="midea_ir/midea_ir.h" />
 - <APIRef text="mistral_ir.h" path="mistral_ir/mistral_ir.h" />
 - <APIRef text="mitsubishi.h" path="mitsubishi/mitsubishi.h" />
