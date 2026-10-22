@@ -872,8 +872,8 @@ light:
 - **transition_length** (*Optional*, [Time](/guides/configuration-types#time)): The duration of each transition. Defaults to `1s`. Can be a
   single time or split for on and off using these nested options.
 
-  - **on_length** (*Optional*, [Time](/guides/configuration-types#time)): The duration of the transition when the light is turned on.
-  - **off_length** (*Optional*, [Time](/guides/configuration-types#time)): The duration of the transition when the light is turned off.
+  - **on_length** (**Required**, [Time](/guides/configuration-types#time)): The duration of the transition when the light is turned on.
+  - **off_length** (**Required**, [Time](/guides/configuration-types#time)): The duration of the transition when the light is turned off.
 - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval when the new transition is started. Defaults to
   `1s`.
 
@@ -992,9 +992,9 @@ This effect allows you to write completely custom light effects yourself using [
 
 Available variables in the lambda:
 
-- **it** - <APIClass text="LightState" path="light::LightState" /> instance for the light running this effect, allowing
+- `it`: <APIClass text="LightState" path="light::LightState" /> instance for the light running this effect, allowing
   you to reference the light directly without needing its `id` (see API reference for more info).
-- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when
+- `initial_run`: A bool which is true on the first execution of the lambda. Useful to reset static variables when
   restarting an effect.
 
 ```yaml
@@ -1027,7 +1027,7 @@ light:
 
 **Configuration variables:**
 
-- **name** (**Required**, string): The name of the custom effect.
+- **name** (*Optional*, string): The name of the custom effect. Defaults to `Lambda`.
 - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): The interval with which the lambda code is executed. A value of
   `0ms` means that the lambda is always executed, without a cool-down. Defaults to `0ms`.
 
@@ -1290,9 +1290,9 @@ This effect allows you to access each LED individually in a custom light effect.
 
 Available variables in the lambda:
 
-- **it** - <APIClass text="AddressableLight" path="light::AddressableLight" /> instance (see API reference for more info).
-- **current_color** - <APIStruct text="ESPColor" path="light::ESPColor" /> instance (see API reference for more info).
-- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when
+- `it`: <APIClass text="AddressableLight" path="light::AddressableLight" /> instance (see API reference for more info).
+- `current_color`: <APIStruct text="ESPColor" path="light::ESPColor" /> instance (see API reference for more info).
+- `initial_run`: A bool which is true on the first execution of the lambda. Useful to reset static variables when
   restarting an effect.
 
 > [!NOTE]
@@ -1387,7 +1387,7 @@ light:
 **Configuration variables:**
 
 - **name** (*Optional*, string): The name of the effect.
-- **sequence** (*Optional*, [Action](/automations/actions#all-actions)): The actions to perform in sequence until the effect is
+- **sequence** (**Required**, [Action](/automations/actions#all-actions)): The actions to perform in sequence until the effect is
   stopped.
 
 <span id="e131-light-effect"></span>
