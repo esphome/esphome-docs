@@ -84,9 +84,10 @@ Advanced options:
 
   When the server gives the size of a JPEG image (the `Content-Length` header, which most servers send), the
   image is decoded a row of blocks at a time as it downloads, and the buffer only has to hold the image's
-  headers, usually a few KB. A smaller `buffer_size` then saves RAM; the download fails with a message asking
-  for a larger one if the headers do not fit. Without the size, a JPEG image is downloaded completely before it
-  is decoded, and the buffer grows to hold all of it.
+  headers, usually a few KB. A smaller `buffer_size` then saves RAM. Photos from cameras and phones can carry
+  tens of KB of metadata in their headers; if the headers do not fit, a warning suggests a larger `buffer_size`,
+  and the image is downloaded completely before it is decoded. Without the size, a JPEG image is always
+  downloaded completely before it is decoded. In both cases the buffer grows to hold the whole image.
 
 ## Automations
 
