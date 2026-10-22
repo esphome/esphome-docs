@@ -119,6 +119,27 @@ wifi:
   Recommended when the host firmware uses most of internal RAM (for example, a large LVGL UI);
   without it, boot can fail with an `spi_mempool_create` assert. Defaults to `false`.
 
+## Library Versions
+
+ESPHome builds the host side with the `esp_hosted` 3.x library on ESP-IDF 5.5 or newer. A build stays on the 2.x
+line when the ESP-IDF version is older than 5.5, or when `active_high` is `false`: 3.x always keeps the reset line
+high and pulses it low, so it cannot express that setting.
+
+To choose a line yourself, pin the library under `esp32.framework.components` (see
+[IDF Components](/components/esp32/#idf-components)); the pin always wins:
+
+```yaml
+esp32:
+  framework:
+    type: esp-idf
+    components:
+      - espressif/esp_hosted==2.12.13
+```
+
+The co-processor firmware offered by the [update platform](/components/update/esp32_hosted/) follows the host
+library version, so a device moves from the 2.x to the 3.x co-processor firmware the first time it is built with the
+3.x host library and then updated.
+
 ## Updating co-processor firmware
 
 You can update the firmware on your ESP32 co-processor using the [Esp32 Hosted](/components/update/esp32_hosted/)
