@@ -50,7 +50,8 @@ modem:
   answers at (the last rate that worked, this one, then `115200`), then asks the modem to switch to `baud_rate`.
   Defaults to the rate the modem answers at.
 - **init_at** (*Optional*, list of strings): AT commands to send once the modem answers, before it attaches to
-  the network. Each result is logged, and a failed command sets the component's warning status.
+  the network, each up to 127 characters. Each result is logged, and a failed command sets the component's
+  warning status.
 - **enable_on_boot** (*Optional*, boolean): Whether to connect the modem when the device starts. Set this to
   `false` when the modem has to be powered on first, then use the `modem.enable` action. Defaults to `true`.
 - **reboot_timeout** (*Optional*, [Time](/guides/configuration-types/#time)): How long the device may stay
