@@ -36,8 +36,9 @@ is larger, only its top-left part is shown.
 - **display_id** (_Optional_, [ID](/guides/configuration-types/#id)): The display to draw on. Only needed if
   there is more than one display.
 - **reconnect_interval** (_Optional_, [Time](/guides/configuration-types/#time)): How long to wait before the
-  first new connection attempt after a failure. The wait doubles with each further failure, up to 60 seconds.
-  Defaults to `5s`.
+  first new connection attempt after a failure. The wait doubles with each further failure, up to 60 seconds or
+  `reconnect_interval`, whichever is longer. Defaults to `5s`. After a configuration problem, for example when the
+  server is not a VNC server or asks for a password that is not set, the client waits 5 minutes instead.
 - **update_delay** (_Optional_, [Time](/guides/configuration-types/#time)): How long the picture must stay
   unchanged before the display refreshes. This turns an animation into one refresh that shows where the
   animation ended. Defaults to `200ms`.
@@ -163,9 +164,9 @@ network:
 switch:
   # Keeps the M5Paper powered when running on battery
   - platform: gpio
+    id: power_hold
     pin: GPIO2
     restore_mode: ALWAYS_ON
-    internal: true
 
 spi:
   clk_pin: GPIO14
