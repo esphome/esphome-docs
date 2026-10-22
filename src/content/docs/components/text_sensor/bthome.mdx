@@ -38,7 +38,7 @@ text_sensor:
 ## Configuration variables
 
 - **source_id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the remote device declared in the `bthome` component's `remote_devices` list.
-- **type** (**Optional**, string): The BTHome text sensor type to receive, such as `text` or `raw`. Must be one of the [supported text sensor types](/components/bthome#supported-text-sensor-types). Type names are case-insensitive. Defaults to `text`.
+- **type** (**Required**, string): The BTHome text sensor type to receive, `text` or `raw`. Must be one of the [supported text sensor types](/components/bthome#supported-text-sensor-types). Type names are case-insensitive.
 - All other options from [Text Sensor](/components/text_sensor).
 
 ## Encrypted devices
