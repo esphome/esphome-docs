@@ -39,10 +39,43 @@ text_sensor:
 
 - **source_id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the remote device declared in the `bthome` component's `remote_devices` list.
 - **type** (**Required**, string): The BTHome text sensor type to receive, `text` or `raw`. Must be one of the [supported text sensor types](/components/bthome#supported-text-sensor-types). Type names are case-insensitive.
+- **on_raw_data** (*Optional*, [Automation](/automations)): An automation to run when a `raw` object is
+  received. Only available with `type: raw`. See [`on_raw_data`](#on_raw_data).
 - All other options from [Text Sensor](/components/text_sensor).
 
 A `text` object must be valid UTF-8. If it is not, the update is ignored and a warning is logged, because Home
 Assistant cannot receive text that is not valid UTF-8.
+
+## Raw data
+
+A `raw` object carries binary data. A text sensor state must be text, so the bytes are published as lowercase
+hex: the bytes `DE AD BE EF` become the state `deadbeef`.
+
+### `on_raw_data`
+
+This automation runs with the original bytes of each received `raw` object, before they are converted to hex.
+In lambdas, the bytes are available as `x`, a `std::span<const uint8_t>`. The bytes are only valid while the
+automation runs, so copy any value you want to keep.
+
+```yaml
+text_sensor:
+  - platform: bthome
+    source_id: my_sensor_device
+    type: raw
+    name: "Device Raw Data"
+    on_raw_data:
+      - lambda: |-
+          if (x.size() >= 2) {
+            // Decode a little-endian 16-bit value from the first two bytes
+            uint16_t value = x[0] | (x[1] << 8);
+            id(decoded_value).publish_state(value);
+          }
+
+sensor:
+  - platform: template
+    id: decoded_value
+    name: "Decoded Value"
+```
 
 ## Encrypted devices
 
