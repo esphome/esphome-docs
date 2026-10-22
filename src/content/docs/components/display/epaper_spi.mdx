@@ -77,6 +77,7 @@ a minimum only the model name need be configured. Other options can be overridde
 
 | Model name              | Manufacturer         | Product Description                                                                                                          |
 |-------------------------|----------------------|------------------------------------------------------------------------------------------------------------------------------|
+| inkplate13spectra       | Soldered Electronics | Soldered Inkplate 13 Spectra: 13.3" 6-color (black/white/red/yellow/blue/green) e-paper, 1200x1600, supports partial refresh via `full_update_every`. Requires PSRAM. [https://soldered.com/products/inkplate-13spectra](https://soldered.com/products/inkplate-13spectra) |
 | inkplate2               | Soldered Electronics | Soldered Inkplate 2: 2.13" 3-color (black/white/red) e-paper, 104x212. [https://soldered.com/products/inkplate-2](https://soldered.com/products/inkplate-2) |
 | inkplate6color          | Soldered Electronics | Soldered Inkplate 6COLOR: 7-color (black/white/green/blue/red/yellow/orange) e-paper, 600x448. [https://soldered.com/products/inkplate-6color-e-paper-display](https://soldered.com/products/inkplate-6color-e-paper-display) |
 | Seeed-ee04-mono-4.26    | Seeed Studio         | Seeed EE04 board with Waveshare 4.26" mono epaper. [https://www.seeedstudio.com/XIAO-ePaper-Display-Board-EE04-p-6560.html](https://www.seeedstudio.com/XIAO-ePaper-Display-Board-EE04-p-6560.html)  |
@@ -94,7 +95,8 @@ but can be overridden if needed.
 
 - **model** (**Required**): The model of the ePaper display. See the table above for options (case is not significant).
 - **cs_pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The CS pin. Predefined for integrated boards.
-- **cs1_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The secondary CS pin for dual-CS displays (e.g. T133A01). Predefined for integrated boards that require it.
+- **cs1_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The secondary CS pin for dual-CS
+  displays (e.g. T133A01, `inkplate13spectra`). Predefined for integrated boards that require it.
 - **dc_pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The DC pin. Predefined for integrated boards.
 - **busy_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The BUSY pin, if used. Required for
   `GooDisplay-GDEY029Z95-2.9`.
@@ -136,6 +138,7 @@ but can be overridden if needed.
   - **mirror_y** (**Required**, boolean): If true, mirror the y axis.
 
 - **reset_duration** (*Optional*, [Time](/guides/configuration-types#time)): Duration for the display reset operation. Defaults to `200ms`.
+  Not available on `inkplate13spectra`, which times its own power-up and reset sequence.
 - **lambda** (*Optional*, [lambda](/automations/templates#config-lambda)): The lambda to use for rendering the content on the display.
   See [Display Rendering Engine](/components/display#display-engine) for more information.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See [Display Pages](/components/display#display-pages).
@@ -310,6 +313,39 @@ display:
       it.filled_circle(600, 300, 80, GREEN);
       it.filled_circle(200, 550, 80, BLUE);
       it.filled_circle(400, 550, 80, YELLOW);
+```
+
+### 6-color display with partial refresh (Inkplate 13 Spectra)
+
+The Soldered Inkplate 13 Spectra has a 13.3" 6-color e-paper display (1200x1600). Since it is an integrated board, only
+the model name is needed. The display buffer requires approximately 960KB, so PSRAM is required.
+
+Set `full_update_every` greater than `1` to use partial refresh: a full refresh is performed every `full_update_every`
+updates, and the updates in between refresh only the area drawn since the previous update, so the rest of the panel
+does not flash. A partial refresh takes about as long as a full one, around 20 seconds. Anything drawn over the whole
+screen, including the automatic clear before each update, makes the whole panel the changed area, so set
+`auto_clear_enabled: false` and draw only what changes.
+
+```yaml
+time:
+  - platform: sntp
+    id: my_time
+
+font:
+  - file: "gfonts://Roboto"
+    id: my_font
+    size: 80
+
+display:
+  - platform: epaper_spi
+    model: inkplate13spectra
+    update_interval: 5min
+    full_update_every: 12
+    auto_clear_enabled: false
+    lambda: |-
+      // Only this box is refreshed between full updates
+      it.filled_rectangle(100, 100, 400, 120, Color::WHITE);
+      it.strftime(120, 110, id(my_font), Color::BLACK, "%H:%M", id(my_time).now());
 ```
 
 ### 7-color display example (Inkplate 6COLOR)
