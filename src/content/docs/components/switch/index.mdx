@@ -60,9 +60,8 @@ Configuration variables:
 
 - **initial_state** (*Optional*, boolean): The state (`ON` or `OFF`) the switch starts in when nothing is
   restored: on the first boot, and after a power cut when the state is kept in RTC memory
-  (`restore_state: {storage: rtc}`), where restarts and OTA updates keep the last state instead. The form used by
-  lights, `initial_state: {state: ON}`, is also accepted. Can't be combined with **restore_mode**; use
-  **restore_state** instead. Defaults to `OFF`.
+  (`restore_state: {storage: rtc}`), where restarts and OTA updates keep the last state instead. Can't be combined
+  with **restore_mode**; use **restore_state** instead. Defaults to `OFF`.
 
   > [!NOTE]
   > Without **restore_state**, the switch starts in **initial_state** at every boot, unless the platform's default
