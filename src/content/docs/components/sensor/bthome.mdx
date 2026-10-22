@@ -57,6 +57,11 @@ The defaults for `unit_of_measurement`, `accuracy_decimals`, `device_class`, and
 applied based on the chosen type, but can be overridden. The `signal_strength` type reads the RSSI of each accepted
 BLE advertisement and defaults to dBm with zero decimal places.
 
+> [!NOTE]
+> Sensor values are stored as 32-bit floating point numbers, which hold about 7 significant digits. Very large
+> values lose precision: a `timestamp` is accurate to about 2 minutes, and large `count_u32`, `count_i32` and
+> 32-bit energy, gas, volume and water totals are rounded in the same way.
+
 ## Multiple sensors of the same type
 
 A single remote device may broadcast more than one object of the same type — for example, a multi-probe thermometer sending two independent temperature readings. Declare the same number of sensors of that type, in the same order as they appear in the advertisement:
