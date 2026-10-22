@@ -34,6 +34,8 @@ modem:
 
 - **model** (**Required**, string): The modem model, one of `BG96`, `SIM800`, `SIM7000`, `SIM7070`, `SIM7080`,
   `SIM7600`, `SIM7670` or `GENERIC`. `GENERIC` drives a modem that is not listed with the standard AT commands.
+  Every modem, `GENERIC` included, must support CMUX (3GPP TS 27.010), which the component uses to keep AT
+  commands working while the data link is up.
 - **apn** (**Required**, string): The Access Point Name (APN) of your cellular operator.
 - **rx_pin** (**Required**, [Pin Schema](/guides/configuration-types/#pin-schema)): The pin that receives data from
   the modem, connected to the modem's `TX` pin.
@@ -45,7 +47,8 @@ modem:
   control. Must be set together with `rts_pin`.
 - **pin_code** (*Optional*, string): The PIN of the SIM card, 4 to 8 digits. It is sent at most once per connection
   attempt, so a wrong PIN stops the modem instead of locking the SIM. A PIN the SIM rejected, or one the SIM did not
-  confirm twice in a row, is remembered across reboots and not sent again until `pin_code` is changed.
+  confirm twice in a row, is remembered across reboots and not sent again until `pin_code` changes. If the PIN is
+  right and the SIM only answered late, remove `pin_code`, flash once, and add it back.
 - **baud_rate** (*Optional*, int): The baud rate to run the link at. The component first finds the rate the modem
   answers at (the last rate that worked, this one, then `115200`), then asks the modem to switch to `baud_rate`.
   Defaults to the rate the modem answers at.
