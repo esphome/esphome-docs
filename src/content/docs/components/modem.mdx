@@ -11,47 +11,40 @@ params:
 import APIRef from '@components/APIRef.astro';
 
 The `modem` component connects an ESP32 to the internet through a cellular modem attached to a UART. The modem
-carries the traffic over PPP, so the [API](/components/api), [MQTT](/components/mqtt) and OTA updates work as they
+carries the traffic over PPP, so the [API](/components/api/), [MQTT](/components/mqtt/) and OTA updates work as they
 do over Wi-Fi or Ethernet.
 
 Only the ESP32 family with the ESP-IDF framework is supported. The component cannot be used together with the
-[Ethernet](/components/ethernet) or [Captive Portal](/components/captive_portal) components.
+[Ethernet](/components/ethernet/) or [Captive Portal](/components/captive_portal/) components.
 
 Some modem commands block the main loop for up to 20 seconds, so the task watchdog has to allow for that:
-set `watchdog_timeout` in the [ESP32](/components/esp32) section to `30s` or more.
+set `watchdog_timeout` in the [ESP32](/components/esp32/) section to `30s` or more.
 
 > [!NOTE]
 > On most cellular networks the device gets a private address behind the operator's NAT, so Home Assistant cannot
-> open a connection to it. Use [MQTT](/components/mqtt), or the API over [WireGuard](/components/wireguard).
+> open a connection to it. Use [MQTT](/components/mqtt/), or the API over [WireGuard](/components/wireguard/).
 
 ```yaml
 # Example configuration entry
-esp32:
-  board: esp32dev
-  watchdog_timeout: 30s
-  framework:
-    type: esp-idf
-
 modem:
   model: SIM7600
   apn: internet
-  rx_pin: GPIO26
-  tx_pin: GPIO27
-  pin_code: "0000"
+  rx_pin: GPIOXX
+  tx_pin: GPIOXX
 ```
 
-## Configuration variables
+## Configuration Variables
 
 - **model** (**Required**, string): The modem model, one of `BG96`, `SIM800`, `SIM7000`, `SIM7070`, `SIM7080`,
   `SIM7600`, `SIM7670` or `GENERIC`. `GENERIC` drives a modem that is not listed with the standard AT commands.
 - **apn** (**Required**, string): The Access Point Name (APN) of your cellular operator.
-- **rx_pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The pin that receives data from
+- **rx_pin** (**Required**, [Pin Schema](/guides/configuration-types/#pin-schema)): The pin that receives data from
   the modem, connected to the modem's `TX` pin.
-- **tx_pin** (**Required**, [Pin Schema](/guides/configuration-types#pin-schema)): The pin that sends data to the
+- **tx_pin** (**Required**, [Pin Schema](/guides/configuration-types/#pin-schema)): The pin that sends data to the
   modem, connected to the modem's `RX` pin.
-- **rts_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The `RTS` pin for hardware flow
+- **rts_pin** (*Optional*, [Pin Schema](/guides/configuration-types/#pin-schema)): The `RTS` pin for hardware flow
   control. Must be set together with `cts_pin`.
-- **cts_pin** (*Optional*, [Pin Schema](/guides/configuration-types#pin-schema)): The `CTS` pin for hardware flow
+- **cts_pin** (*Optional*, [Pin Schema](/guides/configuration-types/#pin-schema)): The `CTS` pin for hardware flow
   control. Must be set together with `rts_pin`.
 - **pin_code** (*Optional*, string): The PIN of the SIM card. It is sent at most once per connection attempt, so a
   wrong PIN stops the modem instead of locking the SIM.
@@ -62,16 +55,16 @@ modem:
   the network. Each result is logged, and a failed command sets the component's warning status.
 - **enable_on_boot** (*Optional*, boolean): Whether to connect the modem when the device starts. Set this to
   `false` when the modem has to be powered on first, then use the `modem.enable` action. Defaults to `true`.
-- **reboot_timeout** (*Optional*, [Time](/guides/configuration-types#time)): How long the device may stay
+- **reboot_timeout** (*Optional*, [Time](/guides/configuration-types/#time)): How long the device may stay
   without a connection before it reboots. Set to `0s` to never reboot. Defaults to `10min`.
 - **use_address** (*Optional*, string): The address the ESPHome tools use to reach the device, for example for
   OTA updates and logs. Defaults to `<name>.local`.
-- **urc** (*Optional*, [Text Sensor](/components/text_sensor#config-text_sensor)): A text sensor that publishes
+- **urc** (*Optional*, [Text Sensor](/components/text_sensor/#config-text_sensor)): A text sensor that publishes
   the unsolicited messages the modem sends on its own, such as network registration changes. All options from
-  [Text Sensor](/components/text_sensor#config-text_sensor).
-- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
+  [Text Sensor](/components/text_sensor/#config-text_sensor).
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code generation.
 
-### Advanced options
+### Advanced Options
 
 - **tx_buffer_size** (*Optional*, int): The size of the UART transmit buffer in bytes, from `129` to `65535`.
   Defaults to `1024`.
@@ -82,11 +75,11 @@ modem:
 
 ## Automations
 
-- **on_sync** (*Optional*, [Automation](/automations)): An automation to run when the modem answers AT commands,
+- **on_sync** (*Optional*, [Automation](/automations/)): An automation to run when the modem answers AT commands,
   before it attaches to the network.
-- **on_connect** (*Optional*, [Automation](/automations)): An automation to run when the modem gets an IP
+- **on_connect** (*Optional*, [Automation](/automations/)): An automation to run when the modem gets an IP
   address.
-- **on_disconnect** (*Optional*, [Automation](/automations)): An automation to run when a connection is lost.
+- **on_disconnect** (*Optional*, [Automation](/automations/)): An automation to run when a connection is lost.
 
 ## Actions
 
@@ -112,7 +105,7 @@ on_...:
 
 > [!NOTE]
 > While the modem is disabled the device has no network. Set the `reboot_timeout` of components such as
-> [MQTT](/components/mqtt) and the [API](/components/api) to `0s` if the device should stay up meanwhile.
+> [MQTT](/components/mqtt/) and the [API](/components/api/) to `0s` if the device should stay up meanwhile.
 
 ### `modem.send_at` Action
 
@@ -125,14 +118,14 @@ on_...:
     - modem.send_at: "AT+CGSN"
 ```
 
-- **command** (**Required**, string, [templatable](/automations/templates#config-templatable)): The command to
+- **command** (**Required**, string, [templatable](/automations/templates/#config-templatable)): The command to
   send.
 
 ## Conditions
 
 ### `modem.connected` Condition
 
-This [Condition](/automations/actions#all-conditions) checks whether the modem has an IP address.
+This [Condition](/automations/actions/#all-conditions) checks whether the modem has an IP address.
 
 ```yaml
 on_...:
@@ -145,7 +138,7 @@ on_...:
 
 ### `modem.enabled` Condition
 
-This [Condition](/automations/actions#all-conditions) checks whether the modem is enabled, that is connected or
+This [Condition](/automations/actions/#all-conditions) checks whether the modem is enabled, that is connected or
 trying to connect.
 
 ```yaml
@@ -159,9 +152,10 @@ on_...:
       - modem.enable:
 ```
 
-## Lambda calls
+## Lambda Calls
 
-From [lambdas](/automations/templates#config-lambda), you can call these methods on the modem:
+From [lambdas](/automations/templates/#config-lambda), you can call these methods on the modem, assuming
+`id: my_modem`:
 
 - `is_connected()`: Returns `true` while the modem has an IP address.
 - `is_enabled()`: Returns `true` while the modem is enabled.
@@ -175,7 +169,7 @@ if (!id(my_modem).send_at("AT+CFUN=1")) {
 }
 ```
 
-## Powering the modem
+## Powering the Modem
 
 The component does not drive the modem's power key. When a board needs a pulse on `PWRKEY` before the modem
 answers, drive that pin yourself and enable the modem afterwards. The pulse length and the polarity depend on the
@@ -183,16 +177,17 @@ modem, so check its hardware design guide.
 
 ```yaml
 modem:
+  id: my_modem
   model: SIM7600
   apn: internet
-  rx_pin: GPIO26
-  tx_pin: GPIO27
+  rx_pin: GPIOXX
+  tx_pin: GPIOXX
   enable_on_boot: false
 
 output:
   - platform: gpio
     id: modem_power_key
-    pin: GPIO4
+    pin: GPIOXX
 
 esphome:
   on_boot:
@@ -218,8 +213,8 @@ esp32:
 
 ## See Also
 
-- [Network](/components/network)
-- [MQTT](/components/mqtt)
-- [WireGuard](/components/wireguard)
+- [Network](/components/network/)
+- [MQTT](/components/mqtt/)
+- [WireGuard](/components/wireguard/)
 - [esp_modem](https://docs.espressif.com/projects/esp-protocols/esp_modem/docs/latest/)
 - <APIRef text="modem_component.h" path="modem/modem_component.h" />
