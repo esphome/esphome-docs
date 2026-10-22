@@ -46,6 +46,8 @@ sensor:
     device must have a different MAC address.
   - **id** (*Optional*, [ID](/guides/configuration-types#id)): An ID to reference this device from [BTHome Sensor](/components/sensor/bthome/), [BTHome Binary Sensor](/components/binary_sensor/bthome/), and [BTHome Text Sensor](/components/text_sensor/bthome/) platform entries.
   - **key** (*Optional*, string): A 32-character hexadecimal string (16 bytes) used to decrypt advertisements from this device.
+    When a key is set, unencrypted advertisements from the device are ignored. Without a key, encrypted
+    advertisements are ignored. In both cases a warning is logged once for the device.
 
 ## How advertisements are matched
 
