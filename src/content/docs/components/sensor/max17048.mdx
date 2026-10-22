@@ -77,9 +77,6 @@ Configuration variables:
 > The gauge also cannot track self-discharge while it sleeps. The datasheet recommends its automatic hibernate mode,
 > which draws about 3 µA and needs no action, for devices that can afford that current.
 >
-> The action also allows the gauge to go to sleep on its own when both I²C lines stay low for more than about
-> 2.5 seconds, for example while a board has switched off the I²C power. It wakes up again when the bus comes back.
->
 > Waking from sleep can raise a false low-battery alert in the gauge; the component clears it shortly after waking.
 
 ## See Also
