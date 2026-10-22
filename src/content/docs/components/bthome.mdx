@@ -47,6 +47,13 @@ sensor:
   - **id** (*Optional*, [ID](/guides/configuration-types#id)): An ID to reference this device from [BTHome Sensor](/components/sensor/bthome/), [BTHome Binary Sensor](/components/binary_sensor/bthome/), and [BTHome Text Sensor](/components/text_sensor/bthome/) platform entries.
   - **key** (*Optional*, string): A 32-character hexadecimal string (16 bytes) used to decrypt advertisements from this device.
 
+## How advertisements are matched
+
+An advertisement belongs to a remote device when the advertisement's Bluetooth MAC address matches `mac_address`.
+Some older firmware also puts the device's MAC address at the start of the BTHome data (header bit 1, which is
+reserved in the current specification). For unencrypted advertisements, that embedded address is matched as well,
+so these devices are still recognized when their Bluetooth address changes.
+
 ## Supported Sensor Types
 
 The following sensor types are supported. Type names are case-insensitive. Where an alias exists, the alias is the
