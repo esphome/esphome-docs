@@ -43,8 +43,8 @@ modem:
   control. Must be set together with `cts_pin`.
 - **cts_pin** (*Optional*, [Pin Schema](/guides/configuration-types/#pin-schema)): The `CTS` pin for hardware flow
   control. Must be set together with `rts_pin`.
-- **pin_code** (*Optional*, string): The PIN of the SIM card. It is sent at most once per connection attempt, so a
-  wrong PIN stops the modem instead of locking the SIM. A PIN the SIM rejected is remembered across reboots and not
+- **pin_code** (*Optional*, string): The PIN of the SIM card, 4 to 8 digits. It is sent at most once per connection
+  attempt, so a wrong PIN stops the modem instead of locking the SIM. A PIN the SIM rejected is remembered across reboots and not
   sent again until `pin_code` is changed.
 - **baud_rate** (*Optional*, int): The baud rate to run the link at. The component first finds the rate the modem
   answers at (the last rate that worked, this one, then `115200`), then asks the modem to switch to `baud_rate`.
