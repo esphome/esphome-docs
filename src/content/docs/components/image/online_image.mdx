@@ -113,6 +113,29 @@ image:
 
 A good example for that is to update the display component after the download succeeded.
 
+- **on_download_progress** (*Optional*, [Automation](/automations)): An automation to perform as the image downloads.
+  It runs when the download starts, at most every 100 ms while data arrives, and when the last byte has arrived.
+  Two variables are available in [lambdas](/automations/templates#config-lambda):
+
+  - `progress` (float): the percentage downloaded, from 0 to 100. It is `NAN` when the server does not send the
+    size of the image.
+  - `bytes_read` (size_t): the number of bytes downloaded so far.
+
+For example, to show the download on an LVGL bar:
+
+```yaml
+image:
+  - platform: online_image
+    url: "https://example.com/photo.jpg"
+    format: JPEG
+    type: RGB565
+    id: my_online_image
+    on_download_progress:
+      - lvgl.bar.update:
+          id: download_bar
+          value: !lambda 'return std::isnan(progress) ? 0 : progress;'
+```
+
 - **on_error** (*Optional*, [Automation](/automations)): An automation to perform when an error happened during download or decode.
 
 ## Actions
