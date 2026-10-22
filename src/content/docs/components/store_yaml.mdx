@@ -32,7 +32,7 @@ requires [API encryption](/components/api/#configuration-variables) to be
 configured. For isolated lab setups you can set `allow_unencrypted: true` to
 override this after acknowledging the risk.
 
-## Configuration variables
+## Configuration Variables
 
 - **include_secrets** (*Optional*, boolean): Controls how secrets are handled
   in the embedded files. Defaults to `false`.
@@ -49,19 +49,18 @@ override this after acknowledging the risk.
   With `include_secrets: true`, every file, including `secrets.yaml`, is
   embedded byte for byte, exactly as written.
 
-  :::caution
-  Setting `include_secrets: true` writes your Wi-Fi password, API key,
-  and any other secrets into the firmware binary. Anyone who can read
-  the firmware can read these values. Keep this off unless you understand
-  the trade-off.
-  :::
+  > [!CAUTION]
+  > Setting `include_secrets: true` writes your Wi-Fi password, API encryption key and every other secret into
+  > the firmware binary, and any client that can connect to the native API can pull them back out. Never combine
+  > it with `allow_unencrypted: true`: every host that can reach the device would then get the secrets in plain
+  > text. Keep this off unless you understand the trade-off.
 
 - **allow_unencrypted** (*Optional*, boolean): Allow `store_yaml` without
   [API encryption](/components/api/#configuration-variables). When enabled,
   any client that can reach the device on the network can pull the embedded
   YAML. Defaults to `false`.
 
-## What gets redacted
+## What Gets Redacted
 
 Secret redaction covers values that ESPHome validates as sensitive (Wi-Fi
 credentials, API encryption keys, OTA and MQTT passwords, BLE bind keys, and
@@ -83,26 +82,26 @@ them manually.
 ## Retrieving the YAML
 
 The native API exposes a `GetYaml` request that streams the compressed bytes
-back to an authenticated client in 512-byte chunks (the
+back to a connected client in 512-byte chunks (the
 [camera streaming](/components/camera/) pattern). Client tooling that
 decompresses the bytes and unpacks the file tree is shipped separately from
 this component.
 
-What lands on the device is a small envelope:
+After decompression, the blob is a small envelope with little-endian integers:
 
 ```text
 magic "EHY1" | uint32 file_count
   repeat: uint16 path_len | path (utf-8) | uint32 content_len | content
 ```
 
-The whole envelope is then zstd-compressed. Recovery tooling decompresses the
-blob and writes each `(path, content)` pair back to disk.
+Recovery tooling decompresses the blob and writes each `(path, content)` pair
+back to disk.
 
-## Memory and flash impact
+## Memory and Flash Impact
 
 - **Flash:** the compressed blob itself, plus a small amount of code in the
-  API streaming path. Real-world ESPHome YAML compresses to roughly
-  10-30 % of its original size at level 22.
+  API streaming path. Real-world ESPHome YAML compresses to roughly 10% to
+  30% of its original size at zstd's highest level, 22.
 - **RAM:** zero per-instance overhead beyond the component object. Chunks are
   streamed directly from flash on most platforms; only ESP8266 uses a single
   512-byte bounce buffer shared by all API connections. No heap is allocated
