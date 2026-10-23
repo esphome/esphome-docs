@@ -66,11 +66,12 @@ well. Read ESP-IDF's
 [Dynamic Frequency Scaling and Peripheral Drivers](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/system/power_management.html#dynamic-frequency-scaling-and-peripheral-drivers)
 before enabling this on a device with other peripherals.
 
-In light sleep the peripherals are clock gated and raise no interrupts. Unlike deep sleep, the firmware
-resumes where it stopped rather than rebooting, and there is no companion component for wake-up sources.
-GPIO interrupts will wakeup the CPU but short pulses might not be recognized. If `power_down_peripherals: true`
-only RTC pins will wake up. If others need to be used as inputs use polling mode or make sure the main loop
-is fast enough and not suspended.
+In light sleep the peripherals are clock gated. Unlike deep sleep, the firmware resumes where it stopped
+rather than rebooting, and there is no companion component for wake-up sources. GPIO interrupts wake the
+CPU, but short pulses may be missed. With `power_down_peripherals` enabled (the default where supported),
+only RTC-capable pins can wake the chip. For other input pins, use polling
+(`use_interrupt: false` on the [GPIO binary sensor](/components/binary_sensor/gpio/)), or keep the main loop
+running with a short loop interval.
 
 > [!WARNING]
 > `power_down_flash` powers the flash down under a timing condition that is meant to keep it safe, but it
