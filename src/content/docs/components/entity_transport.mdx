@@ -1,5 +1,5 @@
 ---
-description: "Instructions for sending sensor and binary sensor states between ESPHome devices with the entity transport component"
+description: "Instructions for sending sensor and binary sensor states between ESPHome devices with entity transport"
 title: "Entity Transport Component"
 sidebar:
   label: "Entity Transport"
@@ -55,13 +55,17 @@ sensor:
 - **update_interval** (*Optional*, [Time](/guides/configuration-types#time)): Send the dictionary and the states of
   all sensors and binary sensors at this interval, as well as when they change. At least `1s`, or `never`. Defaults
   to `never` if the packet interface has both a [reliability layer](/components/packet_interface/#reliability) and a
-  [session layer](/components/packet_interface/#session), and to `15s` otherwise.
+  [session layer](/components/packet_interface/#session), or a link that does their job, such as
+  [TCP](/components/packet_interface/tcp/), and to `15s` otherwise.
 - **timeout** (*Optional*, [Time](/guides/configuration-types#time)): The sensors and binary sensors that show states
   from other devices lose their state when no state arrives for them for this long. Use a time longer than the other
   device's `update_interval`, so that a sensor that has not changed is sent again within it, and do not set that
-  `update_interval` to `never`. At least `1s`. By default the last state is kept. Not allowed when the packet
-  interface has a [session layer](/components/packet_interface/#session): the session layer already clears the
-  states when the other device cannot be reached, and with it, states that have not changed may never be sent again.
+  `update_interval` to `never`. At least `1s`. By default the last state is kept, so without a session layer, a
+  sensor goes on showing its last state after the other device stops sending, and nothing shows that it is stale; set
+  a `timeout` on such a link. Not allowed when the packet interface has a
+  [session layer](/components/packet_interface/#session), or a link that does its job, such as TCP: the session
+  already clears the states when the other device cannot be reached, and with it, states that have not changed may
+  never be sent again.
 
 ## When states are sent
 
@@ -69,10 +73,12 @@ To keep packets small, entity transport does not send entity IDs with every stat
 and binary sensors, and sends a *dictionary* that gives the ID for each number. Packets with states then use the
 numbers.
 
-Each packet is checked in full when it arrives, and a packet that is damaged or not well formed is dropped whole, so
-it changes no state. A device logs a warning, at most once a minute, when it drops such a packet, or one from a
-device whose packet format it does not support. A device ignores the states of entity types it does not support, so devices running newer
-ESPHome versions can send more types without upsetting older ones.
+Each packet is checked in full when it arrives, and a packet that is not well formed is dropped whole, so it changes
+no state. This does not catch damage that leaves a packet well formed, such as a changed value. On a link without
+its own check, such as a UART, add an [encryption layer](/components/packet_interface/#encryption), which drops a
+packet that was changed. A device logs a warning, at most once a minute, when it drops a packet that is not well
+formed, or one from a device whose packet format it does not support. A device ignores the states of entity types it
+does not support, so devices running newer ESPHome versions can send more types without upsetting older ones.
 
 - When a sensor or binary sensor changes, its new state is sent straight away.
 - At boot, the dictionary and all states are sent.
@@ -96,9 +102,6 @@ On a one-way link, where the receiving device cannot send back to the provider, 
 that never transmits, the request for the dictionary is not heard. A receiver that starts after the provider then
 gets the dictionary at the provider's next `update_interval`, and its sensors have no state until then. Keep an
 `update_interval` on the provider of such a link, and do not set it to `never`.
-
-When the packet interface cannot send a packet, for example while the network is not connected, it is tried again
-after a second.
 
 ## Sensor and binary sensor
 

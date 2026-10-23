@@ -13,8 +13,8 @@ The radio must send packets of varying length, so its `payload_length` must be `
 The radio must listen again after sending (`rx_start: true`, the default) when the link has a reliability or
 session layer or the rolling code, as these need packets back from the peer.
 Without LoRa modulation, the radio must be in packet mode (`packet_mode: true`), and it sends at most 64 bytes in a
-packet, so `max_packet_size` must be 64 or less. It must also have a `sync_value` set, as this is how the interface tells
-that a packet is arriving, so that it does not send over it.
+packet, so `max_packet_size` must be 64 or less. It must also have a `sync_value` set, as this is how the interface
+tells that a packet is arriving, so that it does not send over it.
 
 Received packets carry the radio's RSSI and SNR, which the layers above pass on.
 
@@ -26,9 +26,12 @@ work with one device among several.
 Sending waits until the radio has transmitted the packet, which takes from a few milliseconds to several seconds,
 depending on the packet size, spreading factor and bandwidth: a 255-byte LoRa packet at 125 kHz takes about 0.4 s at
 spreading factor 7, 2.3 s at 10 and 9 s at 12. While it sends, the radio cannot receive, so a packet is not sent
-while the radio is receiving one. A [reliability layer](/components/packet_interface/#reliability) sends it
-again shortly; without one, the packet is lost, except that `entity_transport` sends again after a delay. A packet is held back for at most as long
-as the largest packet takes to send, and at least 2 seconds, so a receive that never ends cannot stop sending.
+while the radio is receiving one: the send fails, and the component sending it is told, but nothing is logged. A
+[reliability layer](/components/packet_interface/#reliability) sends it again shortly, and `entity_transport` tries
+again after a second. Other components, such as `packet_transport`, do not, so use a reliability layer with them, or
+the packet is lost. Packets are refused for at most as long as the largest packet takes to send, and at least 2
+seconds, so a receive that never ends cannot stop sending; after that, the packet is sent anyway, and a warning is
+logged.
 
 With a [reliability layer](/components/packet_interface/#reliability), the `timeout` must allow for a packet and
 its acknowledgement to be sent, which at high spreading factors means several seconds. `ack_delay` should be about

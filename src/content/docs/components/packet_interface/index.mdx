@@ -75,8 +75,8 @@ connection already joins two devices and resends lost data. The page for each pl
 
 <Figure
   src={layersImg}
-  alt="Two devices, each with a stack of layers from the application at the top down to the link at the bottom, connected by a serial port or network"
-  caption="The layers of a packet interface. A packet being sent passes down through each layer, and up again on the other device."
+  alt="Two devices, each with a stack of layers from the application down to the link, joined by a channel"
+  caption="The layers of a packet interface. A packet passes down through each layer, and up on the other device."
   layout="constrained"
 />
 
@@ -227,8 +227,10 @@ A reliability layer makes sure that packets arrive in order, with none lost or r
 acknowledged by the other device, and resent if no acknowledgement arrives in time. Both devices must use the same
 reliability `type`.
 
-The reliability layer works between two devices only. Do not use it on a channel with more than two devices, such as
-a UDP broadcast address or an RS485 bus with several devices.
+The reliability layer works between two devices only, so the link it is on must join this device to just one other
+device. On a channel with more than two devices, such as an RS485 bus, use an [addressing layer](#addressing) with a
+`destination` other than `broadcast`, or a `peers` entry for each device. Do not use it on a link that sends to every
+device, such as a UDP broadcast address or a `broadcast` destination.
 
 ```yaml
 packet_interface:
@@ -248,9 +250,11 @@ packet_interface:
   which cannot receive while they send; about the time one packet takes to send is a good value. Must be shorter than
   `timeout`. Defaults to `0ms`, which acknowledges at once.
 - **max_queue_length** (*Optional*, int): How many packets can be waiting for an acknowledgement. When the queue is
-  full, new packets are not sent. Range is 1 to 7. Defaults to `4`.
+  full, a new packet is refused, and the component sending it is told, so that it can try again; entity transport
+  does. Range is 1 to 7. Defaults to `4`.
 - **max_retries** (*Optional*, int): How many times to resend without an acknowledgement before the packets waiting
-  are discarded and the connection is started again. Defaults to `5`.
+  are discarded and the connection is started again. A warning is logged when this happens. With a
+  [session layer](#session) above, the other device is reported lost, then connected again. Defaults to `5`.
 
 The reliability layer adds 3 bytes to each packet, so the largest packet that can be sent through it is 3 bytes
 smaller than `max_packet_size`. Each device holds `max_queue_length` packets of `max_packet_size` bytes in memory;
@@ -268,6 +272,8 @@ packet_interface:
     id: lora_link
     reliability:
       timeout: 500ms
+      # A 1024-byte packet needs 5 fragments of 250 bytes
+      max_queue_length: 5
     fragmentation:
       max_packet_size: 1024
 ```
@@ -288,6 +294,8 @@ whose largest packet needs more fragments than the queue holds is rejected; incr
 On a channel shared by several devices, use an [addressing layer](#addressing), so that fragments from different
 devices are not mixed. When two devices send packets of several fragments to a `broadcast` entry at the same moment,
 only the packet started last arrives; a separate entry for each device, with its own fragmentation layer, avoids this.
+A dropped packet or fragment is logged only at the `VERBOSE` level, so without a reliability layer these losses are
+not seen in the default log.
 
 ## Session
 
@@ -394,8 +402,9 @@ binary_sensor:
 
 - Each device's `addresses` is the IP address of the other device.
 - `provider` is the `name` of the device that sends the state, and `remote_id` is the ID of its binary sensor.
-- The `Porch link connected` sensor turns off when nothing has been heard from the porch device for 30 seconds,
-  three times the default `keep_alive`. If the porch device restarts, it turns off and on again, and both devices
+- The `Porch link connected` sensor turns off when nothing has been heard from the porch device for 30 to 40
+  seconds: the default `timeout` of three times `keep_alive`, checked at each `keep_alive`. If the porch device
+  restarts, it turns off and on again, and both devices
   send all their states again.
 - To encrypt the link, add the same `encryption` key to both `packet_interface` entries.
 

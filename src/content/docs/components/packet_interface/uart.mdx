@@ -17,8 +17,9 @@ A serial port carries a stream of bytes with no packet boundaries, so each packe
 This is the same framing used by the [UART Packet Transport](/components/packet_transport/uart/) platform, so a device
 using one can talk to a device using the other.
 
-Received bytes outside a frame are ignored. A received packet larger than `max_packet_size` is discarded, and a
-packet larger than `max_packet_size` is not sent.
+Received bytes outside a frame are ignored. A received packet larger than `max_packet_size` is discarded, and this
+is logged only at the `DEBUG` level. A packet larger than `max_packet_size` is not sent: the send fails, and a warning
+is logged. Use the same `max_packet_size` on both devices, so that neither sends packets the other discards.
 
 ## Example Configuration
 

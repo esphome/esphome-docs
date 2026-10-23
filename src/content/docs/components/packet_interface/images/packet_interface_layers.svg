@@ -32,7 +32,7 @@
     <text x="170" y="394" text-anchor="middle">who sends, who receives</text>
     <rect x="50" y="416" width="240" height="48" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
     <text x="170" y="436" text-anchor="middle" font-size="15" font-weight="bold">Link</text>
-    <text x="170" y="454" text-anchor="middle">platform: uart, udp, sx126x or sx127x</text>
+    <text x="170" y="454" text-anchor="middle">link platform, such as uart or udp</text>
   </g>
 
   <!-- Device B stack -->
@@ -57,7 +57,7 @@
     <text x="550" y="394" text-anchor="middle">who sends, who receives</text>
     <rect x="430" y="416" width="240" height="48" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
     <text x="550" y="436" text-anchor="middle" font-size="15" font-weight="bold">Link</text>
-    <text x="550" y="454" text-anchor="middle">platform: uart, udp, sx126x or sx127x</text>
+    <text x="550" y="454" text-anchor="middle">link platform, such as uart or udp</text>
   </g>
 
   <!-- Each layer works with the same layer on the other device -->
@@ -80,7 +80,7 @@
 
   <!-- The channel -->
   <path d="M170,464 V498 H550 V464" fill="none" stroke="#1565c0" stroke-width="3"/>
-  <text x="360" y="492" text-anchor="middle" font-size="12" fill="#1565c0">serial port, RS485 bus, UDP network or LoRa radio</text>
+  <text x="360" y="492" text-anchor="middle" font-size="12" fill="#1565c0">serial port, RS485 bus, network or radio</text>
 
   <!-- Direction of travel -->
   <line x1="30" y1="60" x2="30" y2="454" stroke="#455a64" stroke-width="2" marker-end="url(#arrow)"/>
