@@ -73,7 +73,7 @@ states whenever a device is attached. A [Serial Proxy](/components/serial_proxy/
 client change them at runtime, which many USB-serial devices use to pull the attached microcontroller into its
 bootloader; a state set that way is kept across reattachment.
 
-## Hardware flow control
+## Hardware Flow Control
 
 A [Serial Proxy](/components/serial_proxy/) client can ask a channel for RTS/CTS flow control. The `ch340`,
 `cp210x`, `ft232`, `ft2232`, `ft4232` and all `pl2303*` types pass the request on to the chip; a CP2102N with
