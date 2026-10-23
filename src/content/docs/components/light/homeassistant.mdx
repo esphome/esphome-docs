@@ -13,6 +13,9 @@ the device: in [automations](/automations/), with the [light actions](/component
 > Although you might not plan to *export* states from the node and you do not need an entity of the node in
 > Home Assistant, this component still requires you to register the node under Home Assistant. See:
 > [Connecting your device to Home Assistant](/install/getting-started/#connecting-your-device-to-home-assistant).
+> Controlling the light also needs "Allow the device to perform Home Assistant actions" checked in the device's
+> ESPHome integration options, as for any [Home Assistant action](/components/api/#actions); without it the state
+> is imported but a change made on the device is refused.
 
 ```yaml
 # Example configuration entry
@@ -39,9 +42,11 @@ button:
 - **report_timeout** (*Optional*, [Time](/guides/configuration-types/#time)): How long Home Assistant may
   take to report a change made on the device back before the light returns to the state reported last. Raise it
   for a light Home Assistant only polls, which can take a minute. From `1s` to `255s`. Defaults to `10s`.
-- All other options from [Light](/components/light/#config-light). `gamma_correct` defaults to `0` and
-  `default_transition_length` to `0s`, as Home Assistant renders the light; `restore_mode` and `restore_state`
-  have no effect, the state always comes from Home Assistant.
+- **default_transition_length** (*Optional*, [Time](/guides/configuration-types/#time)): Defaults to `0s`; a
+  transition runs on the device and Home Assistant is sent the state it ends at.
+- All other options from [Light](/components/light/#config-light), except `gamma_correct`, `effects`,
+  `flash_transition_length`, `transition_state_publish_interval`, `initial_state`, `restore_mode` and
+  `restore_state`: Home Assistant renders the light and keeps its state, so these are rejected at validation.
 
 ## How it works
 
@@ -53,7 +58,7 @@ A change made on the device is sent as a `light.turn_on` or `light.turn_off` act
 with the color temperature or the color of the active color mode when either changed. A color is sent as
 `rgb_color`, which Home Assistant converts to the light's own channels; a brightness change alone keeps the
 white balance of a cold/warm white light. Brightness values are scaled to Home Assistant's `0` to `255`
-range. Effects run on the device and drive the Home Assistant light through the same actions. A
+range. Effects cannot be configured on this light; use the ones Home Assistant offers for the entity. A
 transition runs on the device alone; Home Assistant receives the state the light ends at. A change that leaves
 Home Assistant as it is, such as turning on a light that is already on, is not sent. A flash ends where it began,
 so it is never sent and only the device's own state shows it; a warning in the log says so, as it does for
