@@ -185,8 +185,8 @@ switch:
 - **tas58xx_id** (*Optional*, [ID](/guides/configuration-types/#id)): The ID of the `tas58xx` platform. Required
   when more than one amplifier is configured.
 - **activate** (*Optional*): ON activates the amplifier, OFF puts it into deep sleep. All options from
-  [Switch](/components/switch/), except `restore_mode`, `restore_state` and `initial_state`. Defaults to the `config`
-  entity category.
+  [Switch](/components/switch/), except `restore_state` and `initial_state`. `restore_mode` can only be `ALWAYS_ON`
+  (the default). Defaults to the `config` entity category.
 
 At every boot the amplifier starts in play mode, which is activated, so the `activate` switch is always ON after a
 boot. Its state is not saved or restored, so `restore_mode` (other than `ALWAYS_ON`), `restore_state` and
