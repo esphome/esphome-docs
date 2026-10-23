@@ -118,6 +118,9 @@ on_...:
   - vnc.refresh:
 ```
 
+- **id** (_Optional_, [ID](/guides/configuration-types/#id)): The `vnc` client to refresh. Only needed if there
+  is more than one.
+
 ### `vnc.connect` and `vnc.disconnect` Actions
 
 `vnc.disconnect` closes the connection and stops reconnecting, for example before deep sleep. `vnc.connect`
@@ -159,7 +162,7 @@ binary_sensor:
 
 ## M5Paper Example
 
-A dashboard in portrait, with the rocker button for a full redraw.
+A dashboard in portrait, with the rocker button to fetch the whole screen again.
 
 ```yaml
 esp32:
