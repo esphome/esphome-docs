@@ -10,6 +10,8 @@ import ducoPinoutImg from './images/duco-pinout.jpg';
 The Duco component controls a Duco ventilation system directly over a UART connection, without the Duco
 Connectivity Board. It uses the same protocol as the Connectivity Board.
 
+<Figure src="/images/duco.svg" alt="Duco logo" width={400} height={72} />
+
 > [!NOTE]
 > The component was developed on a DucoBox Energy Comfort D325. Users report it working on other DucoBox Energy and
 > Focus models and on the DucoBox Silent 2.0, but it may not work on every Duco ventilation system.
@@ -32,11 +34,6 @@ The [UART Component](/components/uart/) must be configured with a baud rate of 5
 bit.
 
 ```yaml
-uart:
-  tx_pin: GPIOXX
-  rx_pin: GPIOXX
-  baud_rate: 57600
-
 duco:
 ```
 
