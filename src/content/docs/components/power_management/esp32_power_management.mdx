@@ -61,7 +61,7 @@ off between polls so the device can sleep in between.
 
 The price is interrupt latency, which can grow to around 40 µs, and peripheral behaviour under a changing
 APB frequency. Timers in the Timer Group peripheral, for example, keep counting but at a rate that follows
-the APB frequency. SPI, I²C, SDMMC, Ethernet, Wi-Fi, OpenThread, Bluetooth and CAN hold locks and behave
+the APB frequency. SPI, I²C, SDMMC, Ethernet, Wi-Fi, OpenThread, Zigbee, Bluetooth and CAN hold locks and behave
 well. Read ESP-IDF's
 [Dynamic Frequency Scaling and Peripheral Drivers](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/system/power_management.html#dynamic-frequency-scaling-and-peripheral-drivers)
 before enabling this on a device with other peripherals.
