@@ -1,0 +1,86 @@
+---
+title: "CANopen SDO Client"
+description: "Read numeric CANopen object dictionary entries and write expedited SDO values."
+---
+
+The `canopen` component reads and writes object dictionary entries on remote CANopen nodes using Service Data Objects
+(SDOs). It requires an existing [CAN bus](/components/canbus/) with a matching bitrate.
+
+This component implements an SDO client, not a CANopen device server or a CiA 402 motor controller.
+It supports expedited transfers with explicit sizes of one, two, or four bytes. Segmented transfers, block transfers,
+PDOs, heartbeats, emergency messages, and NMT commands are not implemented.
+
+```yaml
+canopen:
+
+sensor:
+  - platform: canopen
+    name: "Drive Position"
+    node_id: 32
+    index: 0x6064
+    value_type: INT32
+```
+
+## Hub Configuration Variables
+
+- **id** (*Optional*, ID): The hub's ID. Required when explicitly referring to this hub.
+- **canbus_id** (*Optional*, ID): The CAN bus to use. Required if more than one CAN bus is configured.
+- **response_timeout** (*Optional*, Time): Time allowed for a response after sending a request. Defaults to `500ms`.
+  The maximum is `60s`.
+
+Configure one CANopen hub per physical bus. It serves multiple remote node IDs and processes requests in order,
+with one request awaiting a response at a time. It stores up to 16 requests, including the active request.
+When the queue is full, new requests are rejected and a warning is logged. Sensor polls are not duplicated while
+that sensor already has a pending request.
+
+Do not use another SDO client on the same default SDO channels while this hub is active. CANopen SDO replies have no
+transaction identifier: a delayed reply to a timed-out request for the same object cannot be distinguished from a
+reply to a later request. Choose a timeout that accommodates your device and bus load.
+
+The CAN bus's `can_id` is not used as the target node ID. This component uses the default SDO request identifiers
+`0x600 + node_id` and response identifiers `0x580 + node_id` with standard 11-bit CAN frames.
+
+## Sensor Configuration Variables
+
+- **canopen_id** (*Optional*, ID): The CANopen hub to use. Required if more than one hub is configured.
+- **node_id** (**Required**, integer): The remote node's ID, from 1 to 127.
+- **index** (**Required**, integer): The 16-bit object dictionary index, for example `0x6064`.
+- **subindex** (*Optional*, integer): The 8-bit subindex. Defaults to `0`.
+- **value_type** (**Required**, string): One of `UINT8`, `INT8`, `UINT16`, `INT16`, `UINT32`, `INT32`, or `FLOAT32`.
+  This must match the object's documented type and response size.
+- **update_interval** (*Optional*, Time): The polling interval. Defaults to `60s`.
+- All other options from [Sensor](/components/sensor/).
+
+Values use CANopen little-endian byte order. Use sensor filters to convert raw units into physical units.
+As with other ESPHome numeric sensors, values are published as floating-point numbers; large 32-bit integers may lose
+precision. A timeout, rejected request, SDO abort, unsupported transfer, or mismatched width publishes `NaN` and sets a
+component warning. A later successful read clears that sensor's warning.
+
+## Writing an Object
+
+The `canopen.sdo_write` action sends an expedited download. The action queues the request and returns immediately;
+it does not wait for the remote device to acknowledge the write. Failures are logged. Writes are never retried
+automatically because repeating a command may have side effects.
+
+```yaml
+on_press:
+  - canopen.sdo_write:
+      node_id: 32
+      index: 0x2000
+      size: 2
+      value: 100
+```
+
+- **id** (*Optional*, ID): The CANopen hub to use. Required if more than one hub is configured.
+- **node_id** (**Required**, integer): The remote node's ID, from 1 to 127.
+- **index** (**Required**, integer): The 16-bit object dictionary index.
+- **subindex** (*Optional*, integer): The 8-bit subindex. Defaults to `0`.
+- **size** (**Required**, integer): The value's width in bytes: `1`, `2`, or `4`.
+- **value** (**Required**, integer, templatable): The unsigned raw bit pattern to write.
+  For signed objects, supply the two's-complement representation at the configured width.
+  Values that do not fit the selected width are rejected.
+
+## References
+
+- [CAN in Automation: CANopen](https://www.can-cia.org/can-knowledge/canopen)
+- [CAN Bus](/components/canbus/)
