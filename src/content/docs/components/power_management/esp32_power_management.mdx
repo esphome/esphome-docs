@@ -26,7 +26,7 @@ power_management:
 - **min_frequency** (*Optional*, frequency): The CPU frequency used while no CPU lock is held. Must divide the
   crystal frequency (`40MHz` on most variants, `32MHz` on the ESP32-H2) or be one of the CPU frequencies, be at
   least `10MHz` on the ESP32 and `2MHz` on the other variants, and be no higher than the maximum. Setting it to
-  `max_frequency` disables DFS. Defaults to the crystal frequency, limited to the maximum.
+  `max_frequency` disables dynamic frequency scaling. Defaults to the crystal frequency, limited to the maximum.
 - **enable_light_sleep** (*Optional*, boolean): Enter light sleep automatically whenever no task is runnable,
   which also stops the periodic tick interrupt while idle. Defaults to `false`.
 - **idle_time_before_sleep** (*Optional*, int): How many FreeRTOS ticks (1 ms each, as ESPHome runs the ESP32
