@@ -9,11 +9,11 @@ import APIRef from '@components/APIRef.astro';
 
 ## Component/Hub
 
-The `SIM800L` Component provides the ability to dial, answer calls, send/receive SMS text messages and
-send/receive USSD codes, and detect DTMF key presses during calls. The device must be connected via a [UART bus](/components/uart/)
-supporting both receiving and transmitting line. The UART bus must be configured at the same speed
-of the module which is by default 9600bps. The required connection wires are `+VCC`, `GND`,
-`RX` and `TX`.
+The `SIM800L` Component provides the ability to dial, answer calls, send/receive SMS text messages,
+send/receive USSD codes and detect DTMF key presses during calls. The device must be connected via a
+[UART bus](/components/uart/) supporting both receiving and transmitting line. The UART bus must be
+configured at the same speed of the module which is by default 9600bps. The required connection wires are
+`+VCC`, `GND`, `RX` and `TX`.
 
 > [!WARNING]
 > If you are using the [Logger](/components/logger/) make sure you are not using the same pins for `TX` and `RX` or
@@ -52,9 +52,9 @@ sim800l:
 - **on_call_disconnected** (*Optional*, [Automation](/automations)): An action to be
   performed when a call is disconnected.
 
-- **on_dtmf_received** (*Optional*, [Automation](/automations)): An action to be
+- **on_dtmf_received** (*Optional*, [Automation](/automations/)): An action to be
   performed when a DTMF key is pressed by the other party during a call.
-  See [`on_dtmf_received` Trigger](#sim800l-on_dtmf_received).
+  See [`on_dtmf_received` Trigger](#on_dtmf_received-trigger).
 
 ## Sensor
 
@@ -135,8 +135,6 @@ has been received.
 ```yaml
 on_ussd_received:
 ```
-
-<span id="sim800l-on_dtmf_received"></span>
 
 ### `on_dtmf_received` Trigger
 
