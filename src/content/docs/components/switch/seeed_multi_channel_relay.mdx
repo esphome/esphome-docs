@@ -31,11 +31,11 @@ switch:
     channel: 1
 ```
 
-## Configuration variables
+## Configuration Variables
 
-- **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID used for code generation.
 - **address** (*Optional*, int): The I²C address of the board. Defaults to `0x11`.
-- **i2c_id** (*Optional*, [ID](/guides/configuration-types#id)): The [I²C](/components/i2c/) bus to use.
+- **i2c_id** (*Optional*, [ID](/guides/configuration-types/#id)): The [I²C](/components/i2c/) bus to use.
   Required with more than one bus.
 
 ## Switch
@@ -45,7 +45,7 @@ Each relay is a `switch` of the `seeed_multi_channel_relay` platform.
 - **channel** (**Required**, int): The relay to control: `1` to `4` on the 4-channel board, `1` to `8` on the
   8-channel board. The component cannot tell the boards apart, so a channel the board does not have is accepted
   and does nothing. Each channel can be used once per board.
-- **seeed_multi_channel_relay_id** (*Optional*, [ID](/guides/configuration-types#id)): The board the relay
+- **seeed_multi_channel_relay_id** (*Optional*, [ID](/guides/configuration-types/#id)): The board the relay
   belongs to. Required with more than one board.
 - **restore_mode** (*Optional*): The board powers up with every relay off, so the default
   `RESTORE_DEFAULT_OFF` matches the hardware. `DISABLED` behaves like `ALWAYS_OFF` here, because the component
@@ -74,7 +74,7 @@ button:
 ```
 
 - **address** (**Required**, int, [templatable](/automations/templates/#config-templatable)): The new address.
-- **id** (*Optional*, [ID](/guides/configuration-types#id)): The board to change. Required with more than one
+- **id** (*Optional*, [ID](/guides/configuration-types/#id)): The board to change. Required with more than one
   board.
 
 ## See Also
