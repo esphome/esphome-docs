@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
 import argparse
+import json
+from pathlib import Path
 import re
-from dataclasses import dataclass
 import sys
+from dataclasses import dataclass
 
 
 @dataclass
@@ -48,23 +50,54 @@ def sub(path, pattern, repl, expected_count=1):
         fh.write(content)
 
 
-def write_version(version: Version):
-    # ESPHOME_REF = 2021.8.0
-    sub(
-        "Makefile",
-        r"ESPHOME_REF = .*",
-        f"ESPHOME_REF = {version}" if not version.dev else "ESPHOME_REF = dev",
-    )
-    # PROJECT_NUMBER         = 1.14.4
-    sub(
-        "Doxygen", r"PROJECT_NUMBER         = .*", f"PROJECT_NUMBER         = {version}"
-    )
-    # version = '1.14'
-    sub("conf.py", r'version = ".*"', f'version = "{version.major}.{version.minor}"')
-    # release = '1.14.4'
-    sub("conf.py", r'release = ".*"', f'release = "{version}"')
-    with open("_static/version", "wt") as fh:
-        fh.write(str(version))
+BLOG_POST_RE = re.compile(r"^esphome-(\d+)-(\d+)$")
+
+
+def find_blog_url() -> str | None:
+    """Find the site path of the newest release notes blog post.
+
+    Release posts live at src/content/docs/blog/YYYY/MM/DD/esphome-<year>-<minor>.mdx.
+    Returns None when no release post exists in the tree.
+    """
+    blog_dir = Path("src/content/docs/blog")
+    best: tuple[int, int, str] | None = None
+    best_post: Path | None = None
+    for post in blog_dir.glob("*/*/*/esphome-*.mdx"):
+        match = BLOG_POST_RE.match(post.stem)
+        if not match:
+            continue
+        key = (int(match[1]), int(match[2]), str(post.parent))
+        if best is None or key > best:
+            best = key
+            best_post = post
+    if best_post is None:
+        return None
+    rel = best_post.relative_to(blog_dir).with_suffix("")
+    return "/blog/" + "/".join(rel.parts) + "/"
+
+
+def write_version(version: Version) -> None:
+    Path("data").mkdir(parents=True, exist_ok=True)
+    data = {
+        "release": str(version),
+        "version": f"{version.major}.{version.minor}",
+    }
+    # Update data/version.json in place. blog_url is derived from the newest
+    # release notes blog post in the tree; the release tooling re-runs this
+    # script after creating the post. When no post exists (e.g. in a bare
+    # checkout), any existing blog_url is preserved untouched.
+    json_path = Path("data/version.json")
+    json_data: dict[str, str] = {}
+    if json_path.exists():
+        json_data = json.loads(json_path.read_text())
+    json_data.update(data)
+    blog_url = find_blog_url()
+    if blog_url is not None:
+        json_data["blog_url"] = blog_url
+    print(f"Writing {json_data} to data/version.json")
+    with open(json_path, "w") as file:
+        json.dump(json_data, file, indent=2)
+        file.write("\n")
 
 
 def main():

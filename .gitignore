@@ -1,18 +1,37 @@
-_build
+# Astro build output
+dist/
+.astro/
+
+# Node
+node_modules/
+
+# IDE
+.idea/
+*.swp
 .DS_Store
 
-.python-version
+# OS
+*.DS_Store
+
+# Python (for scripts)
 __pycache__/
 *.py[cod]
 *$py.class
+venv/
+.python-version
 
-venv
+# Cache
+.cache/
+script/cache/
 
-.vscode
-*.DS_Store
-/.idea/
+# Generated at build time by script/fetch_allowed_referrers.mjs
+/src/data/allowed-referrers.json
 
-_pagefind/
+# Environment
+my-secrets
+.env
+.env.*
 
-# Vim
-*.swp
+# Misc
+_build
+/create-blog-post/
