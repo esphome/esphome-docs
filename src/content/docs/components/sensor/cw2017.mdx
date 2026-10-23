@@ -9,7 +9,8 @@ CellWise CW2017 fuel gauge in ESPHome. It uses the [I²C Bus](/components/i2c/) 
 The CW2017 has no built-in battery model and reports 0% until it is given an 80-byte profile that describes the cell,
 so `battery_profile` must be set. The profile is made for each type of cell; get it from the battery or board maker,
 or copy it from the device's original firmware. At boot, the profile is written to the gauge only when the gauge does
-not already hold it.
+not already hold it; a wake from [deep sleep](/components/deep_sleep/) skips that check, since the profile can only
+change with new firmware.
 
 ```yaml
 # Example configuration entry
@@ -28,7 +29,11 @@ sensor:
       name: Battery Voltage
 ```
 
-## Configuration variables
+> [!WARNING]
+> The bytes above are the profile of one particular cell. Replace them with the profile for your own battery; a
+> profile for the wrong cell gives no error, only a wrong battery level.
+
+## Configuration Variables
 
 - **battery_profile** (**Required**, list of bytes): The 80-byte battery profile for the cell.
 - **battery_level** (*Optional*): The state of charge in percent.
