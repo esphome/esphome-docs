@@ -24,6 +24,10 @@ Connect pin 8 (RX of the box) to the TX pin of your ESPHome device, and pin 9 (T
 of the box must also be connected to the ground of the ESPHome device. The connector also provides 3.3 V and 5 V, which
 can power the ESPHome device.
 
+> [!WARNING]
+> Do not plug in USB while the ESPHome device is powered from the box: on many boards this connects the USB supply to
+> the supply of the box. Disconnect the 3.3 V or 5 V wire before flashing over USB, and keep the ground connected.
+
 The [UART Component](/components/uart/) must be configured with a baud rate of 57600, 8 data bits, no parity and 1 stop
 bit.
 
@@ -86,6 +90,9 @@ sensor:
 ```
 
 ## Duco Component
+
+All options are optional, so `duco:` on its own is a complete configuration. This example also enables discovery and
+sets the clock of the box from a [Time Component](/components/time/) with the ID `my_time`:
 
 ```yaml
 duco:
