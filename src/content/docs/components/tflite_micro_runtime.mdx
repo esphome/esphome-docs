@@ -157,8 +157,13 @@ Build flags:
 - **`-DTF_LITE_DISABLE_X86_NEON`**: Disable x86 NEON intrinsics (not applicable to ESP32 targets).
 - **`-DESP_NN`**: Enable ESP-NN optimized kernels.
 - **`-DOPTIMIZED_KERNEL=esp_nn`**: Select ESP-NN as the kernel provider for TFLite Micro.
-- **`-DMAX_OPERATORS=<N>`**: Set to the number of model operations plus a safety margin (auto-detected from the
-  `.txt` report file, or defaults to `30`).
+
+Global defines (`cg.add_define()`, written to the generated `defines.h`):
+
+- **`TFLITE_MICRO_MAX_OPERATORS`**: Number of model operations plus a safety margin, auto-detected from the
+  `.txt` report file of every configured model (largest value across instances, or `30` when no report is
+  available).
+- **`USE_TFLITE_MICRO_HELPER`**: Compiles the TFLite Micro helper sources.
 
 ## Usage as a Dependency
 
@@ -238,7 +243,7 @@ register, in two forms: `TFLM_OP_AVAILABLE(BuiltinOperator, AddMethod)` for supp
 `TFLM_OP_UNAVAILABLE(BuiltinOperator)` for the rest. The code generator and the device runtime both read that
 table, which keeps the supported operator set in a single place.
 
-- **Build time**: `-DMAX_OPERATORS` is sized automatically from the `.txt` report of every configured model
+- **Build time**: `TFLITE_MICRO_MAX_OPERATORS` is sized automatically from the `.txt` report of every configured model
   (operator count plus a safety margin, taking the largest value across instances, or `30` when no report is
   available), so a multi-instance configuration always has enough resolver capacity. When a `.txt` report is
   present, the code generator also compares the operators it lists with the table and stops config generation,
@@ -265,10 +270,12 @@ The table is verified against `esp-tflite-micro` 1.3.7 and covers operators such
   `GATHER_ND`, `BATCH_MATMUL`, `SVDF`, `IF`, `WHILE`, `CALL_ONCE`, `ASSIGN_VARIABLE`, `READ_VARIABLE`,
   `VAR_HANDLE`.
 
-Some operators are shipped as **conditional entries** (`TFLM_OP_CONDITIONAL`): they are registered through the
-optional-add mechanism of `OpResolverManager` whenever the `esp-tflite-micro` resolver provides the matching
-`Add<Operator>()` method. In `esp-tflite-micro` 1.3.7 this covers `DYNAMIC_UPDATE_SLICE`, `REDUCE_ALL`,
-`REDUCE_MIN` and `REVERSE_V2`, and the build-time operator check accepts them for compatible models.
+Some operators are shipped as **conditional entries** (`TFLM_OP_CONDITIONAL`): the table names the
+`Add<Operator>()` method they need and `register_ops()` checks for it with `if constexpr`, so the code also
+builds against an `esp-tflite-micro` release that lacks the method (the operator is then reported as
+unsupported instead of failing to compile). In the pinned `esp-tflite-micro` 1.3.7 this covers
+`DYNAMIC_UPDATE_SLICE`, `REDUCE_ALL`, `REDUCE_MIN` and `REVERSE_V2`, and the build-time operator check accepts
+them.
 
 Operators marked unavailable in the table (for example `BIDIRECTIONAL_SEQUENCE_LSTM`, `WHERE`, `SELECT` or
 `REDUCE_PROD`) are logged as warnings and cause model loading to fail with a message naming the operator. This
