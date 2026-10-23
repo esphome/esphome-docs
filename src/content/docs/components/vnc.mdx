@@ -31,7 +31,8 @@ is larger, only its top-left part is shown.
 - **host** (**Required**, string): The IPv4 address or hostname of the VNC server.
 - **port** (_Optional_, int): The port of the VNC server. Defaults to `5900`.
 - **password** (_Optional_, string): The VNC password, if the server asks for one. VNC uses only the first
-  8 characters.
+  8 bytes: 8 characters for plain letters, digits and symbols, fewer if the password has accented or other
+  special characters.
 - **display_id** (_Optional_, [ID](/guides/configuration-types/#id)): The display to draw on. Only needed if
   there is more than one display.
 - **reconnect_interval** (_Optional_, [Time](/guides/configuration-types/#time)): How long to wait before the
