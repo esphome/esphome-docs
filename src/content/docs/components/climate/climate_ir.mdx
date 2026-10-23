@@ -620,7 +620,7 @@ The standard presets are `NONE`, `BOOST` (Hi Power) and `ECO`. The custom preset
   specifies another mode, in which case the call is rejected. Changing away from `HEAT` cancels the preset.
 - `Frost protection`: A heating preset with a default target of 8 °C and a range of 5 to 13 °C. Leaving the preset
   restores the remembered normal target, or 24 °C after a reboot. The normal range is 17 to 30 °C.
-- `HADA Care`: Ceiling-directed airflow. FIX and SWING are unavailable while this preset is active.
+- `HADA Care`: Ceiling-directed airflow. Vane step and SWING are unavailable while this preset is active.
 - `Sleep 1h`, `Sleep 3h`, `Sleep 5h` and `Sleep 9h`: Set the unit's OFF timer and force the fan to `AUTO`.
   Leaving Sleep restores the previous fan setting. After a reboot, ESPHome clears the restored Sleep preset
   without sending a command, so it does not restart the timer.
@@ -654,31 +654,31 @@ handheld remote updates the select when a receiver is configured, and its power 
 > a preset, or cancel the preset before selecting `Silent 1` or `Silent 2`. Requests for an unsupported combination
 > are rejected without changing the reported state or sending IR.
 
-##### SWING And FIX
+##### SWING And Vane Step
 
 Use the climate's `VERTICAL` swing mode for continuous up/down movement and `OFF` to stop it. The remote sends the
 same toggle command for both, so ESPHome tracks the assumed state. Missed handheld commands can leave it out of
 sync. A receiver lets ESPHome track handheld SWING presses.
 
-The `toshiba.fix` [action](/automations/actions/#all-actions) moves the vane one step on each call. It does not set
-an absolute position or report the vane angle. This action is only supported by `RAS-25J2KVSG-ND` and is unavailable
-during HADA Care.
+The `toshiba.step_vane` [action](/automations/actions/#all-actions) moves the vane one step on each call, like the
+remote's FIX button. It does not set an absolute position or report the vane angle. This action is only supported
+by `RAS-25J2KVSG-ND` and is unavailable during HADA Care.
 
 Set `id: toshiba_polar` on the climate entry, then call the action from an automation:
 
 ```yaml
 on_...:
-  - toshiba.fix: toshiba_polar
+  - toshiba.step_vane: toshiba_polar
 ```
 
-To expose FIX in Home Assistant, use a [Template Button](/components/button/template/):
+To expose the vane step in Home Assistant, use a [Template Button](/components/button/template/):
 
 ```yaml
 button:
   - platform: template
-    name: "Toshiba FIX"
+    name: "Toshiba Vane Step"
     on_press:
-      - toshiba.fix: toshiba_polar
+      - toshiba.step_vane: toshiba_polar
 ```
 
 ### `whirlpool`
