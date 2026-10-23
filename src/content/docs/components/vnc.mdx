@@ -133,9 +133,14 @@ Sends a key press.
 ```yaml
 on_...:
   - vnc.send_key: Return
+  # Shift+Tab: hold Shift, press Tab, then let go of Shift
   - vnc.send_key:
       key: Shift_L
       action: down
+  - vnc.send_key: Tab
+  - vnc.send_key:
+      key: Shift_L
+      action: up
 ```
 
 - **key** (**Required**, [templatable](/automations/templates/)): The key: a single character such as `a`, an X11
