@@ -75,7 +75,7 @@ Advanced options:
   - **name** (**Required**, string): Name of the project
   - **version** (**Required**, string): Version of the project
   - **sbom** (*Optional*): Details about the maker of the project for its software bill of materials.
-    See [Software bill of materials (SBOM)](#esphome-sbom).
+    Only available on ESP32. See [Software bill of materials (SBOM)](#esphome-sbom).
 
     - **supplier** (**Required**, string): Name of the organization that makes and supplies the firmware.
     - **contact** (*Optional*, string): Email address for security reports.
@@ -404,7 +404,7 @@ A software bill of materials (SBOM) lists the software that makes up a firmware,
 Security standards for connected products, such as EN 18031 and the EU Cyber Resilience Act, ask device makers to
 provide one.
 
-When building for ESP32 with the ESP-IDF framework, ESPHome describes the parts it adds to the build: the project,
+When building for ESP32, ESPHome describes the parts it adds to the build: the project,
 ESPHome itself, any [external components](/components/external_components/) (with the exact git commit used) and
 any libraries. ESP-IDF and its components already describe themselves. Espressif's
 [esp-idf-sbom](https://github.com/espressif/esp-idf-sbom) tool combines all of this into an SBOM file after the
