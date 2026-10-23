@@ -18,7 +18,7 @@ Each entry is one button or one dimmer of a remote device. `source_id` is the `i
 event:
   - platform: bthome
     source_id: blu_button
-    type: BUTTON
+    type: button
     name: "Button"
 ```
 
@@ -26,7 +26,8 @@ event:
 
 - **source_id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the remote device in the
   `remote_devices` list of the `bthome` component.
-- **type** (**Required**, string): `BUTTON` for a button or `DIMMER` for a rotary dimmer. Case-insensitive.
+- **type** (**Required**, string): `button` (`button_event`) for a button or `dimmer` (`dimmer_event`) for a
+  rotary dimmer. Type names are case-insensitive.
 - **index** (*Optional*, int): Which button or dimmer of the device, for devices with more than one. From 1 to 8.
   Defaults to `1`.
 - All other options from [Event](/components/event#config-event). The device class of a button defaults to
@@ -52,11 +53,11 @@ Two buttons of one device, with an action on a double press of button 2:
 event:
   - platform: bthome
     source_id: blu_button
-    type: BUTTON
+    type: button
     name: "Button 1"
   - platform: bthome
     source_id: blu_button
-    type: BUTTON
+    type: button
     index: 2
     name: "Button 2"
     on_event:
@@ -72,4 +73,4 @@ event:
 - [Event Component](/components/event/)
 - [ESP32 BLE Tracker](/components/esp32_ble_tracker/)
 - [BTHome format](https://bthome.io/format/)
-- <APIRef text="event.h" path="bthome/event/event.h" />
+- <APIRef text="bthome.h" path="bthome/bthome.h" />
