@@ -94,6 +94,20 @@ http_request:
 
 The `http_request` component supports a number of [actions](/automations/actions#all-actions) that can be used to send requests.
 
+The actions that follow an HTTP request action run only after the request has finished and its `on_response` or
+`on_error` automation has run. On ESP32 with ESP-IDF 5.5.3 or later, the rest of the device keeps running while the
+request waits for the server. Opening the connection and the TLS handshake still pause the device for a short time,
+typically a few hundred milliseconds. On other platforms the device waits for the whole request.
+
+Each action sends one request at a time. If the action is triggered again while a request is in progress, the new
+request waits until the earlier one has finished. Up to four requests can wait; if the action is triggered while four
+are already waiting, the request is not sent and `on_error` is triggered.
+
+> [!NOTE]
+> A [script](/components/script/) that contains an HTTP request action is still running while the request is in
+> progress. With the default `mode: single`, executing the script again during that time is ignored and a warning is
+> logged. Use `mode: queued` or `mode: parallel` if every execution must run.
+
 ### `http_request.get` Action
 
 This [action](/automations/actions#all-actions) sends a GET request.
@@ -191,6 +205,7 @@ The following variables are available for use in [lambdas](/automations/template
 > [!NOTE]
 > The `status_code` should be checked before using the `body` variable. A successful response will usually have
 > a status code of `200`. Server errors such as "not found" (404) or "internal server error" (500) will have an appropriate status code, and may contain an error message in the `body` variable.
+> If the server accepts the request but no response arrives within the timeout, `status_code` is `-1`.
 
 ```yaml
 on_...
@@ -219,7 +234,7 @@ on_...
 ### `on_error` Trigger
 
 This automation will be triggered when the HTTP request fails to complete. This may be e.g. when the network is not available,
-or the server is not reachable. This will *not* be triggered if the request
+the server is not reachable, or too many requests from the same action are already waiting. This will *not* be triggered if the request
 completes, even if the response code is not 200. No information on the type of error is available and no variables
 are available for use in [lambdas](/automations/templates#config-lambda). See example usage above.
 
