@@ -45,16 +45,17 @@ modem:
   control. Must be set together with `cts_pin`.
 - **cts_pin** (*Optional*, [Pin Schema](/guides/configuration-types/#pin-schema)): The `CTS` pin for hardware flow
   control. Must be set together with `rts_pin`.
-- **pin_code** (*Optional*, string): The PIN of the SIM card, 4 to 8 digits. It is sent at most once per connection
-  attempt, so a wrong PIN stops the modem instead of locking the SIM. A PIN the SIM rejected, or one the SIM did not
-  confirm twice in a row, is remembered across reboots and not sent again until `pin_code` changes. If the PIN is
-  right and the SIM only answered late, remove `pin_code`, flash once, and add it back.
+- **pin_code** (*Optional*, string): The PIN of the SIM card, 4 to 8 digits. It is sent at most twice, counted
+  across reboots, without the SIM reporting that it is unlocked, so a wrong PIN stops the modem instead of locking
+  the SIM. A PIN the SIM refuses uses up both sends at once. Once the SIM reports that it is unlocked, the count
+  starts again from zero. A changed `pin_code` also starts from zero. To clear the count for the same PIN, remove
+  `pin_code`, flash once, and add it back.
 - **baud_rate** (*Optional*, int): The baud rate to run the link at. The component first finds the rate the modem
   answers at (the last rate that worked, this one, then `115200`), then asks the modem to switch to `baud_rate`.
   Defaults to the rate the modem answers at.
 - **init_at** (*Optional*, list of strings): AT commands to send once the modem answers, before it attaches to
-  the network, each up to 127 characters. Each result is logged, and a failed command sets the component's
-  warning status.
+  the network, each up to 127 characters. Each result is logged, and a failed command is shown in the component's
+  status until the modem connects.
 - **enable_on_boot** (*Optional*, boolean): Whether to connect the modem when the device starts. Set this to
   `false` when the modem has to be powered on first, then use the `modem.enable` action. Defaults to `true`.
 - **reboot_timeout** (*Optional*, [Time](/guides/configuration-types/#time)): How long the device may stay
@@ -71,6 +72,17 @@ modem:
   Defaults to `1024`.
 - **dte_buffer_size** (*Optional*, int): The size of the modem library's command buffer in bytes. Increase it if
   the log shows `CMUX: Failed to defragment longer payload`. Defaults to `1024`.
+
+## Status
+
+The component's status shows the step that failed most recently, until the modem connects. The baud rate,
+`init_at` and teardown failures stay shown until then even when the next steps work.
+
+- Warnings: `Modem not responding`, `Configured baud rate failed`, `init_at command failed`, `SIM not ready`,
+  `APN or radio setup failed`, `No network attachment`, `PPP link failed` and `Modem teardown failed`.
+- Errors, which stop the modem until the SIM or `pin_code` is fixed: `SIM locked`,
+  `SIM PIN not sent; check pin_code` (the send count above is used up) and `PIN record not saved` (the PIN send
+  count could not be written to flash, so the PIN was not sent; the device keeps its `reboot_timeout`).
 
 ## Text Sensor
 
@@ -179,7 +191,7 @@ From [lambdas](/automations/templates/#config-lambda), you can call these method
 - `enable()` and `disable()`: The same as the actions above.
 - `send_at(cmd)`: Queues an AT command for the modem, which sends it and logs the answer. Returns `false` when the
   previous command is not sent yet or the command is longer than 127 characters. A second argument sets the
-  timeout in milliseconds.
+  timeout in milliseconds. It is only available when the configuration also uses the `modem.send_at` action.
 
 ```cpp
 if (!id(my_modem).send_at("AT+CFUN=1")) {
