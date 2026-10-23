@@ -62,10 +62,9 @@ fan:
 
 - **speed_count** (*Optional*, int): Set the number of supported discrete speed levels. Defaults to `3`.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode. When in this mode, any command sent
-  to the fan immediately updates the reported state without waiting for MCU feedback. Enable this option when the MCU doesn't report state back.
-  With `optimistic: true`, the restore on boot runs before the MCU reports datapoint types.
-  A fan whose speed datapoint is ENUM therefore gets an INTEGER speed that is off by one.
-  Defaults to `false`.
+  to the fan immediately updates the reported state without waiting for MCU feedback. Enable this option when the
+  MCU doesn't report state back. The state restored at boot is sent before the MCU reports its datapoint types, so
+  a fan with an enum speed datapoint can get a speed that is one step off. Defaults to `false`.
 - All other options from [Fan](/components/fan#config-fan).
 
 > [!NOTE]
