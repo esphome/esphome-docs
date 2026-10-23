@@ -23,15 +23,6 @@ light:
   - platform: homeassistant
     id: my_light_from_ha
     entity_id: light.living_room
-
-button:
-  - platform: template
-    name: "Living room dim"
-    on_press:
-      - light.turn_on:
-          id: my_light_from_ha
-          brightness: 40%
-          color_temperature: 370 mireds
 ```
 
 ## Configuration variables
@@ -42,8 +33,9 @@ button:
 - **report_timeout** (*Optional*, [Time](/guides/configuration-types/#time)): How long Home Assistant may
   take to report a change made on the device back before the light returns to the state reported last. Raise it
   for a light Home Assistant only polls, which can take a minute. From `1s` to `255s`. Defaults to `10s`.
-- **default_transition_length** (*Optional*, [Time](/guides/configuration-types/#time)): Defaults to `0s`; a
-  transition runs on the device and Home Assistant is sent the state it ends at.
+- **default_transition_length** (*Optional*, [Time](/guides/configuration-types/#time)): The transition length
+  used when an action does not give one. Defaults to `0s`, unlike other lights: a transition runs on the device
+  and Home Assistant is only sent the state it ends at.
 - All other options from [Light](/components/light/#config-light), except `gamma_correct`, `effects`,
   `flash_transition_length`, `transition_state_publish_interval`, `initial_state`, `restore_mode` and
   `restore_state`: Home Assistant renders the light and keeps its state, so these are rejected at validation.
@@ -63,6 +55,21 @@ transition runs on the device alone; Home Assistant receives the state the light
 Home Assistant as it is, such as turning on a light that is already on, is not sent. A flash ends where it began,
 so it is never sent and only the device's own state shows it; a warning in the log says so, as it does for
 a transition that ends in the state Home Assistant already has.
+
+## Examples
+
+A button on the device that dims the Home Assistant light:
+
+```yaml
+button:
+  - platform: template
+    name: "Living room dim"
+    on_press:
+      - light.turn_on:
+          id: my_light_from_ha
+          brightness: 40%
+          color_temperature: 370 mireds
+```
 
 ## See Also
 
