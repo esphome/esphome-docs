@@ -50,16 +50,17 @@ duco:
   discovery: {}
 ```
 
-Discovery asks each address in turn, starting 16 seconds after boot, and logs the nodes it found every minute:
+Discovery asks each address in turn, starting 16 seconds after boot, which takes about two minutes. The nodes it found
+are listed with the configuration in the logs, so open the logs again once discovery has finished:
 
 ```text
-[I][duco]: Discovered nodes:
-[I][duco]:   Node 1: type 17 (BOX)
-[I][duco]:   Node 2: type 8 (UCBAT)
-[I][duco]:   Node 3: type 12 (UCCO2)
-[I][duco]:   Node 4: type 12 (UCCO2)
-[I][duco]:   Node 52: type 18 (SWITCH)
-[I][duco]:   Node 67: type 9 (UC)
+[C][duco]: Discovered nodes:
+[C][duco]:   Node 1: type 17 (BOX)
+[C][duco]:   Node 2: type 8 (UCBAT)
+[C][duco]:   Node 3: type 12 (UCCO2)
+[C][duco]:   Node 4: type 12 (UCCO2)
+[C][duco]:   Node 52: type 18 (SWITCH)
+[C][duco]:   Node 67: type 9 (UC)
 ```
 
 The known node types are:
@@ -106,9 +107,8 @@ duco:
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the Duco component.
 - **uart_id** (*Optional*, [ID](/guides/configuration-types/#id)): Manually specify the ID of the
   [UART Component](/components/uart/) if you want to use multiple UART buses.
-- **discovery** (*Optional*): Discover the nodes connected to the box and log them.
-  - **update_interval** (*Optional*, [Time](/guides/configuration-types/#time)): How often the discovered nodes are
-    logged. Defaults to `60s`.
+- **discovery** (*Optional*): Discover the nodes connected to the box once after boot and list them with the
+  configuration in the logs. Takes no options; use `discovery: {}`.
 - **time** (*Optional*): Set the clock of the box from a [Time Component](/components/time/).
   - **time_id** (*Optional*, [ID](/guides/configuration-types/#id)): The time source to use. Defaults to the only
     time source in the configuration.
