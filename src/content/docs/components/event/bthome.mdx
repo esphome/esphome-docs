@@ -24,8 +24,8 @@ event:
 
 ## Configuration Variables
 
-- **source_id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the remote device in the
-  `remote_devices` list of the `bthome` component.
+- **source_id** (**Required**, [ID](/guides/configuration-types#id)): The ID of the remote device declared in the
+  `bthome` component's `remote_devices` list.
 - **type** (**Required**, string): `button` (`button_event`) for a button or `dimmer` (`dimmer_event`) for a
   rotary dimmer. Type names are case-insensitive.
 - **index** (*Optional*, int): Which button or dimmer of the device, for devices with more than one. From 1 to 8.
@@ -41,9 +41,9 @@ A button fires `press`, `double_press`, `triple_press`, `long_press`, `long_doub
 A device with several buttons sends one value per button in each advertisement, and "no event" for the buttons
 that were not pressed. Each entry only fires for its own `index`.
 
-A transmitter sends each gesture several times. With a packet ID, a repeated advertisement is ignored; after
-4 seconds without advertisements, the same packet ID counts as new again. Without a packet ID, a copy of the previous
-advertisement is ignored while copies arrive less than 1.2 seconds apart.
+A transmitter sends each gesture several times. With a packet ID, a repeated advertisement is ignored until the
+device has sent nothing for 4 seconds. Without a packet ID, a copy of the previous advertisement is ignored while
+copies arrive less than 1.2 seconds apart.
 
 ## Example
 
