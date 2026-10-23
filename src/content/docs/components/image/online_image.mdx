@@ -105,6 +105,11 @@ runtime_image:
 > `LIBJPEG_TURBO` allocates its working memory from PSRAM first and falls back to internal RAM. Progressive images
 > require the coefficients of the whole image to be buffered in memory, so PSRAM is generally required for large
 > images.
+>
+> `JPEGDEC` decodes an image while it downloads when the server sends the image size. `LIBJPEG_TURBO` waits until
+> the complete file is in memory, so it also needs RAM for the whole downloaded file, even for baseline images.
+> Without PSRAM, an image that works with `JPEGDEC` can fail to load with `LIBJPEG_TURBO` because there is not
+> enough memory.
 
 ## Automations
 
