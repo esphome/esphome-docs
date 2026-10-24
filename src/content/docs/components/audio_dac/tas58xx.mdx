@@ -169,9 +169,8 @@ class and the `diagnostic` entity category.
 
 ## Switch
 
-The `activate` switch activates the amplifier or puts it into deep sleep. Turning the switch ON effectively does the
-`tas58xx.activate` action, and turning it OFF does `tas58xx.deactivate`. The switch also shows the state set by these
-actions.
+The `activate` switch activates the amplifier or puts it into deep sleep. Turning the switch ON does the
+`tas58xx.activate` action, and turning it OFF does `tas58xx.deactivate`.
 
 ```yaml
 switch:
@@ -188,9 +187,10 @@ switch:
   [Switch](/components/switch/), except `restore_mode`, `restore_state` and `initial_state`. Defaults to the `config`
   entity category.
 
-The `activate` switch shows the state the amplifier publishes. At every boot the amplifier starts in play mode, which
-is activated, so the switch is always ON after a boot. The restore options have no effect, so `restore_mode`,
-`restore_state` and `initial_state` are not supported and fail validation.
+The switch shows whether the amplifier is active, and changes only after the amplifier accepted the command, whether
+it came from the switch or from the `tas58xx.activate` and `tas58xx.deactivate` actions. At every boot the amplifier
+starts in play mode, which is activated, so the switch is always ON after a boot. The restore options have no effect,
+so `restore_mode`, `restore_state` and `initial_state` are not supported and fail validation.
 
 ## Configuration Examples
 
