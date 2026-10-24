@@ -1,6 +1,6 @@
 ---
 title: "TMCM-1240"
-description: "Control TMCM-1240 CANopen stepper modules with current settings, StallGuard diagnostics, and sensorless homing."
+description: "Control TMCM-1240 CANopen stepper modules with current settings and StallGuard diagnostics."
 ---
 
 The `tmcm1240` component extends [CiA 402 drive control](/components/cia402/) for the TMCM-1240 with CANopen firmware.
@@ -17,10 +17,6 @@ tmcm1240:
   standby_current: 0.1925
   stallguard_threshold: 8
   stallguard_min_velocity: 800
-  homing_velocity: 1000
-  homing_backoff: 2000
-  homing_travel: 19000
-  homing_margin: 200
 ```
 
 ## Configuration Variables
@@ -33,13 +29,8 @@ The following additional options are required:
 - **stallguard_threshold** (**Required**, integer): StallGuard sensitivity, from -63 to 63. Tune it for the actual motor,
   load, current and speed. More positive values reduce sensitivity.
 - **stallguard_min_velocity** (**Required**, integer): Minimum speed for stop-on-stall, in drive velocity units.
-- **homing_velocity** (**Required**, integer): Homing speed, greater than `stallguard_min_velocity`.
-- **homing_backoff** (**Required**, integer): Positive back-off distance before seeking the negative end stop.
-- **homing_travel** (**Required**, integer): Maximum negative seek distance.
-- **homing_margin** (**Required**, integer): Minimum distance remaining before the seek target for an early stop to qualify.
-  Must be less than `homing_travel`.
 
-Velocity, distance and margin values are positive integers up to 2147483647. Distances are microstep counts when the
+Velocity values are positive integers up to 2147483647. Positions are microstep counts when the
 drive uses its default position scaling. Velocity and acceleration use the drive's configured units. Convert physical
 distances using the configured microsteps, motor steps per revolution, and screw pitch. The example values are
 illustrative; tune them for the mechanism.
@@ -67,35 +58,7 @@ Settings are volatile; the component does not write the nonvolatile parameter st
 
 Profile moves also set both sections of the six-point acceleration and deceleration ramps. The component does not
 enable or move the motor at boot. Start the node with `canopen.nmt`, configure it, and explicitly enable it with
-`cia402.enable` before issuing a move or homing command. Use `on_result` to sequence actions.
-
-## Sensorless Homing
-
-`tmcm1240.sensorless_home` requires a stationary, enabled motor. It applies the configured settings, completes
-the positive back-off, then seeks negatively within `homing_travel`. A successful reference requires observed
-negative motion above the stop-on-stall threshold, followed by two complete samples showing an early standstill,
-an unchanged target and StallGuard settings, no driver error flags, and no fault or target-reached indication.
-
-Only after those checks does it run homing method 35 with zero offset. It verifies zero position, releases the homing
-start bit, clears the old target, and returns to profile-position mode. `tmcm1240.is_homed` becomes true only after
-this sequence succeeds. `tmcm1240.is_homing` reports whether it is in progress. Both are automation conditions.
-
-The algorithm infers the stop from telemetry; it does not provide an independent physical reference switch.
-Do not let another CANopen client change motion or driver settings while it runs. Reaching the travel limit,
-a driver error, a timeout, a communication error, or cancellation never assigns zero. Failures attempt a quick stop.
-The operation timeout bounds the search; stop-command latency has the limitations described for
-[CiA 402 actions](/components/cia402/#actions).
-
-```yaml
-button:
-  - platform: template
-    name: "Home Motor"
-    on_press:
-      - tmcm1240.sensorless_home: motor
-```
-
-Valve open/closed positions and a workflow such as homing before closing belong in application automations.
-Use `cia402.move_to` after a successful homing result, with the mechanism's own travel bounds and position targets.
+`cia402.enable` before issuing a move command. Use `on_result` to sequence actions.
 
 ## Diagnostic Sensors
 
