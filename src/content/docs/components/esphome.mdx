@@ -405,8 +405,8 @@ Security standards for connected products, such as EN 18031 and the EU Cyber Res
 provide one.
 
 When building for ESP32, ESPHome describes the parts it adds to the build: the project,
-ESPHome itself, any [external components](/components/external_components/) (with the exact git commit used) and
-any libraries. ESP-IDF and its components already describe themselves. Espressif's
+ESPHome itself, any [external components](/components/external_components/) and any libraries. Git-sourced external
+components include the exact commit used. ESP-IDF and its components already describe themselves. Espressif's
 [esp-idf-sbom](https://github.com/espressif/esp-idf-sbom) tool combines all of this into an SBOM file after the
 firmware has been compiled:
 
