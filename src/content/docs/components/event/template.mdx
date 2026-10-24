@@ -66,6 +66,11 @@ Names follow the rules of an [ID](/guides/configuration-types#id). `assumed_stat
 `unit_of_measurement` are rejected, because Home Assistant uses them for the event. An event has at most 16
 variables, and an event with variables has at most 127 event types.
 
+The [Native API](/components/api/) sends the variables with the entity and the values with each event. MQTT, the
+web server and Prometheus report only the event type. When an API connection is congested and an event fires again
+before its earlier events are sent, those events arrive at that client without their values, and the device logs a
+warning.
+
 ## See Also
 
 - [Automation](/automations/)
