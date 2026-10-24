@@ -17,6 +17,9 @@ http_request:
 - **id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID used for code generation.
 - **follow_redirects** (*Optional*, boolean): Enable following HTTP redirects. Defaults to `true`.
 - **redirect_limit** (*Optional*, integer): Maximum amount of redirects to follow when enabled. Defaults to `3`.
+- **max_concurrent_requests** (*Optional*, integer): How many requests from the HTTP request actions run at the
+  same time, from `1` to `4`. Defaults to `1`. Each request holds its own connection, and on ESP32 an HTTPS
+  connection uses about 40 kB of memory.
 - **timeout** (*Optional*, [Time](/guides/configuration-types#time)): Timeout for request. Defaults to `4.5s`.
   Each action can override it with its own `timeout` option.
   On ESP32 this applies to each network operation (DNS lookup, connect, TLS handshake, every read and write)
@@ -99,9 +102,13 @@ The actions that follow an HTTP request action run only after the request has fi
 request waits for the server. Opening the connection and the TLS handshake still pause the device for a short time,
 typically a few hundred milliseconds. On other platforms the device waits for the whole request.
 
-Each action sends one request at a time. If the action is triggered again while a request is in progress, the new
-request waits until the earlier one has finished. Up to four requests can wait; if the action is triggered while four
-are already waiting, the request is not sent and `on_error` is triggered.
+The HTTP request actions send one request at a time (or `max_concurrent_requests` at a time), in the order they
+were triggered. If an action is triggered while a request is in progress, the new request waits until the earlier
+one has finished. Up to four requests can wait; if an action is triggered while four are already waiting, the request
+is not sent and `on_error` is triggered.
+
+When the device reboots or goes into deep sleep, requests that are waiting or in progress are dropped without
+triggering `on_response` or `on_error`. Requests made from an `on_shutdown` automation are still sent.
 
 > [!NOTE]
 > A [script](/components/script/) that contains an HTTP request action is still running while the request is in
