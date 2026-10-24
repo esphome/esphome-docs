@@ -9,32 +9,124 @@ headphones or a speaker. It requires the ESP-IDF framework and `classic_bt: true
 It accepts 16-bit stereo PCM at 44.1 kHz. Bluetooth LE can remain enabled, but the two Bluetooth modes share a radio.
 
 ```yaml
-# Example configuration entry
+# Two independently addressable players; the second receiver can be paired later.
 speaker:
   - platform: a2dp_source
     id: bluetooth_audio
+    slot: 1
     address: "02:23:45:67:89:AB"  # Replace with your receiver's Bluetooth Classic address.
+    num_channels: 2
+    sample_rate: 44100
+  - platform: a2dp_source
+    id: second_bluetooth_audio
+    slot: 2
     num_channels: 2
     sample_rate: 44100
 ```
 
-## Configuration variables
+## Configuration Variables
 
-- **address** (**Required**, MAC address): Bluetooth Classic address of the receiver.
+- **address** (*Optional*, MAC address): Initial Bluetooth Classic address of the receiver. A successful pairing or
+  selection can set the address later.
+- **slot** (*Optional*, integer from 1 to 8): Distinct player assignment stored in flash. Defaults to `1`; configured
+  slots must be unique.
+- **on_preempt** (*Optional*, [Automation](/automations/)): Runs when another A2DP speaker takes over the Classic
+  connection. Stop the media player feeding this speaker so its state changes to `idle`.
 - **id** (*Optional*, [ID](/guides/configuration-types/#id)): ID of the speaker.
 - All other options from [Speaker Component](/components/speaker/). This platform uses 16-bit stereo audio at 44.1 kHz.
 
-This version supports one configured A2DP receiver. After playback stops, the A2DP link disconnects. The receiver
-must accept pairing without a PIN or an interactive confirmation. This platform does not expose receiver discovery,
-PIN entry, bond management, or runtime receiver selection.
+The ESP32 stores Classic bonds independently of player slots. The Bluetooth stack and available memory determine
+how many bonds can be retained. Up to eight separately configured speaker
+instances can refer to saved receivers. Only one A2DP connection plays at a time. Starting another speaker stops
+the current speaker and moves the connection to the requested receiver. After STOP, A2DP and the Classic ACL link
+disconnect. A receiver address can be assigned to one player slot at a time.
 
-## Speaker media player
+## Discovery and Pairing
+
+The actions `a2dp_source.start_discovery` and `a2dp_source.cancel_discovery` control a Classic inquiry. Discovery
+results contain an address, reported name, RSSI, and bond state. Inquiry does not impose a fixed result count;
+results grow while memory is available. Read `discovery_count()` and `discovery_results(page)` from a lambda;
+pages contain ten devices. `set_discovery_page` and `discovery_page()` allow the page to be selected over an API
+action. BLE devices are reported by the separate BLE tracker and proxy.
+
+Use `a2dp_source.pair` with a discovered address and an optional numeric `pin`. Pairing can also use a known address
+with `require_discovered: false`. If the receiver requests numeric comparison, read `confirmation_prompt()` and
+call `a2dp_source.confirm_pairing` with `approve: true` after checking the number on the receiver. The result is
+asynchronous; `pairing_status()` reports `connecting`, `authenticating`, `confirm code`, `paired`, or `failed`.
+For receivers that require the receiver to initiate a persistent bond, use `a2dp_source.pair_incoming` with a
+discovered address. It opens a 30-second Classic pairing window. Start pairing from the receiver during that window
+and confirm any matching numeric comparison on both devices. The gateway accepts authentication only from the
+selected address and closes the window when pairing completes or times out. Confirm that the receiver also retained
+the bond before using it for playback.
+End inquiry with `a2dp_source.cancel_discovery` and wait until `discovery_running()` is false before pairing. A receiver
+that requests a legacy PIN cannot pair with an empty `pin`; supply the PIN required by that receiver. Pairing requires
+the receiver to be powered on and accepting a new Bluetooth connection.
+
+`a2dp_source.select` assigns an existing bond to a player slot without starting audio. `a2dp_source.clear_selection`
+clears the slot while retaining the bond. `a2dp_source.unpair` removes the selected slot's bond.
+`a2dp_source.forget` removes a specified bond and clears any slot that selected it; read `forget_status()` for its
+asynchronous result. Use `bond_count()`, `bond_list(page)`, and `set_bond_page` to inspect stored bonds, ten per page.
+Selection, forgetting, and new discovery are rejected while an incompatible audio or pairing operation is active.
+
+An ESPHome native API action can expose the component action without adding a Home Assistant dependency:
+
+```yaml
+api:
+  encryption:
+    key: !secret api_encryption_key
+  actions:
+    - action: pair_bluetooth_receiver
+      variables:
+        address: string
+        pin: string
+      then:
+        - a2dp_source.pair:
+            id: second_bluetooth_audio
+            address: !lambda 'return address;'
+            pin: !lambda 'return pin;'
+            require_discovered: false
+    - action: select_bluetooth_receiver
+      variables:
+        address: string
+      then:
+        - a2dp_source.select:
+            id: second_bluetooth_audio
+            address: !lambda 'return address;'
+```
+
+The action starts an operation and does not return the final connection or bond result synchronously. If PINs are
+sent through the native API, configure API encryption.
+
+To publish discovery and pairing status through the same native API, add template entities:
+
+```yaml
+sensor:
+  - platform: template
+    name: Classic Discovery Count
+    lambda: 'return id(bluetooth_audio).discovery_count();'
+    update_interval: 2s
+
+text_sensor:
+  - platform: template
+    name: Classic Discovery Page
+    lambda: 'return id(bluetooth_audio).discovery_results(id(bluetooth_audio).discovery_page());'
+    update_interval: 2s
+  - platform: template
+    name: Bluetooth Pairing Status
+    lambda: 'return std::string(id(second_bluetooth_audio).pairing_status());'
+    update_interval: 2s
+```
+
+## Speaker Media Player
 
 The [Speaker Audio Media Player](/components/media_player/speaker/) can connect to the Bluetooth receiver before it
 downloads audio. Set `preconnect_speaker` to the A2DP speaker and use one `announcement_pipeline`. The media player
 waits for the A2DP connection and an AVRCP volume response. The receiver must support AVRCP absolute volume for this
 path. Set `preconnect_timeout` long enough for connection retries; a timed-out request returns the media player to
 `idle` without fetching audio.
+
+When multiple media players use separate A2DP speakers, set `on_preempt` on each speaker to stop its media player.
+The new playback request releases the previous connection and updates the previous player's state to `idle`.
 
 ```yaml
 esp32:
@@ -49,9 +141,12 @@ speaker:
   - platform: a2dp_source
     id: bluetooth_audio
     address: "02:23:45:67:89:AB"  # Replace with your receiver's Bluetooth Classic address.
+    on_preempt:
+      - media_player.stop: bluetooth_player
 
 media_player:
   - platform: speaker
+    id: bluetooth_player
     name: Bluetooth Audio
     preconnect_speaker: bluetooth_audio
     preconnect_timeout: 30s
@@ -62,8 +157,8 @@ media_player:
       num_channels: 2
 ```
 
-Place the receiver in pairing mode before its first connection. Receivers requiring a PIN or interactive confirmation
-are outside this version's scope. The example address is illustrative and is not tied to a particular receiver.
+Place a new receiver in pairing mode before pairing it. The example address is illustrative and is not tied to a
+particular receiver.
 
 Wi-Fi, Bluetooth Classic and BLE share the ESP32 radio. Streaming audio and scanning BLE devices at the same time can
 increase connection times or packet loss. Test both the audio path and BLE reception with your own receiver and radio
