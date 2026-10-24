@@ -22,7 +22,8 @@ invalid. A successful `rx8111.write_time` clears those flags.
 
 - **address** (*Optional*, int): Manually specify the I²C address of the RTC. Defaults to `0x32`.
 - **event_poll_interval** (*Optional*, time period): How often to check alarm, timer and EVIN flags,
-  independently of the calendar `update_interval`. Minimum `500ms`; defaults to `1s` when events are enabled.
+  independently of the calendar `update_interval`. Minimum `500ms`; defaults to `1s`. EVIN alone only enables
+  this polling when `on_event` is configured; hardware event detection does not require polling.
 - All other options from [Base Time Configuration](/components/time/#base_time_config).
 
 ### Backup Power and Clock Output
@@ -32,8 +33,10 @@ invalid. A successful `rx8111.write_time` clears those flags.
   explicitly disable switchover and charging and select VDD-only operation. Explicit configuration sets the
   fixed-switch selection (`SWSEL`) to `10`, which is also valid with automatic switchover enabled.
   Defaults to omitted, not enabled.
-- **battery_charging** (*Optional*, boolean): Enable the RX8111's backup charging switch. Requires
-  `battery_backup: true`; defaults to `false`. **Only enable this with a rechargeable backup supply and a
+- **battery_charging** (*Optional*, boolean): Enable the RX8111's backup charging switch. Both `true` and `false`
+  require an explicit `battery_backup` setting; enabling charging requires `battery_backup: true`.
+  Defaults to `false` when backup is configured; omitting both options preserves the retained charging setting.
+  **Only enable this with a rechargeable backup supply and a
   charging circuit designed for that supply. Never enable it with a non-rechargeable coin cell.**
 - **fout_frequency** (*Optional*, string): Set the `FOUT` pin to `32768hz`, `1024hz`, `1hz`, or `off` (high
   impedance). When omitted, the battery-backed FOUT selection is left unchanged. The pin must be wired to a
@@ -189,8 +192,10 @@ system time with a year from 2019 to 2099. A successful write clears the RTC's t
 alarm, timer, update and event flags.
 
 If restarting the counter after a write fails, the component retries the restart every second without rewriting
-the calendar snapshot. It refuses to synchronize from the RTC while STOP is set. The write warning remains until
-restart and validity-flag cleanup succeed; if the calendar write itself failed, write trusted time again.
+the calendar snapshot. A delayed restart leaves that snapshot behind real time, so the component does not clear
+its validity flags or allow it to synchronize the system clock. A failed calendar write or validity-flag cleanup
+also blocks synchronization. The warning remains until a new `rx8111.write_time` with trusted system time succeeds.
+Reads also refuse synchronization while STOP is set.
 
 > [!NOTE]
 > The RX8111 component will *not* write to the RTC unless triggered *explicitly* by this action.
