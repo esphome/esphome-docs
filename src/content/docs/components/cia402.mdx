@@ -21,9 +21,20 @@ cia402:
 - **id** (*Optional*, ID): ID used by actions and derived device components.
 - **canopen_id** (*Optional*, ID): CANopen client to use.
 - **node_id** (**Required**, integer): Remote node address, from 1 to 127. Only one drive component may own each node.
-- **profile_velocity** (**Required**, integer): Profile and homing speed in the drive's velocity units, from 1 to 2147483647.
+- **profile_velocity** (**Required**, integer): Profile speed in the drive's velocity units, from 1 to 2147483647.
 - **acceleration** (**Required**, integer): Acceleration in the drive's acceleration units, from 1 to 2147483647.
-- **deceleration** (**Required**, integer): Deceleration and quick-stop deceleration, from 1 to 2147483647.
+- **deceleration** (**Required**, integer): Profile deceleration, from 1 to 2147483647.
+- **quick_stop_deceleration** (*Optional*, integer): Quick-stop deceleration (`0x6085`), from 1 to 2147483647.
+  Defaults to `deceleration`.
+- **homing_fast_velocity** (*Optional*, integer): Homing switch-search speed (`0x6099:1`), from 1 to 2147483647.
+  Defaults to `profile_velocity`.
+- **homing_slow_velocity** (*Optional*, integer): Homing zero-search speed (`0x6099:2`), from 1 to 2147483647.
+  Defaults to `profile_velocity`.
+- **homing_acceleration** (*Optional*, integer): Homing acceleration (`0x609A`), from 1 to 2147483647.
+  Defaults to `acceleration`.
+- **min_position**, **max_position** (*Optional*, integer): Signed 32-bit software position limits (`0x607D:1` and
+  `0x607D:2`). Set both together, with minimum no greater than maximum. The component rejects targets outside this
+  range and writes both limits before profile-position moves. When omitted, existing drive limits are left unchanged.
 - **heartbeat_timeout** (*Optional*, Time): Maximum heartbeat age for accepting and continuing commands.
   Defaults to `1500ms`. Range: `1ms` to `10min`.
 - **operation_timeout** (*Optional*, Time): Maximum duration of a command sequence. Defaults to `30s`.
@@ -62,6 +73,7 @@ button:
   A fault must be reset explicitly first.
 - **cia402.disable**: Cancels the current sequence and writes disable voltage. Torque may be removed immediately.
 - **cia402.halt**: Cancels the current sequence and sets the controlword halt bit.
+- **cia402.controlled_stop**: Alias for `cia402.halt`.
 - **cia402.quick_stop**: Cancels the current sequence and clears the quick-stop controlword bit.
   The drive's quick-stop option code determines its response.
 - **cia402.fault_reset**: Generates the fault-reset rising edge, waits for the fault bit to clear, and disables voltage.
@@ -71,6 +83,11 @@ button:
   overflow is rejected. A previous interrupted target is never used as the starting position.
 - **cia402.home**: Takes **method** (**Required**, integer, -128 to 127) and **offset** (*Optional*, integer, default `0`).
   Choose a homing method supported by the drive. Method `35` assigns the current position on drives supporting it.
+- **cia402.zero_position**: Runs `cia402.home` with method `35` and offset `0`. Requires support for that method.
+  It does not write to actual-position objects, which are read-only in the general profile.
+- **cia402.apply_configuration**: Checks for a stationary, fault-free drive, then writes profile velocity,
+  acceleration, deceleration, quick-stop deceleration, and any configured position limits. It does not enable motion.
+  Homing settings are written by the home action.
 
 Move and home actions require an enabled, stationary drive. They check the mode display before starting and wait
 for completion. Moves use profile-position mode and the set-point acknowledgement handshake. Homing errors stop
@@ -96,6 +113,41 @@ Use [CANopen numeric sensors](/components/canopen/#sensor-configuration-variable
 For example, `0x6064:0` is signed 32-bit actual position, `0x606C:0` is signed 32-bit actual velocity,
 and `0x6041:0` is an unsigned 16-bit statusword. The C++ getters `get_position()`, `get_velocity()`,
 `get_statusword()`, `get_mode()`, and `busy()` expose the component's most recent values to lambdas.
+`get_state()` returns a `cia402::DriveState`; `state_from_statusword(value)` decodes an arbitrary statusword.
+`is_target_reached()` reads statusword bit 10. These are cached values, so check heartbeat freshness before using them.
+
+The state enum values are `DRIVE_STATE_NOT_READY`, `DRIVE_STATE_SWITCH_ON_DISABLED`,
+`DRIVE_STATE_READY_TO_SWITCH_ON`, `DRIVE_STATE_SWITCHED_ON`, `DRIVE_STATE_OPERATION_ENABLED`,
+`DRIVE_STATE_QUICK_STOP_ACTIVE`, `DRIVE_STATE_FAULT_REACTION_ACTIVE`, `DRIVE_STATE_FAULT`, and
+`DRIVE_STATE_UNKNOWN`.
+
+Other general drive functions use the underlying CANopen API:
+
+| Function | Interface |
+| --- | --- |
+| Start, stop, or pre-operational NMT state | `canopen.nmt` action |
+| Heartbeat age, online status, NMT state | Inherited `heartbeat_age(now)`, `is_online(now, timeout)`, `get_nmt_state()` |
+| Emergency codes | CANopen `on_emcy` callback |
+| Device type, error register, identity | CANopen sensors at `0x1000`, `0x1001`, and `0x1018:1` through `0x1018:4` |
+| Digital inputs | Unsigned 32-bit CANopen sensor at `0x60FD:0`; decode bits according to the drive's input assignment |
+| Homing attained/error | Statusword bits 12/13 while mode display equals `6` |
+| Profile settings from lambdas | `set_profile_velocity()`, `set_acceleration()`, `set_deceleration()` |
+| Quick-stop and homing settings | `set_quick_stop_deceleration()`, `set_homing_fast_velocity()`, `set_homing_slow_velocity()`, `set_homing_acceleration()` |
+| Software limits from lambdas | `set_position_limits(minimum, maximum)` |
+
+Configuration setters update values used by subsequent commands. Call `apply_configuration()` to write profile settings
+explicitly. Use positive values for velocities and accelerations, and ordered signed 32-bit limits.
+The `home(method, offset)` call selects the homing method and home offset for each operation.
+
+Low-level controlword, mode, and target-velocity writes remain available through `canopen.sdo_write` at `0x6040`,
+`0x6060`, and `0x60FF`. They acknowledge the write, not completion of a state transition or motion. Use the drive
+actions above for the implemented state, positioning, and homing sequences.
 
 The component expects exclusive control of the drive. Avoid writing its controlword, mode, target, or profile
 registers from other clients while a sequence runs.
+
+## Hardware Validation
+
+The source integration was physically tested with a Trinamic TMCM-1240 stepper motor driver. The reusable asynchronous
+component is validated separately with protocol tests and firmware builds. Manufacturer-specific configuration and
+application workflows are outside this component.
