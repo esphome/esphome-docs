@@ -386,6 +386,8 @@ while after power off to dry the unit:
 - **hitachi_ac344_id** (*Optional*, [ID](/guides/configuration-types/#id)): The `hitachi_ac344` climate the switch
   belongs to. Only needed with more than one.
 - **mildew_proof** (**Required**, [Switch](/components/switch/#config-switch)): The mildew proof switch.
+  `restore_mode` defaults to `RESTORE_DEFAULT_OFF`. The restored setting is not sent at boot; it goes out with the
+  next command, so a reboot does not turn mildew proof off.
 
 ```yaml
 # Example configuration entry for the switch
